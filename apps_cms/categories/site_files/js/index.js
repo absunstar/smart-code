@@ -1,53 +1,52 @@
-app.controller('mainCategories', function ($scope, $http, $timeout) {
+app.controller('categories', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
 
-  $scope.mainCategories = {};
+  $scope.categories = {};
 
-  $scope.displayAddMainCategories = function (parentMainCategory) {
+  $scope.displayAddCategories = function (parentCategory) {
     $scope._search = {};
 
     $scope.error = '';
     $scope.mode = 'add';
 
-    if (parentMainCategory && parentMainCategory.type == 'detailed') {
+    if (parentCategory && parentCategory.type == 'detailed') {
       return;
     }
 
-    $scope.mainCategories = {
+    $scope.categories = {
       type: 'detailed',
       active: true,
       showHome: true,
       translatedList: [],
     };
 
-    if (parentMainCategory) {
-      $scope.mainCategories.parentId = parentMainCategory.id;
-      $scope.mainCategories.topParentId = parentMainCategory.topParentId || parentMainCategory.id;
+    if (parentCategory) {
+      $scope.categories.parentId = parentCategory.id;
+      $scope.categories.topParentId = parentCategory.topParentId || parentCategory.id;
     }
 
-    if ($scope.mainCategories.topParentId) {
-      $scope.mainCategories = {
+    if ($scope.categories.topParentId) {
+      $scope.categories = {
         type: 'detailed',
         active: true,
         showHome: true,
-        status: parentMainCategory.status,
-        imageUrl: parentMainCategory.imageUrl,
+        status: parentCategory.status,
+        image: parentCategory.image,
       };
 
-      $scope.mainCategories.parentId = parentMainCategory.id;
-      $scope.mainCategories.topParentId = parentMainCategory.topParentId || parentMainCategory.id;
+      $scope.categories.parentId = parentCategory.id;
+      $scope.categories.topParentId = parentCategory.topParentId || parentCategory.id;
     }
 
-    $scope.mainCategories.translatedList = [];
+    $scope.categories.translatedList = [];
     $scope.defaultSettings.languagesList.forEach((l) => {
       if (l.language.active == true) {
-        $scope.mainCategories.translatedList.push({
+        $scope.categories.translatedList.push({
           language: {
             id: l.language.id,
             en: l.language.en,
             ar: l.language.ar,
-            direction: l.language.direction,
           },
           actualViews: 0,
           dummyViews: 0,
@@ -73,16 +72,16 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
       }
     });
 
-    site.showModal('#mainCategoriesManageModal');
+    site.showModal('#categoriesManageModal');
   };
 
-  $scope.addMainCategories = function () {
+  $scope.addCategories = function () {
     $scope.error = '';
     if ($scope.busyAdd) {
       return;
     }
 
-    const v = site.validated('#mainCategoriesManageModal');
+    const v = site.validated('#categoriesManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -91,22 +90,22 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
     $scope.busyAdd = true;
     $http({
       method: 'POST',
-      url: '/api/mainCategories/add',
-      data: $scope.mainCategories,
+      url: '/api/categories/add',
+      data: $scope.categories,
     }).then(
       function (response) {
         $scope.busyAdd = false;
         if (response.data.done) {
-          $scope.mainCategories = {
+          $scope.categories = {
             type: 'detailed',
             status: 'active',
-            imageUrl: '/images/mainCategories.jpg',
+            image: '/images/categories.jpg',
           };
 
-          site.hideModal('#mainCategoriesManageModal');
+          site.hideModal('#categoriesManageModal');
 
           $scope.list.push(response.data.doc);
-          $scope.getMainCategoriesList();
+          $scope.getCategoriesList();
         } else {
           $scope.error = response.data.error;
         }
@@ -117,24 +116,24 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayUpdateMainCategories = function (mainCategories) {
+  $scope.displayUpdateCategories = function (categories) {
     $scope._search = {};
     $scope.mode = 'edit';
 
     $scope.error = '';
-    $scope.viewMainCategories(mainCategories, 'update');
-    $scope.mainCategories = {};
+    $scope.viewCategories(categories, 'update');
+    $scope.categories = {};
 
-    site.showModal('#mainCategoriesManageModal');
+    site.showModal('#categoriesManageModal');
   };
 
-  $scope.updateMainCategories = function () {
+  $scope.updateCategories = function () {
     $scope.error = '';
     if ($scope.busy) {
       return;
     }
 
-    const v = site.validated('#mainCategoriesManageModal');
+    const v = site.validated('#categoriesManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       $scope.busy = false;
@@ -145,15 +144,15 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/mainCategories/update',
-      data: $scope.mainCategories,
+      url: '/api/categories/update',
+      data: $scope.categories,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#mainCategoriesManageModal');
+          site.hideModal('#categoriesManageModal');
 
-          $scope.getMainCategoriesList();
+          $scope.getCategoriesList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Detailed Err*')) {
@@ -167,32 +166,32 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayViewMainCategories = function (mainCategories) {
+  $scope.displayViewCategories = function (categories) {
     $scope.error = '';
     $scope.mode = 'view';
-    $scope.viewMainCategories(mainCategories);
-    $scope.mainCategories = {};
-    site.showModal('#mainCategoriesManageModal');
+    $scope.viewCategories(categories);
+    $scope.categories = {};
+    site.showModal('#categoriesManageModal');
   };
 
-  $scope.viewMainCategories = function (mainCategories, type) {
+  $scope.viewCategories = function (categories, type) {
     $scope.error = '';
     $scope.busy = true;
 
     $http({
       method: 'POST',
-      url: '/api/mainCategories/view',
+      url: '/api/categories/view',
       data: {
-        id: mainCategories.id,
+        id: categories.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           if (type == 'update') {
-            $scope.mainCategories = response.data.doc;
+            $scope.categories = response.data.doc;
           } else {
-            $scope.mainCategories = response.data.doc;
+            $scope.categories = response.data.doc;
           }
         } else {
           $scope.error = response.data.error;
@@ -204,15 +203,15 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDeleteMainCategories = function (mainCategories) {
+  $scope.displayDeleteCategories = function (categories) {
     $scope.error = '';
     $scope.mode = 'delete';
-    $scope.viewMainCategories(mainCategories);
-    $scope.mainCategories = {};
-    site.showModal('#mainCategoriesManageModal');
+    $scope.viewCategories(categories);
+    $scope.categories = {};
+    site.showModal('#categoriesManageModal');
   };
 
-  $scope.deleteMainCategories = function (mainCategory) {
+  $scope.deleteCategories = function (category) {
     $scope.error = '';
     if ($scope.busy) {
       return;
@@ -220,17 +219,17 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/mainCategories/delete',
+      url: '/api/categories/delete',
       data: {
-        id: mainCategory.id,
+        id: category.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#mainCategoriesManageModal');
+          site.hideModal('#categoriesManageModal');
 
-          $scope.getMainCategoriesList();
+          $scope.getCategoriesList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Delete Acc Err*')) {
@@ -244,14 +243,14 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getMainCategoriesList = function (where) {
+  $scope.getCategoriesList = function (where) {
     $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
 
     $http({
       method: 'POST',
-      url: '/api/mainCategories/all',
+      url: '/api/categories/all',
       data: {
         where: where,
         lang: true,
@@ -324,11 +323,11 @@ app.controller('mainCategories', function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
-    $scope.getMainCategoriesList(where);
-    site.hideModal('#mainCategoriesSearchModal');
+    $scope.getCategoriesList(where);
+    site.hideModal('#categoriesSearchModal');
     $scope.search = {};
   };
 
-  $scope.getMainCategoriesList();
+  $scope.getCategoriesList();
   $scope.getDefaultSetting();
 });

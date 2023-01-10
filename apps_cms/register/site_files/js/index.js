@@ -1,5 +1,5 @@
 app.controller('register_souq', function ($scope, $http, $timeout) {
-  $scope.user = { imageUrl: '/images/user_logo.png' };
+  $scope.user = { image: '/images/user_logo.png' };
   $scope.type = 'mobile';
 
   $scope.showTab = function (event, selector) {
@@ -296,7 +296,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
       mobile: user.mobile,
       firstName: user.firstName,
       lastName: user.lastName,
-      imageUrl: user.imageUrl,
+      image: user.image,
     };
 
     if ($scope.mailer) {
@@ -379,7 +379,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
            
           name: 1,
           code: 1,
-          imageUrl: 1,
+          image: 1,
           countryCode: 1,
           lengthMobile: 1
         },

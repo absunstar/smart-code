@@ -134,7 +134,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
         name: $scope.user.profile.name,
         lastName: $scope.user.profile.lastName,
         email: $scope.user.email,
-        imageUrl: $scope.user.profile.imageUrl,
+        image: $scope.user.profile.image,
       },
       show: false,
     };

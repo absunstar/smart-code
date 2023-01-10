@@ -33,7 +33,7 @@ app.controller('sitebar', ($scope, $http) => {
           topParentId: { $exists: false }
         },
         select : {
-          id : 1, name : 1 , imageUrl : 1 
+          id : 1, name : 1 , image : 1 
         },
         limit : 8
       },
@@ -53,7 +53,7 @@ app.controller('sitebar', ($scope, $http) => {
 
   $scope.showRegisterModal = function () {
     $scope.customer = {
-      imageUrl: '/images/customer.png',
+      image: '/images/customer.png',
       active: true,
       balance_creditor: 0,
       balance_debtor: 0,

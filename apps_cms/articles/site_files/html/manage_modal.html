@@ -90,7 +90,7 @@
                             <i-control v="r" class="col9" label="##word.article_title##" ng-model="p.title"> </i-control>
 
                             <div class="col3 center">
-                              <i-image class="center" ng-model="p.imageUrl"></i-image>
+                              <i-image class="center" ng-model="p.image"></i-image>
                               <i-checkbox class="center" label="##word.show_image##" ng-model="p.showImage"> </i-checkbox>
                             </div>
                           </div>
@@ -114,7 +114,7 @@
                           <div class="row">
                             <i-control v="r" class="col9" label="##word.article_title##" ng-model="i.title"> </i-control>
                             <div class="col3 center">
-                              <i-image class="center" ng-model="i.imageUrl"></i-image>
+                              <i-image class="center" ng-model="i.image"></i-image>
                               <i-checkbox class="center" label="##word.show_image##" ng-model="i.showImage"> </i-checkbox>
                             </div>
                           </div>
@@ -167,7 +167,7 @@
                       <div class="col5">
                         <div class="article-part">
                           <i-checkbox class="" label="##word.show_image##" ng-model="art.showImage"> </i-checkbox>
-                          <i-image class="img256 full" ng-model="art.imageUrl"></i-image>
+                          <i-image class="img256 full" ng-model="art.image"></i-image>
                         </div>
                       </div>
                     </div>
@@ -362,8 +362,8 @@
                   class="red"
                   label="##word.category##"
                   v="r"
-                  ng-model="article.mainCategory"
-                  ng-click="loadSubCategory1(article.mainCategory)"
+                  ng-model="article.category"
+                  ng-click="loadSubCategory1(article.category)"
                   items="topCategoryList"
                   display="name"
                   ng-search="article.$category1Search"
@@ -371,11 +371,11 @@
                 </i-list>
 
                 <i-list
-                  label="##word.categories## {{article.mainCategory.name}}"
+                  label="##word.categories## {{article.category.name}}"
                   ng-model="article.subCategory1"
                   ng-click="loadSubCategory2(article.subCategory1)"
                   items="subCategoriesList1"
-                  ng-show="subCategoriesList1.length > 0 && article.mainCategory"
+                  ng-show="subCategoriesList1.length > 0 && article.category"
                   display="name"
                   ng-search="article.$category2Search"
                 >

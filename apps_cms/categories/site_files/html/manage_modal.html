@@ -1,21 +1,21 @@
-<div id="mainCategoriesManageModal" class="modal" fixed>
+<div id="categoriesManageModal" class="modal" fixed>
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
       <h2 ng-show="mode == 'add' ">
-        ##word.main_categories_new##
+        ##word.categories_new##
         <i class="fa fa-plus"></i>
       </h2>
       <h2 ng-show="mode == 'edit' ">
-        ##word.main_categories_edit##
+        ##word.categories_edit##
         <i class="fa fa-pencil"></i>
       </h2>
       <h2 ng-show="mode == 'delete' ">
-        ##word.main_categories_delete##
+        ##word.categories_delete##
         <i class="fa fa-trash"></i>
       </h2>
       <h2 ng-show="mode == 'view' ">
-        ##word.main_categories_details##
+        ##word.categories_details##
         <i class="fa fa-file"></i>
       </h2>
     </div>
@@ -24,7 +24,7 @@
       <div class="form">
         <div class="row">
           <div class="article-part">
-            <fieldset ng-repeat="lang in mainCategories.translatedList track by $index">
+            <fieldset ng-repeat="lang in categories.translatedList track by $index">
               <legend>{{lang.language.##session.lang##}}</legend>
 
               <div class="tabs">
@@ -39,7 +39,7 @@
                     <div class="row">
                       <div class="col9">
                         <div class="row">
-                          <i-control v="r" label="##word.main_categories_name##" ng-model="lang.name"></i-control>
+                          <i-control v="r" label="##word.categories_name##" ng-model="lang.name"></i-control>
                         </div>
                         <div class="row">
                           <i-textarea ng-model="lang.description" label="##word.description##"> </i-textarea>
@@ -61,7 +61,7 @@
                         <div class="row">
                           <div class="article-part">
                             <p class="center">Logo</p>
-                            <i-image class="center" ng-model="lang.imageUrl"></i-image>
+                            <i-image class="center" ng-model="lang.image"></i-image>
                           </div>
                         </div>
                         <div class="row">
@@ -155,20 +155,20 @@
             <br />
 
             <div class="row">
-              <i-checkbox label="Show in home page" ng-model="mainCategories.showHome"> </i-checkbox>
+              <i-checkbox label="Show in home page" ng-model="categories.showHome"> </i-checkbox>
             </div>
             <div class="row">
-              <i-checkbox label="Active" ng-model="mainCategories.active"> </i-checkbox>
+              <i-checkbox label="Active" ng-model="categories.active"> </i-checkbox>
             </div>
             <br />
             <div class="row">
-              <h2 class="brown col2">##word.main_categories_type## :</h2>
+              <h2 class="brown col2">##word.categories_type## :</h2>
 
               <div class="col6" id="type_{{print.id}}">
                 <div class="row">
-                  <i-radio class="col2" ng-value="primary" label="##word.main_categories_primary##" ng-model="mainCategories.type"> </i-radio>
+                  <i-radio class="col2" ng-value="primary" label="##word.categories_primary##" ng-model="categories.type"> </i-radio>
 
-                  <i-radio class="col2" ng-value="detailed" label="##word.main_categories_final##" ng-model="mainCategories.type"> </i-radio>
+                  <i-radio class="col2" ng-value="detailed" label="##word.categories_final##" ng-model="categories.type"> </i-radio>
                 </div>
               </div>
             </div>
@@ -182,17 +182,17 @@
             </tr>
             <tr>
               <td class="center">
-                <p class="blue">{{mainCategories.addUserInfo.name}}</p>
-                <small class="green"> {{mainCategories.addUserInfo.date |date:"hh:mm"}} </small>
-                <small> {{mainCategories.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
-                <p class="bold">IP : {{mainCategories.addUserInfo.ip}}</p>
+                <p class="blue">{{categories.addUserInfo.name}}</p>
+                <small class="green"> {{categories.addUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{categories.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{categories.addUserInfo.ip}}</p>
               </td>
 
               <td class="center">
-                <p class="blue">{{mainCategories.editUserInfo.name}}</p>
-                <small class="green"> {{mainCategories.editUserInfo.date |date:"hh:mm"}} </small>
-                <small> {{mainCategories.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
-                <p class="bold">IP : {{mainCategories.editUserInfo.ip}}</p>
+                <p class="blue">{{categories.editUserInfo.name}}</p>
+                <small class="green"> {{categories.editUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{categories.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{categories.editUserInfo.ip}}</p>
               </td>
             </tr>
           </table>
@@ -203,10 +203,10 @@
     <div class="modal-footer center">
       <h2 class="center red">{{error}}</h2>
       <h2 class="green center">{{success}}</h2>
-      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addMainCategories()"></i-button>
-      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateMainCategories(mainCategories)"></i-button>
-      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteMainCategories(mainCategories)"> </i-button>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#mainCategoriesManageModal')"></i-button>
+      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addCategories()"></i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateCategories(categories)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteCategories(categories)"> </i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#categoriesManageModal')"></i-button>
     </div>
   </div>
 </div>

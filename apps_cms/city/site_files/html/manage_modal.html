@@ -11,15 +11,9 @@
     <div class="modal-body">
       <fieldset>
         <legend>##word.basic_information##</legend>
-        <div class="row">
-          <div class="col9">
-            <div class="row">
-              <i-control help-id="city_name" v="r ll2" class="col6" label="##word.city_name##" ng-model="city.name"></i-control>
 
-              <i-checkbox help-id="city_active" class="col2" label="##word.active##" ng-model="city.active"> </i-checkbox>
-            </div>
-
-            <div class="row">
+        <div class="article-part">
+          <div class="row">
               <i-list
                 help-id=""
                 v="r"
@@ -33,13 +27,24 @@
               ></i-list>
 
               <i-list help-id="" v="r" class="col4" label="##word.goves_name##" ng-model="city.gov" display="name" items="govesList" ng-search="_search.$city_gov"></i-list>
-            </div>
-          </div>
-
-          <div class="col3">
-            <i-image help-id="city_logo" ng-model="city.imageUrl"></i-image>
+            <div class="col1"></div>
+            <i-checkbox help-id="goves_active" class="col3" label="##word.active##" ng-model="city.active"> </i-checkbox>
           </div>
         </div>
+
+        <div class="article-part">
+          <fieldset ng-repeat="lang in city.translatedList track by $index">
+            <legend>{{lang.language.##session.lang##}}</legend>
+
+            <i-control v="r ll2" class="col8" label="##word.city_name##" ng-model="lang.name"></i-control>
+            <div class="col1"></div>
+            <div class="col3">
+              <i-image help-id="cities_logo" ng-model="lang.image"></i-image>
+            </div>
+          </fieldset>
+        </div>
+
+       
       </fieldset>
       <div ng-show="mode !== 'add' " class="row">
         <table class="table hover border">
@@ -68,7 +73,7 @@
 
     <div class="modal-footer center">
       <h2 class="error">{{error}}</h2>
-      <i-button type="add" ng-show="mode == 'add' "  label="##word.add##" ng-click="addCity()"></i-button>
+      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addCity()"></i-button>
       <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateCity(city)"></i-button>
       <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteCity(city)"> </i-button>
       <i-button type="close" label="##word.close##" onclick="site.hideModal( '#cityManageModal')"></i-button>

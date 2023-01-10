@@ -232,19 +232,19 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.loadMainCategories = function () {
+  $scope.loadCategories = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.categoryList = [];
     $scope.topCategoryList = [];
     $http({
       method: 'POST',
-      url: '/api/mainCategories/all',
+      url: '/api/categories/all',
       data: {
         where: {
           status: 'active',
         },
-        select: { id: 1, name: 1, parentListId: 1, topParentId: 1, parentId: 1, imageUrl: 1, type: 1 },
+        select: { id: 1, name: 1, parentListId: 1, topParentId: 1, parentId: 1, image: 1, type: 1 },
         top: true,
       },
     }).then(
@@ -338,5 +338,5 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
   $scope.getDurationExpiryList();
   $scope.loadWriters();
   $scope.loadEditors();
-  $scope.loadMainCategories();
+  $scope.loadCategories();
 });

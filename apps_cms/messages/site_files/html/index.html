@@ -187,7 +187,7 @@
           <div class="ad-user row  margin" ng-repeat="m in messagesList">
             <a class="message-icon pointer radius13 display-block" ng-class="{'user-selected' : m.$isSelected == true}"
               ng-repeat="u in m.users_list" class="center" ng-show="u.id != userId" ng-click="showMessage(m,$event)">
-              <img class="center userad-logo" ng-src="{{u.imageUrl}}" onerror="this.src='/images/user.png'" alt="" />
+              <img class="center userad-logo" ng-src="{{u.image}}" onerror="this.src='/images/user.png'" alt="" />
               <b class="user-name-stlye">{{u.name}} {{u.lastName}}
                 <span ng-show="m.$new" class="badge_message"></span>
               </b>

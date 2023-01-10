@@ -13,7 +13,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'المنطقة الشرقية',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'ep',
           active: true,
           country: {
@@ -25,7 +25,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'نجران',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'ng',
           active: true,
           country: {
@@ -37,7 +37,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'جازان',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'jz',
           active: true,
           country: {
@@ -49,7 +49,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'عسير',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'as',
           active: true,
           country: {
@@ -61,7 +61,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'الباحة',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'bh',
           active: true,
           country: {
@@ -73,7 +73,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'مكة المكرمة',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'mk',
           active: true,
           country: {
@@ -85,7 +85,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'المدينة المنورة',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'md',
           active: true,
           country: {
@@ -97,7 +97,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'الرياض',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'rd',
           active: true,
           country: {
@@ -109,7 +109,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'القصيم',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'qs',
           active: true,
           country: {
@@ -121,7 +121,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'حائل',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'hl',
           active: true,
           country: {
@@ -133,7 +133,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'الحدود الشمالية',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'nb',
           active: true,
           country: {
@@ -145,7 +145,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'الجوف',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'jf',
           active: true,
           country: {
@@ -157,7 +157,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'تبوك',
-          imageUrl: '/images/gov.png',
+          image: '/images/gov.png',
           code: 'tk',
           active: true,
           country: {
@@ -305,9 +305,7 @@ module.exports = function init(site) {
       response.error = 'Please Login First';
       res.json(response);
       return;
-    }
-
-    if (!req.body.id) {
+    } else if (!req.body.id) {
       response.error = 'no id';
       res.json(response);
       return;
@@ -340,37 +338,30 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-    if (where['country']) {
-      where['country.id'] = where['country'].id;
-      delete where['country'];
-      delete where.active;
-    }
+    let select = req.body.select || { id: 1, name: 1 };
+    response.list = [];
+    site.govList
+      .filter((g) => !where['country'] || g.country.id == where['country'].id)
+      .forEach((doc) => {
+        if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+          let obj = {
+            ...doc,
+            ...langDoc,
+          };
 
-   
-    if (where['name']) {
-    
-      where['name']= site.get_RegExp(where['name'], 'i');
-    }
+          for (const p in obj) {
+            if (!Object.hasOwnProperty.call(select, p)) {
+              delete obj[p];
+            }
+          }
 
-    $goves.findMany(
-      {
-        select: req.body.select || {},
-        where: where,
-        sort: req.body.sort || {
-          id: -1,
-        },
-        limit: req.body.limit,
-      },
-      (err, docs, count) => {
-        if (!err) {
-          response.done = true;
-          response.list = docs;
-          response.count = count;
-        } else {
-          response.error = err.message;
+          if (!where.active || doc.active) {
+            response.list.push(obj);
+          }
         }
-        res.json(response);
-      }
-    );
+      });
+
+    response.done = true;
+    res.json(response);
   });
 };

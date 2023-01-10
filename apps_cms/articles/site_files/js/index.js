@@ -37,10 +37,10 @@ app.controller('articles', function ($scope, $http, $timeout) {
       }
 
       if ($scope.defaultSettings.article.category && $scope.defaultSettings.article.category.id) {
-        $scope.article.mainCategory = $scope.topCategoryList.find((_c, i) => {
+        $scope.article.category = $scope.topCategoryList.find((_c, i) => {
           return _c.id === $scope.defaultSettings.article.category.id;
         });
-        $scope.loadSubCategory1($scope.article.mainCategory);
+        $scope.loadSubCategory1($scope.article.category);
       }
     }
     site.showModal('#articleManageModal');
@@ -274,14 +274,14 @@ app.controller('articles', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.loadMainCategories = function () {
+  $scope.loadCategories = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.categoryList = [];
     $scope.topCategoryList = [];
     $http({
       method: 'POST',
-      url: '/api/mainCategories/all',
+      url: '/api/categories/all',
       data: {
         where: {
           active: true,
@@ -403,7 +403,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       url: '/api/goves/all',
       data: {
         where: {
-          'country.id': country.id,
+          country: country,
           active: true,
         },
         select: {
@@ -435,7 +435,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       url: '/api/city/all',
       data: {
         where: {
-          'gov.id': gov.id,
+          gov: gov,
           active: true,
         },
         select: { id: 1, name: 1 },
@@ -462,7 +462,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       url: '/api/area/all',
       data: {
         where: {
-          'city.id': city.id,
+          city: city,
           active: true,
         },
         select: { id: 1, name: 1 },
@@ -769,7 +769,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       $scope.article.translatedList[$scope.article.translatedList.length - 1].language = lang;
     } else {
       let translate = {
-        imageUrl: '/images/article.png',
+        image: '/images/article.png',
         language: lang,
         showImage: true,
         showSocialImage: true,
@@ -860,7 +860,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
 
   $scope.getArticlesList();
   $scope.loadClusters();
-  $scope.loadMainCategories();
+  $scope.loadCategories();
   $scope.loadWriters();
   $scope.loadEditors();
   $scope.getDefaultSetting();

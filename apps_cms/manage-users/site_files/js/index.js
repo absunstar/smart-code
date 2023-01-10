@@ -102,7 +102,7 @@ app.controller("manageUsers", function ($scope, $http) {
     $scope.manageUsers = {
       active: true,
       ability_login: true,
-      imageUrl: '/images/manageUsers.png',
+      image: '/images/manageUsers.png',
     };
     $scope.manageUsers.type = $scope.usersTypesList.find(_t => { return _t.id === site.toNumber('##query.type##') });
     site.showModal('#manageUsersManageModal');
@@ -466,7 +466,7 @@ app.controller("manageUsers", function ($scope, $http) {
       url: '/api/goves/all',
       data: {
         where: {
-          'country.id': country.id,
+          country: country,
           active: true,
         },
         select: {
@@ -498,7 +498,7 @@ app.controller("manageUsers", function ($scope, $http) {
       url: '/api/city/all',
       data: {
         where: {
-          'gov.id': gov.id,
+          gov: gov,
           active: true,
         },
         select: { id: 1, name: 1 },
@@ -525,7 +525,7 @@ app.controller("manageUsers", function ($scope, $http) {
       url: '/api/area/all',
       data: {
         where: {
-          'city.id': city.id,
+          city: city,
           active: true,
         },
         select: { id: 1, name: 1 },

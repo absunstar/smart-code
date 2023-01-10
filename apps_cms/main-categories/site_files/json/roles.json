@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "main_categories_admin",
-    "en": "Main Categories Notes Admin",
-    "ar": "إدارة الأقسام الرئيسية",
-    "permissions": ["main_categories_manage"]
-}]

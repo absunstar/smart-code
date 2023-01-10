@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="categories_ui || categories_manage" data-ng-app="myApp">
+  <head x-import="cms/head.html"></head>
+
+  <body class="##session.lang## loaded" ng-controller="categories">
+    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
+      <div class="row">
+        <div class="row" x-permissions="login">
+          <div x-permissions="categories_add || categories_manage" x-import="categories/manage_modal.html"></div>
+          <div x-permissions="categories_search || categories_manage" x-import="categories/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.categories##</h1>
+          </div>
+
+          <div x-permissions="login" class="row">
+            <i-treeview
+              display="name"
+              label="##word.categories##"
+              ng-model="parentCategory"
+              ng-node="displayAddCategories(null)"
+              ng-add="displayAddCategories(parentCategory)"
+              ng-edit="displayUpdateCategories(parentCategory)"
+              ng-delete="displayDeleteCategories(parentCategory)"
+              nodes="list"
+            >
+            </i-treeview>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="cms/scripts.html"></div>
+
+    <script x-permission="login" x-import="categories/index.js"></script>
+  </body>
+</html>

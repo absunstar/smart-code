@@ -51,7 +51,7 @@ app.controller('messages', function ($scope, $http, $timeout) {
         name: user.name,
         lastName: user.lastName,
         email: user.email,
-        imageUrl: user.imageUrl,
+        image: user.image,
       },
       show: false,
     };

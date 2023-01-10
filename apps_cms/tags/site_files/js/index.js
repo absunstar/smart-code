@@ -7,7 +7,7 @@ app.controller("tags", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.tags = {
-      imageUrl: '/images/tags.png',
+      image: '/images/tags.png',
       tagsList : [],
       active: true
     };

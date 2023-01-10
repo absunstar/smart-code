@@ -6,7 +6,7 @@ app.controller("pages", function ($scope, $http, $timeout) {
   $scope.displayAddPageImplement = function () {
     $scope.error = '';
     $scope.pages = {
-      imageUrl: '/images/pages.png',
+      image: '/images/pages.png',
       active: true/* ,
       immediate : false */
     };

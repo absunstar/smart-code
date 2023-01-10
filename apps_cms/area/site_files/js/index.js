@@ -1,4 +1,4 @@
-app.controller("area", function ($scope, $http, $timeout) {
+app.controller('area', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.area = {};
@@ -7,12 +7,23 @@ app.controller("area", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.area = {
-      imageUrl: '/images/area.png',
-      active: true
-
+      image: '/images/area.png',
+      active: true,
+      translatedList: [],
     };
-    site.showModal('#areaManageModal');
 
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.area.translatedList.push({
+          language: {
+            id: l.language.id,
+            en: l.language.en,
+            ar: l.language.ar,
+          },
+        });
+      }
+    });
+    site.showModal('#areaManageModal');
   };
 
   $scope.addArea = function () {
@@ -24,9 +35,9 @@ app.controller("area", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/area/add",
-      data: $scope.area
+      method: 'POST',
+      url: '/api/area/add',
+      data: $scope.area,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -35,13 +46,12 @@ app.controller("area", function ($scope, $http, $timeout) {
           $scope.getAreaList();
         } else {
           $scope.error = 'Please Login First';
-        
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateArea = function (area) {
@@ -61,9 +71,9 @@ app.controller("area", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/area/update",
-      data: $scope.area
+      method: 'POST',
+      url: '/api/area/update',
+      data: $scope.area,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -77,7 +87,7 @@ app.controller("area", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsArea = function (area) {
@@ -92,11 +102,11 @@ app.controller("area", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.error = '';
     $http({
-      method: "POST",
-      url: "/api/area/view",
+      method: 'POST',
+      url: '/api/area/view',
       data: {
-        id: area.id
-      }
+        id: area.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -109,7 +119,7 @@ app.controller("area", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteArea = function (area) {
@@ -125,11 +135,11 @@ app.controller("area", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     $http({
-      method: "POST",
-      url: "/api/area/delete",
+      method: 'POST',
+      url: '/api/area/delete',
       data: {
-        id: $scope.area.id
-      }
+        id: $scope.area.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -143,18 +153,27 @@ app.controller("area", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getAreaList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
-      method: "POST",
-      url: "/api/area/all",
+      method: 'POST',
+      url: '/api/area/all',
       data: {
-        where: where
-      }
+        where: where,
+        select: {
+          id: 1,
+          name: 1,
+          active: 1,
+          image: 1,
+          country: 1,
+          gov: 1,
+          city: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -162,14 +181,13 @@ app.controller("area", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#areaSearchModal');
-
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getGovesList = function (country) {
@@ -179,7 +197,7 @@ app.controller("area", function ($scope, $http, $timeout) {
       url: '/api/goves/all',
       data: {
         where: {
-          'country.id': country.id,
+          country: country,
           active: true,
         },
         select: {
@@ -215,7 +233,7 @@ app.controller("area", function ($scope, $http, $timeout) {
           name: 1,
           code: 1,
           countryCode: 1,
-          },
+        },
       },
     }).then(
       function (response) {
@@ -234,15 +252,15 @@ app.controller("area", function ($scope, $http, $timeout) {
   $scope.getCityList = function (gov) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/city/all",
+      method: 'POST',
+      url: '/api/city/all',
       data: {
         where: {
-          'gov.id': gov.id,
-          active: true
+          gov: gov,
+          active: true,
         },
-        select: { id: 1, name: 1}
-      }
+        select: { id: 1, name: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -254,20 +272,35 @@ app.controller("area", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
-    )
-
+    );
   };
 
- 
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/defaultSetting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#areaSearchModal');
-
   };
 
   $scope.searchAll = function () {
-
     $scope.error = '';
 
     $scope.search = $scope.search || {};
@@ -277,4 +310,5 @@ app.controller("area", function ($scope, $http, $timeout) {
 
   $scope.getAreaList();
   $scope.getCountriesList();
+  $scope.getDefaultSetting();
 });

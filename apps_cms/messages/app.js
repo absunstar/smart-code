@@ -134,7 +134,7 @@ module.exports = function init(site) {
       name: req.session.user.profile.name,
       lastName: req.session.user.profile.lastName,
       email: req.session.user.email,
-      imageUrl: req.session.user.profile.imageUrl,
+      image: req.session.user.profile.image,
     };
     let found = false;
     let index = 0;
@@ -209,7 +209,7 @@ module.exports = function init(site) {
           _u.name = req.session.user.profile.name;
           _u.lastName = req.session.user.profile.lastName;
           _u.email = req.session.user.email;
-          _u.imageUrl = req.session.user.profile.imageUrl;
+          _u.image = req.session.user.profile.image;
           found = true;
         }
       });

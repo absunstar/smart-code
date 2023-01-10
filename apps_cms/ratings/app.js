@@ -45,7 +45,7 @@ module.exports = function init(site) {
       email: req.session.user.email,
       name : req.session.user.profile.name,
       lastName : req.session.user.profile.lastName,
-      imageUrl : req.session.user.profile.imageUrl,
+      image : req.session.user.profile.image,
     };
     ratings_doc.approval = null;
     $ratings.add(ratings_doc, (err, doc) => {

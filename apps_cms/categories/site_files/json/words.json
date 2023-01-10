@@ -1,0 +1,34 @@
+[
+  { "name": "categories_informations", "en": "Category Info", "ar": "بيانات قسم" },
+  { "name": "categories_delete", "en": "Delete Category", "ar": "حذف قسم" },
+  { "name": "categories_edit", "en": "Edit Category", "ar": "تعديل قسم" },
+  { "name": "categories_details", "en": "Category Deteails", "ar": "تفاصيل قسم" },
+  { "name": "categories_delete", "en": "Delete Category", "ar": "حذف قسم" },
+  { "name": "categories_new", "en": "New Category", "ar": "قسم جديد" },
+  { "name": "categories", "en": "Categories", "ar": "الأقسام" },
+  { "name": "categories", "en": "Categories", "ar": "أقسام" },
+  { "name": "category", "en": "Category", "ar": "القسم" },
+  { "name": "category", "en": "Category", "ar": "القسم" },
+  { "name": "categories_code_err", "en": "Code Exist", "ar": "الكود مكرر" },
+  { "name": "detailed_err", "en": "Can nott Change", "ar": "لا يمكن تحويله يحتوي على قسم فرعي" },
+  { "name": "cant_delete", "en": "Can not Delete", "ar": "لا يمكن حذفه يحتوي على قسم فرعي" },
+
+  { "name": "categories_confirm_delete", "en": "Confirm Delete Category", "ar": "تأكيد حذف التصنيف !" },
+  { "name": "categories_delete_side", "en": "Delete Category", "ar": "حذف تصنيف" },
+
+  { "name": "categories_type", "en": "Categories Type", "ar": "نوع القسم" },
+  { "name": "cost_center", "en": "Category", "ar": "القسم" },
+  { "name": "categories_primary", "en": "primary", "ar": "رئيسي" },
+  { "name": "categories_final", "en": "Final", "ar": "نهائي" },
+
+  { "name": "categories_status", "en": "Category status", "ar": "حالة القسم" },
+  { "name": "categories_active", "en": "Active", "ar": "نشط" },
+  { "name": "categories_disactive", "en": "Dis Active", "ar": "معطل" },
+
+  { "name": "categories_the_code", "en": "The Code", "ar": "الكود" },
+  { "name": "categories_code", "en": "Centers Code", "ar": "كود المركز" },
+ 
+  { "name": "categories_code", "en": "Category Code", "ar": "كود التصنيف" },
+  { "name": "categories_name", "en": "Category Name", "ar": "إسم القسم" }
+]
+

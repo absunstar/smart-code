@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $menus = site.connectCollection('menus');
-  site.menu_list = [];
+  site.menuList = [];
   $menus.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.menu_list = [...site.menu_list, ...docs];
+      site.menuList = [...site.menuList, ...docs];
     }
   });
 
@@ -20,10 +20,9 @@ module.exports = function init(site) {
   });
 
   site.post({
-    name: '/api/linkage_type/all',
-    path: __dirname + '/site_files/json/linkage_type.json',
+    name: '/api/linkageType/all',
+    path: __dirname + '/site_files/json/linkageType.json',
   });
-
 
   site.post('/api/menus/add', (req, res) => {
     let response = {
@@ -35,56 +34,55 @@ module.exports = function init(site) {
       return;
     }
 
-    let menus_doc = req.body;
-    menus_doc.$req = req;
-    menus_doc.$res = res;
+    let menusDoc = req.body;
+    menusDoc.$req = req;
+    menusDoc.$res = res;
 
-    menus_doc.addUserInfo = site.security.getUserFinger({
+    menusDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof menus_doc.active === 'undefined') {
-      menus_doc.active = true;
+    if (typeof menusDoc.active === 'undefined') {
+      menusDoc.active = true;
     }
 
-    if (menus_doc.linkage_type.id == 1) {
-      if (!menus_doc.mainCategory || !menus_doc.mainCategory.id) {
+    if (menusDoc.linkageType.id == 1) {
+      if (!menusDoc.category || !menusDoc.category.id) {
         response.error = 'must select category';
         res.json(response);
         return;
       }
-    } else if (menus_doc.linkage_type.id == 2) {
-      if (!menus_doc.page || !menus_doc.page.id) {
+    } else if (menusDoc.linkageType.id == 2) {
+      if (!menusDoc.page || !menusDoc.page.id) {
         response.error = 'must select Page';
         res.json(response);
         return;
       }
-    } else if (menus_doc.linkage_type.id == 3) {
-      if (!menus_doc.external_link) {
+    } else if (menusDoc.linkageType.id == 3) {
+      if (!menusDoc.externalLink) {
         response.error = 'must select external link';
         res.json(response);
         return;
       }
-    } else if (menus_doc.linkage_type.id == 4) {
-      if (!menus_doc.internal_link) {
+    } else if (menusDoc.linkageType.id == 4) {
+      if (!menusDoc.internalLink) {
         response.error = 'must select internal link';
         res.json(response);
         return;
       }
     }
 
-    $menus.add(menus_doc, (err, doc) => {
+    $menus.add(menusDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.menu_list.push(doc);
+        site.menuList.push(doc);
       } else {
         response.error = err.message;
       }
       res.json(response);
     });
-
   });
 
   site.post('/api/menus/update', (req, res) => {
@@ -98,61 +96,60 @@ module.exports = function init(site) {
       return;
     }
 
-    let menus_doc = req.body;
+    let menusDoc = req.body;
 
-    menus_doc.editUserInfo = site.security.getUserFinger({
+    menusDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!menus_doc.id) {
+    if (!menusDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
     }
 
-    if (menus_doc.linkage_type.id == 1) {
-      if (!menus_doc.mainCategory || !menus_doc.mainCategory.id) {
+    if (menusDoc.linkageType.id == 1) {
+      if (!menusDoc.mainCategory || !menusDoc.mainCategory.id) {
         response.error = 'must select category';
         res.json(response);
         return;
       }
-    } else if (menus_doc.linkage_type.id == 2) {
-      if (!menus_doc.page || !menus_doc.page.id) {
+    } else if (menusDoc.linkageType.id == 2) {
+      if (!menusDoc.page || !menusDoc.page.id) {
         response.error = 'must select Page';
         res.json(response);
         return;
       }
-    } else if (menus_doc.linkage_type.id == 3) {
-      if (!menus_doc.external_link) {
+    } else if (menusDoc.linkageType.id == 3) {
+      if (!menusDoc.externalLink) {
         response.error = 'must select external link';
         res.json(response);
         return;
       }
-    } else if (menus_doc.linkage_type.id == 4) {
-      if (!menus_doc.internal_link) {
+    } else if (menusDoc.linkageType.id == 4) {
+      if (!menusDoc.internalLink) {
         response.error = 'must select internal link';
         res.json(response);
         return;
       }
     }
 
-
     $menus.edit(
       {
         where: {
-          id: menus_doc.id,
+          id: menusDoc.id,
         },
-        set: menus_doc,
+        set: menusDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.menu_list.forEach((a, i) => {
+          site.menuList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.menu_list[i] = result.doc;
+              site.menuList[i] = result.doc;
             }
           });
         } else {
@@ -161,7 +158,6 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
-
   });
 
   site.post('/api/menus/view', (req, res) => {
@@ -176,7 +172,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.menu_list.forEach((a) => {
+    site.menuList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -187,7 +183,7 @@ module.exports = function init(site) {
       response.doc = ad;
       res.json(response);
     } else {
-      response.error = 'no id'
+      response.error = 'no id';
       res.json(response);
     }
   });
@@ -202,7 +198,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-
 
     if (!req.body.id) {
       response.error = 'no id';
@@ -219,8 +214,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.menu_list.splice(
-            site.menu_list.findIndex((a) => a.id === req.body.id),
+          site.menuList.splice(
+            site.menuList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {
@@ -229,8 +224,6 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
-
-
   });
 
   site.post('/api/menus/all', (req, res) => {
@@ -240,29 +233,42 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    // site.menu_list.filter(u => u.name.contains(where['name']))
-
-    $menus.findMany(
-      {
-        select: req.body.select || {},
-        where: where,
-        sort: req.body.sort || {
-          id: -1,
-        },
-        limit: req.body.limit,
-      },
-      (err, docs, count) => {
-        if (!err) {
-          response.done = true;
-          response.list = docs;
-          response.count = count;
-        } else {
-          response.error = err.message;
+    if (req.data.lang) {
+      response.list = [];
+      site.menuList.forEach((doc) => {
+        if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang)) && doc.active) {
+          response.list.push({
+            id: doc.id,
+            name: doc2.name,
+            linkageType : doc.linkageType,
+            active : doc.active,
+          });
         }
-        res.json(response);
-      }
-    );
+      });
+
+      response.done = true;
+      res.json(response);
+    } else {
+      $menus.findMany(
+        {
+          select: req.body.select || {},
+          where: where,
+          sort: req.body.sort || {
+            id: -1,
+          },
+          limit: req.body.limit,
+        },
+        (err, docs, count) => {
+          if (!err) {
+            response.done = true;
+            response.list = docs;
+            response.count = count;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        }
+      );
+    }
   });
-
-
 };

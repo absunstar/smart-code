@@ -285,7 +285,7 @@ module.exports = function init(site) {
         files: [],
         name: req.body.firstName,
         lastName: req.body.lastName,
-        imageUrl: req.body.imageUrl,
+        image: req.body.image,
         otherAddressesList: [],
       },
       $req: req,

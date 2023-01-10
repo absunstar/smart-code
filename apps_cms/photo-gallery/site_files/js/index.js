@@ -167,11 +167,11 @@ app.controller('photoGallery', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getImageUrl = function () {
+  $scope.getimage = function () {
     $scope.error = '';
 
-    if ($scope.photoGallery.imageUrl) {
-      $scope.photoGallery.url = $scope.photoGallery.imageUrl.url;
+    if ($scope.photoGallery.image) {
+      $scope.photoGallery.url = $scope.photoGallery.image.url;
     }
   };
 

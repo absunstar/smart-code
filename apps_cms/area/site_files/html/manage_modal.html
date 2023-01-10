@@ -24,38 +24,40 @@
     <div class="modal-body">
       <fieldset>
         <legend>##word.basic_information##</legend>
-        <div class="row">
-          <div class="col9">
-            <div class="row">
-              <i-control help-id="area_name" v="r ll2" class="col6" label="##word.area_name##" ng-model="area.name"></i-control>
 
-              <i-checkbox help-id="area_active" class="col2" label="##word.active##" ng-model="area.active"> </i-checkbox>
-            </div>
+        <div class="article-part">
+          <div class="row">
+            <i-list
+              help-id=""
+              v="r"
+              class="col4"
+              label="##word.country##"
+              ng-change="getGovesList(area.country)"
+              ng-model="area.country"
+              display="name"
+              items="countriesList"
+              ng-search="_search.$city_country"
+            ></i-list>
 
-            <div class="row">
-              <i-list
-                help-id=""
-                v="r"
-                class="col4"
-                label="##word.country##"
-                ng-change="getGovesList(area.country)"
-                ng-model="area.country"
-                display="name"
-                items="countriesList"
-                ng-search="_search.$city_country"
-              ></i-list>
+            <i-list class="col4" label="##word.gov##" ng-model="area.gov" items="govesList" ng-change="getCityList(area.gov)" display="name" ng-search="_search.$area.$gov_search"> </i-list>
 
-              <i-list class="col3" label="##word.gov##" ng-model="area.gov" items="govesList" ng-change="getCityList(area.gov)" display="name" ng-search="_search.$area.$gov_search">
-              </i-list>
-
-              <i-list class="col3" label="##word.city##" ng-model="area.city" items="cityList" display="name" ng-search="_search.$area.$city_search"> </i-list>
-
-            </div>
+            <i-checkbox help-id="goves_active" class="col3" label="##word.active##" ng-model="area.active"> </i-checkbox>
           </div>
-
-          <div class="col3">
-            <i-image help-id="area_logo" ng-model="area.imageUrl"></i-image>
+          <div class="row">
+            <i-list class="col4" label="##word.city##" ng-model="area.city" items="cityList" display="name" ng-search="_search.$area.$city_search"> </i-list>
           </div>
+        </div>
+
+        <div class="article-part">
+          <fieldset ng-repeat="lang in area.translatedList track by $index">
+            <legend>{{lang.language.##session.lang##}}</legend>
+
+            <i-control v="r ll2" class="col8" label="##word.area_name##" ng-model="lang.name"></i-control>
+            <div class="col1"></div>
+            <div class="col3">
+              <i-image help-id="cities_logo" ng-model="lang.image"></i-image>
+            </div>
+          </fieldset>
         </div>
       </fieldset>
       <div ng-show="mode !== 'add' " class="row">

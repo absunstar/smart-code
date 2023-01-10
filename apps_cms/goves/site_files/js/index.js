@@ -7,10 +7,22 @@ app.controller('goves', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.gov = {
-      imageUrl: '/images/gov.png',
+      image: '/images/gov.png',
       active: true,
+      translatedList: [],
     };
 
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.gov.translatedList.push({
+          language: {
+            id: l.language.id,
+            en: l.language.en,
+            ar: l.language.ar,
+          },
+        });
+      }
+    });
     site.showModal('#govManageModal');
   };
 
@@ -159,6 +171,9 @@ app.controller('goves', function ($scope, $http, $timeout) {
       url: '/api/goves/all',
       data: {
         where: where,
+        select : {
+          id :1 , name : 1 , active : 1 ,image : 1 , country : 1
+        }
       },
     }).then(
       function (response) {
@@ -189,15 +204,33 @@ app.controller('goves', function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code: 1,
-          countryCode: 1,
-        },
+        }
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.countriesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/defaultSetting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
         }
       },
       function (err) {
@@ -214,4 +247,5 @@ app.controller('goves', function ($scope, $http, $timeout) {
 
   $scope.getGovList();
   $scope.getCountriesList();
+  $scope.getDefaultSetting();
 });

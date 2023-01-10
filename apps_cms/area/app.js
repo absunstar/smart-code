@@ -175,50 +175,31 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
+    let select = req.body.select || { id: 1, name: 1 };
+    response.list = [];
+    site.areaList
+      .filter((g) => !where.city || g.city.id == where['city'].id)
+      .forEach((doc) => {
+        if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+          let obj = {
+            ...doc,
+            ...langDoc,
+          };
 
-    if (where['country']) {
-      where['country.id'] = where['country'].id;
-      delete where['country'];
-      delete where.active;
-    }
+          for (const p in obj) {
+            if (!Object.hasOwnProperty.call(select, p)) {
+              delete obj[p];
+            }
+          }
 
-    if (where['gov']) {
-      where['gov.id'] = where['gov'].id;
-      delete where['gov'];
-      delete where.active;
-    }
-
-    if (where['city']) {
-      where['city.id'] = where['city'].id;
-      delete where['city'];
-      delete where.active;
-    }
-
-  
-    if (where['name']) {
-      where['name']= site.get_RegExp(where['name'], 'i');
-    }
-
-    $area.findMany(
-      {
-        select: req.body.select || {},
-        where: where,
-        sort: req.body.sort || {
-          id: -1,
-        },
-        limit: req.body.limit,
-      },
-      (err, docs, count) => {
-        if (!err) {
-          response.done = true;
-          response.list = docs;
-          response.count = count;
-        } else {
-          response.error = err.message;
+          if (!where.active || doc.active) {
+            response.list.push(obj);
+          }
         }
-        res.json(response);
-      }
-    );
+      });
+
+    response.done = true;
+    res.json(response);
   });
 
   /* ATM APIS */

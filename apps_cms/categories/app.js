@@ -1,15 +1,15 @@
 module.exports = function init(site) {
-  const $mainCategories = site.connectCollection('mainCategories');
+  const $categories = site.connectCollection('categories');
 
-  site.mainCategoriesList = [];
-  $mainCategories.findMany({}, (err, docs) => {
+  site.categoriesList = [];
+  $categories.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.mainCategoriesList = [...site.mainCategoriesList, ...docs];
+      site.categoriesList = [...site.categoriesList, ...docs];
     }
   });
 
   site.get({
-    name: 'mainCategories',
+    name: 'categories',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
@@ -20,7 +20,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
-  site.post('/api/mainCategories/add', (req, res) => {
+  site.post('/api/categories/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -31,36 +31,36 @@ module.exports = function init(site) {
       return;
     }
 
-    let mainCategoriesDoc = req.body;
-    mainCategoriesDoc.$req = req;
-    mainCategoriesDoc.$res = res;
-    mainCategoriesDoc.addUserInfo = site.security.getUserFinger({
+    let categoriesDoc = req.body;
+    categoriesDoc.$req = req;
+    categoriesDoc.$res = res;
+    categoriesDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
     let where = {};
-    if (mainCategoriesDoc.topParentId) {
-      site.mainCategoriesList.forEach((a) => {
-        if (a.id === mainCategoriesDoc.parentId) {
+    if (categoriesDoc.topParentId) {
+      site.categoriesList.forEach((a) => {
+        if (a.id === categoriesDoc.parentId) {
           if (a.parentListId) {
-            mainCategoriesDoc.parentListId = [];
+            categoriesDoc.parentListId = [];
             for (let i = 0; i < a.parentListId.length; i++) {
-              mainCategoriesDoc.parentListId.push(a.parentListId[i]);
+              categoriesDoc.parentListId.push(a.parentListId[i]);
             }
-            mainCategoriesDoc.parentListId.push(mainCategoriesDoc.parentId);
+            categoriesDoc.parentListId.push(categoriesDoc.parentId);
           } else {
-            mainCategoriesDoc.parentListId = [mainCategoriesDoc.parentId];
+            categoriesDoc.parentListId = [categoriesDoc.parentId];
           }
         }
       });
     }
 
-    $mainCategories.add(mainCategoriesDoc, (err, doc) => {
+    $categories.add(categoriesDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.mainCategoriesList.push(doc);
+        site.categoriesList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -68,7 +68,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/mainCategories/update', (req, res) => {
+  site.post('/api/categories/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -79,38 +79,38 @@ module.exports = function init(site) {
       return;
     }
 
-    let mainCategoriesDoc = req.body;
+    let categoriesDoc = req.body;
 
-    mainCategoriesDoc.editUserInfo = site.security.getUserFinger({
+    categoriesDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
     let category = null;
-    site.mainCategoriesList.forEach((c) => {
-      if (c.parentId == mainCategoriesDoc.id) {
+    site.categoriesList.forEach((c) => {
+      if (c.parentId == categoriesDoc.id) {
         category = c;
       }
     });
-    if (category && mainCategoriesDoc.type == 'detailed') {
+    if (category && categoriesDoc.type == 'detailed') {
       response.error = 'Cant Change Detailed Err';
       res.json(response);
     } else {
-      $mainCategories.edit(
+      $categories.edit(
         {
           where: {
-            id: mainCategoriesDoc.id,
+            id: categoriesDoc.id,
           },
-          set: mainCategoriesDoc,
+          set: categoriesDoc,
           $req: req,
           $res: res,
         },
         (err, result) => {
           if (!err && result) {
             response.done = true;
-            site.mainCategoriesList.forEach((a, i) => {
+            site.categoriesList.forEach((a, i) => {
               if (a.id === result.doc.id) {
-                site.mainCategoriesList[i] = result.doc;
+                site.categoriesList[i] = result.doc;
               }
             });
           } else {
@@ -122,7 +122,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/mainCategories/view', (req, res) => {
+  site.post('/api/categories/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -134,7 +134,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.mainCategoriesList.forEach((a) => {
+    site.categoriesList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -150,7 +150,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/mainCategories/delete', (req, res) => {
+  site.post('/api/categories/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -164,7 +164,7 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $mainCategories.findMany(
+      $categories.findMany(
         {
           where: {
             parentId: id,
@@ -175,7 +175,7 @@ module.exports = function init(site) {
             response.error = 'Cant Delete Acc Err';
             res.json(response);
           } else {
-            $mainCategories.delete(
+            $categories.delete(
               {
                 id: req.body.id,
                 $req: req,
@@ -184,8 +184,8 @@ module.exports = function init(site) {
               (err, result) => {
                 if (!err) {
                   response.done = true;
-                  site.mainCategoriesList.splice(
-                    site.mainCategoriesList.findIndex((a) => a.id === req.body.id),
+                  site.categoriesList.splice(
+                    site.categoriesList.findIndex((a) => a.id === req.body.id),
                     1
                   );
                 } else {
@@ -203,7 +203,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post({ name: '/api/mainCategories/all', public: true }, (req, res) => {
+  site.post({ name: '/api/categories/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };
@@ -212,8 +212,8 @@ module.exports = function init(site) {
       // response.list = list[req.session.lang];
       response.list = [];
       response.topList = [];
-      site.mainCategoriesList.forEach((doc) => {
-        if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+      site.categoriesList.forEach((doc) => {
+        if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang)) && doc.active) {
           if (!doc.topParentId) {
             response.topList.push({
               id: doc.id,
@@ -247,7 +247,7 @@ module.exports = function init(site) {
     } else {
       let where = req.data.where || {};
 
-      $mainCategories.findMany(
+      $categories.findMany(
         {
           select: req.body.select || {},
           where: where,

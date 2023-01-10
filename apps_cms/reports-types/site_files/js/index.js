@@ -6,7 +6,7 @@ app.controller("reportsTypes", function ($scope, $http, $timeout) {
   $scope.displayAddReportsTypes = function () {
     $scope.error = '';
     $scope.reportsTypes = {
-      imageUrl: '/images/reportsTypes.png',
+      image: '/images/reportsTypes.png',
       active: true/* ,
       immediate : false */
     };

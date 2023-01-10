@@ -1,4 +1,4 @@
-app.controller("menus", function ($scope, $http, $timeout) {
+app.controller('menus', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.menu = {};
@@ -7,9 +7,21 @@ app.controller("menus", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.menu = {
-      imageUrl: '/images/menu.png',
-      active: true
+      image: '/images/menu.png',
+      active: true,
+      translatedList : []
     };
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.menu.translatedList.push({
+          language: {
+            id: l.language.id,
+            en: l.language.en,
+            ar: l.language.ar,
+          },
+        });
+      }
+    });
     site.showModal('#menuManageModal');
   };
 
@@ -23,9 +35,9 @@ app.controller("menus", function ($scope, $http, $timeout) {
 
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/menus/add",
-      data: $scope.menu
+      method: 'POST',
+      url: '/api/menus/add',
+      data: $scope.menu,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -35,20 +47,20 @@ app.controller("menus", function ($scope, $http, $timeout) {
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*select category*')) {
-            $scope.error = "##word.category_must_selected##"
+            $scope.error = '##word.category_must_selected##';
           } else if (response.data.error.like('*select Page*')) {
-            $scope.error = "##word.page_must_selected##"
+            $scope.error = '##word.page_must_selected##';
           } else if (response.data.error.like('*select external link*')) {
-            $scope.error = "##word.external_link_must_selected##"
+            $scope.error = '##word.external_link_must_selected##';
           } else if (response.data.error.like('*select internal link*')) {
-            $scope.error = "##word.internal_link_must_selected##"
-          } 
+            $scope.error = '##word.internal_link_must_selected##';
+          }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateMenu = function (menu) {
@@ -68,9 +80,9 @@ app.controller("menus", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/menus/update",
-      data: $scope.menu
+      method: 'POST',
+      url: '/api/menus/update',
+      data: $scope.menu,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -79,21 +91,21 @@ app.controller("menus", function ($scope, $http, $timeout) {
           $scope.getMenuList();
         } else {
           if (response.data.error.like('*select category*')) {
-            $scope.error = "##word.category_must_selected##"
+            $scope.error = '##word.category_must_selected##';
           } else if (response.data.error.like('*select Page*')) {
-            $scope.error = "##word.page_must_selected##"
+            $scope.error = '##word.page_must_selected##';
           } else if (response.data.error.like('*select external link*')) {
-            $scope.error = "##word.external_link_must_selected##"
+            $scope.error = '##word.external_link_must_selected##';
           } else if (response.data.error.like('*select internal link*')) {
-            $scope.error = "##word.internal_link_must_selected##"
-          } 
+            $scope.error = '##word.internal_link_must_selected##';
+          }
           $scope.error = 'Please Login First';
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsMenu = function (menu) {
@@ -108,11 +120,11 @@ app.controller("menus", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.error = '';
     $http({
-      method: "POST",
-      url: "/api/menus/view",
+      method: 'POST',
+      url: '/api/menus/view',
       data: {
-        id: menu.id
-      }
+        id: menu.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -125,7 +137,7 @@ app.controller("menus", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteMenu = function (menu) {
@@ -142,11 +154,11 @@ app.controller("menus", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     $http({
-      method: "POST",
-      url: "/api/menus/delete",
+      method: 'POST',
+      url: '/api/menus/delete',
       data: {
-        id: $scope.menu.id
-      }
+        id: $scope.menu.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -160,20 +172,19 @@ app.controller("menus", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
-
-  
 
   $scope.getMenuList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
-      method: "POST",
-      url: "/api/menus/all",
+      method: 'POST',
+      url: '/api/menus/all',
       data: {
-        where: where
-      }
+        where: where,
+        lang: true,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -188,16 +199,16 @@ app.controller("menus", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getLinkTypeList = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $scope.linkTypeList = [];
     $http({
-      method: "POST",
-      url: "/api/linkage_type/all",
+      method: 'POST',
+      url: '/api/linkageType/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -213,31 +224,29 @@ app.controller("menus", function ($scope, $http, $timeout) {
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#menuSearchModal');
-
   };
 
-  $scope.loadMainCategories = function () {
+  $scope.loadCategories = function () {
     $scope.error = '';
     $scope.busy = true;
-    $scope.category_list = [];
-    $scope.top_category_list = [];
+    $scope.categoryList = [];
+    $scope.topCategoryList = [];
     $http({
       method: 'POST',
-      url: '/api/main_categories/all',
+      url: '/api/categories/all',
       data: {
         where: {
-          status: 'active',
+          active: true,
         },
-        select: { id: 1, name: 1, parent_list_id: 1, topParentId: 1, parent_id: 1, imageUrl: 1, type: 1 },
-        top: true,
+        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1, type: 1 },
+        lang: true,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.category_list = response.data.list;
-          $scope.top_category_list = response.data.top_list;
-
+          $scope.categoryList = response.data.list;
+          $scope.topCategoryList = response.data.topList;
         }
       },
       function (err) {
@@ -254,8 +263,9 @@ app.controller("menus", function ($scope, $http, $timeout) {
     $scope.subCategoriesList2 = [];
     $scope.subCategoriesList3 = [];
     $scope.subCategoriesList4 = [];
-    $scope.category_list.forEach((_c) => {
-      if (c && c.id == _c.parent_id) {
+    console.log($scope.categoryList.length , c.id);
+    $scope.categoryList.forEach((_c) => {
+      if (c && c.id == _c.parentId) {
         $scope.subCategoriesList1.push(_c);
       }
     });
@@ -267,8 +277,8 @@ app.controller("menus", function ($scope, $http, $timeout) {
     $scope.subCategoriesList2 = [];
     $scope.subCategoriesList3 = [];
     $scope.subCategoriesList4 = [];
-    $scope.category_list.forEach((_c) => {
-      if (c && c.id == _c.parent_id) {
+    $scope.categoryList.forEach((_c) => {
+      if (c && c.id == _c.parentId) {
         $scope.subCategoriesList2.push(_c);
       }
     });
@@ -279,8 +289,8 @@ app.controller("menus", function ($scope, $http, $timeout) {
 
     $scope.subCategoriesList3 = [];
     $scope.subCategoriesList4 = [];
-    $scope.category_list.forEach((_c) => {
-      if (c && c.id == _c.parent_id) {
+    $scope.categoryList.forEach((_c) => {
+      if (c && c.id == _c.parentId) {
         $scope.subCategoriesList3.push(_c);
       }
     });
@@ -289,8 +299,8 @@ app.controller("menus", function ($scope, $http, $timeout) {
   $scope.loadSubCategory4 = function (c) {
     $scope.error = '';
     $scope.subCategoriesList4 = [];
-    $scope.category_list.forEach((_c) => {
-      if (c && c.id == _c.parent_id) {
+    $scope.categoryList.forEach((_c) => {
+      if (c && c.id == _c.parentId) {
         $scope.subCategoriesList4.push(_c);
       }
     });
@@ -303,14 +313,12 @@ app.controller("menus", function ($scope, $http, $timeout) {
     $http({
       method: 'POST',
       url: '/api/pages/all',
-      data: {
-      },
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.pagesList = response.data.list;
-        
         }
       },
       function (err) {
@@ -320,15 +328,34 @@ app.controller("menus", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/defaultSetting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
 
   $scope.searchAll = function () {
-
     $scope.getMenuList($scope.search);
     site.hideModal('#menuSearchModal');
     $scope.search = {};
   };
 
   $scope.getMenuList();
-  $scope.loadMainCategories();
+  $scope.loadCategories();
   $scope.getLinkTypeList();
+  $scope.getDefaultSetting();
 });

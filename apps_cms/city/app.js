@@ -175,48 +175,40 @@ module.exports = function init(site) {
 
   })
 
-  site.post("/api/city/all", (req, res) => {
-
+  site.post('/api/city/all', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
-    let where = req.body.where || {}
+    let where = req.body.where || {};
+    let select = req.body.select || { id: 1, name: 1 };
 
-    if (where['country']) {
-      where['country.id'] = where['country'].id;
-      delete where['country'];
-      delete where.active;
-    }
+    response.list = [];
+    site.cityList
+      .filter((g) => !where['gov'] || g.gov.id == where['gov'].id)
+      .forEach((doc) => {
+        if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+          let obj = {
+            ...doc,
+            ...langDoc,
+          };
 
-    if (where['gov']) {
-      where['gov.id'] = where['gov'].id;
-      delete where['gov']
-      delete where.active
-    }
+          for (const p in obj) {
+            if (!Object.hasOwnProperty.call(select, p)) {
+              delete obj[p];
+            }
+          }
 
-    if (where['name']) {
-    
-      where['name']= site.get_RegExp(where['name'], 'i');
-    }
-  
+          if (!where.active || doc.active) {
+            response.list.push(obj);
+          }
+        }
+      });
 
-    $city.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || { id: -1 },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
+    response.done = true;
+    res.json(response);
+  });
+
 
 /* ATM APIS */
 
@@ -244,6 +236,8 @@ site.post("/api/city/getCityByGov/:govId", (req, res) => {
   );
 
 })
+
+
 
 site.post("/api/city/findCityByGov", (req, res) => {
 
