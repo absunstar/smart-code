@@ -2,7 +2,6 @@ module.exports = function init(site) {
   site.get(
     {
       name: 'manage_user',
-   
     },
     (req, res) => {
       if (req.session.user) {
@@ -237,6 +236,45 @@ module.exports = function init(site) {
         } else {
           response.error = err ? err.message : 'no doc';
         }
+      }
+    );
+  });
+
+  site.post('/api/user/update_cart', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'You Are Not Login';
+      res.json(response);
+      return;
+    }
+
+    let user = req.body;
+
+    user.$req = req;
+    user.$res = res;
+    delete user.$$hashKey;
+    site.security.getUser(
+      {
+        email: user.email,
+      },
+      (err, userDoc) => {
+        if (!err && userDoc) {
+          userDoc.cart = user.cart;
+          site.security.updateUser(userDoc, (err) => {
+            if (!err) {
+              response.done = true;
+            } else {
+              response.error = err.message;
+            }
+            res.json(response);
+          });
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
     );
   });

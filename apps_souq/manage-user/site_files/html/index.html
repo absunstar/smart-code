@@ -89,7 +89,7 @@
           ng-show="defaultSettings.order_settings.activate_orders"> ##word.cart## </a>
         <a class="tab-link inline-block" ng-click="showTab($event,'#my_orders')"
           ng-show="defaultSettings.order_settings.activate_orders"> ##word.my_orders## </a>
-        <a class="tab-link inline-block" ng-click="showTab($event,'#my_ads')"> ##word.my_ads## </a>
+        <a class="tab-link inline-block" ng-click="showTab($event,'#my_ads')" x-setting="activate_add_ads"> ##word.my_ads## </a>
         <a class="tab-link inline-block" ng-click="showTab($event,'#my_stores')"
           ng-show="defaultSettings.stores_settings.activate_stores"> ##word.my_stores## </a>
         <a class="tab-link inline-block" ng-click="showTab($event,'#favorite_stores')"
@@ -360,7 +360,7 @@
           </div>
         </div>
 
-        <div id="my_ads" class="tab-content">
+        <div id="my_ads" x-setting="activate_add_ads" class="tab-content">
           <div class="my-ads">
             <br />
 
@@ -385,7 +385,7 @@
                                 <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
                               
                               </div>
-                              <div class="u-action">
+                             <!--  <div class="u-action">
     
                                 <a class="btn"
                                   ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id"
@@ -393,7 +393,7 @@
                                   <i class="fa fa-shopping-cart"></i>
                                 </a>
     
-                              </div>
+                              </div> -->
                             
                             </div>
                             <div class="col-6">

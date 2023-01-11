@@ -347,7 +347,7 @@
               <span class="center about-me">{{user.profile.about_me}}</span>
             </div>
           </div>
-          <div class="col2 center pointer" onclick="$('#ratings').show();$('#user_contents').hide()">
+          <div x-setting="activate_add_ads" class="col2 center pointer" onclick="$('#ratings').show();$('#user_contents').hide()">
             <i ng-class="{'yellow' : rate > 90}" class="fa-solid fa-star star"> </i>
             <i ng-class="{'yellow' : rate > 70}" class="fa-solid fa-star star"> </i>
             <i ng-class="{'yellow' : rate > 50}" class="fa-solid fa-star star"> </i>
@@ -371,7 +371,7 @@
           <a class="color-theme font-25 pointer conversation" x-permissions="login" onclick="site.showModal('#messageModal');"> <i class="fa fa-comments"></i> ##word.conversation##</a>
         </div>
         <hr />
-        <div x-import="profile/tabs_content.html"></div>
+        <div x-import="profile/tabs_content.html" x-setting="activate_add_ads"></div>
       </div>
     </div>
 

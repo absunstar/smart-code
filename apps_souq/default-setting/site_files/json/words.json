@@ -15,6 +15,16 @@
     "ar": "رقم الحساب"
   },
   {
+    "name": "activate_add_ads",
+    "en": "Activate add ads",
+    "ar": "تفعيل إضافة إعلان"
+  },
+  {
+    "name": "address_search",
+    "en": "Address Search",
+    "ar": "البحث بالعنوان"
+  },
+  {
     "name": "iban",
     "en": "Iban",
     "ar": "الآيبان"

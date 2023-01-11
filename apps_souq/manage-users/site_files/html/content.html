@@ -4,7 +4,6 @@
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#personalInformation')"> ##word.basic_information## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#securityRoles')"> ##word.security_roles## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#securityPublicPermissions')"> ##word.security_public_permissions## </a>
-
     </div>
 
     <div class="tabs-content">
@@ -23,7 +22,40 @@
                 <i-control help-id="manage_users_password" v="r" class="col4" label="##word.password##" ng-model="manage_users.password"> </i-control>
               </div>
               <div class="row">
-                <i-control label="##word.maximum_stores##" type="number" class="col3" ng-model="manage_users.maximum_stores"></i-control>
+                <i-country
+                  class="col4 center input-style"
+                  label="##word.country##"
+                  ng-model="user.country"
+                  items="countriesList"
+                  display="name_##session.lang##"
+                  ng-search="user.$countries"
+                ></i-country>
+                <i-control class="col4 center input-style" label="##word.mobile_phone_number##" type="tel" ng-model="user.mobile"> </i-control>
+              </div>
+              <div class="row">
+                <i-list
+                  label="##word.user_type##"
+                  v="r"
+                  class="col4"
+                  ng-model="manage_users.type"
+                  items="usersTypesList"
+                  display="##session.lang##"
+                  ng-change="loadShippingCompaniesUsers(manage_users.type)"
+                  ng-search="manage_users.$type_search"
+                >
+                </i-list>
+                <i-list
+                  label="##word.user_type##"
+                  v="r"
+                  class="col4"
+                  ng-model="manage_users.shipping_company"
+                  items="shippingCompaniesList"
+                  ng-show="manage_users.type.id == 3"
+                  display="profile.name"
+                  ng-search="manage_users.$shipping_search"
+                >
+                </i-list>
+                <i-control label="##word.maximum_stores##" ng-show="manage_users.type.id == 1" type="number" class="col2" ng-model="manage_users.maximum_stores"></i-control>
               </div>
             </div>
 

@@ -11,12 +11,10 @@ app.controller('haraj', function ($scope, $http, $timeout) {
 
       where['ad_status.id'] = 1;
       if (where['category_id']) {
-
         window.history.pushState(null, null, '/category/' + where['category_id'] + '/' + where['category_name_en'] + '-' + where['category_name_ar']);
 
         delete where['category_name_ar'];
         delete where['category_name_en'];
-
       }
 
       if (where['country_code'] || where['gov_code']) {
@@ -87,10 +85,9 @@ app.controller('haraj', function ($scope, $http, $timeout) {
       function (error) {
         $scope.busy = false;
         $scope.error = error;
-      },
+      }
     );
   };
-
 
   $scope.loadMore = function () {
     if (!window.autoLoadingPosts) {
@@ -229,10 +226,8 @@ app.controller('haraj', function ($scope, $http, $timeout) {
   $scope.createContent = function () {
     if ('##user.id##') {
       window.location.href = '/create_content';
-
     } else {
       window.location.href = '/login';
-
     }
   };
 
@@ -263,16 +258,17 @@ app.controller('haraj', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) { }
+      function (err) {}
     );
   };
+
   $scope.bookList = function (ad, i) {
     $scope.error = '';
     $scope.user.cart.items = $scope.user.cart.items || [];
     let exist = false;
 
     $scope.user.cart.items.forEach((el) => {
-      if (ad.id == el.id && el.select_quantity.unit.id == ad.quantity_list[i].unit.id) {
+      if (ad.id == el.id) {
         exist = true;
         el.count += 1;
       }
@@ -283,11 +279,11 @@ app.controller('haraj', function ($scope, $http, $timeout) {
         id: ad.id,
         code: ad.code,
         image_url: ad.image_url,
-        name_ar: ad.name_ar,
-        name_en: ad.name_en,
+        name: ad.name,
         select_quantity: ad.quantity_list[i],
         count: 1,
       };
+      ad.$cart = true;
       $scope.user.cart.items.unshift(obj);
     }
 
@@ -299,7 +295,7 @@ app.controller('haraj', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/user/update',
+      url: '/api/user/update_cart',
       data: obj,
     }).then(
       function (response) {
@@ -316,7 +312,11 @@ app.controller('haraj', function ($scope, $http, $timeout) {
   };
   $scope.updateFeedback = function (ad, type, status) {
     if (type == 'favorite') {
-      ad.$favorite = status;
+      if ($scope.user && $scope.user.id) {
+        ad.$favorite = status;
+      } else {
+        window.location.href = '/login';
+      }
     }
     let data = { id: ad.id, feedback: { favorite: ad.$favorite, type: type } };
 
@@ -358,16 +358,15 @@ app.controller('haraj', function ($scope, $http, $timeout) {
           $scope.category_list = response.data.list;
           $scope.topParentCategoriesList = response.data.top_list;
           $scope.category_list.forEach((_c) => {
-
             if (site.toNumber('##params.id##') == _c.id) {
               if (!_c.top_parent_id) {
                 $scope.loadSubCategory(_c);
-              } else if(_c.parent_list_id && _c.parent_list_id.length > 0){
-                if(_c.parent_list_id.length == 1) {
+              } else if (_c.parent_list_id && _c.parent_list_id.length > 0) {
+                if (_c.parent_list_id.length == 1) {
                   $scope.loadSubCategory2(_c);
-                } else  if(_c.parent_list_id.length == 2) {
+                } else if (_c.parent_list_id.length == 2) {
                   $scope.loadSubCategory3(_c);
-                } else if(_c.parent_list_id.length == 3) {
+                } else if (_c.parent_list_id.length == 3) {
                   $scope.loadSubCategory4(_c);
                 }
               }
@@ -382,43 +381,36 @@ app.controller('haraj', function ($scope, $http, $timeout) {
     );
   };
   $scope.moveCategory = function (type) {
-
-    let index = $scope.topParentCategoriesList.findIndex(_c => {
+    let index = $scope.topParentCategoriesList.findIndex((_c) => {
       return _c.$isSelected == true;
     });
     if (type == 'next') {
-
       if (index < 0) {
         $scope.loadSubCategory($scope.topParentCategoriesList[0]);
-        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[0].id)) {
-          el.scrollIntoView()
+        if ((el = document.querySelector('#cat_' + $scope.topParentCategoriesList[0].id))) {
+          el.scrollIntoView();
         }
       } else if (index + 1 != $scope.topParentCategoriesList.length) {
-        $scope.loadSubCategory($scope.topParentCategoriesList[index + 1])
-        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index + 1].id)) {
+        $scope.loadSubCategory($scope.topParentCategoriesList[index + 1]);
+        if ((el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index + 1].id))) {
           el.scrollIntoView();
           document.querySelector('.tag-list').scrollLeft = el.offsetLeft;
         }
       }
-
     } else if (type == 'previous') {
       if (index > 0) {
-
-        $scope.loadSubCategory($scope.topParentCategoriesList[index - 1])
-        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index - 1].id)) {
-          el.scrollIntoView()
+        $scope.loadSubCategory($scope.topParentCategoriesList[index - 1]);
+        if ((el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index - 1].id))) {
+          el.scrollIntoView();
           document.querySelector('.tag-list').scrollLeft += 50;
         }
       }
     }
   };
 
-
-
   $scope.loadSubCategory = function (c) {
     if (c && c.id) {
-
-      $scope.topParentCategoriesList.forEach(_c => {
+      $scope.topParentCategoriesList.forEach((_c) => {
         _c.$isSelected = false;
       });
       c.$isSelected = true;
@@ -447,7 +439,6 @@ app.controller('haraj', function ($scope, $http, $timeout) {
         });
       }
     }
-
   };
 
   $scope.loadSubCategory2 = function (c) {

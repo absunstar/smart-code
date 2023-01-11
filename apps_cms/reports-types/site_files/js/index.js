@@ -1,74 +1,84 @@
-app.controller("reportsTypes", function ($scope, $http, $timeout) {
+app.controller('reportsTypes', function ($scope, $http, $timeout) {
   $scope._search = {};
-
+  $scope.mode = 'add';
   $scope.reportsTypes = {};
 
   $scope.displayAddReportsTypes = function () {
     $scope.error = '';
+    $scope.mode = 'add';
     $scope.reportsTypes = {
-      image: '/images/reportsTypes.png',
-      active: true/* ,
-      immediate : false */
+      active: true,
+      translatedList: [],
     };
-    site.showModal('#reportsTypesAddModal');
-    
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.reportsTypes.translatedList.push({
+          language: {
+            id: l.language.id,
+            en: l.language.en,
+            ar: l.language.ar,
+          },
+        });
+      }
+    });
+    site.showModal('#reportsTypesManageModal');
   };
 
   $scope.addReportsTypes = function () {
     $scope.error = '';
-    const v = site.validated('#reportsTypesAddModal');
+    const v = site.validated('#reportsTypesManageModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
+    }
 
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/reportsTypes/add",
-      data: $scope.reportsTypes
+      method: 'POST',
+      url: '/api/reportsTypes/add',
+      data: $scope.reportsTypes,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#reportsTypesAddModal');
+          site.hideModal('#reportsTypesManageModal');
           $scope.getReportsTypesList();
         } else {
           $scope.error = response.data.error;
-       
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateReportsTypes = function (reportsTypes) {
     $scope.error = '';
+    $scope.mode = 'edit';
     $scope.viewReportsTypes(reportsTypes);
     $scope.reportsTypes = {};
-    site.showModal('#reportsTypesUpdateModal');
+    site.showModal('#reportsTypesManageModal');
   };
 
   $scope.updateReportsTypes = function () {
     $scope.error = '';
-    const v = site.validated('#reportsTypesUpdateModal');
+    const v = site.validated('#reportsTypesManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/reportsTypes/update",
-      data: $scope.reportsTypes
+      method: 'POST',
+      url: '/api/reportsTypes/update',
+      data: $scope.reportsTypes,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#reportsTypesUpdateModal');
+          site.hideModal('#reportsTypesManageModal');
           $scope.getReportsTypesList();
         } else {
           $scope.error = 'Please Login First';
@@ -77,25 +87,26 @@ app.controller("reportsTypes", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsReportsTypes = function (reportsTypes) {
     $scope.error = '';
+    $scope.mode = 'view';
     $scope.viewReportsTypes(reportsTypes);
     $scope.reportsTypes = {};
-    site.showModal('#reportsTypesViewModal');
+    site.showModal('#reportsTypesManageModal');
   };
 
   $scope.viewReportsTypes = function (reportsTypes) {
     $scope.busy = true;
     $scope.error = '';
     $http({
-      method: "POST",
-      url: "/api/reportsTypes/view",
+      method: 'POST',
+      url: '/api/reportsTypes/view',
       data: {
-        id: reportsTypes.id
-      }
+        id: reportsTypes.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -108,15 +119,15 @@ app.controller("reportsTypes", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteReportsTypes = function (reportsTypes) {
     $scope.error = '';
+    $scope.mode = 'delete';
     $scope.viewReportsTypes(reportsTypes);
     $scope.reportsTypes = {};
-    site.showModal('#reportsTypesDeleteModal');
-
+    site.showModal('#reportsTypesManageModal');
   };
 
   $scope.deleteReportsTypes = function () {
@@ -124,16 +135,16 @@ app.controller("reportsTypes", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     $http({
-      method: "POST",
-      url: "/api/reportsTypes/delete",
+      method: 'POST',
+      url: '/api/reportsTypes/delete',
       data: {
-        id: $scope.reportsTypes.id
-      }
+        id: $scope.reportsTypes.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#reportsTypesDeleteModal');
+          site.hideModal('#reportsTypesManageModal');
           $scope.getReportsTypesList();
         } else {
           $scope.error = response.data.error;
@@ -142,18 +153,19 @@ app.controller("reportsTypes", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getReportsTypesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
-      method: "POST",
-      url: "/api/reportsTypes/all",
+      method: 'POST',
+      url: '/api/reportsTypes/all',
       data: {
-        where: where
-      }
+        where: where,
+        select: { id: 1, translatedList: 1, name: 1, active: 1, image : 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -168,20 +180,38 @@ app.controller("reportsTypes", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
- 
+
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/defaultSetting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#reportsTypesSearchModal');
-
   };
 
-  $scope.searchAll = function () { 
+  $scope.searchAll = function () {
     $scope.getReportsTypesList($scope.search);
     site.hideModal('#reportsTypesSearchModal');
     $scope.search = {};
-
   };
 
   $scope.getReportsTypesList();

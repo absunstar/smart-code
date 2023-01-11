@@ -121,7 +121,10 @@ app.controller('cart', function ($scope, $http, $timeout) {
         obj.cart.items.forEach((_p) => {
           _p.total = _p.select_quantity.price * _p.count;
           _p.total = site.toNumber(_p.total);
-          let total = _p.total * _p.select_quantity.currency.ex_rate;
+          let total = _p.total;
+          if (_p.select_quantity.currency) {
+            total = _p.total * _p.select_quantity.currency.ex_rate;
+          } 
           obj.cart.net_value += total / ex_rate;
           obj.cart.net_value = site.toNumber(obj.cart.net_value);
         });

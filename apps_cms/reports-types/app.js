@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $reportsTypes = site.connectCollection('reportsTypes');
-  site.report_type_list = [];
+  site.reportTypeList = [];
   $reportsTypes.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.report_type_list = [...site.report_type_list, ...docs];
+      site.reportTypeList = [...site.reportTypeList, ...docs];
     }
   });
 
@@ -29,30 +29,29 @@ module.exports = function init(site) {
       return;
     }
 
-    let reports_types_doc = req.body;
-    reports_types_doc.$req = req;
-    reports_types_doc.$res = res;
+    let reportsTypesDoc = req.body;
+    reportsTypesDoc.$req = req;
+    reportsTypesDoc.$res = res;
 
-    reports_types_doc.addUserInfo = site.security.getUserFinger({
+    reportsTypesDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof reports_types_doc.active === 'undefined') {
-      reports_types_doc.active = true;
+    if (typeof reportsTypesDoc.active === 'undefined') {
+      reportsTypesDoc.active = true;
     }
 
-    $reportsTypes.add(reports_types_doc, (err, doc) => {
+    $reportsTypes.add(reportsTypesDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.report_type_list.push(doc);
+        site.reportTypeList.push(doc);
       } else {
         response.error = err.message;
       }
       res.json(response);
     });
-
   });
 
   site.post('/api/reportsTypes/update', (req, res) => {
@@ -66,14 +65,14 @@ module.exports = function init(site) {
       return;
     }
 
-    let reports_types_doc = req.body;
+    let reportsTypesDoc = req.body;
 
-    reports_types_doc.editUserInfo = site.security.getUserFinger({
+    reportsTypesDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!reports_types_doc.id) {
+    if (!reportsTypesDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
@@ -81,18 +80,18 @@ module.exports = function init(site) {
     $reportsTypes.edit(
       {
         where: {
-          id: reports_types_doc.id,
+          id: reportsTypesDoc.id,
         },
-        set: reports_types_doc,
+        set: reportsTypesDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.report_type_list.forEach((a, i) => {
+          site.reportTypeList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.report_type_list[i] = result.doc;
+              site.reportTypeList[i] = result.doc;
             }
           });
         } else {
@@ -115,7 +114,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.report_type_list.forEach((a) => {
+    site.reportTypeList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -126,7 +125,7 @@ module.exports = function init(site) {
       response.doc = ad;
       res.json(response);
     } else {
-      response.error = 'no id'
+      response.error = 'no id';
       res.json(response);
     }
   });
@@ -157,8 +156,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.report_type_list.splice(
-            site.report_type_list.findIndex((a) => a.id === req.body.id),
+          site.reportTypeList.splice(
+            site.reportTypeList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {
@@ -167,6 +166,46 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
+  });
+
+  site.post('/api/reportsTypes/all', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.body.where || {};
+    let select = req.body.select || { id: 1, name: 1 };
+
+    response.list = [];
+    site.clusterList.forEach((doc) => {
+      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+        let obj = {
+          ...doc,
+          ...langDoc,
+        };
+
+        for (const p in obj) {
+          if (!Object.hasOwnProperty.call(select, p)) {
+            delete obj[p];
+          }
+        }
+
+        if (!where.active || doc.active) {
+          if (req.body.post) {
+            if (doc.report_comments) {
+              response.report_comment_list.push(obj);
+            } else {
+              response.report_ad_list.push(obj);
+            }
+          } else {
+            response.list.push(obj);
+          }
+        }
+      }
+    });
+
+    response.done = true;
+    res.json(response);
   });
 
   site.post('/api/reportsTypes/all', (req, res) => {
@@ -194,11 +233,9 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
-          if(req.body.post) {
-
-            response.report_ad_list = docs.filter(_d => !_d.report_comments);
-            response.report_comment_list = docs.filter(_d => _d.report_comments);
-         
+          if (req.body.post) {
+            response.report_ad_list = docs.filter((_d) => !_d.report_comments);
+            response.report_comment_list = docs.filter((_d) => _d.report_comments);
           } else {
             response.list = docs;
           }

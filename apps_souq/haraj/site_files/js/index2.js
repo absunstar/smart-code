@@ -137,7 +137,7 @@ if (sideheader) {
 }
 
 let notifname5 = document.getElementById('notif5');
-if (mapheader) {
+if (mapheader && notifname5) {
   mapheader.addEventListener('mouseenter', () => {
     notifname5.classList.add('show-notif-name');
     notifname5.classList.remove('notif-name');
@@ -153,6 +153,8 @@ const map = document.querySelector('.map');
 let changename = document.getElementById('notif5');
 let minmapbtn = document.getElementById('mapbtn');
 function hsMap(type) {
+  if(notifname5){
+
   if (map.style.display === 'block' || type == 'hide') {
     map.style.display = 'none';
     changename.innerText = '##word.map_search##';
@@ -174,6 +176,7 @@ function hsMap(type) {
       notifname5.classList.remove('notif-name');
     });
   }
+}
 }
 
 site.onLoad(() => {

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="##session.lang##" class="loaded" ng-app="myApp">
   <head x-import="haraj/head.html">
-   
     <style>
       * {
         max-width: initial;
@@ -47,7 +46,7 @@
     <div class="map">
       <div class="movemab" x-import="haraj/map.html"></div>
     </div>
-    <a class="create-btn" ng-click="createContent()">
+    <a class="create-btn" ng-click="createContent()" x-setting="activate_add_ads">
       <span style="min-height: 22px">##word.add_your_ad##</span>
       <i class="fa-solid fa-plus-circle"></i>
     </a>
@@ -249,14 +248,14 @@
         </div>
 
         <main class="tagMain">
-          <div class="row">
+          <div class="row" x-setting="address_search">
             <select
               class="select-style form-select col"
               ng-model="search.country"
               ng-change="getGovesList(search.country);searchAll(search)"
               ng-options="s as (s.name_##session.lang##)   for s in countriesList"
             >
-              <option value="" selected><img loading="lazy" height="30" width="30" ng-src="{{s.image_url}}" /> (##word.country##)</option>
+              <option value="" selected> (##word.country##)</option>
             </select>
 
             <select
@@ -310,16 +309,20 @@
                               <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
                             </div>
                             <div class="u-action">
-                              <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id" x-permission="login" ng-click="bookList(a,0)">
-                                <i class="fa fa-shopping-cart"></i>
-                              </a>
-
-                              <a ng-show="!a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',true)">
+                              <a ng-show="!a.$favorite && a.store.user.id != user.id" class="pointer" ng-click="updateFeedback(a,'favorite',true)">
                                 <i class="fa fa-heart dimgrey"> ##word.favorite## </i>
                               </a>
 
-                              <a ng-show="a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',false)">
+                              <a ng-show="a.$favorite && a.store.user.id != user.id" class="pointer" ng-click="updateFeedback(a,'favorite',false)">
                                 <i class="fa fa-heart red"> ##word.cancel## ##word.favorite## </i>
+                              </a>
+                            </div>
+                            <div class="u-action">
+                              <a ng-show="!a.$cart && ##setting.order_settings.activate_orders## && a.store.user.id != user.id" class="pointer" ng-click="bookList(a,0)">
+                                <i class="fa fa-shopping-cart dimgrey"> ##word.add_to_cart##</i>
+                              </a>
+                              <a ng-show="a.$cart && ##setting.order_settings.activate_orders## && a.store.user.id != user.id" class="pointer" ng-click="bookList(a,0)">
+                                <i class="fa fa-shopping-cart red"> ##word.add_to_cart##</i>
                               </a>
                             </div>
                           </div>
@@ -333,17 +336,16 @@
                                 <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
                               </a>
                             </div>
-                            <!--  <div class="row" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list">
-                            <b class="price">
-                              <small>{{q.unit.name_##session.lang##}} {{q.net_value}}
-                                {{q.currency.name_##session.lang##}}</small>
-                              <small ng-show="q.discount > 0" class="line-through red">{{q.price}}
-                                {{q.currency.name_##session.lang##}}</small>
-                              <small class="save-money" ng-show="q.discount > 0"> ##word.save_money## {{q.discount}}
-                                <span ng-show="q.discount_type == 'percent'"> % </span> <span
-                                  ng-show="q.discount_type == 'number'"> $ </span> </small>
-                            </b>
-                          </div> -->
+                            <div class="row" ng-show="a.set_price == 'yes' && ##setting.order_settings.activate_orders##" ng-repeat="q in a.quantity_list">
+                              <b class="price">
+                                <small>{{a.quantity_list[0].unit.name_##session.lang##}} {{a.quantity_list[0].net_value}} {{a.quantity_list[0].currency.name_##session.lang##}}</small>
+                                <small ng-show="a.quantity_list[0].discount > 0" class="line-through red">{{a.quantity_list[0].price}} {{a.quantity_list[0].currency.name_##session.lang##}}</small>
+                                <small class="save-money" ng-show="a.quantity_list[0].discount > 0">
+                                  ##word.save_money## {{a.quantity_list[0].discount}} <span ng-show="a.quantity_list[0].discount_type == 'percent'"> % </span>
+                                  <span ng-show="a.quantity_list[0].discount_type == 'number'"> $ </span>
+                                </small>
+                              </b>
+                            </div>
                           </div>
                         </div>
                       </div>

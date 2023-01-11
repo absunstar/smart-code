@@ -23,6 +23,27 @@
     <div class="modal-body">
       <div class="form">
         <div class="row">
+          <div class="article-part col5">
+            <i-checkbox label="Active" ng-model="categories.active"> </i-checkbox>
+            <i-checkbox label="Show in home page" ng-model="categories.showHome"> </i-checkbox>
+          </div>
+        </div>
+
+        <br />
+        <div class="row">
+          <h2 class="brown col3">##word.categories_type## :</h2>
+
+          <div class="col6" id="type_{{print.id}}">
+            <div class="row">
+              <i-radio class="col2" ng-value="primary" label="##word.categories_primary##" ng-model="categories.type"> </i-radio>
+
+              <i-radio class="col2" ng-value="detailed" label="##word.categories_final##" ng-model="categories.type"> </i-radio>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
           <div class="article-part">
             <fieldset ng-repeat="lang in categories.translatedList track by $index">
               <legend>{{lang.language.##session.lang##}}</legend>
@@ -153,25 +174,6 @@
 
             <br />
             <br />
-
-            <div class="row">
-              <i-checkbox label="Show in home page" ng-model="categories.showHome"> </i-checkbox>
-            </div>
-            <div class="row">
-              <i-checkbox label="Active" ng-model="categories.active"> </i-checkbox>
-            </div>
-            <br />
-            <div class="row">
-              <h2 class="brown col2">##word.categories_type## :</h2>
-
-              <div class="col6" id="type_{{print.id}}">
-                <div class="row">
-                  <i-radio class="col2" ng-value="primary" label="##word.categories_primary##" ng-model="categories.type"> </i-radio>
-
-                  <i-radio class="col2" ng-value="detailed" label="##word.categories_final##" ng-model="categories.type"> </i-radio>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div ng-show="mode !== 'add' " class="row">

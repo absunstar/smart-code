@@ -110,7 +110,7 @@ module.exports = function init(site) {
     }
 
     if (menusDoc.linkageType.id == 1) {
-      if (!menusDoc.mainCategory || !menusDoc.mainCategory.id) {
+      if (!menusDoc.category || !menusDoc.category.id) {
         response.error = 'must select category';
         res.json(response);
         return;
@@ -232,43 +232,28 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
+    let select = req.body.select || { id: 1, name: 1 };
 
-    if (req.data.lang) {
-      response.list = [];
-      site.menuList.forEach((doc) => {
-        if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang)) && doc.active) {
-          response.list.push({
-            id: doc.id,
-            name: doc2.name,
-            linkageType : doc.linkageType,
-            active : doc.active,
-          });
-        }
-      });
+    response.list = [];
+    site.menuList.forEach((doc) => {
+      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+        let obj = {
+          ...doc,
+          ...langDoc,
+        };
 
-      response.done = true;
-      res.json(response);
-    } else {
-      $menus.findMany(
-        {
-          select: req.body.select || {},
-          where: where,
-          sort: req.body.sort || {
-            id: -1,
-          },
-          limit: req.body.limit,
-        },
-        (err, docs, count) => {
-          if (!err) {
-            response.done = true;
-            response.list = docs;
-            response.count = count;
-          } else {
-            response.error = err.message;
+        for (const p in obj) {
+          if (!Object.hasOwnProperty.call(select, p)) {
+            delete obj[p];
           }
-          res.json(response);
         }
-      );
-    }
+        if (!where.active || doc.active) {
+          response.list.push(obj);
+        }
+      }
+    });
+
+    response.done = true;
+    res.json(response);
   });
 };

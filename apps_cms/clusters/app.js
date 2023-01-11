@@ -171,8 +171,6 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
-
-  
   });
 
   site.post('/api/clusters/all', (req, res) => {
@@ -181,28 +179,29 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
+    let select = req.body.select || { id: 1, name: 1 };
 
-    $clusters.findMany(
-      {
-        select: req.body.select || {},
-        where: where,
-        sort: req.body.sort || {
-          id: -1,
-        },
-        limit: req.body.limit,
-      },
-      (err, docs, count) => {
-        if (!err) {
-          response.done = true;
-          response.list = docs;
-          response.count = count;
-        } else {
-          response.error = err.message;
+    response.list = [];
+    site.clusterList.forEach((doc) => {
+      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+        let obj = {
+          ...doc,
+          ...langDoc,
+        };
+
+        for (const p in obj) {
+          if (!Object.hasOwnProperty.call(select, p)) {
+            delete obj[p];
+          }
         }
-        res.json(response);
+        if (!where.active || doc.active) {
+          response.list.push(obj);
+        }
       }
-    );
-  });
+    });
 
+    response.done = true;
+    res.json(response);
+  });
 
 };

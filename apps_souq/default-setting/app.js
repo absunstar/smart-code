@@ -1,7 +1,10 @@
 module.exports = function init(site) {
   const $default_setting = site.connectCollection('default_setting');
   site.defaultSettingDoc = {
-    length_order: 0,
+    order_settings: {
+      length_order: 0,
+      fee_upon_receipt: 0,
+    },
     bank_account_list: [],
     user_design: { id: 5 },
     content: {
@@ -78,7 +81,7 @@ module.exports = function init(site) {
   });
 
   site.getDefaultSetting = function (callback) {
-    callback = callback || function () { };
+    callback = callback || function () {};
     callback(site.setting);
     return site.setting;
   };

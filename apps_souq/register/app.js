@@ -73,7 +73,7 @@ module.exports = function init(site) {
     let mailer_doc = req.body;
     mailer_doc.$req = req;
     mailer_doc.$res = res;
-
+   
     $mailer.findOne(
       {
         where: {
@@ -320,6 +320,11 @@ module.exports = function init(site) {
       }
     }
 
+    user.type = {
+      id: 1,
+      en: 'User',
+      ar: 'مستخدم',
+    };
     site.security.register(user, function (err, doc) {
       if (!err) {
         let store_name = req.session.lang == 'ar' ? 'متجر' : 'Store';

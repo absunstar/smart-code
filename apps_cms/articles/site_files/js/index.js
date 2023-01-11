@@ -287,7 +287,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
           active: true,
         },
         select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1, type: 1 },
-        lang: true,
       },
     }).then(
       function (response) {
@@ -318,12 +317,11 @@ app.controller('articles', function ($scope, $http, $timeout) {
           $scope.articleTypesList = $scope.defaultSettings.article.articleTypes.filter((t) => t.active == true);
           $scope.languagesList = [];
           $scope.defaultSettings.languagesList.forEach((l) => {
-            if (l.active == true) {
+            if (l.language.active == true) {
               $scope.languagesList.push({
                 id: l.language.id,
                 en: l.language.en,
                 ar: l.language.ar,
-                direction: l.language.direction,
               });
             }
           });

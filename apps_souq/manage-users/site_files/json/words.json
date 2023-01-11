@@ -10,6 +10,11 @@
     "ar": "مستخدم جديد"
   },
   {
+    "name": "user_type",
+    "en": "User Type",
+    "ar": "نوع المستخدم "
+  },
+  {
     "name": "manage_users_add",
     "en": "Add User",
     "ar": "إضافة مستخدم "

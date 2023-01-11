@@ -253,7 +253,6 @@ app.controller('categories', function ($scope, $http, $timeout) {
       url: '/api/categories/all',
       data: {
         where: where,
-        lang: true,
       },
     }).then(
       function (response) {

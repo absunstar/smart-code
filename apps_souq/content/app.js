@@ -10,7 +10,7 @@ module.exports = function init(site) {
     name: 'contents',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
-    compress: true, 
+    compress: true,
   });
 
   site.content_list = [];
@@ -20,29 +20,29 @@ module.exports = function init(site) {
     }
   });
   function addZero(code, number) {
-    let c = number - code.toString().length
+    let c = number - code.toString().length;
     for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
+      code = '0' + code.toString();
     }
-    return code
+    return code;
   }
 
   $content.newCode = function (user_id) {
-    user_id = user_id || 'x'
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('content_last_code_' + user_id) || 0
-    let lastMonth = site.storage('content_last_month_' + user_id) || m
+    user_id = user_id || 'x';
+    let y = new Date().getFullYear().toString().substr(2, 2);
+    let m = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'][new Date().getMonth()].toString();
+    let d = new Date().getDate();
+    let lastCode = site.storage('content_last_code_' + user_id) || 0;
+    let lastMonth = site.storage('content_last_month_' + user_id) || m;
     if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
+      lastMonth = m;
+      lastCode = 0;
     }
-    lastCode++
-    site.storage('content_last_code_' + user_id, lastCode)
-    site.storage('content_last_month_' + user_id, lastMonth)
-    return user_id  + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
+    lastCode++;
+    site.storage('content_last_code_' + user_id, lastCode);
+    site.storage('content_last_month_' + user_id, lastMonth);
+    return user_id + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4);
+  };
 
   setInterval(() => {
     site.content_list.forEach((a, i) => {
@@ -188,7 +188,6 @@ module.exports = function init(site) {
           }
           ads_doc.feedback_list = ads_doc.feedback_list || [];
           site.content_list.push(ads_doc);
-
         }
       }
     );
@@ -313,7 +312,6 @@ module.exports = function init(site) {
       image_url: req.session.user.profile.image_url,
     };
 
-
     let ad = site.content_list.find((_ad) => {
       return _ad.id === req.body.id;
     });
@@ -336,7 +334,6 @@ module.exports = function init(site) {
           user: user,
           date: new Date(),
         });
-
       } else if (req.body.feedback.favorite === false) {
         ad.number_favorites = ad.number_favorites - 1;
         req.session.user.feedback_list.splice(
@@ -349,24 +346,19 @@ module.exports = function init(site) {
           1
         );
       }
-
     } else if (req.body.feedback.type == 'follow') {
       if (req.body.feedback.follow === true) {
-
         ad.follow_list = ad.follow_list || [];
         ad.follow_list.push({
           user: user,
           date: new Date(),
         });
-
       } else if (req.body.feedback.follow === false) {
-
         ad.follow_list.splice(
           ad.follow_list.findIndex((c) => c.user.id == req.session.user.id),
           1
         );
       }
-
     } else if (req.body.feedback.type == 'report') {
       ad.number_reports = ad.number_reports + 1;
       ad.report_list = ad.report_list || [];
@@ -376,7 +368,6 @@ module.exports = function init(site) {
         comment_report: req.body.feedback.comment_report,
         date: new Date(),
       });
-
     } else if (req.body.feedback.type == 'report_comment') {
       ad.comment_list.forEach((_c, i) => {
         if (req.body.feedback.comment_code == _c.code) {
@@ -389,14 +380,12 @@ module.exports = function init(site) {
           });
         }
       });
-
     } else if (req.body.feedback.type == 'report_reply') {
       ad.comment_list.forEach((_c, i) => {
         _c.reply_list = _c.reply_list || [];
-        _c.reply_list.forEach(_r => {
-          _r.report_list = _r.report_list || []
+        _c.reply_list.forEach((_r) => {
+          _r.report_list = _r.report_list || [];
           if (req.body.feedback.comment_code == _r.code) {
-
             _r.report_list.push({
               user: user,
               report_type: req.body.feedback.report_type,
@@ -405,9 +394,7 @@ module.exports = function init(site) {
             });
           }
         });
-
       });
-
     } else if (req.body.feedback.type == 'comment') {
       ad.number_comments = ad.number_comments + 1;
       ad.comment_list = ad.comment_list || [];
@@ -428,7 +415,7 @@ module.exports = function init(site) {
           id: ad.id,
           name: ad.name,
         },
-        follow_list :  ad.follow_list,
+        follow_list: ad.follow_list,
       });
       site.call('[notific][comments_my_ads]', {
         user: ad.store.user,
@@ -451,7 +438,7 @@ module.exports = function init(site) {
       ad.comment_list.forEach((_c, i) => {
         if (req.body.feedback.comment_code == _c.code) {
           _c.reply_list = _c.reply_list || [];
-          comment.code = (i + 1) + Math.floor(Math.random() * 1000)
+          comment.code = i + 1 + Math.floor(Math.random() * 1000);
           _c.reply_list.push(comment);
         }
       });
@@ -463,7 +450,7 @@ module.exports = function init(site) {
           id: ad.id,
           name: ad.name,
         },
-        follow_list :  ad.follow_list,
+        follow_list: ad.follow_list,
       });
       site.call('[notific][comments_my_ads]', {
         user: ad.store.user,
@@ -511,18 +498,21 @@ module.exports = function init(site) {
 
           a.favorite_list = a.favorite_list || [];
           a.follow_list = a.follow_list || [];
-          a.$favorite = a.favorite_list.some(_f => { return _f.user.id === req.session.user.id })
-          a.$follow = a.follow_list.some(_f => { return _f.user.id === req.session.user.id })
-          a.comment_list = a.comment_list || []
-          a.comment_list.forEach(_c => {
+          a.$favorite = a.favorite_list.some((_f) => {
+            return _f.user.id === req.session.user.id;
+          });
+          a.$follow = a.follow_list.some((_f) => {
+            return _f.user.id === req.session.user.id;
+          });
+          a.comment_list = a.comment_list || [];
+          a.comment_list.forEach((_c) => {
             _c.$time = site.xtime(_c.date, req.session.lang);
             if (_c.reply_list && _c.reply_list.length > 0) {
-              _c.reply_list.forEach(_r => {
+              _c.reply_list.forEach((_r) => {
                 _r.$time = site.xtime(_r.date, req.session.lang);
-
-              })
+              });
             }
-          })
+          });
         }
         ad = a;
       }
@@ -580,9 +570,8 @@ module.exports = function init(site) {
         quantity_list: 1,
         address: 1,
         favorite_list: 1,
-        set_price: 1
-      }
-
+        set_price: 1,
+      };
     }
 
     if (where['price'] == 'lowest') {
@@ -704,28 +693,35 @@ module.exports = function init(site) {
             if (req.session.lang == 'en') {
               lang = 'name_en';
             }
-            docs.forEach((_d) => {
-              if (_d.address) {
-                _d.address.text = '';
-                if (_d.address.country && _d.address.country.id) {
-                  _d.address.text = _d.address.country[lang];
+            docs.forEach((_a) => {
+              if (_a.address) {
+                _a.address.text = '';
+                if (_a.address.country && _a.address.country.id) {
+                  _a.address.text = _a.address.country[lang];
                 }
-                if (_d.address.gov && _d.address.gov.id) {
-                  _d.address.text = _d.address.text + ' ' + _d.address.gov[lang];
+                if (_a.address.gov && _a.address.gov.id) {
+                  _a.address.text = _a.address.text + ' ' + _a.address.gov[lang];
                 }
-                if (_d.address.city && _d.address.city.id) {
-                  _d.address.text = _d.address.text + ' ' + _d.address.city[lang];
+                if (_a.address.city && _a.address.city.id) {
+                  _a.address.text = _a.address.text + ' ' + _a.address.city[lang];
                 }
-                if (_d.address.area && _d.address.area.id) {
-                  _d.address.text = _d.address.text + ' ' + _d.address.area[lang];
+                if (_a.address.area && _a.address.area.id) {
+                  _a.address.text = _a.address.text + ' ' + _a.address.area[lang];
                 }
               }
 
-              if(req.session.user){
-              _d.favorite_list = _d.favorite_list || [];
-              _d.$favorite = _d.favorite_list.some(_f => { return _f.user.id === req.session.user.id })
-            }
-              _d.$time = site.xtime(_d.date, req.session.lang);
+              if (req.session.user) {
+                _a.favorite_list = _a.favorite_list || [];
+                _a.$favorite = _a.favorite_list.some((_f) => {
+                  return _f.user.id === req.session.user.id;
+                });
+                if(req.session.user.cart && req.session.user.cart.items ){
+                  _a.$card = req.session.user.cart.items.some((_c) => {
+                    return _c.id === req.session.user.id;
+                  });;
+                }
+              }
+              _a.$time = site.xtime(_a.date, req.session.lang);
             });
           }
           response.done = true;

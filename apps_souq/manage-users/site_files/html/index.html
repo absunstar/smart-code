@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="manage_users_ui || manage_users_manage" data-ng-app="myApp">
-  <head x-import="0/head.html"></head>
+  <head x-import="0/head.html">
+    <style>
+      .img-country img {
+        width: 44px;
+        height: 40px;
+        display: inline-block;
+      }
+      i-country span {
+        bottom: 8px;
+        position: relative;
+      }
+      i-country img {
+        width: 40px;
+        height: 27px;
+        border-radius: 0px;
+        display: inline-block;
+      }
+    </style>
+  </head>
 
   <body class="##session.lang## loaded" ng-controller="manage_users">
     <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
@@ -9,6 +27,7 @@
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
+          <div x-permissions="manage_users_add || manage_users_manage" x-import="manage-users/add_modal.html"></div>
           <div x-permissions="manage_users_update || manage_users_manage" x-import="manage-users/update_modal.html"></div>
           <div x-permissions="manage_users_delete || manage_users_manage" x-import="manage-users/delete_modal.html"></div>
           <div x-permissions="manage_users_view || manage_users_manage" x-import="manage-users/view_modal.html"></div>
@@ -19,6 +38,7 @@
           </div>
 
           <div class="top-actions">
+            <i-button x-permissions="manageUsers_add || manageUsers_manage" type="add" label="##word.add##" ng-click="displayAddManageUsers()"></i-button>
             <i-button x-permissions="manage_users_search || manage_users_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.count## : {{count}}</h3>

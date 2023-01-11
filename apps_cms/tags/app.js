@@ -177,39 +177,30 @@ module.exports = function init(site) {
       done: false,
     };
 
-    // if (!req.session.user) {
-    //   response.error = 'Please Login First';
-    //   res.json(response);
-    //   return;
-    // }
-
     let where = req.body.where || {};
+    let select = req.body.select || { id: 1, name: 1 };
 
-  
-    if (where['name']) {
-    
-      where['name']= site.get_RegExp(where['name'], 'i');
-    }
+    response.list = [];
+    site.tagList.forEach((doc) => {
+      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+        let obj = {
+          ...doc,
+          ...langDoc,
+        };
 
-    $tags.findMany(
-      {
-        select: req.body.select || {},
-        where: where,
-        sort: req.body.sort || {
-          id: 1,
-        },
-        limit: req.body.limit,
-      },
-      (err, docs, count) => {
-        if (!err) {
-          response.done = true;
-          response.list = docs;
-          response.count = count;
-        } else {
-          response.error = err.message;
+        for (const p in obj) {
+          if (!Object.hasOwnProperty.call(select, p)) {
+            delete obj[p];
+          }
         }
-        res.json(response);
+        if (!where.active || doc.active) {
+          response.list.push(obj);
+        }
       }
-    );
+    });
+
+    response.done = true;
+    res.json(response);
   });
+
 };

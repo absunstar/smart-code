@@ -3,9 +3,7 @@
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#site_settings')"> ##word.site_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#email_and_text_messages')"> ##word.email_and_text_messages## </a>
-
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#payment')"> ##word.payment## </a>
-
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#order_settings')"> ##word.order_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#ads_settings')"> ##word.ads_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#stores_settings')"> ##word.stores_settings## </a>
@@ -18,15 +16,20 @@
           <div class="row">
             <div class="col8">
               <div class="row">
-                <i-list class="col6" ng-model="default_setting.user_design" items="userDesignList" display="##session.lang##" ng-search="_search.$search_user_design" label="##word.user_design##">
-                </i-list>
-              </div>
-              <div class="row">
-                <i-list class="col6" ng-model="default_setting.currency" items="currenciesList" display="name_##session.lang##" ng-search="_search.$search_currency" label="##word.main_currency##">
-                </i-list>
-                <i-control class="col6" label="##word.order_level_length##" type="number" ng-model="default_setting.length_order"> </i-control>
+                <div class="col6">
+                  <i-list ng-model="default_setting.user_design" items="userDesignList" display="##session.lang##" ng-search="_search.$search_user_design" label="##word.user_design##"> </i-list>
+                  <i-list ng-model="default_setting.currency" items="currenciesList" display="name_##session.lang##" ng-search="_search.$search_currency" label="##word.main_currency##"> </i-list>
+                </div>
+                <div class="col2"></div>
+                <div class="col4">
+                  <i-checkbox class="row" label="##word.map_display##" ng-model="default_setting.map_display"> </i-checkbox>
+                  <i-checkbox class="row" label="##word.appearance_clock##" ng-model="default_setting.appearance_clock"> </i-checkbox>
+                  <i-checkbox class="row" label="##word.activate_add_ads##" ng-model="default_setting.activate_add_ads"> </i-checkbox>
+                  <i-checkbox class="row" label="##word.address_search##" ng-model="default_setting.address_search"> </i-checkbox>
+                </div>
               </div>
             </div>
+
             <div class="col1"></div>
             <div class="col3">
               <i-image ng-model="default_setting.logo"></i-image>
@@ -45,20 +48,28 @@
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.tax_number##" ng-model="default_setting.tax_number"> </i-control>
-            <i-control class="col6" label="##word.commercial_registration_no##" ng-model="default_setting.commercial_registration_no"> </i-control>
-          </div>
-
-          <div class="row">
             <i-control class="col6" label="##word.link## ##word.google_store##" ng-model="default_setting.google_store"> </i-control>
             <i-control class="col6" label="##word.link## ##word.apple_store##" ng-model="default_setting.apple_store"> </i-control>
           </div>
+          <div class="row">
+            <i-textarea class="col6" label="##word.site_description##" ng-model="default_setting.description"></i-textarea>
+          </div>
+          <fieldset>
+            <div class="row">
+              <div class="col6">
+                <i-checkbox class="row" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show"> </i-checkbox>
+                <i-control label="##word.tax_number##" ng-model="default_setting.tax_number"> </i-control>
+              </div>
+              <div class="col6">
+                <i-checkbox class="row" label="##word.commercial_registration_no_show##" ng-model="default_setting.commercial_registration_no_show"> </i-checkbox>
+                <i-control label="##word.commercial_registration_no##" ng-model="default_setting.commercial_registration_no"> </i-control>
+              </div>
+            </div>
+          </fieldset>
           <!-- <div class="row">
             <i-control class="col6" label="##word.link## ##word.huawei_store##" ng-model="default_setting.huawei_store"> </i-control>
           </div> -->
-          <div class="row">
-            <i-textarea class="col8" label="##word.site_description##" ng-model="default_setting.description"></i-textarea>
-          </div>
+
           <fieldset>
             <legend>##word.social_media_accounts##</legend>
             <div class="row">
@@ -71,21 +82,6 @@
               <i-control class="col6" label="##word.twitter_accouunt##" ng-model="default_setting.twitter_accouunt"> </i-control>
             </div>
           </fieldset>
-          <div class="row">
-            <div class="col2">
-              <br />
-              <i-checkbox label="##word.auto_generate_categories_code##" ng-model="default_setting.auto_generate_categories_code"> </i-checkbox>
-            </div>
-            <i-control ng-show="default_setting.auto_generate_categories_code" class="col3" label="##word.categories_level_length##" type="number" ng-model="default_setting.length_category">
-            </i-control>
-          </div>
-          <div class="row">
-            <i-checkbox class="row" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show"> </i-checkbox>
-            <i-checkbox class="row" label="##word.commercial_registration_no_show##" ng-model="default_setting.commercial_registration_no_show"> </i-checkbox>
-            <i-checkbox class="row" label="##word.allow_registration_through_email##" ng-model="default_setting.allow_registration_email"> </i-checkbox>
-            <i-checkbox class="row" label="##word.map_display##" ng-model="default_setting.map_display"> </i-checkbox>
-            <i-checkbox class="row" label="##word.appearance_clock##" ng-model="default_setting.appearance_clock"> </i-checkbox>
-          </div>
         </fieldset>
         <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#site_settings')"></i-button>
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
@@ -108,6 +104,7 @@
         <fieldset>
           <legend>##word.email_sending_setting##</legend>
           <i-checkbox class="row" label="##word.enable_sending_messages_email##" ng-model="default_setting.enable_sending_messages_email"> </i-checkbox>
+          <i-checkbox class="row" label="##word.allow_registration_through_email##" ng-model="default_setting.allow_registration_email"> </i-checkbox>
           <div class="row">
             <i-control class="col6" label="##word.host##" type="text" ng-model="default_setting.email_setting.host"></i-control>
             <i-control class="col6" label="##word.port##" type="number" ng-model="default_setting.email_setting.port"> </i-control>
@@ -129,12 +126,13 @@
       <div id="payment" class="tab-content">
         <fieldset>
           <legend>##word.commission##</legend>
-          <div class="col9">
+          <div class="col8">
             <i-control label="##word.social_title##" type="text" ng-model="default_setting.commission_social_title"></i-control>
             <i-control label="##word.main_title##" type="text" ng-model="default_setting.commission_main_title"></i-control>
             <i-textarea label="##word.description##" type="text" ng-model="default_setting.commission_description"></i-textarea>
             <i-textarea label="##word.transfer_form_text##" type="text" ng-model="default_setting.transfer_form_text"></i-textarea>
           </div>
+          <div class="col1"></div>
           <div class="col3">
             <i-image ng-model="default_setting.commission_logo"></i-image>
           </div>
@@ -146,7 +144,7 @@
           </legend>
 
           <div class="row" ng-repeat="b in default_setting.bank_account_list track by $index">
-            <div class="col9">
+            <div class="col8">
               <div class="row">
                 <i-control class="col6" v="r" label="##word.account_number##" ng-model="b.account_number"> </i-control>
 
@@ -162,7 +160,9 @@
                 <i-list class="col6" v="r" ng-model="b.country" items="countriesList" display="name_##session.lang##" ng-search="b.$search_country" label="##word.country##"> </i-list>
               </div>
             </div>
+            <div class="col1"></div>
             <div class="col3">
+              <br />
               <i-image ng-model="b.image_url"> </i-image>
             </div>
 
@@ -183,7 +183,10 @@
             <i-checkbox class="row" label="##word.activate_orders##" ng-model="default_setting.order_settings.activate_orders"></i-checkbox>
           </div>
           <div class="row" ng-show="default_setting.order_settings.activate_orders">
-            <i-control class="col2" type="number" label="##word.fee_upon_receipt##" ng-model="default_setting.order_settings.fee_upon_receipt"></i-control>
+            <div class="row">
+              <i-control class="col2" type="number" label="##word.fee_upon_receipt##" ng-model="default_setting.order_settings.fee_upon_receipt"></i-control>
+              <i-control class="col3" label="##word.order_level_length##" type="number" ng-model="default_setting.order_settings.length_order"> </i-control>
+            </div>
           </div>
         </fieldset>
         <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#order_settings')"></i-button>
@@ -273,23 +276,29 @@
           </div>
 
           <div class="row">
-            <h2 class="black">
-              ##word.warning_message_inside_ad##
-              <i-button type="add default" ng-click="default_setting.content.warning_message_ad_list.push({})"> </i-button>
-            </h2>
+            <fieldset>
+              <legend>
+                ##word.warning_message_inside_ad##
+                <i-button type="add default" ng-click="default_setting.content.warning_message_ad_list.push({})"> </i-button>
+              </legend>
+              <div ng-repeat="f in default_setting.content.warning_message_ad_list track by $index">
+                <div class="row">
+                  <i-image class="col3" ng-model="f.image_url"> </i-image>
 
-            <div ng-repeat="f in default_setting.content.warning_message_ad_list track by $index" class="row">
-              <i-image class="col3" ng-model="f.image_url"> </i-image>
+                  <i-textarea class="col8" label="##word.the_message##" ng-model="f.name"></i-textarea>
 
-              <i-textarea class="col8" ng-model="f.name"></i-textarea>
-
-              <i-button
-                class="col1"
-                type="delete default"
-                ng-click="default_setting.content.warning_message_ad_list.length ==1 || default_setting.printer_program.warning_message_ad_list.splice($index,1)"
-              >
-              </i-button>
-            </div>
+                  <i-button
+                    class="col1"
+                    type="delete default"
+                    ng-click="default_setting.content.warning_message_ad_list.length ==1 || default_setting.printer_program.warning_message_ad_list.splice($index,1)"
+                  >
+                  </i-button>
+                </div>
+                <br />
+                <hr />
+                <br />
+              </div>
+            </fieldset>
           </div>
           <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#ads_settings')"></i-button>
         </fieldset>

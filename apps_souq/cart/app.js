@@ -31,12 +31,22 @@ module.exports = function init(site) {
     });
   }, 1000 * 7);
 
-  site.get({
-    name: 'cart',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: true,
-  });
+
+  site.get(
+    {
+      name: 'cart',
+    },
+    (req, res) => {
+      res.render(
+        'cart/index.html',
+        { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+        {
+          parser: 'html css js',
+          compress: true,
+        }
+      );
+    }
+  );
 
   site.post({
     name: '/api/cart/order_status/all',
@@ -93,7 +103,7 @@ module.exports = function init(site) {
       en: 'New Order',
     };
 
-    let lastOrder = site.order_list[site.order_list.length - 1];
+    let lastOrder = site.order_list[site.order_list.length - 1] || 0;
 
     if (site.setting.length_order) {
       order_doc.code = order_doc.code = addZero(site.toNumber(lastOrder.code) + site.toNumber(1), site.setting.length_order);

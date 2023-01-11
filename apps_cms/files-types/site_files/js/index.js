@@ -1,13 +1,27 @@
 app.controller("fileType", function ($scope, $http, $timeout) {
 
+  $scope.mode = 'add';
   $scope.fileType = {};
 
   $scope.displayAddFileTypes = function () {
     $scope.error = '';
+    $scope.mode = 'add';
     $scope.fileType = {
-      active: true
+      active: true,
+      translatedList : []
     };
-    site.showModal('#fileTypesAddModal');
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.fileType.translatedList.push({
+          language: {
+            id: l.language.id,
+            en: l.language.en,
+            ar: l.language.ar,
+          },
+        });
+      }
+    });
+    site.showModal('#fileTypeManageModal');
   };
 
   $scope.addFileTypes = function () {
@@ -16,7 +30,7 @@ app.controller("fileType", function ($scope, $http, $timeout) {
     }
     $scope.error = '';
 
-    const v = site.validated('#fileTypesAddModal');
+    const v = site.validated('#fileTypeManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -31,7 +45,7 @@ app.controller("fileType", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#fileTypesAddModal');
+          site.hideModal('#fileTypeManageModal');
           $scope.getFileTypesList();
         } else {
           $scope.error = response.data.error;
@@ -51,10 +65,11 @@ app.controller("fileType", function ($scope, $http, $timeout) {
   $scope.displayUpdateFileTypes = function (fileType) {
     $scope._search = {};
 
+    $scope.mode = 'edit';
     $scope.error = '';
     $scope.detailsFileTypes(fileType);
     $scope.fileType = {};
-    site.showModal('#fileTypesUpdateModal');
+    site.showModal('#fileTypeManageModal');
   };
 
   $scope.updateFileTypes = function () {
@@ -63,7 +78,7 @@ app.controller("fileType", function ($scope, $http, $timeout) {
     }
     $scope.error = '';
 
-    const v = site.validated('#fileTypesUpdateModal');
+    const v = site.validated('#fileTypeManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -77,7 +92,7 @@ app.controller("fileType", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#fileTypesUpdateModal');
+          site.hideModal('#fileTypeManageModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
@@ -95,9 +110,10 @@ app.controller("fileType", function ($scope, $http, $timeout) {
 
   $scope.displayDetailsFileTypes = function (fileType) {
     $scope.error = '';
+    $scope.mode = 'view';
     $scope.detailsFileTypes(fileType);
     $scope.fileType = {};
-    site.showModal('#fileTypesDetailsModal');
+    site.showModal('#fileTypeManageModal');
   };
 
   $scope.detailsFileTypes = function (fileType) {
@@ -126,9 +142,10 @@ app.controller("fileType", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteFileTypes = function (fileType) {
     $scope.error = '';
+    $scope.mode = 'delete';
     $scope.detailsFileTypes(fileType);
     $scope.fileType = {};
-    site.showModal('#fileTypesDeleteModal');
+    site.showModal('#fileTypeManageModal');
   };
 
   $scope.deleteFileTypes = function () {
@@ -145,7 +162,7 @@ app.controller("fileType", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#fileTypesDeleteModal');
+          site.hideModal('#fileTypeManageModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -170,7 +187,8 @@ app.controller("fileType", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/fileType/all",
       data: {
-        where: where
+        where: where,
+        select: { id: 1, translatedList: 1, name: 1, active: 1},
       }
     }).then(
       function (response) {
@@ -187,6 +205,26 @@ app.controller("fileType", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/defaultSetting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getFileTypesList($scope.search);
@@ -196,5 +234,5 @@ app.controller("fileType", function ($scope, $http, $timeout) {
   };
 
   $scope.getFileTypesList();
-
+  $scope.getDefaultSetting();
 });

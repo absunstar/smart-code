@@ -7,10 +7,20 @@ app.controller("tags", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.tags = {
-      image: '/images/tags.png',
-      tagsList : [],
-      active: true
+      active: true,
+      translatedList : []
     };
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.tags.translatedList.push({
+          language: {
+            id: l.language.id,
+            en: l.language.en,
+            ar: l.language.ar,
+          },
+        });
+      }
+    });
 
     site.showModal('#tagsManageModal');
   };
@@ -152,7 +162,8 @@ app.controller("tags", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/tags/all",
       data: {
-        where: where
+        where: where,
+        select: { id: 1, translatedList: 1, name: 1, active: 1, image : 1 },
       }
     }).then(
       function (response) {
@@ -178,7 +189,7 @@ app.controller("tags", function ($scope, $http, $timeout) {
     if (ev.which !== 13 || !obj.$tag) {
       return;
     }
-
+    obj.tagsList = obj.tagsList || [];
     if (!obj.tagsList.some((k) => k === obj.$tag)) {
       obj.tagsList.push(obj.$tag);
     }
@@ -186,7 +197,25 @@ app.controller("tags", function ($scope, $http, $timeout) {
     obj.$tag = '';
   };
 
-
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/defaultSetting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -202,4 +231,5 @@ app.controller("tags", function ($scope, $http, $timeout) {
   };
 
   $scope.getTagsList();
+  $scope.getDefaultSetting();
 });

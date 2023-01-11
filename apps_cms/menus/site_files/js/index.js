@@ -7,7 +7,6 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.menu = {
-      image: '/images/menu.png',
       active: true,
       translatedList : []
     };
@@ -183,7 +182,8 @@ app.controller('menus', function ($scope, $http, $timeout) {
       url: '/api/menus/all',
       data: {
         where: where,
-        lang: true,
+        select: { id: 1, translatedList: 1, name: 1, linkageType: 1, active: 1, image : 1 },
+
       },
     }).then(
       function (response) {
@@ -239,7 +239,6 @@ app.controller('menus', function ($scope, $http, $timeout) {
           active: true,
         },
         select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1, type: 1 },
-        lang: true,
       },
     }).then(
       function (response) {
@@ -263,7 +262,6 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.subCategoriesList2 = [];
     $scope.subCategoriesList3 = [];
     $scope.subCategoriesList4 = [];
-    console.log($scope.categoryList.length , c.id);
     $scope.categoryList.forEach((_c) => {
       if (c && c.id == _c.parentId) {
         $scope.subCategoriesList1.push(_c);

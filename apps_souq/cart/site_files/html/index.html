@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
-
-  <head>
-    <title>##word.brand_title##</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/font6.css" />
-    <link rel="stylesheet" href="/x-css/all.css" />
-    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+  <head x-import="haraj/head.html">
     <style>
       * {
         max-width: initial;
       }
-      .bg_notific,
-      .bg_notific {
-        background-color: #00b38d94  !important;
+
+      .send-btn {
+        width: 30% !important;
+        margin-bottom: 25px !important;
       }
+
+      .control input {
+        border-radius: 10px;
+        text-align: center !important;
+      }
+      .dropdown input {
+        border-radius: 10px !important;
+      }
+      .userad-logo {
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        margin: -5px 10px -5px 0px !important;
+      }
+      .table {
+        border-collapse: unset;
+        border: unset;
+      }
+      .table th {
+        border-radius: 10px;
+      }
+      .table td {
+        border: unset;
+      }
+
       :root {
         --body-margin-top: 0px;
         --body-margin-bottom: 0px;
@@ -25,18 +42,25 @@
         --fieldset-border: none;
         --fieldset-background: #fff;
       }
+
       body {
+        /* background-color: #bbb !important;
+    background-image: url(/assets/palm.svg) !important; */
         background-color: #ecf9f6;
-       /*  background-color: #bbb !important;
-        background-image: url(/assets/palm.svg) !important; */
         background-repeat: repeat !important;
       }
+    @media screen and (max-width: 480px) {
+      .send-btn {
+        width: 50% !important;
+      }
+    }
     </style>
     <style x-lang="ar">
-      .nav1{
+      .nav1 {
         flex-direction: initial;
         padding: 7px;
       }
+
       :root {
         --direction: rtl;
         --text-align: right;
@@ -44,7 +68,6 @@
       }
     </style>
   </head>
-
   <body class="##session.lang## loaded" ng-controller="cart">
     <div x-import="haraj/header.html"></div>
 
@@ -70,15 +93,9 @@
             <br />
             <br />
             <br />
-            <br />
             <h1 class="center blue bold">##word.products_must_added_basket##</h1>
           </div>
           <div id="orderCart" class="row" ng-show="user.cart.items.length > 0">
-            <div class="row">
-              <div class="col4"></div>
-              <i-list help-id="" v="r" class="col2" label="##word.payment_method##" ng-change="calc(user)" ng-model="user.cart.payment_method" display="##session.lang##" items="orderPaymentList" ng-search="_search.$payment_method"> </i-list>
-            </div>
-
             <br />
             <br />
             <h2 class="error">{{error}}</h2>
@@ -90,10 +107,10 @@
                   <tr>
                     <th class="not-print">##word.logo##</th>
                     <th>##word.product_name##</th>
-                    <th>##word.unit##</th>
-                    <th>##word.count##</th>
+                    <th ng-show="defaultSettings.content.quantities_can_be_used">##word.unit##</th>
+                    <th class="w150">##word.count##</th>
                     <th>##word.price##</th>
-                    <th>##word.currency##</th>
+                    <th ng-show="defaultSettings.content.currencies_can_be_used">##word.currency##</th>
                     <th>##word.total##</th>
                     <th class="not-print">##word.actions##</th>
                   </tr>
@@ -101,13 +118,13 @@
                     <td class="center not-print">
                       <i-image view class="logo" ng-model="p.image_url"></i-image>
                     </td>
-                    <td class="center title">{{p.name_##session.lang##}}</td>
-                    <td class="center title">{{p.select_quantity.unit.name_##session.lang##}}</td>
+                    <td class="center title">{{p.name}}</td>
+                    <td class="center title" ng-show="defaultSettings.content.quantities_can_be_used">{{p.select_quantity.unit.name_##session.lang##}}</td>
                     <td class="center">
                       <i-control type="number" ng-change="calc(user)" ng-model="p.count"></i-control>
                     </td>
                     <td class="center green">{{p.select_quantity.price}}</td>
-                    <td class="center">{{p.select_quantity.currency.name_##session.lang##}}</td>
+                    <td class="center" ng-show="defaultSettings.content.currencies_can_be_used">{{p.select_quantity.currency.name_##session.lang##}}</td>
                     <td class="center blue">{{p.total}}</td>
                     <td class="center not-print">
                       <i-button type="delete" ng-click="user.cart.items.splice($index,1) ; calc(user)"> </i-button>
@@ -118,19 +135,60 @@
             </div>
 
             <div class="row">
-              <div class="col1"></div>
-              <i-control class="col2 r_black center" ng-show="user.cart.payment_method.id == 1" type="number" disabled label="##word.fee_upon_receipt##" ng-model="user.cart.fee_upon_receipt"></i-control>
+              <div class="col2"></div>
+              <i-list
+                v="r"
+                class="col2"
+                label="##word.payment_method##"
+                ng-change="calc(user)"
+                ng-model="user.cart.payment_method"
+                display="##session.lang##"
+                items="orderPaymentList"
+                ng-search="_search.$payment_method"
+              >
+              </i-list>
+              <i-list
+                class="col2"
+                display="name_##session.lang##"
+                ng-model="user.cart.currency"
+                ng-change="calc(user)"
+                ng-show="defaultSettings.content.currencies_can_be_used"
+                items="currenciesList"
+                label="##word.payment_currency##"
+                ng-search="_search.$currency_search"
+              ></i-list>
+            </div>
 
+            <div class="row">
+              <div class="col2"></div>
+              <i-control
+                class="col2 r_black center"
+                ng-show="user.cart.payment_method.id == 1"
+                type="number"
+                disabled
+                label="##word.fee_upon_receipt##"
+                ng-model="user.cart.fee_upon_receipt"
+              ></i-control>
               <i-control class="col2 r_green center" label="##word.total_purchase_price##" type="number" ng-model="user.cart.net_value" disabled></i-control>
-              <i-list class="col2" display="name_##session.lang##" ng-model="user.cart.currency" ng-change="calc(user)" items="currenciesList" label="##word.payment_currency##" ng-search="_search.$currency_search"></i-list>
-
-              <i-control class="col2 center" label="##word.exchange_rate##" disabled ng-model="user.cart.currency.ex_rate" type="number"></i-control>
+              <i-control
+                class="col2 center"
+                ng-show="defaultSettings.content.currencies_can_be_used"
+                label="##word.exchange_rate##"
+                disabled
+                ng-model="user.cart.currency.ex_rate"
+                type="number"
+              ></i-control>
               <i-control class="col2 r_green center" label="##word.paid_require##" type="number" ng-model="user.cart.paid_require" disabled></i-control>
             </div>
+
             <br />
             <br />
-            <div class="row center" ng-show="defaultSettings.order_settings.activate_orders">
-              <i-button type="fa fa-cart-plus saving" label="##word.create_order##" ng-click="createOrder()"> </i-button>
+
+            <div class="row center">
+              <button class="send-btn center" ng-click="createOrder()">
+                <i class="fa fa-cart-plus"></i>
+                ##word.create_order##
+              </button>
             </div>
           </div>
         </div>
@@ -147,5 +205,6 @@
     <div x-import="haraj/scripts.html"></div>
 
     <script x-permissions="login" x-import="cart/index.js"></script>
+    <script x-import="haraj/index2.js"></script>
   </body>
 </html>

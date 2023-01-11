@@ -208,12 +208,12 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (req.data.lang) {
-      // response.list = list[req.session.lang];
-      response.list = [];
-      response.topList = [];
-      site.categoriesList.forEach((doc) => {
-        if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang)) && doc.active) {
+    let where = req.body.where || {};
+    response.list = [];
+    response.topList = [];
+    site.categoriesList.forEach((doc) => {
+      if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang)) && doc.active) {
+        if (!where.active || doc.active) {
           if (!doc.topParentId) {
             response.topList.push({
               id: doc.id,
@@ -235,45 +235,15 @@ module.exports = function init(site) {
             name: doc2.name,
           });
         }
+      }
 
-        // if(doc.language.id == 'ar'){
-        //   list['ar'].push({...doc , ...doc2 , translatedList : null})
-        // } else if(doc.language.id == 'en'){
-        //   list['en'].push({...doc , ...doc2 , translatedList : null})
-        // }
-      });
-      response.done = true;
-      res.json(response);
-    } else {
-      let where = req.data.where || {};
-
-      $categories.findMany(
-        {
-          select: req.body.select || {},
-          where: where,
-          sort: req.body.sort || {},
-          limit: req.body.limit,
-        },
-        (err, docs, count) => {
-          if (!err) {
-            response.done = true;
-            response.list = docs;
-            if (req.body.top) {
-              response.topList = [];
-              docs.forEach((_doc) => {
-                if (!_doc.topParentId) {
-                  response.topList.push(_doc);
-                }
-              });
-            }
-
-            response.count = count;
-          } else {
-            response.error = err.message;
-          }
-          res.json(response);
-        }
-      );
-    }
+      // if(doc.language.id == 'ar'){
+      //   list['ar'].push({...doc , ...doc2 , translatedList : null})
+      // } else if(doc.language.id == 'en'){
+      //   list['en'].push({...doc , ...doc2 , translatedList : null})
+      // }
+    });
+    response.done = true;
+    res.json(response);
   });
 };

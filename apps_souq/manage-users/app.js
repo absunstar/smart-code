@@ -11,6 +11,52 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images',
   });
 
+  site.post({
+    name: '/api/users_types/all',
+    path: __dirname + '/site_files/json/users_types.json',
+  });
+
+  site.post('/api/manage_users/add', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'You Are Not Login';
+      res.json(response);
+      return;
+    }
+
+    let user = req.body;
+    user.$req = req;
+    user.$res = res;
+    user.feedback_list = [];
+    user.followers_list = [];
+    user.follow_category_list = [];
+    
+    user.notific_setting = {
+      instant_alerts: true,
+      ads_members_follow: true,
+      ads_sections_followed: true,
+      ads_searches_followed: true,
+      replies_ads_followed: true,
+      comments_my_ads: true,
+      private_messages: true,
+    };
+    user.profile.files = [];
+    user.profile.other_addresses_list = [];
+
+    site.security.addUser(user, (err, _id) => {
+      if (!err) {
+        response.done = true;
+      } else {
+        console.log(err);
+        response.error = err.message;
+      }
+      res.json(response);
+    });
+  });
+
   site.post('/api/manage_users/view', (req, res) => {
     let response = {
       done: false,
@@ -39,7 +85,6 @@ module.exports = function init(site) {
       }
     );
   });
-  
 
   site.post('/api/manage_users/update', (req, res) => {
     let response = {

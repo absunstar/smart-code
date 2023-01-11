@@ -185,9 +185,9 @@
         </div>
         <div class="user">
           <i class="close-menu fa-solid fa-xmark fa-lg"></i>
-          <a class="notification" href="/cart" ng-show="##setting.order_settings.activate_orders##">
+          <a class="notification" x-permissions="login" href="/cart" ng-show="##setting.order_settings.activate_orders##">
             <i class="cart fa-solid fa-cart-shopping"></i>
-            <span class="badge ng-binding">{{user.cart.items.length || 0}}</span>
+            <span ng-show="user.cart.items.length > 0"  class="badge ng-binding">{{user.cart.items.length || 0}}</span>
           </a>
           <div class="user-log">
             <div x-permission="!login" class="login padding-register pointer" href="/register">
@@ -322,7 +322,8 @@
     <li class="mobile-header" x-permission="login" ng-show="##setting.order_settings.activate_orders##">
       <a class="notification" href="/cart">
         <i class="fa-solid fa-cart-shopping"></i>
-        <span class="badge-mobile ng-binding">0</span>
+        <span ng-show="user.cart.items.length > 0" class="side-badge ng-binding">{{user.cart.items.length || 0}}</span>
+
         <!-- <span style="min-height: 22px; font-size: 20px">##word.cart##</span> -->
       </a>
     </li>

@@ -1,189 +1,208 @@
-module.exports = function init(site) {
-  const $fileType = site.connectCollection("fileType")
 
-  site.get({
-    name: "fileTypes",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
-  })
+module.exports = function init(site) {
+  const $fileType = site.connectCollection('fileType');
+  site.fileTypeList = [];
+  $fileType.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.fileTypeList = [...site.fileTypeList, ...docs];
+    }
+  });
 
   site.get({
     name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
+    path: __dirname + '/site_files/images/',
+  });
 
-  site.post("/api/fileType/add", (req, res) => {
-    let response = {}
-    response.done = false
+  site.get({
+    name: 'fileType',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
 
+
+  site.post('/api/fileType/add', (req, res) => {
+    let response = {
+      done: false,
+    };
     if (!req.session.user) {
       response.error = 'Please Login First';
-      res.json(response)
-      return
+      res.json(response);
+      return;
     }
 
-    let fileTypeDoc = req.body
-    fileTypeDoc.$req = req
-    fileTypeDoc.$res = res
+    let fileTypeDoc = req.body;
+    fileTypeDoc.$req = req;
+    fileTypeDoc.$res = res;
+
     fileTypeDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
-      $res: res
-    })
+      $res: res,
+    });
+
+    if (typeof fileTypeDoc.active === 'undefined') {
+      fileTypeDoc.active = true;
+    }
 
     $fileType.add(fileTypeDoc, (err, doc) => {
       if (!err) {
-        response.done = true
-        response.doc = doc
+        response.done = true;
+        response.doc = doc;
+        site.fileTypeList.push(doc);
       } else {
-        response.error = err.message
+        response.error = err.message;
       }
-      res.json(response)
-    })
-  })
+      res.json(response);
+    });
 
-  site.post("/api/fileType/update", (req, res) => {
+  });
+
+  site.post('/api/fileType/update', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    let fileTypeDoc = req.body
+    let fileTypeDoc = req.body;
+
     fileTypeDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
-      $res: res
-    })
-    if (fileTypeDoc.id) {
-      $fileType.edit({
+      $res: res,
+    });
+
+    if (!fileTypeDoc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
+    }
+
+    $fileType.edit(
+      {
         where: {
-          id: fileTypeDoc.id
+          id: fileTypeDoc.id,
         },
         set: fileTypeDoc,
         $req: req,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          response.doc = result.doc
+        $res: res,
+      },
+      (err, result) => {
+        if (!err && result) {
+          response.done = true;
+          site.fileTypeList.forEach((a, i) => {
+            if (a.id === result.doc.id) {
+              site.fileTypeList[i] = result.doc;
+            }
+          });
         } else {
-          response.error = err.message
+          response.error = 'Code Already Exist';
         }
-        res.json(response)
-      })
+        res.json(response);
+      }
+    );
+
+  });
+
+  site.post('/api/fileType/view', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    let ad = null;
+    site.fileTypeList.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
+      }
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
     } else {
       response.error = 'no id'
-      res.json(response)
+      res.json(response);
     }
-  })
+  });
 
-  site.post("/api/fileType/view", (req, res) => {
+  site.post('/api/fileType/delete', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    $fileType.findOne({
-      where: {
-        id: req.body.id
-      }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
-
-  site.post("/api/fileType/delete", (req, res) => {
-    let response = {
-      done: false
+   
+    if (!req.body.id) {
+      response.error = 'no id';
+      res.json(response);
+      return;
     }
 
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let id = req.body.id
-
-    if (id) {
-      $fileType.delete({
-        id: id,
+    $fileType.delete(
+      {
+        id: req.body.id,
         $req: req,
-        $res: res
-      }, (err, result) => {
+        $res: res,
+      },
+      (err, result) => {
         if (!err) {
-          response.done = true
-          response.doc = result.doc
+          response.done = true;
+          site.fileTypeList.splice(
+            site.fileTypeList.findIndex((a) => a.id === req.body.id),
+            1
+          );
         } else {
-          response.error = err.message
+          response.error = err.message;
         }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
-  })
-
-  site.post("/api/fileType/all", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-    let where = req.data.where || {}
-
-    if (where['code']) {
-      where['code'] = site.get_RegExp(where['code'], 'i')
-    }
-
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i')
-    }
-
-    // if (where['active'] !== 'all') {
-    //   where['active'] = true
-    // } else {
-    //   delete where['active']
-    // }
-
-
-    $fileType.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || { id: -1 },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
+        res.json(response);
       }
-      res.json(response)
-    })
-  })
+    );
+  });
 
-}
+  site.post('/api/fileType/all', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.body.where || {};
+    let select = req.body.select || { id: 1, name: 1 };
+
+    response.list = [];
+    site.fileTypeList.forEach((doc) => {
+      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+        let obj = {
+          ...doc,
+          ...langDoc,
+        };
+
+        for (const p in obj) {
+          if (!Object.hasOwnProperty.call(select, p)) {
+            delete obj[p];
+          }
+        }
+        if (!where.active || doc.active) {
+          response.list.push(obj);
+        }
+      }
+    });
+
+    response.done = true;
+    res.json(response);
+  });
+
+};
