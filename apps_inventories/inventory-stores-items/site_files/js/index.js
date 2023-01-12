@@ -426,7 +426,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Cant Delete Its Exist*')) {
+          if (response.data.error && response.data.error.like('*Cant Delete Its Exist*')) {
             $scope.error = '##word.err_item##';
           }
         }

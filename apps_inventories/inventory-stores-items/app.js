@@ -857,7 +857,7 @@ module.exports = function init(site) {
 
     site.getBarcodesList(req, (cbBarcodesList) => {
       site.getDefaultSetting(req, (settingCallback) => {
-        if (!stores_items_doc.add_sizes) {
+        if (!stores_items_doc.add_sizes && stores_items_doc.sizes[0]) {
           stores_items_doc.sizes[0].size_ar = stores_items_doc.name_ar;
           stores_items_doc.sizes[0].size_en = stores_items_doc.name_en;
         }

@@ -1640,7 +1640,7 @@ img {
   }
 
   .notif-name {
-    opacity: 0;
+    opacity: 1;
   }
 
   .map svg path {
@@ -1689,7 +1689,7 @@ img {
   .clickmap {
     top: 439px !important;
     height: 60px !important;
-    margin: 15px 0;
+    margin: 15px -10px !important;
   }
 
   .clickmap span {

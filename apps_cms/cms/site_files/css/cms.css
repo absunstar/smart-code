@@ -6,3 +6,10 @@
 .userPrint {
   user-select: text;
 }
+
+.img-h150 img {
+  height: 150px !important;
+}
+hr {
+  width: 98% !important;
+}

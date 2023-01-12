@@ -92,34 +92,30 @@ module.exports = function init(site) {
         category = c;
       }
     });
-    if (category && categoriesDoc.type == 'detailed') {
-      response.error = 'Cant Change Detailed Err';
-      res.json(response);
-    } else {
-      $categories.edit(
-        {
-          where: {
-            id: categoriesDoc.id,
-          },
-          set: categoriesDoc,
-          $req: req,
-          $res: res,
+
+    $categories.edit(
+      {
+        where: {
+          id: categoriesDoc.id,
         },
-        (err, result) => {
-          if (!err && result) {
-            response.done = true;
-            site.categoriesList.forEach((a, i) => {
-              if (a.id === result.doc.id) {
-                site.categoriesList[i] = result.doc;
-              }
-            });
-          } else {
-            response.error = 'Code Already Exist';
-          }
-          res.json(response);
+        set: categoriesDoc,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err && result) {
+          response.done = true;
+          site.categoriesList.forEach((a, i) => {
+            if (a.id === result.doc.id) {
+              site.categoriesList[i] = result.doc;
+            }
+          });
+        } else {
+          response.error = 'Code Already Exist';
         }
-      );
-    }
+        res.json(response);
+      }
+    );
   });
 
   site.post('/api/categories/view', (req, res) => {
@@ -221,7 +217,6 @@ module.exports = function init(site) {
               topParentId: doc.topParentId,
               parentId: doc.parentId,
               status: doc.status,
-              type: doc.type,
               name: doc2.name,
             });
           }
@@ -231,7 +226,6 @@ module.exports = function init(site) {
             topParentId: doc.topParentId,
             parentId: doc.parentId,
             status: doc.status,
-            type: doc.type,
             name: doc2.name,
           });
         }

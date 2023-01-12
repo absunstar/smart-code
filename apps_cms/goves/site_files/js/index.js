@@ -240,6 +240,21 @@ app.controller('goves', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.addKeyWords = function (ev, obj) {
+    $scope.busy = true;
+
+    if (ev.which !== 13 || !obj.$keyword) {
+      return;
+    }
+    obj.keyWordsList = obj.keyWordsList || [];
+    if (!obj.keyWordsList.some((k) => k === obj.$keyword)) {
+      obj.keyWordsList.push(obj.$keyword);
+    }
+
+    obj.$keyword = '';
+  };
+
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#govSearchModal');

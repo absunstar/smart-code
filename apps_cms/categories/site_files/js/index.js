@@ -10,12 +10,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
 
-    if (parentCategory && parentCategory.type == 'detailed') {
-      return;
-    }
-
     $scope.categories = {
-      type: 'detailed',
       active: true,
       showHome: true,
       translatedList: [],
@@ -28,7 +23,6 @@ app.controller('categories', function ($scope, $http, $timeout) {
 
     if ($scope.categories.topParentId) {
       $scope.categories = {
-        type: 'detailed',
         active: true,
         showHome: true,
         status: parentCategory.status,
@@ -97,7 +91,6 @@ app.controller('categories', function ($scope, $http, $timeout) {
         $scope.busyAdd = false;
         if (response.data.done) {
           $scope.categories = {
-            type: 'detailed',
             status: 'active',
             image: '/images/categories.jpg',
           };

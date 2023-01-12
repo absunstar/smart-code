@@ -801,7 +801,7 @@
   }
 
   .notif-name {
-    opacity: 0;
+    opacity: 1;
   }
 
   .show-notif-name {
@@ -2040,7 +2040,7 @@
   .clickmap {
     top: 439px;
     height: 60px;
-    margin: 15px 0;
+    margin: 15px -3px;
   }
 
   #map-toggle a {

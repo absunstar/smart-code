@@ -40,7 +40,7 @@
                 <i-checkbox class="col2" label="##word.auto_translate##" ng-show="article.$showCreate" ng-model="article.$autoTranslate"> </i-checkbox>
                 <div class="col3">
                   <br />
-                  <i-button type="add" ng-show="article.$show_create" label="##word.create##" ng-click="addLanguage(article.$language)"> </i-button>
+                  <i-button type="add" ng-show="article.$showCreate" label="##word.create##" ng-click="addLanguage(article.$language)"> </i-button>
                 </div>
               </div>
             </div>
@@ -243,7 +243,7 @@
                         </div>
                         <div class="article-part">
                           <i-checkbox label="##word.show_image##" ng-model="art.showSocialImage"> </i-checkbox>
-                          <i-image ng-model="art.socialImage"></i-image>
+                          <i-image class="center" ng-model="art.socialImage"></i-image>
                         </div>
                       </div>
                     </div>
@@ -262,7 +262,7 @@
                         </div>
                         <div class="article-part">
                           <i-checkbox label="##word.show_image##" ng-model="art.showExternalImage"> </i-checkbox>
-                          <i-image ng-model="art.externalImage"></i-image>
+                          <i-image class="center" ng-model="art.externalImage"></i-image>
                         </div>
                       </div>
                     </div>

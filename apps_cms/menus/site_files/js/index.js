@@ -238,7 +238,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1, type: 1 },
+        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1},
       },
     }).then(
       function (response) {

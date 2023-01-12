@@ -286,7 +286,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1, type: 1 },
+        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1 },
       },
     }).then(
       function (response) {
@@ -636,7 +636,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.changeLanuage = function (event, lang) {
     let index = $scope.article.translatedList.findIndex((_c) => _c.language && _c.language.id == lang.id);
     $scope.article.$showCreate = index >= 0 ? false : true;
-
     site.showTabContent(event, '#basic');
   };
 
@@ -649,15 +648,18 @@ app.controller('articles', function ($scope, $http, $timeout) {
 
         $scope.article.translatedList[0].keyWordsList.forEach((_k) => {
           if ($scope.article.$autoTranslate) {
-            SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: _k, to: lang.id }, (info) =>
+            SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: _k, to: lang.id }, (info) =>{
+
               $scope.article.translatedList[$scope.article.translatedList.length - 1].keyWordsList.push(info.translatedText)
+              $scope.$applyAsync();
+            }
             );
           } else {
             $scope.article.translatedList[$scope.article.translatedList.length - 1].keyWordsList.push({ ..._k });
           }
         });
 
-        if ($scope.article.$auto_translate) {
+        if ($scope.article.$autoTranslate) {
         } else {
           $scope.article.translatedList[0].keyWordsList.forEach((_k) => {
             $scope.article.translatedList[$scope.article.translatedList.length - 1].keyWordsList.push({ ..._k });
@@ -669,16 +671,20 @@ app.controller('articles', function ($scope, $http, $timeout) {
         $scope.article.translatedList[$scope.article.translatedList.length - 1].tagsList = [];
 
         $scope.article.translatedList[0].tagsList.forEach((_k) => {
-          if ($scope.article.$auto_translate) {
-            SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: _k, to: lang.id }, (info) =>
-              $scope.article.translatedList[$scope.article.translatedList.length - 1].tagsList.push(info.translatedText)
+          if ($scope.article.$autoTranslate) {
+            SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: _k, to: lang.id }, (info) =>{
+
+              $scope.article.translatedList[$scope.article.translatedList.length - 1].tagsList.push(info.translatedText);
+              $scope.$applyAsync();
+            }
             );
           } else {
             $scope.article.translatedList[$scope.article.translatedList.length - 1].tagsList.push({ ..._k });
           }
         });
 
-        if ($scope.article.$auto_translate) {
+        if ($scope.article.$autoTranslate) {
+
         } else {
           $scope.article.translatedList[0].tagsList.forEach((_k) => {
             $scope.article.translatedList[$scope.article.translatedList.length - 1].tagsList.push({ ..._k });
@@ -720,46 +726,65 @@ app.controller('articles', function ($scope, $http, $timeout) {
           $scope.article.translatedList[$scope.article.translatedList.length - 1].scripts.push({ ..._k });
         });
       }
-      if ($scope.article.$auto_translate) {
+      if ($scope.article.$autoTranslate) {
         if ($scope.article.translatedList[$scope.article.translatedList.length - 1].title) {
           SOCIALBROWSER.translate(
             { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].title, to: lang.id },
-            (info) => ($scope.article.translatedList[$scope.article.translatedList.length - 1].title = info.translatedText)
+            (info) => {
+              ($scope.article.translatedList[$scope.article.translatedList.length - 1].title = info.translatedText);
+              $scope.$applyAsync();
+            }
           );
         }
 
         if ($scope.article.translatedList[$scope.article.translatedList.length - 1].content) {
           SOCIALBROWSER.translate(
             { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].content, to: lang.id },
-            (info) => ($scope.article.translatedList[$scope.article.translatedList.length - 1].content = info.translatedText)
+            (info) => {
+              ($scope.article.translatedList[$scope.article.translatedList.length - 1].content = info.translatedText)
+              $scope.$applyAsync();
+            }
           );
         }
 
         if ($scope.article.translatedList[0].socialTitle) {
           SOCIALBROWSER.translate(
             { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].socialTitle, to: lang.id },
-            (info) => ($scope.article.translatedList[$scope.article.translatedList.length - 1].socialTitle = info.translatedText)
+            (info) => {
+              ($scope.article.translatedList[$scope.article.translatedList.length - 1].socialTitle = info.translatedText);
+              $scope.$applyAsync();
+            }
           );
         }
 
         if ($scope.article.translatedList[0].socialDescription) {
           SOCIALBROWSER.translate(
             { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].socialDescription, to: lang.id },
-            (info) => ($scope.article.translatedList[$scope.article.translatedList.length - 1].socialDescription = info.translatedText)
+            (info) => {
+              ($scope.article.translatedList[$scope.article.translatedList.length - 1].socialDescription = info.translatedText);
+              $scope.$applyAsync();
+
+            }
           );
         }
 
         if ($scope.article.translatedList[0].externalTitle) {
           SOCIALBROWSER.translate(
             { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].externalTitle, to: lang.id },
-            (info) => ($scope.article.translatedList[$scope.article.translatedList.length - 1].externalTitle = info.translatedText)
+            (info) => {
+              ($scope.article.translatedList[$scope.article.translatedList.length - 1].externalTitle = info.translatedText)
+              $scope.$applyAsync();
+            }
           );
         }
 
         if ($scope.article.translatedList[0].externalDescription) {
           SOCIALBROWSER.translate(
             { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].externalDescription, to: lang.id },
-            (info) => ($scope.article.translatedList[$scope.article.translatedList.length - 1].externalDescription = info.translatedText)
+            (info) => {
+              ($scope.article.translatedList[$scope.article.translatedList.length - 1].externalDescription = info.translatedText)
+              $scope.$applyAsync();
+            }
           );
         }
       }
