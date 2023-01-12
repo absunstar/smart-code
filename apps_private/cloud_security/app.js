@@ -100,6 +100,7 @@ module.exports = function init(site) {
       {
         where: where,
         limit: 1000,
+        select: req.body.select || {},
       },
       (err, docs, count) => {
         if (!err) {

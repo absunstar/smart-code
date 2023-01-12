@@ -7,6 +7,7 @@
     { "module_name" : "public", "screen_name" : "manage-order" , "name":"manage_order_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "public", "screen_name" : "manage-order" , "name":"manage_order_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "public", "screen_name" : "manage-order" , "name":"manage_order_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public", "screen_name" : "manage-order" , "name":"manage_shipping_order" , "en":"Shipping Order" , "ar":"شحن الطلب"},
     { "module_name" : "public", "screen_name" : "manage-order" , "name":"manage_order_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
 
 ]

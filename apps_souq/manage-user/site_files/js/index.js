@@ -59,7 +59,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
                 });
               }
             },
-            function (err) { }
+            function (err) {}
           );
         } else {
           $scope.manage_user = {};
@@ -235,8 +235,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
   $scope.addMobileList = function () {
     $scope.manage_user.mobile_list = $scope.manage_user.mobile_list || [];
     if ($scope.manage_user.$mobile) {
-
-      $scope.manage_user.mobile_list.push($scope.manage_user.$mobile)
+      $scope.manage_user.mobile_list.push($scope.manage_user.$mobile);
     }
     $scope.manage_user.$mobile = '';
   };
@@ -299,7 +298,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.getFavoriteStoresList = function (where) {
     $scope.busy = true;
@@ -583,10 +581,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     }
   };
 
-
-
-
-
   $scope.displayDetailsAd = function (ad) {
     $scope.error = '';
     $scope.viewAd(ad);
@@ -748,7 +742,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) { }
+      function (err) {}
     );
   };
 
@@ -796,6 +790,45 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         }
       });
     }
+  };
+
+  $scope.notDelivered = function (manage_order) {
+    $scope.error = '';
+
+    $scope.order = manage_order;
+    site.showModal('#notDeliveredModal');
+  };
+
+  $scope.updateStatusOrder = function (manage_order) {
+    if ($scope.busy) {
+      return;
+    }
+    $scope.error = '';
+    manage_order.status = {
+      id: 6,
+      en: 'was canceled',
+      ar: 'تم الإلغاء',
+    };
+
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/order/update',
+      data: manage_order,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#notDeliveredModal');
+          $scope.getOrdersList();
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
   };
 
   /* $scope.loadManageUser(); */

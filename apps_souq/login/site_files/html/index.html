@@ -46,7 +46,7 @@
           <div class="col6">
             <div class="col10"></div>
             <i-control class="input-style" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
-            <i-control class="input-style pass" label="##word.password##" type="password" v="r"
+            <i-control class="input-style pass" ng-click="loginKeyDown($event)" label="##word.password##" type="password" v="r"
               ng-model="user.password"> </i-control>
             <i-checkbox class="center" label="##word.show_password##" ng-click="showPassword()"
               ng-model="show_password"> </i-checkbox>

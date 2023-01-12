@@ -10,12 +10,12 @@ module.exports = function init(site) {
   //   }, (err, result) => { })
   // })
 
+
   site.post({
-    name: "/api/manage_order/delivery_agency/all",
-    path: __dirname + "/site_files/json/delivery_agency.json",
+    name: '/api/order_status/all',
+    path: __dirname + '/site_files/json/order_status.json',
   });
 
-  
   site.get({
     name: "manage_order",
     path: __dirname + "/site_files/html/index.html",

@@ -66,11 +66,6 @@
         "ar": "تفاصيل المدفوعات"
     },
     {
-        "name": "accept",
-        "en": "Accept",
-        "ar": "تأكيد"
-    },
-    {
         "name": "requests",
         "en": "Activities",
         "ar": "الخدمات"

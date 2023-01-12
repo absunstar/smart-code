@@ -342,7 +342,6 @@
                   <th>##word.order_code##</th>
                   <th>##word.date##</th>
                   <th>##word.payment_method##</th>
-                  <th>##word.delivery_type##</th>
                   <th>##word.paid_require##</th>
                   <th>##word.status##</th>
                 </tr>
@@ -351,13 +350,40 @@
                   <td ng-click="viewOrder(o)" class="indigoD">{{o.code}}</td>
                   <td ng-click="viewOrder(o)" class="brown">{{o.date | date : 'yyyy - MM - dd'}}</td>
                   <td ng-click="viewOrder(o)">{{o.payment_method.##session.lang##}}</td>
-                  <td ng-click="viewOrder(o)">{{o.delivery_type.##session.lang##}}</td>
                   <td ng-click="viewOrder(o)" class="green">{{o.paid_require}}</td>
                   <td ng-click="viewOrder(o)" class="blue">{{o.status.##session.lang##}}</td>
                 </tr>
               </table>
             </div>
           </div>
+
+          <div id="notDeliveredModal" class="modal alert small">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>
+                  ##word.cancelling_order##
+                  <i class="fa fa-close"></i>
+                </h2>
+              </div>
+              <div class="modal-body">
+                <span ng-show="busy">
+                  <span class="sr-only">Loading...</span>
+                </span>
+                <div class="row">
+                  <i-textarea class="col" label="##word.cancelling_delivery_reason##" ng-model="order.cancelling_delivery_reason">
+                  </i-textarea>
+                </div>
+              </div>
+              <h2 class="error">{{error}}</h2>
+              <div class="modal-footer center">
+                <i-button label="##word.accept## ##word.cancelling_order##" ng-click="updateStatusOrder(order)"></i-button>
+    
+                <i-button type="close" label="##word.close##" onclick="site.hideModal('#notDeliveredModal')"></i-button>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div id="my_ads" x-setting="activate_add_ads" class="tab-content">

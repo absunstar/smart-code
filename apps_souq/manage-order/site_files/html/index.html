@@ -34,7 +34,6 @@
               <th>##word.date##</th>
               <th>##word.user##</th>
               <th>##word.payment_method##</th>
-              <th>##word.delivery_type##</th>
               <th>##word.paid_require##</th>
               <th>##word.status##</th>
               <th class="not-print">##word.actions##</th>
@@ -45,16 +44,17 @@
               <td ng-click="displayDetailsManageOrder(c)" class="brown">{{c.date | date : 'yyyy - MM - dd'}}</td>
               <td ng-click="displayDetailsManageOrder(c)" class="">{{c.user.profile.name}}</td>
               <td ng-click="displayDetailsManageOrder(c)">{{c.payment_method.##session.lang##}}</td>
-              <td ng-click="displayDetailsManageOrder(c)">{{c.delivery_type.##session.lang##}}</td>
               <td ng-click="displayDetailsManageOrder(c)" class="green">{{c.paid_require}}</td>
               <td ng-click="displayDetailsManageOrder(c)" class="blue">{{c.status.##session.lang##}}</td>
               <td class="center not-print">
-                <i-button ng-show="c.status.id == 1" label="##word.order_approval##" ng-click="updateStatusOrder(c,2)"></i-button>
+                <i-button x-permissions="manage_order_edit || manage_order_manage" ng-show="c.status.id == 1" label="##word.order_approval##" ng-click="updateStatusOrder(c,2)"></i-button>
 
-                <i-button ng-show="c.status.id == 2 && c.conductor.id" label="##word.under_delivery##" ng-click="updateStatusOrder(c,3)"></i-button>
+                <i-button x-permissions="manage_order_edit || manage_order_manage" ng-show="c.status.id == 2 && c.delegate.id" label="##word.under_delivery##" ng-click="updateStatusOrder(c,3)"></i-button>
 
-                <i-button ng-show="c.status.id == 3" label="##word.done_delivery##" ng-click="updateStatusOrder(c,4)"></i-button>
-                <i-button ng-show="c.status.id == 2" type="update" label="##word.delivery_agency_set##" ng-click="displayDeleveryManageOrder(c)"></i-button>
+                <i-button x-permissions="manage_shipping_order || manage_order_manage" ng-show="c.status.id == 3" label="##word.done_delivery##" ng-click="updateStatusOrder(c,4)"></i-button>
+                <i-button x-permissions="manage_shipping_order || manage_order_manage" ng-show="c.status.id == 3" label="##word.not_delivered##" ng-click="notDelivered(c,'not_delivered')"></i-button>
+                <i-button x-permissions="manage_shipping_order || manage_order_manage" ng-show="c.status.id == 2" type="update" label="##word.delivery_agency_set##" ng-click="displayDeliveryManageOrder(c)"></i-button>
+                <i-button x-permissions="manage_order_edit || manage_order_manage" ng-show="c.status.id != 4 && c.status.id !=6 && c.status.id !=5" type="close" label="##word.cancelling_order##" ng-click="notDelivered(c,'cancelling_order')"></i-button>
                 <!-- 
                 <i-button
                 type="update"
@@ -70,6 +70,39 @@
 
           <div class="row">
             <i-button x-permissions="manage_order_print || manage_order_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+          </div>
+        </div>
+      </div>
+      <div id="notDeliveredModal" class="modal alert small">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2 ng-show="manage_order.$non_delivery">
+              ##word.non_delivery##
+              <i class="fa fa-close"></i>
+            </h2>
+            <h2 ng-show="manage_order.$cancelling_order">
+              ##word.cancelling_order##
+              <i class="fa fa-close"></i>
+            </h2>
+          </div>
+          <div class="modal-body">
+            <span ng-show="busy">
+              <span class="sr-only">Loading...</span>
+            </span>
+            <div class="row">
+              <i-textarea class="col" ng-show="manage_order.$non_delivery" label="##word.non_delivery_reason##" ng-model="manage_order.not_delivered_reason">
+              </i-textarea>
+              <i-textarea class="col" ng-show="manage_order.$cancelling_order" label="##word.cancelling_delivery_reason##" ng-model="manage_order.cancelling_delivery_reason">
+              </i-textarea>
+            </div>
+          </div>
+          <h2 class="error">{{error}}</h2>
+          <div class="modal-footer center">
+            <i-button ng-show="manage_order.$non_delivery" label="##word.accept## ##word.non_delivery##" ng-click="updateStatusOrder(manage_order,5)"></i-button>
+            <i-button ng-show="manage_order.$cancelling_order" label="##word.accept## ##word.cancelling_order##" ng-click="updateStatusOrder(manage_order,6)"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#notDeliveredModal')"></i-button>
           </div>
         </div>
       </div>

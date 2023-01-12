@@ -1,16 +1,24 @@
 [
-    {"name" : "manage_order" , "en" : "Manage Order" , "ar" : "إدارة الطلب"},
-    {"name" : "manage_orders" , "en" : "Manage Orders" , "ar" : "إدارة الطلبات"},
-    {"name" : "order_approved" , "en" : "Order approved" , "ar" : "تم إعتماد الطلب"},
-    {"name" : "order_approval" , "en" : "Approval of the order" , "ar" : "إعتماد الطلب"},
-    {"name" : "under_delivery" , "en" : "Under delivery" , "ar" : "قيد التوصيل"},
-    {"name" : "done_delivery" , "en" : "Done delivery" , "ar" : "تم التوصيل"},
-    {"name" : "delivery_details" , "en" : "Delivery details" , "ar" : "تفاصيل التوصيل"},
-    {"name" : "delivery_agency" , "en" : "Delivery agency" , "ar" : "الجهة الموصلة"},
-    {"name" : "conductor" , "en" : "Conductor" , "ar" : "الموصل"},
-    {"name" : "delivery_agency_set" , "en" : "Delivery agency set" , "ar" : "تعيين الجهة الموصلة"},
-    {"name" : "manage_order_code" , "en" : "Order Code" , "ar" : "كود الطلب"}
-
-
-
+  { "name": "manage_order", "en": "Manage Order", "ar": "إدارة الطلب" },
+  { "name": "manage_orders", "en": "Manage Orders", "ar": "إدارة الطلبات" },
+  { "name": "order_approved", "en": "Order approved", "ar": "تم إعتماد الطلب" },
+  { "name": "order_approval", "en": "Approval of the order", "ar": "إعتماد الطلب" },
+  { "name": "under_delivery", "en": "Under delivery", "ar": "قيد التوصيل" },
+  { "name": "manage_order_details", "en": "Order details", "ar": "تفاصيل الطلب" },
+  { "name": "done_delivery", "en": "Done delivery", "ar": "تم التوصيل" },
+  { "name": "delivery_details", "en": "Delivery details", "ar": "تفاصيل التوصيل" },
+  { "name": "delivery_agency", "en": "Delivery agency", "ar": "الجهة الموصلة" },
+  { "name": "conductor", "en": "Conductor", "ar": "الموصل" },
+  { "name": "delivery_agency_set", "en": "Delivery agency set", "ar": "تعيين الجهة الموصلة" },
+  { "name": "manage_order_code", "en": "Order Code", "ar": "كود الطلب" },
+  { "name": "shipping_companies", "en": "Shipping companys", "ar": "شركات الشحن" },
+  { "name": "shipping_company", "en": "Shipping company", "ar": "شركة الشحن" },
+  { "name": "shipping_order", "en": "Shipping order", "ar": "شحن الطلبات" },
+  { "name": "cancelling_order", "en": "Cancelling order", "ar": "إلغاء الطلب" },
+  { "name": "non_delivery", "en": "Non-delivery", "ar": "عدم التوصيل" },
+  { "name": "non_delivery_reason", "en": "Non-delivery reason", "ar": "سبب عدم التوصيل" },
+  { "name": "cancelling_delivery_reason", "en": "Reason for cancelling order", "ar": "سبب إلغاء الطلب" },
+  { "name": "delivery_date", "en": "Delivery date", "ar": "تاريخ التوصيل" },
+  { "name": "reasons_for_non_delivery", "en": "Reasons for non-delivery", "ar": "أسباب عدم التوصيل" },
+  { "name": "not_delivered", "en": "Not delivered", "ar": "لم يتم التوصيل" }
 ]

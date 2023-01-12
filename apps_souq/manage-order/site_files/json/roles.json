@@ -4,4 +4,11 @@
     "en": "Manage Order Admin",
     "ar": "إدارة الطلبات",
     "permissions": ["manage_order_manage"]
+},
+{
+    "module_name" : "public" ,
+    "name": "shipping_order_admin",
+    "en": "Shipping Order Admin",
+    "ar": "شحن الطلبات",
+    "permissions": ["manage_shipping_order","manage_order_ui"]
 }]

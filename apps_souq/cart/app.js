@@ -31,7 +31,6 @@ module.exports = function init(site) {
     });
   }, 1000 * 7);
 
-
   site.get(
     {
       name: 'cart',
@@ -105,7 +104,7 @@ module.exports = function init(site) {
 
     let lastOrder = site.order_list[site.order_list.length - 1] || 0;
 
-    if (site.setting.length_order) {
+    if (site.setting.order_settings && site.setting.order_settings.length_order) {
       order_doc.code = order_doc.code = addZero(site.toNumber(lastOrder.code) + site.toNumber(1), site.setting.length_order);
 
       response.done = true;
@@ -145,6 +144,10 @@ module.exports = function init(site) {
     }
     response.done = true;
     order_doc.$update = true;
+    if (order_doc.$done_delivery) {
+      order_doc.delivery_date = new Date();
+    }
+
     site.order_list.forEach((a, i) => {
       if (a.id === order_doc.id) {
         site.order_list[i] = order_doc;
@@ -219,13 +222,12 @@ module.exports = function init(site) {
     }
 
     let where = req.data.where || {};
-
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
-    }
-
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+    if (req.session.user.type) {
+      if (req.session.user.type.id == 2) {
+        where['shipping_company.id'] = req.session.user.id;
+      } else if (req.session.user.type.id == 3) {
+        where['delegate.id'] = req.session.user.id;
+      }
     }
 
     if (where['user_id']) {
@@ -238,7 +240,6 @@ module.exports = function init(site) {
     // } else {
     //   delete where['active']
     // }
-
     $order.findMany(
       {
         select: req.body.select || {},

@@ -101,11 +101,6 @@
         "ar": "تفاصيل المدفوعات"
     },
     {
-        "name": "accept",
-        "en": "Accept",
-        "ar": "تأكيد"
-    },
-    {
         "name": "date_from",
         "en": "Date From",
         "ar": "تاريخ من"

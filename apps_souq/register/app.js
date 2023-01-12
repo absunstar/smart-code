@@ -73,7 +73,7 @@ module.exports = function init(site) {
     let mailer_doc = req.body;
     mailer_doc.$req = req;
     mailer_doc.$res = res;
-   
+
     $mailer.findOne(
       {
         where: {
@@ -291,6 +291,11 @@ module.exports = function init(site) {
       country_code: req.body.country_code,
       permissions: ['user'],
       active: true,
+      type: {
+        id: 1,
+        en: 'User',
+        ar: 'مستخدم',
+      },
       notific_setting: {
         instant_alerts: true,
         ads_members_follow: true,
@@ -320,11 +325,6 @@ module.exports = function init(site) {
       }
     }
 
-    user.type = {
-      id: 1,
-      en: 'User',
-      ar: 'مستخدم',
-    };
     site.security.register(user, function (err, doc) {
       if (!err) {
         let store_name = req.session.lang == 'ar' ? 'متجر' : 'Store';

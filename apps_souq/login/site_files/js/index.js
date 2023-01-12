@@ -1,5 +1,14 @@
 app.controller('login_souq', function ($scope, $http, $timeout) {
   $scope.user = {};
+  
+  $scope.loginKeyDown = function (ev) {
+    if (ev.which !== 13) {
+      return;
+    } else {
+      $scope.login();
+    }
+  };
+
   $scope.login = function () {
     $scope.error = '';
     const v = site.validated('#loginSouqModal');

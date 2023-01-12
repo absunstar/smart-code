@@ -214,11 +214,7 @@
         "en": "Detailes Amounts Paid",
         "ar": "تفاصيل المدفوعات"
     },
-    {
-        "name": "accept",
-        "en": "Accept",
-        "ar": "تأكيد"
-    },
+
     {
         "name": "err_paid_up",
         "en": "Must Enter Paid",

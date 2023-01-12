@@ -1,6 +1,6 @@
 <div ng-hide="busy" id="v1">
   <div class="form">
-    <div id="customersGroupViewModal">
+    <div>
       <fieldset>
         <legend>##word.companies_basic_information##</legend>
         <div class="row">
@@ -13,114 +13,85 @@
 
               <tr>
                 <td class="title">##word.customer##</td>
-                <td class="center">
-                  {{manage_order.add_user_info.name_##session.lang##}}
-                </td>
+                <td class="center">{{manage_order.user.profile.name}} {{manage_order.user.profile.last_name}}</td>
               </tr>
 
               <tr>
                 <td class="title">##word.date##</td>
-                <td class="center brown">
-                  {{manage_order.date | date : 'yyyy - MM - dd'}}
-                </td>
+                <td class="center brown">{{manage_order.date | date : 'yyyy - MM - dd'}}</td>
               </tr>
 
               <tr>
                 <td class="title">##word.payment_method##</td>
+                <td class="center">{{manage_order.payment_method.##session.lang##}}</td>
+              </tr>
+
+              <tr ng-show="manage_order.shipping_company.id">
+                <td class="title">##word.shipping_company##</td>
+                <td class="center">{{manage_order.shipping_company.profile.name}} {{manage_order.shipping_company.profile.last_name}}</td>
+              </tr>
+
+              <tr ng-show="manage_order.delegate.id">
+                <td class="title">##word.delegate##</td>
+                <td class="center">{{manage_order.delegate.profile.name}} {{manage_order.delegate.profile.last_name}}</td>
+              </tr>
+
+              <tr ng-show="manage_order.delivery_date">
+                <td class="title">##word.delivery_date##</td>
                 <td class="center">
-                  {{manage_order.payment_method.##session.lang##}}
+                  <p class="brown">{{a.delivery_date |date:"dd - MM - yyyy"}}</p>
+                  <p class="green">{{a.delivery_date |date:"hh:mm"}}</p>
                 </td>
               </tr>
 
-              <tr>
-                <td class="title">##word.delivery_type##</td>
-                <td class="center">
-                  {{manage_order.delivery_type.##session.lang##}}
-                </td>
+              <tr ng-show="manage_order.not_delivered_reason">
+                <td class="title">##word.non_delivery_reason##</td>
+                <td class="center lines_text">{{manage_order.not_delivered_reason}}</td>
               </tr>
 
-              <tr ng-show="manage_order.delivery_agency.id">
-                <td class="title">##word.delivery_agency##</td>
-                <td class="center">
-                  {{manage_order.delivery_agency.##session.lang##}}
-                </td>
-              </tr>
-
-              <tr ng-show="manage_order.conductor.id">
-                <td class="title">##word.conductor##</td>
-                <td class="center">
-                  {{manage_order.conductor.name_##session.lang##}}
-                </td>
-              </tr>
-
-              <tr>
-                <td class="title">##word.total_purchase_price##</td>
-                <td class="center green">{{manage_order.net_value}}</td>
-              </tr>
-
-              <tr>
-                <td class="title">##word.paid_require##</td>
-                <td class="center">{{manage_order.paid_require}}</td>
+              <tr ng-show="manage_order.cancelling_delivery_reason">
+                <td class="title">##word.cancelling_delivery_reason##</td>
+                <td class="center lines_text">{{manage_order.cancelling_delivery_reason}}</td>
               </tr>
 
               <tr>
                 <td class="title">##word.status##</td>
-                <td class="center blue">
-                  {{manage_order.status.##session.lang##}}
-                </td>
+                <td class="center blue">{{manage_order.status.##session.lang##}}</td>
               </tr>
             </table>
           </div>
           <div class="col3">
-            <div class="row">
-              <i-control
-                class="r_black center"
-                type="number"
-                disabled
-                label="##word.fee_upon_receipt##"
-                ng-model="manage_order.fee_upon_receipt"
-              ></i-control>
+            <fieldset>
+              <div class="row">
+                <i-control class="r_black center" type="number" disabled label="##word.fee_upon_receipt##" ng-model="manage_order.fee_upon_receipt"></i-control>
 
-              <i-control
-                class="r_black center"
-                disabled
-                ng-show="manage_order.delivery_type.id == 1"
-                type="number"
-                label="##word.normal_delivery_fee##"
-                ng-model="manage_order.normal_delivery_fee"
-              ></i-control>
+                <i-control
+                  class="r_black center"
+                  disabled
+                  ng-show="manage_order.delivery_type.id == 1"
+                  type="number"
+                  label="##word.normal_delivery_fee##"
+                  ng-model="manage_order.normal_delivery_fee"
+                ></i-control>
 
-              <i-control
-                class="r_black center"
-                type="number"
-                disabled
-                ng-show="manage_order.delivery_type.id == 2"
-                label="##word.fast_delivery_fee##"
-                ng-model="manage_order.fast_delivery_fee"
-              ></i-control>
+                <i-control
+                  class="r_black center"
+                  type="number"
+                  disabled
+                  ng-show="manage_order.delivery_type.id == 2"
+                  label="##word.fast_delivery_fee##"
+                  ng-model="manage_order.fast_delivery_fee"
+                ></i-control>
 
-              <i-control
-                id="item_name"
-                class="r_green center"
-                label="##word.total_purchase_price##"
-                type="number"
-                ng-model="manage_order.net_value"
-                disabled
-              ></i-control>
-              <i-control
-                id="item_name"
-                class="r_green center"
-                label="##word.paid_require##"
-                type="number"
-                ng-model="manage_order.paid_require"
-                disabled
-              ></i-control>
-            </div>
+                <i-control id="item_name" class="r_green center" label="##word.total_purchase_price##" type="number" ng-model="manage_order.net_value" disabled></i-control>
+                <i-control id="item_name" class="r_green center" label="##word.paid_require##" type="number" ng-model="manage_order.paid_require" disabled></i-control>
+              </div>
+            </fieldset>
           </div>
         </div>
       </fieldset>
     </div>
-    <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+    <!-- <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" /> -->
     <br />
     <div class="row">
       <fieldset>
@@ -128,24 +99,22 @@
         <table x-permissions="login" class="table hover bold">
           <tr>
             <th class="not-print">##word.logo##</th>
-            <th>##word.code##</th>
             <th>##word.product_name##</th>
-            <th>##word.unit##</th>
+            <th ng-show="defaultSettings.content.quantities_can_be_used">##word.unit##</th>
             <th>##word.count##</th>
             <th>##word.price##</th>
-            <th>##word.currency##</th>
+            <th ng-show="defaultSettings.content.currencies_can_be_used">##word.currency##</th>
             <th>##word.total##</th>
           </tr>
           <tr ng-repeat="o in manage_order.items">
             <td class="center not-print">
               <i-image view class="logo" ng-model="o.image_url"></i-image>
             </td>
-            <td class="center userPrint indigoD">{{o.code}}</td>
-            <td class="center title">{{o.name_##session.lang##}}</td>
-            <td class="center title">{{o.unit.name_##session.lang##}}</td>
+            <td class="center title">{{o.name}}</td>
+            <td class="center title" ng-show="defaultSettings.content.quantities_can_be_used">{{o.unit.name_##session.lang##}}</td>
             <td class="center">{{o.count}}</td>
             <td class="center green">{{o.select_quantity.price}}</td>
-                <td class="center">{{o.select_quantity.currency.name_##session.lang##}}</td>
+            <td class="center" ng-show="defaultSettings.content.currencies_can_be_used">{{o.select_quantity.currency.name_##session.lang##}}</td>
             <td class="center blue">{{o.total}}</td>
           </tr>
         </table>

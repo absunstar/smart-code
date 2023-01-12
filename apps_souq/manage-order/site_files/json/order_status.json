@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "en": "New Order",
+        "ar": "طلب جديد"
+    },
+    {
+        "id": 2,
+        "en": "Order approved",
+        "ar": "تم إعتماد الطلب"
+    },
+    {
+        "id": 3, 
+        "en": "Under Delivery",
+        "ar": "قيد التوصيل"
+    },
+    {
+        "id": 4,
+        "en": "Done delivery",
+        "ar": "تم التوصيل"
+    },
+    {
+        "id": 5,
+        "en": "Not delivered",
+        "ar": "لم يتم التوصيل"
+    },
+    {
+        "id": 6,
+        "en": "was canceled",
+        "ar": "تم الإلغاء"
+    }
+]

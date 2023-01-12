@@ -33,7 +33,7 @@ module.exports = function init(site) {
     user.feedback_list = [];
     user.followers_list = [];
     user.follow_category_list = [];
-    
+
     user.notific_setting = {
       instant_alerts: true,
       ads_members_follow: true,
@@ -45,6 +45,19 @@ module.exports = function init(site) {
     };
     user.profile.files = [];
     user.profile.other_addresses_list = [];
+
+    if (user.roles.length < 1) {
+      if (user.type.id == 2 || user.type.id == 3) {
+        user.roles = [
+          {
+            module_name: 'public',
+            name: 'shipping_order_admin',
+            en: 'Shipping Order Admin',
+            ar: 'شحن الطلبات',
+          },
+        ];
+      }
+    }
 
     site.security.addUser(user, (err, _id) => {
       if (!err) {

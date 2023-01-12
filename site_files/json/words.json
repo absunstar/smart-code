@@ -90,6 +90,11 @@
     "ar": "إنجليزي"
   },
   {
+    "name": "customer",
+    "en": "Customer",
+    "ar": "العميل"
+  },
+  {
     "name": "customer_register",
     "en": "New Customer",
     "ar": "عميل جديد"
@@ -1929,6 +1934,11 @@
     "en": "Print",
     "ar": "طباعة"
   },
+  {
+    "name": "accept",
+    "en": "Accept",
+    "ar": "تأكيد"
+},
   {
     "name": "menus",
     "en": "System Menus",
