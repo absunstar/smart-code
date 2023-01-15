@@ -1819,7 +1819,7 @@
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(896px, 566px);
+    transform: translate(849px, 597px)rotate(415deg);
   }
 
   .northern {
@@ -1879,14 +1879,14 @@
   }
 
   .qatar {
-    fill: #ffffff;
+    fill: black;
     /* pointer-events: none; */
     font-size: x-large;
     transform: translate(900px, 364px);
   }
 
   .bahran {
-    fill: #ffffff;
+    fill: black;
     /* pointer-events: none; */
     font-size: x-large;
     transform: translate(890px, 313px);

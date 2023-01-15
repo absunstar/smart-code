@@ -315,11 +315,18 @@ i-image img:hover {
   border-radius: 5px;
 }
 
+.bgWhite {
+  background: white;
+}
+
 .haraj_name {
   font-size: 26px;
   padding-left: 10px;
   font-family: fantasy;
   padding-right: 10px;
+  background: -webkit-linear-gradient(#dddf00, #008704);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .loaded {

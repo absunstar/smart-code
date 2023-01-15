@@ -202,42 +202,4 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  /* ATM APIS */
-  site.post('/api/area/findAreaByCity', (req, res) => {
-    let response = {
-      done: false,
-    };
-
-    let where = req.body.where || {};
-
-    if (where['city']) {
-      where['city.id'] = where['city'].id;
-      delete where['city'];
-      delete where.active;
-    }
-    if (where['city'] == '' || where['city'] == undefined) {
-      delete where['city'];
-    }
-
-    $area.findMany(
-      {
-        select: req.body.select || {},
-        where: where,
-        sort: req.body.sort || {
-          id: -1,
-        },
-        limit: req.body.limit,
-      },
-      (err, docs, count) => {
-        if (!err) {
-          response.done = true;
-          response.list = docs;
-          response.count = count;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
-      }
-    );
-  });
 };

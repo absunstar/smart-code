@@ -12,8 +12,8 @@ module.exports = function init(site) {
       [
         {
           $add: true,
-          name_ar: 'المنطقة الشرقية',
-          name_en: 'Eastern Province',
+          name_ar: 'الإحساء و المنطقة الشرقية',
+          name_en: 'Ehsaa & Eastern provinc',
           image_url: '/images/gov.png',
           code: 'ep',
           active: true,

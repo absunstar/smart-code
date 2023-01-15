@@ -74,14 +74,14 @@ module.exports = function init(site) {
           country_code : '968',
           active: true,
         },
-        {
+       /*  {
           name_ar: 'اليمن',
           name_en: 'Yemen',
           image_url: '/images/countries.png',
           code: 'ymn',
           country_code : '967',
           active: true,
-        },
+        }, */
       ],
       (err, docs1) => {
 
@@ -91,8 +91,8 @@ module.exports = function init(site) {
         site.gov_list.push(
           {
             $add: true,
-            name_ar: 'المنطقة الشرقية',
-            name_en: 'Eastern Province',
+            name_ar: 'الإحساء و المنطقة الشرقية',
+            name_en: 'Ehsaa & Eastern provinc',
             image_url: '/images/gov.png',
             code: 'ep',
             active: true,

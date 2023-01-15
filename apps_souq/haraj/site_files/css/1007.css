@@ -1814,7 +1814,7 @@ img {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(954px, 598px);
+    transform: translate(843px, 596px)rotate(415deg);
   }
 
   .northern {
@@ -1874,14 +1874,14 @@ img {
   }
 
   .qatar {
-    fill: white;
+    fill: black;
     /* pointer-events: none; */
     font-size: x-large;
     transform: translate(930px, 364px);
   }
 
   .bahran {
-    fill: white;
+    fill: black;
     /*  pointer-events: none; */
     font-size: x-large;
     transform: translate(933px, 313px);
@@ -1898,7 +1898,7 @@ img {
     fill: #ffffff;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(159px, 92px);
+    transform: translate(192px, 11px);
   }
 
   .iraq {
