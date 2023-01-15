@@ -16,16 +16,15 @@ app.controller('login_souq', function ($scope, $http, $timeout) {
         $encript: '123',
         email: site.to123($scope.user.email),
         password: site.to123($scope.user.password),
-        mobile_login : true,
       },
     }).then(
       function (response) {
         if (response.data.error) {
-          $scope.error = "##word.email_or_pass_error##";
+          $scope.error = '##word.email_or_pass_error##';
           $scope.busy = false;
         }
         if (response.data.done) {
-          window.location.href = "/";
+          window.location.href = '/';
         }
       },
       function (err) {
