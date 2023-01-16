@@ -157,13 +157,13 @@
     },
     {
         "name": "companies_name_ar",
-        "en": "Point Of Sale Name Arabic",
-        "ar": "إسم نقطة البيع"
+        "en": "Pharmacy Name Arabic",
+        "ar": "إسم الصيدلية"
     },
     {
         "name": "companies_name_en",
-        "en": "Point Of Sale Name English",
-        "ar": "إسم نقطة البيع بالانجليزية"
+        "en": "Pharmacy Name English",
+        "ar": "إسم الصيدلية بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
@@ -177,8 +177,8 @@
     },
     {
         "name": "companies_new",
-        "en": "New Point Of Sale",
-        "ar": "نقطة بيع جديدة"
+        "en": "New Pharmacy",
+        "ar": "صيدلية جديدة"
     },
     {
         "name": "companies_country",
