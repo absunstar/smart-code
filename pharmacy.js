@@ -2,7 +2,7 @@ const site = require('../isite')({
     port: [80, 40007],
     lang: 'ar',
     version: '2022.12.15',
-    name: 'pos',
+    name: 'pharmacy',
     savingTime: 5,
     log: true,
     require: {
@@ -11,7 +11,7 @@ const site = require('../isite')({
     },
     theme: 'theme_paper',
     mongodb: {
-        db: 'smart_code_pos',
+        db: 'smart_code_pharmacy',
         limit: 100000,
         events: true,
         identity: {
@@ -39,6 +39,9 @@ site.get({
     parser: 'html css js',
 });
 
+
+
+
 site.ready = false;
 site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');
@@ -50,7 +53,7 @@ site.importApps(__dirname + '/apps_accounting');
 site.importApps(__dirname + '/apps_inventories');
 site.importApps(__dirname + '/apps_reports');
 site.importApps(__dirname + '/apps_hr');
-site.importApps(__dirname + '/apps_pos');
+site.importApps(__dirname + '/apps_pharmacy');
 site.importApps(__dirname + '/apps_order');
 site.importApps(__dirname + '/apps_core');
 site.addFeature('pos');

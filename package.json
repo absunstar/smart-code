@@ -15,6 +15,7 @@
     "academy": "node academy.js",
     "employee": "node employee.js",
     "medical": "node medical.js",
+    "pharmacy": "node pharmacy.js",
     "pmp": "node pmp.js"
   },
   "keywords": [],
