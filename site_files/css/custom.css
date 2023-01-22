@@ -661,6 +661,7 @@ i-checkbox .selector {
   font-size: 20px;
   text-align: center;
   font-weight: bold;
+  min-height: 70px;
   color: #fff;
   padding: 5px;
   background: #3f51b5;
@@ -673,6 +674,8 @@ i-checkbox .selector {
   border-radius: 20px;
   width: 120px;
   height: 130px;
+  place-self: center;
+
 }
 
 .post_description {
@@ -698,7 +701,7 @@ i-checkbox .selector {
 }
 .img__description {
   position: absolute;
-  top: 51px;
+  top: 70px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -719,6 +722,8 @@ i-checkbox .selector {
   border-radius: 20px;
   width: 320px;
   height: 170px;
+  place-self: center;
+
 }
 
 .main-footer{

@@ -1096,6 +1096,8 @@ module.exports = function init(site) {
             (err, result) => {
               if (!err) {
                 response.done = true;
+              } else {
+                response.error = err.message;
               }
               res.json(response);
             }

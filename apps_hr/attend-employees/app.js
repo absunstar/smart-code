@@ -43,16 +43,14 @@ module.exports = function init(site) {
     let num_obj = {
       company: site.get_company(req),
       screen: 'attend_employees',
-      date: new Date(attend_employees_doc.date)
+      date: new Date(attend_employees_doc.date),
     };
 
     let cb = site.getNumbering(num_obj);
     if (!attend_employees_doc.code && !cb.auto) {
-
       response.error = 'Must Enter Code';
       res.json(response);
       return;
-
     } else if (cb.auto) {
       attend_employees_doc.code = cb.code;
     }
@@ -106,7 +104,7 @@ module.exports = function init(site) {
             response.error = 'Code Already Exist';
           }
           res.json(response);
-        },
+        }
       );
     } else {
       response.error = 'no id';
@@ -139,10 +137,9 @@ module.exports = function init(site) {
           response.error = err.message;
         }
         res.json(response);
-      },
+      }
     );
   });
-
 
   site.post('/api/attend_employees/delete', (req, res) => {
     let response = {
@@ -173,7 +170,6 @@ module.exports = function init(site) {
           res.json(response);
         }
       );
-
     } else {
       response.error = 'no id';
       res.json(response);
@@ -187,15 +183,15 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    where['company.id'] = site.get_company(req).id;
+    where['branch.code'] = site.get_branch(req).code;
 
     let data = {
       search: req.body.search,
-      where: where
-    }
+      where: where,
+    };
 
-    site.getEmployees(data, employeesCb => {
+    site.getEmployees(data, (employeesCb) => {
       // let hallsList = []
       // let schoolGrades = []
       // employeesCb.forEach(_empCb => {
@@ -220,53 +216,45 @@ module.exports = function init(site) {
 
       whereObj = req.body.whereAttend || {};
       if (whereObj.date) {
-        let d1 = site.toDate(whereObj.date)
-        let d2 = site.toDate(whereObj.date)
-        d2.setDate(d2.getDate() + 1)
+        let d1 = site.toDate(whereObj.date);
+        let d2 = site.toDate(whereObj.date);
+        d2.setDate(d2.getDate() + 1);
         whereObj.date = {
-          '$gte': d1,
-          '$lt': d2
-        }
+          $gte: d1,
+          $lt: d2,
+        };
       }
 
-      whereObj['company.id'] = site.get_company(req).id
-      whereObj['branch.code'] = site.get_branch(req).code
+      whereObj['company.id'] = site.get_company(req).id;
+      whereObj['branch.code'] = site.get_branch(req).code;
 
-      $attend_employees.findMany(
-        { where: whereObj },
-        (err, docs) => {
-
-          if (!err) {
-            let list = []
-            employeesCb.forEach(_employeesCb => {
-              let attendObj = { employee: _employeesCb }
-              docs = docs || []
-              docs.forEach(_docs => {
-                _docs.attend_list.forEach(_attList => {
-                  if (_attList.employee.id == _employeesCb.id) {
-                    _attList.employee = _employeesCb
-                    attendObj = _attList
-                  }
-                });
+      $attend_employees.findMany({ where: whereObj }, (err, docs) => {
+        if (!err) {
+          let list = [];
+          employeesCb.forEach((_employeesCb) => {
+            let attendObj = { employee: _employeesCb };
+            docs = docs || [];
+            docs.forEach((_docs) => {
+              _docs.attend_list.forEach((_attList) => {
+                if (_attList.employee.id == _employeesCb.id) {
+                  _attList.employee = _employeesCb;
+                  attendObj = _attList;
+                }
               });
-              list.push(attendObj)
-
             });
-            response.list = list;
-          }
-          response.done = true;
+            list.push(attendObj);
+          });
 
-          res.json(response);
+          response.list = list;
 
         }
 
-      )
+        response.done = true;
+        res.json(response);
 
-
-
-    })
+      });
+    });
   });
-
 
   site.post('/api/attend_employees/transaction', (req, res) => {
     let response = {
@@ -275,76 +263,62 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
     let obj = req.body.obj || {};
-    let employee = where['employee']
-    let date1 = where.date
-    delete where['employee']
+    let employee = where['employee'];
+    let date1 = where.date;
+    delete where['employee'];
     if (where.date) {
-      let d1 = site.toDate(where.date)
-      let d2 = site.toDate(where.date)
-      d2.setDate(d2.getDate() + 1)
+      let d1 = site.toDate(where.date);
+      let d2 = site.toDate(where.date);
+      d2.setDate(d2.getDate() + 1);
       where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
+        $gte: d1,
+        $lt: d2,
+      };
     }
 
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    where['company.id'] = site.get_company(req).id;
+    where['branch.code'] = site.get_branch(req).code;
 
-    $attend_employees.findOne(
-      { where: where },
-      (err, doc, count) => {
-        response.done = true;
+    $attend_employees.findOne({ where: where }, (err, doc, count) => {
+      response.done = true;
 
-        if (!err && doc) {
-          let found = false
-          doc.attend_list.forEach(_at => {
-
-            if (_at.employee && _at.employee.id == employee.id) {
-              _at.status = obj.status
-              _at.attend_time = obj.attend_time
-              _at.leave_time = obj.leave_time
-              found = true
-            }
-          });
-
-          if (!found) {
-
-            doc.attend_list.unshift(obj)
+      if (!err && doc) {
+        let found = false;
+        doc.attend_list.forEach((_at) => {
+          if (_at.employee && _at.employee.id == employee.id) {
+            _at.status = obj.status;
+            _at.attend_time = obj.attend_time;
+            _at.leave_time = obj.leave_time;
+            found = true;
           }
+        });
 
-          $attend_employees.update(doc)
-
-        } else {
-
-
-          let num_obj = {
-            company: site.get_company(req),
-            screen: 'attend_employees',
-            date: new Date(date1)
-          };
-
-          let cb = site.getNumbering(num_obj);
-
-
-          $attend_employees.add({
-            image_url: '/images/attend_employees.png',
-            date: date1,
-            code: cb.code,
-            company: site.get_company(req),
-            branch: site.get_branch(req),
-            attend_list: [obj]
-          })
-
+        if (!found) {
+          doc.attend_list.unshift(obj);
         }
-        res.json(response);
-      },
-    );
+
+        $attend_employees.update(doc);
+      } else {
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'attend_employees',
+          date: new Date(date1),
+        };
+
+        let cb = site.getNumbering(num_obj);
+
+        $attend_employees.add({
+          image_url: '/images/attend_employees.png',
+          date: date1,
+          code: cb.code,
+          company: site.get_company(req),
+          branch: site.get_branch(req),
+          attend_list: [obj],
+        });
+      }
+      res.json(response);
+    });
   });
-
-
-
-
 
   site.post('/api/attend_employees/all', (req, res) => {
     let response = {
@@ -354,21 +328,21 @@ module.exports = function init(site) {
     let where = req.body.where || {};
 
     if (where.date) {
-      let d1 = site.toDate(where.date)
-      let d2 = site.toDate(where.date)
-      d2.setDate(d2.getDate() + 1)
+      let d1 = site.toDate(where.date);
+      let d2 = site.toDate(where.date);
+      d2.setDate(d2.getDate() + 1);
       where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
+        $gte: d1,
+        $lt: d2,
+      };
     }
 
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], 'i');
     }
 
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    where['company.id'] = site.get_company(req).id;
+    where['branch.code'] = site.get_branch(req).code;
 
     $attend_employees.findMany(
       {
@@ -388,15 +362,7 @@ module.exports = function init(site) {
           response.error = err.message;
         }
         res.json(response);
-      },
+      }
     );
   });
-
-
-
-
 };
-
-
-
-

@@ -23,7 +23,6 @@ div.scrollmenu a:hover {
 }
 
 .inline-block {
-
   display: inline-block !important;
 }
 
@@ -52,7 +51,6 @@ div.scrollmenu a:hover {
 
 .zoom-nav {
   width: 70px !important;
-
 }
 
 .page-nav a {
@@ -97,7 +95,7 @@ div.scrollmenu a:hover {
   border-radius: 50%;
   height: 25px;
   width: 25px;
-  margin: -5px 10px -5px 0px !important
+  margin: -5px 10px -5px 0px !important;
 }
 
 .min-hight-100 {
@@ -110,11 +108,8 @@ div.scrollmenu a:hover {
   font-size: large;
 }
 
-
-
 .tagheader {
   margin-top: 20px;
-
 }
 
 .contact-button {
@@ -321,7 +316,6 @@ img {
 .send-btn:hover {
   background: #00765c;
   border: 2px solid #00802d;
-
 }
 
 .category-selected {
@@ -339,7 +333,6 @@ img {
 
 .input-style input:focus {
   border-width: 2px;
-
 }
 
 .input-style input {
@@ -352,9 +345,7 @@ img {
   border-radius: 13px;
 }
 
-
 @media screen and (max-width: 1007px) {
-
   .firstheader {
     display: none;
   }
@@ -607,7 +598,8 @@ img {
   }
 
   .contact-follow {
-    display: none;
+    background-color: #f3f9ff;
+    margin-bottom: 10px !important;
   }
 
   .mobile-contact-follow {
@@ -626,7 +618,6 @@ img {
 
   .follow {
     text-align: center;
-    width: 50%;
   }
 
   .follow a {
@@ -1075,8 +1066,6 @@ img {
     flex-direction: row-reverse;
   }
 
-
-
   i-button.ng-isolate-scope {
     padding: 0px;
     border-radius: 25px;
@@ -1228,8 +1217,6 @@ img {
     border-radius: 10px !important;
     justify-content: center;
   }
-
-
 
   .btn.search {
     color: black;
@@ -1427,7 +1414,7 @@ img {
     align-items: center;
   }
 
-  .bpYvLN>* {
+  .bpYvLN > * {
     flex: 1 1 0%;
   }
 
@@ -1442,7 +1429,7 @@ img {
     padding: 0;
   }
 
-  .checkbox-button input+label {
+  .checkbox-button input + label {
     height: 50px;
     min-width: 50px;
     color: #fff;
@@ -1814,7 +1801,7 @@ img {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(843px, 596px)rotate(415deg);
+    transform: translate(843px, 596px) rotate(415deg);
   }
 
   .northern {
@@ -2089,7 +2076,6 @@ img {
   .all-category {
     direction: ltr;
   }
-
 
   b.black {
     padding: 5px;
