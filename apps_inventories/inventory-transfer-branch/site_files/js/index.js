@@ -1,26 +1,24 @@
-app.controller("transfer_branch", function ($scope, $http, $timeout) {
+app.controller('transfer_branch', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.transfer_branch = {
     discountes: [],
     taxes: [],
-    details: []
+    details: [],
   };
   $scope.search = {};
   $scope.item = {
-    sizes: []
+    sizes: [],
   };
 
   $scope.deleteRow = function (itm) {
     $scope.error = '';
     $scope.transfer_branch.items.splice($scope.transfer_branch.items.indexOf(itm), 1);
-
   };
 
   $scope.deleteitem = function (itm) {
     $scope.error = '';
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
-
   };
 
   $scope.newTransferBranch = function () {
@@ -28,7 +26,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.error = '';
-        $scope.item = {}
+        $scope.item = {};
         $scope.transfer_branch = {
           image_url: '/images/transfer_branch.png',
           shift: $scope.shift,
@@ -38,14 +36,16 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           details: [],
           date: new Date(),
           supply_date: new Date(),
-          branch_from: $scope.branchCode
+          branch_from: $scope.branchCode,
         };
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
-            $scope.transfer_branch.store_from = $scope.storesFromList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
-
-        } site.showModal('#addTransferBranchModal');
+            $scope.transfer_branch.store_from = $scope.storesFromList.find((_store) => {
+              return _store.id === $scope.defaultSettings.inventory.store.id;
+            });
+        }
+        site.showModal('#addTransferBranchModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
@@ -54,57 +54,49 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {}
+      method: 'POST',
+      url: '/api/default_setting/get',
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-        };
+        }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
-
+    );
   };
 
-
   $scope.testPatches = function (transferBranch, callback) {
-
     let obj = {
       patchCount: false,
-      patch_list: []
+      patch_list: [],
     };
 
-    transferBranch.items.forEach(_item => {
+    transferBranch.items.forEach((_item) => {
       if (_item.size_units_list && _item.size_units_list.length > 0) {
-
         let count = 0;
         if (_item.patch_list && _item.patch_list.length > 0) {
-          _item.patch_list.forEach(_pl => {
+          _item.patch_list.forEach((_pl) => {
             if (typeof _pl.count === 'number') {
-
               count += _pl.count;
-
-
             } else {
               obj.patchCount = true;
-              obj.patch_list.push(_item.barcode)
+              obj.patch_list.push(_item.barcode);
             }
           });
         } else if (_item.work_serial || _item.work_patch) {
           obj.patchCount = true;
-          obj.patch_list.push(_item.barcode)
+          obj.patch_list.push(_item.barcode);
         }
         if (count != _item.count && (_item.work_serial || _item.work_patch)) {
           obj.patchCount = true;
-          obj.patch_list.push(_item.barcode)
+          obj.patch_list.push(_item.barcode);
         }
-
       }
     });
 
@@ -112,7 +104,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       return obj.patch_list.indexOf(item) === pos;
     });
 
-    callback(obj)
+    callback(obj);
   };
 
   $scope.add = function () {
@@ -124,43 +116,38 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     }
 
     if (new Date($scope.transfer_branch.date) > new Date()) {
-
-      $scope.error = "##word.date_exceed##";
-      return;
-
-    };
-
-    if ($scope.transfer_branch.store_from && $scope.transfer_branch.store_to && $scope.transfer_branch.store_from.id === $scope.transfer_branch.store_to.id) {
-      $scope.error = "##word.cant_transfer_to_same_store##";
+      $scope.error = '##word.date_exceed##';
       return;
     }
 
-    let notExistCount = $scope.transfer_branch.items.some(_iz => _iz.count < 1);
+    if ($scope.transfer_branch.store_from && $scope.transfer_branch.store_to && $scope.transfer_branch.store_from.id === $scope.transfer_branch.store_to.id) {
+      $scope.error = '##word.cant_transfer_to_same_store##';
+      return;
+    }
+
+    let notExistCount = $scope.transfer_branch.items.some((_iz) => _iz.count < 1);
 
     if (notExistCount) {
-      $scope.error = "##word.err_exist_count##";
+      $scope.error = '##word.err_exist_count##';
       return;
-    };
+    }
 
     if ($scope.transfer_branch.items.length > 0) {
-
-      $scope.testPatches($scope.transfer_branch, callback => {
-
+      $scope.testPatches($scope.transfer_branch, (callback) => {
         if (callback.patchCount) {
           $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
           return;
-        };
+        }
 
-        $scope.financialYear($scope.transfer_branch.date, is_allowed_date => {
+        $scope.financialYear($scope.transfer_branch.date, (is_allowed_date) => {
           if (!is_allowed_date) {
             $scope.error = '##word.should_open_period##';
           } else {
-
             $scope.busy = true;
             $http({
-              method: "POST",
-              url: "/api/transfer_branch/add",
-              data: $scope.transfer_branch
+              method: 'POST',
+              url: '/api/transfer_branch/add',
+              data: $scope.transfer_branch,
             }).then(
               function (response) {
                 $scope.busy = false;
@@ -170,24 +157,23 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 } else {
                   $scope.error = response.data.error;
                   if (response.data.error.like('*n`t Found Open Shi*')) {
-                    $scope.error = "##word.open_shift_not_found##"
+                    $scope.error = '##word.open_shift_not_found##';
                   } else if (response.data.error.like('*n`t Open Perio*')) {
-                    $scope.error = "##word.should_open_period##"
+                    $scope.error = '##word.should_open_period##';
                   } else if (response.data.error.like('*Must Enter Code*')) {
-                    $scope.error = "##word.must_enter_code##"
+                    $scope.error = '##word.must_enter_code##';
                   }
                 }
-
               },
               function (err) {
                 $scope.error = err.message;
               }
-            )
+            );
           }
-        })
-      })
+        });
+      });
     } else {
-      $scope.error = "##word.must_enter_quantity##";
+      $scope.error = '##word.must_enter_quantity##';
       return;
     }
   };
@@ -207,11 +193,11 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/transfer_branch/view",
+      method: 'POST',
+      url: '/api/transfer_branch/view',
       data: {
-        _id: transfer_branch._id
-      }
+        _id: transfer_branch._id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -219,18 +205,16 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.transfer_branch = response.data.doc;
           $scope.total_price = 0;
-          $scope.transfer_branch.items.forEach(_item => {
+          $scope.transfer_branch.items.forEach((_item) => {
             _item.total_price = _item.count * _item.price;
-            $scope.total_price += _item.total_price
+            $scope.total_price += _item.total_price;
           });
-
-
         } else $scope.error = response.data.error;
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.details = function (transfer_branch) {
@@ -243,18 +227,17 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
   $scope.delete = function () {
     $scope.error = '';
 
-    $scope.financialYear($scope.transfer_branch.date, is_allowed_date => {
+    $scope.financialYear($scope.transfer_branch.date, (is_allowed_date) => {
       if (!is_allowed_date) {
         $scope.error = '##word.should_open_period##';
       } else {
-
         $scope.busy = true;
         $http({
-          method: "POST",
-          url: "/api/transfer_branch/delete",
+          method: 'POST',
+          url: '/api/transfer_branch/delete',
           data: {
-            _id: $scope.transfer_branch._id
-          }
+            _id: $scope.transfer_branch._id,
+          },
         }).then(
           function (response) {
             $scope.busy = false;
@@ -264,27 +247,26 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             } else {
               $scope.error = response.data.error;
               if (response.data.error.like('*n`t Found Open Shi*')) {
-                $scope.error = "##word.open_shift_not_found##"
+                $scope.error = '##word.open_shift_not_found##';
               } else if (response.data.error.like('*n`t Open Perio*')) {
-                $scope.error = "##word.should_open_period##"
+                $scope.error = '##word.should_open_period##';
               }
             }
-
           },
           function (err) {
             console.log(err);
           }
-        )
+        );
       }
-    })
+    });
   };
 
   $scope.addToItems = function () {
     $scope.error = '';
     let foundSize = false;
     if ($scope.item.sizes && $scope.item.sizes.length > 0)
-      $scope.item.sizes.forEach(_size => {
-        foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
+      $scope.item.sizes.forEach((_size) => {
+        foundSize = $scope.transfer_branch.items.some((_itemSize) => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
 
         if (_size.count > 0 && !foundSize) {
           $scope.transfer_branch.items.push({
@@ -310,13 +292,12 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             total: _size.total,
             current_count: _size.current_count,
             ticket_code: _size.ticket_code,
-            add_sizes: _size.add_sizes
+            add_sizes: _size.add_sizes,
           });
         }
       });
     $scope.item.sizes = [];
   };
-
 
   $scope.addToSizes = function () {
     $scope.error = '';
@@ -338,12 +319,12 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.error = '';
     if (ev.which === 13) {
       $http({
-        method: "POST",
-        url: "/api/stores_items/all",
+        method: 'POST',
+        url: '/api/stores_items/all',
         data: {
           where: {},
-          search: $scope.item.search_item_name
-        }
+          search: $scope.item.search_item_name,
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -352,20 +333,18 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
 
-              response.data.list.forEach(_item => {
-
+              response.data.list.forEach((_item) => {
                 if (_item.sizes && _item.sizes.length > 0)
-                  _item.sizes.forEach(_size => {
+                  _item.sizes.forEach((_size) => {
                     let foundHold = false;
                     let indxUnit = 0;
 
                     _size.add_sizes = _item.add_sizes;
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
-
                         if (_unit.id == _item.main_unit.id) indxUnit = i;
                       });
-                    if ((_size.barcode === $scope.item.search_item_name) || (_size.size_units_list[indxUnit].barcode === $scope.item.search_item_name)) {
+                    if (_size.barcode === $scope.item.search_item_name || _size.size_units_list[indxUnit].barcode === $scope.item.search_item_name) {
                       _size.name_ar = _item.name_ar;
                       _size.name_en = _item.name_en;
                       _size.item_group = _item.item_group;
@@ -383,7 +362,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                           }
                         });
                         if (foundBranch) {
-
                           if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
                             if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
                               let foundStore = false;
@@ -397,46 +375,42 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                                 }
                               });
                               if (foundStore) {
-
                                 if (_size.branches_list[indxBranch].stores_list[indxStore].size_units_list && _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.length > 0)
-                                  _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                                    if (_unit.id == _item.main_unit.id)
-                                      _size.store_count = _unit.current_count
+                                  _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach((_unit) => {
+                                    if (_unit.id == _item.main_unit.id) _size.store_count = _unit.current_count;
                                   });
                               }
                             } else _size.store_count = 0;
                           } else _size.store_count = 0;
                         } else _size.store_count = 0;
                       } else _size.store_count = 0;
-                      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _size.barcode);
+                      foundSize = $scope.item.sizes.some((_itemSize) => _itemSize.barcode === _size.barcode);
 
                       if (_size.store_units_list && _size.store_units_list.length > 0) {
-                        _size.store_units_list.forEach(_ul => {
+                        _size.store_units_list.forEach((_ul) => {
                           if (_ul.id == _size.unit.id) {
                             if (_ul.patch_list && _ul.patch_list.length > 0)
-                              _ul.patch_list.forEach(_p => {
-                                _p.current_count = _p.count
-                                _p.count = 0
+                              _ul.patch_list.forEach((_p) => {
+                                _p.current_count = _p.count;
+                                _p.count = 0;
                               });
-                            _size.patch_list = _ul.patch_list
+                            _size.patch_list = _ul.patch_list;
                           }
                         });
-                      };
+                      }
 
                       if (!foundSize && !foundHold) $scope.item.sizes.push(_size);
-                    };
+                    }
                   });
               });
 
-              if (!foundSize)
-                $scope.itemsNameList = response.data.list;
+              if (!foundSize) $scope.itemsNameList = response.data.list;
               else if (foundSize) $scope.error = '##word.dublicate_item##';
-
-            };
+            }
           } else {
             $scope.error = response.data.error;
             $scope.item = { sizes: [] };
-          };
+          }
         },
         function (err) {
           console.log(err);
@@ -450,72 +424,71 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
 
+    if (!$scope.transfer_branch.store_from || !$scope.transfer_branch.store_from.id) {
+      $scope.error = '##word.err_store_select##';
+      return;
+    }
+
     if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0)
-      $scope.item.itm.sizes.forEach(_item => {
+      $scope.item.itm.sizes.forEach((_item) => {
         let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
         _item.name_ar = $scope.item.itm.name_ar;
         _item.name_en = $scope.item.itm.name_en;
         _item.item_group = $scope.item.itm.item_group;
-        _item.store_from = $scope.transfer_branch.store_from
+        _item.store_from = $scope.transfer_branch.store_from;
         _item.count = 1;
 
         let indxUnit = 0;
         if (_item.size_units_list && _item.size_units_list.length > 0) {
-
-          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.itm.main_unit.id);
+          indxUnit = _item.size_units_list.findIndex((_unit) => _unit.id == $scope.item.itm.main_unit.id);
           _item.unit = _item.size_units_list[indxUnit];
         }
 
         if (_item.branches_list && _item.branches_list.length > 0) {
-          let foundBranch = false
-          let indxBranch = 0
+          let foundBranch = false;
+          let indxBranch = 0;
           _item.branches_list.map((_branch, i) => {
             if (_branch.code == '##session.branch.code##') {
-              foundBranch = true
-              indxBranch = i
+              foundBranch = true;
+              indxBranch = i;
             }
           });
           if (foundBranch) {
-
             if (_item.branches_list[indxBranch].code == '##session.branch.code##') {
               if (_item.branches_list[indxBranch].stores_list && _item.branches_list[indxBranch].stores_list.length > 0) {
-
-                let foundStore = false
-                let indxStore = 0
+                let foundStore = false;
+                let indxStore = 0;
                 _item.branches_list[indxBranch].stores_list.map((_store, i) => {
                   if (_store.store.id == $scope.transfer_branch.store_from.id) {
                     _item.store_units_list = _store.size_units_list;
-                    foundStore = true
-                    indxStore = i
+                    foundStore = true;
+                    indxStore = i;
                     if (_store.hold) foundHold = true;
                   }
                 });
                 if (foundStore)
-                  _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                    if (_unit.id == $scope.item.itm.main_unit.id)
-                      _item.store_count = _unit.current_count
+                  _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach((_unit) => {
+                    if (_unit.id == $scope.item.itm.main_unit.id) _item.store_count = _unit.current_count;
                   });
-              } else _item.store_count = 0
-
-            } else _item.store_count = 0
-          } else _item.store_count = 0
-
-        } else _item.store_count = 0
-        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode  && _itemSize.unit.id === _item.unit.id);
+              } else _item.store_count = 0;
+            } else _item.store_count = 0;
+          } else _item.store_count = 0;
+        } else _item.store_count = 0;
+        foundSize = $scope.item.sizes.some((_itemSize) => _itemSize.barcode === _item.barcode && _itemSize.unit.id === _item.unit.id);
 
         if (_item.store_units_list && _item.store_units_list.length > 0) {
-          _item.store_units_list.forEach(_ul => {
+          _item.store_units_list.forEach((_ul) => {
             if (_ul.id == _item.unit.id) {
               if (_ul.patch_list && _ul.patch_list.length > 0)
-                _ul.patch_list.forEach(_p => {
-                  _p.current_count = _p.count
-                  _p.count = 0
+                _ul.patch_list.forEach((_p) => {
+                  _p.current_count = _p.count;
+                  _p.count = 0;
                 });
-              _item.patch_list = _ul.patch_list
+              _item.patch_list = _ul.patch_list;
             }
           });
-        };
+        }
         if (!foundSize && !foundHold) $scope.item.sizes.push(_item);
       });
   };
@@ -524,11 +497,11 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.error = '';
     if (ev.which === 13) {
       $http({
-        method: "POST",
-        url: "/api/stores_items/all",
+        method: 'POST',
+        url: '/api/stores_items/all',
         data: {
-          where: { barcode: $scope.search_barcode }
-        }
+          where: { barcode: $scope.search_barcode },
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -537,13 +510,12 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
               let foundSize = false;
 
               if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
-                response.data.list[0].sizes.forEach(_size => {
+                response.data.list[0].sizes.forEach((_size) => {
                   let foundHold = false;
                   let indxUnit = 0;
 
                   _size.add_sizes = response.data.list[0].add_sizes;
 
-                
                   if (_size.size_units_list && _size.size_units_list.length > 0) {
                     let foundUnit = false;
                     _size.size_units_list.forEach((_unit, i) => {
@@ -556,7 +528,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                     });
                   }
 
-                  if ((_size.barcode === $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
+                  if (_size.barcode === $scope.search_barcode || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
                     _size.name_ar = response.data.list[0].name_ar;
                     _size.name_en = response.data.list[0].name_en;
                     _size.item_group = response.data.list[0].item_group;
@@ -565,59 +537,55 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                     _size.count = 1;
                     _size.total = _size.count * _size.cost;
                     if (_size.branches_list && _size.branches_list.length > 0) {
-                      let foundBranch = false
-                      let indxBranch = 0
+                      let foundBranch = false;
+                      let indxBranch = 0;
                       _size.branches_list.map((_branch, i) => {
                         if (_branch.code == '##session.branch.code##') {
-                          foundBranch = true
-                          indxBranch = i
+                          foundBranch = true;
+                          indxBranch = i;
                         }
                       });
                       if (foundBranch) {
                         if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
                           if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
-                            let foundStore = false
-                            let indxStore = 0
+                            let foundStore = false;
+                            let indxStore = 0;
                             _size.branches_list[indxBranch].stores_list.map((_store, i) => {
                               if (_store.store.id == $scope.transfer_branch.store_from.id) {
-                                foundStore = true
-                                indxStore = i
+                                foundStore = true;
+                                indxStore = i;
                                 _size.store_units_list = _store.size_units_list;
                                 if (_store.hold) foundHold = true;
                               }
                             });
                             if (foundStore)
-                              _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                                if (_unit.id == response.data.list[0].main_unit.id)
-                                  _size.store_count = _unit.current_count
+                              _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach((_unit) => {
+                                if (_unit.id == response.data.list[0].main_unit.id) _size.store_count = _unit.current_count;
                               });
-                          } else _size.store_count = 0
-
-                        } else _size.store_count = 0
-                      } else _size.store_count = 0
-
-                    } else _size.store_count = 0
-                    foundSize = $scope.transfer_branch.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
+                          } else _size.store_count = 0;
+                        } else _size.store_count = 0;
+                      } else _size.store_count = 0;
+                    } else _size.store_count = 0;
+                    foundSize = $scope.transfer_branch.items.some((_itemSize) => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
 
                     if (_size.store_units_list && _size.store_units_list.length > 0) {
-                      _size.store_units_list.forEach(_ul => {
+                      _size.store_units_list.forEach((_ul) => {
                         if (_ul.id == _size.unit.id) {
                           if (_ul.patch_list && _ul.patch_list.length > 0)
-                            _ul.patch_list.forEach(_p => {
-                              _p.current_count = _p.count
-                              _p.count = 0
+                            _ul.patch_list.forEach((_p) => {
+                              _p.current_count = _p.count;
+                              _p.count = 0;
                             });
-                          _size.patch_list = _ul.patch_list
+                          _size.patch_list = _ul.patch_list;
                         }
                       });
-                    };
+                    }
 
-                    if (!foundSize && !foundHold) $scope.transfer_branch.items.unshift(_size)
+                    if (!foundSize && !foundHold) $scope.transfer_branch.items.unshift(_size);
                     else if (foundSize) {
-                      $scope.transfer_branch.items.forEach(_item => {
+                      $scope.transfer_branch.items.forEach((_item) => {
                         if (_item.barcode === _size.barcode) {
                           _item.count = _item.count + 1;
-
                         }
                       });
                     }
@@ -629,10 +597,9 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             $timeout(() => {
               document.querySelector('#search_barcode input').focus();
             }, 200);
-
           } else {
             $scope.error = response.data.error;
-          };
+          }
         },
         function (err) {
           console.log(err);
@@ -661,36 +628,33 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     }
 
     if (new Date($scope.transfer_branch.date) > new Date()) {
-      $scope.error = "##word.date_exceed##";
+      $scope.error = '##word.date_exceed##';
       return;
-    };
+    }
 
     if ($scope.transfer_branch.items.length > 0) {
-
-      let notExistCount = $scope.transfer_branch.items.some(_iz => _iz.count < 1);
+      let notExistCount = $scope.transfer_branch.items.some((_iz) => _iz.count < 1);
 
       if (notExistCount) {
-        $scope.error = "##word.err_exist_count##";
+        $scope.error = '##word.err_exist_count##';
         return;
-      };
+      }
 
-      $scope.testPatches($scope.transfer_branch, callback => {
-
+      $scope.testPatches($scope.transfer_branch, (callback) => {
         if (callback.patchCount) {
           $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
           return;
-        };
+        }
 
-        $scope.financialYear($scope.transfer_branch.date, is_allowed_date => {
+        $scope.financialYear($scope.transfer_branch.date, (is_allowed_date) => {
           if (!is_allowed_date) {
             $scope.error = '##word.should_open_period##';
           } else {
-
             $scope.busy = true;
             $http({
-              method: "POST",
-              url: "/api/transfer_branch/update",
-              data: $scope.transfer_branch
+              method: 'POST',
+              url: '/api/transfer_branch/update',
+              data: $scope.transfer_branch,
             }).then(
               function (response) {
                 $scope.busy = false;
@@ -699,47 +663,44 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 } else {
                   $scope.error = '##word.error##';
                   if (response.data.error.like('*n`t Found Open Shi*')) {
-                    $scope.error = "##word.open_shift_not_found##"
+                    $scope.error = '##word.open_shift_not_found##';
                   } else if (response.data.error.like('*n`t Open Perio*')) {
-                    $scope.error = "##word.should_open_period##"
+                    $scope.error = '##word.should_open_period##';
                   }
                 }
               },
               function (err) {
                 console.log(err);
               }
-            )
+            );
           }
-        })
-      })
+        });
+      });
     } else {
-      $scope.error = "##word.must_enter_quantity##";
+      $scope.error = '##word.must_enter_quantity##';
       return;
     }
   };
 
   $scope.confirmTransfer = function (transfer_branch) {
     $scope.error = '';
-    $scope.getStockItems(transfer_branch.items, transfer_branch.store_from, callback => {
-      $scope.testPatches(transfer_branch, callbackTest => {
-
+    $scope.getStockItems(transfer_branch.items, transfer_branch.store_from, (callback) => {
+      $scope.testPatches(transfer_branch, (callbackTest) => {
         if (callbackTest.patchCount) {
           $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
           return;
-        };
+        }
         if (!callback) {
-
-          $scope.financialYear(transfer_branch.date, is_allowed_date => {
+          $scope.financialYear(transfer_branch.date, (is_allowed_date) => {
             if (!is_allowed_date) {
               $scope.error = '##word.should_open_period##';
             } else {
-
               transfer_branch.transfer = true;
               $scope.busy = true;
               $http({
-                method: "POST",
-                url: "/api/transfer_branch/confirm",
-                data: transfer_branch
+                method: 'POST',
+                url: '/api/transfer_branch/confirm',
+                data: transfer_branch,
               }).then(
                 function (response) {
                   $scope.busy = false;
@@ -747,11 +708,11 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                   } else {
                     $scope.error = '##word.error##';
                     if (response.data.error.like('*OverDraft Not*')) {
-                      $scope.error = "##word.overdraft_not_active##";
+                      $scope.error = '##word.overdraft_not_active##';
                     } else if (response.data.error.like('*n`t Found Open Shi*')) {
-                      $scope.error = "##word.open_shift_not_found##"
+                      $scope.error = '##word.open_shift_not_found##';
                     } else if (response.data.error.like('*n`t Open Perio*')) {
-                      $scope.error = "##word.should_open_period##"
+                      $scope.error = '##word.should_open_period##';
                     }
                     transfer_branch.transfer = false;
                   }
@@ -759,14 +720,14 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 function (err) {
                   console.log(err);
                 }
-              )
+              );
             }
-          })
+          });
         } else {
           $scope.error = '##word.err_stock_item##';
         }
-      })
-    })
+      });
+    });
   };
 
   $scope.confirmAll = function (transfer_branch_all) {
@@ -777,41 +738,35 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
     for (let i = 0; i < _transfer_branch_all.length; i++) {
       setTimeout(() => {
-
         if (!_transfer_branch_all[i].transfer && _transfer_branch_all[i].branch_to.code == '##session.branch.code##') {
-
-          $scope.getStockItems(_transfer_branch_all[i].items, _transfer_branch_all[i].store_from, callback => {
-            $scope.testPatches(_transfer_branch_all[i], callbackTest => {
-
+          $scope.getStockItems(_transfer_branch_all[i].items, _transfer_branch_all[i].store_from, (callback) => {
+            $scope.testPatches(_transfer_branch_all[i], (callbackTest) => {
               if (callbackTest.patchCount) {
                 $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
                 return;
-              };
+              }
               if (!callback && !stopLoop) {
-
-                $scope.financialYear(_transfer_branch_all[i].date, is_allowed_date => {
+                $scope.financialYear(_transfer_branch_all[i].date, (is_allowed_date) => {
                   if (!is_allowed_date) {
                     $scope.error = '##word.should_open_period##';
                   } else {
-
                     _transfer_branch_all[i].transfer = true;
 
                     $http({
-                      method: "POST",
-                      url: "/api/transfer_branch/confirm",
-                      data: _transfer_branch_all[i]
+                      method: 'POST',
+                      url: '/api/transfer_branch/confirm',
+                      data: _transfer_branch_all[i],
                     }).then(
                       function (response) {
                         if (response.data.done) {
-
                         } else {
                           $scope.error = '##word.error##';
                           if (response.data.error.like('*OverDraft Not*')) {
-                            $scope.error = "##word.overdraft_not_active##"
+                            $scope.error = '##word.overdraft_not_active##';
                           } else if (response.data.error.like('*n`t Found Open Shi*')) {
-                            $scope.error = "##word.open_shift_not_found##"
+                            $scope.error = '##word.open_shift_not_found##';
                           } else if (response.data.error.like('*n`t Open Perio*')) {
-                            $scope.error = "##word.should_open_period##"
+                            $scope.error = '##word.should_open_period##';
                           }
                           _transfer_branch_all[i].transfer = false;
                         }
@@ -819,58 +774,54 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                       function (err) {
                         console.log(err);
                       }
-                    )
+                    );
                   }
-                })
+                });
               } else {
                 stopLoop = true;
               }
-
-            })
-          })
-        };
+            });
+          });
+        }
       }, 1000 * i);
-
     }
 
     if (stopLoop) $scope.error = '##word.err_stock_item##';
   };
 
-
   $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/stores_stock/item_stock",
-      data: { items: items, store: store }
+      method: 'POST',
+      url: '/api/stores_stock/item_stock',
+      data: { items: items, store: store },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-
           if (response.data.found) {
-            callback(true)
+            callback(true);
           } else {
-            callback(false)
+            callback(false);
           }
         } else {
-          callback(false)
+          callback(false);
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadBranches = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/branches/all"
+      method: 'POST',
+      url: '/api/branches/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -883,41 +834,40 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadStoresFrom = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/stores/all",
-      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
+      method: 'POST',
+      url: '/api/stores/all',
+      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.storesFromList = response.data.list;
         }
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadStoresTo = function (branchTo) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/stores/all",
+      method: 'POST',
+      url: '/api/stores/all',
       data: {
         select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 },
-        branchTo: branchTo
-      }
+        branchTo: branchTo,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -929,7 +879,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadCategories = function () {
@@ -937,26 +887,26 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.categories = [];
     $http({
-      method: "POST",
-      url: "/api/items_group/all",
+      method: 'POST',
+      url: '/api/items_group/all',
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) $scope.categories = response.data.list;
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.searchAll = function () {
@@ -971,17 +921,16 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.list = [];
 
     if (!where || !Object.keys(where).length) {
-      where = { limit: 100 }
+      where = { limit: 100 };
     }
-
 
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/transfer_branch/all",
+      method: 'POST',
+      url: '/api/transfer_branch/all',
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -994,7 +943,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   /*   $scope.loadStores_Out();
@@ -1004,74 +953,64 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     let bigger = false;
     let count = 0;
 
-    itm.patch_list.forEach(_pl => {
+    itm.patch_list.forEach((_pl) => {
       if (_pl.count > _pl.current_count) bigger = true;
       if (itm.work_serial) {
-        if (_pl.select) _pl.count = 1
-        else _pl.count = 0
+        if (_pl.select) _pl.count = 1;
+        else _pl.count = 0;
       }
     });
 
-
-    itm.patch_list.map(p => count += p.count);
+    itm.patch_list.map((p) => (count += p.count));
 
     if (itm.count != count) {
       $scope.error = '##word.err_patch_count##';
       return;
-    };
+    }
 
     if (bigger) {
       $scope.error = '##word.err_patch_current_count##';
       return;
-    };
+    }
 
     site.hideModal('#patchesListModal');
     $scope.error = '';
   };
-
 
   $scope.patchesList = function (itm) {
     $scope.error = '';
     $scope.item_patch = itm;
 
     $http({
-      method: "POST",
-      url: "/api/stores_items/all",
+      method: 'POST',
+      url: '/api/stores_items/all',
       data: {
         where: {
           store_id: $scope.transfer_branch.store_from.id,
           unit_id: itm.unit.id,
-          barcode: itm.barcode
+          barcode: itm.barcode,
+        },
+      },
+    }).then(function (response) {
+      $scope.busy = false;
+      if (response.data.done) {
+        if (response.data.patch_list.length > 0 && $scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0) {
+          response.data.patch_list.forEach((_resPatch) => {
+            _resPatch.current_count = _resPatch.count;
+            _resPatch.count = 0;
+            $scope.item_patch.patch_list.forEach((_itemPatch) => {
+              if (_resPatch.patch == _itemPatch.patch) {
+                _resPatch.count = _itemPatch.count;
+                _resPatch.current_count = _itemPatch.current_count;
+                if (_itemPatch.select) _resPatch.select = _itemPatch.select;
+              }
+            });
+          });
+          $scope.item_patch.patch_list = response.data.patch_list;
+          site.showModal('#patchesListModal');
         }
       }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-
-          if (response.data.patch_list.length > 0 && $scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0) {
-            response.data.patch_list.forEach(_resPatch => {
-
-              _resPatch.current_count = _resPatch.count
-              _resPatch.count = 0
-              $scope.item_patch.patch_list.forEach(_itemPatch => {
-
-                if (_resPatch.patch == _itemPatch.patch) {
-                  _resPatch.count = _itemPatch.count
-                  _resPatch.current_count = _itemPatch.current_count
-                  if (_itemPatch.select) _resPatch.select = _itemPatch.select
-                }
-
-              });
-            });
-            $scope.item_patch.patch_list = response.data.patch_list;
-            site.showModal('#patchesListModal');
-          }
-
-        }
-      })
-
-
+    });
 
     site.showModal('#patchesListModal');
   };
@@ -1081,51 +1020,45 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.item_patch = itm;
 
     site.showModal('#patchesListViewModal');
-
   };
-
 
   $scope.getSafeBySetting = function () {
     $scope.error = '';
     if ($scope.defaultSettings.accounting) {
       if ($scope.defaultSettings.accounting.safe) {
-        $scope.transfer_branch.safe = $scope.defaultSettings.accounting.safe
+        $scope.transfer_branch.safe = $scope.defaultSettings.accounting.safe;
       }
     }
   };
 
   $scope.financialYear = function (date, callback) {
     if (site.feature('erp')) {
-
       $scope.busy = true;
       $scope.error = '';
       $http({
-        method: "POST",
-        url: "/api/financial_years/is_allowed_date",
+        method: 'POST',
+        url: '/api/financial_years/is_allowed_date',
         data: {
-          date: new Date(date)
-        }
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          is_allowed_date = response.data.doc;
-          callback(is_allowed_date);
-        }
-      );
+          date: new Date(date),
+        },
+      }).then(function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      });
     } else callback(true);
-
   };
 
   $scope.get_open_shift = function (callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/shifts/get_open_shift",
+      method: 'POST',
+      url: '/api/shifts/get_open_shift',
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1141,15 +1074,15 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.error = err;
         callback(null);
       }
-    )
+    );
   };
 
   $scope.handelTransfer = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/transfer_branch/handel_transfer_branch"
+      method: 'POST',
+      url: '/api/transfer_branch/handel_transfer_branch',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1161,18 +1094,18 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
+      method: 'POST',
+      url: '/api/numbering/get_automatic',
       data: {
-        screen: "transfer_items"
-      }
+        screen: 'transfer_items',
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1184,7 +1117,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadCategories();

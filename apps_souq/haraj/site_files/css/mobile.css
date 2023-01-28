@@ -19,31 +19,31 @@
     margin-bottom: 50px;
   }
 
-.clock-area span {
-}
+  .clock-area span {
+  }
 
-.clock-area { 
-  display: inline-block;
-}
+  .clock-area {
+    display: inline-block;
+  }
 
-.clock-area img {
-  position: inherit;
-}
+  .clock-area img {
+    position: inherit;
+  }
 
-.border-bottom-bar {
-  border-bottom: 3px solid #fff;
-}
+  .border-bottom-bar {
+    border-bottom: 3px solid #fff;
+  }
 
   .secondeheader {
     background-color: #f1f1f1;
     height: auto;
     display: grid;
-    grid-template-columns: 27% 50% 23%;
+    grid-template-columns: 40% 48% 12%;
     direction: rtl;
   }
-.not-mobile {
-  display: none;
-}
+  .not-mobile {
+    display: none;
+  }
   .side-badge {
     position: absolute;
     bottom: 7px;
@@ -72,11 +72,17 @@
     font-weight: bold;
     text-shadow: 1px 1px 70px #00ab08;
   }
-
+  .login-btn {
+    border: 2px solid;
+    margin: 10px !important;
+    padding: 10px !important;
+    border-radius: 10px;
+  }
   .haraj_logo {
     height: 60px;
-    border-radius: 5px;
-    vertical-align: text-bottom;
+    width: 101px;
+    border-radius: 10px;
+    padding: 1px;
   }
 
   .online-badge {

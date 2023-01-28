@@ -702,7 +702,7 @@
   }
 
   .login {
-    display: flex;
+    display: contents;
     font-size: 16px;
     color: var(--theme-color);
     font-weight: bolder;
@@ -1802,7 +1802,7 @@
   }
 
   .jazan {
-    fill: white;
+    fill: black;
     pointer-events: none;
     font-size: x-large;
     transform: translate(402px, 788px) rotate(357deg);

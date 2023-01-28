@@ -311,7 +311,9 @@ i-image img:hover {
 }
 
 .haraj_logo {
-  height: 58px;
+  border-top: outset;
+  vertical-align: middle;
+  height: 59px;
   border-radius: 5px;
 }
 
@@ -321,6 +323,7 @@ i-image img:hover {
 
 .haraj_name {
   font-size: 26px;
+  font-weight: bold;
   padding-left: 10px;
   font-family: fantasy;
   padding-right: 10px;

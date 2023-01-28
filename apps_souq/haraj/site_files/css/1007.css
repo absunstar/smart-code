@@ -392,7 +392,10 @@ img {
   }
 
   i.burger-icon {
-    display: block;
+    display:inline-block;
+    font-size: 30px;
+    color: #008778;
+    vertical-align: -webkit-baseline-middle;
   }
 
   .searchbar {
@@ -1784,7 +1787,7 @@ img {
   }
 
   .jazan {
-    fill: white;
+    fill: black;
     pointer-events: none;
     font-size: x-large;
     transform: translate(402px, 788px) rotate(357deg);

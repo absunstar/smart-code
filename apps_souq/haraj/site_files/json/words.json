@@ -30,6 +30,11 @@
     "ar": "إبحث هنا عن ما تريد"
   },
   {
+    "name": "search_here",
+    "en": "Search here",
+    "ar": "إبحث هنا"
+  },
+  {
     "name": "cart",
     "en": "Cart",
     "ar": "السلة"

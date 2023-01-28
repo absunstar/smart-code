@@ -157,11 +157,11 @@
     </ul> -->
     </div>
     <div class="secondeheader-b">
-      <div class="secondeheader">
-        <div class="logo center" href="/">
-          <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##setting.logo##" onerror="this.src='/images/user.png'" alt="" />
-          <span class="haraj_name pointer" ng-click="indexLocation()">##setting.site_name##</span>
+      <div class="secondeheader ">
+        <div class="center" href="/">
           <i class="burger-icon padding fa-solid fa-bars fa-sm"></i>
+          <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##setting.logo##" onerror="this.src='/images/user.png'" alt="" />
+          <span  class="haraj_name pointer not-mobile" ng-click="indexLocation()">##setting.site_name##</span>
         </div>
         <form class="searchbar">
           <div class="searchgroup">
@@ -170,7 +170,7 @@
             </div>
             <input
               type="search"
-              placeholder="##word.search_here_for_what_you_want##"
+              placeholder="##word.search_here##"
               ng-model="search.text_search"
               id
               ng-disabled="disabled"
@@ -193,12 +193,12 @@
             <i class="cart fa-solid fa-cart-shopping"></i>
             <span ng-show="user.cart.items.length > 0"  class="badge ng-binding">{{user.cart.items.length || 0}}</span>
           </a>
-          <div class="user-log">
-            <div x-permission="!login" class="login padding-register pointer" href="/register">
+          <div>
+            <div x-permission="!login" class="login login-btn padding-register pointer" href="/register">
               <i class="fa-solid fa-user-plus"></i>
               <a href="/register">##word.register##</a>
             </div>
-            <div x-permission="!login" class="register pointer" href="/login">
+            <div x-permission="!login" class="register login-btn pointer" href="/login">
               <i class="fa-solid fa-right-to-bracket"></i>
               <a href="/login">##word.enter##</a>
             </div>
@@ -242,45 +242,13 @@
             </div>
           </div>
 
-          <div>
-            <div class="mobilesection-head hidden"><a>روابط هامه</a></div>
-            <div class="follow mobile">
-              <a>تابعنا على </a>
-              <ul>
-                <li>
-                  <a target="_blank" href="https://www.youtube.com/##setting.you_tube_accouunt##"><i class="social-icon fab fa-youtube fa-social"></i></a>
-                </li>
-
-                <li>
-                  <a target="_blank" href="https://www.instagram.com/##setting.instagram_accouunt##" xlink="done"><i class="social-icon fab fa-instagram fa-social"></i></a>
-                </li>
-
-                <li>
-                  <a target="_blank" href="https://www.twitter.com/##setting.twitter_accouunt##" xlink="done"><i class="social-icon fab fa-twitter fa-social"></i></a>
-                </li>
-
-                <li>
-                  <a target="_blank" class="icon-facebook" href="https://www.facebook.com/##setting.facebook_account##" xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
-                </li>
-              </ul>
-            </div>
-            <div class="row mobile">
-              <div class="row">
-                <a class="row">##word.phone_support##</a>
-                <i class="contact-icon fa-solid fa-phone"></i> <a target="_blank" href="##setting.phone##"> ##setting.phone## </a>
-              </div>
-              <div class="row">
-                <a class="row">##word.email_support##</a>
-                <i class="contact-icon fa-solid fa-at"></i> <a target="_blank" href="##setting.email##"> ##setting.email## </a>
-              </div>
-            </div>
-          </div>
+       
           <hr class="cf-mobile" />
-          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link left lang-btn">
+          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link  lang-btn">
             <i class="fa fa-globe"></i>
             ##word.en_lang##
           </a>
-          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv link left lang-btn">
+          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv link  lang-btn">
             <i class="fa fa-globe"></i>
             ##word.ar_lang##
           </a>

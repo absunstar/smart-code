@@ -59,7 +59,7 @@ site.importApps(__dirname + '/apps_core');
 site.addFeature('pos');
 setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies');
-    site.importApp(__dirname + '/apps_private/zk-reader');
+    // site.importApp(__dirname + '/apps_private/zk-reader');
 
     // site.zk.load_attendance( {
     //     ip: '192.168.100.201',
