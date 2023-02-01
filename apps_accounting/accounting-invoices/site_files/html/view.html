@@ -270,9 +270,9 @@
                                     </td>
                                     <td class="center userPrint">{{c.barcode}}</td>
                                     <td class="center blue">{{c.count}}</td>
-                                    <td class="center">
-                                        <p ng-show="account_invoices.source_type.id ==2 || account_invoices.source_type.id ==3 || account_invoices.source_type.id ==8">{{c.b_price | xmoney2}}</p>
-                                        <p ng-show="account_invoices.source_type.id ==1">{{c.b_cost | xmoney2}}</p>
+                                    <td class="center black">
+                                        <p ng-show="account_invoices.source_type.id == 2 || account_invoices.source_type.id == 3 || account_invoices.source_type.id == 8">{{c.b_price | xmoney2}}</p>
+                                        <p  ng-show="account_invoices.source_type.id == 9 || account_invoices.source_type.id == 1">{{c.b_cost | xmoney2}}</p>
                                         <del class="red txt16" ng-show="c.discount.value > 0">
                                             {{c.discount.current | xmoney2}}
                                           </del>

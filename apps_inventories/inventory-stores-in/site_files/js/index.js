@@ -2065,7 +2065,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
   $scope.loadSafes = function (method, currency) {
     $scope.error = '';
     $scope.busy = true;
-
+    $scope.safesList = [];
     if (currency && currency.id && method && method.id) {
       let where = { 'currency.id': currency.id };
 
@@ -2090,7 +2090,9 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       }).then(
         function (response) {
           $scope.busy = false;
-          if (response.data.done) $scope.safesList = response.data.list;
+          if (response.data.done) {
+            $scope.safesList = response.data.list;
+          }
         },
         function (err) {
           $scope.busy = false;
