@@ -121,6 +121,20 @@ svg#Layer_1 {
   transform: scale(1.2);
 }
 
+.powered {
+  text-align: center;
+}
+.powered p {
+  font-family: initial;
+  text-align: center;
+  color: white;
+  font-size: initial;
+}
+
+.powered img {
+  height: 50px;
+}
+
 .create-btn > span {
   margin-right: 10px;
 }

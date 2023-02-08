@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "en": "On hold",
+    "en": "Pending",
     "ar": "قيد الإنتظار"
   },
   {
@@ -16,12 +16,12 @@
   },
   {
     "id": 4,
-    "en": "Done Detected",
+    "en": "Detected",
     "ar": "تم الكشف"
   },
   {
     "id": 5,
-    "en": "Do Not Booking",
-    "ar": "لم يتم الحجز"
+    "en": "Cancellation Booking",
+    "ar": "إلغاء الحجز"
   }
 ]

@@ -970,7 +970,8 @@ img {
   }
 
   .souq-data p {
-    direction: ltr;
+    text-align: center;
+    /* direction: ltr; */
   }
 
   .souq-data a {

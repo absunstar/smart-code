@@ -85,6 +85,10 @@
     padding: 1px;
   }
 
+  .souq-data {
+    text-align: center;
+  }
+
   .online-badge {
     margin-top: -23px !important;
     margin-right: 56% !important;
@@ -98,6 +102,18 @@
 
   .scroll-headmsg {
     max-width: 90vw !important;
+  }
+
+  .clock {
+    position: relative;
+    bottom: 13px;
+    left: 64px;
+}
+
+  .img-clock {
+    position: relative;
+    height: 280px;
+    right: 45px;
   }
 
   .ad-name {

@@ -1,8 +1,8 @@
 [
   {
-    "name": "default_setting_tenant_search",
-    "en": "Search",
-    "ar": "بحث"
+    "name": "powered_by",
+    "en": "Powered by",
+    "ar": "مشغل بواسطة"
   },
   {
     "name": "bank_accounts",
@@ -23,6 +23,11 @@
     "name": "address_search",
     "en": "Address Search",
     "ar": "البحث بالعنوان"
+  },
+  {
+    "name": "whats_app_number",
+    "en": "What`s App Number",
+    "ar": "رقم الواتس آب"
   },
   {
     "name": "iban",

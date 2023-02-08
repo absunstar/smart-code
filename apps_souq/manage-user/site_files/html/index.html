@@ -29,6 +29,10 @@
       color: dimgray;
     }
     
+    i-image[view] img {
+      height: 40px;
+    width: 80px;
+    }
 
     i-image {
       min-width: 256px;
@@ -68,13 +72,6 @@
 
   <div x-import="manage-user/view_modal.html"></div>
   <div x-import="manage-user/order_modal.html"></div>
-  <div x-import="manage-user/delete_modal_ad.html"></div>
-  <div x-import="manage-user/view_modal_ad.html"></div>
-  <div x-import="manage-user/add_modal_store.html"></div>
-  <div x-import="manage-user/delete_modal_store.html"></div>
-  <div x-import="manage-user/update_modal_store.html"></div>
-  <div x-import="manage-user/view_modal_store.html"></div>
-
   <div x-import="content/selection_categories.html"></div>
   <br />
   <h1 class="center bold black">##word.manage_your_personal_account##</h1>
@@ -107,7 +104,7 @@
                   </td>
 
                   <td>
-                    <i-image view class="logo" ng-model="manage_user.profile.image_url"></i-image>
+                    <i-image view class="logo center" ng-model="manage_user.profile.image_url"></i-image>
                   </td>
 
                   <td>
@@ -122,7 +119,7 @@
                   </td>
 
                   <td>
-                    <i-image view class="logo" ng-model="manage_user.profile.cover"></i-image>
+                    <i-image view class="logo center" ng-model="manage_user.profile.cover"></i-image>
                   </td>
 
                   <td>

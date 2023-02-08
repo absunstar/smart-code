@@ -83,6 +83,17 @@
             </div>
           </fieldset>
         </fieldset>
+        <fieldset>
+          <legend>##word.powered_by##</legend>
+          <div class="col8">
+            <i-control label="##word.title##" ng-model="default_setting.powered_title"> </i-control>
+            <i-control label="##word.whats_app_number##" ng-model="default_setting.powered_whatsapp"> </i-control>
+          </div>
+          <div class="col1"></div>
+          <div class="col3">
+            <i-image ng-model="default_setting.powered_logo"></i-image>
+          </div>
+        </fieldset>
         <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#site_settings')"></i-button>
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
