@@ -1,7 +1,12 @@
 :root {
+  --theme-color : #009688;
   --modal-color: #000;
   --font-size: 13px;
-  /* --theme-color: #841a1a; */
+  --scrollbar-width: 5px;
+  --scrollbar-color: #ffeb3b;
+  --scrollbar-outline: 1px solid var(--scrollbar-color);
+  --scrollbar-background-color: var(--theme-color);
+  --scrollbar-box-shadow: inset 0 0 6px #000000;
 }
 #thermalPrint {
   width: 88mm;
@@ -71,7 +76,8 @@
 } */
 
 body {
-  margin: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 body.menu-show {
   margin-right: 400px;
@@ -212,8 +218,7 @@ nav.sitebar {
   top: 0px;
   right: 0px;
   left: 0px;
-  height: 40px;
-  box-shadow: 1px 1px 8px 0px #000;
+  height: 55px;
   background: var(--theme-color);
   border-radius: 0px 0px 0px 0px;
 }
@@ -295,6 +300,7 @@ nav .info .user-name {
   padding: 5px 9px;
   text-align: center;
   border-radius: 15px;
+  margin: 5px;
 }
 #btn_logout {
   color: #bbb;
@@ -517,7 +523,6 @@ a.pro-template .description {
   .tab-link span {
     padding: 1px;
   }
-
 }
 
 ._scroll {
@@ -642,7 +647,7 @@ i-checkbox .selector {
 .post {
   position: relative;
   display: inline-grid;
-  border: 1px solid #5369e0;
+  border: 1px solid #ddd;
   background: #fff;
   color: #000;
   border-radius: 15px;
@@ -651,6 +656,7 @@ i-checkbox .selector {
   width: 320px;
   height: 470px;
   margin: 15px;
+  cursor: pointer;
 }
 
 .post h2 {
@@ -661,10 +667,10 @@ i-checkbox .selector {
   font-size: 20px;
   text-align: center;
   font-weight: bold;
-  min-height: 70px;
   color: #fff;
-  padding: 5px;
-  background: #3f51b5;
+  padding: 17px;
+  min-height: 70px;
+  background: var(--theme-color);
   text-shadow: 1px 1px 8px #000000;
 }
 
@@ -675,7 +681,6 @@ i-checkbox .selector {
   width: 120px;
   height: 130px;
   place-self: center;
-
 }
 
 .post_description {
@@ -693,7 +698,6 @@ i-checkbox .selector {
 
 .post:hover .img__description {
   visibility: visible;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
   padding: 18px;
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
@@ -708,12 +712,13 @@ i-checkbox .selector {
   font-size: 19px;
   border-radius: 0px;
   line-height: 1.8;
-  background: #3f51b5;
+  background: var(--theme-color);
   color: #fff;
   visibility: hidden;
   opacity: 0;
-  box-shadow: 1px 1px 10px 1px #000;
-  transition: opacity 0.3s, visibility 0.3s;
+  box-shadow: none;
+  border: none;
+  transition: all 0.3s ease;
 }
 
 .post img {
@@ -723,17 +728,16 @@ i-checkbox .selector {
   width: 320px;
   height: 170px;
   place-self: center;
-
 }
 
-.main-footer{
+.main-footer {
   background: #eee;
   padding: 20px;
   text-align: left;
   direction: ltr;
   margin-top: 50px;
 }
-.main-footer a{
+.main-footer a {
   color: #000;
   font-size: 20px;
   text-decoration: none;

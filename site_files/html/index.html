@@ -72,7 +72,7 @@
         font-weight: bold;
         color: #fff;
         padding: 9px;
-        background: #2196f3;
+        background: var(--theme-color);
         text-shadow: 1px 1px 8px #000000;
       }
 
@@ -99,7 +99,7 @@
       .post {
         position: relative;
         display: inline-grid;
-        border: 1px solid #5369e0;
+        border: 1px solid #ddd;
         background: #fff;
         color: #000;
         border-radius: 15px;
@@ -108,21 +108,22 @@
         width: 320px;
         height: 470px;
         margin: 15px;
+        cursor: pointer;
       }
 
       .post h2 {
         height: 50px;
-        border-radius: 15px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        font-size: 20px;
-        text-align: center;
-        font-weight: bold;
-        color: #fff;
-        padding: 5px;
-        min-height: 70px;
-        background: #3f51b5;
-        text-shadow: 1px 1px 8px #000000;
+    border-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    padding: 17px;
+    min-height: 70px;
+    background: var(--theme-color);
+    text-shadow: 1px 1px 8px #000000;
       }
 
       .post img {
@@ -139,7 +140,7 @@
         text-align: center !important;
         border-radius: 15px;
         color: #ffffff;
-        background: #3f51b5;
+        background: var(--theme-color);
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
         min-height: 200px;
@@ -149,7 +150,6 @@
 
       .post:hover .img__description {
         visibility: visible;
-        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
         padding: 18px;
         border-bottom-right-radius: 12px;
         border-bottom-left-radius: 12px;
@@ -183,12 +183,13 @@
         font-size: 19px;
         border-radius: 0px;
         line-height: 1.8;
-        background: #3f51b5;
+        background: var(--theme-color);
         color: #fff;
         visibility: hidden;
         opacity: 0;
-        box-shadow: 1px 1px 10px 1px #000;
-        transition: opacity 0.3s, visibility 0.3s;
+        box-shadow: none;
+        border: none;
+        transition: all 0.3s ease;
       }
 
       a.social-browser {
@@ -197,10 +198,11 @@
         cursor: pointer;
         text-decoration: none;
         border-radius: 40px;
-        border: 3px solid #7a0000;
         width: 70%;
-        background: #f44336;
-        padding: 10px;
+        background: #cddc39;
+        padding: 30px;
+        min-height: 100px;
+        transition: all 0.2s ease;
       }
 
       a.social-browser:hover {
@@ -210,9 +212,9 @@
       a.social-browser p {
         display: inline-block;
         vertical-align: middle;
-        font-size: 18px;
+        font-size: 22px;
         font-weight: bold;
-        color: white;
+        color: #f44336;
       }
 
       a.social-browser img {
@@ -276,9 +278,9 @@
 
       <div class="row center" x-feature="!browser.social">
         <a class="social-browser" target="_blank" href="http://social-browser.com">
-          <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser " onerror="this.onerror=null;this.src='/images/no.png'" src="//social-browser.com/images/logo.png" />
+          <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser " onerror="this.onerror=null;this.parentNode.remove(this)" src="//social-browser.com/images/logo.png" />
           <p>##word.download_social_browser##</p>
-          <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser " onerror="this.onerror=null;this.src='/images/no.png'" src="//social-browser.com/images/logo.png" />
+          <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser " onerror="this.onerror=null;this.parentNode.remove(this)" src="//social-browser.com/images/logo.png" />
         </a>
       </div>
 
