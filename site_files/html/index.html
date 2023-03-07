@@ -113,17 +113,17 @@
 
       .post h2 {
         height: 50px;
-    border-radius: 15px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-    color: #fff;
-    padding: 17px;
-    min-height: 70px;
-    background: var(--theme-color);
-    text-shadow: 1px 1px 8px #000000;
+        border-radius: 15px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        padding: 17px;
+        min-height: 70px;
+        background: var(--theme-color);
+        text-shadow: 1px 1px 8px #000000;
       }
 
       .post img {
@@ -235,55 +235,53 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout">
-      <div>
-        <div class="row inout hidden">
+      <div class="row">
+
+        <div class="col3 inout hidden">
           <div class="center inout">
             <img class="img_inout" ng-src="/images/inout.png" />
           </div>
         </div>
 
-        <div class="row mt hidden">
+        <div class="col3 mt hidden">
           <div class="center mt">
             <img class="img_brand" ng-src="/images/mt.jpeg" />
           </div>
         </div>
 
-        <div class="row ft hidden">
+        <div class="col3 ft hidden">
           <div class="center ft">
             <img class="img_brand" ng-src="/images/ft.png" />
           </div>
         </div>
 
-        <div class="row protouch hidden">
+        <div class="col3 protouch hidden">
           <div class="center protouch">
             <img class="logo_pro" ng-src="/images/pro_logo.png" />
           </div>
         </div>
 
-        <div class="row ttl hidden">
+        <div class="col3 ttl hidden">
           <div class="center ttl">
             <img class="logo_ttl" ng-src="/images/ttl_logo.png" />
           </div>
         </div>
-      </div>
 
-      <div class="row center" x-features="!login && !site.dynamic">
-        <div class="create center">
-          <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span> </a>
+        <div class="col3 center" x-features="!login && !site.dynamic">
+          <div class="create center">
+            <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span> </a>
+          </div>
         </div>
+
+        <div class="col9 center" x-feature="!browser.social">
+          <a class="social-browser" target="_blank" href="http://social-browser.com">
+            <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser " onerror="this.onerror=null;this.parentNode.remove(this)" src="//social-browser.com/images/logo.png" />
+            <p>##word.download_social_browser##</p>
+            <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser " onerror="this.onerror=null;this.parentNode.remove(this)" src="//social-browser.com/images/logo.png" />
+          </a>
+        </div>
+
       </div>
-
-      <br />
-      <br />
-
-      <div class="row center" x-feature="!browser.social">
-        <a class="social-browser" target="_blank" href="http://social-browser.com">
-          <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser " onerror="this.onerror=null;this.parentNode.remove(this)" src="//social-browser.com/images/logo.png" />
-          <p>##word.download_social_browser##</p>
-          <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser " onerror="this.onerror=null;this.parentNode.remove(this)" src="//social-browser.com/images/logo.png" />
-        </a>
-      </div>
-
       <div id="posts" class="center"></div>
 
       <!--       <div class="price-info hidden" x-features="!host.ft && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt">

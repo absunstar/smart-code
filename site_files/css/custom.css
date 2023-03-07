@@ -221,6 +221,7 @@ nav.sitebar {
   height: 55px;
   background: var(--theme-color);
   border-radius: 0px 0px 0px 0px;
+  border-bottom: 5px solid #e9d100;
 }
 
 nav h2.brand {
