@@ -1,5 +1,5 @@
 :root {
-  --theme-color : #009688;
+  --theme-color: #009688;
   --modal-color: #000;
   --font-size: 13px;
   --scrollbar-width: 5px;
@@ -79,6 +79,9 @@ body {
   margin-top: 100px;
   margin-bottom: 100px;
 }
+body:has(.main-menu) {
+  margin-right: 100px;
+}
 body.menu-show {
   margin-right: 400px;
 }
@@ -111,7 +114,7 @@ popup item:hover {
   position: fixed;
   width: auto;
   right: 0px;
-  top: 42px;
+  top: 55px;
   bottom: 40px;
   overflow: auto;
   padding: 0px;
@@ -280,8 +283,8 @@ nav .info {
   display: inline-block;
   font-size: 14px;
   color: #ffffff;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
   float: left;
 }
 .en nav .info {
@@ -506,8 +509,18 @@ a.pro-template .description {
     margin-right: 0px;
     margin-left: 0px;
   }
-  .main-menu {
-    opacity: 0.5;
+  body:has(.main-menu) {
+    margin-right: 100px;
+  }
+  nav.sitebar{
+    height: 90px;
+  }
+  .main-menu{
+    top: 90px;
+    bottom: 0px;
+  }
+  nav.sitebottom {
+    display: none;
   }
   .tabs .tabs-header .tab-link {
     font-size: 12px;
@@ -654,7 +667,7 @@ i-checkbox .selector {
   border-radius: 15px;
   text-align: center;
   line-height: 1.8;
-  width: 320px;
+  width: min(70vw, 320px);
   height: 470px;
   margin: 15px;
   cursor: pointer;
