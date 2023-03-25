@@ -26,7 +26,7 @@ app.controller('sitebar', ($scope, $http) => {
     $scope.mainCategories = [];
     $http({
       method: 'POST',
-      url: '/api/main_categories/all',
+      url: '/api/categories/all',
       data: {
         where: {
           status: 'active', 
@@ -125,7 +125,7 @@ app.controller('sitebar', ($scope, $http) => {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/default_setting/get',
+      url: '/api/defaultSetting/get',
       data: {},
     }).then(
       function (response) {

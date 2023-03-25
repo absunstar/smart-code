@@ -6,12 +6,12 @@ app.controller('more_categories', function ($scope, $http, $timeout) {
     $scope.mainCategories = [];
     $http({
       method: 'POST',
-      url: '/api/main_categories/all',
+      url: '/api/categories/all',
       data: {
         where: {
           status: 'active',
         },
-        select: { id: 1,   name: 1, topParentId: 1, parent_id: 1 ,parent_list_id : 1},
+        select: { id: 1,   name: 1, topParentId: 1, parentId: 1 ,parentListId : 1},
       },
     }).then(
       function (response) {

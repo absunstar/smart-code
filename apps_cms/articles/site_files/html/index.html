@@ -8,76 +8,54 @@
 
     <div id="main-layout" class="container loaded">
       <div class="row">
+        <div x-import="articles/related_topics.html"></div>
+        <div x-permissions="articles_add || articles_manage" x-import="articles/manage_modal.html"></div>
+        <div x-permissions="articles_search || articles_manage" x-import="articles/search_all_modal.html"></div>
+
         <div class="row">
-          <div x-import="articles/related_topics.html"></div>
-          <div x-permissions="articles_add || articles_manage" x-import="articles/manage_modal.html"></div>
-          <div x-permissions="articles_search || articles_manage" x-import="articles/search_all_modal.html"></div>
-
-          <div class="row">
-            <h1 class="bold text-center">##word.articles##</h1>
-          </div>
-
-          <div class="top-actions">
-            <i-button x-permissions="articles_add || articles_manage" type="add" label="##word.articles_new##" ng-click="displayAddArticles()"></i-button>
-            <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
-          </div>
-
-          <table x-permissions="login" class="table hover bold" id="t1">
-            <tr>
-              <th>##word.logo##</th>
-              <th>##word.article_template##</th>
-              <th>##word.article_title##</th>
-              <th>##word.status##</th>
-              <th class="not-print">##word.actions##</th>
-            </tr>
-            <tr ng-repeat="c in list">
-              <td>
-                <i-image view class="logo" ng-model="c.translatedList[0].image"></i-image>
-              </td>
-              <td class="center title">{{c.type.##session.lang##}}</td>
-              <td class="center title">{{c.translatedList[0].title}}</td>
-              <td class="center">
-                <p ng-show="c.active == true" class="green">##word.active##</p>
-                <p ng-show="c.active == false" class="red">##word.not_active##</p>
-              </td>
-
-              <td class="center not-print">
-                <i-button x-permissions="articles_view || articles_manage" type="view" label="##word.details##" ng-click="displayDetailsArticles(c)"></i-button>
-
-                <i-button x-permissions="articles_update || articles_manage" type="edit" label="##word.edit##" ng-click="displayUpdateArticles(c)"></i-button>
-
-                <i-button x-permissions="articles_delete || articles_manage" type="delete" label="##word.delete##" ng-click="displayDeleteArticles(c)"></i-button>
-              </td>
-            </tr>
-          </table>
-
-          <i-button x-permissions="articles_print || articles_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+          <h1 class="bold text-center">##word.articles##</h1>
         </div>
+
+        <div class="top-actions">
+          <i-button x-permissions="articles_add || articles_manage" type="add" label="##word.articles_new##" ng-click="displayAddArticles()"></i-button>
+          <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+          <h3 class="bold text-center">##word.count## : {{count}}</h3>
+        </div>
+
+        <table x-permissions="login" class="table hover bold" id="t1">
+          <tr>
+            <th>##word.logo##</th>
+            <th>##word.article_template##</th>
+            <th>##word.article_title##</th>
+            <th>##word.status##</th>
+            <th class="not-print">##word.actions##</th>
+          </tr>
+          <tr ng-repeat="c in list">
+            <td>
+              <i-image view class="logo" ng-model="c.translatedList[0].image"></i-image>
+            </td>
+            <td class="center title">{{c.type.##session.lang##}}</td>
+            <td class="center title">{{c.translatedList[0].title}}</td>
+            <td class="center">
+              <p ng-show="c.active == true" class="green">##word.active##</p>
+              <p ng-show="c.active == false" class="red">##word.not_active##</p>
+            </td>
+
+            <td class="center not-print">
+              <i-button x-permissions="articles_view || articles_manage" type="view" label="##word.details##" ng-click="displayDetailsArticles(c)"></i-button>
+
+              <i-button x-permissions="articles_update || articles_manage" type="edit" label="##word.edit##" ng-click="displayUpdateArticles(c)"></i-button>
+
+              <i-button x-permissions="articles_delete || articles_manage" type="delete" label="##word.delete##" ng-click="displayDeleteArticles(c)"></i-button>
+            </td>
+          </tr>
+        </table>
+
+        <i-button x-permissions="articles_print || articles_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
       </div>
     </div>
 
     <div x-import="cms/scripts.html"></div>
     <script x-import="articles/index.js"></script>
-    <script x-import="cms/editor.js"></script>
-    <script>
-      window.addEditor = WebShareEditor.create('articleAdvancedContent', {
-        toolbarItem: [
-          ['undo', 'redo'],
-          ['font', 'fontSize', 'formatBlock'],
-          ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-          ['removeFormat'],
-          ['fontColor', 'hiliteColor'],
-          ['outdent', 'indent'],
-          ['align', 'horizontalRule', 'list', 'table'],
-          ['link', 'image', 'video'],
-          /* ['fullScreen', 'showBlocks', 'codeView'],
-           ['preview', 'print'],
-           ['save', 'template'], */
-        ],
-        width: '100%',
-        minHeight: '300px',
-      });
-    </script>
   </body>
 </html>

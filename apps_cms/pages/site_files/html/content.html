@@ -1,38 +1,30 @@
 <div class="form">
-    <div id="basicInformation" class="">
-        <fieldset>
-            <legend> ##word.basic_information## </legend>
-            <div class="row">
-                <div class="col9">
-                    <div class="row">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control type="text" v="r" class="col5" label="##word.page_implement_name##" ng-model="pages.title"></i-control>
 
-                        <i-control type="text" v="r" class="col5" label="##word.page_implement_name##"
-                            ng-model="pages.title"></i-control>
+            <i-control type="text" v="r" class="col5" label="##word.url##" ng-model="pages.url"></i-control>
+          </div>
 
-                        <i-control type="text" v="r" class="col5" label="##word.url##"
-                            ng-model="pages.url"></i-control>
-                    </div>
+          <div class="row">
+            <i-textarea class="col" label="##word.description##" ng-model="pages.description"> </i-textarea>
+          </div>
 
-                    <div class="row">
-                        <i-textarea class="col" label="##word.description##" ng-model="pages.description">
-                        </i-textarea>
+        </div>
 
-                    </div>
-
-                    <div class="row">
-                        <label for="content_area"> ##word.content## </label>
-                        <textarea id="content_area" cols="30" rows="50"></textarea>
-                    </div>
-                </div>
-
-                <div class="col3">
-
-                    <i-image help-id="page_implement_logo" ng-model="pages.image"></i-image>
-
-                </div>
-
-            </div>
-        </fieldset>
-
-    </div>
+        <div class="col3">
+          <i-image help-id="page_implement_logo" ng-model="pages.image"></i-image>
+        </div>
+      </div>
+      
+      <fieldset>
+        <legend>##word.content##</legend>
+        <i-content label="##word.content##" ng-model="pages.content"></i-content>
+      </fieldset>
+    </fieldset>
+  </div>
 </div>

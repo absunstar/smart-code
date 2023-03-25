@@ -1,5 +1,5 @@
 app.controller('cms', function ($scope, $http, $timeout) {
-  $scope.search = { price_from: 0, price_to: 100000000 };
+  $scope.search = {};
   $scope.getContentList = function (ev, where) {
     if ($scope.ContentBusy) {
       return;
@@ -9,34 +9,32 @@ app.controller('cms', function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       where = where || {};
 
-      where['ad_status.id'] = 1;
-      if (where['category_id']) {
+      where['adStatus.id'] = 1;
+      if (where['categoryId']) {
+        window.history.pushState(null, null, '/category/' + where['categoryId'] + '/' + where['categoryName']);
 
-        window.history.pushState(null, null, '/category/' + where['category_id'] + '/' + where['category_name']);
-
-        delete where['category_name'];
-
+        delete where['categoryName'];
       }
 
-      if (where['countryCode'] || where['gov_code']) {
+      if (where['countryCode'] || where['govCode']) {
         hsMap('hide');
         if (where['countryCode']) {
-          delete where['gov_code'];
-        } else if (where['gov_code']) {
+          delete where['govCode'];
+        } else if (where['govCode']) {
           delete where['countryCode'];
         }
       }
 
-      window.page_limit = window.page_limit || 20;
-      window.page_number = window.page_number || 0;
+      window.pageLimit = window.pageLimit || 20;
+      window.pageNumber = window.pageNumber || 0;
 
       if (where['pages']) {
         $scope.contentList = $scope.contentList || [];
-        window.page_number++;
+        window.pageNumber++;
         delete where['pages'];
       } else {
         $scope.contentList = [];
-        window.page_number = 0;
+        window.pageNumber = 0;
       }
 
       $http({
@@ -44,8 +42,8 @@ app.controller('cms', function ($scope, $http, $timeout) {
         url: '/api/contents/all',
         data: {
           where: where,
-          page_limit: window.page_limit,
-          page_number: window.page_number,
+          pageLimit: window.pageLimit,
+          pageNumber: window.pageNumber,
           post: true,
         },
       }).then(
@@ -86,10 +84,9 @@ app.controller('cms', function ($scope, $http, $timeout) {
       function (error) {
         $scope.busy = false;
         $scope.error = error;
-      },
+      }
     );
   };
-
 
   $scope.loadMore = function () {
     if (!window.autoLoadingPosts) {
@@ -203,7 +200,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
           'city.id': city.id,
           active: true,
         },
-        select: { id: 1,   name: 1 },
+        select: { id: 1, name: 1 },
       },
     }).then(
       function (response) {
@@ -250,7 +247,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) { }
+      function (err) {}
     );
   };
 
@@ -260,18 +257,18 @@ app.controller('cms', function ($scope, $http, $timeout) {
     $scope.mainCategories = [];
     $http({
       method: 'POST',
-      url: '/api/main_categories/all',
+      url: '/api/categories/all',
       data: {
         where: {
           status: 'active',
         },
-        select: { id: 1, name: 1, topParentId: 1, parent_id: 1 ,parent_list_id : 1},
+        select: { id: 1, name: 1, topParentId: 1, parentId: 1, parentListId: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.category_list = response.data.list;
+          $scope.mainCategories = response.data.list;
         }
       },
       function (err) {
@@ -281,68 +278,23 @@ app.controller('cms', function ($scope, $http, $timeout) {
     );
   };
 
-/*   $scope.loadMainCategories = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.mainCategories = [];
-    $http({
-      method: 'POST',
-      url: '/api/main_categories/all',
-      data: {
-        where: {
-          status: 'active',
-        },
-        top: true,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.category_list = response.data.list;
-          $scope.topParentCategoriesList = response.data.top_list;
-          $scope.category_list.forEach((_c) => {
-
-            if (site.toNumber('##params.id##') == _c.id) {
-              if (!_c.topParentId) {
-                $scope.loadSubCategory(_c);
-              } else if(_c.parent_list_id && _c.parent_list_id.length > 0){
-                if(_c.parent_list_id.length == 1) {
-                  $scope.loadSubCategory2(_c);
-                } else  if(_c.parent_list_id.length == 2) {
-                  $scope.loadSubCategory3(_c);
-                } else if(_c.parent_list_id.length == 3) {
-                  $scope.loadSubCategory4(_c);
-                }
-              }
-            }
-          });
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  }; */
-
   $scope.loadSubCategory = function (c) {
     if (c && c.id) {
-
-      $scope.topParentCategoriesList.forEach(_c => {
+      $scope.topParentCategoriesList.forEach((_c) => {
         _c.$isSelected = false;
       });
       c.$isSelected = true;
 
       $scope.error = '';
-      $scope.search.category_id = c.id;
-      $scope.search.category_name = c.name;
+      $scope.search.categoryId = c.id;
+      $scope.search.categoryName = c.name;
       $scope.searchAll($scope.search);
       $scope.subCategoriesList = [];
       $scope.subCategoriesList2 = [];
       $scope.subCategoriesList3 = [];
       $scope.subCategoriesList4 = [];
-      $scope.category_list.forEach((_c) => {
-        if (c.id == _c.parent_id) {
+      $scope.categoriesList.forEach((_c) => {
+        if (c.id == _c.parentId) {
           $scope.subCategoriesList.push(_c);
         }
       });
@@ -356,19 +308,18 @@ app.controller('cms', function ($scope, $http, $timeout) {
         });
       }
     }
-
   };
 
   $scope.loadSubCategory2 = function (c) {
     $scope.error = '';
-    $scope.search.category_id = c.id;
-    $scope.search.category_name = c.name;
+    $scope.search.categoryId = c.id;
+    $scope.search.categoryName = c.name;
     $scope.searchAll($scope.search);
     $scope.subCategoriesList2 = [];
     $scope.subCategoriesList3 = [];
     $scope.subCategoriesList4 = [];
-    $scope.category_list.forEach((_c) => {
-      if (c.id == _c.parent_id) {
+    $scope.categoriesList.forEach((_c) => {
+      if (c.id == _c.parentId) {
         $scope.subCategoriesList2.push(_c);
       }
     });
@@ -385,12 +336,12 @@ app.controller('cms', function ($scope, $http, $timeout) {
 
   $scope.loadSubCategory3 = function (c) {
     $scope.error = '';
-    $scope.search.category_id = c.id;
+    $scope.search.categoryId = c.id;
     $scope.searchAll($scope.search);
     $scope.subCategoriesList3 = [];
     $scope.subCategoriesList4 = [];
-    $scope.category_list.forEach((_c) => {
-      if (c.id == _c.parent_id) {
+    $scope.categoriesList.forEach((_c) => {
+      if (c.id == _c.parentId) {
         $scope.subCategoriesList3.push(_c);
       }
     });
@@ -407,12 +358,12 @@ app.controller('cms', function ($scope, $http, $timeout) {
 
   $scope.loadSubCategory4 = function (c) {
     $scope.error = '';
-    $scope.search.category_id = c.id;
+    $scope.search.categoryId = c.id;
 
     $scope.searchAll($scope.search);
     $scope.subCategoriesList4 = [];
-    $scope.category_list.forEach((_c) => {
-      if (c.id == _c.parent_id) {
+    $scope.categoriesList.forEach((_c) => {
+      if (c.id == _c.parentId) {
         $scope.subCategoriesList4.push(_c);
       }
     });
@@ -448,7 +399,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/default_setting/get',
+      url: '/api/defaultSetting/get',
       data: {},
     }).then(
       function (response) {

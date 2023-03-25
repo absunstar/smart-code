@@ -16,7 +16,7 @@ app.controller('favorites', function ($scope, $http, $timeout) {
               'feedback_list.type.id': 2,
             },
             {
-              'ad_status.id': 1,
+              'adStatus.id': 1,
             },
           ],
         },

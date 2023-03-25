@@ -400,9 +400,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     }
 
     if ($scope.defaultSettings.content.status) {
-      $scope.ad.ad_status = $scope.defaultSettings.content.status;
+      $scope.ad.adStatus = $scope.defaultSettings.content.status;
     } else {
-      $scope.ad.ad_status = {
+      $scope.ad.adStatus = {
         id: 2,
         en: 'Under review',
         ar: 'قيد المراجعة',
@@ -501,7 +501,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.mainCategories = [];
     $http({
       method: 'POST',
-      url: '/api/main_categories/all',
+      url: '/api/categories/all',
       data: {
         where: {
           status: 'active',
@@ -511,7 +511,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.category_list = response.data.list;
+          $scope.categoriesList = response.data.list;
         }
       },
       function (err) {
@@ -599,7 +599,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/default_setting/get',
+      url: '/api/defaultSetting/get',
       data: {},
     }).then(
       function (response) {

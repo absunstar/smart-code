@@ -41,9 +41,20 @@ a i {
   padding: 10px;
   transition: all 0.3s ease;
 }
+
 .menu-item a:hover {
   padding-right: 25px;
+  
 }
+
+.menu-item span:hover {
+  background-color: #607d8b;
+  padding: 1px 10px 1px 10px;
+  color: white;
+  border-radius: 10px;
+  
+}
+
 .en .menu-item a:hover {
     padding-left: 25px;
   }

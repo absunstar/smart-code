@@ -71,7 +71,7 @@ app.controller('haraj', function ($scope, $http, $timeout) {
     $scope.mainCategories = [];
     $http({
       method: 'POST',
-      url: '/api/main_categories/all',
+      url: '/api/categories/all',
       data: {
         where: {
           active: true,
@@ -81,8 +81,8 @@ app.controller('haraj', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.category_list = response.data.list;
-          $scope.category_list.forEach((l) => {
+          $scope.categoriesList = response.data.list;
+          $scope.categoriesList.forEach((l) => {
             $scope.mainCategories.push({
               id: l.id,
               name: l.name,

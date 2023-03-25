@@ -55,7 +55,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
               'store.user.id': site.toNumber('##params.id##'),
             },
             {
-              'ad_status.id': 1,
+              'adStatus.id': 1,
             },
           ],
         },

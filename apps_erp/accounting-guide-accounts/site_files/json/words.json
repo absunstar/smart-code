@@ -50,7 +50,7 @@
     {"name" : "accounting_guide_accounts_active" , "en" : "Active" , "ar" : "نشط"},
     {"name" : "accounting_guide_accounts_disactive" , "en" : "Dis Active" , "ar" : "معطل"},
 
-    {"name" : "accounting_guide_accounts_accounting_cost_centers" , "en" : "Cost Senters" , "ar" : "مراكز التكلفة"},
+    {"name" : "accounting_guide_accounts_accounting_cost_centers" , "en" : "Cost Centers" , "ar" : "مراكز التكلفة"},
     {"name" : "accounting_guide_accounts_cost_center" , "en" : "Cost Senter" , "ar" : "م.التكلفة"},
     {"name" : "accounting_guide_accounts_cost_center_name" , "en" : "Cost Senter Name" , "ar" : "إسم مركز التكلفة"},
     {"name" : "accounting_guide_accounts_rate" , "en" : "Cost Senter Rate %" , "ar" : "نسبة مركز التكلفة %"},

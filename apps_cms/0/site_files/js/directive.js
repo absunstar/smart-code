@@ -732,7 +732,7 @@ app.directive('iTreeview2', [
           v_node.nodes.forEach((v_node2) => {
             v_node2.nodes = v_node2.nodes || [];
             $scope.nodes.forEach((node) => {
-              if (node.$parent_id == v_node2.id) {
+              if (node.$parentId == v_node2.id) {
                 node.v_display = node.v_display || '';
                 node.v_display += node[attrs.display];
 
@@ -765,10 +765,10 @@ app.directive('iTreeview2', [
           $scope.v_nodes = [];
           if (nodes) {
             nodes.forEach((node) => {
-              node.$parent_id = node.parent_id || 0;
+              node.$parentId = node.parentId || 0;
               node.v_display = node.v_display || '';
               node.v_display += node[attrs.display];
-              if (node.$parent_id == 0) {
+              if (node.$parentId == 0) {
                 let exist = !1;
                 $scope.v_nodes.forEach((n) => {
                   if (n.id == node.id) {
@@ -786,8 +786,8 @@ app.directive('iTreeview2', [
               v_node.nodes = v_node.nodes || [];
 
               nodes.forEach((node) => {
-                node.$parent_id = node.parent_id || 0;
-                if (node.$parent_id == v_node.id) {
+                node.$parentId = node.parentId || 0;
+                if (node.$parentId == v_node.id) {
                   node.v_display = node.v_display || '';
                   node.v_display += node[attrs.display];
 
@@ -856,7 +856,7 @@ app.directive('iCategoryView', [
             nodes.forEach((node, i) => {
               if (node.nodes) {
                 node.nodes.forEach((node2, i) => {
-                  node2.$parent_id = node2.parent_id || node.id;
+                  node2.$parentId = node2.parentId || node.id;
                   node2.v_display = node.v_display || ' ';
                   node2.v_display += ' - ' + node2[attrs.display];
                 });
