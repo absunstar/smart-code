@@ -60,7 +60,9 @@
   width: 150 px;
   border-radius: 0px !important;
 }
-
+.qrcode {
+  display: table;
+}
 .popup item {
   border-radius: 30px;
 }
