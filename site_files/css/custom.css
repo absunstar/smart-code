@@ -55,14 +55,15 @@
   height: 150 px;
   width: 150 px;
 }
+i-image[view] {
+  display: inline-flex;
+}
 .qrcode img {
   height: 150 px;
   width: 150 px;
   border-radius: 0px !important;
 }
-.qrcode {
-  display: table;
-}
+
 .popup item {
   border-radius: 30px;
 }
