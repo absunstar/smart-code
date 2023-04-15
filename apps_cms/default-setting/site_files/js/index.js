@@ -261,7 +261,7 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
   };
 
   $scope.addKeyWords = function (ev, keyWord) {
-    $scope.busy = true;
+    $scope.error = '';
 
     if (ev.which !== 13 || !keyWord) {
       return;

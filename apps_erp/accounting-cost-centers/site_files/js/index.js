@@ -112,7 +112,6 @@ app.controller("accounting_cost_centers", function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       $scope.busy = false;
-      alert('validated error');
       return;
     }
 

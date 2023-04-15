@@ -103,6 +103,7 @@ module.exports = function init(site) {
         $res: res,
       },
       (err, result) => {
+        console.log(err,result);
         if (!err && result) {
           response.done = true;
           site.categoriesList.forEach((a, i) => {

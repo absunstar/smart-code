@@ -296,7 +296,7 @@ app.controller('area', function ($scope, $http, $timeout) {
   };
 
   $scope.addKeyWords = function (ev, obj) {
-    $scope.busy = true;
+    $scope.error = '';
 
     if (ev.which !== 13 || !obj.$keyword) {
       return;

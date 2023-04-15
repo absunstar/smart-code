@@ -130,7 +130,6 @@ app.controller('categories', function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       $scope.busy = false;
-      alert('validated error');
       return;
     }
 
@@ -142,9 +141,10 @@ app.controller('categories', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        console.log(response.data);
         if (response.data.done) {
           site.hideModal('#categoriesManageModal');
-
+          
           $scope.getCategoriesList();
         } else {
           $scope.error = response.data.error;
@@ -300,8 +300,8 @@ app.controller('categories', function ($scope, $http, $timeout) {
   };
 
   $scope.addKeyWords = function (ev, obj) {
-    $scope.busy = true;
 
+    $scope.error = '';
     if (ev.which !== 13 || !obj.$keyword) {
       return;
     }

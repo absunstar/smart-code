@@ -103,7 +103,6 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       $scope.busy = false;
-      alert('validated error');
       return;
     }
 
