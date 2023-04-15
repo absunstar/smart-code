@@ -56,7 +56,7 @@ site.get(
       );
     } else {
       res.render(
-        'cms/index.html',
+        'theme1/index.html',
         {},
         {
           parser: 'html css js',

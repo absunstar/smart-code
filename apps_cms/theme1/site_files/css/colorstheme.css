@@ -1,0 +1,24 @@
+*{
+    --primary-color: rgba(44, 44, 44, 1);
+    --secondary-color: rgba(215, 55, 63, 1);
+    --third-color: rgba(20, 115, 230, 1);
+    --fourth-color: #D9D9D9;
+    --fifth-color:rgba(0, 0, 0);
+    --six-color:rgb(255, 255, 255);
+    --seven-color:#268E6C;
+    --eight-color:#f3f3f3;
+    --text-color: rgb(255, 255, 255);
+    --dark-text-color: rgba(44, 44, 44, 1);
+    --golden-color: #D3AB42;
+    --dark-overlay: rgba(44, 44, 44, 0.61);
+    /*icon color*/
+    --backgroud-icon-color: rgba(44, 44, 44, 1);
+    --icon-color: rgb(255, 255, 255);
+    --hover-icon-color: rgba(215, 55, 63, 1);
+
+    /* image color */
+    --placeholder-image-color:rgb(211, 211, 211);
+    
+    
+}
+
