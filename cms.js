@@ -40,7 +40,7 @@ site.get(
   (req, res) => {
     if (site.setting.site_template &&site.setting.site_template.id == 1) {
       res.render(
-        'cms/theme1.html',
+        'theme1/index.html',
         {},
         {
           parser: 'html css js',
@@ -48,7 +48,7 @@ site.get(
       );
     } else if (site.setting.site_template &&site.setting.site_template.id == 2) {
       res.render(
-        'cms/index.html',
+        'theme1/index.html',
         {},
         {
           parser: 'html css js',
