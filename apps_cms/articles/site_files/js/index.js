@@ -745,7 +745,16 @@ app.controller('articles', function ($scope, $http, $timeout) {
               $scope.$applyAsync();
             }
           );
+        } else if ($scope.article.translatedList[$scope.article.translatedList.length - 1].contentText) {
+          SOCIALBROWSER.translate(
+            { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].contentText, to: lang.id },
+            (info) => {
+              ($scope.article.translatedList[$scope.article.translatedList.length - 1].contentText = info.translatedText)
+              $scope.$applyAsync();
+            }
+          );
         }
+
 
         if ($scope.article.translatedList[0].socialTitle) {
           SOCIALBROWSER.translate(
@@ -873,6 +882,9 @@ app.controller('articles', function ($scope, $http, $timeout) {
           if (art.content) {
             contentletters = art.content.length;
             contentWords = art.content.trim().split(/\s+/).length;
+          } else if (art.contentText) {
+            contentletters = art.contentText.length;
+            contentWords = art.contentText.trim().split(/\s+/).length;
           }
           art.numberLetters = titleletters + contentletters;
           art.numberWords = titleWords + contentWords;
