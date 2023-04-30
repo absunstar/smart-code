@@ -5,6 +5,26 @@
     "ar": "إعدادات الأخبار"
   },
   {
+    "name": "Main Page",
+    "en": "Main Page",
+    "ar": "الصفحة الرئيسية"
+  },
+  {
+    "name": "Gold Prices",
+    "en": "Gold Prices",
+    "ar": "أسعار الذهب"
+  },
+  {
+    "name": "Match Schedule",
+    "en": "Match Schedule",
+    "ar": "جدول المباريات"
+  },
+  {
+    "name": "Team",
+    "en": "Team",
+    "ar": "فريق"
+  },
+  {
     "name": "huawei_store",
     "en": "HUAWEI Store",
     "ar": "متجر هواوي"

@@ -7,6 +7,12 @@
   user-select: text;
 }
 
+i-image.imgsmall img {
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+}
 
 hr {
   width: 98% !important;

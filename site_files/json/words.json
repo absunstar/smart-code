@@ -1210,6 +1210,81 @@
     "ar": "المدفوع"
   },
   {
+    "name": "Name",
+    "en": "Name",
+    "ar": "الإسم"
+  },
+  {
+    "name": "Show",
+    "en": "Show",
+    "ar": "ظهور"
+  },
+  {
+    "name": "Hide",
+    "en": "Hide",
+    "ar": "إخفاء"
+  },
+  {
+    "name": "Temperatures",
+    "en": "Temperatures",
+    "ar": "درجات الحرارة"
+  },
+  {
+    "name": "Prayer Timings",
+    "en": "Prayer Timings",
+    "ar": "مواقيت الصلاة"
+  },
+  {
+    "name": "Great",
+    "en": "Great",
+    "ar": "العظمى"
+  },
+  {
+    "name": "Minor",
+    "en": "Minor",
+    "ar": "الصغرى"
+  },
+  {
+    "name": "Date",
+    "en": "Date",
+    "ar": "التاريخ"
+  },
+  {
+    "name": "Time",
+    "en": "Time",
+    "ar": "الوقت"
+  },
+  {
+    "name": "Percentage Change",
+    "en": "Percentage Change",
+    "ar": "نسبة التغيير"
+  },
+  {
+    "name": "Purchase Price",
+    "en": "Purchase Price",
+    "ar": "سعر الشراء"
+  },
+  {
+    "name": "Sales Price",
+    "en": "Sales Price",
+    "ar": "سعر البيع"
+  },
+  {
+    "name": "Increase",
+    "en": "Increase",
+    "ar": "زيادة"
+  },
+  {
+    "name": "Increase",
+    "en": "Increase",
+    "ar": "زيادة"
+  },
+  {
+    "name": "Decrease",
+    "en": "Decrease",
+    "ar": "نقص"
+  },
+  {
     "name": "remain",
     "en": "Remain",
     "ar": "الباقي"

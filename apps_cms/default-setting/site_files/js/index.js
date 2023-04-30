@@ -293,6 +293,24 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
     programming.scripts.unshift({ active: true });
   };
 
+  $scope.addGoldPrices = function () {
+    $scope.error = '';
+    $scope.defaultSetting.goldPricesList = $scope.defaultSetting.goldPricesList || [];
+    $scope.defaultSetting.goldPricesList.unshift({});
+  };
+  
+  $scope.addPrayerTimings = function () {
+    $scope.error = '';
+    $scope.defaultSetting.prayerTimingsList = $scope.defaultSetting.prayerTimingsList || [];
+    $scope.defaultSetting.prayerTimingsList.unshift({});
+  };
+
+  $scope.addMatchSchedule = function () {
+    $scope.error = '';
+    $scope.defaultSetting.matchScheduleList = $scope.defaultSetting.matchScheduleList || [];
+    $scope.defaultSetting.matchScheduleList.unshift({});
+  };
+
   $scope.addBlockIp = function (block) {
     $scope.error = '';
     block.ipList = block.ipList || [];

@@ -2,10 +2,11 @@
   <div class="tabs">
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.site_settings## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Main Page## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.email_and_text_messages## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#articlesSettings')"> ##word.articles_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.programming## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#block')"> Block </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#block')"> ##word.Block## </a>
     </div>
 
     <div class="tabs-content">
@@ -52,14 +53,7 @@
             </fieldset>
 
             <div class="row">
-              <i-list
-                class="col6"
-                ng-model="defaultSetting.siteTemplate"
-                items="siteTemplateList"
-                display="##session.lang##"
-                ng-search="_search.$searchSiteTemplate"
-                label="##word.site_template##"
-              >
+              <i-list class="col6" ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##">
               </i-list>
               <i-list class="col6" ng-model="defaultSetting.siteColor" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color##"> </i-list>
             </div>
@@ -121,7 +115,118 @@
         </div>
         <i-button type="save" label="##word.save##" x-permissions="defaultSetting_edit || defaultSetting_manage" ng-click="saveSetting('#siteSettings')"></i-button>
       </div>
+      <div id="mainPage" class="tab-content">
+        <div class="article-part">
+          <div class="row">
+            <fieldset>
+              <legend>##word.Temperatures##</legend>
+              <i-checkbox label="##word.Show##" ng-model="defaultSetting.showTemperatures"></i-checkbox>
+              <div class="row" ng-show="defaultSetting.showTemperatures">
+                <i-control class="col6" type="number" label="##word.Great##" ng-model="defaultSetting.temperaturesGreat"> </i-control>
+                <i-control class="col6" type="number" label="##word.Minor##" ng-model="defaultSetting.temperaturesMinor"> </i-control>
+              </div>
+            </fieldset>
 
+            <fieldset>
+              <legend>
+                ##word.Prayer Timings##
+                <i-button type="add default" ng-click="addPrayerTimings()"></i-button>
+              </legend>
+              <i-checkbox label="##word.Show##" ng-model="defaultSetting.showPrayerTimings"></i-checkbox>
+              <table class="table hover bold" ng-show="defaultSetting.showPrayerTimings">
+                <tr>
+                  <th>##word.Name##</th>
+                  <th>##word.Time##</th>
+                  <th class="not-print">##word.actions##</th>
+                </tr>
+
+                <tr ng-repeat="g in defaultSetting.prayerTimingsList track by $index">
+                  <td class="center"><i-control type="text" ng-model="p.name"> </i-control></td>
+                  <td class="center"><i-control type="text" ng-model="p.time"> </i-control></td>
+
+                  <td class="center not-print">
+                    <i-button type="delete" ng-click="prayerTimingsList.splice($index,1)"> </i-button>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+
+            <fieldset>
+              <legend>
+                ##word.Gold Prices##
+                <i-button type="add default" ng-click="addGoldPrices()"></i-button>
+              </legend>
+
+              <i-checkbox label="##word.Show##" ng-model="defaultSetting.showGoldPrices"></i-checkbox>
+              <table class="table hover bold" ng-show="defaultSetting.showGoldPrices">
+                <tr>
+                  <th>##word.Name##</th>
+                  <th>##word.Sales Price##</th>
+                  <th>##word.Purchase Price##</th>
+                  <th>##word.Percentage Change##</th>
+                  <th class="not-print">##word.actions##</th>
+                </tr>
+
+                <tr ng-repeat="g in defaultSetting.goldPricesList track by $index">
+                  <td class="center"><i-control type="text" ng-model="g.name"> </i-control></td>
+                  <td class="center"><i-control type="number" ng-model="g.salesPrice"> </i-control></td>
+                  <td class="center"><i-control type="number" ng-model="g.purchasePrice"> </i-control></td>
+                  <td class="center">
+                    <br />
+                    <i-control type="number" class="row" ng-model="g.percentageChange"> </i-control>
+                    <div class="row">
+                      <i-radio ng-model="discount.type" class="col6" ng-value="increase" group="type_{{$index}}" label="##word.Increase##"> </i-radio>
+
+                      <i-radio ng-model="discount.type" class="col6" group="type_{{$index}}" ng-value="decrease" label="##word.Decrease##"> </i-radio>
+                    </div>
+                  </td>
+
+                  <td class="center not-print">
+                    <i-button type="delete" ng-click="goldPricesList.splice($index,1)"> </i-button>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+
+            <fieldset>
+              <legend>
+                ##word.Match Schedule##
+                <i-button type="add default" ng-click="addMatchSchedule()"></i-button>
+              </legend>
+              <i-checkbox label="##word.Show##" ng-model="defaultSetting.showMatchSchedule"></i-checkbox>
+
+              <table class="table hover bold" ng-show="defaultSetting.showMatchSchedule">
+                <tr>
+                  <th>##word.logo## ##word.Team## 1</th>
+                  <th>##word.logo## ##word.Team## 2</th>
+                  <th>##word.Name## ##word.Team## 1</th>
+                  <th>##word.Name## ##word.Team## 2</th>
+                  <th>##word.Date##</th>
+                  <th>##word.Time##</th>
+                  <th class="not-print">##word.actions##</th>
+                </tr>
+
+                <tr ng-repeat="g in defaultSetting.matchScheduleList track by $index">
+                  <td class="center not-print">
+                    <i-image class="imgsmall" ng-model="l.image1"></i-image>
+                  </td>
+                  <td class="center not-print">
+                    <i-image class="imgsmall" ng-model="m.image2"></i-image>
+                  </td>
+                  <td class="center"><i-control type="text" ng-model="m.name1"> </i-control></td>
+                  <td class="center"><i-control type="text" ng-model="m.name2"> </i-control></td>
+                  <td class="center"><i-control type="text" ng-model="m.date"> </i-control></td>
+                  <td class="center"><i-control type="text" ng-model="m.time"> </i-control></td>
+
+                  <td class="center not-print">
+                    <i-button type="delete" ng-click="matchScheduleList.splice($index,1)"> </i-button>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+          </div>
+        </div>
+      </div>
       <div id="emailAndTextMessages" class="tab-content">
         <fieldset>
           <legend>##word.mobile_sms##</legend>
@@ -169,13 +274,7 @@
         <fieldset>
           <div class="row">
             <div class="col6">
-              <i-list
-                ng-model="defaultSetting.article.status"
-                items="articleStatusList"
-                display="##session.lang##"
-                ng-search="_search.$searchArticleStatus"
-                label="##word.article_status##"
-              ></i-list>
+              <i-list ng-model="defaultSetting.article.status" items="articleStatusList" display="##session.lang##" ng-search="_search.$searchArticleStatus" label="##word.article_status##"></i-list>
 
               <i-list
                 ng-model="defaultSetting.article.publishingSystem"
@@ -186,13 +285,7 @@
               ></i-list>
 
               <div class="article-part">
-                <i-list
-                  ng-model="defaultSetting.article.closingSystem"
-                  items="closingSystemList"
-                  display="##session.lang##"
-                  ng-search="_search.$searchClosingSystem"
-                  label="##word.closing_system##"
-                >
+                <i-list ng-model="defaultSetting.article.closingSystem" items="closingSystemList" display="##session.lang##" ng-search="_search.$searchClosingSystem" label="##word.closing_system##">
                 </i-list>
                 <div class="row">
                   <i-control ng-show="defaultSetting.article.closingSystem.id == 1" label="##word.duration##" type="number" class="col6" ng-model="defaultSetting.article.duration"></i-control>
