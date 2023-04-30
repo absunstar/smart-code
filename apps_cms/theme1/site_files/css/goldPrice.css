@@ -1,0 +1,198 @@
+ /*start gold price */
+ /*start gold price toggle */
+
+ .goldpricetoggle{
+    width: 150px;
+    background-color: var(--golden-color);
+    padding: 8px;
+    border-radius: 15px 0 0 15px;
+    color:var(--text-color);
+    position:fixed;
+    top: 250px;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    margin-left: 35px;
+    cursor: pointer;
+ }
+
+ .goldpricetoggle:hover{
+    left: 92.8%;
+    transform: translate(-50%, -50%);
+    margin-left: 25px;
+ }
+
+ .goldpricetoggle > label{
+
+    cursor: pointer;
+
+ }
+
+ /* end gold price toggle */
+
+ /*start gold price screen */
+
+
+ .showAnddisplay{
+    display: flex !important;
+ }
+
+ .closeGoldbutton {
+    width: 100%;
+    }
+ .closeGoldbutton > .closeButton > .fa-times{
+    color: var(--primary-color);
+    cursor: pointer;
+ }
+
+ .closeGoldbutton > .closeButton > .fa-times:hover{
+    color: var(--secondary-color);
+    cursor: pointer;
+ }
+
+ .mainGoldprice{
+    display: none;
+    width:100%;
+    height:100%;
+    position:fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.678);
+    z-index: 201;
+
+}
+
+.goldprices{
+    width: 800px;
+    height: 80%;
+    background-color: var(--text-color);
+    border-radius: 15px;
+
+}
+
+
+.card {
+    width: 200px;
+    height: 280px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    background-color: var(--six-color);
+}
+
+.slider-container {
+    width: 550px;
+    height: 280px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: scroll;
+}
+.slider-container::-webkit-scrollbar{
+    display: none;
+}
+.inner-slider {
+    width: auto;
+    display: flex;
+    gap: 10px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+ 
+.pricGoldname >label{
+    font-size: 24px;
+    
+}
+.goldpricecard{
+    width: 200px;
+    height: 280px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+.goldCarat{
+    width: 100%;
+    font-size: var(--title);
+    color: var(--text-color);
+    background-color: var(--golden-color);
+    border-radius: 15px 15px 0 0;
+}
+
+.sellPrice{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.hlGold{
+    border-top: 2px solid var(--fourth-color);
+    width: 50px;
+}
+
+.buyPrice{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.pricenumber{
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.pricecurrency{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.goldrate{
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    color: var(--text-color);
+}
+
+.goldRateDown{
+    background-color: var(--secondary-color);
+}
+
+.goldRateUP{
+    background-color: var(--seven-color);
+}
+
+.goldadd{
+    background-color: var(--seven-color);
+    color: var(--text-color);
+    width: 100%;
+}
+
+ /*start gold price screen */
+
+@media (min-width: 1400px) { 
+    .goldpricetoggle:hover{
+        left: 94.8%;
+     }   
+
+ }
+
+@media (min-width: 768px) and (max-width: 1199px) { 
+    .goldpricetoggle:hover{
+        left: 89%;
+     }   
+    .goldprices{
+        width: 90%;
+    }
+
+ }
+
+ @media (max-width: 767px) { 
+    .goldpricetoggle:hover{
+        left: 80%;
+     }
+
+    .goldprices{
+        width: 90%;
+    }
+    .slider-container {
+        width: 80%;
+
+    }
+
+ }

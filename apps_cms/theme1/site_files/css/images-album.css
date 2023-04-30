@@ -1,0 +1,141 @@
+/* start left sidebar */
+.allSections{
+    height: 50%;
+    border: 2px solid var(--fourth-color);
+    border-radius: 15px;
+    position: sticky;
+    top: 50px;
+}
+
+.sections > ul > li  {
+    text-align: center;
+    width: 25vw;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--fourth-color);
+}
+
+.sections > ul > li > a {
+    color: var(--primary-color);
+}
+
+.Sectionheader{
+    width: 300px;
+    height: 70px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-size: 28px;
+    padding: 0 24px;
+    border-radius: 45px 0px 0px 45px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.ad{
+    width: 100%;
+}
+
+.imageNews{
+    width: 364px;
+    height: 300px;
+    cursor: pointer;
+}
+
+/* end left sidebar */
+
+
+/* start album slider */
+.album .showAnddisplay{
+    display: flex !important;
+ }
+
+.albumimageslider{
+    display: none;
+    width:100%;
+    height:100%;
+    position:fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.678);
+}
+
+.imageslider-slider-container {
+    width: 1124px;
+    height: 576px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: scroll;
+}
+
+.imageslider-slider-container::-webkit-scrollbar{
+    display: none;
+}
+
+.imageslider-inner-slider {
+    width: auto;
+    display: flex;
+    gap: 10px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.cardimageslider {
+    width: 1024px;
+    height: 576px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    background-color: var(--fourth-color);
+}
+.cardimageslider > img {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+
+}
+
+/* end album slider */
+
+@media (min-width: 768px) and (max-width: 1199px) { 
+
+    .imageslider-slider-container {
+        width: 80%;
+        height: 85%;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+    }
+
+    .cardimageslider {
+        width: 550px;
+        height: 300px;
+    }
+
+ }
+
+ @media (max-width: 767px) { 
+
+    .imageNews{
+        width: 320px;
+    }
+   
+    .imageslider-slider-container {
+        width: 80%;
+        height: 85%;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+    }
+
+    .cardimageslider {
+        width: 320px;
+        height: 200px;
+    }
+
+
+
+ }

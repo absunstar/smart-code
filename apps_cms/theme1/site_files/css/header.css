@@ -1,0 +1,487 @@
+@import "colorstheme.css";
+
+* {
+    /*font size variable*/
+    --head-title: 12px;
+    --title: 18px;
+    --readTime: 12px;
+}
+
+    .mainHeader {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* start top header */
+    
+    .topHeader {
+        width: inherit;
+        padding: 0px;
+        height: 57px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    }
+    
+    .breakingTitle {
+        font-size: 18px;
+        height: inherit;
+        width: 9%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--secondary-color);
+    }
+    
+    .newsText {
+        width: 82%;
+        font-size: 14px;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .newsText > ul {
+        width: calc(443.98px*7);
+        overflow: hidden;
+        display: flex;
+        gap: 8px;
+        flex-direction: row;
+        overflow: hidden;
+        animation: newsText 60s linear infinite;
+        direction: rtl;
+        
+    }
+    .newsText > ul > li {
+        display: inline-block;
+        
+    }
+    .newsText > ul > li > a {
+        color:var(--text-color)
+    }
+
+
+
+    @keyframes newsText {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(100%, 0);
+        }
+      }
+    
+    .time {
+        font-size: 18px;
+        height: inherit;
+        width: 9%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--secondary-color);
+    }
+
+    #todaydateMdscreen{
+        font-size: 14px;
+    }
+
+    #todaydateXsscreen{
+        font-size: 12px;
+    }
+    
+    /* end top header */
+
+    /* start editor And Ceo header */
+
+        .editorAndCeoHeader{
+            height: 55px;
+            background-color: var(--eight-color);
+            padding: 10px 9%;
+        }
+
+    /* end editor And Ceo header */
+    
+    /* start mid header */
+
+    .midHeader {
+        padding: 0 9%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        height: 109px;
+        border-bottom: 5px solid var(--secondary-color);
+        border-radius: 0 0 15px 15px;
+    }
+
+    .midHeadercontainer{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logoAndHead {
+        /* width: 35%; */
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 16px;
+    }
+    
+    .logo {
+        background-color: bisque;
+        /* width: 133.5px;
+        height: 64.5px; */
+    }
+    
+    .ceo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        color:var(--secondary-color);
+    }
+    
+    .headOfEditor {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    
+    .headTitle {
+        font-size: var(--head-title);
+        font-weight: 500;
+    }
+    
+    
+    .ceo .title {
+        font-size: 16px;
+        color:var(--secondary-color);
+        font-weight:600;
+        direction: rtl;
+    }
+
+    .headOfEditor .title {
+        font-size: 16px;
+        font-weight: 600;
+        direction: rtl;
+    }
+    
+    .SearchBAr {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        margin: 0 16px;
+        padding: 0 24px;
+        gap: 24px;
+        border: 1px solid var(--secondary-color);
+        border-radius: 50px;
+        height: 59px;
+    
+    }
+    
+    .fa-search {
+        font-size: 20px !important;
+        color: var(--secondary-color);
+    }
+    
+    .vl {
+        border-left: 3px solid var(--secondary-color);
+        height: 39px;
+    }
+    
+    .searchField {
+        width: 100%;
+    }
+    
+    .searchInput {
+        width: 100%;
+        height: 50px;
+        padding: 0 16px;
+        direction: rtl;
+        border: 0px solid #741212ef;
+    }
+    
+    .searchInput:focus {
+        outline: 0px solid #ffffff00 !important;
+    }
+    
+    .headerWidget {
+        /* width: 30%; */
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 0 16px;
+        gap: 16px;
+    }
+    
+    .weather {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 151px;
+        height: 73px;
+    }
+    
+    .weatherIcon {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+    }
+    
+    .vlWeather {
+        border-left: 1px solid var(--secondary-color);
+        height: 20px;
+    }
+    
+    .weatherDetails {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--six-color);
+        gap: 8px;
+        padding: 2px 3px;
+        font-size: 12px;
+        border-radius: 15px;
+        box-shadow: 0 0 7px #00000047;
+    }
+    
+    .PrayerTime {
+        width: 151px;
+        height: 73px;
+        cursor: pointer;
+        z-index: 200;
+    }
+    
+    .PrayerIcon {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-right: 16px;
+    }
+    
+    .vlPrayer {
+        border-left: 1px solid var(--secondary-color);
+        height: 20px;
+    }
+    
+    .PrayerDetails {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--six-color);
+        gap: 8px;
+        padding: 2px 3px;
+        font-size: 12px;
+        border-radius: 15px;
+        box-shadow: 0 0 7px #00000047;
+    }
+
+    .showAnddisplay{
+        display: flex !important;
+     }
+
+
+    .paryertimeItems {
+        display: none;
+        width: 180px;
+        margin-top: 8px;
+        background-color: var(--six-color);
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+    }
+
+    .paryertimeItems > li > div{
+
+        font-size: 12px ;
+    }
+    
+    /* end mid header */
+    
+    /* start bottom header */
+
+    .bottomHeader {
+        padding: 0 9%;
+        background-color: #FFFFFF;
+        box-shadow: 1px 5px 6px rgb(0 0 0 / 12%);
+        border-radius: 0px 0px 15px 15px;
+    }
+
+    .navbarlist {
+        height: 50px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+    
+    }
+    .navbarlist > .dropdown{
+        z-index: 2;
+    }
+
+    .navbarlist > li > a {
+        color:var(--primary-color);
+    }
+
+    .navbarlist > li > a:hover {
+        color:var(--secondary-color);
+    }
+
+    .nav-link:focus, .nav-link:hover {
+        color: var(--secondary-color);
+    }
+    /* end bottom header */
+
+
+
+
+    @media (min-width: 1200px) and (max-width: 1399px) { 
+        
+        .midHeader {
+            padding: 0 2%;
+
+        }
+        .bottomHeader {
+            padding: 0 2%;
+        }
+    
+     }
+
+    @media (min-width: 768px) and (max-width: 1199px) { 
+        
+        .midHeader {
+            padding: 0;
+
+        }
+
+        .logoAndHead {
+            /* width: 45%; */
+        }
+
+        .SearchBAr {
+            width: 70%;
+
+        }
+
+        .bottomHeader {
+            padding: 0 2%;
+        }
+    
+     }
+    @media (max-width: 767px) { 
+
+        .topHeader {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 45px;
+        }
+        .breakingTitle {
+            font-size: 12px;
+            width: 10%;
+        }
+        
+        .newsText {
+            width: 70%;
+            z-index: -2;
+            white-space: nowrap;
+            padding-right: 5px;
+        }
+        
+        .time {
+            font-size: 14px;
+            z-index: -1;
+            width: 20%;
+        }
+        
+        .midHeader {
+            height: auto;
+            padding: 0 0 15px 0;
+
+        }
+
+        .midHeadercontainer{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logoAndHead {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            width: 100%;
+            padding: 15px 15px;
+            margin-bottom: 15px;
+            justify-content: end;
+            gap:25px;
+        }
+
+        .headTitle {
+            font-size: 10px;
+        }
+        
+        .title {
+            font-size: 12px;
+        }
+
+        .head{
+            display: flex;
+            justify-self: start;
+            flex-direction: column;
+            gap:8px
+        }
+        .SearchBAr {
+            width: 100%;
+        }
+        
+        .bottomHeader {
+            width: 90%;
+            position: fixed;
+            bottom: 10%;
+            translate: 6%;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            height: 51px;
+            background-color: var(--secondary-color);
+            border-radius: 25px 25px 25px 25px;
+
+
+        }
+
+        .navbarlist{
+            font-size: 25px;
+
+        }
+
+        .navbarlist li::before{
+            color:var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            transition: 0.5 ease-in;
+        }
+
+        .navbarlist li:hover{
+            color:var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            
+            
+        }
+
+        .vlstickybottom{
+            border-left: 3px solid var(--text-color);
+            height: 39px;
+        }
+    
+     }
