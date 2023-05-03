@@ -37,5 +37,20 @@ module.exports = function init(site) {
   });
 
 
+  site.get({
+    name: ['/js/theme1.js'],
+    parser: 'js',
+    public: true,
+    compress: !0,
+    path: [
+      __dirname + '/site_files/js/bootstrap.bundle.min.js',
+      __dirname + '/site_files/js/all.min.js',
+      __dirname + '/site_files/js/script.js',
+      __dirname + '/site_files/js/mainSlider.js',
+      __dirname + '/site_files/js/goldprice.js',
+      __dirname + '/site_files/js/footballMatches.js',
+      __dirname + '/site_files/js/convertCurrancy.js',
+    ],
+  });
 
 };

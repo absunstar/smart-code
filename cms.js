@@ -49,10 +49,13 @@ site.get(
           page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
           page_description: site.setting.languagesList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
-          categoriesList1: site.categoriesList.map((c) => ({ name: c.translatedList[0].name })).splice(0, 7),
-          categoriesList2: site.categoriesList.map((c) => ({ name: c.translatedList[0].name })).splice(7,14),
-          categoriesList3: site.categoriesList.map((c) => ({ name: c.translatedList[0].name })).splice(14),
-          topNews : site.articlesList.filter(a=> a.appearInUrgent === true).map((c) => ({ title: c.translatedList[0].title })).splice(0,10)
+          categoriesList1: site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7),
+          categoriesList2: site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14),
+          categoriesList3: site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14),
+          topNews: site.articlesList
+            .filter((a) => a.appearInUrgent === true)
+            .map((c) => ({ title: c.translatedList[0].title }))
+            .splice(0, 10),
         },
         {
           parser: 'html css js',
