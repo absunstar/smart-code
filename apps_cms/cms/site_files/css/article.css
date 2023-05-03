@@ -13,6 +13,8 @@
 }
 .article-part label{
     font-size: 14px;
+    font-weight: bold;
+    color: #9C27B0;
 }
 .article-editor{
     border: 2px solid var(--theme-color);

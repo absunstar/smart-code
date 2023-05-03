@@ -1,0 +1,142 @@
+ <!-- start Burger Menu -->
+ <div x-permission="test" id="burgermenuoverlay" class="burgermenuoverlay">
+    <div class="burgermenu d-flex d-md-none flex-column gap-4 justify-content-start align-items-end">
+        <div class="closeburgerbutton">
+            <div class="closeButton d-flex flex-row justify-content-end align-items-end">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="SearchBAr">
+            <div class="searchIcon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="vl"></div>
+            <div class="searchField">
+                <input type="search" class="searchInput" placeholder="ما الخبر الذي تبحث عنه .... ؟">
+            </div>
+        </div>
+        <div class="w-100 headerWidget d-flex flex-column align-items-end">
+            <div class="weather">
+                <div class="weatherIcon">
+                    <img src="/theme1/assetes/Moon2.png" width="50px" height="50px">
+                    <img src="/theme1/assetes/sun2.png" width="50px" height="50px">
+                </div>
+                <div class="weatherDetails">
+                    <p>العظمى °27</p>
+                    <div class="vlWeather"></div>
+                    <p>الصغرى °17</p>
+                </div>
+            </div>
+            <div id="PrayerTime" class="PrayerTime">
+                <div class="PrayerIcon">
+                    <img src="/theme1/assetes/619087.png" width="50px" height="50px">
+                </div>
+                <div class="PrayerDetails">
+                    <p>صلاة الظهر</p>
+                    <div class="vlPrayer"></div>
+                    <p>12:03 مساءاً</p>
+                </div>
+            </div>
+            <div class="paryertimesubmenu ">
+                <ul id="paryertimeItems" class="list-group paryertimeItems">
+                    <li class="list-group-item">
+                        <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+                            <p>صلاة الظهر</p>
+                            <div class="vlPrayer"></div>
+                            <p>12:03 مساءاً</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+                            <p>صلاة العصر</p>
+                            <div class="vlPrayer"></div>
+                            <p>12:03 مساءاً</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+                            <p>صلاة المغرب</p>
+                            <div class="vlPrayer"></div>
+                            <p>12:03 مساءاً</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+                            <p>صلاة العشاء</p>
+                            <div class="vlPrayer"></div>
+                            <p>12:03 مساءاً</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+                            <p>صلاة الفجر</p>
+                            <div class="vlPrayer"></div>
+                            <p>12:03 مساءاً</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="w-100 mainSection d-flex flex-column align-items-end">
+            <div class="headSectionTitle">
+                <label>الأقسام</label>
+            </div>
+            <div class="allsections ">
+                <div class="sectiontitle "> <p><a href="./index.html">الرئيسية</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">عاجل</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">سياسة</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">تقارير</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">حوادث</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">نحقيقات</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">اقتصاد</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">رياضة</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">كرة عالمية</a></p> </div>
+                <div class="sectiontitle "> <p><a href="./news-section-page.html">سينما وفنون</a></p> </div>
+            </div>
+        </div>
+        <div class="w-100 mainNotfication d-flex flex-column align-items-end">
+            <div class="headSectionTitle">
+                <label>الأشعارات</label>
+            </div>
+            <div class="notficationSections d-flex flex-row-reverse gap-2 justify-content-center align-items-center ">
+                <div class="notficationtitle "> <p>استقبال إشعارات  بأحدث الأخبار</p> </div>
+                <div class="notficationToggel "> 
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" >
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="w-100 mainFollowUs d-flex flex-column align-items-end">
+            <div class="headSectionTitle">
+                <label>تابعنا على</label>
+            </div>
+            <div class="FollowUsIcon">
+                <div class="w-100 d-flex flex-row justify-content-between gap-4">
+                    <div class="socialMediaIcon">
+                        <a href="http://">
+                        <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                    <div class="socialMediaIcon">
+                        <a href="http://">
+                        <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="socialMediaIcon">
+                        <a href="http://">
+                        <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <div class="socialMediaIcon">
+                        <a href="http://">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end Burger Menu -->

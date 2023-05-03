@@ -22,7 +22,9 @@ app.controller("pages", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     };
+    if(window.addEditor){
     $scope.pages.content =  window.addEditor.getContents();
+    }
     $scope.busy = true;
     $http({
       method: "POST",

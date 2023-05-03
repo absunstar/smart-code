@@ -1,4 +1,4 @@
-app.controller("pages", function ($scope, $http, $timeout) {
+app.controller('pages', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.pages = {};
@@ -7,11 +7,10 @@ app.controller("pages", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.pages = {
       image: '/images/pages.png',
-      active: true/* ,
-      immediate : false */
+      active: true /* ,
+      immediate : false */,
     };
     site.showModal('#pageImplementAddModal');
-    
   };
 
   $scope.addPageImplement = function () {
@@ -21,13 +20,15 @@ app.controller("pages", function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
-    $scope.pages.content =  window.addEditor.getContents();
+    }
+    if (window.addEditor) {
+      $scope.pages.content = window.addEditor.getContents();
+    }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/pages/add",
-      data: $scope.pages
+      method: 'POST',
+      url: '/api/pages/add',
+      data: $scope.pages,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -36,13 +37,12 @@ app.controller("pages", function ($scope, $http, $timeout) {
           $scope.getPageImplementList();
         } else {
           $scope.error = response.data.error;
-     
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdatePageImplement = function (pages) {
@@ -59,12 +59,12 @@ app.controller("pages", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    $scope.pages.content =  window.editEditor.getContents();
+    $scope.pages.content = window.editEditor.getContents();
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/pages/update",
-      data: $scope.pages
+      method: 'POST',
+      url: '/api/pages/update',
+      data: $scope.pages,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -78,7 +78,7 @@ app.controller("pages", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsPageImplement = function (pages) {
@@ -92,11 +92,11 @@ app.controller("pages", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.error = '';
     $http({
-      method: "POST",
-      url: "/api/pages/view",
+      method: 'POST',
+      url: '/api/pages/view',
       data: {
-        id: pages.id
-      }
+        id: pages.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -110,7 +110,7 @@ app.controller("pages", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeletePageImplement = function (pages) {
@@ -118,7 +118,6 @@ app.controller("pages", function ($scope, $http, $timeout) {
     $scope.viewPageImplement(pages);
     $scope.pages = {};
     site.showModal('#pageImplementDeleteModal');
-
   };
 
   $scope.deletePageImplement = function () {
@@ -126,11 +125,11 @@ app.controller("pages", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     $http({
-      method: "POST",
-      url: "/api/pages/delete",
+      method: 'POST',
+      url: '/api/pages/delete',
       data: {
-        id: $scope.pages.id
-      }
+        id: $scope.pages.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -144,18 +143,18 @@ app.controller("pages", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getPageImplementList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
-      method: "POST",
-      url: "/api/pages/all",
+      method: 'POST',
+      url: '/api/pages/all',
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -170,20 +169,18 @@ app.controller("pages", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#pageImplementSearchModal');
-
   };
 
-  $scope.searchAll = function () { 
+  $scope.searchAll = function () {
     $scope.getPageImplementList($scope.search);
     site.hideModal('#pageImplementSearchModal');
     $scope.search = {};
-
   };
 
   $scope.getPageImplementList();

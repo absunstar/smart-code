@@ -179,19 +179,21 @@ module.exports = function init(site) {
 
     response.list = [];
     site.countryList.forEach((doc) => {
-      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
-        let obj = {
-          ...doc,
-          ...langDoc,
-        };
+      if (doc && doc.translatedList) {
+        if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+          let obj = {
+            ...doc,
+            ...langDoc,
+          };
 
-        for (const p in obj) {
-          if (!Object.hasOwnProperty.call(select, p)) {
-            delete obj[p];
+          for (const p in obj) {
+            if (!Object.hasOwnProperty.call(select, p)) {
+              delete obj[p];
+            }
           }
-        }
-        if (!where.active || doc.active) {
-          response.list.push(obj);
+          if (!where.active || doc.active) {
+            response.list.push(obj);
+          }
         }
       }
     });

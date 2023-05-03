@@ -53,7 +53,9 @@ app.controller('articles', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    $scope.article.content2 = window.addEditor.getContents();
+    if (window.addEditor) {
+      $scope.article.content2 = window.addEditor.getContents();
+    }
 
     $scope.busy = true;
     $http({
@@ -83,7 +85,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.viewArticles(article);
     $scope.article = {};
     site.showModal('#articleManageModal');
-    document.querySelector('#articleManageModal .tab-link').click();
   };
 
   $scope.updateArticles = function () {
@@ -93,8 +94,9 @@ app.controller('articles', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    $scope.article.content2 = window.addEditor.getContents();
-
+    if (window.addEditor) {
+      $scope.article.content2 = window.addEditor.getContents();
+    }
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -124,7 +126,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.viewArticles(article);
 
     site.showModal('#articleManageModal');
-    document.querySelector('#articleManageModal .tab-link').click();
   };
 
   $scope.viewArticles = function (article) {
@@ -141,7 +142,9 @@ app.controller('articles', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.article = response.data.doc;
-          window.addEditor.setContents($scope.article.content2);
+          if (window.addEditor) {
+            window.addEditor.setContents($scope.article.content2);
+          }
         } else {
           $scope.error = response.data.error;
         }
@@ -158,7 +161,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.article = {};
     $scope.viewArticles(article);
     site.showModal('#articleManageModal');
-    document.querySelector('#articleManageModal .tab-link').click();
   };
 
   $scope.deleteArticles = function () {
@@ -187,11 +189,11 @@ app.controller('articles', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getArticlesRelatedList = function (ev,where) {
+  $scope.getArticlesRelatedList = function (ev, where) {
     $scope.busy = true;
     $scope.list = [];
     if (ev.which !== 13 || where == undefined) {
-        return;
+      return;
     }
 
     $http({
@@ -199,7 +201,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       url: '/api/articles/all',
       data: {
         search: where,
-        limit : 50,
+        limit: 50,
       },
     }).then(
       function (response) {
@@ -648,12 +650,10 @@ app.controller('articles', function ($scope, $http, $timeout) {
 
         $scope.article.translatedList[0].keyWordsList.forEach((_k) => {
           if ($scope.article.$autoTranslate) {
-            SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: _k, to: lang.id }, (info) =>{
-
-              $scope.article.translatedList[$scope.article.translatedList.length - 1].keyWordsList.push(info.translatedText)
+            SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: _k, to: lang.id }, (info) => {
+              $scope.article.translatedList[$scope.article.translatedList.length - 1].keyWordsList.push(info.translatedText);
               $scope.$applyAsync();
-            }
-            );
+            });
           } else {
             $scope.article.translatedList[$scope.article.translatedList.length - 1].keyWordsList.push({ ..._k });
           }
@@ -672,19 +672,16 @@ app.controller('articles', function ($scope, $http, $timeout) {
 
         $scope.article.translatedList[0].tagsList.forEach((_k) => {
           if ($scope.article.$autoTranslate) {
-            SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: _k, to: lang.id }, (info) =>{
-
+            SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: _k, to: lang.id }, (info) => {
               $scope.article.translatedList[$scope.article.translatedList.length - 1].tagsList.push(info.translatedText);
               $scope.$applyAsync();
-            }
-            );
+            });
           } else {
             $scope.article.translatedList[$scope.article.translatedList.length - 1].tagsList.push({ ..._k });
           }
         });
 
         if ($scope.article.$autoTranslate) {
-
         } else {
           $scope.article.translatedList[0].tagsList.forEach((_k) => {
             $scope.article.translatedList[$scope.article.translatedList.length - 1].tagsList.push({ ..._k });
@@ -728,73 +725,50 @@ app.controller('articles', function ($scope, $http, $timeout) {
       }
       if ($scope.article.$autoTranslate) {
         if ($scope.article.translatedList[$scope.article.translatedList.length - 1].title) {
-          SOCIALBROWSER.translate(
-            { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].title, to: lang.id },
-            (info) => {
-              ($scope.article.translatedList[$scope.article.translatedList.length - 1].title = info.translatedText);
-              $scope.$applyAsync();
-            }
-          );
+          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].title, to: lang.id }, (info) => {
+            $scope.article.translatedList[$scope.article.translatedList.length - 1].title = info.translatedText;
+            $scope.$applyAsync();
+          });
         }
 
         if ($scope.article.translatedList[$scope.article.translatedList.length - 1].content) {
-          SOCIALBROWSER.translate(
-            { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].content, to: lang.id },
-            (info) => {
-              ($scope.article.translatedList[$scope.article.translatedList.length - 1].content = info.translatedText)
-              $scope.$applyAsync();
-            }
-          );
+          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].content, to: lang.id }, (info) => {
+            $scope.article.translatedList[$scope.article.translatedList.length - 1].content = info.translatedText;
+            $scope.$applyAsync();
+          });
         } else if ($scope.article.translatedList[$scope.article.translatedList.length - 1].contentText) {
-          SOCIALBROWSER.translate(
-            { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].contentText, to: lang.id },
-            (info) => {
-              ($scope.article.translatedList[$scope.article.translatedList.length - 1].contentText = info.translatedText)
-              $scope.$applyAsync();
-            }
-          );
+          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].contentText, to: lang.id }, (info) => {
+            $scope.article.translatedList[$scope.article.translatedList.length - 1].contentText = info.translatedText;
+            $scope.$applyAsync();
+          });
         }
 
-
         if ($scope.article.translatedList[0].socialTitle) {
-          SOCIALBROWSER.translate(
-            { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].socialTitle, to: lang.id },
-            (info) => {
-              ($scope.article.translatedList[$scope.article.translatedList.length - 1].socialTitle = info.translatedText);
-              $scope.$applyAsync();
-            }
-          );
+          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].socialTitle, to: lang.id }, (info) => {
+            $scope.article.translatedList[$scope.article.translatedList.length - 1].socialTitle = info.translatedText;
+            $scope.$applyAsync();
+          });
         }
 
         if ($scope.article.translatedList[0].socialDescription) {
-          SOCIALBROWSER.translate(
-            { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].socialDescription, to: lang.id },
-            (info) => {
-              ($scope.article.translatedList[$scope.article.translatedList.length - 1].socialDescription = info.translatedText);
-              $scope.$applyAsync();
-
-            }
-          );
+          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].socialDescription, to: lang.id }, (info) => {
+            $scope.article.translatedList[$scope.article.translatedList.length - 1].socialDescription = info.translatedText;
+            $scope.$applyAsync();
+          });
         }
 
         if ($scope.article.translatedList[0].externalTitle) {
-          SOCIALBROWSER.translate(
-            { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].externalTitle, to: lang.id },
-            (info) => {
-              ($scope.article.translatedList[$scope.article.translatedList.length - 1].externalTitle = info.translatedText)
-              $scope.$applyAsync();
-            }
-          );
+          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].externalTitle, to: lang.id }, (info) => {
+            $scope.article.translatedList[$scope.article.translatedList.length - 1].externalTitle = info.translatedText;
+            $scope.$applyAsync();
+          });
         }
 
         if ($scope.article.translatedList[0].externalDescription) {
-          SOCIALBROWSER.translate(
-            { from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].externalDescription, to: lang.id },
-            (info) => {
-              ($scope.article.translatedList[$scope.article.translatedList.length - 1].externalDescription = info.translatedText)
-              $scope.$applyAsync();
-            }
-          );
+          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].externalDescription, to: lang.id }, (info) => {
+            $scope.article.translatedList[$scope.article.translatedList.length - 1].externalDescription = info.translatedText;
+            $scope.$applyAsync();
+          });
         }
       }
 
@@ -859,7 +833,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.addRelatedArticle = function (relatedArticle) {
     $scope.error = '';
     $scope.article.relatedArticle = $scope.article.relatedArticle || [];
-    let foundRelatedArticle = $scope.article.relatedArticle.some(_r => _r.id === relatedArticle.id);
+    let foundRelatedArticle = $scope.article.relatedArticle.some((_r) => _r.id === relatedArticle.id);
 
     $scope.article.relatedArticle.push({ active: true });
   };

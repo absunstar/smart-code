@@ -19,7 +19,6 @@ module.exports = function init(site) {
     compress: true,
   });
 
-
   site.post('/api/clusters/add', (req, res) => {
     let response = {
       done: false,
@@ -53,7 +52,6 @@ module.exports = function init(site) {
       }
       res.json(response);
     });
-
   });
 
   site.post('/api/clusters/update', (req, res) => {
@@ -103,7 +101,6 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
-
   });
 
   site.post('/api/clusters/view', (req, res) => {
@@ -129,7 +126,7 @@ module.exports = function init(site) {
       response.doc = ad;
       res.json(response);
     } else {
-      response.error = 'no id'
+      response.error = 'no id';
       res.json(response);
     }
   });
@@ -145,7 +142,6 @@ module.exports = function init(site) {
       return;
     }
 
-   
     if (!req.body.id) {
       response.error = 'no id';
       res.json(response);
@@ -183,19 +179,21 @@ module.exports = function init(site) {
 
     response.list = [];
     site.clusterList.forEach((doc) => {
-      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
-        let obj = {
-          ...doc,
-          ...langDoc,
-        };
+      if (doc && doc.translatedList) {
+        if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+          let obj = {
+            ...doc,
+            ...langDoc,
+          };
 
-        for (const p in obj) {
-          if (!Object.hasOwnProperty.call(select, p)) {
-            delete obj[p];
+          for (const p in obj) {
+            if (!Object.hasOwnProperty.call(select, p)) {
+              delete obj[p];
+            }
           }
-        }
-        if (!where.active || doc.active) {
-          response.list.push(obj);
+          if (!where.active || doc.active) {
+            response.list.push(obj);
+          }
         }
       }
     });
@@ -203,5 +201,4 @@ module.exports = function init(site) {
     response.done = true;
     res.json(response);
   });
-
 };

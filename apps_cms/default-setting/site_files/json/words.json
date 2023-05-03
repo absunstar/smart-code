@@ -10,6 +10,21 @@
     "ar": "الصفحة الرئيسية"
   },
   {
+    "name": "showManager",
+    "en": "showManager",
+    "ar": "ظهور بيانات المديرين "
+  },
+  {
+    "name": "ceoManager",
+    "en": "CEO Manager",
+    "ar": "رئيس مجلس الادارة"
+  },
+  {
+    "name": "editorManager",
+    "en": "Editor Manager",
+    "ar": "رئيس التحرير"
+  },
+  {
     "name": "Gold Prices",
     "en": "Gold Prices",
     "ar": "أسعار الذهب"
@@ -129,7 +144,6 @@
     "en": "Tax Number show",
     "ar": "إظهار الرقم الضريبي"
   },
-
   {
     "name": "allow_registration_through_email",
     "en": "Allow registration through email",
@@ -194,6 +208,18 @@
     "name": "site_color",
     "en": "Site color",
     "ar": "اللون العام للموقع"
+  },{
+    "name": "site_color_1",
+    "en": "Site color 1",
+    "ar": "لون الموقع 1"
+  },{
+    "name": "site_color_2",
+    "en": "Site color 2",
+    "ar": "لون الموقع 2"
+  },{
+    "name": "site_color_3",
+    "en": "Site color 3",
+    "ar": "لون الموقع 3"
   },
   {
     "name": "site_description",

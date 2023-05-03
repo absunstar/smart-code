@@ -7,4 +7,11 @@ module.exports = function init(site) {
     name: '/api/feedback_type/all',
     path: __dirname + '/site_files/json/feedback_type.json',
   });
+  
+  site.get({
+    name: 'admin',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
 };

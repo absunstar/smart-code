@@ -13,49 +13,26 @@
       <div id="siteSettings" class="tab-content">
         <div class="article-part">
           <div class="row">
-            <fieldset>
-              <legend>Languages</legend>
-              <div class="row" ng-repeat="l in defaultSetting.languagesList track by $index">
-                <div class="row">
-                  <div class="article-part">
-                    <p class="col4 margin font-23">{{l.language.##session.lang##}}</p>
-                    <i-checkbox class="col3" label="##word.active##" ng-model="l.language.active"> </i-checkbox>
-                  </div>
-                </div>
-                <div class="row" ng-show="l.language.active">
-                  <div class="col9">
-                    <div class="row">
-                      <i-control label="##word.site_name##" class="col6" ng-model="l.siteName"> </i-control>
-                      <i-control label="Title separator" class="col6" ng-model="l.titleSeparator"> </i-control>
-                    </div>
-                    <div class="row">
-                      <i-control label="##word.site_slogan##" ng-model="l.siteSlogan"> </i-control>
-                    </div>
-                    <div class="row">
-                      <i-textarea ng-model="l.description" label="##word.site_description##"> </i-textarea>
-                    </div>
-                    <fieldset>
-                      <i-control label="##word.keywords##" ng-keydown="addKeyWords($event , defaultSetting.$keyword)" ng-model="defaultSetting.$keyword"> </i-control>
-                      <div class="row">
-                        <div class="key-words" ng-repeat="k in defaultSetting.keyWordsList">
-                          <span>{{k}}</span>
-                          <i class="fas fa-times delete-key" ng-click="defaultSetting.keyWordsList.splice($index,1)"></i>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                  <div class="col3">
-                    <i-image label="##word.logo##" class="img128" ng-model="l.logo"></i-image>
-                  </div>
-                </div>
-                <hr />
-              </div>
-            </fieldset>
-
-            <div class="row">
-              <i-list class="col6" ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##">
+            <div class="col3">
+              <i-image class="img256" ng-model="defaultSetting.siteLogo"></i-image>
+              <i-image class="img64" ng-model="defaultSetting.topNewsLogo"></i-image>
+            </div>
+            <div class="col9">
+              <i-list ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##">
               </i-list>
-              <i-list class="col6" ng-model="defaultSetting.siteColor" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color##"> </i-list>
+              <i-list ng-model="defaultSetting.siteColor1" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_1##"> </i-list>
+              <i-list ng-model="defaultSetting.siteColor2" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_2##"> </i-list>
+              <i-list ng-model="defaultSetting.siteColor3" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_3##"> </i-list>
+            </div>
+          </div>
+
+          <div class="row padding border margin">
+            <div class="col6">
+              <i-checkbox label="##word.showManager##" ng-model="defaultSetting.showManager"> </i-checkbox>
+            </div>
+            <div class="row">
+              <i-control class="col6" label="##word.ceoManager##" ng-model="defaultSetting.ceoManager"> </i-control>
+              <i-control class="col6" label="##word.editorManager##" ng-model="defaultSetting.editorManager"> </i-control>
             </div>
           </div>
 
@@ -112,6 +89,45 @@
               <i-control class="col6" label="Skype" ng-model="defaultSetting.skypeAccouunt"> </i-control>
             </div>
           </fieldset>
+
+          <fieldset>
+            <legend>Languages</legend>
+            <div class="row" ng-repeat="l in defaultSetting.languagesList track by $index">
+              <div class="row">
+                <div class="article-part">
+                  <p class="col4 margin font-23">{{l.language.##session.lang##}}</p>
+                  <i-checkbox class="col3" label="##word.active##" ng-model="l.language.active"> </i-checkbox>
+                </div>
+              </div>
+              <div class="row" ng-show="l.language.active">
+                <div class="col9">
+                  <div class="row">
+                    <i-control label="##word.site_name##" class="col6" ng-model="l.siteName"> </i-control>
+                    <i-control label="Title separator" class="col6" ng-model="l.titleSeparator"> </i-control>
+                  </div>
+                  <div class="row">
+                    <i-control label="##word.site_slogan##" ng-model="l.siteSlogan"> </i-control>
+                  </div>
+                  <div class="row">
+                    <i-textarea ng-model="l.description" label="##word.site_description##"> </i-textarea>
+                  </div>
+                  <fieldset>
+                    <i-control label="##word.keywords##" ng-keydown="addKeyWords($event , defaultSetting.$keyword)" ng-model="defaultSetting.$keyword"> </i-control>
+                    <div class="row">
+                      <div class="key-words" ng-repeat="k in defaultSetting.keyWordsList">
+                        <span>{{k}}</span>
+                        <i class="fas fa-times delete-key" ng-click="defaultSetting.keyWordsList.splice($index,1)"></i>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col3">
+                  <i-image label="##word.logo##" class="img128" ng-model="l.logo"></i-image>
+                </div>
+              </div>
+              <hr />
+            </div>
+          </fieldset>
         </div>
         <i-button type="save" label="##word.save##" x-permissions="defaultSetting_edit || defaultSetting_manage" ng-click="saveSetting('#siteSettings')"></i-button>
       </div>
@@ -122,8 +138,8 @@
               <legend>##word.Temperatures##</legend>
               <i-checkbox label="##word.Show##" ng-model="defaultSetting.showTemperatures"></i-checkbox>
               <div class="row" ng-show="defaultSetting.showTemperatures">
-                <i-control class="col6" type="number" label="##word.Great##" ng-model="defaultSetting.temperaturesGreat"> </i-control>
-                <i-control class="col6" type="number" label="##word.Minor##" ng-model="defaultSetting.temperaturesMinor"> </i-control>
+                <i-control class="col6"  label="##word.Great##" ng-model="defaultSetting.temperaturesGreat"> </i-control>
+                <i-control class="col6"  label="##word.Minor##" ng-model="defaultSetting.temperaturesMinor"> </i-control>
               </div>
             </fieldset>
 
@@ -141,8 +157,8 @@
                 </tr>
 
                 <tr ng-repeat="g in defaultSetting.prayerTimingsList track by $index">
-                  <td class="center"><i-control type="text" ng-model="p.name"> </i-control></td>
-                  <td class="center"><i-control type="text" ng-model="p.time"> </i-control></td>
+                  <td class="center"><i-control type="text" ng-model="g.name"> </i-control></td>
+                  <td class="center"><i-control type="text" ng-model="g.time"> </i-control></td>
 
                   <td class="center not-print">
                     <i-button type="delete" ng-click="prayerTimingsList.splice($index,1)"> </i-button>
@@ -224,6 +240,7 @@
                 </tr>
               </table>
             </fieldset>
+            <i-button type="save" label="##word.save##" x-permissions="defaultSetting_edit || defaultSetting_manage" ng-click="saveSetting()"></i-button>
           </div>
         </div>
       </div>

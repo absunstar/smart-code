@@ -59,6 +59,9 @@
         width: 100%;
         /* padding: 27px 129px; */
         background-color: var(--fifth-color);
-        color:var(--text-color);
+        color:#fff;
+    }.bottomFooter a{
+        color:#fff;
+        font-size: 20px;
     }
     /* end footer */

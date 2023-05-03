@@ -149,11 +149,14 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
   };
 
   $scope.saveSetting = function (id) {
-    const v = site.validated(id);
-    if (!v.ok) {
-      $scope.error = v.messages[0]['##session.lang##'];
-      return;
+    if (id) {
+      const v = site.validated(id);
+      if (!v.ok) {
+        $scope.error = v.messages[0]['##session.lang##'];
+        return;
+      }
     }
+
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -244,7 +247,7 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1},
+        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1 },
       },
     }).then(
       function (response) {
@@ -298,7 +301,7 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
     $scope.defaultSetting.goldPricesList = $scope.defaultSetting.goldPricesList || [];
     $scope.defaultSetting.goldPricesList.unshift({});
   };
-  
+
   $scope.addPrayerTimings = function () {
     $scope.error = '';
     $scope.defaultSetting.prayerTimingsList = $scope.defaultSetting.prayerTimingsList || [];

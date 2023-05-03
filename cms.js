@@ -38,15 +38,23 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
-    if (site.setting.site_template &&site.setting.site_template.id == 1) {
+    if (site.setting.siteTemplate && site.setting.siteTemplate.id == 1) {
       res.render(
         'theme1/index.html',
-        {},
+        {
+          logo: site.setting.siteLogo.url,
+          title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
+          prayerTimingsList: site.setting.prayerTimingsList,
+          categoriesList1: site.categoriesList.map((c) => ({ name: c.translatedList[0].name })).splice(0, 7),
+          categoriesList2: site.categoriesList.map((c) => ({ name: c.translatedList[0].name })).splice(7,14),
+          categoriesList3: site.categoriesList.map((c) => ({ name: c.translatedList[0].name })).splice(14),
+          topNews : site.articlesList.filter(a=> a.appearInUrgent === true).map((c) => ({ title: c.translatedList[0].title })).splice(0,10)
+        },
         {
           parser: 'html css js',
         }
       );
-    } else if (site.setting.site_template &&site.setting.site_template.id == 2) {
+    } else if (site.setting.siteTemplate && site.setting.siteTemplate.id == 2) {
       res.render(
         'theme1/index.html',
         {},

@@ -78,7 +78,7 @@ module.exports = function init(site) {
 
   site.defaultSettingDoc = {
     lengthOrder: 0,
-    siteTemplate: { id: 5 },
+    siteTemplate: { id: 1 },
     programming: {},
     languagesList: [],
     article: {
