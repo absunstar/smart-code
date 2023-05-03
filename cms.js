@@ -42,8 +42,10 @@ site.get(
       res.render(
         'theme1/index.html',
         {
-          logo: site.setting.siteLogo.url,
-          title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
+          site_name: site.setting.languagesList[0].siteName,
+          page_logo: site.setting.siteLogo.url,
+          page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
+          page_description: site.setting.languagesList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
           categoriesList1: site.categoriesList.map((c) => ({ name: c.translatedList[0].name })).splice(0, 7),
           categoriesList2: site.categoriesList.map((c) => ({ name: c.translatedList[0].name })).splice(7,14),
