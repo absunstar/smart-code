@@ -16,4 +16,26 @@ module.exports = function init(site) {
     name: 'theme1/webfonts',
     path: __dirname + '/site_files/webfonts/',
   });
+  site.get({
+    name: ['/css/theme1.css'],
+    parser: 'css',
+    public: true,
+    compress: !0,
+    path: [
+      'client-side/effect.css',
+      'client-side/font-cairo.css',
+      __dirname + '/site_files/css/bootstrap.min.css',
+      __dirname + '/site_files/css/all.min.css',
+      __dirname + '/site_files/css/style.css',
+      __dirname + '/site_files/css/goldPrice.css',
+      __dirname + '/site_files/css/convertCurrancy.css',
+      __dirname + '/site_files/css/footballMatches.css',
+      __dirname + '/site_files/css/header.css',
+      __dirname + '/site_files/css/footer.css',
+      __dirname + '/site_files/css/colorstheme.css',
+    ],
+  });
+
+
+
 };

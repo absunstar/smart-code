@@ -23,6 +23,8 @@ const site = require('../isite')({
   },
 });
 
+site.time = new Date().getTime();
+
 // if (site.hasFeature('cms')) {
 // }
 // site.words.addList(__dirname + '/site_files/json/words-sa.json');
