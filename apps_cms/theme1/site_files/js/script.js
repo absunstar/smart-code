@@ -1,4 +1,3 @@
-// start add date to top header // 
 
 n =  new Date();
 y = n.getFullYear();
@@ -8,15 +7,10 @@ document.getElementById("todaydateXlscreen").innerHTML= m + "/" + d + "/" + y;
 document.getElementById("todaydateMdscreen").innerHTML= m + "/" + d + "/" + y;
 document.getElementById("todaydateXsscreen").innerHTML= m + "/" + d + "/" + y;
 
-// end add date to top header // 
-
-
-// start paryer time submenu //
 
 var pt = window.matchMedia("(max-width: 425px)");
 function myFunction(pt) {
     if(pt.matches){
-        //mobile version//
         let PrayerTime = document.querySelectorAll('.PrayerTime');
         let paryertimeItems= document.querySelectorAll('.paryertimeItems');
         for(let p=0 ; p< PrayerTime.length; p++){
@@ -33,7 +27,6 @@ function myFunction(pt) {
         } 
     }else{
 
-        //desktop version//
         let PrayerTimeHover = document.querySelectorAll('.PrayerTime');
         let paryertimeItemsHover= document.querySelectorAll('.paryertimeItems');
         for(let i=0 ; i< PrayerTimeHover.length; i++){
@@ -51,9 +44,7 @@ function myFunction(pt) {
 }
 myFunction(pt);
 
-// end paryer time submenu //
 
-// start open burger menu and close//
 let closeButton = document.querySelector('.closeButton');
 let burgermenuoverlay = document.getElementById('burgermenuoverlay');
 let burgermenuToggle= document.getElementById('burgermenuToggle');
@@ -66,11 +57,9 @@ burgermenuToggle.addEventListener("mousedown", () => {
     burgermenuoverlay.classList.add('showAnddisplay') ;
     console.log("test");
 });
-// end open burger menu and close//
 
 
 
-// start open video album and close//
 let allcloseVButton = document.querySelectorAll('.closevideo');
 let allvideopalyer = document.querySelectorAll('.videopalyer');
 let allvideoFile= document.querySelectorAll('.videoFile');
@@ -85,9 +74,6 @@ for(let i=0 ; i< allvideoFile.length; i++){
     }
 }
 
-// end open video album and close//
-
-// start open audio player and close//
 let allcloseAButton = document.querySelectorAll('.closeAButton');
 let allaudiopalyer = document.querySelectorAll('.audiopalyer');
 let allaudioFile= document.querySelectorAll('.audioFile');
@@ -101,9 +87,7 @@ for(let i=0 ; i< allaudioFile.length; i++){
         });
     }
 }
-// end open audio player and close//
 
-// start image slider and close//
 let closeSButton = document.querySelectorAll('#closeSButton');
 let albumimageslider = document.querySelectorAll('#albumimageslider');
 let imagesFile= document.querySelectorAll('#imagesFile');
@@ -120,10 +104,6 @@ for(let i=0 ; i< imagesFile.length; i++){
     }
 }
 
-// end open image slider and close//
-
-
-// start album images slider //
 
 let IsliderContainer = document.querySelectorAll('.imageslider-slider-container');
 let IinnerSlider = document.querySelectorAll('.imageslider-inner-slider');
@@ -172,9 +152,6 @@ for(let i=0 ; i< albumImageSlider.length; i++){
     };
 }
 
-// end album images slider //
-
-// start open three dot and close//
 let articlestimeItems = document.querySelectorAll('.articlestimeItems');
 let moreDot= document.querySelectorAll('.moreDot');
 let sectionTwo = document.querySelectorAll('.sectionTwo');
@@ -190,10 +167,6 @@ for(let i=0 ; i< sectionTwo.length; i++){
     });
 
 }
-
-// end open three dot and close//
-
-// start share button //
 
     let share = document.querySelectorAll('.share');
     let shareMenu = document.querySelectorAll('.sharemenu');
@@ -212,10 +185,6 @@ for(let i=0 ; i< sectionTwo.length; i++){
 
     }
 
-// end share button //
-
-
-// start show vote resulte //
 
     let voteprogres = document.querySelector('.voteprogres');
     let survybutton = document.querySelector('.survybutton');
@@ -230,4 +199,3 @@ for(let i=0 ; i< sectionTwo.length; i++){
             answer.style.display = "none" ;
         }
     });
-// end show vote resulte //

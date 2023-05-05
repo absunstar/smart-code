@@ -54,9 +54,16 @@ site.get(
           categoriesList3: site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14),
           topNews: site.articlesList
             .filter((a) => a.appearInUrgent === true)
-            .map((c) => ({ title: c.translatedList[0].title }))
-            .splice(0, 10),
+            .map((c) => ({ id: c.id, title: c.translatedList[0].title }))
+            .splice(0, 10)
+            .reverse(),
+
+          MainSliderNews: site.articlesList
+            .filter((a) => a.showInMainSlider === true)
+            .map((c) => ({ id: c.id, title: c.translatedList[0].title , imageURL : c.translatedList[0].image?.url || '/theme1/images/news.jpg' }))
+            .splice(0, 5),
         },
+
         {
           parser: 'html css js',
         }

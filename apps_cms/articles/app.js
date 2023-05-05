@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   const $articles = site.connectCollection('articles');
   site.articlesList = [];
-  $articles.findMany({}, (err, docs) => {
+  $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
     if (!err && docs) {
       site.articlesList = [...site.articlesList, ...docs];
     }
@@ -56,7 +56,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.articlesList.push(doc);
+        site.articlesList.unshift(doc);
       } else {
         response.error = err.message;
       }
@@ -100,11 +100,10 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.articlesList.forEach((a, i) => {
-            if (a.id === result.doc.id) {
-              site.articlesList[i] = result.doc;
-            }
-          });
+          let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
+          if (index > -1) {
+            site.articlesList[index] = result.doc;
+          }
         } else {
           response.error = 'Code Already Exist';
         }
@@ -118,26 +117,22 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
-    let ad = null;
-    site.articlesList.forEach((a) => {
-      if (a.id == req.body.id) {
-        ad = a;
-      }
-    });
-
-    if (ad) {
+    let index = site.articlesList.findIndex((a) => a.id === req.data.id);
+    if (index > -1) {
       response.done = true;
-      response.doc = ad;
+      response.doc = site.articlesList[index];
       res.json(response);
     } else {
-      response.error = 'no id';
-      res.json(response);
+      $articles.find({ id: req.data.id }, (err, doc) => {
+        if (!err && doc) {
+          response.done = true;
+          response.doc = doc;
+          res.json(response);
+        } else {
+          response.error = err?.message || 'Error Not Exists';
+          res.json(response);
+        }
+      });
     }
   });
 
@@ -152,12 +147,6 @@ module.exports = function init(site) {
       return;
     }
 
-    if (!req.body.id) {
-      response.error = 'no id';
-      res.json(response);
-      return;
-    }
-
     $articles.delete(
       {
         id: req.body.id,
@@ -167,12 +156,13 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.articlesList.splice(
-            site.articlesList.findIndex((a) => a.id === req.body.id),
-            1
-          );
+          let index = site.articlesList.findIndex((a) => a.id === req.data.id);
+          if (index > -1) {
+            response.done = true;
+            site.articlesList.splice(index);
+          }
         } else {
-          response.error = err.message;
+          response.error = err?.message;
         }
         res.json(response);
       }
@@ -196,10 +186,10 @@ module.exports = function init(site) {
           'translatedList.content': site.get_RegExp(req.body.search, 'i'),
         },
         {
-          'keyWordsList': site.get_RegExp(req.body.search, 'i'),
+          keyWordsList: site.get_RegExp(req.body.search, 'i'),
         },
         {
-          'tagsList': site.get_RegExp(req.body.search, 'i'),
+          tagsList: site.get_RegExp(req.body.search, 'i'),
         }
       );
     }

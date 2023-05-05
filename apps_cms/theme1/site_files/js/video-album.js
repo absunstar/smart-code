@@ -1,4 +1,3 @@
-// start open video album and close//
 let closeVButton = document.getElementById('closeVButton');
 let videopalyer = document.getElementById('videopalyer');
 let videoNews= document.getElementById('videoNews');
@@ -11,4 +10,3 @@ videoNews.addEventListener("mousedown", () => {
     videopalyer.classList.add('showAnddisplay') ;
     console.log("test");
 });
-// end open video album and close//

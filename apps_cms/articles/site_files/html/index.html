@@ -24,6 +24,7 @@
 
         <table x-permissions="login" class="table hover bold" id="t1">
           <tr>
+            <th>##word.ID##</th>
             <th>##word.logo##</th>
             <th>##word.article_template##</th>
             <th>##word.article_title##</th>
@@ -31,6 +32,7 @@
             <th class="not-print">##word.actions##</th>
           </tr>
           <tr ng-repeat="c in list">
+            <td class="center bold blue">{{c.id}}</td>
             <td>
               <i-image view class="logo" ng-model="c.translatedList[0].image"></i-image>
             </td>

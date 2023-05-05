@@ -18,8 +18,7 @@
               <i-image class="img64" ng-model="defaultSetting.topNewsLogo"></i-image>
             </div>
             <div class="col9">
-              <i-list ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##">
-              </i-list>
+              <i-list ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##"> </i-list>
               <i-list ng-model="defaultSetting.siteColor1" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_1##"> </i-list>
               <i-list ng-model="defaultSetting.siteColor2" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_2##"> </i-list>
               <i-list ng-model="defaultSetting.siteColor3" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_3##"> </i-list>
@@ -27,9 +26,6 @@
           </div>
 
           <div class="row padding border margin">
-            <div class="col6">
-              <i-checkbox label="##word.showManager##" ng-model="defaultSetting.showManager"> </i-checkbox>
-            </div>
             <div class="row">
               <i-control class="col6" label="##word.ceoManager##" ng-model="defaultSetting.ceoManager"> </i-control>
               <i-control class="col6" label="##word.editorManager##" ng-model="defaultSetting.editorManager"> </i-control>
@@ -135,11 +131,28 @@
         <div class="article-part">
           <div class="row">
             <fieldset>
+              <legend>##word.layout##</legend>
+              <div class="row">
+                <div class="col4">
+                  <i-checkbox label="##word.Show Top News##" ng-model="defaultSetting.showTopNews"></i-checkbox>
+                  <i-checkbox label="##word.Show Main Menu##" ng-model="defaultSetting.showMainMenu"></i-checkbox>
+                  <i-checkbox label="##word.Show Main Slider##" ng-model="defaultSetting.showMainSlider"></i-checkbox>
+                </div>
+                <div class="col4">
+                  <i-checkbox label="##word.showManager##" ng-model="defaultSetting.showManager"> </i-checkbox>
+                  <i-checkbox label="##word.Show Logo##" ng-model="defaultSetting.showLogo"></i-checkbox>
+                  <i-checkbox label="##word.Show Search Bar##" ng-model="defaultSetting.showSearchBar"></i-checkbox>
+                </div>
+                <div class="col4"></div>
+              </div>
+            </fieldset>
+
+            <fieldset>
               <legend>##word.Temperatures##</legend>
               <i-checkbox label="##word.Show##" ng-model="defaultSetting.showTemperatures"></i-checkbox>
               <div class="row" ng-show="defaultSetting.showTemperatures">
-                <i-control class="col6"  label="##word.Great##" ng-model="defaultSetting.temperaturesGreat"> </i-control>
-                <i-control class="col6"  label="##word.Minor##" ng-model="defaultSetting.temperaturesMinor"> </i-control>
+                <i-control class="col6" label="##word.Great##" ng-model="defaultSetting.temperaturesGreat"> </i-control>
+                <i-control class="col6" label="##word.Minor##" ng-model="defaultSetting.temperaturesMinor"> </i-control>
               </div>
             </fieldset>
 

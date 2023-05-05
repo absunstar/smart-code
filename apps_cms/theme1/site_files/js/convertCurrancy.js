@@ -10,4 +10,3 @@ convertCurrancyToggle.addEventListener("mousedown", () => {
 closeVCButton.addEventListener("mousedown", () => {
     mainConvertCurrancy.classList.remove('showAnddisplay') ;
 });
-// end open football matches and close//

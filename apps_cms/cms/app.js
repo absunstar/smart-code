@@ -3,7 +3,10 @@ module.exports = function init(site) {
     name: 'css',
     path: __dirname + '/site_files/css/',
   });
-
+  site.get({
+    name: 'images',
+    path: __dirname + '/site_files/images/',
+  });
   site.get({
     name: ['/css/cms.css'],
     parser: 'css',

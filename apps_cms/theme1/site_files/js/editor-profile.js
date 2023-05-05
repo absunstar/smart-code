@@ -1,4 +1,3 @@
-// start open video album and close//
 let allcloseVButton = document.querySelectorAll('.closevideo');
 let allvideopalyer = document.querySelectorAll('.videopalyer');
 let allvideoFile= document.querySelectorAll('.videoFile');
@@ -13,9 +12,7 @@ for(let i=0 ; i< allvideoFile.length; i++){
     }
 }
 
-// end open video album and close//
 
-// start open audio player and close//
 let allcloseAButton = document.querySelectorAll('.closeAButton');
 let allaudiopalyer = document.querySelectorAll('.audiopalyer');
 let allaudioFile= document.querySelectorAll('.audioFile');
@@ -29,4 +26,3 @@ for(let i=0 ; i< allaudioFile.length; i++){
         });
     }
 }
-// end open audio player and close//

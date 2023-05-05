@@ -1,5 +1,5 @@
 <div id="xl-screen" class="d-none d-xl-block">
-  <div x-import="theme1/topHeader.html" class="topHeader"></div>
+  <div x-setting="showTopNews" x-import="theme1/topHeader.html" class="topHeader"></div>
   <div x-setting="showManager" class="editorAndCeoHeader d-flex flex-row justify-content-center">
     <div class="container d-flex flex-row-reverse justify-content-center align-items-center">
       <div class="head d-flex flex-row-reverse gap-4">
@@ -17,14 +17,14 @@
   <div class="midHeader">
     <div class="midHeadercontainer container">
       <div class="col-2 logoAndHead">
-        <div class="logo">
+        <div x-setting="showLogo" class="logo">
           <a href="/">
             <img src="##data.page_logo##" width="133px" height="64px" />
           </a>
         </div>
       </div>
       <div class="col-6 searchBarSection">
-        <div class="SearchBAr">
+        <div x-setting="showSearchBar" class="SearchBAr">
           <div class="searchIcon">
             <i class="fas fa-search"></i>
           </div>
@@ -68,7 +68,7 @@
       </div>
     </div>
   </div>
-  <div class="bottomHeader">
+  <div x-setting="showMainMenu" class="bottomHeader">
     <div class="bottomHeadercontainer container">
       <ul class="navbarlist">
         <li><a href="/">الرئيسية</a></li>
@@ -86,7 +86,7 @@
   </div>
 </div>
 <div id="md-screen" class="d-none d-md-block d-xl-none">
-  <div class="topHeader">
+  <div x-setting="showTopNews" class="topHeader">
     <div class="col-1 breakingTitle">
       <p>عاجل</p>
     </div>
@@ -147,7 +147,7 @@
       </div>
     </div>
   </div>
-  <div class="bottomHeader">
+  <div x-setting="showMainMenu" class="bottomHeader">
     <div class="bottomHeadercontainer container">
       <ul class="navbarlist">
         <li><a href="./index.html">الرئيسية</a></li>
@@ -165,7 +165,7 @@
   </div>
 </div>
 <div id="xs-screen" class="d-xs-block d-md-none">
-  <div class="topHeader">
+  <div x-setting="showTopNews" class="topHeader">
     <div class="col-1 breakingTitle">
       <p>عاجل</p>
     </div>
@@ -274,7 +274,7 @@
           </ul>
         </div>
       </div>
-      <div class="w-100 mainSection d-flex flex-column align-items-end">
+      <div x-setting="showMainMenu" class="w-100 mainSection d-flex flex-column align-items-end">
         <div class="headSectionTitle">
           <label>الأقسام</label>
         </div>
