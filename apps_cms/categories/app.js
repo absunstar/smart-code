@@ -5,6 +5,7 @@ module.exports = function init(site) {
   $categories.findMany({}, (err, docs) => {
     if (!err && docs) {
       site.categoriesList = [...site.categoriesList, ...docs];
+      site.handleCategoryArticles();
     }
   });
 
@@ -61,6 +62,7 @@ module.exports = function init(site) {
         response.done = true;
         response.doc = doc;
         site.categoriesList.push(doc);
+        site.handleCategoryArticles();
       } else {
         response.error = err.message;
       }
@@ -103,12 +105,12 @@ module.exports = function init(site) {
         $res: res,
       },
       (err, result) => {
-        console.log(err,result);
         if (!err && result) {
           response.done = true;
           site.categoriesList.forEach((a, i) => {
             if (a.id === result.doc.id) {
               site.categoriesList[i] = result.doc;
+              site.handleCategoryArticles();
             }
           });
         } else {
@@ -185,6 +187,7 @@ module.exports = function init(site) {
                     site.categoriesList.findIndex((a) => a.id === req.body.id),
                     1
                   );
+                  site.handleCategoryArticles();
                 } else {
                   response.error = err.message;
                 }

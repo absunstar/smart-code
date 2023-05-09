@@ -3,9 +3,87 @@ module.exports = function init(site) {
   site.articlesList = [];
   $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
     if (!err && docs) {
-      site.articlesList = [...site.articlesList, ...docs];
+      docs.forEach((doc) => {
+        doc.publishDate = doc.publishDate || new Date();
+        doc.date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
+        doc.day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+        site.articlesList.push({ ...doc });
+      });
     }
   });
+  site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
+  site.monthes = [
+    { nameAr: 'يناير' },
+    { nameAr: 'فبراير' },
+    { nameAr: 'مارس' },
+    { nameAr: 'ابريل' },
+    { nameAr: 'مايو' },
+    { nameAr: 'يونيو' },
+    { nameAr: 'يوليو' },
+    { nameAr: 'أغسطس' },
+    { nameAr: 'سبتمر' },
+    { nameAr: 'أكتوبر' },
+    { nameAr: 'نوقمير' },
+    { nameAr: 'ديسمبر' },
+  ];
+
+  site.handleCategoryArticles = function () {
+    site.categoriesList.forEach((cat) => {
+      cat.$list = [];
+      $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: cat.homeLimit || 6 }, (err, docs) => {
+        if (!err && docs) {
+          docs.forEach((doc) => {
+            doc.publishDate = doc.publishDate || new Date();
+            doc.date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
+            doc.day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+            cat.$list.push({ ...doc });
+          });
+        }
+      });
+    });
+    setTimeout(() => {
+      site.categoriesDisplayList1 = site.categoriesList
+        .filter((c) => c.homePageIndex === 1 && c.$list.length > 0 && c.showInHomePage === true)
+        .map((c) => ({
+          id: c.id,
+          name: c.translatedList[0].name,
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.translatedList[0].title, imageURL: a.translatedList[0].image?.url || '/theme1/images/news.jpg' })),
+        }));
+
+      site.categoriesDisplayList2 = site.categoriesList
+        .filter((c) => c.homePageIndex === 2 && c.$list.length > 0 && c.showInHomePage === true)
+        .map((c) => ({
+          id: c.id,
+          name: c.translatedList[0].name,
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.translatedList[0].title, imageURL: a.translatedList[0].image?.url || '/theme1/images/news.jpg' })),
+        }));
+
+      site.categoriesDisplayList3 = site.categoriesList
+        .filter((c) => c.homePageIndex === 3 && c.$list.length > 0 && c.showInHomePage === true)
+        .map((c) => ({
+          id: c.id,
+          name: c.translatedList[0].name,
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.translatedList[0].title, imageURL: a.translatedList[0].image?.url || '/theme1/images/news.jpg' })),
+        }));
+      site.categoriesDisplayList3.forEach((c) => {
+        c.article = c.list.shift();
+      });
+
+      site.categoriesList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7);
+      site.categoriesList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14);
+      site.categoriesList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
+      site.topNews = site.articlesList
+        .filter((a) => a.appearInUrgent === true)
+        .map((c) => ({ id: c.id, title: c.translatedList[0].title }))
+        .splice(0, 10)
+        .reverse();
+
+      site.MainSliderNews = site.articlesList
+        .filter((a) => a.showInMainSlider === true)
+        .map((c) => ({ id: c.id, day: c.day, date: c.date, title: c.translatedList[0].title, imageURL: c.translatedList[0].image?.url || '/theme1/images/news.jpg' }))
+        .splice(0, 5);
+    }, 1000 * 5);
+  };
 
   site.get({
     name: 'images',
@@ -57,6 +135,7 @@ module.exports = function init(site) {
         response.done = true;
         response.doc = doc;
         site.articlesList.unshift(doc);
+        site.handleCategoryArticles();
       } else {
         response.error = err.message;
       }
@@ -104,6 +183,7 @@ module.exports = function init(site) {
           if (index > -1) {
             site.articlesList[index] = result.doc;
           }
+          site.handleCategoryArticles();
         } else {
           response.error = 'Code Already Exist';
         }
@@ -161,6 +241,7 @@ module.exports = function init(site) {
             response.done = true;
             site.articlesList.splice(index);
           }
+          site.handleCategoryArticles();
         } else {
           response.error = err?.message;
         }

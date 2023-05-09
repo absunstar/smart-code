@@ -23,7 +23,7 @@ module.exports = function init(site) {
     compress: !0,
     path: [
       'client-side/effect.css',
-      'client-side/font-cairo.css',
+      'client-side/font-droid.css',
       __dirname + '/site_files/css/bootstrap.min.css',
       __dirname + '/site_files/css/all.min.css',
       __dirname + '/site_files/css/style.css',

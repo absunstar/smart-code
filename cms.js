@@ -49,19 +49,14 @@ site.get(
           page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
           page_description: site.setting.languagesList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
-          categoriesList1: site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7),
-          categoriesList2: site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14),
-          categoriesList3: site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14),
-          topNews: site.articlesList
-            .filter((a) => a.appearInUrgent === true)
-            .map((c) => ({ id: c.id, title: c.translatedList[0].title }))
-            .splice(0, 10)
-            .reverse(),
-
-          MainSliderNews: site.articlesList
-            .filter((a) => a.showInMainSlider === true)
-            .map((c) => ({ id: c.id, title: c.translatedList[0].title , imageURL : c.translatedList[0].image?.url || '/theme1/images/news.jpg' }))
-            .splice(0, 5),
+          categoriesDisplayList1: site.categoriesDisplayList1,
+          categoriesDisplayList2: site.categoriesDisplayList2,
+          categoriesDisplayList3: site.categoriesDisplayList3,
+          categoriesList1: site.categoriesList1,
+          categoriesList2: site.categoriesList2,
+          categoriesList3: site.categoriesList3,
+          topNews: site.topNews,
+          MainSliderNews: site.MainSliderNews,
         },
 
         {

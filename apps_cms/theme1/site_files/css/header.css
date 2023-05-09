@@ -15,6 +15,7 @@
   --head-title: 12px;
   --title: 18px;
   --readTime: 12px;
+
 }
 
 .mainHeader {
@@ -45,25 +46,37 @@
   align-items: center;
   justify-content: center;
   background-color: var(--secondary-color);
+  z-index: 100;
 }
 
 .newsText {
+  position: relative;
   width: 82%;
   font-size: 14px;
   font-weight: bold;
   white-space: nowrap;
-  overflow: hidden;
 }
 .newsText > ul {
-  width: calc(500px * 10);
-  overflow: hidden;
+  position: absolute;
+  bottom: -16px;
+  width: fit-content;
   display: flex;
   gap: 8px;
   flex-direction: row;
   overflow: hidden;
-  animation: newsText 30s linear infinite;
+  /* transform: translateX(-100%); */
+  animation: newsText 40s -40s infinite linear;
+  will-change: transform;
   direction: rtl;
+
 }
+
+.newsText > ul:nth-child(2) {
+  animation: newsText2 40s -20s infinite linear;
+  will-change: transform;
+
+}
+
 .newsText > ul > li {
   display: inline-block;
 }
@@ -72,11 +85,20 @@
 }
 
 @keyframes newsText {
-  0% {
-    transform: translate(0, 0);
+  from {
+    transform: translateX(-101.5%);
   }
-  100% {
-    transform: translate(100%, 0);
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes newsText2 {
+  from {
+    transform: translateX(-101.5%);
+  }
+  to {
+    transform: translateX(100%);
   }
 }
 
@@ -88,6 +110,8 @@
   align-items: center;
   justify-content: center;
   background-color: var(--secondary-color);
+  z-index: 100;
+
 }
 
 #todaydateMdscreen {
@@ -103,7 +127,7 @@
 /* start editor And Ceo header */
 
 .editorAndCeoHeader {
-  height: 55px;
+  /* height: 55px; */
   background-color: var(--eight-color);
   padding: 10px 9%;
 }
@@ -170,12 +194,14 @@
   color: var(--secondary-color);
   font-weight: 600;
   direction: rtl;
+  text-align: center;
 }
 
 .headOfEditor .title {
   font-size: 16px;
   font-weight: 600;
   direction: rtl;
+  text-align: center;
 }
 
 .SearchBAr {
@@ -253,13 +279,17 @@
   align-items: center;
   background-color: var(--six-color);
   gap: 8px;
-  padding: 2px 3px;
+  padding: 2px 8px;
   font-size: 12px;
   border-radius: 15px;
   box-shadow: 0 0 7px #00000047;
 }
 
 .PrayerTime {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
   width: 151px;
   height: 73px;
   cursor: pointer;
@@ -297,7 +327,8 @@
 
 .paryertimeItems {
   display: none;
-  width: 180px;
+  position: absolute;
+  width: 190px;
   margin-top: 8px;
   background-color: var(--six-color);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -321,7 +352,7 @@
 
 .navbarlist {
   height: 50px;
-  display: flex;
+  /* display: flex; */
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
@@ -410,11 +441,11 @@
   }
 
   .logoAndHead {
-    background-color: var(--primary-color);
+    background-color: #ffffff;
     color: var(--text-color);
-    width: 100%;
+    /* width: 100%; */
     padding: 15px 15px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     justify-content: end;
     gap: 25px;
   }
@@ -433,8 +464,12 @@
     flex-direction: column;
     gap: 8px;
   }
+  .searchBarSection{
+    margin-bottom: 15px;
+  }
   .SearchBAr {
     width: 100%;
+    margin: 0;
   }
 
   .bottomHeader {

@@ -1,12 +1,8 @@
-
 n =  new Date();
 y = n.getFullYear();
 m = n.getMonth() + 1;
 d = n.getDate();
 document.getElementById("todaydateXlscreen").innerHTML= m + "/" + d + "/" + y;
-document.getElementById("todaydateMdscreen").innerHTML= m + "/" + d + "/" + y;
-document.getElementById("todaydateXsscreen").innerHTML= m + "/" + d + "/" + y;
-
 
 var pt = window.matchMedia("(max-width: 425px)");
 function myFunction(pt) {
@@ -168,34 +164,68 @@ for(let i=0 ; i< sectionTwo.length; i++){
 
 }
 
-    let share = document.querySelectorAll('.share');
-    let shareMenu = document.querySelectorAll('.sharemenu');
-    let sharebutton = document.querySelectorAll('.sharebutton');
+let share = document.querySelectorAll('.share');
+let shareMenu = document.querySelectorAll('.sharemenu');
+let sharebutton = document.querySelectorAll('.sharebutton');
 
-    for(let s=0; s< sharebutton.length; s++){
-        share[s].addEventListener("click", () => {
-            if(shareMenu[s].style.display === "block" ){
-                shareMenu[s].style.display = "none" ;
-                console.log("test");
-            }else{
-                shareMenu[s].style.display = "block" ;
-                console.log("test");
-            }
-        });
-
-    }
-
-
-    let voteprogres = document.querySelector('.voteprogres');
-    let survybutton = document.querySelector('.survybutton');
-    let answer = document.querySelector('.answer');
-
-    survybutton.addEventListener("mousedown", () => {
-        if(voteprogres.style.display === "flex" && answer.style.display === "none"  ){
-            voteprogres.style.display = "none" ;
-            answer.style.display = "none" ;
+for(let s=0; s< sharebutton.length; s++){
+    share[s].addEventListener("click", () => {
+        if(shareMenu[s].style.display === "block" ){
+            shareMenu[s].style.display = "none" ;
+            console.log("test");
         }else{
-            voteprogres.style.display = "flex" ;
-            answer.style.display = "none" ;
+            shareMenu[s].style.display = "block" ;
+            console.log("test");
         }
     });
+
+}
+
+
+let voteprogres = document.querySelector('.voteprogres');
+let survybutton = document.querySelector('.survybutton');
+let answer = document.querySelector('.answer');
+
+survybutton.addEventListener("mousedown", () => {
+    if(voteprogres.style.display === "flex" && answer.style.display === "none"  ){
+        voteprogres.style.display = "none" ;
+        answer.style.display = "none" ;
+    }else{
+        voteprogres.style.display = "flex" ;
+        answer.style.display = "none" ;
+    }
+});
+
+function mainSliderMobile() {
+    let slidertrack = document.querySelector('.MS-inner-slider');
+    let slide = document.querySelectorAll('.frist-slider .MS-card');
+    let slideCount = slide.length;
+    let ChangeSLiderTime = 3000 ;
+    let timerepet = slideCount * ChangeSLiderTime ;
+
+    moveslider();
+    function moveslider(){
+    for(let i =0; i < slideCount ; i++){
+              setTimeout(function(){
+              sliderpx = -296;
+              latestPostion =  sliderpx;
+              slidertrack.style.right = (latestPostion * [i]) + "px";  
+              console.log(slidertrack.style.right);
+                icount = i + 1 ;
+                setTimeout(function(){
+                  if(icount === slideCount){
+                    console.log( icount + " " + slideCount);
+                    slidertrack.style.right = "0px";
+                  }
+                },  i * ChangeSLiderTime + ChangeSLiderTime);
+              },  i * ChangeSLiderTime);  
+        }
+    }
+    repetmoveslider();
+    function repetmoveslider(){
+      moveslider();
+    }
+      setInterval(repetmoveslider, timerepet );        
+}
+
+mainSliderMobile();

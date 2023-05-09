@@ -44,21 +44,30 @@ if (MSsliderContainer) {
     }
   };
 
-  let mainSlider = document.querySelector('.mainslider');
   let slideImageNews = document.querySelectorAll('.slide-imageNews');
+  let slideDays = document.querySelectorAll('.slide-day');
+  let slideDates = document.querySelectorAll('.slide-date');
   let mainSlide = document.getElementById('mainslide').style.backgroundImage;
   let mainImage = mainSlide.match(/url\(["']?([^"']*)["']?\)/)[1];
-  let mainnewstitle = document.querySelector('.MS-newstitle').innerHTML;
-  let smallImage = document.querySelector('.smallSlideIamge').src;
   let allSmallImage = document.querySelectorAll('.smallSlideIamge');
 
   let allsmallnewstitle = document.querySelectorAll('.slide-newstitle');
   for (let i = 0; i < slideImageNews.length; i++) {
+    if(i=== 0){
+      mainImage = allSmallImage[i].src;
+      let mainImageUrl = "url('" + mainImage + "')";
+      document.getElementById('mainslide').style.backgroundImage = mainImageUrl;
+      document.querySelector('.MS-newstitle').innerHTML = allsmallnewstitle[i].innerHTML;
+      document.querySelector('.newsday').innerHTML = slideDays[i].innerHTML;
+      document.querySelector('.newsdate').innerHTML = slideDates[i].innerHTML;
+    }
     slideImageNews[i].addEventListener('mouseenter', () => {
       mainImage = allSmallImage[i].currentSrc;
       let mainImageUrl = "url('" + mainImage + "')";
       document.getElementById('mainslide').style.backgroundImage = mainImageUrl;
       document.querySelector('.MS-newstitle').innerHTML = allsmallnewstitle[i].innerHTML;
+      document.querySelector('.newsday').innerHTML = slideDays[i].innerHTML;
+      document.querySelector('.newsdate').innerHTML = slideDates[i].innerHTML;
     });
   }
 }
