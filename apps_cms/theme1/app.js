@@ -33,6 +33,27 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/header.css',
       __dirname + '/site_files/css/footer.css',
       __dirname + '/site_files/css/colorstheme.css',
+      __dirname + '/site_files/css/articlePage.css',
+    ],
+  });
+  site.get({
+    name: ['/css/article.css'],
+    parser: 'css',
+    public: true,
+    compress: !0,
+    path: [
+      'client-side/effect.css',
+      'client-side/font-droid.css',
+      __dirname + '/site_files/css/bootstrap.min.css',
+      __dirname + '/site_files/css/all.min.css',
+      __dirname + '/site_files/css/style.css',
+      __dirname + '/site_files/css/goldPrice.css',
+      __dirname + '/site_files/css/convertCurrancy.css',
+      __dirname + '/site_files/css/footballMatches.css',
+      __dirname + '/site_files/css/header.css',
+      __dirname + '/site_files/css/footer.css',
+      __dirname + '/site_files/css/colorstheme.css',
+      __dirname + '/site_files/css/articlePage.css',
     ],
   });
 

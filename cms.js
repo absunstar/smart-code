@@ -40,7 +40,7 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
-    if (site.setting.siteTemplate && site.setting.siteTemplate.id == 1) {
+    if (true || (site.setting.siteTemplate && site.setting.siteTemplate.id == 1)) {
       res.render(
         'theme1/index.html',
         {
@@ -58,23 +58,6 @@ site.get(
           topNews: site.topNews,
           MainSliderNews: site.MainSliderNews,
         },
-
-        {
-          parser: 'html css js',
-        }
-      );
-    } else if (site.setting.siteTemplate && site.setting.siteTemplate.id == 2) {
-      res.render(
-        'theme1/index.html',
-        {},
-        {
-          parser: 'html css js',
-        }
-      );
-    } else {
-      res.render(
-        'theme1/index.html',
-        {},
         {
           parser: 'html css js',
         }
@@ -82,7 +65,37 @@ site.get(
     }
   }
 );
-
+site.get(
+  {
+    name: ['/article/:id'],
+  },
+  (req, res) => {
+    if (true || (site.setting.siteTemplate && site.setting.siteTemplate.id == 1)) {
+      res.render(
+        'theme1/article.html',
+        {
+          site_name: site.setting.languagesList[0].siteName,
+          page_logo: site.setting.siteLogo.url,
+          page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
+          page_description: site.setting.languagesList[0].description,
+          prayerTimingsList: site.setting.prayerTimingsList,
+          categoriesDisplayList1: site.categoriesDisplayList1,
+          categoriesDisplayList2: site.categoriesDisplayList2,
+          categoriesDisplayList3: site.categoriesDisplayList3,
+          categoriesList1: site.categoriesList1,
+          categoriesList2: site.categoriesList2,
+          categoriesList3: site.categoriesList3,
+          topNews: site.topNews,
+          MainSliderNews: site.MainSliderNews,
+          article: site.articlesList[0],
+        },
+        {
+          parser: 'html css js',
+        }
+      );
+    }
+  }
+);
 site.ready = false;
 site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');

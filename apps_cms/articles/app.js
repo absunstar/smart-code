@@ -1,16 +1,6 @@
 module.exports = function init(site) {
   const $articles = site.connectCollection('articles');
   site.articlesList = [];
-  $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
-    if (!err && docs) {
-      docs.forEach((doc) => {
-        doc.publishDate = doc.publishDate || new Date();
-        doc.date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
-        doc.day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
-        site.articlesList.push({ ...doc });
-      });
-    }
-  });
   site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
   site.monthes = [
     { nameAr: 'يناير' },
@@ -26,6 +16,26 @@ module.exports = function init(site) {
     { nameAr: 'نوقمير' },
     { nameAr: 'ديسمبر' },
   ];
+
+  site.handleArticle = function (doc) {
+    doc.title = doc.translatedList[0].title;
+    doc.imageURL = doc.translatedList[0].image?.url || '/theme1/images/news.jpg';
+    doc.content = doc.translatedList[0].textContent || doc.translatedList[0].htmlContent;
+    doc.publishDate = doc.publishDate || new Date();
+    doc.date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
+    doc.day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+    doc.hasVideo = true;
+    doc.hasImageGallary = true;
+    doc.hasAudio = true;
+    return doc;
+  };
+  $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
+    if (!err && docs) {
+      docs.forEach((doc) => {
+        site.articlesList.push(site.handleArticle({ ...doc }));
+      });
+    }
+  });
 
   site.handleCategoryArticles = function () {
     site.categoriesList.forEach((cat) => {
@@ -181,7 +191,7 @@ module.exports = function init(site) {
           response.done = true;
           let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
           if (index > -1) {
-            site.articlesList[index] = result.doc;
+            site.articlesList[index] = site.handleArticle({ ...result.doc });
           }
           site.handleCategoryArticles();
         } else {

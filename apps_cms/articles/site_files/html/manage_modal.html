@@ -71,12 +71,12 @@
                     </div>
 
                     <div class="row" ng-show="article.type.id == 1">
-                      <i-textarea ng-change="calcCount(art)" ng-model="art.contentText" label="##word.content##"> </i-textarea>
+                      <i-textarea ng-change="calcCount(art)" ng-model="art.textContent" label="##word.content##"> </i-textarea>
                     </div>
 
                     <fieldset ng-show="article.type.id == 2">
                       <legend>##word.content##</legend>
-                      <i-content  ng-model="art.content" label="##word.content##"> </i-content>
+                      <i-content ng-model="art.htmlContent" label="##word.content##"> </i-content>
                     </fieldset>
 
                     <div class="row" ng-show="article.type.id == 3">
