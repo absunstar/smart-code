@@ -143,8 +143,15 @@ app.controller('articles', function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.article = response.data.doc;
           if (window.addEditor) {
-            window.addEditor.setContents($scope.article.content2);
+            window.addEditor.setContents($scope.article.Htmlcontent);
           }
+
+          $scope.article.$language = $scope.article.translatedList[0].language;
+          $timeout(() => {
+            $scope.changeLanuage($scope.article.$language);
+          }, 200);
+
+          console.log($scope.article);
         } else {
           $scope.error = response.data.error;
         }
@@ -635,10 +642,10 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
-  $scope.changeLanuage = function (event, lang) {
+  $scope.changeLanuage = function (lang) {
     let index = $scope.article.translatedList.findIndex((_c) => _c.language && _c.language.id == lang.id);
     $scope.article.$showCreate = index >= 0 ? false : true;
-    site.showTabContent(event, '#basic');
+    site.showTabContent('#basic');
   };
 
   $scope.addLanguage = function (lang) {

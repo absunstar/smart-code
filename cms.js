@@ -40,7 +40,11 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
-    if (true || (site.setting.siteTemplate && site.setting.siteTemplate.id == 1)) {
+    if (!site.setting.siteTemplate || !site.setting.siteLogo) {
+      res.redirect('/admin');
+      return;
+    }
+    if (true || site.setting.siteTemplate.id == 1) {
       res.render(
         'theme1/index.html',
         {
@@ -70,7 +74,11 @@ site.get(
     name: ['/article/:id'],
   },
   (req, res) => {
-    if (true || (site.setting.siteTemplate && site.setting.siteTemplate.id == 1)) {
+    if (!site.setting.siteTemplate || !site.setting.siteLogo) {
+      res.redirect('/admin');
+      return;
+    }
+    if (true || site.setting.siteTemplate.id == 1) {
       res.render(
         'theme1/article.html',
         {
