@@ -28,6 +28,7 @@ module.exports = function init(site) {
     } else {
       doc.content = doc.translatedList[0].textContent || doc.translatedList[0].htmlContent;
     }
+    doc.description = site.escapeHtml(doc.content);
     doc.publishDate = doc.publishDate || new Date();
     doc.date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
     doc.day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';

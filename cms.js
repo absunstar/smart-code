@@ -84,9 +84,9 @@ site.get(
         'theme1/article.html',
         {
           site_name: site.setting.languagesList[0].siteName,
-          page_logo: site.setting.siteLogo.url,
-          page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
-          page_description: site.setting.languagesList[0].description,
+          page_logo: doc.imageURL || site.setting.siteLogo.url,
+          page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + doc.title,
+          page_description: doc.description,
           prayerTimingsList: site.setting.prayerTimingsList,
           categoriesDisplayList1: site.categoriesDisplayList1,
           categoriesDisplayList2: site.categoriesDisplayList2,
