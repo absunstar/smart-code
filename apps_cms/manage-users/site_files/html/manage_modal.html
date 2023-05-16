@@ -171,7 +171,10 @@
               <div class="row padding">
                 <fieldset>
                   <legend>##word.security_public_roles##</legend>
-                  <i-checkbox class="col3" label="ALL" ng-model="$public_roles" ng-click="checkAll('public_roles')"> </i-checkbox>
+                  <div class="row">
+
+                    <i-checkbox  label="ALL" ng-model="$public_roles" ng-click="checkAll('public_roles')"> </i-checkbox>
+                  </div>
                   <i-checklist class2="col3" primary="name" label="" items="public_roles" display="##session.lang##" ng-model="manageUsers.roles"></i-checklist>
                 </fieldset>
               </div>

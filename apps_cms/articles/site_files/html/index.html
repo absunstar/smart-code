@@ -37,7 +37,9 @@
               <i-image view class="logo" ng-model="c.translatedList[0].image"></i-image>
             </td>
             <td class="center title">{{c.type.##session.lang##}}</td>
-            <td class="center title">{{c.translatedList[0].title}}</td>
+            <td class="center title">
+              <a class="link" href="/article/{{c.id}}" target="_blank"> {{c.translatedList[0].title}} </a>
+            </td>
             <td class="center">
               <p ng-show="c.active == true" class="green">##word.active##</p>
               <p ng-show="c.active == false" class="red">##word.not_active##</p>

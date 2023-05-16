@@ -81,6 +81,10 @@ site.get(
     }
     if (true || site.setting.siteTemplate.id == 1) {
       let article = site.articlesList.find((a) => a.id == req.params.id);
+      if(!article){
+        res.redirect('/');
+        return;
+      }
       res.render(
         'theme1/article.html',
         {

@@ -17,11 +17,15 @@ module.exports = function init(site) {
     { nameAr: 'ديسمبر' },
   ];
   site.escapeHtml = function (unsafe) {
+    if (!unsafe) {
+      return '';
+    }
     return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
   };
 
   site.handleArticle = function (doc) {
-    doc.title = site.escapeHtml(doc.translatedList[0].title.split(' ').join('-'));
+    doc.title = site.escapeHtml(doc.translatedList[0].title);
+    doc.title2 = doc.title.split(' ').join('-');
     doc.imageURL = doc.translatedList[0].image?.url || '/theme1/images/news.jpg';
     if (doc.type.id === 2) {
       doc.content = doc.translatedList[0].htmlContent;
@@ -35,15 +39,28 @@ module.exports = function init(site) {
     doc.hasAudio = false;
     doc.hasVideo = false;
     doc.hasImageGallary = false;
+    doc.hasMenu = false;
+    doc.menuClass = 'none';
 
+    doc.audioClass = 'none';
+    doc.videoClass = 'none';
+    doc.imageGallaryClass = 'none';
     if (doc.translatedList[0].hasAudio) {
       doc.hasAudio = true;
       doc.audio = doc.translatedList[0].audio;
+      doc.audioClass = '';
     }
 
     if (doc.translatedList[0].hasVideo) {
       doc.hasVideo = true;
       doc.video = doc.translatedList[0].video;
+      doc.videoClass = '';
+    }
+    doc.readTimeClass = 'none'
+    if (doc.translatedList[0].readTime) {
+      doc.hasReadTime = true;
+      doc.readTime = doc.translatedList[0].readTime;
+      doc.readTimeClass = '';
     }
 
     if (doc.writer) {
@@ -79,7 +96,7 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL })),
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, audioClass: a.audioClass, videoClass: a.videoClass, imageGallaryClass: a.imageGallaryClass , readTimeClass : a.readTimeClass , menuClass : a.menuClass })),
         }));
 
       site.categoriesDisplayList2 = site.categoriesList
@@ -87,7 +104,7 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL })),
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, audioClass: a.audioClass, videoClass: a.videoClass, imageGallaryClass: a.imageGallaryClass , readTimeClass : a.readTimeClass, menuClass : a.menuClass })),
         }));
 
       site.categoriesDisplayList3 = site.categoriesList
@@ -95,7 +112,7 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL })),
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, audioClass: a.audioClass, videoClass: a.videoClass, imageGallaryClass: a.imageGallaryClass , readTimeClass : a.readTimeClass, menuClass : a.menuClass })),
         }));
       site.categoriesDisplayList3.forEach((c) => {
         c.article = c.list.shift();

@@ -22,8 +22,6 @@ module.exports = function init(site) {
     public: true,
     compress: !0,
     path: [
-      'client-side/effect.css',
-      'client-side/font-droid.css',
       __dirname + '/site_files/css/bootstrap.min.css',
       __dirname + '/site_files/css/all.min.css',
       __dirname + '/site_files/css/style.css',
@@ -34,6 +32,8 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/footer.css',
       __dirname + '/site_files/css/colorstheme.css',
       __dirname + '/site_files/css/articlePage.css',
+      'client-side/effect.css',
+      'client-side/font-droid.css',
     ],
   });
   site.get({
@@ -42,8 +42,6 @@ module.exports = function init(site) {
     public: true,
     compress: !0,
     path: [
-      'client-side/effect.css',
-      'client-side/font-droid.css',
       __dirname + '/site_files/css/bootstrap.min.css',
       __dirname + '/site_files/css/all.min.css',
       __dirname + '/site_files/css/style.css',
@@ -54,6 +52,8 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/footer.css',
       __dirname + '/site_files/css/colorstheme.css',
       __dirname + '/site_files/css/articlePage.css',
+      'client-side/effect.css',
+      'client-side/font-droid.css',
     ],
   });
 

@@ -1,27 +1,26 @@
-let btn1 = document.querySelector("#manageUsers .tab-link");
+let btn1 = document.querySelector('#manageUsers .tab-link');
 if (btn1) {
   btn1.click();
 }
 
-app.controller("manageUsers", function ($scope, $http) {
+app.controller('manageUsers', function ($scope, $http) {
   $scope._search = {};
 
   $scope.mode = 'add';
   $scope.manageUsers = {};
-  $scope.viewText = "";
+  $scope.viewText = '';
 
   $scope.loadManageUsers = function (where) {
     $scope.manageUsers_list = [];
     $scope.busy = true;
     where = where || {};
-    if('##query.type##' != 'undefined') {
+    if ('##query.type##' != 'undefined') {
       where['type.id'] = site.toNumber('##query.type##');
     }
     $http({
-      method: "POST",
-      url: "/api/users/all",
-      data : {
-
+      method: 'POST',
+      url: '/api/users/all',
+      data: {
         where: where,
       },
     }).then(
@@ -32,7 +31,6 @@ app.controller("manageUsers", function ($scope, $http) {
           $scope.count = response.data.users.length;
           $scope.manageUsers.$permissions_info;
           $scope.permissions_list = [];
-
         } else {
           $scope.manageUsers = {};
         }
@@ -47,15 +45,15 @@ app.controller("manageUsers", function ($scope, $http) {
   $scope.editManageUser = function (type) {
     $scope.busy = true;
 
-    const v = site.validated("#manageUsersManageModal");
-    if (!v.ok && type == "password") {
+    const v = site.validated('#manageUsersManageModal');
+    if (!v.ok && type == 'password') {
       $scope.error = v.messages[0].ar;
       return;
     }
 
     $http({
-      method: "POST",
-      url: "/api/manageUsers/update",
+      method: 'POST',
+      url: '/api/manageUsers/update',
       data: {
         user: $scope.manageUsers,
         type: type,
@@ -65,26 +63,21 @@ app.controller("manageUsers", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.busy = false;
-          site.hideModal("#manageUsersManageModal");
-
+          site.hideModal('#manageUsersManageModal');
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like("*Must Enter Code*")) {
-            $scope.error = "##word.must_enter_code##";
-          } else if (
-            response.data.error.like("*maximum number of adds exceeded*")
-          ) {
-            $scope.error = "##word.err_maximum_adds##";
-          } else if (
-            response.data.error.like("*mail must be typed correctly*")
-          ) {
-            $scope.error = "##word.err_username_contain##";
-          } else if (response.data.error.like("*User Is Exist*")) {
-            $scope.error = "##word.user_exists##";
-          } else if (response.data.error.like("*Password does not match*")) {
-            $scope.error = "##word.password_err_match##";
-          } else if (response.data.error.like("*Current Password Error*")) {
-            $scope.error = "##word.current_password_incorrect##";
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = '##word.must_enter_code##';
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = '##word.err_maximum_adds##';
+          } else if (response.data.error.like('*mail must be typed correctly*')) {
+            $scope.error = '##word.err_username_contain##';
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = '##word.user_exists##';
+          } else if (response.data.error.like('*Password does not match*')) {
+            $scope.error = '##word.password_err_match##';
+          } else if (response.data.error.like('*Current Password Error*')) {
+            $scope.error = '##word.current_password_incorrect##';
           }
         }
       },
@@ -95,7 +88,6 @@ app.controller("manageUsers", function ($scope, $http) {
     );
   };
 
-
   $scope.displayAddManageUsers = function () {
     $scope.error = '';
     $scope.mode = 'add';
@@ -104,17 +96,19 @@ app.controller("manageUsers", function ($scope, $http) {
       ability_login: true,
       image: '/images/manageUsers.png',
     };
-    $scope.manageUsers.type = $scope.usersTypesList.find(_t => { return _t.id === site.toNumber('##query.type##') });
+    $scope.manageUsers.type = $scope.usersTypesList.find((_t) => {
+      return _t.id === site.toNumber('##query.type##');
+    });
     site.showModal('#manageUsersManageModal');
-    document.querySelector("#manageUsersManageModal .tab-link").click();
+    document.querySelector('#manageUsersManageModal .tab-link').click();
   };
 
   $scope.addManageUsers = function () {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/manageUsers/add",
-      data: $scope.manageUsers
+      method: 'POST',
+      url: '/api/manageUsers/add',
+      data: $scope.manageUsers,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -125,10 +119,8 @@ app.controller("manageUsers", function ($scope, $http) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {
-
-      }
-    )
+      function (err) {}
+    );
   };
   $scope.displayUpdateManageUsers = function (manageUsers) {
     $scope.error = '';
@@ -136,7 +128,7 @@ app.controller("manageUsers", function ($scope, $http) {
     $scope.viewManageUsers(manageUsers);
     $scope.manageUsers = {};
     site.showModal('#manageUsersManageModal');
-    document.querySelector("#manageUsersManageModal .tab-link").click();
+    document.querySelector('#manageUsersManageModal .tab-link').click();
   };
 
   $scope.updateManageUsers = function () {
@@ -148,9 +140,9 @@ app.controller("manageUsers", function ($scope, $http) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/user/update",
-      data: $scope.manageUsers
+      method: 'POST',
+      url: '/api/user/update',
+      data: $scope.manageUsers,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -164,7 +156,7 @@ app.controller("manageUsers", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsManageUsers = function (manageUsers) {
@@ -175,13 +167,12 @@ app.controller("manageUsers", function ($scope, $http) {
     site.showModal('#manageUsersManageModal');
   };
 
-
   $scope.viewManageUsers = function (manageUsers) {
     $scope.manageUsers = {};
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/manage_user/view",
+      method: 'POST',
+      url: '/api/manage_user/view',
       data: { id: manageUsers.id, all: true },
     }).then(
       function (response) {
@@ -201,8 +192,8 @@ app.controller("manageUsers", function ($scope, $http) {
              $scope.getOrderEcoList();
            } */
           $http({
-            method: "POST",
-            url: "/api/get_dir_names",
+            method: 'POST',
+            url: '/api/get_dir_names',
             data: $scope.permissions_list,
           }).then(
             function (response) {
@@ -210,9 +201,7 @@ app.controller("manageUsers", function ($scope, $http) {
               if (data) {
                 $scope.permissions_list.forEach((_s) => {
                   if (_s.name) {
-                    let newname = data.find(
-                      (el) => el.name == _s.name.replace(/-/g, "_")
-                    );
+                    let newname = data.find((el) => el.name == _s.name.replace(/-/g, '_'));
                     if (newname) {
                       _s.name = newname;
                     }
@@ -220,7 +209,7 @@ app.controller("manageUsers", function ($scope, $http) {
                 });
               }
             },
-            function (err) { }
+            function (err) {}
           );
         } else {
           $scope.manageUsers = {};
@@ -235,21 +224,20 @@ app.controller("manageUsers", function ($scope, $http) {
 
   $scope.loadPermissions = function () {
     $http({
-      method: "POST",
-      url: "/api/security/permissions",
-      data: {}
+      method: 'POST',
+      url: '/api/security/permissions',
+      data: {},
     }).then(
       function (response) {
         $scope.screens = [];
         if (response.data.done) {
-          response.data.permissions.forEach(p => {
-
+          response.data.permissions.forEach((p) => {
             let exist = false;
 
-            $scope.screens.forEach(s => {
+            $scope.screens.forEach((s) => {
               if (s.name == p.screen_name) {
-                exist = true
-                s.permissions.push(p)
+                exist = true;
+                s.permissions.push(p);
               }
             });
 
@@ -257,49 +245,41 @@ app.controller("manageUsers", function ($scope, $http) {
               $scope.screens.push({
                 name: p.screen_name,
                 module_name: p.module_name,
-                permissions: [p]
-              })
+                permissions: [p],
+              });
             }
           });
-
-
 
           $http({
             method: 'POST',
             url: '/api/get_dir_names',
-            data: $scope.screens
+            data: $scope.screens,
           }).then(
             function (response) {
-              let data = response.data.doc
+              let data = response.data.doc;
               if (data) {
                 $scope.trans = data;
-                $scope.screens.forEach(s => {
-                  let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
+                $scope.screens.forEach((s) => {
+                  let newname = data.find((el) => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
-                    s.name = newname;
+                    s.name = newname.ar;
                   }
-
-                })
+                });
               }
+            },
+            function (err) {}
+          );
 
-            }, function (err) {
-
-
-            });
-
-
-          $scope.public_screens = $scope.screens.filter(s => s.module_name == 'public');
+          $scope.public_screens = $scope.screens.filter((s) => s.module_name == 'public');
           $scope.public_screens.pop();
           $scope.permissions = response.data.permissions;
-
         }
       },
       function (err) {
         $scope.error = err;
-      })
+      }
+    );
   };
-
-
 
   $scope.displayDeleteManageUsers = function (manageUsers) {
     $scope.error = '';
@@ -307,7 +287,7 @@ app.controller("manageUsers", function ($scope, $http) {
     $scope.viewManageUsers(manageUsers);
     $scope.manageUsers = {};
     site.showModal('#manageUsersManageModal');
-    document.querySelector("#manageUsersManageModal .tab-link").click();
+    document.querySelector('#manageUsersManageModal .tab-link').click();
   };
 
   $scope.deleteManageUsers = function () {
@@ -315,11 +295,11 @@ app.controller("manageUsers", function ($scope, $http) {
     $scope.error = '';
 
     $http({
-      method: "POST",
-      url: "/api/user/delete",
+      method: 'POST',
+      url: '/api/user/delete',
       data: {
-        id: $scope.manageUsers.id
-      }
+        id: $scope.manageUsers.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -333,24 +313,22 @@ app.controller("manageUsers", function ($scope, $http) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
-
   $scope.searchAll = function () {
-
     $scope.loadManageUsers($scope.search);
     site.hideModal('#manageUsersSearchModal');
     $scope.search = {};
   };
 
   $scope.getUsersTypesList = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $scope.usersTypesList = [];
     $http({
-      method: "POST",
-      url: "/api/usersTypes/all",
+      method: 'POST',
+      url: '/api/usersTypes/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -364,12 +342,12 @@ app.controller("manageUsers", function ($scope, $http) {
   };
 
   $scope.getGender = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $scope.genderList = [];
     $http({
-      method: "POST",
-      url: "/api/gender/all",
+      method: 'POST',
+      url: '/api/gender/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -384,29 +362,30 @@ app.controller("manageUsers", function ($scope, $http) {
 
   $scope.loadRoles = function () {
     $http({
-      method: "POST",
-      url: "/api/security/roles",
-      data: {}
+      method: 'POST',
+      url: '/api/security/roles',
+      data: {},
     }).then(
       function (response) {
         if (response.data.done) {
           $scope.roles = response.data.roles;
-          $scope.public_roles = $scope.roles.filter(s => s.module_name == 'public');
+          $scope.public_roles = $scope.roles.filter((s) => s.module_name == 'public');
         }
       },
       function (err) {
         $scope.error = err;
-      })
+      }
+    );
   };
 
   $scope.checkAll = function (name) {
-    $scope[name].forEach(r => {
+    $scope[name].forEach((r) => {
       r.$selected = $scope['$' + name];
       if (r.$selected) {
         let exists = false;
-        $scope.user.roles.forEach(r2 => {
+        $scope.user.roles.forEach((r2) => {
           if (r.name == r2.name) {
-            exists = true
+            exists = true;
             r2.$selected = true;
           }
         });
@@ -421,7 +400,6 @@ app.controller("manageUsers", function ($scope, $http) {
             $scope.user.roles.splice(i, 1);
           }
         });
-
       }
     });
   };
@@ -544,18 +522,17 @@ app.controller("manageUsers", function ($scope, $http) {
     );
   };
 
-
   $scope.getFilesTypesList = function (where) {
     $scope.busy = true;
     $scope.filesTypesList = [];
     $http({
-      method: "POST",
-      url: "/api/fileType/all",
+      method: 'POST',
+      url: '/api/fileType/all',
       data: {
         where: {
           active: true,
         },
-        select: { name: 1, id: 1 }
+        select: { name: 1, id: 1 },
       },
     }).then(
       function (response) {
@@ -572,13 +549,13 @@ app.controller("manageUsers", function ($scope, $http) {
   };
 
   $scope.addFiles = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.manageUsers.files_list = $scope.manageUsers.files_list || [];
     $scope.manageUsers.files_list.push({
       file_date: new Date(),
       file_upload_date: new Date(),
-      upload_by: "##user.profile.name##",
-      id_by: site.toNumber("##user.id##"),
+      upload_by: '##user.profile.name##',
+      id_by: site.toNumber('##user.id##'),
     });
   };
 
