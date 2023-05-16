@@ -46,16 +46,16 @@
           </div>
           <div class="newsArticle col-12 col-lg-9 d-flex flex-column justify-content-center align-items-start align-content-center m-0 p-0 mb-10">
             <div class="w-100 articleSection d-flex flex-column justify-content-center align-items-end align-content-center gap-2">
-              <div class="articleEditor d-flex flex-row-reverse gap-2">
+              <div x-data="article.hasWriter" class="articleEditor d-flex flex-row-reverse gap-2">
                 <div class="col col-lg-5">
-                  <a class="editorImage d-flex flex-column align-items-end" href="http://">
-                    <img src="https://via.placeholder.com/147x147" width="147px" height="147px" />
+                  <a class="editorImage d-flex flex-column align-items-end" href="/writer/##data.article.writer.id##">
+                    <img src="##data.article.writer.imageURL##" width="147px" height="147px" />
                   </a>
                 </div>
                 <div class="col col-md-6 col-lg-7">
-                  <a class="d-flex flex-column align-items-end" href="http://">
-                    <p class="editorName">محمود صلاح</p>
-                    <p class="editorTitle mb-2">رئيس التحرير</p>
+                  <a class="d-flex flex-column align-items-end" href="/writer/##data.article.writer.id##">
+                    <p class="editorName">##data.article.writer.name##</p>
+                    <p class="editorTitle mb-2">##data.article.writer.title##</p>
                   </a>
                   <div class="col d-flex flex-column align-items-md-start align-items-end flex-sm-row-reverse gap-1">
                     <div class="follow d-flex flex-row justify-content-center align-items-center gap-2 mb-2 mb-sm-0">
@@ -95,26 +95,27 @@
                   </div>
                 </div>
               </div>
-              <audio x-data="article.hasAudio" controls src="" class="w-100"></audio>
+              <audio x-data="article.hasAudio" controls class="w-100">
+                <source src="##data.article.audio.url##" type="audio/mpeg" />
+              </audio>
               <div class="mainarticle d-flex flex-column align-items-end justify-content-end gap-2">
-                <div>
-                 ##data.article.content##
-                </div>
-                <div x-data="article.hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center">
+                <div>##data.article.content##</div>
+                <div x-data="article.hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.video.imageURL##')">
                   <div id="videopalyicon" class="videoFile palyicon p-10">
                     <i class="fas fa-play"></i>
                   </div>
-                  <div id="videopalyer" class="videopalyer flex-column justify-content-center align-items-center">
+                  <div x-data="article.hasVideo" id="videopalyer" class="videopalyer flex-column justify-content-center align-items-center">
                     <div class="closeVideoButton p-4">
                       <div id="closeVButton" class="closevideo closeMButton d-flex flex-row justify-content-end align-items-start">
                         <i class="fas fa-times"></i>
                       </div>
                     </div>
-                    <video class="d-flex" src="" controls></video>
+                    <video class="d-flex" controls>
+                      <source src="##data.article.video.url##" type="video/mp4" />
+                    </video>
                   </div>
                 </div>
 
-               
                 <div x-data="article.hasImageGallary" class="imagesArticle w-100 d-flex flex-row justify-content-end align-items-start">
                   <div class="IASmallSlider d-flex flex-column justify-content-start">
                     <div class="slide-imageNews d-flex">
@@ -139,7 +140,6 @@
                     </div>
                   </div>
                 </div>
-               
               </div>
             </div>
           </div>

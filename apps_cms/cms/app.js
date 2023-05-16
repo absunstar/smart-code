@@ -19,6 +19,7 @@ module.exports = function init(site) {
       'client-side/layout.css',
       'client-side/modal.css',
       'client-side/color.css',
+      'client-side/html5.css',
       'client-side/images.css',
       'client-side/dropdown.css',
       'client-side/fonts.css',

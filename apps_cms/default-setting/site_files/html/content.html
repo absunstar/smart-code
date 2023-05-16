@@ -2,7 +2,7 @@
   <div class="tabs">
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.site_settings## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Main Page## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Theme Setting## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.email_and_text_messages## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#articlesSettings')"> ##word.articles_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.programming## </a>
@@ -258,45 +258,48 @@
         </div>
       </div>
       <div id="emailAndTextMessages" class="tab-content">
-        <fieldset>
-          <legend>##word.mobile_sms##</legend>
-          <div class="row">
+        <div class="article-part">
+          <fieldset>
+            <legend>##word.mobile_sms##</legend>
+            <div class="row">
+              <div class="col6">
+                <div class="article-part">
+                  <i-checkbox label="##word.enableSendingMessagesMobile##" ng-model="defaultSetting.enableSendingMessagesMobile"> </i-checkbox>
+                </div>
+              </div>
+
+              <i-control class="col6" label="##word.auth_token_mobile##" ng-model="defaultSetting.authTokenMobile"> </i-control>
+            </div>
+            <div class="row">
+              <i-control class="col6" label="##word.account_id_mobile##" ng-model="defaultSetting.accountIdMobile"> </i-control>
+              <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="defaultSetting.messagingServicesIdMobile"> </i-control>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>##word.email_sending_setting##</legend>
             <div class="col6">
               <div class="article-part">
-                <i-checkbox label="##word.enableSendingMessagesMobile##" ng-model="defaultSetting.enableSendingMessagesMobile"> </i-checkbox>
+                <i-checkbox class="" label="##word.allow_registration_through_email##" ng-model="defaultSetting.allowRegistrationEmail"> </i-checkbox>
+                <i-checkbox label="##word.enableSendingMessagesEmail##" ng-model="defaultSetting.enableSendingMessagesEmail"> </i-checkbox>
               </div>
             </div>
-
-            <i-control class="col6" label="##word.auth_token_mobile##" ng-model="defaultSetting.authTokenMobile"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col6" label="##word.account_id_mobile##" ng-model="defaultSetting.accountIdMobile"> </i-control>
-            <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="defaultSetting.messagingServicesIdMobile"> </i-control>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>##word.email_sending_setting##</legend>
-          <div class="col6">
-            <div class="article-part">
-              <i-checkbox class="" label="##word.allow_registration_through_email##" ng-model="defaultSetting.allowRegistrationEmail"> </i-checkbox>
-              <i-checkbox label="##word.enableSendingMessagesEmail##" ng-model="defaultSetting.enableSendingMessagesEmail"> </i-checkbox>
+            <div class="row">
+              <i-control class="col6" label="##word.host##" type="text" ng-model="defaultSetting.emailSetting.host"></i-control>
+              <i-control class="col6" label="##word.port##" type="number" ng-model="defaultSetting.emailSetting.port"></i-control>
             </div>
-          </div>
-          <div class="row">
-            <i-control class="col6" label="##word.host##" type="text" ng-model="defaultSetting.emailSetting.host"></i-control>
-            <i-control class="col6" label="##word.port##" type="number" ng-model="defaultSetting.emailSetting.port"></i-control>
-          </div>
 
-          <div class="row">
-            <i-control class="col6" label="##word.user_name##" type="text" ng-model="defaultSetting.emailSetting.username"></i-control>
-            <i-control class="col6" label="##word.password##" type="password" ng-model="defaultSetting.emailSetting.password"> </i-control>
-          </div>
+            <div class="row">
+              <i-control class="col6" label="##word.user_name##" type="text" ng-model="defaultSetting.emailSetting.username"></i-control>
+              <i-control class="col6" label="##word.password##" type="password" ng-model="defaultSetting.emailSetting.password"> </i-control>
+            </div>
 
-          <div class="row">
-            <i-control class="col6" label="##word.sent_from_mail##" type="text" ng-model="defaultSetting.emailSetting.from"> </i-control>
-          </div>
-        </fieldset>
+            <div class="row">
+              <i-control class="col6" label="##word.sent_from_mail##" type="text" ng-model="defaultSetting.emailSetting.from"> </i-control>
+            </div>
+          </fieldset>
+        </div>
+
         <i-button type="save" label="##word.save##" x-permissions="defaultSetting_edit || defaultSetting_manage" ng-click="saveSetting('#email_and_text_messages')"></i-button>
       </div>
 
@@ -370,7 +373,7 @@
       </div>
 
       <div id="programming" class="tab-content">
-        <fieldset>
+        <div class="article-part">
           <fieldset>
             <legend>
               Meta Tags
@@ -465,63 +468,71 @@
           </fieldset>
 
           <div class="row">
-            <div class="col5">
-              <br />
+            <div class="col3">
               <i-checkbox label="Auto generate sitemap.xml file" ng-model="defaultSetting.programming.autoGenerateSitemapXmlFile"> </i-checkbox>
             </div>
-            <i-control ng-show="defaultSetting.programming.autoGenerateSitemapXmlFile" class="col3" label="Count Limit" type="number" ng-model="defaultSetting.programming.sitemapXmlCount">
-            </i-control>
+            <div class="col9">
+              <i-control ng-show="defaultSetting.programming.autoGenerateSitemapXmlFile" label="Count Limit" type="number" ng-model="defaultSetting.programming.sitemapXmlCount"> </i-control>
+            </div>
           </div>
 
           <div class="row">
             <div class="col3">
-              <br />
               <i-checkbox label="Auto generate RSS" ng-model="defaultSetting.programming.autoGenerateRss"> </i-checkbox>
             </div>
-            <i-control ng-show="defaultSetting.programming.autoGenerateRss" class="col3" label="Count Limit" type="number" ng-model="defaultSetting.programming.rssCount"> </i-control>
+            <div class="col9">
+              <i-control ng-show="defaultSetting.programming.autoGenerateRss" label="Count Limit" type="number" ng-model="defaultSetting.programming.rssCount"> </i-control>
+            </div>
           </div>
-
-          <i-button type="save" label="##word.save##" x-permissions="defaultSetting_edit || defaultSetting_manage" ng-click="saveSetting('#programming')"> </i-button>
-        </fieldset>
+        </div>
+        <i-button type="save" label="##word.save##" x-permissions="defaultSetting_edit || defaultSetting_manage" ng-click="saveSetting('#programming')"> </i-button>
       </div>
 
       <div id="block" class="tab-content">
-        <fieldset>
-          <legend>
-            IP
-            <i-button type="add default" ng-click="addBlockIp(defaultSetting.block)"></i-button>
-          </legend>
-          <div class="row" ng-repeat="i in defaultSetting.block.ipList track by $index">
-            <i-control type="text" class="col9" ng-model="i.name"> </i-control>
-            <div class="col1"></div>
-            <i-button type="delete" label="##word.delete##" ng-click="defaultSetting.block.ipList.splice($index,1)"> </i-button>
+        <div class="article-part">
+          <div class="row">
+            <fieldset>
+              <legend>
+                IP
+                <i-button type="add default" ng-click="addBlockIp(defaultSetting.block)"></i-button>
+              </legend>
+              <div class="row" ng-repeat="i in defaultSetting.block.ipList track by $index">
+                <i-control type="text" class="col9" ng-model="i.name"> </i-control>
+                <div class="col1"></div>
+                <i-button type="delete" label="##word.delete##" ng-click="defaultSetting.block.ipList.splice($index,1)"> </i-button>
+              </div>
+            </fieldset>
           </div>
-        </fieldset>
 
-        <fieldset>
-          <legend>
-            Domains
-            <i-button type="add default" ng-click="addBlockDomains(defaultSetting.block)"></i-button>
-          </legend>
-          <div class="row" ng-repeat="d in defaultSetting.block.domainsList track by $index">
-            <i-control type="text" class="col9" ng-model="d.name"> </i-control>
-            <div class="col1"></div>
-            <i-button type="delete" label="##word.delete##" ng-click="defaultSetting.block.domainsList.splice($index,1)"> </i-button>
+          <div class="row">
+            <fieldset>
+              <legend>
+                Domains
+                <i-button type="add default" ng-click="addBlockDomains(defaultSetting.block)"></i-button>
+              </legend>
+              <div class="row" ng-repeat="d in defaultSetting.block.domainsList track by $index">
+                <i-control type="text" class="col9" ng-model="d.name"> </i-control>
+                <div class="col1"></div>
+                <i-button type="delete" label="##word.delete##" ng-click="defaultSetting.block.domainsList.splice($index,1)"> </i-button>
+              </div>
+            </fieldset>
           </div>
-        </fieldset>
 
-        <fieldset>
-          <legend>
-            UserAgent
-            <i-button type="add default" ng-click="addBlockUserAgent(defaultSetting.block)"></i-button>
-          </legend>
-          <div class="row" ng-repeat="u in defaultSetting.block.userAgentList track by $index">
-            <i-control type="text" class="col9" ng-model="u.name"> </i-control>
-            <div class="col1"></div>
-            <i-button type="delete" label="##word.delete##" ng-click="defaultSetting.block.userAgentList.splice($index,1)"> </i-button>
+          <div class="row">
+            <fieldset>
+              <legend>
+                UserAgent
+                <i-button type="add default" ng-click="addBlockUserAgent(defaultSetting.block)"></i-button>
+              </legend>
+              <div class="row" ng-repeat="u in defaultSetting.block.userAgentList track by $index">
+                <i-control type="text" class="col9" ng-model="u.name"> </i-control>
+                <div class="col1"></div>
+                <i-button type="delete" label="##word.delete##" ng-click="defaultSetting.block.userAgentList.splice($index,1)"> </i-button>
+              </div>
+            </fieldset>
           </div>
-          <i-button type="save" label="##word.save##" x-permissions="defaultSetting_edit || defaultSetting_manage" ng-click="saveSetting('#block')"> </i-button>
-        </fieldset>
+        </div>
+        <i-button type="save" label="##word.save##" x-permissions="defaultSetting_edit || defaultSetting_manage" ng-click="saveSetting('#block')"> </i-button>
       </div>
     </div>
   </div>

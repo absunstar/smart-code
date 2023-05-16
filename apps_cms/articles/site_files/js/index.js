@@ -354,7 +354,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       url: '/api/users/all',
       data: {
         where: where,
-        select: { id: 1, profile: 1 },
+        select: { id: 1, profile: 1 , image : 1 },
       },
     }).then(
       function (response) {

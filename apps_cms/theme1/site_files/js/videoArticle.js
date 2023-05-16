@@ -1,12 +1,10 @@
 let closeVButton = document.getElementById('closeVButton');
 let videopalyer = document.getElementById('videopalyer');
-let videopalyicon= document.getElementById('videopalyicon');
+let videopalyicon= document.querySelector('.videoArticle');
 
 closeVButton.addEventListener("mousedown", () => {
     videopalyer.classList.remove('showAnddisplay') ;
-    console.log("test");
 });
 videopalyicon.addEventListener("mousedown", () => {
     videopalyer.classList.add('showAnddisplay') ;
-    console.log("test");
 });

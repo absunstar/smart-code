@@ -68,9 +68,7 @@ module.exports = function init(site) {
       __dirname + '/site_files/js/all.min.js',
       __dirname + '/site_files/js/script.js',
       __dirname + '/site_files/js/mainSlider.js',
-      __dirname + '/site_files/js/goldprice.js',
-      __dirname + '/site_files/js/footballMatches.js',
-      __dirname + '/site_files/js/convertCurrancy.js',
+      __dirname + '/site_files/js/article-page.js',
     ],
   });
 

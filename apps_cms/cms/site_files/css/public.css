@@ -1,6 +1,6 @@
 :root {
-  --theme-color: #2196f3;
-  --brand-color: #ffeb3b;
+  --theme-color: #4caf50;
+  --brand-color: #ffffff;
   --body-background: #fafafa;
   --bs-body-bg: var(--body-background);
   --tabs-content-width: 100%;
@@ -14,6 +14,8 @@
   --treeview-background-color2: var(--brand-color);
   --i-image-border: none;
   --menu-width : 320px;
+  --tabs-header-link-color: #708359;
+  --fieldset-background: #fff;
 }
 
 body {
@@ -70,4 +72,39 @@ legend > i-checkbox {
   inline-size: auto;
   margin: 3px;
   border-radius: 15px;
+}
+
+.tabs {
+  display: inline-block;
+  padding: 0px !important;
+  width: 100%;
+  transition: all 0.1s ease;
+  border-radius: 10px;
+  box-shadow: 1px 1px 8px #000;
+  border: 6px solid var(--theme-color);
+}
+.tabs .tabs-header {
+  padding: 0px;
+  width: var(--tabs-header-width);
+  margin: 0px;
+  display: inline-block;
+  float: var(--float);
+  overflow: hidden;
+  background: var(--theme-color);
+  border-bottom: 2px solid #fff;
+}
+.tabs .tabs-header .tab-link.active {
+  background-color: var(--tabs-background-color);
+  color: var(--tabs-color);
+  border-bottom: 3px solid #ffffff !important;
+}
+.tabs .tabs-header .tab-link:hover {
+  background-color: var(--tabs-background-color2);
+  color: var(--tabs-header-link-color2);
+  border-bottom: 2px solid;
+}
+.tabs .tabs-content {
+  width: var(--tabs-content-width);
+  display: inline-block;
+  background: var(--theme-color);
 }

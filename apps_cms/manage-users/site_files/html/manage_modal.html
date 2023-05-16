@@ -30,6 +30,9 @@
                       <i-control v="r" class="col6" label="##word.lastName##" ng-model="manageUsers.profile.lastName"> </i-control>
                     </div>
                     <div class="row">
+                      <i-control  v="r" class="col6" label="##word.Title##" ng-model="manageUsers.profile.title"></i-control>
+                    </div>
+                    <div class="row">
                       <i-control v="r" class="col6" label="##word.email##" ng-model="manageUsers.email"> </i-control>
                       <i-control v="r" class="col6" label="##word.password##" ng-model="manageUsers.password"> </i-control>
                     </div>
@@ -46,11 +49,10 @@
                   </div>
 
                   <div class="col3">
-                    <i-image help-id="manageUsers_logo" ng-model="manageUsers.image"></i-image>
+                    <i-image class="img256" help-id="manageUsers_logo" ng-model="manageUsers.image"></i-image>
                     <div class="row">
-
                       <i-checkbox label="##word.active##" ng-model="manageUsers.active"> </i-checkbox>
-                      
+
                       <i-checkbox label="##word.ability_login##" ng-model="manageUsers.ability_login"> </i-checkbox>
                     </div>
                   </div>

@@ -1,26 +1,26 @@
 .article-part {
-    padding: 10px;
-    border: 2px solid var(--theme-color);
-    margin-bottom: 10px !important;
-    border-radius: 10px;
-    color: #000;
-    text-align: center;
+  padding: 10px;
+  border: 2px solid var(--theme-color);
+  margin-bottom: 10px !important;
+  border-radius: 10px;
+  color: #000;
+  text-align: center;
+  background: #fff;
 }
 .article-part i-checklist .title {
   font-weight: bold;
   font-size: 20px;
   color: #272727;
 }
-.article-part label{
-    font-size: 14px;
-    font-weight: bold;
-    color: #9C27B0;
+.article-part label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff5722;
 }
-.article-editor{
-    border: 2px solid var(--theme-color);
-    color: #000;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 30px !important;
+.article-editor {
+  border: 2px solid var(--theme-color);
+  color: #000;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 30px !important;
 }
-

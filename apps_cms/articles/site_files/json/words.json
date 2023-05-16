@@ -158,5 +158,10 @@
     "name": "exclude_home_page",
     "en": "Exclude from home page",
     "ar": "إستبعاد من الصفحة الرئيسية"
+  },
+  {
+    "name": "has Audio",
+    "en": "has Audio",
+    "ar": "يحتوى على ملف صوتى"
   }
 ]

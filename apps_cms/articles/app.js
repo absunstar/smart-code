@@ -16,17 +16,41 @@ module.exports = function init(site) {
     { nameAr: 'نوقمير' },
     { nameAr: 'ديسمبر' },
   ];
+  site.escapeHtml = function (unsafe) {
+    return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+  };
 
   site.handleArticle = function (doc) {
-    doc.title = doc.translatedList[0].title;
+    doc.title = site.escapeHtml(doc.translatedList[0].title.split(' ').join('-'));
     doc.imageURL = doc.translatedList[0].image?.url || '/theme1/images/news.jpg';
-    doc.content = doc.translatedList[0].textContent || doc.translatedList[0].htmlContent;
+    if (doc.type.id === 2) {
+      doc.content = doc.translatedList[0].htmlContent;
+    } else {
+      doc.content = doc.translatedList[0].textContent || doc.translatedList[0].htmlContent;
+    }
     doc.publishDate = doc.publishDate || new Date();
     doc.date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
     doc.day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
-    doc.hasVideo = true;
-    doc.hasImageGallary = true;
-    doc.hasAudio = true;
+    doc.hasAudio = false;
+    doc.hasVideo = false;
+    doc.hasImageGallary = false;
+
+    if (doc.translatedList[0].hasAudio) {
+      doc.hasAudio = true;
+      doc.audio = doc.translatedList[0].audio;
+    }
+
+    if (doc.translatedList[0].hasVideo) {
+      doc.hasVideo = true;
+      doc.video = doc.translatedList[0].video;
+    }
+
+    if (doc.writer) {
+      doc.hasWriter = true;
+      doc.writer.name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
+      doc.writer.title = doc.writer.profile.title;
+      doc.writer.imageURL = doc.writer.image?.url || doc.writer.profile.image_url;
+    }
     return doc;
   };
   $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
@@ -43,10 +67,7 @@ module.exports = function init(site) {
       $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: cat.homeLimit || 6 }, (err, docs) => {
         if (!err && docs) {
           docs.forEach((doc) => {
-            doc.publishDate = doc.publishDate || new Date();
-            doc.date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
-            doc.day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
-            cat.$list.push({ ...doc });
+            cat.$list.push(site.handleArticle({ ...doc }));
           });
         }
       });
@@ -57,7 +78,7 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.translatedList[0].title, imageURL: a.translatedList[0].image?.url || '/theme1/images/news.jpg' })),
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL })),
         }));
 
       site.categoriesDisplayList2 = site.categoriesList
@@ -65,7 +86,7 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.translatedList[0].title, imageURL: a.translatedList[0].image?.url || '/theme1/images/news.jpg' })),
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL })),
         }));
 
       site.categoriesDisplayList3 = site.categoriesList
@@ -73,7 +94,7 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.translatedList[0].title, imageURL: a.translatedList[0].image?.url || '/theme1/images/news.jpg' })),
+          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL })),
         }));
       site.categoriesDisplayList3.forEach((c) => {
         c.article = c.list.shift();
@@ -84,13 +105,13 @@ module.exports = function init(site) {
       site.categoriesList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
       site.topNews = site.articlesList
         .filter((a) => a.appearInUrgent === true)
-        .map((c) => ({ id: c.id, title: c.translatedList[0].title }))
+        .map((c) => ({ id: c.id, title: c.title }))
         .splice(0, 10)
         .reverse();
 
       site.MainSliderNews = site.articlesList
         .filter((a) => a.showInMainSlider === true)
-        .map((c) => ({ id: c.id, day: c.day, date: c.date, title: c.translatedList[0].title, imageURL: c.translatedList[0].image?.url || '/theme1/images/news.jpg' }))
+        .map((c) => ({ id: c.id, day: c.day, date: c.date, title: c.title, imageURL: c.imageURL }))
         .splice(0, 5);
     }, 1000 * 5);
   };

@@ -660,5 +660,10 @@
     "name": "duration",
     "en": "Duration",
     "ar": "المدة"
+  },
+  {
+    "name": "Theme Setting",
+    "en": "Theme Setting",
+    "ar": "الشكل العام للموقع"
   }
 ]

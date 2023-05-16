@@ -213,7 +213,7 @@ a{
     position:fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.678);
+    background-color: #000;
     z-index: 100;
   }
 
@@ -232,8 +232,10 @@ a{
  }
 
   .videopalyer > video {
-    width:80%;
-    height:auto;
+    width: 80%;
+    max-height: 80%;
+    height: auto;
+    border: 2px solid #fff;
   }
 
 

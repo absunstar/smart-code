@@ -1,7 +1,7 @@
 const site = require('../isite')({
   port: [80, 40018],
   lang: 'ar',
-  version: '2023.03.07.2',
+  version: Date.now(),
   name: 'cms',
   savingTime: 5,
   log: true,
@@ -79,6 +79,7 @@ site.get(
       return;
     }
     if (true || site.setting.siteTemplate.id == 1) {
+      let article = site.articlesList.find((a) => a.id == req.params.id);
       res.render(
         'theme1/article.html',
         {
@@ -95,7 +96,7 @@ site.get(
           categoriesList3: site.categoriesList3,
           topNews: site.topNews,
           MainSliderNews: site.MainSliderNews,
-          article: site.articlesList[0],
+          article: article,
         },
         {
           parser: 'html css js',
