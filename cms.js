@@ -50,6 +50,7 @@ site.get(
         {
           site_name: site.setting.languagesList[0].siteName,
           page_logo: site.setting.siteLogo.url,
+          page_image: site.setting.siteLogo.url,
           page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
           page_description: site.setting.languagesList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
@@ -84,7 +85,8 @@ site.get(
         'theme1/article.html',
         {
           site_name: site.setting.languagesList[0].siteName,
-          page_logo: article.imageURL || site.setting.siteLogo.url,
+          page_logo: site.setting.siteLogo.url,
+          page_image: article.imageURL || site.setting.siteLogo.url,
           page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + article.title,
           page_description: article.description,
           prayerTimingsList: site.setting.prayerTimingsList,
