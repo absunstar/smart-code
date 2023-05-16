@@ -332,7 +332,7 @@ module.exports = function init(site) {
         sort: req.body.sort || {
           id: -1,
         },
-        limit: req.body.limit,
+        limit: req.body.limit || 100,
       },
       (err, docs, count) => {
         if (!err) {
