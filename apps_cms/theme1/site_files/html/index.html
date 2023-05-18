@@ -8,15 +8,15 @@
     <div id="mainContent" class="container d-flex flex-column">
       <div x-setting="showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
 
-      <div x-import="theme1/ad1.html"></div>
+      <div x-setting="showTopAd" x-import="theme1/ad-top.html"></div>
 
       <div class="row d-flex flex-column">
         <div x-import="theme1/part-1.html"></div>
         <div x-import="theme1/part-2.html"></div>
       </div>
       <div x-import="theme1/part-3.html"></div>
-      <div x-import="theme1/part-4.html"></div>
-      <div x-import="theme1/part-5.html"></div>
+      <div x-setting="showEditorManagerArticle" x-import="theme1/part-4.html"></div>
+      <div x-setting="showEditorsArticle" x-import="theme1/part-5.html"></div>
       <div x-import="theme1/part-6.html"></div>
     </div>
 

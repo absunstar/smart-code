@@ -19,31 +19,15 @@
         </div>
       </div>
 
-      <div class="ad d-flex flex-row justify-content-center align-items-center">
-        <div class="hAd row d-flex flex-row justify-content-center align-items-center gap-xl-0 gap-3">
-          <a class="col col-lg-3 d-flex flex-column justify-content-center align-items-center p-0 m-0" href="http://">
-            <img src="/theme1/images/ad2.jpg" width="300px" height="300px" />
-          </a>
-          <a class="col col-lg-3 d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-            <img src="/theme1/images/ad2.jpg" width="300px" height="300px" />
-          </a>
-          <a class="col col-lg-3 d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-            <img src="/theme1/images/ad2.jpg" width="300px" height="300px" />
-          </a>
-          <a class="col col-lg-3 d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-            <img src="/theme1/images/ad2.jpg" width="300px" height="300px" />
-          </a>
-        </div>
-      </div>
+      <div x-setting="showArticleAd" x-import="theme1/ad-article.html" class="ad d-flex flex-row justify-content-center align-items-center"></div>
 
       <!-- ---start mainSection--- -->
       <div class="mainSectionNews d-flex flex-column mt-4">
-        <div class="adsWithNews d-flex flex-lg-row flex-column justify-content-start align-items-md-end align-items-lg-start align-items-end p-0 m-0">
-          <div class="sideAds col col-sm-10 col-lg-3 mt-3 d-none d-sm-flex justify-content-lg-center justify-content-sm-between justify-content-center align-items-center p-0 m-lg-0 m-4 ml-2">
-            <div class="d-none d-lg-flex">
-              <img src="/theme1/images/ad3.jpg" width="160px" height="600px" />
-            </div>
-          </div>
+        <div x-setting="showSideAd" class="adsWithNews d-flex flex-lg-row flex-column justify-content-start align-items-md-end align-items-lg-start align-items-end p-0 m-0">
+          <div
+            x-import="theme1/ad-side.html"
+            class="sideAds col col-sm-10 col-lg-3 mt-3 d-none d-sm-flex justify-content-lg-center justify-content-sm-between justify-content-center align-items-center p-0 m-lg-0 m-4 ml-2"
+          ></div>
           <div class="newsArticle col-12 col-lg-9 d-flex flex-column justify-content-center align-items-start align-content-center m-0 p-0 mb-10">
             <div class="w-100 articleSection d-flex flex-column justify-content-center align-items-end align-content-center gap-2">
               <div x-data="article.hasWriter" class="articleEditor d-flex flex-row-reverse gap-2">
