@@ -164,7 +164,7 @@ a {
 }
 
 .readingTime {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   color: var(--text-color);
   border-radius: 15px;
   font-size: var(--readTime);
@@ -177,7 +177,7 @@ a {
 .audioFile {
   width: 36px;
   height: 36px;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   color: var(--icon-color);
   border-radius: 50px;
   cursor: pointer;
@@ -185,7 +185,7 @@ a {
 .videoFile {
   width: 36px;
   height: 36px;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   color: var(--icon-color);
   border-radius: 50px;
   cursor: pointer;
@@ -193,7 +193,7 @@ a {
 .gallaryImages {
   width: 36px;
   height: 36px;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   color: var(--icon-color);
   border-radius: 50px;
   cursor: pointer;
@@ -202,12 +202,12 @@ a {
 .gallaryImages:hover,
 .videoFile:hover,
 .audioFile:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 
 .moreDot:hover {
   cursor: pointer;
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 /* start video player */
@@ -233,7 +233,7 @@ a {
 }
 
 .fa-times:hover {
-  color: var(--secondary-color);
+  color: red;
   cursor: pointer;
 }
 
@@ -265,12 +265,12 @@ a {
 }
 
 #closeAButton > .fa-times {
-  color: var(--primary-color);
+  color: #fff;
   cursor: pointer;
 }
 
 #closeAButton > .fa-times:hover {
-  color: var(--secondary-color);
+  color: red;
   cursor: pointer;
 }
 
@@ -429,6 +429,7 @@ a {
   background-size: cover;
   background-color: darkolivegreen;
   border-radius: 15px;
+  border: 1px solid var(--primary-color);
 }
 .MS-newsTilteTime {
   width: 100%;
@@ -634,7 +635,7 @@ a {
   padding: 0px 24px;
   margin-top: 20px;
   margin-bottom: 10px;
-  background-color: var(--third-color);
+  background-color: var(--primary-color);
   color: var(--text-color);
   font-size: 20px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -658,7 +659,7 @@ a {
   padding: 0px 46px;
   width: 350px;
   height: 300px;
-  background: var(--secondary-color);
+  background: var(--primary-color);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 40px 0px;
 }

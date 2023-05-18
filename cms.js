@@ -72,16 +72,25 @@ site.get(
 );
 site.get(
   {
-    name: ['/article/:id'],
+    name: ['/article/:id/:title', '/a/:id'],
   },
   (req, res) => {
     if (!site.setting.siteTemplate || !site.setting.siteLogo) {
       res.redirect('/admin');
       return;
     }
+    if (req.route.name0 == '/a/:id') {
+      let article = site.articlesList.find((a) => a.id == req.params.id);
+      if (article) {
+        res.redirect('/article/' + article.id + '/' + encodeURI(article.title2));
+      } else {
+        res.redirect('/');
+      }
+      return;
+    }
     if (true || site.setting.siteTemplate.id == 1) {
       let article = site.articlesList.find((a) => a.id == req.params.id);
-      if(!article){
+      if (!article) {
         res.redirect('/');
         return;
       }
