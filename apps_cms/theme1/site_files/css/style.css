@@ -14,7 +14,7 @@ body {
   .container-sm,
   .container-xl,
   .container-xxl {
-    max-width: 1320px !important;
+    max-width: 95vw !important;
   }
 }
 p {
