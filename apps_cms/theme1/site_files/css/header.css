@@ -72,7 +72,7 @@
 .newsText > ul > li {
   display: inline-block;
 }
-.newsText > ul > li:hover {
+.newsText > ul > li p:hover {
   border-bottom: 2px solid var(--secondary-color);
 }
 .newsText > ul > li > a {
