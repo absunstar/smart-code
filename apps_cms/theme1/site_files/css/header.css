@@ -64,7 +64,7 @@
   flex-direction: row;
   overflow: hidden;
   /* transform: translateX(-100%); */
-  animation: newsText 50s 0s infinite linear;
+  animation: newsText 100s 0s infinite linear;
   will-change: transform;
   direction: rtl;
 }
