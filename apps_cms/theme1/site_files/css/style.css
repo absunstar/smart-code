@@ -454,7 +454,7 @@ a {
 }
 
 .MS-newstitle {
-  padding-left: 6px;
+  padding: 6px;
   width: 100%;
   height: auto;
   position: relative;
@@ -466,18 +466,23 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
+  background: #00000099;
+  border-right: 5px solid var(--secondary-color);
 }
 
 .MS-newstime {
   position: relative;
-  top: -180px;
+  top: -187px;
   left: 50%;
   transform: translate(-50%, -50%);
   padding-bottom: 16px;
+  padding: 5px;
   gap: 3px;
+  background: #00000099;
+  border-right: 5px solid var(--secondary-color);
 }
 
 .MS-slider-container {
