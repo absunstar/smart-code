@@ -53,6 +53,7 @@ a {
 
 .articleEditor {
   width: 360px;
+  border-bottom: 5px solid var(--primary-color);
 }
 
 .mainarticle {

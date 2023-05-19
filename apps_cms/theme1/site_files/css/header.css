@@ -64,14 +64,9 @@
   flex-direction: row;
   overflow: hidden;
   /* transform: translateX(-100%); */
-  animation: newsText 40s -40s infinite linear;
+  animation: newsText 50s 0s infinite linear;
   will-change: transform;
   direction: rtl;
-}
-
-.newsText > ul:nth-child(2) {
-  animation: newsText2 40s -20s infinite linear;
-  will-change: transform;
 }
 
 .newsText > ul > li {
