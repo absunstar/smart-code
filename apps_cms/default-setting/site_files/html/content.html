@@ -19,9 +19,14 @@
             </div>
             <div class="col9">
               <i-list ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##"> </i-list>
-              <i-list ng-model="defaultSetting.siteColor1" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_1##"> </i-list>
-              <i-list ng-model="defaultSetting.siteColor2" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_2##"> </i-list>
-              <i-list ng-model="defaultSetting.siteColor3" items="siteColorList" display="##session.lang##" ng-search="_search.$searchSiteColor" label="##word.site_color_3##"> </i-list>
+              <div class="row padding margin border">
+                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor1" label="##word.Color1##"></i-control>
+                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor2" label="##word.Color2##"></i-control>
+                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor3" label="##word.Color3##"></i-control>
+                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor4" label="##word.Color4##"></i-control>
+                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor5" label="##word.Color5##"></i-control>
+                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor6" label="##word.Color6##"></i-control>
+              </div>
             </div>
           </div>
 

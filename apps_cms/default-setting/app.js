@@ -85,6 +85,12 @@ module.exports = function init(site) {
       articleTypes: articleTypes,
     },
     block: {},
+    siteColor1: '#272727',
+    siteColor2: '#d7373f',
+    siteColor3: '#8bc34a',
+    siteColor4: '#d9d9d9',
+    siteColor5: '#000000',
+    siteColor6: '#ffffff',
   };
   site.setting = { ...site.defaultSettingDoc };
 
