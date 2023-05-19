@@ -72,6 +72,9 @@
 .newsText > ul > li {
   display: inline-block;
 }
+.newsText > ul > li:hover {
+  border-bottom: 2px solid var(--secondary-color);
+}
 .newsText > ul > li > a {
   color: var(--text-color);
 }
