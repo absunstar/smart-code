@@ -26,7 +26,12 @@
 /* start top header */
 
 .topHeader {
-  width: inherit;
+  position: fixed;
+  z-index: 9999999999999;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
   padding: 0px;
   height: 57px;
   display: flex;
@@ -410,7 +415,8 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 100%;
+    top: auto;
+    width: 100vw;
     height: 45px;
   }
   .breakingTitle {

@@ -53,7 +53,7 @@ if (MSsliderContainer) {
 
   let allsmallnewstitle = document.querySelectorAll('.slide-newstitle');
   for (let i = 0; i < slideImageNews.length; i++) {
-    if(i=== 0){
+    if (i === 0) {
       mainImage = allSmallImage[i].src;
       let mainImageUrl = "url('" + mainImage + "')";
       document.getElementById('mainslide').style.backgroundImage = mainImageUrl;
@@ -71,3 +71,19 @@ if (MSsliderContainer) {
     });
   }
 }
+
+var MScardsIndex = -1;
+var MScards = document.querySelectorAll('.mainslide .MS-card');
+setInterval(() => {
+  MScardsIndex++;
+  if (MScardsIndex >= MScards.length) {
+    MScardsIndex = 0;
+  }
+  let s = MScards[MScardsIndex];
+  if (s) {
+    document.querySelector('#mainslide').style.backgroundImage = "url('" + s.querySelector('img').src + "')";
+    document.querySelector('.MS-newstitle').innerHTML = s.querySelector('.slide-newstitle').innerHTML;
+    document.querySelector('.newsday').innerHTML = s.querySelector('.slide-day').innerHTML;
+    document.querySelector('.newsdate').innerHTML = s.querySelector('.slide-date').innerHTML;
+  }
+}, 1000 * 3);

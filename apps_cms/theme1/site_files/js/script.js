@@ -197,6 +197,7 @@ if (survybutton) {
   });
 }
 
+/*
 function mainSliderMobile() {
   let slidertrack = document.querySelector('.MS-inner-slider');
   let slide = document.querySelectorAll('.frist-slider .MS-card');
@@ -230,3 +231,4 @@ function mainSliderMobile() {
 }
 
 mainSliderMobile();
+*/

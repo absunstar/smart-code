@@ -2,6 +2,7 @@ body {
   font-family: 'Arabic', sans-serif;
   padding: 0px;
   margin: 0px;
+  margin-top: 55px;
   overflow-x: hidden;
 }
 
@@ -371,6 +372,7 @@ a {
   border-radius: 15px;
   border: 2px solid var(--background1);
   filter: drop-shadow(2px 4px 6px var(--background1));
+  transition: all .5s ease;
 }
 .MS-newsTilteTime {
   width: 100%;
@@ -830,6 +832,9 @@ a {
   /* end mainsection */
 }
 @media (max-width: 767px) {
+  body{
+    margin-top: 0px;
+  }
   .bottomHeader {
     z-index: 100;
   }
@@ -963,8 +968,9 @@ a {
   .MS-slider-container {
     position: relative;
     height: 132px;
-    width: 379px !important;
-    left: 70px;
+    width: 100vw !important;
+    left: 0px;
+    display: none !important;
   }
 
   .MS-slider-container > ul {
@@ -973,6 +979,7 @@ a {
     gap: 0px;
     right: 0px;
     margin-right: 40px;
+    width: 100vw;
   }
 
   .MS-slider-container > ul:nth-child(2) {
