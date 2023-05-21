@@ -176,6 +176,16 @@
                       </div>
                     </div>
 
+                    <div class="row padding margin">
+                      <div class="article-part">
+                        <i-checkbox label="##word.has Reading Time##" ng-model="art.hasReadingTime"> </i-checkbox>
+                       <div ng-show="art.hasReadingTime" class="row padding border">
+                         <i-control ng-model="art.readingTime" label="##word.reading Time##"></i-control>
+
+                       </div>
+                      </div>
+                    </div>
+
                     <div class="row">
                       <div class="col6">
                         <div class="article-part">

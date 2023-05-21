@@ -1,0 +1,59 @@
+<div class="styleOne d-flex flex-column justify-content-start p-0 m-0">
+  <div class="imageNews">
+    <a target="_blank" href="/article/##item2.id##/##item2.title2##">
+      <img src="##item2.imageURL##" alt="##item2.title2##" width="100%" height="212px" />
+      <div class="newsTilteTime d-flex flex-column justify-content-end align-items-start">
+        <p class="newstitle">##item2.title##</p>
+        <div class="newstime d-flex flex-row justify-content-start align-items-center">
+          <p class="newsday">##item2.day##</p>
+          <div class="vlntime"></div>
+          <p class="newsdate">##item2.date##</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="newsTools d-flex flex-row-reverse justify-content-between align-items-center px-1">
+    <div class="sectionOne d-flex flex-row-reverse align-items-center gap-md-2 gap-1">
+      <div class="readingTime d-flex flex-row-reverse p-2 gap-1 align-items-center ##item2.readingTimeClass##">
+        <p>مدة القراءة</p>
+        <div class="vlRtime"></div>
+        <p>##item2.readingTime##</p>
+      </div>
+      <div id="audioFile" class="audioFile d-flex justify-content-center align-items-center ##item2.audioClass##">
+        <i class="fas fa-headphones" onclick="playAudio('##item2.audio.url##')"></i>
+      </div>
+
+      <div id="videoFile" class="videoFile d-flex justify-content-center align-items-center ##item2.videoClass##">
+        <i class="fab fa-youtube" onclick="playVideo('##item2.video.url##')"></i>
+      </div>
+
+      <div id="imagesFile" class="gallaryImages d-flex justify-content-center align-items-center ##item2.imageGallaryClass##">
+        <i class="far fa-images"></i>
+      </div>
+    </div>
+    <div class="sectionTwo ##item2.menuClass##">
+      <div id="moreDot" class="moreDot">
+        <i class="fas fa-ellipsis-v"></i>
+      </div>
+    </div>
+  </div>
+  <div class="articlessubmenu">
+    <ul id="articlestimeItems" class="list-group articlestimeItems">
+      <li class="list-group-item">
+        <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+          <p>متابعة الخبر</p>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+          <p>القراءة لاحقاً</p>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+          <p>متابعة الصفحي</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

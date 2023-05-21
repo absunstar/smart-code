@@ -56,11 +56,12 @@ module.exports = function init(site) {
       doc.video = doc.translatedList[0].video;
       doc.videoClass = '';
     }
-    doc.readTimeClass = 'none'
-    if (doc.translatedList[0].readTime) {
-      doc.hasReadTime = true;
-      doc.readTime = doc.translatedList[0].readTime;
-      doc.readTimeClass = '';
+    doc.readingTimeClass = 'none';
+    doc.hasReadingTime = false;
+    if (doc.translatedList[0].hasReadingTime) {
+      doc.hasReadingTime = true;
+      doc.readingTime = doc.translatedList[0].readingTime;
+      doc.readingTimeClass = '';
     }
 
     if (doc.writer) {
@@ -96,7 +97,25 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, audioClass: a.audioClass, videoClass: a.videoClass, imageGallaryClass: a.imageGallaryClass , readTimeClass : a.readTimeClass , menuClass : a.menuClass , title2 : a.title2})),
+          list: c.$list.map((a) => ({
+            id: a.id,
+            day: a.day,
+            date: a.date,
+            title: a.title,
+            imageURL: a.imageURL,
+            hasAudio :a.hasAudio,
+            audio: a.audio,
+            audioClass: a.audioClass,
+            hasVideo: a.hasVideo,
+            video: a.video,
+            videoClass: a.videoClass,
+            imageGallaryClass: a.imageGallaryClass,
+            hasReadingTime: a.hasReadingTime,
+            readingTime: a.readingTime,
+            readingTimeClass: a.readingTimeClass,
+            menuClass: a.menuClass,
+            title2: a.title2,
+          })),
         }));
 
       site.categoriesDisplayList2 = site.categoriesList
@@ -104,7 +123,25 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, audioClass: a.audioClass, videoClass: a.videoClass, imageGallaryClass: a.imageGallaryClass , readTimeClass : a.readTimeClass, menuClass : a.menuClass , title2 : a.title2})),
+          list: c.$list.map((a) => ({
+            id: a.id,
+            day: a.day,
+            date: a.date,
+            title: a.title,
+            imageURL: a.imageURL,
+            hasAudio :a.hasAudio,
+            audio: a.audio,
+            audioClass: a.audioClass,
+            hasVideo: a.hasVideo,
+            video: a.video,
+            videoClass: a.videoClass,
+            imageGallaryClass: a.imageGallaryClass,
+            hasReadingTime: a.hasReadingTime,
+            readingTime: a.readingTime,
+            readingTimeClass: a.readingTimeClass,
+            menuClass: a.menuClass,
+            title2: a.title2,
+          })),
         }));
 
       site.categoriesDisplayList3 = site.categoriesList
@@ -112,7 +149,25 @@ module.exports = function init(site) {
         .map((c) => ({
           id: c.id,
           name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, audioClass: a.audioClass, videoClass: a.videoClass, imageGallaryClass: a.imageGallaryClass , readTimeClass : a.readTimeClass, menuClass : a.menuClass , title2 : a.title2})),
+          list: c.$list.map((a) => ({
+            id: a.id,
+            day: a.day,
+            date: a.date,
+            title: a.title,
+            imageURL: a.imageURL,
+            hasAudio :a.hasAudio,
+            audio: a.audio,
+            audioClass: a.audioClass,
+            hasVideo: a.hasVideo,
+            video: a.video,
+            videoClass: a.videoClass,
+            imageGallaryClass: a.imageGallaryClass,
+            hasReadingTime: a.hasReadingTime,
+            readingTime: a.readingTime,
+            readingTimeClass: a.readingTimeClass,
+            menuClass: a.menuClass,
+            title2: a.title2,
+          })),
         }));
       site.categoriesDisplayList3.forEach((c) => {
         c.article = c.list.shift();
@@ -123,13 +178,13 @@ module.exports = function init(site) {
       site.categoriesList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
       site.topNews = site.articlesList
         .filter((a) => a.appearInUrgent === true)
-        .map((a) => ({ id: a.id, title: a.title, title2 : a.title2 }))
+        .map((a) => ({ id: a.id, title: a.title, title2: a.title2 }))
         .splice(0, 10)
         .reverse();
 
       site.MainSliderNews = site.articlesList
         .filter((a) => a.showInMainSlider === true)
-        .map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, title2 : a.title2  }))
+        .map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, title2: a.title2 }))
         .splice(0, 5);
     }, 1000 * 5);
   };

@@ -32,6 +32,8 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/footer.css',
       __dirname + '/site_files/css/colorstheme.css',
       __dirname + '/site_files/css/articlePage.css',
+      __dirname + '/site_files/css/video.css',
+      __dirname + '/site_files/css/audio.css',
       'client-side/effect.css',
       'client-side/font-droid.css',
     ],

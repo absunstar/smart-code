@@ -112,6 +112,7 @@ site.get(
           topNews: site.topNews,
           MainSliderNews: site.MainSliderNews,
           article: article,
+          relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id).slice(0, 3),
         },
         {
           parser: 'html css js',

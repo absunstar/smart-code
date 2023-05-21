@@ -50,31 +50,41 @@ burgermenuToggle.addEventListener('mousedown', () => {
   console.log('test');
 });
 
-let allcloseVButton = document.querySelectorAll('.closevideo');
-let allvideopalyer = document.querySelectorAll('.videopalyer');
-let allvideoFile = document.querySelectorAll('.videoFile');
-for (let i = 0; i < allvideoFile.length; i++) {
-  allvideoFile[i].addEventListener('mousedown', () => {
-    allvideopalyer[i].classList.add('showAnddisplay');
-  });
-  for (let i = 0; i < allcloseVButton.length; i++) {
-    allcloseVButton[i].addEventListener('mousedown', () => {
-      allvideopalyer[i].classList.remove('showAnddisplay');
-    });
+function playVideo(src) {
+  if ((a = document.querySelector('#videopalyer'))) {
+    a.classList.add('videopalyer');
+    if ((v = a.querySelector('video'))) {
+      v.src = src;
+      v.play();
+    }
+  }
+}
+function CloseVideo() {
+  if ((a = document.querySelector('#videopalyer'))) {
+    a.classList.remove('videopalyer');
+    if ((au = a.querySelector('video'))) {
+      au.pause();
+      au.src = null;
+    }
   }
 }
 
-let allcloseAButton = document.querySelectorAll('.closeAButton');
-let allaudiopalyer = document.querySelectorAll('.audiopalyer');
-let allaudioFile = document.querySelectorAll('.audioFile');
-for (let i = 0; i < allaudioFile.length; i++) {
-  allaudioFile[i].addEventListener('mousedown', () => {
-    allaudiopalyer[i].classList.add('showAnddisplay');
-  });
-  for (let i = 0; i < allcloseAButton.length; i++) {
-    allcloseAButton[i].addEventListener('mousedown', () => {
-      allaudiopalyer[i].classList.remove('showAnddisplay');
-    });
+function playAudio(src) {
+  if ((a = document.querySelector('#audiopalyer'))) {
+    a.classList.add('audiopalyer');
+    if ((au = a.querySelector('audio'))) {
+      au.src = src;
+      au.play();
+    }
+  }
+}
+function CloseAudio() {
+  if ((a = document.querySelector('#audiopalyer'))) {
+    a.classList.remove('audiopalyer');
+    if ((au = a.querySelector('audio'))) {
+      au.pause();
+      au.src = null;
+    }
   }
 }
 

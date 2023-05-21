@@ -1,0 +1,30 @@
+.audio-area {
+  display: none;
+}
+.audio-area.audiopalyer {
+  display: flex;
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--six-color);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  z-index: 9999999;
+}
+
+.audio-area.audiopalyer .closeAButton {
+  width: 5%;
+}
+.audio-area.audiopalyer .closeAButton > .fa-times {
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+.audio-area.audiopalyer .closeAButton > .fa-times:hover {
+  color: black;
+}
+
+.audio-area.audiopalyer audio {
+  width: 90%;
+}

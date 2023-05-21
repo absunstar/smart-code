@@ -79,24 +79,22 @@
                   </div>
                 </div>
               </div>
+
               <audio x-data="article.hasAudio" controls class="w-100">
                 <source src="##data.article.audio.url##" type="audio/mpeg" />
               </audio>
+
               <div class="mainarticle d-flex flex-column align-items-end justify-content-end gap-2">
                 <div>##data.article.content##</div>
+
                 <div x-data="article.hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.video.imageURL##')">
-                  <div id="videopalyicon" class="videoFile palyicon p-10">
-                    <i class="fas fa-play"></i>
-                  </div>
-                  <div x-data="article.hasVideo" id="videopalyer" class="videopalyer flex-column justify-content-center align-items-center">
+                  <div id="videopalyer" class="videopalyer flex-column justify-content-center align-items-center">
                     <div class="closeVideoButton p-4">
                       <div id="closeVButton" class="closevideo closeMButton d-flex flex-row justify-content-end align-items-start">
                         <i class="fas fa-times"></i>
                       </div>
                     </div>
-                    <video class="d-flex" controls>
-                      <source src="##data.article.video.url##" type="video/mp4" />
-                    </video>
+                    <video class="d-flex" src="##data.article.video.url##" type="video/mp4" controls></video>
                   </div>
                 </div>
 

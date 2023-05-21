@@ -1,10 +1,8 @@
-document.querySelectorAll('.videoArticle').forEach((v) => {
-  v.addEventListener('click', () => {
-    if ((videoPlayer = v.parentNode.querySelector('#videopalyer'))) {
-      videoPlayer.classList.add('showAnddisplay');
-    }
-  });
-});
+function playCurrentVideo() {
+  if ((videoPlayer = document.querySelector('video'))) {
+    videoPlayer.play();
+  }
+}
 /*
 let allcloseAButton = document.querySelectorAll('.closeAButton');
 let allaudiopalyer = document.querySelectorAll('.audiopalyer');
