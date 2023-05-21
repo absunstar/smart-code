@@ -4,39 +4,39 @@
 }
 .topFooter {
   width: 100%;
-  background-color: var(--primary-color);
+  background-color: var(--background1);
 }
 
 .footerMenu {
   font-size: 18px;
-  color: var(--text-color);
+  color: var(--color1);
 }
 
 .footerMenu > ul > li > a {
-  color: var(--text-color);
+  color: var(--color1);
 }
 
 .followUs {
-  color: var(--text-color);
+  color: var(--color1);
 }
 
 .followUs > p {
   font-weight: 600;
   font-size: 18px;
-  color: var(--text-color);
+  color: var(--color1);
 }
 .socialMediaIcon {
   font-size: 24px;
 }
 .socialMediaIcon a {
-  color: var(--text-color);
+  color: var(--color1);
   list-style: none;
 }
 
 .subscripe {
   font-size: 18px;
   font-weight: 600;
-  color: var(--text-color);
+  color: var(--color1);
   direction: rtl;
 }
 
@@ -46,15 +46,16 @@
 .subscripe > div > input {
   width: 100%;
   padding: 10px 8px;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--background2);
   border-radius: 25px;
 }
 .bottomFooter {
   width: 100%;
-  background-color: #000;
+  background-color: var(--background1x);
   color: #fff;
+  border-top: 3px solid var(--background2);
 }
 .bottomFooter a {
-  color: #fff;
+  color: var(--color1);
   font-size: 20px;
 }

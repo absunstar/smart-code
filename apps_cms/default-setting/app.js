@@ -91,6 +91,7 @@ module.exports = function init(site) {
     siteColor4: '#d9d9d9',
     siteColor5: '#000000',
     siteColor6: '#ffffff',
+    siteBackground: '#ffffff',
   };
   site.setting = { ...site.defaultSettingDoc };
 

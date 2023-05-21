@@ -1,5 +1,6 @@
 :root {
-  --theme-color: #4caf50;
+  --theme-color: #3f51b5;
+  --modal-color: #fff;
   --brand-color: #ffffff;
   --body-background: #fafafa;
   --bs-body-bg: var(--body-background);
@@ -14,8 +15,8 @@
   --treeview-background-color2: var(--brand-color);
   --i-image-border: none;
   --menu-width : 320px;
-  --tabs-header-link-color: #708359;
   --fieldset-background: #fff;
+  --tabs-header-link-color: #7c7c7c;
 }
 
 body {

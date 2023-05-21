@@ -21,7 +21,7 @@
 /* start ads section  */
 
     .ads{
-        border: 1px solid var(--primary-color);
+        border: 1px solid var(--background1);
         border-radius: 24px; 
     }
 /* end ads section  */

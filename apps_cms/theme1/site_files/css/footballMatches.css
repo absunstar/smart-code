@@ -2,7 +2,7 @@
 
  .footballMatchesToggle{
     width: 170px;
-    background-color: var(--primary-color);
+    background-color: var(--background1);
     padding: 8px;
     border-radius: 15px 0 0 15px;
     color:var(--text-color);
@@ -37,7 +37,7 @@
  }
  .fMHeader{
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: var(--background1);
     border-radius: 15px 15px 0 0;
  }
  .closeMatchesButton {
@@ -91,7 +91,7 @@
 }
 
 .vs{
-    background-color: var(--primary-color);
+    background-color: var(--background1);
     width: 25px;
     height: 25px;
     font-size: 24px;

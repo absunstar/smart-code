@@ -11,6 +11,10 @@
     --dark-text-color: rgba(44, 44, 44, 1);
     --golden-color: #D3AB42;
     --dark-overlay: rgba(44, 44, 44, 0.61);
+
+    /* body */
+    --bs-body-bg: var(--background4);
+    --body-color :var(--color4);
     /*icon color*/
     --backgroud-icon-color: rgba(44, 44, 44, 1);
     --icon-color: rgb(255, 255, 255);
@@ -18,6 +22,7 @@
 
     /* image color */
     --placeholder-image-color:rgb(211, 211, 211);
+ 
     
     
 }

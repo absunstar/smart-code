@@ -15,13 +15,13 @@
 }
 
 .sections > ul > li > a {
-    color: var(--primary-color);
+    color: var(--background1);
 }
 
 .Sectionheader{
     width: 300px;
     height: 70px;
-    background-color: var(--primary-color);
+    background-color: var(--background1);
     color: var(--text-color);
     font-size: 28px;
     padding: 0 24px;

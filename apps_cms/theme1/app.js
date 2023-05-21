@@ -24,6 +24,7 @@ module.exports = function init(site) {
     path: [
       __dirname + '/site_files/css/bootstrap.min.css',
       __dirname + '/site_files/css/all.min.css',
+      __dirname + '/site_files/css/theme.css',
       __dirname + '/site_files/css/style.css',
       __dirname + '/site_files/css/goldPrice.css',
       __dirname + '/site_files/css/convertCurrancy.css',

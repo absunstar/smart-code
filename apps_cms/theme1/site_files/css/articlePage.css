@@ -1,7 +1,5 @@
 /* start mainImage */
-a {
-  color: var(--dark-text-color);
-}
+
 .mainImage {
   width: 100%;
   height: 462px;
@@ -53,7 +51,7 @@ a {
 
 .articleEditor {
   width: 360px;
-  border-bottom: 5px solid var(--primary-color);
+  border-bottom: 5px solid var(--background1);
 }
 
 .mainarticle {
@@ -131,7 +129,7 @@ a {
 .BNSectionheader {
   width: 300px;
   height: 70px;
-  background-color: var(--primary-color);
+  background-color: var(--background1);
   color: var(--text-color);
   font-size: 28px;
   padding: 0 24px;

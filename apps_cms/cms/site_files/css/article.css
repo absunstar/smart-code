@@ -19,7 +19,7 @@
 }
 .article-editor {
   border: 2px solid var(--theme-color);
-  color: #000;
+  color: var(--modal-color);
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 30px !important;

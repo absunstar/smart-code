@@ -18,15 +18,20 @@
               <i-image class="img64" ng-model="defaultSetting.topNewsLogo"></i-image>
             </div>
             <div class="col9">
-              <i-list ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##"> </i-list>
+              <i-list  v="r" ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##"> </i-list>
               <div class="row padding margin border">
-                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor1" label="##word.Color1##"></i-control>
-                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor2" label="##word.Color2##"></i-control>
-                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor3" label="##word.Color3##"></i-control>
-                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor4" label="##word.Color4##"></i-control>
-                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor5" label="##word.Color5##"></i-control>
-                <i-control class="col4" type="color" ng-model="defaultSetting.siteColor6" label="##word.Color6##"></i-control>
+                <i-control v="r" class="col3" type="color" ng-model="defaultSetting.siteBackground1" label="##word.Background 1##"></i-control>
+                <i-control class="col3" type="color" ng-model="defaultSetting.siteBackground2" label="##word.Background 2##"></i-control>
+                <i-control class="col3" type="color" ng-model="defaultSetting.siteBackground3" label="##word.Background 3##"></i-control>
+                <i-control class="col3" type="color" ng-model="defaultSetting.siteBackground4" label="##word.Background 4##"></i-control>
               </div>
+              <div class="row padding margin border">
+                <i-control class="col3" type="color" ng-model="defaultSetting.siteColor1" label="##word.Color 1##"></i-control>
+                <i-control class="col3" type="color" ng-model="defaultSetting.siteColor2" label="##word.Color 2##"></i-control>
+                <i-control class="col3" type="color" ng-model="defaultSetting.siteColor3" label="##word.Color 3##"></i-control>
+                <i-control class="col3" type="color" ng-model="defaultSetting.siteColor4" label="##word.Color 4##"></i-control>
+              </div>
+             
             </div>
           </div>
 

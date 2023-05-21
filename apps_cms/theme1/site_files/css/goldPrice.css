@@ -40,7 +40,7 @@
     width: 100%;
     }
  .closeGoldbutton > .closeButton > .fa-times{
-    color: var(--primary-color);
+    color: var(--background1);
     cursor: pointer;
  }
 
