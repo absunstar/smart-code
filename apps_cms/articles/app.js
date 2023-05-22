@@ -83,7 +83,10 @@ module.exports = function init(site) {
   site.handleCategoryArticles = function () {
     site.categoriesList.forEach((cat) => {
       cat.$list = [];
-      $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: cat.homeLimit || 6 }, (err, docs) => {
+      cat.$name = cat.translatedList[0].name;
+      cat.homePageLimit = cat.homePageLimit || 6;
+
+      $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
         if (!err && docs) {
           docs.forEach((doc) => {
             cat.$list.push(site.handleArticle({ ...doc }));
@@ -91,19 +94,21 @@ module.exports = function init(site) {
         }
       });
     });
+
     setTimeout(() => {
       site.categoriesDisplayList1 = site.categoriesList
-        .filter((c) => c.homePageIndex === 1 && c.$list.length > 0 && c.showInHomePage === true)
+        .filter((c) => c.homePageIndex === 1 && c.$list.length > c.homePageLimit && c.showInHomePage === true)
         .map((c) => ({
           id: c.id,
-          name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({
+          homePageLimit : c.homePageLimit,
+          $name: c.translatedList[0].name,
+          $list: c.$list.map((a) => ({
             id: a.id,
             day: a.day,
             date: a.date,
             title: a.title,
             imageURL: a.imageURL,
-            hasAudio :a.hasAudio,
+            hasAudio: a.hasAudio,
             audio: a.audio,
             audioClass: a.audioClass,
             hasVideo: a.hasVideo,
@@ -119,17 +124,18 @@ module.exports = function init(site) {
         }));
 
       site.categoriesDisplayList2 = site.categoriesList
-        .filter((c) => c.homePageIndex === 2 && c.$list.length > 0 && c.showInHomePage === true)
+        .filter((c) => c.homePageIndex === 2 && c.$list.length > c.homePageLimit && c.showInHomePage === true)
         .map((c) => ({
           id: c.id,
-          name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({
+          homePageLimit : c.homePageLimit,
+          $name: c.translatedList[0].name,
+          $list: c.$list.map((a) => ({
             id: a.id,
             day: a.day,
             date: a.date,
             title: a.title,
             imageURL: a.imageURL,
-            hasAudio :a.hasAudio,
+            hasAudio: a.hasAudio,
             audio: a.audio,
             audioClass: a.audioClass,
             hasVideo: a.hasVideo,
@@ -145,17 +151,18 @@ module.exports = function init(site) {
         }));
 
       site.categoriesDisplayList3 = site.categoriesList
-        .filter((c) => c.homePageIndex === 3 && c.$list.length > 0 && c.showInHomePage === true)
+        .filter((c) => c.homePageIndex === 3 && c.$list.length > c.homePageLimit && c.showInHomePage === true)
         .map((c) => ({
           id: c.id,
-          name: c.translatedList[0].name,
-          list: c.$list.map((a) => ({
+          homePageLimit : c.homePageLimit,
+          $name: c.translatedList[0].name,
+          $list: c.$list.map((a) => ({
             id: a.id,
             day: a.day,
             date: a.date,
             title: a.title,
             imageURL: a.imageURL,
-            hasAudio :a.hasAudio,
+            hasAudio: a.hasAudio,
             audio: a.audio,
             audioClass: a.audioClass,
             hasVideo: a.hasVideo,
@@ -169,13 +176,25 @@ module.exports = function init(site) {
             title2: a.title2,
           })),
         }));
-      site.categoriesDisplayList3.forEach((c) => {
-        c.list0 = [c.list.shift()];
+
+      site.categoriesDisplayList1.forEach((c) => {
+        c.$list = c.$list.slice(0, c.homePageLimit);
+        console.log(c.homePageLimit , c.$list.length)
+      });
+      site.categoriesDisplayList2.forEach((c) => {
+        c.$list = c.$list.slice(0, c.homePageLimit);
+        console.log(c.homePageLimit , c.$list.length)
       });
 
-      site.categoriesList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7);
-      site.categoriesList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14);
-      site.categoriesList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
+      site.categoriesDisplayList3.forEach((c) => {
+        c.$list0 = [c.$list.shift()];
+        c.$list = c.$list.slice(0, c.homePageLimit);
+        console.log(c.homePageLimit , c.$list.length)
+      });
+
+      site.menuList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7);
+      site.menuList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14);
+      site.menuList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
       site.topNews = site.articlesList
         .filter((a) => a.appearInUrgent === true)
         .map((a) => ({ id: a.id, title: a.title, title2: a.title2 }))

@@ -49,7 +49,7 @@ site.get(
         'theme1/index.html',
         {
           site_name: site.setting.languagesList[0].siteName,
-          page_logo: site.setting.siteLogo.url,
+          site_logo: site.setting.siteLogo.url,
           page_image: site.setting.siteLogo.url,
           page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
           page_description: site.setting.languagesList[0].description,
@@ -57,9 +57,9 @@ site.get(
           categoriesDisplayList1: site.categoriesDisplayList1,
           categoriesDisplayList2: site.categoriesDisplayList2,
           categoriesDisplayList3: site.categoriesDisplayList3,
-          categoriesList1: site.categoriesList1,
-          categoriesList2: site.categoriesList2,
-          categoriesList3: site.categoriesList3,
+          menuList1: site.menuList1,
+          menuList2: site.menuList2,
+          menuList3: site.menuList3,
           topNews: site.topNews,
           MainSliderNews: site.MainSliderNews,
         },
@@ -70,6 +70,49 @@ site.get(
     }
   }
 );
+
+site.get(
+  {
+    name: ['/category/:id/:title', '/category/:id'],
+  },
+  (req, res) => {
+    if (!site.setting.siteTemplate || !site.setting.siteLogo) {
+      res.redirect('/admin');
+      return;
+    }
+    let category = site.categoriesList.find((c) => c.id == req.params.id);
+    
+    if (!category) {
+      res.redirect('/');
+      return;
+    }
+    if (true || site.setting.siteTemplate.id == 1) {
+      res.render(
+        'theme1/category.html',
+        {
+          site_name: site.setting.languagesList[0].siteName,
+          site_logo: site.setting.siteLogo.url,
+          page_image: category.translatedList[0].image?.url || site.setting.siteLogo.url,
+          page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + category.translatedList[0].name,
+          page_description: category.translatedList[0].description,
+          prayerTimingsList: site.setting.prayerTimingsList,
+          categoriesDisplayList1: [category],
+        
+          menuList1: site.menuList1,
+          menuList2: site.menuList2,
+          menuList3: site.menuList3,
+         
+          topNews: site.topNews,
+          MainSliderNews: site.MainSliderNews,
+        },
+        {
+          parser: 'html css js',
+        }
+      );
+    }
+  }
+);
+
 site.get(
   {
     name: ['/article/:id/:title', '/a/:id'],
@@ -98,7 +141,7 @@ site.get(
         'theme1/article.html',
         {
           site_name: site.setting.languagesList[0].siteName,
-          page_logo: site.setting.siteLogo.url,
+          site_logo: site.setting.siteLogo.url,
           page_image: article.imageURL || site.setting.siteLogo.url,
           page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + article.title,
           page_description: article.description,
@@ -106,9 +149,9 @@ site.get(
           categoriesDisplayList1: site.categoriesDisplayList1,
           categoriesDisplayList2: site.categoriesDisplayList2,
           categoriesDisplayList3: site.categoriesDisplayList3,
-          categoriesList1: site.categoriesList1,
-          categoriesList2: site.categoriesList2,
-          categoriesList3: site.categoriesList3,
+          menuList1: site.menuList1,
+          menuList2: site.menuList2,
+          menuList3: site.menuList3,
           topNews: site.topNews,
           MainSliderNews: site.MainSliderNews,
           article: article,

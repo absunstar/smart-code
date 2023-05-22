@@ -21,7 +21,7 @@
         <div class="col-12 d-flex justify-content-center align-items-center logoAndHead">
           <div x-setting="showLogo" class="logo">
             <a href="/">
-              <img src="##data.page_logo##" width="133px" height="64px" />
+              <img src="##data.site_logo##" width="133px" height="64px" />
             </a>
           </div>
         </div>
@@ -75,12 +75,11 @@
     <div class="bottomHeadercontainer container">
       <ul class="navbarlist d-none d-md-flex">
         <li><a href="/">الرئيسية</a></li>
-        <li><a href="/important-news">عاجل</a></li>
-        <li x-list1="categoriesList1"><a href="/category/##item1.id##/##item1.name##">##item1.name## </a></li>
+        <li x-list1="menuList1"><a href="/category/##item1.id##/##item1.name##">##item1.name## </a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> المزيد </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li x-list1="categoriesList2"><a class="dropdown-item" href="#">##item1.name## </a></li>
+            <li x-list1="menuList2"><a class="dropdown-item" href="/category/##item1.id##/##item1.name##">##item1.name## </a></li>
           </ul>
         </li>
       </ul>
@@ -154,10 +153,10 @@
             <p><a href="/topNews">عاجل</a></p>
           </div>
           
-          <div x-list1="categoriesList1" class="sectiontitle">
+          <div x-list1="menuList1" class="sectiontitle">
             <p><a href="/category/##item1.id##/##item1.name##">##item1.name##</a></p>
           </div>
-          <div x-list1="categoriesList2" class="sectiontitle">
+          <div x-list1="menuList2" class="sectiontitle">
             <p><a href="/category/##item1.id##/##item1.name##">##item1.name##</a></p>
           </div>
         </div>

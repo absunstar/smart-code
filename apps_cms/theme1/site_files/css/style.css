@@ -389,7 +389,7 @@ a {
   width: 100%;
   height: auto;
   position: relative;
-  top: -180px;
+  top: -183px;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 24px;
@@ -406,17 +406,17 @@ a {
 .MS-newstime {
   position: relative;
   top: -187px;
-  left: 25%;
+  left: 10%;
   transform: translate(-50%, -50%);
   padding-bottom: 16px;
   gap: 3px;
   font-weight: bold;
   padding: 5px;
   color: #626262;
-  background: #ffffffa6;
+  background: #ffffff;
   border-right: 12px solid var(--background2);
   box-shadow: 1px 8px 10px #000;
-  width: 50%;
+  width: 20%;
 }
 
 .MS-slider-container {

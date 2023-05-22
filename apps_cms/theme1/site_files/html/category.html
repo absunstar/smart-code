@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head x-import="theme1/head.html"> </head>
+
+  <body>
+    <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
+
+    <div id="mainContent" class="container d-flex flex-column">
+      <div x-setting="showTopAd" x-import="theme1/ad-top.html"></div>
+
+      <div class="row d-flex flex-column">
+        <div x-import="theme1/part-1.html"></div>
+      </div>
+    </div>
+
+    <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
+  </body>
+</html>
