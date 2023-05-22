@@ -134,14 +134,14 @@ a {
 
 .newsTilteTime {
   width: 100%;
-  height: 212px;
+  height: 100%;
   position: relative;
-  top: -211px;
+  top: -95%;
   border-radius: 15px;
-  color: var(--third-color);
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
+  color: var(--color1);
+  padding-bottom: 25px;
+  padding-left: 2px;
+  padding-right: 2px;
   direction: rtl;
   opacity: 0.9;
 }
@@ -153,7 +153,7 @@ a {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
   padding: 5px;
   color: var(--color1);
@@ -167,11 +167,10 @@ a {
   gap: 3px;
   font-size: 10px;
   font-weight: bold;
-  padding: 5px;
+  padding: 2px;
   color: #626262;
   background: #ffffff;
   border-right: 8px solid var(--background2);
-  box-shadow: 5px 2px 9px #000;
 }
 
 .vlntime {
@@ -840,13 +839,13 @@ a {
   }
   .MS-newstitle {
     width: 100%;
-    height: 40%;
-    top: 26px;
+    height: 20%;
+    top: 5%;
     left: 50%;
-    font-size: 22px;
+    font-size: 18px;
   }
   .MS-newstime {
-    top: -50px;
+    top: 0px;
     left: 40%;
     width: 80%;
   }

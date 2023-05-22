@@ -170,7 +170,7 @@ module.exports = function init(site) {
           })),
         }));
       site.categoriesDisplayList3.forEach((c) => {
-        c.article = c.list.shift();
+        c.list0 = [c.list.shift()];
       });
 
       site.categoriesList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7);
@@ -185,7 +185,7 @@ module.exports = function init(site) {
       site.MainSliderNews = site.articlesList
         .filter((a) => a.showInMainSlider === true)
         .map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, title2: a.title2 }))
-        .splice(0, 5);
+        .splice(0, 10);
     }, 1000 * 5);
   };
 

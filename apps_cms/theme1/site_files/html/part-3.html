@@ -4,18 +4,8 @@
       <p>##item1.name##</p>
     </div>
     <div class="col col-lg-5 col-md-6 m-sm-0 my-4 p-md-0">
-      <div class="imageNews">
-        <a href="/article/##item1.article.id##/##item1.article.title##">
-          <img src="##item1.article.imageURL##" width="100%" height="300px" />
-          <div class="newsTilteTime d-flex flex-column justify-content-end align-items-start">
-            <p class="newstitle">##item1.article.title##</p>
-            <div class="newstime d-flex flex-row justify-content-start align-items-center">
-              <p class="newsday">##item1.article.day##</p>
-              <div class="vlntime"></div>
-              <p class="newsdate">##item1.article.date##</p>
-            </div>
-          </div>
-        </a>
+      <div x-list2="list0" x-import="theme1/article-template.html" class="newsSBLock NewsBlock d-flex justify-content-lg-center justify-content-center">
+          
       </div>
     </div>
     <div  class="col col-lg-2 col-md-3 d-none d-xl-flex p-0">
