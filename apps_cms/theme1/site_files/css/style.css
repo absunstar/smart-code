@@ -800,7 +800,7 @@ a {
 
 @media (min-width: 768px) and (max-width: 1199px) {
   .newstitle {
-    width: 260px;
+    width: auto;
   }
 
   /* start main slider */
