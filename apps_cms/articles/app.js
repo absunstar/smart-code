@@ -126,9 +126,9 @@ module.exports = function init(site) {
     site.categoriesDisplayList2 = [];
     site.categoriesDisplayList3 = [];
 
-    site.menuList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7);
-    site.menuList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14);
-    site.menuList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
+    site.menuList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 8);
+    site.menuList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(8, 20);
+    site.menuList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(20);
 
     site.categoriesList.forEach((cat) => {
       cat.$list = [];
