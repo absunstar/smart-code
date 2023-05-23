@@ -125,6 +125,7 @@ module.exports = function init(site) {
     site.categoriesDisplayList1 = [];
     site.categoriesDisplayList2 = [];
     site.categoriesDisplayList3 = [];
+
     site.menuList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7);
     site.menuList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14);
     site.menuList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
@@ -142,12 +143,13 @@ module.exports = function init(site) {
             }
           });
           cat.$list = site.articlesList.filter((a) => a.category.id == cat.id).slice(0, cat.homePageLimit);
-          if (cat.homePageIndex === 1 && cat.showInHomePage) {
+          if (cat.homePageIndex === 1 && cat.showInHomePage && cat.$list.length > 0) {
             site.categoriesDisplayList1.push(cat);
-          } else if (cat.homePageIndex === 2 && cat.showInHomePage) {
+          } else if (cat.homePageIndex === 2 && cat.showInHomePage && cat.$list.length > 0) {
             site.categoriesDisplayList2.push(cat);
-          } else if (cat.homePageIndex === 3 && cat.showInHomePage) {
+          } else if (cat.homePageIndex === 3 && cat.showInHomePage && cat.$list.length > 0) {
             cat.$list0 = [cat.$list.shift()];
+            console.log(cat.$list0);
             site.categoriesDisplayList3.push(cat);
           }
         }
