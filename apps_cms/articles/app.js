@@ -149,7 +149,6 @@ module.exports = function init(site) {
             site.categoriesDisplayList2.push(cat);
           } else if (cat.homePageIndex === 3 && cat.showInHomePage && cat.$list.length > 0) {
             cat.$list0 = [cat.$list.shift()];
-            console.log(cat.$list0);
             site.categoriesDisplayList3.push(cat);
           }
         }

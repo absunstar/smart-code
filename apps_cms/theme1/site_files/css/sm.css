@@ -1,0 +1,185 @@
+@media (max-width: 767px) {
+  body {
+    margin-top: 0px;
+  }
+  .MS-newstitle {
+    width: 100%;
+    height: 20%;
+    top: 5%;
+    left: 50%;
+    font-size: 18px;
+  }
+  .MS-newstime {
+    top: 0px;
+    left: 40%;
+    width: 80%;
+  }
+  .bottomHeader {
+    z-index: 100;
+  }
+  .topHeader {
+    z-index: 100;
+  }
+
+  .newstitle {
+    width: auto;
+  }
+
+  /* start Burger Menu */
+
+  .showAnddisplay {
+    display: flex !important;
+  }
+
+  .burgermenuoverlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: var(--dark-overlay);
+    z-index: 100;
+  }
+  .burgermenu {
+    width: 80%;
+    height: 100%;
+    overflow: scroll;
+    background-color: var(--background1);
+    border-left: 4px solid var(--text-color);
+    border-radius: 25px 0 0 25px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 25px;
+  }
+
+  .burgermenu .fa-times {
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
+  .fa-times:hover {
+    color: var(--background2);
+    cursor: pointer;
+  }
+
+  .burgermenu > .SearchBAr {
+    margin: 0;
+    background-color: var(--six-color);
+  }
+
+  .headSectionTitle > label {
+    width: 150px;
+    color: var(--text-color);
+    font-size: 24px;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid var(--background2);
+    text-align: right;
+  }
+
+  .allsections {
+    width: 90%;
+    height: 129px;
+    overflow: scroll;
+  }
+
+  .sectiontitle > p {
+    color: var(--text-color);
+    font-size: 18px;
+    padding: 4px 0;
+    border-bottom: 2px solid var(--six-color);
+    text-align: right;
+  }
+  .sectiontitle a {
+    color: var(--text-color);
+  }
+
+  .notficationtitle > p {
+    color: var(--text-color);
+    font-size: 14px;
+    padding: 4px 0;
+    text-align: right;
+  }
+
+  .form-check-input:checked {
+    background-color: var(--background2);
+    border-color: var(--background2);
+  }
+
+  /* end Burger Menu */
+
+  /* start audio palyer */
+
+  /* start main slider */
+  .mainslide {
+    width: 100%;
+    margin: 0 150px;
+  }
+  .MS-slider-container {
+    width: 80%;
+  }
+
+  /* start gallary slider */
+  .imageslider-slider-container {
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .cardimageslider {
+    width: 250px;
+    height: auto;
+  }
+
+  /* start main section */
+  .headermainsection {
+    margin-bottom: 331px;
+  }
+  .BNSubSectionheader{
+    width: 100%;
+    border-radius: 0;
+  }
+  .headSectionName > p {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 2;
+    color: var(--color1);
+}
+  /* end mainsection */
+
+  /* start main slider */
+
+  .MS-slider-container {
+    position: relative;
+    height: 132px;
+    width: 100vw !important;
+    left: 0px;
+    display: none !important;
+  }
+
+  .MS-slider-container > ul {
+    animation: none;
+    position: absolute;
+    gap: 0px;
+    right: 0px;
+    margin-right: 40px;
+    width: 100vw;
+  }
+
+  .MS-slider-container > ul:nth-child(2) {
+    animation: none;
+  }
+  .second-slider {
+    z-index: -1;
+  }
+  .MS-card {
+    margin: 0 8px;
+  }
+
+  /* end main slider */
+}

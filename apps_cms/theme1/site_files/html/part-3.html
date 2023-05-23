@@ -1,14 +1,14 @@
 <div x-list1="categoriesDisplayList3" class="mainSectionNews d-flex flex-column mt-4">
   <div class="headermainsection row d-flex flex-row-reverse justify-content-md-between justify-content-center">
-    <div class="headSectionName col col-lg-3 col-md-3 col-sm-3 gap-3 mb-sm-4 mx-sm-0 mx-3">
+    <div class="headSectionName col col-lg-3 col-md-12 col-sm-12 gap-3 mb-sm-4 mx-sm-0 mx-3">
       <p>##item1.$name##</p>
     </div>
-    <div class="col col-lg-5 col-md-6 m-sm-0 my-4 p-md-0">
+    <div class="col col-lg-5 col-md-12 m-sm-0 my-4 p-md-0">
       <div x-list2="$list0" x-import="theme1/article-template.html" class="newsSBLock NewsBlock d-flex justify-content-lg-center justify-content-center">
           
       </div>
     </div>
-    <div  class="col col-lg-2 col-md-3 d-none d-xl-flex p-0">
+    <div  class="col col-lg-2 col-md-3 d-none d-lg-flex d-xl-flex p-0">
       <div x-setting="showFooterAd" x-import="theme1/ad-footer.html"></div>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div
       x-setting="showSideAd"
       x-import="theme1/ad-side.html"
-      class="leftAds col col-sm-10 col-lg-2 mt-3 d-flex justify-content-lg-center justify-content-center justify-content-sm-between align-items-start p-0 m-lg-0 m-4 ml-2"
+      class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3  justify-content-lg-center justify-content-center justify-content-sm-between align-items-start p-0 m-lg-0 m-4 ml-2"
     ></div>
     <div class="col col-lg-8 d-flex flex-column justify-content-center align-items-center align-content-center m-0 p-0">
       <div class="breakingNewsSection">
@@ -35,7 +35,7 @@
     <div
       x-setting="showSideAd"
       x-import="theme1/ad-side.html"
-      class="rightAds col col-sm-10 col-lg-2 mt-3 d-flex justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
+      class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 d-flex justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
     ></div>
   </div>
 </div>

@@ -26,6 +26,8 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/all.min.css',
       __dirname + '/site_files/css/theme.css',
       __dirname + '/site_files/css/style.css',
+      __dirname + '/site_files/css/md.css',
+      __dirname + '/site_files/css/sm.css',
       __dirname + '/site_files/css/goldPrice.css',
       __dirname + '/site_files/css/convertCurrancy.css',
       __dirname + '/site_files/css/footballMatches.css',
