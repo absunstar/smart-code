@@ -129,7 +129,7 @@ a {
   border-radius: 15px;
   background-color: var(--background1x);
   border: 2px solid var(--background1);
-  box-shadow: 1px 5px 10px var(--background1x);
+  box-shadow: 1px 0px 8px var(--background1x);
 }
 
 .newsTilteTime {
@@ -360,17 +360,17 @@ a {
 }
 
 .mainslide {
-  width: 100%;
+  width: 98%;
   height: 462px;
   margin-top: 10px;
-  margin: 0 15px;
+  margin: 1%!important;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-color: var(--background1x);
   border-radius: 15px;
   border: 2px solid var(--background1);
-  filter: drop-shadow(2px 4px 6px var(--background1));
+  filter: drop-shadow(2px 4px 4px var(--background1));
   transition: all 1s ease-in-out;
 }
 .MS-newsTilteTime {
@@ -576,15 +576,15 @@ a {
 }
 
 .BNSubSectionheader {
-  width: 248px;
-  height: 48px;
-  padding: 0px 24px;
+  width: auto;
+  height: auto;
+  padding: 10px 30px;
   margin-top: 20px;
   margin-bottom: 10px;
   background-color: var(--background1);
   color: var(--text-color);
-  font-size: 20px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  font-size: 28px;
+  box-shadow: 0px 1px 8px var(--background1x);
   border-radius: 45px 0px 0px 45px;
 }
 

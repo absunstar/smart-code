@@ -72,15 +72,63 @@ module.exports = function init(site) {
     }
     return doc;
   };
-  $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
-    if (!err && docs) {
-      docs.forEach((doc) => {
-        site.articlesList.push(site.handleArticle({ ...doc }));
-      });
-    }
-  });
+
+  function prepareArticles() {
+    $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
+      if (!err && docs) {
+        docs.forEach((doc) => {
+          if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
+            site.articlesList.push(site.handleArticle({ ...doc }));
+          }
+        });
+      }
+      prepareUrgentArticles();
+      prepareSliderArticles();
+    });
+  }
+
+  function prepareUrgentArticles() {
+    $articles.findMany({ where: { appearInUrgent: true }, sort: { id: -1 }, limit: 1000 }, (err, docs) => {
+      if (!err && docs) {
+        docs.forEach((doc) => {
+          if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
+            site.articlesList.push(site.handleArticle({ ...doc }));
+          }
+        });
+      }
+      site.topNews = site.articlesList
+        .filter((a) => a.appearInUrgent === true)
+        .map((a) => ({ id: a.id, title: a.title, title2: a.title2 }))
+        .splice(0, 10)
+        .reverse();
+    });
+  }
+  function prepareSliderArticles() {
+    $articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
+      if (!err && docs) {
+        docs.forEach((doc) => {
+          if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
+            site.articlesList.push(site.handleArticle({ ...doc }));
+          }
+        });
+      }
+      site.MainSliderNews = site.articlesList
+        .filter((a) => a.showInMainSlider === true)
+        .map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, title2: a.title2 }))
+        .splice(0, 10);
+    });
+  }
+
+  prepareArticles();
 
   site.handleCategoryArticles = function () {
+    site.categoriesDisplayList1 = [];
+    site.categoriesDisplayList2 = [];
+    site.categoriesDisplayList3 = [];
+    site.menuList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7);
+    site.menuList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14);
+    site.menuList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
+
     site.categoriesList.forEach((cat) => {
       cat.$list = [];
       cat.$name = cat.translatedList[0].name;
@@ -89,123 +137,22 @@ module.exports = function init(site) {
       $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
         if (!err && docs) {
           docs.forEach((doc) => {
-            cat.$list.push(site.handleArticle({ ...doc }));
+            if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
+              site.articlesList.push(site.handleArticle({ ...doc }));
+            }
           });
+          cat.$list = site.articlesList.filter((a) => a.category.id == cat.id).slice(0, cat.homePageLimit);
+          if (cat.homePageIndex === 1 && cat.showInHomePage) {
+            site.categoriesDisplayList1.push(cat);
+          } else if (cat.homePageIndex === 2 && cat.showInHomePage) {
+            site.categoriesDisplayList2.push(cat);
+          } else if (cat.homePageIndex === 3 && cat.showInHomePage) {
+            cat.$list0 = [cat.$list.shift()];
+            site.categoriesDisplayList3.push(cat);
+          }
         }
       });
     });
-
-    setTimeout(() => {
-      site.categoriesDisplayList1 = site.categoriesList
-        .filter((c) => c.homePageIndex === 1 && c.$list.length > c.homePageLimit && c.showInHomePage === true)
-        .map((c) => ({
-          id: c.id,
-          homePageLimit : c.homePageLimit,
-          $name: c.translatedList[0].name,
-          $list: c.$list.map((a) => ({
-            id: a.id,
-            day: a.day,
-            date: a.date,
-            title: a.title,
-            imageURL: a.imageURL,
-            hasAudio: a.hasAudio,
-            audio: a.audio,
-            audioClass: a.audioClass,
-            hasVideo: a.hasVideo,
-            video: a.video,
-            videoClass: a.videoClass,
-            imageGallaryClass: a.imageGallaryClass,
-            hasReadingTime: a.hasReadingTime,
-            readingTime: a.readingTime,
-            readingTimeClass: a.readingTimeClass,
-            menuClass: a.menuClass,
-            title2: a.title2,
-          })),
-        }));
-
-      site.categoriesDisplayList2 = site.categoriesList
-        .filter((c) => c.homePageIndex === 2 && c.$list.length > c.homePageLimit && c.showInHomePage === true)
-        .map((c) => ({
-          id: c.id,
-          homePageLimit : c.homePageLimit,
-          $name: c.translatedList[0].name,
-          $list: c.$list.map((a) => ({
-            id: a.id,
-            day: a.day,
-            date: a.date,
-            title: a.title,
-            imageURL: a.imageURL,
-            hasAudio: a.hasAudio,
-            audio: a.audio,
-            audioClass: a.audioClass,
-            hasVideo: a.hasVideo,
-            video: a.video,
-            videoClass: a.videoClass,
-            imageGallaryClass: a.imageGallaryClass,
-            hasReadingTime: a.hasReadingTime,
-            readingTime: a.readingTime,
-            readingTimeClass: a.readingTimeClass,
-            menuClass: a.menuClass,
-            title2: a.title2,
-          })),
-        }));
-
-      site.categoriesDisplayList3 = site.categoriesList
-        .filter((c) => c.homePageIndex === 3 && c.$list.length > c.homePageLimit && c.showInHomePage === true)
-        .map((c) => ({
-          id: c.id,
-          homePageLimit : c.homePageLimit,
-          $name: c.translatedList[0].name,
-          $list: c.$list.map((a) => ({
-            id: a.id,
-            day: a.day,
-            date: a.date,
-            title: a.title,
-            imageURL: a.imageURL,
-            hasAudio: a.hasAudio,
-            audio: a.audio,
-            audioClass: a.audioClass,
-            hasVideo: a.hasVideo,
-            video: a.video,
-            videoClass: a.videoClass,
-            imageGallaryClass: a.imageGallaryClass,
-            hasReadingTime: a.hasReadingTime,
-            readingTime: a.readingTime,
-            readingTimeClass: a.readingTimeClass,
-            menuClass: a.menuClass,
-            title2: a.title2,
-          })),
-        }));
-
-      site.categoriesDisplayList1.forEach((c) => {
-        c.$list = c.$list.slice(0, c.homePageLimit);
-        console.log(c.homePageLimit , c.$list.length)
-      });
-      site.categoriesDisplayList2.forEach((c) => {
-        c.$list = c.$list.slice(0, c.homePageLimit);
-        console.log(c.homePageLimit , c.$list.length)
-      });
-
-      site.categoriesDisplayList3.forEach((c) => {
-        c.$list0 = [c.$list.shift()];
-        c.$list = c.$list.slice(0, c.homePageLimit);
-        console.log(c.homePageLimit , c.$list.length)
-      });
-
-      site.menuList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 7);
-      site.menuList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(7, 14);
-      site.menuList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(14);
-      site.topNews = site.articlesList
-        .filter((a) => a.appearInUrgent === true)
-        .map((a) => ({ id: a.id, title: a.title, title2: a.title2 }))
-        .splice(0, 10)
-        .reverse();
-
-      site.MainSliderNews = site.articlesList
-        .filter((a) => a.showInMainSlider === true)
-        .map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, title2: a.title2 }))
-        .splice(0, 10);
-    }, 1000 * 5);
   };
 
   site.get({

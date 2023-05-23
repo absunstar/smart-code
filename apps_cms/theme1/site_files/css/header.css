@@ -39,7 +39,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--background1);
-  color: var(--text-color);
+  color: var(--color2);
 }
 
 .breakingTitle {
@@ -353,7 +353,8 @@
 .bottomHeader {
   padding: 0 9%;
   background-color: var(--background4);
-  box-shadow: 1px 8px 15px var(--background1x);
+  margin-top: 10px;
+  box-shadow: 0px 0px 5px var(--background1x);
 }
 
 .navbarlist {
@@ -367,20 +368,42 @@
   z-index: 2;
 }
 
-.navbarlist > li , .navbarlist > li > a{
-  color: var(--background1);
+.navbarlist > li,
+.navbarlist > li > a {
+  color: var(--color4);
   font-weight: bold;
   transition: all 0.2s ease;
 }
 
-.navbarlist > li:hover, .navbarlist > li > a:hover {
-  color: var(--background2);
+.navbarlist > li:hover,
+.navbarlist > li > a:hover {
   transform: scale(1.3);
+}
+.navbarlist > li:first-child > a {
+  font-size: 32px;
 }
 
 .nav-link:focus,
 .nav-link:hover {
-  color: var(--background2);
+  color: var(--color4);
+}
+.navbarlist ul {
+  width: max-content;
+  max-width: 70vw;
+  background: var(--background4);
+  border-radius: 0px 0px 20px 20px;
+}
+.navbarlist ul li {
+  display: inline-block;
+  border-radius: 5px;
+  margin: 5px;
+}
+.navbarlist ul li a {
+  color: var(--color4);
+  border-radius: 10px;
+}
+.navbarlist .dropdown:hover ul {
+  display: block;
 }
 /* end bottom header */
 
@@ -452,7 +475,7 @@
 
   .logoAndHead {
     background-color: #ffffff;
-    color: var(--text-color);
+    color: var(--color2);
     /* width: 100%; */
     padding: 15px 15px;
     /* margin-bottom: 15px; */
@@ -487,12 +510,13 @@
     position: fixed;
     bottom: 10%;
     translate: 6%;
-    color: var(--text-color);
+    color: var(--color1);
     display: flex;
     justify-content: center;
     height: 51px;
-    background-color: var(--background2);
+    background-color: var(--background1);
     border-radius: 25px 25px 25px 25px;
+    box-shadow: 1px 1px 8px 4px #000;
   }
 
   .navbarlist {
@@ -506,12 +530,11 @@
   }
 
   .navbarlist li:hover {
-    color: var(--background1);
     border-bottom: 2px solid var(--background1);
   }
 
   .vlstickybottom {
-    border-left: 3px solid var(--text-color);
+    border-left: 3px solid var(--color2);
     height: 39px;
   }
 }
