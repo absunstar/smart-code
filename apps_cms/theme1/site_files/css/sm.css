@@ -138,7 +138,7 @@
 
   /* start main section */
   .headermainsection {
-    margin-bottom: 331px;
+  
   }
   .BNSubSectionheader{
     width: 100%;
@@ -149,6 +149,7 @@
     font-size: 22px;
     line-height: 2;
     color: var(--color1);
+   
 }
   /* end mainsection */
 
