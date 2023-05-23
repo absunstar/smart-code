@@ -209,18 +209,18 @@
   margin: 0 16px;
   padding: 0 24px;
   gap: 24px;
-  border: 1px solid var(--background2);
+  border: 2px solid var(--background1);
   border-radius: 50px;
   height: 59px;
 }
 
 .fa-search {
   font-size: 20px !important;
-  color: var(--background2);
+  color: var(--background1);
 }
 
 .vl {
-  border-left: 3px solid var(--background2);
+  border-left: 3px solid var(--background1);
   height: 39px;
 }
 
