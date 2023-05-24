@@ -5,7 +5,9 @@ body {
   margin-top: 55px;
   overflow-x: hidden;
 }
-
+.aaa{
+  width: 100%;
+}
 @media (min-width: 1400px) {
   .container,
   .container-lg,
