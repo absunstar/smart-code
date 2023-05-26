@@ -96,6 +96,9 @@ module.exports = function init(site) {
           }
         });
       }
+      site.articlesList.sort((a, b) => {
+        return b.id - a.id;
+      });
       site.topNews = site.articlesList
         .filter((a) => a.appearInUrgent === true)
         .map((a) => ({ id: a.id, title: a.title, title2: a.title2 }))
@@ -112,10 +115,10 @@ module.exports = function init(site) {
           }
         });
       }
-      site.MainSliderNews = site.articlesList
-        .filter((a) => a.showInMainSlider === true)
-        .map((a) => ({ id: a.id, day: a.day, date: a.date, title: a.title, imageURL: a.imageURL, title2: a.title2 }))
-        .splice(0, 10);
+      site.articlesList.sort((a, b) => {
+        return b.id - a.id;
+      });
+      site.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true).splice(0, 10);
     });
   }
 
@@ -141,6 +144,9 @@ module.exports = function init(site) {
             if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
               site.articlesList.push(site.handleArticle({ ...doc }));
             }
+          });
+          site.articlesList.sort((a, b) => {
+            return b.id - a.id;
           });
           cat.$list = site.articlesList.filter((a) => a.category.id == cat.id).slice(0, cat.homePageLimit);
           if (cat.homePageIndex === 1 && cat.showInHomePage && cat.$list.length > 0) {
