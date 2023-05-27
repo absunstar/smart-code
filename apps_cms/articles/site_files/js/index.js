@@ -2,7 +2,20 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.article = {};
-
+  $scope.defaultSettings = site.showObject(`##data.#setting##`);
+  if ($scope.defaultSettings && $scope.defaultSettings.id) {
+    $scope.articleTypesList = $scope.defaultSettings.article.articleTypes.filter((t) => t.active == true);
+    $scope.languagesList = [];
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.languagesList.push({
+          id: l.language.id,
+          en: l.language.en,
+          ar: l.language.ar,
+        });
+      }
+    });
+  }
   $scope.displayAddArticles = function () {
     $scope.error = '';
     $scope.mode = 'add';
@@ -312,37 +325,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getDefaultSetting = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/defaultSetting/get',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-          $scope.articleTypesList = $scope.defaultSettings.article.articleTypes.filter((t) => t.active == true);
-          $scope.languagesList = [];
-          $scope.defaultSettings.languagesList.forEach((l) => {
-            if (l.language.active == true) {
-              $scope.languagesList.push({
-                id: l.language.id,
-                en: l.language.en,
-                ar: l.language.ar,
-              });
-            }
-          });
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.loadWriters = function (where) {
     $scope.error = '';
     $scope.busy = true;
@@ -354,7 +336,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       url: '/api/users/all',
       data: {
         where: where,
-        select: { id: 1, profile: 1 , image : 1 },
+        select: { id: 1, profile: 1, image: 1 },
       },
     }).then(
       function (response) {
@@ -879,6 +861,5 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.loadCategories();
   $scope.loadWriters();
   $scope.loadEditors();
-  $scope.getDefaultSetting();
   $scope.getCountriesList();
 });

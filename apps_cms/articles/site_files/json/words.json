@@ -5,6 +5,11 @@
     "ar": "الأخبار"
   },
   {
+    "name": "Articles",
+    "en": "Articles",
+    "ar": "الأخبار"
+  },
+  {
     "name": "article",
     "en": "Article",
     "ar": "الخبر"

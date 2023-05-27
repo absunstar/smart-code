@@ -172,12 +172,20 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
-  site.get({
-    name: 'articles',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compres: true,
-  });
+  // site.get({
+  //   name: 'articles',
+  //   path: __dirname + '/site_files/html/index.html',
+  //   parser: 'html',
+  //   compres: true,
+  // });
+  site.get(
+    {
+      name: 'articles',
+    },
+    (req, res) => {
+  res.render('articles' + '/index.html', { title: 'articles', appName: "##word.Articles##", setting: site.setting }, { parser: 'html', compres: true });
+    }
+  );
 
   site.post({
     name: '/api/articleTypes/all',

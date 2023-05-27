@@ -302,8 +302,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.ad.address = $scope.ad.store.address;
     }
 
-    if ($scope.defaultSettings.content.status) {
-      $scope.ad.adStatus = $scope.defaultSettings.content.status;
+    if ($scope.defaultSettings.article.status) {
+      $scope.ad.adStatus = $scope.defaultSettings.article.status;
     } else {
       $scope.ad.adStatus = {
         id: 2,

@@ -12,10 +12,6 @@
         <div x-permissions="articles_add || articles_manage" x-import="articles/manage_modal.html"></div>
         <div x-permissions="articles_search || articles_manage" x-import="articles/search_all_modal.html"></div>
 
-        <div class="row">
-          <h1 class="bold text-center">##word.articles##</h1>
-        </div>
-
         <div class="top-actions">
           <i-button x-permissions="articles_add || articles_manage" type="add" label="##word.articles_new##" ng-click="displayAddArticles()"></i-button>
           <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
