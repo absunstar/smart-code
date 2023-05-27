@@ -54,14 +54,17 @@ site.get(
           page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
           page_description: site.setting.languagesList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
-          categoriesDisplayList1: site.categoriesDisplayList1,
-          categoriesDisplayList2: site.categoriesDisplayList2,
-          categoriesDisplayList3: site.categoriesDisplayList3,
+         
           menuList1: site.menuList1,
           menuList2: site.menuList2,
           menuList3: site.menuList3,
-          topNews: site.topNews,
+
           MainSliderNews: site.MainSliderNews,
+
+          categories: site.$$categories,
+          page: {
+            topNews: site.topNews,
+          },
         },
         {
           parser: 'html css js',
@@ -81,7 +84,7 @@ site.get(
       return;
     }
     let category = site.categoriesList.find((c) => c.id == req.params.id);
-    
+
     if (!category) {
       res.redirect('/');
       return;
@@ -97,13 +100,15 @@ site.get(
           page_description: category.translatedList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
           categoriesDisplayList1: [category],
-        
+
           menuList1: site.menuList1,
           menuList2: site.menuList2,
           menuList3: site.menuList3,
-         
-          topNews: site.topNews,
+
           MainSliderNews: site.MainSliderNews,
+          page: {
+            topNews: site.topNews,
+          },
         },
         {
           parser: 'html css js',
@@ -152,10 +157,13 @@ site.get(
           menuList1: site.menuList1,
           menuList2: site.menuList2,
           menuList3: site.menuList3,
-          topNews: site.topNews,
           MainSliderNews: site.MainSliderNews,
           article: article,
           relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id).slice(0, 3),
+          page: {
+            topNews: site.topNews,
+            article: article,
+          },
         },
         {
           parser: 'html css js',

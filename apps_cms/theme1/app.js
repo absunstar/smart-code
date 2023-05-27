@@ -1,5 +1,4 @@
 module.exports = function init(site) {
-
   site.get({
     name: 'theme1/images',
     path: __dirname + '/site_files/images/',
@@ -62,13 +61,19 @@ module.exports = function init(site) {
     ],
   });
 
-
   site.get({
     name: ['/js/theme1.js'],
     parser: 'js',
     public: true,
     compress: !0,
     path: [
+      'client-side/first.js',
+      'client-side/base64.min.js',
+      'client-side/jquery.js',
+      'client-side/site.js',
+      'client-side/angular.min.js',
+      'client-side/app.js',
+      'client-side/last.js',
       __dirname + '/site_files/js/bootstrap.bundle.min.js',
       __dirname + '/site_files/js/all.min.js',
       __dirname + '/site_files/js/script.js',
@@ -76,5 +81,4 @@ module.exports = function init(site) {
       __dirname + '/site_files/js/article-page.js',
     ],
   });
-
 };

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
   <head x-import="theme1/head.html"> </head>
 
-  <body>
+  <body ng-controller="mainController">
     <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
 
     <div id="mainContent" class="container d-flex flex-column">
@@ -10,10 +10,86 @@
 
       <div x-setting="showTopAd" x-import="theme1/ad-top.html"></div>
 
-      <div class="row d-flex flex-column">
-        <div x-import="theme1/part-1.html"></div>
-        <div x-import="theme1/part-2.html"></div>
+      <div class="row d-flex flex-column " x-list1="categories">
+        <div x-show-item1="template1" class="breakingNewsSection">
+          <div class="col BNSubSection d-flex flex-column align-items-end">
+            <div class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
+              <p class="BNSubSectionName">##item1.name##</p>
+            </div>
+          </div>
+          <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start gy-2 p-0 m-0">
+            <div x-list2="list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-3 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+          </div>
+        </div>
+
+        <div x-show-item1="template2" class="adsWithBreakingNews row justify-content-center align-items-start p-0 m-0 mt-5 mb-5">
+          <div
+            x-setting="showSideAd"
+            x-import="theme1/ad-side.html"
+            class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
+          ></div>
+          <div class="col col-lg-8 col-md-12">
+            <div x-list1="categoriesDisplayList2" class="breakingNewsSection">
+              <div class="col BNSubSection d-flex flex-column align-items-end">
+                <div class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
+                  <p class="BNSubSectionName">##item1.name##</p>
+                </div>
+              </div>
+              <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end gy-2 p-0 m-0">
+                <div x-list2="list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            x-setting="showSideAd"
+            x-import="theme1/ad-side.html"
+            class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
+          ></div>
+        </div>
+
+        <div x-show-item1="template3" class="mainSectionNews d-flex flex-column mt-4">
+          <div class="headermainsection row d-flex flex-row-reverse justify-content-md-between justify-content-center">
+            <div class="headSectionName col col-lg-3 col-md-12 col-sm-12 gap-3 mb-sm-4 mx-sm-0 mx-3">
+              <p>##item1.name##</p>
+            </div>
+            <div class="col col-lg-9 col-md-12 col-sm-12">
+              <div class="row">
+                <div class="col col-lg-3 d-none d-lg-flex d-xl-flex p-0">
+                  <div x-setting="showFooterAd" x-import="theme1/ad-footer.html"></div>
+                </div>
+                <div class="col col-lg-9 col-md-12 col-sm-12 m-sm-0 my-4 p-md-0">
+                  <div x-list2="list0" x-import="theme1/article-template.html" class="newsSBLock NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="adsWithBreakingNews row justify-content-center align-items-start p-0 m-0">
+            <div
+              x-setting="showSideAd"
+              x-import="theme1/ad-side.html"
+              class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-start p-0 m-lg-0 m-4 ml-2"
+            ></div>
+            <div class="col col-lg-8 d-flex flex-column justify-content-center align-items-center align-content-center m-0 p-0">
+              <div class="breakingNewsSection">
+                <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end gy-2 p-0 m-0">
+                  <div x-list2="list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+                </div>
+              </div>
+              <div class="primaryButton d-flex flex-column justify-content-center align-items-center align-content-center mt-4">
+                <a href="/category/##item1.id##/##item1.name##">
+                  <p>اقراء المزيد</p>
+                </a>
+              </div>
+            </div>
+            <div
+              x-setting="showSideAd"
+              x-import="theme1/ad-side.html"
+              class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 d-flex justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
+            ></div>
+          </div>
+        </div>
       </div>
+
       <div x-import="theme1/part-3.html"></div>
       <div x-setting="showEditorManagerArticle" x-import="theme1/part-4.html"></div>
       <div x-setting="showEditorsArticle" x-import="theme1/part-5.html"></div>
@@ -21,5 +97,11 @@
     </div>
 
     <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
+    <script>
+      app.controller('mainController', ($scope, $http, $timeout, $interval) => {
+        $scope.page = site.showObject('##data.#page##');
+        console.log($scope.page);
+      });
+    </script>
   </body>
 </html>

@@ -6,22 +6,23 @@
     <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
 
     <div id="mainContent" class="container d-flex flex-column">
+      <div x-setting="showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
+
       <div x-setting="showTopAd" x-import="theme1/ad-top.html"></div>
 
-      <div class="row d-flex flex-column">
-        <div x-list1="categoriesDisplayList1" class="breakingNewsSection">
+      <div class="row d-flex flex-column loaded" ng-repeat="category in page.categories">
+        <div class="breakingNewsSection">
           <div class="col BNSubSection d-flex flex-column align-items-end">
             <div class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
-              <p class="BNSubSectionName">##item1.$name##</p>
+              <p class="BNSubSectionName">{{category.name}}</p>
             </div>
           </div>
-          <div x-setting="showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
-
           <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start gy-2 p-0 m-0">
-            <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-4 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+            <div ng-repeat="article in category.list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-4 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
           </div>
         </div>
       </div>
+     
     </div>
 
     <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>

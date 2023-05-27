@@ -125,9 +125,7 @@ module.exports = function init(site) {
   prepareArticles();
 
   site.handleCategoryArticles = function () {
-    site.categoriesDisplayList1 = [];
-    site.categoriesDisplayList2 = [];
-    site.categoriesDisplayList3 = [];
+    site.$$categories = [];
 
     site.menuList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 8);
     site.menuList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(8, 20);
@@ -135,8 +133,7 @@ module.exports = function init(site) {
 
     site.categoriesList.forEach((cat) => {
       cat.$list = [];
-      cat.$name = cat.translatedList[0].name;
-      cat.homePageLimit = cat.homePageLimit || 6;
+      cat.homePageLimit = cat.homePageLimit || 10;
 
       $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
         if (!err && docs) {
@@ -149,13 +146,21 @@ module.exports = function init(site) {
             return b.id - a.id;
           });
           cat.$list = site.articlesList.filter((a) => a.category.id == cat.id).slice(0, cat.homePageLimit);
-          if (cat.homePageIndex === 1 && cat.showInHomePage && cat.$list.length > 0) {
-            site.categoriesDisplayList1.push(cat);
-          } else if (cat.homePageIndex === 2 && cat.showInHomePage && cat.$list.length > 0) {
-            site.categoriesDisplayList2.push(cat);
-          } else if (cat.homePageIndex === 3 && cat.showInHomePage && cat.$list.length > 0) {
-            cat.$list0 = [cat.$list.shift()];
-            site.categoriesDisplayList3.push(cat);
+
+          if (cat.showInHomePage && cat.$list.length > 0) {
+            let _cat = {
+              name: cat.translatedList[0].name,
+              list: cat.$list,
+            };
+            if (cat.homePageIndex == 1) {
+              _cat.template1 = true;
+            } else if (cat.homePageIndex == 2) {
+              _cat.template2 = true;
+            } else if (cat.homePageIndex == 3) {
+              _cat.template3 = true;
+              _cat.list0 = [_cat.list.shift()];
+            }
+            site.$$categories.push(_cat);
           }
         }
       });
