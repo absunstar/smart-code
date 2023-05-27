@@ -195,7 +195,7 @@ module.exports = function init(site) {
             if (doc.report_comments) {
               response.report_comment_list.push(obj);
             } else {
-              response.report_ad_list.push(obj);
+              response.reportAdList.push(obj);
             }
           } else {
             response.list.push(obj);
@@ -234,7 +234,7 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           if (req.body.post) {
-            response.report_ad_list = docs.filter((_d) => !_d.report_comments);
+            response.reportAdList = docs.filter((_d) => !_d.report_comments);
             response.report_comment_list = docs.filter((_d) => _d.report_comments);
           } else {
             response.list = docs;

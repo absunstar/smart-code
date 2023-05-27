@@ -12,10 +12,6 @@
           <div x-import="countries/manage_modal.html"></div>
           <div x-permissions="countries_search || countries_manage" x-import="countries/search_all_modal.html"></div>
 
-          <div class="row">
-            <h1 class="bold text-center">##word.countries##</h1>
-          </div>
-
           <div class="top-actions">
             <i-button x-permissions="countries_add || countries_manage" type="add" label="##word.country_new##" ng-click="displayAddCountries()"></i-button>
 
@@ -42,11 +38,11 @@
               </td>
 
               <td class="center not-print">
-                <i-button x-permissions="countries_view || countries_manage" type="view" label="##word.details##" ng-click="displayDetailsCountries(c)"></i-button>
+                <i-button x-permissions="countries_view || countries_manage" type="view" ng-click="displayDetailsCountries(c)"></i-button>
 
-                <i-button x-permissions="countries_update || countries_manage" type="edit" label="##word.edit##" ng-click="displayUpdateCountries(c)"></i-button>
+                <i-button x-permissions="countries_update || countries_manage" type="edit" ng-click="displayUpdateCountries(c)"></i-button>
 
-                <i-button x-permissions="countries_delete || countries_manage" type="delete" label="##word.delete##" ng-click="displayDeleteCountries(c)"></i-button>
+                <i-button x-permissions="countries_delete || countries_manage" type="delete" ng-click="displayDeleteCountries(c)"></i-button>
               </td>
             </tr>
           </table>

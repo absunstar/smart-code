@@ -85,7 +85,7 @@
           <i-image help-id="products_logo" ng-model="product.image_url"></i-image>
 
           <fieldset>
-            <legend> ##word.sub_photos## <i-button type="add default" ng-click="product.images_list.push('')"></i-button></legend>
+            <legend> ##word.sub_photos## <i-button type="push" ng-click="product.images_list.push('')"></i-button></legend>
             <div ng-repeat="i in product.images_list track by $index">
               <i-button type="delete default" ng-click="deleteImage($index)"> </i-button>
               <i-image ng-model="i"></i-image>

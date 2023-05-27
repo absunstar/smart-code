@@ -156,7 +156,7 @@
                 <div class="row">
                   <h2 class="black">
                     ##word.invoice_header_right##
-                    <i-button type="add default" ng-click="default_setting.printer_program.invoice_header.push({})"> </i-button>
+                    <i-button type="push" ng-click="default_setting.printer_program.invoice_header.push({})"> </i-button>
                   </h2>
 
                   <div ng-repeat="h in default_setting.printer_program.invoice_header track by $index" class="row">
@@ -170,7 +170,7 @@
                 <div class="row">
                   <h2 class="black">
                     ##word.invoice_header_left##
-                    <i-button type="add default" ng-click="default_setting.printer_program.invoice_header2.push({})"> </i-button>
+                    <i-button type="push" ng-click="default_setting.printer_program.invoice_header2.push({})"> </i-button>
                   </h2>
 
                   <div ng-repeat="f in default_setting.printer_program.invoice_header2 track by $index" class="row">
@@ -186,7 +186,7 @@
             <div class="row">
               <h2 class="black">
                 ##word.invoice_footer##
-                <i-button type="add default" ng-click="default_setting.printer_program.invoice_footer.push({})"> </i-button>
+                <i-button type="push" ng-click="default_setting.printer_program.invoice_footer.push({})"> </i-button>
               </h2>
 
               <div ng-repeat="f in default_setting.printer_program.invoice_footer track by $index" class="row">
@@ -210,7 +210,7 @@
                 <div class="row">
                   <h2 class="black">
                     ##word.invoice_header##
-                    <i-button type="add default" ng-click="default_setting.printer_program.thermal_header.push({})"> </i-button>
+                    <i-button type="push" ng-click="default_setting.printer_program.thermal_header.push({})"> </i-button>
                   </h2>
 
                   <div ng-repeat="h in default_setting.printer_program.thermal_header track by $index" class="row">
@@ -224,7 +224,7 @@
                 <div class="row">
                   <h2 class="black">
                     ##word.invoice_footer##
-                    <i-button type="add default" ng-click="default_setting.printer_program.thermal_footer.push({})"> </i-button>
+                    <i-button type="push" ng-click="default_setting.printer_program.thermal_footer.push({})"> </i-button>
                   </h2>
 
                   <div ng-repeat="f in default_setting.printer_program.thermal_footer track by $index" class="row">
@@ -261,7 +261,7 @@
             <div class="col9">
               <div class="row">
                 <h2 class="black">##word.exam_header##</h2>
-                <i-button type="add default" ng-click="default_setting.exams_setting.exam_header.push({})"> </i-button>
+                <i-button type="push" ng-click="default_setting.exams_setting.exam_header.push({})"> </i-button>
 
                 <div ng-repeat="h in default_setting.exams_setting.exam_header track by $index" class="row">
                   <i-control class="col8" ng-model="h.name"></i-control>
@@ -270,7 +270,7 @@
               </div>
               <div class="row">
                 <h2 class="black">##word.exam_header2##</h2>
-                <i-button type="add default" ng-click="default_setting.exams_setting.exam_header2.push({})"> </i-button>
+                <i-button type="push" ng-click="default_setting.exams_setting.exam_header2.push({})"> </i-button>
 
                 <div ng-repeat="f in default_setting.exams_setting.exam_header2 track by $index" class="row">
                   <i-control class="col8" ng-model="f.name"></i-control>
@@ -281,7 +281,7 @@
 
               <div class="row">
                 <h2 class="black">##word.exam_footer##</h2>
-                <i-button type="add default" ng-click="default_setting.exams_setting.exam_footer.push({})"> </i-button>
+                <i-button type="push" ng-click="default_setting.exams_setting.exam_footer.push({})"> </i-button>
 
                 <div ng-repeat="f in default_setting.exams_setting.exam_footer track by $index" class="row">
                   <i-control class="col8" ng-model="f.name"></i-control>

@@ -2,15 +2,15 @@
   <fieldset class="row">
     <legend>
       ##word.feedbacks##
-      <i-button type="add default" ng-click="addFeedback()"></i-button>
+      <i-button type="push" ng-click="addFeedback()"></i-button>
     </legend>
-    <div class="row" ng-repeat="c in ngModel.feedback_list">
+    <div class="row" ng-repeat="c in ngModel.feedbackList">
       <div class="row">
         <div class="col2">
           <br />
           <i-user class="padding-10" ng-model="c.user"></i-user>
         </div>
-        <i-list ng-search="_search.$feedback_list" class="col2" display="##session.lang##" ng-model="c.type" label="##word.type##" items="feedbackTypeList">
+        <i-list ng-search="_search.$feedbackList" class="col2" display="##session.lang##" ng-model="c.type" label="##word.type##" items="feedbackTypeList">
         </i-list>
         <i-list
           ng-show="c.type.id == 3"
@@ -38,7 +38,7 @@
 
         <div class="col1 center">
           <br />
-          <i-button type="delete default" ng-click="ngModel.feedback_list.splice($index,1)"> </i-button>
+          <i-button type="delete default" ng-click="ngModel.feedbackList.splice($index,1)"> </i-button>
         </div>
 
       </div>

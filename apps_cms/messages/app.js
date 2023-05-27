@@ -93,7 +93,7 @@ module.exports = function init(site) {
           email: req.body.receiver.email,
         },
       ],
-      messages_list: [
+      messagesList: [
         {
           date: new Date(),
           message: req.body.message,
@@ -150,7 +150,7 @@ module.exports = function init(site) {
         return index === i;
       });
 
-      message.messages_list.push({
+      message.messagesList.push({
         date: new Date(),
         message: req.body.message,
         user_id: messages_doc.sender.id,
@@ -164,7 +164,7 @@ module.exports = function init(site) {
     } else {
       let msg_doc = {
         users_list: [messages_doc.sender, messages_doc.receiver],
-        messages_list: [
+        messagesList: [
           {
             date: new Date(),
             message: req.body.message,
@@ -237,7 +237,7 @@ module.exports = function init(site) {
     site.messageList.forEach((a, i) => {
       if (a.id === messages_doc.id) {
         let found_update = false;
-        site.messageList[i].messages_list.forEach((_m) => {
+        site.messageList[i].messagesList.forEach((_m) => {
           if (_m.user_id != req.session.user.id) {
             _m.show = true;
             found_update = true;
@@ -326,7 +326,7 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           docs.forEach((_doc) => {
-            _doc.messages_list.forEach((_m) => {
+            _doc.messagesList.forEach((_m) => {
               if (_m.user_id != req.session.user.id && !_m.show) {
                 _doc.$new = true;
               }

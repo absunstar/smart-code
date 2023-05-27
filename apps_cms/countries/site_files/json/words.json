@@ -9,6 +9,16 @@
         "ar": "الدول"
     },
     {
+        "name": "Country Code",
+        "en": "Country Code",
+        "ar": "كود الدولة"
+    },
+    {
+        "name": "Mobile Setting",
+        "en": "Mobile Setting",
+        "ar": "إعدادات الهاتف"
+    },
+    {
         "name": "length_of_mobile_number",
         "en": "Length of mobile number",
         "ar": "طول رقم الموبايل"

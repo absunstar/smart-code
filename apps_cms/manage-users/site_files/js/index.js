@@ -550,8 +550,8 @@ app.controller('manageUsers', function ($scope, $http) {
 
   $scope.addFiles = function () {
     $scope.error = '';
-    $scope.manageUsers.files_list = $scope.manageUsers.files_list || [];
-    $scope.manageUsers.files_list.push({
+    $scope.manageUsers.filesList = $scope.manageUsers.filesList || [];
+    $scope.manageUsers.filesList.push({
       file_date: new Date(),
       file_upload_date: new Date(),
       upload_by: '##user.profile.name##',

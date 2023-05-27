@@ -1,204 +1,356 @@
 module.exports = function init(site) {
-  const $countries = site.connectCollection('countries');
-  site.countryList = [];
-  $countries.findMany({}, (err, docs) => {
-    if (!err && docs) {
-      site.countryList = [...site.countryList, ...docs];
-    }
-  });
-
-  site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
-
-  site.get({
+  let app = {
     name: 'countries',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: true,
-  });
+    allowMemory: true,
+    memoryList: [],
+    allowCache: false,
+    cacheList: [],
+    allowRoute: true,
+    allowRouteGet: true,
+    allowRouteAdd: true,
+    allowRouteUpdate: true,
+    allowRouteDelete: true,
+    allowRouteView: true,
+    allowRouteAll: true,
+  };
 
-  site.post('/api/countries/add', (req, res) => {
-    let response = {
-      done: false,
-    };
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
+  app.$collection = site.connectCollection(app.name);
+
+  app.init = function () {
+    if (app.allowMemory) {
+      app.$collection.findMany({}, (err, docs) => {
+        if (!err) {
+          if (docs.length == 0) {
+            app.cacheList.forEach((_item, i) => {
+              app.$collection.add(_item, (err, doc) => {
+                if (!err && doc) {
+                  app.memoryList.push(doc);
+                }
+              });
+            });
+          } else {
+            docs.forEach((doc) => {
+              app.memoryList.push(doc);
+            });
+          }
+        }
+      });
     }
-
-    let countriesDoc = req.body;
-    countriesDoc.$req = req;
-    countriesDoc.$res = res;
-
-    countriesDoc.addUserInfo = site.security.getUserFinger({
-      $req: req,
-      $res: res,
-    });
-
-    if (typeof countriesDoc.active === 'undefined') {
-      countriesDoc.active = true;
-    }
-
-    $countries.add(countriesDoc, (err, doc) => {
-      if (!err) {
-        response.done = true;
-        response.doc = doc;
-        site.countryList.push(doc);
-      } else {
-        response.error = err.message;
+  };
+  app.add = function (_item, callback) {
+    app.$collection.add(_item, (err, doc) => {
+      if (callback) {
+        callback(err, doc);
       }
-      res.json(response);
+      if (app.allowMemory && !err && doc) {
+        app.memoryList.push(doc);
+      }
     });
-  });
-
-  site.post('/api/countries/update', (req, res) => {
-    let response = {
-      done: false,
-    };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
-    let countriesDoc = req.body;
-
-    countriesDoc.editUserInfo = site.security.getUserFinger({
-      $req: req,
-      $res: res,
-    });
-
-    if (!countriesDoc.id) {
-      response.error = 'No id';
-      res.json(response);
-      return;
-    }
-
-    $countries.edit(
+  };
+  app.update = function (_item, callback) {
+    app.$collection.edit(
       {
         where: {
-          id: countriesDoc.id,
+          id: _item.id,
         },
-        set: countriesDoc,
-        $req: req,
-        $res: res,
+        set: _item,
       },
       (err, result) => {
-        if (!err && result) {
-          response.done = true;
-          site.countryList.forEach((a, i) => {
-            if (a.id === result.doc.id) {
-              site.countryList[i] = result.doc;
+        if (callback) {
+          callback(err, result);
+        }
+        if (app.allowMemory && !err && result) {
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
+          if (index !== -1) {
+            app.memoryList[index] = result.doc;
+          } else {
+            app.memoryList.push(result.doc);
+          }
+        } else if (app.allowCache && !err && result) {
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
+          if (index !== -1) {
+            app.cacheList[index] = result.doc;
+          } else {
+            app.cacheList.push(result.doc);
+          }
+        }
+      }
+    );
+  };
+  app.delete = function (_item, callback) {
+    app.$collection.delete(
+      {
+        id: _item.id,
+      },
+      (err, result) => {
+        if (callback) {
+          callback(err, result);
+        }
+        if (app.allowMemory && !err && result.count === 1) {
+          let index = app.memoryList.findIndex((a) => a.id === _item.id);
+          if (index !== -1) {
+            app.memoryList.splice(index, 1);
+          }
+        } else if (app.allowCache && !err && result.count === 1) {
+          let index = app.cacheList.findIndex((a) => a.id === _item.id);
+          if (index !== -1) {
+            app.cacheList.splice(index, 1);
+          }
+        }
+      }
+    );
+  };
+  app.view = function (_item, callback) {
+    if (callback) {
+      if (app.allowMemory) {
+        if ((item = app.memoryList.find((itm) => itm.id == _item.id))) {
+          callback(null, item);
+          return;
+        }
+      } else if (app.allowCache) {
+        if ((item = app.cacheList.find((itm) => itm.id == _item.id))) {
+          callback(null, item);
+          return;
+        }
+      }
+
+      app.$collection.find({ id: _item.id }, (err, doc) => {
+        callback(err, doc);
+
+        if (!err && doc) {
+          if (app.allowMemory) {
+            app.memoryList.push(doc);
+          } else if (app.allowCache) {
+            app.cacheList.push(doc);
+          }
+        }
+      });
+    }
+  };
+  app.all = function (_options, callback) {
+    if (callback) {
+      if (app.allowMemory) {
+        callback(null, app.memoryList);
+      } else {
+        app.$collection.findMany(_options, callback);
+      }
+    }
+  };
+
+  if (app.allowRoute) {
+    if (app.allowRouteGet) {
+      site.get(
+        {
+          name: app.name,
+        },
+        (req, res) => {
+          res.render(app.name + '/index.html', { title: app.name, appName: '##word.countries##' }, { parser: 'html', compres: true });
+        }
+      );
+    }
+
+    if (app.allowRouteAdd) {
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ['login'] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
+
+        let _data = req.data;
+
+        _data.addUserInfo = req.getUserFinger();
+
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
+    }
+
+    if (app.allowRouteUpdate) {
+      site.post({ name: `/api/${app.name}/update`, require: { permissions: ['login'] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
+
+        let _data = req.data;
+        _data.editUserInfo = req.getUserFinger();
+
+        app.update(_data, (err, result) => {
+          if (!err) {
+            response.done = true;
+            response.result = result;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        });
+      });
+    }
+
+    if (app.allowRouteDelete) {
+      site.post({ name: `/api/${app.name}/delete`, require: { permissions: ['login'] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
+        let _data = req.data;
+
+        app.delete(_data, (err, result) => {
+          if (!err && result.count === 1) {
+            response.done = true;
+            response.result = result;
+          } else {
+            response.error = err?.message || 'Deleted Not Exists';
+          }
+          res.json(response);
+        });
+      });
+    }
+
+    if (app.allowRouteView) {
+      site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
+        let response = {
+          done: false,
+        };
+
+        let _data = req.data;
+        app.view(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err?.message || 'Not Exists';
+          }
+          res.json(response);
+        });
+      });
+    }
+
+    if (app.allowRouteAll) {
+      site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+        let where = req.body.where || {};
+        let search = req.body.search || '';
+        let limit = req.body.limit || 500;
+        let select = req.body.select || { id: 1, code: 1, name: 1, image: 1, callingCode: 1 };
+
+        if (search) {
+          where.$or = [];
+
+          where.$or.push({
+            id: site.get_RegExp(search, 'i'),
+          });
+
+          where.$or.push({
+            code: site.get_RegExp(search, 'i'),
+          });
+
+          where.$or.push({
+            nameAr: site.get_RegExp(search, 'i'),
+          });
+
+          where.$or.push({
+            nameEn: site.get_RegExp(search, 'i'),
+          });
+        }
+        if (app.allowMemory) {
+          if (!search) {
+            search = 'id';
+          }
+          let docs = [];
+          let list = app.memoryList.filter((g) => (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search)).slice(0, limit);
+          list.forEach((doc) => {
+            if (doc && doc.translatedList) {
+              if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+                let obj = {
+                  ...doc,
+                  ...langDoc,
+                };
+
+                for (const p in obj) {
+                  if (!Object.hasOwnProperty.call(select, p)) {
+                    delete obj[p];
+                  }
+                }
+                if (!where.active || doc.active) {
+                  docs.push(obj);
+                }
+              }
             }
           });
+          res.json({
+            done: true,
+            list: docs,
+          });
         } else {
-          response.error = 'Code Already Exist';
+          app.all({ where, select, limit }, (err, docs) => {
+            res.json({
+              done: true,
+              list: docs,
+            });
+          });
         }
-        res.json(response);
-      }
-    );
-  });
+      });
 
-  site.post('/api/countries/view', (req, res) => {
-    let response = {
-      done: false,
-    };
+      site.post(`api/${app.name}/import`, (req, res) => {
+        let response = {
+          done: false,
+          file: req.form.files.fileToUpload,
+        };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+        if (site.isFileExistsSync(response.file.filepath)) {
+          let docs = [];
+          if (response.file.originalFilename.like('*.xls*')) {
+            let workbook = site.XLSX.readFile(response.file.filepath);
+            docs = site.XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+          } else {
+            docs = site.fromJson(site.readFileSync(response.file.filepath).toString());
+          }
 
-    let ad = null;
-    site.countryList.forEach((a) => {
-      if (a.id == req.body.id) {
-        ad = a;
-      }
-    });
+          if (Array.isArray(docs)) {
+            console.log(`Importing ${app.name} : ${docs.length}`);
+            let systemCode = 0;
+            docs.forEach((doc) => {
+              let callingCode = String(doc.callingCode)[0];
 
-    if (ad) {
-      response.done = true;
-      response.doc = ad;
-      res.json(response);
-    } else {
-      response.error = 'no id';
-      res.json(response);
-    }
-  });
+              let newDoc = {
+                code: doc.code,
+                nameAr: doc.nameAr,
+                nameEn: doc.nameEn,
+                callingCode: callingCode == '+' ? doc.callingCode : '+' + doc.callingCode,
+                image: { url: '/images/countries.png' },
+                active: true,
+              };
 
-  site.post('/api/countries/delete', (req, res) => {
-    let response = {
-      done: false,
-    };
+              newDoc.addUserInfo = req.getUserFinger();
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
-    if (!req.body.id) {
-      response.error = 'No id';
-      res.json(response);
-      return;
-    }
-
-    $countries.delete(
-      {
-        id: req.body.id,
-        $req: req,
-        $res: res,
-      },
-      (err, result) => {
-        if (!err) {
-          response.done = true;
-          site.countryList.splice(
-            site.countryList.findIndex((a) => a.id === req.body.id),
-            1
-          );
+              app.add(newDoc, (err, doc2) => {
+                if (!err && doc2) {
+                  site.dbMessage = `Importing ${app.name} : ${doc2.id}`;
+                  console.log(site.dbMessage);
+                } else {
+                  site.dbMessage = err.message;
+                  console.log(site.dbMessage);
+                }
+              });
+            });
+          } else {
+            site.dbMessage = 'can not import unknown type : ' + site.typeof(docs);
+            console.log(site.dbMessage);
+          }
         } else {
-          response.error = err.message;
+          site.dbMessage = 'file not exists : ' + response.file.filepath;
+          console.log(site.dbMessage);
         }
+
         res.json(response);
-      }
-    );
-  });
+      });
+    }
+  }
 
-  site.post('/api/countries/all', (req, res) => {
-    let response = {
-      done: false,
-    };
-
-    let where = req.body.where || {};
-    let select = req.body.select || { id: 1, name: 1 };
-
-    response.list = [];
-    site.countryList.forEach((doc) => {
-      if (doc && doc.translatedList) {
-        if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
-          let obj = {
-            ...doc,
-            ...langDoc,
-          };
-
-          for (const p in obj) {
-            if (!Object.hasOwnProperty.call(select, p)) {
-              delete obj[p];
-            }
-          }
-          if (!where.active || doc.active) {
-            response.list.push(obj);
-          }
-        }
-      }
-    });
-
-    response.done = true;
-    res.json(response);
-  });
+  app.init();
+  site.addApp(app);
 };

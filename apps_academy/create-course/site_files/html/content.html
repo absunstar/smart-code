@@ -86,7 +86,7 @@
             <div class="row">
                 <fieldset ng-show="create_course.dates_list.length > 0">
                     <legend>
-                        <i-button type="add default" ng-click="create_course.dates_list.push({})"></i-button>
+                        <i-button type="push" ng-click="create_course.dates_list.push({})"></i-button>
                         ##word.dates##
                     </legend>
                     <div class="row" ng-repeat="d in create_course.dates_list">

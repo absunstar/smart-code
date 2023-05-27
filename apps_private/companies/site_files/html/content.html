@@ -89,7 +89,7 @@
       <div id="companiesBranches" class="tab-content">
         <fieldset ng-repeat="branch in company.branch_list">
           <legend>
-            <i-button type="add default" ng-click="company.branch_list.push({charge: [{}]})"></i-button>
+            <i-button type="push" ng-click="company.branch_list.push({charge: [{}]})"></i-button>
             ##word.companies_branch##
             <i-button type="delete default" ng-click="company.branch_list.length === 1 || company.branch_list.splice($index,1)"> </i-button>
           </legend>
@@ -124,7 +124,7 @@
 
           <fieldset ng-repeat="charge in branch.charge">
             <legend>
-              <i-button type="add default" ng-click="branch.charge.push({})"></i-button>
+              <i-button type="push" ng-click="branch.charge.push({})"></i-button>
               ##word.companies_contact_charge##
 
               <i-button type="delete default" ng-click="branch.charge.length === 1 || branch.charge.splice($index,1)"></i-button>
@@ -153,7 +153,7 @@
       <div id="bankingAndAccounting" class="tab-content">
         <fieldset ng-repeat="bank in company.bank_list">
           <legend>
-            <i-button type="add default" ng-click="company.bank_list.push({})"></i-button>
+            <i-button type="push" ng-click="company.bank_list.push({})"></i-button>
             ##word.companies_bank_information##
             <i-button type="delete default" ng-click="company.bank_list.length === 1 || company.bank_list.splice($index,1)"></i-button>
           </legend>

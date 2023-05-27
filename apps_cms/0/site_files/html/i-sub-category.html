@@ -14,7 +14,7 @@
         <fieldset>
           <legend>
             ##word.add_categories##
-            <i-button type="add default" ng-click="addSubCategoryList(ngModel)"></i-button>
+            <i-button type="push" ng-click="addSubCategoryList(ngModel)"></i-button>
           </legend>
           <div class="row" ng-repeat="c in ngModel.sub_category_list">
             <i-sub-category ng-model="c"></i-sub-category>

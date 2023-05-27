@@ -41,7 +41,7 @@
           <fieldset>
             <legend>
               ##word.category_require##
-              <i-button type="add default" ng-click="addTypesCategoryRequireList(main_categories)"></i-button>
+              <i-button type="push" ng-click="addTypesCategoryRequireList(main_categories)"></i-button>
             </legend>
             <div class="row" ng-repeat="c in main_categories.category_require_list">
               <i-category-require ng-model="c"></i-category-require>

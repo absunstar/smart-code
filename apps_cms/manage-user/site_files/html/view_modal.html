@@ -50,7 +50,7 @@
 
           <div class="col4">
             <br>
-            <i-checkbox label="##word.hide_mobile_number##" ng-model="manage_user.hide_mobile"> </i-checkbox>
+            <i-checkbox label="##word.hideMobile_number##" ng-model="manage_user.hideMobile"> </i-checkbox>
           </div>
         </div>
 
@@ -67,13 +67,13 @@
             </div>
           </div>
 
-          <div class="row" ng-show="manage_user.mobile_list.length > 0">
+          <div class="row" ng-show="manage_user.mobileList.length > 0">
             <table x-permissions="login" class="table bold hover loaded">
               <tr>
                 <th>##word.mobile##</th>
                 <th class="not-print">##word.actions##</th>
               </tr>
-              <tr ng-repeat="c in manage_user.mobile_list">
+              <tr ng-repeat="c in manage_user.mobileList">
                 <td class="center title">
                   {{c}}
                   <i class="fa-solid fa-mobile-screen-button"></i>
@@ -82,7 +82,7 @@
                 <td class="center not-print">
 
                   <i-button type="delete" label="##word.delete_mobile_number##"
-                    ng-click="manage_user.mobile_list.length ===1 ||manage_user.mobile_list.splice($index,1)">
+                    ng-click="manage_user.mobileList.length ===1 ||manage_user.mobileList.splice($index,1)">
                   </i-button>
                 </td>
               </tr>

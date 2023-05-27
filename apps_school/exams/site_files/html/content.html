@@ -152,7 +152,7 @@
                                 <div class="col1"></div>
 
                                 <div class="col1">
-                                    <i-button type="add default" ng-click="createQuestions('add',$index)"></i-button>
+                                    <i-button type="push" ng-click="createQuestions('add',$index)"></i-button>
                                     <i-button type="delete default"
                                         ng-click="exams.main_ques_list.length === 1 || exams.main_ques_list.splice($index,1)">
                                     </i-button>
@@ -189,7 +189,7 @@
                                         <td class="center title" ng-show="m.question_types.name =='c_c_a'">
 
                                             <div class="row">
-                                                <i-button type="add default" ng-click="q.choices_list.push({})">
+                                                <i-button type="push" ng-click="q.choices_list.push({})">
                                                 </i-button>
                                             </div>
 
@@ -260,7 +260,7 @@
                                         <td class="center title">
                                             <br>
                                             <br>
-                                            <i-button type="add default" ng-click="addQuestion(m,$index)"></i-button>
+                                            <i-button type="push" ng-click="addQuestion(m,$index)"></i-button>
                                             <i-button type="delete default"
                                                 ng-click="m.ques_list.length === 1 || m.ques_list.splice($index,1)">
                                             </i-button>

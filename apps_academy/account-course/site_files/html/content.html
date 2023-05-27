@@ -52,7 +52,7 @@
 
                     <fieldset ng-show="account_course.dates_list.length > 0" class="col10">
                         <legend>
-                            <i-button type="add default" ng-click="account_course.dates_list.push({})"></i-button>
+                            <i-button type="push" ng-click="account_course.dates_list.push({})"></i-button>
                             ##word.dates##
                         </legend>
                         <div class="row" ng-repeat="d in account_course.dates_list">

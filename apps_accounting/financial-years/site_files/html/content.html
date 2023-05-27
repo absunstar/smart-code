@@ -68,7 +68,7 @@
         <fieldset ng-repeat="period in financial_year.accounting_period_list">
             <legend>
 
-                <i-button type="add default" ng-click="financial_year.accounting_period_list.push({})"></i-button>
+                <i-button type="push" ng-click="financial_year.accounting_period_list.push({})"></i-button>
                 ##word.financial_years_accounting_period##
                 <i-button type="delete default"
                     ng-click="financial_year.accounting_period_list.length ===1 ||financial_year.accounting_period_list.splice($index,1)">

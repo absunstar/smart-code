@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $ratings = site.connectCollection('ratings');
-  site.rating_list = [];
+  site.ratingList = [];
   $ratings.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.rating_list = [...site.rating_list, ...docs];
+      site.ratingList = [...site.ratingList, ...docs];
     }
   });
 
@@ -52,7 +52,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.rating_list.push(doc);
+        site.ratingList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -96,9 +96,9 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.rating_list.forEach((a, i) => {
+          site.ratingList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.rating_list[i] = result.doc;
+              site.ratingList[i] = result.doc;
             }
           });
         } else {
@@ -121,7 +121,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.rating_list.forEach((a) => {
+    site.ratingList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -163,8 +163,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.rating_list.splice(
-            site.rating_list.findIndex((a) => a.id === req.body.id),
+          site.ratingList.splice(
+            site.ratingList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {

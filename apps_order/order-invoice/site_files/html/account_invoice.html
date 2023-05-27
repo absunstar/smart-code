@@ -57,7 +57,7 @@
 
         <fieldset ng-repeat="inv in order_invoice.invoices_list">
           <legend>
-            <i-button type="add default" ng-click="pushAccountInvoice()"></i-button>
+            <i-button type="push" ng-click="pushAccountInvoice()"></i-button>
             ##word.new_sales_invoice##
             <i-button type="delete default" ng-click="order_invoice.invoices_list.length === 1 || order_invoice.invoices_list.splice($index,1) ; calcInvoice(order_invoice)"> </i-button>
           </legend>

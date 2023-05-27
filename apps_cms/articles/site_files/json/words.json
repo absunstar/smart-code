@@ -85,42 +85,42 @@
     "ar": "تفعيل الغلاف الخارجي"
   },
   {
-    "name": "number_views",
+    "name": "Number Of Views",
     "en": "Number of Views",
     "ar": "عدد المشاهدات"
   },
   {
-    "name": "number_likes",
+    "name": "Number of Likes",
     "en": "Number of Likes",
     "ar": "عدد اللايكات"
   },
   {
-    "name": "number_comments",
+    "name": "Number of Comments",
     "en": "Number of Comments",
     "ar": "عدد التعليقات"
   },
   {
-    "name": "number_posts",
-    "en": "Number of posts",
+    "name": "Number Of Posts",
+    "en": "Number Of Posts",
     "ar": "عدد المشاركات"
   },
   {
-    "name": "number_ratings",
-    "en": "Number of ratings",
+    "name": "Number Of Ratings",
+    "en": "Number Of Ratings",
     "ar": "عدد التقييمات"
   },
   {
-    "name": "actual_number",
+    "name": "Actual number",
     "en": "Actual number",
     "ar": "العدد الفعلي"
   },
   {
-    "name": "dummy_number",
-    "en": "Dummy number",
+    "name": "Dummy Of Number",
+    "en": "Dummy Of Number",
     "ar": "العدد الوهمي"
   },
   {
-    "name": "apparent_number",
+    "name": "Apparent Of Number",
     "en": "Apparent number",
     "ar": "العدد الظاهر"
   },

@@ -10,10 +10,10 @@ app.controller('favorites', function ($scope, $http, $timeout) {
         where: {
           $and: [
             {
-              'feedback_list.user.id': site.toNumber('##user.id##'),
+              'feedbackList.user.id': site.toNumber('##user.id##'),
             },
             {
-              'feedback_list.type.id': 2,
+              'feedbackList.type.id': 2,
             },
             {
               'adStatus.id': 1,
@@ -28,7 +28,7 @@ app.controller('favorites', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.favoriteAdslist = response.data.list;
         /*   $scope.favoriteAdslist.forEach((ad) => {
-            ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
+            ad.favorite = $scope.user.feedbackList.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
           }); */
         }
       },

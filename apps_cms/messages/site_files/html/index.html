@@ -192,7 +192,7 @@
                 <span ng-show="m.$new" class="badge_message"></span>
               </b>
 
-              <p class="ellipsis-txt dimgrey bold">{{m.messages_list[m.messages_list.length -1].message}}</p>
+              <p class="ellipsis-txt dimgrey bold">{{m.messagesList[m.messagesList.length -1].message}}</p>
             </a>
           </div>
 
@@ -203,7 +203,7 @@
 
             <div class="row _scroll100">
               <div class="row _scroll messages">
-                <div class="row padding msg-parent margin" ng-repeat="m in message.messages_list">
+                <div class="row padding msg-parent margin" ng-repeat="m in message.messagesList">
                   <div class="row" ng-class="{'reciever-msg' : m.user_id == userId,'sender-msg' : m.user_id != userId , 'sender' : m.user_id != userId
                     , 'reciever' : m.user_id == userId}">
 

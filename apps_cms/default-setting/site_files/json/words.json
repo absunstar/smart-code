@@ -10,6 +10,16 @@
     "ar": "الصفحة الرئيسية"
   },
   {
+    "name": "Main Menu",
+    "en": "Main Menu",
+    "ar": "القائمة الرئيسية"
+  },
+  {
+    "name": "Already Existed",
+    "en": "Already Existed",
+    "ar": "موجود من قبل"
+  },
+  {
     "name": "showManager",
     "en": "showManager",
     "ar": "ظهور بيانات المديرين "

@@ -84,7 +84,7 @@
 
       <fieldset class="row" ng-show="defaultSettings.content.upload_photos">
         <legend>
-          <i-button type="add default" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo"
+          <i-button type="push" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo"
             ng-click="addImage()"></i-button>
           ##word.ad_images##
         </legend>
@@ -111,7 +111,7 @@
       <br />
       <fieldset class="row" ng-show="defaultSettings.content.upload_video">
         <legend>
-          <i-button type="add default" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video"
+          <i-button type="push" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video"
             ng-click="addVideos()"></i-button>
           ##word.ad_videos##
         </legend>
@@ -183,7 +183,7 @@
 
       <fieldset class="row" ng-show="ad.set_price == 'yes'">
         <legend>
-          <i-button ng-show="defaultSettings.content.quantities_can_be_used" type="add default"
+          <i-button ng-show="defaultSettings.content.quantities_can_be_used" type="push"
             ng-click="addQuantity()"></i-button>
           ##word.quantities##
         </legend>

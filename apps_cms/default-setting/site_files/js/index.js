@@ -254,6 +254,7 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.topCategoryList = response.data.topList;
+          $scope.categoryList = response.data.list;
         }
       },
       function (err) {
@@ -276,6 +277,35 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
     }
 
     $scope.defaultSetting.$keyword = '';
+  };
+
+  $scope.upDownList = function (list, type, index) {
+    let element = list[index];
+    let toIndex = index;
+
+    if (type == 'up') {
+      toIndex = index - 1;
+    } else if (type == 'down') {
+      toIndex = index + 1;
+    }
+
+    list.splice(index, 1);
+    list.splice(toIndex, 0, element);
+  };
+
+  $scope.addMainMenu = function () {
+    $scope.error = '';
+    if ($scope.defaultSetting.$category && $scope.defaultSetting.$category.id) {
+      $scope.defaultSetting.mainMenuList = $scope.defaultSetting.mainMenuList || [];
+      let index = $scope.defaultSetting.mainMenuList.findIndex((itm) => itm.id == $scope.defaultSetting.$category.id);
+      if (index === -1) {
+        $scope.defaultSetting.mainMenuList.unshift($scope.defaultSetting.$category);
+      } else {
+        $scope.error = '##word.Already Existed##';
+        return;
+      }
+      $scope.defaultSetting.$category = {};
+    }
   };
 
   $scope.addMetaTags = function (programming) {

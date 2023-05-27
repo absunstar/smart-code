@@ -157,7 +157,7 @@ module.exports = function init(site) {
   });
 
   site.post({
-    name: '/api/closing_system/all',
+    name: '/api/closingSystem/all',
     path: __dirname + '/site_files/json/closingSystem.json',
   });
 

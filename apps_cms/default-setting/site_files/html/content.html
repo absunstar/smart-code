@@ -18,7 +18,7 @@
               <i-image class="img64" ng-model="defaultSetting.topNewsLogo"></i-image>
             </div>
             <div class="col9">
-              <i-list  v="r" ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##"> </i-list>
+              <i-list v="r" ng-model="defaultSetting.siteTemplate" items="siteTemplateList" display="##session.lang##" ng-search="_search.$searchSiteTemplate" label="##word.site_template##"> </i-list>
               <div class="row padding margin border">
                 <i-control v="r" class="col3" type="color" ng-model="defaultSetting.siteBackground1" label="##word.Background 1##"></i-control>
                 <i-control class="col3" type="color" ng-model="defaultSetting.siteBackground2" label="##word.Background 2##"></i-control>
@@ -31,7 +31,6 @@
                 <i-control class="col3" type="color" ng-model="defaultSetting.siteColor3" label="##word.Color 3##"></i-control>
                 <i-control class="col3" type="color" ng-model="defaultSetting.siteColor4" label="##word.Color 4##"></i-control>
               </div>
-             
             </div>
           </div>
 
@@ -169,8 +168,11 @@
             </fieldset>
 
             <fieldset>
-              <legend>##word.Temperatures##</legend>
-              <i-checkbox label="##word.Show##" ng-model="defaultSetting.showTemperatures"></i-checkbox>
+              <div class="row">
+                <p class="col2 bold font-18">##word.Temperatures## :</p>
+                <i-checkbox label="##word.Show##" class="col3" ng-model="defaultSetting.showTemperatures"></i-checkbox>
+              </div>
+
               <div class="row" ng-show="defaultSetting.showTemperatures">
                 <i-control class="col6" label="##word.Great##" ng-model="defaultSetting.temperaturesGreat"> </i-control>
                 <i-control class="col6" label="##word.Minor##" ng-model="defaultSetting.temperaturesMinor"> </i-control>
@@ -178,11 +180,12 @@
             </fieldset>
 
             <fieldset>
-              <legend>
-                ##word.Prayer Timings##
-                <i-button type="add default" ng-click="addPrayerTimings()"></i-button>
-              </legend>
-              <i-checkbox label="##word.Show##" ng-model="defaultSetting.showPrayerTimings"></i-checkbox>
+              <div class="row">
+                <p class="col2 bold font-18">##word.Prayer Timings## :</p>
+                <i-button type="push" ng-show="defaultSetting.showPrayerTimings" class="col1" ng-click="addPrayerTimings()"></i-button>
+                <i-checkbox label="##word.Show##" class="col3" ng-model="defaultSetting.showPrayerTimings"></i-checkbox>
+              </div>
+
               <table class="table hover bold" ng-show="defaultSetting.showPrayerTimings">
                 <tr>
                   <th>##word.Name##</th>
@@ -195,19 +198,19 @@
                   <td class="center"><i-control type="text" ng-model="g.time"> </i-control></td>
 
                   <td class="center not-print">
-                    <i-button type="delete" ng-click="prayerTimingsList.splice($index,1)"> </i-button>
+                    <i-button type="delete" ng-click="defaultSetting.prayerTimingsList.splice($index,1)"> </i-button>
                   </td>
                 </tr>
               </table>
             </fieldset>
 
             <fieldset>
-              <legend>
-                ##word.Gold Prices##
-                <i-button type="add default" ng-click="addGoldPrices()"></i-button>
-              </legend>
+              <div class="row">
+                <p class="col2 bold font-18">##word.Gold Prices## :</p>
+                <i-button type="push" ng-show="defaultSetting.showGoldPrices" class="col1" ng-click="addGoldPrices()"></i-button>
+                <i-checkbox label="##word.Show##" class="col3" ng-model="defaultSetting.showGoldPrices"></i-checkbox>
+              </div>
 
-              <i-checkbox label="##word.Show##" ng-model="defaultSetting.showGoldPrices"></i-checkbox>
               <table class="table hover bold" ng-show="defaultSetting.showGoldPrices">
                 <tr>
                   <th>##word.Name##</th>
@@ -232,18 +235,18 @@
                   </td>
 
                   <td class="center not-print">
-                    <i-button type="delete" ng-click="goldPricesList.splice($index,1)"> </i-button>
+                    <i-button type="delete" ng-click="defaultSetting.goldPricesList.splice($index,1)"> </i-button>
                   </td>
                 </tr>
               </table>
             </fieldset>
 
             <fieldset>
-              <legend>
-                ##word.Match Schedule##
-                <i-button type="add default" ng-click="addMatchSchedule()"></i-button>
-              </legend>
-              <i-checkbox label="##word.Show##" ng-model="defaultSetting.showMatchSchedule"></i-checkbox>
+              <div class="row">
+                <p class="col2 bold font-18">##word.Match Schedule## :</p>
+                <i-button type="push" ng-show="defaultSetting.showMatchSchedule" class="col1" ng-click="addMatchSchedule()"></i-button>
+                <i-checkbox label="##word.Show##" class="col3" ng-model="defaultSetting.showMatchSchedule"></i-checkbox>
+              </div>
 
               <table class="table hover bold" ng-show="defaultSetting.showMatchSchedule">
                 <tr>
@@ -269,7 +272,36 @@
                   <td class="center"><i-control type="text" ng-model="m.time"> </i-control></td>
 
                   <td class="center not-print">
-                    <i-button type="delete" ng-click="matchScheduleList.splice($index,1)"> </i-button>
+                    <i-button type="delete" ng-click="defaultSetting.matchScheduleList.splice($index,1)"> </i-button>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+            <fieldset>
+              <div class="row">
+                <p class="col2 bold font-18">##word.Main Menu## :</p>
+              </div>
+              <div class="row">
+                <i-list label="##word.Category##" class="col6" ng-model="defaultSetting.$category" items="categoryList" display="name" ng-search="defaultSetting.article.$categorySearch">
+                </i-list>
+                <div class="col2">
+                  <br>
+                  <i-button type="push" ng-click="addMainMenu()"></i-button>
+                </div>
+              </div>
+              <table class="table hover bold">
+                <tr>
+                  <th>##word.Name##</th>
+                  <th class="not-print">##word.actions##</th>
+                </tr>
+
+                <tr ng-repeat="g in defaultSetting.mainMenuList track by $index">
+                  <td class="center">{{g.name}}</td>
+
+                  <td class="center not-print">
+                    <i-button type="up" ng-click="upDownList(defaultSetting.mainMenuList, 'up',$index)" ng-hide="$index == 0"> </i-button>
+                    <i-button type="down" ng-click="upDownList(defaultSetting.mainMenuList, 'down',$index)" ng-hide="$index == (defaultSetting.mainMenuList.length - 1) "></i-button>
+                    <i-button type="delete" ng-click="defaultSetting.mainMenuList.splice($index,1)"> </i-button>
                   </td>
                 </tr>
               </table>
@@ -366,7 +398,7 @@
 
               <i-list label="##word.writer##" ng-model="defaultSetting.article.writer" items="writersList" display="profile.name" ng-search="defaultSetting.article.$writerSearch"> </i-list>
               <i-list label="##word.editor##" ng-model="defaultSetting.article.editor" items="editorsList" display="profile.name" ng-search="defaultSetting.article.$editorSearch"> </i-list>
-              <i-list label="##word.category##" ng-model="defaultSetting.article.category" items="topCategoryList" display="name" ng-search="defaultSetting.article.$categorySearch"> </i-list>
+              <i-list label="##word.Category##" ng-model="defaultSetting.article.category" items="topCategoryList" display="name" ng-search="defaultSetting.article.$categorySearch"> </i-list>
               <div class="row">
                 <div class="article-part">
                   <i-checkbox class="" label="Auto creation shortened link" ng-model="defaultSetting.article.autoShortenedLink"> </i-checkbox>
@@ -398,7 +430,7 @@
           <fieldset>
             <legend>
               Meta Tags
-              <i-button type="add default" ng-click="addMetaTags(defaultSetting.programming)"></i-button>
+              <i-button type="push" ng-click="addMetaTags(defaultSetting.programming)"></i-button>
             </legend>
             <div class="row" ng-repeat="p in defaultSetting.programming.metaTags track by $index">
               <div class="row">
@@ -413,7 +445,7 @@
           <fieldset>
             <legend>
               Styles
-              <i-button type="add default" ng-click="addStyles(defaultSetting.programming)"></i-button>
+              <i-button type="push" ng-click="addStyles(defaultSetting.programming)"></i-button>
             </legend>
 
             <div class="row" ng-repeat="s in defaultSetting.programming.styles track by $index">
@@ -429,7 +461,7 @@
           <fieldset>
             <legend>
               Scripts
-              <i-button type="add default" ng-click="addScripts(defaultSetting.programming)"></i-button>
+              <i-button type="push" ng-click="addScripts(defaultSetting.programming)"></i-button>
             </legend>
 
             <div class="row" ng-repeat="s in defaultSetting.programming.scripts track by $index">
@@ -445,7 +477,7 @@
           <fieldset>
             <legend>
               Dynamic Route
-              <i-button type="add default" ng-click="showDynamicRoutes()"></i-button>
+              <i-button type="push" ng-click="showDynamicRoutes()"></i-button>
             </legend>
 
             <table class="table hover bold" ng-show="defaultSetting.programming.dynamicRoutes.length > 0">
@@ -515,7 +547,7 @@
             <fieldset>
               <legend>
                 IP
-                <i-button type="add default" ng-click="addBlockIp(defaultSetting.block)"></i-button>
+                <i-button type="push" ng-click="addBlockIp(defaultSetting.block)"></i-button>
               </legend>
               <div class="row" ng-repeat="i in defaultSetting.block.ipList track by $index">
                 <i-control type="text" class="col9" ng-model="i.name"> </i-control>
@@ -529,7 +561,7 @@
             <fieldset>
               <legend>
                 Domains
-                <i-button type="add default" ng-click="addBlockDomains(defaultSetting.block)"></i-button>
+                <i-button type="push" ng-click="addBlockDomains(defaultSetting.block)"></i-button>
               </legend>
               <div class="row" ng-repeat="d in defaultSetting.block.domainsList track by $index">
                 <i-control type="text" class="col9" ng-model="d.name"> </i-control>
@@ -543,7 +575,7 @@
             <fieldset>
               <legend>
                 UserAgent
-                <i-button type="add default" ng-click="addBlockUserAgent(defaultSetting.block)"></i-button>
+                <i-button type="push" ng-click="addBlockUserAgent(defaultSetting.block)"></i-button>
               </legend>
               <div class="row" ng-repeat="u in defaultSetting.block.userAgentList track by $index">
                 <i-control type="text" class="col9" ng-model="u.name"> </i-control>

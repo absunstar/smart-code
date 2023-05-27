@@ -174,44 +174,12 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     site.showModal('#orderModal');
   };
 
-  $scope.getOrdersList = function (where) {
-    $scope.busy = true;
-    $scope.orderslist = [];
-    $scope.count = 0;
-    $http({
-      method: 'POST',
-      url: '/api/order/all',
-      data: {
-        where: { 'user.id': $scope.manage_user.id },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.orderslist = response.data.list;
-          $scope.count = response.data.count;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.showTab = function (event, selector) {
     site.showTabContent(event, selector);
 
-    if (selector == '#my_orders') {
-      $scope.getOrdersList();
-    } else if (selector == '#my_ads') {
+    if (selector == '#my_ads') {
       $scope.getMyAdsList();
       $scope.loadMainCategories();
-      $scope.getStoresList($scope.manage_user.id);
-    } else if (selector == '#favorite_stores') {
-      $scope.getFavoriteStoresList();
-    } else if (selector == '#my_stores') {
-      $scope.getMyStoresList();
     }
   };
 
@@ -228,10 +196,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
   };
 
   $scope.addMobileList = function () {
-    $scope.manage_user.mobile_list = $scope.manage_user.mobile_list || [];
+    $scope.manage_user.mobileList = $scope.manage_user.mobileList || [];
     if ($scope.manage_user.$mobile) {
 
-      $scope.manage_user.mobile_list.push($scope.manage_user.$mobile)
+      $scope.manage_user.mobileList.push($scope.manage_user.$mobile)
     }
     $scope.manage_user.$mobile = '';
   };
@@ -257,71 +225,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.myAdslist = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getMyStoresList = function (where) {
-    $scope.busy = true;
-    $scope.myStoreslist = [];
-    $http({
-      method: 'POST',
-      url: '/api/stores/all',
-      data: {
-        where: {
-          $and: [
-            {
-              'user.id': $scope.manage_user.id,
-            },
-          ],
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.myStoreslist = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-
-  $scope.getFavoriteStoresList = function (where) {
-    $scope.busy = true;
-    $scope.favoriteStoreslist = [];
-    $http({
-      method: 'POST',
-      url: '/api/stores/all',
-      data: {
-        where: {
-          $and: [
-            {
-              'feedback_list.user.id': $scope.manage_user.id,
-            },
-            {
-              'feedback_list.type.id': 2,
-            },
-            {
-              'store_status.id': { $ne: 3 },
-            },
-          ],
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.favoriteStoreslist = response.data.list;
         }
       },
       function (err) {
@@ -551,29 +454,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.ad.images_list.push({});
   };
 
-  $scope.getStoresList = function (id) {
-    $scope.busy = true;
-    $scope.storesList = [];
-    $http({
-      method: 'POST',
-      url: '/api/stores/all',
-      data: {
-        where: { 'user.id': id },
-        select: { id: 1, code: 1, name: 1, user: 1, address: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.storesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+
 
   $scope.saveUserChanges = function (user) {
     $scope.error = '';

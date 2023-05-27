@@ -151,7 +151,7 @@
         <fieldset>
           <legend>
             ##word.add_bank_account##
-            <i-button type="add default" ng-click="default_setting.bank_account_list.push({})"> </i-button>
+            <i-button type="push" ng-click="default_setting.bank_account_list.push({})"> </i-button>
           </legend>
 
           <div class="row" ng-repeat="b in default_setting.bank_account_list track by $index">
@@ -290,7 +290,7 @@
             <fieldset>
               <legend>
                 ##word.warning_message_inside_ad##
-                <i-button type="add default" ng-click="default_setting.content.warning_message_ad_list.push({})"> </i-button>
+                <i-button type="push" ng-click="default_setting.content.warning_message_ad_list.push({})"> </i-button>
               </legend>
               <div ng-repeat="f in default_setting.content.warning_message_ad_list track by $index">
                 <div class="row">

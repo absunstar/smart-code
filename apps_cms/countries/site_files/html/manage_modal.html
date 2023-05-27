@@ -23,13 +23,12 @@
 
     <div class="modal-body">
       <fieldset>
-        <legend>##word.basic_information##</legend>
         <div class="row">
-          <div class="row">
+          <div class="row padding margin">
             <fieldset class="col8">
-              <legend>Mobile Setting</legend>
+              <legend>##word.Mobile Setting##</legend>
               <div class="row">
-                <i-control v="r" class="col5" label="Country Code" ng-model="countries.countryCode"></i-control>
+                <i-control v="r" class="col5" label="##word.Country Code##" ng-model="countries.countryCode"></i-control>
                 <i-control v="r" class="col7" type="number" label="##word.length_of_mobile_number##" ng-model="countries.lengthMobile"></i-control>
               </div>
             </fieldset>
@@ -37,38 +36,39 @@
               <i-checkbox label="##word.active##" class="" ng-model="countries.active"> </i-checkbox>
             </div>
           </div>
-          <br />
-          <br />
+
           <div class="row">
             <div class="article-part">
               <fieldset ng-repeat="lang in countries.translatedList track by $index">
                 <legend>{{lang.language.##session.lang##}}</legend>
-                <div class="col8">
-                  <i-control v="r ll2" label="##word.country_name##" ng-model="lang.name"></i-control>
-                  <div class="row">
-                    <div class="article-part">
-                      <i-control class="blue bold" label="##word.keywords##" ng-keydown="addKeyWords($event , lang)" ng-model="lang.$keyword"> </i-control>
-                      <div class="row">
-                        <div class="key-words" ng-repeat="k in lang.keyWordsList">
-                          <span>{{k}}</span>
-                          <i class="fas fa-times delete-key" ng-click="lang.keyWordsList.splice($index,1)"></i>
+                <div class="row">
+                  <div class="col7">
+                    <i-control v="r ll2" label="##word.country_name##" ng-model="lang.name"></i-control>
+                    <div class="row">
+                      <div class="article-part">
+                        <i-control class="blue bold" label="##word.keywords##" ng-keydown="addKeyWords($event , lang)" ng-model="lang.$keyword"> </i-control>
+                        <div class="row">
+                          <div class="key-words" ng-repeat="k in lang.keyWordsList">
+                            <span>{{k}}</span>
+                            <i class="fas fa-times delete-key" ng-click="lang.keyWordsList.splice($index,1)"></i>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col1"></div>
-                <div class="col3">
-                  <div class="row">
-                    <div class="article-part">
-                      <p class="center">Logo</p>
-                      <i-image class="center img128" ng-model="lang.image"></i-image>
+                  <div class="col1"></div>
+                  <div class="col3">
+                    <div class="row">
+                      <div class="article-part">
+                        <p class="center">Logo</p>
+                        <i-image class="center img128" ng-model="lang.image"></i-image>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="article-part">
-                      <p class="center">Cover</p>
-                      <i-image class="center img128" ng-model="lang.coverUrl"></i-image>
+                    <div class="row">
+                      <div class="article-part">
+                        <p class="center">Cover</p>
+                        <i-image class="center img128" ng-model="lang.coverUrl"></i-image>
+                      </div>
                     </div>
                   </div>
                 </div>

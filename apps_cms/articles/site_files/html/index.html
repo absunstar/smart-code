@@ -26,6 +26,7 @@
           <tr>
             <th>##word.ID##</th>
             <th>##word.logo##</th>
+            <th>##word.Category##</th>
             <th>##word.article_template##</th>
             <th>##word.article_title##</th>
             <th>##word.status##</th>
@@ -36,6 +37,7 @@
             <td>
               <i-image view class="logo" ng-model="c.translatedList[0].image"></i-image>
             </td>
+            <td class="center">{{c.category.name}}</td>
             <td class="center title">{{c.type.##session.lang##}}</td>
             <td class="center title">
               <a class="link" href="/a/{{c.id}}" target="_blank"> {{c.translatedList[0].title}} </a>
@@ -46,11 +48,11 @@
             </td>
 
             <td class="center not-print">
-              <i-button x-permissions="articles_view || articles_manage" type="view" label="##word.details##" ng-click="displayDetailsArticles(c)"></i-button>
+              <i-button x-permissions="articles_view || articles_manage" type="view" ng-click="displayDetailsArticles(c)"></i-button>
 
-              <i-button x-permissions="articles_update || articles_manage" type="edit" label="##word.edit##" ng-click="displayUpdateArticles(c)"></i-button>
+              <i-button x-permissions="articles_update || articles_manage" type="edit" ng-click="displayUpdateArticles(c)"></i-button>
 
-              <i-button x-permissions="articles_delete || articles_manage" type="delete" label="##word.delete##" ng-click="displayDeleteArticles(c)"></i-button>
+              <i-button x-permissions="articles_delete || articles_manage" type="delete" ng-click="displayDeleteArticles(c)"></i-button>
             </td>
           </tr>
         </table>

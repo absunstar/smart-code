@@ -14,9 +14,21 @@
   --treeview-color2: var(--theme-color);
   --treeview-background-color2: var(--brand-color);
   --i-image-border: none;
-  --menu-width: 320px;
+  --menu-width: 270px;
   --fieldset-background: #fff;
   --tabs-header-link-color: #7c7c7c;
+}
+
+.app-name {
+  padding: 0px 20px 4px;
+  color: white;
+  font-size: 19px;
+  font-weight: 800;
+  background: #00bcd4;
+  border-radius: 30px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 body {

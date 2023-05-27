@@ -171,7 +171,7 @@
                 <fieldset ng-show="##setting.content.other_addresses_appear##">
                   <legend>
                     ##word.other_addresses##
-                    <i-button type="add default" ng-click="manage_user.profile.other_addresses_list.push({})"></i-button>
+                    <i-button type="push" ng-click="manage_user.profile.other_addresses_list.push({})"></i-button>
                   </legend>
                   <div class="row border padding" ng-repeat="o in manage_user.profile.other_addresses_list">
                     <i-address ng-model="o"></i-address>

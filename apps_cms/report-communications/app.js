@@ -25,7 +25,6 @@ module.exports = function init(site) {
       id: 1,
       date: 1,
       name: 1,
-      store: 1,
     }
 
     if (search.type == 'ads') {

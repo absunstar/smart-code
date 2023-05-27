@@ -113,7 +113,7 @@
 
                     <fieldset ng-show="book_hall.dates_list.length > 0" class="col10">
                         <legend>
-                            <i-button type="add default" ng-click="book_hall.dates_list.push({})"></i-button>
+                            <i-button type="push" ng-click="book_hall.dates_list.push({})"></i-button>
                             ##word.dates##
                         </legend>
                         <div class="row" ng-repeat="d in book_hall.dates_list">
@@ -199,7 +199,7 @@
                                             <div class="col5 padding">
                                                 <br>
                                                 <i-button ng-click="addDiscount() ;calc(book_hall)"
-                                                    label="##word.stores_out_add_discount##" type="add default">
+                                                    label="##word.stores_out_add_discount##" type="push">
                                                 </i-button>
                                             </div>
                                         </div>

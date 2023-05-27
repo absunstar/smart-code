@@ -297,7 +297,7 @@
                         </div>
                         <div class="col2"></div>
 
-                        <i-button type="add default" label="##word.stores_out_add_discount##" ng-click="addDiscount()"></i-button>
+                        <i-button type="push" label="##word.stores_out_add_discount##" ng-click="addDiscount()"></i-button>
                       </div>
                     </form>
                   </td>
@@ -329,7 +329,7 @@
                         <i-list ng-search="_search.$tax_name" class="col9" ng-model="tax" display="name_##session.lang##" items="tax_types"> </i-list>
                         <div class="col3">
                           <br />
-                          <i-button type="add default" label="##word.stores_out_add_tax##" ng-click="addTax()"></i-button>
+                          <i-button type="push" label="##word.stores_out_add_tax##" ng-click="addTax()"></i-button>
                         </div>
                       </div>
                     </form>
@@ -351,7 +351,7 @@
         <div class="col8">
           <fieldset ng-repeat="inv in store_out.invoices_list" ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
             <legend>
-              <i-button type="add default" ng-click="pushAccountInvoice()"></i-button>
+              <i-button type="push" ng-click="pushAccountInvoice()"></i-button>
               ##word.new_sales_invoice##
               <i-button type="delete default" ng-click="store_out.invoices_list.length === 1 || store_out.invoices_list.splice($index,1) ; calcInvoice(store_out)"> </i-button>
             </legend>

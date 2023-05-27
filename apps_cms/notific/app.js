@@ -84,8 +84,8 @@ module.exports = function init(site) {
   site.on('[notific][replies_ads_followed]', (obj) => {
     site.security.getUser(
       {
-        'feedback_list.type.id': 2,
-        'feedback_list.ad.id': obj.action.id,
+        'feedbackList.type.id': 2,
+        'feedbackList.ad.id': obj.action.id,
       },
       (err, doc) => {
         if (!err && doc) {
