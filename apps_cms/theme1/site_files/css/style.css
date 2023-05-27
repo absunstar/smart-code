@@ -6,7 +6,8 @@ body {
   overflow-x: hidden;
 }
 .aaa {
-  width: 100%;
+  width: 98%;
+  margin: 1%;
   background: #eee;
   min-width: 250px;
 }
