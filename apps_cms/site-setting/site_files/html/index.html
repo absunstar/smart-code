@@ -10,18 +10,18 @@
     </style>
   </head>
 
-  <body style="background: white" class="##session.lang##" ng-controller="defaultSetting">
+  <body style="background: white" class="##session.lang##" ng-controller="siteSetting">
     <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container">
-      <div x-import="default-setting/dynamic_routes_modal.html"></div>
+      <div x-import="site-setting/dynamic_routes_modal.html"></div>
       <div class="row">
         <br />
         <h1 class="center bold black">##word.default_settings##</h1>
         <br />
 
-        <div x-permissions="default_setting_view || default_setting_manage" x-import="default-setting/content.html"></div>
+        <div x-permissions="default_setting_view || default_setting_manage" x-import="site-setting/content.html"></div>
         <h2 class="error"> {{error}} </h2>
       </div>
     </div>
@@ -35,6 +35,6 @@
     </div>
 
     <div x-import="cms/scripts.html"></div>
-    <script x-import="default-setting/index.js"></script>
+    <script x-import="site-setting/index.js"></script>
   </body>
 </html>

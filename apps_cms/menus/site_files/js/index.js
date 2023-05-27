@@ -330,7 +330,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/defaultSetting/get',
+      url: '/api/get-site-setting',
       data: {},
     }).then(
       function (response) {

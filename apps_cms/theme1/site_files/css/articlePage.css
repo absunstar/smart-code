@@ -60,7 +60,9 @@
   font-size: 18px;
   width: 100%;
 }
-
+.mainarticle div {
+  width: 100%;
+}
 .videoArticle {
   width: 100%;
   border-radius: 15px;

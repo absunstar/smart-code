@@ -1,4 +1,13 @@
 module.exports = function init(site) {
+  site.TemplateList.push({
+    name: 'Theme 1',
+    categoryTemplateList: [
+      { id: 1, name: 'Template 1' },
+      { id: 2, name: 'Template 2' },
+      { id: 3, name: 'Template 3' },
+    ],
+  });
+
   site.get({
     name: 'theme1/images',
     path: __dirname + '/site_files/images/',
@@ -15,6 +24,7 @@ module.exports = function init(site) {
     name: 'theme1/webfonts',
     path: __dirname + '/site_files/webfonts/',
   });
+
   site.get({
     name: ['/css/theme1.css'],
     parser: 'css',

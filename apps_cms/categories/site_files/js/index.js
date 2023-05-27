@@ -34,7 +34,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
     }
 
     $scope.categories.translatedList = [];
-    $scope.defaultSettings.languagesList.forEach((l) => {
+    $scope.siteSettings.languagesList.forEach((l) => {
       if (l.language.active == true) {
         $scope.categories.translatedList.push({
           language: {
@@ -144,7 +144,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
         console.log(response.data);
         if (response.data.done) {
           site.hideModal('#categoriesManageModal');
-          
+
           $scope.getCategoriesList();
         } else {
           $scope.error = response.data.error;
@@ -262,18 +262,18 @@ app.controller('categories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getDefaultSetting = function () {
+  $scope.getsiteSetting = function () {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/defaultSetting/get',
+      url: '/api/get-site-setting',
       data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-          $scope.articleTypesList = $scope.defaultSettings.article.articleTypes.filter((t) => t.active == true);
+          $scope.siteSettings = response.data.doc;
+          $scope.articleTypesList = $scope.siteSettings.article.articleTypes.filter((t) => t.active == true);
         }
       },
       function (err) {
@@ -300,7 +300,6 @@ app.controller('categories', function ($scope, $http, $timeout) {
   };
 
   $scope.addKeyWords = function (ev, obj) {
-
     $scope.error = '';
     if (ev.which !== 13 || !obj.$keyword) {
       return;
@@ -321,5 +320,5 @@ app.controller('categories', function ($scope, $http, $timeout) {
   };
 
   $scope.getCategoriesList();
-  $scope.getDefaultSetting();
+  $scope.getsiteSetting();
 });

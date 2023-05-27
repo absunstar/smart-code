@@ -5,8 +5,9 @@ body {
   margin-top: 55px;
   overflow-x: hidden;
 }
-.aaa{
+.aaa {
   width: 100%;
+  background: #eee;
   min-width: 250px;
 }
 @media (min-width: 1400px) {
@@ -367,7 +368,7 @@ a {
   width: 98%;
   height: 462px;
   margin-top: 10px;
-  margin: 1%!important;
+  margin: 1% !important;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -598,7 +599,6 @@ a {
 /* start mainsection*/
 
 .headermainsection {
- 
 }
 
 .headSectionName {
@@ -802,6 +802,3 @@ a {
 
   /* end breaking news */
 }
-
-
-

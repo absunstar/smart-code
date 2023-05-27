@@ -3,10 +3,10 @@ if (btn1) {
   btn1.click();
 }
 
-app.controller('defaultSetting', function ($scope, $http, $timeout) {
+app.controller('siteSetting', function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.defaultSetting = {};
+  $scope.siteSetting = {};
 
   $scope.getPublishingSystemsList = function () {
     $scope.error = '';
@@ -52,7 +52,7 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
     $scope.siteTemplateList = [];
     $http({
       method: 'POST',
-      url: '/api/siteTemplate/all',
+      url: '/api/get-site-templates',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -123,29 +123,8 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSetting = function (where) {
-    $scope.defaultSetting = {};
+    $scope.siteSetting = site.showObject('##site.#setting##');
     $scope.busy = true;
-
-    $http({
-      method: 'POST',
-      url: '/api/defaultSetting/get',
-      data: {
-        where: where,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.defaultSetting = response.data.doc;
-        } else {
-          $scope.defaultSetting = {};
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
   };
 
   $scope.saveSetting = function (id) {
@@ -160,8 +139,8 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/defaultSetting/save',
-      data: $scope.defaultSetting,
+      url: '/api/set-site-setting',
+      data: $scope.siteSetting,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -271,12 +250,12 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
       return;
     }
 
-    $scope.defaultSetting.keyWordsList = $scope.defaultSetting.keyWordsList || [];
-    if (!$scope.defaultSetting.keyWordsList.some((k) => k === keyWord)) {
-      $scope.defaultSetting.keyWordsList.push(keyWord);
+    $scope.siteSetting.keyWordsList = $scope.siteSetting.keyWordsList || [];
+    if (!$scope.siteSetting.keyWordsList.some((k) => k === keyWord)) {
+      $scope.siteSetting.keyWordsList.push(keyWord);
     }
 
-    $scope.defaultSetting.$keyword = '';
+    $scope.siteSetting.$keyword = '';
   };
 
   $scope.upDownList = function (list, type, index) {
@@ -293,18 +272,18 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
     list.splice(toIndex, 0, element);
   };
 
-  $scope.addMainMenu = function () {
+  $scope.addMainCategory = function () {
     $scope.error = '';
-    if ($scope.defaultSetting.$category && $scope.defaultSetting.$category.id) {
-      $scope.defaultSetting.mainMenuList = $scope.defaultSetting.mainMenuList || [];
-      let index = $scope.defaultSetting.mainMenuList.findIndex((itm) => itm.id == $scope.defaultSetting.$category.id);
+    if ($scope.siteSetting.$category && $scope.siteSetting.$category.id) {
+      $scope.siteSetting.mainCategoryList = $scope.siteSetting.mainCategoryList || [];
+      let index = $scope.siteSetting.mainCategoryList.findIndex((itm) => itm.id == $scope.siteSetting.$category.id);
       if (index === -1) {
-        $scope.defaultSetting.mainMenuList.unshift($scope.defaultSetting.$category);
+        $scope.siteSetting.mainCategoryList.unshift($scope.siteSetting.$category);
       } else {
         $scope.error = '##word.Already Existed##';
         return;
       }
-      $scope.defaultSetting.$category = {};
+      $scope.siteSetting.$category = {};
     }
   };
 
@@ -328,20 +307,20 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
 
   $scope.addGoldPrices = function () {
     $scope.error = '';
-    $scope.defaultSetting.goldPricesList = $scope.defaultSetting.goldPricesList || [];
-    $scope.defaultSetting.goldPricesList.unshift({});
+    $scope.siteSetting.goldPricesList = $scope.siteSetting.goldPricesList || [];
+    $scope.siteSetting.goldPricesList.unshift({});
   };
 
   $scope.addPrayerTimings = function () {
     $scope.error = '';
-    $scope.defaultSetting.prayerTimingsList = $scope.defaultSetting.prayerTimingsList || [];
-    $scope.defaultSetting.prayerTimingsList.unshift({});
+    $scope.siteSetting.prayerTimingsList = $scope.siteSetting.prayerTimingsList || [];
+    $scope.siteSetting.prayerTimingsList.unshift({});
   };
 
   $scope.addMatchSchedule = function () {
     $scope.error = '';
-    $scope.defaultSetting.matchScheduleList = $scope.defaultSetting.matchScheduleList || [];
-    $scope.defaultSetting.matchScheduleList.unshift({});
+    $scope.siteSetting.matchScheduleList = $scope.siteSetting.matchScheduleList || [];
+    $scope.siteSetting.matchScheduleList.unshift({});
   };
 
   $scope.addBlockIp = function (block) {
@@ -369,8 +348,8 @@ app.controller('defaultSetting', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
-    $scope.defaultSetting.programming.dynamicRoutes = $scope.defaultSetting.programming.dynamicRoutes || [];
-    $scope.defaultSetting.programming.dynamicRoutes.unshift({ ...dynamicRoute });
+    $scope.siteSetting.programming.dynamicRoutes = $scope.siteSetting.programming.dynamicRoutes || [];
+    $scope.siteSetting.programming.dynamicRoutes.unshift({ ...dynamicRoute });
     site.hideModal('#dynamicRoutes');
   };
 

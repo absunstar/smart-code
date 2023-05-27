@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $defaultSetting = site.connectCollection('defaultSetting');
+  const $siteSetting = site.connectCollection('defaultSetting');
   let articleTypes = [
     {
       id: 1,
@@ -76,9 +76,10 @@ module.exports = function init(site) {
     },
   ];
 
-  site.defaultSettingDoc = {
+  site.setting = {
     lengthOrder: 0,
     siteTemplate: { id: 1 },
+    mainCategoryList: [],
     programming: {},
     languagesList: [],
     article: {
@@ -93,38 +94,41 @@ module.exports = function init(site) {
     siteColor6: '#ffffff',
     siteBackground: '#ffffff',
   };
-  site.setting = { ...site.defaultSettingDoc };
 
   languages.forEach((l) => {
-    site.defaultSettingDoc.languagesList.push({ language: l });
+    site.setting.languagesList.push({ language: l });
   });
 
-  $defaultSetting.findOne({}, (err, doc) => {
+  $siteSetting.findOne({}, (err, doc) => {
     if (!err && doc) {
-      site.defaultSettingDoc = doc;
-      if (!site.defaultSettingDoc.article.articleTypes) {
-        site.defaultSettingDoc.article.articleTypes = articleTypes;
+      if (!doc.article.articleTypes) {
+        doc.article.articleTypes = articleTypes;
       }
-      if (!site.defaultSettingDoc.article.languages) {
-        site.defaultSettingDoc.article.languages = languages;
+      if (!doc.article.languages) {
+        doc.article.languages = languages;
       }
-      site.setting = { ...site.defaultSettingDoc };
+      site.setting = { ...site.setting, ...doc };
     } else {
-      $defaultSetting.add(site.defaultSettingDoc, (err, doc) => {
+      $siteSetting.add(site.setting, (err, doc) => {
         if (!err && doc) {
-          site.defaultSettingDoc = doc;
-          site.setting = { ...site.defaultSettingDoc };
+          site.setting = { ...site.setting, ...doc };
         }
       });
     }
   });
 
-  site.get({
-    name: 'defaultSetting',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: false,
-  });
+  site.get(
+    {
+      name: 'site-setting',
+    },
+    (req, res) => {
+      res.render('site-setting/index.html');
+    },
+    {
+      setting : site.setting
+    },
+    { parser: 'html' }
+  );
 
   site.get({
     name: '/images',
@@ -136,10 +140,14 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/publishingSystem.json',
   });
 
-  site.post({
-    name: '/api/siteTemplate/all',
-    path: __dirname + '/site_files/json/siteTemplate.json',
-  });
+  site.post(
+    {
+      name: '/api/get-site-templates',
+    },
+    (req, res) => {
+      res.json(site.TemplateList);
+    }
+  );
 
   site.post({
     name: '/api/siteColor/all',
@@ -166,7 +174,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/location.json',
   });
 
-  site.post('/api/defaultSetting/get', (req, res) => {
+  site.post('/api/get-site-setting', (req, res) => {
     let response = {
       doc: site.setting,
       done: true,
@@ -174,13 +182,13 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.getDefaultSetting = function (callback) {
+  site.getsiteSetting = function (callback) {
     callback = callback || function () {};
     callback(site.setting);
     return site.setting;
   };
 
-  site.post('/api/defaultSetting/save', (req, res) => {
+  site.post('/api/set-site-setting', (req, res) => {
     let response = {
       done: false,
     };
@@ -193,11 +201,11 @@ module.exports = function init(site) {
 
     let data = req.data;
 
-    $defaultSetting.update(data, (err, result) => {
+    $siteSetting.update(data, (err, result) => {
       if (!err) {
         response.done = true;
-        site.defaultSettingDoc = data;
-        site.setting = { ...site.defaultSettingDoc };
+        site.setting = { ...site.setting, ...data };
+        site.handleCategoryArticles();
       } else {
         response.error = err.message;
       }

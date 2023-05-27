@@ -2,11 +2,11 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.article = {};
-  $scope.defaultSettings = site.showObject(`##data.#setting##`);
-  if ($scope.defaultSettings && $scope.defaultSettings.id) {
-    $scope.articleTypesList = $scope.defaultSettings.article.articleTypes.filter((t) => t.active == true);
+  $scope.siteSettings = site.showObject(`##data.#setting##`);
+  if ($scope.siteSettings && $scope.siteSettings.id) {
+    $scope.articleTypesList = $scope.siteSettings.article.articleTypes.filter((t) => t.active == true);
     $scope.languagesList = [];
-    $scope.defaultSettings.languagesList.forEach((l) => {
+    $scope.siteSettings.languagesList.forEach((l) => {
       if (l.language.active == true) {
         $scope.languagesList.push({
           id: l.language.id,
@@ -24,34 +24,34 @@ app.controller('articles', function ($scope, $http, $timeout) {
       active: true,
       translatedList: [],
     };
-    if ($scope.defaultSettings.article) {
-      if ($scope.defaultSettings.article.closingSystem) {
-        if ($scope.defaultSettings.article.closingSystem.id == 2) {
+    if ($scope.siteSettings.article) {
+      if ($scope.siteSettings.article.closingSystem) {
+        if ($scope.siteSettings.article.closingSystem.id == 2) {
           $scope.article.expiryDate = new Date();
           $scope.article.expiryDate.setDate($scope.article.expiryDate.getDate() + 7);
         }
       }
 
-      if ($scope.defaultSettings.article.language) {
-        $scope.article.$language = $scope.defaultSettings.article.language;
+      if ($scope.siteSettings.article.language) {
+        $scope.article.$language = $scope.siteSettings.article.language;
         $scope.addLanguage($scope.article.$language);
       }
 
-      if ($scope.defaultSettings.article.writer && $scope.defaultSettings.article.writer.id) {
+      if ($scope.siteSettings.article.writer && $scope.siteSettings.article.writer.id) {
         $scope.article.writer = $scope.writersList.find((_r, i) => {
-          return _r.id === $scope.defaultSettings.article.writer.id;
+          return _r.id === $scope.siteSettings.article.writer.id;
         });
       }
 
-      if ($scope.defaultSettings.article.editor && $scope.defaultSettings.article.editor.id) {
+      if ($scope.siteSettings.article.editor && $scope.siteSettings.article.editor.id) {
         $scope.article.editor = $scope.editorsList.find((_e, i) => {
-          return _e.id === $scope.defaultSettings.article.editor.id;
+          return _e.id === $scope.siteSettings.article.editor.id;
         });
       }
 
-      if ($scope.defaultSettings.article.category && $scope.defaultSettings.article.category.id) {
+      if ($scope.siteSettings.article.category && $scope.siteSettings.article.category.id) {
         $scope.article.category = $scope.topCategoryList.find((_c, i) => {
-          return _c.id === $scope.defaultSettings.article.category.id;
+          return _c.id === $scope.siteSettings.article.category.id;
         });
         $scope.loadSubCategory1($scope.article.category);
       }

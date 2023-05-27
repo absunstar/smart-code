@@ -132,9 +132,6 @@ module.exports = function init(site) {
     site.menuList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(20);
 
     site.categoriesList.forEach((cat) => {
-      cat.$list = [];
-      cat.homePageLimit = cat.homePageLimit || 10;
-
       $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
         if (!err && docs) {
           docs.forEach((doc) => {
@@ -142,25 +139,37 @@ module.exports = function init(site) {
               site.articlesList.push(site.handleArticle({ ...doc }));
             }
           });
+
           site.articlesList.sort((a, b) => {
             return b.id - a.id;
           });
-          cat.$list = site.articlesList.filter((a) => a.category.id == cat.id).slice(0, cat.homePageLimit);
 
-          if (cat.showInHomePage && cat.$list.length > 0) {
-            let _cat = {
+          if ((_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
+            _cat = {
+              ..._cat,
+              index: site.setting.mainCategoryList.findIndex((c) => c.id == cat.id),
+              id: cat.id,
+              show: cat.showInHomePage,
               name: cat.translatedList[0].name,
+              limit: cat.homePageLimit || 10,
               list: cat.$list,
             };
-            if (cat.homePageIndex == 1) {
-              _cat.template1 = true;
-            } else if (cat.homePageIndex == 2) {
-              _cat.template2 = true;
-            } else if (cat.homePageIndex == 3) {
-              _cat.template3 = true;
-              _cat.list0 = [_cat.list.shift()];
+            _cat.list = site.articlesList.filter((a) => a.category.id == _cat.id).slice(0, _cat.limit);
+
+            if (_cat.list.length > 0 && _cat.template) {
+              if (_cat.template.id == 1) {
+                _cat.template1 = true;
+              } else if (_cat.template.id == 2) {
+                _cat.template2 = true;
+              } else if (_cat.template.id == 3) {
+                _cat.template3 = true;
+                _cat.list0 = [_cat.list.shift()];
+              }
+              site.$$categories.push(_cat);
             }
-            site.$$categories.push(_cat);
+            site.$$categories.sort((a, b) => {
+              return a.index - b.index;
+            });
           }
         }
       });
@@ -183,7 +192,7 @@ module.exports = function init(site) {
       name: 'articles',
     },
     (req, res) => {
-  res.render('articles' + '/index.html', { title: 'articles', appName: "##word.Articles##", setting: site.setting }, { parser: 'html', compres: true });
+      res.render('articles' + '/index.html', { title: 'articles', appName: '##word.Articles##', setting: site.setting }, { parser: 'html', compres: true });
     }
   );
 

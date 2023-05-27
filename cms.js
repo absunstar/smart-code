@@ -25,10 +25,6 @@ const site = require('../isite')({
 
 site.time = new Date().getTime();
 
-// if (site.hasFeature('cms')) {
-// }
-// site.words.addList(__dirname + '/site_files/json/words-sa.json');
-
 site.get({
   name: '/',
   path: site.dir + '/',
@@ -99,7 +95,9 @@ site.get(
           page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + category.translatedList[0].name,
           page_description: category.translatedList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
-          categoriesDisplayList1: [category],
+
+          category: {name : category.translatedList[0].name},
+          list : site.articlesList.filter(a=> a.category.id == category.id).slice(0 , 20),
 
           menuList1: site.menuList1,
           menuList2: site.menuList2,
@@ -173,6 +171,7 @@ site.get(
   }
 );
 site.ready = false;
+site.TemplateList = [];
 site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');
 site.importApps(__dirname + '/apps_cms');
@@ -188,47 +187,3 @@ site.addFeature('cms');
 site.ready = true;
 
 site.run();
-
-site.sendMobileMessage = function (options) {
-  try {
-    if (site.setting.enable_sending_messages_mobile && site.setting.account_id_mobile && site.setting.auth_token_mobile && site.setting.messaging_services_id_mobile) {
-      console.log(options);
-      // const accountSid = 'ACf8c465f2b02b59f743c837eafe19a1a9';
-      // const authToken = '046e313826666f9ffe41fc96b4964530';
-      const client = require('twilio')(site.setting.account_id_mobile, site.setting.auth_token_mobile);
-
-      client.messages
-        .create({
-          body: options.message,
-          messagingServiceSid: site.setting.messaging_services_id_mobile,
-          to: '+' + options.to,
-        })
-        .then((message) => console.log(message.sid))
-        .done();
-    }
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-site.sendMailMessage = function (obj) {
-  if (
-    site.setting.email_setting &&
-    site.setting.email_setting.host &&
-    site.setting.email_setting.port &&
-    site.setting.email_setting.username &&
-    site.setting.email_setting.password &&
-    site.setting.email_setting.from
-  ) {
-    obj.enabled = true;
-    obj.type = 'smpt';
-    obj.host = site.setting.email_setting.host;
-    obj.port = site.setting.email_setting.port;
-    obj.username = site.setting.email_setting.username;
-    obj.password = site.setting.email_setting.password;
-    obj.from = site.setting.email_setting.from;
-
-    site.sendMail(obj);
-  }
-};
