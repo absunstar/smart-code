@@ -9,19 +9,17 @@
 
     <div id="main-layout" class="container">
       <div class="row">
-        <div class="row" >
+        <div class="row">
           <div x-import="clusters/manage_modal.html"></div>
-  
-          <div x-permissions="clusters_search || clusters_manage" x-import="clusters/search_all_modal.html"></div>
 
-          <div class="row">
-            <h1 class="bold text-center">##word.clusters##</h1>
-          </div>
+          <div x-permissions="clusters_search || clusters_manage" x-import="clusters/search_all_modal.html"></div>
 
           <div class="top-actions">
             <i-button x-permissions="clusters_add || clusters_manage" type="add" label="##word.clusters_new##" ng-click="displayAddCluster()"></i-button>
-
-            <i-button x-permissions="clusters_search || clusters_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <div class="row padding">
+              <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="clusters_search || clusters_manage"></i-control>
+            </div>
+            <!--  <i-button x-permissions="clusters_search || clusters_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button> -->
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
 
@@ -43,11 +41,11 @@
               </td>
 
               <td class="center not-print">
-                <i-button x-permissions="clusters_view || clusters_manage" type="view" label="##word.details##" ng-click="displayDetailsCluster(c)"></i-button>
+                <i-button x-permissions="clusters_view || clusters_manage" type="view" ng-click="displayDetailsCluster(c)"></i-button>
 
-                <i-button x-permissions="clusters_update || clusters_manage" type="edit" label="##word.edit##" ng-click="displayUpdateCluster(c)"></i-button>
+                <i-button x-permissions="clusters_update || clusters_manage" type="edit" ng-click="displayUpdateCluster(c)"></i-button>
 
-                <i-button x-permissions="clusters_delete || clusters_manage" type="delete" label="##word.delete##" ng-click="displayDeleteCluster(c)"></i-button>
+                <i-button x-permissions="clusters_delete || clusters_manage" type="delete" ng-click="displayDeleteCluster(c)"></i-button>
               </td>
             </tr>
           </table>

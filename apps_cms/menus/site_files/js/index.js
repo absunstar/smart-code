@@ -2,6 +2,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.menu = {};
+  $scope.defaultSettings = site.showObject(`##data.#setting##`);
 
   $scope.displayAddMenu = function () {
     $scope.error = '';
@@ -182,6 +183,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
       url: '/api/menus/all',
       data: {
         where: where,
+        search : $scope.$search,
         select: { id: 1, translatedList: 1, name: 1, linkageType: 1, active: 1, image : 1 },
 
       },
@@ -326,25 +328,12 @@ app.controller('menus', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getDefaultSetting = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/get-site-setting',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+  $scope.smartSearch = function () {
+    $timeout(() => {
+      $scope.getMenuList();
+    }, 200);
   };
+
 
   $scope.searchAll = function () {
     $scope.getMenuList($scope.search);
@@ -355,5 +344,4 @@ app.controller('menus', function ($scope, $http, $timeout) {
   $scope.getMenuList();
   $scope.loadCategories();
   $scope.getLinkTypeList();
-  $scope.getDefaultSetting();
 });

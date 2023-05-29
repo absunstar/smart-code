@@ -1,10 +1,16 @@
 .error {
-  text-align : center !important;
+  text-align: center !important;
   color: red !important;
 }
 
 .userPrint {
   user-select: text;
+}
+
+i-image.logo {
+  display: inline-block;
+  width: 47px !important;
+  height: 47px !important;
 }
 
 i-image.imgsmall img {

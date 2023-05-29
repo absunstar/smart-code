@@ -2,9 +2,9 @@
   <div class="row">
     <i-list class="col3 input-style" label="##word.country##" ng-change="getGovesList(ngModel.country)" ng-model="ngModel.country" display="name" items="countriesList" ng-search="_search.$city_country"></i-list>
 
-    <i-list class="col3 input-style" label="##word.gov##" ng-model="ngModel.gov" items="govesList" ng-change="getCityList(ngModel.gov)" display="name" ng-search="_search.$ngModel.$gov_search"> </i-list>
+    <i-list class="col3 input-style" label="##word.gov##" ng-model="ngModel.gov" items="govesList" ng-change="getCitiesList(ngModel.gov)" display="name" ng-search="_search.$ngModel.$gov_search"> </i-list>
 
-    <i-list class="col3 input-style" ng-change="getAreaList(ngModel.city)" label="##word.city##" ng-model="ngModel.city" items="cityList" display="name" ng-search="_search.$ngModel.$city_search"> </i-list>
+    <i-list class="col3 input-style" ng-change="getAreaList(ngModel.city)" label="##word.city##" ng-model="ngModel.city" items="citiesList" display="name" ng-search="_search.$ngModel.$city_search"> </i-list>
 
     <i-list class="col3 input-style" label="##word.area##" ng-model="ngModel.area" items="areaList" display="name" ng-search="_search.$ngModel.$area_search"> </i-list>
   </div>

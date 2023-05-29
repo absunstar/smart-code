@@ -12,14 +12,13 @@
           <div x-import="menus/manage_modal.html"></div>
           <div x-permissions="menus_search || menus_manage" x-import="menus/search_all_modal.html"></div>
 
-          <div class="row">
-            <h1 class="bold text-center">##word.menus##</h1>
-          </div>
-
           <div class="top-actions">
             <i-button x-permissions="menus_add || menus_manage" type="add" label="##word.menus_new##" ng-click="displayAddMenu()"></i-button>
 
-            <i-button x-permissions="menus_search || menus_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+          <!--   <i-button x-permissions="menus_search || menus_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button> -->
+            <div class="row padding">
+              <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="menus_search || menus_manage"></i-control>
+            </div>
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
 
@@ -43,11 +42,11 @@
               </td>
 
               <td class="center not-print">
-                <i-button x-permissions="menus_view || menus_manage" type="view" label="##word.details##" ng-click="displayDetailsMenu(c)"></i-button>
+                <i-button x-permissions="menus_view || menus_manage" type="view" ng-click="displayDetailsMenu(c)"></i-button>
 
-                <i-button x-permissions="menus_update || menus_manage" type="edit" label="##word.edit##" ng-click="displayUpdateMenu(c)"></i-button>
+                <i-button x-permissions="menus_update || menus_manage" type="edit" ng-click="displayUpdateMenu(c)"></i-button>
 
-                <i-button x-permissions="menus_delete || menus_manage" type="delete" label="##word.delete##" ng-click="displayDeleteMenu(c)"></i-button>
+                <i-button x-permissions="menus_delete || menus_manage" type="delete" ng-click="displayDeleteMenu(c)"></i-button>
               </td>
             </tr>
           </table>

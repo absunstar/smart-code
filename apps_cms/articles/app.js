@@ -144,7 +144,7 @@ module.exports = function init(site) {
             return b.id - a.id;
           });
 
-          if ((_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
+          if (site.setting.mainCategoryList && (_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
             _cat = {
               ..._cat,
               index: site.setting.mainCategoryList.findIndex((c) => c.id == cat.id),

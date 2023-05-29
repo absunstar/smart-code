@@ -500,10 +500,10 @@
                     ng-search="_search.$cityCountry"
                   ></i-list>
 
-                  <i-list class="row" label="##word.gov##" ng-model="article.gov" items="govesList" ng-change="getCityList(article.gov)" display="name" ng-search="_search.$article.$govSearch">
+                  <i-list class="row" label="##word.gov##" ng-model="article.gov" items="govesList" ng-change="getCitiesList(article.gov)" display="name" ng-search="_search.$article.$govSearch">
                   </i-list>
 
-                  <i-list class="row" ng-change="getAreaList(article.city)" label="##word.city##" ng-model="article.city" items="cityList" display="name" ng-search="_search.$article.$citySearch">
+                  <i-list class="row" ng-change="getAreaList(article.city)" label="##word.city##" ng-model="article.city" items="citiesList" display="name" ng-search="_search.$article.$citySearch">
                   </i-list>
 
                   <i-list class="row" label="##word.area##" ng-model="article.area" items="areaList" display="name" ng-search="_search.$article.$areaSearch"> </i-list>

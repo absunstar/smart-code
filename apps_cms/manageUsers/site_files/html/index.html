@@ -9,21 +9,24 @@
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
-          <div  x-import="manage-users/manage_modal.html"></div>
-          <div x-permissions="manageUsers_search || manageUsers_manage" x-import="manage-users/search_all_modal.html"></div>
+          <div  x-import="manageUsers/manage_modal.html"></div>
+          <div x-permissions="manageUsers_search || manageUsers_manage" x-import="manageUsers/search_all_modal.html"></div>
 
-          <div class="row">
+      <!--     <div class="row">
             <h1 class="bold text-center" ng-show="'##query.type##' == undefined">##word.manageUsers##</h1>
             <h1 class="bold text-center" ng-show="'##query.type##' == 1">##word.writers##</h1>
             <h1 class="bold text-center" ng-show="'##query.type##' == 2">##word.editors##</h1>
             <h1 class="bold text-center" ng-show="'##query.type##' == 3">##word.references##</h1>
             <h1 class="bold text-center" ng-show="'##query.type##' == 4">##word.photo_references##</h1>
             <h1 class="bold text-center" ng-show="'##query.type##' == 5">##word.publishers##</h1>
-          </div>
+          </div> -->
 
           <div class="top-actions">
             <i-button x-permissions="manageUsers_add || manageUsers_manage" type="add" label="##word.add##" ng-click="displayAddManageUsers()"></i-button>
-            <i-button x-permissions="manageUsers_search || manageUsers_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <!-- <i-button x-permissions="manageUsers_search || manageUsers_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button> -->
+            <div class="row padding">
+              <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="manageUsers_search || manageUsers_manage"></i-control>
+            </div>
 
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
             <h3 class="bold text-center red">{{error}}</h3>
@@ -65,6 +68,6 @@
     </div>
 
     <div x-import="cms/scripts.html"></div>
-    <script x-import="manage-users/index.js"></script>
+    <script x-import="manageUsers/index.js"></script>
   </body>
 </html>

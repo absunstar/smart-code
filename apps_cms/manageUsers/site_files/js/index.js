@@ -3,7 +3,7 @@ if (btn1) {
   btn1.click();
 }
 
-app.controller('manageUsers', function ($scope, $http) {
+app.controller('manageUsers', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.mode = 'add';
@@ -17,6 +17,7 @@ app.controller('manageUsers', function ($scope, $http) {
     if ('##query.type##' != 'undefined') {
       where['type.id'] = site.toNumber('##query.type##');
     }
+    where['search'] = $scope.$search
     $http({
       method: 'POST',
       url: '/api/users/all',
@@ -437,7 +438,7 @@ app.controller('manageUsers', function ($scope, $http) {
   $scope.getGovesList = function (country) {
     $scope.busy = true;
     $scope.govesList = [];
-    $scope.cityList = [];
+    $scope.citiesList = [];
     $scope.areaList = [];
     $http({
       method: 'POST',
@@ -467,13 +468,13 @@ app.controller('manageUsers', function ($scope, $http) {
     );
   };
 
-  $scope.getCityList = function (gov) {
+  $scope.getCitiesList = function (gov) {
     $scope.busy = true;
-    $scope.cityList = [];
+    $scope.citiesList = [];
     $scope.areaList = [];
     $http({
       method: 'POST',
-      url: '/api/city/all',
+      url: '/api/cities/all',
       data: {
         where: {
           gov: gov,
@@ -485,7 +486,7 @@ app.controller('manageUsers', function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.cityList = response.data.list;
+          $scope.citiesList = response.data.list;
         }
       },
       function (err) {
@@ -500,7 +501,7 @@ app.controller('manageUsers', function ($scope, $http) {
     $scope.areaList = [];
     $http({
       method: 'POST',
-      url: '/api/area/all',
+      url: '/api/areas/all',
       data: {
         where: {
           city: city,
@@ -557,6 +558,12 @@ app.controller('manageUsers', function ($scope, $http) {
       upload_by: '##user.profile.name##',
       id_by: site.toNumber('##user.id##'),
     });
+  };
+
+  $scope.smartSearch = function () {
+    $timeout(() => {
+      $scope.loadManageUsers();
+    }, 200);
   };
 
   $scope.loadManageUsers();

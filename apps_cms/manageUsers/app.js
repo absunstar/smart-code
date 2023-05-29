@@ -1,10 +1,33 @@
 module.exports = function init(site) {
-  site.get({
-    name: 'manageUsers',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: false,
-  });
+  // site.get({
+  //   name: 'manageUsers',
+  //   path: __dirname + '/site_files/html/index.html',
+  //   parser: 'html',
+  //   compress: false,
+  // });
+
+  site.get(
+    {
+      name: 'manageUsers',
+    },
+    (req, res) => {
+      let name = '##word.manageUsers##';
+      if(req.urlParser.query ) {
+        if(req.urlParser.query.type == 1) {
+          name = '##word.writers##';
+        } else if(req.urlParser.query.type == 2) {
+          name = '##word.editors##';
+        } if(req.urlParser.query.type == 3) {
+          name = '##word.references##';
+        } if(req.urlParser.query.type == 4) {
+          name = '##word.photo_references##';
+        } if(req.urlParser.query.type == 5) {
+          name = '##word.publishers##';
+        } 
+      }
+      res.render('manageUsers' + '/index.html', { title: 'manageUsers', appName: name, setting: site.setting }, { parser: 'html', compres: true });
+    }
+  );
 
   site.get({
     name: '/images',
@@ -203,7 +226,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/editors/all', (req, res) => {
+  site.post('/api/use/all', (req, res) => {
     let response = {
       done: false,
     };
@@ -218,6 +241,22 @@ module.exports = function init(site) {
 
     if (where['search']) {
       where.$or = [];
+
+      where.$or.push({
+        'gender.ar': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'gender.en': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'type.ar': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'type.en': site.get_RegExp(where['search'], 'i'),
+      });
 
       where.$or.push({
         'profile.name': site.get_RegExp(where['search'], 'i'),

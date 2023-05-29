@@ -1,20 +1,21 @@
-app.controller('area', function ($scope, $http, $timeout) {
+app.controller('city', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
-  $scope.area = {};
+  $scope.city = {};
+  $scope.defaultSettings = site.showObject(`##data.#setting##`);
 
-  $scope.displayAddArea = function () {
+  $scope.displayaddCity = function () {
     $scope.error = '';
     $scope.mode = 'add';
-    $scope.area = {
-      image: '/images/area.png',
+    $scope.city = {
+      image: '/images/cities.png',
       active: true,
       translatedList: [],
     };
 
     $scope.defaultSettings.languagesList.forEach((l) => {
       if (l.language.active == true) {
-        $scope.area.translatedList.push({
+        $scope.city.translatedList.push({
           language: {
             id: l.language.id,
             en: l.language.en,
@@ -23,12 +24,12 @@ app.controller('area', function ($scope, $http, $timeout) {
         });
       }
     });
-    site.showModal('#areaManageModal');
+    site.showModal('#cityManageModal');
   };
 
-  $scope.addArea = function () {
+  $scope.addCity = function () {
     $scope.error = '';
-    const v = site.validated('#areaManageModal');
+    const v = site.validated('#cityManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -36,16 +37,17 @@ app.controller('area', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/area/add',
-      data: $scope.area,
+      url: '/api/cities/add',
+      data: $scope.city,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#areaManageModal');
-          $scope.getAreaList();
+          site.hideModal('#cityManageModal');
+          $scope.getCitiesList();
         } else {
           $scope.error = 'Please Login First';
+        
         }
       },
       function (err) {
@@ -54,17 +56,17 @@ app.controller('area', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayUpdateArea = function (area) {
+  $scope.displayUpdateCity = function (city) {
     $scope.error = '';
     $scope.mode = 'edit';
-    $scope.viewArea(area);
-    $scope.area = {};
-    site.showModal('#areaManageModal');
+    $scope.viewCity(city);
+    $scope.city = {};
+    site.showModal('#cityManageModal');
   };
 
-  $scope.updateArea = function () {
+  $scope.updateCity = function () {
     $scope.error = '';
-    const v = site.validated('#areaManageModal');
+    const v = site.validated('#cityManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -72,14 +74,14 @@ app.controller('area', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/area/update',
-      data: $scope.area,
+      url: '/api/cities/update',
+      data: $scope.city,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#areaManageModal');
-          $scope.getAreaList();
+          site.hideModal('#cityManageModal');
+          $scope.getCitiesList();
         } else {
           $scope.error = 'Please Login First';
         }
@@ -90,28 +92,28 @@ app.controller('area', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDetailsArea = function (area) {
+  $scope.displayDetailsCity = function (city) {
     $scope.error = '';
     $scope.mode = 'view';
-    $scope.viewArea(area);
-    $scope.area = {};
-    site.showModal('#areaManageModal');
+    $scope.viewCity(city);
+    $scope.city = {};
+    site.showModal('#cityManageModal');
   };
 
-  $scope.viewArea = function (area) {
+  $scope.viewCity = function (city) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/area/view',
+      url: '/api/cities/view',
       data: {
-        id: area.id,
+        id: city.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.area = response.data.doc;
+          $scope.city = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -122,30 +124,30 @@ app.controller('area', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDeleteArea = function (area) {
+  $scope.displaydeleteCity = function (city) {
     $scope.error = '';
     $scope.mode = 'delete';
-    $scope.viewArea(area);
-    $scope.area = {};
-    site.showModal('#areaManageModal');
+    $scope.viewCity(city);
+    $scope.city = {};
+    site.showModal('#cityManageModal');
   };
 
-  $scope.deleteArea = function () {
+  $scope.deleteCity = function () {
     $scope.busy = true;
     $scope.error = '';
 
     $http({
       method: 'POST',
-      url: '/api/area/delete',
+      url: '/api/cities/delete',
       data: {
-        id: $scope.area.id,
+        id: $scope.city.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#areaManageModal');
-          $scope.getAreaList();
+          site.hideModal('#cityManageModal');
+          $scope.getCitiesList();
         } else {
           $scope.error = response.data.error;
         }
@@ -156,23 +158,18 @@ app.controller('area', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getAreaList = function (where) {
+  $scope.getCitiesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
       method: 'POST',
-      url: '/api/area/all',
+      url: '/api/cities/all',
       data: {
         where: where,
-        select: {
-          id: 1,
-          name: 1,
-          active: 1,
-          image: 1,
-          country: 1,
-          gov: 1,
-          city: 1,
-        },
+        search : $scope.$search,
+        select : {
+          id :1 , name : 1 , active : 1 ,image : 1 , country : 1 , gov : 1
+        }
       },
     }).then(
       function (response) {
@@ -180,7 +177,7 @@ app.controller('area', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#areaSearchModal');
+          site.hideModal('#citySearchModal');
         }
       },
       function (err) {
@@ -219,82 +216,35 @@ app.controller('area', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCountriesList = function (where) {
+  $scope.getCountriesList = function ($search) {
+    if ($search && $search.length < 1) {
+        return;
+    }
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/countries/all',
-      data: {
-        where: {
-          active: true,
+        method: 'POST',
+        url: '/api/countries/all',
+        data: {
+            where: {
+                active: true,
+            },
+            select: { id: 1, code: 1, name: 1 },
+            search: $search,
         },
-        select: {
-          id: 1,
-          name: 1,
-          code: 1,
-          countryCode: 1,
+    }).then(
+        function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.list.length > 0) {
+                $scope.countriesList = response.data.list;
+            }
         },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.countriesList = response.data.list;
+        function (err) {
+            $scope.busy = false;
+            $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
     );
-  };
-
-  $scope.getCityList = function (gov) {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/city/all',
-      data: {
-        where: {
-          gov: gov,
-          active: true,
-        },
-        select: { id: 1, name: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.cityList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getDefaultSetting = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/get-site-setting',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
+};
+  
   $scope.addKeyWords = function (ev, obj) {
     $scope.error = '';
 
@@ -309,21 +259,25 @@ app.controller('area', function ($scope, $http, $timeout) {
     obj.$keyword = '';
   };
 
+  $scope.smartSearch = function () {
+    $timeout(() => {
+      $scope.getCitiesList();
+    }, 200);
+  };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
-    site.showModal('#areaSearchModal');
+    site.showModal('#citySearchModal');
   };
 
   $scope.searchAll = function () {
     $scope.error = '';
 
     $scope.search = $scope.search || {};
-    site.hideModal('#areaSearchModal');
-    $scope.getAreaList($scope.search);
+    site.hideModal('#citySearchModal');
+    $scope.getCitiesList($scope.search);
   };
 
-  $scope.getAreaList();
+  $scope.getCitiesList();
   $scope.getCountriesList();
-  $scope.getDefaultSetting();
 });

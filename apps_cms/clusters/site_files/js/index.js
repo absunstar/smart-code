@@ -2,6 +2,7 @@ app.controller("clusters", function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.cluster = {};
+  $scope.defaultSettings = site.showObject(`##data.#setting##`);
 
   $scope.displayAddCluster = function () {
     $scope.error = '';
@@ -166,6 +167,7 @@ app.controller("clusters", function ($scope, $http, $timeout) {
       url: "/api/clusters/all",
       data: {
         where: where,
+        search : $scope.$search,
         select: { id: 1, translatedList: 1, name: 1, active: 1, image : 1 },
       }
     }).then(
@@ -185,24 +187,10 @@ app.controller("clusters", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDefaultSetting = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/get-site-setting',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+  $scope.smartSearch = function () {
+    $timeout(() => {
+      $scope.getClusterList();
+    }, 200);
   };
 
   $scope.displaySearchModal = function () {
@@ -219,5 +207,4 @@ app.controller("clusters", function ($scope, $http, $timeout) {
   };
 
   $scope.getClusterList();
-  $scope.getDefaultSetting();
 });

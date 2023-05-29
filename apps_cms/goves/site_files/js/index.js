@@ -2,6 +2,7 @@ app.controller('goves', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.gov = {};
+  $scope.defaultSettings = site.showObject(`##data.#setting##`);
 
   $scope.displayAddGov = function () {
     $scope.error = '';
@@ -171,9 +172,14 @@ app.controller('goves', function ($scope, $http, $timeout) {
       url: '/api/goves/all',
       data: {
         where: where,
-        select : {
-          id :1 , name : 1 , active : 1 ,image : 1 , country : 1
-        }
+        search : $scope.$search,
+        select: {
+          id: 1,
+          name: 1,
+          active: 1,
+          image: 1,
+          country: 1,
+        },
       },
     }).then(
       function (response) {
@@ -192,7 +198,10 @@ app.controller('goves', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCountriesList = function (where) {
+  $scope.getCountriesList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -201,36 +210,14 @@ app.controller('goves', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: {
-          id: 1,
-          name: 1,
-        }
+        select: { id: 1, code: 1, name: 1 },
+        search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.countriesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getDefaultSetting = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/get-site-setting',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
         }
       },
       function (err) {
@@ -254,13 +241,15 @@ app.controller('goves', function ($scope, $http, $timeout) {
     obj.$keyword = '';
   };
 
-
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#govSearchModal');
   };
-
+  $scope.smartSearch = function () {
+    $timeout(() => {
+      $scope.getGovList();
+    }, 200);
+  };
   $scope.getGovList();
   $scope.getCountriesList();
-  $scope.getDefaultSetting();
 });

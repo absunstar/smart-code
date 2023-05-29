@@ -385,7 +385,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.getGovesList = function (country) {
     $scope.busy = true;
     $scope.govesList = [];
-    $scope.cityList = [];
+    $scope.citiesList = [];
     $scope.areaList = [];
     $http({
       method: 'POST',
@@ -415,13 +415,13 @@ app.controller('articles', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCityList = function (gov) {
+  $scope.getCitiesList = function (gov) {
     $scope.busy = true;
-    $scope.cityList = [];
+    $scope.citiesList = [];
     $scope.areaList = [];
     $http({
       method: 'POST',
-      url: '/api/city/all',
+      url: '/api/cities/all',
       data: {
         where: {
           gov: gov,
@@ -433,7 +433,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.cityList = response.data.list;
+          $scope.citiesList = response.data.list;
         }
       },
       function (err) {
@@ -448,7 +448,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.areaList = [];
     $http({
       method: 'POST',
-      url: '/api/area/all',
+      url: '/api/areas/all',
       data: {
         where: {
           city: city,

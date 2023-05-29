@@ -72,30 +72,47 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
-    if (!site.feature('souq') || !site.feature('cms')) {
+    if (!site.feature('souq') && !site.feature('cms')) {
       where['company.id'] = site.get_company(req).id;
       where['branch.code'] = site.get_branch(req).code;
     }
 
     if (where['search']) {
       where.$or = [];
+      where.$or.push({
+        'gender.ar': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'gender.en': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'type.ar': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'type.en': site.get_RegExp(where['search'], 'i'),
+      });
 
       where.$or.push({
         'profile.name': site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({
+        'profile.lastName': site.get_RegExp(where['search'], 'i'),
+      });
+      where.$or.push({
         'profile.last_name': site.get_RegExp(where['search'], 'i'),
       });
-
       where.$or.push({
         email: site.get_RegExp(where['search'], 'i'),
       });
 
       delete where['search'];
     }
-    where['id'] = { $ne: 1 };
 
+    where['id'] = { $ne: 1 };
     site.security.getUsers(
       {
         where: where,
@@ -391,7 +408,7 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     };
-    if ((req.body.mobile_login == true)) {
+    if (req.body.mobile_login == true) {
       if (req.body.email.contains('@') || req.body.email.contains('.')) {
         obj_where.email = req.body.email;
       } else {

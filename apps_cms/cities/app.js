@@ -1,6 +1,8 @@
+
+
 module.exports = function init(site) {
   let app = {
-    name: 'clusters',
+    name: 'cities',
     allowMemory: true,
     memoryList: [],
     allowCache: false,
@@ -144,7 +146,7 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          res.render(app.name + '/index.html', { title: app.name, appName: '##word.clusters##', setting: site.setting }, { parser: 'html', compres: true });
+          res.render(app.name + '/index.html', { title: app.name, appName: '##word.cities##' , setting: site.setting}, { parser: 'html', compres: true });
         }
       );
     }
@@ -234,8 +236,8 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || '';
-        let limit = req.body.limit || 100;
-        let select = req.body.select || { id: 1, code: 1, name: 1, image: 1, callingCode: 1 };
+        let limit = req.body.limit || 50;
+        let select = req.body.select || { id: 1, code: 1, country: 1, name: 1, image: 1, active: 1 };
 
         if (search) {
           where.$or = [];
@@ -256,12 +258,15 @@ module.exports = function init(site) {
             nameEn: site.get_RegExp(search, 'i'),
           });
         }
+
         if (app.allowMemory) {
           if (!search) {
             search = 'id';
           }
           let docs = [];
-          let list = app.memoryList.filter((g) => (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search)).slice(0, limit);
+          let list = app.memoryList
+            .filter((g) => (!where['gov.id'] || g.gov.id == where['gov.id']) && (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search))
+            .slice(0, limit);
           list.forEach((doc) => {
             if (doc && doc.translatedList) {
               if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
@@ -293,8 +298,6 @@ module.exports = function init(site) {
           });
         }
       });
-
-
     }
   }
 

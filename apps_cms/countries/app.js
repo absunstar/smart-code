@@ -144,7 +144,7 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          res.render(app.name + '/index.html', { title: app.name, appName: '##word.countries##' }, { parser: 'html', compres: true });
+          res.render(app.name + '/index.html', { title: app.name, appName: '##word.countries##', setting: site.setting }, { parser: 'html', compres: true });
         }
       );
     }
@@ -234,7 +234,7 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || '';
-        let limit = req.body.limit || 500;
+        let limit = req.body.limit || 100;
         let select = req.body.select || { id: 1, code: 1, name: 1, image: 1, callingCode: 1 };
 
         if (search) {
@@ -275,15 +275,14 @@ module.exports = function init(site) {
                     delete obj[p];
                   }
                 }
-                if (!where.active || doc.active) {
-                  docs.push(obj);
-                }
+                docs.push(obj);
               }
             }
           });
           res.json({
             done: true,
             list: docs,
+            count: docs.length,
           });
         } else {
           app.all({ where, select, limit }, (err, docs) => {

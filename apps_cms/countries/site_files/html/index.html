@@ -10,13 +10,15 @@
       <div class="row">
         <div class="row">
           <div x-import="countries/manage_modal.html"></div>
-          <div x-permissions="countries_search || countries_manage" x-import="countries/search_all_modal.html"></div>
+          <!-- <div x-permissions="countries_search || countries_manage" x-import="countries/search_all_modal.html"></div> -->
 
           <div class="top-actions">
             <i-button x-permissions="countries_add || countries_manage" type="add" label="##word.country_new##" ng-click="displayAddCountries()"></i-button>
 
-            <i-button x-permissions="countries_search || countries_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-
+           <!--  <i-button x-permissions="countries_search || countries_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button> -->
+            <div class="row padding">
+              <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="countries_search || countries_manage"></i-control>
+            </div>
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
 

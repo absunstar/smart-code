@@ -8,22 +8,20 @@
     <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container">
       <div class="row">
-        <div class="row" >
-          <div  x-import="area/manage_modal.html"></div>
-          <div x-permissions="area_search || area_manage" x-import="area/search_all_modal.html"></div>
-
-          <div class="row">
-            <h1 class="bold text-center">##word.areas##</h1>
-          </div>
+        <div class="row">
+          <div x-import="areas/manage_modal.html"></div>
+        <!--   <div x-permissions="area_search || area_manage" x-import="areas/search_all_modal.html"></div> -->
 
           <div class="top-actions">
             <i-button x-permissions="area_add || area_manage" type="add" label="##word.area_new##" ng-click="displayAddArea()"></i-button>
 
-            <i-button x-permissions="area_search || area_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-
-            <a class="btn left bg-green" target="blank" href="/city"> ##word.city_add##</a>
-            <a class="btn left bg-green" target="blank" href="/goves"> ##word.goves_add##</a>
-
+            
+            <div class="row padding">
+              <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="area_search || area_manage"></i-control>
+            </div>
+            <!--  <i-button x-permissions="area_search || area_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button> -->
+            <!--  <a class="btn left bg-green" target="blank" href="/cities"> ##word.city_add##</a>
+            <a class="btn left bg-green" target="blank" href="/goves"> ##word.goves_add##</a>-->
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
 
@@ -52,11 +50,11 @@
               </td>
 
               <td class="center not-print">
-                <i-button x-permissions="area_view || area_manage" type="view" label="##word.details##" ng-click="displayDetailsArea(c)"></i-button>
+                <i-button x-permissions="area_view || area_manage" type="view" ng-click="displayDetailsArea(c)"></i-button>
 
-                <i-button x-permissions="area_update || area_manage" type="edit" label="##word.edit##" ng-click="displayUpdateArea(c)"></i-button>
+                <i-button x-permissions="area_update || area_manage" type="edit" ng-click="displayUpdateArea(c)"></i-button>
 
-                <i-button x-permissions="area_delete || area_manage" type="delete" label="##word.delete##" ng-click="displayDeleteArea(c)"></i-button>
+                <i-button x-permissions="area_delete || area_manage" type="delete"  ng-click="displayDeleteArea(c)"></i-button>
               </td>
             </tr>
           </table>
@@ -67,6 +65,6 @@
     </div>
 
     <div x-import="cms/scripts.html"></div>
-    <script x-import="area/index.js"></script>
+    <script x-import="areas/index.js"></script>
   </body>
 </html>

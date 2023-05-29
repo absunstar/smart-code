@@ -5,7 +5,6 @@
             <span class="close">&times;</span>
             <h2>
                 ##word.search_all## <i class="fa fa-search"></i>
-
             </h2>
         </div>
 
@@ -14,12 +13,15 @@
                 <fieldset>
                     <legend>##word.search_all##</legend>
                     <div class="row">
-                        <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govList"
-                            ng-change="getCityList(search.gov)" display="name" ng-search="_search.$area.$gov_search">
+                        <i-list help-id="" class="col4" label="##word.country##" ng-change="getGovesList(search.country)" ng-model="search.country" display="name" items="countriesList" ng-search="_search.$cityCountry"></i-list>
+
+                        <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govesList"
+                            ng-change="getCitiesList(search.gov)" display="name"
+                            ng-search="_search.$search.$govSearch">
                         </i-list>
 
-                        <i-list class="col4" label="##word.city##" ng-model="search.city" items="cityList"
-                            display="name" ng-search="_search.$area.$city_search"></i-list>
+                        <i-list class="col4" label="##word.city##" ng-model="search.city" items="citiesList"
+                            display="name" ng-search="_search.$manage_user.$city_search"></i-list>
 
                         <i-control class="col3" label="##word.area_name##" ng-model="search.name"></i-control>
 

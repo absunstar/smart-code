@@ -2,6 +2,7 @@ app.controller("countries", function ($scope, $http, $timeout) {
 
   $scope.mode = 'add';
   $scope.countries = {};
+  $scope.defaultSettings = site.showObject(`##data.#setting##`);
 
   $scope.displayAddCountries = function () {
     $scope.error = '';
@@ -165,6 +166,7 @@ app.controller("countries", function ($scope, $http, $timeout) {
       url: "/api/countries/all",
       data: {
         where: where,
+        search : $scope.$search,
         select : {
           id :1 , name : 1 , active : 1 ,image : 1
         }
@@ -187,26 +189,6 @@ app.controller("countries", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDefaultSetting = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/get-site-setting',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.addKeyWords = function (ev, obj) {
     $scope.error = '';
 
@@ -227,6 +209,12 @@ app.controller("countries", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.smartSearch = function () {
+    $timeout(() => {
+      $scope.getCountriesList();
+    }, 200);
+  };
+
   $scope.searchAll = function () {
 
     $scope.getCountriesList($scope.search);
@@ -235,5 +223,4 @@ app.controller("countries", function ($scope, $http, $timeout) {
   };
 
   $scope.getCountriesList();
-  $scope.getDefaultSetting();
 });

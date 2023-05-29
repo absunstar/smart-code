@@ -23,7 +23,7 @@
                 ng-model="city.country"
                 display="name"
                 items="countriesList"
-                ng-search="_search.$city_country"
+                ng-get="getCountriesList($search)"
               ></i-list>
 
               <i-list help-id="" v="r" class="col4" label="##word.goves_name##" ng-model="city.gov" display="name" items="govesList" ng-search="_search.$city_gov"></i-list>
@@ -36,7 +36,7 @@
           <fieldset ng-repeat="lang in city.translatedList track by $index">
             <legend>{{lang.language.##session.lang##}}</legend>
 
-            <div class="col8">
+            <div class="col7">
               <i-control v="r ll2" label="##word.city_name##" ng-model="lang.name"></i-control>
               <div class="row">
                 <div class="article-part">

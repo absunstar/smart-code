@@ -9,21 +9,19 @@
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
-          <div x-import="city/manage_modal.html"></div>
+          <div x-import="cities/manage_modal.html"></div>
         
-          <div x-permissions="city_search || city_manage" x-import="city/search_all_modal.html"></div>
-
-          <div class="row">
-            <h1 class="bold text-center">##word.cities##</h1>
-          </div>
+          <div x-permissions="city_search || city_manage" x-import="cities/search_all_modal.html"></div>
 
           <div class="top-actions">
             <i-button x-permissions="city_add || city_manage" type="add" label="##word.city_new##" ng-click="displayaddCity()"></i-button>
 
-            <i-button x-permissions="city_search || city_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-
-            <a class="btn left bg-green" target="blank" href="/area"> ##word.area_add##</a>
-            <a class="btn left bg-green" target="blank" href="/goves"> ##word.goves_add##</a>
+            <div class="row padding">
+              <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="city_search || city_manage"></i-control>
+            </div>
+            <!-- <i-button x-permissions="city_search || city_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button> -->
+           <!--  <a class="btn left bg-green" target="blank" href="/areas"> ##word.area_add##</a>
+            <a class="btn left bg-green" target="blank" href="/goves"> ##word.goves_add##</a> -->
 
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
@@ -54,11 +52,11 @@
               </td>
 
               <td class="center not-print">
-                <i-button x-permissions="city_view || city_manage" type="view" label="##word.details##" ng-click="displayDetailsCity(c)"></i-button>
+                <i-button x-permissions="city_view || city_manage" type="view"  ng-click="displayDetailsCity(c)"></i-button>
 
-                <i-button x-permissions="city_update || city_manage" type="edit" label="##word.edit##" ng-click="displayUpdateCity(c)"></i-button>
+                <i-button x-permissions="city_update || city_manage" type="edit"  ng-click="displayUpdateCity(c)"></i-button>
 
-                <i-button x-permissions="city_delete || city_manage" type="delete" label="##word.delete##" ng-click="displaydeleteCity(c)"></i-button>
+                <i-button x-permissions="city_delete || city_manage" type="delete" ng-click="displaydeleteCity(c)"></i-button>
               </td>
             </tr>
           </table>
@@ -69,6 +67,6 @@
     </div>
 
     <div x-import="cms/scripts.html"></div>
-    <script x-import="city/index.js"></script>
+    <script x-import="cities/index.js"></script>
   </body>
 </html>
