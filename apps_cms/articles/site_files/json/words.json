@@ -4,6 +4,42 @@
     "en": "Articles",
     "ar": "الأخبار"
   },
+  
+  {
+    "name": "Number Of words",
+    "en": "Number Of words",
+    "ar": "عدد الكلمات"
+  },
+  {
+    "name": "Number Of letters",
+    "en": "Number Of letters",
+    "ar": "عدد الحروف"
+  },
+  {
+    "name": "Manual related topics",
+    "en": "Manual related topics",
+    "ar": "ربط يدوي بموضوعات"
+  },
+  {
+    "name": "Show in Main Slider",
+    "en": "Show in Main Slider",
+    "ar": "يظهر في الشريط الرئيسي"
+  },
+  {
+    "name": "Hide from search engines",
+    "en": "Hide from search engines",
+    "ar": "إخفاء من محركات البحث"
+  },
+  {
+    "name": "Pin Article",
+    "en": "Pin Article",
+    "ar": "تثبيت المقال"
+  },
+  {
+    "name": "Location Activated",
+    "en": "Location Activated",
+    "ar": "تفعيل الموقع"
+  },
   {
     "name": "Articles",
     "en": "Articles",
@@ -91,17 +127,17 @@
   },
   {
     "name": "Number Of Views",
-    "en": "Number of Views",
+    "en": "Number Of Views",
     "ar": "عدد المشاهدات"
   },
   {
-    "name": "Number of Likes",
-    "en": "Number of Likes",
+    "name": "Number Of Likes",
+    "en": "Number Of Likes",
     "ar": "عدد اللايكات"
   },
   {
-    "name": "Number of Comments",
-    "en": "Number of Comments",
+    "name": "Number Of Comments",
+    "en": "Number Of Comments",
     "ar": "عدد التعليقات"
   },
   {
@@ -115,8 +151,8 @@
     "ar": "عدد التقييمات"
   },
   {
-    "name": "Actual number",
-    "en": "Actual number",
+    "name": "Actual Number",
+    "en": "Actual Number",
     "ar": "العدد الفعلي"
   },
   {

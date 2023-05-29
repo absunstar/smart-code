@@ -360,16 +360,100 @@ module.exports = function init(site) {
       where.$or = [];
       where.$or.push(
         {
+          'type.ar': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'type.en': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'clusters.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'category.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'subCategory1.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'subCategory2.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'subCategory3.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'subCategory4.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'writer.profile.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'writer.profile.lastName': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'editor.profile.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'editor.profile.lastName': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'country.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'gov.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'city.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'area.name': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'longitudes': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'latitudes': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
           'translatedList.title': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.textContent': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.htmlContent': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.multiParagraphList.contentText': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.multiParagraphList.content': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.multiImageList.title': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.title': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.socialTitle': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.socialDescription': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.externalTitle': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.externalDescription': site.get_RegExp(req.body.search, 'i'),
         },
         {
           'translatedList.content': site.get_RegExp(req.body.search, 'i'),
         },
         {
-          keyWordsList: site.get_RegExp(req.body.search, 'i'),
+          'translatedList.keyWordsList': site.get_RegExp(req.body.search, 'i'),
         },
         {
-          tagsList: site.get_RegExp(req.body.search, 'i'),
+          'translatedList.tagsList': site.get_RegExp(req.body.search, 'i'),
         }
       );
     }

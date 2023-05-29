@@ -8,7 +8,7 @@
   { "name": "categories", "en": "Categories", "ar": "الأقسام" },
   { "name": "categories", "en": "Categories", "ar": "أقسام" },
   { "name": "category", "en": "Category", "ar": "القسم" },
-  { "name": "category", "en": "Category", "ar": "القسم" },
+  { "name": "Category", "en": "Category", "ar": "القسم" },
   { "name": "categories_code_err", "en": "Code Exist", "ar": "الكود مكرر" },
   { "name": "detailed_err", "en": "Can nott Change", "ar": "لا يمكن تحويله يحتوي على قسم فرعي" },
   { "name": "cant_delete", "en": "Can not Delete", "ar": "لا يمكن حذفه يحتوي على قسم فرعي" },

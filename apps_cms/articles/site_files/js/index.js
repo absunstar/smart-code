@@ -246,6 +246,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       url: '/api/articles/all',
       data: {
         where: where,
+        search : $scope.$search
       },
     }).then(
       function (response) {
@@ -352,7 +353,10 @@ app.controller('articles', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCountriesList = function (where) {
+  $scope.getCountriesList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -361,12 +365,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: {
-          id: 1,
-          name: 1,
-          code: 1,
-          countryCode: 1,
-        },
+        select: { id: 1, code: 1, name: 1 },
+        search: $search,
       },
     }).then(
       function (response) {
@@ -854,6 +854,12 @@ app.controller('articles', function ($scope, $http, $timeout) {
         }
       }
     }, 500);
+  };
+
+  $scope.smartSearch = function () {
+    $timeout(() => {
+      $scope.getArticlesList();
+    }, 200);
   };
 
   $scope.getArticlesList();

@@ -216,8 +216,8 @@
                           <div class="row">
                             <table class="table hover bold">
                               <tr>
-                                <th>Number of words</th>
-                                <th>number of letters</th>
+                                <th>##word.Number Of words##</th>
+                                <th>##word.Number Of letters##</th>
                               </tr>
                               <tr>
                                 <td class="center title">{{art.numberWords}}</td>
@@ -249,7 +249,7 @@
                         </tr>
 
                         <tr>
-                          <td class="center title">##word.Number Likes##</td>
+                          <td class="center title">##word.Number Of Likes##</td>
                           <td class="center title">{{art.actualLikes}}</td>
                           <td class="center title">
                             <i-control type="number" ng-model="art.dummyLikes" ng-change="calc('likes',art)"> </i-control>
@@ -258,7 +258,7 @@
                         </tr>
 
                         <tr>
-                          <td class="center title">##word.Number Comments##</td>
+                          <td class="center title">##word.Number Of Comments##</td>
                           <td class="center title">{{art.actualComments}}</td>
                           <td class="center title">
                             <i-control type="number" ng-model="art.dummyComments" ng-change="calc('comments',art)"> </i-control>
@@ -267,7 +267,7 @@
                         </tr>
 
                         <tr>
-                          <td class="center title">##word.Number Posts##</td>
+                          <td class="center title">##word.Number Of Posts##</td>
                           <td class="center title">{{art.actualPosts}}</td>
                           <td class="center title">
                             <i-control type="number" ng-model="art.dummyPosts" ng-change="calc('posts',art)"> </i-control>
@@ -276,7 +276,7 @@
                         </tr>
 
                         <tr>
-                          <td class="center title">##word.Number Ratings##</td>
+                          <td class="center title">##word.Number Of Ratings##</td>
                           <td class="center title">{{art.actualRatings}}</td>
                           <td class="center title">
                             <i-control type="number" ng-model="art.dummyRatings" ng-change="calc('ratings',art)"> </i-control>
@@ -402,8 +402,8 @@
             </div>
             <div class="row">
               <div class="article-part">
-                <i-checkbox label="Manual related topics" class="col8" ng-model="article.manualRelatedTopics"> </i-checkbox>
-                <i-button type="add" class="col4" label="##word.add##" ng-show="article.manualRelatedTopics" ng-click="showRelatedTopics()"> </i-button>
+                <i-checkbox label="##word.Manual related topics##" class="col9" ng-model="article.manualRelatedTopics"> </i-checkbox>
+                <i-button type="add" class="col3" ng-show="article.manualRelatedTopics" ng-click="showRelatedTopics()"> </i-button>
               </div>
             </div>
 
@@ -476,9 +476,9 @@
               </div>
 
               <div class="article-part">
-                <i-checkbox label="Show in Main Slider" ng-model="article.showInMainSlider"> </i-checkbox>
-                <i-checkbox label="Hide from search engines" ng-model="article.hideSearchEngines"> </i-checkbox>
-                <i-checkbox label="Pin Acticle" ng-model="article.pin_article"> </i-checkbox>
+                <i-checkbox label="##word.Show in Main Slider##" ng-model="article.showInMainSlider"> </i-checkbox>
+                <i-checkbox label="##word.Hide from search engines##" ng-model="article.hideSearchEngines"> </i-checkbox>
+                <i-checkbox label="##word.Pin Article##" ng-model="article.pin_article"> </i-checkbox>
                 <i-checkbox class="" label="##word.subscribers_only##" ng-model="article.subscribersOnly"> </i-checkbox>
                 <i-checkbox class="" label="##word.special_men##" ng-model="article.specialMen"> </i-checkbox>
                 <i-checkbox class="" label="##word.special_women##" ng-model="article.specialWomen"> </i-checkbox>
@@ -488,7 +488,7 @@
               </div>
 
               <div class="article-part">
-                <i-checkbox class="" label="Location Activated" ng-model="article.locationActivated"> </i-checkbox>
+                <i-checkbox class="" label="##word.Location Activated##" ng-model="article.locationActivated"> </i-checkbox>
                 <div ng-show="article.locationActivated">
                   <i-list
                     class="row"
@@ -497,7 +497,7 @@
                     ng-model="article.country"
                     display="name"
                     items="countriesList"
-                    ng-search="_search.$cityCountry"
+                    ng-get="getCountriesList($search)"
                   ></i-list>
 
                   <i-list class="row" label="##word.gov##" ng-model="article.gov" items="govesList" ng-change="getCitiesList(article.gov)" display="name" ng-search="_search.$article.$govSearch">

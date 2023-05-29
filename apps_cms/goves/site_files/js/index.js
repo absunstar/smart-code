@@ -197,7 +197,7 @@ app.controller('goves', function ($scope, $http, $timeout) {
       }
     );
   };
-
+ 
   $scope.getCountriesList = function ($search) {
     if ($search && $search.length < 1) {
       return;
