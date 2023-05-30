@@ -507,7 +507,7 @@ module.exports = function init(site) {
 
     let urls = '';
     list.forEach((doc, i) => {
-      doc.full_url = domain + '/article/' + doc.id;
+      doc.full_url = domain + '/a/' + doc.id;
       doc.date = doc.date || new date().toISOString();
       urls += `
         <item>
@@ -537,7 +537,7 @@ module.exports = function init(site) {
 
     let urls = '';
     site.articlesList.slice(0, 1000).forEach((article, i) => {
-      article.post_url = domain + '/article/' + article.id;
+      article.post_url = domain + '/a/' + article.id;
       article.date = article.date || new Date().toISOString();
       urls += `
               <url>
