@@ -55,7 +55,7 @@ site.get(
           page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + lang.siteSlogan,
           page_description: lang.description.substr(0, 200),
           page_keywords: lang.keyWordsList.join(','),
-          page_lang: lang.id,
+          page_lang: lang.language.id,
           prayerTimingsList: site.setting.prayerTimingsList,
 
           menuList1: site.menuList1,
@@ -63,14 +63,13 @@ site.get(
           menuList3: site.menuList3,
 
           MainSliderNews: {
-            article : site.MainSliderNews[0],
-            list : site.MainSliderNews
+            article: site.MainSliderNews[0],
+            list: site.MainSliderNews,
           },
 
           categories: site.$$categories,
-          page: {
-            topNews: site.topNews,
-          },
+          topNews: site.topNews,
+          page: {},
         },
         {
           parser: 'html css js',
@@ -115,12 +114,11 @@ site.get(
           menuList3: site.menuList3,
 
           MainSliderNews: {
-            article : site.MainSliderNews[0],
-            list : site.MainSliderNews
+            article: site.MainSliderNews[0],
+            list: site.MainSliderNews,
           },
-          page: {
-            topNews: site.topNews,
-          },
+          topNews: site.topNews,
+          page: {},
         },
         {
           parser: 'html css js',
@@ -170,13 +168,13 @@ site.get(
           menuList2: site.menuList2,
           menuList3: site.menuList3,
           MainSliderNews: {
-            article : site.MainSliderNews[0],
-            list : site.MainSliderNews
+            article: site.MainSliderNews[0],
+            list: site.MainSliderNews,
           },
           article: article,
           relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id).slice(0, 3),
+          topNews: site.topNews,
           page: {
-            topNews: site.topNews,
             article: article,
           },
         },

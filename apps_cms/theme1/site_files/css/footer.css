@@ -59,3 +59,15 @@
   color: var(--color1);
   font-size: 20px;
 }
+.footerLogo a{
+  display: block;
+  text-align: center;
+}
+.footerLogo p{
+  color: var(--color1);
+  font-size: larger;
+  text-shadow: 1px 1px 1px #000;
+  border-bottom: 1px solid var(--background2);
+  margin: 5px;
+  padding: 5px;
+}
