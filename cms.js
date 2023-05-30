@@ -42,19 +42,21 @@ site.get(
     }
     if (true || site.setting.siteTemplate.id == 1) {
       let lang = site.setting.languagesList[0];
-      lang.keyWordsList = lang.keyWordsList || [];
+      if (!Array.isArray(lang.keyWordsList)) {
+        lang.keyWordsList = [];
+      }
       res.render(
         'theme1/index.html',
         {
           site_name: lang.siteName,
           site_logo: site.setting.siteLogo.url,
           page_image: site.setting.siteLogo.url,
-          page_title: lang.siteName + " " +  lang.titleSeparator + " " + lang.siteSlogan,
-          page_description: lang.description.substr(0 , 200),
-          page_keywords : lang.keyWordsList.split(','),
-          page_lang : lang.id,
+          page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + lang.siteSlogan,
+          page_description: lang.description.substr(0, 200),
+          page_keywords: lang.keyWordsList.join(','),
+          page_lang: lang.id,
           prayerTimingsList: site.setting.prayerTimingsList,
-         
+
           menuList1: site.menuList1,
           menuList2: site.menuList2,
           menuList3: site.menuList3,
@@ -68,7 +70,7 @@ site.get(
         },
         {
           parser: 'html css js',
-          compress : true
+          compress: true,
         }
       );
     }
@@ -101,8 +103,8 @@ site.get(
           page_description: category.translatedList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
 
-          category: {name : category.translatedList[0].name},
-          list : site.articlesList.filter(a=> a.category.id == category.id).slice(0 , 20),
+          category: { name: category.translatedList[0].name },
+          list: site.articlesList.filter((a) => a.category.id == category.id).slice(0, 20),
 
           menuList1: site.menuList1,
           menuList2: site.menuList2,
