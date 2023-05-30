@@ -1,15 +1,15 @@
-<div id="mainslide" class="mainslide col-md-12 p-0 m-0" style="background-image: url(/theme1/images/news.jpg)">
+<div id="mainslide" class="mainslide col-md-12 p-0 m-0" style="background-image: url(##data.MainSliderNews.article.imageURL##)">
   <div class="col-12 MS-newsTilteTime d-flex flex-column justify-content-end">
-    <h1 class="MS-newstitle"></h1>
+    <h1 class="MS-newstitle">##data.MainSliderNews.article.title##</h1>
     <div class="MS-newstime d-flex flex-row justify-content-start align-items-center">
-      <p class="newsday"></p>
+      <p class="newsday"> ##data.MainSliderNews.article.day##</p>
       <div class="vlntime"></div>
-      <p class="newsdate"></p>
+      <p class="newsdate"> ##data.MainSliderNews.article.date##</p>
     </div>
   </div>
   <div class="w-100 MS-slider-container d-flex flex-column justify-content-end">
     <ul class="col-12 MS-inner-slider frist-slider">
-      <li id="slide_##item1.id##" x-list1="MainSliderNews" class="MS-card slide-imageNews">
+      <li id="slide_##item1.id##" x-list1="MainSliderNews.list" class="MS-card slide-imageNews">
         <a target="_blank" class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="/article/##item1.id##/##item1.title2##">
           <img class="smallSlideIamge" src="##item1.imageURL##" alt="##item1.title2##" width="280px" height="132px" />
           <div class="slide-newsTilteTime d-flex flex-column justify-content-end">
@@ -21,7 +21,7 @@
       </li>
     </ul>
     <ul class="col-12 MS-inner-slider d-md-flex second-slider">
-      <li x-list1="MainSliderNews" class="MS-card slide-imageNews d-md-flex">
+      <li x-list1="MainSliderNews.list" class="MS-card slide-imageNews d-md-flex">
         <a target="_blank" class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="/article/##item1.id##/##item1.title2##">
           <img class="smallSlideIamge" src="##item1.imageURL##" alt="##item1.title2##" width="280px" height="132px" />
           <div class="slide-newsTilteTime d-flex flex-column justify-content-end">

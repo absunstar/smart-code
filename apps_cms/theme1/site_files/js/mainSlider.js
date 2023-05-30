@@ -53,14 +53,6 @@ if (MSsliderContainer) {
 
   let allsmallnewstitle = document.querySelectorAll('.slide-newstitle');
   for (let i = 0; i < slideImageNews.length; i++) {
-    if (i === 0) {
-      mainImage = allSmallImage[i].src;
-      let mainImageUrl = "url('" + mainImage + "')";
-      document.getElementById('mainslide').style.backgroundImage = mainImageUrl;
-      document.querySelector('.MS-newstitle').innerHTML = allsmallnewstitle[i].innerHTML;
-      document.querySelector('.newsday').innerHTML = slideDays[i].innerHTML;
-      document.querySelector('.newsdate').innerHTML = slideDates[i].innerHTML;
-    }
     slideImageNews[i].addEventListener('mouseenter', () => {
       mainImage = allSmallImage[i].currentSrc;
       let mainImageUrl = "url('" + mainImage + "')";

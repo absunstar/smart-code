@@ -45,6 +45,7 @@ site.get(
       if (!Array.isArray(lang.keyWordsList)) {
         lang.keyWordsList = [];
       }
+      site.MainSliderNews = site.MainSliderNews || [];
       res.render(
         'theme1/index.html',
         {
@@ -61,7 +62,10 @@ site.get(
           menuList2: site.menuList2,
           menuList3: site.menuList3,
 
-          MainSliderNews: site.MainSliderNews,
+          MainSliderNews: {
+            article : site.MainSliderNews[0],
+            list : site.MainSliderNews
+          },
 
           categories: site.$$categories,
           page: {
@@ -110,7 +114,10 @@ site.get(
           menuList2: site.menuList2,
           menuList3: site.menuList3,
 
-          MainSliderNews: site.MainSliderNews,
+          MainSliderNews: {
+            article : site.MainSliderNews[0],
+            list : site.MainSliderNews
+          },
           page: {
             topNews: site.topNews,
           },
@@ -162,7 +169,10 @@ site.get(
           menuList1: site.menuList1,
           menuList2: site.menuList2,
           menuList3: site.menuList3,
-          MainSliderNews: site.MainSliderNews,
+          MainSliderNews: {
+            article : site.MainSliderNews[0],
+            list : site.MainSliderNews
+          },
           article: article,
           relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id).slice(0, 3),
           page: {
