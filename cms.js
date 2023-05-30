@@ -49,6 +49,7 @@ site.get(
       res.render(
         'theme1/index.html',
         {
+          guid : '',
           site_name: lang.siteName,
           site_logo: site.setting.siteLogo.url,
           page_image: site.setting.siteLogo.url,

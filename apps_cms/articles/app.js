@@ -68,7 +68,7 @@ module.exports = function init(site) {
       doc.hasWriter = true;
       doc.writer.name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
       doc.writer.title = doc.writer.profile.title;
-      doc.writer.imageURL = doc.writer.image?.url || doc.writer.profile.image_url;
+      doc.writer.imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
     }
     return doc;
   };
@@ -408,10 +408,10 @@ module.exports = function init(site) {
           'area.name': site.get_RegExp(req.body.search, 'i'),
         },
         {
-          'longitudes': site.get_RegExp(req.body.search, 'i'),
+          longitudes: site.get_RegExp(req.body.search, 'i'),
         },
         {
-          'latitudes': site.get_RegExp(req.body.search, 'i'),
+          latitudes: site.get_RegExp(req.body.search, 'i'),
         },
         {
           'translatedList.title': site.get_RegExp(req.body.search, 'i'),
@@ -487,5 +487,79 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
+  });
+
+  site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
+    let limit = req.query.limit || 10;
+    let list = [];
+    let text = '';
+    let lang = site.setting.languagesList[0];
+    let domain = 'https://' + req.host;
+
+    if (req.params.id == 'random') {
+      list = site.articlesList.filter((p) => p.imageURL && p.active);
+      list = [list[site.random(0, list.length - 1)]];
+    } else if (req.params.id) {
+      list = [site.articlesList.find((p) => p.id == req.params.id)];
+    } else {
+      list = site.articlesList.filter((p) => p.imageURL).slice(0, limit);
+    }
+
+    let urls = '';
+    list.forEach((doc, i) => {
+      doc.full_url = domain + '/article/' + doc.id;
+      doc.date = doc.date || new date().toISOString();
+      urls += `
+        <item>
+          <guid>${doc.id}</guid>
+          <title>${doc.title}</title>
+          <link>${doc.full_url}</link>
+          <image>${domain}${doc.imageURL}</image>
+          <description>${doc.description}</description>
+          <pubDate>${doc.date}</pubDate>
+        </item>
+        `;
+    });
+    let xml = `<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0">
+      <channel>
+            <title> ${lang.siteName} ${text} Global RSS</title>
+            <link>${domain}</link>
+            <description>${lang.siteName} Articles Rss Feeds</description>
+            ${urls}
+        </channel>
+     </rss>`;
+    res.set('Content-Type', 'application/xml');
+    res.end(xml);
+  });
+  site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
+    let domain = 'https://' + req.host;
+
+    let urls = '';
+    site.articlesList.slice(0, 1000).forEach((article, i) => {
+      article.post_url = domain + '/article/' + article.id;
+      article.date = article.date || new Date().toISOString();
+      urls += `
+              <url>
+                  <loc>${article.post_url}</loc>
+                  <lastmod>${article.date}</lastmod>
+                  <changefreq>monthly</changefreq>
+                  <priority>.8</priority>
+              </url>
+              `;
+    });
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+                      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+                      <url>
+                      <loc>${domain}</loc>
+                      <lastmod>${new Date().toISOString()}</lastmod>
+                      <changefreq>always</changefreq>
+                      <priority>1</priority>
+                  </url>
+                         ${urls}
+                      </urlset> 
+                      `;
+    res.set('Content-Type', 'application/xml');
+    res.end(xml);
   });
 };
