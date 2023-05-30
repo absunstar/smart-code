@@ -243,16 +243,17 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.addKeyWords = function (ev, keyWord , lang) {
+  $scope.addKeyWords = function (ev, lang) {
     $scope.error = '';
-
-    if (ev.which !== 13 || !keyWord) {
+    if (ev.which !== 13 || !lang.$keyword) {
       return;
     }
 
-    lang.keyWordsList = lang.keyWordsList || [];
-    if (!lang.keyWordsList.some((k) => k === keyWord)) {
-      lang.keyWordsList.push(keyWord);
+    if (!Array.isArray(lang.keyWordsList)) {
+      lang.keyWordsList = [];
+    }
+    if (!lang.keyWordsList.some((k) => k === lang.$keyword)) {
+      lang.keyWordsList.push(lang.$keyword);
     }
 
     lang.$keyword = '';

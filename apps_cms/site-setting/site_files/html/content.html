@@ -117,7 +117,7 @@
                     <i-textarea ng-model="lang.description" label="##word.site_description##"> </i-textarea>
                   </div>
                   <fieldset>
-                    <i-control label="##word.keywords##" ng-keydown="addKeyWords($event , siteSetting.$keyword , lang)" ng-model="lang.$keyword"> </i-control>
+                    <i-control label="##word.keywords##" ng-keydown="addKeyWords($event , lang)" ng-model="lang.$keyword"> </i-control>
                     <div class="row">
                       <div class="key-words" ng-repeat="k in lang.keyWordsList">
                         <span>{{k}}</span>
