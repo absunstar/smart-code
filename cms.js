@@ -41,14 +41,18 @@ site.get(
       return;
     }
     if (true || site.setting.siteTemplate.id == 1) {
+      let lang = site.setting.languagesList[0];
+      lang.keyWordsList = lang.keyWordsList || [];
       res.render(
         'theme1/index.html',
         {
-          site_name: site.setting.languagesList[0].siteName,
+          site_name: lang.siteName,
           site_logo: site.setting.siteLogo.url,
           page_image: site.setting.siteLogo.url,
-          page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + site.setting.languagesList[0].siteSlogan,
-          page_description: site.setting.languagesList[0].description,
+          page_title: lang.siteName + " " +  lang.titleSeparator + " " + lang.siteSlogan,
+          page_description: lang.description.substr(0 , 200),
+          page_keywords : lang.keyWordsList.split(','),
+          page_lang : lang.id,
           prayerTimingsList: site.setting.prayerTimingsList,
          
           menuList1: site.menuList1,
@@ -64,6 +68,7 @@ site.get(
         },
         {
           parser: 'html css js',
+          compress : true
         }
       );
     }
