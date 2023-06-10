@@ -1,7 +1,7 @@
 const site = require('../isite')({
     port: [80, 40007],
     lang: 'ar',
-    version: '2023.03.07.2',
+    version: '_' + new Date().getTime(),
     name: 'pos',
     savingTime: 5,
     log: true,

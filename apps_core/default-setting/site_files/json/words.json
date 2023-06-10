@@ -235,12 +235,12 @@
         "ar": "إعدادات عامة"
     },
     {
-        "name": "inventory_settings",
+        "name": "inventoryContent",
         "en": "Inventory",
         "ar": "المخازن"
     },
     {
-        "name": "accounting_settings",
+        "name": "accountingContent",
         "en": "Accountinng",
         "ar": "الحسابات"
     },

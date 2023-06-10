@@ -5,8 +5,8 @@
       <a class="tab-link" onclick="site.showTabContent(event, '#finger_program')"> ##word.finger_program## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#printer_program')"> ##word.printer_program## </a>
       <a class="tab-link" x-feature="school" onclick="site.showTabContent(event, '#exams_setting')"> ##word.exams_setting## </a>
-      <a class="tab-link" onclick="site.showTabContent(event, '#accounting_settings')"> ##word.accounting_settings## </a>
-      <a class="tab-link" onclick="site.showTabContent(event, '#inventory_settings')"> ##word.inventory_settings## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#accountingContent')"> ##word.accountingContent## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#inventoryContent')"> ##word.inventoryContent## </a>
     </div>
     <div class="tabs-content">
       <div id="general_Settings" class="tab-content">
@@ -302,9 +302,9 @@
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
-      <div id="accounting_settings" class="tab-content">
+      <div id="accountingContent" class="tab-content">
         <fieldset>
-          <legend>##word.accounting_settings##</legend>
+          <legend>##word.accountingContent##</legend>
 
           <div class="row">
             <i-list help-id="" ng-search="_search.$payment_method_search" class="col2" label="##word.payment_method##" ng-model="default_setting.accounting.payment_method" items="paymentMethodList" display="##session.lang##"> </i-list>
@@ -345,9 +345,9 @@
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
-      <div id="inventory_settings" class="tab-content">
+      <div id="inventoryContent" class="tab-content">
         <fieldset>
-          <legend>##word.inventory_settings##</legend>
+          <legend>##word.inventoryContent##</legend>
           <div class="row">
             <i-list class="col3" ng-model="default_setting.inventory.item_group" display="name_##session.lang##" ng-search="_search.$items_group_search" label="##word.item_group##" items="itemsGroupList"> </i-list>
 
