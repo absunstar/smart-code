@@ -236,7 +236,6 @@
 
     <div id="main-layout">
       <div class="row top-header">
-
         <div class="col3 inout hidden">
           <div class="center inout">
             <img class="img_inout" ng-src="/images/inout.png" />
@@ -272,11 +271,8 @@
             <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span> </a>
           </div>
         </div>
-
-        
-
       </div>
-     
+
       <div id="posts" class="center"></div>
 
       <!--       <div class="price-info hidden" x-features="!host.ft && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt">
@@ -755,8 +751,10 @@
               } catch (error) {}
             }
 
-            $('#posts').append('<h3 class="app-features"> ##word.see_our_apps##  </h3>');
-            $('#posts').append(rendered);
+            if (!'##req.headers.host##'.like('*businessarea*')) {
+              $('#posts').append('<h3 class="app-features"> ##word.see_our_apps##  </h3>');
+              $('#posts').append(rendered);
+            }
 
             busy = false;
             $('.posts-loading').remove();
