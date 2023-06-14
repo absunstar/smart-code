@@ -1,5 +1,5 @@
 :root {
-  --theme-color: #2196f3;
+  --theme-color: #0a7468;
 }
 
 .row.businessarea {
@@ -11,5 +11,9 @@
 body{
     background-image: url('/images/businessarea.jpg');
     background-repeat: round;
-    margin-top: 56px;
+    margin-top: 0;
+    padding-top: 60px;
+}
+.top-header{
+    min-height: 60vh;
 }
