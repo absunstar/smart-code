@@ -1,3 +1,10 @@
-:root{
-    --theme-color : #2196f3
+:root {
+  --theme-color: #2196f3;
+}
+
+.row.businessarea {
+  text-align: center;
+}
+.row.businessarea img {
+  max-height: 50vh;
 }
