@@ -8,6 +8,10 @@
     "name": "ttl_title",
     "en": "TTL",
     "ar": "TTL"
+  }, {
+    "name": "businessarea_title",
+    "en": "Business Area",
+    "ar": "Business Area"
   },
   {
     "name": "details",
