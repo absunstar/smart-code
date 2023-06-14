@@ -743,6 +743,8 @@
                   post.link = `http://unqcode.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*valley*')) {
                   post.link = `http://valley.${post.feature}.egytag.com`;
+                } else if ('##req.headers.host##'.like('*businessarea*')) {
+                  post.link = `//${post.feature}.businessarea.com`;
                 } else {
                   post.link = `http://${post.feature}.egytag.com`;
                 }
