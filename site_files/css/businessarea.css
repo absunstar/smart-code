@@ -8,3 +8,8 @@
 .row.businessarea img {
   max-height: 50vh;
 }
+body{
+    background-image: url('/images/businessarea.jpg');
+    background-repeat: round;
+    margin-top: 56px;
+}
