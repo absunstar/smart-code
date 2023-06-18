@@ -47,6 +47,7 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/video.css',
       __dirname + '/site_files/css/audio.css',
       'client-side/effect.css',
+      'client-side/color.css',
       'client-side/font-droid.css',
     ],
   });
@@ -89,6 +90,8 @@ module.exports = function init(site) {
       __dirname + '/site_files/js/script.js',
       __dirname + '/site_files/js/mainSlider.js',
       __dirname + '/site_files/js/article-page.js',
+      __dirname + '/site_files/js/goldprice.js',
+      __dirname + '/site_files/js/footballMatches.js',
     ],
   });
 };

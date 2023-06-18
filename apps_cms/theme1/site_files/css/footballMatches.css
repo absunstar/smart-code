@@ -82,22 +82,35 @@
 }
 
 .matches{
-    height: inherit;
-    overflow: scroll;
+   height: inherit;
+   direction: rtl;
+   overflow: scroll;
 }
 
+.cellMatche {
+
+}
+.cellMatche .matchDate p{
+   font-weight: bold;
+   color: #dc3545;
+}
+.cellMatche .matchTime p{
+   font-weight: bold;
+   color: #0a58ca;
+}
 .matches::-webkit-scrollbar{
     display: none;
 }
 
 .vs{
-    background-color: var(--background1);
-    width: 25px;
-    height: 25px;
-    font-size: 24px;
-    border-radius: 50px;
-    color: var(--text-color);
-    padding-bottom: 3px;
+   background-color: var(--background1);
+   width: 28px;
+   height: 28px;
+   font-size: 28px;
+   font-weight: bold;
+   border-radius: 50px;
+   color: var(--color1);
+   padding-bottom: 3px;
 }
 
 

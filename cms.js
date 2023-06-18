@@ -58,7 +58,9 @@ site.get(
           page_keywords: lang.keyWordsList.join(','),
           page_lang: lang.language.id,
           prayerTimingsList: site.setting.prayerTimingsList,
-
+          matchScheduleList: site.setting.matchScheduleList,
+          goldPricesList: site.setting.goldPricesList,
+          moneyPricesList : site.setting.moneyPricesList,
           menuList1: site.menuList1,
           menuList2: site.menuList2,
           menuList3: site.menuList3,

@@ -136,6 +136,16 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
       }
     }
 
+    $scope.siteSetting.goldPricesList = $scope.siteSetting.goldPricesList || [];
+    $scope.siteSetting.goldPricesList.forEach((g) => {
+      g.increase = false;
+      g.decrease = false;
+      if (g.type == 'increase') {
+        g.increase = true;
+      } else if (g.type == 'decrease') {
+        g.decrease = true;
+      }
+    });
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -312,6 +322,12 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
     $scope.siteSetting.goldPricesList.unshift({});
   };
 
+  $scope.addMoneyPrices = function () {
+    $scope.error = '';
+    $scope.siteSetting.moneyPricesList = $scope.siteSetting.moneyPricesList || [];
+    $scope.siteSetting.moneyPricesList.unshift({});
+  };
+
   $scope.addPrayerTimings = function () {
     $scope.error = '';
     $scope.siteSetting.prayerTimingsList = $scope.siteSetting.prayerTimingsList || [];
@@ -321,7 +337,7 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
   $scope.addMatchSchedule = function () {
     $scope.error = '';
     $scope.siteSetting.matchScheduleList = $scope.siteSetting.matchScheduleList || [];
-    $scope.siteSetting.matchScheduleList.unshift({});
+    $scope.siteSetting.matchScheduleList.unshift({ image1: { url: '/theme1/images/football.png' }, image2: { url: '/theme1/images/football.png' } });
   };
 
   $scope.addBlockIp = function (block) {

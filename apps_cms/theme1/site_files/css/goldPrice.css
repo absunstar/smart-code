@@ -8,7 +8,7 @@
     border-radius: 15px 0 0 15px;
     color:var(--text-color);
     position:fixed;
-    top: 250px;
+    top: 400px;
     left: 100%;
     transform: translate(-50%, -50%);
     margin-left: 35px;
@@ -79,7 +79,7 @@
 }
 
 .slider-container {
-    width: 550px;
+    width: 780px;
     height: 280px;
     position: absolute;
     top: 50%;
@@ -150,11 +150,11 @@
 }
 
 .goldRateDown{
-    background-color: var(--secondary-color);
+    background-color: red;
 }
 
 .goldRateUP{
-    background-color: var(--seven-color);
+    background-color: green;
 }
 
 .goldadd{

@@ -5,12 +5,17 @@ body {
   margin-top: 55px;
   overflow-x: hidden;
 }
-.aaa {
-  width: 98%;
-  margin: 1%;
+.free {
+  width: 96%;
+  margin: 2%;
   background: #eee;
-  min-width: 250px;
+  min-width: max(250px ,98%);
+  
 }
+.free.side {
+  min-height: max(250px , 70vh);
+}
+
 @media (min-width: 1400px) {
   .container,
   .container-lg,
@@ -22,11 +27,10 @@ body {
   }
 }
 .breakingNewsSection {
+  width: 95%;
   padding: 0px;
-  margin: 10px;
   border-radius: 25px;
   box-shadow: 1px 1px 8px var(--background1);
-  width: 100%;
 }
 .mainSectionNews {
   padding: 20px;
@@ -165,7 +169,6 @@ a {
   color: var(--color1);
   background: var(--background1);
   border-right: 8px solid var(--background2);
-  min-width: 60%;
   box-shadow: 1px 3px 10px var(--background1);
 }
 
@@ -386,18 +389,14 @@ a {
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 76.04%);
   border-radius: 15px;
   direction: rtl;
-  padding-left: 10%;
-  padding-right: 10%;
 }
 
 .MS-newstitle {
   padding: 6px;
-  width: 100%;
+  width: fit-content;
   height: auto;
   position: relative;
-  top: -183px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: -200px;
   font-size: 24px;
   font-weight: bold;
   overflow: hidden;
@@ -582,17 +581,17 @@ a {
 }
 
 .BNSubSectionheader {
-  min-width: 30%;
-  width: auto;
-  height: auto;
-  padding: 10px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  background-color: var(--background1);
-  color: var(--color1);
-  font-size: 28px;
-  box-shadow: 0px 1px 8px var(--background1x);
-  border-radius: 45px 0px 0px 45px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    background-color: var(--background1);
+    color: var(--color1);
+    font-size: 28px;
+    box-shadow: 0px 1px 8px var(--background1x);
+    border-radius: 45px 10px 0px 45px;
 }
 
 /* end Breaking News */

@@ -172,10 +172,9 @@
                 <p class="col2 bold font-18">##word.Home Categories## :</p>
               </div>
               <div class="row">
-                <i-list label="##word.Category##" class="col6" ng-model="siteSetting.$category" items="categoryList" display="name" ng-search="siteSetting.article.$categorySearch">
-                </i-list>
+                <i-list label="##word.Category##" class="col6" ng-model="siteSetting.$category" items="categoryList" display="name" ng-search="siteSetting.article.$categorySearch"> </i-list>
                 <div class="col2">
-                  <br>
+                  <br />
                   <i-button type="push" ng-click="addMainCategory()"></i-button>
                 </div>
               </div>
@@ -242,6 +241,33 @@
 
             <fieldset>
               <div class="row">
+                <p class="col2 bold font-18">##word.Money Prices## :</p>
+                <i-button type="push" ng-show="siteSetting.showMoneyPrices" class="col1" ng-click="addMoneyPrices()"></i-button>
+                <i-checkbox label="##word.Show##" class="col3" ng-model="siteSetting.showMoneyPrices"></i-checkbox>
+              </div>
+
+              <table class="table hover bold" ng-show="siteSetting.showMoneyPrices">
+                <tr>
+                  <th>##word.Name##</th>
+                  <th>##word.Sell##</th>
+                  <th>##word.Buy##</th>
+                  <th class="not-print">##word.actions##</th>
+                </tr>
+
+                <tr ng-repeat="g in siteSetting.moneyPricesList track by $index">
+                  <td class="center"><i-control type="text" ng-model="g.name"> </i-control></td>
+                  <td class="center"><i-control type="number" ng-model="g.sell"> </i-control></td>
+                  <td class="center"><i-control type="number" ng-model="g.buy"> </i-control></td>
+
+                  <td class="center not-print">
+                    <i-button type="delete" ng-click="siteSetting.moneyPricesList.splice($index,1)"> </i-button>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
                 <p class="col2 bold font-18">##word.Gold Prices## :</p>
                 <i-button type="push" ng-show="siteSetting.showGoldPrices" class="col1" ng-click="addGoldPrices()"></i-button>
                 <i-checkbox label="##word.Show##" class="col3" ng-model="siteSetting.showGoldPrices"></i-checkbox>
@@ -264,9 +290,8 @@
                     <br />
                     <i-control type="number" class="row" ng-model="g.percentageChange"> </i-control>
                     <div class="row">
-                      <i-radio ng-model="discount.type" class="col6" ng-value="increase" group="type_{{$index}}" label="##word.Increase##"> </i-radio>
-
-                      <i-radio ng-model="discount.type" class="col6" group="type_{{$index}}" ng-value="decrease" label="##word.Decrease##"> </i-radio>
+                      <i-radio ng-model="g.type" group="type_{{$index}}" class="col6" ng-value="increase" label="##word.Increase##"> </i-radio>
+                      <i-radio ng-model="g.type" group="type_{{$index}}" class="col6" ng-value="decrease" label="##word.Decrease##"> </i-radio>
                     </div>
                   </td>
 
@@ -313,7 +338,7 @@
                 </tr>
               </table>
             </fieldset>
-        
+
             <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting()"></i-button>
           </div>
         </div>

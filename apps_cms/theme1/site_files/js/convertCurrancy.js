@@ -3,9 +3,9 @@ let mainConvertCurrancy = document.getElementById('mainConvertCurrancy');
 let convertCurrancyToggle= document.getElementById('convertCurrancyToggle');
 
 
-convertCurrancyToggle.addEventListener("mousedown", () => {
+convertCurrancyToggle.addEventListener("click", () => {
     mainConvertCurrancy.classList.add('showAnddisplay') ;
 });
-closeVCButton.addEventListener("mousedown", () => {
+closeVCButton.addEventListener("click", () => {
     mainConvertCurrancy.classList.remove('showAnddisplay') ;
 });
