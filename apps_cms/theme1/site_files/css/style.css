@@ -27,12 +27,14 @@ body {
   }
 }
 .breakingNewsSection {
+  margin-bottom: 20px;
   width: 95%;
   padding: 0px;
   border-radius: 25px;
   box-shadow: 1px 1px 8px var(--background1);
 }
 .mainSectionNews {
+  margin-bottom: 20px;
   padding: 20px;
   box-shadow: 1px 1px 8px var(--background1);
   border-radius: 25px;
