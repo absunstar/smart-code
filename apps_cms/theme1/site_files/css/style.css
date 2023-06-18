@@ -152,8 +152,8 @@ a {
   border-radius: 15px;
   color: var(--color1);
   padding-bottom: 25px;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
   direction: rtl;
   opacity: 0.9;
 }
