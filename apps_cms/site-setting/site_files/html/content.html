@@ -20,16 +20,16 @@
             <div class="col9">
               <i-list v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.site_template##"> </i-list>
               <div class="row padding margin border">
-                <i-control v="r" class="col3" type="color" ng-model="siteSetting.siteBackground1" label="##word.Background 1##"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground2" label="##word.Background 2##"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground3" label="##word.Background 3##"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground4" label="##word.Background 4##"></i-control>
+                <i-control v="r" class="col3" type="color" ng-model="siteSetting.siteBackground1" label="##word.Background## 1"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground2" label="##word.Background## 2"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground3" label="##word.Background## 3"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground4" label="##word.Background## 4"></i-control>
               </div>
               <div class="row padding margin border">
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor1" label="##word.Color 1##"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor2" label="##word.Color 2##"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor3" label="##word.Color 3##"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor4" label="##word.Color 4##"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteColor1" label="##word.Color## 1"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteColor2" label="##word.Color## 2"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteColor3" label="##word.Color## 3"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteColor4" label="##word.Color## 4"></i-control>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>Languages</legend>
+            <legend>##word.Languages##</legend>
             <div class="row" ng-repeat="lang in siteSetting.languagesList track by $index">
               <div class="row">
                 <div class="article-part">
@@ -108,7 +108,7 @@
                 <div class="col9">
                   <div class="row">
                     <i-control label="##word.site_name##" class="col6" ng-model="lang.siteName"> </i-control>
-                    <i-control label="Title separator" class="col6" ng-model="lang.titleSeparator"> </i-control>
+                    <i-control label="##word.Title Separator##" class="col6" ng-model="lang.titleSeparator"> </i-control>
                   </div>
                   <div class="row">
                     <i-control label="##word.site_slogan##" ng-model="lang.siteSlogan"> </i-control>
@@ -140,10 +140,10 @@
         <div class="article-part">
           <div class="row">
             <fieldset>
-              <legend>##word.view Options##</legend>
+              <legend>##word.View Options##</legend>
               <div class="row">
                 <div class="col4">
-                  <i-checkbox label="##word.showManager##" ng-model="siteSetting.showManager"> </i-checkbox>
+                  <i-checkbox label="##word.Show Manager##" ng-model="siteSetting.showManager"> </i-checkbox>
                   <i-checkbox label="##word.Show Main Menu##" ng-model="siteSetting.showMainMenu"></i-checkbox>
                   <i-checkbox label="##word.Show Editor Manager Articles##" ng-model="siteSetting.showEditorManagerArticle"></i-checkbox>
                   <i-checkbox label="##word.Show Editors Articles##" ng-model="siteSetting.showEditorsArticle"></i-checkbox>
@@ -158,10 +158,10 @@
                   <i-checkbox label="##word.Show Search Bar##" ng-model="siteSetting.showSearchBar"></i-checkbox>
                 </div>
                 <div class="col4">
-                  <i-checkbox label="##word.show Top Ad##" ng-model="siteSetting.showTopAd"> </i-checkbox>
-                  <i-checkbox label="##word.show Side Ad##" ng-model="siteSetting.showSideAd"></i-checkbox>
-                  <i-checkbox label="##word.show Footer Ad##" ng-model="siteSetting.showFooterAd"></i-checkbox>
-                  <i-checkbox label="##word.show Article Ad##" ng-model="siteSetting.showArticleAd"></i-checkbox>
+                  <i-checkbox label="##word.Show Top Ad##" ng-model="siteSetting.showTopAd"> </i-checkbox>
+                  <i-checkbox label="##word.Show Side Ad##" ng-model="siteSetting.showSideAd"></i-checkbox>
+                  <i-checkbox label="##word.Show Footer Ad##" ng-model="siteSetting.showFooterAd"></i-checkbox>
+                  <i-checkbox label="##word.Show Article Ad##" ng-model="siteSetting.showArticleAd"></i-checkbox>
                 </div>
                 <div class="col4"></div>
               </div>
@@ -169,7 +169,7 @@
 
             <fieldset>
               <div class="row">
-                <p class="col2 bold font-18">##word.Home Categories## :</p>
+                <p class="col3 bold font-18">##word.Home Categories## :</p>
               </div>
               <div class="row">
                 <i-list label="##word.Category##" class="col6" ng-model="siteSetting.$category" items="categoryList" display="name" ng-search="siteSetting.article.$categorySearch"> </i-list>
@@ -180,7 +180,7 @@
               </div>
               <table class="table hover bold">
                 <tr>
-                  <th>##word.Index##</th>
+                  <th>##word.S/N##</th>
                   <th>##word.Name##</th>
                   <th>##word.Template##</th>
                   <th class="not-print">##word.actions##</th>
@@ -190,7 +190,7 @@
                   <td class="center">{{$index + 1 }}</td>
                   <td class="center">{{g.name}}</td>
                   <td class="center">
-                    <i-list display="name" ng-model="g.template" items="siteSetting.siteTemplate.categoryTemplateList"></i-list>
+                    <i-list display="##session.lang##" ng-model="g.template" items="siteSetting.siteTemplate.categoryTemplateList"></i-list>
                   </td>
 
                   <td class="center not-print">
@@ -364,10 +364,12 @@
 
           <fieldset>
             <legend>##word.email_sending_setting##</legend>
-            <div class="col6">
-              <div class="article-part">
-                <i-checkbox class="" label="##word.allow_registration_through_email##" ng-model="siteSetting.allowRegistrationEmail"> </i-checkbox>
-                <i-checkbox label="##word.enableSendingMessagesEmail##" ng-model="siteSetting.enableSendingMessagesEmail"> </i-checkbox>
+            <div class="row">
+              <div class="col6">
+                <div class="article-part">
+                  <i-checkbox class="" label="##word.allow_registration_through_email##" ng-model="siteSetting.allowRegistrationEmail"> </i-checkbox>
+                  <i-checkbox label="##word.enableSendingMessagesEmail##" ng-model="siteSetting.enableSendingMessagesEmail"> </i-checkbox>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -434,7 +436,7 @@
               <i-list label="##word.Category##" ng-model="siteSetting.article.category" items="topCategoryList" display="name" ng-search="siteSetting.article.$categorySearch"> </i-list>
               <div class="row">
                 <div class="article-part">
-                  <i-checkbox class="" label="Auto creation shortened link" ng-model="siteSetting.article.autoShortenedLink"> </i-checkbox>
+                  <i-checkbox class="" label="##word.Auto Creation Shortened Link##" ng-model="siteSetting.article.autoShortenedLink"> </i-checkbox>
                 </div>
               </div>
             </div>
@@ -442,9 +444,9 @@
               <div class="row">
                 <fieldset>
                   <legend>##word.article_template##</legend>
-                  <div class="row" ng-repeat="t in siteSetting.article.articleTypes track by $index">
+                  <div class="row" ng-hide="t.id == 6 || t.id == 7" ng-repeat="t in siteSetting.article.articleTypes track by $index">
                     <div class="row">
-                      <p class="col4">{{t.##session.lang##}}</p>
+                      <p class="col5">{{t.##session.lang##}}</p>
                       <i-checkbox class="col3" label="##word.active##" ng-model="t.active"> </i-checkbox>
                     </div>
                     <hr />
@@ -534,7 +536,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>Custom Style</legend>
+            <legend>##word.Custom Style##</legend>
             <i-textarea ng-model="siteSetting.programming.customStyle"> </i-textarea>
           </fieldset>
 
@@ -554,20 +556,20 @@
           </fieldset>
 
           <div class="row">
-            <div class="col3">
-              <i-checkbox label="Auto generate sitemap.xml file" ng-model="siteSetting.programming.autoGenerateSitemapXmlFile"> </i-checkbox>
+            <div class="col5">
+              <i-checkbox label="##word.Auto generate## sitemap.xml file" ng-model="siteSetting.programming.autoGenerateSitemapXmlFile"> </i-checkbox>
             </div>
             <div class="col9">
-              <i-control ng-show="siteSetting.programming.autoGenerateSitemapXmlFile" label="Count Limit" type="number" ng-model="siteSetting.programming.sitemapXmlCount"> </i-control>
+              <i-control ng-show="siteSetting.programming.autoGenerateSitemapXmlFile" label="##word.Count##" type="number" ng-model="siteSetting.programming.sitemapXmlCount"> </i-control>
             </div>
           </div>
 
           <div class="row">
             <div class="col3">
-              <i-checkbox label="Auto generate RSS" ng-model="siteSetting.programming.autoGenerateRss"> </i-checkbox>
+              <i-checkbox label="##word.Auto generate## RSS" ng-model="siteSetting.programming.autoGenerateRss"> </i-checkbox>
             </div>
             <div class="col9">
-              <i-control ng-show="siteSetting.programming.autoGenerateRss" label="Count Limit" type="number" ng-model="siteSetting.programming.rssCount"> </i-control>
+              <i-control ng-show="siteSetting.programming.autoGenerateRss" label="##word.Count##" type="number" ng-model="siteSetting.programming.rssCount"> </i-control>
             </div>
           </div>
         </div>
@@ -593,7 +595,7 @@
           <div class="row">
             <fieldset>
               <legend>
-                Domains
+                Domains / نطاق
                 <i-button type="push" ng-click="addBlockDomains(siteSetting.block)"></i-button>
               </legend>
               <div class="row" ng-repeat="d in siteSetting.block.domainsList track by $index">
@@ -607,7 +609,7 @@
           <div class="row">
             <fieldset>
               <legend>
-                UserAgent
+                UserAgent / أداة المستخدم
                 <i-button type="push" ng-click="addBlockUserAgent(siteSetting.block)"></i-button>
               </legend>
               <div class="row" ng-repeat="u in siteSetting.block.userAgentList track by $index">

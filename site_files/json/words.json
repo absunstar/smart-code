@@ -1209,6 +1209,16 @@
     "ar": "تاريخ التسليم"
   },
   {
+    "name": "Sell",
+    "en": "Sell",
+    "ar": "بيع"
+  },
+  {
+    "name": "Buy",
+    "en": "Buy",
+    "ar": "شراء"
+  },
+  {
     "name": "paid",
     "en": "Paid",
     "ar": "المدفوع"
@@ -1217,6 +1227,26 @@
     "name": "Screen",
     "en": "Screen",
     "ar": "الشاشة"
+  },
+  {
+    "name": "Languages",
+    "en": "Languages",
+    "ar": "اللغات"
+  },
+  {
+    "name": "Background",
+    "en": "Background",
+    "ar": "الخلفية"
+  },
+  {
+    "name": "Count",
+    "en": "Count",
+    "ar": "العدد"
+  },
+  {
+    "name": "Color",
+    "en": "Color",
+    "ar": "اللون"
   },
   {
     "name": "Name",

@@ -45,9 +45,129 @@
     "ar": "جدول المباريات"
   },
   {
+    "name": "Title Separator",
+    "en": "Title Separator",
+    "ar": "فاصل العنوان"
+  },
+  {
+    "name": "Custom Style",
+    "en": "Custom Style",
+    "ar": "شكل مخصص"
+  },
+  {
+    "name": "Auto generate",
+    "en": "Auto generate",
+    "ar": "توليد تلقائي"
+  },
+  {
+    "name": "Show Main Menu",
+    "en": "Show Main Menu",
+    "ar": "عرض القائمة الرئيسية"
+  },
+  {
+    "name": "Show Editor Manager Articles",
+    "en": "Show Editor Manager Articles",
+    "ar": "عرض مقالات مدير التحرير"
+  },
+  {
+    "name": "Show Editors Articles",
+    "en": "Show Editors Articles",
+    "ar": "عرض مقالات المحررين"
+  },
+  {
+    "name": "Show Image Gallary",
+    "en": "Show Image Gallary",
+    "ar": "إظهار معرض الصور"
+  },
+  {
+    "name": "Show Video Gallary",
+    "en": "Show Video Gallary",
+    "ar": "إظهار معرض الفيديو"
+  },
+  {
+    "name": "Show Poll Questions",
+    "en": "Show Poll Questions",
+    "ar": "إظهار أسئلة الاستطلاع"
+  },
+  {
+    "name": "Show Top News",
+    "en": "Show Top News",
+    "ar": "عرض أهم الأخبار"
+  },
+  {
+    "name": "Show Main Slider",
+    "en": "Show Main Slider",
+    "ar": "إظهار شريط التمرير الرئيسي"
+  },
+  {
+    "name": "Show Logo",
+    "en": "Show Logo",
+    "ar": "إظهار الشعار"
+  },
+  {
+    "name": "Show Search Bar",
+    "en": "Show Search Bar",
+    "ar": "إظهار شريط البحث"
+  },
+  {
+    "name": "Show Top Ad",
+    "en": "Show Top Ad",
+    "ar": "عرض الإعلان العلوي"
+  },
+  {
+    "name": "Show Side Ad",
+    "en": "Show Side Ad",
+    "ar": "عرض إعلان جانبي"
+  },
+  {
+    "name": "Show Footer Ad",
+    "en": "Show Footer Ad",
+    "ar": "عرض إعلان السفلي"
+  },
+  {
+    "name": "Show Article Ad",
+    "en": "Show Article Ad",
+    "ar": "إظهار إعلان المقال"
+  },
+  {
+    "name": "Home Categories",
+    "en": "Home Categories",
+    "ar": "أقسام الصفحة الرئيسية"
+  },
+  {
+    "name": "S/N",
+    "en": "S/N",
+    "ar": "مسلسل"
+  },
+  {
+    "name": "Money Prices",
+    "en": "Money Prices",
+    "ar": "أسعار العملات"
+  },
+  {
+    "name": "Show Manager",
+    "en": "Show Manager",
+    "ar": "عرض المدير"
+  },
+  {
+    "name": "Template",
+    "en": "Template",
+    "ar": "نموذج"
+  },
+  {
+    "name": "View Options",
+    "en": "View Options",
+    "ar": "عرض الخيارات"
+  },
+  {
     "name": "Team",
     "en": "Team",
     "ar": "فريق"
+  },
+  {
+    "name": "Auto Creation Shortened Link",
+    "en": "Auto Creation Shortened Link",
+    "ar": "إنشاء رابط آلي مختصر"
   },
   {
     "name": "huawei_store",
