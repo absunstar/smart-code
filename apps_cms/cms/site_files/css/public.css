@@ -119,5 +119,4 @@ legend > i-checkbox {
 .tabs .tabs-content {
   width: var(--tabs-content-width);
   display: inline-block;
-  background: var(--theme-color);
 }
