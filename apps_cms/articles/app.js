@@ -508,7 +508,7 @@ module.exports = function init(site) {
     let urls = '';
     list.forEach((doc, i) => {
       doc.full_url = domain + '/a/' + doc.id;
-      doc.date = doc.date || new date().toISOString();
+      doc.$date = new date(doc.publishDate).toISOString();
       urls += `
         <item>
           <guid>${doc.id}</guid>
@@ -516,7 +516,7 @@ module.exports = function init(site) {
           <link>${doc.full_url}</link>
           <image>${domain}${doc.imageURL}</image>
           <description>${doc.description}</description>
-          <pubDate>${doc.date}</pubDate>
+          <pubDate>${doc.$date}</pubDate>
         </item>
         `;
     });
@@ -538,12 +538,11 @@ module.exports = function init(site) {
     let urls = '';
     site.articlesList.slice(0, 1000).forEach((article, i) => {
       article.post_url = domain + '/a/' + article.id;
-      article.date = article.date || new Date();
-      article.date = new Date(article.date).toISOString();
+      article.$date = new Date(article.publishDate).toISOString();
       urls += `
               <url>
                   <loc>${article.post_url}</loc>
-                  <lastmod>${article.date}</lastmod>
+                  <lastmod>${article.$date}</lastmod>
                   <changefreq>monthly</changefreq>
                   <priority>.8</priority>
               </url>
