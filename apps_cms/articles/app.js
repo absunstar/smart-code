@@ -508,7 +508,7 @@ module.exports = function init(site) {
     let urls = '';
     list.forEach((doc, i) => {
       doc.full_url = domain + '/a/' + doc.id;
-      doc.$date = new date(doc.publishDate).toISOString();
+      doc.$date = new Date(doc.publishDate).toISOString();
       urls += `
         <item>
           <guid>${doc.id}</guid>
