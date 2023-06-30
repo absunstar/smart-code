@@ -538,7 +538,8 @@ module.exports = function init(site) {
     let urls = '';
     site.articlesList.slice(0, 1000).forEach((article, i) => {
       article.post_url = domain + '/a/' + article.id;
-      article.date = article.date || new Date().toISOString();
+      article.date = article.date || new Date();
+      article.date = new Date(article.date).toISOString();
       urls += `
               <url>
                   <loc>${article.post_url}</loc>
