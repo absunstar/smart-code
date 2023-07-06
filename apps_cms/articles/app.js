@@ -192,7 +192,7 @@ module.exports = function init(site) {
       name: 'articles',
     },
     (req, res) => {
-      res.render('articles' + '/index.html', { title: 'articles', appName: '##word.Articles##', setting: site.setting }, { parser: 'html', compres: true });
+      res.render('articles' + '/index.html', { title: 'articles', appName: req.word('Articles'), setting: site.setting }, { parser: 'html', compres: true });
     }
   );
 
