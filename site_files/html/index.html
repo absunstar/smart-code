@@ -770,7 +770,10 @@
         );
       }
 
-      loadPosts();
+      if (!'##req.headers.host##'.like('*businessarea*')) {
+ loadPosts();
+      }
+     
 
       var app = app || angular.module('myApp', []);
 
