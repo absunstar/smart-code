@@ -146,7 +146,6 @@ module.exports = function init(site) {
 
           cat.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true && a.category.id == cat.id).splice(0, 10);
 
-
           if (site.setting.mainCategoryList && (_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
             _cat = {
               ..._cat,
@@ -233,13 +232,13 @@ module.exports = function init(site) {
     }
 
     $articles.add(articlesDoc, (err, doc) => {
-      if (!err) {
+      if (!err && doc) {
         response.done = true;
         response.doc = doc;
-        site.articlesList.unshift(doc);
+        site.articlesList.unshift(site.handleArticle({ ...doc }));
         site.handleCategoryArticles();
       } else {
-        response.error = err.message;
+        response.error = err?.message;
       }
       res.json(response);
     });
