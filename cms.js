@@ -107,7 +107,13 @@ site.get(
           page_image: category.translatedList[0].image?.url || site.setting.siteLogo.url,
           page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + category.translatedList[0].name,
           page_description: category.translatedList[0].description,
+         
+
           prayerTimingsList: site.setting.prayerTimingsList,
+          matchScheduleList: site.setting.matchScheduleList,
+          goldPricesList: site.setting.goldPricesList,
+          moneyPricesList: site.setting.moneyPricesList,
+
 
           category: { name: category.translatedList[0].name },
           list: site.articlesList.filter((a) => a.category.id == category.id).slice(0, 20),
@@ -163,10 +169,12 @@ site.get(
           page_image: article.imageURL || site.setting.siteLogo.url,
           page_title: site.setting.languagesList[0].siteName + ' ' +  site.setting.languagesList[0].titleSeparator + ' ' + article.title,
           page_description: article.description,
+         
           prayerTimingsList: site.setting.prayerTimingsList,
-          categoriesDisplayList1: site.categoriesDisplayList1,
-          categoriesDisplayList2: site.categoriesDisplayList2,
-          categoriesDisplayList3: site.categoriesDisplayList3,
+          matchScheduleList: site.setting.matchScheduleList,
+          goldPricesList: site.setting.goldPricesList,
+          moneyPricesList: site.setting.moneyPricesList,
+
           menuList1: site.menuList1,
           menuList2: site.menuList2,
           menuList3: site.menuList3,
