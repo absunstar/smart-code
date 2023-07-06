@@ -105,7 +105,7 @@ site.get(
           site_name: site.setting.languagesList[0].siteName,
           site_logo: site.setting.siteLogo.url,
           page_image: category.translatedList[0].image?.url || site.setting.siteLogo.url,
-          page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + category.translatedList[0].name,
+          page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + category.translatedList[0].name,
           page_description: category.translatedList[0].description,
           prayerTimingsList: site.setting.prayerTimingsList,
 
@@ -161,7 +161,7 @@ site.get(
           site_name: site.setting.languagesList[0].siteName,
           site_logo: site.setting.siteLogo.url,
           page_image: article.imageURL || site.setting.siteLogo.url,
-          page_title: site.setting.languagesList[0].siteName + site.setting.languagesList[0].titleSeparator + article.title,
+          page_title: site.setting.languagesList[0].siteName + ' ' +  site.setting.languagesList[0].titleSeparator + ' ' + article.title,
           page_description: article.description,
           prayerTimingsList: site.setting.prayerTimingsList,
           categoriesDisplayList1: site.categoriesDisplayList1,
