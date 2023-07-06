@@ -175,7 +175,7 @@ site.get(
             list: site.MainSliderNews,
           },
           article: article,
-          relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id && a.id !== article.id).slice(0, 3),
+          relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id && a.id !== article.id).slice(0, 6),
           topNews: site.topNews,
           page: {
             article: article,
