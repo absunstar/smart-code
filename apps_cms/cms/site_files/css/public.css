@@ -1,8 +1,8 @@
 :root {
-  --theme-color: #272727;
+  --theme-color: #2196f3;
   --modal-color: #fff;
   --brand-color: #ffffff;
-  --body-background: #fafafa;
+  --body-background: #d8eeff;
   --bs-body-bg: var(--body-background);
   --tabs-content-width: 100%;
   --scrollbar-background-color: var(--theme-color);
@@ -11,12 +11,10 @@
   --scrollbar-width: 5px;
   --bs-font-sans-serif: Arabic, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
-  --treeview-color2: var(--theme-color);
-  --treeview-background-color2: var(--brand-color);
   --i-image-border: none;
   --menu-width: 270px;
   --fieldset-background: #fff;
-  --tabs-header-link-color: #7c7c7c;
+  --tabs-header-link-color: #bbb;
 }
 
 .app-name {

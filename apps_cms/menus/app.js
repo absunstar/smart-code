@@ -15,7 +15,39 @@ module.exports = function init(site) {
   };
 
   app.$collection = site.connectCollection(app.name);
-
+  app.linkTypeList = [
+    {
+      id: 1,
+      en: 'Category',
+      ar: 'قسم',
+    },
+    {
+      id: 2,
+      en: 'Page',
+      ar: 'صفحة',
+    },
+    {
+      id: 3,
+      en: 'External Link',
+      ar: 'رابط خارجي',
+    },
+    {
+      id: 4,
+      en: 'Internal Link',
+      ar: 'رابط داخلي',
+    },
+  ];
+  site.onPOST(
+    {
+      name: '/api/linkTypeList',
+    },
+    (req, res) => {
+      res.json({
+        done: true,
+        list: app.linkTypeList,
+      });
+    }
+  );
   app.init = function () {
     if (app.allowMemory) {
       app.$collection.findMany({}, (err, docs) => {
@@ -293,8 +325,6 @@ module.exports = function init(site) {
           });
         }
       });
-
-
     }
   }
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"  data-ng-app="myApp">
+  <head x-import="cms/head.html">
+    <style>
+      img.logo{
+        width: 48px;
+        height: 48px;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang## loaded" ng-controller="articles-generator">
+    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
+      <div class="row">
+        <div class="row">
+          <div x-import="articles-generator/sites_modal.html"></div>
+          <div x-import="articles-generator/rss_modal.html"></div>
+        
+          <div class="top-actions">
+            <i-button x-permissions="admin" type="search" label="##word.Sites Manager##" ng-click="siteDisplay()"></i-button>
+            <i-button x-permissions="admin" type="search" label="##word.RSS Manager##" ng-click="displayRSS()"></i-button>
+            <i-button x-permissions="admin" type="search" label="##word.Facebook Manager##" ng-click="displayRSS()"></i-button>
+
+            <div class="row padding">
+              <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="admin"></i-control>
+            </div>
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table hover bold" id="articlesTable">
+            <tr>
+              <th class="not-print">##word.Logo##</th>
+              <th>##word.Title##</th>
+              <th>##word.Type##</th>
+              <th>##word.Author##</th>
+              <th>##word.status##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
+
+            <tr ng-repeat="c in list">
+              <td class="center not-print">
+                <i-image view class="logo" ng-model="c.image"></i-image>
+              </td>
+
+              <td class="center">{{c.title}}</td>
+              <td class="center">{{c.type}}</td>
+
+              <td class="center title">{{c.author}}</td>
+
+              <td class="center">
+                <p ng-show="c.active ==true" class="green">##word.active##</p>
+                <p ng-show="c.active ==false" class="red">##word.not_active##</p>
+              </td>
+
+              <td class="center not-print">
+                <i-button x-permissions="admin" type="view"  ng-click="displayDetailsCity(c)"></i-button>
+
+                <i-button x-permissions="admin" type="edit"  ng-click="displayUpdateCity(c)"></i-button>
+
+                <i-button x-permissions="admin" type="delete" ng-click="displaydeleteCity(c)"></i-button>
+              </td>
+            </tr>
+          </table>
+
+          <i-button x-permissions="city_print || city_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="cms/scripts.html"></div>
+    <script x-import="articles-generator/index.js"></script>
+  </body>
+</html>

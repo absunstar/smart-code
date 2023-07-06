@@ -210,11 +210,11 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.linkTypeList = [];
     $http({
       method: 'POST',
-      url: '/api/linkageType/all',
+      url: '/api/linkTypeList',
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.linkTypeList = response.data;
+        $scope.linkTypeList = response.data.list;
       },
       function (err) {
         $scope.busy = false;

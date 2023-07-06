@@ -9,11 +9,10 @@ body {
   width: 96%;
   margin: 2%;
   background: #eee;
-  min-width: max(250px ,98%);
-  
+  min-width: max(250px, 98%);
 }
 .free.side {
-  min-height: max(250px , 70vh);
+  min-height: max(250px, 70vh);
 }
 
 @media (min-width: 1400px) {
@@ -126,7 +125,7 @@ a {
 
 .styleOne > .imageNews {
   width: 100%;
-  height: 212px;
+  height: 100%;
   margin-bottom: 8px;
   background-size: auto;
   background-repeat: no-repeat;
@@ -142,6 +141,7 @@ a {
   background-color: var(--background1x);
   border: 2px solid var(--background1);
   box-shadow: 1px 0px 8px var(--background1x);
+  height: 100%;
 }
 
 .newsTilteTime {
@@ -189,6 +189,10 @@ a {
   height: 90%;
 }
 
+.newsTools {
+  top: -270px;
+  position: relative;
+}
 .readingTime {
   background-color: var(--background2);
   color: var(--color2);
@@ -582,17 +586,17 @@ a {
 }
 
 .BNSubSectionheader {
-    width: auto;
-    height: auto;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    background-color: var(--background1);
-    color: var(--color1);
-    font-size: 28px;
-    box-shadow: 0px 1px 8px var(--background1x);
-    border-radius: 45px 10px 0px 45px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  background-color: var(--background1);
+  color: var(--color1);
+  font-size: 28px;
+  box-shadow: 0px 1px 8px var(--background1x);
+  border-radius: 45px 10px 0px 45px;
 }
 
 /* end Breaking News */
@@ -608,7 +612,7 @@ a {
   justify-content: center;
   align-items: flex-end;
   width: auto;
-  height: 100%;
+  height: 350px;
   background: var(--background1);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 00px 0px 50px 50px;

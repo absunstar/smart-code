@@ -49,7 +49,7 @@ site.get(
       res.render(
         'theme1/index.html',
         {
-          guid : '',
+          guid: '',
           site_name: lang.siteName,
           site_logo: site.setting.siteLogo.url,
           page_image: site.setting.siteLogo.url,
@@ -60,7 +60,7 @@ site.get(
           prayerTimingsList: site.setting.prayerTimingsList,
           matchScheduleList: site.setting.matchScheduleList,
           goldPricesList: site.setting.goldPricesList,
-          moneyPricesList : site.setting.moneyPricesList,
+          moneyPricesList: site.setting.moneyPricesList,
           menuList1: site.menuList1,
           menuList2: site.menuList2,
           menuList3: site.menuList3,
@@ -175,7 +175,7 @@ site.get(
             list: site.MainSliderNews,
           },
           article: article,
-          relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id).slice(0, 3),
+          relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id && a.id !== article.id).slice(0, 3),
           topNews: site.topNews,
           page: {
             article: article,

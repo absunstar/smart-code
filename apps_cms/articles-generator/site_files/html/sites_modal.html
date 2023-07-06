@@ -1,0 +1,37 @@
+<div id="sitesModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.Site Manager##</h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>Site Info</legend>
+        <div class="row padding margin">
+          <i-control v="r url" ng-model="siteItem.url" label="##word.site URL##"></i-control>
+          <i-button label="##word.add to sites##" ng-click="siteAdd()"></i-button>
+        </div>
+      </fieldset>
+      <table class="table">
+        <tr>
+          <th>Logo</th>
+          <th>URL</th>
+          <th>Actions</th>
+        </tr>
+        <tr ng-repeat="s in siteList">
+          <td><img class="logo" ng-src="{{s.logo.url}}" /></td>
+          <td>{{s.url}}</td>
+          <td>
+            <i-button type="delete" ng-click="siteDelete(s)"></i-button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#sitesModal')"></i-button>
+    </div>
+  </div>
+</div>
