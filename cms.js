@@ -123,8 +123,8 @@ site.get(
           menuList3: site.menuList3,
 
           MainSliderNews: {
-            article: site.MainSliderNews[0],
-            list: site.MainSliderNews,
+            article: category.MainSliderNews[0],
+            list: category.MainSliderNews,
           },
           topNews: site.topNews,
           page: {},

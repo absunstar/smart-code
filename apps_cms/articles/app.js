@@ -144,6 +144,9 @@ module.exports = function init(site) {
             return b.id - a.id;
           });
 
+          cat.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true && a.category.id == cat.id).splice(0, 10);
+
+
           if (site.setting.mainCategoryList && (_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
             _cat = {
               ..._cat,
