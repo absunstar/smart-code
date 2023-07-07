@@ -2,11 +2,11 @@
 
 .mainImage {
   width: 100%;
-  height: 462px;
+  height: 500px;
   margin-top: 10px;
   background: url(https://ik.imagekit.io/ikmedia/backlit.jpg) no-repeat center;
-  background-size: cover;
-  background-color: darkolivegreen;
+  background-size: contain;
+  background-color: var(--background1);
   border-radius: 15px;
 }
 .MI-newsTilteTime {
