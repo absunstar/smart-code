@@ -13,6 +13,7 @@ body {
   margin: 2%;
   background: #eee;
   min-width: max(250px, 98%);
+  min-height: min(250px, 50vh);
 }
 .free.side {
   min-height: max(250px, 70vh);
