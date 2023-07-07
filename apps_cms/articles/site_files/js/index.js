@@ -16,6 +16,29 @@ app.controller('articles', function ($scope, $http, $timeout) {
       }
     });
   }
+
+  $scope.handleImages = function () {
+    $scope.error = '';
+    $scope.hideHandleImages = true;
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/article/handle-images',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          console.log(response.data);
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.displayAddArticles = function () {
     $scope.error = '';
     $scope.mode = 'add';
@@ -246,7 +269,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       url: '/api/articles/all',
       data: {
         where: where,
-        search : $scope.$search
+        search: $scope.$search,
       },
     }).then(
       function (response) {

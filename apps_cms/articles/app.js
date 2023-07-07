@@ -491,6 +491,55 @@ module.exports = function init(site) {
     );
   });
 
+  site.onPOST('/api/article/handle-images', (req, res) => {
+    let response = {
+      done: false,
+    };
+    $articles.findMany(
+      {
+        select: { id: 1, translatedList: 1 },
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: 10000,
+      },
+      (err, docs, count) => {
+        if (!err && docs) {
+          response.done = true;
+          response.list = docs;
+          docs.forEach((doc) => {
+            doc.translatedList.forEach((_t) => {
+              if (_t.image && _t.image.url &&  !_t.image.url.like('*.webp')) {
+                let arr = _t.image.url.split('/');
+                let imageName = arr.pop();
+                let imageName2 = imageName.replace(site.path.extname(imageName), '.webp');
+                let folderName = arr.pop();
+                let folder = new Date().getFullYear() + '_' + new Date().getMonth() + '_' + new Date().getDate();
+                let path = site.options.upload_dir + '/' + folderName + '/images/' + imageName;
+                let path2 = site.options.upload_dir + '/' + folder + '/images/' + imageName2;
+                site.createDir(site.options.upload_dir + '/' + folder, () => {
+                  site.createDir(site.options.upload_dir + '/' + folder + '/images', () => {
+                    site.webp.cwebp(path, path2, '-q 80').then((output) => {
+                      console.log(output);
+                      _t.image.path = path2;
+                      _t.image.url = '/x-api/image/' + folder + '/' + imageName2;
+                      $articles.update(doc);
+                    });
+                  });
+                });
+              }
+            });
+          });
+
+          response.count = count;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      }
+    );
+  });
+
   site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
     let limit = req.query.limit || 10;
     let list = [];
