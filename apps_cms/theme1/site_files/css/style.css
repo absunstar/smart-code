@@ -1,4 +1,4 @@
-:root{
+:root {
   --border-radius: 15px 15px 0px 0px;
 }
 body {
@@ -9,10 +9,12 @@ body {
   overflow-x: hidden;
 }
 .free {
-  width: 96%;
-  margin: 2%;
+  display: flex;
   min-width: max(250px, 98%);
   min-height: min(250px, 50vh);
+}
+.free ins {
+  margin: 0 auto;
 }
 .free.side {
   min-height: max(250px, 70vh);
