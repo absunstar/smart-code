@@ -11,7 +11,7 @@
     <ul class="col-12 MS-inner-slider frist-slider">
       <li id="slide_##item1.id##" x-list1="MainSliderNews.list" class="MS-card slide-imageNews">
         <a target="_blank" class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="/article/##item1.id##/##item1.title2##">
-          <img class="smallSlideIamge" src="##item1.imageURL##" alt="##item1.title2##" width="280px" height="132px" />
+          <img class="smallSlideIamge" src="##item1.imageURL##" alt="##item1.title2##"  onerror="this.onerror=null;this.src='/theme1/images/news.jpg'" />
           <div class="slide-newsTilteTime d-flex flex-column justify-content-end">
             <p class="slide-newstitle">##item1.title##</p>
             <p class="slide-day none">##item1.day##</p>
@@ -21,9 +21,9 @@
       </li>
     </ul>
     <ul class="col-12 MS-inner-slider d-md-flex second-slider">
-      <li x-list1="MainSliderNews.list" class="MS-card slide-imageNews d-md-flex">
+      <li  x-list1="MainSliderNews.list" class="MS-card slide-imageNews d-md-flex">
         <a target="_blank" class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="/article/##item1.id##/##item1.title2##">
-          <img class="smallSlideIamge" src="##item1.imageURL##" alt="##item1.title2##" width="280px" height="132px" />
+          <img class="smallSlideIamge" src="##item1.imageURL##" alt="##item1.title2##" onerror="this.onerror=null;this.src='/theme1/images/news.jpg'" />
           <div class="slide-newsTilteTime d-flex flex-column justify-content-end">
             <p class="slide-newstitle">##item1.title##</p>
             <p class="slide-day none">##item1.day##</p>
