@@ -63,6 +63,9 @@
 .mainarticle div {
   width: 100%;
 }
+.mainarticle img {
+  max-width: 90%;
+}
 .videoArticle {
   width: 100%;
   border-radius: 15px;
