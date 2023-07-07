@@ -2,6 +2,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.article = {};
+  $scope.hideHandleImages = true;
   $scope.siteSettings = site.showObject(`##data.#setting##`);
   if ($scope.siteSettings && $scope.siteSettings.id) {
     $scope.articleTypesList = $scope.siteSettings.article.articleTypes.filter((t) => t.active == true);
