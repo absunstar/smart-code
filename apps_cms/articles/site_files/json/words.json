@@ -4,7 +4,31 @@
     "en": "Articles",
     "ar": "الأخبار"
   },
-  
+  {
+    "name": "Has Audio",
+    "en": "Has Audio",
+    "ar": "يحتوي على مقطع صوتي"
+  },
+  {
+    "name": "Has Video",
+    "en": "Has Video",
+    "ar": "يحتوي على فيديو"
+  },
+  {
+    "name": "Has Reading Time",
+    "en": "Has Reading Time",
+    "ar": "يحتوي على وقت قراءة"
+  },
+  {
+    "name": "Reading Time",
+    "en": "Reading Time",
+    "ar": "وقت القراءة"
+  },
+  {
+    "name": "Related Topics",
+    "en": "Related Topics",
+    "ar": "مواضيع ذات صلة"
+  },
   {
     "name": "Number Of words",
     "en": "Number Of words",

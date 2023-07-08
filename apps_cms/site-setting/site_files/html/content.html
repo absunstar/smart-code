@@ -410,8 +410,8 @@
                 <i-list ng-model="siteSetting.article.closingSystem" items="closingSystemList" display="##session.lang##" ng-search="_search.$searchClosingSystem" label="##word.closing_system##">
                 </i-list>
                 <div class="row">
-                  <i-control ng-show="siteSetting.article.closingSystem.id == 1" label="##word.duration##" type="number" class="col6" ng-model="siteSetting.article.duration"></i-control>
-                  <i-list
+                  <i-control ng-show="siteSetting.article.closingSystem.id == 1" label="##word.duration## / ##word.day##" type="number" class="col6" ng-model="siteSetting.article.duration"></i-control>
+                  <!-- <i-list
                     class="col6"
                     ng-model="siteSetting.article.durationType"
                     items="durationExpiryList"
@@ -419,7 +419,7 @@
                     display="##session.lang##"
                     ng-search="_search.$searchDurationType"
                     label="##word.duration_type##"
-                  ></i-list>
+                  ></i-list> -->
                 </div>
               </div>
 

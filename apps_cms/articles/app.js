@@ -460,6 +460,79 @@ module.exports = function init(site) {
       );
     }
 
+    if (where['type']) {
+      where['type.id'] = where['type'].id;
+      delete where['type'];
+    }
+    if (where['writer']) {
+      where['writer.id'] = where['writer'].id;
+      delete where['writer'];
+    }
+    if (where['editor']) {
+      where['editor.id'] = where['editor'].id;
+      delete where['editor'];
+    }
+    if (where['category']) {
+      where['category.id'] = where['category'].id;
+      delete where['category'];
+    }
+    if (where['subCategory1']) {
+      where['subCategory1.id'] = where['subCategory1'].id;
+      delete where['subCategory1'];
+    }
+    if (where['subCategory2']) {
+      where['subCategory2.id'] = where['subCategory2'].id;
+      delete where['subCategory2'];
+    }
+    if (where['subCategory3']) {
+      where['subCategory3.id'] = where['subCategory3'].id;
+      delete where['subCategory3'];
+    }
+    if (where['subCategory4']) {
+      where['subCategory4.id'] = where['subCategory4'].id;
+      delete where['subCategory4'];
+    }
+    if (where['cluster']) {
+      where['clusters.id'] = where['cluster'].id;
+      delete where['cluster'];
+    }
+    if (where['country']) {
+      where['country.id'] = where['country'].id;
+      delete where['country'];
+    }
+    if (where['gov']) {
+      where['gov.id'] = where['gov'].id;
+      delete where['gov'];
+    }
+    if (where['city']) {
+      where['city.id'] = where['city'].id;
+      delete where['city'];
+    }
+    if (where['area']) {
+      where['area.id'] = where['area'].id;
+      delete where['area'];
+    }
+    if (where['hasReadingTime']) {
+      where['translatedList.hasReadingTime'] = true;
+      delete where['hasReadingTime'];
+    }
+    if (where['hasAudio']) {
+      where['translatedList.hasAudio'] = true;
+      delete where['hasAudio'];
+    }
+    if (where['hasVideo']) {
+      where['translatedList.hasVideo'] = true;
+      delete where['hasVideo'];
+    }
+    if (where['tag']) {
+      where['translatedList.tagsList'] = site.get_RegExp(where['tag'], 'i');
+      delete where['tag'];
+    }
+    if (where['keyword']) {
+      where['translatedList.keyWordsList'] = site.get_RegExp(where['keyword'], 'i');
+      delete where['keyword'];
+    }
+    site.get_RegExp(req.body.search, 'i')
     // site.articlesList.filter(u => u.name.contains(where['name']))
     $articles.findMany(
       {
@@ -509,7 +582,7 @@ module.exports = function init(site) {
           response.list = docs;
           docs.forEach((doc) => {
             doc.translatedList.forEach((_t) => {
-              if (_t.image && _t.image.url &&  !_t.image.url.like('*.webp')) {
+              if (_t.image && _t.image.url && !_t.image.url.like('*.webp')) {
                 let arr = _t.image.url.split('/');
                 let imageName = arr.pop();
                 let imageName2 = imageName.replace(site.path.extname(imageName), '.webp');

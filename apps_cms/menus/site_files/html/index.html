@@ -11,6 +11,7 @@
         <div class="row" >
           <div x-import="menus/manage_modal.html"></div>
           <div x-permissions="menus_search || menus_manage" x-import="menus/search_all_modal.html"></div>
+          <div  x-import="menus/subMenu.html"></div>
 
           <div class="top-actions">
             <i-button x-permissions="menus_add || menus_manage" type="add" label="##word.menus_new##" ng-click="displayAddMenu()"></i-button>

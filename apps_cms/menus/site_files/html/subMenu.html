@@ -1,0 +1,61 @@
+<div id="subMenuModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        ##word.Sub Menu##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.basic_information##</legend>
+        <div class="row">
+          <div class="row">
+            <i-list class="col5" v="r" ng-model="subMenu.linkageType" items="linkTypeList" display="##session.lang##" ng-search="subMenu.$searchLinkageType" label="##word.linkage_type##"> </i-list>
+            <div class="col2"></div>
+            <div class="col5">
+              <i-checkbox help-id="menus_active" label="##word.active##" ng-model="subMenu.active"> </i-checkbox>
+              <i-checkbox label="##word.Open in new tab##" ng-model="subMenu.newTab"> </i-checkbox>
+            </div>
+          </div>
+
+          <div class="row" ng-show="subMenu.linkageType.id == 1">
+            <i-list class="col5 input-style" label="##word.Category##" ng-model="subMenu.category" items="categoryList" display="name" ng-search="subMenu.$category1Search"></i-list>
+          </div>
+
+          <div class="row">
+            <i-list class="col6 input-style" ng-show="subMenu.linkageType.id == 2" label="##word.page##" ng-model="subMenu.page" items="pagesList" display="title" ng-search="subMenu.$pageSearch">
+            </i-list>
+            <i-control class="col6" label="##word.external_link##" ng-show="subMenu.linkageType.id == 3" ng-model="subMenu.externalLink"> </i-control>
+            <i-control class="col6" label="##word.internal_link##" ng-show="subMenu.linkageType.id == 4" ng-model="subMenu.internalLink"> </i-control>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="article-part">
+            <fieldset ng-repeat="lang in subMenu.translatedList track by $index">
+              <legend>{{lang.language.##session.lang##}}</legend>
+              <div class="row">
+                <i-control v="r ll2" class="col6" label="##word.menu_name##" ng-model="lang.name"></i-control>
+                <i-checkbox label="##word.show_image##" class="col3" ng-model="lang.showImage"> </i-checkbox>
+                <div class="col3">
+                  <i-image help-id="menus_logo" ng-model="lang.image"></i-image>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="add" ng-show="subMenu.$mode == 'add' " label="##word.add##" ng-click="addSubMenu(subMenu)"></i-button>
+      <i-button type="edit" ng-show="subMenu.$mode == 'edit' " label="##word.edit##" ng-click="updateSubMenu(subMenu)"></i-button>
+      <i-button type="delete" ng-show="subMenu.$mode == 'delete' " label="##word.delete##" ng-click="deleteSubMenu(subMenu)"> </i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#subMenuModal')"></i-button>
+    </div>
+  </div>
+</div>

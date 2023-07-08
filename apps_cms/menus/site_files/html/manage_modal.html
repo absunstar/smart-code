@@ -26,75 +26,21 @@
         <legend>##word.basic_information##</legend>
         <div class="row">
           <div class="row">
-            <i-list class="col4" v="r" ng-model="menu.linkageType" items="linkTypeList" display="##session.lang##" ng-search="menu.$searchLinkageType" label="##word.linkage_type##"> </i-list>
-            <div class="col3"></div>
-            <div class="col3">
+            <i-list class="col5" v="r" ng-model="menu.linkageType" items="linkTypeList" display="##session.lang##" ng-search="menu.$searchLinkageType" label="##word.linkage_type##"> </i-list>
+            <div class="col2"></div>
+            <div class="col5">
               <i-checkbox help-id="menus_active" label="##word.active##" ng-model="menu.active"> </i-checkbox>
+              <i-checkbox label="##word.Open in new tab##" ng-model="menu.newTab"> </i-checkbox>
             </div>
           </div>
 
           <div class="row" ng-show="menu.linkageType.id == 1">
-            <div class="col4">
-              <i-list
-                class="row input-style"
-                label="##word.Category##"
-                ng-model="menu.category"
-                ng-click="loadSubCategory1(menu.category)"
-                items="topCategoryList"
-                display="name"
-                ng-search="menu.$category1Search"
-              ></i-list>
-
-              <i-list
-                class="row input-style"
-                label="##word.categories## {{menu.category.name}}"
-                ng-model="menu.subCategory1"
-                ng-click="loadSubCategory2(menu.subCategory1)"
-                items="subCategoriesList1"
-                ng-show="subCategoriesList1.length > 0 && menu.category"
-                display="name"
-                ng-search="menu.$category2Search"
-              ></i-list>
-
-              <i-list
-                class="row input-style"
-                label="##word.categories## {{menu.subCategory1.name}}"
-                ng-model="menu.subCategory2"
-                ng-click="loadSubCategory3(menu.$subCategory2)"
-                items="subCategoriesList2"
-                ng-show="subCategoriesList2.length > 0 && menu.subCategory1"
-                display="name"
-                ng-search="menu.$category3Search"
-              ></i-list>
-
-              <i-list
-                class="row input-style"
-                label="##word.categories## {{menu.subCategory2.name}}"
-                ng-model="menu.subCategory3"
-                ng-click="loadSubCategory4(menu.subCategory3)"
-                items="subCategoriesList3"
-                ng-show="subCategoriesList3.length > 0 && menu.subCategory2"
-                display="name"
-                ng-search="menu.$category4Search"
-              ></i-list>
-
-              <i-list
-                class="row input-style"
-                label="##word.categories## {{menu.subCategory3.name}}"
-                ng-model="menu.subCategory4"
-                items="subCategoriesList4"
-                ng-show="subCategoriesList4.length > 0 && menu.subCategory3"
-                display="name"
-                ng-search="menu.$category5Search"
-              ></i-list>
-            </div>
+            <i-list class="col5 input-style" label="##word.Category##" ng-model="menu.category" items="categoryList" display="name" ng-search="menu.$category1Search"></i-list>
           </div>
 
           <div class="row">
             <i-list class="col6 input-style" ng-show="menu.linkageType.id == 2" label="##word.page##" ng-model="menu.page" items="pagesList" display="title" ng-search="menu.$pageSearch"> </i-list>
-
             <i-control class="col6" label="##word.external_link##" ng-show="menu.linkageType.id == 3" ng-model="menu.externalLink"> </i-control>
-
             <i-control class="col6" label="##word.internal_link##" ng-show="menu.linkageType.id == 4" ng-model="menu.internalLink"> </i-control>
           </div>
         </div>
@@ -104,14 +50,55 @@
             <fieldset ng-repeat="lang in menu.translatedList track by $index">
               <legend>{{lang.language.##session.lang##}}</legend>
               <div class="row">
-                <i-control v="r ll2" class="col8" label="##word.menu_name##" ng-model="lang.name"></i-control>
-                <div class="col1"></div>
+                <i-control v="r ll2" class="col6" label="##word.menu_name##" ng-model="lang.name"></i-control>
+                <i-checkbox label="##word.show_image##" class="col3" ng-model="lang.showImage"> </i-checkbox>
                 <div class="col3">
                   <i-image help-id="menus_logo" ng-model="lang.image"></i-image>
                 </div>
               </div>
             </fieldset>
           </div>
+        </div>
+        <div class="row">
+          <fieldset>
+            <legend>
+              ##word.Sub Menus##
+              <i-button type="add default" ng-click="showAddSubMenu()"></i-button>
+            </legend>
+            <table class="table hover bold">
+              <tr>
+                <th class="not-print">##word.logo##</th>
+                <th>##word.sub_menu_name##</th>
+                <th>##word.linkage_type##</th>
+                <th>##word.status##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+              <tr ng-repeat="c in menu.subList">
+                <td class="center not-print">
+                  <div class="center" ng-repeat="t in c.translatedList" ng-show="t.language.id == '##session.lang##'">
+                    <i-image view class="logo" ng-model="t.image"></i-image>
+                  </div>
+                </td>
+                <td class="center title">
+                  <p class="black bold" ng-repeat="t in c.translatedList" ng-show="t.language.id == '##session.lang##'">{{t.name}}</p>
+                </td>
+
+                <td class="center title">{{c.linkageType.##session.lang##}}</td>
+                <td class="center">
+                  <p ng-show="c.active == true" class="green">##word.active##</p>
+                  <p ng-show="c.active == false" class="red">##word.not_active##</p>
+                </td>
+
+                <td class="center not-print">
+                  <i-button type="view" ng-click="displayActionSubMenu($index,'view')"></i-button>
+                  <i-button type="edit" ng-click="displayActionSubMenu($index,'edit')"></i-button>
+                  <i-button type="delete" ng-click="displayActionSubMenu($index,'delete')"></i-button>
+                  <i-button class="col1" type="up" ng-click="upDownList(menu.subList, 'up',$index)" ng-hide="$index == 0"> </i-button>
+                  <i-button class="col1" type="down" ng-click="upDownList(menu.subList, 'down',$index)" ng-hide="$index == (menu.subList.length - 1) ">
+                </td>
+              </tr>
+            </table>
+          </fieldset>
         </div>
       </fieldset>
       <div ng-show="mode !== 'add' " class="row">
