@@ -29,7 +29,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          console.log(response.data);
         } else {
           $scope.error = response.data.error;
         }
@@ -44,16 +43,16 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.article = {
-      type: $scope.articleTypesList[0],
       active: true,
+      date: new Date(),
+      publishingDate: new Date(),
+      type: $scope.articleTypesList[0],
       translatedList: [],
     };
     if ($scope.siteSettings.article) {
       if ($scope.siteSettings.article.closingSystem) {
-        if ($scope.siteSettings.article.closingSystem.id == 2) {
-          $scope.article.expiryDate = new Date();
-          $scope.article.expiryDate.setDate($scope.article.expiryDate.getDate() + 7);
-        }
+        $scope.article.expiryDate = new Date();
+        $scope.article.expiryDate.setDate($scope.article.expiryDate.getDate() + $scope.siteSettings.article.duration || 7);
       }
 
       if ($scope.siteSettings.article.language) {
@@ -81,6 +80,17 @@ app.controller('articles', function ($scope, $http, $timeout) {
       }
     }
     site.showModal('#articleManageModal');
+  };
+  $scope.changeDate = function () {
+    if ($scope.siteSettings.article && $scope.article.publishingDate) {
+      if ($scope.siteSettings.article.closingSystem) {
+        if ($scope.siteSettings.article.closingSystem.id == 1) {
+          $scope.article.expiryDate = typeof $scope.article.expiryDate == 'string' ? new Date($scope.article.expiryDate) : new Date();
+          $scope.article.publishingDate = new Date($scope.article.publishingDate);
+          $scope.article.expiryDate.setDate($scope.article.publishingDate.getDate() + $scope.siteSettings.article.duration || 7);
+        }
+      }
+    }
   };
 
   $scope.addArticles = function () {
@@ -265,6 +275,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.getArticlesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
     $http({
       method: 'POST',
       url: '/api/articles/all',
@@ -291,6 +302,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
+    $scope.search = {};
     site.showModal('#articleSearchModal');
   };
 
@@ -749,9 +761,9 @@ app.controller('articles', function ($scope, $http, $timeout) {
             $scope.article.translatedList[$scope.article.translatedList.length - 1].content = info.translatedText;
             $scope.$applyAsync();
           });
-        } else if ($scope.article.translatedList[$scope.article.translatedList.length - 1].contentText) {
-          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].contentText, to: lang.id }, (info) => {
-            $scope.article.translatedList[$scope.article.translatedList.length - 1].contentText = info.translatedText;
+        } else if ($scope.article.translatedList[$scope.article.translatedList.length - 1].textContent) {
+          SOCIALBROWSER.translate({ from: $scope.article.translatedList[0].language.id, text: $scope.article.translatedList[0].textContent, to: lang.id }, (info) => {
+            $scope.article.translatedList[$scope.article.translatedList.length - 1].textContent = info.translatedText;
             $scope.$applyAsync();
           });
         }
@@ -866,12 +878,12 @@ app.controller('articles', function ($scope, $http, $timeout) {
             titleletters = art.title.length;
             titleWords = art.title.trim().split(/\s+/).length;
           }
-          if (art.content) {
+          if (art.textContent) {
+            contentletters = art.textContent.length;
+            contentWords = art.textContent.trim().split(/\s+/).length;
+          } else if (art.content) {
             contentletters = art.content.length;
             contentWords = art.content.trim().split(/\s+/).length;
-          } else if (art.contentText) {
-            contentletters = art.contentText.length;
-            contentWords = art.contentText.trim().split(/\s+/).length;
           }
           art.numberLetters = titleletters + contentletters;
           art.numberWords = titleWords + contentWords;

@@ -10,6 +10,11 @@
         "ar": "القائمة"
     },
     {
+        "name": "Open in new tab",
+        "en": "Open in new tab",
+        "ar": "فتح في علامة تبويب جديدة"
+    },
+    {
         "name": "menus_new",
         "en": "New Menu",
         "ar": "قائمة جديدة"
@@ -38,6 +43,21 @@
         "name": "menu_name",
         "en": "Menu Name",
         "ar": "إسم القائمة "
+    },
+    {
+        "name": "Sub Menus",
+        "en": "Sub Menus",
+        "ar": "القوائم الفرعية "
+    },
+    {
+        "name": "Sub Menu",
+        "en": "Sub Menu",
+        "ar": "القائمة الفرعية "
+    },
+    {
+        "name": "sub_menu_name",
+        "en": "Sub menu Name",
+        "ar": "إسم القائمة الفرعية "
     },
     {
         "name": "linkage_type",

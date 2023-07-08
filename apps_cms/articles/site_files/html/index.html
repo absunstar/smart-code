@@ -15,8 +15,8 @@
         <div class="top-actions">
           <i-button x-permissions="articles_add || articles_manage" type="add" label="##word.articles_new##" ng-click="displayAddArticles()"></i-button>
           <i-button ng-hide="hideHandleImages" x-permissions="admin" label="##word.Handle Images##" ng-click="handleImages()"></i-button>
-          <!--           <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
- -->
+          <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
           <div class="row padding">
             <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="articles_search || articles_manage"></i-control>
           </div>

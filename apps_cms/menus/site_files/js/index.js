@@ -9,7 +9,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.mode = 'add';
     $scope.menu = {
       active: true,
-      translatedList : []
+      translatedList: [],
     };
     $scope.defaultSettings.languagesList.forEach((l) => {
       if (l.language.active == true) {
@@ -19,6 +19,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
             en: l.language.en,
             ar: l.language.ar,
           },
+          showImage: true,
         });
       }
     });
@@ -183,9 +184,8 @@ app.controller('menus', function ($scope, $http, $timeout) {
       url: '/api/menus/all',
       data: {
         where: where,
-        search : $scope.$search,
-        select: { id: 1, translatedList: 1, name: 1, linkageType: 1, active: 1, image : 1 },
-
+        search: $scope.$search,
+        select: { id: 1, translatedList: 1, name: 1, linkageType: 1, active: 1, image: 1 },
       },
     }).then(
       function (response) {
@@ -232,7 +232,6 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $scope.categoryList = [];
-    $scope.topCategoryList = [];
     $http({
       method: 'POST',
       url: '/api/categories/all',
@@ -240,14 +239,13 @@ app.controller('menus', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1},
+        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.categoryList = response.data.list;
-          $scope.topCategoryList = response.data.topList;
         }
       },
       function (err) {
@@ -255,55 +253,6 @@ app.controller('menus', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
-  };
-
-  $scope.loadSubCategory1 = function (c) {
-    $scope.error = '';
-
-    $scope.subCategoriesList1 = [];
-    $scope.subCategoriesList2 = [];
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
-    $scope.categoryList.forEach((_c) => {
-      if (c && c.id == _c.parentId) {
-        $scope.subCategoriesList1.push(_c);
-      }
-    });
-  };
-
-  $scope.loadSubCategory2 = function (c) {
-    $scope.error = '';
-
-    $scope.subCategoriesList2 = [];
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
-    $scope.categoryList.forEach((_c) => {
-      if (c && c.id == _c.parentId) {
-        $scope.subCategoriesList2.push(_c);
-      }
-    });
-  };
-
-  $scope.loadSubCategory3 = function (c) {
-    $scope.error = '';
-
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
-    $scope.categoryList.forEach((_c) => {
-      if (c && c.id == _c.parentId) {
-        $scope.subCategoriesList3.push(_c);
-      }
-    });
-  };
-
-  $scope.loadSubCategory4 = function (c) {
-    $scope.error = '';
-    $scope.subCategoriesList4 = [];
-    $scope.categoryList.forEach((_c) => {
-      if (c && c.id == _c.parentId) {
-        $scope.subCategoriesList4.push(_c);
-      }
-    });
   };
 
   $scope.loadPages = function () {
@@ -333,9 +282,84 @@ app.controller('menus', function ($scope, $http, $timeout) {
       $scope.getMenuList();
     }, 200);
   };
+  $scope.upDownList = function (list, type, index) {
+    let element = list[index];
+    let toIndex = index;
 
+    if (type == 'up') {
+      toIndex = index - 1;
+    } else if (type == 'down') {
+      toIndex = index + 1;
+    }
+
+    list.splice(index, 1);
+    list.splice(toIndex, 0, element);
+  };
+  
+  $scope.displayActionSubMenu = function (index, mode) {
+    $scope.error = '';
+    $scope.subMenu = {};
+    $scope.menu.$subIndex = index;
+    $scope.subMenu = { ...$scope.menu.subList[index], $mode: mode };
+    $scope.subMenu.translatedList = [];
+    for (let i = 0; i < $scope.menu.subList[index].translatedList.length; i++) {
+      $scope.subMenu.translatedList.push({ ...$scope.menu.subList[index].translatedList[i] });
+    }
+    site.showModal('#subMenuModal');
+  };
+
+  $scope.updateSubMenu = function () {
+    $scope.error = '';
+    const v = site.validated('#subMenuModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.menu.subList[$scope.menu.$subIndex] = $scope.subMenu;
+    site.hideModal('#subMenuModal');
+    $scope.subMenu = {};
+  };
+
+  $scope.deleteSubMenu = function () {
+    $scope.error = '';
+    $scope.menu.subList.splice($scope.menu.$subIndex, 1);
+    site.hideModal('#subMenuModal');
+    $scope.subMenu = {};
+  };
+
+  $scope.showAddSubMenu = function () {
+    $scope.error = '';
+    $scope.subMenu = { $mode: 'add', active: true, translatedList: [] };
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.subMenu.translatedList.push({
+          language: {
+            id: l.language.id,
+            en: l.language.en,
+            ar: l.language.ar,
+          },
+          showImage: true,
+        });
+      }
+    });
+    site.showModal('#subMenuModal');
+  };
+
+  $scope.addSubMenu = function (sub) {
+    $scope.error = '';
+    const v = site.validated('#subMenuModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.menu.subList = $scope.menu.subList || [];
+    $scope.menu.subList.unshift(sub);
+    $scope.subMenu = {};
+    site.hideModal('#subMenuModal');
+  };
 
   $scope.searchAll = function () {
+    $scope.error = '';
     $scope.getMenuList($scope.search);
     site.hideModal('#menuSearchModal');
     $scope.search = {};

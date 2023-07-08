@@ -26,7 +26,7 @@
           <div class="col9">
             <div class="article-part">
               <div class="row">
-                <i-list class="red col4" v="r" label="##word.article_template##" ng-model="article.type" items="articleTypesList" display="##session.lang##" ng-search="article.$typeSearch"> </i-list>
+                <i-list class="red col3" v="r" label="##word.article_template##" ng-model="article.type" items="articleTypesList" display="##session.lang##" ng-search="article.$typeSearch"> </i-list>
                 <i-list
                   label="##word.language##"
                   class="col3"
@@ -47,7 +47,7 @@
 
             <div class="row">
               <div class="col6">
-                <i-date ng-show="siteSettings.article.publishingSystem.id == 2" ng-model="article.date" label="##word.publishing_date##"></i-date>
+                <i-date ng-show="siteSettings.article.publishingSystem.id == 2" ng-click="changeDate(article.publishingDate)"  ng-model="article.publishingDate" label="##word.publishing_date##"></i-date>
                 <i-date ng-show="siteSettings.article.closingSystem.id == 2" ng-model="article.expiryDate" label="##word.expiry_date##"></i-date>
               </div>
             </div>
@@ -102,7 +102,7 @@
                                 </div>
                               </div>
 
-                              <i-textarea class="row" ng-model="p.contentText" label="##word.content##"></i-textarea>
+                              <i-textarea class="row" ng-model="p.textContent" label="##word.content##"></i-textarea>
 
                               <hr />
                             </div>
@@ -156,33 +156,35 @@
                       </div>
                       <div class="col3">
                         <div class="article-part">
-                          <i-checkbox class="" label="##word.show_image##" ng-model="art.showImage"> </i-checkbox>
-                          <i-image class="img256 full" ng-model="art.image"></i-image>
+                          <div class="row">
+                            <div class="col1"></div>
+                            <i-checkbox class="col11" label="##word.show_image##" ng-model="art.showImage"> </i-checkbox>
+                          </div>
+                          <i-image class="img128 full" ng-model="art.image"></i-image>
                         </div>
                       </div>
                     </div>
 
                     <div class="row padding margin">
                       <div class="article-part">
-                        <i-checkbox label="##word.has Audio##" ng-model="art.hasAudio"> </i-checkbox>
+                        <i-checkbox label="##word.Has Audio##" ng-model="art.hasAudio"> </i-checkbox>
                         <i-audio ng-show="art.hasAudio" ng-model="art.audio"></i-audio>
                       </div>
                     </div>
 
                     <div class="row padding margin">
                       <div class="article-part">
-                        <i-checkbox label="##word.has Video##" ng-model="art.hasVideo"> </i-checkbox>
+                        <i-checkbox label="##word.Has Video##" ng-model="art.hasVideo"> </i-checkbox>
                         <i-video ng-show="art.hasVideo" ng-model="art.video"></i-video>
                       </div>
                     </div>
 
                     <div class="row padding margin">
                       <div class="article-part">
-                        <i-checkbox label="##word.has Reading Time##" ng-model="art.hasReadingTime"> </i-checkbox>
-                       <div ng-show="art.hasReadingTime" class="row padding border">
-                         <i-control ng-model="art.readingTime" label="##word.reading Time##"></i-control>
-
-                       </div>
+                        <i-checkbox label="##word.Has Reading Time##" ng-model="art.hasReadingTime"> </i-checkbox>
+                        <div ng-show="art.hasReadingTime" class="row padding border">
+                          <i-control ng-model="art.readingTime" label="##word.Reading Time##"></i-control>
+                        </div>
                       </div>
                     </div>
 
@@ -397,6 +399,9 @@
             </div>
           </div>
           <div class="col3">
+            <div class="article-part">
+              <i-date ng-model="article.date" label="##word.date##"></i-date>
+            </div>
             <div class="article-part">
               <i-checkbox label="##word.active##" ng-model="article.active"> </i-checkbox>
             </div>
