@@ -16,6 +16,9 @@ body {
 .free ins {
   margin: 0 auto;
 }
+.free iframe {
+ background: #ededed;
+}
 .free.side {
   min-height: max(250px, 70vh);
 }

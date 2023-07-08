@@ -9,7 +9,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="##data.page_image##" />
 <link rel="icon" type="image/x-icon" href="##data.page_image##" />
 <link itemprop="image" rel="image_src" href="##data.page_image##" />
-<link rel="apple-touch-icon" href="##data.page_image##">
+<link rel="apple-touch-icon" href="##data.page_image##" />
 
 <meta name="robots" content="index, follow" />
 <meta name="referrer" content="no-referrer" />
@@ -51,12 +51,13 @@
 
 <link rel="alternate" type="application/rss+xml" title="##data.page_title##" href="/rss/aticles/##data.guid##" />
 
-
 <link rel="stylesheet" href="/css/theme1.css?version=##site.time##" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() {
+    dataLayer.push(arguments);
+  }
   gtag('js', new Date());
 
   gtag('config', 'G-SJEBBEFC7P');
@@ -82,3 +83,64 @@
     --body-color: ##setting.siteColor##;
   }
 </style>
+<style x-setting="contentProtected">
+  * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
+<script x-setting="contentProtected">
+  !(function () {
+    setInterval(() => {
+      if (console.clear) {
+        console.clear();
+      }
+    }, 1000);
+    function detectDevTool(allow) {
+      if (isNaN(+allow)) {
+        allow = 100;
+      }
+      var start = +new Date();
+      debugger;
+      var end = +new Date();
+      if (isNaN(start) || isNaN(end) || end - start > allow) {
+        if ((body = document.querySelector('body'))) {
+          body.innerHTML = '<h1 class="text-center red"> Close Developer Tools </h1> ';
+        }
+      }
+    }
+    if (window.attachEvent) {
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        detectDevTool();
+        window.attachEvent('onresize', detectDevTool);
+        window.attachEvent('onmousemove', detectDevTool);
+        window.attachEvent('onfocus', detectDevTool);
+        window.attachEvent('onblur', detectDevTool);
+      } else {
+        setTimeout(argument.callee, 0);
+      }
+    } else {
+      window.addEventListener('load', detectDevTool);
+      window.addEventListener('resize', detectDevTool);
+      window.addEventListener('mousemove', detectDevTool);
+      window.addEventListener('focus', detectDevTool);
+      window.addEventListener('blur', detectDevTool);
+    }
+  })();
+
+  document.oncontextmenu = function () {
+    return false;
+  };
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  function ctrlShiftKey(e, keyCode) {
+    return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
+  }
+  document.onkeydown = (e) => {
+    if (event.keyCode === 123 || ctrlShiftKey(e, 'I') || ctrlShiftKey(e, 'J') || ctrlShiftKey(e, 'C') || (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))) {
+      return false;
+    }
+  };
+</script>
