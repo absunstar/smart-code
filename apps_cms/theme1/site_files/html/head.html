@@ -52,18 +52,37 @@
 <link rel="alternate" type="application/rss+xml" title="##data.page_title##" href="/rss/aticles/##data.guid##" />
 
 <link rel="stylesheet" href="/css/theme1.css?version=##site.time##" />
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     dataLayer.push(arguments);
   }
   gtag('js', new Date());
-
   gtag('config', 'G-SJEBBEFC7P');
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151" crossorigin="anonymous"></script>
-
+<script>
+  function lazyLoad() {
+    let addScript = function (info) {
+      var script = document.createElement('script');
+      for (const key in info) {
+        if (Object.hasOwnProperty.call(info, key)) {
+          script[key] = info[key];
+          script.setAttribute(key, info[key]);
+        }
+      }
+      document.querySelector('head').appendChild(script);
+    };
+    addScript({ crossorigin: 'anonymous', async: !0, type: 'text/javascript', src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151' });
+    addScript({ crossorigin: 'anonymous', async: !0, type: 'text/javascript', src: 'https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P' });
+  }
+  if (document.readyState !== 'loading') {
+    lazyLoad();
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      lazyLoad();
+    });
+  }
+</script>
 <style>
   * {
     --primary-color: ##setting.siteColor1##;
