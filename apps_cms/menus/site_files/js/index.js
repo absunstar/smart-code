@@ -109,6 +109,37 @@ app.controller('menus', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.upDownMainList = function (type, index) {
+    $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+    let i = 0;
+    if (type == 'up') {
+      i = index - 1;
+    } else {
+      i = index + 1;
+    }
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/menus/updateSort',
+      data: { type, id : $scope.list[index].id, id2: $scope.list[i].id },
+    }).then(
+      function (response) {
+        if (response.data.done) {
+          $scope.getMenuList();
+        } else {
+          $scope.error = response.data.error;
+          $scope.busy = false;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.displayDetailsMenu = function (menu) {
     $scope.error = '';
     $scope.mode = 'view';
@@ -179,13 +210,15 @@ app.controller('menus', function ($scope, $http, $timeout) {
   $scope.getMenuList = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    $scope.count = 0;
     $http({
       method: 'POST',
       url: '/api/menus/all',
       data: {
         where: where,
         search: $scope.$search,
-        select: { id: 1, translatedList: 1, name: 1, linkageType: 1, active: 1, image: 1 },
+        select: { id: 1, translatedList: 1, name: 1, linkageType: 1, active: 1, image: 1,sort:1, },
+        sort : {sort:1}
       },
     }).then(
       function (response) {
@@ -195,6 +228,26 @@ app.controller('menus', function ($scope, $http, $timeout) {
           $scope.count = response.data.count;
           site.hideModal('#menuSearchModal');
           $scope.search = {};
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.autoCategoriesToMenus = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/autoCategoriesMenus/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if(response.data.done) {
+          $scope.getMenuList();
         }
       },
       function (err) {
@@ -295,7 +348,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     list.splice(index, 1);
     list.splice(toIndex, 0, element);
   };
-  
+
   $scope.displayActionSubMenu = function (index, mode) {
     $scope.error = '';
     $scope.subMenu = {};

@@ -15,6 +15,7 @@
 
           <div class="top-actions">
             <i-button x-permissions="menus_add || menus_manage" type="add" label="##word.menus_new##" ng-click="displayAddMenu()"></i-button>
+            <i-button x-permissions="menus_manage" ng-show="list.length == 0" label="##word.Auto Categories To Menus##" ng-click="autoCategoriesToMenus()"></i-button>
 
           <!--   <i-button x-permissions="menus_search || menus_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button> -->
             <div class="row padding">
@@ -48,6 +49,8 @@
                 <i-button x-permissions="menus_update || menus_manage" type="edit" ng-click="displayUpdateMenu(c)"></i-button>
 
                 <i-button x-permissions="menus_delete || menus_manage" type="delete" ng-click="displayDeleteMenu(c)"></i-button>
+                <i-button type="up" ng-click="upDownMainList('up',$index)" ng-hide="$index == 0"> </i-button>
+                <i-button type="down" ng-click="upDownMainList('down',$index)" ng-hide="$index == (list.length - 1) ">
               </td>
             </tr>
           </table>

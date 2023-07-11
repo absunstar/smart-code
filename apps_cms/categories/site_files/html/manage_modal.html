@@ -38,7 +38,121 @@
             <fieldset ng-repeat="lang in categories.translatedList track by $index">
               <legend>{{lang.language.##session.lang##}}</legend>
 
-              <div class="tabs">
+              <div class="row">
+                <div class="col8">
+                  <div class="row">
+                    <i-control v="r" label="##word.categories_name##" ng-model="lang.name"></i-control>
+                  </div>
+                  <div class="row">
+                    <i-textarea ng-model="lang.description" label="##word.description##"> </i-textarea>
+                  </div>
+
+                  <div class="col8">
+                    <div class="article-part">
+                      <i-control class="blue bold" label="##word.keywords##" ng-keydown="addKeyWords($event , lang)" ng-model="lang.$keyword"> </i-control>
+                      <div class="row">
+                        <div class="key-words" ng-repeat="k in lang.keyWordsList">
+                          <span>{{k}}</span>
+                          <i class="fas fa-times delete-key" ng-click="lang.keyWordsList.splice($index,1)"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col4">
+                  <div class="row">
+                    <div class="article-part">
+                      <p class="center">Logo</p>
+                      <i-image class="center img256" ng-model="lang.image"></i-image>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="article-part">
+                      <p class="center">Cover</p>
+                      <i-image class="center img256" ng-model="lang.coverUrl"></i-image>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <fieldset>
+                  <legend>##word.statistics##</legend>
+                  <table class="table hover bold">
+                    <tr>
+                      <th>##word.statistics##</th>
+                      <th>##word.Actual Number##</th>
+                      <th class="w250">##word.Dummy Of Number##</th>
+                      <th>##word.Apparent Of Number##</th>
+                    </tr>
+                    <tr>
+                      <td class="center title">##word.Number Of Views##</td>
+                      <td class="center title">{{lang.actualViews}}</td>
+                      <td class="center title">
+                        <i-control type="number" ng-model="lang.dummyViews" ng-change="calc('views',lang)"> </i-control>
+                      </td>
+                      <td class="center title">{{lang.apparentViews}}</td>
+                    </tr>
+
+                    <tr>
+                      <td class="center title">##word.Number Of Likes##</td>
+                      <td class="center title">{{lang.actualLikes}}</td>
+                      <td class="center title">
+                        <i-control type="number" ng-model="lang.dummyLikes" ng-change="calc('likes',lang)"> </i-control>
+                      </td>
+                      <td class="center title">{{lang.apparentLikes}}</td>
+                    </tr>
+
+                    <tr>
+                      <td class="center title">##word.Number Of Comments##</td>
+                      <td class="center title">{{lang.actualComments}}</td>
+                      <td class="center title">
+                        <i-control type="number" ng-model="lang.dummyComments" ng-change="calc('comments',lang)"> </i-control>
+                      </td>
+                      <td class="center title">{{lang.apparentComments}}</td>
+                    </tr>
+
+                    <tr>
+                      <td class="center title">##word.Number Of Posts##</td>
+                      <td class="center title">{{lang.actualPosts}}</td>
+                      <td class="center title">
+                        <i-control type="number" ng-model="lang.dummyPosts" ng-change="calc('posts',lang)"> </i-control>
+                      </td>
+                      <td class="center title">{{lang.apparentPosts}}</td>
+                    </tr>
+
+                    <tr>
+                      <td class="center title">##word.Number Of Ratings##</td>
+                      <td class="center title">{{lang.actualRatings}}</td>
+                      <td class="center title">
+                        <i-control type="number" ng-model="lang.dummyRatings" ng-change="calc('ratings',lang)"> </i-control>
+                      </td>
+                      <td class="center title">{{lang.apparentRatings}}</td>
+                    </tr>
+                  </table>
+                </fieldset>
+              </div>
+
+              <div class="row">
+                <fieldset>
+                  <legend>##word.social_media##</legend>
+                  <div class="col8">
+                    <i-control label="##word.title##" ng-model="lang.socialTitle"> </i-control>
+                    <i-textarea ng-model="lang.socialDescription" label="##word.description##"> </i-textarea>
+                  </div>
+
+                  <div class="col4">
+                    <div class="article-part">
+                      <i-checkbox label="##word.social_media_activation##" ng-model="lang.socialMediaActivation"> </i-checkbox>
+                    </div>
+                    <div class="article-part">
+                      <i-checkbox label="##word.show_image##" ng-model="lang.showSocialImage"> </i-checkbox>
+                      <i-image ng-model="lang.socialImage"></i-image>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <!--  <div class="tabs">
                 <div class="tabs-header full">
                   <a class="tab-link inline-block" onclick="site.showTabContent(event, '#basic')"> ##word.basic_information## </a>
                   <a class="tab-link inline-block" onclick="site.showTabContent(event, '#statistics')"> ##word.statistics## </a>
@@ -159,7 +273,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </fieldset>
 
             <br />

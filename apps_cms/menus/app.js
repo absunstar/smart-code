@@ -15,6 +15,7 @@ module.exports = function init(site) {
   };
 
   app.$collection = site.connectCollection(app.name);
+
   app.linkTypeList = [
     {
       id: 1,
@@ -48,6 +49,7 @@ module.exports = function init(site) {
       });
     }
   );
+
   app.init = function () {
     if (app.allowMemory) {
       app.$collection.findMany({}, (err, docs) => {
@@ -69,6 +71,7 @@ module.exports = function init(site) {
       });
     }
   };
+
   app.add = function (_item, callback) {
     app.$collection.add(_item, (err, doc) => {
       if (callback) {
@@ -79,6 +82,7 @@ module.exports = function init(site) {
       }
     });
   };
+
   app.update = function (_item, callback) {
     app.$collection.edit(
       {
@@ -109,6 +113,7 @@ module.exports = function init(site) {
       }
     );
   };
+
   app.delete = function (_item, callback) {
     app.$collection.delete(
       {
@@ -132,6 +137,7 @@ module.exports = function init(site) {
       }
     );
   };
+
   app.view = function (_item, callback) {
     if (callback) {
       if (app.allowMemory) {
@@ -148,7 +154,6 @@ module.exports = function init(site) {
 
       app.$collection.find({ id: _item.id }, (err, doc) => {
         callback(err, doc);
-
         if (!err && doc) {
           if (app.allowMemory) {
             app.memoryList.push(doc);
@@ -159,6 +164,7 @@ module.exports = function init(site) {
       });
     }
   };
+
   app.all = function (_options, callback) {
     if (callback) {
       if (app.allowMemory) {
@@ -193,12 +199,16 @@ module.exports = function init(site) {
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            response.done = true;
-            response.doc = doc;
+            doc.sort = doc.id;
+            app.update(doc, (err, result) => {
+              response.done = true;
+              response.doc = result.doc;
+              res.json(response);
+            });
           } else {
             response.error = err.mesage;
+            res.json(response);
           }
-          res.json(response);
         });
       });
     }
@@ -223,6 +233,44 @@ module.exports = function init(site) {
         });
       });
     }
+
+    site.post({ name: `/api/${app.name}/updateSort`, require: { permissions: ['login'] } }, (req, res) => {
+      let response = {
+        done: false,
+      };
+      let _data = req.data;
+      let ids = [_data.id, _data.id2];
+      app.$collection.findMany(
+        {
+          where: {
+            id: { $in: ids },
+          },
+        },
+        (err, docs) => {
+          if (!err && docs) {
+            let sort0 = docs[0].sort;
+            let sort1 = docs[1].sort;
+            docs[0].sort = sort1;
+            docs[1].sort = sort0;
+            app.update(docs[0], (err, result) => {
+              if (!err) {
+                app.update(docs[1], (err1, result1) => {
+                  response.done = true;
+
+                  res.json(response);
+                });
+              } else {
+                response.error = err.message;
+                res.json(response);
+              }
+            });
+          } else {
+            response.error = err.message;
+            res.json(response);
+          }
+        }
+      );
+    });
 
     if (app.allowRouteDelete) {
       site.post({ name: `/api/${app.name}/delete`, require: { permissions: ['login'] } }, (req, res) => {
@@ -311,6 +359,10 @@ module.exports = function init(site) {
               }
             }
           });
+          if (req.body.sort) {
+            docs = docs.sort((a, b) => a.sort - b.sort);
+          }
+
           res.json({
             done: true,
             list: docs,
@@ -327,6 +379,85 @@ module.exports = function init(site) {
       });
     }
   }
+
+  site.post({ name: '/api/autoCategoriesMenus/all', public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let list = [];
+    let topList = [];
+    site.categoriesList.forEach((doc) => {
+      if (doc.active) {
+        if (!doc.topParentId) {
+          topList.push(doc);
+        } else {
+          list.push(doc);
+        }
+      }
+    });
+
+    for (let i = 0; i < topList.length; i++) {
+      setTimeout(() => {
+        let obj = {
+          active: true,
+          addUserInfo: req.getUserFinger(),
+          translatedList: [],
+          subList: [],
+          linkageType: {
+            id: 1,
+            en: 'Category',
+            ar: 'قسم',
+          },
+          category: { id: topList[i].id, name: topList[i].translatedList.find((t) => t.language.id == req.session.lang).name },
+        };
+        topList[i].translatedList.forEach((_t) => {
+          console.log( _t.imageUrl);
+          obj.translatedList.push({
+            language: _t.language,
+            showImage: true,
+            image : _t.imageUrl,
+            name: _t.name,
+          });
+        });
+        list.forEach((_subCategory) => {
+          if (_subCategory.topParentId == topList[i].id) {
+            let sub = {
+              active: true,
+              translatedList: [],
+              subList: [],
+              linkageType: {
+                id: 1,
+                en: 'Category',
+                ar: 'قسم',
+              },
+              category: { id: _subCategory.id, name: _subCategory.translatedList.find((t) => t.language.id == req.session.lang).name },
+            };
+            _subCategory.translatedList.forEach((_t) => {
+              console.log( _t.imageUrl);
+              sub.translatedList.push({
+                language: _t.language,
+                showImage: true,
+                image : _t.imageUrl,
+                name: _t.name,
+              });
+            });
+            obj.subList.push(sub);
+          }
+        });
+
+        app.add(obj, (err, doc) => {
+          if (!err && doc) {
+            doc.sort = doc.id;
+            app.update(doc);
+          }
+        });
+      }, 1000 * i);
+    }
+
+    response.done = true;
+    res.json(response);
+  });
 
   app.init();
   site.addApp(app);
