@@ -34,7 +34,7 @@
 <script x-import="0/directive.js"></script>
 
 <script x-permission="login">
-  fetch('/api/user/update-visit-date')
+  fetch('/api/user/update-visit-date');
 </script>
 
 <script>
@@ -115,41 +115,11 @@
     }
   });
 
-  function string_to_buffer(s) {
-    if (typeof ArrayBuffer !== 'undefined') {
-      var buf = new ArrayBuffer(s.length);
-      var view = new Uint8Array(buf);
-      for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
-      return buf;
-    } else {
-      var buf = new Array(s.length);
-      for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
-      return buf;
-    }
-  }
-
-  function export_to_xlsx(id, _fileName) {
-    _fileType = 'xlsx';
-    var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
-      sheet: 'Sheet JS',
-    });
-    var wbout = XLSX.write(workbook, {
-      bookType: _fileType,
-      bookSST: true,
-      type: 'binary',
-    });
-    var fileName = _fileName || 'file.' + _fileType;
-    try {
-      saveAs(
-        new Blob([string_to_buffer(wbout)], {
-          type: 'application/octet-stream',
-        }),
-        fileName
-      );
-    } catch (e) {
-      if (typeof console != 'undefined') console.log(e);
-    }
-    return wbout;
+  function export_to_xlsx(table, type = 'xlsx') {
+    var data = typeof table === 'string' ? document.querySelector(table) : table;
+    var excelFile = XLSX.utils.table_to_book(data, { sheet: 'sheet1' });
+    XLSX.write(excelFile, { bookType: type, bookSST: true, type: 'base64' });
+    XLSX.writeFile(excelFile, (data.id || data.tagName) + '.' + type);
   }
 </script>
 
@@ -185,8 +155,15 @@
 </script>
 
 <!-- apps.egytag.com -->
-<ins x-features="host.egytag" class="adsbygoogle" style="display: block" data-ad-client="ca-pub-3372007384613151"
-  data-ad-slot="7771021498" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<ins
+  x-features="host.egytag"
+  class="adsbygoogle"
+  style="display: block"
+  data-ad-client="ca-pub-3372007384613151"
+  data-ad-slot="7771021498"
+  data-ad-format="auto"
+  data-full-width-responsive="true"
+></ins>
 <script x-features="host.egytag.com">
   (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -194,7 +171,15 @@
 <!-- Load Facebook SDK for JavaScript -->
 <div x-features="host.egytag" id="fb-root"></div>
 <script x-features="host.egytag.com">
-  if (!site.features.like('*host.elfgr*') && !site.features.like('*host.icc*') && !site.features.like('*host.ft*') && !site.features.like('*unqcode.net*') && !site.features.like('*host.valley*') && !site.features.like('*host.ttl*') && !site.features.like('*host.mt*')) {
+  if (
+    !site.features.like('*host.elfgr*') &&
+    !site.features.like('*host.icc*') &&
+    !site.features.like('*host.ft*') &&
+    !site.features.like('*unqcode.net*') &&
+    !site.features.like('*host.valley*') &&
+    !site.features.like('*host.ttl*') &&
+    !site.features.like('*host.mt*')
+  ) {
     window.fbAsyncInit = function () {
       FB.init({
         xfbml: true,
@@ -225,9 +210,14 @@
 </script>
 
 <!-- Your Chat Plugin code -->
-<div x-features="host.egytag" class="fb-customerchat" attribution="setup_tool" page_id="545115802193198"
+<div
+  x-features="host.egytag"
+  class="fb-customerchat"
+  attribution="setup_tool"
+  page_id="545115802193198"
   logged_in_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
-  logged_out_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"></div>
+  logged_out_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
+></div>
 <script>
   var isMenuShow = false;
 
