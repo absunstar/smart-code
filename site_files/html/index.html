@@ -275,7 +275,7 @@
           </div>
         </div>
 
-        <div class="col3 center" x-features="!login && !site.dynamic && !host.businessarea.com">
+        <div class="col3 center" x-features="!login && !site.dynamic && !host.businessarea">
           <div class="create center">
             <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span> </a>
           </div>
@@ -617,7 +617,7 @@
                 } else if ('##req.headers.host##'.like('*valley*')) {
                   post.link = `http://valley.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*businessarea*')) {
-                  post.link = `//${post.feature}.businessarea.com`;
+                  post.link = `//${post.feature}.businessarea.com.sa`;
                 } else {
                   post.link = `http://${post.feature}.egytag.com`;
                 }
