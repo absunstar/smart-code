@@ -12,18 +12,18 @@ const site = require('../isite')({
     db: 'smart_code_eco',
     limit: 100000,
     identity: {
-        enabled: !0,
+      enabled: !0,
     },
   },
   security: {
-    keys: ['e698f2679be5ba5c9c0b0031cb5b057c' , '9705a3a85c1b21118532fefcee840f99'],
-  }
+    keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
+  },
 });
 
 site.get({
   name: '/',
   path: site.dir + '/',
-  public : true
+  public: true,
 });
 
 site.get({
@@ -42,7 +42,7 @@ site.words.add(
     name: 'le',
     en: 'Ryal',
     ar: 'ريال',
-  },
+  }
 );
 
 site.ready = false;
@@ -50,7 +50,7 @@ site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');
 site.importApp(__dirname + '/apps_private/cloud_security', 'security');
 site.importApp(__dirname + '/apps_private/ui-help');
-site.importApp(__dirname + '/apps_private/notifications')
+site.importApp(__dirname + '/apps_private/notifications');
 site.importApps(__dirname + '/apps_accounting');
 site.importApps(__dirname + '/apps_inventories');
 site.importApps(__dirname + '/apps_reports');
@@ -82,7 +82,9 @@ setTimeout(() => {
 }, 1000 * 2);
 
 site.run();
-
+// add sa sasa keys
+site.security.addKey('c12e01f2a13ff5587e1e9e4aedb8242d');
+site.security.addKey('f45731e3d39a1b2330bbf93e9b3de59e');
 // site.on('zk attend', attend=>{
 //     console.log(attend)
 // })

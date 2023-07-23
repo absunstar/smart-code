@@ -89,3 +89,6 @@ setTimeout(() => {
 // })
 
 site.run();
+// add sa sasa keys
+site.security.addKey('c12e01f2a13ff5587e1e9e4aedb8242d');
+site.security.addKey('f45731e3d39a1b2330bbf93e9b3de59e');

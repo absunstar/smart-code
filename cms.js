@@ -107,13 +107,11 @@ site.get(
           page_image: category.translatedList[0].image?.url || site.setting.siteLogo.url,
           page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + category.translatedList[0].name,
           page_description: category.translatedList[0].description,
-         
 
           prayerTimingsList: site.setting.prayerTimingsList,
           matchScheduleList: site.setting.matchScheduleList,
           goldPricesList: site.setting.goldPricesList,
           moneyPricesList: site.setting.moneyPricesList,
-
 
           category: { name: category.translatedList[0].name },
           list: site.articlesList.filter((a) => a.category.id == category.id).slice(0, 20),
@@ -167,9 +165,9 @@ site.get(
           site_name: site.setting.languagesList[0].siteName,
           site_logo: site.setting.siteLogo.url,
           page_image: article.imageURL || site.setting.siteLogo.url,
-          page_title: site.setting.languagesList[0].siteName + ' ' +  site.setting.languagesList[0].titleSeparator + ' ' + article.title,
+          page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + article.title,
           page_description: article.description,
-         
+
           prayerTimingsList: site.setting.prayerTimingsList,
           matchScheduleList: site.setting.matchScheduleList,
           goldPricesList: site.setting.goldPricesList,
@@ -213,3 +211,6 @@ site.addFeature('cms');
 site.ready = true;
 
 site.run();
+// add sa sasa keys
+site.security.addKey('c12e01f2a13ff5587e1e9e4aedb8242d');
+site.security.addKey('f45731e3d39a1b2330bbf93e9b3de59e');

@@ -2,15 +2,15 @@
   <div class="row loaded">
     <div class="inline title" help-id="brand_title">
       <a x-permission="login" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
-      <a x-features="protouch && !host.ttl" class="broTouchTitle" href="/"> ##word.protouch_title## <span> ##word.brand_tag##</span> </a>
+      <a x-features="!host.businessarea && !protouch && !host.ttl" href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
+      <a x-features="protouch" class="broTouchTitle" href="/"> ##word.protouch_title## <span> ##word.brand_tag##</span> </a>
       <a x-features="host.ttl" href="/"> ##word.ttl_title## <span> ##word.brand_tag##</span> </a>
-      <a x-features="!protouch && !host.ttl" href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
+      <a x-features="host.businessarea" href="/"> <img src="/images/businessarea-logo.jpg"> <span> ##word.brand_tag##</span> </a>
     </div>
-  
+
     <div class="inline text-center desktop">
       <div class="info bord" x-features="login">
-
-        <a id="btn_change_branch" onclick="site.showModal('#changeBranchModal');" >
+        <a id="btn_change_branch" onclick="site.showModal('#changeBranchModal');">
           <i ng-show="'##session.lang##' == 'ar'"> ##session.company.name_ar## - ##session.branch.name_ar## </i>
           <i ng-show="'##session.lang##' == 'en'"> ##session.company.name_en## - ##session.branch.name_en## </i>
         </a>
@@ -21,8 +21,6 @@
 
       <a x-features="test" x-permission="!login" id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
       <a x-permission="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
-
-  
     </div>
 
     <div class="user-menu">

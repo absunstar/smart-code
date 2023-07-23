@@ -251,10 +251,17 @@ nav h2.brand a {
 }
 
 nav h2.brand a span {
-  font-size: 12px;
+  font-size: 14px;
   color: #ffffff;
+  vertical-align: super;
 }
-
+nav h2.brand .title a img {
+  width: 64px;
+  height: auto;
+  object-fit: fill;
+  display: inline-block;
+  border: 1px solid;
+}
 nav h2.brand a i {
   color: #ffffff;
 }
@@ -516,10 +523,10 @@ a.pro-template .description {
   body:has(.main-menu) {
     margin-right: 100px;
   }
-  nav.sitebar{
+  nav.sitebar {
     height: 90px;
   }
-  .main-menu{
+  .main-menu {
     top: 90px;
     bottom: 0px;
   }
