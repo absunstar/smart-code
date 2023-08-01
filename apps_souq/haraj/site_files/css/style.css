@@ -327,8 +327,9 @@ i-image img:hover {
 .haraj_logo {
   border-top: outset;
   vertical-align: middle;
-  height: 59px;
-  border-radius: 5px;
+  height: 75px;
+  border-radius: 7px;
+  padding: 0px 0px 2px;
 }
 
 .bgWhite {
@@ -563,14 +564,15 @@ i.fa.fa-check {
 .clock-area {
   display: block;
   position: relative;
-  background: var(--theme-color);
-  padding: 0px 20px;
-  border-radius: 5px;
+ /*  background: var(--theme-color); */
+ /*  padding: 0px 20px; */
+ /*  border-radius: 5px; */
 }
 .clock-area img {
-  height: 50px;
+  height: 65px;
   width: 50px;
   display: inline-block;
+  border-radius: 3px;
   padding: 0;
   margin: 0;
 }
