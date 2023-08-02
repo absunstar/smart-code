@@ -27,6 +27,11 @@
         background-color: #ecf9f6;
         background-repeat: repeat !important;
       }
+      @media screen and (max-width: 480px) {
+        table {
+          display: contents;
+        }
+      }
     </style>
     <style x-lang="ar">
       .nav1 {
@@ -298,7 +303,7 @@
               <table style="width: 100%">
                 <tr ng-repeat="a in contentList" class="">
                   <td class="border-bottom-ad">
-                    <div class="row ">
+                    <div class="row">
                       <div class="col-9">
                         <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
                           <p class="bold underline-hover ad-name pointer ellipsis-txt">{{a.name}}</p>
