@@ -582,7 +582,7 @@ i.fa.fa-check {
   font-family: 'Arabic';
   font-size: 18px;
   font-weight: bold;
-  right: 15px;
+  right: -5px;
   bottom: 0px;
   text-shadow: 1px 1px 5px #000;
 }
