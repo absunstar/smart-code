@@ -63,14 +63,12 @@
   }
 
   .haraj_name {
-    font-family: fantasy;
-    position: relative;
+    color: var(--theme-color);
     font-size: 20px;
-    text-align: center;
-    color: #ffffff;
-    bottom: 5px;
     font-weight: bold;
-    text-shadow: 1px 1px 70px #00ab08;
+    font-family: 'Arabic';
+    bottom: 5px;
+    position: relative;
   }
   .login-btn {
     border: 2px solid;
@@ -108,7 +106,7 @@
     position: relative;
     bottom: 13px;
     left: 64px;
-}
+  }
 
   .img-clock {
     position: relative;
