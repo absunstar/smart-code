@@ -108,7 +108,7 @@ svg#Layer_1 {
   bottom: 8%;
   border-radius: 45px;
   right: -15px;
-  background: #009688;
+  background: var(--theme-color);
   color: #fff !important;
   padding: 10px 20px;
   z-index: 99999999;
@@ -144,7 +144,7 @@ svg#Layer_1 {
 }
 
 .more-btn {
-  background: #006d56;
+  background: var(--theme-color);
   color: white;
   padding: 7px 9px;
   margin: 10px;
