@@ -408,9 +408,9 @@ p {
 }
 
 .adarea-image {
-  width: 100% !important;
+  width: 100px !important;
   border-radius: unset;
-  height: 85% !important;
+  height: 100px !important;
   position: relative;
 }
 
