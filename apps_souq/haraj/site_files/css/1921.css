@@ -34,7 +34,7 @@
   }
 
   .content {
-    width: calc(100% - 270px);
+    width: 95%;
     margin: 1em auto;
     padding: 0 15px;
     display: grid;
@@ -45,7 +45,6 @@
     grid-row-gap: 15px;
     grid-template-areas: 'tagSide main-content main-content main-content';
     direction: rtl;
-    max-width: 1514px;
   }
 
   .container {

@@ -1289,7 +1289,6 @@ img {
   }
 
   .content {
-    /* padding: 0 15px; */
     display: block;
     min-height: 100vh;
     direction: rtl;

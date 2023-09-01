@@ -72,8 +72,12 @@
   .nav-link {
     color: white;
     text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
-
+  a.nav-link:hover {
+    font-weight: bold;
+  }
   .nav1 {
     color: white;
     display: flex;
@@ -249,7 +253,7 @@
     width: 25px;
     border-radius: 50%;
     box-shadow: 1px 1px 5px 2px #fff;
-    margin: -5px 10px -5px 0px !important
+    margin: -5px 10px -5px 0px !important;
   }
 
   .mobilesection-head {
@@ -702,7 +706,7 @@
   }
 
   .login {
-    display: contents;
+    display: inline-block;
     font-size: 16px;
     color: var(--theme-color);
     font-weight: bolder;
@@ -716,7 +720,7 @@
   }
 
   .register {
-    display: flex;
+    display: inline-block;
     font-size: 16px;
     color: var(--theme-color);
     font-weight: bolder;
@@ -758,8 +762,9 @@
 
   .user {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: end;
     align-items: center;
+    padding: 5px;
   }
 
   .thirdheader {
@@ -846,8 +851,8 @@
     color: white;
     cursor: pointer;
     background-color: var(--theme-color);
-    width: 150px;
-    height: 43px;
+    width: auto;
+    height: auto;
     padding: 0;
     border-radius: 50px;
     border: 1px solid var(--theme-color);
@@ -1038,10 +1043,9 @@
   }
 
   .content {
-    width: calc(100% - 160px);
+    width: 95%;
     padding-left: 40px;
     margin: 1em auto;
-    /* padding: 0 15px; */
     display: grid;
     min-height: 100vh;
     grid-area: content;
@@ -1218,7 +1222,7 @@
     align-items: center;
   }
 
-  .bpYvLN>* {
+  .bpYvLN > * {
     flex: 1 1 0%;
   }
 
@@ -1233,7 +1237,7 @@
     padding: 0;
   }
 
-  .checkbox-button input+label {
+  .checkbox-button input + label {
     height: 50px;
     min-width: 50px;
     color: #fff;
@@ -1819,14 +1823,14 @@
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(849px, 597px)rotate(415deg);
+    transform: translate(849px, 597px) rotate(415deg);
   }
 
   .northern {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(518px, 195px)rotate(371deg);
+    transform: translate(518px, 195px) rotate(371deg);
   }
 
   .jouf {
@@ -1982,7 +1986,7 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    background-color:transparent;
+    background-color: transparent;
     z-index: 10000;
   }
 
