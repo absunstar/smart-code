@@ -19,7 +19,7 @@ const site = require('../isite')({
     },
   },
   security: {
-    keys: ['21232f297a57a5a743894a0e4a801fc3', 'f6fdffe48c908deb0f4c3bd36c032e72'],
+    keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
   },
 });
 
