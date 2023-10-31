@@ -36,11 +36,11 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
-    if (!site.setting.siteTemplate || !site.setting.siteLogo) {
+    if (!site.setting.siteTemplate || !site.setting.siteLogo || !site.setting.languagesList) {
       res.redirect('/admin');
       return;
     }
-    if (true || site.setting.siteTemplate.id == 1) {
+    if (site.setting.siteTemplate.id == 1) {
       let lang = site.setting.languagesList[0];
       if (!Array.isArray(lang.keyWordsList)) {
         lang.keyWordsList = [];
@@ -79,6 +79,8 @@ site.get(
           compress: true,
         }
       );
+    }else{
+      res.redirect('/admin');
     }
   }
 );
