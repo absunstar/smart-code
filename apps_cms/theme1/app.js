@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   site.TemplateList.push({
+    id : 1,
     name: 'Theme 1',
     categoryTemplateList: [
       { id: 1, en: 'Template 1', ar: 'نموذج 1' },
