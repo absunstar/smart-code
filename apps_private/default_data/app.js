@@ -48,7 +48,7 @@ module.exports = function init(site) {
     });
 
     site.onPOST('/api/default/items_group', (req, res) => {
-        
+
         $items_group.deleteAll({}, () => {
             default_items_group.forEach((g0) => {
                 let g = { ...g0 };

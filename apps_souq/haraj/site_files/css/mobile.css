@@ -64,10 +64,10 @@
 
   .haraj_name {
     color: var(--theme-color);
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
     font-family: 'Arabic';
-    bottom: 5px;
+    bottom: 24px;
     position: relative;
   }
   .login-btn {
@@ -156,7 +156,7 @@
     position: relative;
     transform: translateX(0%);
     transition: transform 0.5s ease-in-out;
-    width: max-content;
+    width: 210%;
   }
 
   .level-1 {

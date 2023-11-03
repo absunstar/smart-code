@@ -342,8 +342,8 @@
                                 <small>{{a.quantity_list[0].unit.name_##session.lang##}} {{a.quantity_list[0].net_value}} {{a.quantity_list[0].currency.name_##session.lang##}}</small>
                                 <small ng-show="a.quantity_list[0].discount > 0" class="line-through red">{{a.quantity_list[0].price}} {{a.quantity_list[0].currency.name_##session.lang##}}</small>
                                 <small class="save-money" ng-show="a.quantity_list[0].discount > 0">
-                                  ##word.save_money## {{a.quantity_list[0].discount}} <span ng-show="a.quantity_list[0].discount_type == 'percent'"> % </span>
-                                  <span ng-show="a.quantity_list[0].discount_type == 'number'"> $ </span>
+                                  ##word.save_money## {{a.quantity_list[0].discount}} <span ng-show="a.quantity_list[0] && a.quantity_list[0].discount_type == 'percent'"> % </span>
+                                  <span ng-show="a.quantity_list[0] && a.quantity_list[0].discount_type == 'number'"> $ </span>
                                 </small>
                               </b>
                             </div>

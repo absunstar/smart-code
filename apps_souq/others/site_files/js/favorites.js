@@ -17,7 +17,6 @@ app.controller('favorites', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.favoriteAdslist = response.data.list;
-     
         }
       },
       function (err) {

@@ -210,10 +210,10 @@ module.exports = function init(site) {
       if (body.mobile.toString().length == body.country.length_mobile) {
         response.done = true;
       } else {
-        response.error = 'Please enter a valid mobile number';
+        response.error = `Please enter a valid mobile number length ${body.country.length_mobile}`;
       }
     } else {
-      response.error = 'Please enter a valid mobile number';
+      response.error = `Please enter a valid mobile number length ${body.country.length_mobile}`;
     }
     res.json(response);
   });
@@ -270,12 +270,12 @@ module.exports = function init(site) {
       if (req.body.mobile.toString().length == req.body.length_mobile) {
         response.done = true;
       } else {
-        response.error = 'Please enter a valid mobile number';
+        response.error = `Please enter a valid mobile number length ${req.body.length_mobile}`;
         res.json(response);
         return;
       }
     } else {
-      response.error = 'Please enter a valid mobile number';
+      response.error = `Please enter a valid mobile number length ${req.body.length_mobile}`;
       res.json(response);
       return;
     }

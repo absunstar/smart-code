@@ -560,6 +560,7 @@ i.fa.fa-check {
 }
 
 .clock-area {
+  padding: 0px 5px;
   display: block;
   position: relative;
  /*  background: var(--theme-color); */

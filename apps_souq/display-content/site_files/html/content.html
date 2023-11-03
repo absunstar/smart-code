@@ -155,14 +155,13 @@
       <img class="warning_img" ng-src="{{ad.$warning_message.image_url}}" />
       <span>{{ad.$warning_message.name}}</span>
     </div>
+                                
     <div class="row" ng-show="ad && ad.disable_replies_feature">
       <div class="border warning_message">
         <img class="warning_img" src="/images/close_comments.png" />
         <span>##word.advertiser_disabled_replies_feature##</span>
       </div>
     </div>
-
-
 
     <div class="row bg-white content-ad" ng-hide="ad.disable_replies_feature" ng-repeat="c in ad.comment_list">
       <div class="row">

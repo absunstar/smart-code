@@ -469,6 +469,7 @@ module.exports = function init(site) {
         site.content_list[i] = ad;
       }
     });
+
     response.doc = ad;
     response.done = true;
     response.error = 'no id';
@@ -498,12 +499,16 @@ module.exports = function init(site) {
 
           a.favorite_list = a.favorite_list || [];
           a.follow_list = a.follow_list || [];
-          a.$favorite = a.favorite_list.some((_f) => {
-            return _f.user.id === req.session.user.id;
-          });
-          a.$follow = a.follow_list.some((_f) => {
-            return _f.user.id === req.session.user.id;
-          });
+          if (req.session.user) {
+            a.$favorite = a.favorite_list.some((_f) => {
+              return _f.user.id === req.session.user.id;
+            });
+          }
+          if (req.session.user) {
+            a.$follow = a.follow_list.some((_f) => {
+              return _f.user.id === req.session.user.id;
+            });
+          }
           a.comment_list = a.comment_list || [];
           a.comment_list.forEach((_c) => {
             _c.$time = site.xtime(_c.date, req.session.lang);
@@ -715,13 +720,13 @@ module.exports = function init(site) {
                 _a.$favorite = _a.favorite_list.some((_f) => {
                   return _f.user.id === req.session.user.id;
                 });
-                if(req.session.user.cart && req.session.user.cart.items ){
+                if (req.session.user.cart && req.session.user.cart.items) {
                   _a.$card = req.session.user.cart.items.some((_c) => {
                     return _c.id === req.session.user.id;
-                  });;
+                  });
                 }
               }
-              _a.$time = site.xtime(_a.date, req.session.lang);
+              _a.$time = site.xtime(_a.date, req.session.lang || 'ar');
             });
           }
           response.done = true;

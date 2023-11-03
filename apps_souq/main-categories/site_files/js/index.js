@@ -153,7 +153,6 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if (type == 'update') {
-            console.log("Dddddddddddddddddddd");
             $scope.main_categories = response.data.doc;
           } else {
             $scope.main_categories_view = response.data.doc;

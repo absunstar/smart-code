@@ -143,18 +143,18 @@
           <div class="row">
             <fieldset>
               <legend>##word.main_address##</legend>
-              <i-address ng-model="address.main"></i-address>
-              <i-checkbox label="##word.select##" ng-model="address.select_main"
-                ng-click="selectAddress(address,'main')"></i-checkbox>
+              <i-address ng-model="add.address.main"></i-address>
+              <i-checkbox label="##word.select##" ng-model="add.address.select_main"
+                ng-click="selectAddress(add.address,'main')"></i-checkbox>
             </fieldset>
             <br />
 
             <fieldset ng-show="address.other_list.length > 0 && defaultSettings.content.other_addresses_appear">
               <legend>##word.other_addresses##</legend>
-              <div class="row border padding" ng-repeat="o in address.other_list">
+              <div class="row border padding" ng-repeat="o in add.address.other_list">
                 <i-address ng-model="o"></i-address>
-                <i-checkbox label="##word.select##" ng-model="o.$select_address"
-                  ng-click="selectAddress(address,'other',$index)"></i-checkbox>
+                <i-checkbox label="##word.select##" ng-model="o.select_address"
+                  ng-click="selectAddress(add.address,'other',$index)"></i-checkbox>
               </div>
             </fieldset>
             <br />

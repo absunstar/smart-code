@@ -4,14 +4,14 @@
       <li class="deskside-header">
         <a class="tab_link side-notification" href="/messages">
           <i class="fa-solid fa-envelope space"></i>
-          <span ng-show="##user.message_count## > 0" class="side-badge ng-binding">##user.message_count##</span>
+          <span ng-show="user.message_count > 0" class="side-badge ng-binding">##user.message_count##</span>
           <span style="min-height: 22px" id="notif1" class="notif-name">##word.messages##</span>
         </a>
       </li>
       <li class="deskside-header">
         <a class="tab_link side-notification" href="/notific">
           <i class="fa-solid fa-bell space"></i>
-          <span ng-show="##user.notific_count## > 0" class="side-badge ng-binding">##user.notific_count##</span>
+          <span ng-show="user.notific_count > 0" class="side-badge ng-binding">##user.notific_count##</span>
           <span style="min-height: 22px" id="notif2" class="notif-name">##word.notifications##</span>
         </a>
       </li>
@@ -70,39 +70,25 @@
           >
         </li>
         <li>
-          <a ng-click="loadSubCategory2(category_header_list[0])" class="nav-link "
-            >{{category_header_list[0].name_##session.lang##}}</a
-          >
+          <a ng-click="loadSubCategory2(category_header_list[0])" class="nav-link">{{category_header_list[0].name_##session.lang##}}</a>
         </li>
         <li>
-          <a ng-click="loadSubCategory2(category_header_list[1])" class="nav-link "
-            >{{category_header_list[1].name_##session.lang##}}</a
-          >
+          <a ng-click="loadSubCategory2(category_header_list[1])" class="nav-link">{{category_header_list[1].name_##session.lang##}}</a>
         </li>
         <li>
-          <a ng-click="loadSubCategory2(category_header_list[2])" class="nav-link "
-            >{{category_header_list[2].name_##session.lang##}}</a
-          >
+          <a ng-click="loadSubCategory2(category_header_list[2])" class="nav-link">{{category_header_list[2].name_##session.lang##}}</a>
         </li>
         <li>
-          <a ng-click="loadSubCategory2(category_header_list[3])" class="nav-link "
-            >{{category_header_list[3].name_##session.lang##}}</a
-          >
+          <a ng-click="loadSubCategory2(category_header_list[3])" class="nav-link">{{category_header_list[3].name_##session.lang##}}</a>
         </li>
         <li>
-          <a ng-click="loadSubCategory2(category_header_list[4])" class="nav-link "
-            >{{category_header_list[4].name_##session.lang##}}</a
-          >
+          <a ng-click="loadSubCategory2(category_header_list[4])" class="nav-link">{{category_header_list[4].name_##session.lang##}}</a>
         </li>
         <li>
-          <a ng-click="loadSubCategory2(category_header_list[5])" class="nav-link "
-            >{{category_header_list[5].name_##session.lang##}}</a
-          >
+          <a ng-click="loadSubCategory2(category_header_list[5])" class="nav-link">{{category_header_list[5].name_##session.lang##}}</a>
         </li>
         <li>
-          <a ng-click="loadSubCategory2(category_header_list[6])" class="nav-link "
-            >{{category_header_list[6].name_##session.lang##}}</a
-          >
+          <a ng-click="loadSubCategory2(category_header_list[6])" class="nav-link">{{category_header_list[6].name_##session.lang##}}</a>
         </li>
         <li>
           <a href="/more_categories" class="nav-link underline-hover">
@@ -157,16 +143,16 @@
     </ul> -->
     </div>
     <div class="secondeheader-b">
-      <div class="secondeheader ">
+      <div class="secondeheader">
         <div class="center" href="/">
           <i class="burger-icon padding fa-solid fa-bars fa-sm"></i>
           <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##setting.logo##" onerror="this.src='/images/user.png'" alt="" />
-          <span  class="haraj_name pointer not-mobile" ng-click="indexLocation()">##setting.site_name##</span>
+          <span class="haraj_name pointer not-mobile" ng-click="indexLocation()">##setting.site_name##</span>
         </div>
         <form class="searchbar">
           <div class="searchgroup">
             <div class="searchicon">
-               <img src="/assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" /> 
+              <img src="/assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" />
             </div>
             <input
               type="search"
@@ -191,7 +177,7 @@
           <i class="close-menu fa-solid fa-xmark fa-lg"></i>
           <a class="notification" x-permissions="login" href="/cart" ng-show="##setting.order_settings.activate_orders##">
             <i class="cart fa-solid fa-cart-shopping"></i>
-            <span ng-show="user.cart.items.length > 0"  class="badge ng-binding">{{user.cart.items.length || 0}}</span>
+            <span ng-show="user.cart.items.length > 0" class="badge ng-binding">{{user.cart.items.length || 0}}</span>
           </a>
           <div>
             <div x-permission="!login" class="login login-btn padding-register pointer" href="/register">
@@ -203,8 +189,8 @@
               <a href="/login">##word.enter##</a>
             </div>
           </div>
-          <a x-lang="ar" ng-click="changeLang('en')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.en_lang## </a>
-          <a x-lang="en" ng-click="changeLang('ar')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.ar_lang## </a>
+          <a x-lang="ar" ng-click="changeLang('en')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.EN## </a>
+          <a x-lang="en" ng-click="changeLang('ar')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.AR## </a>
           <div class="clock-area not-mobile" x-setting="appearance_clock">
             <img src="/images/clock2.png" onerror="this.src='/images/user.png'" alt="" />
             <span id="time"> </span>
@@ -242,13 +228,12 @@
             </div>
           </div>
 
-       
           <hr class="cf-mobile" />
-          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link  lang-btn">
+          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link lang-btn">
             <i class="fa fa-globe"></i>
             ##word.en_lang##
           </a>
-          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv link  lang-btn">
+          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv link lang-btn">
             <i class="fa fa-globe"></i>
             ##word.ar_lang##
           </a>
@@ -266,13 +251,13 @@
 
     <li class="mobile-header" x-permission="login">
       <a class="tab_link" href="/messages">
-        <span ng-show="##user.message_count## > 0" class="side-badge ng-binding">##user.message_count##</span>
+        <span ng-show="user.message_count > 0" class="side-badge ng-binding">##user.message_count##</span>
         <i class="fa-solid fa-envelope"></i>
       </a>
     </li>
     <li class="mobile-header" x-permission="login">
       <a class="tab_link" href="/notific">
-        <span ng-show="##user.notific_count## > 0" class="side-badge ng-binding">##user.notific_count##</span>
+        <span ng-show="user.notific_count > 0" class="side-badge ng-binding">##user.notific_count##</span>
         <i class="fa-solid fa-bell space"></i>
       </a>
     </li>
@@ -320,7 +305,7 @@
   }
 </script>
 
-<script  x-setting="appearance_clock">
+<script x-setting="appearance_clock">
   function startTime() {
     var d = new Date();
     var local = d.getTime();
