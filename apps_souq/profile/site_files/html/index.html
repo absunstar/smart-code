@@ -303,7 +303,7 @@
 
   <body class="##session.lang## loaded" ng-controller="profile">
     <div x-import="haraj/header.html"></div>
-
+ 
     <div id="main-layout" class="container">
       <div x-import="profile/rating_modal.html"></div>
       <div x-import="profile/message_modal.html"></div>
@@ -330,6 +330,9 @@
 
             <div class="row margin darkgray font-22 padding center" ng-show="!user.$isOnline">
               <p>##word.last_seen## {{user.$last_seen}}</p>
+            </div>
+            <div class="row margin green font-22 padding center" ng-show="user.$isOnline">
+              <p>##word.online##</p>
             </div>
 
             <div class="center">

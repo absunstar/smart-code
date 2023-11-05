@@ -334,7 +334,24 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err && doc) {
           response.done = true;
-
+          if (doc.profile) {
+            if (doc.followers_list && doc.followers_list.length > 0 && req.session.user) {
+              doc.followers_list.forEach((_f) => {
+                if (_f == req.session.user.id) {
+                  doc.$is_follow = true;
+                }
+              });
+            }
+            doc.$created_date = site.xtime(doc.created_date, req.session.lang || 'ar');
+            let date = new Date(doc.visit_date);
+            date.setMinutes(date.getMinutes() + 1);
+            if (new Date() < date) {
+              doc.$isOnline = true;
+            } else {
+              doc.$isOnline = false;
+              doc.$last_seen = site.xtime(doc.visit_date, req.session.lang || 'ar');
+            }
+          }
           response.doc = doc;
         } else if (err) {
           response.error = err.message;

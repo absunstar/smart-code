@@ -428,7 +428,7 @@ module.exports = function init(site) {
           response.done = true;
           if (docs) {
             docs.forEach(_d => {
-              _d.$time = site.xtime(_d.date, req.session.lang);
+              _d.$time = site.xtime(_d.date, req.session.lang|| 'ar');
             });
           }
           response.list = docs;

@@ -162,7 +162,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
       }
     );
   };
-
+ 
   $scope.displayContent = function (id) {
     window.open(`/display-content?id=${id}`, '_blank');
   };

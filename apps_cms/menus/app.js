@@ -409,7 +409,7 @@ module.exports = function init(site) {
             en: 'Category',
             ar: 'قسم',
           },
-          category: { id: topList[i].id, name: topList[i].translatedList.find((t) => t.language.id == req.session.lang).name },
+          category: { id: topList[i].id, name: topList[i].translatedList.find((t) => t.language.id == req.session.lang || 'ar').name },
         };
         topList[i].translatedList.forEach((_t) => {
           console.log( _t.imageUrl);
@@ -431,7 +431,7 @@ module.exports = function init(site) {
                 en: 'Category',
                 ar: 'قسم',
               },
-              category: { id: _subCategory.id, name: _subCategory.translatedList.find((t) => t.language.id == req.session.lang).name },
+              category: { id: _subCategory.id, name: _subCategory.translatedList.find((t) => t.language.id == req.session.lang|| 'ar').name },
             };
             _subCategory.translatedList.forEach((_t) => {
               console.log( _t.imageUrl);

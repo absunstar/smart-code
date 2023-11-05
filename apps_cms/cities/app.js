@@ -269,7 +269,7 @@ module.exports = function init(site) {
             .slice(0, limit);
           list.forEach((doc) => {
             if (doc && doc.translatedList) {
-              if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+              if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang|| 'ar'))) {
                 let obj = {
                   ...doc,
                   ...langDoc,

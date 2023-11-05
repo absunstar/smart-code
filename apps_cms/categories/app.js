@@ -212,7 +212,7 @@ module.exports = function init(site) {
     response.list = [];
     response.topList = [];
     site.categoriesList.forEach((doc) => {
-      if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang)) && doc.active) {
+      if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang|| 'ar')) && doc.active) {
         if (!where.active || doc.active) {
           if (!doc.topParentId) {
             response.topList.push({

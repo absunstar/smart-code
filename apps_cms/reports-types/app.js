@@ -178,7 +178,7 @@ module.exports = function init(site) {
 
     response.list = [];
     site.clusterList.forEach((doc) => {
-      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+      if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang || 'ar'))) {
         let obj = {
           ...doc,
           ...langDoc,

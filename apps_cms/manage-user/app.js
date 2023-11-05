@@ -11,10 +11,13 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images',
   });
   site.get('/api/user/update-visit-date', (req, res) => {
-    req.session.user.visit_date = new Date();
-
-    site.security.updateUser(req.session.user, (err, result) => { })
-    res.json({ done: true })
+    if (req.session.user) {
+      req.session.user.visit_date = new Date();
+      site.security.updateUser(req.session.user, (err, result) => {});
+      res.json({ done: true });
+    } else {
+      res.json({ done: false });
+    }
   });
 
   site.post('/api/user/follow_category', (req, res) => {
@@ -154,7 +157,6 @@ module.exports = function init(site) {
             _user.mobile = req.body.user.mobile;
             _user.hideMobile = req.body.user.hideMobile;
             _user.mobileList = req.body.user.mobileList;
-
           }
 
           site.security.isUserExists(_user, function (err, user_found) {

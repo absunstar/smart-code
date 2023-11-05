@@ -16,6 +16,11 @@
         "ar": "تقييم"
     },
     {
+        "name": "online",
+        "en": "Online",
+        "ar": "متصل"
+    },
+    {
         "name": "commission_payment",
         "en": "Commission payment",
         "ar": "دفع العمولة"

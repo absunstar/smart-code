@@ -487,7 +487,7 @@ module.exports = function init(site) {
         if (req.body.display) {
           a.$update = true;
           a.number_views += 1;
-          a.$time = site.xtime(a.date, req.session.lang);
+          a.$time = site.xtime(a.date, req.session.lang|| 'ar');
           if (a.videos_list && a.videos_list.length > 0) {
             a.videos_list.forEach((v) => {
               v.$link = v.link;
@@ -511,10 +511,10 @@ module.exports = function init(site) {
           }
           a.comment_list = a.comment_list || [];
           a.comment_list.forEach((_c) => {
-            _c.$time = site.xtime(_c.date, req.session.lang);
+            _c.$time = site.xtime(_c.date, req.session.lang|| 'ar');
             if (_c.reply_list && _c.reply_list.length > 0) {
               _c.reply_list.forEach((_r) => {
-                _r.$time = site.xtime(_r.date, req.session.lang);
+                _r.$time = site.xtime(_r.date, req.session.lang|| 'ar');
               });
             }
           });
