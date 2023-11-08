@@ -12,7 +12,15 @@
         width: 25px;
         margin: -5px 10px -5px 0px !important;
       }
-
+      .span-category {
+        min-height: 22px;
+        font-size: larger;
+        font-weight: bold;
+      }
+      .image-category {
+        height: 64px;
+        width: 64px;
+      }
       :root {
         --body-margin-top: 0px;
         --body-margin-bottom: 0px;
@@ -27,7 +35,6 @@
         background-color: #ecf9f6;
         background-repeat: repeat !important;
       }
-
     </style>
     <style x-lang="ar">
       .nav1 {
@@ -182,7 +189,7 @@
                 <ul class="tag-list">
                   <li id="cat_{{c.id}}" class="tag" ng-class="{'category-selected' : c.$isSelected == true}" ng-repeat="c in topParentCategoriesList">
                     <a class="tab_link" ng-click="loadSubCategory(c)" href=""
-                      ><img alt="car" loading="lazy" height="35" width="35" ng-src="{{c.image_url}}" /><span style="min-height: 22px">{{c.name_##session.lang##}}</span></a
+                      ><img alt="car" loading="lazy" class="image-category" ng-src="{{c.image_url}}" /><span class="span-category" style="min-height: 22px">{{c.name_##session.lang##}}</span></a
                     >
                   </li>
                 </ul>

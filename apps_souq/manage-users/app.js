@@ -10,7 +10,10 @@ module.exports = function init(site) {
     name: '/images',
     path: __dirname + '/site_files/images',
   });
-
+  site.post({
+    name: '/api/gender/all',
+    path: __dirname + '/site_files/json/gender.json',
+  });
   site.post({
     name: '/api/users_types/all',
     path: __dirname + '/site_files/json/users_types.json',
@@ -150,8 +153,10 @@ module.exports = function init(site) {
             } else {
               _user.password = req.body.user.new_password;
             }
-          } else if (type === 'name' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'phone' || type === 'mobile') {
+          } else if (type === 'name' || type === 'logo' || type === 'birth_date' || type === 'name' || type === 'phone' || type === 'mobile') {
             _user.profile = req.body.user.profile;
+          } else if(type === 'gender') {
+            _user.gender = req.body.user.gender;
           }
 
           site.security.isUserExists(_user, function (err, user_found) {

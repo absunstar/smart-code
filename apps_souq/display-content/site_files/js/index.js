@@ -3,8 +3,6 @@ app.controller('display_content', function ($scope, $http, $timeout) {
   $scope.ad = {};
   $scope.userId = site.toNumber('##user.id##');
 
-
-
   $scope.getContentList = function (ad, type) {
     $scope.busy = true;
     $scope.contentList = [];
@@ -13,7 +11,6 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     where['main_category.id'] = ad.main_category.id;
     where['id'] = { $ne: ad.id };
     if (type) {
-
       if (ad.address.country && ad.address.country.id && type == 'country') {
         where['address.country.id'] = ad.address.country.id;
       } else if (ad.address.gov && ad.address.gov.id && type == 'gov') {
@@ -85,10 +82,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       data: {
         where: {
           status: 'active',
-          $or: [
-            { id: main_category.id },
-            { id: { $in: main_category.parent_list_id } }
-          ]
+          $or: [{ id: main_category.id }, { id: { $in: main_category.parent_list_id } }],
         },
         select: { id: 1, name_ar: 1, name_en: 1, image_url: 1 },
       },
@@ -144,7 +138,6 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     site.showModal('#messageModal');
     if (id) {
       site.hideModal(`#${id}`);
-
     }
   };
 
@@ -199,54 +192,49 @@ app.controller('display_content', function ($scope, $http, $timeout) {
 
     let reply = document.querySelector(`#reply_${code}`);
     if (reply) {
-      if (reply.style.display === "block") {
-        reply.style.display = "none";
+      if (reply.style.display === 'block') {
+        reply.style.display = 'none';
       } else {
-        reply.style.display = "block";
+        reply.style.display = 'block';
       }
     }
   };
 
   $scope.updateFeedback = function (type, other, comment) {
-
     $scope.error = '';
 
     if (type == 'favorite') {
       $scope.activity.favorite = other;
-
     } else if (type == 'follow') {
       $scope.activity.follow = other;
-
     } else if (type == 'reply_comment') {
       let v = site.validated(`#reply_${comment.code}`);
 
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
-      };
+      }
       $scope.activity.comment_code = other;
       $scope.activity.$comment = comment.$reply_comment;
       comment.$reply_comment = '';
-
     } else if (type == 'report') {
       let v = site.validated('#reportModal');
 
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
-      };
+      }
       if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = '##word.must_select_report_type##';
         return;
       }
-
     } else if (type == 'report_comment') {
       let v = site.validated('#reportCommentModal');
 
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
-      };
+      }
       if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = '##word.must_select_report_type##';
         return;
@@ -257,7 +245,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
-      };
+      }
       if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = '##word.must_select_report_type##';
         return;
@@ -277,7 +265,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
           /* $scope.ad = response.data.doc; */
           if (type == 'comment') {
             $scope.ad.comment_list.push({
-              user: { name: '##user.profile.name##', id: site.toNumber('##user.id##'), last_name: '##user.profile.last_name##', image_url: '##user.profile.image_url##' },
+              user: { name: '##user.profile.name##', id: site.toNumber('##user.id##'), last_name: '##user.profile.last_name##', image_url: '##user.profile.image_url##', email: '##user.email##' },
               comment_type: $scope.activity.comment_type,
               comment: $scope.activity.comment,
               date: new Date(),
@@ -290,7 +278,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
               if ($scope.activity.comment_code == _c.code) {
                 _c.reply_list = _c.reply_list || [];
                 _c.reply_list.push({
-                  user: { name: '##user.profile.name##', last_name: '##user.profile.last_name##', image_url: '##user.profile.image_url##' },
+                  user: { name: '##user.profile.name##', last_name: '##user.profile.last_name##', image_url: '##user.profile.image_url##', email: '##user.email##' },
                   comment_type: $scope.activity.comment_type,
                   comment: $scope.activity.$comment,
                   date: new Date(),
@@ -335,13 +323,12 @@ app.controller('display_content', function ($scope, $http, $timeout) {
 
   $scope.selectReportAd = function (report) {
     $scope.error = '';
-    $scope.reportAdList.forEach(_r => {
+    $scope.reportAdList.forEach((_r) => {
       _r.$isSelected = false;
     });
     report.$isSelected = true;
     $scope.activity.report_type = report;
   };
-
 
   $scope.getUserAd = function (id) {
     $scope.busy = true;
@@ -356,12 +343,11 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.userAd = response.data.doc;
-
         } else {
           $scope.error = response.data.error;
         }
       },
-      function (err) { }
+      function (err) {}
     );
   };
 
@@ -393,7 +379,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) { }
+      function (err) {}
     );
   };
 
@@ -456,7 +442,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       data: {
         where: { active: true },
         post: true,
-        select: { id: 1, name_ar: 1, name_en: 1, report_comments: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, report_comments: 1 },
       },
     }).then(
       function (response) {

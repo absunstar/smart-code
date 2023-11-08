@@ -12,7 +12,6 @@ app.controller('haraj', function ($scope, $http, $timeout) {
       where['ad_status.id'] = 1;
       if (where['category_id']) {
         window.history.pushState(null, null, '/category/' + where['category_id'] + '/' + where['category_name_en'] + '-' + where['category_name_ar']);
-
         delete where['category_name_ar'];
         delete where['category_name_en'];
       }

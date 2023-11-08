@@ -131,7 +131,7 @@ module.exports = function init(site) {
           let _user = { ...user };
           if (type === 'email') {
             if (req.body.user.new_email) {
-              if (site.feature('souq')) {
+              if (site.feature('souq') ||req.body.user.$souq ) {
                 _user.email = req.body.user.new_email;
               } else {
                 if (!req.body.user.new_email.contains('@') && !req.body.user.new_email.contains('.')) {
@@ -154,23 +154,25 @@ module.exports = function init(site) {
               return;
             }
           } else if (type === 'password') {
-            if (req.body.user.current_password !== _user.password) {
+            if (!req.body.user.$current_password ||req.body.user.$current_password !== _user.password) {
               response.error = 'Current Password Error';
               res.json(response);
               return;
-            } else if (req.body.user.re_password !== req.body.user.new_password) {
+            } else if (!req.body.user.$re_password || req.body.user.$re_password !== req.body.user.$new_password) {
               response.error = 'Password does not match';
               res.json(response);
               return;
             } else {
-              _user.password = req.body.user.new_password;
+              _user.password = req.body.user.$new_password;
             }
-          } else if (type === 'first_name' || type === 'name' || type === 'cover' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'about_me') {
+          } else if (type === 'first_name' || type === 'name' || type === 'cover' || type === 'logo' || type === 'address' || type === 'birth_date' || type === 'name' || type === 'about_me') {
             _user.profile = req.body.user.profile;
           } else if (type === 'mobile') {
             _user.mobile = req.body.user.mobile;
             _user.hide_mobile = req.body.user.hide_mobile;
             _user.mobile_list = req.body.user.mobile_list;
+          } else if(type === 'gender') {
+            _user.gender = req.body.user.gender;
           }
 
           site.security.isUserExists(_user, function (err, user_found) {

@@ -42,7 +42,7 @@
           ng-model="manage_user.profile.about_me"> </i-textarea>
 
         <i-control class="input-style" v="r" ng-show="viewText === 'password'" type="password"
-          label="##word.current_password##" ng-model="manage_user.current_password"> </i-control>
+          label="##word.current_password##" ng-model="manage_user.$current_password"> </i-control>
 
       </div>
 
@@ -97,11 +97,11 @@
       <div class="row center" ng-show="viewText === 'password'">
         <div class="col2"></div>
         <i-control v="r" class="col4 input-style" type="password" label="##word.new_password##"
-          ng-model="manage_user.new_password"> </i-control>
+          ng-model="manage_user.$new_password"> </i-control>
         <i-button class="inline-block" type="add" ng-show="viewText === 'password'" label="##word.save##"
           ng-click="editPersonalInfoUser('password')"></i-button>
         <i-control v="r" class="col4 input-style" type="password" label="##word.security_user_password_return##"
-          ng-model="manage_user.re_password"> </i-control>
+          ng-model="manage_user.$re_password"> </i-control>
       </div>
     </div>
 

@@ -159,6 +159,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.genderList = response.data;
+        console.log($scope.genderList);
       },
       function (err) {
         $scope.busy = false;
@@ -620,7 +621,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     site.showModal('#adDeleteModal');
   };
 
-  $scope.deleteAd = function () {
+  $scope.deleteAd = function (id) {
     $scope.busy = true;
     $scope.error = '';
 
@@ -628,7 +629,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/contents/delete',
       data: {
-        id: $scope.ad.id,
+        id: id,
       },
     }).then(
       function (response) {

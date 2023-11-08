@@ -360,7 +360,6 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
-          console.log(docs);
           docs.forEach((_doc) => {
             _doc.messages_list.forEach((_m) => {
               if (_m.user_id != req.session.user.id && !_m.show) {
