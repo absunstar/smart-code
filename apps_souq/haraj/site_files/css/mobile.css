@@ -63,7 +63,9 @@
   }
 
   .haraj_name {
-    color: var(--theme-color);
+    background-image: linear-gradient(to left, #009688, gold, #009688, gold);
+    -webkit-background-clip: text;
+    color: transparent;
     font-size: 17px;
     font-weight: bold;
     font-family: 'Arabic';

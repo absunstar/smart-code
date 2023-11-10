@@ -339,7 +339,6 @@ app.controller('contents', function ($scope, $http, $timeout) {
     }
   };
 
-
   $scope.getAdList = function (where) {
     $scope.busy = true;
     window.page_limit = window.page_limit || 20;

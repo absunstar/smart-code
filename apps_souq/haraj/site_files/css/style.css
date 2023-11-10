@@ -337,7 +337,9 @@ i-image img:hover {
 }
 
 .haraj_name {
-  color: var(--theme-color);
+  background-image: linear-gradient(to left, #009688, gold, #009688, gold);
+  -webkit-background-clip: text;
+  color: transparent;
   font-size: 26px;
   font-weight: bold;
   padding-left: 10px;
