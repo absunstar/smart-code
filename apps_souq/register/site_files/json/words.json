@@ -2,7 +2,7 @@
   {
     "name": "register_with_mobile_number",
     "en": "Register with a mobile number",
-    "ar": "التسجيل برقم الموبايل"
+    "ar": "التسجيل برقم الجوال"
   },
   {
     "name": "register_with_email",
@@ -72,7 +72,7 @@
   {
     "name": "mobile_number_already_used",
     "en": "The mobile number already used",
-    "ar": "رقم الموبايل مستخدم من قبل"
+    "ar": "رقم الجوال مستخدم من قبل"
   },
   {
     "name": "email_already_used",
@@ -117,7 +117,7 @@
   {
     "name": "mobile_phone_number",
     "en": "Mobile Number",
-    "ar": "رقم الموبايل"
+    "ar": "رقم الجوال"
   },
   {
     "name": "email_or_pass_error",

@@ -192,7 +192,6 @@ module.exports = function init(site) {
       });
       delete where['name'];
     }
-
     $ratings.findMany(
       {
         select: req.body.select || {},

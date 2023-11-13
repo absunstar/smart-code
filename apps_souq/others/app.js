@@ -85,7 +85,12 @@ module.exports = function init(site) {
             res.json(response);
           });
         } else {
-          response.error = err.message;
+          if(err){
+            response.error = err.message;
+          } else {
+            response.error = "Err found";
+
+          }
           res.json(response);
         }
       }

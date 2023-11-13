@@ -1,4 +1,4 @@
-let btn1 = document.querySelector(".tab-link");
+let btn1 = document.querySelector('.tab-link');
 if (btn1) {
   btn1.click();
 }
@@ -34,7 +34,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*complete the rating correctly*')) {
-            $scope.error = "##word.please_complete_rating_correctly##"
+            $scope.error = '##word.please_complete_rating_correctly##';
           }
         }
       },
@@ -43,7 +43,6 @@ app.controller('profile', function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.getAdsList = function (where) {
     $scope.busy = true;
@@ -97,7 +96,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.ratingList = response.data.list;
           $scope.positive = response.data.positive;
-          $scope.rate = $scope.positive / $scope.ratingList.length * 100;
+          $scope.rate = ($scope.positive / $scope.ratingList.length) * 100;
           $scope.negative = response.data.negative;
           $scope.exist_user = response.data.exist_user;
         }
@@ -162,7 +161,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
       }
     );
   };
- 
+
   $scope.displayContent = function (id) {
     window.open(`/display-content?id=${id}`, '_blank');
   };
@@ -199,7 +198,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
       url: '/api/user/view',
       data: {
         id: site.toNumber('##params.id##'),
-        profile : true,
+        profile: true,
       },
     }).then(
       function (response) {
@@ -209,7 +208,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
           if ($scope.user.id == site.toNumber('##user.id##')) {
             $scope.user.$same_email = true;
           }
-          $scope.user.$is_follow = response.data.follow;
+
         } else {
           $scope.error = response.data.error;
         }
@@ -223,5 +222,5 @@ app.controller('profile', function ($scope, $http, $timeout) {
 
   $scope.getRatingList();
   $scope.getAdsList();
- /*  $scope.getUser(); */
+  $scope.getUser();
 });

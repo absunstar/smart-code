@@ -43,8 +43,8 @@
             </td>
 
             <td class="center not-print">
-<!--               <i-button x-permissions="commission_report_view || commission_report_manage" type="view" label="##word.details##" ng-click="displayDetailsPay(c)"></i-button>
- -->              <i-button x-permissions="commission_report_update || commission_report_manage" label="##word.approval##" ng-hide="c.approval" ng-click="updateApproval(c,true)"></i-button>
+               <i-button x-permissions="commission_report_view || commission_report_manage" type="view" label="##word.details##" ng-click="displayDetailsPay(c)"></i-button>
+               <i-button x-permissions="commission_report_update || commission_report_manage" label="##word.approval##" ng-hide="c.approval" ng-click="updateApproval(c,true)"></i-button>
               <i-button x-permissions="commission_report_update || commission_report_manage" label="##word.reject##" ng-hide="c.approval == false" ng-click="updateApproval(c,false)"></i-button>
 
               <i-button x-permissions="commission_report_delete || commission_report_manage" type="delete" label="##word.delete##" ng-click="displayDeletePay(c)"></i-button>

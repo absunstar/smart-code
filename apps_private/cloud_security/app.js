@@ -336,8 +336,10 @@ module.exports = function init(site) {
           response.done = true;
           if (doc.profile) {
             if (doc.followers_list && doc.followers_list.length > 0 && req.session.user) {
+              console.log(doc.followers_list);
               doc.followers_list.forEach((_f) => {
                 if (_f == req.session.user.id) {
+                  console.log(_f , req.session.user.id);
                   doc.$is_follow = true;
                 }
               });
