@@ -115,16 +115,12 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
+  
     let ad = null;
     site.pages_list.forEach((a) => {
-      if (a.id == req.body.id) {
+      if (req.body.id && a.id == req.body.id) {
+        ad = a;
+      } else  if (req.body.url && a.url == req.body.url) {
         ad = a;
       }
     });
