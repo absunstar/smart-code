@@ -607,17 +607,20 @@ a {
 .BNSubSectionheader {
   width: auto;
   height: auto;
+  min-width: 20vw;
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-right: 10px;
+  margin-right: 5px;
   background-color: var(--background1);
   color: var(--color1);
   font-size: 28px;
   box-shadow: 0px 1px 8px var(--background1x);
   border-radius: 45px 10px 0px 45px;
 }
-
+.BNSubSectionheader p {
+  text-align: center;
+}
 /* end Breaking News */
 
 /* start mainsection*/
