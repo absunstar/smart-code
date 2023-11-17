@@ -601,7 +601,9 @@ a {
 }
 
 .BNSubSection {
-  margin-right: -10px;
+  position: absolute;
+  left: 73%;
+  z-index: 9999;
 }
 
 .BNSubSectionheader {
@@ -609,13 +611,13 @@ a {
   height: auto;
   min-width: 20vw;
   padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  background-color: var(--background1);
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 0;
+  background-color: var(--background1x);
   color: var(--color1);
   font-size: 28px;
-  box-shadow: 0px 1px 8px var(--background1x);
+  box-shadow: 0px 1px 8px var(--background1);
   border-radius: 45px 10px 0px 45px;
 }
 .BNSubSectionheader p {

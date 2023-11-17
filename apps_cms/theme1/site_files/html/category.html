@@ -4,7 +4,7 @@
     <style>
       .BNSubSection {
         position: absolute;
-        right: 125px;
+        left: 73%;
         z-index: 9999;
       }
     </style>
@@ -31,7 +31,7 @@
       </div>
     </div>
     <div x-import="theme1/wedgite.html"></div>
-    <footer  x-import="theme1/footer.html"  class="footer d-flex flex-column justify-content-center align-items-center"></footer>
+    <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
     <script>
       app.controller('mainController', ($scope, $http, $timeout, $interval) => {
         $scope.page = site.showObject('##data.#page##');
