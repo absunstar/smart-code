@@ -203,7 +203,7 @@ a {
 }
 
 .newsTools {
-  top: -270px;
+  top: -240px;
   position: relative;
 }
 .miniTitle {
@@ -606,7 +606,6 @@ a {
 .BNSubSection {
   position: absolute;
   left: 73%;
-  z-index: 9999;
 }
 
 .BNSubSectionheader {
