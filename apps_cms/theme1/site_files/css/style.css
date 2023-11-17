@@ -41,6 +41,9 @@ body {
   border-radius: 25px;
   box-shadow: 1px 1px 8px var(--background1);
 }
+.breakingNewsSection > div:nth-child(2){
+  padding-top: 70px;
+}
 .mainSectionNews {
   margin-bottom: 20px;
   padding: 20px;
