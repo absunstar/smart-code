@@ -4,6 +4,44 @@ m = n.getMonth() + 1;
 d = n.getDate();
 document.getElementById('todaydateXlscreen').innerHTML = m + '/' + d + '/' + y;
 
+function playVideo(src) {
+  if ((a = document.querySelector('#videopalyer'))) {
+    a.classList.add('videopalyer');
+    if ((v = a.querySelector('video'))) {
+      v.src = src;
+      v.play();
+    }
+  }
+}
+function CloseVideo() {
+  if ((a = document.querySelector('#videopalyer'))) {
+    a.classList.remove('videopalyer');
+    if ((au = a.querySelector('video'))) {
+      au.pause();
+      au.src = null;
+    }
+  }
+}
+
+function playAudio(src) {
+  if ((a = document.querySelector('#audiopalyer'))) {
+    a.classList.add('audiopalyer');
+    if ((au = a.querySelector('audio'))) {
+      au.src = src;
+      au.play();
+    }
+  }
+}
+function CloseAudio() {
+  if ((a = document.querySelector('#audiopalyer'))) {
+    a.classList.remove('audiopalyer');
+    if ((au = a.querySelector('audio'))) {
+      au.pause();
+      au.src = null;
+    }
+  }
+}
+
 var pt = window.matchMedia('(max-width: 425px)');
 function myFunction(pt) {
   if (pt.matches) {
@@ -50,44 +88,6 @@ burgermenuToggle.addEventListener('mousedown', () => {
   console.log('test');
 });
 
-function playVideo(src) {
-  if ((a = document.querySelector('#videopalyer'))) {
-    a.classList.add('videopalyer');
-    if ((v = a.querySelector('video'))) {
-      v.src = src;
-      v.play();
-    }
-  }
-}
-function CloseVideo() {
-  if ((a = document.querySelector('#videopalyer'))) {
-    a.classList.remove('videopalyer');
-    if ((au = a.querySelector('video'))) {
-      au.pause();
-      au.src = null;
-    }
-  }
-}
-
-function playAudio(src) {
-  if ((a = document.querySelector('#audiopalyer'))) {
-    a.classList.add('audiopalyer');
-    if ((au = a.querySelector('audio'))) {
-      au.src = src;
-      au.play();
-    }
-  }
-}
-function CloseAudio() {
-  if ((a = document.querySelector('#audiopalyer'))) {
-    a.classList.remove('audiopalyer');
-    if ((au = a.querySelector('audio'))) {
-      au.pause();
-      au.src = null;
-    }
-  }
-}
-
 let closeSButton = document.querySelectorAll('#closeSButton');
 let albumimageslider = document.querySelectorAll('#albumimageslider');
 let imagesFile = document.querySelectorAll('#imagesFile');
@@ -103,7 +103,6 @@ for (let i = 0; i < imagesFile.length; i++) {
     });
   }
 }
-
 
 let IsliderContainer = document.querySelectorAll('.imageslider-slider-container');
 let IinnerSlider = document.querySelectorAll('.imageslider-inner-slider');

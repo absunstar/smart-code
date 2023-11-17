@@ -166,7 +166,9 @@
 .logo img {
   object-fit: cover;
 }
-
+.site-title {
+  color: var(--color4);
+}
 .ceo {
   display: flex;
   flex-direction: column;

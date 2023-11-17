@@ -79,7 +79,7 @@ site.get(
           compress: true,
         }
       );
-    }else{
+    } else {
       res.redirect('/admin');
     }
   }
@@ -146,8 +146,9 @@ site.get(
       res.redirect('/admin');
       return;
     }
+
+    let article = site.articlesList.find((a) => a.id == req.params.id);
     if (req.route.name0 == '/a/:id') {
-      let article = site.articlesList.find((a) => a.id == req.params.id);
       if (article) {
         res.redirect('/article/' + article.id + '/' + encodeURI(article.title2));
       } else {
@@ -155,45 +156,47 @@ site.get(
       }
       return;
     }
-    if (true || site.setting.siteTemplate.id == 1) {
-      let article = site.articlesList.find((a) => a.id == req.params.id);
-      if (!article) {
-        res.redirect('/');
-        return;
-      }
-      res.render(
-        'theme1/article.html',
-        {
-          site_name: site.setting.languagesList[0].siteName,
-          site_logo: site.setting.siteLogo.url,
-          page_image: article.imageURL || site.setting.siteLogo.url,
-          page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + article.title,
-          page_description: article.description,
 
-          prayerTimingsList: site.setting.prayerTimingsList,
-          matchScheduleList: site.setting.matchScheduleList,
-          goldPricesList: site.setting.goldPricesList,
-          moneyPricesList: site.setting.moneyPricesList,
-
-          menuList1: site.menuList1,
-          menuList2: site.menuList2,
-          menuList3: site.menuList3,
-          MainSliderNews: {
-            article: site.MainSliderNews[0],
-            list: site.MainSliderNews,
-          },
-          article: article,
-          relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id && a.id !== article.id).slice(0, 6),
-          topNews: site.topNews,
-          page: {
-            article: article,
-          },
-        },
-        {
-          parser: 'html css js',
-        }
-      );
+    if (!article) {
+      res.redirect('/');
+      return;
     }
+    if (article.is_yts) {
+      req.session.lang = 'en';
+    }
+
+    res.render(
+      'theme1/article.html',
+      {
+        site_name: site.setting.languagesList[0].siteName,
+        site_logo: site.setting.siteLogo.url,
+        page_image: article.imageURL || site.setting.siteLogo.url,
+        page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + article.title,
+        page_description: article.description,
+
+        prayerTimingsList: site.setting.prayerTimingsList,
+        matchScheduleList: site.setting.matchScheduleList,
+        goldPricesList: site.setting.goldPricesList,
+        moneyPricesList: site.setting.moneyPricesList,
+
+        menuList1: site.menuList1,
+        menuList2: site.menuList2,
+        menuList3: site.menuList3,
+        MainSliderNews: {
+          article: site.MainSliderNews[0],
+          list: site.MainSliderNews,
+        },
+        article: article,
+        relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id && a.id !== article.id).slice(0, 10),
+        topNews: site.topNews,
+        page: {
+          article: article,
+        },
+      },
+      {
+        parser: 'html css js',
+      }
+    );
   }
 );
 site.ready = false;

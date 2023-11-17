@@ -26,7 +26,17 @@
           <div class="col9">
             <div class="article-part">
               <div class="row">
-                <i-list class="red col3" v="r" label="##word.article_template##" ng-model="article.type" items="articleTypesList" display="##session.lang##" ng-search="article.$typeSearch"> </i-list>
+                <i-list
+                  class="red col3"
+                  v="r"
+                  ng-change="changeLanuage(article.$language)"
+                  label="##word.article_template##"
+                  ng-model="article.type"
+                  items="articleTypesList"
+                  display="##session.lang##"
+                  ng-search="article.$typeSearch"
+                >
+                </i-list>
                 <i-list
                   label="##word.language##"
                   class="col3"
@@ -47,7 +57,12 @@
 
             <div class="row">
               <div class="col6">
-                <i-date ng-show="siteSettings.article.publishingSystem.id == 2" ng-click="changeDate(article.publishingDate)"  ng-model="article.publishingDate" label="##word.publishing_date##"></i-date>
+                <i-date
+                  ng-show="siteSettings.article.publishingSystem.id == 2"
+                  ng-click="changeDate(article.publishingDate)"
+                  ng-model="article.publishingDate"
+                  label="##word.publishing_date##"
+                ></i-date>
                 <i-date ng-show="siteSettings.article.closingSystem.id == 2" ng-model="article.expiryDate" label="##word.expiry_date##"></i-date>
               </div>
             </div>
@@ -72,7 +87,7 @@
 
                     <div class="row padding margin">
                       <div class="col9">
-                        <div class="row" ng-show="article.type.id == 1">
+                        <div class="row" ng-show="article.type.id !== 2">
                           <i-textarea ng-change="calcCount(art)" ng-model="art.textContent" label="##word.content##"> </i-textarea>
                         </div>
                         <div class="row" ng-show="article.type.id == 2">
@@ -101,8 +116,6 @@
                                   <i-checkbox class="center" label="##word.show_image##" ng-model="p.showImage"> </i-checkbox>
                                 </div>
                               </div>
-
-                              <i-textarea class="row" ng-model="p.textContent" label="##word.content##"></i-textarea>
 
                               <hr />
                             </div>
@@ -153,6 +166,22 @@
                             </div>
                           </fieldset>
                         </div>
+                        <div class="row" ng-show="article.type.id == 7">
+                          <i-control ng-model="article.yts.year" label="##word.Movie Year##"></i-control>
+                          <i-control ng-model="article.yts.type" label="##word.Movie Type##"></i-control>
+                          <i-control ng-model="article.yts.language" label="##word.Movie Language##"></i-control>
+                          <i-control ng-model="article.yts.rating" label="##word.Movie Rating##"></i-control>
+                          <i-control ng-model="article.yts.imdb_code" label="##word.Movie IMDB##"></i-control>
+                          <i-control ng-model="article.yts.url" label="##word.Movie YTS URL##"></i-control>
+                          <div class="article-part">
+                            <i-button type="add" ng-click="article.yts.torrents.push({})" label="Add Torrent"></i-button>
+                            <div class="row" ng-repeat="torrent in article.yts.torrents">
+                              <i-control class="col2" ng-model="torrent.quality" label="##word.Quality##"></i-control>
+                              <i-control class="col2" ng-model="torrent.size" label="##word.Size##"></i-control>
+                              <i-control class="col8" ng-model="torrent.url" label="##word.URL##"></i-control>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div class="col3">
                         <div class="article-part">
@@ -187,7 +216,14 @@
                         </div>
                       </div>
                     </div>
-
+                    <div class="row padding margin">
+                      <div class="article-part">
+                        <i-checkbox label="##word.Has Mini Title##" ng-model="art.hasMiniTitle"> </i-checkbox>
+                        <div ng-show="art.hasMiniTitle" class="row padding border">
+                          <i-control ng-model="art.miniTitle" label="##word.Mini Title##"></i-control>
+                        </div>
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="col6">
                         <div class="article-part">
@@ -335,7 +371,10 @@
                           Meta Tags
                           <i-button type="push" ng-click="addMetaTags(art)"></i-button>
                         </legend>
-                        <i-checkbox label="Don't use site meta tags" ng-model="art.notUseSiteMetaTags"> </i-checkbox>
+
+                        <div class="row">
+                          <i-checkbox label="Don't use site meta tags" ng-model="art.notUseSiteMetaTags"> </i-checkbox>
+                        </div>
 
                         <div class="row" ng-repeat="p in art.metaTags track by $index">
                           <div class="row">
@@ -352,7 +391,9 @@
                           Styles
                           <i-button type="push" ng-click="addStyles(art)"></i-button>
                         </legend>
-                        <i-checkbox label="Don't use site styles" ng-model="art.notUseSiteStyles"> </i-checkbox>
+                        <div class="row">
+                          <i-checkbox label="Don't use site styles" ng-model="art.notUseSiteStyles"> </i-checkbox>
+                        </div>
 
                         <div class="row" ng-repeat="s in art.styles track by $index">
                           <div class="row">
@@ -369,7 +410,9 @@
                           Scripts
                           <i-button type="push" ng-click="addScripts(art)"></i-button>
                         </legend>
-                        <i-checkbox label="Don't use site scripts" ng-model="art.notUseSiteScripts"> </i-checkbox>
+                        <div class="row">
+                          <i-checkbox label="Don't use site scripts" ng-model="art.notUseSiteScripts"> </i-checkbox>
+                        </div>
 
                         <div class="row" ng-repeat="s in art.scripts track by $index">
                           <div class="row">
@@ -383,13 +426,17 @@
 
                       <fieldset>
                         <legend>Custom Style</legend>
-                        <i-checkbox label="Don't use site custom style" ng-model="art.notUseSiteCustomStyle"> </i-checkbox>
+                        <div class="row">
+                          <i-checkbox label="Don't use site custom style" ng-model="art.notUseSiteCustomStyle"> </i-checkbox>
+                        </div>
                         <i-textarea ng-model="art.customStyle"> </i-textarea>
                       </fieldset>
 
                       <fieldset>
                         <legend>Custom Script</legend>
-                        <i-checkbox label="Don't use site custom script" ng-model="art.notUseSiteCustomScript"> </i-checkbox>
+                        <div class="row">
+                          <i-checkbox label="Don't use site custom script" ng-model="art.notUseSiteCustomScript"> </i-checkbox>
+                        </div>
                         <i-textarea ng-model="art.customScript"> </i-textarea>
                       </fieldset>
                     </fieldset>

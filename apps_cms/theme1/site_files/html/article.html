@@ -6,7 +6,7 @@
     <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
 
     <div id="mainContent" class="container d-flex flex-column">
-      <div class="container pt-4 p-0 justify-content-center">
+      <div class="container pt-4 p-0 justify-content-center" x-setting="showAtricleCover">
         <div class="mainImage col-md-12 p-0 m-0" style="background-image: url(##data.article.imageURL##)">
           <div class="MI-newsTilteTime d-flex flex-column justify-content-end">
             <p class="MI-newstitle" class="loaded">##data.article.title##</p>
@@ -21,55 +21,61 @@
       <!-- ---start mainSection--- -->
       <div class="mainSectionNews d-flex flex-column mt-4">
         <div class="adsWithNews d-flex flex-lg-row flex-column justify-content-start align-items-md-end align-items-lg-start align-items-end p-0 m-0">
-          <div class="col-sm-12 col-md-4 col-lg-2 mt-3 d-none d-lg-flex justify-content-center  justify-content-center align-items-center p-0 m-0 m-4 ml-2">
+          <div class="col-sm-12 col-md-4 col-lg-2 mt-3 d-none d-lg-flex justify-content-center justify-content-center align-items-center p-0 m-0 m-4 ml-2">
             <div x-setting="showSideAd" x-import="theme1/ad-side.html" class="sideAds"></div>
           </div>
           <div class="col-sm-12 col-md-8 col-lg-10 newsArticle d-flex justify-content-center align-items-start align-content-center m-0 p-5 pt-0 mb-10">
-            <div class="articleSection d-flex flex-column justify-content-center align-items-end align-content-center gap-2">
-              <div x-data="article.hasWriter" class="articleEditor d-flex flex-row-reverse gap-2">
-                <div class="col col-lg-5">
-                  <a target="_blank" class="editorImage d-flex flex-column align-items-end" href="/writer/##data.article.writer.id##">
-                    <img src="##data.article.writer.imageURL##" alt="##data.article.writer.name##" width="147px" height="147px" />
-                  </a>
+            <div class="articleSection d-flex flex-column justify-content-center align-items-center align-content-center gap-2">
+              <div class="col-sm-12 d-flex flex-row gap-2 articleEditor">
+                <div class="col-md-8">
+                  <h1 class="text-center">##data.article.title##</h1>
                 </div>
-                <div class="col col-md-6 col-lg-7">
-                  <a target="_blank" class="d-flex flex-column align-items-end" href="/writer/##data.article.writer.id##">
-                    <p class="editorName">##data.article.writer.name##</p>
-                    <p class="editorTitle mb-2">##data.article.writer.title##</p>
-                  </a>
-                  <div class="col d-flex flex-column align-items-md-start align-items-end flex-sm-row-reverse gap-1">
-                    <div class="follow d-flex flex-row justify-content-center align-items-center gap-2 mb-2 mb-sm-0">
-                      <p>متابعة</p>
-                      <i class="fas fa-bell"></i>
+                <div class="col-md-4">
+                  <div x-data="article.hasWriter" class="d-flex flex-row-reverse">
+                    <div class="col col-lg-5">
+                      <a target="_blank" class="editorImage d-flex flex-column align-items-end" href="/writer/##data.article.writer.id##">
+                        <img src="##data.article.writer.imageURL##" alt="##data.article.writer.name##" width="147px" height="147px" />
+                      </a>
                     </div>
-                    <div class="sharebutton d-flex flex-column align-items-end gap-2">
-                      <div class="share d-flex flex-row justify-content-center align-items-center">
-                        <p>مشاركة</p>
-                        <i class="fas fa-share-alt"></i>
-                      </div>
-                      <div class="sharemenu mt-1">
-                        <ul id="sharemenulist" class="list-group sharemenulist d-flex felx-column flex-md-row">
-                          <li class="list-group-item facebook">
-                            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                              <i class="fab fa-facebook-f"></i>
-                            </div>
-                          </li>
-                          <li class="list-group-item twitter">
-                            <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
-                              <i class="fab fa-twitter"></i>
-                            </div>
-                          </li>
-                          <li class="list-group-item instagram">
-                            <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
-                              <i class="fab fa-instagram"></i>
-                            </div>
-                          </li>
-                          <li class="list-group-item whatsapp">
-                            <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
-                              <i class="fab fa-whatsapp"></i>
-                            </div>
-                          </li>
-                        </ul>
+                    <div class="col col-md-6 col-lg-7">
+                      <a target="_blank" class="d-flex flex-column align-items-end" href="/writer/##data.article.writer.id##">
+                        <p class="editorName">##data.article.writer.name##</p>
+                      </a>
+                      <div class="col d-flex flex-column align-items-md-start align-items-end flex-sm-row-reverse gap-1">
+                        <div x-setting="allowFollowEditor" class="follow d-flex flex-row justify-content-center align-items-center gap-2 mb-2 mb-sm-0">
+                          <p>متابعة</p>
+                          <i class="fas fa-bell"></i>
+                        </div>
+                        <div x-setting="allowShareEdit" class="sharebutton d-flex flex-column align-items-end gap-2">
+                          <div class="share d-flex flex-row justify-content-center align-items-center">
+                            <p>مشاركة</p>
+                            <i class="fas fa-share-alt"></i>
+                          </div>
+                          <div class="sharemenu mt-1">
+                            <ul id="sharemenulist" class="list-group sharemenulist d-flex felx-column flex-md-row">
+                              <li class="list-group-item facebook">
+                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                                  <i class="fab fa-facebook-f"></i>
+                                </div>
+                              </li>
+                              <li class="list-group-item twitter">
+                                <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+                                  <i class="fab fa-twitter"></i>
+                                </div>
+                              </li>
+                              <li class="list-group-item instagram">
+                                <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+                                  <i class="fab fa-instagram"></i>
+                                </div>
+                              </li>
+                              <li class="list-group-item whatsapp">
+                                <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+                                  <i class="fab fa-whatsapp"></i>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -80,8 +86,31 @@
                 <source src="##data.article.audio.url##" type="audio/mpeg" />
               </audio>
 
-              <div class="mainarticle d-flex flex-column align-items-end justify-content-end gap-2">
-                <div>##data.article.content##</div>
+              <div class="mainarticle d-flex flex-row align-items-start justify-content-center gap-2">
+                <div class="col-md-3" x-data="article.yts">
+                  <div class="center">
+                    <img src="##data.article.imageURL##" alt="" />
+                  </div>
+                  <div class="row text-left">
+                    <p class="bold">Movie Type : <span class="red"> ##data.article.yts.type##</span></p>
+                    <p class="bold">Movie Language : <span class="blue"> ##data.article.yts.language##</span></p>
+                    <p class="bold">Movie Rating : <span class="green"> ##data.article.yts.rating##</span></p>
+                  </div>
+                </div>
+
+                <div class="col-md-9">
+                  <div>##data.article.content##</div>
+                  <div x-data="article.yts">
+                    <div class="d-flex gap-2 p-2">
+                      <a target="_blank" class="bold col-md-3 btn btn-warning" href="##data.article.yts.imdbURL##"> IMDB </a>
+                      <a target="_blank" class="bold col-md-3 btn btn-danger" href="##data.article.yts.trailerURL##"> Trailer </a>
+                      <a target="_blank" class="bold col-md-3 btn btn-info" href="##data.article.yts.SubtitleURL##"> Subtitles </a>
+                    </div>
+                    <div class="d-flex gap-2 p-2">
+                      <a x-list1="article.yts.torrents" target="_blank" class="bold col-md-3 btn btn-primary" href="##item1.url##"> Download ##item1.quality## ( ##item1.size## ) Torrent </a>
+                    </div>
+                  </div>
+                </div>
 
                 <div x-data="article.hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.video.imageURL##')">
                   <div id="videopalyer" class="videopalyer flex-column justify-content-center align-items-center">
@@ -130,6 +159,7 @@
     </div>
     <div x-import="theme1/wedgite.html"></div>
     <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
+    
     <script>
       app.controller('mainController', ($scope, $http, $timeout, $interval) => {
         $scope.page = site.showObject('##data.#page##');

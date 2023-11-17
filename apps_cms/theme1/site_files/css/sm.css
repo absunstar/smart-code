@@ -24,6 +24,14 @@
     width: auto;
   }
 
+  .editorImage > img {
+    width: 64px;
+    height: 64px;
+  }
+  .editorName {
+    font-size: 22px;
+    line-height: 15px;
+  }
   /* start Burger Menu */
 
   .showAnddisplay {
@@ -137,9 +145,8 @@
 
   /* start main section */
   .headermainsection {
-  
   }
-  .BNSubSectionheader{
+  .BNSubSectionheader {
     width: 90%;
     border-radius: 0;
   }
@@ -148,8 +155,7 @@
     font-size: 22px;
     line-height: 2;
     color: var(--color1);
-   
-}
+  }
   /* end mainsection */
 
   /* start main slider */

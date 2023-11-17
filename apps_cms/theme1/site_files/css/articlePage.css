@@ -50,7 +50,7 @@
 }
 
 .articleEditor {
-  width: 360px;
+  padding-bottom: 10px;
   border-bottom: 5px solid var(--background1);
 }
 
@@ -60,9 +60,7 @@
   font-size: 18px;
   width: 100%;
 }
-.mainarticle div {
-  width: 100%;
-}
+
 .mainarticle img {
   max-width: 90%;
 }
@@ -150,7 +148,5 @@
 /* end related news */
 
 @media (max-width: 767px) {
-  .articleEditor {
-    width: 300px;
-  }
+ 
 }

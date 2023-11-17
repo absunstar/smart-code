@@ -215,6 +215,11 @@
     "ar": "ظهور في عاجل"
   },
   {
+    "name": "Now",
+    "en": "Now",
+    "ar": "عاجل"
+  },
+  {
     "name": "exclude_most_viewed",
     "en": "Exclude from most viewed",
     "ar": "إستبعاد من الأكثر مشاهدة"

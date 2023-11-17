@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"  data-ng-app="myApp">
+<html lang="en" data-ng-app="myApp">
   <head x-import="cms/head.html">
     <style>
-      img.logo{
+      img.logo {
         width: 48px;
         height: 48px;
       }
@@ -18,11 +18,13 @@
         <div class="row">
           <div x-import="articles-generator/sites_modal.html"></div>
           <div x-import="articles-generator/rss_modal.html"></div>
-        
+          <div x-import="articles-generator/yts_modal.html"></div>
+
           <div class="top-actions">
-            <i-button x-permissions="admin" type="search" label="##word.Sites Manager##" ng-click="siteDisplay()"></i-button>
-            <i-button x-permissions="admin" type="search" label="##word.RSS Manager##" ng-click="displayRSS()"></i-button>
-            <i-button x-permissions="admin" type="search" label="##word.Facebook Manager##" ng-click="displayRSS()"></i-button>
+            <i-button x-permissions="admin" type="edit" label="##word.Sites Manager##" ng-click="siteDisplay()"></i-button>
+            <i-button x-permissions="admin" type="edit" label="##word.RSS Manager##" ng-click="displayRSS()"></i-button>
+            <i-button x-permissions="admin" type="edit" label="##word.Facebook Manager##" ng-click="displayRSS()"></i-button>
+            <i-button x-permissions="admin" type="edit" label="##word.YTS Manager##" ng-click="ytsDisplay()"></i-button>
 
             <div class="row padding">
               <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="admin"></i-control>
@@ -56,16 +58,14 @@
               </td>
 
               <td class="center not-print">
-                <i-button x-permissions="admin" type="view"  ng-click="displayDetailsCity(c)"></i-button>
+                <i-button x-permissions="admin" type="view" ng-click="displayDetailsCity(c)"></i-button>
 
-                <i-button x-permissions="admin" type="edit"  ng-click="displayUpdateCity(c)"></i-button>
+                <i-button x-permissions="admin" type="edit" ng-click="displayUpdateCity(c)"></i-button>
 
                 <i-button x-permissions="admin" type="delete" ng-click="displaydeleteCity(c)"></i-button>
               </td>
             </tr>
           </table>
-
-          <i-button x-permissions="city_print || city_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
         </div>
       </div>
     </div>

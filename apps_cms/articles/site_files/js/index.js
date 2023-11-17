@@ -48,6 +48,9 @@ app.controller('articles', function ($scope, $http, $timeout) {
       publishingDate: new Date(),
       type: $scope.articleTypesList[0],
       translatedList: [],
+      yts: {
+        torrents: [{}],
+      },
     };
     if ($scope.siteSettings.article) {
       if ($scope.siteSettings.article.closingSystem) {

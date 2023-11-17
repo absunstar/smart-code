@@ -203,6 +203,12 @@ a {
   top: -270px;
   position: relative;
 }
+.miniTitle {
+  background-color: var(--background2);
+  color: var(--color2);
+  border-radius: 15px;
+  font-size: var(--readTime);
+}
 .readingTime {
   background-color: var(--background2);
   color: var(--color2);
@@ -385,12 +391,12 @@ a {
 }
 
 .mainslide {
-  width: 98%;
-  height: 462px;
+  width: 95%;
+  height: 80vh;
   margin-top: 10px;
   margin: 1% !important;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-repeat: round;
+  background-position: top;
   background-size: cover;
   background-color: var(--background1x);
   border-radius: 15px;
@@ -691,6 +697,8 @@ a {
 
 .editorImage > img {
   border-radius: 15px;
+  width: 128px;
+  height: 128px;
 }
 
 .editorTitle {

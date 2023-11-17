@@ -145,7 +145,10 @@
                 <div class="col4">
                   <i-checkbox label="##word.Show Manager##" ng-model="siteSetting.showManager"> </i-checkbox>
                   <i-checkbox label="##word.Show Main Menu##" ng-model="siteSetting.showMainMenu"></i-checkbox>
+                  <i-checkbox label="##word.Show Footer##" ng-model="siteSetting.showFooter"></i-checkbox>
                   <i-checkbox label="##word.Show Editor Manager Articles##" ng-model="siteSetting.showEditorManagerArticle"></i-checkbox>
+                  <i-checkbox label="##word.allow Follow Editor##" ng-model="siteSetting.allowFollowEditor"></i-checkbox>
+                  <i-checkbox label="##word.allow Share Edit##" ng-model="siteSetting.allowShareEdit"></i-checkbox>
                   <i-checkbox label="##word.Show Editors Articles##" ng-model="siteSetting.showEditorsArticle"></i-checkbox>
                   <i-checkbox label="##word.Show Image Gallary##" ng-model="siteSetting.showImageGallary"></i-checkbox>
                   <i-checkbox label="##word.Show Video Gallary##" ng-model="siteSetting.showVideoGallary"></i-checkbox>
@@ -158,6 +161,7 @@
                   <i-checkbox label="##word.Show Search Bar##" ng-model="siteSetting.showSearchBar"></i-checkbox>
                 </div>
                 <div class="col4">
+                  <i-checkbox label="##word.show Atricle Cover##" ng-model="siteSetting.showAtricleCover"> </i-checkbox>
                   <i-checkbox label="##word.Show Top Ad##" ng-model="siteSetting.showTopAd"> </i-checkbox>
                   <i-checkbox label="##word.Show Side Ad##" ng-model="siteSetting.showSideAd"></i-checkbox>
                   <i-checkbox label="##word.Show Footer Ad##" ng-model="siteSetting.showFooterAd"></i-checkbox>
@@ -184,6 +188,7 @@
                   <th>##word.S/N##</th>
                   <th>##word.Name##</th>
                   <th>##word.Template##</th>
+                  <th>##word.Limit##</th>
                   <th class="not-print">##word.actions##</th>
                 </tr>
 
@@ -193,7 +198,9 @@
                   <td class="center">
                     <i-list display="##session.lang##" ng-model="g.template" items="siteSetting.siteTemplate.categoryTemplateList"></i-list>
                   </td>
-
+                  <td>
+                    <i-control ng-model="g.limit" type="number"></i-control>
+                  </td>
                   <td class="center not-print">
                     <i-button type="up" ng-click="upDownList(siteSetting.mainCategoryList, 'up',$index)" ng-hide="$index == 0"> </i-button>
                     <i-button type="down" ng-click="upDownList(siteSetting.mainCategoryList, 'down',$index)" ng-hide="$index == (siteSetting.mainCategoryList.length - 1) "></i-button>
@@ -410,7 +417,13 @@
                 <i-list ng-model="siteSetting.article.closingSystem" items="closingSystemList" display="##session.lang##" ng-search="_search.$searchClosingSystem" label="##word.closing_system##">
                 </i-list>
                 <div class="row">
-                  <i-control ng-show="siteSetting.article.closingSystem.id == 1" label="##word.duration## / ##word.day##" type="number" class="col6" ng-model="siteSetting.article.duration"></i-control>
+                  <i-control
+                    ng-show="siteSetting.article.closingSystem.id == 1"
+                    label="##word.duration## / ##word.day##"
+                    type="number"
+                    class="col6"
+                    ng-model="siteSetting.article.duration"
+                  ></i-control>
                   <!-- <i-list
                     class="col6"
                     ng-model="siteSetting.article.durationType"
@@ -445,7 +458,7 @@
               <div class="row">
                 <fieldset>
                   <legend>##word.article_template##</legend>
-                  <div class="row" ng-hide="t.id == 6 || t.id == 7" ng-repeat="t in siteSetting.article.articleTypes track by $index">
+                  <div class="row" ng-repeat="t in siteSetting.article.articleTypes track by $index">
                     <div class="row">
                       <p class="col5">{{t.##session.lang##}}</p>
                       <i-checkbox class="col3" label="##word.active##" ng-model="t.active"> </i-checkbox>

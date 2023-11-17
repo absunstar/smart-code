@@ -1,6 +1,8 @@
 module.exports = function init(site) {
   const $articles = site.connectCollection('articles');
   site.articlesList = [];
+  site.articleTypes = JSON.parse(site.readFileSync(__dirname + '/site_files/json/articleTypes.json'));
+
   site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
   site.monthes = [
     { nameAr: 'يناير' },
@@ -25,8 +27,18 @@ module.exports = function init(site) {
 
   site.handleArticle = function (doc) {
     doc.title = site.escapeHtml(doc.translatedList[0].title);
-    doc.title2 = doc.title.split(' ').join('-');
+    if (doc.type.id == 7 && doc.yts) {
+      doc.is_yts = true;
+      doc.title += ' ( ' + doc.yts.year + ' ) ';
+      doc.title2 = doc.title.split(' ').join('-');
+      doc.yts.trailerURL = 'https://www.youtube.com/results?search_query=' + doc.title + ' Trailer';
+      doc.yts.imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
+      doc.yts.SubtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.title;
+    } else {
+      doc.title2 = doc.title.split(' ').join('-');
+    }
     doc.imageURL = doc.translatedList[0].image?.url || '/theme1/images/news.jpg';
+    doc.coverURL = doc.translatedList[0].cover?.url || doc.imageURL;
     if (doc.type.id === 2) {
       doc.content = doc.translatedList[0].htmlContent;
     } else {
@@ -62,6 +74,14 @@ module.exports = function init(site) {
       doc.hasReadingTime = true;
       doc.readingTime = doc.translatedList[0].readingTime;
       doc.readingTimeClass = '';
+    }
+
+    doc.miniTitleClass = 'none';
+    doc.hasMiniTitle = false;
+    if (doc.translatedList[0].hasMiniTitle) {
+      doc.miniTitle = doc.translatedList[0].miniTitle;
+      doc.hasMiniTitle = true;
+      doc.miniTitleClass = '';
     }
 
     if (doc.writer) {
@@ -145,15 +165,15 @@ module.exports = function init(site) {
           });
 
           cat.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true && a.category.id == cat.id).splice(0, 10);
-
-          if (site.setting.mainCategoryList && (_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
+          site.setting.mainCategoryList = site.setting.mainCategoryList || [];
+          if ((_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
             _cat = {
               ..._cat,
               index: site.setting.mainCategoryList.findIndex((c) => c.id == cat.id),
               id: cat.id,
               show: cat.showInHomePage,
               name: cat.translatedList[0].name,
-              limit: cat.homePageLimit || 10,
+              limit: _cat.limit || 10,
               list: cat.$list,
             };
             _cat.list = site.articlesList.filter((a) => a.category.id == _cat.id).slice(0, _cat.limit);
@@ -161,13 +181,15 @@ module.exports = function init(site) {
             if (_cat.list.length > 0 && _cat.template) {
               if (_cat.template.id == 1) {
                 _cat.template1 = true;
+                site.$$categories.push(_cat);
               } else if (_cat.template.id == 2) {
                 _cat.template2 = true;
+                site.$$categories.push(_cat);
               } else if (_cat.template.id == 3) {
                 _cat.template3 = true;
                 _cat.list0 = [_cat.list.shift()];
+                site.$$categories.push(_cat);
               }
-              site.$$categories.push(_cat);
             }
             site.$$categories.sort((a, b) => {
               return a.index - b.index;
@@ -212,6 +234,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
+
     if (!req.session.user) {
       response.error = 'Please Login First';
       res.json(response);
@@ -219,13 +242,22 @@ module.exports = function init(site) {
     }
 
     let articlesDoc = req.body;
-    articlesDoc.$req = req;
-    articlesDoc.$res = res;
-
-    articlesDoc.addUserInfo = site.security.getUserFinger({
-      $req: req,
-      $res: res,
-    });
+    if (articlesDoc.is_yts) {
+      articlesDoc = {
+        type: site.articleTypes.find((t) => t.id === 7),
+        category: site.categoriesList.filter((c) => c.id == 4).map((c) => ({ id: c.id, name: c.translatedList[0].name }))[0],
+        yts: articlesDoc,
+        translatedList: [{ language: site.setting.languagesList[0].language }],
+      };
+      articlesDoc.showInMainSlider = true;
+      articlesDoc.appearInUrgent = true;
+      articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
+      articlesDoc.translatedList[0].title = articlesDoc.yts.title;
+      articlesDoc.translatedList[0].image = { url: articlesDoc.yts.medium_cover_image };
+      articlesDoc.translatedList[0].cover = { url: articlesDoc.yts.large_cover_image };
+      articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full;
+    }
+    articlesDoc.addUserInfo = req.getUserFinger();
 
     if (typeof articlesDoc.active === 'undefined') {
       articlesDoc.active = true;
@@ -532,7 +564,7 @@ module.exports = function init(site) {
       where['translatedList.keyWordsList'] = site.get_RegExp(where['keyword'], 'i');
       delete where['keyword'];
     }
-    site.get_RegExp(req.body.search, 'i')
+    site.get_RegExp(req.body.search, 'i');
     // site.articlesList.filter(u => u.name.contains(where['name']))
     $articles.findMany(
       {
