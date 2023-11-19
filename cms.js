@@ -40,12 +40,32 @@ site.get(
       res.redirect('/404');
       return;
     }
+    let lang = site.setting.languagesList[0];
+    if (!lang) {
+      res.redirect('/404');
+      return;
+    }
+    if (!Array.isArray(lang.keyWordsList)) {
+      lang.keyWordsList = [];
+    }
     if (site.setting.siteTemplate.id == 1) {
-      let lang = site.setting.languagesList[0];
-      if (!Array.isArray(lang.keyWordsList)) {
-        lang.keyWordsList = [];
-      }
-      site.MainSliderNews = site.MainSliderNews || [];
+      site.setting.mainCategoryList.forEach((c) => {
+        c.$list = site.articlesList.filter((a) => a.category && a.category.id == c.id).slice(0, c.limit);
+        if (c.template) {
+          c.show = true;
+          if (c.template.id == 1) {
+            c.template1 = true;
+          } else if (c.template.id == 2) {
+            c.template2 = true;
+          } else if (c.template.id == 3) {
+            c.template3 = true;
+            c.$list0 = [c.$list.shift()];
+          }
+        } else {
+          c, (show = false);
+        }
+      });
+
       res.render(
         'theme1/index.html',
         {
@@ -70,7 +90,7 @@ site.get(
             list: site.MainSliderNews,
           },
 
-          categories: site.$$categories,
+          categories: site.setting.mainCategoryList,
           topNews: site.topNews,
           page: {},
         },
@@ -100,6 +120,9 @@ site.get(
       res.redirect('/');
       return;
     }
+
+    category.$MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true && a.category && a.category.id == category.id).splice(0, 10);
+
     if (true || site.setting.siteTemplate.id == 1) {
       res.render(
         'theme1/category.html',
@@ -123,8 +146,8 @@ site.get(
           menuList3: site.menuList3,
 
           MainSliderNews: {
-            article: category.MainSliderNews[0],
-            list: category.MainSliderNews,
+            article: category.$MainSliderNews[0],
+            list: category.$MainSliderNews,
           },
           topNews: site.topNews,
           page: {},
@@ -179,7 +202,7 @@ site.get(
         menuList3: site.menuList3,
 
         article: article,
-        relatedArticleList: site.articlesList.filter((a) => a.category && article.category && a.category.id === article.category.id && a.id !== article.id).slice(0, 10),
+        relatedArticleList: site.getRelatedArticles(article),
         topNews: site.topNews,
         page: {
           article: article,

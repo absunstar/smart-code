@@ -20,7 +20,7 @@ module.exports = function init(site) {
     site.menuList.forEach((m) => {
       m.type = m.type || {};
       if (m.type.id === 1 && m.category) {
-        m.$url = '/category/' + m.category.id + '/' + m.category.name;
+        m.$url = '/category/' + m.category.id + '/' + m.category.name.replaceAll(' ', '+');
       } else if (m.type.id === 2) {
       } else if (m.type.id === 3) {
       } else if (m.type.id === 4) {
@@ -79,11 +79,11 @@ module.exports = function init(site) {
                 }
               });
             });
-            site.handleMenus();
           } else {
             docs.forEach((doc) => {
               app.memoryList.push(doc);
             });
+            site.handleMenus();
           }
         }
       });

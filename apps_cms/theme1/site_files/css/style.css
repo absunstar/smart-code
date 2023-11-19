@@ -19,7 +19,7 @@ body {
   max-width: 80vw;
 }
 .free iframe {
-  background: var(--background1x);
+  background: var(--background2x);
   max-width: 80vw;
 }
 .free.side {
@@ -27,7 +27,7 @@ body {
 }
 .articleSection {
   font-size: 24px;
-  background-color: var(--background1x);
+  background-color: var(--background1xx);
   color: var(--color1);
   width: 95%;
   padding: 15px;
@@ -52,15 +52,15 @@ body {
   width: 90%;
   margin: 10px;
   padding: 20px;
-  background: var(--background1);
-  color: var(--color1);
+  background: var(--background2);
+  color: var(--color2);
   border-radius: 10px;
   font-size: xx-large;
 }
 .related-search a {
   text-decoration: underline;
   margin: 5px;
-  color: var(--color1);
+  color: var(--color2);
   font-size: large;
   font-style: italic;
 }
@@ -69,8 +69,8 @@ body {
   margin: 5px;
   font-size: large;
   text-decoration: none;
-  background: var(--background2);
-  color: var(--color2);
+  background: var(--background1);
+  color: var(--color1);
   padding: 5px 9px;
   border-radius: 5px;
   cursor: pointer;
@@ -182,6 +182,7 @@ a {
 /* start content section */
 .newsSBLock {
   height: 300px;
+  max-height: 300px;
 }
 .NewsBlock {
   gap: 16px;
@@ -210,23 +211,23 @@ a {
 .imageNews img {
   object-fit: fill;
   border-radius: 15px;
-  background-color: var(--background1x);
-  border: 2px solid var(--background1);
-  box-shadow: 1px 0px 8px var(--background1x);
+  background-color: var(--background2x);
+  border: 2px solid var(--background2);
+  box-shadow: 1px 0px 8px var(--background2x);
   height: 100%;
   width: 100%;
+  min-height: 296px;
 }
 
 .newsTilteTime {
   width: 100%;
   height: 100%;
   position: relative;
-  top: -95%;
-  border-radius: 15px;
+  top: -100%;
   color: var(--color1);
-  padding-bottom: 25px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-bottom: 3px;
+  padding-left: 2px;
+  padding-right: 2px;
   direction: rtl;
   opacity: 0.9;
 }
@@ -234,6 +235,7 @@ a {
 .newstitle {
   padding-left: 6px;
   width: auto;
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -242,9 +244,8 @@ a {
   font-weight: bold;
   padding: 5px;
   color: var(--color1);
-  background: var(--background1);
-  border-right: 8px solid var(--background2);
-  box-shadow: 1px 3px 10px var(--background1);
+  background: var(--background1xx);
+  border-right: 5px solid var(--background2);
 }
 
 .newstime {
@@ -252,9 +253,9 @@ a {
   font-size: 10px;
   font-weight: bold;
   padding: 2px;
-  color: #626262;
-  background: #ffffff;
-  border-right: 8px solid var(--background2);
+  color: var(--color1);
+  background: var(--background1xx);
+  border-right: 5px solid var(--background2);
 }
 
 .vlntime {
@@ -271,7 +272,8 @@ a {
   color: var(--color2);
   text-shadow: 1px 1px 1px var(--background2);
   font-size: var(--readTime);
-  font-weight: bold;
+  border-radius: 5px;
+  background: var(--background2x);
 }
 .readingTime {
   background-color: var(--background2);
@@ -569,12 +571,13 @@ a {
 .MS-card {
   width: 250px;
   height: 300px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 4px var(--background1);
   border-radius: 15px;
-  background-color: var(--six-color);
+  background-color: var(--background1x);
   display: inline-block;
   font-size: 14px;
   transition: all 0.2s ease;
+  border: 1px solid var(--background1);
 }
 .MS-card:hover {
   transform: scale(1.05);
@@ -596,6 +599,7 @@ a {
   object-fit: fill;
   height: 100%;
   width: 100%;
+  min-height: 296px;
 }
 
 .MS-card p {

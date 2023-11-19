@@ -15,21 +15,20 @@
           <div class="row">
             <div class="col3">
               <i-image class="img256" ng-model="siteSetting.siteLogo"></i-image>
-              <i-image class="img64" ng-model="siteSetting.topNewsLogo"></i-image>
             </div>
             <div class="col9">
               <i-list v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.site_template##"> </i-list>
               <div class="row padding margin border">
                 <i-control v="r" class="col3" type="color" ng-model="siteSetting.siteBackground1" label="##word.Background## 1"></i-control>
                 <i-control class="col3" type="color" ng-model="siteSetting.siteBackground2" label="##word.Background## 2"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground3" label="##word.Background## 3"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground4" label="##word.Background## 4"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground3" label="##word.Menu Background##"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground4" label="##word.Body Background##"></i-control>
               </div>
               <div class="row padding margin border">
                 <i-control class="col3" type="color" ng-model="siteSetting.siteColor1" label="##word.Color## 1"></i-control>
                 <i-control class="col3" type="color" ng-model="siteSetting.siteColor2" label="##word.Color## 2"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor3" label="##word.Color## 3"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor4" label="##word.Color## 4"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteColor3" label="##word.Menu Color##"></i-control>
+                <i-control class="col3" type="color" ng-model="siteSetting.siteColor4" label="##word.Body Color##"></i-control>
               </div>
             </div>
           </div>

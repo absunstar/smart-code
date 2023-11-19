@@ -38,6 +38,10 @@
     font-size: 22px;
     line-height: 15px;
   }
+
+  .mainarticle {
+    font-size: large;
+  }
   /* start Burger Menu */
 
   .showAnddisplay {

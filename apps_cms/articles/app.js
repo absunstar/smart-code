@@ -48,7 +48,11 @@ module.exports = function init(site) {
       return;
     }
   );
+
   site.articlesList = [];
+  site.MainSliderNews = [];
+  site.$$categories = [];
+
   site.articleTypes = JSON.parse(site.readFileSync(__dirname + '/site_files/json/articleTypes.json'));
 
   site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
@@ -82,13 +86,14 @@ module.exports = function init(site) {
     if (doc.type.id == 7 && doc.yts) {
       doc.is_yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
-      doc.$title2 = doc.$title.split(' ').join('-');
+      doc.$title2 = doc.$title.replaceAll(' ', '+');
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
     } else {
       doc.$title2 = doc.$title.split(' ').join('-');
     }
+    doc.$url = '/article/' + doc.id + '/' + doc.$title2;
     doc.$imageURL = doc.translatedList[0].image?.url || '/theme1/images/news.jpg';
     doc.$coverURL = doc.translatedList[0].cover?.url || doc.$imageURL;
     if (doc.type.id === 2) {
@@ -99,9 +104,9 @@ module.exports = function init(site) {
     doc.$description = site.escapeHtml(doc.$content);
     doc.$keyWordsList = doc.translatedList[0].keyWordsList || [];
     doc.$keyWordsList.forEach((k, i) => {
-      doc.$keyWordsList[i] = k + ' Movie Download';
+      doc.$keyWordsList[i] = k + ' Movie';
     });
-    doc.$tagsList = doc.translatedList[0].tagsList || [];
+    doc.$tagsList = doc.translatedList[0].tagsList || [doc.$title];
     doc.publishDate = doc.publishDate || new Date();
     doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
     doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
@@ -155,7 +160,7 @@ module.exports = function init(site) {
     return doc;
   };
 
-  function prepareArticles() {
+  site.prepareArticles = function () {
     $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
@@ -163,13 +168,13 @@ module.exports = function init(site) {
             site.articlesList.push(site.handleArticle({ ...doc }));
           }
         });
+        site.prepareUrgentArticles();
+        site.prepareSliderArticles();
       }
-      prepareUrgentArticles();
-      prepareSliderArticles();
     });
-  }
+  };
 
-  function prepareUrgentArticles() {
+  site.prepareUrgentArticles = function () {
     $articles.findMany({ where: { appearInUrgent: true }, sort: { id: -1 }, limit: 1000 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
@@ -177,18 +182,18 @@ module.exports = function init(site) {
             site.articlesList.push(site.handleArticle({ ...doc }));
           }
         });
+        site.articlesList.sort((a, b) => {
+          return b.id - a.id;
+        });
+        site.topNews = site.articlesList
+          .filter((a) => a.appearInUrgent === true)
+          .map((a) => ({ id: a.id, $title: a.$title, $imageURL: a.$imageURL, $url: a.$url }))
+          .splice(0, 10)
+          .reverse();
       }
-      site.articlesList.sort((a, b) => {
-        return b.id - a.id;
-      });
-      site.topNews = site.articlesList
-        .filter((a) => a.appearInUrgent === true)
-        .map((a) => ({ id: a.id, title: a.$title, title2: a.$title2, imageURL: a.$imageURL }))
-        .splice(0, 10)
-        .reverse();
     });
-  }
-  function prepareSliderArticles() {
+  };
+  site.prepareSliderArticles = function () {
     $articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
@@ -196,16 +201,25 @@ module.exports = function init(site) {
             site.articlesList.push(site.handleArticle({ ...doc }));
           }
         });
+        site.articlesList.sort((a, b) => {
+          return b.id - a.id;
+        });
+        site.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true).splice(0, 10);
       }
-      site.articlesList.sort((a, b) => {
-        return b.id - a.id;
-      });
-      site.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true).splice(0, 10);
     });
-  }
+  };
+  site.getRelatedArticles = function (a) {
+    let $relatedArticleList = site.articlesList.filter((b) => b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, 10);
+    if ($relatedArticleList.length < 10) {
+      $relatedArticleList = [
+        ...$relatedArticleList,
+        ...site.articlesList.filter((b) => b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, 10 - $relatedArticleList.length),
+      ];
+    }
+    return $relatedArticleList;
+  };
 
-  prepareArticles();
-
+  site.prepareArticles();
 
   site.handleCategoryArticles = function () {
     site.$$categories = [];
@@ -222,38 +236,6 @@ module.exports = function init(site) {
           site.articlesList.sort((a, b) => {
             return b.id - a.id;
           });
-
-          cat.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true && a.category && a.category.id == cat.id).splice(0, 10);
-          site.setting.mainCategoryList = site.setting.mainCategoryList || [];
-          if ((_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
-            _cat = {
-              ..._cat,
-              index: site.setting.mainCategoryList.findIndex((c) => c.id == cat.id),
-              id: cat.id,
-              show: cat.showInHomePage,
-              name: cat.translatedList[0].name,
-              limit: _cat.limit || 10,
-              list: cat.$list,
-            };
-            _cat.list = site.articlesList.filter((a) => a.category && a.category.id == _cat.id).slice(0, _cat.limit);
-
-            if (_cat.list.length > 0 && _cat.template) {
-              if (_cat.template.id == 1) {
-                _cat.template1 = true;
-                site.$$categories.push(_cat);
-              } else if (_cat.template.id == 2) {
-                _cat.template2 = true;
-                site.$$categories.push(_cat);
-              } else if (_cat.template.id == 3) {
-                _cat.template3 = true;
-                _cat.list0 = [_cat.list.shift()];
-                site.$$categories.push(_cat);
-              }
-            }
-            site.$$categories.sort((a, b) => {
-              return a.index - b.index;
-            });
-          }
         }
       });
     });
@@ -264,12 +246,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
-  // site.get({
-  //   name: 'articles',
-  //   path: __dirname + '/site_files/html/index.html',
-  //   parser: 'html',
-  //   compres: true,
-  // });
   site.get(
     {
       name: 'articles',
