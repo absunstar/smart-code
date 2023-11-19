@@ -10,24 +10,25 @@
 
       <div x-setting="showTopAd" x-import="theme1/ad-top.html"></div>
 
-      <div class="row d-flex flex-column " x-list1="categories">
+      <div class="row d-flex flex-column" x-list1="categories">
+
         <div x-show-item1="template1" class="breakingNewsSection">
           <div class="col BNSubSection d-flex flex-column align-items-end">
             <div class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
               <p class="BNSubSectionName">##item1.name##</p>
             </div>
           </div>
-          <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start gy-2 p-0 m-0">
-            <div x-list2="list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-3 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-            <div  x-import="theme1/ad-footer.html" class="newsSBLock col-md-6 col-lg-3 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+          <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start">
+            <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-3 col-lg-2 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+            <div x-import="theme1/ad-footer.html" class="newsSBLock col-md-3 col-lg-2 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
           </div>
         </div>
 
-        <div x-show-item1="template2" class="adsWithBreakingNews row justify-content-center align-items-start p-0 m-0 mt-5 mb-5">
+        <div x-show-item1="template2" class="adsWithBreakingNews row justify-content-center align-items-start">
           <div
             x-setting="showSideAd"
             x-import="theme1/ad-side.html"
-            class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
+            class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center"
           ></div>
           <div class="col col-lg-8 col-md-12">
             <div x-list1="categoriesDisplayList2" class="breakingNewsSection">
@@ -36,20 +37,20 @@
                   <p class="BNSubSectionName">##item1.name##</p>
                 </div>
               </div>
-              <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end gy-2 p-0 m-0">
-                <div x-list2="list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-                <div  x-import="theme1/ad-footer.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+              <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end">
+                <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+                <div x-import="theme1/ad-footer.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
               </div>
             </div>
           </div>
           <div
             x-setting="showSideAd"
             x-import="theme1/ad-side.html"
-            class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
+            class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center"
           ></div>
         </div>
 
-        <div x-show-item1="template3" class="mainSectionNews d-flex flex-column mt-4">
+        <div x-show-item1="template3" class="mainSectionNews d-flex flex-column">
           <div class="headermainsection row d-flex flex-row-reverse justify-content-md-between justify-content-center">
             <div class="headSectionName col col-lg-3 col-md-12 col-sm-12 gap-3 mb-sm-4 mx-sm-0 mx-3">
               <p>##item1.name##</p>
@@ -60,7 +61,7 @@
                   <div x-setting="showFooterAd" x-import="theme1/ad-footer.html"></div>
                 </div>
                 <div class="col col-lg-9 col-md-12 col-sm-12 m-sm-0 my-4 p-md-0">
-                  <div x-list2="list0" x-import="theme1/article-template.html" class="newsSBLock NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+                  <div x-list2="$list0" x-import="theme1/article-template.html" class="newsSBLock NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
                 </div>
               </div>
             </div>
@@ -74,8 +75,8 @@
             <div class="col col-lg-8 d-flex flex-column justify-content-center align-items-center align-content-center m-0 p-0">
               <div class="breakingNewsSection">
                 <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end gy-2 p-0 m-0">
-                  <div x-list2="list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-                  <div  x-import="theme1/ad-footer.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+                  <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+                  <div x-import="theme1/ad-footer.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
                 </div>
               </div>
               <div class="primaryButton d-flex flex-column justify-content-center align-items-center align-content-center mt-4">
@@ -101,7 +102,7 @@
 
     <div x-import="theme1/wedgite.html"></div>
 
-    <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
+    <footer  x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
     <script>
       app.controller('mainController', ($scope, $http, $timeout, $interval) => {
         $scope.page = site.showObject('##data.#page##');

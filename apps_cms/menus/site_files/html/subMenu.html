@@ -13,7 +13,7 @@
         <legend>##word.basic_information##</legend>
         <div class="row">
           <div class="row">
-            <i-list class="col5" v="r" ng-model="subMenu.linkageType" items="linkTypeList" display="##session.lang##" ng-search="subMenu.$searchLinkageType" label="##word.linkage_type##"> </i-list>
+            <i-list class="col5" v="r" ng-model="subMenu.type" items="linkTypeList" display="##session.lang##" ng-search="subMenu.$searchtype" label="##word.linkage_type##"> </i-list>
             <div class="col2"></div>
             <div class="col5">
               <i-checkbox help-id="menus_active" label="##word.active##" ng-model="subMenu.active"> </i-checkbox>
@@ -21,15 +21,15 @@
             </div>
           </div>
 
-          <div class="row" ng-show="subMenu.linkageType.id == 1">
+          <div class="row" ng-show="subMenu.type.id == 1">
             <i-list class="col5 input-style" label="##word.Category##" ng-model="subMenu.category" items="categoryList" display="name" ng-search="subMenu.$category1Search"></i-list>
           </div>
 
           <div class="row">
-            <i-list class="col6 input-style" ng-show="subMenu.linkageType.id == 2" label="##word.page##" ng-model="subMenu.page" items="pagesList" display="title" ng-search="subMenu.$pageSearch">
+            <i-list class="col6 input-style" ng-show="subMenu.type.id == 2" label="##word.page##" ng-model="subMenu.page" items="pagesList" display="title" ng-search="subMenu.$pageSearch">
             </i-list>
-            <i-control class="col6" label="##word.external_link##" ng-show="subMenu.linkageType.id == 3" ng-model="subMenu.externalLink"> </i-control>
-            <i-control class="col6" label="##word.internal_link##" ng-show="subMenu.linkageType.id == 4" ng-model="subMenu.internalLink"> </i-control>
+            <i-control class="col6" label="##word.external_link##" ng-show="subMenu.type.id == 3" ng-model="subMenu.externalLink"> </i-control>
+            <i-control class="col6" label="##word.internal_link##" ng-show="subMenu.type.id == 4" ng-model="subMenu.internalLink"> </i-control>
           </div>
         </div>
 

@@ -1,6 +1,60 @@
 module.exports = function init(site) {
   const $articles = site.connectCollection('articles');
+  $articles.aggregate(
+    [
+      {
+        $group: {
+          _id: {
+            guid: '$guid',
+          },
+          dups: {
+            $push: '$_id',
+          },
+          count: {
+            $sum: 1,
+          },
+        },
+      },
+      {
+        $match: {
+          count: {
+            $gt: 1,
+          },
+        },
+      },
+    ],
+    function (err, docs) {
+      if (!err && docs) {
+        let arr = [];
+        docs.forEach((doc) => {
+          doc.dups.shift();
+          doc.dups.forEach((dup) => {
+            arr.push(dup);
+          });
+        });
+        $articles.deleteAll(
+          {
+            _id: {
+              $in: arr,
+            },
+          },
+          (err, result) => {
+            $articles.createUnique({
+              guid: 1,
+            });
+          }
+        );
+      }
+      return;
+    }
+  );
+
   site.articlesList = [];
+  site.MainSliderNews = [];
+  site.$$categories = [];
+
+  site.articleTypes = JSON.parse(site.readFileSync(__dirname + '/site_files/json/articleTypes.json'));
+
   site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
   site.monthes = [
     { nameAr: 'يناير' },
@@ -17,63 +71,96 @@ module.exports = function init(site) {
     { nameAr: 'ديسمبر' },
   ];
   site.escapeHtml = function (unsafe) {
-    if (!unsafe) {
-      return '';
+    try {
+      if (!unsafe) {
+        return '';
+      }
+      return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+    } catch (error) {
+      return unsafe;
     }
-    return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
   };
 
   site.handleArticle = function (doc) {
-    doc.title = site.escapeHtml(doc.translatedList[0].title);
-    doc.title2 = doc.title.split(' ').join('-');
-    doc.imageURL = doc.translatedList[0].image?.url || '/theme1/images/news.jpg';
-    if (doc.type.id === 2) {
-      doc.content = doc.translatedList[0].htmlContent;
+    doc.$title = site.escapeHtml(doc.translatedList[0].title);
+    if (doc.type.id == 7 && doc.yts) {
+      doc.is_yts = true;
+      doc.$title += ' ( ' + doc.yts.year + ' ) ';
+      doc.$title2 = doc.$title.replaceAll(' ', '+');
+      doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
+      doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
+      doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
     } else {
-      doc.content = doc.translatedList[0].textContent || doc.translatedList[0].htmlContent;
+      doc.$title2 = doc.$title.split(' ').join('-');
     }
-    doc.description = site.escapeHtml(doc.content);
+    doc.$url = '/article/' + doc.id + '/' + doc.$title2;
+    doc.$imageURL = doc.translatedList[0].image?.url || '/theme1/images/news.jpg';
+    doc.$coverURL = doc.translatedList[0].cover?.url || doc.$imageURL;
+    if (doc.type.id === 2) {
+      doc.$content = doc.translatedList[0].htmlContent;
+    } else {
+      doc.$content = doc.translatedList[0].textContent || doc.translatedList[0].htmlContent;
+    }
+    doc.$description = site.escapeHtml(doc.$content);
+    doc.$keyWordsList = doc.translatedList[0].keyWordsList || [];
+    doc.$keyWordsList.forEach((k, i) => {
+      doc.$keyWordsList[i] = k + ' Movie';
+    });
+    doc.$tagsList = doc.translatedList[0].tagsList || [doc.$title];
     doc.publishDate = doc.publishDate || new Date();
-    doc.date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
-    doc.day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
-    doc.hasAudio = false;
-    doc.hasVideo = false;
-    doc.hasImageGallary = false;
-    doc.hasMenu = false;
-    doc.menuClass = 'none';
+    doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
+    doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+    doc.$hasAudio = false;
+    doc.$hasVideo = false;
+    doc.$hasImageGallary = false;
+    doc.$hasMenu = false;
+    doc.$menuClass = 'none';
 
-    doc.audioClass = 'none';
-    doc.videoClass = 'none';
-    doc.imageGallaryClass = 'none';
+    doc.$audioClass = 'none';
+    doc.$videoClass = 'none';
+    doc.$imageGallaryClass = 'none';
     if (doc.translatedList[0].hasAudio) {
-      doc.hasAudio = true;
-      doc.audio = doc.translatedList[0].audio;
-      doc.audioClass = '';
+      doc.$hasAudio = true;
+      doc.$audio = doc.translatedList[0].audio;
+      doc.$audioClass = '';
     }
 
     if (doc.translatedList[0].hasVideo) {
-      doc.hasVideo = true;
-      doc.video = doc.translatedList[0].video;
-      doc.videoClass = '';
+      doc.$hasVideo = true;
+      doc.$video = doc.translatedList[0].video;
+      doc.$videoClass = '';
     }
-    doc.readingTimeClass = 'none';
-    doc.hasReadingTime = false;
+    doc.$readingTimeClass = 'none';
+    doc.$hasReadingTime = false;
     if (doc.translatedList[0].hasReadingTime) {
-      doc.hasReadingTime = true;
-      doc.readingTime = doc.translatedList[0].readingTime;
-      doc.readingTimeClass = '';
+      doc.$hasReadingTime = true;
+      doc.$readingTime = doc.translatedList[0].readingTime;
+      doc.$readingTimeClass = '';
+    }
+
+    doc.$miniTitleClass = 'none';
+    doc.$hasMiniTitle = false;
+    if (doc.translatedList[0].hasMiniTitle) {
+      doc.$miniTitle = doc.translatedList[0].miniTitle;
+      doc.$hasMiniTitle = true;
+      doc.$miniTitleClass = '';
     }
 
     if (doc.writer) {
-      doc.hasWriter = true;
-      doc.writer.name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
-      doc.writer.title = doc.writer.profile.title;
-      doc.writer.imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
+      doc.$hasWriter = true;
+      doc.writer.$name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
+      doc.writer.$title = doc.writer.profile.title;
+      doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
+    }
+    if (doc.is_yts && !doc.$hasMiniTitle) {
+      doc.$miniTitle = doc.yts.type;
+      doc.$hasMiniTitle = true;
+      doc.$miniTitleClass = '';
     }
     return doc;
   };
 
-  function prepareArticles() {
+  site.prepareArticles = function () {
     $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
@@ -81,13 +168,13 @@ module.exports = function init(site) {
             site.articlesList.push(site.handleArticle({ ...doc }));
           }
         });
+        site.prepareUrgentArticles();
+        site.prepareSliderArticles();
       }
-      prepareUrgentArticles();
-      prepareSliderArticles();
     });
-  }
+  };
 
-  function prepareUrgentArticles() {
+  site.prepareUrgentArticles = function () {
     $articles.findMany({ where: { appearInUrgent: true }, sort: { id: -1 }, limit: 1000 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
@@ -95,18 +182,18 @@ module.exports = function init(site) {
             site.articlesList.push(site.handleArticle({ ...doc }));
           }
         });
+        site.articlesList.sort((a, b) => {
+          return b.id - a.id;
+        });
+        site.topNews = site.articlesList
+          .filter((a) => a.appearInUrgent === true)
+          .map((a) => ({ id: a.id, $title: a.$title, $imageURL: a.$imageURL, $url: a.$url }))
+          .splice(0, 10)
+          .reverse();
       }
-      site.articlesList.sort((a, b) => {
-        return b.id - a.id;
-      });
-      site.topNews = site.articlesList
-        .filter((a) => a.appearInUrgent === true)
-        .map((a) => ({ id: a.id, title: a.title, title2: a.title2 }))
-        .splice(0, 10)
-        .reverse();
     });
-  }
-  function prepareSliderArticles() {
+  };
+  site.prepareSliderArticles = function () {
     $articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
@@ -114,22 +201,28 @@ module.exports = function init(site) {
             site.articlesList.push(site.handleArticle({ ...doc }));
           }
         });
+        site.articlesList.sort((a, b) => {
+          return b.id - a.id;
+        });
+        site.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true).splice(0, 10);
       }
-      site.articlesList.sort((a, b) => {
-        return b.id - a.id;
-      });
-      site.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true).splice(0, 10);
     });
-  }
+  };
+  site.getRelatedArticles = function (a) {
+    let $relatedArticleList = site.articlesList.filter((b) => b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, 10);
+    if ($relatedArticleList.length < 10) {
+      $relatedArticleList = [
+        ...$relatedArticleList,
+        ...site.articlesList.filter((b) => b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, 10 - $relatedArticleList.length),
+      ];
+    }
+    return $relatedArticleList;
+  };
 
-  prepareArticles();
+  site.prepareArticles();
 
   site.handleCategoryArticles = function () {
     site.$$categories = [];
-
-    site.menuList1 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(0, 8);
-    site.menuList2 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(8, 20);
-    site.menuList3 = site.categoriesList.map((c) => ({ id: c.id, name: c.translatedList[0].name })).splice(20);
 
     site.categoriesList.forEach((cat) => {
       $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
@@ -143,36 +236,6 @@ module.exports = function init(site) {
           site.articlesList.sort((a, b) => {
             return b.id - a.id;
           });
-
-          cat.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true && a.category.id == cat.id).splice(0, 10);
-
-          if (site.setting.mainCategoryList && (_cat = site.setting.mainCategoryList.find((c) => c.id == cat.id))) {
-            _cat = {
-              ..._cat,
-              index: site.setting.mainCategoryList.findIndex((c) => c.id == cat.id),
-              id: cat.id,
-              show: cat.showInHomePage,
-              name: cat.translatedList[0].name,
-              limit: cat.homePageLimit || 10,
-              list: cat.$list,
-            };
-            _cat.list = site.articlesList.filter((a) => a.category.id == _cat.id).slice(0, _cat.limit);
-
-            if (_cat.list.length > 0 && _cat.template) {
-              if (_cat.template.id == 1) {
-                _cat.template1 = true;
-              } else if (_cat.template.id == 2) {
-                _cat.template2 = true;
-              } else if (_cat.template.id == 3) {
-                _cat.template3 = true;
-                _cat.list0 = [_cat.list.shift()];
-              }
-              site.$$categories.push(_cat);
-            }
-            site.$$categories.sort((a, b) => {
-              return a.index - b.index;
-            });
-          }
         }
       });
     });
@@ -183,12 +246,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
-  // site.get({
-  //   name: 'articles',
-  //   path: __dirname + '/site_files/html/index.html',
-  //   parser: 'html',
-  //   compres: true,
-  // });
   site.get(
     {
       name: 'articles',
@@ -212,6 +269,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
+
     if (!req.session.user) {
       response.error = 'Please Login First';
       res.json(response);
@@ -219,24 +277,47 @@ module.exports = function init(site) {
     }
 
     let articlesDoc = req.body;
-    articlesDoc.$req = req;
-    articlesDoc.$res = res;
+    if (articlesDoc.is_yts) {
+      articlesDoc = {
+        type: site.articleTypes.find((t) => t.id === 7),
+        category: site.categoriesList.filter((c) => c.id == 4).map((c) => ({ id: c.id, name: c.translatedList[0].name }))[0],
+        yts: articlesDoc,
+        translatedList: [{ language: site.setting.languagesList[0].language }],
+      };
+      if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
+        response.error = 'No Description or Rating';
+        res.json(response);
+        return;
+      }
+      articlesDoc.showInMainSlider = true;
+      articlesDoc.appearInUrgent = true;
+      if (Array.isArray(articlesDoc.yts.genres)) {
+        articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
+        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres];
+        articlesDoc.translatedList[0].keyWordsList = [...articlesDoc.yts.title.split(' '), ...articlesDoc.yts.genres];
+      }
 
-    articlesDoc.addUserInfo = site.security.getUserFinger({
-      $req: req,
-      $res: res,
-    });
+      articlesDoc.translatedList[0].title = articlesDoc.yts.title;
+      articlesDoc.translatedList[0].image = { url: articlesDoc.yts.medium_cover_image };
+      articlesDoc.translatedList[0].cover = { url: articlesDoc.yts.large_cover_image };
+      articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full;
+      if (articlesDoc.yts.date_uploaded) {
+        articlesDoc.publishDate = new Date(articlesDoc.yts.date_uploaded);
+      }
+
+      articlesDoc.guid = site.md5(articlesDoc.translatedList[0].title);
+    }
+    articlesDoc.addUserInfo = req.getUserFinger();
 
     if (typeof articlesDoc.active === 'undefined') {
       articlesDoc.active = true;
     }
-
+    articlesDoc.guid = articlesDoc.guid || site.md5(articlesDoc.translatedList[0].title);
     $articles.add(articlesDoc, (err, doc) => {
       if (!err && doc) {
         response.done = true;
         response.doc = doc;
         site.articlesList.unshift(site.handleArticle({ ...doc }));
-        site.handleCategoryArticles();
       } else {
         response.error = err?.message;
       }
@@ -284,7 +365,6 @@ module.exports = function init(site) {
           if (index > -1) {
             site.articlesList[index] = site.handleArticle({ ...result.doc });
           }
-          site.handleCategoryArticles();
         } else {
           response.error = 'Code Already Exist';
         }
@@ -342,7 +422,6 @@ module.exports = function init(site) {
             response.done = true;
             site.articlesList.splice(index);
           }
-          site.handleCategoryArticles();
         } else {
           response.error = err?.message;
         }
@@ -532,7 +611,7 @@ module.exports = function init(site) {
       where['translatedList.keyWordsList'] = site.get_RegExp(where['keyword'], 'i');
       delete where['keyword'];
     }
-    site.get_RegExp(req.body.search, 'i')
+    site.get_RegExp(req.body.search, 'i');
     // site.articlesList.filter(u => u.name.contains(where['name']))
     $articles.findMany(
       {
@@ -636,10 +715,10 @@ module.exports = function init(site) {
       urls += `
         <item>
           <guid>${doc.id}</guid>
-          <title>${doc.title}</title>
+          <title>${doc.$title}</title>
           <link>${doc.full_url}</link>
-          <image>${domain}${doc.imageURL}</image>
-          <description>${doc.description}</description>
+          <image>${domain}${doc.$imageURL}</image>
+          <description>${doc.$description}</description>
           <pubDate>${doc.$date}</pubDate>
         </item>
         `;

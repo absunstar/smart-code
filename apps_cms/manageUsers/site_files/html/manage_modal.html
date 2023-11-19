@@ -30,7 +30,7 @@
                       <i-control v="r" class="col6" label="##word.lastName##" ng-model="manageUsers.profile.lastName"> </i-control>
                     </div>
                     <div class="row">
-                      <i-control  v="r" class="col6" label="##word.Title##" ng-model="manageUsers.profile.title"></i-control>
+                      <i-control v="r" class="col6" label="##word.Title##" ng-model="manageUsers.profile.title"></i-control>
                     </div>
                     <div class="row">
                       <i-control v="r" class="col6" label="##word.email##" ng-model="manageUsers.email"> </i-control>
@@ -54,6 +54,8 @@
                       <i-checkbox label="##word.active##" ng-model="manageUsers.active"> </i-checkbox>
 
                       <i-checkbox label="##word.ability_login##" ng-model="manageUsers.ability_login"> </i-checkbox>
+                      <i-checkbox label="##word.allowFollow##" ng-model="manageUsers.allowFollow"> </i-checkbox>
+                      <i-checkbox label="##word.allowShare##" ng-model="manageUsers.allowShare"> </i-checkbox>
                     </div>
                   </div>
                 </div>
@@ -172,8 +174,7 @@
                 <fieldset>
                   <legend>##word.security_public_roles##</legend>
                   <div class="row">
-
-                    <i-checkbox  label="ALL" ng-model="$public_roles" ng-click="checkAll('public_roles')"> </i-checkbox>
+                    <i-checkbox label="ALL" ng-model="$public_roles" ng-click="checkAll('public_roles')"> </i-checkbox>
                   </div>
                   <i-checklist class2="col3" primary="name" label="" items="public_roles" display="##session.lang##" ng-model="manageUsers.roles"></i-checklist>
                 </fieldset>

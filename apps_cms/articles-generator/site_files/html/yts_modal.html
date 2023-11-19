@@ -1,0 +1,35 @@
+<div id="ytsModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.YTS Manager##</h2>
+    </div>
+
+    <div class="modal-body">
+      <i-button ng-click="generateYTS()" label="Generate Posts"></i-button>
+      <div class="row padding margin">
+        <div class="row padding border">
+          <div class="col6 bold">Get Movies Count</div>
+          <div class="col6">{{ytsGetCount}}</div>
+        </div>
+        <div class="row padding border">
+          <div class="col6 bold">Send Movies Count</div>
+          <div class="col6 blue">{{ytsSendCount}}</div>
+        </div>
+        <div class="row padding border">
+          <div class="col6 bold">Added Movies Count</div>
+          <div class="col6 green">{{ytsAddCount}}</div>
+        </div>
+        <div class="row padding border">
+          <div class="col6 bold">Fail Movies Count</div>
+          <div class="col6 green">{{ytsfailCount}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#ytsModal')"></i-button>
+    </div>
+  </div>
+</div>

@@ -217,7 +217,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
       data: {
         where: where,
         search: $scope.$search,
-        select: { id: 1, translatedList: 1, name: 1, linkageType: 1, active: 1, image: 1,sort:1, },
+        select: { id: 1, translatedList: 1, name: 1, type: 1, active: 1, image: 1,sort:1, },
         sort : {sort:1}
       },
     }).then(
