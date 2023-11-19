@@ -23,7 +23,13 @@
   .newstitle {
     width: auto;
   }
-
+  .articleSection h1 {
+    font-size: x-large;
+  }
+  .yts-info p {
+    color: #ffffff;
+    font-size: 12px;
+  }
   .editorImage > img {
     width: 64px;
     height: 64px;

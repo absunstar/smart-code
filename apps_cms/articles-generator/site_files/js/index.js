@@ -12,6 +12,7 @@ app.connectScope(
     };
 
     $scope.addArticle = function (movie) {
+      $scope.ytsSendCount++;
       $http({
         method: 'POST',
         url: '/api/articles/add',
@@ -19,7 +20,9 @@ app.connectScope(
       }).then(
         function (response) {
           if (response.data.done) {
+            $scope.ytsAddCount++;
           } else {
+            $scope.ytsfailCount++;
             $scope.error = response.data.error;
           }
         },
@@ -42,12 +45,25 @@ app.connectScope(
       });
     };
 
+    $scope.ytsPage = 0;
+    $scope.ytsGetCount = 0;
+    $scope.ytsSendCount = 0;
+    $scope.ytsAddCount = 0;
+    $scope.ytsfailCount = 0;
+
     $scope.generateYTS = function () {
-      $scope.fetchYTS(null, (data) => {
-        data.movies.forEach((movie) => {
-          console.log(movie);
-          $scope.addArticle({ ...movie, is_yts: true });
-        });
+      $scope.ytsPage++;
+      $scope.fetchYTS({ page: $scope.ytsPage }, (data) => {
+        $scope.ytsGetCount += data.movies.length;
+        if (data.movies.length > 0) {
+          data.movies.forEach((movie) => {
+            console.log(movie);
+            $scope.addArticle({ ...movie, is_yts: true });
+          });
+          setTimeout(() => {
+            $scope.generateYTS();
+          }, 1000 * 5);
+        }
       });
     };
     $scope.siteLoadAll();

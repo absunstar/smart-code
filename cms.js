@@ -36,8 +36,8 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
-    if (!site.setting.siteTemplate || !site.setting.siteLogo || !site.setting.languagesList) {
-      res.redirect('/admin');
+    if (!site.setting.siteTemplate || !site.setting.languagesList) {
+      res.redirect('/404');
       return;
     }
     if (site.setting.siteTemplate.id == 1) {
@@ -51,8 +51,8 @@ site.get(
         {
           guid: '',
           site_name: lang.siteName,
-          site_logo: site.setting.siteLogo.url,
-          page_image: site.setting.siteLogo.url,
+          site_logo: site.setting.siteLogo?.url,
+          page_image: site.setting.siteLogo?.url,
           page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + lang.siteSlogan,
           page_description: lang.description.substr(0, 200),
           page_keywords: lang.keyWordsList.join(','),
@@ -80,7 +80,7 @@ site.get(
         }
       );
     } else {
-      res.redirect('/admin');
+      res.redirect('/404');
     }
   }
 );
@@ -90,8 +90,8 @@ site.get(
     name: ['/category/:id/:title', '/category/:id'],
   },
   (req, res) => {
-    if (!site.setting.siteTemplate || !site.setting.siteLogo) {
-      res.redirect('/admin');
+    if (!site.setting.siteTemplate) {
+      res.redirect('/404');
       return;
     }
     let category = site.categoriesList.find((c) => c.id == req.params.id);
@@ -105,8 +105,8 @@ site.get(
         'theme1/category.html',
         {
           site_name: site.setting.languagesList[0].siteName,
-          site_logo: site.setting.siteLogo.url,
-          page_image: category.translatedList[0].image?.url || site.setting.siteLogo.url,
+          site_logo: site.setting.siteLogo?.url,
+          page_image: category.translatedList[0].image?.url || site.setting.siteLogo?.url,
           page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + category.translatedList[0].name,
           page_description: category.translatedList[0].description,
 
@@ -116,7 +116,7 @@ site.get(
           moneyPricesList: site.setting.moneyPricesList,
 
           category: { name: category.translatedList[0].name },
-          list: site.articlesList.filter((a) => a.category.id == category.id).slice(0, 20),
+          list: site.articlesList.filter((a) => a.category && a.category.id == category.id).slice(0, 20),
 
           menuList1: site.menuList1,
           menuList2: site.menuList2,
@@ -142,15 +142,10 @@ site.get(
     name: ['/article/:id/:title', '/a/:id'],
   },
   (req, res) => {
-    if (!site.setting.siteTemplate || !site.setting.siteLogo) {
-      res.redirect('/admin');
-      return;
-    }
-
     let article = site.articlesList.find((a) => a.id == req.params.id);
     if (req.route.name0 == '/a/:id') {
       if (article) {
-        res.redirect('/article/' + article.id + '/' + encodeURI(article.title2));
+        res.redirect('/article/' + article.id + '/' + encodeURI(article.$title2));
       } else {
         res.redirect('/');
       }
@@ -169,9 +164,9 @@ site.get(
       'theme1/article.html',
       {
         site_name: site.setting.languagesList[0].siteName,
-        site_logo: site.setting.siteLogo.url,
-        page_image: article.imageURL || site.setting.siteLogo.url,
-        page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + article.title,
+        site_logo: site.setting.siteLogo?.url,
+        page_image: article.imageURL || site.setting.siteLogo?.url,
+        page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + article.$title,
         page_description: article.description,
 
         prayerTimingsList: site.setting.prayerTimingsList,
@@ -182,12 +177,9 @@ site.get(
         menuList1: site.menuList1,
         menuList2: site.menuList2,
         menuList3: site.menuList3,
-        MainSliderNews: {
-          article: site.MainSliderNews[0],
-          list: site.MainSliderNews,
-        },
+
         article: article,
-        relatedArticleList: site.articlesList.filter((a) => a.category.id === article.category.id && a.id !== article.id).slice(0, 10),
+        relatedArticleList: site.articlesList.filter((a) => a.category && article.category && a.category.id === article.category.id && a.id !== article.id).slice(0, 10),
         topNews: site.topNews,
         page: {
           article: article,
@@ -216,6 +208,14 @@ site.addFeature('cms');
 site.ready = true;
 
 site.run();
+
+site.on('ready', () => {
+  setTimeout(() => {
+    site.handleMenus();
+    site.handleCategoryArticles();
+  }, 1000 * 3);
+});
+
 // add sa sasa keys
 site.security.addKey('c12e01f2a13ff5587e1e9e4aedb8242d');
 site.security.addKey('f45731e3d39a1b2330bbf93e9b3de59e');

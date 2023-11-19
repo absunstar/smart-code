@@ -613,7 +613,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
     if (ev.which !== 13 || !obj.$keyword) {
       return;
     }
-
+    obj.keyWordsList = obj.keyWordsList || [];
     if (!obj.keyWordsList.some((k) => k === obj.$keyword)) {
       obj.keyWordsList.push(obj.$keyword);
     }
@@ -627,7 +627,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
     if (ev.which !== 13 || !obj.$tag) {
       return;
     }
-
+    obj.tagsList = obj.tagsList || [];
     if (!obj.tagsList.some((k) => k === obj.$tag)) {
       obj.tagsList.push(obj.$tag);
     }

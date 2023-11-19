@@ -1,6 +1,6 @@
 :root {
   --theme-color: #2196f3;
-  --modal-color: #fff;
+  --modal-color: #000;
   --brand-color: #ffffff;
   --body-background: #fafafa;
   --bs-body-bg: var(--body-background);

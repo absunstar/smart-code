@@ -15,7 +15,24 @@ module.exports = function init(site) {
   };
 
   app.$collection = site.connectCollection(app.name);
-
+  site.handleMenus = function () {
+    site.menuList = app.memoryList;
+    site.menuList.forEach((m) => {
+      m.type = m.type || {};
+      if (m.type.id === 1 && m.category) {
+        m.$url = '/category/' + m.category.id + '/' + m.category.name;
+      } else if (m.type.id === 2) {
+      } else if (m.type.id === 3) {
+      } else if (m.type.id === 4) {
+      } else {
+        m.active = false;
+      }
+    });
+    site.menuList = site.menuList.filter((m) => m.active);
+    site.menuList1 = site.menuList.map((c) => ({ id: c.id, name: c.translatedList[0].name, url: c.$url })).splice(0, 8);
+    site.menuList2 = site.menuList.map((c) => ({ id: c.id, name: c.translatedList[0].name, url: c.$url })).splice(8, 20);
+    site.menuList3 = site.menuList.map((c) => ({ id: c.id, name: c.translatedList[0].name, url: c.$url })).splice(20);
+  };
   app.linkTypeList = [
     {
       id: 1,
@@ -62,6 +79,7 @@ module.exports = function init(site) {
                 }
               });
             });
+            site.handleMenus();
           } else {
             docs.forEach((doc) => {
               app.memoryList.push(doc);
@@ -79,6 +97,7 @@ module.exports = function init(site) {
       }
       if (app.allowMemory && !err && doc) {
         app.memoryList.push(doc);
+        site.handleMenus();
       }
     });
   };
@@ -102,6 +121,7 @@ module.exports = function init(site) {
           } else {
             app.memoryList.push(result.doc);
           }
+          site.handleMenus();
         } else if (app.allowCache && !err && result) {
           let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
@@ -128,6 +148,7 @@ module.exports = function init(site) {
           if (index !== -1) {
             app.memoryList.splice(index, 1);
           }
+          site.handleMenus();
         } else if (app.allowCache && !err && result.count === 1) {
           let index = app.cacheList.findIndex((a) => a.id === _item.id);
           if (index !== -1) {
@@ -404,7 +425,7 @@ module.exports = function init(site) {
           addUserInfo: req.getUserFinger(),
           translatedList: [],
           subList: [],
-          linkageType: {
+          type: {
             id: 1,
             en: 'Category',
             ar: 'قسم',
@@ -412,11 +433,10 @@ module.exports = function init(site) {
           category: { id: topList[i].id, name: topList[i].translatedList.find((t) => t.language.id == req.session.lang || 'ar').name },
         };
         topList[i].translatedList.forEach((_t) => {
-          console.log( _t.imageUrl);
           obj.translatedList.push({
             language: _t.language,
             showImage: true,
-            image : _t.imageUrl,
+            image: _t.imageUrl,
             name: _t.name,
           });
         });
@@ -426,19 +446,18 @@ module.exports = function init(site) {
               active: true,
               translatedList: [],
               subList: [],
-              linkageType: {
+              type: {
                 id: 1,
                 en: 'Category',
                 ar: 'قسم',
               },
-              category: { id: _subCategory.id, name: _subCategory.translatedList.find((t) => t.language.id == req.session.lang|| 'ar').name },
+              category: { id: _subCategory.id, name: _subCategory.translatedList.find((t) => t.language.id == req.session.lang || 'ar').name },
             };
             _subCategory.translatedList.forEach((_t) => {
-              console.log( _t.imageUrl);
               sub.translatedList.push({
                 language: _t.language,
                 showImage: true,
-                image : _t.imageUrl,
+                image: _t.imageUrl,
                 name: _t.name,
               });
             });

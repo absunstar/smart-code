@@ -52,12 +52,13 @@
 .articleEditor {
   padding-bottom: 10px;
   border-bottom: 5px solid var(--background1);
+  width: 80%;
 }
 
 .mainarticle {
-  direction: rtl;
-  line-height: 2;
-  font-size: 18px;
+  padding: 0;
+  line-height: 1.5;
+  font-size: large;
   width: 100%;
 }
 
