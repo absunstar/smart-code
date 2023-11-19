@@ -11,7 +11,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
       site.showTabContent(event, selector);
       document.getElementById('register_email').style.display = 'none';
       document.getElementById('register_mobile').style.display = 'block';
-      if ('##setting.enable_sending_messages_mobile##' == 'true') {
+      if ('##setting.enable_sending_messages_mobile##' == 'true' || '##setting.enable_sending_messages_mobile_taqnyat##' == 'true') {
         document.getElementById('mobile_mailer').style.display = 'block';
       } else {
         document.getElementById('mobile_data').style.display = 'block';

@@ -100,7 +100,7 @@
 
       <div id="email_and_text_messages" class="tab-content">
         <fieldset>
-          <legend>##word.mobile_sms##</legend>
+          <legend>##word.mobile_sms_twilio##</legend>
           <div class="row">
             <i-checkbox class="col6" label="##word.enable_sending_messages_mobile##" ng-model="default_setting.enable_sending_messages_mobile"> </i-checkbox>
 
@@ -111,7 +111,18 @@
             <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="default_setting.messaging_services_id_mobile"> </i-control>
           </div>
         </fieldset>
+        <fieldset>
+          <legend>##word.mobile_sms_taqnyat##</legend>
+          <div class="row">
+            <i-checkbox class="col6" label="##word.enable_sending_messages_mobile##" ng-model="default_setting.enable_sending_messages_mobile_taqnyat"> </i-checkbox>
 
+            <i-control class="col6" label="##word.auth_token_mobile##" ng-model="default_setting.auth_token_mobile"> </i-control>
+          </div>
+          <div class="row">
+            <i-control class="col6" label="##word.account_id_mobile##" ng-model="default_setting.account_id_mobile"> </i-control>
+            <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="default_setting.messaging_services_id_mobile"> </i-control>
+          </div>
+        </fieldset>
         <fieldset>
           <legend>##word.email_sending_setting##</legend>
           <i-checkbox class="row" label="##word.enable_sending_messages_email##" ng-model="default_setting.enable_sending_messages_email"> </i-checkbox>

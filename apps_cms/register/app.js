@@ -106,7 +106,7 @@ module.exports = function init(site) {
             (err, result) => {
               if (!err) {
                 if (result.doc.type == 'mobile' && site.setting.enableSendingMessagesMobile) {
-                  site.sendMobileMessage({
+                  site.sendMobileTwilioMessage({
                     to: result.doc.country.countryCode + result.doc.mobile,
                     message: `code : ${result.doc.code}`,
                   });
@@ -153,7 +153,7 @@ module.exports = function init(site) {
                     response.done = true;
                     response.doc = result;
                     if (result.type == 'mobile' && site.setting.enableSendingMessagesMobile) {
-                      site.sendMobileMessage({
+                      site.sendMobileTwilioMessage({
                         to: result.country.countryCode + result.mobile,
                         message: `code : ${result.code}`,
                       });

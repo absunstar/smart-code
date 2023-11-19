@@ -78,10 +78,17 @@ module.exports = function init(site) {
           site.security.updateUser(user, (err, user_doc) => {
 
             if (where.mobile) {
-              site.sendMobileMessage({
-                to: user_doc.doc.country_code + user_doc.doc.mobile,
-                message: `code : ${user_doc.doc.forget_password.code}`,
-              });
+              if(site.setting.enable_sending_messages_mobile) {
+                site.sendMobileTwilioMessage({
+                  to: user_doc.doc.country_code + user_doc.doc.mobile,
+                  message: `code : ${user_doc.doc.forget_password.code}`,
+                });
+              } else if(site.setting.enable_sending_messages_mobile_taqnyat) {
+                site.sendMobileTaqnyatMessage({
+                  to: user_doc.doc.country_code + user_doc.doc.mobile,
+                  message: `code : ${user_doc.doc.forget_password.code}`,
+                });
+              }
               response.type = 'mobile'
               response.done_send_mobile = true;
             } else if (where.email) {

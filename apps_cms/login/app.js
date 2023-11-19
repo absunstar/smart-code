@@ -67,7 +67,7 @@ module.exports = function init(site) {
           site.security.updateUser(user, (err, userDoc) => {
 
             if (where.mobile) {
-              site.sendMobileMessage({
+              site.sendMobileTwilioMessage({
                 to: userDoc.doc.countryCode + userDoc.doc.mobile,
                 message: `code : ${userDoc.doc.forget_password.code}`,
               });

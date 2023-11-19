@@ -116,8 +116,18 @@
   },
   {
     "name": "mobile_sms",
+    "en": "Sms",
+    "ar": "رسائل الجوال"
+  },
+  {
+    "name": "mobile_sms_twilio",
     "en": "Twilio sms",
     "ar": "(Twilio) رسائل الجوال"
+  },
+  {
+    "name": "mobile_sms_taqnyat",
+    "en": "Taqnyat sms",
+    "ar": "(Taqnyat) رسائل الجوال"
   },
   {
     "name": "mobile_sms",

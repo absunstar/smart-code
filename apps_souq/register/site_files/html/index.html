@@ -59,7 +59,7 @@
           <a
             class="tab-link inline-block"
             ng-click="showTab($event,'#register_mobile')"
-            ng-hide="##setting.enable_sending_messages_mobile## != true && ##setting.enable_sending_messages_email## != true"
+            ng-hide="##setting.enable_sending_messages_mobile## != true && ##setting.enable_sending_messages_mobile_taqnyat## != true && ##setting.enable_sending_messages_email## != true"
           >
             ##word.register_with_mobile_number##</a
           >
@@ -112,7 +112,7 @@
               <div class="row">
                 <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
               </div>
-              <div class="row" ng-show="##setting.enable_sending_messages_mobile## != true">
+              <div class="row" ng-show="##setting.enable_sending_messages_mobile## != true && ##setting.enable_sending_messages_mobile_taqnyat## != true">
                 <i-country
                   v="r"
                   class="col4 center input-style"
@@ -132,8 +132,8 @@
                 <i-checkbox class="col2" label="##word.show_password##" ng-change="showPassword()" ng-model="show_password"> </i-checkbox>
               </div>
 
-              <button ng-click="register(user)" ng-show="##setting.enable_sending_messages_mobile## == true" class="login-button">##word.register_now## <i class="fa fa-user-plus"></i></button>
-              <button ng-click="checkRegister(user)" ng-show="##setting.enable_sending_messages_mobile## != true" class="login-button">##word.register_now## <i class="fa fa-user-plus"></i></button>
+              <button ng-click="register(user)" ng-show="##setting.enable_sending_messages_mobile## == true || ##setting.enable_sending_messages_mobile_taqnyat## == true" class="login-button">##word.register_now## <i class="fa fa-user-plus"></i></button>
+              <button ng-click="checkRegister(user)" ng-show="##setting.enable_sending_messages_mobile## != true && ##setting.enable_sending_messages_mobile_taqnyat## != true" class="login-button">##word.register_now## <i class="fa fa-user-plus"></i></button>
             </div>
           </div>
 

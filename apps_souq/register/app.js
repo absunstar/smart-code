@@ -123,11 +123,18 @@ module.exports = function init(site) {
             },
             (err, result) => {
               if (!err) {
-                if (result.doc.type == 'mobile' && site.setting.enable_sending_messages_mobile) {
-                  site.sendMobileMessage({
-                    to: result.doc.country.country_code + result.doc.mobile,
-                    message: `code : ${result.doc.code}`,
-                  });
+                if (result.doc.type == 'mobile') {
+                  if(site.setting.enable_sending_messages_mobile){
+                    site.sendMobileTwilioMessage({
+                      to: result.doc.country.country_code + result.doc.mobile,
+                      message: `code : ${result.doc.code}`,
+                    });
+                  } else if(site.setting.enable_sending_messages_mobile_taqnyat){
+                    site.sendMobileTaqnyatMessage({
+                      to: result.doc.country.country_code + result.doc.mobile,
+                      message: `code : ${result.doc.code}`,
+                    });
+                  }
                   response.done_send_mobile = true;
                 } else if (result.doc.type == 'email' && site.setting.enable_sending_messages_email) {
                   site.sendMailMessage({
@@ -170,11 +177,18 @@ module.exports = function init(site) {
                   if (!err) {
                     response.done = true;
                     response.doc = result;
-                    if (result.type == 'mobile' && site.setting.enable_sending_messages_mobile) {
-                      site.sendMobileMessage({
-                        to: result.country.country_code + result.mobile,
-                        message: `code : ${result.code}`,
-                      });
+                    if (result.type == 'mobile') {
+                      if(site.setting.enable_sending_messages_mobile) {
+                        site.sendMobileTwilioMessage({
+                          to: result.country.country_code + result.mobile,
+                          message: `code : ${result.code}`,
+                        });
+                      } else  if(site.setting.enable_sending_messages_mobile_taqnyat) {
+                        site.sendMobileTaqnyatMessage({
+                          to: result.country.country_code + result.mobile,
+                          message: `code : ${result.code}`,
+                        });
+                      } 
                       response.done_send_mobile = true;
                     } else if (result.type == 'email' && site.setting.enable_sending_messages_email) {
                       site.sendMailMessage({
