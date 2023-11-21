@@ -21,8 +21,8 @@
   },
   {
     "name": "please_wait_to_send_mobile_code_again",
-    "en": "Please wait less than a minute before resending the code again",
-    "ar": "برجاء الإنتظار أقل من دقيقة قبل إعادة إرسال الرمز مرة أخرى"
+    "en": "Please wait less than a five minutes before resending the code again",
+    "ar": "برجاء الإنتظار أقل من خمس دقائق قبل إعادة إرسال الرمز مرة أخرى"
   },
   {
     "name": "please_wait_to_send_email_code_again",

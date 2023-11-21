@@ -1,21 +1,25 @@
 module.exports = function init(site) {
-  const $mailer = site.connectCollection('mailer');
+  const $mailer = site.connectCollection("mailer");
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
+    name: "images",
+    path: __dirname + "/site_files/images/",
   });
 
   site.get(
     {
-      name: 'register',
+      name: "register",
     },
     (req, res) => {
       res.render(
-        'register/index.html',
-        { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+        "register/index.html",
         {
-          parser: 'html css js',
+          title: site.setting.title,
+          image_url: site.setting.logo,
+          description: site.setting.description,
+        },
+        {
+          parser: "html css js",
           compress: true,
         }
       );
@@ -24,14 +28,18 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: 'mailer',
+      name: "mailer",
     },
     (req, res) => {
       res.render(
-        'register/mailer.html',
-        { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+        "register/mailer.html",
         {
-          parser: 'html css js',
+          title: site.setting.title,
+          image_url: site.setting.logo,
+          description: site.setting.description,
+        },
+        {
+          parser: "html css js",
           compress: true,
         }
       );
@@ -39,11 +47,11 @@ module.exports = function init(site) {
   );
 
   site.get({
-    name: 'css',
-    path: __dirname + '/site_files/css/',
+    name: "css",
+    path: __dirname + "/site_files/css/",
   });
 
-  site.on('[mailer][delete]', function (id) {
+  site.on("[mailer][delete]", function (id) {
     $mailer.delete(
       {
         id: id,
@@ -54,7 +62,7 @@ module.exports = function init(site) {
 
   site.ipList = [];
 
-  site.post('/api/mailer/add', (req, res) => {
+  site.post("/api/mailer/add", (req, res) => {
     let response = {
       done: false,
     };
@@ -71,18 +79,18 @@ module.exports = function init(site) {
     });
 
     let mailer_doc = req.body;
-    mailer_doc.$req = req;
-    mailer_doc.$res = res;
+    // mailer_doc.$req = req;
+    // mailer_doc.$res = res;
 
     $mailer.findOne(
       {
         where: {
           $or: [
             {
-              $and: [{ type: 'email', email: mailer_doc.email }],
+              $and: [{ type: "email", email: mailer_doc.email }],
             },
             {
-              $and: [{ type: 'mobile', mobile: mailer_doc.mobile }],
+              $and: [{ type: "mobile", mobile: mailer_doc.mobile }],
             },
           ],
         },
@@ -91,12 +99,12 @@ module.exports = function init(site) {
         if (!err && doc) {
           if (mailer_doc.mobile) {
             let date = new Date(doc.date);
-            date.setMinutes(date.getMinutes() + 1);
+            date.setMinutes(date.getMinutes() + 5);
             if (new Date() > date) {
               doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
               doc.date = new Date();
             } else {
-              response.error = 'have to wait mobile';
+              response.error = "have to wait mobile 5 Minute";
               res.json(response);
               return;
             }
@@ -107,7 +115,7 @@ module.exports = function init(site) {
               doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
               doc.date = new Date();
             } else {
-              response.error = 'have to wait email';
+              response.error = "have to wait email";
               res.json(response);
               return;
             }
@@ -123,20 +131,25 @@ module.exports = function init(site) {
             },
             (err, result) => {
               if (!err) {
-                if (result.doc.type == 'mobile') {
-                  if(site.setting.enable_sending_messages_mobile){
+                if (result.doc.type == "mobile") {
+                  if (site.setting.enable_sending_messages_mobile) {
                     site.sendMobileTwilioMessage({
                       to: result.doc.country.country_code + result.doc.mobile,
                       message: `code : ${result.doc.code}`,
                     });
-                  } else if(site.setting.enable_sending_messages_mobile_taqnyat){
+                  } else if (
+                    site.setting.enable_sending_messages_mobile_taqnyat
+                  ) {
                     site.sendMobileTaqnyatMessage({
                       to: result.doc.country.country_code + result.doc.mobile,
                       message: `code : ${result.doc.code}`,
                     });
                   }
                   response.done_send_mobile = true;
-                } else if (result.doc.type == 'email' && site.setting.enable_sending_messages_email) {
+                } else if (
+                  result.doc.type == "email" &&
+                  site.setting.enable_sending_messages_email
+                ) {
                   site.sendMailMessage({
                     to: result.doc.email,
                     subject: `Rejester Code`,
@@ -155,18 +168,18 @@ module.exports = function init(site) {
           );
         } else {
           let where = {};
-          if (mailer_doc.type == 'email') {
+          if (mailer_doc.type == "email") {
             where.email = mailer_doc.email;
-          } else if (mailer_doc.type == 'mobile') {
+          } else if (mailer_doc.type == "mobile") {
             where.mobile = mailer_doc.mobile;
           }
           site.security.getUser(where, (err, user_doc) => {
             if (!err) {
               if (user_doc) {
-                if (mailer_doc.type == 'email') {
-                  response.error = 'Email Exists';
-                } else if (mailer_doc.type == 'mobile') {
-                  response.error = 'Mobile Exists';
+                if (mailer_doc.type == "email") {
+                  response.error = "Email Exists";
+                } else if (mailer_doc.type == "mobile") {
+                  response.error = "Mobile Exists";
                 }
                 res.json(response);
                 return;
@@ -177,20 +190,25 @@ module.exports = function init(site) {
                   if (!err) {
                     response.done = true;
                     response.doc = result;
-                    if (result.type == 'mobile') {
-                      if(site.setting.enable_sending_messages_mobile) {
+                    if (result.type == "mobile") {
+                      if (site.setting.enable_sending_messages_mobile) {
                         site.sendMobileTwilioMessage({
                           to: result.country.country_code + result.mobile,
                           message: `code : ${result.code}`,
                         });
-                      } else  if(site.setting.enable_sending_messages_mobile_taqnyat) {
+                      } else if (
+                        site.setting.enable_sending_messages_mobile_taqnyat
+                      ) {
                         site.sendMobileTaqnyatMessage({
                           to: result.country.country_code + result.mobile,
                           message: `code : ${result.code}`,
                         });
-                      } 
+                      }
                       response.done_send_mobile = true;
-                    } else if (result.type == 'email' && site.setting.enable_sending_messages_email) {
+                    } else if (
+                      result.type == "email" &&
+                      site.setting.enable_sending_messages_email
+                    ) {
                       site.sendMailMessage({
                         to: result.email,
                         subject: `Rejester Code`,
@@ -212,7 +230,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/register/validate_mobile', (req, res) => {
+  site.post("/api/register/validate_mobile", (req, res) => {
     let response = {
       done: false,
     };
@@ -220,7 +238,11 @@ module.exports = function init(site) {
 
     let regex = /^\d*(\.\d+)?$/;
 
-    if (body.country && body.country.length_mobile && body.mobile.match(regex)) {
+    if (
+      body.country &&
+      body.country.length_mobile &&
+      body.mobile.match(regex)
+    ) {
       if (body.mobile.toString().length == body.country.length_mobile) {
         response.done = true;
       } else {
@@ -232,7 +254,7 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post('/api/mailer/check_code', (req, res) => {
+  site.post("/api/mailer/check_code", (req, res) => {
     let response = {
       done: false,
     };
@@ -253,7 +275,7 @@ module.exports = function init(site) {
             response.doc = doc;
             delete response.doc.code;
           } else {
-            response.error = 'Incorrect code entered';
+            response.error = "Incorrect code entered";
             res.json(response);
             return;
           }
@@ -265,14 +287,14 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/register', (req, res) => {
+  site.post("/api/register", (req, res) => {
     let response = { done: false };
 
     if (req.body.$encript) {
-      if (req.body.$encript === '64') {
+      if (req.body.$encript === "64") {
         req.body.email = site.fromBase64(req.body.email);
         req.body.password = site.fromBase64(req.body.password);
-      } else if (req.body.$encript === '123') {
+      } else if (req.body.$encript === "123") {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
       }
@@ -303,12 +325,12 @@ module.exports = function init(site) {
       follow_category_list: [],
       ip: req.ip,
       country_code: req.body.country_code,
-      permissions: ['user'],
+      permissions: ["user"],
       active: true,
       type: {
         id: 1,
-        en: 'User',
-        ar: 'مستخدم',
+        en: "User",
+        ar: "مستخدم",
       },
       notific_setting: {
         instant_alerts: true,
@@ -333,7 +355,8 @@ module.exports = function init(site) {
 
     if (site.defaultSettingDoc && site.defaultSettingDoc.stores_settings) {
       if (site.defaultSettingDoc.stores_settings.maximum_stores) {
-        user.maximum_stores = site.defaultSettingDoc.stores_settings.maximum_stores;
+        user.maximum_stores =
+          site.defaultSettingDoc.stores_settings.maximum_stores;
       } else {
         user.maximum_stores = 2;
       }
@@ -341,11 +364,11 @@ module.exports = function init(site) {
 
     site.security.register(user, function (err, doc) {
       if (!err) {
-        let store_name = req.session.lang == 'ar' ? 'متجر' : 'Store';
+        let store_name = req.session.lang == "ar" ? "متجر" : "Store";
         response.user = doc;
         response.done = true;
         let store = {
-          image_url: '/images/stores.png',
+          image_url: "/images/stores.png",
           feedback_list: [],
           store_rating: 0,
           number_views: 0,
@@ -366,8 +389,8 @@ module.exports = function init(site) {
           },
           store_status: {
             id: 1,
-            en: 'Active',
-            ar: 'نشط',
+            en: "Active",
+            ar: "نشط",
           },
           name: store_name + doc.profile.name,
         };
@@ -375,7 +398,7 @@ module.exports = function init(site) {
         store.$add = true;
         site.store_list.push(store);
 
-        site.call('[mailer][delete]', req.body.mailer_id);
+        site.call("[mailer][delete]", req.body.mailer_id);
       } else {
         response.error = err.message;
       }
@@ -383,7 +406,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/mailer/all', (req, res) => {
+  site.post("/api/mailer/all", (req, res) => {
     let response = {
       done: false,
     };

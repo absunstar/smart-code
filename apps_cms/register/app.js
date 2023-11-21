@@ -78,7 +78,7 @@ module.exports = function init(site) {
               doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
               doc.date = new Date();
             } else {
-              response.error = 'have to wait mobile';
+              response.error = 'have to wait mobile 5 Minute';
               res.json(response);
               return;
             }

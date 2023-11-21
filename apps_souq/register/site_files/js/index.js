@@ -163,6 +163,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
             document.getElementById('email_data').style.display = 'block';
           }
           $scope.mailer = response.data.doc;
+          
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Incorrect code*')) {
@@ -227,6 +228,8 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
           }
         } else if (response.data.done) {
           $scope.mailer = response.data.doc;
+          $scope.user.country = $scope.mailer.country;
+          $scope.user.mobile = $scope.mailer.mobile;
 
           if ($scope.type == 'mobile') {
             document.getElementById('mobile_mailer').style.display = 'none';
@@ -311,11 +314,9 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     }
 
     if ($scope.type == 'mobile') {
-      if ($scope.mailer) {
-        user.mobile = $scope.mailer.mobile;
-      }
       const v = site.validated('#mobile_data');
       if (!v.ok) {
+
         $scope.error = v.messages[0].ar;
         return;
       }

@@ -53,7 +53,7 @@ module.exports = function init(site) {
               user.forget_password.date = new Date();
 
             } else {
-              response.error = 'have to wait mobile';
+              response.error = 'have to wait mobile 5 Minute';
               res.json(response);
               return
             }

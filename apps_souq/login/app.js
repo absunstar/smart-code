@@ -58,13 +58,13 @@ module.exports = function init(site) {
 
           if (user.forget_password) {
             let date = new Date(user.forget_password.date);
-            date.setMinutes(date.getMinutes() + 1);
+            date.setMinutes(date.getMinutes() + 5);
             if (new Date() > date) {
               user.forget_password.code = user.id + Math.floor(Math.random() * 10000) + 90000;
               user.forget_password.date = new Date();
 
             } else {
-              response.error = 'have to wait mobile';
+              response.error = 'have to wait mobile 5 Minute';
               res.json(response);
               return
             }

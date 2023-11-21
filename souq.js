@@ -124,87 +124,29 @@ site.sendMobileTwilioMessage = function (options) {
 };
 
 site.sendMobileTaqnyatMessage = function (options) {
-  site
-    .fetch("https://api.taqnyat.sa/wa/v1/messages", {
-      mode: "no-cors",
+  return site
+    .fetch("https://api.taqnyat.sa/v1/messages", {
+      method: "POST",
       headers: {
-        bearer: "87b92c81c66938a9ed6dda5fd1687145",
-        accept:
-          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-        "accept-encoding": "gzip, deflate, br",
-        "accept-language": "en-US,en;q=0.9,ar;q=0.8",
-        "cache-control": "max-age=0",
-        dnt: 1,
-        "sec-ch-ua":
-          '"Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"',
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": '"Windows"',
-        "sec-fetch-dest": "document",
-        "sec-fetch-mode": "navigate",
-        "sec-fetch-site": "none",
-        "sec-fetch-user": "?1",
-        "upgrade-insecure-requests": 1,
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36",
+        Authorization: `Bearer ${site.setting.auth_token_mobile_taqnyat}`,
+        "Content-Type": "application/json",
       },
-      body: {
-        recipients: ["+" + options.to],
+      body: JSON.stringify({
+        recipients: [options.to],
         body: options.message,
-        sender: "Taqnyat.sa",
+        sender: site.setting.auth_token_mobile_taqnyat,
         scheduledDatetime: new Date(),
-        deleteId: 3242424,
-      },
+      }),
       agent: function (_parsedURL) {
-        /* if (_parsedURL.protocol == 'http:') {
-            return new site.http.Agent({
-                keepAlive: true,
-            });
-        } else {
-            return new site.https.Agent({
-                keepAlive: true,
-            });
-        } */
+        return new site.https.Agent({
+          keepAlive: true,
+        });
       },
     })
     .then((res) => {
       return res.json();
-    })
-    .then((data) => {
-      default_items_group = data || [];
-      res.json({
-        done: true,
-        docs: data || [],
-      });
     });
-
-  try {
-    if (
-      site.setting.enable_sending_messages_mobile &&
-      site.setting.account_id_mobile &&
-      site.setting.auth_token_mobile &&
-      site.setting.messaging_services_id_mobile
-    ) {
-      console.log(options);
-      // const accountSid = 'ACf8c465f2b02b59f743c837eafe19a1a9';
-      // const authToken = '046e313826666f9ffe41fc96b4964530';
-      const client = require("twilio")(
-        site.setting.account_id_mobile,
-        site.setting.auth_token_mobile
-      );
-
-      client.messages
-        .create({
-          body: options.message,
-          messagingServiceSid: site.setting.messaging_services_id_mobile,
-          to: "+" + options.to,
-        })
-        .then((message) => console.log(message.sid))
-        .done();
-    }
-    return true;
-  } catch (error) {
-    return false;
-  }
+  // console.log(options);
 };
 
 site.sendMailMessage = function (obj) {
@@ -231,3 +173,11 @@ site.sendMailMessage = function (obj) {
 // site.on('zk attend', attend=>{
 //     console.log(attend)
 // })
+// site
+//   .sendMobileTaqnyatMessage({
+//     to: "+966591300875",
+//     message: "Message For Test From Haraj Tomor",
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   });
