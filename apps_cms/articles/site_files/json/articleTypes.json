@@ -33,5 +33,10 @@
     "id": 7,
     "en": "yts-movie",
     "ar": "yts-movie"
+  },
+  {
+    "id": 8,
+    "en": "Youtube Video",
+    "ar": "Youtube Video"
   }
 ]

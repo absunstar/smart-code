@@ -28,7 +28,7 @@
     <div x-setting="showFooterAd" x-import="theme1/ad-footer.html"></div>
   </div>
   <div class="col col-lg-3 col-md-6 col-sm-10 d-flex flex-column justify-content-end align-items-end gap-4 mt-md-4">
-    <div class="followUs w-100 d-flex flex-column justify-content-start align-items-end gap-2">
+    <div x-setting="showFollowUs" class="followUs w-100 d-flex flex-column justify-content-start align-items-end gap-2">
       <p>تابعنا على</p>
       <div class="w-100 d-flex flex-row justify-content-between gap-4">
         <div class="socialMediaIcon">
@@ -53,13 +53,13 @@
         </div>
       </div>
     </div>
-    <div class="subscripe w-100 d-flex flex-column justify-content-start align-items-end gap-2">
-      <div class="mb-3 w-100 d-flex flex-column justify-content-start align-items-end gap-2">
-        <label for="exampleFormControlInput1" class="w-100 form-label suscripeLabel d-flex flex-row justify-content-start align-items-start">أشترك معنا في البريد الأخباري</label>
-        <input type="email" class="orm-control" id="exampleFormControlInput1" placeholder="من فضلك أدخل البريد الألكتروني الخاص بك" />
+    <div x-setting="showEmailService" class="subscripe w-100 d-flex flex-column justify-content-start align-items-start gap-2">
+      <div class="mb-3 w-100 d-flex flex-column justify-content-start align-items-start gap-2">
+        <label for="exampleFormControlInput1" class="w-100 form-label suscripeLabel d-flex flex-row justify-content-start align-items-start"> ##word.Subscribe to our Email Service##</label>
+        <input type="email" class="orm-control" id="exampleFormControlInput1" placeholder="##word.Write Your Email##" />
         <div class="primaryButton d-flex flex-column justify-content-center align-items-center align-content-center mt-4">
           <a href="#">
-            <p>اشترك</p>
+            <p>##word.Subscribe##</p>
           </a>
         </div>
       </div>
@@ -67,7 +67,7 @@
   </div>
 </div>
 <div x-setting="showFooter" class="col bottomFooter d-flex flex-column justify-content-center align-items-center p-3 pb-5 pb-md-3">
-  <a href="//egytag.com" target="_blank">تصميم وبرمجة شركة ميدانى</a>
+  <a href="//social-browser.com" target="_blank"> ##word.Support By Social Browser## </a>
 </div>
 
 <div id="audiopalyer" class="audio-area flex-row justify-content-center align-items-center">

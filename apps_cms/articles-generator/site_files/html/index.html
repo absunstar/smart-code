@@ -19,12 +19,14 @@
           <div x-import="articles-generator/sites_modal.html"></div>
           <div x-import="articles-generator/rss_modal.html"></div>
           <div x-import="articles-generator/yts_modal.html"></div>
+          <div x-import="articles-generator/youtube_modal.html"></div>
 
           <div class="top-actions">
             <i-button x-permissions="admin" type="edit" label="##word.Sites Manager##" ng-click="siteDisplay()"></i-button>
             <i-button x-permissions="admin" type="edit" label="##word.RSS Manager##" ng-click="displayRSS()"></i-button>
             <i-button x-permissions="admin" type="edit" label="##word.Facebook Manager##" ng-click="displayRSS()"></i-button>
             <i-button x-permissions="admin" type="edit" label="##word.YTS Manager##" ng-click="ytsDisplay()"></i-button>
+            <i-button x-permissions="admin" type="edit" label="##word.Youtube Manager##" ng-click="youtubeDisplay()"></i-button>
 
             <div class="row padding">
               <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="admin"></i-control>

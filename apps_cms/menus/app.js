@@ -15,9 +15,11 @@ module.exports = function init(site) {
   };
 
   app.$collection = site.connectCollection(app.name);
+  site.menuList = [];
   site.handleMenus = function () {
     site.menuList = app.memoryList;
     site.menuList.forEach((m) => {
+      m.host = m.host || '*';
       m.type = m.type || {};
       if (m.type.id === 1 && m.category) {
         m.$url = '/category/' + m.category.id + '/' + m.category.name.replaceAll(' ', '+');
@@ -29,9 +31,6 @@ module.exports = function init(site) {
       }
     });
     site.menuList = site.menuList.filter((m) => m.active);
-    site.menuList1 = site.menuList.map((c) => ({ id: c.id, name: c.translatedList[0].name, url: c.$url })).splice(0, 8);
-    site.menuList2 = site.menuList.map((c) => ({ id: c.id, name: c.translatedList[0].name, url: c.$url })).splice(8, 20);
-    site.menuList3 = site.menuList.map((c) => ({ id: c.id, name: c.translatedList[0].name, url: c.$url })).splice(20);
   };
   app.linkTypeList = [
     {
@@ -53,6 +52,11 @@ module.exports = function init(site) {
       id: 4,
       en: 'Internal Link',
       ar: 'رابط داخلي',
+    },
+    {
+      id: 5,
+      en: 'Main Menu',
+      ar: 'قائمة منسدلة',
     },
   ];
   site.onPOST(
@@ -338,62 +342,28 @@ module.exports = function init(site) {
         let limit = req.body.limit || 100;
         let select = req.body.select || { id: 1, code: 1, name: 1, image: 1, callingCode: 1 };
 
-        if (search) {
-          where.$or = [];
-
-          where.$or.push({
-            id: site.get_RegExp(search, 'i'),
-          });
-
-          where.$or.push({
-            code: site.get_RegExp(search, 'i'),
-          });
-
-          where.$or.push({
-            nameAr: site.get_RegExp(search, 'i'),
-          });
-
-          where.$or.push({
-            nameEn: site.get_RegExp(search, 'i'),
-          });
-        }
         if (app.allowMemory) {
-          if (!search) {
-            search = 'id';
-          }
-          let docs = [];
-          let list = app.memoryList.filter((g) => (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search)).slice(0, limit);
-          list.forEach((doc) => {
-            if (doc && doc.translatedList) {
-              if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
-                let obj = {
-                  ...doc,
-                  ...langDoc,
-                };
-
-                for (const p in obj) {
-                  if (!Object.hasOwnProperty.call(select, p)) {
-                    delete obj[p];
-                  }
-                }
-                docs.push(obj);
-              }
-            }
+          app.memoryList.forEach((doc) => {
+            let lang = doc.translatedList.find((t) => t.language.id == req.session.lang) || doc.translatedList[0];
+            doc.name = lang.name;
+            doc.$image = lang.image;
           });
+
           if (req.body.sort) {
-            docs = docs.sort((a, b) => a.sort - b.sort);
+            app.memoryList = app.memoryList.sort((a, b) => a.sort - b.sort);
           }
 
           res.json({
             done: true,
-            list: docs,
-            count: docs.length,
+            list: app.memoryList,
+            count: app.memoryList.length,
           });
         } else {
           app.all({ where, select, limit }, (err, docs) => {
             res.json({
               done: true,
               list: docs,
+              count: docs.length,
             });
           });
         }

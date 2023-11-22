@@ -50,28 +50,24 @@ module.exports = function init(site) {
       id: 'ar',
       en: 'Arabic',
       ar: 'عربي',
-      active: true,
       direction: 'rtl',
     },
     {
       id: 'en',
       en: 'English',
       ar: 'إنجليزي',
-      active: true,
       direction: 'ltr',
     },
     {
       id: 'fr',
       en: 'French',
       ar: 'فرنساوي',
-      active: true,
       direction: 'ltr',
     },
     {
       id: 'tr',
       en: 'Turki',
       ar: 'تركي',
-      active: true,
       direction: 'rtl',
     },
   ];
@@ -82,6 +78,10 @@ module.exports = function init(site) {
     mainCategoryList: [],
     programming: {},
     languagesList: [],
+    hostList: [
+      { domain: '*youtube*', filter: '*youtube*|*video*|*watch*' },
+      { domain: '*yts*', filter: '*yts*' },
+    ],
     article: {
       articleTypes: articleTypes,
     },
@@ -95,8 +95,17 @@ module.exports = function init(site) {
     siteBackground: '#ffffff',
   };
 
+  site.getHostFilter = function (domain = '') {
+    let h = site.setting.hostList.find((h) => domain.like(h.domain));
+    if (h) {
+      return h.filter;
+    } else {
+      return '_';
+    }
+  };
+
   languages.forEach((l) => {
-    site.setting.languagesList.push({ language: l });
+    site.setting.languagesList.push({ ...l });
   });
 
   $siteSetting.findOne({}, (err, doc) => {
@@ -105,7 +114,18 @@ module.exports = function init(site) {
         doc.article.articleTypes = articleTypes;
       }
       if (!doc.article.languages) {
-        doc.article.languages = languages;
+        doc.article.languages = [...languages];
+      }
+      if (!doc.languagesList) {
+        doc.languagesList = [...languages];
+      } else {
+        doc.languagesList.forEach((lang, i) => {
+          if (lang.language) {
+            doc.languagesList[i] = { ...doc.languagesList[i], ...languages.find((l) => l.id == lang.language.id) };
+            delete doc.languagesList[i].language;
+          }
+          doc.languagesList[i] = { ...doc.languagesList[i], ...languages[i] };
+        });
       }
       site.setting = { ...site.setting, ...doc };
     } else {
@@ -125,7 +145,7 @@ module.exports = function init(site) {
       res.render('site-setting/index.html');
     },
     {
-      setting : site.setting
+      setting: site.setting,
     },
     { parser: 'html' }
   );

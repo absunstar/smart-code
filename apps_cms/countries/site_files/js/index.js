@@ -13,12 +13,12 @@ app.controller("countries", function ($scope, $http, $timeout) {
       translatedList : []
     };
     $scope.defaultSettings.languagesList.forEach((l) => {
-      if (l.language.active == true) {
+      if (l.active == true) {
         $scope.countries.translatedList.push({
           language: {
-            id: l.language.id,
-            en: l.language.en,
-            ar: l.language.ar,
+            id: l.id,
+            en: l.en,
+            ar: l.ar,
           },
         });
       }

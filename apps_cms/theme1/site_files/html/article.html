@@ -2,7 +2,7 @@
 <html lang="en" ng-app="myApp">
   <head x-import="theme1/head.html"> </head>
 
-  <body ng-controller="mainController">
+  <body ng-controller="mainController" class="##data.direction##">
     <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
 
     <div id="mainContent" class="container d-flex flex-column">
@@ -19,14 +19,11 @@
         </div>
       </div>
       <!-- ---start mainSection--- -->
-      <div class="mainSectionNews d-flex flex-column mt-4" style="background-image: url(##data.article.$imageURL##)">
+      <div class="mainSectionNews d-flex flex-column mt-4" style="background-image: url(##data.article.$backgroundURL##)">
         <div class="adsWithNews d-flex flex-lg-row flex-column justify-content-start align-items-md-end align-items-lg-start align-items-end p-0 m-0">
-          <div class="col-sm-12 col-lg-2 mt-3 d-none d-lg-flex justify-content-center justify-content-center align-items-center p-0 m-0 m-4 ml-2">
-            <div x-setting="showSideAd" x-import="theme1/ad-side.html" class="sideAds"></div>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-10 newsArticle d-flex justify-content-center align-items-start align-content-center m-0 pt-0 mb-10">
+          <div class="d-flex col-sm-12 col-md-12 col-lg-9 newsArticle justify-content-center align-items-start align-content-center m-0 pt-0 mb-10">
             <div class="articleSection d-flex flex-column justify-content-center align-items-center align-content-center gap-2">
-              <div class="col-sm-12 d-flex flex-row gap-2 articleEditor">
+              <div class="col-sm-12 d-flex flex-row gap-2 justify-content-center articleEditor">
                 <h1 class="text-center">##data.article.$title##</h1>
               </div>
 
@@ -45,7 +42,7 @@
                       <p>متابعة</p>
                       <i class="fas fa-bell"></i>
                     </div>
-                    <div x-setting="allowShareEdit" class="sharebutton d-flex flex-column align-items-end gap-2">
+                    <div x-setting="allowShareEditor" class="sharebutton d-flex flex-column align-items-end gap-2">
                       <div class="share d-flex flex-row justify-content-center align-items-center">
                         <p>مشاركة</p>
                         <i class="fas fa-share-alt"></i>
@@ -89,14 +86,14 @@
                     <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/news.jpg'" alt="##data.article.$title##" />
                   </div>
                   <div class="row text-left yts-info">
-                    <p class="bold">Movie Type : <span class="red"> ##data.article.yts.type##</span></p>
+                    <p class="bold">Movie Rating : <span class="yellow"> ##data.article.yts.rating##</span></p>
                     <p class="bold">Movie Language : <span class="yellow"> ##data.article.yts.language##</span></p>
-                    <p class="bold">Movie Rating : <span class="green"> ##data.article.yts.rating##</span></p>
+                    <p class="bold">Movie Type : <span class="yellow"> ##data.article.yts.type##</span></p>
                   </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 p-3">
-                  <div class="p-5">##data.article.$description##</div>
+                <div x-data="article.$description" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+                  <div class="article-description">##data.article.$description##</div>
                   <div x-data="article.yts">
                     <div class="d-flex gap-2 p-2">
                       <a target="_blank" class="bold col-md-3 btn btn-warning" href="##data.article.yts.$imdbURL##"> IMDB </a>
@@ -107,6 +104,15 @@
                       <a x-list1="article.yts.torrents" class="bold btn btn-primary" target="_blank" href="##item1.$url##"> Download ##item1.quality## ( ##item1.size## ) Torrent </a>
                     </div>
                   </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 p-3">
+                  <iframe
+                    x-data="article.$embdedURL"
+                    src="##data.article.$embdedURL##"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
                 </div>
 
                 <div x-data="article.$hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.$video.imageURL##')">
@@ -144,6 +150,7 @@
                     </div>
                   </div>
                 </div>
+
               </div>
 
               <div class="related-search">
@@ -154,12 +161,27 @@
                 <span class="bold"> ##word.Tags##</span>
                 <a x-list1="article.$tagsList" href="/tag/##item1.##"> ##item1.## </a>
               </div>
+              <div x-setting="showArticleAd" x-import="theme1/ad-article.html" class="ad d-flex flex-row justify-content-center align-items-center"></div>
+
             </div>
           </div>
+          <div class="d-flex  col-sm-12 col-md-12 col-lg-3 flex-column justify-content-center justify-content-center align-items-center p-0 m-0">
+            <a x-list1="latestList" class="mini-article d-flex gap-2" href="##item1.$url##">
+              <img class="d-flex col-sm-3" src="##item1.$imageURL##" alt="" />
+              <p class="d-flex col-sm-9">##item1.$title##</p>
+            </a>
+           
+          </div>
         </div>
-        <div x-setting="showArticleAd" x-import="theme1/ad-article.html" class="ad d-flex flex-row justify-content-center align-items-center"></div>
 
-        <div x-import="theme1/related.html"></div>
+        <div class="d-flex">
+          <div class="d-none d-lg-flex col-lg-3 mt-3 justify-content-center justify-content-center align-items-center p-0 m-0 ">
+            <div x-setting="showSideAd" x-import="theme1/ad-side.html" class="sideAds"></div>
+          </div>
+          <div class="d-flex col-lg-9 col-sm-12 mt-3 justify-content-center justify-content-center align-items-center p-0 m-0 ">
+            <div x-import="theme1/related.html"></div>
+          </div>
+        </div>
       </div>
       <!-- ---end mainSection--- -->
     </div>

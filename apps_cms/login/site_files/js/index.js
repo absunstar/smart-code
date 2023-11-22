@@ -24,7 +24,7 @@ app.controller('login_souq', function ($scope, $http, $timeout) {
           $scope.busy = false;
         }
         if (response.data.done) {
-          window.location.href = '/';
+          window.location.href = '/admin';
         }
       },
       function (err) {

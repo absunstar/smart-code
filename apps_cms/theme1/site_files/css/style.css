@@ -7,19 +7,25 @@ body {
   margin: 0px;
   margin-top: 55px;
   overflow-x: hidden;
+  text-align: right;
 }
+body.en {
+  text-align: left;
+}
+
 .free {
   display: flex;
   min-width: min(300px, 80vw);
-  max-width: 80vw;
   min-height: min(300px, 50vh);
+  max-width: min(80vw, 100%);
+  background: var(--background2x);
+  margin-bottom: 10px;
 }
 .free ins {
   margin: 0;
   max-width: 80vw;
 }
 .free iframe {
-  background: var(--background2x);
   max-width: 80vw;
 }
 .free.side {
@@ -27,21 +33,42 @@ body {
 }
 .articleSection {
   font-size: 24px;
-  background-color: var(--background1xx);
+  background-color: var(--background1x);
   color: var(--color1);
-  width: 95%;
+  width: 100%;
   padding: 15px;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 .articleSection h1 {
-  font-size: xxx-large;
+  font-size: xx-large;
+}
+.mini-article {
+  display: block;
+  font-size: small;
+  border: 1px solid #eee;
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 95%;
+  background: var(--background1);
+  color: var(--color1);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.mini-article:hover {
+  background: var(--background2);
+  color: var(--color2);
+}
+.mini-article img {
+  width: 64px;
+  height: 64px;
+  border-radius: 5px;
 }
 .yts-info {
   background: #2727278a;
   border-radius: 10px;
   margin: 5px;
-  max-width: 90%;
-  float: left;
+  max-width: 100%;
 }
 .yts-info p {
   color: #ffffff;
@@ -56,13 +83,12 @@ body {
   color: var(--color2);
   border-radius: 10px;
   font-size: xx-large;
+  text-align: center;
 }
 .related-search a {
-  text-decoration: underline;
   margin: 5px;
   color: var(--color2);
   font-size: large;
-  font-style: italic;
 }
 
 .related-tags a {
@@ -77,7 +103,7 @@ body {
 }
 .related-tags a:hover,
 .related-search a:hover {
-  font-size: x-large;
+  text-decoration: underline;
 }
 @media (min-width: 1400px) {
   .container,
@@ -91,8 +117,7 @@ body {
 }
 .breakingNewsSection {
   margin-bottom: 20px;
-  margin-top: 20px;
-  width: 95%;
+  width: 100%;
   padding: 5px;
   border-radius: 25px;
   box-shadow: 1px 1px 8px var(--background1);
@@ -131,14 +156,15 @@ a {
   width: 204px;
   height: 45px;
   background-color: var(--background2);
-  color: var(--text-color);
+  color: var(--color1);
   border-radius: 15px;
   cursor: pointer;
   transition: 0.2s;
+  border: 1px solid var(--background2);
 }
 
 .primaryButton > a {
-  color: var(--text-color);
+  color: var(--color1);
   text-decoration-line: none;
 }
 
@@ -157,14 +183,14 @@ a {
   width: 204px;
   height: 45px;
   background-color: var(--background1);
-  color: var(--text-color);
+  color: var(--color1);
   border-radius: 15px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .secondryButton > a {
-  color: var(--text-color);
+  color: var(--color1);
   text-decoration-line: none;
 }
 
@@ -589,7 +615,7 @@ a {
 
 .MS-card a {
   text-decoration-line: none;
-  color: var(--text-color);
+  color: var(--color1);
   height: 100%;
   width: 100%;
 }
@@ -649,27 +675,23 @@ a {
   width: 300px;
   height: 70px;
   background-color: var(--background1);
-  color: var(--text-color);
+  color: var(--color1);
   font-size: 28px;
   padding: 0 24px;
-  border-radius: 45px 0px 0px 45px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   margin-top: 40px;
 }
 
 .BNSubSection {
   position: absolute;
-  left: 73%;
+  right: 2%;
 }
 
 .BNSubSectionheader {
   width: auto;
   height: auto;
-  min-width: 20vw;
+  min-width: 300px;
   padding: 10px;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 0;
   background-color: var(--background1x);
   color: var(--color1);
   font-size: 28px;
@@ -678,6 +700,7 @@ a {
 }
 .BNSubSectionheader p {
   text-align: center;
+  width: 100%;
 }
 /* end Breaking News */
 
@@ -729,7 +752,7 @@ a {
   background: var(--background1);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  color: var(--text-color);
+  color: var(--color1);
 }
 
 .articlEditor a {
@@ -744,7 +767,7 @@ a {
   padding: 10px 0;
 }
 .articlEditorheader > p a {
-  color: var(--text-color);
+  color: var(--color1);
 }
 
 .editorName {
@@ -822,22 +845,22 @@ a {
 }
 
 .sharemenulist .facebook:hover {
-  color: var(--text-color);
+  color: var(--color1);
   background-color: rgb(67, 67, 243);
 }
 
 .sharemenulist .twitter:hover {
-  color: var(--text-color);
+  color: var(--color1);
   background-color: rgb(67, 187, 243);
 }
 
 .sharemenulist .instagram:hover {
-  color: var(--text-color);
+  color: var(--color1);
   background-color: rgb(143, 67, 243);
 }
 
 .sharemenulist .whatsapp:hover {
-  color: var(--text-color);
+  color: var(--color1);
   background-color: rgb(25, 172, 45);
 }
 /* end article for head of editor */

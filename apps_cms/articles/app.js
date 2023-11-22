@@ -80,9 +80,28 @@ module.exports = function init(site) {
       return unsafe;
     }
   };
+  site.removeHtml = function (unsafe) {
+    try {
+      if (!unsafe) {
+        return '';
+      }
+      return unsafe
+        .replace(/<[^>]+>/g, '')
+        .replace('(', '')
+        .replace(')', '')
+        .replace(/&nbsp;|&laquo;|&raquo|&quot;|&rlm;|&llm;|&lrm;|&rrm;/g, '')
+        .trim();
+    } catch (error) {
+      return unsafe;
+    }
+  };
 
-  site.handleArticle = function (doc) {
-    doc.$title = site.escapeHtml(doc.translatedList[0].title);
+  site.handleArticle = function (doc, options = {}) {
+    let lang = doc.translatedList[0];
+    doc.$title = site.escapeHtml(lang.title);
+    doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
+    doc.$coverURL = lang.cover?.url || doc.$imageURL;
+    doc.host = doc.host || options.host || '_';
     if (doc.type.id == 7 && doc.yts) {
       doc.is_yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
@@ -90,23 +109,40 @@ module.exports = function init(site) {
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
+      doc.$backgroundURL = doc.$coverURL;
+    } else if (doc.type.id == 8) {
+      doc.is_youtube = true;
+      doc.$title2 = doc.$title.replaceAll(' ', '+');
+      doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else {
       doc.$title2 = doc.$title.split(' ').join('-');
     }
-    doc.$url = '/article/' + doc.id + '/' + doc.$title2;
-    doc.$imageURL = doc.translatedList[0].image?.url || '/theme1/images/news.jpg';
-    doc.$coverURL = doc.translatedList[0].cover?.url || doc.$imageURL;
+    doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
+
     if (doc.type.id === 2) {
-      doc.$content = doc.translatedList[0].htmlContent;
+      doc.$content = lang.htmlContent;
     } else {
-      doc.$content = doc.translatedList[0].textContent || doc.translatedList[0].htmlContent;
+      doc.$content = lang.textContent || lang.htmlContent;
     }
     doc.$description = site.escapeHtml(doc.$content);
-    doc.$keyWordsList = doc.translatedList[0].keyWordsList || [];
+    doc.$keyWordsList = lang.keyWordsList || [];
+
     doc.$keyWordsList.forEach((k, i) => {
-      doc.$keyWordsList[i] = k + ' Movie';
+      if (!k || k.length < 3) {
+        doc.$keyWordsList.splice(i, 1);
+      }
+      if (doc.type.id == 7) {
+        doc.$keyWordsList[i] = k + ' Movie';
+      }
     });
-    doc.$tagsList = doc.translatedList[0].tagsList || [doc.$title];
+
+    doc.$tagsList = lang.tagsList || [doc.$title];
+    doc.$tagsList.forEach((k, i) => {
+      if (!k || k.length < 3) {
+        doc.$tagsList.splice(i, 1);
+      }
+    });
+
     doc.publishDate = doc.publishDate || new Date();
     doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
     doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
@@ -119,29 +155,29 @@ module.exports = function init(site) {
     doc.$audioClass = 'none';
     doc.$videoClass = 'none';
     doc.$imageGallaryClass = 'none';
-    if (doc.translatedList[0].hasAudio) {
+    if (lang.hasAudio) {
       doc.$hasAudio = true;
-      doc.$audio = doc.translatedList[0].audio;
+      doc.$audio = lang.audio;
       doc.$audioClass = '';
     }
 
-    if (doc.translatedList[0].hasVideo) {
+    if (lang.hasVideo) {
       doc.$hasVideo = true;
-      doc.$video = doc.translatedList[0].video;
+      doc.$video = lang.video;
       doc.$videoClass = '';
     }
     doc.$readingTimeClass = 'none';
     doc.$hasReadingTime = false;
-    if (doc.translatedList[0].hasReadingTime) {
+    if (lang.hasReadingTime) {
       doc.$hasReadingTime = true;
-      doc.$readingTime = doc.translatedList[0].readingTime;
+      doc.$readingTime = lang.readingTime;
       doc.$readingTimeClass = '';
     }
 
     doc.$miniTitleClass = 'none';
     doc.$hasMiniTitle = false;
-    if (doc.translatedList[0].hasMiniTitle) {
-      doc.$miniTitle = doc.translatedList[0].miniTitle;
+    if (lang.hasMiniTitle) {
+      doc.$miniTitle = lang.miniTitle;
       doc.$hasMiniTitle = true;
       doc.$miniTitleClass = '';
     }
@@ -152,8 +188,12 @@ module.exports = function init(site) {
       doc.writer.$title = doc.writer.profile.title;
       doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
     }
-    if (doc.is_yts && !doc.$hasMiniTitle) {
+    if (doc.type.id == 7 && !doc.$hasMiniTitle) {
       doc.$miniTitle = doc.yts.type;
+      doc.$hasMiniTitle = true;
+      doc.$miniTitleClass = '';
+    } else if (doc.type.id == 8 && !doc.$hasMiniTitle) {
+      doc.$miniTitle = 'Youtube';
       doc.$hasMiniTitle = true;
       doc.$miniTitleClass = '';
     }
@@ -185,11 +225,6 @@ module.exports = function init(site) {
         site.articlesList.sort((a, b) => {
           return b.id - a.id;
         });
-        site.topNews = site.articlesList
-          .filter((a) => a.appearInUrgent === true)
-          .map((a) => ({ id: a.id, $title: a.$title, $imageURL: a.$imageURL, $url: a.$url }))
-          .splice(0, 10)
-          .reverse();
       }
     });
   };
@@ -209,16 +244,25 @@ module.exports = function init(site) {
     });
   };
   site.getRelatedArticles = function (a) {
-    let $relatedArticleList = site.articlesList.filter((b) => b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, 10);
-    if ($relatedArticleList.length < 10) {
+    let $relatedArticleList = site.articlesList.filter((b) => b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, 12);
+    if ($relatedArticleList.length < 12) {
       $relatedArticleList = [
         ...$relatedArticleList,
-        ...site.articlesList.filter((b) => b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, 10 - $relatedArticleList.length),
+        ...site.articlesList.filter((b) => b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, 12 - $relatedArticleList.length),
       ];
     }
     return $relatedArticleList;
   };
 
+  site.getLatestArticles = function (a) {
+    return site.articlesList.filter((b) => b.id !== a.id && b.category.id == a.category.id).slice(0, 12);
+  };
+  site.getTopArticles = function (filter = '_') {
+    return site.articlesList
+      .filter((a) => a.appearInUrgent === true && a.host.like(filter))
+      .splice(0, 12)
+      .reverse();
+  };
   site.prepareArticles();
 
   site.handleCategoryArticles = function () {
@@ -265,16 +309,10 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/languages.json',
   });
 
-  site.post('/api/articles/add', (req, res) => {
+  site.post({ name: '/api/articles/add', require: { Permissions: ['login'] } }, (req, res) => {
     let response = {
       done: false,
     };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     let articlesDoc = req.body;
     if (articlesDoc.is_yts) {
@@ -283,7 +321,9 @@ module.exports = function init(site) {
         category: site.categoriesList.filter((c) => c.id == 4).map((c) => ({ id: c.id, name: c.translatedList[0].name }))[0],
         yts: articlesDoc,
         translatedList: [{ language: site.setting.languagesList[0].language }],
+        host: 'yts',
       };
+      articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
       if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
         response.error = 'No Description or Rating';
         res.json(response);
@@ -291,28 +331,56 @@ module.exports = function init(site) {
       }
       articlesDoc.showInMainSlider = true;
       articlesDoc.appearInUrgent = true;
-      if (Array.isArray(articlesDoc.yts.genres)) {
-        articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
-        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres];
-        articlesDoc.translatedList[0].keyWordsList = [...articlesDoc.yts.title.split(' '), ...articlesDoc.yts.genres];
-      }
 
       articlesDoc.translatedList[0].title = articlesDoc.yts.title;
       articlesDoc.translatedList[0].image = { url: articlesDoc.yts.medium_cover_image };
       articlesDoc.translatedList[0].cover = { url: articlesDoc.yts.large_cover_image };
       articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full;
+
+      if (Array.isArray(articlesDoc.yts.genres)) {
+        articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
+        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres];
+        articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.yts.title).split(' '), ...articlesDoc.yts.genres];
+      }
+
       if (articlesDoc.yts.date_uploaded) {
         articlesDoc.publishDate = new Date(articlesDoc.yts.date_uploaded);
       }
+    } else if (articlesDoc.is_youtube) {
+      articlesDoc = {
+        type: site.articleTypes.find((t) => t.id === 8),
+        category: site.categoriesList.filter((c) => c.id == 3).map((c) => ({ id: c.id, name: c.translatedList[0].name }))[0],
+        youtube: articlesDoc,
+        translatedList: [{ language: site.setting.languagesList[0].language }],
+        host: 'youtube',
+      };
 
-      articlesDoc.guid = site.md5(articlesDoc.translatedList[0].title);
+      articlesDoc.showInMainSlider = true;
+      articlesDoc.appearInUrgent = true;
+
+      articlesDoc.translatedList[0].tagsList = ['Youtube', 'Video', 'Watch'];
+      articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.youtube.title).split(' '), ...site.removeHtml(articlesDoc.youtube.channelTitle).split(' ')];
+
+      articlesDoc.translatedList[0].title = articlesDoc.youtube.title;
+      articlesDoc.translatedList[0].image = { url: articlesDoc.youtube.image?.url };
+      articlesDoc.translatedList[0].textContent = articlesDoc.youtube.description;
+      if (articlesDoc.youtube.date_uploaded) {
+        articlesDoc.publishDate = new Date(articlesDoc.youtube.date);
+      } else {
+        articlesDoc.publishDate = new Date();
+      }
+
+      articlesDoc.guid = site.md5('Youtube - ' + articlesDoc.translatedList[0].title);
     }
+
     articlesDoc.addUserInfo = req.getUserFinger();
 
     if (typeof articlesDoc.active === 'undefined') {
       articlesDoc.active = true;
     }
+
     articlesDoc.guid = articlesDoc.guid || site.md5(articlesDoc.translatedList[0].title);
+
     $articles.add(articlesDoc, (err, doc) => {
       if (!err && doc) {
         response.done = true;

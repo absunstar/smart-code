@@ -8,11 +8,11 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.articleTypesList = $scope.siteSettings.article.articleTypes.filter((t) => t.active == true);
     $scope.languagesList = [];
     $scope.siteSettings.languagesList.forEach((l) => {
-      if (l.language.active == true) {
+      if (l.active == true) {
         $scope.languagesList.push({
-          id: l.language.id,
-          en: l.language.en,
-          ar: l.language.ar,
+          id: l.id,
+          en: l.en,
+          ar: l.ar,
         });
       }
     });

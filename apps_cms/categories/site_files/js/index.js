@@ -35,12 +35,12 @@ app.controller('categories', function ($scope, $http, $timeout) {
 
     $scope.categories.translatedList = [];
     $scope.siteSettings.languagesList.forEach((l) => {
-      if (l.language.active == true) {
+      if (l.active == true) {
         $scope.categories.translatedList.push({
           language: {
-            id: l.language.id,
-            en: l.language.en,
-            ar: l.language.ar,
+            id: l.id,
+            en: l.en,
+            ar: l.ar,
           },
           actualViews: 0,
           dummyViews: 0,

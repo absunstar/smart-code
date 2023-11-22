@@ -12,12 +12,12 @@ app.controller('menus', function ($scope, $http, $timeout) {
       translatedList: [],
     };
     $scope.defaultSettings.languagesList.forEach((l) => {
-      if (l.language.active == true) {
+      if (l.active == true) {
         $scope.menu.translatedList.push({
           language: {
-            id: l.language.id,
-            en: l.language.en,
-            ar: l.language.ar,
+            id: l.id,
+            en: l.en,
+            ar: l.ar,
           },
           showImage: true,
         });
@@ -217,7 +217,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
       data: {
         where: where,
         search: $scope.$search,
-        select: { id: 1, translatedList: 1, name: 1, type: 1, active: 1, image: 1,sort:1, },
+        select: {},
         sort : {sort:1}
       },
     }).then(
@@ -384,12 +384,12 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.subMenu = { $mode: 'add', active: true, translatedList: [] };
     $scope.defaultSettings.languagesList.forEach((l) => {
-      if (l.language.active == true) {
+      if (l.active == true) {
         $scope.subMenu.translatedList.push({
           language: {
-            id: l.language.id,
-            en: l.language.en,
-            ar: l.language.ar,
+            id: l.id,
+            en: l.en,
+            ar: l.ar,
           },
           showImage: true,
         });
