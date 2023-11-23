@@ -444,6 +444,7 @@
                 </div>
               </div>
             </div>
+
           </div>
           <div class="col3">
             <div class="article-part">
@@ -451,6 +452,7 @@
             </div>
             <div class="article-part">
               <i-checkbox label="##word.active##" ng-model="article.active"> </i-checkbox>
+              <i-control ng-model="article.host" label="##word.Host##"></i-control>
             </div>
             <div class="row">
               <div class="article-part">
@@ -467,17 +469,7 @@
               </div>
 
               <div class="article-part">
-                <i-list
-                  class="red"
-                  label="##word.Category##"
-                  v="r"
-                  ng-model="article.category"
-                  ng-click="loadSubCategory1(article.category)"
-                  items="topCategoryList"
-                  display="name"
-                  ng-search="article.$category1Search"
-                >
-                </i-list>
+                <i-list class="red" label="##word.Category##" v="r" ng-model="article.category" items="categoryList" display="name" ng-search="article.$category1Search"> </i-list>
 
                 <i-list
                   label="##word.categories## {{article.category.name}}"

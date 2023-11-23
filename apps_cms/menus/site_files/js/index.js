@@ -12,12 +12,12 @@ app.controller('menus', function ($scope, $http, $timeout) {
       translatedList: [],
     };
     $scope.defaultSettings.languagesList.forEach((l) => {
-      if (l.language.active == true) {
+      if (l.active == true) {
         $scope.menu.translatedList.push({
           language: {
-            id: l.language.id,
-            en: l.language.en,
-            ar: l.language.ar,
+            id: l.id,
+            en: l.en,
+            ar: l.ar,
           },
           showImage: true,
         });
@@ -124,7 +124,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $http({
       method: 'POST',
       url: '/api/menus/updateSort',
-      data: { type, id : $scope.list[index].id, id2: $scope.list[i].id },
+      data: { type, id: $scope.list[index].id, id2: $scope.list[i].id },
     }).then(
       function (response) {
         if (response.data.done) {
@@ -162,6 +162,18 @@ app.controller('menus', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.menu = response.data.doc;
+          $scope.defaultSettings.languagesList.forEach((l) => {
+            if (l.active == true && !$scope.menu.translatedList.find((t) => t.language.id == l.id)) {
+              $scope.menu.translatedList.push({
+                language: {
+                  id: l.id,
+                  en: l.en,
+                  ar: l.ar,
+                },
+                showImage: true,
+              });
+            }
+          });
         } else {
           $scope.error = response.data.error;
         }
@@ -217,8 +229,8 @@ app.controller('menus', function ($scope, $http, $timeout) {
       data: {
         where: where,
         search: $scope.$search,
-        select: { id: 1, translatedList: 1, name: 1, type: 1, active: 1, image: 1,sort:1, },
-        sort : {sort:1}
+        select: {},
+        sort: { sort: 1 },
       },
     }).then(
       function (response) {
@@ -246,7 +258,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if(response.data.done) {
+        if (response.data.done) {
           $scope.getMenuList();
         }
       },
@@ -384,12 +396,12 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.subMenu = { $mode: 'add', active: true, translatedList: [] };
     $scope.defaultSettings.languagesList.forEach((l) => {
-      if (l.language.active == true) {
+      if (l.active == true) {
         $scope.subMenu.translatedList.push({
           language: {
-            id: l.language.id,
-            en: l.language.en,
-            ar: l.language.ar,
+            id: l.id,
+            en: l.en,
+            ar: l.ar,
           },
           showImage: true,
         });

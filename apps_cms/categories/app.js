@@ -2,9 +2,15 @@ module.exports = function init(site) {
   const $categories = site.connectCollection('categories');
 
   site.categoriesList = [];
+  site.handleCategory = function (cat) {
+    cat.host = cat.host || '_';
+    return cat;
+  };
   $categories.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.categoriesList = [...site.categoriesList, ...docs];
+      docs.forEach((doc) => {
+        site.categoriesList.push(site.handleCategory(doc));
+      });
     }
   });
 
@@ -60,7 +66,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.categoriesList.push(doc);
+        site.categoriesList.push(site.handleCategory(doc));
       } else {
         response.error = err.message;
       }
@@ -80,18 +86,7 @@ module.exports = function init(site) {
     }
 
     let categoriesDoc = req.body;
-
-    categoriesDoc.editUserInfo = site.security.getUserFinger({
-      $req: req,
-      $res: res,
-    });
-
-    let category = null;
-    site.categoriesList.forEach((c) => {
-      if (c.parentId == categoriesDoc.id) {
-        category = c;
-      }
-    });
+    categoriesDoc.editUserInfo = req.getUserFinger();
 
     $categories.edit(
       {
@@ -107,7 +102,7 @@ module.exports = function init(site) {
           response.done = true;
           site.categoriesList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.categoriesList[i] = result.doc;
+              site.categoriesList[i] = site.handleCategory(result.doc);
             }
           });
         } else {
@@ -203,41 +198,34 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
     let where = req.body.where || {};
-    response.list = [];
-    response.topList = [];
-    site.categoriesList.forEach((doc) => {
-      if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang|| 'ar')) && doc.active) {
-        if (!where.active || doc.active) {
-          if (!doc.topParentId) {
-            response.topList.push({
-              id: doc.id,
-              parentListId: doc.parentListId,
-              topParentId: doc.topParentId,
-              parentId: doc.parentId,
-              status: doc.status,
-              name: doc2.name,
-            });
-          }
-          response.list.push({
-            id: doc.id,
-            parentListId: doc.parentListId,
-            topParentId: doc.topParentId,
-            parentId: doc.parentId,
-            status: doc.status,
-            name: doc2.name,
-          });
-        }
-      }
 
-      // if(doc.language.id == 'ar'){
-      //   list['ar'].push({...doc , ...doc2 , translatedList : null})
-      // } else if(doc.language.id == 'en'){
-      //   list['en'].push({...doc , ...doc2 , translatedList : null})
-      // }
-    });
     response.done = true;
+
+    site.categoriesList.forEach((doc) => {
+      let lang = doc.translatedList.find((t) => t.language.id == req.session.lang) || doc.translatedList[0];
+      doc.name = lang.name;
+      doc.$image = lang.image?.url;
+    });
+    response.list = site.categoriesList;
+    res.json(response);
+  });
+  site.post({ name: '/api/categories/lookup', public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    response.done = true;
+
+    response.list = site.categoriesList
+      .filter((doc) => {
+        let lang = doc.translatedList.find((t) => t.language.id == req.session.lang) || doc.translatedList[0];
+        doc.name = lang.name;
+        doc.$image = lang.image?.url;
+        return true;
+      })
+      .map((c) => ({ id: c.id, name: c.name, image: c.$image }));
+    response.list = site.categoriesList;
     res.json(response);
   });
 };

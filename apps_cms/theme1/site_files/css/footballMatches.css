@@ -5,7 +5,7 @@
     background-color: var(--background1);
     padding: 8px;
     border-radius: 15px 0 0 15px;
-    color:var(--text-color);
+    color:var(--color1);
     position:fixed;
     top: 350px;
     left: 100%;
@@ -45,7 +45,7 @@
 }
 
 .fa-times{
-    color: var(--text-color);
+    color: var(--color1);
     cursor: pointer;
  }
 
@@ -55,7 +55,7 @@
  }
  .mainfootballname{
     font-size: 24px;
-    color:var(--text-color);
+    color:var(--color1);
  }
  .mainfootballMatches{
     display: none;
@@ -72,7 +72,7 @@
 .footballMatches{
     width: 800px;
     height: 80%;
-    background-color: var(--text-color);
+    background-color: var(--color1);
     border-radius: 15px;
 
 }

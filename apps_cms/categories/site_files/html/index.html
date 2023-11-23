@@ -17,18 +17,42 @@
           </div>
 
           <div x-permissions="login" class="row">
-            <i-treeview
-              display="name"
-              label="##word.categories##"
-              ng-model="parentCategory"
-              ng-node="displayAddCategories(null)"
-              ng-add="displayAddCategories(parentCategory)"
-              ng-edit="displayUpdateCategories(parentCategory)"
-              ng-delete="displayDeleteCategories(parentCategory)"
-              nodes="list"
-            >
-            </i-treeview>
-          
+            <i-button type="add" label="##word.New Category##" ng-click="displayAddCategories()"></i-button>
+
+            <table x-permissions="login" class="table hover bold" id="t1">
+              <tr>
+                <th>##word.ID##</th>
+                <th>##word.Image##</th>
+                <th>##word.Name##</th>
+                <th>##word.Host##</th>
+                <th>##word.status##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+
+              <tr ng-repeat="c in list">
+                <td class="bold">{{c.id}}</td>
+
+                <td class="center not-print">
+                  <i-image view class="logo" ng-model="c.$image"></i-image>
+                </td>
+
+                <td class="center">{{c.name}}</td>
+                <td class="center">{{c.host}}</td>
+
+                <td class="center">
+                  <p ng-show="c.active == true" class="green">##word.active##</p>
+                  <p ng-show="c.active == false" class="red">##word.not_active##</p>
+                </td>
+
+                <td class="center not-print">
+                  <i-button type="view" ng-click="displayViewCategories(c)"></i-button>
+
+                  <i-button type="edit" ng-click="displayUpdateCategories(c)"></i-button>
+
+                  <i-button type="delete" ng-click="displayDeleteCategories(c)"></i-button>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>

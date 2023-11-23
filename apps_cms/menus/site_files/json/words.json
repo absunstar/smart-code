@@ -60,8 +60,8 @@
         "ar": "إسم القائمة الفرعية "
     },
     {
-        "name": "linkage_type",
-        "en": "Linkage Type",
+        "name": "link_type",
+        "en": "Link Type",
         "ar": "نوع الربط"
     },
     {

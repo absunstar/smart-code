@@ -14,12 +14,12 @@ app.controller('goves', function ($scope, $http, $timeout) {
     };
 
     $scope.defaultSettings.languagesList.forEach((l) => {
-      if (l.language.active == true) {
+      if (l.active == true) {
         $scope.gov.translatedList.push({
           language: {
-            id: l.language.id,
-            en: l.language.en,
-            ar: l.language.ar,
+            id: l.id,
+            en: l.en,
+            ar: l.ar,
           },
         });
       }

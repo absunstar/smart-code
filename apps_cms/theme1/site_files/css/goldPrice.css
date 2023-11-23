@@ -6,7 +6,7 @@
     background-color: var(--golden-color);
     padding: 8px;
     border-radius: 15px 0 0 15px;
-    color:var(--text-color);
+    color:var(--color1);
     position:fixed;
     top: 400px;
     left: 100%;
@@ -64,7 +64,7 @@
 .goldprices{
     width: 800px;
     height: 80%;
-    background-color: var(--text-color);
+    background-color: var(--color1);
     border-radius: 15px;
 
 }
@@ -113,7 +113,7 @@
 .goldCarat{
     width: 100%;
     font-size: var(--title);
-    color: var(--text-color);
+    color: var(--color1);
     background-color: var(--golden-color);
     border-radius: 15px 15px 0 0;
 }
@@ -146,7 +146,7 @@
 .goldrate{
     width: 100%;
     border-radius: 0 0 15px 15px;
-    color: var(--text-color);
+    color: var(--color1);
 }
 
 .goldRateDown{
@@ -159,7 +159,7 @@
 
 .goldadd{
     background-color: var(--seven-color);
-    color: var(--text-color);
+    color: var(--color1);
     width: 100%;
 }
 

@@ -3,6 +3,7 @@
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.site_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Theme Setting## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#hostManager')"> ##word.Host Setting## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.email_and_text_messages## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#articlesSettings')"> ##word.articles_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.programming## </a>
@@ -13,10 +14,7 @@
       <div id="siteSettings" class="tab-content">
         <div class="article-part">
           <div class="row">
-            <div class="col3">
-              <i-image class="img256" ng-model="siteSetting.siteLogo"></i-image>
-            </div>
-            <div class="col9">
+            <div class="col12">
               <i-list v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.site_template##"> </i-list>
               <div class="row padding margin border">
                 <i-control v="r" class="col3" type="color" ng-model="siteSetting.siteBackground1" label="##word.Background## 1"></i-control>
@@ -99,11 +97,11 @@
             <div class="row" ng-repeat="lang in siteSetting.languagesList track by $index">
               <div class="row">
                 <div class="article-part">
-                  <p class="col4 margin font-23">{{lang.language.##session.lang##}}</p>
-                  <i-checkbox class="col3" label="##word.active##" ng-model="lang.language.active"> </i-checkbox>
+                  <p class="col4 margin font-23">{{lang.##session.lang##}}</p>
+                  <i-checkbox class="col3" label="##word.active##" ng-model="lang.active"> </i-checkbox>
                 </div>
               </div>
-              <div class="row" ng-show="lang.language.active">
+              <div class="row" ng-show="lang.active">
                 <div class="col9">
                   <div class="row">
                     <i-control label="##word.site_name##" class="col6" ng-model="lang.siteName"> </i-control>
@@ -142,25 +140,27 @@
               <legend>##word.View Options##</legend>
               <div class="row">
                 <div class="col4">
-                  <i-checkbox label="##word.Show Manager##" ng-model="siteSetting.showManager"> </i-checkbox>
-                  <i-checkbox label="##word.Show Main Menu##" ng-model="siteSetting.showMainMenu"></i-checkbox>
-                  <i-checkbox label="##word.Show Footer##" ng-model="siteSetting.showFooter"></i-checkbox>
+                  <i-checkbox label="##word.Show Manager##" ng-model="siteSetting.showCEOinformation"> </i-checkbox>
                   <i-checkbox label="##word.Show Editor Manager Articles##" ng-model="siteSetting.showEditorManagerArticle"></i-checkbox>
-                  <i-checkbox label="##word.allow Follow Editor##" ng-model="siteSetting.allowFollowEditor"></i-checkbox>
-                  <i-checkbox label="##word.allow Share Edit##" ng-model="siteSetting.allowShareEdit"></i-checkbox>
                   <i-checkbox label="##word.Show Editors Articles##" ng-model="siteSetting.showEditorsArticle"></i-checkbox>
+                  <i-checkbox label="##word.Show Editor##" ng-model="siteSetting.showEditor"></i-checkbox>
+                  <i-checkbox label="##word.allow Follow Editor##" ng-model="siteSetting.allowFollowEditor"></i-checkbox>
+                  <i-checkbox label="##word.allow Share Editor##" ng-model="siteSetting.allowShareEditor"></i-checkbox>
                   <i-checkbox label="##word.Show Image Gallary##" ng-model="siteSetting.showImageGallary"></i-checkbox>
                   <i-checkbox label="##word.Show Video Gallary##" ng-model="siteSetting.showVideoGallary"></i-checkbox>
                   <i-checkbox label="##word.Show Poll Questions##" ng-model="siteSetting.showPoll"></i-checkbox>
                 </div>
                 <div class="col4">
+                  <i-checkbox label="##word.Show Main Menu##" ng-model="siteSetting.showMainMenu"></i-checkbox>
+                  <i-checkbox label="##word.Show Footer##" ng-model="siteSetting.showFooter"></i-checkbox>
                   <i-checkbox label="##word.Show Top News##" ng-model="siteSetting.showTopNews"></i-checkbox>
                   <i-checkbox label="##word.Show Main Slider##" ng-model="siteSetting.showMainSlider"></i-checkbox>
                   <i-checkbox label="##word.Show Logo##" ng-model="siteSetting.showLogo"></i-checkbox>
                   <i-checkbox label="##word.Show Search Bar##" ng-model="siteSetting.showSearchBar"></i-checkbox>
+                  <i-checkbox label="##word.Show Follow Us##" ng-model="siteSetting.showFollowUs"></i-checkbox>
+                  <i-checkbox label="##word.Show Email Service##" ng-model="siteSetting.showEmailService"></i-checkbox>
                 </div>
                 <div class="col4">
-                  <i-checkbox label="##word.show Atricle Cover##" ng-model="siteSetting.showAtricleCover"> </i-checkbox>
                   <i-checkbox label="##word.Show Top Ad##" ng-model="siteSetting.showTopAd"> </i-checkbox>
                   <i-checkbox label="##word.Show Side Ad##" ng-model="siteSetting.showSideAd"></i-checkbox>
                   <i-checkbox label="##word.Show Footer Ad##" ng-model="siteSetting.showFooterAd"></i-checkbox>
@@ -350,6 +350,35 @@
           </div>
         </div>
       </div>
+
+      <div id="hostManager" class="tab-content">
+        <div class="article-part">
+          <div class="row">
+            <fieldset>
+              <legend>
+                ##word.Host##
+                <i-button label="##word.New##" type="push" ng-click="siteSetting.hostList.push({domain : '' , filter: ''})"></i-button>
+              </legend>
+              <div class="row">
+                <table class="table">
+                  <tr>
+                    <th>##word.Domain##</th>
+                    <th>##word.Filter##</th>
+                    <th>##word.Actions##</th>
+                  </tr>
+                  <tr ng-repeat="h in siteSetting.hostList track by $index">
+                    <td><i-control type="text" ng-model="h.domain"> </i-control></td>
+                    <td><i-control type="text" ng-model="h.filter"> </i-control></td>
+                    <td><i-button type="delete" label="##word.delete##" ng-click="siteSetting.hostList.splice($index,1)"> </i-button></td>
+                  </tr>
+                </table>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting('#hostManager')"> </i-button>
+      </div>
+
       <div id="emailAndTextMessages" class="tab-content">
         <div class="article-part">
           <fieldset>

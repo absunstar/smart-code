@@ -30,6 +30,9 @@
     color: #ffffff;
     font-size: 12px;
   }
+  .articleEditor {
+    flex-direction: column !important;
+  }
   .editorImage > img {
     width: 64px;
     height: 64px;
@@ -63,7 +66,7 @@
     height: 100%;
     overflow: scroll;
     background-color: var(--background1);
-    border-left: 4px solid var(--text-color);
+    border-left: 4px solid var(--color1);
     border-radius: 25px 0 0 25px;
     position: fixed;
     top: 0;
@@ -72,7 +75,7 @@
   }
 
   .burgermenu .fa-times {
-    color: var(--text-color);
+    color: var(--color1);
     cursor: pointer;
   }
 
@@ -88,7 +91,7 @@
 
   .headSectionTitle > label {
     width: 150px;
-    color: var(--text-color);
+    color: var(--color1);
     font-size: 24px;
     padding-bottom: 4px;
     margin-bottom: 10px;
@@ -103,18 +106,18 @@
   }
 
   .sectiontitle > p {
-    color: var(--text-color);
+    color: var(--color1);
     font-size: 18px;
     padding: 4px 0;
     border-bottom: 2px solid var(--six-color);
     text-align: right;
   }
   .sectiontitle a {
-    color: var(--text-color);
+    color: var(--color1);
   }
 
   .notficationtitle > p {
-    color: var(--text-color);
+    color: var(--color1);
     font-size: 14px;
     padding: 4px 0;
     text-align: right;

@@ -1,22 +1,22 @@
 <div id="xl-screen" class="d-flex flex-column">
   <div x-setting="showTopNews" x-import="theme1/topHeader.html" class="topHeader"></div>
-  <div x-setting="showManager" class="editorAndCeoHeader d-flex flex-row justify-content-center">
-    <div class="container d-flex flex-row-reverse justify-content-center align-items-center">
-      <div class="head d-flex flex-row-reverse gap-4">
-        <div class="ceo d-flex flex-md-row-reverse flex-column gap-2 justify-content-center align-items-center">
-          <p class="headTitle">:رئيس مجلس الأدارة</p>
+  <div x-setting="showCEOinformation" class="editorAndCeoHeader d-flex flex-row justify-content-center">
+    <div class="container d-flex flex-row justify-content-center align-items-center">
+      <div class="head d-flex flex-row gap-4">
+        <div class="ceo d-flex flex-md-row flex-column gap-2 justify-content-center align-items-center">
+          <p class="headTitle">##word.CEO Manager##</p>
           <p class="title">##setting.ceoManager##</p>
         </div>
-        <div class="headOfEditor d-flex flex-md-row-reverse flex-column gap-2 justify-content-center align-items-center">
-          <p class="headTitle">:رئيس التحرير</p>
+        <div class="headOfEditor d-flex flex-md-row flex-column gap-2 justify-content-center align-items-center">
+          <p class="headTitle">##word.Editor Manager##</p>
           <p class="title">##setting.editorManager##</p>
         </div>
       </div>
     </div>
   </div>
   <div class="midHeader">
-    <div class="midHeadercontainer container d-flex flex-column flex-md-row-reverse">
-      <div x-setting="showLogo" class="d-flex flex-row-reverse col-md-4 col-sm-12 justify-content-center align-items-center">
+    <div class="midHeadercontainer container d-flex flex-column flex-md-row">
+      <div x-setting="showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
         <div class="col-12 d-flex justify-content-start align-items-center logoAndHead">
           <div class="logo">
             <a href="/">
@@ -24,7 +24,7 @@
             </a>
           </div>
           <div class="site-title">
-            <h2> ##data.site_name## </h2>
+            <h2>##data.site_name##</h2>
           </div>
         </div>
       </div>
@@ -35,15 +35,15 @@
           </div>
           <div class="vl"></div>
           <div class="searchField">
-            <input type="search" class="searchInput" placeholder="ما الخبر الذي تبحث عنه .... ؟" />
+            <input type="search" class="searchInput" placeholder="##word.Search in ALL Site##" />
           </div>
         </div>
       </div>
       <div x-setting="showTemperatures" class="col-md-2 col-12 d-none d-md-flex justify-content-center align-items-center headerWidget">
         <div class="weather">
           <div class="weatherIcon">
-            <img src="/theme1/images/Moon2.png" alt="night" width="50px" height="50px" />
-            <img src="/theme1/images/sun2.png" alt="morning" width="50px" height="50px" />
+            <img src="/theme1/images/Moon2.png" alt="night" width="40px" height="40px" />
+            <img src="/theme1/images/sun2.png" alt="morning" width="40px" height="40px" />
           </div>
           <div class="weatherDetails">
             <p class="rtl bold">##setting.temperaturesGreat##</p>
@@ -54,15 +54,15 @@
       </div>
       <div x-setting="showPrayerTimings" id="PrayerTime" class="col-md-2 col-12 d-none d-md-flex justify-content-center align-items-center headerWidget PrayerTime">
         <div class="PrayerIcon">
-          <img src="/theme1/images/619087.png" alt="pray" width="50px" height="50px" />
+          <img src="/theme1/images/619087.png" alt="pray" width="40px" height="40px" />
         </div>
         <div class="PrayerDetails">
           <p class="bold">مواقيت الصلاة</p>
         </div>
         <div class="paryertimesubmenu">
           <ul id="paryertimeItems" class="list-group paryertimeItems">
-            <li x-list1="prayerTimingsList" class="list-group-item">
-              <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+            <li x-list1="setting.prayerTimingsList" class="list-group-item">
+              <div class="d-flex flex-row justify-content-center align-items-center gap-2">
                 <p class="rtl">##item1.name##</p>
                 <div class="vlPrayer"></div>
                 <p class="rtl">##item1.time##</p>
@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div x-setting="showMainMenu" class="bottomHeader">
+  <div x-data="menuList1.length" x-setting="showMainMenu" class="bottomHeader">
     <div class="bottomHeadercontainer container">
       <ul class="navbarlist d-none d-md-flex">
         <li>
@@ -81,7 +81,7 @@
         </li>
         <li x-list1="menuList1"><a href="##item1.url##">##item1.name## </a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"> المزيد </a>
+          <a x-data="menuList2" class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"> ##word......## </a>
           <ul class="dropdown-menu">
             <li x-list1="menuList2"><a class="dropdown-item" href="##item1.url##">##item1.name## </a></li>
           </ul>
@@ -96,6 +96,7 @@
       </ul>
     </div>
   </div>
+
   <!-- start Burger Menu -->
   <div id="burgermenuoverlay" class="burgermenuoverlay">
     <div class="burgermenu d-flex d-md-none flex-column gap-4 justify-content-start align-items-end">
@@ -110,14 +111,14 @@
         </div>
         <div class="vl"></div>
         <div class="searchField">
-          <input type="search" class="searchInput" placeholder="ما الخبر الذي تبحث عنه .... ؟" />
+          <input type="search" class="searchInput" placeholder="##word.Search in ALL Site##" />
         </div>
       </div>
       <div class="w-100 headerWidget d-flex flex-column align-items-end">
         <div class="weather">
           <div class="weatherIcon">
-            <img src="/theme1/images/Moon2.png" alt="night" width="50px" height="50px" />
-            <img src="/theme1/images/sun2.png" alt="morning" width="50px" height="50px" />
+            <img src="/theme1/images/Moon2.png" alt="night" width="40px" height="40px" />
+            <img src="/theme1/images/sun2.png" alt="morning" width="40px" height="40px" />
           </div>
           <div class="weatherDetails">
             <p class="rtl bold">##setting.temperaturesGreat##°صغرى</p>
@@ -127,7 +128,7 @@
         </div>
         <div id="PrayerTime" class="PrayerTime">
           <div class="PrayerIcon">
-            <img src="/theme1/images/619087.png" alt="pray" width="50px" height="50px" />
+            <img src="/theme1/images/619087.png" alt="pray" width="40px" height="40px" />
           </div>
           <div class="PrayerDetails">
             <p class="bold">مواقيت الصلاة</p>
@@ -135,8 +136,8 @@
         </div>
         <div class="paryertimesubmenu">
           <ul id="paryertimeItems" class="list-group paryertimeItems">
-            <li x-list1="prayerTimingsList" class="list-group-item">
-              <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2">
+            <li x-list1="setting.prayerTimingsList" class="list-group-item">
+              <div class="d-flex flex-row justify-content-center align-items-center gap-2">
                 <p class="rtl">##item1.name##</p>
                 <div class="vlPrayer"></div>
                 <p class="rtl">##item1.time##</p>
@@ -150,8 +151,6 @@
           <label>الأقسام</label>
         </div>
         <div class="allsections">
-          
-
           <div x-list1="menuList1" class="sectiontitle">
             <p><a href="##item1.url##">##item1.name##</a></p>
           </div>
@@ -164,7 +163,7 @@
         <div class="headSectionTitle">
           <label>الأشعارات</label>
         </div>
-        <div class="notficationSections d-flex flex-row-reverse gap-2 justify-content-center align-items-center">
+        <div class="notficationSections d-flex flex-row gap-2 justify-content-center align-items-center">
           <div class="notficationtitle"><p>استقبال إشعارات بأحدث الأخبار</p></div>
           <div class="notficationToggel">
             <div class="form-check form-switch">

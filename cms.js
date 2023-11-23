@@ -19,7 +19,7 @@ const site = require('../isite')({
     },
   },
   security: {
-    keys: ['21232f297a57a5a743894a0e4a801fc3', 'f6fdffe48c908deb0f4c3bd36c032e72'],
+    keys: ['21232f297a57a5a743894a0e4a801fc3', 'f6fdffe48c908deb0f4c3bd36c032e72', 'e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
   },
 });
 
@@ -40,65 +40,74 @@ site.get(
       res.redirect('/404');
       return;
     }
-    let lang = site.setting.languagesList[0];
+    let lang = site.setting.languagesList.filter((l) => l.name == req.session.lang)[0];
+    if (!lang) {
+      lang = site.setting.languagesList[0];
+    }
+
     if (!lang) {
       res.redirect('/404');
       return;
     }
+
     if (!Array.isArray(lang.keyWordsList)) {
       lang.keyWordsList = [];
     }
+
+    lang.description = lang.description || '';
+
     if (site.setting.siteTemplate.id == 1) {
-      site.setting.mainCategoryList.forEach((c) => {
-        c.$list = site.articlesList.filter((a) => a.category && a.category.id == c.id).slice(0, c.limit);
-        if (c.template) {
-          c.show = true;
-          if (c.template.id == 1) {
-            c.template1 = true;
-          } else if (c.template.id == 2) {
-            c.template2 = true;
-          } else if (c.template.id == 3) {
-            c.template3 = true;
-            c.$list0 = [c.$list.shift()];
+      site.articlesList = site.articlesList || [];
+      let options = {
+        guid: '',
+        language: lang,
+        filter: site.getHostFilter(req.host),
+        site_logo: lang.logo?.url,
+        page_image: lang.logo?.url,
+        site_name: lang.siteName,
+        page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + lang.siteSlogan,
+        page_description: lang.description.substr(0, 200),
+        page_keywords: lang.keyWordsList.join(','),
+        categories: [],
+        page: {},
+      };
+      options.topNews = site.getTopArticles(options.filter);
+      options.setting = site.setting;
+
+      options.MainSliderNews = { list: site.articlesList.filter((a) => a.host.like(options.filter) && a.showInMainSlider === true).slice(0, 10) };
+      options.MainSliderNews.article = options.MainSliderNews.list[0];
+
+      options.menuList = site.menuList
+        .filter((m) => m.host.like(options.filter))
+        .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == lang.id)?.name || c.translatedList[0].name, url: c.$url }));
+
+      options.menuList1 = options.menuList.slice(0, 8);
+      options.menuList2 = options.menuList.slice(8, 20);
+      options.menuList3 = options.menuList.slice(20);
+
+      site.setting.mainCategoryList.forEach((c0) => {
+        let category = site.categoriesList.find((c) => c.id == c0.id && c.host.like(options.filter));
+        if (category) {
+          category.$list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, c0.limit);
+          if (c0.template && category.$list.length > 0) {
+            if (c0.template.id == 1) {
+              category.template1 = true;
+            } else if (c0.template.id == 2) {
+              category.template2 = true;
+            } else if (c0.template.id == 3) {
+              category.template3 = true;
+              category.$list0 = [category.$list.shift()];
+            }
+            category.name = category.translatedList.find((t) => t.language.id == req.session.lang)?.name || category.translatedList[0].name;
+            options.categories.push(category);
           }
-        } else {
-          c, (show = false);
         }
       });
 
-      res.render(
-        'theme1/index.html',
-        {
-          guid: '',
-          site_name: lang.siteName,
-          site_logo: site.setting.siteLogo?.url,
-          page_image: site.setting.siteLogo?.url,
-          page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + lang.siteSlogan,
-          page_description: lang.description.substr(0, 200),
-          page_keywords: lang.keyWordsList.join(','),
-          page_lang: lang.language.id,
-          prayerTimingsList: site.setting.prayerTimingsList,
-          matchScheduleList: site.setting.matchScheduleList,
-          goldPricesList: site.setting.goldPricesList,
-          moneyPricesList: site.setting.moneyPricesList,
-          menuList1: site.menuList1,
-          menuList2: site.menuList2,
-          menuList3: site.menuList3,
-
-          MainSliderNews: {
-            article: site.MainSliderNews[0],
-            list: site.MainSliderNews,
-          },
-
-          categories: site.setting.mainCategoryList,
-          topNews: site.topNews,
-          page: {},
-        },
-        {
-          parser: 'html css js',
-          compress: true,
-        }
-      );
+      res.render('theme1/index.html', options, {
+        parser: 'html css js',
+        compress: true,
+      });
     } else {
       res.redirect('/404');
     }
@@ -110,52 +119,70 @@ site.get(
     name: ['/category/:id/:title', '/category/:id'],
   },
   (req, res) => {
-    if (!site.setting.siteTemplate) {
+    if (!site.setting.siteTemplate || !site.setting.languagesList) {
       res.redirect('/404');
       return;
     }
-    let category = site.categoriesList.find((c) => c.id == req.params.id);
+    let lang = site.setting.languagesList.filter((l) => l.name == req.session.lang)[0];
+    if (!lang) {
+      lang = site.setting.languagesList[0];
+    }
+
+    if (!lang) {
+      res.redirect('/404');
+      return;
+    }
+
+    let options = {
+      guid: '',
+      filter: site.getHostFilter(req.host),
+      site_name: lang.siteName,
+      site_logo: lang.logo?.url,
+      page_image: lang.logo?.url,
+      page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + lang.siteSlogan,
+      page_description: lang.description.substr(0, 200),
+      page_keywords: lang.keyWordsList.join(','),
+      page_lang: lang.id,
+      categories: [],
+      page: {},
+    };
+
+    let category = site.categoriesList.find((c) => c.id == req.params.id && c.host.like(options.filter));
 
     if (!category) {
       res.redirect('/');
       return;
     }
 
-    category.$MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true && a.category && a.category.id == category.id).splice(0, 10);
+    options.setting = site.setting;
+    options.topNews = site.getTopArticles(options.filter);
 
-    if (true || site.setting.siteTemplate.id == 1) {
-      res.render(
-        'theme1/category.html',
-        {
-          site_name: site.setting.languagesList[0].siteName,
-          site_logo: site.setting.siteLogo?.url,
-          page_image: category.translatedList[0].image?.url || site.setting.siteLogo?.url,
-          page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + category.translatedList[0].name,
-          page_description: category.translatedList[0].description,
+    options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 20);
+    options.MainSliderNews = {
+      list: site.articlesList.filter((a) => a.showInMainSlider === true && a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 10),
+    };
+    options.MainSliderNews.article = options.MainSliderNews.list[0];
 
-          prayerTimingsList: site.setting.prayerTimingsList,
-          matchScheduleList: site.setting.matchScheduleList,
-          goldPricesList: site.setting.goldPricesList,
-          moneyPricesList: site.setting.moneyPricesList,
+    options.menuList = site.menuList
+      .filter((m) => m.host.like(options.filter))
+      .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == lang.id)?.name || c.translatedList[0].name, url: c.$url }));
+    options.menuList1 = options.menuList.slice(0, 8);
+    options.menuList2 = options.menuList.slice(8, 20);
+    options.menuList3 = options.menuList.slice(20);
 
-          category: { name: category.translatedList[0].name },
-          list: site.articlesList.filter((a) => a.category && a.category.id == category.id).slice(0, 20),
+    options.$categoryLang = category.translatedList.find((l) => l.language.id == lang.id) || category.translatedList[0];
+    options.categoryName = options.$categoryLang.name;
+    options.page_image = options.$categoryLang.image?.url || options.site_logo;
+    options.page_title = lang.siteName + ' ' + lang.titleSeparator + ' ' + options.$categoryLang.name;
+    options.page_description = options.$categoryLang.description;
 
-          menuList1: site.menuList1,
-          menuList2: site.menuList2,
-          menuList3: site.menuList3,
-
-          MainSliderNews: {
-            article: category.$MainSliderNews[0],
-            list: category.$MainSliderNews,
-          },
-          topNews: site.topNews,
-          page: {},
-        },
-        {
-          parser: 'html css js',
-        }
-      );
+    if (site.setting.siteTemplate.id == 1) {
+      res.render('theme1/category.html', options, {
+        parser: 'html css js',
+      });
+    } else {
+      res.redirect('/404');
+      return;
     }
   }
 );
@@ -165,7 +192,18 @@ site.get(
     name: ['/article/:id/:title', '/a/:id'],
   },
   (req, res) => {
-    let article = site.articlesList.find((a) => a.id == req.params.id);
+    if (!site.setting.siteTemplate || !site.setting.languagesList) {
+      res.redirect('/404');
+      return;
+    }
+
+    let filter = site.getHostFilter(req.host);
+    let article = site.articlesList.find((a) => (a.id == req.params.id || a.guid == req.params.id) && a.host.like(filter));
+
+    if (!article) {
+      res.redirect('/');
+      return;
+    }
     if (req.route.name0 == '/a/:id') {
       if (article) {
         res.redirect('/article/' + article.id + '/' + encodeURI(article.$title2));
@@ -175,43 +213,50 @@ site.get(
       return;
     }
 
-    if (!article) {
-      res.redirect('/');
-      return;
-    }
-    if (article.is_yts) {
+    if (article.$yts) {
       req.session.lang = 'en';
     }
 
-    res.render(
-      'theme1/article.html',
-      {
-        site_name: site.setting.languagesList[0].siteName,
-        site_logo: site.setting.siteLogo?.url,
-        page_image: article.imageURL || site.setting.siteLogo?.url,
-        page_title: site.setting.languagesList[0].siteName + ' ' + site.setting.languagesList[0].titleSeparator + ' ' + article.$title,
-        page_description: article.description,
+    let lang = site.setting.languagesList.find((l) => l.id == req.session.lang) || site.setting.languagesList[0];
 
-        prayerTimingsList: site.setting.prayerTimingsList,
-        matchScheduleList: site.setting.matchScheduleList,
-        goldPricesList: site.setting.goldPricesList,
-        moneyPricesList: site.setting.moneyPricesList,
+    if (!lang) {
+      res.redirect('/404');
+      return;
+    }
 
-        menuList1: site.menuList1,
-        menuList2: site.menuList2,
-        menuList3: site.menuList3,
+    if (!Array.isArray(lang.keyWordsList)) {
+      lang.keyWordsList = [];
+    }
+    lang.description = lang.description || '';
 
-        article: article,
-        relatedArticleList: site.getRelatedArticles(article),
-        topNews: site.topNews,
-        page: {
-          article: article,
-        },
-      },
-      {
-        parser: 'html css js',
-      }
-    );
+    let options = {
+      filter: filter,
+      language: lang,
+      site_name: lang.siteName,
+      site_logo: lang.logo?.url,
+      page_image: article.imageURL || lang.logo?.url,
+      page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + article.$title,
+      page_description: article.description,
+      page_keywords: lang.keyWordsList.join(','),
+      page_lang: lang.id,
+      article: article,
+    };
+
+    options.menuList = site.menuList
+      .filter((m) => m.host.like(options.filter))
+      .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == lang.id)?.name || c.translatedList[0].name, url: c.$url }));
+    options.menuList1 = options.menuList.slice(0, 8);
+    options.menuList2 = options.menuList.slice(8, 20);
+    options.menuList3 = options.menuList.slice(20);
+
+    options.relatedArticleList = site.getRelatedArticles(article);
+    options.latestList = site.getLatestArticles(article);
+    options.setting = site.setting;
+    options.topNews = site.getTopArticles(options.filter);
+
+    res.render('theme1/article.html', options, {
+      parser: 'html css js',
+    });
   }
 );
 site.ready = false;
@@ -238,7 +283,3 @@ site.on('ready', () => {
     site.handleCategoryArticles();
   }, 1000 * 3);
 });
-
-// add sa sasa keys
-site.security.addKey('c12e01f2a13ff5587e1e9e4aedb8242d');
-site.security.addKey('f45731e3d39a1b2330bbf93e9b3de59e');

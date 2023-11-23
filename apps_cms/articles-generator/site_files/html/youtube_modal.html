@@ -1,0 +1,43 @@
+<div id="youtubeModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.Youtube Manager##</h2>
+    </div>
+
+    <div class="modal-body">
+      <i-button ng-click="generateYTS()" label="Generate Posts"></i-button>
+      <fieldset>
+        <legend>##word.New Youtube Channel##</legend>
+        <div class="row">
+          <i-control ng-model="youtubeItem.url" label="##word.Channel URL##"></i-control>
+        </div>
+        <i-button ng-click="addYoutubeChannel(youtubeItem)" label="##word.Add To Channel List##"></i-button>
+      </fieldset>
+      <div class="row margin padding">
+        <table class="table">
+          <tr>
+            <th>##word.logo##</th>
+            <th>##word.title##</th>
+            <th>##word.URL##</th>
+            <th>##word.Actions##</th>
+          </tr>
+          <tr ng-repeat="yt in youtubeList">
+            <td><img class="logo" ng-src="{{yt.image.url}}" /></td>
+            <td class="bold">{{yt.title}}</td>
+            <td>{{yt.url}}</td>
+            <td>
+              <i-button type="delete" ng-click="youtubeDelete(yt)"></i-button>
+              <i-button type="search" ng-click="getYoutubeVideoList(yt)"></i-button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#youtubeModal')"></i-button>
+    </div>
+  </div>
+</div>

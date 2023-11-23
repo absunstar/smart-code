@@ -12,7 +12,7 @@
 .MI-newsTilteTime {
   width: 100%;
   height: inherit;
-  color: var(--text-color);
+  color: var(--color1);
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 76.04%);
   border-radius: 15px;
   direction: rtl;
@@ -52,14 +52,32 @@
 .articleEditor {
   padding-bottom: 10px;
   border-bottom: 5px solid var(--background1);
-  width: 80%;
+  gap: 50px;
+  align-items: center;
+  flex-direction: row;
 }
-
+.writerArea{
+  background: var(--background2);
+  padding: 1rem;
+  border-radius: 5px;
+  color: var(--color2);
+  gap: 1rem;
+}
 .mainarticle {
   padding: 0;
   line-height: 1.5;
   font-size: x-large;
   width: 100%;
+}
+
+.mainarticle iframe {
+  left: 0px;
+  top: 0px;
+  min-height: 50vh;
+  width: 100%;
+  background-color: var(--background1);
+  border: none;
+  border: 5px solid var(--color1);
 }
 
 .mainarticle img {
@@ -83,7 +101,7 @@
 }
 .videoArticle .palyicon {
   font-size: 50px;
-  color: var(--text-color);
+  color: var(--color1);
   cursor: pointer;
   translate: -50%;
   position: absolute;
@@ -130,18 +148,6 @@
   width: inherit;
 }
 
-.BNSectionheader {
-  width: 300px;
-  height: 70px;
-  background-color: var(--background1);
-  color: var(--text-color);
-  font-size: 28px;
-  padding: 0 24px;
-  border-radius: 45px 0px 0px 45px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 40px;
-}
-
 .RNSubSection {
   width: inherit;
 }
@@ -149,5 +155,4 @@
 /* end related news */
 
 @media (max-width: 767px) {
- 
 }
