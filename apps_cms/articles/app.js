@@ -103,7 +103,7 @@ module.exports = function init(site) {
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '_';
     if (doc.type.id == 7 && doc.yts) {
-      doc.is_yts = true;
+      doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
       doc.$title2 = doc.$title.replaceAll(' ', '+');
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
@@ -380,6 +380,7 @@ module.exports = function init(site) {
     }
 
     articlesDoc.guid = articlesDoc.guid || site.md5(articlesDoc.translatedList[0].title);
+    articlesDoc.host = articlesDoc.host || req.host;
 
     $articles.add(articlesDoc, (err, doc) => {
       if (!err && doc) {

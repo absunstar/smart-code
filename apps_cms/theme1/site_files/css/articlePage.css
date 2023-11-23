@@ -52,9 +52,17 @@
 .articleEditor {
   padding-bottom: 10px;
   border-bottom: 5px solid var(--background1);
-  width: 80%;
+  gap: 50px;
+  align-items: center;
+  flex-direction: row;
 }
-
+.writerArea{
+  background: var(--background2);
+  padding: 1rem;
+  border-radius: 5px;
+  color: var(--color2);
+  gap: 1rem;
+}
 .mainarticle {
   padding: 0;
   line-height: 1.5;

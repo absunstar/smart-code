@@ -21,13 +21,14 @@ module.exports = function init(site) {
     site.menuList.forEach((m) => {
       m.host = m.host || '_';
       m.type = m.type || {};
+      m.$url = '#';
       if (m.type.id === 1 && m.category) {
         m.$url = '/category/' + m.category.id + '/' + m.category.name.replaceAll(' ', '+');
       } else if (m.type.id === 2) {
       } else if (m.type.id === 3) {
       } else if (m.type.id === 4) {
       } else if (m.type.id === 5) {
-        m.$url = '#';
+        
       } else {
       }
     });

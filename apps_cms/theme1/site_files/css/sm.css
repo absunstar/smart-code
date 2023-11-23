@@ -30,6 +30,9 @@
     color: #ffffff;
     font-size: 12px;
   }
+  .articleEditor {
+    flex-direction: column !important;
+  }
   .editorImage > img {
     width: 64px;
     height: 64px;

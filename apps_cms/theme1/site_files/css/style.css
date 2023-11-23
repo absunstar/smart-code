@@ -36,7 +36,6 @@ body.en {
   background-color: var(--background1x);
   color: var(--color1);
   width: 100%;
-  padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
 }
@@ -774,17 +773,17 @@ a {
 
 .editorName {
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 20px;
   line-height: 45px;
-  color: var(--background1);
+  color: var(--color1);
   direction: rtl;
 }
 
 .editorImage > img {
   border-radius: 15px;
-  width: 128px;
-  height: 128px;
+  width: 90px;
+  height: 90px;
 }
 
 .editorTitle {

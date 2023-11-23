@@ -213,7 +213,7 @@ site.get(
       return;
     }
 
-    if (article.is_yts) {
+    if (article.$yts) {
       req.session.lang = 'en';
     }
 
@@ -241,8 +241,6 @@ site.get(
       page_lang: lang.id,
       article: article,
     };
-
-    console.log(lang);
 
     options.menuList = site.menuList
       .filter((m) => m.host.like(options.filter))

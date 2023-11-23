@@ -199,7 +199,7 @@ module.exports = function init(site) {
       done: false,
     };
     let where = req.body.where || {};
-    
+
     response.done = true;
 
     site.categoriesList.forEach((doc) => {
@@ -207,6 +207,24 @@ module.exports = function init(site) {
       doc.name = lang.name;
       doc.$image = lang.image?.url;
     });
+    response.list = site.categoriesList;
+    res.json(response);
+  });
+  site.post({ name: '/api/categories/lookup', public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    response.done = true;
+
+    response.list = site.categoriesList
+      .filter((doc) => {
+        let lang = doc.translatedList.find((t) => t.language.id == req.session.lang) || doc.translatedList[0];
+        doc.name = lang.name;
+        doc.$image = lang.image?.url;
+        return true;
+      })
+      .map((c) => ({ id: c.id, name: c.name, image: c.$image }));
     response.list = site.categoriesList;
     res.json(response);
   });
