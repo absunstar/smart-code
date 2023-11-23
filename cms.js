@@ -60,7 +60,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         guid: '',
-        lang: lang,
+        language: lang,
         filter: site.getHostFilter(req.host),
         site_logo: lang.logo?.url,
         page_image: lang.logo?.url,
@@ -68,12 +68,11 @@ site.get(
         page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + lang.siteSlogan,
         page_description: lang.description.substr(0, 200),
         page_keywords: lang.keyWordsList.join(','),
-        page_lang: lang.id,
         categories: [],
         topNews: site.topNews,
         page: {},
       };
-      options.topNews = site.getTopArticles(req.host);
+      options.topNews = site.getTopArticles(options.filter);
       options.setting = site.setting;
 
       options.MainSliderNews = { list: site.articlesList.filter((a) => a.host.like(options.filter) && a.showInMainSlider === true).splice(0, 10) };
@@ -82,15 +81,16 @@ site.get(
       options.menuList = site.menuList
         .filter((m) => m.host.like(options.filter))
         .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.name == lang.name)?.name || c.translatedList[0].name, url: c.$url }));
-      options.menuList1 = options.menuList.splice(0, 8);
-      options.menuList2 = options.menuList.splice(8, 20);
-      options.menuList3 = options.menuList.splice(20);
+
+        options.menuList1 = options.menuList.slice(0, 8);
+      options.menuList2 = options.menuList.slice(8, 20);
+      options.menuList3 = options.menuList.slice(20);
 
       site.setting.mainCategoryList.forEach((c0) => {
         let category = site.categoriesList.find((c) => c.id == c0.id && c.host.like(options.filter));
         if (category) {
           category.$list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, c0.limit);
-          if (c0.template) {
+          if (c0.template && category.$list.length > 0) {
             if (c0.template.id == 1) {
               category.template1 = true;
             } else if (c0.template.id == 2) {
@@ -99,7 +99,7 @@ site.get(
               category.template3 = true;
               category.$list0 = [category.$list.shift()];
             }
-            category.name = c0.name;
+            category.name = category.translatedList.find((t) => t.language.id == req.session.lang)?.name || category.translatedList[0].name;
             options.categories.push(category);
           }
         }

@@ -1,8 +1,8 @@
-<div x-setting="showGoldPrices" id="goldpricetoggle" class="goldpricetoggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
+<div x-data="setting.showGoldPrices" id="goldpricetoggle" class="goldpricetoggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
   <label>اسعار الذهب</label>
   <i class="fas fa-ring"></i>
 </div>
-<div x-setting="showGoldPrices" id="mainGoldprice" class="mainGoldprice flex-column align-items-center justify-content-center">
+<div x-data="setting.showGoldPrices" id="mainGoldprice" class="mainGoldprice flex-column align-items-center justify-content-center">
   <div class="goldprices d-flex flex-column align-items-center justify-content-start m-4 p-4">
     <div class="closeGoldbutton">
       <div id="closeButton" class="closeButton d-flex flex-row justify-content-end align-items-end">
@@ -14,7 +14,7 @@
     </div>
     <div class="slider-container">
       <div class="inner-slider">
-        <div x-list1="goldPricesList" class="card d-flex flex-column justify-content-center align-items-center">
+        <div x-list1="setting.goldPricesList" class="card d-flex flex-column justify-content-center align-items-center">
           <div class="goldpricecard d-flex flex-column align-items-center justify-content-between">
             <label class="goldCarat d-flex flex-column align-items-center p-4"> ##item1.name## </label>
             <div class="sellGoldpraice d-flex flex-column justify-content-center align-items-center gap-0">
@@ -40,7 +40,7 @@
                 <i class="fas fa-arrow-up"></i>
               </div>
             </label>
-            <label x-show-item1="decrease" class="goldrate goldRateDown d-flex flex-row align-items-center justify-content-center p-2 gap-1">
+            <label x-show-item1="decreasex-setting="" class="goldrate goldRateDown d-flex flex-row align-items-center justify-content-center p-2 gap-1">
               <div class="ratenumber">
                 <label>##item1.percentageChange##%</label>
               </div>
@@ -55,12 +55,12 @@
   </div>
 </div>
 
-<div x-setting="showMoneyPrices" id="convertCurrancyToggle" data-bs-toggle="modal" data-bs-target="#moneyList" class="convertCurrancyToggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
+<div x-data="setting.showMoneyPrices" id="convertCurrancyToggle" data-bs-toggle="modal" data-bs-target="#moneyList" class="convertCurrancyToggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
   <label>اسعار العملات</label>
   <i class="fas fa-money-bill-alt"></i>
 </div>
 
-<div x-setting="showMoneyPrices" class="modal fade" id="moneyList" aria-labelledby="moneyListLabel" aria-hidden="true">
+<div x-data="setting.showMoneyPrices" class="modal fade" id="moneyList" aria-labelledby="moneyListLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -68,7 +68,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body rtl">
-        <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start gy-2 p-0 m-0" x-list1="moneyPricesList">
+        <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start gy-2 p-0 m-0" x-list1="setting.moneyPricesList">
           <div class="col-md-4 bold blue">##item1.name##</div>
           <div class="col-md-2">سعر البيع</div>
           <div class="col-md-2 green">##item1.sell## جنيه</div>
@@ -80,11 +80,11 @@
   </div>
 </div>
 
-<div x-setting="showMatchSchedule" id="footballMatchesToggle" class="footballMatchesToggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
+<div x-data="setting.showMatchSchedule" id="footballMatchesToggle" class="footballMatchesToggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
   <label>جدول المباريات</label>
   <i class="fas fa-futbol"></i>
 </div>
-<div x-setting="showMatchSchedule" id="mainfootballMatches" class="mainfootballMatches flex-column align-items-center justify-content-center">
+<div x-data="setting.showMatchSchedule" id="mainfootballMatches" class="mainfootballMatches flex-column align-items-center justify-content-center">
   <div class="footballMatches d-flex flex-column align-items-center justify-content-start m-4">
     <div class="fMHeader">
       <div class="closeMatchesButton p-4">
@@ -98,7 +98,7 @@
     </div>
     <div class="container w-100 footballMatchesTable p-4">
       <div class="row matches d-flex flex-column flex-md-row flex-nowrap flex-md-wrap justify-content-start justify-content-md-end">
-        <div x-list1="matchScheduleList" class="cellMatche col col-md-6 pb-4 p-0">
+        <div x-list1="setting.matchScheduleList" class="cellMatche col col-md-6 pb-4 p-0">
           <div class="matchDate d-flex flex-row-reverse justify-content-center align-items-center">
             <p>##item1.date##</p>
           </div>

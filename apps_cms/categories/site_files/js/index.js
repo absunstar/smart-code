@@ -162,11 +162,38 @@ app.controller('categories', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (type == 'update') {
-            $scope.categories = response.data.doc;
-          } else {
-            $scope.categories = response.data.doc;
-          }
+          $scope.categories = response.data.doc;
+          $scope.siteSettings.languagesList.forEach((l) => {
+            if (l.active == true && !$scope.categories.translatedList.find((t) => t.language.id == l.id)) {
+              $scope.categories.translatedList.push({
+                language: {
+                  id: l.id,
+                  en: l.en,
+                  ar: l.ar,
+                },
+                actualViews: 0,
+                dummyViews: 0,
+                apparentViews: 0,
+                actualLikes: 0,
+                dummyLikes: 0,
+                apparentLikes: 0,
+                actualComments: 0,
+                dummyComments: 0,
+                apparentComments: 0,
+                actualPosts: 0,
+                dummyPosts: 0,
+                apparentPosts: 0,
+                actualRatings: 0,
+                dummyRatings: 0,
+                apparentRatings: 0,
+                numberWords: 0,
+                numberLetters: 0,
+                showSocialmage: true,
+                socialMediaActivation: true,
+                keyWordsList: [],
+              });
+            }
+          });
         } else {
           $scope.error = response.data.error;
         }

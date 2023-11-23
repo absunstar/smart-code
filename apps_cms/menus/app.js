@@ -19,18 +19,20 @@ module.exports = function init(site) {
   site.handleMenus = function () {
     site.menuList = app.memoryList;
     site.menuList.forEach((m) => {
-      m.host = m.host || '*';
+      m.host = m.host || '_';
       m.type = m.type || {};
       if (m.type.id === 1 && m.category) {
         m.$url = '/category/' + m.category.id + '/' + m.category.name.replaceAll(' ', '+');
       } else if (m.type.id === 2) {
       } else if (m.type.id === 3) {
       } else if (m.type.id === 4) {
+      } else if (m.type.id === 5) {
+        m.$url = '#';
       } else {
-        m.active = false;
       }
     });
     site.menuList = site.menuList.filter((m) => m.active);
+    app.menuList = site.menuList.sort((a, b) => a.sort - b.sort);
   };
   app.linkTypeList = [
     {
@@ -340,7 +342,7 @@ module.exports = function init(site) {
         let where = req.body.where || {};
         let search = req.body.search || '';
         let limit = req.body.limit || 100;
-        let select = req.body.select || { id: 1, code: 1, name: 1, image: 1, callingCode: 1 };
+        let select = req.body.select || {};
 
         if (app.allowMemory) {
           app.memoryList.forEach((doc) => {
