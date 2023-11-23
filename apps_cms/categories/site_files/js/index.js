@@ -4,7 +4,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
 
   $scope.categories = {};
 
-  $scope.displayAddCategories = function (parentCategory) {
+  $scope.displayAddCategories = function () {
     $scope._search = {};
 
     $scope.error = '';
@@ -12,28 +12,9 @@ app.controller('categories', function ($scope, $http, $timeout) {
 
     $scope.categories = {
       active: true,
-      showHome: true,
       translatedList: [],
     };
 
-    if (parentCategory) {
-      $scope.categories.parentId = parentCategory.id;
-      $scope.categories.topParentId = parentCategory.topParentId || parentCategory.id;
-    }
-
-    if ($scope.categories.topParentId) {
-      $scope.categories = {
-        active: true,
-        showHome: true,
-        status: parentCategory.status,
-        image: parentCategory.image,
-      };
-
-      $scope.categories.parentId = parentCategory.id;
-      $scope.categories.topParentId = parentCategory.topParentId || parentCategory.id;
-    }
-
-    $scope.categories.translatedList = [];
     $scope.siteSettings.languagesList.forEach((l) => {
       if (l.active == true) {
         $scope.categories.translatedList.push({

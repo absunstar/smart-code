@@ -211,7 +211,13 @@ site.get(
     }
     lang.description = lang.description || '';
 
-    let article = site.articlesList.find((a) => a.id == req.params.id || a.guid == req.params.id);
+    let filter = site.getHostFilter(req.host);
+    let article = site.articlesList.find((a) => (a.id == req.params.id || a.guid == req.params.id) && a.host.like(filter));
+
+    if (!article) {
+      res.redirect('/');
+      return;
+    }
     if (req.route.name0 == '/a/:id') {
       if (article) {
         res.redirect('/article/' + article.id + '/' + encodeURI(article.$title2));
@@ -220,17 +226,12 @@ site.get(
       }
       return;
     }
-
-    if (!article) {
-      res.redirect('/');
-      return;
-    }
     if (article.is_yts) {
       req.session.lang = 'en';
     }
 
     let options = {
-      filter: site.getHostFilter(req.host),
+      filter: filter,
       direction: req.session.lang.like('ar') ? 'rtl' : 'ltr',
       site_name: lang.siteName,
       site_logo: lang.logo?.url,
