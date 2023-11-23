@@ -1,4 +1,4 @@
-<div x-data="setting.showGoldPrices" id="goldpricetoggle" class="goldpricetoggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
+<div x-data="setting.showGoldPrices" id="goldpricetoggle" class="goldpricetoggle d-flex flex-rowjustify-content-end align-items-center gap-4">
   <label>اسعار الذهب</label>
   <i class="fas fa-ring"></i>
 </div>
@@ -19,7 +19,7 @@
             <label class="goldCarat d-flex flex-column align-items-center p-4"> ##item1.name## </label>
             <div class="sellGoldpraice d-flex flex-column justify-content-center align-items-center gap-0">
               <label class="sellPrice">سعر البيع</label>
-              <label class="goldprice d-flex flex-row-reverse align-items-center gap-1">
+              <label class="goldprice d-flex flex-rowalign-items-center gap-1">
                 <div class="pricenumber">##item1.salesPrice##</div>
                 <div class="pricecurrency">جنية مصري</div>
               </label>
@@ -27,7 +27,7 @@
             <div class="hlGold"></div>
             <div class="buyGoldpraice d-flex flex-column justify-content-center align-items-center gap-0">
               <label class="buyPrice">سعر الشراء</label>
-              <label class="goldprice d-flex flex-row-reverse align-items-center gap-1">
+              <label class="goldprice d-flex flex-rowalign-items-center gap-1">
                 <div class="pricenumber">##item1.purchasePrice##</div>
                 <div class="pricecurrency">جنية مصري</div>
               </label>
@@ -55,7 +55,7 @@
   </div>
 </div>
 
-<div x-data="setting.showMoneyPrices" id="convertCurrancyToggle" data-bs-toggle="modal" data-bs-target="#moneyList" class="convertCurrancyToggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
+<div x-data="setting.showMoneyPrices" id="convertCurrancyToggle" data-bs-toggle="modal" data-bs-target="#moneyList" class="convertCurrancyToggle d-flex flex-rowjustify-content-end align-items-center gap-4">
   <label>اسعار العملات</label>
   <i class="fas fa-money-bill-alt"></i>
 </div>
@@ -80,7 +80,7 @@
   </div>
 </div>
 
-<div x-data="setting.showMatchSchedule" id="footballMatchesToggle" class="footballMatchesToggle d-flex flex-row-reverse justify-content-end align-items-center gap-4">
+<div x-data="setting.showMatchSchedule" id="footballMatchesToggle" class="footballMatchesToggle d-flex flex-rowjustify-content-end align-items-center gap-4">
   <label>جدول المباريات</label>
   <i class="fas fa-futbol"></i>
 </div>
@@ -99,21 +99,21 @@
     <div class="container w-100 footballMatchesTable p-4">
       <div class="row matches d-flex flex-column flex-md-row flex-nowrap flex-md-wrap justify-content-start justify-content-md-end">
         <div x-list1="setting.matchScheduleList" class="cellMatche col col-md-6 pb-4 p-0">
-          <div class="matchDate d-flex flex-row-reverse justify-content-center align-items-center">
+          <div class="matchDate d-flex flex-rowjustify-content-center align-items-center">
             <p>##item1.date##</p>
           </div>
-          <div class="matchTime d-flex flex-row-reverse justify-content-center align-items-center">
+          <div class="matchTime d-flex flex-rowjustify-content-center align-items-center">
             <p>##item1.time##</p>
           </div>
-          <div class="twoTeam d-flex flex-sm-row-reverse flex-column justify-content-center align-items-center pt-2 gap-3">
-            <div class="teamHost d-flex flex-row-reverse justify-content-center align-items-center gap-1">
+          <div class="twoTeam d-flex flex-sm-rowflex-column justify-content-center align-items-center pt-2 gap-3">
+            <div class="teamHost d-flex flex-rowjustify-content-center align-items-center gap-1">
               <div class="teamname">##item1.name1##</div>
               <div class="teamlogo">
                 <img src="##item1.image1.url##" width="50px" height="50px" />
               </div>
             </div>
             <div class="vs d-flex flex-row justify-content-center align-items-center">x</div>
-            <div class="teamGuest d-flex flex-row-reverse justify-content-center align-items-center gap-1">
+            <div class="teamGuest d-flex flex-rowjustify-content-center align-items-center gap-1">
               <div class="teamname">##item1.name2##</div>
               <div class="teamlogo">
                 <img src="##item1.image2.url##" width="50px" height="50px" />

@@ -69,20 +69,19 @@ site.get(
         page_description: lang.description.substr(0, 200),
         page_keywords: lang.keyWordsList.join(','),
         categories: [],
-        topNews: site.topNews,
         page: {},
       };
       options.topNews = site.getTopArticles(options.filter);
       options.setting = site.setting;
 
-      options.MainSliderNews = { list: site.articlesList.filter((a) => a.host.like(options.filter) && a.showInMainSlider === true).splice(0, 10) };
+      options.MainSliderNews = { list: site.articlesList.filter((a) => a.host.like(options.filter) && a.showInMainSlider === true).slice(0, 10) };
       options.MainSliderNews.article = options.MainSliderNews.list[0];
 
       options.menuList = site.menuList
         .filter((m) => m.host.like(options.filter))
-        .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.name == lang.name)?.name || c.translatedList[0].name, url: c.$url }));
+        .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == lang.id)?.name || c.translatedList[0].name, url: c.$url }));
 
-        options.menuList1 = options.menuList.slice(0, 8);
+      options.menuList1 = options.menuList.slice(0, 8);
       options.menuList2 = options.menuList.slice(8, 20);
       options.menuList3 = options.menuList.slice(20);
 
@@ -158,20 +157,20 @@ site.get(
     options.setting = site.setting;
     options.topNews = site.getTopArticles(options.filter);
 
-    options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).splice(0, 20);
+    options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 20);
     options.MainSliderNews = {
-      list: site.articlesList.filter((a) => a.showInMainSlider === true && a.host.like(options.filter) && a.category && a.category.id == category.id).splice(0, 10),
+      list: site.articlesList.filter((a) => a.showInMainSlider === true && a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 10),
     };
     options.MainSliderNews.article = options.MainSliderNews.list[0];
 
     options.menuList = site.menuList
       .filter((m) => m.host.like(options.filter))
-      .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.name == lang.name)?.name || c.translatedList[0].name, url: c.$url }));
-    options.menuList1 = options.menuList.splice(0, 8);
-    options.menuList2 = options.menuList.splice(8, 20);
-    options.menuList3 = options.menuList.splice(20);
+      .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == lang.id)?.name || c.translatedList[0].name, url: c.$url }));
+    options.menuList1 = options.menuList.slice(0, 8);
+    options.menuList2 = options.menuList.slice(8, 20);
+    options.menuList3 = options.menuList.slice(20);
 
-    options.$categoryLang = category.translatedList.find((t) => t.name == req.session.lang) || category.translatedList[0];
+    options.$categoryLang = category.translatedList.find((l) => l.language.id == lang.id) || category.translatedList[0];
     options.categoryName = options.$categoryLang.name;
     options.page_image = options.$categoryLang.image?.url || options.site_logo;
     options.page_title = lang.siteName + ' ' + lang.titleSeparator + ' ' + options.$categoryLang.name;
@@ -197,19 +196,6 @@ site.get(
       res.redirect('/404');
       return;
     }
-    let lang = site.setting.languagesList.filter((l) => l.name == req.session.lang)[0];
-    if (!lang) {
-      lang = site.setting.languagesList[0];
-    }
-
-    if (!lang) {
-      res.redirect('/404');
-      return;
-    }
-    if (!Array.isArray(lang.keyWordsList)) {
-      lang.keyWordsList = [];
-    }
-    lang.description = lang.description || '';
 
     let filter = site.getHostFilter(req.host);
     let article = site.articlesList.find((a) => (a.id == req.params.id || a.guid == req.params.id) && a.host.like(filter));
@@ -226,13 +212,26 @@ site.get(
       }
       return;
     }
+
     if (article.is_yts) {
       req.session.lang = 'en';
     }
 
+    let lang = site.setting.languagesList.find((l) => l.id == req.session.lang) || site.setting.languagesList[0];
+
+    if (!lang) {
+      res.redirect('/404');
+      return;
+    }
+
+    if (!Array.isArray(lang.keyWordsList)) {
+      lang.keyWordsList = [];
+    }
+    lang.description = lang.description || '';
+
     let options = {
       filter: filter,
-      direction: req.session.lang.like('ar') ? 'rtl' : 'ltr',
+      language: lang,
       site_name: lang.siteName,
       site_logo: lang.logo?.url,
       page_image: article.imageURL || lang.logo?.url,
@@ -243,17 +242,19 @@ site.get(
       article: article,
     };
 
+    console.log(lang);
+
     options.menuList = site.menuList
       .filter((m) => m.host.like(options.filter))
-      .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.name == lang.name)?.name || c.translatedList[0].name, url: c.$url }));
-    options.menuList1 = options.menuList.splice(0, 8);
-    options.menuList2 = options.menuList.splice(8, 20);
-    options.menuList3 = options.menuList.splice(20);
+      .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == lang.id)?.name || c.translatedList[0].name, url: c.$url }));
+    options.menuList1 = options.menuList.slice(0, 8);
+    options.menuList2 = options.menuList.slice(8, 20);
+    options.menuList3 = options.menuList.slice(20);
 
     options.relatedArticleList = site.getRelatedArticles(article);
     options.latestList = site.getLatestArticles(article);
     options.setting = site.setting;
-    options.topNews = site.getTopArticles(req.host);
+    options.topNews = site.getTopArticles(options.filter);
 
     res.render('theme1/article.html', options, {
       parser: 'html css js',

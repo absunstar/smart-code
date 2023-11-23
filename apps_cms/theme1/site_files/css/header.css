@@ -142,7 +142,7 @@
 }
 .midHeadercontainer {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
@@ -152,7 +152,7 @@
 .logoAndHead {
   /* width: 35%; */
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   gap: 16px;
 }
@@ -163,7 +163,7 @@
   background-color: transparent;
 }
 .logo img {
-  object-fit: cover;
+  object-fit: fill;
 }
 .site-title {
   color: var(--color4);
@@ -324,7 +324,7 @@
   color: var(--background1);
   background-color: var(--six-color);
   gap: 8px;
-  padding: 2px 3px;
+  padding: 2px 8px;
   font-size: 12px;
   border-radius: 15px;
   box-shadow: 0 0 7px #00000047;
@@ -364,8 +364,7 @@
 
 .navbarlist {
   height: 50px;
-  /* display: flex; */
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
@@ -397,11 +396,16 @@
   color: var(--color3);
 }
 .navbarlist ul {
-  width: auto;
-  left: 0;
+  width: max-content;
+  right: 0;
+  left: auto;
   max-width: 70vw;
   background: var(--background1x);
   border-radius: 0px 0px 20px 20px;
+}
+.rtl .navbarlist ul {
+  left: 0;
+  right: auto;
 }
 .navbarlist ul li {
   display: inline-block;
