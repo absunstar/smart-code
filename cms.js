@@ -1,5 +1,5 @@
 const site = require('../isite')({
-  port: [80, 40018],
+  port: [80, 8080],
   lang: 'ar',
   version: Date.now(),
   name: 'cms',
@@ -19,7 +19,7 @@ const site = require('../isite')({
     },
   },
   security: {
-    keys: ['21232f297a57a5a743894a0e4a801fc3', 'f6fdffe48c908deb0f4c3bd36c032e72', 'e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
+    keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
   },
 });
 
@@ -155,7 +155,7 @@ site.get(
     }
 
     options.setting = site.setting;
-    options.topNews = site.getTopArticles(options.filter);
+    options.topNews = site.getTopArticles(options.filter , category);
 
     options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 20);
     options.MainSliderNews = {
@@ -189,7 +189,7 @@ site.get(
 
 site.get(
   {
-    name: ['/article/:id/:title', '/a/:id'],
+    name: ['/article/:guid/:title', '/post/:guid/:title', '/article/:guid', '/a/:guid', '/post/:guid'],
   },
   (req, res) => {
     if (!site.setting.siteTemplate || !site.setting.languagesList) {
@@ -198,15 +198,15 @@ site.get(
     }
 
     let filter = site.getHostFilter(req.host);
-    let article = site.articlesList.find((a) => (a.id == req.params.id || a.guid == req.params.id) && a.host.like(filter));
+    let article = site.articlesList.find((a) => (a.id == req.params.guid || a.guid == req.params.guid) && a.host.like(filter));
 
     if (!article) {
       res.redirect('/');
       return;
     }
-    if (req.route.name0 == '/a/:id') {
+    if (req.route.name0 == '/a/:guid' || req.route.name0 == '/post/:guid' || req.route.name0 == '/article/:guid') {
       if (article) {
-        res.redirect('/article/' + article.id + '/' + encodeURI(article.$title2));
+        res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
       } else {
         res.redirect('/');
       }
@@ -234,7 +234,7 @@ site.get(
       language: lang,
       site_name: lang.siteName,
       site_logo: lang.logo?.url,
-      page_image: article.imageURL || lang.logo?.url,
+      page_image: article.$imageURL || lang.logo?.url,
       page_title: lang.siteName + ' ' + lang.titleSeparator + ' ' + article.$title,
       page_description: article.description,
       page_keywords: lang.keyWordsList.join(','),
@@ -252,7 +252,7 @@ site.get(
     options.relatedArticleList = site.getRelatedArticles(article);
     options.latestList = site.getLatestArticles(article);
     options.setting = site.setting;
-    options.topNews = site.getTopArticles(options.filter);
+    options.topNews = site.getTopArticles(options.filter , article.category);
 
     res.render('theme1/article.html', options, {
       parser: 'html css js',
@@ -275,11 +275,8 @@ site.addFeature('cms');
 
 site.ready = true;
 
-site.run();
-
-site.on('ready', () => {
-  setTimeout(() => {
-    site.handleMenus();
-    site.handleCategoryArticles();
-  }, 1000 * 3);
+site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
+  res.end('Galaksion check: 86531e4391aecbe5e70d086020f703f2');
 });
+
+site.run();

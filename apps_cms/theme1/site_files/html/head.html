@@ -52,37 +52,7 @@
 <link rel="alternate" type="application/rss+xml" title="##data.page_title##" href="/rss/aticles/##data.guid##" />
 
 <link rel="stylesheet" href="/css/theme1.css?version=##site.time##" />
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
-  gtag('config', 'G-SJEBBEFC7P');
-</script>
-<script>
-  function lazyLoad() {
-    let addScript = function (info) {
-      var script = document.createElement('script');
-      for (const key in info) {
-        if (Object.hasOwnProperty.call(info, key)) {
-          script[key] = info[key];
-          script.setAttribute(key, info[key]);
-        }
-      }
-      document.querySelector('head').appendChild(script);
-    };
-    addScript({ crossorigin: 'anonymous', async: !0, type: 'text/javascript', src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151' });
-    addScript({ crossorigin: 'anonymous', async: !0, type: 'text/javascript', src: 'https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P' });
-  }
-  if (document.readyState !== 'loading') {
-    lazyLoad();
-  } else {
-    document.addEventListener('DOMContentLoaded', () => {
-      lazyLoad();
-    });
-  }
-</script>
+
 <style>
   * {
     --primary-color: ##setting.siteColor1##;
@@ -105,7 +75,7 @@
 
     --body-color: ##setting.siteColor1##;
 
-    --bs-body-line-height : 1.8;
+    --bs-body-line-height: 1.8;
   }
 </style>
 <style x-setting="contentProtected">
@@ -168,4 +138,72 @@
       return false;
     }
   };
+</script>
+
+<script>
+  function lazyLoad() {
+    let addScript = function (info) {
+      var script = document.createElement('script');
+      for (const key in info) {
+        if (Object.hasOwnProperty.call(info, key)) {
+          script[key] = info[key];
+          script.setAttribute(key, info[key]);
+        }
+      }
+      document.querySelector('head').appendChild(script);
+    };
+
+    addScript({
+      crossorigin: 'anonymous',
+      async: !0,
+      type: 'text/javascript',
+      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+      id: 'googlesyndication',
+      'data-ad-client': 'ca-pub-3372007384613151',
+    });
+    addScript({ crossorigin: 'anonymous', async: !0, type: 'text/javascript', src: 'https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P' });
+    addScript({
+      crossorigin: 'anonymous',
+      async: !0,
+      type: 'text/javascript',
+      src: 'https://fundingchoicesmessages.google.com/i/pub-3372007384613151?ers=1',
+      nonce: 'ZjurYrAM5gSnxRZ4_Q6upg',
+      id: 'googletagmanager',
+    });
+  }
+  if (document.readyState !== 'loading') {
+    lazyLoad();
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      lazyLoad();
+    });
+  }
+</script>
+
+<script nonce="ZjurYrAM5gSnxRZ4_Q6upg">
+  (function () {
+    function signalGooglefcPresent() {
+      if (!window.frames['googlefcPresent']) {
+        if (document.body) {
+          const iframe = document.createElement('iframe');
+          iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;';
+          iframe.style.display = 'none';
+          iframe.name = 'googlefcPresent';
+          document.body.appendChild(iframe);
+        } else {
+          setTimeout(signalGooglefcPresent, 0);
+        }
+      }
+    }
+    signalGooglefcPresent();
+  })();
+</script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-SJEBBEFC7P');
 </script>

@@ -98,7 +98,7 @@ module.exports = function init(site) {
 
   site.handleArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
-    doc.$title = site.escapeHtml(lang.title);
+    doc.$title = site.removeHtml(lang.title);
     doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '_';
@@ -215,7 +215,7 @@ module.exports = function init(site) {
   };
 
   site.prepareUrgentArticles = function () {
-    $articles.findMany({ where: { appearInUrgent: true }, sort: { id: -1 }, limit: 1000 }, (err, docs) => {
+    $articles.findMany({ where: { showOnTop: true }, sort: { id: -1 }, limit: 1000 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -257,9 +257,9 @@ module.exports = function init(site) {
   site.getLatestArticles = function (a) {
     return site.articlesList.filter((b) => b.id !== a.id && b.category.id == a.category.id).slice(0, 12);
   };
-  site.getTopArticles = function (filter = '_') {
+  site.getTopArticles = function (filter = '_', category) {
     return site.articlesList
-      .filter((a) => a.appearInUrgent === true && a.host.like(filter))
+      .filter((a) => (!category || a.category.id == category.id) && a.showOnTop === true && a.host.like(filter))
       .splice(0, 12)
       .reverse();
   };
@@ -309,6 +309,10 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/languages.json',
   });
 
+  site.onGET('/article-image/:guid', (req, res) => {
+    res.redirect(site.articlesList.find((a) => a.guid == req.params.guid)?.$imageURL || '/images/no.png');
+  });
+
   site.post({ name: '/api/articles/add', require: { Permissions: ['login'] } }, (req, res) => {
     let response = {
       done: false,
@@ -330,7 +334,7 @@ module.exports = function init(site) {
         return;
       }
       articlesDoc.showInMainSlider = true;
-      articlesDoc.appearInUrgent = true;
+      articlesDoc.showOnTop = true;
 
       articlesDoc.translatedList[0].title = articlesDoc.yts.title;
       articlesDoc.translatedList[0].image = { url: articlesDoc.yts.medium_cover_image };
@@ -356,7 +360,7 @@ module.exports = function init(site) {
       };
 
       articlesDoc.showInMainSlider = true;
-      articlesDoc.appearInUrgent = true;
+      articlesDoc.showOnTop = true;
 
       articlesDoc.translatedList[0].tagsList = ['Youtube', 'Video', 'Watch'];
       articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.youtube.title).split(' '), ...site.removeHtml(articlesDoc.youtube.channelTitle).split(' ')];
@@ -766,27 +770,26 @@ module.exports = function init(site) {
     let list = [];
     let text = '';
     let lang = site.setting.languagesList[0];
-    let domain = 'https://' + req.host;
-
+    let domain = '//' + req.host;
     if (req.params.id == 'random') {
-      list = site.articlesList.filter((p) => p.imageURL && p.active);
+      list = site.articlesList.filter((p) => p.$imageURL && p.active);
       list = [list[site.random(0, list.length - 1)]];
     } else if (req.params.id) {
       list = [site.articlesList.find((p) => p.id == req.params.id)];
     } else {
-      list = site.articlesList.filter((p) => p.imageURL).slice(0, limit);
+      list = site.articlesList.filter((p) => p.$imageURL).slice(0, limit);
     }
 
     let urls = '';
     list.forEach((doc, i) => {
-      doc.full_url = domain + '/a/' + doc.id;
+      doc.full_url = domain + '/article/' + doc.guid;
       doc.$date = new Date(doc.publishDate).toISOString();
       urls += `
         <item>
-          <guid>${doc.id}</guid>
+          <guid>${doc.guid}</guid>
           <title>${doc.$title}</title>
           <link>${doc.full_url}</link>
-          <image>${domain}${doc.$imageURL}</image>
+          <image>${domain}/article-image/${doc.guid}</image>
           <description>${doc.$description}</description>
           <pubDate>${doc.$date}</pubDate>
         </item>
@@ -805,11 +808,11 @@ module.exports = function init(site) {
     res.end(xml);
   });
   site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
-    let domain = 'https://' + req.host;
+    let domain = '//' + req.host;
 
     let urls = '';
     site.articlesList.slice(0, 1000).forEach((article, i) => {
-      article.post_url = domain + '/a/' + article.id;
+      article.post_url = domain + '/article/' + article.guid;
       article.$date = new Date(article.publishDate).toISOString();
       urls += `
               <url>

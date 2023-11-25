@@ -10,6 +10,7 @@ module.exports = function init(site) {
   
   site.get({
     name: 'admin',
+    require: { features: ['browser.social'] },
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,

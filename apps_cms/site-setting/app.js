@@ -100,7 +100,7 @@ module.exports = function init(site) {
     if (h) {
       return h.filter;
     } else {
-      return '_';
+      return domain;
     }
   };
 

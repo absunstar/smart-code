@@ -1,25 +1,23 @@
 module.exports = function init(site) {
-  const $login = site.connectCollection("login")
+  const $login = site.connectCollection('login');
 
   site.get({
     name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
-
+    path: __dirname + '/site_files/images/',
+  });
 
   site.get({
     name: 'css',
-    path: __dirname + '/site_files/css/'
-  })
-
+    path: __dirname + '/site_files/css/',
+  });
 
   site.get({
-    name: "login",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
-  })
-
+    name: 'login',
+    require: { features: ['browser.social'] },
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
 
   site.get({
     name: 'forget_password',
@@ -44,34 +42,30 @@ module.exports = function init(site) {
     site.security.getUser(where, (err, user) => {
       if (!err) {
         if (user) {
-
           if (user.forget_password) {
             let date = new Date(user.forget_password.date);
             date.setMinutes(date.getMinutes() + 1);
             if (new Date() > date) {
               user.forget_password.code = user.id + Math.floor(Math.random() * 10000) + 90000;
               user.forget_password.date = new Date();
-
             } else {
               response.error = 'have to wait mobile 5 Minute';
               res.json(response);
-              return
+              return;
             }
-
           } else {
             user.forget_password = {
               code: user.id + Math.floor(Math.random() * 10000) + 90000,
               date: new Date(),
-            }
+            };
           }
           site.security.updateUser(user, (err, userDoc) => {
-
             if (where.mobile) {
               site.sendMobileTwilioMessage({
                 to: userDoc.doc.countryCode + userDoc.doc.mobile,
                 message: `code : ${userDoc.doc.forget_password.code}`,
               });
-              response.type = 'mobile'
+              response.type = 'mobile';
               response.doneSendMobile = true;
             } else if (where.email) {
               site.sendMailMessage({
@@ -79,7 +73,7 @@ module.exports = function init(site) {
                 subject: `Forget Password COde`,
                 message: `code : ${userDoc.doc.forget_password.code}`,
               });
-              response.type = 'email'
+              response.type = 'email';
               response.doneSendEmail = true;
             }
 
@@ -87,7 +81,6 @@ module.exports = function init(site) {
             response.done = true;
             res.json(response);
           });
-
         } else {
           response.error = 'Wrong mail or mobile';
 
@@ -98,9 +91,7 @@ module.exports = function init(site) {
         response.error = err.message;
         res.json(response);
       }
-
-    })
-
+    });
   });
 
   site.post('/api/forget_password/check_code', (req, res) => {
@@ -125,7 +116,6 @@ module.exports = function init(site) {
             response.done = true;
             response.mobile_or_email = mobile_or_email;
             res.json(response);
-
           } else {
             response.error = 'Incorrect code entered';
             res.json(response);
@@ -140,7 +130,6 @@ module.exports = function init(site) {
         response.error = err.message;
         res.json(response);
       }
-
     });
   });
 
@@ -149,12 +138,10 @@ module.exports = function init(site) {
       done: false,
     };
 
-
     if (req.body.$encript === '123') {
       req.body.mobile_or_email = site.from123(req.body.mobile_or_email);
       req.body.newPassword = site.from123(req.body.newPassword);
       req.body.code = site.from123(req.body.code);
-
     }
     let mobile_or_email = req.body.mobile_or_email;
     let code = req.body.code;
@@ -170,7 +157,7 @@ module.exports = function init(site) {
       if (!err) {
         if (user) {
           if (user.forget_password && user.forget_password.code == site.toNumber(code)) {
-            user.password = req.body.newPassword
+            user.password = req.body.newPassword;
 
             delete user.forget_password;
             site.security.updateUser(user, (err, userDoc) => {
@@ -183,7 +170,6 @@ module.exports = function init(site) {
                 return;
               }
             });
-
           } else {
             response.error = 'Incorrect code entered';
             res.json(response);
@@ -198,7 +184,6 @@ module.exports = function init(site) {
         response.error = err.message;
         res.json(response);
       }
-
     });
   });
-}
+};
