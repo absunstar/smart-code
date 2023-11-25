@@ -13,7 +13,7 @@ module.exports = function init(site) {
 
   site.get({
     name: 'login',
-    require: { features: ['browser.social'] },
+    // require: { features: ['browser.social'] },
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,

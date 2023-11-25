@@ -70,6 +70,7 @@ module.exports = function init(site) {
     { nameAr: 'نوقمير' },
     { nameAr: 'ديسمبر' },
   ];
+  
   site.escapeHtml = function (unsafe) {
     try {
       if (!unsafe) {

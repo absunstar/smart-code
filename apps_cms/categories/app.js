@@ -201,13 +201,18 @@ module.exports = function init(site) {
     let where = req.body.where || {};
 
     response.done = true;
+    let filter = site.getHostFilter(req.host);
+    response.list = site.categoriesList.filter((doc) => {
+      if (!doc.host.like(filter)) {
+        return false;
+      }
 
-    site.categoriesList.forEach((doc) => {
       let lang = doc.translatedList.find((t) => t.language.id == req.session.lang) || doc.translatedList[0];
       doc.name = lang.name;
       doc.$image = lang.image?.url;
+      return true;
     });
-    response.list = site.categoriesList;
+
     res.json(response);
   });
   site.post({ name: '/api/categories/lookup', public: true }, (req, res) => {
@@ -216,9 +221,12 @@ module.exports = function init(site) {
     };
 
     response.done = true;
-
+    let filter = site.getHostFilter(req.host);
     response.list = site.categoriesList
       .filter((doc) => {
+        if (!doc.host.like(filter)) {
+          return false;
+        }
         let lang = doc.translatedList.find((t) => t.language.id == req.session.lang) || doc.translatedList[0];
         doc.name = lang.name;
         doc.$image = lang.image?.url;

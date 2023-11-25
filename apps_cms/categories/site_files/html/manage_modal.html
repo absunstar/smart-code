@@ -31,7 +31,7 @@
         <br />
         <div class="row">
           <div class="article-part">
-            <fieldset ng-repeat="content in categories.translatedList track by $index">
+            <fieldset ng-show="content.active" ng-repeat="content in categories.translatedList track by $index">
               <legend>{{content.language.##session.lang##}}</legend>
 
               <div class="row">
