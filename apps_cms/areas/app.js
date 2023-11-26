@@ -263,27 +263,19 @@ module.exports = function init(site) {
           if (!search) {
             search = 'id';
           }
-          let docs = [];
-          let list = app.memoryList
-            .filter((g) => (!where['city.id'] || g.city.id == where['city.id']) && (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search))
-            .slice(0, limit);
-          list.forEach((doc) => {
-            if (doc && doc.translatedList) {
-              if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang || 'ar'))) {
-                let obj = {
-                  ...doc,
-                  ...langDoc,
-                };
-
-                for (const p in obj) {
-                  if (!Object.hasOwnProperty.call(select, p)) {
-                    delete obj[p];
-                  }
-                }
-                docs.push(obj);
-              }
+          
+          let filter = site.getHostFilter(req.host);
+          let docs = app.memoryList.filter((doc) => {
+            if (!doc.host.like(filter)) {
+              return false;
             }
+      
+            let lang = doc.translatedList.find((t) => t.language.id == req.session.lang) || doc.translatedList[0];
+            doc.name = lang.name;
+            doc.$image = lang.image?.url;
+            return true;
           });
+
           res.json({
             done: true,
             list: docs,

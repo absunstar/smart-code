@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   let app = {
-    name: 'goves',
+    name: "goves",
     allowMemory: true,
     memoryList: [],
     allowCache: false,
@@ -60,14 +60,18 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
+          let index = app.memoryList.findIndex(
+            (itm) => itm.id === result.doc.id
+          );
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
+          let index = app.cacheList.findIndex(
+            (itm) => itm.id === result.doc.id
+          );
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -144,71 +148,94 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          res.render(app.name + '/index.html', { title: app.name, appName: '##word.goves##', setting: site.setting }, { parser: 'html', compres: true });
+          res.render(
+            app.name + "/index.html",
+            {
+              title: app.name,
+              appName: "##word.goves##",
+              setting: site.setting,
+            },
+            { parser: "html", compres: true }
+          );
         }
       );
     }
 
     if (app.allowRouteAdd) {
-      site.post({ name: `/api/${app.name}/add`, require: { permissions: ['login'] } }, (req, res) => {
-        let response = {
-          done: false,
-        };
+      site.post(
+        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
 
-        let _data = req.data;
+          let _data = req.data;
 
-        _data.addUserInfo = req.getUserFinger();
+          _data.addUserInfo = req.getUserFinger();
 
-        app.add(_data, (err, doc) => {
-          if (!err && doc) {
-            response.done = true;
-            response.doc = doc;
-          } else {
-            response.error = err.mesage;
-          }
-          res.json(response);
-        });
-      });
+          app.add(_data, (err, doc) => {
+            if (!err && doc) {
+              response.done = true;
+              response.doc = doc;
+            } else {
+              response.error = err.mesage;
+            }
+            res.json(response);
+          });
+        }
+      );
     }
 
     if (app.allowRouteUpdate) {
-      site.post({ name: `/api/${app.name}/update`, require: { permissions: ['login'] } }, (req, res) => {
-        let response = {
-          done: false,
-        };
+      site.post(
+        {
+          name: `/api/${app.name}/update`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
 
-        let _data = req.data;
-        _data.editUserInfo = req.getUserFinger();
+          let _data = req.data;
+          _data.editUserInfo = req.getUserFinger();
 
-        app.update(_data, (err, result) => {
-          if (!err) {
-            response.done = true;
-            response.result = result;
-          } else {
-            response.error = err.message;
-          }
-          res.json(response);
-        });
-      });
+          app.update(_data, (err, result) => {
+            if (!err) {
+              response.done = true;
+              response.result = result;
+            } else {
+              response.error = err.message;
+            }
+            res.json(response);
+          });
+        }
+      );
     }
 
     if (app.allowRouteDelete) {
-      site.post({ name: `/api/${app.name}/delete`, require: { permissions: ['login'] } }, (req, res) => {
-        let response = {
-          done: false,
-        };
-        let _data = req.data;
+      site.post(
+        {
+          name: `/api/${app.name}/delete`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+          let _data = req.data;
 
-        app.delete(_data, (err, result) => {
-          if (!err && result.count === 1) {
-            response.done = true;
-            response.result = result;
-          } else {
-            response.error = err?.message || 'Deleted Not Exists';
-          }
-          res.json(response);
-        });
-      });
+          app.delete(_data, (err, result) => {
+            if (!err && result.count === 1) {
+              response.done = true;
+              response.result = result;
+            } else {
+              response.error = err?.message || "Deleted Not Exists";
+            }
+            res.json(response);
+          });
+        }
+      );
     }
 
     if (app.allowRouteView) {
@@ -223,7 +250,7 @@ module.exports = function init(site) {
             response.done = true;
             response.doc = doc;
           } else {
-            response.error = err?.message || 'Not Exists';
+            response.error = err?.message || "Not Exists";
           }
           res.json(response);
         });
@@ -233,55 +260,56 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let search = req.body.search || '';
+        let search = req.body.search || "";
         let limit = req.body.limit || 50;
-        let select = req.body.select || { id: 1, code: 1, country: 1, name: 1, image: 1, active: 1 };
+        let select = req.body.select || {
+          id: 1,
+          code: 1,
+          country: 1,
+          name: 1,
+          image: 1,
+          active: 1,
+        };
 
         if (search) {
           where.$or = [];
 
           where.$or.push({
-            id: site.get_RegExp(search, 'i'),
+            id: site.get_RegExp(search, "i"),
           });
 
           where.$or.push({
-            code: site.get_RegExp(search, 'i'),
+            code: site.get_RegExp(search, "i"),
           });
 
           where.$or.push({
-            nameAr: site.get_RegExp(search, 'i'),
+            nameAr: site.get_RegExp(search, "i"),
           });
 
           where.$or.push({
-            nameEn: site.get_RegExp(search, 'i'),
+            nameEn: site.get_RegExp(search, "i"),
           });
         }
 
         if (app.allowMemory) {
           if (!search) {
-            search = 'id';
+            search = "id";
           }
-          let docs = [];
-          let list = app.memoryList
-            .filter((g) => (!where['country.id'] || g.country.id == where['country.id']) && (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search))
-            .slice(0, limit);
-          list.forEach((doc) => {
-            if (doc && doc.translatedList) {
-              if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang|| 'ar'))) {
-                let obj = {
-                  ...doc,
-                  ...langDoc,
-                };
-
-                for (const p in obj) {
-                  if (!Object.hasOwnProperty.call(select, p)) {
-                    delete obj[p];
-                  }
-                }
-                docs.push(obj);
-              }
+          let filter = site.getHostFilter(req.host);
+          let docs = app.memoryList.filter((doc) => {
+            if (!doc.host.like(filter)) {
+              return false;
             }
+
+            let lang =
+              doc.translatedList.find(
+                (t) => t.language.id == req.session.lang
+              ) || doc.translatedList[0];
+            doc.name = lang.name;
+            doc.$image = lang.image?.url;
+            return true;
           });
+
           res.json({
             done: true,
             list: docs,
