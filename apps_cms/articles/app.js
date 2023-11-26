@@ -53,8 +53,6 @@ module.exports = function init(site) {
   site.MainSliderNews = [];
   site.$$categories = [];
 
-  site.articleTypes = JSON.parse(site.readFileSync(__dirname + '/site_files/json/articleTypes.json'));
-
   site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
   site.monthes = [
     { nameAr: 'يناير' },
@@ -70,7 +68,7 @@ module.exports = function init(site) {
     { nameAr: 'نوقمير' },
     { nameAr: 'ديسمبر' },
   ];
-  
+
   site.escapeHtml = function (unsafe) {
     try {
       if (!unsafe) {
@@ -256,11 +254,11 @@ module.exports = function init(site) {
   };
 
   site.getLatestArticles = function (a) {
-    return site.articlesList.filter((b) => b.id !== a.id && b.category.id == a.category.id).slice(0, 12);
+    return site.articlesList.filter((b) => b.id !== a.id && b.category && a.category && b.category.id == a.category.id).slice(0, 12);
   };
   site.getTopArticles = function (filter = '_', category) {
     return site.articlesList
-      .filter((a) => (!category || a.category.id == category.id) && a.showOnTop === true && a.host.like(filter))
+      .filter((a) => (!category || !a.category || a.category.id == category.id) && a.showOnTop === true && a.host.like(filter))
       .splice(0, 12)
       .reverse();
   };
@@ -269,7 +267,7 @@ module.exports = function init(site) {
   site.handleCategoryArticles = function () {
     site.$$categories = [];
 
-    site.categoriesList.forEach((cat) => {
+    site.categoryList.forEach((cat) => {
       $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
         if (!err && docs) {
           docs.forEach((doc) => {
@@ -296,7 +294,18 @@ module.exports = function init(site) {
       name: 'articles',
     },
     (req, res) => {
-      res.render('articles' + '/index.html', { title: 'articles', appName: req.word('Articles'), setting: site.setting }, { parser: 'html', compres: true });
+      let setting = site.getSiteSetting(site.getHostFilter(req.host));
+      let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+
+      res.render(
+        'articles/index.html',
+        {
+          setting: setting,
+          language: language,
+          appName: req.word('Articles'),
+        },
+        { parser: 'html' }
+      );
     }
   );
 
@@ -319,13 +328,26 @@ module.exports = function init(site) {
       done: false,
     };
 
+    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+
+    if (!setting) {
+      response.error = 'No Setting ';
+      res.json(response);
+      return;
+    }
+    let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+    if (!language) {
+      response.error = 'No Language';
+      res.json(response);
+      return;
+    }
     let articlesDoc = req.body;
     if (articlesDoc.is_yts) {
       articlesDoc = {
         type: site.articleTypes.find((t) => t.id === 7),
-        category: site.categoriesList.filter((c) => c.id == 4).map((c) => ({ id: c.id, name: c.translatedList[0].name }))[0],
+        category: articlesDoc.category,
         yts: articlesDoc,
-        translatedList: [{ language: site.setting.languagesList[0].language }],
+        translatedList: [{ language: language }],
         host: 'yts',
       };
       articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
@@ -354,17 +376,24 @@ module.exports = function init(site) {
     } else if (articlesDoc.is_youtube) {
       articlesDoc = {
         type: site.articleTypes.find((t) => t.id === 8),
-        category: site.categoriesList.filter((c) => c.id == 3).map((c) => ({ id: c.id, name: c.translatedList[0].name }))[0],
         youtube: articlesDoc,
-        translatedList: [{ language: site.setting.languagesList[0].language }],
+        translatedList: [{ language: language }],
         host: 'youtube',
       };
+      if (articlesDoc.youtube.channel) {
+        if (articlesDoc.youtube.channel.category) {
+          articlesDoc.category = articlesDoc.youtube.channel.category;
+        }
+        if (articlesDoc.youtube.channel.host) {
+          articlesDoc.host = articlesDoc.youtube.channel.host;
+        }
+      }
 
       articlesDoc.showInMainSlider = true;
       articlesDoc.showOnTop = true;
 
-      articlesDoc.translatedList[0].tagsList = ['Youtube', 'Video', 'Watch'];
-      articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.youtube.title).split(' '), ...site.removeHtml(articlesDoc.youtube.channelTitle).split(' ')];
+      articlesDoc.translatedList[0].tagsList = [articlesDoc.youtube.channel.title, 'Youtube', 'Video', 'Watch'];
+      articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.youtube.title).split(' '), ...site.removeHtml(articlesDoc.youtube.channel.title).split(' ')];
 
       articlesDoc.translatedList[0].title = articlesDoc.youtube.title;
       articlesDoc.translatedList[0].image = { url: articlesDoc.youtube.image?.url };
@@ -770,7 +799,7 @@ module.exports = function init(site) {
     let limit = req.query.limit || 10;
     let list = [];
     let text = '';
-    let lang = site.setting.languagesList[0];
+    let lang = site.setting.languageList[0];
     let domain = '//' + req.host;
     if (req.params.id == 'random') {
       list = site.articlesList.filter((p) => p.$imageURL && p.active);

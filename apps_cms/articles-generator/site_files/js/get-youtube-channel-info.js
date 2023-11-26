@@ -1,12 +1,20 @@
 function xxx_run() {
   SOCIALBROWSER.onLoad(() => {
     alert('Youtube Info Activated');
+    let channel = {
+      url: document.location.href,
+      title: document.title,
+    };
+    let timer = null;
+
     function sendData() {
-      let title = document.title;
-      SOCIALBROWSER.share({ type: 'youtubeChnnel', title: title, url: document.location.href, image: { url: document.querySelector('#avatar img').src } });
+      channel.image = { url: document.querySelector('#avatar img').src };
+      clearInterval(timer);
+      SOCIALBROWSER.share({ type: 'generator-youtube-channel', channel: channel });
       SOCIALBROWSER.currentWindow.close();
     }
-    setInterval(() => {
+
+    timer = setInterval(() => {
       if (document.querySelector('#avatar img') && document.querySelector('#avatar img').src) {
         sendData();
       }

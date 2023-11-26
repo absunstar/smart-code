@@ -11,13 +11,12 @@ app.controller("clusters", function ($scope, $http, $timeout) {
       active: true,
       translatedList : []
     };
-    $scope.defaultSettings.languagesList.forEach((l) => {
+    $scope.defaultSettings.languageList.forEach((l) => {
       if (l.active == true) {
         $scope.cluster.translatedList.push({
           language: {
             id: l.id,
-            en: l.en,
-            ar: l.ar,
+            name: l.name,
           },
         });
       }

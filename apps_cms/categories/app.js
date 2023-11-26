@@ -1,25 +1,37 @@
 module.exports = function init(site) {
   const $categories = site.connectCollection('categories');
 
-  site.categoriesList = [];
+  site.categoryList = [];
   site.handleCategory = function (cat) {
-    cat.host = cat.host || '_';
+    cat.host = cat.host || '';
     return cat;
   };
   $categories.findMany({}, (err, docs) => {
     if (!err && docs) {
       docs.forEach((doc) => {
-        site.categoriesList.push(site.handleCategory(doc));
+        site.categoryList.push(site.handleCategory(doc));
       });
     }
   });
 
-  site.get({
-    name: 'categories',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: true,
-  });
+  site.get(
+    {
+      name: 'categories',
+    },
+    (req, res) => {
+      let setting = site.getSiteSetting(site.getHostFilter(req.host));
+      let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+
+      res.render(
+        'categories/index.html',
+        {
+          setting: setting,
+          language: language,
+        },
+        { parser: 'html' }
+      );
+    }
+  );
 
   site.get({
     name: 'images',
@@ -47,7 +59,7 @@ module.exports = function init(site) {
 
     let where = {};
     if (categoriesDoc.topParentId) {
-      site.categoriesList.forEach((a) => {
+      site.categoryList.forEach((a) => {
         if (a.id === categoriesDoc.parentId) {
           if (a.parentListId) {
             categoriesDoc.parentListId = [];
@@ -66,7 +78,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.categoriesList.push(site.handleCategory(doc));
+        site.categoryList.push(site.handleCategory(doc));
       } else {
         response.error = err.message;
       }
@@ -100,9 +112,9 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.categoriesList.forEach((a, i) => {
+          site.categoryList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.categoriesList[i] = site.handleCategory(result.doc);
+              site.categoryList[i] = site.handleCategory(result.doc);
             }
           });
         } else {
@@ -125,7 +137,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.categoriesList.forEach((a) => {
+    site.categoryList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -175,8 +187,8 @@ module.exports = function init(site) {
               (err, result) => {
                 if (!err) {
                   response.done = true;
-                  site.categoriesList.splice(
-                    site.categoriesList.findIndex((a) => a.id === req.body.id),
+                  site.categoryList.splice(
+                    site.categoryList.findIndex((a) => a.id === req.body.id),
                     1
                   );
                 } else {
@@ -202,7 +214,7 @@ module.exports = function init(site) {
 
     response.done = true;
     let filter = site.getHostFilter(req.host);
-    response.list = site.categoriesList.filter((doc) => {
+    response.list = site.categoryList.filter((doc) => {
       if (!doc.host.like(filter)) {
         return false;
       }
@@ -215,14 +227,10 @@ module.exports = function init(site) {
 
     res.json(response);
   });
-  site.post({ name: '/api/categories/lookup', public: true }, (req, res) => {
-    let response = {
-      done: false,
-    };
 
-    response.done = true;
+  site.getCategoryLookup = function (req) {
     let filter = site.getHostFilter(req.host);
-    response.list = site.categoriesList
+    return site.categoryList
       .filter((doc) => {
         if (!doc.host.like(filter)) {
           return false;
@@ -233,7 +241,15 @@ module.exports = function init(site) {
         return true;
       })
       .map((c) => ({ id: c.id, name: c.name, image: c.$image }));
-    response.list = site.categoriesList;
+  };
+  site.post({ name: '/api/categories/lookup', public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    response.done = true;
+    response.list = site.getCategoryLookup(req);
+
     res.json(response);
   });
 };

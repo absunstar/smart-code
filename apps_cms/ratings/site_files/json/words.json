@@ -1,35 +1,35 @@
 [
   {
     "name": "rating",
-    "en": "rating",
-    "ar": "التقييم"
+    "EN": "rating",
+    "AR": "التقييم"
   },
   {
     "name": "ratings",
-    "en": "ratings",
-    "ar": "التقييمات"
+    "EN": "ratings",
+    "AR": "التقييمات"
   },
-  { "name": "add_rating", "en": "Add a rating", "ar": "أضف تقييم" },
+  { "name": "add_rating", "EN": "Add a rating", "AR": "أضف تقييم" },
   {
     "name": "approval",
-    "en": "Approval",
-    "ar": "موافقة"
+    "EN": "Approval",
+    "AR": "موافقة"
   },
   {
     "name": "reject",
-    "en": "Reject",
-    "ar": "رفض"
+    "EN": "Reject",
+    "AR": "رفض"
   },
   {
     "name": "details_evaluation_must_be_mentioned_along_with_typeof_merchandise",
-    "en": "The details of the evaluation must be mentioned, along with the type of merchandise",
-    "ar": "يجب ذكر تفاصيل التقييم مع ذكر نوع السلعه"
+    "EN": "The details of the evaluation must be mentioned, along with the type of merchandise",
+    "AR": "يجب ذكر تفاصيل التقييم مع ذكر نوع السلعه"
   },
-  { "name": "do_not_recommend_dealing_with_him", "en": "I do not recommend dealing with him", "ar": "لا أنصح بالتعامل معه" },
-  { "name": "recommend_dealing_with_him", "en": "I recommend dealing with him", "ar": "أنصح بالتعامل معه" },
-  { "name": "did_you_buy_from_the_member", "en": "Did you buy from the member?", "ar": "هل قمت بالشراء من العضو؟" },
-  { "name": "do_recommend_dealing_with_him", "en": "Do you recommend dealing with him?", "ar": "هل تنصح بالتعامل معه؟" },
-  { "name": "how_was_your_experience", "en": "How was your experience?", "ar": "كيف كانت تجربتك؟" },
-  { "name": "rating_reject", "en": "Rating Reject", "ar": "تم رفض التقييم" },
-  { "name": "rating_approved", "en": "Rating Approved", "ar": "تم الموافقة على التقييم" }
+  { "name": "do_not_recommend_dealing_with_him", "EN": "I do not recommend dealing with him", "AR": "لا أنصح بالتعامل معه" },
+  { "name": "recommend_dealing_with_him", "EN": "I recommend dealing with him", "AR": "أنصح بالتعامل معه" },
+  { "name": "did_you_buy_from_the_member", "EN": "Did you buy from the member?", "AR": "هل قمت بالشراء من العضو؟" },
+  { "name": "do_recommend_dealing_with_him", "EN": "Do you recommend dealing with him?", "AR": "هل تنصح بالتعامل معه؟" },
+  { "name": "how_was_your_experience", "EN": "How was your experience?", "AR": "كيف كانت تجربتك؟" },
+  { "name": "rating_reject", "EN": "Rating Reject", "AR": "تم رفض التقييم" },
+  { "name": "rating_approved", "EN": "Rating Approved", "AR": "تم الموافقة على التقييم" }
 ]

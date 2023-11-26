@@ -14,7 +14,7 @@
   overflow: auto;
 }
 
-.en .main-menu {
+.ltr.main-menu {
   left: 0px;
   right: auto;
 }
@@ -55,7 +55,7 @@ a i {
   
 }
 
-.en .menu-item a:hover {
+.ltr.menu-item a:hover {
     padding-left: 25px;
   }
 #menu-btn {
@@ -65,7 +65,7 @@ a i {
     margin-right: 20px !important;
     margin-left: 0px !important;
 }
-.en .menu-item2{
+.ltr.menu-item2{
     margin-left: 20px !important;
     margin-right: 0px;
 }

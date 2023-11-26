@@ -414,7 +414,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.categoriesList = response.data.list;
+          $scope.categoryList = response.data.list;
         }
       },
       function (err) {

@@ -1,42 +1,42 @@
 [
     {
         "name": "clusters",
-        "en": "Clusters",
-        "ar": "العناقيد"
+        "EN": "Clusters",
+        "AR": "العناقيد"
     },
     {
         "name": "cluster",
-        "en": "Cluster",
-        "ar": "العنقود"
+        "EN": "Cluster",
+        "AR": "العنقود"
     },
     {
         "name": "clusters_new",
-        "en": "New Cluster",
-        "ar": "عنقود جديد"
+        "EN": "New Cluster",
+        "AR": "عنقود جديد"
     },
     {
         "name": "clusters_add",
-        "en": "Add Cluster",
-        "ar": "إضافة عنقود "
+        "EN": "Add Cluster",
+        "AR": "إضافة عنقود "
     },
     {
         "name": "clusters_edit",
-        "en": "Edit Cluster",
-        "ar": "تعديل عنقود "
+        "EN": "Edit Cluster",
+        "AR": "تعديل عنقود "
     },
     {
         "name": "clusters_details",
-        "en": "Cluster Details",
-        "ar": "تفاصيل العنقود "
+        "EN": "Cluster Details",
+        "AR": "تفاصيل العنقود "
     },
     {
         "name": "clusters_delete",
-        "en": "Delete Cluster",
-        "ar": "حذف عنقود "
+        "EN": "Delete Cluster",
+        "AR": "حذف عنقود "
     },
     {
         "name": "cluster_name",
-        "en": "Cluster Name",
-        "ar": "إسم العنقود "
+        "EN": "Cluster Name",
+        "AR": "إسم العنقود "
     }
 ]

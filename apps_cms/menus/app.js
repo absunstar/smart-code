@@ -19,7 +19,7 @@ module.exports = function init(site) {
   site.handleMenus = function () {
     site.menuList = app.memoryList;
     site.menuList.forEach((m) => {
-      m.host = m.host || '_';
+      m.host = m.host || '';
       m.type = m.type || {};
       m.$url = '#';
       if (m.type.id === 1 && m.category) {
@@ -28,7 +28,6 @@ module.exports = function init(site) {
       } else if (m.type.id === 3) {
       } else if (m.type.id === 4) {
       } else if (m.type.id === 5) {
-        
       } else {
       }
     });
@@ -38,28 +37,28 @@ module.exports = function init(site) {
   app.linkTypeList = [
     {
       id: 1,
-      en: 'Category',
-      ar: 'قسم',
+      EN: 'Category',
+      AR: 'قسم',
     },
     {
       id: 2,
-      en: 'Page',
-      ar: 'صفحة',
+      EN: 'Page',
+      AR: 'صفحة',
     },
     {
       id: 3,
-      en: 'External Link',
-      ar: 'رابط خارجي',
+      EN: 'External Link',
+      AR: 'رابط خارجي',
     },
     {
       id: 4,
-      en: 'Internal Link',
-      ar: 'رابط داخلي',
+      EN: 'Internal Link',
+      AR: 'رابط داخلي',
     },
     {
       id: 5,
-      en: 'Main Menu',
-      ar: 'قائمة منسدلة',
+      EN: 'Main Menu',
+      AR: 'قائمة منسدلة',
     },
   ];
   site.onPOST(
@@ -210,7 +209,18 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          res.render(app.name + '/index.html', { title: app.name, appName: '##word.menus##', setting: site.setting }, { parser: 'html', compres: true });
+          let setting = site.getSiteSetting(site.getHostFilter(req.host));
+          let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+
+          res.render(
+            app.name + '/index.html',
+            {
+              setting: setting,
+              language: language,
+              appName: req.word(app.name),
+            },
+            { parser: 'html' }
+          );
         }
       );
     }
@@ -381,7 +391,7 @@ module.exports = function init(site) {
 
     let list = [];
     let topList = [];
-    site.categoriesList.forEach((doc) => {
+    site.categoryList.forEach((doc) => {
       if (doc.active) {
         if (!doc.topParentId) {
           topList.push(doc);

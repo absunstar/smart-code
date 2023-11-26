@@ -1,11 +1,11 @@
 module.exports = function init(site) {
-  site.TemplateList.push({
+  site.templateList.push({
     id: 1,
     name: 'News Paper Theme',
     categoryTemplateList: [
-      { id: 1, en: 'Template 1', ar: 'نموذج 1' },
-      { id: 2, en: 'Template 2', ar: 'نموذج 2' },
-      { id: 3, en: 'Template 3', ar: 'نموذج 3' },
+      { id: 1, name: 'Template 1'},
+      { id: 2, name: 'Template 2' },
+      { id: 3, name: 'Template 3'},
     ],
   });
 

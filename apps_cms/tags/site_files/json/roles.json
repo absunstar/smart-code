@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "tags_admin",
-    "en": "Tags Admin",
-    "ar": "إدارة التاجات",
+    "EN": "Tags Admin",
+    "AR": "إدارة التاجات",
     "permissions": ["tags_manage"]
 }]

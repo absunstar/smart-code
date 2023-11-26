@@ -11,7 +11,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
       site.showTabContent(event, selector);
       document.getElementById('register_email').style.display = 'none';
       document.getElementById('register_mobile').style.display = 'block';
-      if ('##setting.enableSendingMessagesMobile##' == 'true') {
+      if ('##data.setting.enableSendingMessagesMobile##' == 'true') {
         document.getElementById('mobile_mailer').style.display = 'block';
       } else {
         document.getElementById('mobile_data').style.display = 'block';
@@ -24,7 +24,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
       document.getElementById('register_mobile').style.display = 'none';
       document.getElementById('register_email').style.display = 'block';
 
-      if ('##setting.enableSendingMessagesEmail##' == 'true') {
+      if ('##data.setting.enableSendingMessagesEmail##' == 'true') {
         document.getElementById('email_mailer').style.display = 'block';
       } else {
         document.getElementById('email_data').style.display = 'block';

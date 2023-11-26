@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="default_setting_ui || default_setting_manage">
+<html lang="##data.language.id##" dir="##data.language.direction##" data-ng-app="myApp" class="##data.language.direction##" x-permissions="default_setting_ui || default_setting_manage">
   <head x-import="cms/head.html">
     <style>
       .tabs .tabs-header .tab-link.active {
@@ -22,7 +21,7 @@
         <br />
 
         <div x-permissions="default_setting_view || default_setting_manage" x-import="site-setting/content.html"></div>
-        <h2 class="error"> {{error}} </h2>
+        <h2 class="error">{{error}}</h2>
       </div>
     </div>
 

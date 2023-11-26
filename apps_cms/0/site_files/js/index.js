@@ -81,8 +81,8 @@ app.controller('haraj', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.categoriesList = response.data.list;
-          $scope.categoriesList.forEach((l) => {
+          $scope.categoryList = response.data.list;
+          $scope.categoryList.forEach((l) => {
             $scope.mainCategories.push({
               id: l.id,
               name: l.name,

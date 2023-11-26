@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="myApp">
+<html lang="EN" data-ng-app="myApp">
   <head x-import="cms/head.html">
     <style>
       img.logo {
         width: 48px;
         height: 48px;
+      }
+      .tool {
+        background: #009688;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+        cursor: pointer;
+        min-width: 200px;
+        display: inline-block;
+        margin: 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: x-large;
+        min-height: 150px;
+        padding-top: 60px;
+        border-radius: 20px;
+        transition: all .2s ease;
+      }
+      .tool:hover {
+        transform: scale(1.1);
+        color: #fff;
       }
     </style>
   </head>
@@ -22,56 +43,15 @@
           <div x-import="articles-generator/youtube_modal.html"></div>
 
           <div class="top-actions">
-            <i-button x-permissions="admin" type="edit" label="##word.Sites Manager##" ng-click="siteDisplay()"></i-button>
-            <i-button x-permissions="admin" type="edit" label="##word.RSS Manager##" ng-click="displayRSS()"></i-button>
-            <i-button x-permissions="admin" type="edit" label="##word.Facebook Manager##" ng-click="displayRSS()"></i-button>
-            <i-button x-permissions="admin" type="edit" label="##word.YTS Manager##" ng-click="ytsDisplay()"></i-button>
-            <i-button x-permissions="admin" type="edit" label="##word.Youtube Manager##" ng-click="youtubeDisplay()"></i-button>
-
-            <div class="row padding">
-              <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="admin"></i-control>
-            </div>
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <a class="tool" ng-click="siteDisplay()">##word.Sites Manager##</a>
+            <a class="tool" ng-click="displayRSS()">##word.RSS Manager##</a>
+            <a class="tool" ng-click="displayRSS()">##word.Facebook Manager##</a>
+            <a class="tool" ng-click="ytsDisplay()">##word.YTS Manager##</a>
+            <a class="tool" ng-click="youtubeDisplay()">##word.Youtube Manager##</a>
           </div>
-
-          <table x-permissions="login" class="table hover bold" id="articlesTable">
-            <tr>
-              <th class="not-print">##word.Logo##</th>
-              <th>##word.Title##</th>
-              <th>##word.Type##</th>
-              <th>##word.Author##</th>
-              <th>##word.status##</th>
-              <th class="not-print">##word.actions##</th>
-            </tr>
-
-            <tr ng-repeat="c in list">
-              <td class="center not-print">
-                <i-image view class="logo" ng-model="c.image"></i-image>
-              </td>
-
-              <td class="center">{{c.title}}</td>
-              <td class="center">{{c.type}}</td>
-
-              <td class="center title">{{c.author}}</td>
-
-              <td class="center">
-                <p ng-show="c.active ==true" class="green">##word.active##</p>
-                <p ng-show="c.active ==false" class="red">##word.not_active##</p>
-              </td>
-
-              <td class="center not-print">
-                <i-button x-permissions="admin" type="view" ng-click="displayDetailsCity(c)"></i-button>
-
-                <i-button x-permissions="admin" type="edit" ng-click="displayUpdateCity(c)"></i-button>
-
-                <i-button x-permissions="admin" type="delete" ng-click="displaydeleteCity(c)"></i-button>
-              </td>
-            </tr>
-          </table>
         </div>
       </div>
     </div>
-
     <div x-import="cms/scripts.html"></div>
     <script x-import="articles-generator/index.js"></script>
   </body>

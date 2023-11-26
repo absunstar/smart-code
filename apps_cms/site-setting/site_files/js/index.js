@@ -6,126 +6,17 @@ if (btn1) {
 app.controller('siteSetting', function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.siteSetting = {};
+  $scope.siteSetting = site.showObject('##data.#setting##');
+  $scope.siteTemplateList = site.showObject('##data.#templateList##');
+  console.log($scope.siteSetting);
+  $scope.publishingSystemList = site.showObject('##data.#publishingSystem##');
+  $scope.closingSystemList = site.showObject('##data.#closingSystem##');
 
-  $scope.getPublishingSystemsList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.publishingSystemList = [];
-    $http({
-      method: 'POST',
-      url: '/api/publishingSystem/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.publishingSystemList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+  $scope.siteColorList = site.showObject('##data.#siteColor##');
+  $scope.articleStatusList = site.showObject('##data.#articleStatus##');
+  $scope.durationExpiryList = site.showObject('##data.#durationExpiry##');
 
-  $scope.getClosingSystemList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.closingSystemList = [];
-    $http({
-      method: 'POST',
-      url: '/api/closingSystem/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.closingSystemList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
-  $scope.getSiteTemplateList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.siteTemplateList = [];
-    $http({
-      method: 'POST',
-      url: '/api/get-site-templates',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.siteTemplateList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getSiteColorList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.siteColorList = [];
-    $http({
-      method: 'POST',
-      url: '/api/siteColor/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.siteColorList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getArticleStatusList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.articleStatusList = [];
-    $http({
-      method: 'POST',
-      url: '/api/articleStatus/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.articleStatusList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getDurationExpiryList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.durationExpiryList = [];
-    $http({
-      method: 'POST',
-      url: '/api/durationExpiry/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.durationExpiryList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.loadSetting = function (where) {
-    $scope.siteSetting = site.showObject('##site.#setting##');
-    $scope.busy = true;
-  };
 
   $scope.saveSetting = function (id) {
     if (id) {
@@ -375,14 +266,7 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
     site.showModal('#dynamicRoutes');
   };
 
-  $scope.loadSetting();
-  $scope.getSiteTemplateList();
-  $scope.getSiteColorList();
-  $scope.getPublishingSystemsList();
-  $scope.getArticleStatusList();
-  $scope.getClosingSystemList();
-  $scope.getDurationExpiryList();
-  $scope.loadWriters();
+   $scope.loadWriters();
   $scope.loadEditors();
   $scope.loadCategories();
 });

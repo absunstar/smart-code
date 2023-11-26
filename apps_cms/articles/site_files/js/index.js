@@ -6,13 +6,12 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.siteSettings = site.showObject(`##data.#setting##`);
   if ($scope.siteSettings && $scope.siteSettings.id) {
     $scope.articleTypesList = $scope.siteSettings.article.articleTypes.filter((t) => t.active == true);
-    $scope.languagesList = [];
-    $scope.siteSettings.languagesList.forEach((l) => {
+    $scope.languageList = [];
+    $scope.siteSettings.languageList.forEach((l) => {
       if (l.active == true) {
-        $scope.languagesList.push({
+        $scope.languageList.push({
           id: l.id,
-          en: l.en,
-          ar: l.ar,
+          name: l.name,
         });
       }
     });
@@ -534,13 +533,13 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.loadSubCategory1 = function (c) {
     $scope.error = '';
 
-    $scope.subCategoriesList1 = [];
-    $scope.subCategoriesList2 = [];
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
+    $scope.subcategoryList1 = [];
+    $scope.subcategoryList2 = [];
+    $scope.subcategoryList3 = [];
+    $scope.subcategoryList4 = [];
     $scope.categoryList.forEach((_c) => {
       if (c && c.id == _c.parentId) {
-        $scope.subCategoriesList1.push(_c);
+        $scope.subcategoryList1.push(_c);
       }
     });
   };
@@ -548,12 +547,12 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.loadSubCategory2 = function (c) {
     $scope.error = '';
 
-    $scope.subCategoriesList2 = [];
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
+    $scope.subcategoryList2 = [];
+    $scope.subcategoryList3 = [];
+    $scope.subcategoryList4 = [];
     $scope.categoryList.forEach((_c) => {
       if (c && c.id == _c.parentId) {
-        $scope.subCategoriesList2.push(_c);
+        $scope.subcategoryList2.push(_c);
       }
     });
   };
@@ -561,21 +560,21 @@ app.controller('articles', function ($scope, $http, $timeout) {
   $scope.loadSubCategory3 = function (c) {
     $scope.error = '';
 
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
+    $scope.subcategoryList3 = [];
+    $scope.subcategoryList4 = [];
     $scope.categoryList.forEach((_c) => {
       if (c && c.id == _c.parentId) {
-        $scope.subCategoriesList3.push(_c);
+        $scope.subcategoryList3.push(_c);
       }
     });
   };
 
   $scope.loadSubCategory4 = function (c) {
     $scope.error = '';
-    $scope.subCategoriesList4 = [];
+    $scope.subcategoryList4 = [];
     $scope.categoryList.forEach((_c) => {
       if (c && c.id == _c.parentId) {
-        $scope.subCategoriesList4.push(_c);
+        $scope.subcategoryList4.push(_c);
       }
     });
   };

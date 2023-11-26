@@ -53,8 +53,8 @@
               label="##word.categories## {{search.category.name}}"
               ng-model="search.subCategory1"
               ng-click="loadSubCategory2(search.subCategory1)"
-              items="subCategoriesList1"
-              ng-show="subCategoriesList1.length > 0 && search.category"
+              items="subcategoryList1"
+              ng-show="subcategoryList1.length > 0 && search.category"
               display="name"
               ng-search="search.$category2Search"
             >
@@ -65,8 +65,8 @@
               label="##word.categories## {{search.subCategory1.name}}"
               ng-model="search.subCategory2"
               ng-click="loadSubCategory3(search.$subCategory2)"
-              items="subCategoriesList2"
-              ng-show="subCategoriesList2.length > 0 && search.subCategory1"
+              items="subcategoryList2"
+              ng-show="subcategoryList2.length > 0 && search.subCategory1"
               display="name"
               ng-search="search.$category3Search"
             >
@@ -77,8 +77,8 @@
               label="##word.categories## {{search.subCategory2.name}}"
               ng-model="search.subCategory3"
               ng-click="loadSubCategory4(search.subCategory3)"
-              items="subCategoriesList3"
-              ng-show="subCategoriesList3.length > 0 && search.subCategory2"
+              items="subcategoryList3"
+              ng-show="subcategoryList3.length > 0 && search.subCategory2"
               display="name"
               ng-search="search.$category4Search"
             >
@@ -88,8 +88,8 @@
               class="col3"
               label="##word.categories## {{search.subCategory3.name}}"
               ng-model="search.subCategory4"
-              items="subCategoriesList4"
-              ng-show="subCategoriesList4.length > 0 && search.subCategory3"
+              items="subcategoryList4"
+              ng-show="subcategoryList4.length > 0 && search.subCategory3"
               display="name"
               ng-search="search.$category5Search"
             >

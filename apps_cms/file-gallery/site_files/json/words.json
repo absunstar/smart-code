@@ -2,42 +2,42 @@
 
   {
     "name": "files_gallery",
-    "en": "Files Gallery",
-    "ar": "معرض ملفات"
+    "EN": "Files Gallery",
+    "AR": "معرض ملفات"
   },
   {
     "name": "file_gallery_new",
-    "en": "New File Gallery",
-    "ar": "معرض ملفات جديد"
+    "EN": "New File Gallery",
+    "AR": "معرض ملفات جديد"
   },
   {
     "name": "file_gallery_add",
-    "en": "Add File Gallery",
-    "ar": "إضافة معرض ملفات "
+    "EN": "Add File Gallery",
+    "AR": "إضافة معرض ملفات "
   },
   {
     "name": "file_gallery_edit",
-    "en": "Edit File Gallery",
-    "ar": "تعديل معرض ملفات "
+    "EN": "Edit File Gallery",
+    "AR": "تعديل معرض ملفات "
   },
   {
     "name": "file_gallery_details",
-    "en": "File Gallery Details",
-    "ar": "تفاصيل معرض ملفات "
+    "EN": "File Gallery Details",
+    "AR": "تفاصيل معرض ملفات "
   },
   {
     "name": "file_gallery_delete",
-    "en": "Delete File Gallery",
-    "ar": "حذف معرض ملفات "
+    "EN": "Delete File Gallery",
+    "AR": "حذف معرض ملفات "
   },
   {
     "name": "file_gallery_name",
-    "en": "File Gallery Name",
-    "ar": "إسم معرض ملفات"
+    "EN": "File Gallery Name",
+    "AR": "إسم معرض ملفات"
   },
   {
     "name": "file_gallery_notes",
-    "en": "Notes File Gallery",
-    "ar": "ملاحظات معرض ملفات "
+    "EN": "Notes File Gallery",
+    "AR": "ملاحظات معرض ملفات "
   }
 ]

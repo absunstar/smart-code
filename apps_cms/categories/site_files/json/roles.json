@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "categories_admin",
-    "en": "Categories Admin",
-    "ar": "إدارة الأقسام",
+    "EN": "Categories Admin",
+    "AR": "إدارة الأقسام",
     "permissions": ["categories_manage"]
 }]

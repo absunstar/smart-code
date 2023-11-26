@@ -1,64 +1,64 @@
 [
     {
         "name": "forgot_password",
-        "en": "Forgot password ?",
-        "ar": "هل نسيت كلمة المرور ؟"
+        "EN": "Forgot password ?",
+        "AR": "هل نسيت كلمة المرور ؟"
     },
     {
         "name": "email_or_pass_error",
-        "en": "Email Or Password Error",
-        "ar": "إسم المستخدم أو كلمة المرور خطأ"
+        "EN": "Email Or Password Error",
+        "AR": "إسم المستخدم أو كلمة المرور خطأ"
     },
     {
         "name": "login_now",
-        "en": "Login Now",
-        "ar": "تسجيل الدخول الاّن"
+        "EN": "Login Now",
+        "AR": "تسجيل الدخول الاّن"
     },
     {
         "name": "login_via",
-        "en": "Login Via",
-        "ar": "تسجيل الدخول عبر"
+        "EN": "Login Via",
+        "AR": "تسجيل الدخول عبر"
     }
     ,
     {
         "name": "not_registered",
-        "en": "Not registered?",
-        "ar": "غير مسجل؟"
+        "EN": "Not registered?",
+        "AR": "غير مسجل؟"
     },
     {
         "name": "create_account",
-        "en": "Create an account",
-        "ar": "أنشئ حساب"
+        "EN": "Create an account",
+        "AR": "أنشئ حساب"
     },
     {
         "name": "firstName",
-        "en": "First Name",
-        "ar": "الإسم الأول"
+        "EN": "First Name",
+        "AR": "الإسم الأول"
     },
     {
         "name": "lastName",
-        "en": "Last Name",
-        "ar": "الإسم الأخير"
+        "EN": "Last Name",
+        "AR": "الإسم الأخير"
     },
     {
         "name": "show_password",
-        "en": "Show Password",
-        "ar": "إظهار كلمة المرور"
+        "EN": "Show Password",
+        "AR": "إظهار كلمة المرور"
     },
     {
         "name": "password",
-        "en": "Password",
-        "ar": "كلمة المرور"
+        "EN": "Password",
+        "AR": "كلمة المرور"
     },
     {
         "name": "retype_password",
-        "en": "Retype password",
-        "ar": "إعادة كتابة كلمة المرور"
+        "EN": "Retype password",
+        "AR": "إعادة كتابة كلمة المرور"
     },
     {
         "name": "mobile_email",
-        "en": "Mobile / Email",
-        "ar": "الجوال / البريد الإلكتروني"
+        "EN": "Mobile / Email",
+        "AR": "الجوال / البريد الإلكتروني"
     }
 
 

@@ -3,7 +3,6 @@
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.site_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Theme Setting## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#hostManager')"> ##word.Host Setting## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.email_and_text_messages## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#articlesSettings')"> ##word.articles_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.programming## </a>
@@ -13,24 +12,6 @@
     <div class="tabs-content">
       <div id="siteSettings" class="tab-content">
         <div class="article-part">
-          <div class="row">
-            <div class="col12">
-              <i-list v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.site_template##"> </i-list>
-              <div class="row padding margin border">
-                <i-control v="r" class="col3" type="color" ng-model="siteSetting.siteBackground1" label="##word.Background## 1"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground2" label="##word.Background## 2"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground3" label="##word.Menu Background##"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteBackground4" label="##word.Body Background##"></i-control>
-              </div>
-              <div class="row padding margin border">
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor1" label="##word.Color## 1"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor2" label="##word.Color## 2"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor3" label="##word.Menu Color##"></i-control>
-                <i-control class="col3" type="color" ng-model="siteSetting.siteColor4" label="##word.Body Color##"></i-control>
-              </div>
-            </div>
-          </div>
-
           <div class="row padding border margin">
             <div class="row">
               <i-control class="col6" label="##word.ceoManager##" ng-model="siteSetting.ceoManager"> </i-control>
@@ -52,6 +33,7 @@
             <i-control class="col6" label="##word.link## ##word.google_store##" ng-model="siteSetting.googleStore"> </i-control>
             <i-control class="col6" label="##word.link## ##word.apple_store##" ng-model="siteSetting.appleStore"> </i-control>
           </div>
+
           <fieldset>
             <div class="row">
               <div class="col6">
@@ -94,10 +76,10 @@
 
           <fieldset>
             <legend>##word.Languages##</legend>
-            <div class="row" ng-repeat="lang in siteSetting.languagesList track by $index">
+            <div class="row" ng-repeat="lang in siteSetting.languageList track by $index">
               <div class="row">
                 <div class="article-part">
-                  <p class="col4 margin font-23">{{lang.##session.lang##}}</p>
+                  <p class="col4 margin font-23">{{lang.name}}</p>
                   <i-checkbox class="col3" label="##word.active##" ng-model="lang.active"> </i-checkbox>
                 </div>
               </div>
@@ -134,6 +116,27 @@
         <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting('#siteSettings')"></i-button>
       </div>
       <div id="mainPage" class="tab-content">
+        <div class="article-part">
+          <div class="row">
+            <div class="row">
+              <i-list class="col4" v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.site_template##"> </i-list>
+              <i-control class="col4" ng-model="siteSetting.host" label="##word.Host##"></i-control>
+            </div>
+
+            <div class="row padding margin border">
+              <i-control v="r" class="col3" type="color" ng-model="siteSetting.siteBackground1" label="##word.Background## 1"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteBackground2" label="##word.Background## 2"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteBackground3" label="##word.Menu Background##"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteBackground4" label="##word.Body Background##"></i-control>
+            </div>
+            <div class="row padding margin border">
+              <i-control class="col3" type="color" ng-model="siteSetting.siteColor1" label="##word.Color## 1"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteColor2" label="##word.Color## 2"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteColor3" label="##word.Menu Color##"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteColor4" label="##word.Body Color##"></i-control>
+            </div>
+          </div>
+        </div>
         <div class="article-part">
           <div class="row">
             <fieldset>
@@ -195,7 +198,7 @@
                   <td class="center">{{$index + 1 }}</td>
                   <td class="center">{{g.name}}</td>
                   <td class="center">
-                    <i-list display="##session.lang##" ng-model="g.template" items="siteSetting.siteTemplate.categoryTemplateList"></i-list>
+                    <i-list ng-model="g.template" items="siteSetting.siteTemplate.categoryTemplateList"></i-list>
                   </td>
                   <td>
                     <i-control ng-model="g.limit" type="number"></i-control>
@@ -351,34 +354,6 @@
         </div>
       </div>
 
-      <div id="hostManager" class="tab-content">
-        <div class="article-part">
-          <div class="row">
-            <fieldset>
-              <legend>
-                ##word.Host##
-                <i-button label="##word.New##" type="push" ng-click="siteSetting.hostList.push({domain : '' , filter: ''})"></i-button>
-              </legend>
-              <div class="row">
-                <table class="table">
-                  <tr>
-                    <th>##word.Domain##</th>
-                    <th>##word.Filter##</th>
-                    <th>##word.Actions##</th>
-                  </tr>
-                  <tr ng-repeat="h in siteSetting.hostList track by $index">
-                    <td><i-control type="text" ng-model="h.domain"> </i-control></td>
-                    <td><i-control type="text" ng-model="h.filter"> </i-control></td>
-                    <td><i-button type="delete" label="##word.delete##" ng-click="siteSetting.hostList.splice($index,1)"> </i-button></td>
-                  </tr>
-                </table>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting('#hostManager')"> </i-button>
-      </div>
-
       <div id="emailAndTextMessages" class="tab-content">
         <div class="article-part">
           <fieldset>
@@ -464,14 +439,7 @@
                 </div>
               </div>
 
-              <i-list
-                label="##word.language##"
-                ng-model="siteSetting.article.language"
-                items="siteSetting.article.languages"
-                display="##session.lang##"
-                ng-search="siteSetting.article.language.$langSearch"
-              >
-              </i-list>
+              <i-list label="##word.language##" ng-model="siteSetting.article.language" items="siteSetting.article.languages" ng-search="siteSetting.article.language.$langSearch"> </i-list>
 
               <i-list label="##word.writer##" ng-model="siteSetting.article.writer" items="writersList" display="profile.name" ng-search="siteSetting.article.$writerSearch"> </i-list>
               <i-list label="##word.editor##" ng-model="siteSetting.article.editor" items="editorsList" display="profile.name" ng-search="siteSetting.article.$editorSearch"> </i-list>
@@ -603,15 +571,6 @@
             </div>
             <div class="col9">
               <i-control ng-show="siteSetting.programming.autoGenerateSitemapXmlFile" label="##word.Count##" type="number" ng-model="siteSetting.programming.sitemapXmlCount"> </i-control>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col3">
-              <i-checkbox label="##word.Auto generate## RSS" ng-model="siteSetting.programming.autoGenerateRss"> </i-checkbox>
-            </div>
-            <div class="col9">
-              <i-control ng-show="siteSetting.programming.autoGenerateRss" label="##word.Count##" type="number" ng-model="siteSetting.programming.rssCount"> </i-control>
             </div>
           </div>
         </div>

@@ -1,42 +1,42 @@
 [
   {
     "name": "photoGallery",
-    "en": "Photo Gallery",
-    "ar": "معرض صور"
+    "EN": "Photo Gallery",
+    "AR": "معرض صور"
   },
   {
     "name": "photo_gallery_new",
-    "en": "New Photo Gallery",
-    "ar": "معرض صور جديد"
+    "EN": "New Photo Gallery",
+    "AR": "معرض صور جديد"
   },
   {
     "name": "photo_gallery_add",
-    "en": "Add Photo Gallery",
-    "ar": "إضافة معرض صور "
+    "EN": "Add Photo Gallery",
+    "AR": "إضافة معرض صور "
   },
   {
     "name": "photo_gallery_edit",
-    "en": "Edit Photo Gallery",
-    "ar": "تعديل معرض صور "
+    "EN": "Edit Photo Gallery",
+    "AR": "تعديل معرض صور "
   },
   {
     "name": "photo_gallery_details",
-    "en": "Photo Gallery Details",
-    "ar": "تفاصيل معرض صور "
+    "EN": "Photo Gallery Details",
+    "AR": "تفاصيل معرض صور "
   },
   {
     "name": "photo_gallery_delete",
-    "en": "Delete Photo Gallery",
-    "ar": "حذف معرض صور "
+    "EN": "Delete Photo Gallery",
+    "AR": "حذف معرض صور "
   },
   {
     "name": "photo_gallery_name",
-    "en": "Photo Gallery Name",
-    "ar": "إسم معرض صور"
+    "EN": "Photo Gallery Name",
+    "AR": "إسم معرض صور"
   },
   {
     "name": "photo_gallery_notes",
-    "en": "Notes Photo Gallery",
-    "ar": "ملاحظات معرض صور "
+    "EN": "Notes Photo Gallery",
+    "AR": "ملاحظات معرض صور "
   }
 ]

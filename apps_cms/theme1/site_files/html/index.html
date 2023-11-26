@@ -6,9 +6,9 @@
     <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
 
     <div id="mainContent" class="container d-flex flex-column">
-      <div x-setting="showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
+      <div x-data="setting.showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
 
-      <div x-setting="showTopAd" x-import="theme1/ad-top.html"></div>
+      <div x-data="setting.showTopAd" x-import="theme1/ad-top.html"></div>
 
       <div class="row d-flex flex-column" x-list1="categories">
         <div x-show-item1="template1" class="breakingNewsSection">
@@ -25,7 +25,7 @@
 
         <div x-show-item1="template2" class="adsWithBreakingNews row justify-content-center align-items-start">
           <div
-            x-setting="showSideAd"
+            x-data="setting.showSideAd"
             x-import="theme1/ad-side.html"
             class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center"
           ></div>
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div
-            x-setting="showSideAd"
+            x-data="setting.showSideAd"
             x-import="theme1/ad-side.html"
             class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center"
           ></div>
@@ -57,7 +57,7 @@
             <div class="col col-lg-9 col-md-12 col-sm-12">
               <div class="row">
                 <div class="col col-lg-3 d-none d-lg-flex d-xl-flex p-0">
-                  <div x-setting="showFooterAd" x-import="theme1/ad-footer.html"></div>
+                  <div x-data="setting.showFooterAd" x-import="theme1/ad-footer.html"></div>
                 </div>
                 <div class="col col-lg-9 col-md-12 col-sm-12 m-sm-0 my-4 p-md-0">
                   <div x-list2="$list0" x-import="theme1/article-template.html" class="newsSBLock NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
@@ -67,7 +67,7 @@
           </div>
           <div class="adsWithBreakingNews row justify-content-center align-items-start p-0 m-0">
             <div
-              x-setting="showSideAd"
+              x-data="setting.showSideAd"
               x-import="theme1/ad-side.html"
               class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-start p-0 m-lg-0 m-4 ml-2"
             ></div>
@@ -85,7 +85,7 @@
               </div>
             </div>
             <div
-              x-setting="showSideAd"
+              x-data="setting.showSideAd"
               x-import="theme1/ad-side.html"
               class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 d-flex justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
             ></div>
@@ -94,8 +94,8 @@
       </div>
 
       <div x-import="theme1/part-3.html"></div>
-      <div x-setting="showEditorManagerArticle" x-import="theme1/part-4.html"></div>
-      <div x-setting="showEditorsArticle" x-import="theme1/part-5.html"></div>
+      <div x-data="setting.showEditorManagerArticle" x-import="theme1/part-4.html"></div>
+      <div x-data="setting.showEditorsArticle" x-import="theme1/part-5.html"></div>
       <div x-import="theme1/part-6.html"></div>
     </div>
 
@@ -104,7 +104,8 @@
     <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
     <script>
       app.controller('mainController', ($scope, $http, $timeout, $interval) => {
-        $scope.page = site.showObject('##data.#page##');
+        $scope.setting = site.showObject('##data.#setting##');
+        console.log($scope.setting);
       });
     </script>
   </body>

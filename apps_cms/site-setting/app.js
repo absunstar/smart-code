@@ -1,102 +1,184 @@
 module.exports = function init(site) {
-  const $siteSetting = site.connectCollection('defaultSetting');
-  let articleTypes = [
-    {
-      id: 1,
-      en: 'Simble',
-      ar: 'بسيط',
-      active: true,
-    },
-    {
-      id: 2,
-      en: 'advanced',
-      ar: 'متطور',
-      active: true,
-    },
-    {
-      id: 3,
-      en: 'Multi-Paragraph',
-      ar: 'متعدد الفقرات',
-      active: true,
-    },
-    {
-      id: 4,
-      en: 'Multi-Paragraph advanced',
-      ar: 'متعدد الفقرات متطور',
-      active: true,
-    },
-    {
-      id: 5,
-      en: 'Multi-Image',
-      ar: 'متعدد الصور',
-      active: true,
-    },
-    {
-      id: 6,
-      en: 'google-news',
-      ar: 'أخبار جوجل',
-      active: true,
-    },
-    {
-      id: 7,
-      en: 'yts-movie',
-      ar: 'yts-movie',
-      active: true,
-    },
-  ];
+  const $siteSetting = site.connectCollection('siteSetting');
+  const HOSTS = site.connectApp({ name: 'hosts' });
+  HOSTS.memoryList.push({ domain: '*', filter: '*' });
 
-  let languages = [
+  site.settingList = [];
+
+  site.supportedLanguageList = [
     {
-      id: 'ar',
-      en: 'Arabic',
-      ar: 'عربي',
+      id: 'AR',
+      name: 'عربي',
       direction: 'rtl',
     },
     {
-      id: 'en',
-      en: 'English',
-      ar: 'إنجليزي',
+      id: 'EN',
+      name: 'English',
       direction: 'ltr',
     },
     {
-      id: 'fr',
-      en: 'French',
-      ar: 'فرنساوي',
+      id: 'FR',
+      name: 'French',
       direction: 'ltr',
     },
     {
-      id: 'tr',
-      en: 'Turki',
-      ar: 'تركي',
+      id: 'TR',
+      name: 'Turki',
       direction: 'rtl',
     },
   ];
-
-  site.setting = {
+  site.defaultSetting = {
+    host: '',
     lengthOrder: 0,
     siteTemplate: { id: 1 },
     mainCategoryList: [],
     programming: {},
-    languagesList: [],
-    hostList: [
-      { domain: '*youtube*', filter: '*youtube*|*video*|*watch*' },
-      { domain: '*yts*', filter: '*yts*' },
-    ],
+    languageList: [],
     article: {
-      articleTypes: articleTypes,
+      articleTypes: site.articleTypes,
     },
     block: {},
     siteColor1: '#272727',
     siteColor2: '#d7373f',
     siteColor3: '#8bc34a',
-    siteColor4: '#d9d9d9',
-    siteColor5: '#000000',
-    siteColor6: '#ffffff',
-    siteBackground: '#ffffff',
+    siteColor4: '#8bc34a',
+    siteBackground1: '#d9d9d9',
+    siteBackground2: '#000000',
+    siteBackground1: '#ffffff',
+    siteBackground3: '#ffffff',
+    siteBackground4: '#ffffff',
   };
+  site.articleTypes = [
+    {
+      id: 1,
+      EN: 'Standred',
+      AR: 'افتراضى',
+    },
+    {
+      id: 2,
+      EN: 'advanced',
+      AR: 'متطور',
+    },
+    {
+      id: 3,
+      EN: 'Multi-Paragraph',
+      AR: 'متعدد الفقرات',
+    },
+    {
+      id: 4,
+      EN: 'Multi-Paragraph advanced',
+      AR: 'متعدد الفقرات متطور',
+    },
+    {
+      id: 5,
+      EN: 'Multi-Image',
+      AR: 'متعدد الصور',
+    },
+    {
+      id: 6,
+      EN: 'google-news',
+      AR: 'أخبار جوجل',
+    },
+    {
+      id: 7,
+      EN: 'yts-movie',
+      AR: 'yts-movie',
+    },
+    {
+      id: 8,
+      EN: 'Youtube Video',
+      AR: 'Youtube Video',
+    },
+  ];
+  site.publishingSystem = [
+    {
+      id: 1,
+      EN: 'Immediately',
+      AR: 'فوري',
+    },
+    {
+      id: 2,
+      EN: 'By User',
+      AR: 'بواسطة المستخدم',
+    },
+  ];
+  site.closingSystem = [
+    {
+      id: 1,
+      EN: 'After a specified period',
+      AR: 'بعد مدة محددة',
+    },
+    {
+      id: 2,
+      EN: 'By User',
+      AR: 'بواسطة المستخدم',
+    },
+    {
+      id: 3,
+      EN: 'For Ever',
+      AR: 'الى الابد',
+    },
+  ];
+
+  site.siteColor = [
+    {
+      id: '#d7373f',
+      EN: 'Red',
+      AR: 'أحمر',
+    },
+    {
+      id: '#2196f3',
+      EN: 'Blue',
+      AR: 'أزرق',
+    },
+    {
+      id: '#8bc34a',
+      EN: 'Green',
+      AR: 'أخضر',
+    },
+    {
+      id: '#272727',
+      EN: 'Black',
+      AR: 'أسود',
+    },
+  ];
+  site.articleStatus = [
+    {
+      id: 1,
+      EN: 'Active',
+      AR: 'نشط',
+    },
+    {
+      id: 2,
+      EN: 'Under review',
+      AR: 'قيد المراجعة',
+    },
+    {
+      id: 3,
+      EN: 'Forbidden',
+      AR: 'محظور',
+    },
+  ];
+  site.durationExpiry = [
+    {
+      id: 1,
+      EN: 'Hour',
+      AR: 'ساعة',
+    },
+    {
+      id: 2,
+      EN: 'Day',
+      AR: 'يوم',
+    },
+    {
+      id: 3,
+      EN: 'Month',
+      AR: 'شهر',
+    },
+  ];
 
   site.getHostFilter = function (domain = '') {
-    let h = site.setting.hostList.find((h) => domain.like(h.domain));
+    let h = HOSTS.memoryList.find((h) => domain.like(h.domain));
     if (h) {
       return h.filter;
     } else {
@@ -104,34 +186,40 @@ module.exports = function init(site) {
     }
   };
 
-  languages.forEach((l) => {
-    site.setting.languagesList.push({ ...l });
+  site.getSiteSetting = function (filter = '') {
+    return site.settingList.find((s) => s.host.like(filter)) || site.settingList[0];
+  };
+
+  site.supportedLanguageList.forEach((l) => {
+    site.defaultSetting.languageList.push({ ...l });
   });
 
-  $siteSetting.findOne({}, (err, doc) => {
-    if (!err && doc) {
-      if (!doc.article.articleTypes) {
-        doc.article.articleTypes = articleTypes;
-      }
-      if (!doc.article.languages) {
-        doc.article.languages = [...languages];
-      }
-      if (!doc.languagesList) {
-        doc.languagesList = [...languages];
-      } else {
-        doc.languagesList.forEach((lang, i) => {
-          if (lang.language) {
-            doc.languagesList[i] = { ...doc.languagesList[i], ...languages.find((l) => l.id == lang.language.id) };
-            delete doc.languagesList[i].language;
-          }
-          doc.languagesList[i] = { ...doc.languagesList[i], ...languages[i] };
-        });
-      }
-      site.setting = { ...site.setting, ...doc };
+  $siteSetting.findAll({}, (err, docs) => {
+    if (!err && docs && docs.length > 0) {
+      docs.forEach((doc) => {
+        if (!doc.article.articleTypes) {
+          doc.article.articleTypes = site.articleTypes;
+        }
+
+        if (!doc.article.languages) {
+          doc.article.languages = [...site.supportedLanguageList];
+        }
+
+        if (!doc.languageList) {
+          doc.languageList = [...site.supportedLanguageList];
+        } else {
+          doc.languageList.forEach((lang, i) => {
+            doc.languageList[i] = { ...doc.languageList[i], ...site.supportedLanguageList[i] };
+          });
+        }
+        site.settingList.push({ ...doc });
+      });
+      site.defaultSetting = { ...site.defaultSetting, ...site.settingList[0] };
     } else {
-      $siteSetting.add(site.setting, (err, doc) => {
+      $siteSetting.add(site.defaultSetting, (err, doc) => {
         if (!err && doc) {
-          site.setting = { ...site.setting, ...doc };
+          site.settingList.push({ ...doc });
+          site.defaultSetting = { ...site.defaultSetting, ...site.settingList[0] };
         }
       });
     }
@@ -142,51 +230,29 @@ module.exports = function init(site) {
       name: 'site-setting',
     },
     (req, res) => {
-      res.render('site-setting/index.html');
-    },
-    {
-      setting: site.setting,
-    },
-    { parser: 'html' }
+      let setting = site.getSiteSetting(site.getHostFilter(req.host));
+      let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+
+      res.render(
+        'site-setting/index.html',
+        {
+          language: language,
+          setting: setting,
+          templateList: site.templateList,
+          publishingSystem: site.publishingSystem,
+          closingSystem: site.closingSystem,
+          siteColor: site.siteColor,
+          articleStatus: site.articleStatus,
+          durationExpiry: site.durationExpiry,
+        },
+        { parser: 'html' }
+      );
+    }
   );
 
   site.get({
     name: '/images',
     path: __dirname + '/site_files/images',
-  });
-
-  site.post({
-    name: '/api/publishingSystem/all',
-    path: __dirname + '/site_files/json/publishingSystem.json',
-  });
-
-  site.post(
-    {
-      name: '/api/get-site-templates',
-    },
-    (req, res) => {
-      res.json(site.TemplateList);
-    }
-  );
-
-  site.post({
-    name: '/api/siteColor/all',
-    path: __dirname + '/site_files/json/siteColor.json',
-  });
-
-  site.post({
-    name: '/api/articleStatus/all',
-    path: __dirname + '/site_files/json/articleStatus.json',
-  });
-
-  site.post({
-    name: '/api/durationExpiry/all',
-    path: __dirname + '/site_files/json/durationExpiry.json',
-  });
-
-  site.post({
-    name: '/api/closingSystem/all',
-    path: __dirname + '/site_files/json/closingSystem.json',
   });
 
   site.post({
@@ -196,36 +262,28 @@ module.exports = function init(site) {
 
   site.post('/api/get-site-setting', (req, res) => {
     let response = {
-      doc: site.setting,
+      doc: site.getSiteSetting(site.getHostFilter(req.host)),
       done: true,
     };
     res.json(response);
   });
 
-  site.getsiteSetting = function (callback) {
-    callback = callback || function () {};
-    callback(site.setting);
-    return site.setting;
-  };
-
-  site.post('/api/set-site-setting', (req, res) => {
+  site.post({ name: '/api/set-site-setting', require: { permissions: ['login'] } }, (req, res) => {
     let response = {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
     let data = req.data;
-
+    data.host = data.host || req.host;
     $siteSetting.update(data, (err, result) => {
-      if (!err) {
+      if (!err && result.doc) {
         response.done = true;
-        site.setting = { ...site.setting, ...data };
-        site.handleCategoryArticles();
+        let index = site.settingList.findIndex((s) => s.id == result.doc.id);
+        if (index > -1) {
+          site.settingList[index] = { ...site.settingList[index], ...result.doc };
+        } else {
+          site.settingList.push(...site.defaultSetting, ...resultdoc);
+        }
       } else {
         response.error = err.message;
       }

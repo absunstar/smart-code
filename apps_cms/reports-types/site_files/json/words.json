@@ -1,57 +1,57 @@
 [
   {
     "name": "reportsTypes",
-    "en": "Reports Types",
-    "ar": "أنواع البلاغات"
+    "EN": "Reports Types",
+    "AR": "أنواع البلاغات"
   },
   {
     "name": "reportType",
-    "en": "Report Type",
-    "ar": "نوع البلاغ"
+    "EN": "Report Type",
+    "AR": "نوع البلاغ"
   },
   {
     "name": "report_comments",
-    "en": "Report for comments",
-    "ar": "بلاغ للتعليقات"
+    "EN": "Report for comments",
+    "AR": "بلاغ للتعليقات"
   },
   {
     "name": "reports_comment",
-    "en": "Reports for comment",
-    "ar": "بلاغات التعليق"
+    "EN": "Reports for comment",
+    "AR": "بلاغات التعليق"
   },
   {
     "name": "reports_types_new",
-    "en": "New Reports Type",
-    "ar": "نوع بلاغ جديد"
+    "EN": "New Reports Type",
+    "AR": "نوع بلاغ جديد"
   },
   {
     "name": "reports_types_add",
-    "en": "Add Reports Type",
-    "ar": "إضافة نوع بلاغ"
+    "EN": "Add Reports Type",
+    "AR": "إضافة نوع بلاغ"
   },
   {
     "name": "reports_types_edit",
-    "en": "Edit Reports Type",
-    "ar": "تعديل نوع بلاغ"
+    "EN": "Edit Reports Type",
+    "AR": "تعديل نوع بلاغ"
   },
   {
     "name": "reports_types_details",
-    "en": "Reports Type Details",
-    "ar": "تفاصيل نوع بلاغ"
+    "EN": "Reports Type Details",
+    "AR": "تفاصيل نوع بلاغ"
   },
   {
     "name": "reports_types_delete",
-    "en": "Delete first subsections",
-    "ar": "حذف نوع بلاغ"
+    "EN": "Delete first subsections",
+    "AR": "حذف نوع بلاغ"
   },
   {
     "name": "reports_types_number",
-    "en": "Reports Type Number",
-    "ar": "رقم نوع بلاغ"
+    "EN": "Reports Type Number",
+    "AR": "رقم نوع بلاغ"
   },
   {
     "name": "reports_types_name",
-    "en": "Reports Type Name",
-    "ar": "إسم نوع البلاغ"
+    "EN": "Reports Type Name",
+    "AR": "إسم نوع البلاغ"
   }
 ]

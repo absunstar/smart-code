@@ -1,22 +1,22 @@
 <div id="xl-screen" class="d-flex flex-column">
-  <div x-setting="showTopNews" x-import="theme1/topHeader.html" class="topHeader"></div>
-  <div x-setting="showCEOinformation" class="editorAndCeoHeader d-flex flex-row justify-content-center">
+  <div x-data="setting.showTopNews" x-import="theme1/topHeader.html" class="topHeader"></div>
+  <div x-data="setting.showCEOinformation" class="editorAndCeoHeader d-flex flex-row justify-content-center">
     <div class="container d-flex flex-row justify-content-center align-items-center">
       <div class="head d-flex flex-row gap-4">
         <div class="ceo d-flex flex-md-row flex-column gap-2 justify-content-center align-items-center">
           <p class="headTitle">##word.CEO Manager##</p>
-          <p class="title">##setting.ceoManager##</p>
+          <p class="title">##data.setting.ceoManager##</p>
         </div>
         <div class="headOfEditor d-flex flex-md-row flex-column gap-2 justify-content-center align-items-center">
           <p class="headTitle">##word.Editor Manager##</p>
-          <p class="title">##setting.editorManager##</p>
+          <p class="title">##data.setting.editorManager##</p>
         </div>
       </div>
     </div>
   </div>
   <div class="midHeader">
     <div class="midHeadercontainer container d-flex flex-column flex-md-row">
-      <div x-setting="showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
+      <div x-data="setting.showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
         <div class="col-12 d-flex justify-content-start align-items-center logoAndHead">
           <div class="logo">
             <a href="/">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div x-setting="showSearchBar" class="col-md-6 col-12 searchBarSection">
+      <div x-data="setting.showSearchBar" class="col-md-6 col-12 searchBarSection">
         <div class="SearchBAr">
           <div class="searchIcon">
             <i class="fas fa-search"></i>
@@ -39,20 +39,20 @@
           </div>
         </div>
       </div>
-      <div x-setting="showTemperatures" class="col-md-2 col-12 d-none d-md-flex justify-content-center align-items-center headerWidget">
+      <div x-data="setting.showTemperatures" class="col-md-2 col-12 d-none d-md-flex justify-content-center align-items-center headerWidget">
         <div class="weather">
           <div class="weatherIcon">
             <img src="/theme1/images/Moon2.png" alt="night" width="40px" height="40px" />
             <img src="/theme1/images/sun2.png" alt="morning" width="40px" height="40px" />
           </div>
           <div class="weatherDetails">
-            <p class="rtl bold">##setting.temperaturesGreat##</p>
+            <p class="rtl bold">##data.setting.temperaturesGreat##</p>
             <div class="vlWeather"></div>
-            <p class="rtl bold">##setting.temperaturesMinor##</p>
+            <p class="rtl bold">##data.setting.temperaturesMinor##</p>
           </div>
         </div>
       </div>
-      <div x-setting="showPrayerTimings" id="PrayerTime" class="col-md-2 col-12 d-none d-md-flex justify-content-center align-items-center headerWidget PrayerTime">
+      <div x-data="setting.showPrayerTimings" id="PrayerTime" class="col-md-2 col-12 d-none d-md-flex justify-content-center align-items-center headerWidget PrayerTime">
         <div class="PrayerIcon">
           <img src="/theme1/images/619087.png" alt="pray" width="40px" height="40px" />
         </div>
@@ -73,15 +73,15 @@
       </div>
     </div>
   </div>
-  <div x-data="menuList1.length" x-setting="showMainMenu" class="bottomHeader">
-    <div class="bottomHeadercontainer container">
+  <div  x-data="setting.showMainMenu" class="bottomHeader">
+    <div x-data="menuList1.length" class="bottomHeadercontainer container">
       <ul class="navbarlist d-none d-md-flex">
         <li>
           <a href="/"><i class="fas fa-home"></i></a>
         </li>
         <li x-list1="menuList1"><a href="##item1.url##">##item1.name## </a></li>
         <li class="nav-item dropdown">
-          <a x-data="menuList2" class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"> ##word......## </a>
+          <a x-data="menuList2.length" class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"> ##word......## </a>
           <ul class="dropdown-menu">
             <li x-list1="menuList2"><a class="dropdown-item" href="##item1.url##">##item1.name## </a></li>
           </ul>
@@ -121,9 +121,9 @@
             <img src="/theme1/images/sun2.png" alt="morning" width="40px" height="40px" />
           </div>
           <div class="weatherDetails">
-            <p class="rtl bold">##setting.temperaturesGreat##°صغرى</p>
+            <p class="rtl bold">##data.setting.temperaturesGreat##°صغرى</p>
             <div class="vlWeather"></div>
-            <p class="rtl bold">##setting.temperaturesMinor##°كبرى</p>
+            <p class="rtl bold">##data.setting.temperaturesMinor##°كبرى</p>
           </div>
         </div>
         <div id="PrayerTime" class="PrayerTime">
@@ -146,7 +146,7 @@
           </ul>
         </div>
       </div>
-      <div x-setting="showMainMenu" class="w-100 mainSection d-flex flex-column align-items-end">
+      <div x-data="setting.showMainMenu" class="w-100 mainSection d-flex flex-column align-items-end">
         <div class="headSectionTitle">
           <label>الأقسام</label>
         </div>

@@ -12,8 +12,8 @@
 .user-info a:hover {
   transform: scale(1.1);
 }
-.en .user-info a,
-.en .user-info > img {
+.ltr.user-info a,
+.ltr.user-info > img {
   float: right;
 }
 .user-info > img {
@@ -55,7 +55,7 @@
   overflow: hidden;
 }
 
-.en .user-menu {
+.ltr.user-menu {
   right: 5px;
   left: auto;
 }

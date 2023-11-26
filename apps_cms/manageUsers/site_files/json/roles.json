@@ -1,43 +1,43 @@
 [{
     "module_name" : "public" ,
     "name": "manageUsers_admin",
-    "en": "Manage Users Admin",
-    "ar": "إدارة المستخدمين",
+    "EN": "Manage Users Admin",
+    "AR": "إدارة المستخدمين",
     "permissions": ["manageUsers_manage"]
 },
 {
     "module_name" : "public" ,
     "name": "writer",
-    "en": "Writer",
-    "ar": "كاتب",
+    "EN": "Writer",
+    "AR": "كاتب",
     "permissions": ["writer_manage"]
 },
 {
     "module_name" : "public" ,
     "name": "editor",
-    "en": "Editor",
-    "ar": "محرر",
+    "EN": "Editor",
+    "AR": "محرر",
     "permissions": ["editor_manage"]
 },
 {
     "module_name" : "public" ,
     "name": "reference",
-    "en": "Reference",
-    "ar": "مراجع",
+    "EN": "Reference",
+    "AR": "مراجع",
     "permissions": ["reference_manage"]
 },
 {
     "module_name" : "public" ,
     "name": "photo_reference",
-    "en": "Photo Reference",
-    "ar": "مراجع صور",
+    "EN": "Photo Reference",
+    "AR": "مراجع صور",
     "permissions": ["photo_reference_manage"]
 },
 {
     "module_name" : "public" ,
     "name": "publisher",
-    "en": "Publisher",
-    "ar": "ناشر",
+    "EN": "Publisher",
+    "AR": "ناشر",
     "permissions": ["publisher_manage"]
 }
 ]

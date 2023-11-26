@@ -1,11 +1,11 @@
 [
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_manage" , "EN":"Manage" , "AR":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_add" , "EN":"Add" , "AR":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_update" , "EN":"Edit" , "AR":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_delete" , "EN":"Delete" , "AR":"حذف"},
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_view" , "EN":"View" , "AR":"عرض"},
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_search" , "EN":"Search" , "AR":"بحث"},
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_export" , "EN":"Export" , "AR":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_print" , "EN":"Print" , "AR":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "video-gallery" , "name":"video_gallery_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"}
 ]

@@ -123,9 +123,9 @@
       <div class="secondeheader">
         <div class="logo center" href="/">
 
-          <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##setting.logo##"
+          <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##data.setting.logo##"
             onerror="this.src='/images/user.png'" alt="" />
-          <span class="haraj_name pointer" ng-click="indexLocation()">##setting.site_name##</span>
+          <span class="haraj_name pointer" ng-click="indexLocation()">##data.setting.site_name##</span>
           <i class="burger-icon padding fa-solid fa-bars fa-sm"></i>
         </div>
         <form class="searchbar">
@@ -146,7 +146,7 @@
         </div>
         <div class="user">
           <i class="close-menu fa-solid fa-xmark fa-lg"></i>
-          <a class="notification" href="/cart" ng-show="##setting.order_settings.activate_orders##">
+          <a class="notification" href="/cart" ng-show="##data.setting.order_settings.activate_orders##">
             <i class="cart fa-solid fa-cart-shopping"></i>
             <span class="badge ng-binding">{{user.cart.items.length || 0}}</span>
           </a>
@@ -160,9 +160,9 @@
               <a href="/login">##word.login##</a>
             </div>
           </div>
-          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i>
+          <a x-lang="AR" ng-click="changeLang('en')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i>
             ##word.en_lang## </a>
-          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i>
+          <a x-lang="EN" ng-click="changeLang('ar')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i>
             ##word.ar_lang## </a>
 
           <div class="info">
@@ -203,22 +203,22 @@
               <a>تابعنا على </a>
               <ul>
                 <li>
-                  <a target="_blank" href="https://www.youtube.com/##setting.you_tube_accouunt##"><i
+                  <a target="_blank" href="https://www.youtube.com/##data.setting.you_tube_accouunt##"><i
                       class="social-icon fab fa-youtube fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" href="https://www.instagram.com/##setting.instagram_accouunt##" xlink="done"><i
+                  <a target="_blank" href="https://www.instagram.com/##data.setting.instagram_accouunt##" xlink="done"><i
                       class="social-icon fab fa-instagram fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" href="https://www.twitter.com/##setting.twitter_accouunt##" xlink="done"><i
+                  <a target="_blank" href="https://www.twitter.com/##data.setting.twitter_accouunt##" xlink="done"><i
                       class="social-icon fab fa-twitter fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" class="icon-facebook" href="https://www.facebook.com/##setting.facebook_account##"
+                  <a target="_blank" class="icon-facebook" href="https://www.facebook.com/##data.setting.facebook_account##"
                     xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
                 </li>
               </ul>
@@ -227,21 +227,21 @@
               <div class="row">
                 <a class="row">##word.phone_support##</a>
                 <i class="contact-icon fa-solid fa-phone"></i> <a target="_blank"
-                  href="##setting.phone##"> ##setting.phone## </a>
+                  href="##data.setting.phone##"> ##data.setting.phone## </a>
               </div>
               <div class="row">
                 <a class="row">##word.email_support##</a>
                 <i class="contact-icon fa-solid fa-at"></i> <a target="_blank"
-                  href="##setting.email##"> ##setting.email## </a>
+                  href="##data.setting.email##"> ##data.setting.email## </a>
               </div>
             </div>
 
           </div>
           <hr class="cf-mobile" />
-          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link left lang-btn"> <i class="fa fa-globe"></i>
+          <a x-lang="AR" ng-click="changeLang('en')" class="ds-dv link left lang-btn"> <i class="fa fa-globe"></i>
             ##word.en_lang##
           </a>
-          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv link left lang-btn"> <i class="fa fa-globe"></i>
+          <a x-lang="EN" ng-click="changeLang('ar')" class="ds-dv link left lang-btn"> <i class="fa fa-globe"></i>
             ##word.ar_lang##
           </a>
 
@@ -258,7 +258,7 @@
     <li class="mobile-header">
       <a class="tab_link" href="/">
         <i class="fa-solid fa-house"></i>
-        <!-- <span style="min-height: 22px">##setting.site_name##</span> -->
+        <!-- <span style="min-height: 22px">##data.setting.site_name##</span> -->
       </a>
     </li>
   
@@ -292,7 +292,7 @@
       </a>
     </li>
   
-    <li class="mobile-header" x-permission="login" ng-show="##setting.order_settings.activate_orders##">
+    <li class="mobile-header" x-permission="login" ng-show="##data.setting.order_settings.activate_orders##">
       <a class="notification" href="/cart">
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="badge-mobile ng-binding">0</span>

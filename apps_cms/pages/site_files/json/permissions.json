@@ -1,11 +1,11 @@
 [
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_manage" , "EN":"Manage" , "AR":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_add" , "EN":"Add" , "AR":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_update" , "EN":"Edit" , "AR":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_delete" , "EN":"Delete" , "AR":"حذف"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_view" , "EN":"View" , "AR":"عرض"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_search" , "EN":"Search" , "AR":"بحث"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_export" , "EN":"Export" , "AR":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_print" , "EN":"Print" , "AR":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"page_implement_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"}
 ]

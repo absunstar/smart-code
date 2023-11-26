@@ -55,30 +55,30 @@
 
 <style>
   * {
-    --primary-color: ##setting.siteColor1##;
-    --secondary-color: ##setting.siteColor2##;
-    --third-color: ##setting.siteColor3##;
+    --primary-color: ##data.setting.siteColor1##;
+    --secondary-color: ##data.setting.siteColor2##;
+    --third-color: ##data.setting.siteColor3##;
 
-    --color1: ##setting.siteColor1##;
-    --color2: ##setting.siteColor2##;
-    --color3: ##setting.siteColor3##;
-    --color4: ##setting.siteColor4##;
+    --color1: ##data.setting.siteColor1##;
+    --color2: ##data.setting.siteColor2##;
+    --color3: ##data.setting.siteColor3##;
+    --color4: ##data.setting.siteColor4##;
     --bs-body-color: var(--color4);
 
-    --background1: ##setting.siteBackground1##;
-    --background1x: ##setting.siteBackground1##d1;
-    --background1xx: ##setting.siteBackground1##99;
-    --background2: ##setting.siteBackground2##;
-    --background2x: ##setting.siteBackground2##d1;
-    --background3: ##setting.siteBackground3##;
-    --background4: ##setting.siteBackground4##;
+    --background1: ##data.setting.siteBackground1##;
+    --background1x: ##data.setting.siteBackground1##d1;
+    --background1xx: ##data.setting.siteBackground1##99;
+    --background2: ##data.setting.siteBackground2##;
+    --background2x: ##data.setting.siteBackground2##d1;
+    --background3: ##data.setting.siteBackground3##;
+    --background4: ##data.setting.siteBackground4##;
 
-    --body-color: ##setting.siteColor1##;
+    --body-color: ##data.setting.siteColor1##;
 
     --bs-body-line-height: 1.8;
   }
 </style>
-<style x-setting="contentProtected">
+<style x-data="setting.contentProtected">
   * {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -86,7 +86,7 @@
     user-select: none;
   }
 </style>
-<script x-setting="contentProtected">
+<script x-data="setting.contentProtected">
   !(function () {
     setInterval(() => {
       if (console.clear) {

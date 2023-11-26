@@ -1,43 +1,43 @@
 [
     {
         "name": "goves",
-        "en": "Goves",
-        "ar": "المحافظات"
+        "EN": "Goves",
+        "AR": "المحافظات"
     },
     {
         "name": "gov",
-        "en": "Gov",
-        "ar": "المحافظة"
+        "EN": "Gov",
+        "AR": "المحافظة"
     },
     {
         "name": "goves_new",
-        "en": "New Gov",
-        "ar": "محافظة جديدة"
+        "EN": "New Gov",
+        "AR": "محافظة جديدة"
     },
     {
         "name": "goves_add",
-        "en": "Add Gov",
-        "ar": "إضافة محافظة "
+        "EN": "Add Gov",
+        "AR": "إضافة محافظة "
     },
     {
         "name": "goves_edit",
-        "en": "Edit Gov",
-        "ar": "تعديل محافظة "
+        "EN": "Edit Gov",
+        "AR": "تعديل محافظة "
     },
     {
         "name": "goves_details",
-        "en": "Gov Details",
-        "ar": "تفاصيل المحافظة "
+        "EN": "Gov Details",
+        "AR": "تفاصيل المحافظة "
     },
     {
         "name": "goves_delete",
-        "en": "Delete Gov",
-        "ar": "حذف محافظة "
+        "EN": "Delete Gov",
+        "AR": "حذف محافظة "
     },
     {
         "name": "goves_name",
-        "en": "Gov Name",
-        "ar": "إسم المحافظة "
+        "EN": "Gov Name",
+        "AR": "إسم المحافظة "
     }
 
 

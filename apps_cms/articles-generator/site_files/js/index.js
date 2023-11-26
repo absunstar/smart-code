@@ -1,26 +1,27 @@
 app.connectScope(
   {
     app: [
-      { name: 'generator_sites', as: 'site', modal: '#sitesModal' },
-      { name: 'generator_yts', as: 'yts', modal: '#ytsModal' },
-      { name: 'youtubeChannelList', as: 'youtube', modal: '#youtubeModal' },
+      { name: 'generatorSites', as: 'site', modal: '#sitesModal' },
+      { name: 'generatorYts', as: 'yts', modal: '#ytsModal' },
+      { name: 'generatorYoutubeChannelList', as: 'youtube', modal: '#youtubeModal' },
     ],
   },
   ($scope, $http, $timeout, $interval) => {
+    $scope.setting = site.showObject('##data.#setting##');
+    $scope.categoryList = site.showObject('##data.#categoryList##');
+
+    console.log($scope.categoryList);
+
     SOCIALBROWSER.on('share', (e, obj) => {
       console.log(obj);
-      if (obj.type == 'youtubeChnnel') {
-        $scope.youtubeAdd({
-          url: obj.url,
-          title: obj.title,
-          image: obj.image,
-        });
-      } else if (obj.type == 'youtubeChnnelVideo') {
+      if (obj.type == 'generator-youtube-channel') {
+        $scope.youtubeAdd({ ...obj.channel });
+      } else if (obj.type == 'generator-youtube-video') {
         $scope.addArticle({
           url: obj.url,
           title: obj.title,
           image: obj.image,
-          channelTitle: obj.channelTitle,
+          channel: obj.channel,
           is_youtube: true,
         });
       }
@@ -83,7 +84,7 @@ app.connectScope(
         if (data.movies.length > 0) {
           data.movies.forEach((movie) => {
             console.log(movie);
-            $scope.addArticle({ ...movie, is_yts: true });
+            $scope.addArticle({ ...movie, is_yts: true, category: $scope.category });
           });
           setTimeout(() => {
             $scope.generateYTS();
@@ -108,15 +109,15 @@ app.connectScope(
       });
       $scope.youtubeItem = {};
     };
-    $scope.getYoutubeVideoList = function (youtubeItem) {
-      let code_injected = `SOCIALBROWSER.youtubeItem123 = '${SOCIALBROWSER.to123(youtubeItem)}';`;
+    $scope.getYoutubeVideoList = function (channel) {
+      let code_injected = `SOCIALBROWSER.youtubeItem123 = '${SOCIALBROWSER.to123(channel)}';`;
       code_injected += `/*##articles-generator/get-youtube-video-list.js*/`;
       code_injected += 'xxx_run();';
       SOCIALBROWSER.ipc('[open new popup]', {
         show: false,
         vip: true,
         timeout: 15 * 1000,
-        url: youtubeItem.url + '/videos',
+        url: channel.url + '/videos',
         eval: code_injected,
         allowAudio: false,
         allowDownload: false,

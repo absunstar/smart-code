@@ -13,13 +13,12 @@ app.controller('goves', function ($scope, $http, $timeout) {
       translatedList: [],
     };
 
-    $scope.defaultSettings.languagesList.forEach((l) => {
+    $scope.defaultSettings.languageList.forEach((l) => {
       if (l.active == true) {
         $scope.gov.translatedList.push({
           language: {
             id: l.id,
-            en: l.en,
-            ar: l.ar,
+            name: l.name,
           },
         });
       }

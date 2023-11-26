@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="!login" data-ng-app="myApp">
+<html lang="EN" x-permissions="!login" data-ng-app="myApp">
 
 <head x-import="cms/head.html"></head>
 
@@ -17,9 +17,9 @@
       <div class="tabs-header full">
 
         <a class="tab-link inline-block" ng-click="showTab($event,'#register_mobile')"
-          ng-hide="##setting.enableSendingMessagesMobile## != true && ##setting.enableSendingMessagesEmail## != true">
+          ng-hide="##data.setting.enableSendingMessagesMobile## != true && ##data.setting.enableSendingMessagesEmail## != true">
           ##word.register_with_mobile_number##</a>
-        <a class="tab-link inline-block" ng-show="##setting.allow_registration_email##"
+        <a class="tab-link inline-block" ng-show="##data.setting.allow_registration_email##"
           ng-click="showTab($event,'#register_email')">
           ##word.register_with_email##</a>
 
@@ -76,7 +76,7 @@
             <div class="row">
               <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
             </div>
-            <div class="row" ng-show="##setting.enableSendingMessagesMobile## != true">
+            <div class="row" ng-show="##data.setting.enableSendingMessagesMobile## != true">
               <i-country v="r" class="col4 center input-style" label="##word.country##" ng-model="user.country"
                 items="countriesList" display="name" ng-search="user.$countries"></i-country>
               <i-control v="r" class="col4 center input-style" label="##word.mobile_phone_number##" type="tel"
@@ -93,9 +93,9 @@
                 ng-model="show_password"> </i-checkbox>
             </div>
 
-            <button ng-click="register(user)" ng-show="##setting.enableSendingMessagesMobile## == true"
+            <button ng-click="register(user)" ng-show="##data.setting.enableSendingMessagesMobile## == true"
               class="login-button">##word.register_now## <i class="fa fa-user-plus"></i> </button>
-            <button ng-click="checkRegister(user)" ng-show="##setting.enableSendingMessagesMobile## != true"
+            <button ng-click="checkRegister(user)" ng-show="##data.setting.enableSendingMessagesMobile## != true"
               class="login-button">##word.register_now## <i class="fa fa-user-plus"></i> </button>
           </div>
 
@@ -150,7 +150,7 @@
               </i-control>
             </div>
 
-            <div class="row" ng-show="##setting.enableSendingMessagesEmail## != true">
+            <div class="row" ng-show="##data.setting.enableSendingMessagesEmail## != true">
               <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
             </div>
 
@@ -173,9 +173,9 @@
                 ng-model="show_password"> </i-checkbox>
             </div>
 
-            <button ng-click="register(user)" ng-show="##setting.enableSendingMessagesEmail## == true"
+            <button ng-click="register(user)" ng-show="##data.setting.enableSendingMessagesEmail## == true"
               class="login-button">##word.register_now## <i class="fa fa-user-plus"></i> </button>
-            <button ng-click="checkRegister(user)" ng-show="##setting.enableSendingMessagesEmail## != true"
+            <button ng-click="checkRegister(user)" ng-show="##data.setting.enableSendingMessagesEmail## != true"
               class="login-button">##word.register_now## <i class="fa fa-user-plus"></i> </button>
 
           </div>

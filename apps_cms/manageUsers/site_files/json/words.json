@@ -1,198 +1,198 @@
 [
   {
     "name": "manageUsers",
-    "en": "Manage Users",
-    "ar": "إدارة المستخدمين"
+    "EN": "Manage Users",
+    "AR": "إدارة المستخدمين"
   },
   {
     "name": "manageUsers_new",
-    "en": "New User",
-    "ar": "مستخدم جديد"
+    "EN": "New User",
+    "AR": "مستخدم جديد"
   },
   {
     "name": "manageUsers_add",
-    "en": "Add User",
-    "ar": "إضافة مستخدم "
+    "EN": "Add User",
+    "AR": "إضافة مستخدم "
   },
   {
     "name": "manageUsers_edit",
-    "en": "Edit User",
-    "ar": "تعديل مستخدم "
+    "EN": "Edit User",
+    "AR": "تعديل مستخدم "
   },
   {
     "name": "manageUsers_details",
-    "en": "User Details",
-    "ar": "تفاصيل المستخدم "
+    "EN": "User Details",
+    "AR": "تفاصيل المستخدم "
   },
   {
     "name": "manageUsers_delete",
-    "en": "Delete User",
-    "ar": "حذف مستخدم "
+    "EN": "Delete User",
+    "AR": "حذف مستخدم "
   },
   {
     "name": "manageUsers_name",
-    "en": "User Name",
-    "ar": "إسم المستخدم "
+    "EN": "User Name",
+    "AR": "إسم المستخدم "
   },
   {
     "name": "personal_info",
-    "en": "Personal Info",
-    "ar": "معلومات شخصية"
+    "EN": "Personal Info",
+    "AR": "معلومات شخصية"
   },
   {
     "name": "currentPassword",
-    "en": "Current Password",
-    "ar": "كلمة المرور الحالية"
+    "EN": "Current Password",
+    "AR": "كلمة المرور الحالية"
   },
   {
     "name": "current_password_incorrect",
-    "en": "The current password is incorrect",
-    "ar": "كلمة المرور الحالية غير صحيحة"
+    "EN": "The current password is incorrect",
+    "AR": "كلمة المرور الحالية غير صحيحة"
   },
   {
     "name": "there_no_products_cart",
-    "en": "There are no products in the cart",
-    "ar": "لا يوجد منتجات في السلة"
+    "EN": "There are no products in the cart",
+    "AR": "لا يوجد منتجات في السلة"
   },
   {
     "name": "newPassword",
-    "en": "New Password",
-    "ar": "كلمة المرور الجديدة"
+    "EN": "New Password",
+    "AR": "كلمة المرور الجديدة"
   },
   {
     "name": "basic_info",
-    "en": "Basic Info",
-    "ar": "معلومات أساسية"
+    "EN": "Basic Info",
+    "AR": "معلومات أساسية"
   },
   {
     "name": "companies_branches",
-    "en": "Companies and Branches",
-    "ar": "الشركات و الفروع"
+    "EN": "Companies and Branches",
+    "AR": "الشركات و الفروع"
   },
   {
     "name": "contact_info",
-    "en": "Contact Info",
-    "ar": "معلومات الإتصال"
+    "EN": "Contact Info",
+    "AR": "معلومات الإتصال"
   },
   {
     "name": "general_validity",
-    "en": "General Validity",
-    "ar": "صلاحيات عامة"
+    "EN": "General Validity",
+    "AR": "صلاحيات عامة"
   },
   {
     "name": "validity_ar",
-    "en": "Ar. Validity",
-    "ar": "الصلاحية بالعربي"
+    "EN": "Ar. Validity",
+    "AR": "الصلاحية بالعربي"
   },
   {
     "name": "validity_en",
-    "en": "En. Validity",
-    "ar": "الصلاحية بالإنجليزي"
+    "EN": "En. Validity",
+    "AR": "الصلاحية بالإنجليزي"
   },
   {
     "name": "public",
-    "en": "Public",
-    "ar": "عام"
+    "EN": "Public",
+    "AR": "عام"
   },
   {
     "name": "writer",
-    "en": "Writer",
-    "ar": "كاتب"
+    "EN": "Writer",
+    "AR": "كاتب"
   },
   {
     "name": "writers",
-    "en": "Writers",
-    "ar": "الكٌتّاب"
+    "EN": "Writers",
+    "AR": "الكٌتّاب"
   },
   {
     "name": "editor",
-    "en": "Editor",
-    "ar": "محرر"
+    "EN": "Editor",
+    "AR": "محرر"
   },
   {
     "name": "editors",
-    "en": "Editors",
-    "ar": "المحررين"
+    "EN": "Editors",
+    "AR": "المحررين"
   },
   {
     "name": "references",
-    "en": "References",
-    "ar": "المراجعين"
+    "EN": "References",
+    "AR": "المراجعين"
   },
   {
     "name": "reference",
-    "en": "Reference",
-    "ar": "مراجع"
+    "EN": "Reference",
+    "AR": "مراجع"
   },
   {
     "name": "photo_reference",
-    "en": "Photo reference",
-    "ar": "مراجع صور"
+    "EN": "Photo reference",
+    "AR": "مراجع صور"
   },
   {
     "name": "photo_references",
-    "en": "Photo references",
-    "ar": "مراجعين صور"
+    "EN": "Photo references",
+    "AR": "مراجعين صور"
   },
   {
     "name": "publisher",
-    "en": "Publisher",
-    "ar": "ناشر"
+    "EN": "Publisher",
+    "AR": "ناشر"
   },
   {
     "name": "publishers",
-    "en": "Publishers",
-    "ar": "الناشرين"
+    "EN": "Publishers",
+    "AR": "الناشرين"
   },
   {
     "name": "hr",
-    "en": "HR",
-    "ar": "شئون موظفين"
+    "EN": "HR",
+    "AR": "شئون موظفين"
   },
   {
     "name": "new_username",
-    "en": "New UserName",
-    "ar": "إسم المستخدم الجديد"
+    "EN": "New UserName",
+    "AR": "إسم المستخدم الجديد"
   },
   {
     "name": "user_type",
-    "en": "User Type",
-    "ar": "نوع المستخدم"
+    "EN": "User Type",
+    "AR": "نوع المستخدم"
   },
-  {"name" : "contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
-  {"name" : "ability_login" , "en" : "Ability login" , "ar" : "إمكانية تسجيل الدخول"},
+  {"name" : "contact_informations" , "EN" : "Contact Informaion" , "AR" : "بيانات الاتصال"},
+  {"name" : "ability_login" , "EN" : "Ability login" , "AR" : "إمكانية تسجيل الدخول"},
 
-  {"name" : "address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
-  {"name" : "website" , "en" : "Website" , "ar" : "الموقع الإلكتروني"},
-  {"name" : "social_snap" , "en" : "Snap Account" , "ar" : "حساب السناب"},
-  {"name" : "social_instagram" , "en" : "Instagram Account" , "ar" : "حساب إنستجرام"},
-  {"name" : "social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
-  {"name" : "social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
-  {"name" : "social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
+  {"name" : "address_informations" , "EN" : "Address Informaion" , "AR" : "بيانات العناوين"},
+  {"name" : "website" , "EN" : "Website" , "AR" : "الموقع الإلكتروني"},
+  {"name" : "social_snap" , "EN" : "Snap Account" , "AR" : "حساب السناب"},
+  {"name" : "social_instagram" , "EN" : "Instagram Account" , "AR" : "حساب إنستجرام"},
+  {"name" : "social_facebook_account" , "EN" : "FaceBook Account" , "AR" : "حساب الفيس بوك"},
+  {"name" : "social_twitter_account" , "EN" : "Twitter Account" , "AR" : "حساب تويتر"},
+  {"name" : "social_google_account" , "EN" : "Google Account" , "AR" : "حساب جوجل"},
 
   {
     "name": "web_and_social_accounts",
-    "en": "Web And Social Accounts",
-    "ar": "المواقع والحسابات الاجتماعية"
+    "EN": "Web And Social Accounts",
+    "AR": "المواقع والحسابات الاجتماعية"
   },
   {
     "name": "contact_and_addresses",
-    "en": "Contact and Addresses",
-    "ar": "الاتصال والعناوين"
+    "EN": "Contact and Addresses",
+    "AR": "الاتصال والعناوين"
   },
   {
     "name": "accounting",
-    "en": "Accounting",
-    "ar": "حسابات"
+    "EN": "Accounting",
+    "AR": "حسابات"
   },
   {
     "name": "reports",
-    "en": "Reports",
-    "ar": "تقارير"
+    "EN": "Reports",
+    "AR": "تقارير"
   },
   {
     "name": "screens_management",
-    "en": "Screens management",
-    "ar": "إدارة الشاشات"
+    "EN": "Screens management",
+    "AR": "إدارة الشاشات"
   }
 ]

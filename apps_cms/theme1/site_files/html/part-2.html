@@ -1,6 +1,6 @@
 <div class="adsWithBreakingNews row justify-content-center align-items-start p-0 m-0 mt-5 mb-5">
   <div
-    x-setting="showSideAd"
+    x-data="setting.showSideAd"
     x-import="theme1/ad-side.html"
     class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
   ></div>
@@ -13,12 +13,12 @@
       </div>
       <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end gy-2 p-0 m-0">
         <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-        <div x-setting="showFooterAd" x-import="theme1/ad-footer.html"></div>
+        <div x-data="setting.showFooterAd" x-import="theme1/ad-footer.html"></div>
       </div>
     </div>
   </div>
   <div
-    x-setting="showSideAd"
+    x-data="setting.showSideAd"
     x-import="theme1/ad-side.html"
     class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
   ></div>

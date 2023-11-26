@@ -1,47 +1,47 @@
 [
   {
     "name": "videos_gallery",
-    "en": "Videos Gallery",
-    "ar": "معرض فيديوهات"
+    "EN": "Videos Gallery",
+    "AR": "معرض فيديوهات"
   },
   {
     "name": "videoGallery",
-    "en": "Video Gallery",
-    "ar": "معرض فيديو"
+    "EN": "Video Gallery",
+    "AR": "معرض فيديو"
   },
   {
     "name": "video_gallery_new",
-    "en": "New Video Gallery",
-    "ar": "معرض فيديو جديد"
+    "EN": "New Video Gallery",
+    "AR": "معرض فيديو جديد"
   },
   {
     "name": "video_gallery_add",
-    "en": "Add Video Gallery",
-    "ar": "إضافة معرض فيديو "
+    "EN": "Add Video Gallery",
+    "AR": "إضافة معرض فيديو "
   },
   {
     "name": "video_gallery_edit",
-    "en": "Edit Video Gallery",
-    "ar": "تعديل معرض فيديو "
+    "EN": "Edit Video Gallery",
+    "AR": "تعديل معرض فيديو "
   },
   {
     "name": "video_gallery_details",
-    "en": "Video Gallery Details",
-    "ar": "تفاصيل معرض فيديو "
+    "EN": "Video Gallery Details",
+    "AR": "تفاصيل معرض فيديو "
   },
   {
     "name": "video_gallery_delete",
-    "en": "Delete Video Gallery",
-    "ar": "حذف معرض فيديو "
+    "EN": "Delete Video Gallery",
+    "AR": "حذف معرض فيديو "
   },
   {
     "name": "video_gallery_name",
-    "en": "Video Gallery Name",
-    "ar": "إسم معرض فيديو"
+    "EN": "Video Gallery Name",
+    "AR": "إسم معرض فيديو"
   },
   {
     "name": "video_gallery_notes",
-    "en": "Notes Video Gallery",
-    "ar": "ملاحظات معرض فيديو "
+    "EN": "Notes Video Gallery",
+    "AR": "ملاحظات معرض فيديو "
   }
 ]

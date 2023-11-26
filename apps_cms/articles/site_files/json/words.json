@@ -1,237 +1,237 @@
 [
   {
     "name": "articles",
-    "en": "Articles",
-    "ar": "الأخبار"
+    "EN": "Articles",
+    "AR": "الأخبار"
   },
   {
     "name": "Has Audio",
-    "en": "Has Audio",
-    "ar": "يحتوي على مقطع صوتي"
+    "EN": "Has Audio",
+    "AR": "يحتوي على مقطع صوتي"
   },
   {
     "name": "Has Video",
-    "en": "Has Video",
-    "ar": "يحتوي على فيديو"
+    "EN": "Has Video",
+    "AR": "يحتوي على فيديو"
   },
   {
     "name": "Has Reading Time",
-    "en": "Has Reading Time",
-    "ar": "يحتوي على وقت قراءة"
+    "EN": "Has Reading Time",
+    "AR": "يحتوي على وقت قراءة"
   },
   {
     "name": "Reading Time",
-    "en": "Reading Time",
-    "ar": "وقت القراءة"
+    "EN": "Reading Time",
+    "AR": "وقت القراءة"
   },
   {
     "name": "Related Topics",
-    "en": "Related Topics",
-    "ar": "مواضيع ذات صلة"
+    "EN": "Related Topics",
+    "AR": "مواضيع ذات صلة"
   },
   {
     "name": "Number Of words",
-    "en": "Number Of words",
-    "ar": "عدد الكلمات"
+    "EN": "Number Of words",
+    "AR": "عدد الكلمات"
   },
   {
     "name": "Number Of letters",
-    "en": "Number Of letters",
-    "ar": "عدد الحروف"
+    "EN": "Number Of letters",
+    "AR": "عدد الحروف"
   },
   {
     "name": "Manual related topics",
-    "en": "Manual related topics",
-    "ar": "ربط يدوي بموضوعات"
+    "EN": "Manual related topics",
+    "AR": "ربط يدوي بموضوعات"
   },
   {
     "name": "Show in Main Slider",
-    "en": "Show in Main Slider",
-    "ar": "يظهر في الشريط الرئيسي"
+    "EN": "Show in Main Slider",
+    "AR": "يظهر في الشريط الرئيسي"
   },
   {
     "name": "Hide from search engines",
-    "en": "Hide from search engines",
-    "ar": "إخفاء من محركات البحث"
+    "EN": "Hide from search engines",
+    "AR": "إخفاء من محركات البحث"
   },
   {
     "name": "Pin Article",
-    "en": "Pin Article",
-    "ar": "تثبيت المقال"
+    "EN": "Pin Article",
+    "AR": "تثبيت المقال"
   },
   {
     "name": "Location Activated",
-    "en": "Location Activated",
-    "ar": "تفعيل الموقع"
+    "EN": "Location Activated",
+    "AR": "تفعيل الموقع"
   },
   {
     "name": "Articles",
-    "en": "Articles",
-    "ar": "الأخبار"
+    "EN": "Articles",
+    "AR": "الأخبار"
   },
   {
     "name": "article",
-    "en": "Article",
-    "ar": "الخبر"
+    "EN": "Article",
+    "AR": "الخبر"
   },
   {
     "name": "articles_new",
-    "en": "New Article",
-    "ar": "إضافة خبر جديد"
+    "EN": "New Article",
+    "AR": "إضافة خبر جديد"
   },
   {
     "name": "articles_add",
-    "en": "Add Article",
-    "ar": "خبر جديد"
+    "EN": "Add Article",
+    "AR": "خبر جديد"
   },
   {
     "name": "articles_edit",
-    "en": "Edit Article",
-    "ar": "تعديل خبر "
+    "EN": "Edit Article",
+    "AR": "تعديل خبر "
   },
   {
     "name": "show_image",
-    "en": "Show image",
-    "ar": "إظهار الصورة"
+    "EN": "Show image",
+    "AR": "إظهار الصورة"
   },
   {
     "name": "articles_details",
-    "en": "Article Details",
-    "ar": "تفاصيل الخبر "
+    "EN": "Article Details",
+    "AR": "تفاصيل الخبر "
   },
   {
     "name": "articles_delete",
-    "en": "Delete Article",
-    "ar": "حذف خبر "
+    "EN": "Delete Article",
+    "AR": "حذف خبر "
   },
   {
     "name": "keywords",
-    "en": "Keywords",
-    "ar": "كلمات مفتاحية"
+    "EN": "Keywords",
+    "AR": "كلمات مفتاحية"
   },
   {
     "name": "articles_name",
-    "en": "Article Name",
-    "ar": "إسم الخبر "
+    "EN": "Article Name",
+    "AR": "إسم الخبر "
   },
   {
     "name": "article_title",
-    "en": "Article Title",
-    "ar": "عنوان المقال"
+    "EN": "Article Title",
+    "AR": "عنوان المقال"
   },
   {
     "name": "article_template",
-    "en": "Article Template",
-    "ar": "قالب المقال"
+    "EN": "Article Template",
+    "AR": "قالب المقال"
   },
   {
     "name": "create_article",
-    "en": "Create Article",
-    "ar": "إنشاء خبر"
+    "EN": "Create Article",
+    "AR": "إنشاء خبر"
   },
   {
     "name": "social_media",
-    "en": "SocialMedia",
-    "ar": "سوشيال ميديا"
+    "EN": "SocialMedia",
+    "AR": "سوشيال ميديا"
   },
   {
     "name": "social_media_activation",
-    "en": "SocialMedia activation",
-    "ar": "تفعيل السوشيال ميديا"
+    "EN": "SocialMedia activation",
+    "AR": "تفعيل السوشيال ميديا"
   },
   {
     "name": "external",
-    "en": "External",
-    "ar": "الغلاف الخارجي"
+    "EN": "External",
+    "AR": "الغلاف الخارجي"
   },
   {
     "name": "external_activation",
-    "en": "External activation",
-    "ar": "تفعيل الغلاف الخارجي"
+    "EN": "External activation",
+    "AR": "تفعيل الغلاف الخارجي"
   },
   {
     "name": "Number Of Views",
-    "en": "Number Of Views",
-    "ar": "عدد المشاهدات"
+    "EN": "Number Of Views",
+    "AR": "عدد المشاهدات"
   },
   {
     "name": "Number Of Likes",
-    "en": "Number Of Likes",
-    "ar": "عدد اللايكات"
+    "EN": "Number Of Likes",
+    "AR": "عدد اللايكات"
   },
   {
     "name": "Number Of Comments",
-    "en": "Number Of Comments",
-    "ar": "عدد التعليقات"
+    "EN": "Number Of Comments",
+    "AR": "عدد التعليقات"
   },
   {
     "name": "Number Of Posts",
-    "en": "Number Of Posts",
-    "ar": "عدد المشاركات"
+    "EN": "Number Of Posts",
+    "AR": "عدد المشاركات"
   },
   {
     "name": "Number Of Ratings",
-    "en": "Number Of Ratings",
-    "ar": "عدد التقييمات"
+    "EN": "Number Of Ratings",
+    "AR": "عدد التقييمات"
   },
   {
     "name": "Actual Number",
-    "en": "Actual Number",
-    "ar": "العدد الفعلي"
+    "EN": "Actual Number",
+    "AR": "العدد الفعلي"
   },
   {
     "name": "Dummy Of Number",
-    "en": "Dummy Of Number",
-    "ar": "العدد الوهمي"
+    "EN": "Dummy Of Number",
+    "AR": "العدد الوهمي"
   },
   {
     "name": "Apparent Of Number",
-    "en": "Apparent number",
-    "ar": "العدد الظاهر"
+    "EN": "Apparent number",
+    "AR": "العدد الظاهر"
   },
   {
     "name": "auto_translate",
-    "en": "Auto Translate",
-    "ar": "ترجمة تلقائي"
+    "EN": "Auto Translate",
+    "AR": "ترجمة تلقائي"
   },
   {
     "name": "subscribers_only",
-    "en": "For subscribers only",
-    "ar": "للمشتركين فقط"
+    "EN": "For subscribers only",
+    "AR": "للمشتركين فقط"
   },
   {
     "name": "special_men",
-    "en": "Special for men",
-    "ar": "خاص للرجال"
+    "EN": "Special for men",
+    "AR": "خاص للرجال"
   },
   {
     "name": "special_women",
-    "en": "Special for women",
-    "ar": "خاص للنساء"
+    "EN": "Special for women",
+    "AR": "خاص للنساء"
   },
   {
     "name": "appear_in_urgent",
-    "en": "Appear in urgent",
-    "ar": "ظهور في عاجل"
+    "EN": "Appear in urgent",
+    "AR": "ظهور في عاجل"
   },
   {
     "name": "Now",
-    "en": "Now",
-    "ar": "عاجل"
+    "EN": "Now",
+    "AR": "عاجل"
   },
   {
     "name": "exclude_most_viewed",
-    "en": "Exclude from most viewed",
-    "ar": "إستبعاد من الأكثر مشاهدة"
+    "EN": "Exclude from most viewed",
+    "AR": "إستبعاد من الأكثر مشاهدة"
   },
   {
     "name": "exclude_home_page",
-    "en": "Exclude from home page",
-    "ar": "إستبعاد من الصفحة الرئيسية"
+    "EN": "Exclude from home page",
+    "AR": "إستبعاد من الصفحة الرئيسية"
   },
   {
     "name": "has Audio",
-    "en": "has Audio",
-    "ar": "يحتوى على ملف صوتى"
+    "EN": "has Audio",
+    "AR": "يحتوى على ملف صوتى"
   }
 ]

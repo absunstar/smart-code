@@ -2,7 +2,9 @@ n = new Date();
 y = n.getFullYear();
 m = n.getMonth() + 1;
 d = n.getDate();
-document.getElementById('todaydateXlscreen').innerHTML = m + '/' + d + '/' + y;
+if ((toDay = document.getElementById('todaydateXlscreen'))) {
+  toDay.innerHTML = m + '/' + d + '/' + y;
+}
 
 function playVideo(src) {
   if ((a = document.querySelector('#videopalyer'))) {
@@ -75,80 +77,85 @@ function myFunction(pt) {
 }
 myFunction(pt);
 
-let closeButton = document.querySelector('.closeButton');
-let burgermenuoverlay = document.getElementById('burgermenuoverlay');
 let burgermenuToggle = document.getElementById('burgermenuToggle');
+if (burgermenuToggle) {
+  let closeButton = document.querySelector('.closeButton');
+  let burgermenuoverlay = document.getElementById('burgermenuoverlay');
 
-closeButton.addEventListener('mousedown', () => {
-  burgermenuoverlay.classList.remove('showAnddisplay');
-  console.log('test');
-});
-burgermenuToggle.addEventListener('mousedown', () => {
-  burgermenuoverlay.classList.add('showAnddisplay');
-  console.log('test');
-});
-
-let closeSButton = document.querySelectorAll('#closeSButton');
-let albumimageslider = document.querySelectorAll('#albumimageslider');
-let imagesFile = document.querySelectorAll('#imagesFile');
-for (let i = 0; i < imagesFile.length; i++) {
-  imagesFile[i].addEventListener('mousedown', () => {
-    albumimageslider[i].classList.add('showAnddisplay');
+  closeButton.addEventListener('mousedown', () => {
+    burgermenuoverlay.classList.remove('showAnddisplay');
     console.log('test');
   });
-  for (let i = 0; i < closeSButton.length; i++) {
-    closeSButton[i].addEventListener('mousedown', () => {
-      albumimageslider[i].classList.remove('showAnddisplay');
-      console.log('test');
-    });
-  }
+  burgermenuToggle.addEventListener('mousedown', () => {
+    burgermenuoverlay.classList.add('showAnddisplay');
+    console.log('test');
+  });
 }
 
-let IsliderContainer = document.querySelectorAll('.imageslider-slider-container');
-let IinnerSlider = document.querySelectorAll('.imageslider-inner-slider');
-let albumImageSlider = document.querySelectorAll('.albumimageslider');
+let albumimageslider = document.querySelectorAll('#albumimageslider');
+if (albumimageslider) {
+  let closeSButton = document.querySelectorAll('#closeSButton');
 
-let Spressed = false;
-let ISstartISx;
-let ISx;
-for (let i = 0; i < albumImageSlider.length; i++) {
-  IsliderContainer[i].addEventListener('mousedown', (e) => {
-    Spressed = true;
-    ISstartISx = e.offsetX - IinnerSlider[i].offsetLeft;
-    IsliderContainer[i].style.cursor = 'grabbing';
-    IScheckBoundary();
-  });
-
-  IsliderContainer[i].addEventListener('mouseenter', () => {
-    IsliderContainer[i].style.cursor = 'grab';
-  });
-
-  IsliderContainer[i].addEventListener('mouseup', () => {
-    IsliderContainer[i].style.cursor = 'grab';
-    Spressed = false;
-  });
-
-  IsliderContainer[i].addEventListener('mousemove', (e) => {
-    if (!Spressed) return;
-    e.preventDefault();
-
-    ISx = e.offsetX;
-
-    IinnerSlider[i].style.left = `${ISx - ISstartISx}px`;
-  });
-
-  const IScheckBoundary = () => {
-    let outer = IsliderContainer[i].getBoundingClientRect();
-    let inner = IinnerSlider[i].getBoundingClientRect();
-
-    if (parseInt(IinnerSlider[i].style.left) > 0) {
-      IinnerSlider[i].style.left = '0px';
+  let imagesFile = document.querySelectorAll('#imagesFile');
+  for (let i = 0; i < imagesFile.length; i++) {
+    imagesFile[i].addEventListener('mousedown', () => {
+      albumimageslider[i].classList.add('showAnddisplay');
+      console.log('test');
+    });
+    for (let i = 0; i < closeSButton.length; i++) {
+      closeSButton[i].addEventListener('mousedown', () => {
+        albumimageslider[i].classList.remove('showAnddisplay');
+        console.log('test');
+      });
     }
+  }
 
-    if (inner.right < outer.right) {
-      IinnerSlider[i].style.left = `-${inner.width - outer.width}px`;
-    }
-  };
+  let IsliderContainer = document.querySelectorAll('.imageslider-slider-container');
+  let IinnerSlider = document.querySelectorAll('.imageslider-inner-slider');
+  let albumImageSlider = document.querySelectorAll('.albumimageslider');
+
+  let Spressed = false;
+  let ISstartISx;
+  let ISx;
+  for (let i = 0; i < albumImageSlider.length; i++) {
+    IsliderContainer[i].addEventListener('mousedown', (e) => {
+      Spressed = true;
+      ISstartISx = e.offsetX - IinnerSlider[i].offsetLeft;
+      IsliderContainer[i].style.cursor = 'grabbing';
+      IScheckBoundary();
+    });
+
+    IsliderContainer[i].addEventListener('mouseenter', () => {
+      IsliderContainer[i].style.cursor = 'grab';
+    });
+
+    IsliderContainer[i].addEventListener('mouseup', () => {
+      IsliderContainer[i].style.cursor = 'grab';
+      Spressed = false;
+    });
+
+    IsliderContainer[i].addEventListener('mousemove', (e) => {
+      if (!Spressed) return;
+      e.preventDefault();
+
+      ISx = e.offsetX;
+
+      IinnerSlider[i].style.left = `${ISx - ISstartISx}px`;
+    });
+
+    const IScheckBoundary = () => {
+      let outer = IsliderContainer[i].getBoundingClientRect();
+      let inner = IinnerSlider[i].getBoundingClientRect();
+
+      if (parseInt(IinnerSlider[i].style.left) > 0) {
+        IinnerSlider[i].style.left = '0px';
+      }
+
+      if (inner.right < outer.right) {
+        IinnerSlider[i].style.left = `-${inner.width - outer.width}px`;
+      }
+    };
+  }
 }
 
 let articlestimeItems = document.querySelectorAll('.articlestimeItems');

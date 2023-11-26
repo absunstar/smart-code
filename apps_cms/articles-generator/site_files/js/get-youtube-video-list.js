@@ -2,10 +2,10 @@ function xxx_run() {
   SOCIALBROWSER.onLoad(() => {
     alert('Collect Channel Video List');
     if (SOCIALBROWSER.youtubeItem123) {
-      SOCIALBROWSER.youtubeItem = JSON.parse(SOCIALBROWSER.from123(SOCIALBROWSER.youtubeItem123));
+      SOCIALBROWSER.youtubeChannel = JSON.parse(SOCIALBROWSER.from123(SOCIALBROWSER.youtubeItem123));
       delete window.youtubeItem123;
     } else {
-      SOCIALBROWSER.youtubeItem = { title: 'xxxxxxxxxxxxx' };
+      SOCIALBROWSER.youtubeChannel = { title: 'xxxxxxxxxxxxx' };
     }
     let list = [];
     let scroll_number = 500;
@@ -27,7 +27,7 @@ function xxx_run() {
           list.push({
             url: url,
           });
-          SOCIALBROWSER.share({ type: 'youtubeChnnelVideo', url: url, image: image, title: title, channelTitle: SOCIALBROWSER.youtubeItem.title });
+          SOCIALBROWSER.share({ type: 'generator-youtube-video', url: url, image: image, title: title, channel: SOCIALBROWSER.youtubeChannel });
         }
       });
       window.scrollTo(0, scroll_number);

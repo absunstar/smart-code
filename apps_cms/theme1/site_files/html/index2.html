@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="EN" ng-app="myApp">
   <head x-import="theme1/head.html"> </head>
 
   <body ng-controller="mainController">
     <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
 
     <div id="mainContent" class="container d-flex flex-column">
-      <div x-setting="showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
+      <div x-data="setting.showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
 
-      <div x-setting="showTopAd" x-import="theme1/ad-top.html"></div>
+      <div x-data="setting.showTopAd" x-import="theme1/ad-top.html"></div>
 
       <div class="row d-flex flex-column loaded" ng-repeat="category in page.categories">
         <div class="breakingNewsSection">

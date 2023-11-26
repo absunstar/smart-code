@@ -9,7 +9,7 @@ body {
   overflow-x: hidden;
   text-align: right;
 }
-body.en {
+body.ltr{
   text-align: left;
 }
 
@@ -19,6 +19,7 @@ body.en {
   min-height: min(300px, 50vh);
   max-width: min(80vw, 100%);
   background: var(--background2x);
+  margin: 0 auto ;
   margin-bottom: 10px;
 }
 .free ins {
@@ -484,7 +485,7 @@ a {
 }
 
 .mainslide {
-  width: 98%;
+  width: 100%;
   height: 70vh;
   margin-bottom: 10px !important;
   background-repeat: round;

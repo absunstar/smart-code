@@ -1,4 +1,4 @@
-<div x-setting="showFooter" class="row col-12 topFooter d-flex flex-column flex-md-row justify-content-start align-items-start p-md-5 p-4 gap-4">
+<div x-data="setting.showFooter" class="row col-12 topFooter d-flex flex-column flex-md-row justify-content-start align-items-start p-md-5 p-4 gap-4">
   <div class="col-12 col-lg-4 col-md-6 col-sm-10 d-flex flex-column flex-md-column align-content-md-start align-items-md-start align-content-start align-items-center gap-4">
     <div class="footerLogo">
       <a href="/">
@@ -25,10 +25,10 @@
     </div>
   </div>
   <div class="col col-lg-4 col-md-5 col-sm-10 d-flex flex-row justify-content-center align-items-center justify-content-md-start align-items-md-start">
-    <div x-setting="showFooterAd" x-import="theme1/ad-footer.html"></div>
+    <div x-data="setting.showFooterAd" x-import="theme1/ad-footer.html"></div>
   </div>
   <div class="col col-lg-3 col-md-6 col-sm-10 d-flex flex-column justify-content-start align-items-start gap-4 mt-md-4">
-    <div x-setting="showFollowUs" class="followUs w-100 d-flex flex-column justify-content-start align-items-start gap-2">
+    <div x-data="setting.showFollowUs" class="followUs w-100 d-flex flex-column justify-content-start align-items-start gap-2">
       <p>تابعنا على</p>
       <div class="w-100 d-flex flex-row justify-content-between gap-4">
         <div class="socialMediaIcon">
@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div x-setting="showEmailService" class="subscripe w-100 d-flex flex-column justify-content-start align-items-start gap-2">
+    <div x-data="setting.showEmailService" class="subscripe w-100 d-flex flex-column justify-content-start align-items-start gap-2">
       <div class="mb-3 w-100 d-flex flex-column justify-content-start align-items-start gap-2">
         <label for="exampleFormControlInput1" class="w-100 form-label suscripeLabel d-flex flex-row justify-content-start align-items-start"> ##word.Subscribe to our Email Service##</label>
         <input type="email" class="orm-control" id="exampleFormControlInput1" placeholder="##word.Write Your Email##" />
@@ -66,7 +66,7 @@
     </div>
   </div>
 </div>
-<div x-setting="showFooter" class="col bottomFooter d-flex flex-column justify-content-center align-items-center p-3 pb-5 pb-md-3">
+<div x-data="setting.showFooter" class="col bottomFooter d-flex flex-column justify-content-center align-items-center p-3 pb-5 pb-md-3">
   <a href="//social-browser.com" target="_blank"> ##word.Support By Social Browser## </a>
 </div>
 

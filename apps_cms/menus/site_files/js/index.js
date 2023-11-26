@@ -2,8 +2,8 @@ app.controller('menus', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
   $scope.menu = {};
-  $scope.defaultSettings = site.showObject(`##data.#setting##`);
-
+  $scope.siteSetting = site.showObject('##data.#setting##');
+  
   $scope.displayAddMenu = function () {
     $scope.error = '';
     $scope.mode = 'add';
@@ -11,13 +11,12 @@ app.controller('menus', function ($scope, $http, $timeout) {
       active: true,
       translatedList: [],
     };
-    $scope.defaultSettings.languagesList.forEach((l) => {
+    $scope.siteSetting.languageList.forEach((l) => {
       if (l.active == true) {
         $scope.menu.translatedList.push({
           language: {
             id: l.id,
-            en: l.en,
-            ar: l.ar,
+            name: l.name,
           },
           showImage: true,
         });
@@ -162,13 +161,12 @@ app.controller('menus', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.menu = response.data.doc;
-          $scope.defaultSettings.languagesList.forEach((l) => {
+          $scope.siteSetting.languageList.forEach((l) => {
             if (l.active == true && !$scope.menu.translatedList.find((t) => t.language.id == l.id)) {
               $scope.menu.translatedList.push({
                 language: {
                   id: l.id,
-                  en: l.en,
-                  ar: l.ar,
+                  name: l.name,
                 },
                 showImage: true,
               });
@@ -395,13 +393,12 @@ app.controller('menus', function ($scope, $http, $timeout) {
   $scope.showAddSubMenu = function () {
     $scope.error = '';
     $scope.subMenu = { $mode: 'add', active: true, translatedList: [] };
-    $scope.defaultSettings.languagesList.forEach((l) => {
+    $scope.siteSetting.languageList.forEach((l) => {
       if (l.active == true) {
         $scope.subMenu.translatedList.push({
           language: {
             id: l.id,
-            en: l.en,
-            ar: l.ar,
+            name: l.name,
           },
           showImage: true,
         });

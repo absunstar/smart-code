@@ -6,7 +6,6 @@
     </div>
 
     <div class="modal-body">
-      <i-button ng-click="generateYTS()" label="Generate Posts"></i-button>
       <fieldset>
         <legend>##word.New Youtube Channel##</legend>
         <div class="row">
@@ -19,16 +18,23 @@
           <tr>
             <th>##word.logo##</th>
             <th>##word.title##</th>
-            <th>##word.URL##</th>
+            <th>##word.Options##</th>
             <th>##word.Actions##</th>
           </tr>
-          <tr ng-repeat="yt in youtubeList">
-            <td><img class="logo" ng-src="{{yt.image.url}}" /></td>
-            <td class="bold">{{yt.title}}</td>
-            <td>{{yt.url}}</td>
+          <tr ng-repeat="channel in youtubeList">
+            <td><img class="logo" ng-src="{{channel.image.url}}" /></td>
+            <td class="bold">
+              <p>{{channel.title}}</p>
+              <a href="{{channel.url}}"></a>
+            </td>
             <td>
-              <i-button type="delete" ng-click="youtubeDelete(yt)"></i-button>
-              <i-button type="search" ng-click="getYoutubeVideoList(yt)"></i-button>
+              <i-list label="##word.category##" ng-model="channel.category" items="categoryList"></i-list>
+              <i-control label="##word.host##" ng-model="channel.host"></i-control>
+            </td>
+            <td>
+              <i-button label="##word.Load Videos##" type="search" ng-click="getYoutubeVideoList(channel)"></i-button>
+              <i-button type="save" ng-click="youtubeUpdate(channel)"></i-button>
+              <i-button type="delete" ng-click="youtubeDelete(channel)"></i-button>
             </td>
           </tr>
         </table>
@@ -37,7 +43,7 @@
 
     <div class="modal-footer center">
       <h2 class="error">{{error}}</h2>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#youtubeModal')"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#youtubeModal')"></i-button>
     </div>
   </div>
 </div>

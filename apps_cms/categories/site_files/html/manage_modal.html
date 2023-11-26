@@ -24,15 +24,15 @@
       <div class="form">
         <div class="row">
           <div class="article-part col5">
-            <i-checkbox label="Active" ng-model="categories.active"> </i-checkbox>
-            <i-control label="##word.Host##" ng-model="categories.host"></i-control>
+            <i-checkbox label="Active" ng-model="category.active"> </i-checkbox>
+            <i-control label="##word.Host##" ng-model="category.host"></i-control>
           </div>
         </div>
         <br />
         <div class="row">
           <div class="article-part">
-            <fieldset ng-show="content.active" ng-repeat="content in categories.translatedList track by $index">
-              <legend>{{content.language.##session.lang##}}</legend>
+            <fieldset ng-show="content.language.active" ng-repeat="content in category.translatedList track by $index">
+              <legend>{{content.language.name}}</legend>
 
               <div class="row">
                 <div class="col8">
@@ -42,8 +42,10 @@
                   <div class="row">
                     <i-textarea ng-model="content.description" label="##word.description##"> </i-textarea>
                   </div>
-
-                  <div class="col8">
+                  <div class="row">
+                    <i-control label="##word.More Text##" ng-model="content.moreText"></i-control>
+                  </div>
+                  <div class="row">
                     <div class="article-part">
                       <i-control class="blue bold" label="##word.keywords##" ng-keydown="addKeyWords($event , lang)" ng-model="content.$keyword"> </i-control>
                       <div class="row">
@@ -284,17 +286,17 @@
             </tr>
             <tr>
               <td class="center">
-                <p class="blue">{{categories.addUserInfo.name}}</p>
-                <small class="green"> {{categories.addUserInfo.date |date:"hh:mm"}} </small>
-                <small> {{categories.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
-                <p class="bold">IP : {{categories.addUserInfo.ip}}</p>
+                <p class="blue">{{category.addUserInfo.name}}</p>
+                <small class="green"> {{category.addUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{category.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{category.addUserInfo.ip}}</p>
               </td>
 
               <td class="center">
-                <p class="blue">{{categories.editUserInfo.name}}</p>
-                <small class="green"> {{categories.editUserInfo.date |date:"hh:mm"}} </small>
-                <small> {{categories.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
-                <p class="bold">IP : {{categories.editUserInfo.ip}}</p>
+                <p class="blue">{{category.editUserInfo.name}}</p>
+                <small class="green"> {{category.editUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{category.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{category.editUserInfo.ip}}</p>
               </td>
             </tr>
           </table>
@@ -306,8 +308,8 @@
       <h2 class="center red">{{error}}</h2>
       <h2 class="green center">{{success}}</h2>
       <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addCategories()"></i-button>
-      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateCategories(categories)"></i-button>
-      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteCategories(categories)"> </i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateCategories(category)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteCategories(category)"> </i-button>
       <i-button type="close" label="##word.close##" onclick="site.hideModal( '#categoriesManageModal')"></i-button>
     </div>
   </div>

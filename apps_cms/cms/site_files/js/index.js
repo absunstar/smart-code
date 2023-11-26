@@ -280,7 +280,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
 
   $scope.loadSubCategory = function (c) {
     if (c && c.id) {
-      $scope.topParentCategoriesList.forEach((_c) => {
+      $scope.topParentcategoryList.forEach((_c) => {
         _c.$isSelected = false;
       });
       c.$isSelected = true;
@@ -289,13 +289,13 @@ app.controller('cms', function ($scope, $http, $timeout) {
       $scope.search.categoryId = c.id;
       $scope.search.categoryName = c.name;
       $scope.searchAll($scope.search);
-      $scope.subCategoriesList = [];
-      $scope.subCategoriesList2 = [];
-      $scope.subCategoriesList3 = [];
-      $scope.subCategoriesList4 = [];
-      $scope.categoriesList.forEach((_c) => {
+      $scope.subcategoryList = [];
+      $scope.subcategoryList2 = [];
+      $scope.subcategoryList3 = [];
+      $scope.subcategoryList4 = [];
+      $scope.categoryList.forEach((_c) => {
         if (c.id == _c.parentId) {
-          $scope.subCategoriesList.push(_c);
+          $scope.subcategoryList.push(_c);
         }
       });
       $scope.getContentList({ which: 13 }, $scope.search);
@@ -315,12 +315,12 @@ app.controller('cms', function ($scope, $http, $timeout) {
     $scope.search.categoryId = c.id;
     $scope.search.categoryName = c.name;
     $scope.searchAll($scope.search);
-    $scope.subCategoriesList2 = [];
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
-    $scope.categoriesList.forEach((_c) => {
+    $scope.subcategoryList2 = [];
+    $scope.subcategoryList3 = [];
+    $scope.subcategoryList4 = [];
+    $scope.categoryList.forEach((_c) => {
       if (c.id == _c.parentId) {
-        $scope.subCategoriesList2.push(_c);
+        $scope.subcategoryList2.push(_c);
       }
     });
     $scope.getContentList({ which: 13 }, $scope.search);
@@ -338,11 +338,11 @@ app.controller('cms', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.search.categoryId = c.id;
     $scope.searchAll($scope.search);
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
-    $scope.categoriesList.forEach((_c) => {
+    $scope.subcategoryList3 = [];
+    $scope.subcategoryList4 = [];
+    $scope.categoryList.forEach((_c) => {
       if (c.id == _c.parentId) {
-        $scope.subCategoriesList3.push(_c);
+        $scope.subcategoryList3.push(_c);
       }
     });
     $scope.getContentList({ which: 13 }, $scope.search);
@@ -361,10 +361,10 @@ app.controller('cms', function ($scope, $http, $timeout) {
     $scope.search.categoryId = c.id;
 
     $scope.searchAll($scope.search);
-    $scope.subCategoriesList4 = [];
-    $scope.categoriesList.forEach((_c) => {
+    $scope.subcategoryList4 = [];
+    $scope.categoryList.forEach((_c) => {
       if (c.id == _c.parentId) {
-        $scope.subCategoriesList4.push(_c);
+        $scope.subcategoryList4.push(_c);
       }
     });
     $scope.getContentList({ which: 13 }, $scope.search);

@@ -2,7 +2,8 @@ app.controller('categories', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.mode = 'add';
 
-  $scope.categories = {};
+  $scope.category = {};
+  $scope.siteSetting = site.showObject('##data.#setting##');
 
   $scope.displayAddCategories = function () {
     $scope._search = {};
@@ -10,18 +11,18 @@ app.controller('categories', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
 
-    $scope.categories = {
+    $scope.category = {
       active: true,
       translatedList: [],
     };
 
-    $scope.siteSettings.languagesList.forEach((l) => {
+    $scope.siteSetting.languageList.forEach((l) => {
       if (l.active == true) {
-        $scope.categories.translatedList.push({
+        $scope.category.translatedList.push({
           language: {
+            active: true,
             id: l.id,
-            en: l.en,
-            ar: l.ar,
+            name: l.name,
           },
           actualViews: 0,
           dummyViews: 0,
@@ -46,7 +47,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
         });
       }
     });
-
+    console.log($scope.category);
     site.showModal('#categoriesManageModal');
   };
 
@@ -66,12 +67,12 @@ app.controller('categories', function ($scope, $http, $timeout) {
     $http({
       method: 'POST',
       url: '/api/categories/add',
-      data: $scope.categories,
+      data: $scope.category,
     }).then(
       function (response) {
         $scope.busyAdd = false;
         if (response.data.done) {
-          $scope.categories = {
+          $scope.category = {
             status: 'active',
             image: '/images/categories.jpg',
           };
@@ -79,7 +80,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
           site.hideModal('#categoriesManageModal');
 
           $scope.list.push(response.data.doc);
-          $scope.getCategoriesList();
+          $scope.getcategoryList();
         } else {
           $scope.error = response.data.error;
         }
@@ -96,7 +97,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.viewCategories(categories, 'update');
-    $scope.categories = {};
+    $scope.category = {};
 
     site.showModal('#categoriesManageModal');
   };
@@ -118,7 +119,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
     $http({
       method: 'POST',
       url: '/api/categories/update',
-      data: $scope.categories,
+      data: $scope.category,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -126,7 +127,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal('#categoriesManageModal');
 
-          $scope.getCategoriesList();
+          $scope.getcategoryList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Detailed Err*')) {
@@ -144,7 +145,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'view';
     $scope.viewCategories(categories);
-    $scope.categories = {};
+    $scope.category = {};
     site.showModal('#categoriesManageModal');
   };
 
@@ -162,14 +163,15 @@ app.controller('categories', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.categories = response.data.doc;
-          $scope.siteSettings.languagesList.forEach((l) => {
-            if (l.active == true && !$scope.categories.translatedList.find((t) => t.language.id == l.id)) {
-              $scope.categories.translatedList.push({
+          $scope.category = response.data.doc;
+          $scope.siteSetting.languageList.forEach((l) => {
+            let index = $scope.category.translatedList.find((t) => t.language.id == l.id);
+            if (index == -1) {
+              $scope.category.translatedList.push({
                 language: {
                   id: l.id,
-                  en: l.en,
-                  ar: l.ar,
+                  name: l.name,
+                  active: l.active,
                 },
                 actualViews: 0,
                 dummyViews: 0,
@@ -192,6 +194,8 @@ app.controller('categories', function ($scope, $http, $timeout) {
                 socialMediaActivation: true,
                 keyWordsList: [],
               });
+            } else {
+              $scope.category.translatedList[index].language = { ...l };
             }
           });
         } else {
@@ -208,7 +212,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'delete';
     $scope.viewCategories(categories);
-    $scope.categories = {};
+    $scope.category = {};
     site.showModal('#categoriesManageModal');
   };
 
@@ -230,7 +234,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal('#categoriesManageModal');
 
-          $scope.getCategoriesList();
+          $scope.getcategoryList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Delete Acc Err*')) {
@@ -244,7 +248,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCategoriesList = function (where) {
+  $scope.getcategoryList = function (where) {
     $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
@@ -261,27 +265,6 @@ app.controller('categories', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getsiteSetting = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/get-site-setting',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.siteSettings = response.data.doc;
-          $scope.articleTypesList = $scope.siteSettings.article.articleTypes.filter((t) => t.active == true);
         }
       },
       function (err) {
@@ -322,11 +305,10 @@ app.controller('categories', function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
-    $scope.getCategoriesList(where);
+    $scope.getcategoryList(where);
     site.hideModal('#categoriesSearchModal');
     $scope.search = {};
   };
 
-  $scope.getCategoriesList();
-  $scope.getsiteSetting();
+  $scope.getcategoryList();
 });

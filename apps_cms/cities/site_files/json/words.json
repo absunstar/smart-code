@@ -1,48 +1,48 @@
 [{
         "name": "city",
-        "en": "City",
-        "ar": "المدينة"
+        "EN": "City",
+        "AR": "المدينة"
     },
     {
         "name": "cities",
-        "en": "Cities",
-        "ar": "المدن"
+        "EN": "Cities",
+        "AR": "المدن"
     },
     {
         "name": "city_new",
-        "en": "New City",
-        "ar": "مدينة  جديدة"
+        "EN": "New City",
+        "AR": "مدينة  جديدة"
     },
 
     {
         "name": "city_add",
-        "en": "Add City",
-        "ar": "إضافة مدينة "
+        "EN": "Add City",
+        "AR": "إضافة مدينة "
     },
     {
         "name": "city_edit",
-        "en": "Edit City",
-        "ar": "تعديل مدينة "
+        "EN": "Edit City",
+        "AR": "تعديل مدينة "
     },
     {
         "name": "city_details",
-        "en": "City Details",
-        "ar": "تفاصيل المدينة "
+        "EN": "City Details",
+        "AR": "تفاصيل المدينة "
     },
     {
         "name": "city_delete",
-        "en": "Delete City",
-        "ar": "حذف مدينة "
+        "EN": "Delete City",
+        "AR": "حذف مدينة "
     },
     {
         "name": "city_name",
-        "en": "City Name",
-        "ar": "إسم المدينة "
+        "EN": "City Name",
+        "AR": "إسم المدينة "
     },
     {
         "name": "loginFirst",
-        "en": "please login first",
-        "ar": "برجاء تسجيل الدخول"
+        "EN": "please login first",
+        "AR": "برجاء تسجيل الدخول"
     }
 
 

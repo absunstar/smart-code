@@ -1,46 +1,46 @@
 [{
         "name": "areas",
-        "en": "Areas",
-        "ar": "المناطق"
+        "EN": "Areas",
+        "AR": "المناطق"
     },
     {
         "name": "area_new",
-        "en": "New Area",
-        "ar": "منطقة جديدة"
+        "EN": "New Area",
+        "AR": "منطقة جديدة"
     },
     {
         "name": "area",
-        "en": "Area",
-        "ar": "المنطقة"
+        "EN": "Area",
+        "AR": "المنطقة"
     },
     {
         "name": "price_delivery_service",
-        "en": "Price Delivery Service",
-        "ar": "سعر خدمة التوصيل"
+        "EN": "Price Delivery Service",
+        "AR": "سعر خدمة التوصيل"
     },
     {
         "name": "area_add",
-        "en": "Add Area",
-        "ar": "إضافة منطقة "
+        "EN": "Add Area",
+        "AR": "إضافة منطقة "
     },
     {
         "name": "area_edit",
-        "en": "Edit Area",
-        "ar": "تعديل منطقة "
+        "EN": "Edit Area",
+        "AR": "تعديل منطقة "
     },
     {
         "name": "area_details",
-        "en": "Area Details",
-        "ar": "تفاصيل المنطقة "
+        "EN": "Area Details",
+        "AR": "تفاصيل المنطقة "
     },
     {
         "name": "area_delete",
-        "en": "Delete Area",
-        "ar": "حذف منطقة "
+        "EN": "Delete Area",
+        "AR": "حذف منطقة "
     },
     {
         "name": "area_name",
-        "en": "Area Name",
-        "ar": "إسم المنطقة "
+        "EN": "Area Name",
+        "AR": "إسم المنطقة "
     }
 ]

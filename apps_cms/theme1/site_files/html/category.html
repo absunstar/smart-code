@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="##data.language.id##" dir="##data.language.direction##" class="##data.language.direction##" ng-app="myApp">
   <head x-import="theme1/head.html"> </head>
 
   <body ng-controller="mainController">
@@ -8,8 +8,8 @@
     <div id="mainContent" class="container d-flex flex-column">
       <div class="row d-flex flex-column">
         <div class="breakingNewsSection">
-          <div x-setting="showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
-          <div x-setting="showTopAd" class="m-1" x-import="theme1/ad-top.html"></div>
+          <div x-data="setting.showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
+          <div x-data="setting.showTopAd" class="m-1" x-import="theme1/ad-top.html"></div>
 
           <div class="row d-flex flex-md-row-reverse flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start gy-2 p-0 m-0">
             <div x-list2="list" x-import="theme1/article-template.html" class="newsSBLock col-md-3 col-lg-2 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>

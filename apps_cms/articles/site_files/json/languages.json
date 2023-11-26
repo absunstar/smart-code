@@ -1,22 +1,22 @@
 [
   {
     "id": 1,
-    "en": "Arabic",
-    "ar": "عربي"
+    "EN": "Arabic",
+    "AR": "عربي"
   },
   {
     "id": 2,
-    "en": "English",
-    "ar": "إنجليزي"
+    "EN": "English",
+    "AR": "إنجليزي"
   },
   {
     "id": 3,
-    "en": "French",
-    "ar": "فرنساوي"
+    "EN": "French",
+    "AR": "فرنساوي"
   },
   {
     "id": 4,
-    "en": "Turki",
-    "ar": "تركي"
+    "EN": "Turki",
+    "AR": "تركي"
   }
 ]
