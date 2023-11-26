@@ -205,6 +205,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
+          $scope.user.$mobile = $scope.user.country_code + $scope.user.mobile;
           if ($scope.user.id == site.toNumber('##user.id##')) {
             $scope.user.$same_email = true;
           }
