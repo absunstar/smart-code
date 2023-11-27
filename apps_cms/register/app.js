@@ -105,13 +105,14 @@ module.exports = function init(site) {
             },
             (err, result) => {
               if (!err) {
-                if (result.doc.type == 'mobile' && site.setting.enableSendingMessagesMobile) {
+                let setting = site.getSiteSetting(site.getHostFilter(req.host));
+                if (result.doc.type == 'mobile' && setting.enableSendingMessagesMobile) {
                   site.sendMobileTwilioMessage({
                     to: result.doc.country.countryCode + result.doc.mobile,
                     message: `code : ${result.doc.code}`,
                   });
                   response.doneSendMobile = true;
-                } else if (result.doc.type == 'email' && site.setting.enableSendingMessagesEmail) {
+                } else if (result.doc.type == 'email' && setting.enableSendingMessagesEmail) {
                   site.sendMailMessage({
                     to: result.doc.email,
                     subject: `Rejester Code`,
@@ -150,15 +151,16 @@ module.exports = function init(site) {
                 mailerDoc.date = new Date();
                 $mailer.add(mailerDoc, (err, result) => {
                   if (!err) {
+                    let setting = site.getSiteSetting(site.getHostFilter(req.host));
                     response.done = true;
                     response.doc = result;
-                    if (result.type == 'mobile' && site.setting.enableSendingMessagesMobile) {
+                    if (result.type == 'mobile' && setting.enableSendingMessagesMobile) {
                       site.sendMobileTwilioMessage({
                         to: result.country.countryCode + result.mobile,
                         message: `code : ${result.code}`,
                       });
                       response.doneSendMobile = true;
-                    } else if (result.type == 'email' && site.setting.enableSendingMessagesEmail) {
+                    } else if (result.type == 'email' && setting.enableSendingMessagesEmail) {
                       site.sendMailMessage({
                         to: result.email,
                         subject: `Rejester Code`,

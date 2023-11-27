@@ -740,14 +740,7 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           response.list = docs;
-          // docs.forEach(_d => {
-          //   _d.translatedList.forEach(_t => {
-          //     if(_t.id == site.setting.languages_list.find((_l)=> {return _l.id == _t.id})){
-          //       _d.$name = _t.name;
-          //     }
-          //   });
-          // });
-
+          
           response.count = count;
         } else {
           response.error = err.message;
@@ -810,7 +803,9 @@ module.exports = function init(site) {
     let limit = req.query.limit || 10;
     let list = [];
     let text = '';
-    let lang = site.setting.languageList[0];
+    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+
+    let lang = setting.languageList[0];
     let domain = '//' + req.host;
     if (req.params.id == 'random') {
       list = site.articlesList.filter((p) => p.$imageURL && p.active);
