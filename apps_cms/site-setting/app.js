@@ -27,27 +27,7 @@ module.exports = function init(site) {
       direction: 'rtl',
     },
   ];
-  site.defaultSetting = {
-    host: '',
-    lengthOrder: 0,
-    siteTemplate: { id: 1 },
-    mainCategoryList: [],
-    programming: {},
-    languageList: [],
-    article: {
-      articleTypes: site.articleTypes,
-    },
-    block: {},
-    siteColor1: '#272727',
-    siteColor2: '#d7373f',
-    siteColor3: '#8bc34a',
-    siteColor4: '#8bc34a',
-    siteBackground1: '#d9d9d9',
-    siteBackground2: '#000000',
-    siteBackground1: '#ffffff',
-    siteBackground3: '#ffffff',
-    siteBackground4: '#ffffff',
-  };
+
   site.articleTypes = [
     {
       id: 1,
@@ -176,7 +156,27 @@ module.exports = function init(site) {
       AR: 'شهر',
     },
   ];
-
+  site.defaultSetting = {
+    host: '',
+    lengthOrder: 0,
+    siteTemplate: { id: 1 },
+    mainCategoryList: [],
+    programming: {},
+    languageList: [],
+    article: {
+      articleTypes: site.articleTypes,
+    },
+    block: {},
+    siteColor1: '#272727',
+    siteColor2: '#d7373f',
+    siteColor3: '#8bc34a',
+    siteColor4: '#8bc34a',
+    siteBackground1: '#d9d9d9',
+    siteBackground2: '#000000',
+    siteBackground1: '#ffffff',
+    siteBackground3: '#ffffff',
+    siteBackground4: '#ffffff',
+  };
   site.getHostFilter = function (domain = '') {
     let h = HOSTS.memoryList.find((h) => domain.like(h.domain));
     if (h) {
