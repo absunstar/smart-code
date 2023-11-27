@@ -51,7 +51,6 @@ module.exports = function init(site) {
 
   site.articlesList = [];
   site.MainSliderNews = [];
-  site.$$categories = [];
 
   site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
   site.monthes = [
@@ -95,6 +94,22 @@ module.exports = function init(site) {
         .trim();
     } catch (error) {
       return unsafe;
+    }
+  };
+
+  site.getArticle = function (guid, callBack) {
+    callBack = callBack || function () {};
+    let article = site.articlesList.find((a) => a.id == guid || a.guid == guid);
+    if (article) {
+      callBack(null, article);
+    } else {
+      $articles.find({ guid: guid }, (err, doc) => {
+        if (!err && doc) {
+          doc = site.handleArticle(doc);
+          site.articlesList.push(doc);
+        }
+        callBack(err, doc);
+      });
     }
   };
 
@@ -213,7 +228,7 @@ module.exports = function init(site) {
   };
 
   site.prepareArticles = function () {
-    $articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
+    $articles.findMany({ sort: { id: -1 }, limit: 100 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -227,7 +242,7 @@ module.exports = function init(site) {
   };
 
   site.prepareUrgentArticles = function () {
-    $articles.findMany({ where: { showOnTop: true }, sort: { id: -1 }, limit: 1000 }, (err, docs) => {
+    $articles.findMany({ where: { showOnTop: true }, sort: { id: -1 }, limit: 20 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -241,7 +256,7 @@ module.exports = function init(site) {
     });
   };
   site.prepareSliderArticles = function () {
-    $articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
+    $articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 20 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -277,25 +292,7 @@ module.exports = function init(site) {
   };
   site.prepareArticles();
 
-  site.handleCategoryArticles = function () {
-    site.$$categories = [];
-
-    site.categoryList.forEach((cat) => {
-      $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
-        if (!err && docs) {
-          docs.forEach((doc) => {
-            if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
-              site.articlesList.push(site.handleArticle({ ...doc }));
-            }
-          });
-
-          site.articlesList.sort((a, b) => {
-            return b.id - a.id;
-          });
-        }
-      });
-    });
-  };
+ 
 
   site.get({
     name: 'images',

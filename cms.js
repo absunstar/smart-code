@@ -261,7 +261,6 @@ site.get(
   },
   (req, res) => {
     let filter = site.getHostFilter(req.host);
-
     let setting = site.getSiteSetting(filter);
 
     if (!setting || !setting.siteTemplate || !setting.languageList) {
@@ -286,64 +285,63 @@ site.get(
           let article = site.articlesList[Math.floor(Math.random() * site.articlesList.length)];
           res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
         }
-        return;
       } else {
-        let article = site.articlesList.find((a) => (a.id == req.params.guid || a.guid == req.params.guid) && a.host.like(filter));
-        if (article) {
-          res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
-          return;
-        } else {
-          res.redirect('/');
-          return;
-        }
+        site.getArticle(req.params.guid, (err, article) => {
+          if (!err && article && article.host.like(filter)) {
+            res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
+          } else {
+            res.redirect('/');
+          }
+        });
       }
-    }
-
-    let article = site.articlesList.find((a) => (a.id == req.params.guid || a.guid == req.params.guid) && a.host.like(filter));
-
-    if (!article) {
-      res.redirect('/');
       return;
     }
 
-    if (article.$yts) {
-      req.session.lang = 'EN';
-      language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
-    }
+    site.getArticle(req.params.guid, (err, article) => {
+      if (!err && article && article.host.like(filter)) {
+        if (article.$yts) {
+          req.session.lang = 'EN';
+          language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+        }
 
-    if (!Array.isArray(language.keyWordsList)) {
-      language.keyWordsList = [];
-    }
-    language.description = language.description || '';
+        if (!Array.isArray(language.keyWordsList)) {
+          language.keyWordsList = [];
+        }
+        language.description = language.description || '';
 
-    let options = {
-      filter: filter,
-      language: language,
-      setting: setting,
-      site_name: language.siteName,
-      site_logo: language.logo?.url,
-      page_image: article.$imageURL || language.logo?.url,
-      page_title: language.siteName + ' ' + language.titleSeparator + ' ' + article.$title,
-      page_description: article.description,
-      page_keywords: language.keyWordsList.join(','),
-      page_lang: language.id,
-      article: article,
-    };
+        let options = {
+          filter: filter,
+          language: language,
+          setting: setting,
+          site_name: language.siteName,
+          site_logo: language.logo?.url,
+          page_image: article.$imageURL || language.logo?.url,
+          page_title: language.siteName + ' ' + language.titleSeparator + ' ' + article.$title,
+          page_description: article.description,
+          page_keywords: language.keyWordsList.join(','),
+          page_lang: language.id,
+          article: article,
+        };
 
-    options.menuList = site.menuList
-      .filter((m) => m.host.like(options.filter))
-      .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url }));
-    options.menuList1 = options.menuList.slice(0, 8);
-    options.menuList2 = options.menuList.slice(8, 20);
-    options.menuList3 = options.menuList.slice(20);
+        options.menuList = site.menuList
+          .filter((m) => m.host.like(options.filter))
+          .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url }));
+        options.menuList1 = options.menuList.slice(0, 8);
+        options.menuList2 = options.menuList.slice(8, 20);
+        options.menuList3 = options.menuList.slice(20);
 
-    options.relatedArticleList = site.getRelatedArticles(article);
-    options.latestList = site.getLatestArticles(article);
-    options.topNews = site.getTopArticles(options.filter, article.category);
+        options.relatedArticleList = site.getRelatedArticles(article);
+        options.latestList = site.getLatestArticles(article);
+        options.topNews = site.getTopArticles(options.filter, article.category);
 
-    res.render('theme1/article.html', options, {
-      parser: 'html css js',
+        res.render('theme1/article.html', options, {
+          parser: 'html css js',
+        });
+      } else {
+        res.redirect('/');
+      }
     });
+    
   }
 );
 site.ready = false;

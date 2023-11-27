@@ -6,11 +6,31 @@ module.exports = function init(site) {
     cat.host = cat.host || '';
     return cat;
   };
+
+  site.handleCategoryArticles = function () {
+    site.categoryList.forEach((cat) => {
+      $articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
+        if (!err && docs) {
+          docs.forEach((doc) => {
+            if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
+              site.articlesList.push(site.handleArticle({ ...doc }));
+            }
+          });
+
+          site.articlesList.sort((a, b) => {
+            return b.id - a.id;
+          });
+        }
+      });
+    });
+  };
+
   $categories.findMany({}, (err, docs) => {
     if (!err && docs) {
       docs.forEach((doc) => {
         site.categoryList.push(site.handleCategory(doc));
       });
+      site.handleCategoryArticles();
     }
   });
 
