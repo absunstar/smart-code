@@ -359,6 +359,14 @@ site.get('ads.txt', (req, res) => {
     res.txt('0/ads.txt');
   }
 });
+site.get('robots.txt', (req, res) => {
+  let setting = site.getSiteSetting(site.getHostFilter(req.host));
+  if (setting && setting.adsTxt) {
+    res.end(setting.robotsTxt);
+  } else {
+    res.txt('0/robots.txt');
+  }
+});
 site.ready = false;
 site.templateList = [];
 
