@@ -1,6 +1,6 @@
 module.exports = function init(site) {
-  const $articles = site.connectCollection('articles');
-  $articles.aggregate(
+  site.$articles = site.connectCollection('articles');
+  site.$articles.aggregate(
     [
       {
         $group: {
@@ -32,14 +32,14 @@ module.exports = function init(site) {
             arr.push(dup);
           });
         });
-        $articles.deleteAll(
+        site.$articles.deleteAll(
           {
             _id: {
               $in: arr,
             },
           },
           (err, result) => {
-            $articles.createUnique({
+            site.$articles.createUnique({
               guid: 1,
             });
           }
@@ -103,7 +103,7 @@ module.exports = function init(site) {
     if (article) {
       callBack(null, article);
     } else {
-      $articles.find({ guid: guid }, (err, doc) => {
+      site.$articles.find({ guid: guid }, (err, doc) => {
         if (!err && doc) {
           doc = site.handleArticle(doc);
           site.articlesList.push(doc);
@@ -228,7 +228,7 @@ module.exports = function init(site) {
   };
 
   site.prepareArticles = function () {
-    $articles.findMany({ sort: { id: -1 }, limit: 100 }, (err, docs) => {
+    site.$articles.findMany({ sort: { id: -1 }, limit: 100 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -242,7 +242,7 @@ module.exports = function init(site) {
   };
 
   site.prepareUrgentArticles = function () {
-    $articles.findMany({ where: { showOnTop: true }, sort: { id: -1 }, limit: 20 }, (err, docs) => {
+    site.$articles.findMany({ where: { showOnTop: true }, sort: { id: -1 }, limit: 20 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -256,7 +256,7 @@ module.exports = function init(site) {
     });
   };
   site.prepareSliderArticles = function () {
-    $articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 20 }, (err, docs) => {
+    site.$articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 20 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -435,7 +435,7 @@ module.exports = function init(site) {
     articlesDoc.guid = articlesDoc.guid || site.md5(articlesDoc.translatedList[0].title);
     articlesDoc.host = articlesDoc.host || req.host;
 
-    $articles.add(articlesDoc, (err, doc) => {
+    site.$articles.add(articlesDoc, (err, doc) => {
       if (!err && doc) {
         response.done = true;
         response.doc = doc;
@@ -471,7 +471,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $articles.edit(
+    site.$articles.edit(
       {
         where: {
           id: articlesDoc.id,
@@ -506,7 +506,7 @@ module.exports = function init(site) {
       response.doc = site.articlesList[index];
       res.json(response);
     } else {
-      $articles.find({ id: req.data.id }, (err, doc) => {
+      site.$articles.find({ id: req.data.id }, (err, doc) => {
         if (!err && doc) {
           response.done = true;
           response.doc = doc;
@@ -530,7 +530,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $articles.delete(
+    site.$articles.delete(
       {
         id: req.body.id,
         $req: req,
@@ -735,7 +735,7 @@ module.exports = function init(site) {
     }
     site.get_RegExp(req.body.search, 'i');
     // site.articlesList.filter(u => u.name.contains(where['name']))
-    $articles.findMany(
+    site.$articles.findMany(
       {
         select: req.body.select || {},
         where: where,
@@ -762,7 +762,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    $articles.findMany(
+    site.$articles.findMany(
       {
         select: { id: 1, translatedList: 1 },
         sort: req.body.sort || {
@@ -790,7 +790,7 @@ module.exports = function init(site) {
                       console.log(output);
                       _t.image.path = path2;
                       _t.image.url = '/x-api/image/' + folder + '/' + imageName2;
-                      $articles.update(doc);
+                      site.$articles.update(doc);
                     });
                   });
                 });
