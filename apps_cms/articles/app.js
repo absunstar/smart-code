@@ -88,6 +88,9 @@ module.exports = function init(site) {
         .replace(/<[^>]+>/g, '')
         .replace('(', '')
         .replace(')', '')
+        .replace('-', ' ')
+        .replace('+', ' ')
+        .replace('  ', ' ')
         .replace(/&nbsp;|&laquo;|&raquo|&quot;|&rlm;|&llm;|&lrm;|&rrm;/g, '')
         .trim();
     } catch (error) {
@@ -319,15 +322,23 @@ module.exports = function init(site) {
     }
   );
 
-  site.post({
-    name: '/api/articleTypes/all',
-    path: __dirname + '/site_files/json/articleTypes.json',
-  });
+  site.post(
+    {
+      name: '/api/articleTypes/all',
+    },
+    (req, res) => {
+      res.json(site.articleTypes);
+    }
+  );
 
-  site.post({
-    name: '/api/languages/all',
-    path: __dirname + '/site_files/json/languages.json',
-  });
+  site.post(
+    {
+      name: '/api/languages/all',
+    },
+    (req, res) => {
+      res.json(supportedLanguageList);
+    }
+  );
 
   site.onGET('/article-image/:guid', (req, res) => {
     res.redirect(site.articlesList.find((a) => a.guid == req.params.guid)?.$imageURL || '/images/no.png');
@@ -403,7 +414,7 @@ module.exports = function init(site) {
       articlesDoc.showInMainSlider = true;
       articlesDoc.showOnTop = true;
 
-      articlesDoc.translatedList[0].tagsList = [articlesDoc.youtube.channel.title, 'Youtube', 'Video', 'Watch'];
+      articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.youtube.channel.title).split(' '), 'Video', 'Watch'];
       articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.youtube.title).split(' '), ...site.removeHtml(articlesDoc.youtube.channel.title).split(' ')];
 
       articlesDoc.translatedList[0].title = articlesDoc.youtube.title;
@@ -740,7 +751,7 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           response.list = docs;
-          
+
           response.count = count;
         } else {
           response.error = err.message;

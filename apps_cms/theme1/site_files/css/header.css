@@ -78,7 +78,7 @@
   display: inline-block;
 }
 .newsText > ul > li p:hover {
-  border-bottom: 2px solid var(--background2);
+  border-bottom: 2px solid var(--background1);
 }
 .newsText > ul > li > a {
   color: var(--color2);
