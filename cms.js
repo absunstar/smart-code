@@ -233,8 +233,7 @@ site.get(
     options.list3 = options.list.splice(0, 10);
     options.list4 = options.list.splice(0, 10);
     options.list5 = options.list.splice(0, 10);
-    
-    
+
     options.MainSliderNews = {
       list: site.articlesList.filter((a) => a.showInMainSlider === true && a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 10),
     };
@@ -349,9 +348,17 @@ site.get(
         res.redirect('/');
       }
     });
-
   }
 );
+
+site.get('ads.txt', (req, res) => {
+  let setting = site.getSiteSetting(site.getHostFilter(req.host));
+  if (setting && setting.adsTxt) {
+    res.end(setting.adsTxt);
+  } else {
+    res.txt('0/ads.txt');
+  }
+});
 site.ready = false;
 site.templateList = [];
 
