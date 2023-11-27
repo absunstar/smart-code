@@ -225,7 +225,14 @@ site.get(
 
     options.topNews = site.getTopArticles(options.filter, category);
 
-    options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 20);
+    options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 50);
+    options.list1 = options.list.splice(0, 10);
+    options.list2 = options.list.splice(0, 10);
+    options.list3 = options.list.splice(0, 10);
+    options.list4 = options.list.splice(0, 10);
+    options.list5 = options.list.splice(0, 10);
+    
+    
     options.MainSliderNews = {
       list: site.articlesList.filter((a) => a.showInMainSlider === true && a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 10),
     };
