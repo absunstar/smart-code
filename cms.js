@@ -279,7 +279,6 @@ site.get(
         if (req.route.name0 == '/torrent/:guid') {
           let articles = site.articlesList.filter((a) => a.$yts == true);
           let article = articles[Math.floor(Math.random() * articles.length)];
-          console.log(article);
           res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
         } else {
           let article = site.articlesList[Math.floor(Math.random() * site.articlesList.length)];
@@ -341,7 +340,7 @@ site.get(
         res.redirect('/');
       }
     });
-    
+
   }
 );
 site.ready = false;
