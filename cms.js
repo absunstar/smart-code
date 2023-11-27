@@ -257,7 +257,7 @@ site.get(
 
 site.get(
   {
-    name: ['/article/:guid/:title', '/post/:guid/:title', '/article/:guid', '/a/:guid', '/post/:guid'],
+    name: ['/article/:guid/:title', '/post/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/post/:guid', '/torrent/:guid'],
   },
   (req, res) => {
     let filter = site.getHostFilter(req.host);
@@ -275,19 +275,34 @@ site.get(
       return;
     }
 
+    if (req.route.name0 == '/a/:guid' || req.route.name0 == '/post/:guid' || req.route.name0 == '/article/:guid' || req.route.name0 == '/torrent/:guid') {
+      if (req.params.guid == 'random') {
+        if (req.route.name0 == '/torrent/:guid') {
+          let articles = site.articlesList.filter((a) => a.$yts == true);
+          let article = articles[Math.floor(Math.random() * articles.length)];
+          console.log(article);
+          res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
+        } else {
+          let article = site.articlesList[Math.floor(Math.random() * site.articlesList.length)];
+          res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
+        }
+        return;
+      } else {
+        let article = site.articlesList.find((a) => (a.id == req.params.guid || a.guid == req.params.guid) && a.host.like(filter));
+        if (article) {
+          res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
+          return;
+        } else {
+          res.redirect('/');
+          return;
+        }
+      }
+    }
+
     let article = site.articlesList.find((a) => (a.id == req.params.guid || a.guid == req.params.guid) && a.host.like(filter));
 
     if (!article) {
       res.redirect('/');
-      return;
-    }
-
-    if (req.route.name0 == '/a/:guid' || req.route.name0 == '/post/:guid' || req.route.name0 == '/article/:guid') {
-      if (article) {
-        res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
-      } else {
-        res.redirect('/');
-      }
       return;
     }
 
