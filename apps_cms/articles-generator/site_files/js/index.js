@@ -72,6 +72,7 @@ app.connectScope(
     };
 
     $scope.ytsPage = 0;
+    $scope.ytsLimit = 50;
     $scope.ytsGetCount = 0;
     $scope.ytsSendCount = 0;
     $scope.ytsAddCount = 0;
