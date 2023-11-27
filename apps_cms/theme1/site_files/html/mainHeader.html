@@ -29,15 +29,17 @@
         </div>
       </div>
       <div x-data="setting.showSearchBar" class="col-md-6 col-12 searchBarSection">
-        <div class="SearchBAr">
-          <div class="searchIcon">
-            <i class="fas fa-search"></i>
+        <form action="/result" method="get">
+          <div class="SearchBAr">
+            <button type="submit" class="searchIcon">
+              <i class="fas fa-search"></i>
+            </button>
+            <div class="vl"></div>
+            <div class="searchField">
+              <input name="search_query" type="search" class="searchInput" placeholder="##word.Search in ALL Site##" />
+            </div>
           </div>
-          <div class="vl"></div>
-          <div class="searchField">
-            <input type="search" class="searchInput" placeholder="##word.Search in ALL Site##" />
-          </div>
-        </div>
+        </form>
       </div>
       <div x-data="setting.showTemperatures" class="col-md-2 col-12 d-none d-md-flex justify-content-center align-items-center headerWidget">
         <div class="weather">
@@ -73,7 +75,7 @@
       </div>
     </div>
   </div>
-  <div  x-data="setting.showMainMenu" class="bottomHeader">
+  <div x-data="setting.showMainMenu" class="bottomHeader">
     <div x-data="menuList1.length" class="bottomHeadercontainer container">
       <ul class="navbarlist d-none d-md-flex">
         <li>
@@ -174,7 +176,7 @@
       </div>
       <div class="w-100 mainFollowUs d-flex flex-column align-items-end">
         <div class="headSectionTitle">
-          <label>تابعنا على</label>
+          <label>##word.Follow Us##</label>
         </div>
         <div class="FollowUsIcon">
           <div class="w-100 d-flex flex-row justify-content-between gap-4">

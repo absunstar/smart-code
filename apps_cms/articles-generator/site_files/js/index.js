@@ -84,7 +84,7 @@ app.connectScope(
         if (data.movies.length > 0) {
           data.movies.forEach((movie) => {
             console.log(movie);
-            $scope.addArticle({ ...movie, is_yts: true, category: $scope.category });
+            $scope.addArticle({ ...movie, is_yts: true, category: $scope.category, host: $scope.host });
           });
           setTimeout(() => {
             $scope.generateYTS();

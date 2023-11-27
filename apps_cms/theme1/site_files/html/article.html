@@ -6,7 +6,7 @@
     <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
 
     <div id="mainContent" class="container d-flex flex-column">
-      <div class="container pt-4 p-0 justify-content-center" x-data="setting.showAtricleCover">
+      <div x-data="setting.showAtricleCover" class="container pt-4 p-0 justify-content-center" >
         <div class="mainImage col-md-12 p-0 m-0" style="background-image: url(##data.article.$coverURL##)">
           <div class="MI-newsTilteTime d-flex flex-column justify-content-start">
             <p class="MI-newstitle" class="loaded">##data.article.$title##</p>

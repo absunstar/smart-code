@@ -115,6 +115,75 @@ site.get(
 
 site.get(
   {
+    name: ['/result'],
+  },
+  (req, res) => {
+    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+
+    if (!setting || !setting.siteTemplate || !setting.languageList) {
+      res.redirect('/404');
+      return;
+    }
+    let language = setting.languageList.find((l) => l.name == req.session.lang) || setting.languageList[0];
+
+    if (!language) {
+      res.redirect('/404');
+      return;
+    }
+
+    if (!Array.isArray(language.keyWordsList)) {
+      language.keyWordsList = [];
+    }
+
+    language.description = language.description || '';
+    let query = req.query.search_query || '';
+
+    if (setting.siteTemplate.id == 1) {
+      site.articlesList = site.articlesList || [];
+      let options = {
+        guid: '',
+        language: language,
+        filter: site.getHostFilter(req.host),
+        site_logo: language.logo?.url,
+        page_image: language.logo?.url,
+        site_name: language.siteName,
+        page_title: language.siteName + ' ' + language.titleSeparator + ' ' + req.word('Search Result') + ' ' + language.titleSeparator + ' ' + query,
+        page_description: language.description.substr(0, 200),
+        page_keywords: language.keyWordsList.join(','),
+        categories: [],
+        page: {},
+      };
+
+      options.topNews = site.getTopArticles(options.filter);
+      options.setting = setting;
+
+      options.menuList = site.menuList
+        .filter((m) => m.host.like(options.filter))
+        .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url }));
+
+      options.menuList1 = options.menuList.slice(0, 8);
+      options.menuList2 = options.menuList.slice(8, 20);
+      options.menuList3 = options.menuList.slice(20);
+
+      query = ('*' + query + '*').replaceAll(' ', '*').replaceAll('+', '*').replaceAll('-', '*');
+      options.list = site.articlesList.filter((a) => a.$search.like(query)).slice(0, 50);
+      options.list1 = options.list.splice(0, 10);
+      options.list2 = options.list.splice(0, 10);
+      options.list3 = options.list.splice(0, 10);
+      options.list4 = options.list.splice(0, 10);
+      options.list5 = options.list.splice(0, 10);
+      res.render('theme1/result.html', options, {
+        parser: 'html css js',
+        compress: true,
+      });
+    } else {
+      res.redirect('/404');
+    }
+  }
+);
+
+site.get(
+  {
     name: ['/category/:id/:title', '/category/:id'],
   },
   (req, res) => {
@@ -131,12 +200,11 @@ site.get(
       return;
     }
 
-
     let options = {
       guid: '',
       filter: site.getHostFilter(req.host),
       language: language,
-      setting : setting,
+      setting: setting,
       site_name: language.siteName,
       site_logo: language.logo?.url,
       page_image: language.logo?.url,
@@ -201,7 +269,7 @@ site.get(
       return;
     }
 
-    let language = setting.languageList.find((l) => l.name == req.session.lang) || setting.languageList[0];
+    let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
     if (!language) {
       res.redirect('/404');
       return;
@@ -225,6 +293,7 @@ site.get(
 
     if (article.$yts) {
       req.session.lang = 'EN';
+      language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
     }
 
     if (!Array.isArray(language.keyWordsList)) {

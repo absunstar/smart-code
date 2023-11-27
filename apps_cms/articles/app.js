@@ -98,12 +98,14 @@ module.exports = function init(site) {
   site.handleArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
     doc.$title = site.removeHtml(lang.title);
+    doc.$search = doc.$title;
     doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
-    doc.host = doc.host || options.host || '_';
+    doc.host = doc.host || options.host || '';
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
+      doc.$search = 'torrent movie ' + doc.$title;
       doc.$title2 = doc.$title.replaceAll(' ', '+');
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
@@ -111,6 +113,7 @@ module.exports = function init(site) {
       doc.$backgroundURL = doc.$coverURL;
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
+      doc.$search += ' youtube';
       doc.$title2 = doc.$title.replaceAll(' ', '+');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else {
@@ -119,18 +122,20 @@ module.exports = function init(site) {
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
     if (doc.type.id === 2) {
-      doc.$content = lang.htmlContent;
+      doc.$content = lang.htmlContent || '';
     } else {
-      doc.$content = lang.textContent || lang.htmlContent;
+      doc.$content = lang.textContent || lang.htmlContent || '';
     }
+    doc.$search += ' ' + doc.$content;
+
     doc.$description = site.escapeHtml(doc.$content);
     doc.$keyWordsList = lang.keyWordsList || [];
 
     doc.$keyWordsList.forEach((k, i) => {
       if (!k || k.length < 3) {
         doc.$keyWordsList.splice(i, 1);
-      }
-      if (doc.type.id == 7) {
+      } else if (doc.type.id == 7) {
+        doc.$search += ' ' + k;
         doc.$keyWordsList[i] = k + ' Movie';
       }
     });
@@ -139,10 +144,13 @@ module.exports = function init(site) {
     doc.$tagsList.forEach((k, i) => {
       if (!k || k.length < 3) {
         doc.$tagsList.splice(i, 1);
+      } else {
+        doc.$search += ' ' + k;
       }
     });
 
     doc.publishDate = doc.publishDate || new Date();
+    doc.$search += ' ' + doc.publishDate;
     doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
     doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
     doc.$hasAudio = false;
@@ -177,6 +185,7 @@ module.exports = function init(site) {
     doc.$hasMiniTitle = false;
     if (lang.hasMiniTitle) {
       doc.$miniTitle = lang.miniTitle;
+      doc.$search += ' ' + doc.$miniTitle;
       doc.$hasMiniTitle = true;
       doc.$miniTitleClass = '';
     }
@@ -184,6 +193,7 @@ module.exports = function init(site) {
     if (doc.writer) {
       doc.$hasWriter = true;
       doc.writer.$name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
+      doc.$search += ' ' + doc.writer.$name;
       doc.writer.$title = doc.writer.profile.title;
       doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
     }
@@ -348,8 +358,9 @@ module.exports = function init(site) {
         category: articlesDoc.category,
         yts: articlesDoc,
         translatedList: [{ language: language }],
-        host: 'yts',
+        host: articlesDoc.host || 'yts',
       };
+
       articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
       if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
         response.error = 'No Description or Rating';

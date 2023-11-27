@@ -9,7 +9,7 @@ body {
   overflow-x: hidden;
   text-align: right;
 }
-body.ltr{
+.ltr body {
   text-align: left;
 }
 
@@ -19,7 +19,7 @@ body.ltr{
   min-height: min(300px, 50vh);
   max-width: min(80vw, 100%);
   background: var(--background2x);
-  margin: 0 auto ;
+  margin: 0 auto;
   margin-bottom: 10px;
 }
 .free ins {
@@ -31,6 +31,10 @@ body.ltr{
 }
 .free.side {
   min-height: max(250px, 70vh);
+}
+.searchIcon {
+  border: none;
+  background: none;
 }
 .articleSection {
   font-size: 24px;

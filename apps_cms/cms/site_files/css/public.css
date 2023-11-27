@@ -34,7 +34,7 @@ body {
   margin-right: var(--menu-width);
   margin-left: 0px;
 }
-body.ltr{
+.ltr body{
   margin-top: 100px;
   margin-left: var(--menu-width);
   margin-right: 0px;
