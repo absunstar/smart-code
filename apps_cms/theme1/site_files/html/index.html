@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="##data.language.id##" dir="##data.language.direction##" class="##data.language.direction##" ng-app="myApp">
+<html lang="##data.language.id##" class="##data.language.direction##" ng-app="myApp">
   <head x-import="theme1/head.html"> </head>
 
-  <body ng-controller="mainController">
+  <body>
     <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
 
     <div id="mainContent" class="container d-flex flex-column">
@@ -102,11 +102,5 @@
     <div x-import="theme1/wedgite.html"></div>
 
     <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
-    <script>
-      app.controller('mainController', ($scope, $http, $timeout, $interval) => {
-        $scope.setting = site.showObject('##data.#setting##');
-        console.log($scope.setting);
-      });
-    </script>
   </body>
 </html>
