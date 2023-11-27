@@ -228,7 +228,7 @@ module.exports = function init(site) {
   };
 
   site.prepareArticles = function () {
-    site.$articles.findMany({ sort: { id: -1 }, limit: 100 }, (err, docs) => {
+    site.$articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -242,7 +242,7 @@ module.exports = function init(site) {
   };
 
   site.prepareUrgentArticles = function () {
-    site.$articles.findMany({ where: { showOnTop: true }, sort: { id: -1 }, limit: 20 }, (err, docs) => {
+    site.$articles.findMany({ where: { showOnTop: true }, sort: { id: -1 }, limit: 500 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
@@ -256,7 +256,7 @@ module.exports = function init(site) {
     });
   };
   site.prepareSliderArticles = function () {
-    site.$articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 20 }, (err, docs) => {
+    site.$articles.findMany({ where: { showInMainSlider: true }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
       if (!err && docs) {
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
