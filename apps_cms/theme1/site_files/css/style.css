@@ -25,6 +25,7 @@ body {
 .free ins {
   margin: 0;
   max-width: 80vw;
+  min-width: 100%;
 }
 .free iframe {
   max-width: 80vw;
