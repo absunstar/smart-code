@@ -1,4 +1,4 @@
-app.controller('login_souq', function ($scope, $http, $timeout) {
+app.controller('login', function ($scope, $http, $timeout) {
   $scope.user = {};
   $scope.login = function () {
     $scope.error = '';
