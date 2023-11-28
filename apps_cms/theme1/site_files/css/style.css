@@ -22,6 +22,7 @@ body {
   margin: 0 auto;
   margin-bottom: 10px;
 }
+
 .free ins {
   margin: 0;
   max-width: 80vw;
@@ -29,6 +30,11 @@ body {
 }
 .free iframe {
   max-width: 80vw;
+}
+.free.top {
+  height: 250px;
+  min-height: 250px;
+  width: 800px;
 }
 .free.side {
   min-height: max(250px, 70vh);
@@ -490,7 +496,6 @@ a {
 }
 
 .mainslide {
-  width: 100%;
   height: 70vh;
   margin-bottom: 10px !important;
   background-repeat: round;

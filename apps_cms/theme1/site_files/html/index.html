@@ -8,19 +8,23 @@
     <div id="mainContent" class="container d-flex flex-column">
       <div x-data="setting.showMainSlider" x-import="theme1/mainSlider.html" class="mainslider container pt-4 p-0 justify-content-center"></div>
 
-      <div x-data="setting.showTopAd" x-import="theme1/ad-top.html"></div>
-
       <div class="row d-flex flex-column" x-list1="categories">
-        <div x-show-item1="template1" class="breakingNewsSection">
-          <div class="col BNSubSection d-flex flex-column align-items-end">
-            <div class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
-              <p class="BNSubSectionName">##item1.name##</p>
+        <div x-show-item1="template1">
+
+          <div class="breakingNewsSection">
+            <div class="col BNSubSection d-flex flex-column align-items-end">
+              <div class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
+                <p class="BNSubSectionName">##item1.name##</p>
+              </div>
+            </div>
+
+            <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start">
+              <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-3 col-lg-2 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
+              <div x-import="theme1/ad-footer.html" class="newsSBLock col-md-3 col-lg-2 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
             </div>
           </div>
-          <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start">
-            <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-3 col-lg-2 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-            <div x-import="theme1/ad-footer.html" class="newsSBLock col-md-3 col-lg-2 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-          </div>
+          <div x-data="setting.showTopAd" class="d-flex" x-import="theme1/ad-top.html"></div>
+
         </div>
 
         <div x-show-item1="template2" class="adsWithBreakingNews row justify-content-center align-items-start">
