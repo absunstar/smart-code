@@ -109,7 +109,7 @@
 
   .allsections {
     width: 90%;
-    height: 129px;
+    max-height: 70vh;
     overflow: scroll;
   }
 
