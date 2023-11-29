@@ -112,7 +112,53 @@ module.exports = function init(site) {
       });
     }
   };
-
+  site.searchArticles = function (options, callBack) {
+    callBack = callBack || function () {};
+    options = options || {};
+    options.search = options.search || '';
+    options.page = options.page || 1;
+    options.limit = options.limit || 50;
+    options.skip = options.limit * (options.page - 1);
+    options.exp = '';
+    console.log(options.search);
+    options.search
+      // .replaceAll('/', '')
+      // .replaceAll('\\', '')
+      // .replaceAll('|', '')
+      // .replaceAll('*', '')
+      // .replaceAll('?', '')
+      // .replaceAll('=', '')
+      // .replaceAll('.', '')
+      .trim()
+      .split(' ')
+      .forEach((w, i) => {
+        options.exp += w + '|';
+      });
+    options.exp = options.exp.replace(/.$/, '');
+    options.exp = new RegExp(options.exp, 'i');
+    console.log(options.exp);
+    let list = [];
+    site.$articles.findAll(
+      {
+        select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
+        where: {
+          $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'yts.type': options.exp }],
+        },
+        limit: options.limit,
+        skip: options.skip,
+      },
+      (err, docs) => {
+        if (!err && docs) {
+          docs.forEach((doc) => {
+            list.push(site.handleSearchArticle(doc));
+          });
+          callBack(null, list);
+        } else {
+          callBack(err);
+        }
+      }
+    );
+  };
   site.handleArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
     doc.$title = site.removeHtml(lang.title);
@@ -226,7 +272,83 @@ module.exports = function init(site) {
     }
     return doc;
   };
+  site.handleSearchArticle = function (doc, options = {}) {
+    let lang = doc.translatedList[0];
+    doc.$title = site.removeHtml(lang.title);
+    doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
+    doc.$coverURL = lang.cover?.url || doc.$imageURL;
+    doc.host = doc.host || options.host || '';
+    if (doc.type.id == 7 && doc.yts) {
+      doc.$yts = true;
+      doc.$title += ' ( ' + doc.yts.year + ' ) ';
+      doc.$title2 = doc.$title.replaceAll(' ', '+');
+    } else if (doc.type.id == 8) {
+      doc.is_youtube = true;
+      doc.$search += ' youtube';
+    } else {
+      doc.$title2 = doc.$title.split(' ').join('-');
+    }
+    doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
+    doc.publishDate = doc.publishDate || new Date();
+    doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
+    doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+
+    doc.$hasAudio = false;
+    doc.$hasVideo = false;
+    doc.$hasImageGallary = false;
+    doc.$hasMenu = false;
+    doc.$menuClass = 'none';
+
+    doc.$audioClass = 'none';
+    doc.$videoClass = 'none';
+    doc.$imageGallaryClass = 'none';
+    if (lang.hasAudio) {
+      doc.$hasAudio = true;
+      doc.$audio = lang.audio;
+      doc.$audioClass = '';
+    }
+
+    if (lang.hasVideo) {
+      doc.$hasVideo = true;
+      doc.$video = lang.video;
+      doc.$videoClass = '';
+    }
+    doc.$readingTimeClass = 'none';
+    doc.$hasReadingTime = false;
+    if (lang.hasReadingTime) {
+      doc.$hasReadingTime = true;
+      doc.$readingTime = lang.readingTime;
+      doc.$readingTimeClass = '';
+    }
+
+    doc.$miniTitleClass = 'none';
+    doc.$hasMiniTitle = false;
+    if (lang.hasMiniTitle) {
+      doc.$miniTitle = lang.miniTitle;
+      doc.$search += ' ' + doc.$miniTitle;
+      doc.$hasMiniTitle = true;
+      doc.$miniTitleClass = '';
+    }
+
+    if (doc.writer) {
+      doc.$hasWriter = true;
+      doc.writer.$name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
+      doc.$search += ' ' + doc.writer.$name;
+      doc.writer.$title = doc.writer.profile.title;
+      doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
+    }
+    if (doc.type.id == 7 && !doc.$hasMiniTitle) {
+      doc.$miniTitle = doc.yts.type;
+      doc.$hasMiniTitle = true;
+      doc.$miniTitleClass = '';
+    } else if (doc.type.id == 8 && !doc.$hasMiniTitle) {
+      doc.$miniTitle = 'Youtube';
+      doc.$hasMiniTitle = true;
+      doc.$miniTitleClass = '';
+    }
+    return doc;
+  };
   site.prepareArticles = function () {
     site.$articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
       if (!err && docs) {
@@ -291,8 +413,6 @@ module.exports = function init(site) {
       .reverse();
   };
   site.prepareArticles();
-
- 
 
   site.get({
     name: 'images',
@@ -827,7 +947,7 @@ module.exports = function init(site) {
     let urls = '';
     list.forEach((doc, i) => {
       doc.full_url = domain + '/article/' + doc.guid;
-      doc.$date = new Date(doc.publishDate).toISOString();
+      doc.$date2 = new Date(doc.publishDate).toISOString();
       urls += `
         <item>
           <guid>${doc.guid}</guid>
@@ -835,7 +955,7 @@ module.exports = function init(site) {
           <link>${doc.full_url}</link>
           <image>${domain}/article-image/${doc.guid}</image>
           <description>${doc.$description}</description>
-          <pubDate>${doc.$date}</pubDate>
+          <pubDate>${doc.$date2}</pubDate>
         </item>
         `;
     });
@@ -857,11 +977,11 @@ module.exports = function init(site) {
     let urls = '';
     site.articlesList.slice(0, 1000).forEach((article, i) => {
       article.post_url = domain + '/article/' + article.guid;
-      article.$date = new Date(article.publishDate).toISOString();
+      article.$date2 = new Date(article.publishDate).toISOString();
       urls += `
               <url>
                   <loc>${article.post_url}</loc>
-                  <lastmod>${article.$date}</lastmod>
+                  <lastmod>${article.$date2}</lastmod>
                   <changefreq>monthly</changefreq>
                   <priority>.8</priority>
               </url>

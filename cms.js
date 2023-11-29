@@ -167,16 +167,19 @@ site.get(
       options.menuList2 = options.menuList.slice(8, 20);
       options.menuList3 = options.menuList.slice(20);
 
-      query = ('*' + query + '*').replaceAll(' ', '*').replaceAll('+', '*').replaceAll('-', '*');
-      options.list = site.articlesList.filter((a) => a.$search.like(query)).slice(0, 50);
-      options.list1 = options.list.splice(0, 10);
-      options.list2 = options.list.splice(0, 10);
-      options.list3 = options.list.splice(0, 10);
-      options.list4 = options.list.splice(0, 10);
-      options.list5 = options.list.splice(0, 10);
-      res.render('theme1/result.html', options, {
-        parser: 'html css js',
-        compress: true,
+      site.searchArticles({ search: query }, (err, docs) => {
+        if (!err && docs) {
+          options.list = docs;
+          options.list1 = options.list.splice(0, 10);
+          options.list2 = options.list.splice(0, 10);
+          options.list3 = options.list.splice(0, 10);
+          options.list4 = options.list.splice(0, 10);
+          options.list5 = options.list.splice(0, 10);
+        }
+        res.render('theme1/result.html', options, {
+          parser: 'html css js',
+          compress: true,
+        });
       });
     } else {
       res.redirect('/404');

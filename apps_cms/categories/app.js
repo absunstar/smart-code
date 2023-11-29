@@ -8,7 +8,6 @@ module.exports = function init(site) {
   };
 
   site.handleCategoryArticles = function () {
-    console.log(site.categoryList);
     site.categoryList.forEach((cat) => {
       site.$articles.findMany({ where: { 'category.id': cat.id }, sort: { id: -1 }, limit: 50 }, (err, docs) => {
         if (!err && docs) {
