@@ -103,7 +103,12 @@ module.exports = function init(site) {
       return unsafe;
     }
   };
-  site.filterLetters = function (str, lettersToRemove) {
+  site.filterLetters = function (str, lettersToRemove = ['  ', '|', '/', '\\', ':', '*', '?', '=', '.', '^', '$', '؟']) {
+    if (!str) {
+      return '';
+    }
+    str = str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+
     lettersToRemove.forEach(function (letter) {
       str = str.replaceAll(letter, '');
     });
@@ -128,14 +133,12 @@ module.exports = function init(site) {
   site.handleArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
     doc.$title = site.removeHtml(lang.title);
-    doc.$search = doc.$title;
     doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '';
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
-      doc.$search = 'torrent movie ' + doc.$title;
       doc.$title2 = doc.$title.replaceAll(' ', '+');
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
@@ -143,7 +146,6 @@ module.exports = function init(site) {
       doc.$backgroundURL = doc.$coverURL;
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
-      doc.$search += ' youtube';
       doc.$title2 = doc.$title.replaceAll(' ', '+');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else {
@@ -156,31 +158,37 @@ module.exports = function init(site) {
     } else {
       doc.$content = lang.textContent || lang.htmlContent || '';
     }
-    doc.$search += ' ' + doc.$content;
 
     doc.$description = site.escapeHtml(doc.$content);
-    doc.$keyWordsList = lang.keyWordsList || [];
+    lang.keyWordsList = lang.keyWordsList || [];
+    doc.$keyWordsList = [];
+    lang.keyWordsList.forEach((k, i) => {
+      k = site.filterLetters(k);
+      if (!k || k.length < 4) {
+        return;
+      }
 
-    doc.$keyWordsList.forEach((k, i) => {
-      if (!k || k.length < 3) {
-        doc.$keyWordsList.splice(i, 1);
-      } else if (doc.type.id == 7) {
-        doc.$search += ' ' + k;
-        doc.$keyWordsList[i] = k + ' Movie';
+      if (doc.$keyWordsList.findIndex((kk) => kk.contains(k)) == -1) {
+        if (doc.type.id == 7) {
+          doc.$keyWordsList.push(k + ' Movie');
+        } else {
+          doc.$keyWordsList.push(k);
+        }
       }
     });
 
-    doc.$tagsList = lang.tagsList || [doc.$title];
-    doc.$tagsList.forEach((k, i) => {
-      if (!k || k.length < 3) {
-        doc.$tagsList.splice(i, 1);
-      } else {
-        doc.$search += ' ' + k;
+    doc.$tagsList = [];
+    lang.tagsList = lang.tagsList || [doc.$title];
+
+    lang.tagsList.forEach((k, i) => {
+      k = site.filterLetters(k);
+      if (!k || k.length < 4) {
+        return;
       }
+      doc.$tagsList.push(k);
     });
 
     doc.publishDate = doc.publishDate || new Date();
-    doc.$search += ' ' + doc.publishDate;
     doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
     doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
     doc.$hasAudio = false;
@@ -215,7 +223,6 @@ module.exports = function init(site) {
     doc.$hasMiniTitle = false;
     if (lang.hasMiniTitle) {
       doc.$miniTitle = lang.miniTitle;
-      doc.$search += ' ' + doc.$miniTitle;
       doc.$hasMiniTitle = true;
       doc.$miniTitleClass = '';
     }
@@ -223,7 +230,6 @@ module.exports = function init(site) {
     if (doc.writer) {
       doc.$hasWriter = true;
       doc.writer.$name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
-      doc.$search += ' ' + doc.writer.$name;
       doc.writer.$title = doc.writer.profile.title;
       doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
     }
@@ -320,7 +326,7 @@ module.exports = function init(site) {
     options.skip = options.limit * (options.page - 1);
     options.exp = '';
     options.search = site
-      .filterLetters(options.search, ['  ', '/', '\\', '*', '?', '=', '.', '^', '$', 'ال'])
+      .filterLetters(options.search)
       .split(' ')
       .forEach((w, i) => {
         if (w.length > 2) {
@@ -337,7 +343,7 @@ module.exports = function init(site) {
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
           where: {
-            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'yts.type': options.exp }],
+            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }, { 'yts.type': options.exp }],
           },
           limit: options.limit,
           skip: options.skip,
