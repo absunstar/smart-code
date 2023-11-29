@@ -275,13 +275,13 @@ site.get(
     let setting = site.getSiteSetting(filter);
 
     if (!setting || !setting.siteTemplate || !setting.languageList) {
-      res.redirect('/404');
+      res.redirect('/404' , 404);
       return;
     }
 
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
     if (!language) {
-      res.redirect('/404');
+      res.redirect('/404' , 404);
       return;
     }
 
@@ -338,7 +338,7 @@ site.get(
           parser: 'html css js',
         });
       } else {
-        res.redirect('/');
+        res.redirect('/' , 404);
       }
     });
   }
