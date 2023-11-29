@@ -169,8 +169,7 @@
   .headermainsection {
   }
   .BNSubSectionheader {
-    width: 90%;
-    border-radius: 0;
+    width: 100%;
   }
   .headSectionName > p {
     font-weight: bold;

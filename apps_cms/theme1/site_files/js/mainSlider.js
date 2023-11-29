@@ -64,6 +64,7 @@ if (MSsliderContainer) {
   }
 }
 
+var slideURL = '';
 var MScardsIndex = -1;
 var MScards = document.querySelectorAll('.mainslide .MS-card');
 setInterval(() => {
@@ -77,5 +78,12 @@ setInterval(() => {
     document.querySelector('.MS-newstitle').innerHTML = s.querySelector('.slide-newstitle').innerHTML;
     document.querySelector('.newsday').innerHTML = s.querySelector('.slide-day').innerHTML;
     document.querySelector('.newsdate').innerHTML = s.querySelector('.slide-date').innerHTML;
+    slideURL = s.querySelector('.slide-link').href;
   }
 }, 1000 * 3);
+
+gotoSlide = function () {
+  if (slideURL) {
+    document.location.href = slideURL;
+  }
+};

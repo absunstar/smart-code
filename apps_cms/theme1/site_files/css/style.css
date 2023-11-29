@@ -293,9 +293,8 @@ a {
   font-size: 10px;
   font-weight: bold;
   padding: 2px;
-  color: var(--color1);
-  background: var(--background1xx);
-  border-right: 5px solid var(--background2);
+  color: #272727;
+  background: #fff;
 }
 
 .vlntime {
@@ -515,6 +514,7 @@ a {
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 76.04%);
   border-radius: 15px;
   direction: rtl;
+  cursor: pointer;
 }
 
 .MS-newstitle {
@@ -696,20 +696,17 @@ a {
 }
 
 .BNSubSection {
-  position: absolute;
-  right: 2%;
+ width: 100%;
 }
 
 .BNSubSectionheader {
-  width: auto;
+  width: 100%;
   height: auto;
-  min-width: 300px;
-  padding: 10px;
   background-color: var(--background1x);
   color: var(--color1);
   font-size: 28px;
   box-shadow: 0px 1px 8px var(--background1);
-  border-radius: 45px 10px 0px 45px;
+  border-radius: 45px;
 }
 .BNSubSectionheader p {
   text-align: center;
