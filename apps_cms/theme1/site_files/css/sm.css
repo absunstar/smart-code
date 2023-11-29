@@ -53,6 +53,7 @@
 
   .burgermenuoverlay {
     display: none;
+    direction: rtl;
     width: 100%;
     position: fixed;
     top: 0;
