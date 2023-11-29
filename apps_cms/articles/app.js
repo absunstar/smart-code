@@ -50,7 +50,7 @@ module.exports = function init(site) {
   );
 
   site.articlesList = [];
-  site.MainSliderNews = [];
+  site.searchArticleList = [];
 
   site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
   site.monthes = [
@@ -117,46 +117,7 @@ module.exports = function init(site) {
       });
     }
   };
-  site.searchArticles = function (options, callBack) {
-    callBack = callBack || function () {};
-    options = options || {};
-    options.search = options.search || '';
-    options.page = options.page || 1;
-    options.limit = options.limit || 50;
-    options.skip = options.limit * (options.page - 1);
-    options.exp = '';
-    options.search = site
-      .filterLetters(options.search, ['  ', '/', '\\', '*', '?', '=', '.', '^', '$', 'ال'])
-      .split(' ')
-      .forEach((w, i) => {
-        if (w.length > 2) {
-          options.exp += w + '|';
-        }
-      });
-    options.exp = options.exp.replace(/.$/, '');
-    options.exp = new RegExp(options.exp, 'i');
-    let list = [];
-    site.$articles.findAll(
-      {
-        select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
-        where: {
-          $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'yts.type': options.exp }],
-        },
-        limit: options.limit,
-        skip: options.skip,
-      },
-      (err, docs) => {
-        if (!err && docs) {
-          docs.forEach((doc) => {
-            list.push(site.handleSearchArticle(doc));
-          });
-          callBack(null, list);
-        } else {
-          callBack(err);
-        }
-      }
-    );
-  };
+
   site.handleArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
     doc.$title = site.removeHtml(lang.title);
@@ -274,7 +235,6 @@ module.exports = function init(site) {
     let lang = doc.translatedList[0];
     doc.$title = site.removeHtml(lang.title);
     doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
-    doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '';
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
@@ -282,7 +242,6 @@ module.exports = function init(site) {
       doc.$title2 = doc.$title.replaceAll(' ', '+');
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
-      doc.$search += ' youtube';
     } else {
       doc.$title2 = doc.$title.split(' ').join('-');
     }
@@ -324,18 +283,10 @@ module.exports = function init(site) {
     doc.$hasMiniTitle = false;
     if (lang.hasMiniTitle) {
       doc.$miniTitle = lang.miniTitle;
-      doc.$search += ' ' + doc.$miniTitle;
       doc.$hasMiniTitle = true;
       doc.$miniTitleClass = '';
     }
 
-    if (doc.writer) {
-      doc.$hasWriter = true;
-      doc.writer.$name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
-      doc.$search += ' ' + doc.writer.$name;
-      doc.writer.$title = doc.writer.profile.title;
-      doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
-    }
     if (doc.type.id == 7 && !doc.$hasMiniTitle) {
       doc.$miniTitle = doc.yts.type;
       doc.$hasMiniTitle = true;
@@ -345,7 +296,63 @@ module.exports = function init(site) {
       doc.$hasMiniTitle = true;
       doc.$miniTitleClass = '';
     }
+    delete doc.translatedList;
+    delete doc.yts;
+    delete doc.publishDate;
+    delete doc._id;
+    delete doc.type;
+
     return doc;
+  };
+  site.searchArticles = function (options, callBack) {
+    callBack = callBack || function () {};
+    options = options || {};
+    options.search = options.search || '';
+    options.page = options.page || 1;
+    options.limit = options.limit || 50;
+    options.skip = options.limit * (options.page - 1);
+    options.exp = '';
+    options.search = site
+      .filterLetters(options.search, ['  ', '/', '\\', '*', '?', '=', '.', '^', '$', 'ال'])
+      .split(' ')
+      .forEach((w, i) => {
+        if (w.length > 2) {
+          options.exp += w + '|';
+        }
+      });
+    options.expString = options.exp.replace(/.$/, '');
+    options.exp = new RegExp(options.expString, 'i');
+    let list = [];
+    if ((s = site.searchArticleList.find((sa) => sa.id == options.expString))) {
+      callBack(null, [...s.list]);
+    } else {
+      site.$articles.findAll(
+        {
+          select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
+          where: {
+            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'yts.type': options.exp }],
+          },
+          limit: options.limit,
+          skip: options.skip,
+        },
+        (err, docs) => {
+          if (!err && docs) {
+            docs.forEach((doc) => {
+              list.push(site.handleSearchArticle(doc));
+            });
+
+            site.searchArticleList.push({
+              id: options.expString,
+              list: [...list],
+            });
+
+            callBack(null, list);
+          } else {
+            callBack(err);
+          }
+        }
+      );
+    }
   };
   site.prepareArticles = function () {
     site.$articles.findMany({ sort: { id: -1 }, limit: 1000 }, (err, docs) => {
@@ -386,7 +393,6 @@ module.exports = function init(site) {
         site.articlesList.sort((a, b) => {
           return b.id - a.id;
         });
-        site.MainSliderNews = site.articlesList.filter((a) => a.showInMainSlider === true).splice(0, 10);
       }
     });
   };
