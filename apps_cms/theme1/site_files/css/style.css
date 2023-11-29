@@ -269,7 +269,6 @@ a {
   padding-left: 2px;
   padding-right: 2px;
   direction: rtl;
-  opacity: 0.9;
 }
 
 .newstitle {
@@ -309,9 +308,9 @@ a {
 }
 .miniTitle {
   color: var(--color2);
-  text-shadow: 1px 1px 1px var(--background2);
+  text-shadow: 1px 1px 1px var(--background1);
   font-size: var(--readTime);
-  border-radius: 5px;
+  border-radius: 20px 0px 0px;
   background: var(--background2x);
 }
 .readingTime {
@@ -696,17 +695,23 @@ a {
 }
 
 .BNSubSection {
- width: 100%;
+  width: 100%;
 }
 
 .BNSubSectionheader {
   width: 100%;
   height: auto;
-  background-color: var(--background1x);
+  background-color: var(--background1);
   color: var(--color1);
   font-size: 28px;
   box-shadow: 0px 1px 8px var(--background1);
-  border-radius: 45px;
+  border-radius: 20px;
+  transition: all .2s ease;
+  }
+.BNSubSectionheader:hover {
+  color: var(--color1);
+  font-size: 30px;
+  border-radius: 25px;
 }
 .BNSubSectionheader p {
   text-align: center;

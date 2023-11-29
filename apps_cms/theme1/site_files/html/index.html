@@ -10,12 +10,11 @@
 
       <div class="row d-flex flex-column" x-list1="categories">
         <div x-show-item1="template1">
-
           <div class="breakingNewsSection">
             <div class="col BNSubSection d-flex flex-column align-items-end">
-              <div class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
+              <a href="##item1.url##" class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
                 <p class="BNSubSectionName">##item1.name##</p>
-              </div>
+              </a>
             </div>
 
             <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-lg-start justify-content-md-start">
@@ -24,7 +23,6 @@
             </div>
           </div>
           <div x-data="setting.showTopAd" class="d-flex" x-import="theme1/ad-top.html"></div>
-
         </div>
 
         <div x-show-item1="template2" class="adsWithBreakingNews row justify-content-center align-items-start">
@@ -36,9 +34,9 @@
           <div class="col col-lg-8 col-md-12">
             <div x-list1="categoriesDisplayList2" class="breakingNewsSection">
               <div class="col BNSubSection d-flex flex-column align-items-end">
-                <div class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
+                <a class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
                   <p class="BNSubSectionName">##item1.name##</p>
-                </div>
+                </a>
               </div>
               <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end">
                 <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
@@ -83,7 +81,7 @@
                 </div>
               </div>
               <div class="primaryButton d-flex flex-column justify-content-center align-items-center align-content-center mt-4">
-                <a href="/category/##item1.id##/##item1.name##">
+                <a href="##item1.url###">
                   <p>اقراء المزيد</p>
                 </a>
               </div>

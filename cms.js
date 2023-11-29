@@ -86,20 +86,22 @@ site.get(
       options.menuList3 = options.menuList.slice(20);
 
       options.setting.mainCategoryList.forEach((c0) => {
-        let category = site.categoryList.find((c) => c.id == c0.id && c.host.like(options.filter));
-        if (category) {
-          category.$list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, c0.limit);
-          if (c0.template && category.$list.length > 0) {
+        if ((category = site.categoryList.find((c) => c.id == c0.id && c.host.like(options.filter)))) {
+          let c = {};
+          c.$list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, c0.limit);
+          if (c0.template && c.$list.length > 0) {
             if (c0.template.id == 1) {
-              category.template1 = true;
+              c.template1 = true;
             } else if (c0.template.id == 2) {
-              category.template2 = true;
+              c.template2 = true;
             } else if (c0.template.id == 3) {
-              category.template3 = true;
-              category.$list0 = [category.$list.shift()];
+              c.template3 = true;
+              c.$list0 = [c.$list.shift()];
             }
-            category.name = category.translatedList.find((t) => t.language.id == req.session.lang)?.name || category.translatedList[0].name;
-            options.categories.push(category);
+            let catLang = category.translatedList.find((t) => t.language.id == req.session.lang) || category.translatedList[0];
+            c.name = catLang.name;
+            c.url = '/category/' + category.id + '/' + c.name.replaceAll(' ', '+');
+            options.categories.push(c);
           }
         }
       });
