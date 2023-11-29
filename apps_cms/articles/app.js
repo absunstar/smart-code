@@ -96,7 +96,12 @@ module.exports = function init(site) {
       return unsafe;
     }
   };
-
+  site.filterLetters = function (str, lettersToRemove) {
+    lettersToRemove.forEach(function (letter) {
+      str = str.replaceAll(letter, '');
+    });
+    return str.trim();
+  };
   site.getArticle = function (guid, callBack) {
     callBack = callBack || function () {};
     let article = site.articlesList.find((a) => a.id == guid || a.guid == guid);
@@ -120,23 +125,16 @@ module.exports = function init(site) {
     options.limit = options.limit || 50;
     options.skip = options.limit * (options.page - 1);
     options.exp = '';
-    console.log(options.search);
-    options.search
-      // .replaceAll('/', '')
-      // .replaceAll('\\', '')
-      // .replaceAll('|', '')
-      // .replaceAll('*', '')
-      // .replaceAll('?', '')
-      // .replaceAll('=', '')
-      // .replaceAll('.', '')
-      .trim()
+    options.search = site
+      .filterLetters(options.search, ['  ', '/', '\\', '*', '?', '=', '.', '^', '$', 'ال'])
       .split(' ')
       .forEach((w, i) => {
-        options.exp += w + '|';
+        if (w.length > 2) {
+          options.exp += w + '|';
+        }
       });
     options.exp = options.exp.replace(/.$/, '');
     options.exp = new RegExp(options.exp, 'i');
-    console.log(options.exp);
     let list = [];
     site.$articles.findAll(
       {
