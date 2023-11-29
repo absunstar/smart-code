@@ -54,21 +54,17 @@
   .burgermenuoverlay {
     display: none;
     width: 100%;
-    height: 100%;
     position: fixed;
     top: 0;
     right: 0;
+    bottom: 45px;
     background-color: var(--dark-overlay);
     z-index: 100;
   }
   .burgermenu {
-    width: 80%;
-    height: 100%;
     overflow: scroll;
     background-color: var(--background1);
-    border-left: 4px solid var(--color1);
-    border-radius: 25px 0 0 25px;
-    position: fixed;
+    position: relative;
     top: 0;
     right: 0;
     padding: 25px;
@@ -77,6 +73,7 @@
   .burgermenu .fa-times {
     color: var(--color1);
     cursor: pointer;
+    font-size: x-large;
   }
 
   .fa-times:hover {
@@ -88,15 +85,26 @@
     margin: 0;
     background-color: var(--six-color);
   }
-
+  .mainSection{
+    width: 100%;
+  }
+  .mainFollowUs {
+    width: 100%;
+  }
+  .FollowUsIcon{
+    width: 100%;
+  }
+  .headSectionTitle {
+    width: 100%;
+    text-align: center;
+  }
   .headSectionTitle > label {
-    width: 150px;
     color: var(--color1);
     font-size: 24px;
     padding-bottom: 4px;
     margin-bottom: 10px;
     border-bottom: 3px solid var(--background2);
-    text-align: right;
+    text-align: center;
   }
 
   .allsections {

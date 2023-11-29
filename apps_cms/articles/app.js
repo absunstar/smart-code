@@ -1,5 +1,7 @@
 module.exports = function init(site) {
   site.$articles = site.connectCollection('articles');
+  site.$articlesSearch = site.connectCollection('articlesSearch');
+
   site.$articles.aggregate(
     [
       {
@@ -50,7 +52,12 @@ module.exports = function init(site) {
   );
 
   site.articlesList = [];
+
   site.searchArticleList = [];
+  site.addToSearchArticleList = function (s) {
+    site.searchArticleList.push({ ...s, date: new Date() });
+    /* Save in Database */
+  };
 
   site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
   site.monthes = [
@@ -341,7 +348,7 @@ module.exports = function init(site) {
               list.push(site.handleSearchArticle(doc));
             });
 
-            site.searchArticleList.push({
+            site.addToSearchArticleList({
               id: options.expString,
               list: [...list],
             });

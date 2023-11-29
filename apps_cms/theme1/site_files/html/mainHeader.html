@@ -76,8 +76,8 @@
     </div>
   </div>
   <div x-data="setting.showMainMenu" class="bottomHeader">
-    <div x-data="menuList1.length" class="bottomHeadercontainer container">
-      <ul class="navbarlist d-none d-md-flex">
+    <div class="bottomHeadercontainer container">
+      <ul x-data="menuList1.length" class="navbarlist d-none d-md-flex">
         <li>
           <a href="/"><i class="fas fa-home"></i></a>
         </li>
@@ -91,10 +91,6 @@
       </ul>
       <ul id="mobileNav" class="navbarlist d-flex d-md-none">
         <li id="burgermenuToggle"><i class="fas fa-bars"></i></li>
-        <li><div class="vlstickybottom"></div></li>
-        <li><i class="fas fa-home"></i></li>
-        <li><i class="fas fa-bullhorn"></i></li>
-        <li><i class="fas fa-newspaper"></i></li>
       </ul>
     </div>
   </div>
@@ -107,17 +103,19 @@
           <i class="fas fa-times"></i>
         </div>
       </div>
-      <div class="SearchBAr">
-        <div class="searchIcon">
-          <i class="fas fa-search"></i>
+      <form x-data="setting.showSearchBar" action="/result" method="get">
+        <div class="SearchBAr">
+          <button type="submit" class="searchIcon">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="vl"></div>
+          <div class="searchField">
+            <input name="search_query" type="search" class="searchInput" placeholder="##word.Search in ALL Site##" />
+          </div>
         </div>
-        <div class="vl"></div>
-        <div class="searchField">
-          <input type="search" class="searchInput" placeholder="##word.Search in ALL Site##" />
-        </div>
-      </div>
-      <div class="w-100 headerWidget d-flex flex-column align-items-end">
-        <div class="weather">
+      </form>
+      <div class=" headerWidget d-flex flex-column align-items-end">
+        <div class="weather" x-data="setting.showTemperatures">
           <div class="weatherIcon">
             <img src="/theme1/images/Moon2.png" alt="night" width="40px" height="40px" />
             <img src="/theme1/images/sun2.png" alt="morning" width="40px" height="40px" />
@@ -128,7 +126,7 @@
             <p class="rtl bold">##data.setting.temperaturesMinor##°كبرى</p>
           </div>
         </div>
-        <div id="PrayerTime" class="PrayerTime">
+        <div id="PrayerTime" class="PrayerTime" x-data="setting.showPrayerTimings">
           <div class="PrayerIcon">
             <img src="/theme1/images/619087.png" alt="pray" width="40px" height="40px" />
           </div>
@@ -148,10 +146,7 @@
           </ul>
         </div>
       </div>
-      <div x-data="setting.showMainMenu" class="w-100 mainSection d-flex flex-column align-items-end">
-        <div class="headSectionTitle">
-          <label>الأقسام</label>
-        </div>
+      <div x-data="setting.showMainMenu" class=" mainSection d-flex flex-column align-items-end">
         <div class="allsections">
           <div x-list1="menuList1" class="sectiontitle">
             <p><a href="##item1.url##">##item1.name##</a></p>
@@ -161,25 +156,13 @@
           </div>
         </div>
       </div>
-      <div class="w-100 mainNotfication d-flex flex-column align-items-end">
-        <div class="headSectionTitle">
-          <label>الأشعارات</label>
-        </div>
-        <div class="notficationSections d-flex flex-row gap-2 justify-content-center align-items-center">
-          <div class="notficationtitle"><p>استقبال إشعارات بأحدث الأخبار</p></div>
-          <div class="notficationToggel">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="w-100 mainFollowUs d-flex flex-column align-items-end">
+
+      <div class=" mainFollowUs d-flex flex-column align-items-end">
         <div class="headSectionTitle">
           <label>##word.Follow Us##</label>
         </div>
         <div class="FollowUsIcon">
-          <div class="w-100 d-flex flex-row justify-content-between gap-4">
+          <div class=" d-flex flex-row justify-content-center gap-4">
             <div class="socialMediaIcon">
               <a href="facebook.com">
                 <i class="fab fa-facebook-f"></i>
