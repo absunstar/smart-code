@@ -103,7 +103,7 @@ module.exports = function init(site) {
       return unsafe;
     }
   };
-  site.filterLetters = function (str, lettersToRemove = ['  ', '|', '/', '\\', ':', '*', '?', '=', '.', '^', '$', '؟']) {
+  site.filterLetters = function (str, lettersToRemove = ['  ', '|', '/', '\\', ':', '*', '?', '=', '.', '^', '$', '"', "'", '؟']) {
     if (!str) {
       return '';
     }
@@ -951,7 +951,7 @@ module.exports = function init(site) {
     let setting = site.getSiteSetting(site.getHostFilter(req.host));
 
     let lang = setting.languageList[0];
-    let domain = '//' + req.host;
+    let domain = 'https://' + req.host;
     if (req.params.id == 'random') {
       list = site.articlesList.filter((p) => p.$imageURL && p.active);
       list = [list[site.random(0, list.length - 1)]];
@@ -989,7 +989,7 @@ module.exports = function init(site) {
     res.end(xml);
   });
   site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
-    let domain = '//' + req.host;
+    let domain = 'https://' + req.host;
 
     let urls = '';
     site.articlesList.slice(0, 1000).forEach((article, i) => {
