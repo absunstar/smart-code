@@ -285,24 +285,14 @@ site.get(
       return;
     }
 
-    if (req.route.name0 == '/a/:guid' || req.route.name0 == '/post/:guid' || req.route.name0 == '/article/:guid' || req.route.name0 == '/torrent/:guid') {
-      if (req.params.guid == 'random') {
-        if (req.route.name0 == '/torrent/:guid') {
-          let articles = site.articlesList.filter((a) => a.$yts == true);
-          let article = articles[Math.floor(Math.random() * articles.length)];
-          res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
-        } else {
-          let article = site.articlesList[Math.floor(Math.random() * site.articlesList.length)];
-          res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
-        }
+    if (req.params.guid == 'random') {
+      if (req.route.name0 == '/torrent/:guid') {
+        let articles = site.articlesList.filter((a) => a.$yts == true);
+        let article = articles[Math.floor(Math.random() * articles.length)];
+        res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
       } else {
-        site.getArticle(req.params.guid, (err, article) => {
-          if (!err && article && article.host.like(filter)) {
-            res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
-          } else {
-            res.redirect('/');
-          }
-        });
+        let article = site.articlesList[Math.floor(Math.random() * site.articlesList.length)];
+        res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
       }
       return;
     }
