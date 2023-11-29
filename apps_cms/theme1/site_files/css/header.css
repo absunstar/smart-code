@@ -150,7 +150,6 @@
   flex-direction: row;
 }
 .logoAndHead {
-  /* width: 35%; */
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -16,17 +16,15 @@
   </div>
   <div class="midHeader">
     <div class="midHeadercontainer container d-flex flex-column flex-md-row">
-      <div x-data="setting.showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
-        <div class="col-12 d-flex justify-content-start align-items-center logoAndHead">
+      <div  x-data="setting.showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
+        <a href="/" class="col-12 d-flex justify-content-start align-items-center logoAndHead">
           <div class="logo">
-            <a href="/">
-              <img src="##data.site_logo##" alt="logo" width="133px" height="64px" />
-            </a>
+            <img src="##data.site_logo##" alt="logo" width="133px" height="64px" />
           </div>
           <div class="site-title">
             <h2>##data.site_name##</h2>
           </div>
-        </div>
+        </a>
       </div>
       <div x-data="setting.showSearchBar" class="col-md-6 col-12 searchBarSection">
         <form action="/result" method="get">
@@ -114,7 +112,7 @@
           </div>
         </div>
       </form>
-      <div class=" headerWidget d-flex flex-column align-items-end">
+      <div class="headerWidget d-flex flex-column align-items-end">
         <div class="weather" x-data="setting.showTemperatures">
           <div class="weatherIcon">
             <img src="/theme1/images/Moon2.png" alt="night" width="40px" height="40px" />
@@ -146,7 +144,7 @@
           </ul>
         </div>
       </div>
-      <div x-data="setting.showMainMenu" class=" mainSection d-flex flex-column align-items-end">
+      <div x-data="setting.showMainMenu" class="mainSection d-flex flex-column align-items-end">
         <div class="allsections">
           <div x-list1="menuList1" class="sectiontitle">
             <p><a href="##item1.url##">##item1.name##</a></p>
@@ -157,12 +155,12 @@
         </div>
       </div>
 
-      <div class=" mainFollowUs d-flex flex-column align-items-end">
+      <div class="mainFollowUs d-flex flex-column align-items-end">
         <div class="headSectionTitle">
           <label>##word.Follow Us##</label>
         </div>
         <div class="FollowUsIcon">
-          <div class=" d-flex flex-row justify-content-center gap-4">
+          <div class="d-flex flex-row justify-content-center gap-4">
             <div class="socialMediaIcon">
               <a href="facebook.com">
                 <i class="fab fa-facebook-f"></i>
