@@ -338,7 +338,7 @@ site.get(
           parser: 'html css js',
         });
       } else {
-        res.redirect('/' , 404);
+        res.redirect('/' , 410);
       }
     });
   }
