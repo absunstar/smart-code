@@ -104,6 +104,7 @@ body {
 }
 
 .related-tags a {
+  display: inline-block;
   margin: 5px;
   font-size: large;
   text-decoration: none;
