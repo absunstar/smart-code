@@ -18,7 +18,7 @@ module.exports = function init(site) {
   site.menuList = [];
   site.handleMenus = function () {
     site.menuList = app.memoryList;
-    site.menuList.forEach((m) => {
+    site.menuList.forEach((m, i) => {
       m.host = m.host || '';
       m.type = m.type || {};
       m.$url = '#';
@@ -31,6 +31,7 @@ module.exports = function init(site) {
       } else if (m.type.id === 5) {
       } else {
       }
+      site.menuList[i] = m;
     });
     site.menuList = site.menuList.filter((m) => m.active);
     app.menuList = site.menuList.sort((a, b) => a.sort - b.sort);
@@ -88,7 +89,7 @@ module.exports = function init(site) {
             });
           } else {
             docs.forEach((doc) => {
-              app.memoryList.push(doc);
+              app.memoryList.push({ ...doc });
             });
             site.handleMenus();
           }
