@@ -27,6 +27,7 @@ module.exports = function init(site) {
       } else if (m.type.id === 2) {
       } else if (m.type.id === 3) {
       } else if (m.type.id === 4) {
+        m.$url = m.internal_link;
       } else if (m.type.id === 5) {
       } else {
       }
@@ -232,7 +233,7 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-
+        _data.host = _data.host || req.host;
         _data.addUserInfo = req.getUserFinger();
 
         app.add(_data, (err, doc) => {
@@ -258,6 +259,8 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
+        _data.host = _data.host || req.host;
+
         _data.editUserInfo = req.getUserFinger();
 
         app.update(_data, (err, result) => {
