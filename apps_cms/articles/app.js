@@ -74,7 +74,15 @@ module.exports = function init(site) {
     { nameAr: 'نوقمير' },
     { nameAr: 'ديسمبر' },
   ];
-
+  site.escapeRegx = function (s) {
+    if (!s) {
+      return '';
+    }
+    if (typeof s !== 'string') {
+      s = s.toString();
+    }
+    return s.replace(/[\/\\^$*+?.()\[\]{}]/g, '\\$&');
+  };
   site.escapeHtml = function (unsafe) {
     try {
       if (!unsafe) {
@@ -321,6 +329,7 @@ module.exports = function init(site) {
     callBack = callBack || function () {};
     options = options || {};
     options.search = options.search || '';
+    options.host = options.host || '';
     options.page = options.page || 1;
     options.limit = options.limit || 50;
     options.skip = options.limit * (options.page - 1);
@@ -335,6 +344,18 @@ module.exports = function init(site) {
       });
     options.expString = options.exp.replace(/.$/, '');
     options.exp = new RegExp(options.expString, 'i');
+
+    if (options.host.indexOf('*') !== -1) {
+      options.host = options.host.split('*');
+      options.host.forEach((n, i) => {
+        options.host[i] = site.escapeRegx(n);
+      });
+      options.host = options.host.join('.*');
+    } else {
+      options.host = site.escapeRegx(name);
+    }
+    options.host = '^' + options.host + '$';
+
     let list = [];
     if ((s = site.searchArticleList.find((sa) => sa.id == options.expString))) {
       callBack(null, [...s.list]);
@@ -343,6 +364,7 @@ module.exports = function init(site) {
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
           where: {
+            host: new RegExp(options.host, 'gium'),
             $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }, { 'yts.type': options.exp }],
           },
           limit: options.limit,
@@ -429,6 +451,7 @@ module.exports = function init(site) {
       .splice(0, 12)
       .reverse();
   };
+
   site.prepareArticles();
 
   site.get({

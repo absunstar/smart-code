@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   const $siteSetting = site.connectCollection('siteSetting');
-  const HOSTS = site.connectApp({ name: 'hosts' });
-  HOSTS.memoryList.push({ domain: '*', filter: '*' });
+  const HOSTS = site.connectApp({ name: 'hosts', allowMemory: true });
+  // HOSTS.memoryList.push({ domain: '*', filter: '*' });
 
   site.settingList = [];
 
@@ -187,7 +187,7 @@ module.exports = function init(site) {
   };
 
   site.getSiteSetting = function (filter = '') {
-    return site.settingList.find((s) => s.host.like(filter)) || site.settingList[0];
+    return site.settingList.find((s) => s.host.like(filter)) || { ...site.defaultSetting, ...site.settingList[0], host: '' };
   };
 
   site.supportedLanguageList.forEach((l) => {
@@ -227,7 +227,18 @@ module.exports = function init(site) {
 
   site.get(
     {
+      name: 'host-manager',
+      require: { permissions: ['login'] },
+    },
+    (req, res) => {
+      res.render('site-setting/hosts.html', {}, { parser: 'html' });
+    }
+  );
+
+  site.get(
+    {
       name: 'site-setting',
+      require: { permissions: ['login'] },
     },
     (req, res) => {
       let setting = site.getSiteSetting(site.getHostFilter(req.host));
@@ -272,22 +283,29 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
     let data = req.data;
     data.host = data.host || req.host;
-    $siteSetting.update(data, (err, result) => {
-      if (!err && result.doc) {
-        response.done = true;
-        let index = site.settingList.findIndex((s) => s.id == result.doc.id);
-        if (index > -1) {
+    let index = site.settingList.findIndex((s) => s.host == data.host);
+    if (index > -1) {
+      $siteSetting.update(data, (err, result) => {
+        if (!err && result.doc) {
+          response.done = true;
           site.settingList[index] = { ...site.settingList[index], ...result.doc };
         } else {
-          site.settingList.push(...site.defaultSetting, ...resultdoc);
+          response.error = err.message;
         }
-      } else {
-        response.error = err.message;
-      }
-      res.json(response);
-    });
+        res.json(response);
+      });
+    } else {
+      delete data.id;
+      delete data._id;
+      $siteSetting.add(data, (err, doc) => {
+        if (!err && doc) {
+          response.done = true;
+          site.settingList.push({ ...doc });
+        }
+        res.json(response);
+      });
+    }
   });
 };
