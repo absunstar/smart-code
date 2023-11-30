@@ -45,7 +45,7 @@ site.get(
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
     }
-    let language = setting.languageList.find((l) => l.name == req.session.lang) || setting.languageList[0];
+    let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
       res.redirect('/404');
@@ -133,7 +133,7 @@ site.get(
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
     }
-    let language = setting.languageList.find((l) => l.name == req.session.lang) || setting.languageList[0];
+    let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
       res.redirect('/404');
@@ -209,7 +209,7 @@ site.get(
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
     }
-    let language = setting.languageList.find((l) => l.name == req.session.lang) || setting.languageList[0];
+    let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
       res.redirect('/404');
