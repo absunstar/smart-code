@@ -27,11 +27,10 @@ module.exports = function init(site) {
       } else if (m.type.id === 2) {
       } else if (m.type.id === 3) {
       } else if (m.type.id === 4) {
-        m.$url = m.internal_link;
+        m.$url = m.internalLink;
       } else if (m.type.id === 5) {
       } else {
       }
-      site.menuList[i] = m;
     });
     site.menuList = site.menuList.filter((m) => m.active);
     app.menuList = site.menuList.sort((a, b) => a.sort - b.sort);
