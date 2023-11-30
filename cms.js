@@ -42,6 +42,9 @@ site.get(
       res.redirect('/404');
       return;
     }
+    if (req.host.like('*torrent*')) {
+      req.session.lang = 'EN';
+    }
     let language = setting.languageList.find((l) => l.name == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -127,6 +130,9 @@ site.get(
       res.redirect('/404');
       return;
     }
+    if (req.host.like('*torrent*')) {
+      req.session.lang = 'EN';
+    }
     let language = setting.languageList.find((l) => l.name == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -169,7 +175,7 @@ site.get(
       options.menuList2 = options.menuList.slice(8, 20);
       options.menuList3 = options.menuList.slice(20);
 
-      site.searchArticles({ search: query , host : options.filter }, (err, docs) => {
+      site.searchArticles({ search: query, host: options.filter }, (err, docs) => {
         if (!err && docs) {
           options.list = docs;
           options.list1 = options.list.splice(0, 10);
@@ -199,6 +205,9 @@ site.get(
     if (!setting || !setting.siteTemplate || !setting.languageList) {
       res.redirect('/404');
       return;
+    }
+    if (req.host.like('*torrent*')) {
+      req.session.lang = 'EN';
     }
     let language = setting.languageList.find((l) => l.name == req.session.lang) || setting.languageList[0];
 
