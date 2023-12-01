@@ -25,7 +25,7 @@ module.exports = function init(site) {
           name = '##word.publishers##';
         } 
       }
-      let setting = site.getSiteSetting(site.getHostFilter(req.host));
+      let setting = site.getSiteSetting(req.host);
       res.render('manageUsers' + '/index.html', { title: 'manageUsers', appName: name, setting: setting }, { parser: 'html', compres: true });
     }
   );

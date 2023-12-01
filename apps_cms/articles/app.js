@@ -464,7 +464,7 @@ module.exports = function init(site) {
       name: 'articles',
     },
     (req, res) => {
-      let setting = site.getSiteSetting(site.getHostFilter(req.host));
+      let setting = site.getSiteSetting(req.host);
       let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
       res.render(
@@ -506,7 +506,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+    let setting = site.getSiteSetting(req.host);
 
     if (!setting) {
       response.error = 'No Setting ';
@@ -971,7 +971,7 @@ module.exports = function init(site) {
     let limit = req.query.limit || 10;
     let list = [];
     let text = '';
-    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+    let setting = site.getSiteSetting(req.host);
 
     let lang = setting.languageList[0];
     let domain = 'https://' + req.host;

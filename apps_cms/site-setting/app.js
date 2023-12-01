@@ -186,8 +186,8 @@ module.exports = function init(site) {
     }
   };
 
-  site.getSiteSetting = function (filter = '') {
-    return site.settingList.find((s) => s.host.like(filter)) || { ...site.defaultSetting, ...site.settingList[0], host: '' };
+  site.getSiteSetting = function (host = '') {
+    return site.settingList.find((s) => s.host.like(host)) || { ...site.defaultSetting, ...site.settingList[0], host: '' };
   };
 
   site.supportedLanguageList.forEach((l) => {
@@ -241,7 +241,7 @@ module.exports = function init(site) {
       require: { permissions: ['login'] },
     },
     (req, res) => {
-      let setting = site.getSiteSetting(site.getHostFilter(req.host));
+      let setting = site.getSiteSetting(req.host);
       let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
       res.render(
@@ -273,7 +273,7 @@ module.exports = function init(site) {
 
   site.post('/api/get-site-setting', (req, res) => {
     let response = {
-      doc: site.getSiteSetting(site.getHostFilter(req.host)),
+      doc: site.getSiteSetting(req.host),
       done: true,
     };
     res.json(response);

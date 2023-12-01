@@ -39,7 +39,7 @@ module.exports = function init(site) {
       name: 'categories',
     },
     (req, res) => {
-      let setting = site.getSiteSetting(site.getHostFilter(req.host));
+      let setting = site.getSiteSetting(req.host);
       let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
       res.render(

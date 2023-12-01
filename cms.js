@@ -36,7 +36,7 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
-    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+    let setting = site.getSiteSetting(req.host);
 
     if (!setting || !setting.siteTemplate || !setting.languageList) {
       res.redirect('/404');
@@ -124,7 +124,7 @@ site.get(
     name: ['/result'],
   },
   (req, res) => {
-    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+    let setting = site.getSiteSetting(req.host);
 
     if (!setting || !setting.siteTemplate || !setting.languageList) {
       res.redirect('/404');
@@ -200,7 +200,7 @@ site.get(
     name: ['/category/:id/:title', '/category/:id'],
   },
   (req, res) => {
-    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+    let setting = site.getSiteSetting(req.host);
 
     if (!setting || !setting.siteTemplate || !setting.languageList) {
       res.redirect('/404');
@@ -283,7 +283,7 @@ site.get(
   },
   (req, res) => {
     let filter = site.getHostFilter(req.host);
-    let setting = site.getSiteSetting(filter);
+    let setting = site.getSiteSetting(req.host);
 
     if (!setting || !setting.siteTemplate || !setting.languageList) {
       res.redirect('/404', 404);
@@ -356,7 +356,7 @@ site.get(
 );
 
 site.get('ads.txt', (req, res) => {
-  let setting = site.getSiteSetting(site.getHostFilter(req.host));
+  let setting = site.getSiteSetting(req.host);
   if (setting && setting.adsTxt) {
     res.end(setting.adsTxt);
   } else {
@@ -364,7 +364,7 @@ site.get('ads.txt', (req, res) => {
   }
 });
 site.get('robots.txt', (req, res) => {
-  let setting = site.getSiteSetting(site.getHostFilter(req.host));
+  let setting = site.getSiteSetting(req.host);
   if (setting && setting.adsTxt) {
     res.end(setting.robotsTxt);
   } else {

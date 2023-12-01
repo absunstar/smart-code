@@ -105,7 +105,7 @@ module.exports = function init(site) {
             },
             (err, result) => {
               if (!err) {
-                let setting = site.getSiteSetting(site.getHostFilter(req.host));
+                let setting = site.getSiteSetting(req.host);
                 if (result.doc.type == 'mobile' && setting.enableSendingMessagesMobile) {
                   site.sendMobileTwilioMessage({
                     to: result.doc.country.countryCode + result.doc.mobile,
@@ -151,7 +151,7 @@ module.exports = function init(site) {
                 mailerDoc.date = new Date();
                 $mailer.add(mailerDoc, (err, result) => {
                   if (!err) {
-                    let setting = site.getSiteSetting(site.getHostFilter(req.host));
+                    let setting = site.getSiteSetting(req.host);
                     response.done = true;
                     response.doc = result;
                     if (result.type == 'mobile' && setting.enableSendingMessagesMobile) {
