@@ -352,7 +352,7 @@ module.exports = function init(site) {
       });
       options.host = options.host.join('.*');
     } else {
-      options.host = site.escapeRegx(name);
+      options.host = site.escapeRegx(options.host);
     }
     options.host = '^' + options.host + '$';
 
