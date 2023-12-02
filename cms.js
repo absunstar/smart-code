@@ -297,14 +297,14 @@ site.get(
     }
 
     if (req.params.guid == 'random') {
-      if (req.route.name0 == '/torrent/:guid') {
-        let articles = site.articlesList.filter((a) => a.$yts == true);
-        let article = articles[Math.floor(Math.random() * articles.length)];
+      let articles = site.articlesList.filter((a) => a.host.like(filter));
+      let article = articles[Math.floor(Math.random() * articles.length)];
+      if (article) {
         res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
       } else {
-        let article = site.articlesList[Math.floor(Math.random() * site.articlesList.length)];
-        res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
+        res.redirect('/');
       }
+
       return;
     }
 
