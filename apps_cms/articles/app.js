@@ -1035,16 +1035,15 @@ module.exports = function init(site) {
       $date = new Date(doc.publishDate).toUTCString();
       urls += `
         <item>
-          <id>$url</id>
           <guid isPermaLink="false">${doc.guid}</guid>
           <title>${doc.$title}</title>
-          <link rel="alternate" type="text/html" href="${$url}"/>
+          <link>${$url}</link>
           <description>${doc.$description}</description>
-          <content type="html">
-          <![CDATA[${doc.$description}]]>
-          </content>
           <content:encoded>
-            <![CDATA[<img src="${domain}/article-image/${doc.guid}" />]]>
+            <![CDATA[
+              <p> ${doc.$description} </p>
+              <img src="${domain}/article-image/${doc.guid}" />
+            ]]>
           </content:encoded> 
           <pubDate>${$date}</pubDate>
         </item>
