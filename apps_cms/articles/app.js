@@ -1011,6 +1011,52 @@ module.exports = function init(site) {
     res.set('Content-Type', 'application/xml');
     res.end(xml);
   });
+  site.onGET({ name: ['/feed'], public: true }, (req, res) => {
+    let limit = req.query.limit || 10;
+    let list = [];
+    let text = '';
+    let filter = site.getHostFilter(req.host);
+    let setting = site.getSiteSetting(req.host);
+
+    let lang = setting.languageList[0];
+    let domain = 'https://' + req.host;
+    if (req.params.guid == 'random') {
+      list = site.articlesList.filter((a) => a.active && a.host.like(filter));
+      list = [list[site.random(0, list.length - 1)]];
+    } else if (req.params.guid) {
+      list = [site.articlesList.find((p) => p.guid == req.params.guid)];
+    } else {
+      list = site.articlesList.filter((a) => a.active && a.host.like(filter)).slice(0, limit);
+    }
+
+    let urls = '';
+    list.forEach((doc, i) => {
+      $url = domain + '/article/' + doc.guid;
+      $date = new Date(doc.publishDate).toUTCString();
+      urls += `
+        <item>
+          <guid isPermaLink="false">${doc.guid}</guid>
+          <title>${doc.$title}</title>
+          <link>${$url}</link>
+          <image>${domain}/article-image/${doc.guid}</image>
+          <description>${doc.$description}</description>
+          <pubDate>${$date}</pubDate>
+        </item>
+        `;
+    });
+    let xml = `<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" 
+    xmlns:content="http://purl.org/rss/1.0/modules/content/">
+      <channel>
+            <title> ${lang.siteName} ${text} Global RSS</title>
+            <link>${domain}</link>
+            <description>${lang.siteName} Articles Rss Feeds</description>
+            ${urls}
+        </channel>
+     </rss>`;
+    res.set('Content-Type', 'application/xml');
+    res.end(xml);
+  });
   site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
     let domain = 'https://' + req.host;
     let filter = site.getHostFilter(req.host);
