@@ -1041,8 +1041,8 @@ module.exports = function init(site) {
           <description>${doc.$description}</description>
           <content:encoded>
             <![CDATA[
-              <p> ${doc.$description} </p>
               <img src="${domain}/article-image/${doc.guid}" />
+              <p> ${doc.$description} </p>
             ]]>
           </content:encoded> 
           <pubDate>${$date}</pubDate>
