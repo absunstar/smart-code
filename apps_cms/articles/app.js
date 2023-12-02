@@ -1013,20 +1013,24 @@ module.exports = function init(site) {
   });
   site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
     let domain = 'https://' + req.host;
+    let filter = site.getHostFilter(req.host);
 
     let urls = '';
-    site.articlesList.slice(0, 1000).forEach((article, i) => {
-      article.post_url = domain + '/article/' + article.guid;
-      article.$date2 = new Date(article.publishDate).toISOString();
-      urls += `
+    site.articlesList
+      .filter((a) => a.host.like(filter))
+      .slice(0, 1000)
+      .forEach((article, i) => {
+        let $url = domain + '/article/' + article.guid;
+        let $date = new Date(article.publishDate).toISOString();
+        urls += `
               <url>
-                  <loc>${article.post_url}</loc>
-                  <lastmod>${article.$date2}</lastmod>
+                  <loc>${$url}</loc>
+                  <lastmod>${$date}</lastmod>
                   <changefreq>monthly</changefreq>
                   <priority>.8</priority>
               </url>
               `;
-    });
+      });
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
                       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
                       <url>
