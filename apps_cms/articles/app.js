@@ -1050,6 +1050,7 @@ module.exports = function init(site) {
       <channel>
             <title> ${lang.siteName} ${text} Global RSS</title>
             <link>${domain}</link>
+            <atom:link href="${domain}/feed" rel="self" type="application/rss+xml" />
             <description>${lang.siteName} Articles Rss Feeds</description>
             ${urls}
         </channel>
