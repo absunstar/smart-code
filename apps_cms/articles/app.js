@@ -1034,23 +1034,25 @@ module.exports = function init(site) {
       $url = domain + '/article/' + doc.guid;
       $date = new Date(doc.publishDate).toUTCString();
       urls += `
-        <item>
+        <entry>
+          <id>$url</id>
           <guid isPermaLink="false">${doc.guid}</guid>
           <title>${doc.$title}</title>
-          <link>${$url}</link>
-          <image>${domain}/article-image/${doc.guid}</image>
+          <link rel="alternate" type="text/html" href="${$url}"/>
           <description>${doc.$description}</description>
-          <content:encoded><![CDATA[
-            ${doc.$description}
-          ]]></content:encoded>
+          <content type="html">
+          <![CDATA[${doc.$description}]]>
+          </content>
+          <content:encoded>
+            <![CDATA[<img src="${domain}/article-image/${doc.guid}" />]]>
+          </content:encoded> 
           <pubDate>${$date}</pubDate>
-        </item>
+        </entry>
         `;
     });
     let xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" 
     xmlns:atom="http://www.w3.org/2005/Atom" 
-    xmlns:image="http://purl.org/rss/1.0/modules/image/"
     xmlns:content="http://purl.org/rss/1.0/modules/content/">
       <channel>
             <title> ${lang.siteName} ${text} Global RSS</title>
