@@ -1034,7 +1034,7 @@ module.exports = function init(site) {
       $url = domain + '/article/' + doc.guid;
       $date = new Date(doc.publishDate).toUTCString();
       urls += `
-        <entry>
+        <item>
           <id>$url</id>
           <guid isPermaLink="false">${doc.guid}</guid>
           <title>${doc.$title}</title>
@@ -1047,7 +1047,7 @@ module.exports = function init(site) {
             <![CDATA[<img src="${domain}/article-image/${doc.guid}" />]]>
           </content:encoded> 
           <pubDate>${$date}</pubDate>
-        </entry>
+        </item>
         `;
     });
     let xml = `<?xml version="1.0" encoding="UTF-8" ?>
