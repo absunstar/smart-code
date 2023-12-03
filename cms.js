@@ -44,6 +44,8 @@ site.get(
     }
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
     }
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
@@ -132,6 +134,8 @@ site.get(
     }
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
     }
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
@@ -208,6 +212,8 @@ site.get(
     }
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
     }
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
