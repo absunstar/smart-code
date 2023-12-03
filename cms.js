@@ -401,7 +401,7 @@ site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
 
 site.handleNotRoute = function (req, res) {
   let setting = site.getSiteSetting(req.host);
-  if (!setting.host) {
+  if (setting.host == '') {
     let arr = req.host.split('.');
     let com = arr.pop();
     let domain = arr.pop();
