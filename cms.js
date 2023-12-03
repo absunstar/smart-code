@@ -5,6 +5,7 @@ const site = require('../isite')({
   name: 'cms',
   savingTime: 5,
   log: true,
+  www: false,
   require: {
     features: [],
     permissions: [],
@@ -399,7 +400,15 @@ site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
 });
 
 site.handleNotRoute = function (req, res) {
-  res.redirect('/');
+  let setting = site.getSiteSetting(req.host);
+  if (!setting.host) {
+    let arr = req.host.split('.');
+    let com = arr.pop();
+    let domain = arr.pop();
+    res.redirect('//' + domain + '.' + com, 301);
+  } else {
+    res.redirect('/');
+  }
 };
 
 site.run();
