@@ -74,6 +74,44 @@ module.exports = function init(site) {
         callback();
       });
   }
+  function refreshAccessToken(callback) {
+    site
+      .fetch(
+        'https://oauth2.googleapis.com/token' +
+          '?grant_type=refresh_token&refresh_token=' +
+          access_token +
+          '&client_id=' +
+          client_id +
+          '&client_secret=' +
+          client_secret +
+          '&code=' +
+          googleCode +
+          '&redirect_uri=' +
+          redirect_uri,
+        {
+          method: 'post',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        }
+      )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.access_token) {
+          access_token = data.access_token;
+        }
+        if (data.refresh_token) {
+          refresh_token = data.refresh_token;
+        }
+        if (data.token_type) {
+          token_type = data.token_type;
+        }
+        callback();
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        callback();
+      });
+  }
   site.onPOST({ name: '/api/generator/set-bloger-access_token', public: true }, (req, res) => {
     access_token = req.data.access_token;
 
