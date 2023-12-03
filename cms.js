@@ -398,4 +398,8 @@ site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
   res.end('Galaksion check: 86531e4391aecbe5e70d086020f703f2');
 });
 
+site.handleNotRoute = function (req, res) {
+  res.redirect('/');
+};
+
 site.run();
