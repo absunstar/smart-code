@@ -4,13 +4,62 @@ app.connectScope(
       { name: 'generatorSites', as: 'site', modal: '#sitesModal' },
       { name: 'generatorYts', as: 'yts', modal: '#ytsModal' },
       { name: 'generatorYoutubeChannelList', as: 'youtube', modal: '#youtubeModal' },
+      { name: 'generatorBloger', as: 'blogerManager', modal: '#blogerModal' },
     ],
   },
   ($scope, $http, $timeout, $interval) => {
     $scope.setting = site.showObject('##data.#setting##');
     $scope.categoryList = site.showObject('##data.#categoryList##');
+    $scope.bloger = {};
 
-    console.log($scope.categoryList);
+    $scope.getBlogerCodeURL = function () {
+      $http({
+        url: `/api/generator/get-bloger-code-url`,
+        method: 'GET',
+      }).then((res) => {
+        $scope.bloger.codeURL = res.data.url;
+      });
+    };
+    $scope.getBlogerCode = function () {
+      $http({
+        url: `/api/generator/get-bloger-code`,
+        method: 'GET',
+      }).then((res) => {
+        $scope.bloger.code = res.data.code;
+      });
+    };
+    $scope.getBlogerAccessToken = function () {
+      $http({
+        url: `/api/generator/get-bloger-access_token`,
+        method: 'GET',
+      }).then((res) => {
+        $scope.bloger.acessToken = res.data.access_token;
+      });
+    };
+    $scope.setBlogerAccessToken = function () {
+      $http({
+        url: `/api/generator/set-bloger-access_token`,
+        method: 'POST',
+        data: { access_token: $scope.bloger.acessToken },
+      }).then((res) => {});
+    };
+    $scope.getBlogerInfo = function () {
+      $http({
+        url: `/api/generator/get-bloger-info`,
+        method: 'GET',
+      }).then((res) => {
+        $scope.bloger.info = res.data.bloger;
+      });
+    };
+    $scope.writePosts = function () {
+      $http({
+        url: `/api/generator/bloger-write-posts`,
+        method: 'POST',
+      }).then((res) => {});
+    };
+    $scope.copy = function (text) {
+      SOCIALBROWSER.copy(text);
+    };
 
     SOCIALBROWSER.on('share', (e, obj) => {
       console.log(obj);

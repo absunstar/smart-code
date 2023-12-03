@@ -1,0 +1,41 @@
+<div id="blogerModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.Bloger Manager##</h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row padding border margin" >
+        <i-button type="search" ng-click="getBlogerCodeURL()" label="GET Google Code URL"></i-button>
+        <i-control ng-model="bloger.codeURL"></i-control>
+        <i-button type="view" ng-click="copy(bloger.codeURL)" label="Copy Code URL"></i-button>
+      </div>
+      <div class="row padding border margin">
+        <i-button type="search" ng-click="getBlogerCode()" label="GET Google Code"></i-button>
+        <i-control ng-model="bloger.code"></i-control>
+        <i-button type="view" ng-click="copy(bloger.code)" label="Copy Code"></i-button>
+      </div>
+      <div class="row padding border margin">
+        <i-button type="search" ng-click="getBlogerAccessToken()" label="GET Google Access Token"></i-button>
+        <i-control ng-model="bloger.acessToken"></i-control>
+        <i-button type="search" ng-click="copy(bloger.acessToken)" label="Copy Access Token"></i-button>
+        <i-button type="view" ng-click="setBlogerAccessToken(bloger.acessToken)" label="SET Google Access Token"></i-button>
+
+      </div>
+      <div class="row padding border margin">
+        <i-button type="search" ng-click="getBlogerInfo()" label="GET Bloger Info"></i-button>
+        <i-control ng-model="bloger.info.id"></i-control>
+        <i-button type="view" ng-click="copy(bloger.info.id)" label="Copy Bloger ID"></i-button>
+      </div>
+      <div class="row padding border margin">
+        <i-button type="add" ng-click="writePosts()" label="Write Posts"></i-button>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="search" type="close" label="##word.close##" onclick="site.hideModal( '#blogerModal')"></i-button>
+    </div>
+  </div>
+</div>
