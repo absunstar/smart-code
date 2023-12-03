@@ -403,6 +403,7 @@ site.handleNotRoute = function (req, res) {
   let setting = site.getSiteSetting(req.host);
   if (setting.host == '') {
     let arr = req.host.split('.');
+    console.log(arr)
     let com = arr.pop();
     let domain = arr.pop();
     res.redirect('//' + domain + '.' + com, 301);
