@@ -17,7 +17,7 @@ module.exports = function init(site) {
   let bloger = {};
 
   site.onGET('/api/generator/get-bloger-code-url', (req, res) => {
-    redirect_uri = 'http://' + req.host + '/api/generator/set-bloger-code';
+    redirect_uri = 'https://' + req.host + '/api/generator/set-bloger-code';
     let googleURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${googleScope}&response_type=code`;
     res.json({
       done: true,
@@ -26,7 +26,7 @@ module.exports = function init(site) {
   });
   site.onGET({ name: '/api/generator/set-bloger-code', public: true }, (req, res) => {
     googleCode = req.queryRaw.code;
-    redirect_uri = 'http://' + req.host + '/api/generator/set-bloger-code';
+    redirect_uri = 'https://' + req.host + '/api/generator/set-bloger-code';
     res.json({
       done: true,
       code: googleCode,
