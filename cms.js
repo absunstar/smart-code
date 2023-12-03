@@ -286,7 +286,7 @@ site.get(
 
 site.get(
   {
-    name: ['/article/:guid/:title', '/post/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/post/:guid', '/torrent/:guid'],
+    name: ['/article/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/torrent/:guid'],
   },
   (req, res) => {
     let filter = site.getHostFilter(req.host);
