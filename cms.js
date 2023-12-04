@@ -404,6 +404,7 @@ site.handleNotRoute = function (req, res) {
   let arr = host.split('.');
   console.log(host);
   let setting = site.getSiteSetting(host);
+  console.log(setting);
   if (setting.host == '' && host && arr.length > 1) {
     let com = arr.pop();
     let domain = arr.pop();
