@@ -402,7 +402,7 @@ site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
 site.handleNotRoute = function (req, res) {
   let host = req.headers['host'];
   let arr = host.split('.');
-
+  console.log(host);
   let setting = site.getSiteSetting(host);
   if (setting.host == '' && host && arr.length > 1) {
     let com = arr.pop();
