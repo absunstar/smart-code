@@ -408,8 +408,9 @@ site.handleNotRoute = function (req, res) {
     let com = arr.pop();
     let domain = arr.pop();
     res.redirect('//' + domain + '.' + com, 301);
-  } else {
     console.log('remove host : ' + host);
+  } else {
+    
     res.redirect('/');
   }
 };
