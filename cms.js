@@ -38,8 +38,12 @@ site.get(
   },
   (req, res) => {
     let setting = site.getSiteSetting(req.host);
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
 
-    if (!setting || !setting.siteTemplate || !setting.languageList) {
+    if (!setting.siteTemplate || !setting.languageList) {
       res.redirect('/404', 404);
       return;
     }
@@ -128,7 +132,10 @@ site.get(
   },
   (req, res) => {
     let setting = site.getSiteSetting(req.host);
-
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
     if (!setting || !setting.siteTemplate || !setting.languageList) {
       res.redirect('/404', 404);
       return;
@@ -206,7 +213,10 @@ site.get(
   },
   (req, res) => {
     let setting = site.getSiteSetting(req.host);
-
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
     if (!setting || !setting.siteTemplate || !setting.languageList) {
       res.redirect('/404', 404);
       return;
@@ -291,8 +301,11 @@ site.get(
   (req, res) => {
     let filter = site.getHostFilter(req.host);
     let setting = site.getSiteSetting(req.host);
-
-    if (!setting || !setting.siteTemplate || !setting.languageList) {
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
+    if (!setting.siteTemplate || !setting.languageList) {
       res.redirect('/404', 404);
       return;
     }
@@ -378,6 +391,7 @@ site.get('robots.txt', (req, res) => {
     res.txt('0/robots.txt');
   }
 });
+
 site.ready = false;
 site.templateList = [];
 
@@ -404,6 +418,7 @@ site.getMainHost = function (host) {
   if (arr.length > 1) {
     let com = arr.pop();
     let domain = arr.pop();
+    console.log('remove host : ' + host);
     return '//' + domain + '.' + com;
   }
   return host;
@@ -414,7 +429,6 @@ site.handleNotRoute = function (req, res) {
   let setting = site.getSiteSetting(host);
   if (setting.host == '') {
     res.redirect(site.getMainHost(host), 301);
-    console.log('remove host : ' + host);
   } else {
     res.redirect('/');
   }
