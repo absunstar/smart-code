@@ -141,6 +141,8 @@ module.exports = function init(site) {
   site.handleArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
     doc.$title = site.removeHtml(lang.title);
+    doc.$titleArray = doc.$title.split(' ');
+    doc.$alt = doc.$title.split(' ')[0] + ' ' + doc.$title.split(' ')[1] + ' ' + doc.$title.split(' ')[2];
     doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '';
