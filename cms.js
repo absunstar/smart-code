@@ -400,9 +400,11 @@ site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
 });
 
 site.handleNotRoute = function (req, res) {
-  let arr = req.host.split('.');
-  let setting = site.getSiteSetting(req.host);
-  if (setting.host == '' && req.host && arr.length > 1) {
+  let host = req.headers['host'];
+  let arr = host.split('.');
+
+  let setting = site.getSiteSetting(host);
+  if (setting.host == '' && host && arr.length > 1) {
     let com = arr.pop();
     let domain = arr.pop();
     res.redirect('//' + domain + '.' + com, 301);
