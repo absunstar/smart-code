@@ -16,8 +16,8 @@
   </div>
   <div class="midHeader">
     <div class="midHeadercontainer container d-flex flex-column flex-md-row">
-      <div  x-data="setting.showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
-        <a href="/" class="col-12 d-flex justify-content-start align-items-center logoAndHead">
+      <div x-data="setting.showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
+        <a title="##data.site_name##" href="/" class="col-12 d-flex justify-content-start align-items-center logoAndHead">
           <div class="logo">
             <img src="##data.site_logo##" alt="logo" width="133px" height="64px" />
           </div>
@@ -77,13 +77,13 @@
     <div class="bottomHeadercontainer container">
       <ul x-data="menuList1.length" class="navbarlist d-none d-md-flex">
         <li>
-          <a href="/"><i class="fas fa-home"></i></a>
+          <a title="##data.site_name##" href="/"><i class="fas fa-home"></i></a>
         </li>
-        <li x-list1="menuList1"><a href="##item1.url##">##item1.name## </a></li>
+        <li x-list1="menuList1"><a title="##item1.$name##" href="##item1.url##">##item1.name## </a></li>
         <li class="nav-item dropdown">
-          <a x-data="menuList2.length" class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"> ##word......## </a>
+          <a title="##word......##" x-data="menuList2.length" class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"> ##word......## </a>
           <ul class="dropdown-menu">
-            <li x-list1="menuList2"><a class="dropdown-item" href="##item1.url##">##item1.name## </a></li>
+            <li x-list1="menuList2"><a title="##item1.$name##" class="dropdown-item" href="##item1.url##">##item1.name## </a></li>
           </ul>
         </li>
       </ul>
@@ -147,10 +147,10 @@
       <div x-data="setting.showMainMenu" class="mainSection d-flex flex-column align-items-end">
         <div class="allsections">
           <div x-list1="menuList1" class="sectiontitle">
-            <p><a href="##item1.url##">##item1.name##</a></p>
+            <p><a title="##item1.$name##" href="##item1.url##">##item1.name##</a></p>
           </div>
           <div x-list1="menuList2" class="sectiontitle">
-            <p><a href="##item1.url##">##item1.name##</a></p>
+            <p><a title="##item1.$name##" href="##item1.url##">##item1.name##</a></p>
           </div>
         </div>
       </div>
