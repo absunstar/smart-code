@@ -418,7 +418,6 @@ site.getMainHost = function (host) {
   if (arr.length > 1) {
     let com = arr.pop();
     let domain = arr.pop();
-    console.log('remove host : ' + host);
     return '//' + domain + '.' + com;
   }
   return host;
