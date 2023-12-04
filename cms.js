@@ -399,18 +399,23 @@ site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
   res.end('Galaksion check: 86531e4391aecbe5e70d086020f703f2');
 });
 
-site.handleNotRoute = function (req, res) {
-  let host = req.headers['host'];
+site.getMainHost = function (host) {
   let arr = host.split('.');
-  console.log(host);
-  let setting = site.getSiteSetting(host);
-  if (setting.host == '' && host && arr.length > 1) {
+  if (arr.length > 1) {
     let com = arr.pop();
     let domain = arr.pop();
-    res.redirect('//' + domain + '.' + com, 301);
+    return '//' + domain + '.' + com;
+  }
+  return host;
+};
+
+site.handleNotRoute = function (req, res) {
+  let host = req.headers['host'];
+  let setting = site.getSiteSetting(host);
+  if (setting.host == '') {
+    res.redirect(site.getMainHost(host), 301);
     console.log('remove host : ' + host);
   } else {
-    
     res.redirect('/');
   }
 };
