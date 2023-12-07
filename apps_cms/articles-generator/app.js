@@ -158,7 +158,7 @@ module.exports = function init(site) {
   function writeBlogerPost(bloger) {
     site.articlesList
       .filter((a) => a.host.like(site.getHostFilter('torrents')))
-      .slice(30, 50)
+      .slice(50, 100)
       .forEach((a, i) => {
         setTimeout(() => {
           let $torrentsURLS = '';
