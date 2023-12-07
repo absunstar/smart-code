@@ -169,7 +169,7 @@ module.exports = function init(site) {
       doc.$content = lang.textContent || lang.htmlContent || '';
     }
 
-    doc.$description = site.escapeHtml(doc.$content).substring(0, 140);
+    doc.$description = site.escapeHtml(doc.$content).substring(0, 180);
     lang.keyWordsList = lang.keyWordsList || [];
     doc.$keyWordsList = [];
     lang.keyWordsList.forEach((k, i) => {
