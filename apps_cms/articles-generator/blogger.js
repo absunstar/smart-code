@@ -152,7 +152,7 @@ module.exports = function init(site) {
               <hr>
         `;
           site
-            .fetch('https://www.googleapis.com/blogger/v3/blogs/' + bloger.id + '/posts/' + '?key=' + blogerKey, {
+            .fetch('https://www.googleapis.com/blogger/v3/blogs/' + site.bloggerManager.blogger.id + '/posts/' + '?key=' + site.bloggerManager.key, {
               method: 'post',
               headers: { Authorization: site.bloggerManager.token_type + ' ' + site.bloggerManager.access_token, 'Content-Type': 'application/json', scope: site.bloggerManager.scope },
               body: JSON.stringify({
