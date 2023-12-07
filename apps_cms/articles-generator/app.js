@@ -160,13 +160,13 @@ module.exports = function init(site) {
       .filter((a) => a.host.like(site.getHostFilter('torrents')))
       .slice(0, 10)
       .forEach((a, i) => {
-        let $torrentsURLS = '';
+        setTimeout(() => {
+          let $torrentsURLS = '';
+          a.yts.torrents.forEach((t) => {
+            $torrentsURLS += `<a class="bold btn btn-primary" target="_blank" href="${t.url}"> Download ${t.quality} ( ${t.size} ) Torrent </a>`;
+          });
 
-        a.yts.torrents.forEach((t) => {
-          $torrentsURLS += `<a class="bold btn btn-primary" target="_blank" href="${t.url}"> Download ${t.quality} ( ${t.size} ) Torrent </a>`;
-        });
-
-        let $content = `
+          let $content = `
           <style>
           html[data-theme=dark]{
             --link-color: #ffffff;
@@ -198,32 +198,33 @@ module.exports = function init(site) {
               <a rel="dofollow" href="https://torrents.egytag.com${a.$url}"> see ${a.$title} Full Article on torrents.egytag.com </a>
               <hr>
         `;
-        site
-          .fetch('https://www.googleapis.com/blogger/v3/blogs/' + bloger.id + '/posts/' + '?key=' + blogerKey, {
-            method: 'post',
-            headers: { Authorization: token_type + ' ' + access_token, 'Content-Type': 'application/json', scope: 'https://www.googleapis.com/auth/blogger' },
-            body: JSON.stringify({
-              kind: 'blogger#post',
-              blog: {
-                id: bloger.id,
-              },
-              title: a.$title,
-              content: $content,
-              images: [
-                {
-                  url: a.$imageURL,
+          site
+            .fetch('https://www.googleapis.com/blogger/v3/blogs/' + bloger.id + '/posts/' + '?key=' + blogerKey, {
+              method: 'post',
+              headers: { Authorization: token_type + ' ' + access_token, 'Content-Type': 'application/json', scope: 'https://www.googleapis.com/auth/blogger' },
+              body: JSON.stringify({
+                kind: 'blogger#post',
+                blog: {
+                  id: bloger.id,
                 },
-              ],
-              labels: a.$tagsList,
-            }),
-          })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+                title: a.$title,
+                content: $content,
+                images: [
+                  {
+                    url: a.$imageURL,
+                  },
+                ],
+                labels: a.$tagsList,
+              }),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }, 2000 * i);
       });
   }
 
