@@ -22,8 +22,7 @@ module.exports = function init(site) {
   site.bloggerManager.requestAccessToken = function (callback) {
     site
       .fetch(
-        'https://oauth2.googleapis.com/token' +
-          '?grant_type=authorization_code&client_id=' +
+        'https://oauth2.googleapis.com/token?grant_type=authorization_code&client_id=' +
           site.bloggerManager.client_id +
           '&client_secret=' +
           site.bloggerManager.client_secret +
