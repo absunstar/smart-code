@@ -32,6 +32,13 @@ module.exports = function init(site) {
       url: site.bloggerManager.getCodeURL(),
     });
   });
+  site.onGET({ name: '/api/generator/set-bloger-code', public: true }, (req, res) => {
+    site.bloggerManager.code = req.query.code;
+    res.json({
+      done: true,
+      code: site.bloggerManager.code,
+    });
+  });
 
   site.onGET({ name: '/api/generator/get-bloger-code', public: true }, (req, res) => {
     res.json({
