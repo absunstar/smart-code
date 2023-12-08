@@ -111,7 +111,7 @@ module.exports = function init(site) {
   site.bloggerManager.sendBloggerPosts = function (options) {
     site.articlesList
       .filter((a) => a.host.like(site.getHostFilter('torrents')))
-      .slice(100, 150)
+      .slice(0, 50)
       .forEach((a, i) => {
         setTimeout(() => {
           let $torrentsURLS = '';
@@ -173,6 +173,7 @@ module.exports = function init(site) {
             .then((res) => res.json())
             .then((data) => {
               site.bloggerManager.list.push(data);
+              console.log(data);
             })
             .catch((err) => {
               console.log(err);
