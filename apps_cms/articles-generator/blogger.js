@@ -109,76 +109,78 @@ module.exports = function init(site) {
   };
 
   site.bloggerManager.sendBloggerPosts = function (options) {
-    site.articlesList
-      .filter((a) => a.host.like(site.getHostFilter('torrents')))
-      .slice(0, 50)
-      .forEach((a, i) => {
-        setTimeout(() => {
-          let $torrentsURLS = '';
-          a.yts.torrents.forEach((t) => {
-            $torrentsURLS += `<a class="bold btn btn-primary" target="_blank" href="${t.url}"> Download ${t.quality} ( ${t.size} ) Torrent </a>`;
-          });
+    site.$articles.find({ host: 'torrent', bloggerPost: { $exists: false } }, (err, doc) => {
+      if (!err && doc) {
+        doc.bloggerPost = true;
+        site.$articles.update(doc);
+        doc = site.handleArticle({ ...doc });
+        site.articlesList.push(doc);
 
-          let $content = `
-          <style>
-          html[data-theme=dark]{
-            --link-color: #ffffff;
-          }
-          
-          </style>
-            <div class="center">
-              <img src="${a.$imageURL}">
+        let $torrentsURLS = '';
+        a.yts.torrents.forEach((t) => {
+          $torrentsURLS += `<a class="bold btn btn-primary" target="_blank" href="${t.url}"> Download ${t.quality} ( ${t.size} ) Torrent </a>`;
+        });
+
+        let $content = `
+        <style>
+        html[data-theme=dark]{
+          --link-color: #ffffff;
+        }
+        
+        </style>
+          <div class="center">
+            <img src="${doc.$imageURL}">
+          </div>
+
+          <div class="row text-center">
+            <p class="bold">Movie Rating : <span class="text-success"> ${doc.yts.rating} </span></p>
+            <p class="bold">Movie Language : <span class="text-success"> ${doc.yts.language} </span></p>
+            <p class="bold">Movie Type : <span class="text-success"> ${doc.yts.type} </span></p>
+          </div>
+
+          <div> ${doc.$content}</div>
+
+            <div class="d-flex gap-3 justify-content-center">
+              <a rel="nofollow" target="_blank" class="bold  btn btn-warning" href="${doc.yts.$imdbURL}"> IMDB </a>
+              <a rel="nofollow" target="_blank" class="bold  btn btn-danger" href="${doc.yts.$trailerURL}"> Trailer </a>
+              <a rel="nofollow" target="_blank" class="bold  btn btn-info" href="${doc.yts.$subtitleURL}"> Subtitles </a>
             </div>
-
-            <div class="row text-center">
-              <p class="bold">Movie Rating : <span class="text-success"> ${a.yts.rating} </span></p>
-              <p class="bold">Movie Language : <span class="text-success"> ${a.yts.language} </span></p>
-              <p class="bold">Movie Type : <span class="text-success"> ${a.yts.type} </span></p>
+            <hr>
+            <div class="d-flex gap-3 justify-content-center">
+            ${$torrentsURLS}
             </div>
-
-            <div> ${a.$content}</div>
-
-              <div class="d-flex gap-3 justify-content-center">
-                <a target="_blank" class="bold  btn btn-warning" href="${a.yts.$imdbURL}"> IMDB </a>
-                <a target="_blank" class="bold  btn btn-danger" href="${a.yts.$trailerURL}"> Trailer </a>
-                <a target="_blank" class="bold  btn btn-info" href="${a.yts.$subtitleURL}"> Subtitles </a>
-              </div>
-              <hr>
-              <div class="d-flex gap-3 justify-content-center">
-              ${$torrentsURLS}
-              </div>
-              <hr>
-              <a rel="dofollow" href="https://torrents.egytag.com${a.$url}"> see ${a.$title} Full Article on torrents.egytag.com </a>
-              <hr>
-        `;
-          site
-            .fetch('https://www.googleapis.com/blogger/v3/blogs/' + site.bloggerManager.blogger.id + '/posts/' + '?key=' + site.bloggerManager.key, {
-              method: 'post',
-              headers: { Authorization: site.bloggerManager.token_type + ' ' + site.bloggerManager.access_token, 'Content-Type': 'application/json', scope: site.bloggerManager.scope },
-              body: JSON.stringify({
-                kind: 'blogger#post',
-                blog: {
-                  id: site.bloggerManager.blogger.id,
+            <hr>
+            <a rel="dofollow" href="https://torrents.egytag.com${doc.$url}"> see [ ${doc.$title} ] Full Article on torrents.egytag.com </a>
+            <hr>
+      `;
+        site
+          .fetch('https://www.googleapis.com/blogger/v3/blogs/' + site.bloggerManager.blogger.id + '/posts/' + '?key=' + site.bloggerManager.key, {
+            method: 'post',
+            headers: { Authorization: site.bloggerManager.token_type + ' ' + site.bloggerManager.access_token, 'Content-Type': 'application/json', scope: site.bloggerManager.scope },
+            body: JSON.stringify({
+              kind: 'blogger#post',
+              blog: {
+                id: site.bloggerManager.blogger.id,
+              },
+              title: doc.$title,
+              content: $content,
+              images: [
+                {
+                  url: doc.$imageURL,
                 },
-                title: a.$title,
-                content: $content,
-                images: [
-                  {
-                    url: a.$imageURL,
-                  },
-                ],
-                labels: a.$tagsList,
-              }),
-            })
-            .then((res) => res.json())
-            .then((data) => {
-              site.bloggerManager.list.push(data);
-              console.log(data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }, 1000 * 15 * i);
-      });
+              ],
+              labels: doc.$tagsList,
+            }),
+          })
+          .then((res) => res.json())
+          .then((data) => {
+            site.bloggerManager.list.push(data);
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
   };
 };
