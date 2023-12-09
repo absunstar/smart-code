@@ -108,7 +108,7 @@ module.exports = function init(site) {
       });
   };
 
-  site.bloggerManager.sendBloggerPosts = function (options) {
+  site.bloggerManager.sendBloggerPosts = function (options, callBack) {
     site.$articles.find({ host: 'torrent', bloggerURL: { $exists: false } }, (err, doc) => {
       if (!err && doc) {
         doc = site.handleArticle({ ...doc });
@@ -179,9 +179,8 @@ module.exports = function init(site) {
           })
           .then((res) => res.json())
           .then((data) => {
+            callBack(data);
             if (data.url) {
-              console.log(data.url);
-
               site.$articles.update({
                 id: doc.id,
                 bloggerURL: data.url,
@@ -191,7 +190,6 @@ module.exports = function init(site) {
                 url: data.url,
               });
             } else if (data.error) {
-              console.log(data.error);
               site.bloggerManager.list.push({
                 id: '_____',
                 url: data.error.message,
@@ -202,7 +200,10 @@ module.exports = function init(site) {
           })
           .catch((err) => {
             console.log(err);
+            callBack();
           });
+      } else {
+        callBack();
       }
     });
   };

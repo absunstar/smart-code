@@ -66,11 +66,15 @@ module.exports = function init(site) {
 
   site.onPOST({ name: '/api/generator/bloger-write-posts', public: true }, (req, res) => {
     site.bloggerManager.list = [];
-    for (let index = 0; index < 50; index++) {
-      setTimeout(() => {
-        site.bloggerManager.sendBloggerPosts(req.data);
-      }, 1000 * 15 * index);
-    }
+    let callBack = function (data) {
+      if (data && data.id) {
+        setTimeout(() => {
+          site.bloggerManager.sendBloggerPosts(null, callBack);
+        }, 1000 * 15 * index);
+      }
+    };
+
+    site.bloggerManager.sendBloggerPosts(null, callBack);
 
     res.json({
       done: true,
