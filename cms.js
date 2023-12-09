@@ -159,8 +159,8 @@ site.get(
 
     language.description = language.description || '';
     let query = req.query.search_query || '';
-    let page = req.query.page || 1;
-    let limit = req.query.limit || 50;
+    let page = req.query.page;
+    let limit = req.query.limit;
 
     if (setting.siteTemplate.id == 1) {
       site.articlesList = site.articlesList || [];
