@@ -6,7 +6,7 @@
     </div>
 
     <div class="modal-body">
-      <div class="row padding border margin" >
+      <div class="row padding border margin">
         <i-button type="search" ng-click="getBlogerCodeURL()" label="GET Google Code URL"></i-button>
         <i-control ng-model="bloger.codeURL"></i-control>
         <i-button type="view" ng-click="copy(bloger.codeURL)" label="Copy Code URL"></i-button>
@@ -14,22 +14,29 @@
       <div class="row padding border margin">
         <i-button type="search" ng-click="getBlogerCode()" label="GET Google Code"></i-button>
         <i-control ng-model="bloger.code"></i-control>
-        <i-button type="view" ng-click="copy(bloger.code)" label="Copy Code"></i-button>
       </div>
       <div class="row padding border margin">
         <i-button type="search" ng-click="getBlogerAccessToken()" label="GET Google Access Token"></i-button>
         <i-control ng-model="bloger.acessToken"></i-control>
-        <i-button type="search" ng-click="copy(bloger.acessToken)" label="Copy Access Token"></i-button>
-        <i-button type="view" ng-click="setBlogerAccessToken(bloger.acessToken)" label="SET Google Access Token"></i-button>
-
       </div>
       <div class="row padding border margin">
         <i-button type="search" ng-click="getBlogerInfo()" label="GET Bloger Info"></i-button>
         <i-control ng-model="bloger.info.id"></i-control>
-        <i-button type="view" ng-click="copy(bloger.info.id)" label="Copy Bloger ID"></i-button>
       </div>
       <div class="row padding border margin">
-        <i-button type="add" ng-click="writePosts()" label="Write Posts"></i-button>
+        <i-button type="add" ng-hide="busy" ng-click="writePosts()" label="Write Posts"></i-button>
+      </div>
+      <div class="padding margin row">
+        <table class="table hover">
+          <tr>
+            <th>ID</th>
+            <th>URL</th>
+          </tr>
+          <tr ng-repeat="blog in $scope.bloggerPostList">
+            <td>{{blog.id}}</td>
+            <td>{{blog.url}}</td>
+          </tr>
+        </table>
       </div>
     </div>
 

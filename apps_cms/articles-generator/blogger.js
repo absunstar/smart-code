@@ -10,7 +10,7 @@ module.exports = function init(site) {
     code: '',
     access_token: '',
     token_type: 'Bearer',
-    blogger: {},
+    blogger: {id : '967199882550233956'},
     list: [],
   };
 
@@ -124,8 +124,8 @@ module.exports = function init(site) {
         html[data-theme=dark]{
           --link-color: #ffffff;
         }
-        
         </style>
+
           <div class="center">
             <img src="${doc.$imageURL}">
           </div>
@@ -138,18 +138,25 @@ module.exports = function init(site) {
 
           <div> ${doc.$content}</div>
 
-            <div class="d-flex gap-3 justify-content-center">
-              <a rel="nofollow" target="_blank" class="bold  btn btn-warning" href="${doc.yts.$imdbURL}"> IMDB </a>
-              <a rel="nofollow" target="_blank" class="bold  btn btn-danger" href="${doc.yts.$trailerURL}"> Trailer </a>
-              <a rel="nofollow" target="_blank" class="bold  btn btn-info" href="${doc.yts.$subtitleURL}"> Subtitles </a>
-            </div>
-            <hr>
-            <div class="d-flex gap-3 justify-content-center">
+          <div class="d-flex gap-3 justify-content-center">
+            <a rel="nofollow" target="_blank" class="bold  btn btn-warning" href="${doc.yts.$imdbURL}"> IMDB </a>
+            <a rel="nofollow" target="_blank" class="bold  btn btn-danger" href="${doc.yts.$trailerURL}"> Trailer </a>
+            <a rel="nofollow" target="_blank" class="bold  btn btn-info" href="${doc.yts.$subtitleURL}"> Subtitles </a>
+          </div>
+
+          <hr>
+
+          <div class="d-flex gap-3 justify-content-center">
             ${$torrentsURLS}
-            </div>
-            <hr>
-            <a rel="dofollow" href="https://torrents.egytag.com${doc.$url}"> see [ ${doc.$title} ] Full Article on torrents.egytag.com </a>
-            <hr>
+          </div>
+
+          <hr>
+
+          <h2 class="center">
+            <a class="center" rel="dofollow" href="https://torrents.egytag.com${doc.$url}"> See [ ${doc.$title} ] Full Article on torrents.egytag.com </a>
+          </h2>
+
+          <hr>
       `;
         site
           .fetch('https://www.googleapis.com/blogger/v3/blogs/' + site.bloggerManager.blogger.id + '/posts/' + '?key=' + site.bloggerManager.key, {
@@ -174,20 +181,17 @@ module.exports = function init(site) {
           .then((data) => {
             if (data.url) {
               console.log(data.url);
+
               site.$articles.update({
                 id: doc.id,
                 bloggerURL: data.url,
               });
             } else if (data.error) {
               console.log(data.error);
-              if (data.error.errors) {
-                data.error.errors.forEach((err) => {
-                  console.log(err);
-                });
-              }
             } else {
               console.log(data);
             }
+
             site.bloggerManager.list.push(data);
           })
           .catch((err) => {

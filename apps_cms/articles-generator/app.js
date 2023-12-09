@@ -82,4 +82,11 @@ module.exports = function init(site) {
       done: true,
     });
   });
+
+  site.onPOST({ name: '/api/generator/get-blogger-posts', public: true }, (req, res) => {
+    res.json({
+      done: true,
+      list: site.bloggerManager.list,
+    });
+  });
 };

@@ -52,11 +52,25 @@ app.connectScope(
       });
     };
     $scope.writePosts = function () {
+      $scope.busy = true;
+      $interval(() => {
+        $scope.getBloggerPosts();
+      }, 1000 * 15);
       $http({
         url: `/api/generator/bloger-write-posts`,
         method: 'POST',
       }).then((res) => {});
     };
+    $scope.getBloggerPosts = function () {
+      $scope.busy = true;
+      $http({
+        url: `/api/generator/get-blogger-posts`,
+        method: 'POST',
+      }).then((res) => {
+        $scope.bloggerPostList = res.list || [];
+      });
+    };
+
     $scope.copy = function (text) {
       SOCIALBROWSER.copy(text);
     };
