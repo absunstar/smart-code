@@ -367,7 +367,7 @@ module.exports = function init(site) {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
           where: {
             host: new RegExp(options.host, 'gium'),
-            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }, { 'yts.type': options.exp }],
+            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }, { 'yts.type': options.search }, { 'yts.year': options.search }],
           },
           limit: options.limit,
           skip: options.skip,

@@ -310,7 +310,7 @@ a {
   color: var(--color2);
   text-shadow: 1px 1px 1px var(--background1);
   font-size: var(--readTime);
-  border-radius: 20px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   background: var(--background2x);
 }
 .readingTime {

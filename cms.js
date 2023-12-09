@@ -159,6 +159,8 @@ site.get(
 
     language.description = language.description || '';
     let query = req.query.search_query || '';
+    let page = req.query.page || 1;
+    let limit = req.query.limit || 50;
 
     if (setting.siteTemplate.id == 1) {
       site.articlesList = site.articlesList || [];
@@ -189,7 +191,7 @@ site.get(
       options.menuList2 = options.menuList.slice(8, 20);
       options.menuList3 = options.menuList.slice(20);
 
-      site.searchArticles({ search: query, host: options.filter }, (err, docs) => {
+      site.searchArticles({ search: query, host: options.filter, page: page, limit: limit }, (err, docs) => {
         if (!err && docs) {
           options.list = docs;
           options.list1 = options.list.splice(0, 10);
