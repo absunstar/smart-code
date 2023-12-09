@@ -130,7 +130,7 @@ module.exports = function init(site) {
     } else {
       site.$articles.find({ guid: guid }, (err, doc) => {
         if (!err && doc) {
-          doc = site.handleArticle(doc);
+          doc = site.handleArticle({ ...doc });
           site.articlesList.push(doc);
         }
         callBack(err, doc);
@@ -1045,6 +1045,63 @@ module.exports = function init(site) {
      </rss>`;
     res.set('Content-Type', 'application/xml');
     res.end(xml);
+  });
+
+  site.facebookPost = null;
+  site.getRssXmlString = function (list, domain, siteName) {
+    let urls = '';
+    list.forEach((doc) => {
+      urls += `
+      <item>
+        <guid>${doc.guid}</guid>
+        <title>${doc.$title}</title>
+        <link>${doc.full_url}</link>
+        <image>${domain}/article-image/${doc.guid}</image>
+        <description>${doc.$description}</description>
+        <pubDate>${doc.$date2}</pubDate>
+      </item>
+      `;
+    });
+    let xml = `<?xml version="1.0" encoding="UTF-8" ?>
+                <rss version="2.0">
+                  <channel>
+                        <title> ${siteName} Global RSS</title>
+                        <link>${domain}</link>
+                        <description>${siteName} Articles Rss Feeds</description>
+                        ${urls}
+                    </channel>
+                </rss>`;
+    return xml;
+  };
+  site.onGET({ name: ['/rss-facebook'], public: true }, (req, res) => {
+    let text = ' Facebook RSS ';
+    let setting = site.getSiteSetting(req.host);
+    let lang = setting.languageList[0];
+    let domain = 'https://' + req.host;
+
+    if (site.facebookPost && site.facebookPost.$facebookDate && (new Date().getTime() - site.facebookPost.$facebookDate.getTime()) / 1000 < 60 * 15) {
+      res.set('Content-Type', 'application/xml');
+      res.end(site.getRssXmlString([site.facebookPost], domain, lang.siteName + text));
+      return;
+    }
+    site.$articles.find({ facebookPost: { $exists: false } }, (err, doc) => {
+      if (!err && doc) {
+        doc.facebookPost = true;
+        site.$articles.update(doc);
+        doc = site.handleArticle({ ...doc });
+        site.articlesList.push(doc);
+        doc.$facebookDate = new Date();
+        doc.full_url = domain + '/article/' + doc.guid;
+        doc.$date2 = new Date(doc.publishDate).toISOString();
+
+        site.facebookPost = doc;
+
+        res.set('Content-Type', 'application/xml');
+        res.end(site.getRssXmlString([site.facebookPost], domain, lang.siteName + text));
+      } else {
+        res.end(404);
+      }
+    });
   });
   site.onGET({ name: ['/feed'], public: true }, (req, res) => {
     let limit = req.query.limit || 10;
