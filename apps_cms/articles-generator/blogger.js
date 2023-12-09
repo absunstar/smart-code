@@ -109,10 +109,8 @@ module.exports = function init(site) {
   };
 
   site.bloggerManager.sendBloggerPosts = function (options) {
-    site.$articles.find({ host: 'torrent', bloggerPost: { $exists: false } }, (err, doc) => {
+    site.$articles.find({ host: 'torrent', bloggerURL: { $exists: false } }, (err, doc) => {
       if (!err && doc) {
-        doc.bloggerPost = true;
-        site.$articles.update(doc);
         doc = site.handleArticle({ ...doc });
         site.articlesList.push(doc);
 
@@ -174,8 +172,22 @@ module.exports = function init(site) {
           })
           .then((res) => res.json())
           .then((data) => {
+            if (data.url) {
+              console.log(data.url);
+              site.$articles.update({
+                id: doc.id,
+                bloggerURL: data.url,
+              });
+            } else if (data.error) {
+              if (data.errors) {
+                data.errors.forEach((err) => {
+                  console.log(err);
+                });
+              }
+            } else {
+              console.log(data);
+            }
             site.bloggerManager.list.push(data);
-            console.log(data);
           })
           .catch((err) => {
             console.log(err);
