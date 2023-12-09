@@ -67,7 +67,7 @@ app.connectScope(
         url: `/api/generator/get-blogger-posts`,
         method: 'POST',
       }).then((res) => {
-        $scope.bloggerPostList = res.list || [];
+        $scope.bloggerPostList = res.data.list || [];
       });
     };
 
