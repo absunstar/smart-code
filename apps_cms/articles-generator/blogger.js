@@ -117,7 +117,7 @@ module.exports = function init(site) {
         site.articlesList.push(doc);
 
         let $torrentsURLS = '';
-        a.yts.torrents.forEach((t) => {
+        doc.yts.torrents.forEach((t) => {
           $torrentsURLS += `<a class="bold btn btn-primary" target="_blank" href="${t.url}"> Download ${t.quality} ( ${t.size} ) Torrent </a>`;
         });
 
