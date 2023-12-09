@@ -333,7 +333,9 @@ module.exports = function init(site) {
     options.search = options.search || '';
     options.host = options.host || '';
     options.page = options.page || 1;
+    options.page = parseInt(options.page);
     options.limit = options.limit || 50;
+    options.limit = parseInt(options.limit);
     options.skip = options.limit * (options.page - 1);
     options.exp = '';
     options.search = site
@@ -367,7 +369,12 @@ module.exports = function init(site) {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
           where: {
             host: new RegExp(options.host, 'gium'),
-            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }, { 'yts.type': options.search }, { 'yts.year': options.search }],
+            $or: [
+              { 'translatedList.title': options.exp },
+              { 'translatedList.textContent': options.exp },
+              { 'translatedList.tagsList': options.exp },
+              { 'yts.year': options.search },
+            ],
           },
           limit: options.limit,
           skip: options.skip,
