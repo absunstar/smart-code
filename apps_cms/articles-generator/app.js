@@ -65,6 +65,7 @@ module.exports = function init(site) {
   });
 
   site.onPOST({ name: '/api/generator/bloger-write-posts', public: true }, (req, res) => {
+    site.bloggerManager.list = [];
     for (let index = 0; index < 50; index++) {
       setTimeout(() => {
         site.bloggerManager.sendBloggerPosts(req.data);

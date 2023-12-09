@@ -10,7 +10,7 @@ module.exports = function init(site) {
     code: '',
     access_token: '',
     token_type: 'Bearer',
-    blogger: {id : '967199882550233956'},
+    blogger: { id: '967199882550233956' },
     list: [],
   };
 
@@ -186,13 +186,19 @@ module.exports = function init(site) {
                 id: doc.id,
                 bloggerURL: data.url,
               });
+              site.bloggerManager.list.push({
+                id: data.id,
+                url: data.url,
+              });
             } else if (data.error) {
               console.log(data.error);
+              site.bloggerManager.list.push({
+                id: '_____',
+                url: data.error.message,
+              });
             } else {
               console.log(data);
             }
-
-            site.bloggerManager.list.push(data);
           })
           .catch((err) => {
             console.log(err);
