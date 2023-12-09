@@ -109,6 +109,7 @@ module.exports = function init(site) {
   };
 
   site.bloggerManager.sendBloggerPosts = function (options, callBack) {
+    console.log('sendBloggerPosts()');
     site.$articles.find({ host: 'torrent', bloggerURL: { $exists: false } }, (err, doc) => {
       if (!err && doc) {
         doc = site.handleArticle({ ...doc });
