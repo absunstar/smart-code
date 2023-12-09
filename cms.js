@@ -358,10 +358,7 @@ site.get(
           article: article,
         };
 
-        if (article.guid == '1e44d8186e2e7143c224d31d261acfe1') {
-          console.log(req.headers);
-        }
-        if (!req.host.like('*egytag.com*')) {
+        if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*')) {
           options.page_image = '/article-image/' + article.guid;
         }
 
