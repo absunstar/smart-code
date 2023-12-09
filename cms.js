@@ -358,7 +358,7 @@ site.get(
           article: article,
         };
 
-        if (doc.guid == '1e44d8186e2e7143c224d31d261acfe1') {
+        if (article.guid == '1e44d8186e2e7143c224d31d261acfe1') {
           console.log(req.headers);
         }
         if (!req.host.like('*egytag.com*')) {
