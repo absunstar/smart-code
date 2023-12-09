@@ -363,7 +363,7 @@ module.exports = function init(site) {
     options.host = '^' + options.host + '$';
 
     let list = [];
-    if ((s = site.searchArticleList.find((sa) => sa.id == options.expString))) {
+    if ((s = site.searchArticleList.find((sa) => sa.id == options.expString + '_' + options.page + '_' + options.limit))) {
       callBack(null, [...s.list]);
     } else {
       console.log(options);
@@ -372,11 +372,7 @@ module.exports = function init(site) {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
           where: {
             host: new RegExp(options.host, 'gium'),
-            $or: [
-              { 'translatedList.title': options.exp },
-              { 'translatedList.textContent': options.exp },
-              { 'translatedList.tagsList': options.exp },
-            ],
+            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }],
           },
           limit: options.limit,
           skip: options.skip,
@@ -388,7 +384,7 @@ module.exports = function init(site) {
             });
 
             site.addToSearchArticleList({
-              id: options.expString,
+              id: options.expString + '_' + options.page + '_' + options.limit,
               list: [...list],
             });
 
