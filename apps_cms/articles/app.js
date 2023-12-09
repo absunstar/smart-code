@@ -373,7 +373,6 @@ module.exports = function init(site) {
               { 'translatedList.title': options.exp },
               { 'translatedList.textContent': options.exp },
               { 'translatedList.tagsList': options.exp },
-              { 'yts.year': options.search },
             ],
           },
           limit: options.limit,
