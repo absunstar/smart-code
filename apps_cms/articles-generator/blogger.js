@@ -47,7 +47,6 @@ module.exports = function init(site) {
           site.bloggerManager.token_type = data.token_type;
         }
         callback();
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
