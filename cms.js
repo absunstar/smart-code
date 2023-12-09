@@ -75,7 +75,7 @@ site.get(
         page_image: language.logo?.url,
         site_name: language.siteName,
         page_lang: language.id,
-        page_type : 'website',
+        page_type: 'website',
         page_title: language.siteName + ' ' + language.titleSeparator + ' ' + language.siteSlogan,
         page_description: language.description.substr(0, 200),
         page_keywords: language.keyWordsList.join(','),
@@ -170,7 +170,7 @@ site.get(
         page_image: language.logo?.url,
         site_name: language.siteName,
         page_lang: language.id,
-        page_type : 'website',
+        page_type: 'website',
         page_title: language.siteName + ' ' + language.titleSeparator + ' ' + req.word('Search Result') + ' ' + language.titleSeparator + ' ' + query,
         page_description: language.description.substr(0, 200),
         page_keywords: language.keyWordsList.join(','),
@@ -243,7 +243,7 @@ site.get(
       site_name: language.siteName,
       site_logo: language.logo?.url,
       page_image: language.logo?.url,
-      page_type : 'website',
+      page_type: 'website',
       page_title: language.siteName + ' ' + language.titleSeparator + ' ' + language.siteSlogan,
       page_description: language.description.substr(0, 200),
       page_keywords: language.keyWordsList.join(','),
@@ -350,13 +350,17 @@ site.get(
           site_name: language.siteName,
           site_logo: language.logo?.url,
           page_image: article.$imageURL || language.logo?.url,
-          page_type : 'article',
+          page_type: 'article',
           page_title: language.siteName + ' ' + language.titleSeparator + ' ' + article.$title,
           page_description: article.$description,
           page_keywords: article.$keyWordsList.join(','),
           page_lang: language.id,
           article: article,
         };
+
+        if (!req.host.like('*egytag.com*')) {
+          options.page_image = '/article-image/' + article.guid;
+        }
 
         options.menuList = site.menuList
           .filter((m) => m.host.like(options.filter))

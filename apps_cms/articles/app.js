@@ -499,8 +499,41 @@ module.exports = function init(site) {
     }
   );
 
+  let http_agent = new site.http.Agent({
+    keepAlive: true,
+  });
+  let https_agent = new site.https.Agent({
+    keepAlive: true,
+  });
+
   site.onGET('/article-image/:guid', (req, res) => {
-    res.redirect(site.articlesList.find((a) => a.guid == req.params.guid)?.$imageURL || '/images/no.png');
+    let imageURL = site.articlesList.find((a) => a.guid == req.params.guid)?.$imageURL;
+    if (!imageURL || imageURL == '/images/no.png') {
+      res.redirect('/images/no.png');
+    } else {
+      delete req.headers.host;
+      delete req.headers.referer;
+      site
+        .fetch(imageURL, {
+          method: req.method,
+          headers: req.headers,
+          body: req.method.like('*get*|*head*') ? null : req.bodyRaw,
+          agent: function (_parsedURL) {
+            if (_parsedURL.protocol == 'http:') {
+              return http_agent;
+            } else {
+              return https_agent;
+            }
+          },
+        })
+        .then((response) => {
+          response.body.pipe(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.redirect(imageURL);
+        });
+    }
   });
 
   site.post({ name: '/api/articles/add', require: { Permissions: ['login'] } }, (req, res) => {
