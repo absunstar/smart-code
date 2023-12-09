@@ -179,6 +179,7 @@ module.exports = function init(site) {
                 bloggerURL: data.url,
               });
             } else if (data.error) {
+              console.log(data);
               if (data.errors) {
                 data.errors.forEach((err) => {
                   console.log(err);
