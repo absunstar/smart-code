@@ -40,13 +40,6 @@ module.exports = function init(site) {
     });
   });
 
-  site.onGET({ name: '/api/generator/get-bloger-code', public: true }, (req, res) => {
-    res.json({
-      done: true,
-      code: site.bloggerManager.code,
-    });
-  });
-
   site.onGET({ name: '/api/generator/get-bloger-access_token', public: true }, (req, res) => {
     site.bloggerManager.requestAccessToken(() => {
       res.json({
