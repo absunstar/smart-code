@@ -1084,7 +1084,21 @@ module.exports = function init(site) {
       res.end(site.getRssXmlString([site.facebookPost], domain, lang.siteName + text));
       return;
     }
-    site.$articles.find({ facebookPost: { $exists: false } }, (err, doc) => {
+
+    let filter = site.getHostFilter(req.host);
+
+    if (filter.indexOf('*') !== -1) {
+      filter = filter.split('*');
+      filter.forEach((n, i) => {
+        filter[i] = site.escapeRegx(n);
+      });
+      filter = filter.join('.*');
+    } else {
+      filter = site.escapeRegx(filter);
+    }
+    filter = '^' + filter + '$';
+
+    site.$articles.find({ host: new RegExp(filter, 'gium'), facebookPost: { $exists: false } }, (err, doc) => {
       if (!err && doc) {
         doc.facebookPost = true;
         site.$articles.update(doc);
@@ -1099,7 +1113,8 @@ module.exports = function init(site) {
         res.set('Content-Type', 'application/xml');
         res.end(site.getRssXmlString([site.facebookPost], domain, lang.siteName + text));
       } else {
-        res.end(404);
+        res.set('Content-Type', 'application/xml');
+        res.end(site.getRssXmlString([], domain, lang.siteName + text));
       }
     });
   });
