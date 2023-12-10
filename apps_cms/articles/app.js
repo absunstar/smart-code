@@ -122,6 +122,7 @@ module.exports = function init(site) {
     });
     return str.trim();
   };
+
   site.getArticle = function (guid, callBack) {
     callBack = callBack || function () {};
     let article = site.articlesList.find((a) => a.id == guid || a.guid == guid);
@@ -512,33 +513,39 @@ module.exports = function init(site) {
   });
 
   site.onGET('/article-image/:guid', (req, res) => {
-    let imageURL = site.articlesList.find((a) => a.guid == req.params.guid)?.$imageURL;
-    if (!imageURL || imageURL == '/images/no.png') {
-      res.redirect('/images/no.png');
-    } else {
-      delete req.headers.host;
-      delete req.headers.referer;
-      site
-        .fetch(imageURL, {
-          method: req.method,
-          headers: req.headers,
-          body: req.method.like('*get*|*head*') ? null : req.bodyRaw,
-          agent: function (_parsedURL) {
-            if (_parsedURL.protocol == 'http:') {
-              return http_agent;
-            } else {
-              return https_agent;
-            }
-          },
-        })
-        .then((response) => {
-          response.body.pipe(res);
-        })
-        .catch((err) => {
-          console.log(err);
-          res.redirect(imageURL);
-        });
-    }
+    site.getArticle(req.params.guid, (err, article) => {
+      if (article) {
+        let imageURL = article.$imageURL;
+        if (!imageURL || imageURL == '/images/no.png') {
+          res.redirect('/images/no.png');
+        } else {
+          delete req.headers.host;
+          delete req.headers.referer;
+          site
+            .fetch(imageURL, {
+              method: req.method,
+              headers: req.headers,
+              body: req.method.like('*get*|*head*') ? null : req.bodyRaw,
+              agent: function (_parsedURL) {
+                if (_parsedURL.protocol == 'http:') {
+                  return http_agent;
+                } else {
+                  return https_agent;
+                }
+              },
+            })
+            .then((response) => {
+              response.body.pipe(res);
+            })
+            .catch((err) => {
+              console.log(err);
+              res.redirect(imageURL);
+            });
+        }
+      } else {
+        res.redirect(imageURL);
+      }
+    });
   });
 
   site.post({ name: '/api/articles/add', require: { Permissions: ['login'] } }, (req, res) => {
