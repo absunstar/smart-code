@@ -543,7 +543,7 @@ module.exports = function init(site) {
             });
         }
       } else {
-        res.redirect(imageURL);
+        res.redirect('/images/no.png');
       }
     });
   });
