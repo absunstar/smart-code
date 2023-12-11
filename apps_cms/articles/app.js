@@ -1068,7 +1068,7 @@ module.exports = function init(site) {
         hashTag += '  #' + tag;
       });
       if (doc.$yts) {
-        hashTag += '  Download Now Free #torrent ( high Quality #1080p or #720p )  ';
+        hashTag += '  Download Now Free #torrent #movie ( high Quality #1080p or #720p )  ';
       }
       urls += `
       <item>
