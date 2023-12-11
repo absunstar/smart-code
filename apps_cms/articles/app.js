@@ -1063,12 +1063,12 @@ module.exports = function init(site) {
   site.getRssXmlString = function (list, domain, siteName) {
     let urls = '';
     list.forEach((doc) => {
-      let hashTag = '';
+      let hashTag = '  ';
       doc.$tagsList.forEach((tag) => {
-        hashTag += ' #' + tag;
+        hashTag += '  #' + tag;
       });
       if (doc.$yts) {
-        hashTag += 'Download Now Free #torrent ( high Quality #1080p or #720p )';
+        hashTag += '  Download Now Free #torrent ( high Quality #1080p or #720p )  ';
       }
       urls += `
       <item>
