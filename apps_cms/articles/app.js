@@ -1067,11 +1067,8 @@ module.exports = function init(site) {
       doc.$tagsList.forEach((tag) => {
         hashTag += ' #' + tag;
       });
-      if(doc.$yts){
-        hashTag += `
-
-        Download Now Free #torrent ( high Quality #1080p or #720p )
-        `
+      if (doc.$yts) {
+        hashTag += 'Download Now Free #torrent ( high Quality #1080p or #720p )';
       }
       urls += `
       <item>
@@ -1081,7 +1078,8 @@ module.exports = function init(site) {
         <image>${domain}/article-image/${doc.guid}</image>
         <description>
           <![CDATA[
-            ${doc.$content + hashTag}
+            ${doc.$content}
+            ${hashTag}
           ]]>
         </description>
         <pubDate>${doc.$date2}</pubDate>
