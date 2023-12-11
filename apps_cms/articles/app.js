@@ -1063,13 +1063,21 @@ module.exports = function init(site) {
   site.getRssXmlString = function (list, domain, siteName) {
     let urls = '';
     list.forEach((doc) => {
+      let hashTag = '';
+      doc.$tagsList.forEach((tag) => {
+        hashTag += ' #' + tag;
+      });
       urls += `
       <item>
         <guid>${doc.guid}</guid>
         <title>${doc.$title}</title>
         <link>${doc.full_url}</link>
         <image>${domain}/article-image/${doc.guid}</image>
-        <description>${doc.$description}</description>
+        <description>
+          <![CDATA[
+            ${doc.$content + hashTag}
+          ]]>
+        </description>
         <pubDate>${doc.$date2}</pubDate>
       </item>
       `;
@@ -1085,6 +1093,7 @@ module.exports = function init(site) {
                 </rss>`;
     return xml;
   };
+
   site.onGET({ name: ['/rss-facebook'], public: true }, (req, res) => {
     let text = ' Facebook RSS ';
     let setting = site.getSiteSetting(req.host);
@@ -1130,6 +1139,7 @@ module.exports = function init(site) {
       }
     });
   });
+
   site.onGET({ name: ['/feed'], public: true }, (req, res) => {
     let limit = req.query.limit || 10;
     let list = [];
