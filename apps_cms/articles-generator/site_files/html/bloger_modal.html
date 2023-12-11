@@ -12,17 +12,17 @@
         <i-button type="view" ng-click="copy(bloger.codeURL)" label="Copy Code URL"></i-button>
       </div>
 
-      
       <div class="row padding border margin">
         <i-button type="search" ng-click="getBlogerAccessToken()" label="GET Google Access Token"></i-button>
         <i-control ng-model="bloger.acessToken"></i-control>
       </div>
-      
+
       <div class="row padding border margin">
         <i-button type="add" ng-hide="busy" ng-click="writePosts()" label="Send Posts to my  Blogger"></i-button>
       </div>
 
       <div class="padding margin row">
+        <h2>count : {{bloggerPostList.length}}</h2>
         <table class="table hover">
           <tr>
             <th>ID</th>
