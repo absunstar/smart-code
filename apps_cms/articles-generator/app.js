@@ -70,7 +70,7 @@ module.exports = function init(site) {
       if (data && data.id) {
         setTimeout(() => {
           site.bloggerManager.sendBloggerPosts(null, callBack);
-        }, 1000 * 15 * index);
+        }, 1000 * 15);
       }
     };
 
