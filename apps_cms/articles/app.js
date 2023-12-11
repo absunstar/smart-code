@@ -1068,18 +1068,17 @@ module.exports = function init(site) {
         hashTag += '  #' + tag;
       });
       if (doc.$yts) {
-        hashTag += '  Download Now Free #torrent #movie ( high Quality #1080p or #720p )  ';
+        doc.$content += '  #Download Now Free #torrent #movie ( high Quality #1080p or #720p )  ';
       }
       urls += `
       <item>
         <guid>${doc.guid}</guid>
-        <title>${doc.$title}</title>
+        <title>${doc.$title} ${hashTag}</title>
         <link>${doc.full_url}</link>
         <image>${domain}/article-image/${doc.guid}</image>
         <description>
           <![CDATA[
             ${doc.$content}
-            ${hashTag}
           ]]>
         </description>
         <pubDate>${doc.$date2}</pubDate>
