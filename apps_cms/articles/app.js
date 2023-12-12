@@ -329,7 +329,6 @@ module.exports = function init(site) {
     return doc;
   };
   site.searchArticles = function (options, callBack) {
-    console.log(options);
 
     callBack = callBack || function () {};
     options = options || {};
@@ -367,7 +366,6 @@ module.exports = function init(site) {
     if ((s = site.searchArticleList.find((sa) => sa.id == options.expString + '_' + options.page + '_' + options.limit))) {
       callBack(null, [...s.list]);
     } else {
-      console.log(options);
       site.$articles.findAll(
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },

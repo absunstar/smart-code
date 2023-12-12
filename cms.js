@@ -426,7 +426,7 @@ site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
   res.end('Galaksion check: 86531e4391aecbe5e70d086020f703f2');
 });
 
-site.getMainHost = function (host) {
+site.getMainHost = function (host = '') {
   let arr = host.split('.');
   if (arr.length > 1) {
     let com = arr.pop();
