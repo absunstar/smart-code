@@ -165,6 +165,7 @@ site.get(
     if (setting.siteTemplate.id == 1) {
       site.articlesList = site.articlesList || [];
       let options = {
+        domain: 'https://' + req.host,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -238,6 +239,7 @@ site.get(
     }
 
     let options = {
+      domain: 'https://' + req.host,
       guid: '',
       filter: site.getHostFilter(req.host),
       language: language,
@@ -346,6 +348,7 @@ site.get(
         language.description = language.description || '';
 
         let options = {
+          domain: 'https://' + req.host,
           filter: filter,
           language: language,
           setting: setting,
@@ -360,7 +363,7 @@ site.get(
           article: article,
         };
 
-        if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*')) {
+        if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {
           options.page_image = '/article-image/' + article.guid;
         }
 

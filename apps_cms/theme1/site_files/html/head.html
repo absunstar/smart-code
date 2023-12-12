@@ -1,4 +1,4 @@
-<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>##data.page_title##</title>
@@ -44,7 +44,6 @@
 <meta name="twitter:image" content="##data.page_image##" />
 
 <link rel="alternate" type="application/rss+xml" title="##data.page_title##" href="/rss" />
-
 <link rel="stylesheet" href="/css/theme1.css?version=##site.time##" />
 
 <style>
@@ -138,7 +137,37 @@
   document.addEventListener('contextmenu', (e) => e.preventDefault());
 </script>
 
-<script>
+<script
+  x-data="setting.allowGoogleAds"
+  title="Auto Ads in All Site and also custom ads"
+  crossorigin="anonymous"
+  async
+  type="text/javascript"
+  src="https =//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151"
+  id="googlesyndication"
+  data-ad-client="ca-pub-3372007384613151"
+></script>
+
+<script
+  x-data="setting.allowGoogleAnalytic"
+  id="googletagmanager"
+  title="tag manager"
+  crossorigin="anonymous"
+  async
+  type="text/javascript"
+  src="https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P"
+></script>
+
+<script x-data="setting.allowGoogleAnalytic" nonce="ZjurYrAM5gSnxRZ4_Q6upg">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-SJEBBEFC7P');
+</script>
+
+<script x-data="setting.addScript">
   window.addScript = function (info) {
     var script = document.createElement('script');
     for (const key in info) {
@@ -158,27 +187,4 @@
       });
     }
   };
-</script>
-
-<script x-data="setting.allowGoogleAds">
-  addScript({
-    title: 'Auto Ads in All Site and also custom ads',
-    crossorigin: 'anonymous',
-    async: !0,
-    type: 'text/javascript',
-    src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151',
-    id: 'googlesyndication',
-    'data-ad-client': 'ca-pub-3372007384613151',
-  });
-</script>
-
-<script x-data="setting.allowGoogleAnalytic" nonce="ZjurYrAM5gSnxRZ4_Q6upg">
-  addScriptAsync({ id: 'googletagmanager', title: 'tag manager', crossorigin: 'anonymous', async: !0, type: 'text/javascript', src: 'https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P' });
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
-  gtag('config', 'G-SJEBBEFC7P');
 </script>

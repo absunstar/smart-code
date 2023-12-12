@@ -144,7 +144,7 @@ module.exports = function init(site) {
     doc.$title = site.removeHtml(lang.title);
     doc.$titleArray = doc.$title.split(' ');
     doc.$alt = doc.$title.split(' ')[0] + ' ' + doc.$title.split(' ')[1] + ' ' + doc.$title.split(' ')[2];
-    doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
+    doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '';
     if (doc.type.id == 7 && doc.yts) {
@@ -258,7 +258,7 @@ module.exports = function init(site) {
   site.handleSearchArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
     doc.$title = site.removeHtml(lang.title);
-    doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
+    doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
     doc.host = doc.host || options.host || '';
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
@@ -519,28 +519,32 @@ module.exports = function init(site) {
         if (!imageURL || imageURL == '/images/no.png') {
           res.redirect('/images/no.png');
         } else {
-          delete req.headers.host;
-          delete req.headers.referer;
-          site
-            .fetch(imageURL, {
-              method: req.method,
-              headers: req.headers,
-              body: req.method.like('*get*|*head*') ? null : req.bodyRaw,
-              agent: function (_parsedURL) {
-                if (_parsedURL.protocol == 'http:') {
-                  return http_agent;
-                } else {
-                  return https_agent;
-                }
-              },
-            })
-            .then((response) => {
-              response.body.pipe(res);
-            })
-            .catch((err) => {
-              console.log(err);
-              res.redirect(imageURL);
-            });
+          if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {
+            delete req.headers.host;
+            delete req.headers.referer;
+            site
+              .fetch(imageURL, {
+                method: req.method,
+                headers: req.headers,
+                body: req.method.like('*get*|*head*') ? null : req.bodyRaw,
+                agent: function (_parsedURL) {
+                  if (_parsedURL.protocol == 'http:') {
+                    return http_agent;
+                  } else {
+                    return https_agent;
+                  }
+                },
+              })
+              .then((response) => {
+                response.body.pipe(res);
+              })
+              .catch((err) => {
+                console.log(err);
+                res.redirect(imageURL, 301);
+              });
+          } else {
+            res.redirect(imageURL, 301);
+          }
         }
       } else {
         res.redirect('/images/no.png');
