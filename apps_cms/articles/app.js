@@ -267,7 +267,6 @@ module.exports = function init(site) {
       doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
     }
     if (doc.type.id == 7) {
-      doc.$tagsList.push(doc.yts.year);
       if (!doc.$hasMiniTitle) {
         doc.$miniTitle = doc.yts.type;
         doc.$hasMiniTitle = true;
@@ -396,8 +395,10 @@ module.exports = function init(site) {
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
           where: {
-            host: new RegExp(options.host, 'gium'),
-            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }],
+            $and: [
+              { host: new RegExp(options.host, 'gium') },
+              { $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }] },
+            ],
           },
           limit: options.limit,
           skip: options.skip,
@@ -620,7 +621,7 @@ module.exports = function init(site) {
 
       if (Array.isArray(articlesDoc.yts.genres)) {
         articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
-        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres];
+        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres, articlesDoc.yts.year];
         articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.yts.title).split(' '), ...articlesDoc.yts.genres];
       }
 
@@ -1040,6 +1041,25 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
+  });
+
+  site.onGET('/api/article/update-tags', (req, res) => {
+    site.$articles.findAll({ limit: 100000, select: { id: 1, yts: 1, translatedList: 1 }, where: { yts: { $exists: true } } }, (err, docs) => {
+      if (!err && docs) {
+        res.json({ done: true, count: docs.length });
+        docs.forEach((doc) => {
+          let lang = doc.translatedList[0];
+          if (!lang.tagsList.includes(doc.yts.year)) {
+            lang.tagsList.push(doc.yts.year);
+            site.$articles.update(doc, (err, result) => {
+              console.log(err || result.doc.id);
+            });
+          }
+        });
+      } else {
+        res.json({ done: false });
+      }
+    });
   });
 
   site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
