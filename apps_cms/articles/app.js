@@ -104,6 +104,11 @@ module.exports = function init(site) {
         .replace(')', '')
         .replace('-', ' ')
         .replace('+', ' ')
+        .replace('$', ' ')
+        .replace('#', ' ')
+        .replace('!', ' ')
+        .replace('?', ' ')
+        .replace('؟', ' ')
         .replace('  ', ' ')
         .replace(/&nbsp;|&laquo;|&raquo|&quot;|&rlm;|&llm;|&lrm;|&rrm;/g, '')
         .trim();
