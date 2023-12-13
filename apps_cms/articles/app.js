@@ -148,13 +148,17 @@ module.exports = function init(site) {
     if (article) {
       callBack(null, article);
     } else {
-      site.$articles.find({ guid: guid }, (err, doc) => {
-        if (!err && doc) {
-          doc = site.handleArticle({ ...doc });
-          site.articlesList.push(doc);
-        }
-        callBack(err, doc);
-      } , true);
+      site.$articles.find(
+        { guid: guid },
+        (err, doc) => {
+          if (!err && doc) {
+            doc = site.handleArticle({ ...doc });
+            site.articlesList.push(doc);
+          }
+          callBack(err, doc);
+        },
+        true
+      );
     }
   };
 
@@ -391,15 +395,17 @@ module.exports = function init(site) {
     if ((s = site.searchArticleList.find((sa) => sa.id == options.expString + '_' + options.page + '_' + options.limit))) {
       callBack(null, [...s.list]);
     } else {
+      options.where = {
+        $and: [
+          { host: new RegExp(options.host, 'gium') },
+          { $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }] },
+        ],
+      };
+      console.log(options);
       site.$articles.findAll(
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
-          where: {
-            $and: [
-              { host: new RegExp(options.host, 'gium') },
-              { $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }] },
-            ],
-          },
+          where: options.where,
           limit: options.limit,
           skip: options.skip,
         },
