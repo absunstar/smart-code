@@ -154,7 +154,7 @@ module.exports = function init(site) {
           site.articlesList.push(doc);
         }
         callBack(err, doc);
-      });
+      } , true);
     }
   };
 
@@ -743,16 +743,20 @@ module.exports = function init(site) {
       response.doc = site.articlesList[index];
       res.json(response);
     } else {
-      site.$articles.find({ id: req.data.id }, (err, doc) => {
-        if (!err && doc) {
-          response.done = true;
-          response.doc = doc;
-          res.json(response);
-        } else {
-          response.error = err?.message || 'Error Not Exists';
-          res.json(response);
-        }
-      });
+      site.$articles.find(
+        { id: req.data.id },
+        (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+            res.json(response);
+          } else {
+            response.error = err?.message || 'Error Not Exists';
+            res.json(response);
+          }
+        },
+        true
+      );
     }
   });
 
