@@ -120,7 +120,7 @@ module.exports = function init(site) {
     if (!str) {
       return '';
     }
-    str = str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+    str = str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, ' ');
 
     lettersToRemove.forEach(function (letter) {
       str = str.replaceAll(letter, '');
@@ -249,10 +249,13 @@ module.exports = function init(site) {
       doc.writer.$title = doc.writer.profile.title;
       doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
     }
-    if (doc.type.id == 7 && !doc.$hasMiniTitle) {
-      doc.$miniTitle = doc.yts.type;
-      doc.$hasMiniTitle = true;
-      doc.$miniTitleClass = '';
+    if (doc.type.id == 7) {
+      doc.$tagsList.push(doc.yts.year);
+      if (!doc.$hasMiniTitle) {
+        doc.$miniTitle = doc.yts.type;
+        doc.$hasMiniTitle = true;
+        doc.$miniTitleClass = '';
+      }
     } else if (doc.type.id == 8 && !doc.$hasMiniTitle) {
       doc.$miniTitle = 'Youtube';
       doc.$hasMiniTitle = true;
