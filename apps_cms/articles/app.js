@@ -143,24 +143,24 @@ module.exports = function init(site) {
     let lang = doc.translatedList[0];
     doc.$title = site.removeHtml(lang.title);
     doc.$titleArray = doc.$title.split(' ');
-    doc.$alt = doc.$title.split(' ')[0] + ' ' + doc.$title.split(' ')[1] + ' ' + doc.$title.split(' ')[2];
+    doc.$alt = doc.$title.split(' ').slice(0, 3).join(' ');
     doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '';
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
-      doc.$title2 = doc.$title.replaceAll(' ', '+');
+      doc.$title2 = site.removeHtml(doc.$title).replaceAll(' ', '-');
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
       doc.$backgroundURL = doc.$coverURL;
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
-      doc.$title2 = doc.$title.replaceAll(' ', '+');
+      doc.$title2 = site.removeHtml(doc.$title).replaceAll(' ', '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else {
-      doc.$title2 = doc.$title.split(' ').join('-');
+      doc.$title2 = site.removeHtml(doc.$title).replaceAll(' ', '-');
     }
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
@@ -329,7 +329,6 @@ module.exports = function init(site) {
     return doc;
   };
   site.searchArticles = function (options, callBack) {
-
     callBack = callBack || function () {};
     options = options || {};
     options.search = options.search || '';
