@@ -282,11 +282,11 @@ module.exports = function init(site) {
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
-      doc.$title2 = doc.$title.replaceAll(' ', '+');
+      doc.$title2 = site.removeHtml(doc.$title).replaceAll(' ', '-');
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
     } else {
-      doc.$title2 = doc.$title.split(' ').join('-');
+      doc.$title2 = site.removeHtml(doc.$title).replaceAll(' ', '-');
     }
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
