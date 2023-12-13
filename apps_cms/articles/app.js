@@ -1052,7 +1052,9 @@ module.exports = function init(site) {
           lang.tagsList = lang.tagsList || [];
           if (doc.yts && !lang.tagsList.includes(doc.yts.year)) {
             lang.tagsList.push(doc.yts.year);
-            site.$articles.update(doc);
+            site.$articles.update(doc , (err , result)=>{
+              console.log(err || result.doc.id)
+            });
           }
         });
       } else {
