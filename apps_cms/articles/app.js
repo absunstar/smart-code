@@ -1049,11 +1049,10 @@ module.exports = function init(site) {
         res.json({ done: true, count: docs.length });
         docs.forEach((doc) => {
           let lang = doc.translatedList[0];
-          if (!lang.tagsList.includes(doc.yts.year)) {
+          lang.tagsList = lang.tagsList || [];
+          if (doc.yts && !lang.tagsList.includes(doc.yts.year)) {
             lang.tagsList.push(doc.yts.year);
-            site.$articles.update(doc, (err, result) => {
-              console.log(err || result.doc.id);
-            });
+            site.$articles.update(doc);
           }
         });
       } else {
