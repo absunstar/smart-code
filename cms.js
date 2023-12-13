@@ -100,6 +100,17 @@ site.get(
         if ((category = site.categoryList.find((c) => c.id == c0.id && c.host.like(options.filter)))) {
           let c = {};
           c.$list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, c0.limit);
+          if (req.session.lang == 'AR') {
+            c.$list.forEach((doc) => {
+              doc.$date = doc.$date1;
+              doc.$day = doc.$day1;
+            });
+          } else {
+            c.$list.forEach((doc) => {
+              doc.$date = doc.$date2;
+              doc.$day = doc.$day2;
+            });
+          }
           if (c0.template && c.$list.length > 0) {
             if (c0.template.id == 1) {
               c.template1 = true;
@@ -194,6 +205,17 @@ site.get(
 
       site.searchArticles({ search: query, host: options.filter, page: page, limit: limit }, (err, docs) => {
         if (!err && docs) {
+          if (req.session.lang == 'AR') {
+            docs.forEach((doc) => {
+              doc.$date = doc.$date1;
+              doc.$day = doc.$day1;
+            });
+          } else {
+            docs.forEach((doc) => {
+              doc.$date = doc.$date2;
+              doc.$day = doc.$day2;
+            });
+          }
           options.list = docs;
           options.list1 = options.list.splice(0, 10);
           options.list2 = options.list.splice(0, 10);
@@ -266,6 +288,17 @@ site.get(
     options.topNews = site.getTopArticles(options.filter, category);
 
     options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 50);
+    if (req.session.lang == 'AR') {
+      options.list.forEach((doc) => {
+        doc.$date = doc.$date1;
+        doc.$day = doc.$day1;
+      });
+    } else {
+      options.list.forEach((doc) => {
+        doc.$date = doc.$date2;
+        doc.$day = doc.$day2;
+      });
+    }
     options.list1 = options.list.splice(0, 10);
     options.list2 = options.list.splice(0, 10);
     options.list3 = options.list.splice(0, 10);
@@ -375,6 +408,17 @@ site.get(
         options.menuList3 = options.menuList.slice(20);
 
         options.relatedArticleList = site.getRelatedArticles(article);
+        if (req.session.lang == 'AR') {
+          options.relatedArticleList.forEach((doc) => {
+            doc.$date = doc.$date1;
+            doc.$day = doc.$day1;
+          });
+        } else {
+          options.relatedArticleList.forEach((doc) => {
+            doc.$date = doc.$date2;
+            doc.$day = doc.$day2;
+          });
+        }
         options.latestList = site.getLatestArticles(article);
         options.topNews = site.getTopArticles(options.filter, article.category);
 

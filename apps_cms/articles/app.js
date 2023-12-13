@@ -59,20 +59,28 @@ module.exports = function init(site) {
     /* Save in Database */
   };
 
-  site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
+  site.days = [
+    { AR: 'الاحد', EN: 'Sunday' },
+    { AR: 'الاثنين', EN: 'Monday' },
+    { AR: 'الثلاثاء', EN: 'Tuesday' },
+    { AR: 'الاربعاء', EN: 'Wednesday' },
+    { AR: 'الخميس', EN: 'Thursday' },
+    { AR: 'الجمعة', EN: 'Friday' },
+    { AR: 'السبت', EN: 'Saturday' },
+  ];
   site.monthes = [
-    { nameAr: 'يناير' },
-    { nameAr: 'فبراير' },
-    { nameAr: 'مارس' },
-    { nameAr: 'ابريل' },
-    { nameAr: 'مايو' },
-    { nameAr: 'يونيو' },
-    { nameAr: 'يوليو' },
-    { nameAr: 'أغسطس' },
-    { nameAr: 'سبتمر' },
-    { nameAr: 'أكتوبر' },
-    { nameAr: 'نوقمير' },
-    { nameAr: 'ديسمبر' },
+    { AR: 'يناير', EN: 'January' },
+    { AR: 'فبراير', EN: 'February' },
+    { AR: 'مارس', EN: 'March' },
+    { AR: 'ابريل', EN: 'April' },
+    { AR: 'مايو', EN: 'May' },
+    { AR: 'يونيو', EN: 'June' },
+    { AR: 'يوليو', EN: 'July' },
+    { AR: 'أغسطس', EN: 'August' },
+    { AR: 'سبتمر', EN: 'September' },
+    { AR: 'أكتوبر', EN: 'October' },
+    { AR: 'نوقمير', EN: 'November' },
+    { AR: 'ديسمبر', EN: 'December' },
   ];
   site.escapeRegx = function (s) {
     if (!s) {
@@ -205,8 +213,11 @@ module.exports = function init(site) {
     });
 
     doc.publishDate = doc.publishDate || new Date();
-    doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
-    doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+    doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.AR || '-----') + ' / ' + doc.publishDate.getFullYear();
+    doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.EN || '-----') + ' \\ ' + doc.publishDate.getFullYear();
+    doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
+    doc.$day2 = site.days[doc.publishDate.getDay()]?.EN || '-----';
+
     doc.$hasAudio = false;
     doc.$hasVideo = false;
     doc.$hasImageGallary = false;
@@ -280,8 +291,10 @@ module.exports = function init(site) {
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
     doc.publishDate = doc.publishDate || new Date();
-    doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
-    doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+    doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.AR || '-----') + ' / ' + doc.publishDate.getFullYear();
+    doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.EN || '-----') + ' \\ ' + doc.publishDate.getFullYear();
+    doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
+    doc.$day2 = site.days[doc.publishDate.getDay()]?.EN || '-----';
 
     doc.$hasAudio = false;
     doc.$hasVideo = false;

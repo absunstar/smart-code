@@ -118,30 +118,32 @@ if (albumimageslider) {
   let ISstartISx;
   let ISx;
   for (let i = 0; i < albumImageSlider.length; i++) {
-    IsliderContainer[i].addEventListener('mousedown', (e) => {
-      Spressed = true;
-      ISstartISx = e.offsetX - IinnerSlider[i].offsetLeft;
-      IsliderContainer[i].style.cursor = 'grabbing';
-      IScheckBoundary();
-    });
+    if (IsliderContainer[i]) {
+      IsliderContainer[i].addEventListener('mousedown', (e) => {
+        Spressed = true;
+        ISstartISx = e.offsetX - IinnerSlider[i].offsetLeft;
+        IsliderContainer[i].style.cursor = 'grabbing';
+        IScheckBoundary();
+      });
 
-    IsliderContainer[i].addEventListener('mouseenter', () => {
-      IsliderContainer[i].style.cursor = 'grab';
-    });
+      IsliderContainer[i].addEventListener('mouseenter', () => {
+        IsliderContainer[i].style.cursor = 'grab';
+      });
 
-    IsliderContainer[i].addEventListener('mouseup', () => {
-      IsliderContainer[i].style.cursor = 'grab';
-      Spressed = false;
-    });
+      IsliderContainer[i].addEventListener('mouseup', () => {
+        IsliderContainer[i].style.cursor = 'grab';
+        Spressed = false;
+      });
 
-    IsliderContainer[i].addEventListener('mousemove', (e) => {
-      if (!Spressed) return;
-      e.preventDefault();
+      IsliderContainer[i].addEventListener('mousemove', (e) => {
+        if (!Spressed) return;
+        e.preventDefault();
 
-      ISx = e.offsetX;
+        ISx = e.offsetX;
 
-      IinnerSlider[i].style.left = `${ISx - ISstartISx}px`;
-    });
+        IinnerSlider[i].style.left = `${ISx - ISstartISx}px`;
+      });
+    }
 
     const IScheckBoundary = () => {
       let outer = IsliderContainer[i].getBoundingClientRect();
