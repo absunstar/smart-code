@@ -369,14 +369,13 @@ module.exports = function init(site) {
     options.limit = parseInt(options.limit);
     options.skip = options.limit * (options.page - 1);
     options.exp = '';
-    options.search = site
-      .filterLetters(options.search)
-      .split(' ')
-      .forEach((w, i) => {
-        if (w.length > 2) {
-          options.exp += w + '|';
-        }
-      });
+    options.search = site.filterLetters(options.search).split(' ');
+    options.search.forEach((w, i) => {
+      if (w.length > 2) {
+        options.exp += w + '|';
+      }
+    });
+
     options.expString = options.exp.replace(/.$/, '');
     options.exp = new RegExp(options.expString, 'i');
 
@@ -398,7 +397,7 @@ module.exports = function init(site) {
       options.where = {
         $and: [
           { host: new RegExp(options.host, 'gium') },
-          { $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }] },
+          { $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.expString }] },
         ],
       };
       console.log(options);
