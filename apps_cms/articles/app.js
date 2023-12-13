@@ -397,7 +397,7 @@ module.exports = function init(site) {
       options.where = {
         $and: [
           { host: new RegExp(options.host, 'gium') },
-          { $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.expString }] },
+          { $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.search }] },
         ],
       };
       console.log(options);
