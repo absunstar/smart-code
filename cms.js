@@ -203,20 +203,50 @@ site.get(
       options.menuList2 = options.menuList.slice(8, 20);
       options.menuList3 = options.menuList.slice(20);
 
-      site.searchArticles({ search: query, host: options.filter, page: page, limit: limit }, (err, docs) => {
-        if (!err && docs) {
+      site.searchArticles({ search: query, host: options.filter, page: page, limit: limit }, (err, result) => {
+        if (!err && result) {
+          let list = [...result.list];
+
           if (req.session.lang == 'AR') {
-            docs.forEach((doc) => {
+            list.forEach((doc) => {
               doc.$date = doc.$date1;
               doc.$day = doc.$day1;
             });
           } else {
-            docs.forEach((doc) => {
+            list.forEach((doc) => {
               doc.$date = doc.$date2;
               doc.$day = doc.$day2;
             });
           }
-          options.list = docs;
+
+          options.pageCount = Math.floor(result.count / result.limit);
+          if (result.count > result.limit) {
+            options.pagging = true;
+            options.pageList = [];
+            for (let index = 1; index < options.pageCount + 1; index++) {
+              options.pageList.push({
+                name: index,
+                url: '/result?search_query=' + result.search + '&page=' + index + '&limit=' + result.limit,
+              });
+            }
+          }
+          options.page_title =
+            language.siteName +
+            ' ' +
+            language.titleSeparator +
+            ' ' +
+            req.word('Search results for ') +
+            ' ' +
+            result.search +
+            ' [ ' +
+            result.count +
+            ' ] ' +
+            ' - page ' +
+            result.page +
+            ' of ' +
+            options.pageCount;
+
+          options.list = list;
           options.list1 = options.list.splice(0, 10);
           options.list2 = options.list.splice(0, 10);
           options.list3 = options.list.splice(0, 10);

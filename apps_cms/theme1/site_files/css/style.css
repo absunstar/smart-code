@@ -43,6 +43,30 @@ body {
   border: none;
   background: none;
 }
+
+.pages-numbers {
+  text-align: center;
+  display: block;
+  padding: 5px;
+}
+.page-number {
+  text-align: center;
+  border-radius: 5px;
+  color: var(--color1);
+  background: var(--background1);
+  font-weight: bold;
+  margin: 1px;
+  font-size: 20px;
+  padding: 5px;
+  display: inline-block;
+  min-width: 35px;
+  transition: all .2s ease;
+}
+.page-number:hover{
+  border-radius: 0px !important;
+  color: var(--color2) !important;
+  background: var(--background2) !important;
+}
 .articleSection {
   font-size: 24px;
   background-color: var(--background1x);

@@ -416,7 +416,7 @@ module.exports = function init(site) {
 
     let list = [];
     if ((s = site.searchArticleList.find((sa) => sa.id == options.search + '_' + options.page + '_' + options.limit))) {
-      callBack(null, [...s.list]);
+      callBack(null, s);
     } else {
       let $or = [];
       $or.push({ 'translatedList.title': { $regex: new RegExp(options.search, 'gium') } });
@@ -435,22 +435,31 @@ module.exports = function init(site) {
       site.$articles.findAll(
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
+
           where: options.where,
           limit: options.limit,
           skip: options.skip,
         },
-        (err, docs) => {
-          if (!err && docs) {
+        (err, docs, count) => {
+          if ((!err && docs)) {
             docs.forEach((doc) => {
               list.push(site.handleSearchArticle(doc));
             });
 
-            site.addToSearchArticleList({
+            let ss = {
               id: options.search + '_' + options.page + '_' + options.limit,
-              list: [...list],
-            });
+              search: options.search,
+              page: options.page,
+              limit: options.limit,
+              count: count,
+              list: list,
+            };
+            site.addToSearchArticleList(ss);
 
-            callBack(null, list);
+            callBack(
+              null,
+              site.searchArticleList.find((s) => s.id == ss.id)
+            );
           } else {
             callBack(err);
           }
