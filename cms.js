@@ -219,7 +219,7 @@ site.get(
             });
           }
 
-          options.pageCount = Math.floor(result.count / result.limit);
+          options.pageCount = Math.floor(result.count / result.limit + 1);
           if (result.count > result.limit) {
             options.pagging = true;
             options.pageList = [];
