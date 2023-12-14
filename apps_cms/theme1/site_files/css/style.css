@@ -529,7 +529,7 @@ a {
   margin-bottom: 10px !important;
   background-repeat: round;
   background-position: top;
-  background-size: cover;
+  background-size: auto;
   background-color: var(--background1x);
   border-radius: 15px;
   border: 2px solid var(--background1);
