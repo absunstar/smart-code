@@ -170,6 +170,10 @@ site.get(
 
     language.description = language.description || '';
     let query = req.query.search_query || '';
+    if (query.length < 3) {
+      res.redirect('/');
+      return;
+    }
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : 50;
     if (limit > 50) {
