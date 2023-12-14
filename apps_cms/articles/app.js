@@ -317,6 +317,7 @@ module.exports = function init(site) {
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     } else {
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     }
