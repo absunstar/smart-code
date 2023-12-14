@@ -13,7 +13,7 @@
             <div class="MI-newstime d-flex flex-row justify-content-start align-items-center">
               <p class="newsday">##data.article.$day##</p>
               <div class="vlntime"></div>
-              <p class="newsdate ">##data.article.$date##</p>
+              <p class="newsdate">##data.article.$date##</p>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@
               </audio>
 
               <div class="mainarticle d-flex flex-row row align-items-start justify-content-center">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
                   <div class="center">
                     <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" alt="##data.article.$title##" />
                   </div>
@@ -94,17 +94,19 @@
                   </div>
                 </div>
 
-                <div x-data="article.$description" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
-                  <div class="article-description">##data.article.$description##</div>
-                  <div x-data="article.$yts">
-                    <div class="d-flex gap-2 p-2">
-                      <a target="_blank" class="bold col-md-3 btn btn-warning" href="##data.article.yts.$imdbURL##"> IMDB </a>
-                      <a target="_blank" class="bold col-md-3 btn btn-danger" href="##data.article.yts.$trailerURL##"> Trailer </a>
-                      <a target="_blank" class="bold col-md-3 btn btn-info" href="##data.article.yts.$subtitleURL##"> Subtitles </a>
-                    </div>
-                    <div class="d-flex gap-2 p-2">
-                      <a x-list1="article.yts.torrents" class="bold btn btn-primary" target="_blank" href="##item1.url##"> Download ##item1.quality## ( ##item1.size## ) Torrent </a>
-                    </div>
+                <div x-data="article.$content" class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                  <div class="article-description">##data.article.$content##</div>
+                </div>
+                <div x-data="article.$yts">
+                  <div class="d-flex gap-2 p-2 justify-content-center">
+                    <a rel="nofollow" target="_blank" class="btn btn-warning p-2 italic" href="##data.article.yts.$imdbURL##"> read more on IMDB </a>
+                    <a rel="nofollow"  target="_blank" class="btn btn-danger p-2 italic" href="##data.article.yts.$trailerURL##"> show movie Trailer </a>
+                    <a rel="nofollow"  target="_blank" class="btn btn-info p-2 italic" href="##data.article.yts.$subtitleURL##"> download Subtitles </a>
+                  </div>
+                  <div class="d-flex gap-2 p-2 justify-content-center">
+                    <a rel="nofollow"  x-list1="article.yts.torrents" class="bold btn btn-primary p-4" target="_blank" href="##item1.url##">
+                      Download Free <span class="yellow">[Quality ##item1.quality##]</span> ( ##item1.size## ) Torrent
+                    </a>
                   </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 p-3">

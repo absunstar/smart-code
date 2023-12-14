@@ -130,16 +130,39 @@ module.exports = function init(site) {
       return unsafe;
     }
   };
-  site.filterLetters = function (str, lettersToRemove = ['  ', '|', '/', '\\', ':', '*', '?', '=', '.', '^', '$', '"', "'", '؟']) {
+  site.filterLetters = function (str, lettersToRemove = ['  ', ':', '=', '"', "'", '؟']) {
     if (!str) {
       return '';
     }
+    var specials = [
+      // order matters for these
+      '-',
+      '[',
+      ']',
+      // order doesn't matter for any of these
+      '/',
+      '{',
+      '}',
+      '(',
+      ')',
+      '*',
+      '+',
+      '?',
+      '.',
+      '\\',
+      '^',
+      '$',
+      '|',
+    ];
+
+    regex = RegExp('[' + specials.join('\\') + ']', 'g');
+    str = str.replace(regex, ' ');
     str = str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, ' ');
 
-    lettersToRemove.forEach(function (letter) {
+    lettersToRemove.forEach((letter) => {
       str = str.replaceAll(letter, '');
     });
-    return str.trim();
+    return str.replace(/\s+/g, ' ').trim();
   };
 
   site.getArticle = function (guid, callBack) {
@@ -368,16 +391,16 @@ module.exports = function init(site) {
     options.limit = options.limit || 50;
     options.limit = parseInt(options.limit);
     options.skip = options.limit * (options.page - 1);
-    options.exp = '';
-    options.search = site.filterLetters(options.search).split(' ');
-    options.search.forEach((w, i) => {
-      if (w.length > 2) {
-        options.exp += w + '|';
-      }
-    });
+    // options.exp = '';
+    options.search = site.filterLetters(options.search);
+    // options.search.forEach((w, i) => {
+    //   if (w.length > 2) {
+    //     options.exp += w + '|';
+    //   }
+    // });
 
-    options.expString = options.exp.replace(/.$/, '');
-    options.exp = new RegExp(options.expString, 'i');
+    // options.expString = options.exp.replace(/.$/, '');
+    // options.exp = new RegExp(options.expString, 'gium');
 
     if (options.host.indexOf('*') !== -1) {
       options.host = options.host.split('*');
@@ -389,18 +412,26 @@ module.exports = function init(site) {
       options.host = site.escapeRegx(options.host);
     }
     options.host = '^' + options.host + '$';
+    options.host = new RegExp(options.host, 'gium');
 
     let list = [];
-    if ((s = site.searchArticleList.find((sa) => sa.id == options.expString + '_' + options.page + '_' + options.limit))) {
+    if ((s = site.searchArticleList.find((sa) => sa.id == options.search + '_' + options.page + '_' + options.limit))) {
       callBack(null, [...s.list]);
     } else {
+      let $or = [];
+      $or.push({ 'translatedList.title': { $regex: new RegExp(options.search, 'gium') } });
+      options.search.split(' ').forEach((s) => {
+        if (s.length > 2) {
+          $or.push({ 'translatedList.tagsList': { $regex: new RegExp(s, 'gium') } });
+          $or.push({ 'translatedList.title': { $regex: new RegExp(s, 'gium') } });
+          //  $or.push({ 'translatedList.textContent': { $regex: new RegExp(s, 'gium') } });
+        }
+      });
       options.where = {
-        $and: [
-          { host: new RegExp(options.host, 'gium') },
-          { $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.search }] },
-        ],
+        host: options.host,
+        $or: $or,
       };
-      console.log(options);
+
       site.$articles.findAll(
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
@@ -415,7 +446,7 @@ module.exports = function init(site) {
             });
 
             site.addToSearchArticleList({
-              id: options.expString + '_' + options.page + '_' + options.limit,
+              id: options.search + '_' + options.page + '_' + options.limit,
               list: [...list],
             });
 
@@ -1060,7 +1091,16 @@ module.exports = function init(site) {
         docs.forEach((doc) => {
           let lang = doc.translatedList[0];
           lang.tagsList = lang.tagsList || [];
-          if (doc.yts && !lang.tagsList.includes(doc.yts.year)) {
+          if (doc.yts && lang.tagsList.includes(doc.yts.year)) {
+            lang.tagsList.splice(
+              lang.tagsList.findIndex((t) => t == doc.yts.year),
+              1
+            );
+            lang.tagsList.push(doc.yts.year.toString());
+            site.$articles.update(doc, (err, result) => {
+              console.log(err || result.doc.id);
+            });
+          } else if (doc.yts && !lang.tagsList.includes(doc.yts.year.toString())) {
             lang.tagsList.push(doc.yts.year);
             site.$articles.update(doc, (err, result) => {
               console.log(err || result.doc.id);
