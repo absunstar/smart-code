@@ -1,5 +1,5 @@
 <div id="mainslide" x-data="MainSliderNews.list.length" class="mainslide p-0 m-0" style="background-image: url(/article-image/##data.MainSliderNews.article.guid##)">
-  <div onclick="gotoSlide()" class="col-12 MS-newsTilteTime d-flex flex-column justify-content-end">
+  <div onclick="gotoSlide()" class="col-12 MS-newsTilteTime d-flex flex-column justify-content-start">
     <h1 class="MS-newstitle">##data.MainSliderNews.article.$title##</h1>
     <div class="MS-newstime d-flex flex-row justify-content-start align-items-center">
       <p class="newsday">##data.MainSliderNews.article.$day##</p>
@@ -7,12 +7,12 @@
       <p class="newsdate ">##data.MainSliderNews.article.$date##</p>
     </div>
   </div>
-  <div class="w-100 MS-slider-container d-flex flex-column justify-content-end">
+  <div class="w-100 MS-slider-container d-flex flex-column justify-content-start">
     <ul class="col-12 MS-inner-slider frist-slider">
       <li id="slide_##item1.id##" x-list1="MainSliderNews.list" class="MS-card slide-imageNews">
         <a title="##item1.$title##" class="slide-link d-flex flex-column justify-content-start align-items-center p-0 m-0" target="_blank" href="##item1.$url##">
           <img class="smallSlideIamge" src="/article-image/##item1.guid##" alt="##item1.$alt##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" />
-          <div class="slide-newsTilteTime d-flex flex-column justify-content-end">
+          <div class="slide-newsTilteTime d-flex flex-column justify-content-start">
             <p class="slide-newstitle">##item1.$title##</p>
             <p class="slide-day none">##item1.$day##</p>
             <p class="slide-date none">##item1.$date##</p>
@@ -24,7 +24,7 @@
       <li x-list1="MainSliderNews.list" class="MS-card slide-imageNews d-md-flex">
         <a title="##item1.$title##" class="slide-link d-flex flex-column justify-content-start align-items-center p-0 m-0" target="_blank" href="##item1.$url##">
           <img class="smallSlideIamge" src="/article-image/##item1.guid##" alt="##item1.$alt##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" />
-          <div class="slide-newsTilteTime d-flex flex-column justify-content-end">
+          <div class="slide-newsTilteTime d-flex flex-column justify-content-start">
             <p class="slide-newstitle">##item1.$title##</p>
             <p class="slide-day none">##item1.$day##</p>
             <p class="slide-date none">##item1.$date##</p>

@@ -212,6 +212,7 @@
   border: 2px solid var(--background1);
   border-radius: 50px;
   height: 59px;
+  background: #fff;
 }
 .rtl .SearchBAr {
   flex-direction: row;
@@ -237,7 +238,8 @@
   direction: rtl;
   border: 0px solid var(--background1);
   outline: none;
-  background: var(--background4);
+  color: #000;
+  background: #fff;
   border-radius: 10px;
 }
 
