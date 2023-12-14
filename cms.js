@@ -170,8 +170,11 @@ site.get(
 
     language.description = language.description || '';
     let query = req.query.search_query || '';
-    let page = req.query.page;
-    let limit = req.query.limit;
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let limit = req.query.limit ? parseInt(req.query.limit) : 50;
+    if (limit > 50) {
+      limit = 50;
+    }
 
     if (setting.siteTemplate.id == 1) {
       site.articlesList = site.articlesList || [];
