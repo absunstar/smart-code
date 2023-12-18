@@ -429,8 +429,7 @@ module.exports = function init(site) {
         }
       });
       options.where = {
-        host: options.host,
-        $or: $or,
+        $and: [{ host: options.host }, { $or: $or }],
       };
 
       site.$articles.findAll(
@@ -442,7 +441,7 @@ module.exports = function init(site) {
           skip: options.skip,
         },
         (err, docs, count) => {
-          if ((!err && docs)) {
+          if (!err && docs) {
             docs.forEach((doc) => {
               list.push(site.handleSearchArticle(doc));
             });
