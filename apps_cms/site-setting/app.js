@@ -193,7 +193,7 @@ module.exports = function init(site) {
     site.defaultSetting.languageList.push({ ...l });
   });
 
-  $siteSetting.findAll({}, (err, docs) => {
+  $siteSetting.findAll({ sort: { id: 1 } }, (err, docs) => {
     if (!err && docs && docs.length > 0) {
       docs.forEach((doc) => {
         if (!doc.article.articleTypes) {

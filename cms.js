@@ -520,7 +520,7 @@ site.getMainHost = function (host = '') {
 site.handleNotRoute = function (req, res) {
   let host = req.headers['host'];
   let setting = site.getSiteSetting(host);
-  if (setting.host == '') {
+  if (!setting.host) {
     res.redirect(site.getMainHost(host), 301);
   } else {
     res.redirect('/');

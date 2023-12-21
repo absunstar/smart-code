@@ -14,11 +14,13 @@
         <i-button type="add" ng-click="hostsAdd({})"></i-button>
         <table class="table">
           <tr>
+            <th>##word.ID##</th>
             <th>##word.domain##</th>
             <th>##word.filter##</th>
             <th>##word.actions##</th>
           </tr>
           <tr ng-repeat="host in hostsList">
+            <td><span class="bold blue">{{host.id}} </span></td>
             <td>
               <i-control ng-model="host.domain"></i-control>
             </td>
