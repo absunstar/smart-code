@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   const $siteSetting = site.connectCollection('siteSetting');
-  const hostManager = site.connectApp({ name: 'hosts', allowMemory: true, sort: { id: -1 } });
+  const hostManager = site.connectApp({ name: 'hosts', allowMemory: true, sort: { id: 1 } });
 
   site.settingList = [];
 
