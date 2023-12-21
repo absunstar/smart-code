@@ -1,4 +1,3 @@
-app.connectScope({name : 'hosts'}, function ($scope, $http, $timeout) {
-  
-    $scope.hostsLoadAll();
+app.connectScope({ name: 'hosts' }, function ($scope, $http, $timeout) {
+  $scope.hostsLoadAll();
 });
