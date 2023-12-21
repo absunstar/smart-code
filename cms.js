@@ -37,6 +37,7 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
+    // if host not in hostManager
     let setting = site.getSiteSetting(req.host);
     if (!setting.host) {
       res.redirect(site.getMainHost(req.host), 301);

@@ -5,7 +5,7 @@ function xxx_run() {
       SOCIALBROWSER.youtubeChannel = JSON.parse(SOCIALBROWSER.from123(SOCIALBROWSER.youtubeItem123));
       delete window.youtubeItem123;
     } else {
-      SOCIALBROWSER.youtubeChannel = { title: 'xxxxxxxxxxxxx' };
+      SOCIALBROWSER.youtubeChannel = { title: '' };
     }
     let list = [];
     let scroll_number = 500;
@@ -27,17 +27,13 @@ function xxx_run() {
           list.push({
             url: url,
           });
-          SOCIALBROWSER.share({ type: 'generator-youtube-video', url: url, image: image, title: title, channel: SOCIALBROWSER.youtubeChannel });
+          if (title && image.url) {
+            SOCIALBROWSER.share({ type: 'generator-youtube-video', url: url, image: image, title: title, channel: SOCIALBROWSER.youtubeChannel });
+          }
         }
       });
       window.scrollTo(0, scroll_number);
       scroll_number += 500;
-    }
-
-    function sendData() {
-      let title = document.title;
-      SOCIALBROWSER.share({ type: 'youtubeChnnelVideo', title: title, url: document.location.href, image: { url: document.querySelector('#avatar img').src } });
-      SOCIALBROWSER.currentWindow.close();
     }
 
     setInterval(() => {

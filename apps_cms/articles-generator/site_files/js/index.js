@@ -179,7 +179,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: false,
         vip: true,
-        timeout: 15 * 1000,
+        timeout: 30 * 1000,
         url: channel.url + '/videos',
         eval: code_injected,
         allowAudio: false,
