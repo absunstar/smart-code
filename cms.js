@@ -5,6 +5,7 @@ const site = require('../isite')({
   name: 'cms',
   savingTime: 5,
   log: true,
+  www: false,
   require: {
     features: [],
     permissions: [],
@@ -36,19 +37,26 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
+    // if host not in hostManager
     let setting = site.getSiteSetting(req.host);
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
 
-    if (!setting || !setting.siteTemplate || !setting.languageList) {
-      res.redirect('/404');
+    if (!setting.siteTemplate || !setting.languageList) {
+      res.redirect('/404', 404);
       return;
     }
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
     }
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
-      res.redirect('/404');
+      res.redirect('/404', 404);
       return;
     }
 
@@ -68,6 +76,7 @@ site.get(
         page_image: language.logo?.url,
         site_name: language.siteName,
         page_lang: language.id,
+        page_type: 'website',
         page_title: language.siteName + ' ' + language.titleSeparator + ' ' + language.siteSlogan,
         page_description: language.description.substr(0, 200),
         page_keywords: language.keyWordsList.join(','),
@@ -92,6 +101,17 @@ site.get(
         if ((category = site.categoryList.find((c) => c.id == c0.id && c.host.like(options.filter)))) {
           let c = {};
           c.$list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, c0.limit);
+          if (req.session.lang == 'AR') {
+            c.$list.forEach((doc) => {
+              doc.$date = doc.$date1;
+              doc.$day = doc.$day1;
+            });
+          } else {
+            c.$list.forEach((doc) => {
+              doc.$date = doc.$date2;
+              doc.$day = doc.$day2;
+            });
+          }
           if (c0.template && c.$list.length > 0) {
             if (c0.template.id == 1) {
               c.template1 = true;
@@ -114,7 +134,7 @@ site.get(
         compress: true,
       });
     } else {
-      res.redirect('/404');
+      res.redirect('/404', 404);
     }
   }
 );
@@ -125,18 +145,23 @@ site.get(
   },
   (req, res) => {
     let setting = site.getSiteSetting(req.host);
-
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
     if (!setting || !setting.siteTemplate || !setting.languageList) {
-      res.redirect('/404');
+      res.redirect('/404', 404);
       return;
     }
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
     }
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
-      res.redirect('/404');
+      res.redirect('/404', 404);
       return;
     }
 
@@ -146,10 +171,20 @@ site.get(
 
     language.description = language.description || '';
     let query = req.query.search_query || '';
+    if (query.length < 3) {
+      res.redirect('/');
+      return;
+    }
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let limit = req.query.limit ? parseInt(req.query.limit) : 50;
+    if (limit > 50) {
+      limit = 50;
+    }
 
     if (setting.siteTemplate.id == 1) {
       site.articlesList = site.articlesList || [];
       let options = {
+        domain: 'https://' + req.host,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -157,6 +192,7 @@ site.get(
         page_image: language.logo?.url,
         site_name: language.siteName,
         page_lang: language.id,
+        page_type: 'website',
         page_title: language.siteName + ' ' + language.titleSeparator + ' ' + req.word('Search Result') + ' ' + language.titleSeparator + ' ' + query,
         page_description: language.description.substr(0, 200),
         page_keywords: language.keyWordsList.join(','),
@@ -175,9 +211,50 @@ site.get(
       options.menuList2 = options.menuList.slice(8, 20);
       options.menuList3 = options.menuList.slice(20);
 
-      site.searchArticles({ search: query, host: options.filter }, (err, docs) => {
-        if (!err && docs) {
-          options.list = docs;
+      site.searchArticles({ search: query, host: options.filter, page: page, limit: limit }, (err, result) => {
+        if (!err && result) {
+          let list = [...result.list];
+
+          if (req.session.lang == 'AR') {
+            list.forEach((doc) => {
+              doc.$date = doc.$date1;
+              doc.$day = doc.$day1;
+            });
+          } else {
+            list.forEach((doc) => {
+              doc.$date = doc.$date2;
+              doc.$day = doc.$day2;
+            });
+          }
+
+          options.pageCount = Math.floor(result.count / result.limit + 1);
+          if (result.count > result.limit) {
+            options.pagging = true;
+            options.pageList = [];
+            for (let index = 1; index < options.pageCount + 1; index++) {
+              options.pageList.push({
+                name: index,
+                url: '/result?search_query=' + result.search + '&page=' + index + '&limit=' + result.limit,
+              });
+            }
+          }
+          options.page_title =
+            language.siteName +
+            ' ' +
+            language.titleSeparator +
+            ' ' +
+            req.word('Search results for ') +
+            ' ' +
+            result.search +
+            ' [ ' +
+            result.count +
+            ' ] ' +
+            ' - page ' +
+            result.page +
+            ' of ' +
+            options.pageCount;
+
+          options.list = list;
           options.list1 = options.list.splice(0, 10);
           options.list2 = options.list.splice(0, 10);
           options.list3 = options.list.splice(0, 10);
@@ -190,7 +267,7 @@ site.get(
         });
       });
     } else {
-      res.redirect('/404');
+      res.redirect('/404', 404);
     }
   }
 );
@@ -201,22 +278,28 @@ site.get(
   },
   (req, res) => {
     let setting = site.getSiteSetting(req.host);
-
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
     if (!setting || !setting.siteTemplate || !setting.languageList) {
-      res.redirect('/404');
+      res.redirect('/404', 404);
       return;
     }
     if (req.host.like('*torrent*')) {
       req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
     }
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
-      res.redirect('/404');
+      res.redirect('/404', 404);
       return;
     }
 
     let options = {
+      domain: 'https://' + req.host,
       guid: '',
       filter: site.getHostFilter(req.host),
       language: language,
@@ -224,6 +307,7 @@ site.get(
       site_name: language.siteName,
       site_logo: language.logo?.url,
       page_image: language.logo?.url,
+      page_type: 'website',
       page_title: language.siteName + ' ' + language.titleSeparator + ' ' + language.siteSlogan,
       page_description: language.description.substr(0, 200),
       page_keywords: language.keyWordsList.join(','),
@@ -242,6 +326,17 @@ site.get(
     options.topNews = site.getTopArticles(options.filter, category);
 
     options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 50);
+    if (req.session.lang == 'AR') {
+      options.list.forEach((doc) => {
+        doc.$date = doc.$date1;
+        doc.$day = doc.$day1;
+      });
+    } else {
+      options.list.forEach((doc) => {
+        doc.$date = doc.$date2;
+        doc.$day = doc.$day2;
+      });
+    }
     options.list1 = options.list.splice(0, 10);
     options.list2 = options.list.splice(0, 10);
     options.list3 = options.list.splice(0, 10);
@@ -279,13 +374,16 @@ site.get(
 
 site.get(
   {
-    name: ['/article/:guid/:title', '/post/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/post/:guid', '/torrent/:guid'],
+    name: ['/article/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/torrent/:guid'],
   },
   (req, res) => {
     let filter = site.getHostFilter(req.host);
     let setting = site.getSiteSetting(req.host);
-
-    if (!setting || !setting.siteTemplate || !setting.languageList) {
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
+    if (!setting.siteTemplate || !setting.languageList) {
       res.redirect('/404', 404);
       return;
     }
@@ -297,14 +395,14 @@ site.get(
     }
 
     if (req.params.guid == 'random') {
-      if (req.route.name0 == '/torrent/:guid') {
-        let articles = site.articlesList.filter((a) => a.$yts == true);
-        let article = articles[Math.floor(Math.random() * articles.length)];
+      let articles = site.articlesList.filter((a) => a.host.like(filter));
+      let article = articles[Math.floor(Math.random() * articles.length)];
+      if (article) {
         res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
       } else {
-        let article = site.articlesList[Math.floor(Math.random() * site.articlesList.length)];
-        res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
+        res.redirect('/');
       }
+
       return;
     }
 
@@ -321,18 +419,24 @@ site.get(
         language.description = language.description || '';
 
         let options = {
+          domain: 'https://' + req.host,
           filter: filter,
           language: language,
           setting: setting,
           site_name: language.siteName,
           site_logo: language.logo?.url,
           page_image: article.$imageURL || language.logo?.url,
+          page_type: 'article',
           page_title: language.siteName + ' ' + language.titleSeparator + ' ' + article.$title,
-          page_description: article.description,
-          page_keywords: language.keyWordsList.join(','),
+          page_description: article.$description,
+          page_keywords: article.$keyWordsList.join(','),
           page_lang: language.id,
           article: article,
         };
+
+        if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {
+          options.page_image = '/article-image/' + article.guid;
+        }
 
         options.menuList = site.menuList
           .filter((m) => m.host.like(options.filter))
@@ -342,6 +446,17 @@ site.get(
         options.menuList3 = options.menuList.slice(20);
 
         options.relatedArticleList = site.getRelatedArticles(article);
+        if (req.session.lang == 'AR') {
+          options.relatedArticleList.forEach((doc) => {
+            doc.$date = doc.$date1;
+            doc.$day = doc.$day1;
+          });
+        } else {
+          options.relatedArticleList.forEach((doc) => {
+            doc.$date = doc.$date2;
+            doc.$day = doc.$day2;
+          });
+        }
         options.latestList = site.getLatestArticles(article);
         options.topNews = site.getTopArticles(options.filter, article.category);
 
@@ -349,7 +464,7 @@ site.get(
           parser: 'html css js',
         });
       } else {
-        res.redirect('/404', 404);
+        res.redirect('/');
       }
     });
   }
@@ -371,6 +486,7 @@ site.get('robots.txt', (req, res) => {
     res.txt('0/robots.txt');
   }
 });
+
 site.ready = false;
 site.templateList = [];
 
@@ -391,5 +507,25 @@ site.ready = true;
 site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
   res.end('Galaksion check: 86531e4391aecbe5e70d086020f703f2');
 });
+
+site.getMainHost = function (host = '') {
+  let arr = host.split('.');
+  if (arr.length > 1) {
+    let com = arr.pop();
+    let domain = arr.pop();
+    return '//' + domain + '.' + com;
+  }
+  return host;
+};
+
+site.handleNotRoute = function (req, res) {
+  let host = req.headers['host'];
+  let setting = site.getSiteSetting(host);
+  if (!setting.host) {
+    res.redirect(site.getMainHost(host), 301);
+  } else {
+    res.redirect('/');
+  }
+};
 
 site.run();

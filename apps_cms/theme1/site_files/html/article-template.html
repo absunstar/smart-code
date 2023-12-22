@@ -1,13 +1,13 @@
 <div class="styleOne d-flex flex-column justify-content-start p-0 m-1">
   <div class="imageNews">
-    <a target="_blank" href="##item2.$url##">
-      <img src="##item2.$imageURL##" alt="##item2.$title##" onerror="this.onerror=null;this.src='/theme1/images/news.jpg'" />
+    <a title="##item2.$title##" target="_blank" href="##item2.$url##">
+      <img src="/article-image/##item2.guid##" alt="##item2.$alt##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" />
       <div class="newsTilteTime d-flex flex-column justify-content-end align-items-start">
         <h2 class="newstitle">##item2.$title##</h2>
         <div class="newstime d-flex flex-row justify-content-start align-items-center">
           <p class="newsday">##item2.$day##</p>
           <div class="vlntime"></div>
-          <p class="newsdate">##item2.$date##</p>
+          <p class="newsdate ">##item2.$date##</p>
         </div>
       </div>
     </a>
@@ -15,7 +15,7 @@
   <div class="newsTools d-flex flex-row-reverse justify-content-between align-items-center">
     <div class="sectionOne d-flex flex-row-reverse align-items-center gap-md-2 gap-1">
       <div class="miniTitle d-flex flex-row-reverse p-2 gap-1 align-items-center ##item2.$miniTitleClass##">
-        <p class="rtl">##item2.$miniTitle##</p>
+        <p class="rtl bold">##item2.$miniTitle##</p>
       </div>
 
       <div class="readingTime d-flex flex-row-reverse p-2 gap-1 align-items-center ##item2.$readingTimeClass##">

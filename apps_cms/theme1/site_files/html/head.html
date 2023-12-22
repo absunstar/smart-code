@@ -1,4 +1,4 @@
-<meta charset="UTF-8" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>##data.page_title##</title>
@@ -20,7 +20,6 @@
 <meta name="copyright" content="##data.site_name##" />
 <meta name="author" content="##data.site_name##" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="content-language" content="##data.page_lang##" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -30,13 +29,13 @@
 
 <meta itemprop="url" property="og:url" content="##req.url##" />
 
-<meta property="og:locale" content="##data.page_lang" />
-<meta property="og:url" content="##req.url##" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="##data.page_type##" />
 <meta property="og:title" content="##data.page_title##" />
+<meta property="og:url" content="##req.url##" />
 <meta property="og:description" content="##data.page_description##" />
 <meta property="og:image" content="##data.page_image##" />
 <meta property="og:site_name" content="##data.site_name##" />
+<meta property="og:locale" content="##data.page_lang" />
 
 <meta name="twitter:url" content="##req.url##" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -45,7 +44,6 @@
 <meta name="twitter:image" content="##data.page_image##" />
 
 <link rel="alternate" type="application/rss+xml" title="##data.page_title##" href="/rss" />
-
 <link rel="stylesheet" href="/css/theme1.css?version=##site.time##" />
 
 <style>
@@ -139,7 +137,37 @@
   document.addEventListener('contextmenu', (e) => e.preventDefault());
 </script>
 
-<script>
+<script
+  x-data="setting.allowGoogleAds"
+  title="Auto Ads in All Site and also custom ads"
+  crossorigin="anonymous"
+  async
+  type="text/javascript"
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151"
+  id="googlesyndication"
+  data-ad-client="ca-pub-3372007384613151"
+></script>
+
+<script
+  x-data="setting.allowGoogleAnalytic"
+  id="googletagmanager"
+  title="tag manager"
+  crossorigin="anonymous"
+  async
+  type="text/javascript"
+  src="https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P"
+></script>
+
+<script x-data="setting.allowGoogleAnalytic" nonce="ZjurYrAM5gSnxRZ4_Q6upg">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-SJEBBEFC7P');
+</script>
+
+<script x-data="setting.addScript">
   window.addScript = function (info) {
     var script = document.createElement('script');
     for (const key in info) {
@@ -161,25 +189,6 @@
   };
 </script>
 
-<script x-data="setting.allowGoogleAds">
-  addScript({
-    title: 'Auto Ads in All Site and also custom ads',
-    crossorigin: 'anonymous',
-    async: !0,
-    type: 'text/javascript',
-    src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151',
-    id: 'googlesyndication',
-    'data-ad-client': 'ca-pub-3372007384613151',
-  });
-</script>
-
-<script x-data="setting.allowGoogleAnalytic" nonce="ZjurYrAM5gSnxRZ4_Q6upg">
-  addScriptAsync({ id: 'googletagmanager', title: 'tag manager', crossorigin: 'anonymous', async: !0, type: 'text/javascript', src: 'https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P' });
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
-  gtag('config', 'G-SJEBBEFC7P');
-</script>
+<script x-feature="host.media" data-cfasync="false" async type="text/javascript" src="//empalerposit.com/nGaPYqqhXs6/73777"></script>
+<script x-feature="host.media" data-cfasync="false" async type="text/javascript" src="//tweezesmalanga.com/fF7MP3sg2W0h9ajk/59552"></script>
+<script x-feature="host.media" data-cfasync="false" async type="text/javascript" src="//limineshucks.com/rvMusUIJcen/59553"></script>

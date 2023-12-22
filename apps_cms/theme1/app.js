@@ -50,6 +50,7 @@ module.exports = function init(site) {
       'client-side/effect.css',
       'client-side/color.css',
       'client-side/font-droid.css',
+      'client-side/fonts.css',
     ],
   });
   site.get({
@@ -70,6 +71,7 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/articlePage.css',
       'client-side/effect.css',
       'client-side/font-droid.css',
+      'client-side/fonts.css',
     ],
   });
 

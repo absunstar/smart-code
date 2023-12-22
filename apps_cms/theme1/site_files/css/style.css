@@ -43,6 +43,30 @@ body {
   border: none;
   background: none;
 }
+
+.pages-numbers {
+  text-align: center;
+  display: block;
+  padding: 5px;
+}
+.page-number {
+  text-align: center;
+  border-radius: 5px;
+  color: var(--color1);
+  background: var(--background1);
+  font-weight: bold;
+  margin: 1px;
+  font-size: 20px;
+  padding: 5px;
+  display: inline-block;
+  min-width: 35px;
+  transition: all .2s ease;
+}
+.page-number:hover{
+  border-radius: 0px !important;
+  color: var(--color2) !important;
+  background: var(--background2) !important;
+}
 .articleSection {
   font-size: 24px;
   background-color: var(--background1x);
@@ -265,9 +289,9 @@ a {
   position: relative;
   top: -100%;
   color: var(--color1);
-  padding-bottom: 3px;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 1px;
+  padding-right: 1px;
   direction: rtl;
 }
 
@@ -291,26 +315,32 @@ a {
   gap: 3px;
   font-size: 10px;
   font-weight: bold;
-  padding: 2px;
+  padding: 3px 7px;
   color: #272727;
   background: #fff;
+  border-radius: 0px 0 10px 0px;
 }
-
+.rtl .newsdate {
+  direction: rtl;
+}
+.ltr .newsdate {
+  direction: ltr;
+}
 .vlntime {
-  border-left: 1px solid #e9e9e9;
+  border-left: 2px solid #ddd;
   height: 90%;
 }
 
 .newsTools {
   top: -300px;
   position: relative;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 .miniTitle {
   color: var(--color2);
   text-shadow: 1px 1px 1px var(--background1);
   font-size: var(--readTime);
-  border-radius: 20px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   background: var(--background2x);
 }
 .readingTime {
@@ -499,7 +529,7 @@ a {
   margin-bottom: 10px !important;
   background-repeat: round;
   background-position: top;
-  background-size: cover;
+  background-size: auto;
   background-color: var(--background1x);
   border-radius: 15px;
   border: 2px solid var(--background1);
@@ -706,8 +736,8 @@ a {
   font-size: 28px;
   box-shadow: 0px 1px 8px var(--background1);
   border-radius: 20px;
-  transition: all .2s ease;
-  }
+  transition: all 0.2s ease;
+}
 .BNSubSectionheader:hover {
   color: var(--color1);
   font-size: 30px;

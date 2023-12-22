@@ -59,20 +59,28 @@ module.exports = function init(site) {
     /* Save in Database */
   };
 
-  site.days = [{ nameAr: 'الاحد' }, { nameAr: 'الاثنين' }, { nameAr: 'الثلاثاء' }, { nameAr: 'الاربعاء' }, { nameAr: 'الخميس' }, { nameAr: 'الجمعة' }, { nameAr: 'السبت' }];
+  site.days = [
+    { AR: 'الاحد', EN: 'Sunday' },
+    { AR: 'الاثنين', EN: 'Monday' },
+    { AR: 'الثلاثاء', EN: 'Tuesday' },
+    { AR: 'الاربعاء', EN: 'Wednesday' },
+    { AR: 'الخميس', EN: 'Thursday' },
+    { AR: 'الجمعة', EN: 'Friday' },
+    { AR: 'السبت', EN: 'Saturday' },
+  ];
   site.monthes = [
-    { nameAr: 'يناير' },
-    { nameAr: 'فبراير' },
-    { nameAr: 'مارس' },
-    { nameAr: 'ابريل' },
-    { nameAr: 'مايو' },
-    { nameAr: 'يونيو' },
-    { nameAr: 'يوليو' },
-    { nameAr: 'أغسطس' },
-    { nameAr: 'سبتمر' },
-    { nameAr: 'أكتوبر' },
-    { nameAr: 'نوقمير' },
-    { nameAr: 'ديسمبر' },
+    { AR: 'يناير', EN: 'January' },
+    { AR: 'فبراير', EN: 'February' },
+    { AR: 'مارس', EN: 'March' },
+    { AR: 'ابريل', EN: 'April' },
+    { AR: 'مايو', EN: 'May' },
+    { AR: 'يونيو', EN: 'June' },
+    { AR: 'يوليو', EN: 'July' },
+    { AR: 'أغسطس', EN: 'August' },
+    { AR: 'سبتمر', EN: 'September' },
+    { AR: 'أكتوبر', EN: 'October' },
+    { AR: 'نوقمير', EN: 'November' },
+    { AR: 'ديسمبر', EN: 'December' },
   ];
   site.escapeRegx = function (s) {
     if (!s) {
@@ -100,64 +108,106 @@ module.exports = function init(site) {
       }
       return unsafe
         .replace(/<[^>]+>/g, '')
-        .replace('(', '')
-        .replace(')', '')
-        .replace('-', ' ')
-        .replace('+', ' ')
-        .replace('  ', ' ')
         .replace(/&nbsp;|&laquo;|&raquo|&quot;|&rlm;|&llm;|&lrm;|&rrm;/g, '')
+        .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, ' ')
+        .replaceAll('(', '')
+        .replaceAll(')', '')
+        .replaceAll('-', ' ')
+        .replaceAll('+', ' ')
+        .replaceAll('$', ' ')
+        .replaceAll('&', ' ')
+        .replaceAll(':', ' ')
+        .replaceAll(',', ' ')
+        .replaceAll('.', ' ')
+        .replaceAll('#', ' ')
+        .replaceAll('!', ' ')
+        .replaceAll('?', ' ')
+        .replaceAll('؟', ' ')
+        .replaceAll("'", ' ')
+        .replace(/\s+/g, ' ')
         .trim();
     } catch (error) {
       return unsafe;
     }
   };
-  site.filterLetters = function (str, lettersToRemove = ['  ', '|', '/', '\\', ':', '*', '?', '=', '.', '^', '$', '"', "'", '؟']) {
+  site.filterLetters = function (str, lettersToRemove = ['  ', ':', '=', '"', "'", '؟']) {
     if (!str) {
       return '';
     }
-    str = str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+    var specials = [
+      // order matters for these
+      '-',
+      '[',
+      ']',
+      // order doesn't matter for any of these
+      '/',
+      '{',
+      '}',
+      '(',
+      ')',
+      '*',
+      '+',
+      '?',
+      '.',
+      '\\',
+      '^',
+      '$',
+      '|',
+    ];
 
-    lettersToRemove.forEach(function (letter) {
+    regex = RegExp('[' + specials.join('\\') + ']', 'g');
+    str = str.replace(regex, ' ');
+    str = str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, ' ');
+
+    lettersToRemove.forEach((letter) => {
       str = str.replaceAll(letter, '');
     });
-    return str.trim();
+    return str.replace(/\s+/g, ' ').trim();
   };
+
   site.getArticle = function (guid, callBack) {
     callBack = callBack || function () {};
     let article = site.articlesList.find((a) => a.id == guid || a.guid == guid);
     if (article) {
       callBack(null, article);
     } else {
-      site.$articles.find({ guid: guid }, (err, doc) => {
-        if (!err && doc) {
-          doc = site.handleArticle(doc);
-          site.articlesList.push(doc);
-        }
-        callBack(err, doc);
-      });
+      site.$articles.find(
+        { guid: guid },
+        (err, doc) => {
+          if (!err && doc) {
+            doc = site.handleArticle({ ...doc });
+            site.articlesList.push(doc);
+          }
+          callBack(err, doc);
+        },
+        true
+      );
     }
   };
 
   site.handleArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
-    doc.$title = site.removeHtml(lang.title);
-    doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
+    lang.title= lang.title || '';
+    doc.$title = lang.title;
+    doc.$titleArray = doc.$title.split(' ');
+    doc.$alt = doc.$title.split(' ').slice(0, 3).join(' ');
+    doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '';
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
-      doc.$title2 = doc.$title.replaceAll(' ', '+');
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
       doc.$backgroundURL = doc.$coverURL;
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
-      doc.$title2 = doc.$title.replaceAll(' ', '+');
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else {
-      doc.$title2 = doc.$title.split(' ').join('-');
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     }
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
@@ -167,11 +217,11 @@ module.exports = function init(site) {
       doc.$content = lang.textContent || lang.htmlContent || '';
     }
 
-    doc.$description = site.escapeHtml(doc.$content);
+    doc.$description = site.escapeHtml(doc.$content).substring(0, 180);
     lang.keyWordsList = lang.keyWordsList || [];
     doc.$keyWordsList = [];
     lang.keyWordsList.forEach((k, i) => {
-      k = site.filterLetters(k);
+      k = site.removeHtml(k);
       if (!k || k.length < 4) {
         return;
       }
@@ -189,7 +239,7 @@ module.exports = function init(site) {
     lang.tagsList = lang.tagsList || [doc.$title];
 
     lang.tagsList.forEach((k, i) => {
-      k = site.filterLetters(k);
+      k = site.removeHtml(k);
       if (!k || k.length < 4) {
         return;
       }
@@ -197,8 +247,11 @@ module.exports = function init(site) {
     });
 
     doc.publishDate = doc.publishDate || new Date();
-    doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
-    doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+    doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.AR || '-----') + ' / ' + doc.publishDate.getFullYear();
+    doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.EN || '-----') + ' \\ ' + doc.publishDate.getFullYear();
+    doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
+    doc.$day2 = site.days[doc.publishDate.getDay()]?.EN || '-----';
+
     doc.$hasAudio = false;
     doc.$hasVideo = false;
     doc.$hasImageGallary = false;
@@ -241,10 +294,12 @@ module.exports = function init(site) {
       doc.writer.$title = doc.writer.profile.title;
       doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
     }
-    if (doc.type.id == 7 && !doc.$hasMiniTitle) {
-      doc.$miniTitle = doc.yts.type;
-      doc.$hasMiniTitle = true;
-      doc.$miniTitleClass = '';
+    if (doc.type.id == 7) {
+      if (!doc.$hasMiniTitle) {
+        doc.$miniTitle = doc.yts.type;
+        doc.$hasMiniTitle = true;
+        doc.$miniTitleClass = '';
+      }
     } else if (doc.type.id == 8 && !doc.$hasMiniTitle) {
       doc.$miniTitle = 'Youtube';
       doc.$hasMiniTitle = true;
@@ -254,23 +309,26 @@ module.exports = function init(site) {
   };
   site.handleSearchArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
-    doc.$title = site.removeHtml(lang.title);
-    doc.$imageURL = lang.image?.url || '/theme1/images/news.jpg';
+    doc.$title = lang.title;
+    doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
     doc.host = doc.host || options.host || '';
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
-      doc.$title2 = doc.$title.replaceAll(' ', '+');
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     } else {
-      doc.$title2 = doc.$title.split(' ').join('-');
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     }
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
     doc.publishDate = doc.publishDate || new Date();
-    doc.$date = doc.publishDate.getDate() + ' ' + (site.monthes[doc.publishDate.getMonth()]?.nameAr || 'شهر غير معروف') + ' ' + doc.publishDate.getFullYear();
-    doc.$day = site.days[doc.publishDate.getDay()]?.nameAr || 'يوم غير معروف';
+    doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.AR || '-----') + ' / ' + doc.publishDate.getFullYear();
+    doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.EN || '-----') + ' \\ ' + doc.publishDate.getFullYear();
+    doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
+    doc.$day2 = site.days[doc.publishDate.getDay()]?.EN || '-----';
 
     doc.$hasAudio = false;
     doc.$hasVideo = false;
@@ -331,19 +389,20 @@ module.exports = function init(site) {
     options.search = options.search || '';
     options.host = options.host || '';
     options.page = options.page || 1;
+    options.page = parseInt(options.page);
     options.limit = options.limit || 50;
+    options.limit = parseInt(options.limit);
     options.skip = options.limit * (options.page - 1);
-    options.exp = '';
-    options.search = site
-      .filterLetters(options.search)
-      .split(' ')
-      .forEach((w, i) => {
-        if (w.length > 2) {
-          options.exp += w + '|';
-        }
-      });
-    options.expString = options.exp.replace(/.$/, '');
-    options.exp = new RegExp(options.expString, 'i');
+    // options.exp = '';
+    options.search = site.filterLetters(options.search);
+    // options.search.forEach((w, i) => {
+    //   if (w.length > 2) {
+    //     options.exp += w + '|';
+    //   }
+    // });
+
+    // options.expString = options.exp.replace(/.$/, '');
+    // options.exp = new RegExp(options.expString, 'gium');
 
     if (options.host.indexOf('*') !== -1) {
       options.host = options.host.split('*');
@@ -355,37 +414,58 @@ module.exports = function init(site) {
       options.host = site.escapeRegx(options.host);
     }
     options.host = '^' + options.host + '$';
+    options.host = new RegExp(options.host, 'gium');
 
     let list = [];
-    if ((s = site.searchArticleList.find((sa) => sa.id == options.expString))) {
-      callBack(null, [...s.list]);
+    if ((s = site.searchArticleList.find((sa) => sa.id == options.search + '_' + options.page + '_' + options.limit))) {
+      callBack(null, s);
     } else {
+      let $or = [];
+      $or.push({ 'translatedList.title': { $regex: new RegExp(options.search, 'gium') } });
+      options.search.split(' ').forEach((s) => {
+        if (s.length > 2) {
+          $or.push({ 'translatedList.tagsList': { $regex: new RegExp(s, 'gium') } });
+          $or.push({ 'translatedList.title': { $regex: new RegExp(s, 'gium') } });
+          //  $or.push({ 'translatedList.textContent': { $regex: new RegExp(s, 'gium') } });
+        }
+      });
+      options.where = {
+        $and: [{ host: options.host }, { $or: $or }],
+      };
+
       site.$articles.findAll(
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
-          where: {
-            host: new RegExp(options.host, 'gium'),
-            $or: [{ 'translatedList.title': options.exp }, { 'translatedList.textContent': options.exp }, { 'translatedList.tagsList': options.exp }, { 'yts.type': options.exp }],
-          },
+
+          where: options.where,
           limit: options.limit,
           skip: options.skip,
         },
-        (err, docs) => {
+        (err, docs, count) => {
           if (!err && docs) {
             docs.forEach((doc) => {
               list.push(site.handleSearchArticle(doc));
             });
 
-            site.addToSearchArticleList({
-              id: options.expString,
-              list: [...list],
-            });
+            let ss = {
+              id: options.search + '_' + options.page + '_' + options.limit,
+              search: options.search,
+              page: options.page,
+              limit: options.limit,
+              count: count,
+              list: list,
+            };
+            site.addToSearchArticleList(ss);
 
-            callBack(null, list);
+            callBack(
+              null,
+              site.searchArticleList.find((s) => s.id == ss.id)
+            );
           } else {
             callBack(err);
           }
-        }
+        },
+        true
       );
     }
   };
@@ -497,8 +577,51 @@ module.exports = function init(site) {
     }
   );
 
+  let http_agent = new site.http.Agent({
+    keepAlive: true,
+  });
+  let https_agent = new site.https.Agent({
+    keepAlive: true,
+  });
+
   site.onGET('/article-image/:guid', (req, res) => {
-    res.redirect(site.articlesList.find((a) => a.guid == req.params.guid)?.$imageURL || '/images/no.png');
+    site.getArticle(req.params.guid, (err, article) => {
+      if (article) {
+        let imageURL = article.$imageURL;
+        if (!imageURL || imageURL == '/images/no.png') {
+          res.redirect('/images/no.png');
+        } else {
+          if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {
+            delete req.headers.host;
+            delete req.headers.referer;
+            site
+              .fetch(imageURL, {
+                method: req.method,
+                headers: req.headers,
+                body: req.method.like('*get*|*head*') ? null : req.bodyRaw,
+                agent: function (_parsedURL) {
+                  if (_parsedURL.protocol == 'http:') {
+                    return http_agent;
+                  } else {
+                    return https_agent;
+                  }
+                },
+              })
+              .then((response) => {
+                response.body.pipe(res);
+              })
+              .catch((err) => {
+                console.log(err);
+                res.redirect(imageURL, 301);
+              });
+          } else {
+            res.redirect(imageURL, 301);
+          }
+        }
+      } else {
+        res.redirect('/images/no.png');
+      }
+    });
   });
 
   site.post({ name: '/api/articles/add', require: { Permissions: ['login'] } }, (req, res) => {
@@ -545,7 +668,7 @@ module.exports = function init(site) {
 
       if (Array.isArray(articlesDoc.yts.genres)) {
         articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
-        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres];
+        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres, articlesDoc.yts.year];
         articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.yts.title).split(' '), ...articlesDoc.yts.genres];
       }
 
@@ -666,16 +789,20 @@ module.exports = function init(site) {
       response.doc = site.articlesList[index];
       res.json(response);
     } else {
-      site.$articles.find({ id: req.data.id }, (err, doc) => {
-        if (!err && doc) {
-          response.done = true;
-          response.doc = doc;
-          res.json(response);
-        } else {
-          response.error = err?.message || 'Error Not Exists';
-          res.json(response);
-        }
-      });
+      site.$articles.find(
+        { id: req.data.id },
+        (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+            res.json(response);
+          } else {
+            response.error = err?.message || 'Error Not Exists';
+            res.json(response);
+          }
+        },
+        true
+      );
     }
   });
 
@@ -967,6 +1094,35 @@ module.exports = function init(site) {
     );
   });
 
+  site.onGET('/api/article/update-tags', (req, res) => {
+    site.$articles.findAll({ limit: 100000, select: { id: 1, yts: 1, translatedList: 1 }, where: { yts: { $exists: true } } }, (err, docs) => {
+      if (!err && docs) {
+        res.json({ done: true, count: docs.length });
+        docs.forEach((doc) => {
+          let lang = doc.translatedList[0];
+          lang.tagsList = lang.tagsList || [];
+          if (doc.yts && lang.tagsList.includes(doc.yts.year)) {
+            lang.tagsList.splice(
+              lang.tagsList.findIndex((t) => t == doc.yts.year),
+              1
+            );
+            lang.tagsList.push(doc.yts.year.toString());
+            site.$articles.update(doc, (err, result) => {
+              console.log(err || result.doc.id);
+            });
+          } else if (doc.yts && !lang.tagsList.includes(doc.yts.year.toString())) {
+            lang.tagsList.push(doc.yts.year);
+            site.$articles.update(doc, (err, result) => {
+              console.log(err || result.doc.id);
+            });
+          }
+        });
+      } else {
+        res.json({ done: false });
+      }
+    });
+  });
+
   site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
     let limit = req.query.limit || 10;
     let list = [];
@@ -1011,22 +1167,163 @@ module.exports = function init(site) {
     res.set('Content-Type', 'application/xml');
     res.end(xml);
   });
-  site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
+
+  site.facebookPost = null;
+  site.getRssXmlString = function (list, domain, siteName) {
+    let urls = '';
+    list.forEach((doc) => {
+      let hashTag = '  ';
+      doc.$tagsList.forEach((tag) => {
+        hashTag += '  #' + tag;
+      });
+
+      urls += `
+      <item>
+        <guid>${doc.guid}</guid>
+        <title>${doc.$title} ${hashTag}</title>
+        <link>${doc.full_url}</link>
+        <image>${domain}/article-image/${doc.guid}</image>
+        <description>
+          <![CDATA[
+            ${doc.$content}
+            #Download Now Free ( high Quality #1080p or #720p )  
+          ]]>
+        </description>
+        <pubDate>${doc.$date2}</pubDate>
+      </item>
+      `;
+    });
+    let xml = `<?xml version="1.0" encoding="UTF-8" ?>
+                <rss version="2.0">
+                  <channel>
+                        <title> ${siteName} Global RSS</title>
+                        <link>${domain}</link>
+                        <description>${siteName} Articles Rss Feeds</description>
+                        ${urls}
+                    </channel>
+                </rss>`;
+    return xml;
+  };
+
+  site.onGET({ name: ['/rss-facebook'], public: true }, (req, res) => {
+    let text = ' Facebook RSS ';
+    let setting = site.getSiteSetting(req.host);
+    let lang = setting.languageList[0];
     let domain = 'https://' + req.host;
 
+    if (site.facebookPost && site.facebookPost.$facebookDate && (new Date().getTime() - site.facebookPost.$facebookDate.getTime()) / 1000 < 60 * 15) {
+      res.set('Content-Type', 'application/xml');
+      res.end(site.getRssXmlString([site.facebookPost], domain, lang.siteName + text));
+      return;
+    }
+
+    let filter = site.getHostFilter(req.host);
+
+    if (filter.indexOf('*') !== -1) {
+      filter = filter.split('*');
+      filter.forEach((n, i) => {
+        filter[i] = site.escapeRegx(n);
+      });
+      filter = filter.join('.*');
+    } else {
+      filter = site.escapeRegx(filter);
+    }
+    filter = '^' + filter + '$';
+
+    site.$articles.find({ host: new RegExp(filter, 'gium'), facebookPost: { $exists: false } }, (err, doc) => {
+      if (!err && doc) {
+        doc.facebookPost = true;
+        site.$articles.update(doc);
+        doc = site.handleArticle({ ...doc });
+        site.articlesList.push(doc);
+        doc.$facebookDate = new Date();
+        doc.full_url = domain + '/article/' + doc.guid;
+        doc.$date2 = new Date(doc.publishDate).toISOString();
+
+        site.facebookPost = doc;
+
+        res.set('Content-Type', 'application/xml');
+        res.end(site.getRssXmlString([site.facebookPost], domain, lang.siteName + text));
+      } else {
+        res.set('Content-Type', 'application/xml');
+        res.end(site.getRssXmlString([], domain, lang.siteName + text));
+      }
+    });
+  });
+
+  site.onGET({ name: ['/feed'], public: true }, (req, res) => {
+    let limit = req.query.limit || 10;
+    let list = [];
+    let text = '';
+    let filter = site.getHostFilter(req.host);
+    let setting = site.getSiteSetting(req.host);
+
+    let lang = setting.languageList[0];
+    let domain = 'https://' + req.host;
+    if (req.params.guid == 'random') {
+      list = site.articlesList.filter((a) => a.active && a.host.like(filter));
+      list = [list[site.random(0, list.length - 1)]];
+    } else if (req.params.guid) {
+      list = [site.articlesList.find((p) => p.guid == req.params.guid)];
+    } else {
+      list = site.articlesList.filter((a) => a.active && a.host.like(filter)).slice(0, limit);
+    }
+
     let urls = '';
-    site.articlesList.slice(0, 1000).forEach((article, i) => {
-      article.post_url = domain + '/article/' + article.guid;
-      article.$date2 = new Date(article.publishDate).toISOString();
+    list.forEach((doc, i) => {
+      $url = domain + '/article/' + doc.guid;
+      $date = new Date(doc.publishDate).toUTCString();
       urls += `
+        <item>
+          <guid isPermaLink="false">${doc.guid}</guid>
+          <title>${doc.$title}</title>
+          <link>${$url}</link>
+          <description>${doc.$description}</description>
+          <content:encoded>
+            <![CDATA[
+              <img src="${domain}/article-image/${doc.guid}" />
+              <p> ${doc.$description} </p>
+            ]]>
+          </content:encoded> 
+          <pubDate>${$date}</pubDate>
+        </item>
+        `;
+    });
+    let xml = `<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0" 
+    xmlns:atom="http://www.w3.org/2005/Atom" 
+    xmlns:content="http://purl.org/rss/1.0/modules/content/">
+      <channel>
+            <title> ${lang.siteName} ${text} Global RSS</title>
+            <link>${domain}</link>
+            <atom:link href="${domain}/feed" rel="self" type="application/rss+xml" />
+            <description>${lang.siteName} Articles Rss Feeds</description>
+            ${urls}
+        </channel>
+     </rss>`;
+    res.set('Content-Type', 'application/xml');
+    res.end(xml);
+  });
+  site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
+    let domain = 'https://' + req.host;
+    let filter = site.getHostFilter(req.host);
+
+    let urls = '';
+    site.articlesList
+      .filter((a) => a.host.like(filter))
+      .slice(0, 1000)
+      .forEach((article, i) => {
+        let $url = domain + '/article/' + article.guid;
+        let $date = new Date(article.publishDate).toISOString();
+        urls += `
               <url>
-                  <loc>${article.post_url}</loc>
-                  <lastmod>${article.$date2}</lastmod>
+                  <loc>${$url}</loc>
+                  <lastmod>${$date}</lastmod>
                   <changefreq>monthly</changefreq>
                   <priority>.8</priority>
               </url>
               `;
-    });
+      });
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
                       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
                       <url>

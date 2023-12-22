@@ -16,10 +16,10 @@
   </div>
   <div class="midHeader">
     <div class="midHeadercontainer container d-flex flex-column flex-md-row">
-      <div  x-data="setting.showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
-        <a href="/" class="col-12 d-flex justify-content-start align-items-center logoAndHead">
+      <div x-data="setting.showLogo" class="d-flex flex-row col-md-4 col-sm-12 justify-content-center align-items-center">
+        <a title="##data.site_name##" href="/" class="col-12 d-flex justify-content-start align-items-center logoAndHead">
           <div class="logo">
-            <img src="##data.site_logo##" alt="logo" width="133px" height="64px" />
+            <img src="##data.site_logo##" alt="Site Logo" width="133px" height="64px" />
           </div>
           <div class="site-title">
             <h2>##data.site_name##</h2>
@@ -29,7 +29,7 @@
       <div x-data="setting.showSearchBar" class="col-md-6 col-12 searchBarSection">
         <form action="/result" method="get">
           <div class="SearchBAr">
-            <button type="submit" class="searchIcon">
+            <button type="submit" class="searchIcon" title="search">
               <i class="fas fa-search"></i>
             </button>
             <div class="vl"></div>
@@ -77,13 +77,13 @@
     <div class="bottomHeadercontainer container">
       <ul x-data="menuList1.length" class="navbarlist d-none d-md-flex">
         <li>
-          <a href="/"><i class="fas fa-home"></i></a>
+          <a title="##data.site_name##" href="/"><i class="fas fa-home"></i></a>
         </li>
-        <li x-list1="menuList1"><a href="##item1.url##">##item1.name## </a></li>
+        <li x-list1="menuList1"><a title="##item1.$name##" href="##item1.url##">##item1.name## </a></li>
         <li class="nav-item dropdown">
-          <a x-data="menuList2.length" class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"> ##word......## </a>
+          <a rel="nofollow" title="##word......##" x-data="menuList2.length" class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"> ##word......## </a>
           <ul class="dropdown-menu">
-            <li x-list1="menuList2"><a class="dropdown-item" href="##item1.url##">##item1.name## </a></li>
+            <li x-list1="menuList2"><a rel="nofollow" title="##item1.$name##" class="dropdown-item" href="##item1.url##">##item1.name## </a></li>
           </ul>
         </li>
       </ul>
@@ -95,15 +95,15 @@
 
   <!-- start Burger Menu -->
   <div id="burgermenuoverlay" class="burgermenuoverlay">
-    <div class="burgermenu d-flex d-md-none flex-column gap-4 justify-content-start align-items-end">
+    <div class="burgermenu d-flex d-md-none flex-column gap-4 justify-content-start align-items-start">
       <div class="closeburgerbutton">
-        <div class="closeButton d-flex flex-row justify-content-end align-items-end">
+        <div class="closeButton d-flex flex-row justify-content-start align-items-start">
           <i class="fas fa-times"></i>
         </div>
       </div>
       <form x-data="setting.showSearchBar" action="/result" method="get">
         <div class="SearchBAr">
-          <button type="submit" class="searchIcon">
+          <button type="submit" class="searchIcon" title="search">
             <i class="fas fa-search"></i>
           </button>
           <div class="vl"></div>
@@ -112,7 +112,7 @@
           </div>
         </div>
       </form>
-      <div class="headerWidget d-flex flex-column align-items-end">
+      <div class="headerWidget d-flex flex-column align-items-start">
         <div class="weather" x-data="setting.showTemperatures">
           <div class="weatherIcon">
             <img src="/theme1/images/Moon2.png" alt="night" width="40px" height="40px" />
@@ -144,18 +144,18 @@
           </ul>
         </div>
       </div>
-      <div x-data="setting.showMainMenu" class="mainSection d-flex flex-column align-items-end">
+      <div x-data="setting.showMainMenu" class="mainSection d-flex flex-column align-items-start">
         <div class="allsections">
           <div x-list1="menuList1" class="sectiontitle">
-            <p><a href="##item1.url##">##item1.name##</a></p>
+            <p><a rel="nofollow" title="##item1.$name##" href="##item1.url##">##item1.name##</a></p>
           </div>
           <div x-list1="menuList2" class="sectiontitle">
-            <p><a href="##item1.url##">##item1.name##</a></p>
+            <p><a rel="nofollow" title="##item1.$name##" href="##item1.url##">##item1.name##</a></p>
           </div>
         </div>
       </div>
 
-      <div class="mainFollowUs d-flex flex-column align-items-end">
+      <div class="mainFollowUs d-flex flex-column align-items-start">
         <div class="headSectionTitle">
           <label>##word.Follow Us##</label>
         </div>

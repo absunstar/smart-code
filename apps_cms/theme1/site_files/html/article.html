@@ -85,7 +85,7 @@
               <div class="mainarticle d-flex flex-row row align-items-start justify-content-center">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                   <div class="center">
-                    <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/news.jpg'" alt="##data.article.$title##" />
+                    <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" alt="##data.article.$title##" />
                   </div>
                   <div x-data="article.$yts" class="row text-left yts-info">
                     <p class="bold">Movie Rating : <span class="yellow"> ##data.article.yts.rating##</span></p>
@@ -94,17 +94,19 @@
                   </div>
                 </div>
 
-                <div x-data="article.$description" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
-                  <div class="article-description">##data.article.$description##</div>
-                  <div x-data="article.$yts">
-                    <div class="d-flex gap-2 p-2">
-                      <a target="_blank" class="bold col-md-3 btn btn-warning" href="##data.article.yts.$imdbURL##"> IMDB </a>
-                      <a target="_blank" class="bold col-md-3 btn btn-danger" href="##data.article.yts.$trailerURL##"> Trailer </a>
-                      <a target="_blank" class="bold col-md-3 btn btn-info" href="##data.article.yts.$subtitleURL##"> Subtitles </a>
-                    </div>
-                    <div class="d-flex gap-2 p-2">
-                      <a x-list1="article.yts.torrents" class="bold btn btn-primary" target="_blank" href="##item1.url##"> Download ##item1.quality## ( ##item1.size## ) Torrent </a>
-                    </div>
+                <div x-data="article.$content" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+                  <div class="article-description">##data.article.$content##</div>
+                </div>
+                <div x-data="article.$yts">
+                  <div class="d-flex gap-2 p-2 justify-content-center">
+                    <a rel="nofollow" target="_blank" class="btn btn-warning p-2 italic" href="##data.article.yts.$imdbURL##"> read more on IMDB </a>
+                    <a rel="nofollow"  target="_blank" class="btn btn-danger p-2 italic" href="##data.article.yts.$trailerURL##"> show movie Trailer </a>
+                    <a rel="nofollow"  target="_blank" class="btn btn-info p-2 italic" href="##data.article.yts.$subtitleURL##"> download Subtitles </a>
+                  </div>
+                  <div class="d-flex gap-2 p-2 justify-content-center">
+                    <a rel="nofollow"  x-list1="article.yts.torrents" class=" green btn btn-primary p-4 bg-white font-22" target="_blank" href="##item1.url##">
+                      Download Free <span class="blue">[Quality ##item1.quality##]</span> <span class="black">( ##item1.size## ) Torrent</span> 
+                    </a>
                   </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 p-3">
@@ -156,10 +158,10 @@
 
               <div class="related-search">
                 <span class="bold"> ##word.related Search##</span>
-                <a x-list1="article.$keyWordsList" href="/result?search_query=##item1.##"> ##item1.## </a>
+                <a x-list1="article.$keyWordsList" rel="nofollow" href="/result?search_query=##item1.##"> ##item1.## </a>
               </div>
               <div class="related-tags">
-                <a x-list1="article.$tagsList" href="/result?search_query=##item1.##"> ##item1.## </a>
+                <a x-list1="article.$tagsList" rel="nofollow" href="/result?search_query=##item1.##"> ##item1.## </a>
               </div>
               <div x-data="setting.showArticleAd" x-import="theme1/ad-article.html" class="ad d-flex flex-row justify-content-center align-items-center"></div>
             </div>
@@ -188,11 +190,6 @@
     <div x-import="theme1/wedgite.html"></div>
     <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
 
-    <script>
-      app.controller('mainController', ($scope, $http, $timeout, $interval) => {
-        $scope.page = site.showObject('##data.#page##');
-        console.log($scope.page);
-      });
-    </script>
+    
   </body>
 </html>

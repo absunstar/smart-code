@@ -1,7 +1,6 @@
 module.exports = function init(site) {
   const $siteSetting = site.connectCollection('siteSetting');
-  const HOSTS = site.connectApp({ name: 'hosts', allowMemory: true });
-  // HOSTS.memoryList.push({ domain: '*', filter: '*' });
+  const hostManager = site.connectApp({ name: 'hosts', allowMemory: true, sort: { id: 1 } });
 
   site.settingList = [];
 
@@ -178,7 +177,7 @@ module.exports = function init(site) {
     siteBackground4: '#ffffff',
   };
   site.getHostFilter = function (domain = '') {
-    let h = HOSTS.memoryList.find((h) => domain.like(h.domain));
+    let h = hostManager.memoryList.find((h) => domain.like(h.domain));
     if (h) {
       return h.filter;
     } else {
@@ -194,7 +193,7 @@ module.exports = function init(site) {
     site.defaultSetting.languageList.push({ ...l });
   });
 
-  $siteSetting.findAll({}, (err, docs) => {
+  $siteSetting.findAll({ sort: { id: 1 } }, (err, docs) => {
     if (!err && docs && docs.length > 0) {
       docs.forEach((doc) => {
         if (!doc.article.articleTypes) {

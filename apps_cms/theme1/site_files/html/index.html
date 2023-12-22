@@ -11,8 +11,8 @@
       <div class="row d-flex flex-column" x-list1="categories">
         <div x-show-item1="template1">
           <div class="breakingNewsSection">
-            <div class="col BNSubSection d-flex flex-column align-items-end">
-              <a href="##item1.url##" class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
+            <div class="col BNSubSection d-flex flex-column align-items-start">
+              <a title="##item1.name##" href="##item1.url##" class="BNSubSectionheader d-flex flex-column justify-content-center align-items-start">
                 <p class="BNSubSectionName">##item1.name##</p>
               </a>
             </div>
@@ -22,83 +22,11 @@
               <div x-import="theme1/ad-footer.html" class="newsSBLock col-md-3 col-lg-2 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
             </div>
           </div>
-          <div x-data="setting.showTopAd" class="d-flex" x-import="theme1/ad-top.html"></div>
-        </div>
-
-        <div x-show-item1="template2" class="adsWithBreakingNews row justify-content-center align-items-start">
-          <div
-            x-data="setting.showSideAd"
-            x-import="theme1/ad-side.html"
-            class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center"
-          ></div>
-          <div class="col col-lg-8 col-md-12">
-            <div x-list1="categoriesDisplayList2" class="breakingNewsSection">
-              <div class="col BNSubSection d-flex flex-column align-items-end">
-                <a class="BNSubSectionheader d-flex flex-column justify-content-center align-items-end">
-                  <p class="BNSubSectionName">##item1.name##</p>
-                </a>
-              </div>
-              <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end">
-                <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-                <div x-import="theme1/ad-footer.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-              </div>
-            </div>
-          </div>
-          <div
-            x-data="setting.showSideAd"
-            x-import="theme1/ad-side.html"
-            class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-center"
-          ></div>
-        </div>
-
-        <div x-show-item1="template3" class="mainSectionNews d-flex flex-column">
-          <div class="headermainsection row d-flex flex-row justify-content-md-between justify-content-center">
-            <div class="headSectionName col col-lg-3 col-md-12 col-sm-12 gap-3 mb-sm-4 mx-sm-0 mx-3">
-              <p>##item1.name##</p>
-            </div>
-            <div class="col col-lg-9 col-md-12 col-sm-12">
-              <div class="row">
-                <div class="col col-lg-3 d-none d-lg-flex d-xl-flex p-0">
-                  <div x-data="setting.showFooterAd" x-import="theme1/ad-footer.html"></div>
-                </div>
-                <div class="col col-lg-9 col-md-12 col-sm-12 m-sm-0 my-4 p-md-0">
-                  <div x-list2="$list0" x-import="theme1/article-template.html" class="newsSBLock NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="adsWithBreakingNews row justify-content-center align-items-start p-0 m-0">
-            <div
-              x-data="setting.showSideAd"
-              x-import="theme1/ad-side.html"
-              class="leftAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 justify-content-lg-center justify-content-center justify-content-sm-between align-items-start p-0 m-lg-0 m-4 ml-2"
-            ></div>
-            <div class="col col-lg-8 d-flex flex-column justify-content-center align-items-center align-content-center m-0 p-0">
-              <div class="breakingNewsSection">
-                <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-lg-start justify-content-md-end gy-2 p-0 m-0">
-                  <div x-list2="$list" x-import="theme1/article-template.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-                  <div x-import="theme1/ad-footer.html" class="newsSBLock col-md-6 col-lg-6 NewsBlock d-flex justify-content-lg-center justify-content-center"></div>
-                </div>
-              </div>
-              <div class="primaryButton d-flex flex-column justify-content-center align-items-center align-content-center mt-4">
-                <a href="##item1.url###">
-                  <p>اقراء المزيد</p>
-                </a>
-              </div>
-            </div>
-            <div
-              x-data="setting.showSideAd"
-              x-import="theme1/ad-side.html"
-              class="rightAds d-none d-lg-flex d-xl-flex col col-sm-10 col-lg-2 mt-3 d-flex justify-content-lg-center justify-content-center justify-content-sm-between align-items-center p-0 m-lg-0 m-4 ml-2"
-            ></div>
-          </div>
         </div>
       </div>
 
-      <div x-import="theme1/part-3.html"></div>
       <div x-data="setting.showEditorManagerArticle" x-import="theme1/part-4.html"></div>
       <div x-data="setting.showEditorsArticle" x-import="theme1/part-5.html"></div>
-      <div x-import="theme1/part-6.html"></div>
     </div>
 
     <div x-import="theme1/wedgite.html"></div>
