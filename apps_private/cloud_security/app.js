@@ -212,11 +212,11 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'You Are Not Login';
-      res.json(response);
-      return;
-    }
+    // if (!req.session.user) {
+    //   response.error = 'You Are Not Login';
+    //   res.json(response);
+    //   return;
+    // }
 
     let id = req.body.id;
     if (id) {
@@ -229,6 +229,9 @@ module.exports = function init(site) {
         (err, result) => {
           if (!err) {
             response.done = true;
+            if(req.body.souq) {
+              site.deleteMyAds(id);
+            }
           } else {
             response.error = err.message;
           }

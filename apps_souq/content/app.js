@@ -293,6 +293,25 @@ module.exports = function init(site) {
     res.json(response);
   });
 
+  site.post('/api/contents/deleteByUser', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+    site.content_list.forEach((a) => {
+      if (req.body.id && a.store && a.store.user.id === req.body.id) {
+        a.$delete = true;
+      }
+    });
+    response.done = true;
+    res.json(response);
+  });
+
   site.post('/api/contents/update_feedback', (req, res) => {
     let response = {
       done: false,
@@ -806,6 +825,14 @@ module.exports = function init(site) {
     } else {
       return [before, _time, _type, _time_2, _type_2].join(' ');
     }
+  };
+
+  site.deleteMyAds = function (id) {
+    site.content_list.forEach((a) => {
+      if ( a.store && a.store.user.id === id) {
+        a.$delete = true;
+      }
+    });
   };
 
   site.getAd = function (id, callback) {
