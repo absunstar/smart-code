@@ -63,11 +63,10 @@
     z-index: 100;
   }
   .burgermenu {
-    overflow: scroll;
+    overflow: auto;
     background-color: var(--background1);
     position: relative;
-    top: 0;
-    right: 0;
+    width: 100%;
     padding: 25px;
   }
 
@@ -86,13 +85,13 @@
     margin: 0;
     background-color: var(--six-color);
   }
-  .mainSection{
+  .mainSection {
     width: 100%;
   }
   .mainFollowUs {
     width: 100%;
   }
-  .FollowUsIcon{
+  .FollowUsIcon {
     width: 100%;
   }
   .headSectionTitle {
@@ -111,7 +110,7 @@
   .allsections {
     width: 90%;
     max-height: 70vh;
-    overflow: scroll;
+    overflow: auto;
   }
 
   .sectiontitle > p {
