@@ -5,6 +5,7 @@
     "en": "Administration Permissions",
     "ar": "َصلاحيات الإدارة",
     "permissions": [
+      "manage_users_manage",
       "account_course_manage",
       "book_course_manage",
       "book_hall_manage",
