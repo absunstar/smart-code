@@ -173,6 +173,8 @@ module.exports = function init(site) {
             _user.mobile_list = req.body.user.mobile_list;
           } else if(type === 'gender') {
             _user.gender = req.body.user.gender;
+          } else if (type === 'notific_setting') {
+            _user.notific_setting = req.body.user.notific_setting;
           }
 
           site.security.isUserExists(_user, function (err, user_found) {

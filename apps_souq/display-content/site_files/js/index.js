@@ -218,7 +218,22 @@ app.controller("display_content", function ($scope, $http, $timeout) {
 
   $scope.updateFeedback = function (type, other, comment) {
     $scope.error = "";
-
+    if ($scope.$busy) {
+      return;
+    }
+    $scope.$busy = true;
+    if (type == "comment") {
+      if (!$scope.activity.comment) {
+        $scope.$busy = false;
+        return;
+      }
+    }
+    if (type == "reply_comment") {
+      if (!comment.$reply_comment) {
+        $scope.$busy = false;
+        return;
+      }
+    }
     if (type == "favorite") {
       $scope.activity.favorite = other;
     } else if (type == "follow") {
@@ -228,6 +243,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
 
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
+        $scope.$busy = false;
         return;
       }
       $scope.activity.comment_code = other;
@@ -238,10 +254,12 @@ app.controller("display_content", function ($scope, $http, $timeout) {
 
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
+        $scope.$busy = false;
         return;
       }
       if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = "##word.must_select_report_type##";
+        $scope.$busy = false;
         return;
       }
     } else if (type == "report_comment") {
@@ -249,10 +267,12 @@ app.controller("display_content", function ($scope, $http, $timeout) {
 
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
+        $scope.$busy = false;
         return;
       }
       if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = "##word.must_select_report_type##";
+        $scope.$busy = false;
         return;
       }
     } else if (type == "report_reply") {
@@ -260,10 +280,12 @@ app.controller("display_content", function ($scope, $http, $timeout) {
 
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
+        $scope.$busy = false;
         return;
       }
       if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = "##word.must_select_report_type##";
+        $scope.$busy = false;
         return;
       }
     }
@@ -344,6 +366,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
         } else {
           $scope.error = "Please Login First";
         }
+        $scope.$busy = false;
       },
       function (err) {
         console.log(err);
@@ -373,7 +396,8 @@ app.controller("display_content", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.userAd = response.data.doc;
-          $scope.userAd.$mobileAd = $scope.userAd.country_code + $scope.ad.mobile;
+          $scope.userAd.$mobileAd =
+            $scope.userAd.country_code + $scope.ad.mobile;
         } else {
           $scope.error = response.data.error;
         }
