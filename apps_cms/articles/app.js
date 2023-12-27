@@ -187,7 +187,11 @@ module.exports = function init(site) {
 
   site.handleArticle = function (doc, options = {}) {
     let lang = doc.translatedList[0];
-    lang.title= lang.title || '';
+    lang.title = lang.title || '';
+    if (typeof lang.title !== 'string') {
+      console.log(lang.title);
+      lang.title = '';
+    }
     doc.$title = lang.title;
     doc.$titleArray = doc.$title.split(' ');
     doc.$alt = doc.$title.split(' ').slice(0, 3).join(' ');
