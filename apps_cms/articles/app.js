@@ -421,8 +421,9 @@ module.exports = function init(site) {
     options.host = new RegExp(options.host, 'gium');
 
     let list = [];
-    if ((s = site.searchArticleList.find((sa) => sa.id == options.search + '_' + options.page + '_' + options.limit))) {
-      callBack(null, s);
+    if (options.category) {
+      options.search = 'category_' + options.category.id;
+      options.where = { 'category.id': options.category.id };
     } else {
       let $or = [];
       $or.push({ 'translatedList.title': { $regex: new RegExp(options.search, 'gium') } });
@@ -430,13 +431,16 @@ module.exports = function init(site) {
         if (s.length > 2) {
           $or.push({ 'translatedList.tagsList': { $regex: new RegExp(s, 'gium') } });
           $or.push({ 'translatedList.title': { $regex: new RegExp(s, 'gium') } });
-          //  $or.push({ 'translatedList.textContent': { $regex: new RegExp(s, 'gium') } });
         }
       });
       options.where = {
         $and: [{ host: options.host }, { $or: $or }],
       };
+    }
 
+    if ((s = site.searchArticleList.find((sa) => sa.id == options.search + '_' + options.page + '_' + options.limit))) {
+      callBack(null, s);
+    } else {
       site.$articles.findAll(
         {
           select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
@@ -453,6 +457,7 @@ module.exports = function init(site) {
 
             let ss = {
               id: options.search + '_' + options.page + '_' + options.limit,
+              category: category,
               search: options.search,
               page: options.page,
               limit: options.limit,

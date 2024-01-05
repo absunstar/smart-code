@@ -298,6 +298,155 @@ site.get(
       return;
     }
 
+    if (!Array.isArray(language.keyWordsList)) {
+      language.keyWordsList = [];
+    }
+
+    language.description = language.description || '';
+    
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let limit = req.query.limit ? parseInt(req.query.limit) : 50;
+    if (limit > 50) {
+      limit = 50;
+    }
+
+    if (setting.siteTemplate.id == 1) {
+      site.articlesList = site.articlesList || [];
+      let options = {
+        domain: 'https://' + req.host,
+        guid: '',
+        language: language,
+        filter: site.getHostFilter(req.host),
+        site_logo: language.logo?.url,
+        page_image: language.logo?.url,
+        site_name: language.siteName,
+        page_lang: language.id,
+        page_type: 'website',
+        page_title: language.siteName + ' ' + language.titleSeparator + ' ' + language.siteSlogan,
+        page_description: language.description.substr(0, 200),
+        page_keywords: language.keyWordsList.join(','),
+        categories: [],
+        page: {},
+      };
+
+      let category = site.categoryList.find((c) => c.id == req.params.id && c.host.like(options.filter));
+
+      if (!category) {
+        res.redirect('/');
+        return;
+      }
+
+      options.topNews = site.getTopArticles(options.filter, category);
+
+      options.setting = setting;
+
+      options.MainSliderNews = {
+        list: site.articlesList.filter((a) => a.showInMainSlider === true && a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 10),
+      };
+      options.MainSliderNews.article = options.MainSliderNews.list[0];
+  
+      options.menuList = site.menuList
+        .filter((m) => m.host.like(options.filter))
+        .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url }));
+
+      options.menuList1 = options.menuList.slice(0, 8);
+      options.menuList2 = options.menuList.slice(8, 20);
+      options.menuList3 = options.menuList.slice(20);
+
+      options.$categoryLang = category.translatedList.find((l) => l.language.id == language.id) || category.translatedList[0];
+      options.categoryName = options.$categoryLang.name;
+      options.page_image = options.$categoryLang.image?.url || options.site_logo;
+      options.page_title = language.siteName + ' ' + language.titleSeparator + ' ' + options.$categoryLang.name;
+      options.page_description = options.$categoryLang.description;
+  
+      site.searchArticles({ category: category, host: options.filter, page: page, limit: limit }, (err, result) => {
+        if (!err && result) {
+          let list = [...result.list];
+
+          if (req.session.lang == 'AR') {
+            list.forEach((doc) => {
+              doc.$date = doc.$date1;
+              doc.$day = doc.$day1;
+            });
+          } else {
+            list.forEach((doc) => {
+              doc.$date = doc.$date2;
+              doc.$day = doc.$day2;
+            });
+          }
+
+          options.pageCount = Math.floor(result.count / result.limit + 1);
+          if (result.count > result.limit) {
+            options.pagging = true;
+            options.pageList = [];
+            for (let index = 1; index < options.pageCount + 1; index++) {
+              options.pageList.push({
+                name: index,
+                url: '/category/' + category.id +'/' + options.categoryName + '?page=' + index + '&limit=' + result.limit,
+              });
+            }
+          }
+
+          options.page_title =
+            language.siteName +
+            ' ' +
+            language.titleSeparator +
+            ' ' +
+            options.categoryName +
+            ' ' +
+            ' [ ' +
+            result.count +
+            ' ] ' +
+            ' - page ' +
+            result.page +
+            ' of ' +
+            options.pageCount;
+
+          options.list = list;
+          options.list1 = options.list.splice(0, 10);
+          options.list2 = options.list.splice(0, 10);
+          options.list3 = options.list.splice(0, 10);
+          options.list4 = options.list.splice(0, 10);
+          options.list5 = options.list.splice(0, 10);
+        }
+        res.render('theme1/result.html', options, {
+          parser: 'html css js',
+          compress: true,
+        });
+      });
+
+    } else {
+      res.redirect('/404', 404);
+    }
+  }
+);
+
+site.get(
+  {
+    name: ['/category/:id/:title', '/category/:id'],
+  },
+  (req, res) => {
+    let setting = site.getSiteSetting(req.host);
+    if (!setting.host) {
+      res.redirect(site.getMainHost(req.host), 301);
+      return;
+    }
+    if (!setting || !setting.siteTemplate || !setting.languageList) {
+      res.redirect('/404', 404);
+      return;
+    }
+    if (req.host.like('*torrent*')) {
+      req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
+    }
+    let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+
+    if (!language) {
+      res.redirect('/404', 404);
+      return;
+    }
+
     let options = {
       domain: 'https://' + req.host,
       guid: '',
