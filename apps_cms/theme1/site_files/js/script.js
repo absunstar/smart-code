@@ -25,6 +25,23 @@ function CloseVideo() {
   }
 }
 
+function playYoutube(src) {
+  if ((a = document.querySelector('#iframePlayer'))) {
+    a.classList.add('videopalyer');
+    if ((au = a.querySelector('iframe'))) {
+      au.src = src;
+    }
+  }
+}
+function CloseYoutube() {
+  if ((a = document.querySelector('#iframePlayer'))) {
+    a.classList.remove('videopalyer');
+    if ((au = a.querySelector('iframe'))) {
+      au.src = 'about:blank';
+    }
+  }
+}
+
 function playAudio(src) {
   if ((a = document.querySelector('#audiopalyer'))) {
     a.classList.add('audiopalyer');

@@ -198,6 +198,19 @@ module.exports = function init(site) {
     doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
     doc.$coverURL = lang.cover?.url || doc.$imageURL;
     doc.host = doc.host || options.host || '';
+    doc.$hasAudio = false;
+    doc.$hasVideo = false;
+    doc.$hasImageGallary = false;
+    doc.$hasMenu = false;
+    doc.$menuClass = 'none';
+    doc.$audioClass = 'none';
+    doc.$videoClass = 'none';
+    doc.$hasReadingTime = false;
+    doc.$readingTimeClass = 'none';
+    doc.$miniTitleClass = 'none';
+    doc.$hasMiniTitle = false;
+    doc.$imageGallaryClass = 'none';
+
     if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
@@ -256,15 +269,6 @@ module.exports = function init(site) {
     doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
     doc.$day2 = site.days[doc.publishDate.getDay()]?.EN || '-----';
 
-    doc.$hasAudio = false;
-    doc.$hasVideo = false;
-    doc.$hasImageGallary = false;
-    doc.$hasMenu = false;
-    doc.$menuClass = 'none';
-
-    doc.$audioClass = 'none';
-    doc.$videoClass = 'none';
-    doc.$imageGallaryClass = 'none';
     if (lang.hasAudio) {
       doc.$hasAudio = true;
       doc.$audio = lang.audio;
@@ -276,16 +280,13 @@ module.exports = function init(site) {
       doc.$video = lang.video;
       doc.$videoClass = '';
     }
-    doc.$readingTimeClass = 'none';
-    doc.$hasReadingTime = false;
+
     if (lang.hasReadingTime) {
       doc.$hasReadingTime = true;
       doc.$readingTime = lang.readingTime;
       doc.$readingTimeClass = '';
     }
 
-    doc.$miniTitleClass = 'none';
-    doc.$hasMiniTitle = false;
     if (lang.hasMiniTitle) {
       doc.$miniTitle = lang.miniTitle;
       doc.$hasMiniTitle = true;
@@ -323,6 +324,7 @@ module.exports = function init(site) {
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
+      doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else {
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     }
@@ -443,7 +445,7 @@ module.exports = function init(site) {
     } else {
       site.$articles.findAll(
         {
-          select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1 },
+          select: { guid: 1, type: 1, publishDate: 1, yts: 1, translatedList: 1, youtube: 1 },
 
           where: options.where,
           limit: options.limit,
@@ -457,7 +459,7 @@ module.exports = function init(site) {
 
             let ss = {
               id: options.search + '_' + options.page + '_' + options.limit,
-              category: category,
+              category: options.category,
               search: options.search,
               page: options.page,
               limit: options.limit,

@@ -7,7 +7,7 @@
         <div class="newstime d-flex flex-row justify-content-start align-items-center">
           <p class="newsday">##item2.$day##</p>
           <div class="vlntime"></div>
-          <p class="newsdate ">##item2.$date##</p>
+          <p class="newsdate">##item2.$date##</p>
         </div>
       </div>
     </a>
@@ -29,6 +29,10 @@
 
       <div id="videoFile" class="videoFile d-flex justify-content-center align-items-center ##item2.$videoClass##">
         <i class="fab fa-youtube" onclick="playVideo('##item2.$video.url##')"></i>
+      </div>
+
+      <div x-show-item2="$embdedURL" id="videoFile" class="videoFile d-flex justify-content-center align-items-center">
+        <i class="fab fa-youtube" onclick="playYoutube('##item2.$embdedURL##')"></i>
       </div>
 
       <div id="imagesFile" class="gallaryImages d-flex justify-content-center align-items-center ##item2.$imageGallaryClass##">
