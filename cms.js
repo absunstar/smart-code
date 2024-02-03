@@ -20,7 +20,7 @@ const site = require('../isite')({
     },
   },
   security: {
-    keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
+    keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99', '710998fd1b7c0235170265650770a4b1', '820a6b58c2beed9f67932b476c7d8a21'],
   },
 });
 
@@ -303,7 +303,7 @@ site.get(
     }
 
     language.description = language.description || '';
-    
+
     let page = req.query.page ? parseInt(req.query.page) : 1;
     let limit = req.query.limit ? parseInt(req.query.limit) : 50;
     if (limit > 50) {
@@ -344,7 +344,7 @@ site.get(
         list: site.articlesList.filter((a) => a.showInMainSlider === true && a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 10),
       };
       options.MainSliderNews.article = options.MainSliderNews.list[0];
-  
+
       options.menuList = site.menuList
         .filter((m) => m.host.like(options.filter))
         .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url }));
@@ -358,7 +358,7 @@ site.get(
       options.page_image = options.$categoryLang.image?.url || options.site_logo;
       options.page_title = language.siteName + ' ' + language.titleSeparator + ' ' + options.$categoryLang.name;
       options.page_description = options.$categoryLang.description;
-  
+
       site.searchArticles({ category: category, host: options.filter, page: page, limit: limit }, (err, result) => {
         if (!err && result) {
           let list = [...result.list];
@@ -382,25 +382,13 @@ site.get(
             for (let index = 1; index < options.pageCount + 1; index++) {
               options.pageList.push({
                 name: index,
-                url: '/category/' + category.id +'/' + options.categoryName + '?page=' + index + '&limit=' + result.limit,
+                url: '/category/' + category.id + '/' + options.categoryName + '?page=' + index + '&limit=' + result.limit,
               });
             }
           }
 
           options.page_title =
-            language.siteName +
-            ' ' +
-            language.titleSeparator +
-            ' ' +
-            options.categoryName +
-            ' ' +
-            ' [ ' +
-            result.count +
-            ' ] ' +
-            ' - page ' +
-            result.page +
-            ' of ' +
-            options.pageCount;
+            language.siteName + ' ' + language.titleSeparator + ' ' + options.categoryName + ' ' + ' [ ' + result.count + ' ] ' + ' - page ' + result.page + ' of ' + options.pageCount;
 
           options.list = list;
           options.list1 = options.list.splice(0, 10);
@@ -414,7 +402,6 @@ site.get(
           compress: true,
         });
       });
-
     } else {
       res.redirect('/404', 404);
     }

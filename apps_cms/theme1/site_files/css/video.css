@@ -14,9 +14,9 @@
 }
 
 .video-area .closeVideoButton {
-    width: 100%;
-    font-weight: bold;
-    font-size: 22px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 22px;
 }
 
 .video-area .fa-times {
@@ -33,5 +33,10 @@
   width: 80%;
   max-height: 80%;
   height: auto;
+  border: 2px solid #fff;
+}
+.video-area.videopalyer > iframe {
+  width: 80vw !important;
+  height: 80vh !important;
   border: 2px solid #fff;
 }
