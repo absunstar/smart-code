@@ -76,7 +76,6 @@ app.connectScope(
     };
 
     SOCIALBROWSER.on('share', (e, obj) => {
-      console.log(obj);
       if (obj.type == 'generator-youtube-channel') {
         $scope.youtubeAdd({ ...obj.channel });
       } else if (obj.type == 'generator-youtube-video') {
