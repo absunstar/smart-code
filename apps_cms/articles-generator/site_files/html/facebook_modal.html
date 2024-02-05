@@ -1,0 +1,49 @@
+<div id="facebookModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.Facebook Manager##</h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.New Facebook Group##</legend>
+        <div class="row">
+          <i-control ng-model="facebookItem.url" label="##word.Group URL##"></i-control>
+        </div>
+        <i-button ng-click="addFacebookGroup(facebookItem)" label="##word.Add To Group List##"></i-button>
+      </fieldset>
+      <div class="row margin padding">
+        <table class="table">
+          <tr>
+            <th>##word.logo##</th>
+            <th>##word.title##</th>
+            <th>##word.Options##</th>
+            <th>##word.Actions##</th>
+          </tr>
+          <tr ng-repeat="group in facebookList">
+            <td><img class="logo" ng-src="{{group.image.url}}" /></td>
+            <td class="bold">
+              <p>{{group.title}}</p>
+              <a href="{{group.url}}"></a>
+            </td>
+            <td>
+              <i-list label="##word.category##" ng-model="group.category" items="categoryList"></i-list>
+              <i-control label="##word.host##" ng-model="group.host"></i-control>
+            </td>
+            <td>
+              <i-button label="##word.Load Posts##" type="search" ng-click="getFacebookPostList(group)"></i-button>
+              <i-button type="save" ng-click="facebookUpdate(group)"></i-button>
+              <i-button type="delete" ng-click="facebookDelete(group)"></i-button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#facebookModal')"></i-button>
+    </div>
+  </div>
+</div>

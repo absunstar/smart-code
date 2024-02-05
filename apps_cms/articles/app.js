@@ -223,6 +223,10 @@ module.exports = function init(site) {
       doc.is_youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
+    } else if (doc.type.id == 9) {
+      doc.is_youtube = true;
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
+      doc.$embdedURL = doc.facebook.url;
     } else {
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     }
@@ -718,6 +722,39 @@ module.exports = function init(site) {
       }
 
       articlesDoc.guid = site.md5('Youtube - ' + articlesDoc.translatedList[0].title);
+    } else if (articlesDoc.is_facebook) {
+      articlesDoc = {
+        type: site.articleTypes.find((t) => t.id === 9),
+        facebook: articlesDoc,
+        translatedList: [{ language: language }],
+        host: 'facebook',
+      };
+      console.log(articlesDoc.facebook);
+      if (articlesDoc.facebook.group) {
+        if (articlesDoc.facebook.group.category) {
+          articlesDoc.category = articlesDoc.facebook.group.category;
+        }
+        if (articlesDoc.facebook.group.host) {
+          articlesDoc.host = articlesDoc.facebook.group.host;
+        }
+      }
+
+      articlesDoc.showInMainSlider = true;
+      articlesDoc.showOnTop = true;
+
+      articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.facebook.group.title).split(' '), 'Video', 'Watch'];
+      articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.facebook.title).split(' '), ...site.removeHtml(articlesDoc.facebook.group.title).split(' ')];
+
+      articlesDoc.translatedList[0].title = articlesDoc.facebook.title;
+      articlesDoc.translatedList[0].image = { url: articlesDoc.facebook.image?.url };
+      articlesDoc.translatedList[0].textContent = articlesDoc.facebook.description;
+      if (articlesDoc.facebook.date_uploaded) {
+        articlesDoc.publishDate = new Date(articlesDoc.facebook.date);
+      } else {
+        articlesDoc.publishDate = new Date();
+      }
+
+      articlesDoc.guid = site.md5('Facebook - ' + articlesDoc.translatedList[0].title);
     }
 
     articlesDoc.addUserInfo = req.getUserFinger();

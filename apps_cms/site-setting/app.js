@@ -68,6 +68,11 @@ module.exports = function init(site) {
       EN: 'Youtube Video',
       AR: 'Youtube Video',
     },
+    {
+      "id": 9,
+      "EN": "Facebook Post",
+      "AR": "Facebook Post"
+    }
   ];
   site.publishingSystem = [
     {

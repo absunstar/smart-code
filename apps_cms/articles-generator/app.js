@@ -3,6 +3,7 @@ module.exports = function init(site) {
   let generator = site.connectApp({ name: 'generator', title: 'Articles Generator', dir: __dirname, images: true });
   let sites = site.connectApp({ name: 'generatorSites', allowMemory: true });
   let youtubeChannelList = site.connectApp({ name: 'generatorYoutubeChannelList', allowMemory: true });
+  let facebookGroupList = site.connectApp({ name: 'generatorFacebookGroupList', allowMemory: true });
 
   site.onGET(
     {
