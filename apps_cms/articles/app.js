@@ -226,10 +226,10 @@ module.exports = function init(site) {
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else if (doc.type.id == 9) {
+      doc.$title = doc.$title.substring(0, 70);
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$content = lang.title;
     } else {
-      doc.$title = doc.$title.substring(0, 70);
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$content = lang.textContent || lang.htmlContent || '';
     }
@@ -318,17 +318,28 @@ module.exports = function init(site) {
     doc.$title = lang.title;
     doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
     doc.host = doc.host || options.host || '';
-    if (doc.type.id == 7 && doc.yts) {
+
+    if (doc.type.id === 2) {
+      doc.$content = lang.htmlContent || '';
+    } else if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
+      doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
+      doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
+      doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
+      doc.$backgroundURL = doc.$coverURL;
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
+    } else if (doc.type.id == 9) {
+      doc.$title = doc.$title.substring(0, 70);
+      doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     } else {
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
     }
+
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
     doc.publishDate = doc.publishDate || new Date();
