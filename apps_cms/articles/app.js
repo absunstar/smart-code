@@ -211,7 +211,9 @@ module.exports = function init(site) {
     doc.$hasMiniTitle = false;
     doc.$imageGallaryClass = 'none';
 
-    if (doc.type.id == 7 && doc.yts) {
+    if (doc.type.id === 2) {
+      doc.$content = lang.htmlContent || '';
+    } else if (doc.type.id == 7 && doc.yts) {
       doc.$yts = true;
       doc.$title += ' ( ' + doc.yts.year + ' ) ';
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
@@ -224,19 +226,14 @@ module.exports = function init(site) {
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else if (doc.type.id == 9) {
-      doc.is_youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
-      doc.$embdedURL = doc.facebook.url;
+      doc.$content = lang.title;
     } else {
+      doc.$title = doc.$title.substring(0, 70);
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
-    }
-    doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
-
-    if (doc.type.id === 2) {
-      doc.$content = lang.htmlContent || '';
-    } else {
       doc.$content = lang.textContent || lang.htmlContent || '';
     }
+    doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
     doc.$description = site.escapeHtml(doc.$content).substring(0, 180);
     lang.keyWordsList = lang.keyWordsList || [];
@@ -639,6 +636,50 @@ module.exports = function init(site) {
     });
   });
 
+  site.downloadImage = function (options, callback) {
+    if (typeof options == 'string') {
+      options = { url: options };
+    }
+
+    options.folder = options.folder || new Date().getFullYear() + '_' + (new Date().getMonth() + 1) + '_' + new Date().getDate();
+    options.name = options.name || 'image_' + new Date().getTime().toString() + Math.random().toString().replace('.', '_');
+
+    site.createDir(site.options.upload_dir + '/' + options.folder, () => {
+      options.path = site.options.upload_dir + '/' + options.folder + '/' + options.name;
+      options.path2 = site.options.upload_dir + '/' + options.folder + '/' + options.name + '.webp';
+
+      site
+        .fetch(options.url)
+        .then((res) => {
+          const dest = site.fs.createWriteStream(options.path);
+          res.body.pipe(dest);
+          dest.on('close', () => {
+            site.webp.cwebp(options.path, options.path2, '-q 80').then((output) => {
+              options.path0 = options.path;
+              options.path = options.path2;
+              options.url0 = options.url;
+              options.url = '/api/image/' + options.folder + '/' + options.name + '.webp';
+              site.deleteFileSync(options.path0, () => {});
+              options.done = true;
+              if (callback) {
+                callback(options);
+              }
+            });
+          });
+        })
+        .catch((err) => {
+          options.error = err.message;
+          if (callback) {
+            callback(options);
+          }
+        });
+    });
+  };
+  site.get({ name: '/api/image/:folder/:name', public: true }, (req, res) => {
+    res.set('Cache-Control', 'public, max-age=' + 60 * site.options.cache.images);
+    res.download(site.options.upload_dir + '/' + req.params.folder + '/' + req.params.name);
+  });
+
   site.post({ name: '/api/articles/add', require: { Permissions: ['login'] } }, (req, res) => {
     let response = {
       done: false,
@@ -729,7 +770,7 @@ module.exports = function init(site) {
         translatedList: [{ language: language }],
         host: 'facebook',
       };
-      console.log(articlesDoc.facebook);
+
       if (articlesDoc.facebook.group) {
         if (articlesDoc.facebook.group.category) {
           articlesDoc.category = articlesDoc.facebook.group.category;
@@ -747,8 +788,8 @@ module.exports = function init(site) {
 
       articlesDoc.translatedList[0].title = articlesDoc.facebook.title;
       articlesDoc.translatedList[0].image = { url: articlesDoc.facebook.image?.url };
-      articlesDoc.translatedList[0].textContent = articlesDoc.facebook.description;
-      if (articlesDoc.facebook.date_uploaded) {
+
+      if (articlesDoc.facebook.date) {
         articlesDoc.publishDate = new Date(articlesDoc.facebook.date);
       } else {
         articlesDoc.publishDate = new Date();
@@ -770,7 +811,18 @@ module.exports = function init(site) {
       if (!err && doc) {
         response.done = true;
         response.doc = doc;
-        site.articlesList.unshift(site.handleArticle({ ...doc }));
+        if (doc.type.id == 9 && doc.facebook) {
+          site.downloadImage(doc.facebook.image.url, (image) => {
+            doc.translatedList[0].image = image;
+            site.$articles.update(doc, (err, result) => {
+              if (!err && result.doc) {
+                site.articlesList.unshift(site.handleArticle({ ...result.doc }));
+              }
+            });
+          });
+        } else {
+          site.articlesList.unshift(site.handleArticle({ ...doc }));
+        }
       } else {
         response.error = err?.message;
       }
