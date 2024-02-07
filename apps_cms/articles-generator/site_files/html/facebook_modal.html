@@ -42,7 +42,17 @@
     </div>
 
     <div class="modal-footer center">
-      <h2 class="error">{{error}}</h2>
+      <table class="table">
+        <tr>
+          <th>Add</th>
+          <th>Fail</th>
+        </tr>
+        <tr>
+          <td>{{addCount}}</td>
+          <td>{{failCount}}</td>
+        </tr>
+      </table>
+      <p class="error">{{error}}</p>
       <i-button type="close" label="##word.close##" onclick="site.hideModal('#facebookModal')"></i-button>
     </div>
   </div>

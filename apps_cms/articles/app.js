@@ -742,7 +742,7 @@ module.exports = function init(site) {
       articlesDoc.showInMainSlider = true;
       articlesDoc.showOnTop = true;
 
-      articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.facebook.group.title).split(' '), 'Video', 'Watch'];
+      articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.facebook.group.title).split(' '), 'facebook', 'post'];
       articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.facebook.title).split(' '), ...site.removeHtml(articlesDoc.facebook.group.title).split(' ')];
 
       articlesDoc.translatedList[0].title = articlesDoc.facebook.title;
@@ -754,7 +754,7 @@ module.exports = function init(site) {
         articlesDoc.publishDate = new Date();
       }
 
-      articlesDoc.guid = site.md5('Facebook - ' + articlesDoc.translatedList[0].title);
+      articlesDoc.guid = site.md5('Facebook - ' + articlesDoc.facebook.url);
     }
 
     articlesDoc.addUserInfo = req.getUserFinger();

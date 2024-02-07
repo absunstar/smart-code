@@ -1,30 +1,33 @@
 app.connectScope(
   {
     app: [
-      { name: "generatorSites", as: "site", modal: "#sitesModal" },
-      { name: "generatorYts", as: "yts", modal: "#ytsModal" },
+      { name: 'generatorSites', as: 'site', modal: '#sitesModal' },
+      { name: 'generatorYts', as: 'yts', modal: '#ytsModal' },
       {
-        name: "generatorYoutubeChannelList",
-        as: "youtube",
-        modal: "#youtubeModal",
+        name: 'generatorYoutubeChannelList',
+        as: 'youtube',
+        modal: '#youtubeModal',
       },
       {
-        name: "generatorFacebookGroupList",
-        as: "facebook",
-        modal: "#facebookModal",
+        name: 'generatorFacebookGroupList',
+        as: 'facebook',
+        modal: '#facebookModal',
       },
-      { name: "generatorBloger", as: "blogerManager", modal: "#blogerModal" },
+      { name: 'generatorBloger', as: 'blogerManager', modal: '#blogerModal' },
     ],
   },
   ($scope, $http, $timeout, $interval) => {
-    $scope.setting = site.showObject("##data.#setting##");
-    $scope.categoryList = site.showObject("##data.#categoryList##");
+    $scope.setting = site.showObject('##data.#setting##');
+    $scope.categoryList = site.showObject('##data.#categoryList##');
     $scope.bloger = {};
+
+    $scope.addCount = 0;
+    $scope.failCount = 0;
 
     $scope.getBlogerCodeURL = function () {
       $http({
         url: `/api/generator/get-bloger-code-url`,
-        method: "GET",
+        method: 'GET',
       }).then((res) => {
         $scope.bloger.codeURL = res.data.url;
       });
@@ -32,7 +35,7 @@ app.connectScope(
     $scope.getBlogerCode = function () {
       $http({
         url: `/api/generator/get-bloger-code`,
-        method: "GET",
+        method: 'GET',
       }).then((res) => {
         $scope.bloger.code = res.data.code;
       });
@@ -40,7 +43,7 @@ app.connectScope(
     $scope.getBlogerAccessToken = function () {
       $http({
         url: `/api/generator/get-bloger-access_token`,
-        method: "GET",
+        method: 'GET',
       }).then((res) => {
         $scope.bloger.acessToken = res.data.access_token;
       });
@@ -48,14 +51,14 @@ app.connectScope(
     $scope.setBlogerAccessToken = function () {
       $http({
         url: `/api/generator/set-bloger-access_token`,
-        method: "POST",
+        method: 'POST',
         data: { access_token: $scope.bloger.acessToken },
       }).then((res) => {});
     };
     $scope.getBlogerInfo = function () {
       $http({
         url: `/api/generator/get-bloger-info`,
-        method: "GET",
+        method: 'GET',
       }).then((res) => {
         $scope.bloger.info = res.data.bloger;
       });
@@ -67,14 +70,14 @@ app.connectScope(
       }, 1000 * 15);
       $http({
         url: `/api/generator/bloger-write-posts`,
-        method: "POST",
+        method: 'POST',
       }).then((res) => {});
     };
     $scope.getBloggerPosts = function () {
       $scope.busy = true;
       $http({
         url: `/api/generator/get-blogger-posts`,
-        method: "POST",
+        method: 'POST',
       }).then((res) => {
         $scope.bloggerPostList = res.data.list;
       });
@@ -84,10 +87,10 @@ app.connectScope(
       SOCIALBROWSER.copy(text);
     };
 
-    SOCIALBROWSER.on("share", (e, obj) => {
-      if (obj.type == "generator-youtube-channel") {
+    SOCIALBROWSER.on('share', (e, obj) => {
+      if (obj.type == 'generator-youtube-channel') {
         $scope.youtubeAdd({ ...obj.channel });
-      } else if (obj.type == "generator-youtube-video") {
+      } else if (obj.type == 'generator-youtube-video') {
         $scope.addArticle({
           url: obj.url,
           title: obj.title,
@@ -95,9 +98,9 @@ app.connectScope(
           channel: obj.channel,
           is_youtube: true,
         });
-      } else if (obj.type == "generator-facebook-group") {
+      } else if (obj.type == 'generator-facebook-group') {
         $scope.facebookAdd({ ...obj.group });
-      } else if (obj.type == "generator-facebook-post") {
+      } else if (obj.type == 'generator-facebook-post') {
         $scope.addArticle({
           url: obj.url,
           title: obj.title,
@@ -109,8 +112,8 @@ app.connectScope(
     });
 
     $scope.siteDefaultItem = {
-      logo: { url: "/images/site.jpg" },
-      url: "https://egytag.com",
+      logo: { url: '/images/site.jpg' },
+      url: 'https://egytag.com',
     };
 
     $scope.addArticle = function (movie) {
@@ -118,12 +121,13 @@ app.connectScope(
         $scope.ytsSendCount++;
       }
       $http({
-        method: "POST",
-        url: "/api/articles/add",
+        method: 'POST',
+        url: '/api/articles/add',
         data: movie,
       }).then(
         function (response) {
           if (response.data.done) {
+            $scope.addCount++;
             if (movie.is_yts) {
               $scope.ytsAddCount++;
             }
@@ -131,6 +135,7 @@ app.connectScope(
             if (movie.is_yts) {
               $scope.ytsfailCount++;
             }
+            $scope.failCount++;
             $scope.error = response.data.error;
           }
         },
@@ -147,7 +152,7 @@ app.connectScope(
       op.limit = op.limit || 50;
       $http({
         url: `https://yts.mx/api/v2/list_movies.json?limit=${op.limit}&page=${op.page}`,
-        method: "GET",
+        method: 'GET',
       }).then((res) => {
         callback(res.data.data);
       });
@@ -162,31 +167,28 @@ app.connectScope(
 
     $scope.generateYTS = function () {
       $scope.ytsPage++;
-      $scope.fetchYTS(
-        { page: $scope.ytsPage, limit: $scope.ytsLimit },
-        (data) => {
-          $scope.ytsGetCount += data.movies.length;
-          if (data.movies.length > 0) {
-            data.movies.forEach((movie) => {
-              $scope.addArticle({
-                ...movie,
-                is_yts: true,
-                category: $scope.category,
-                host: $scope.host,
-              });
+      $scope.fetchYTS({ page: $scope.ytsPage, limit: $scope.ytsLimit }, (data) => {
+        $scope.ytsGetCount += data.movies.length;
+        if (data.movies.length > 0) {
+          data.movies.forEach((movie) => {
+            $scope.addArticle({
+              ...movie,
+              is_yts: true,
+              category: $scope.category,
+              host: $scope.host,
             });
-            setTimeout(() => {
-              $scope.generateYTS();
-            }, 1000 * 5);
-          }
+          });
+          setTimeout(() => {
+            $scope.generateYTS();
+          }, 1000 * 5);
         }
-      );
+      });
     };
 
     $scope.addFacebookGroup = function (facebookItem) {
       let code_injected = `/*##articles-generator/get-facebook-group-info.js*/`;
-      code_injected += "facebook_run();";
-      SOCIALBROWSER.ipc("[open new popup]", {
+      code_injected += 'facebook_run();';
+      SOCIALBROWSER.ipc('[open new popup]', {
         show: false,
         vip: true,
         url: facebookItem.url,
@@ -203,8 +205,8 @@ app.connectScope(
 
     $scope.addYoutubeChannel = function (youtubeItem) {
       let code_injected = `/*##articles-generator/get-youtube-channel-info.js*/`;
-      code_injected += "xxx_run();";
-      SOCIALBROWSER.ipc("[open new popup]", {
+      code_injected += 'xxx_run();';
+      SOCIALBROWSER.ipc('[open new popup]', {
         show: false,
         vip: true,
         url: youtubeItem.url,
@@ -219,13 +221,11 @@ app.connectScope(
       $scope.youtubeItem = {};
     };
     $scope.getFacebookPostList = function (group) {
-      let code_injected = `SOCIALBROWSER.facebookItem123 = '${SOCIALBROWSER.to123(
-        group
-      )}';`;
-       code_injected += `/*##articles-generator/get-facebook-post-list.js*/`;
-      code_injected += "facebook_run();";
-      SOCIALBROWSER.ipc("[open new popup]", {
-        show: true,
+      let code_injected = `SOCIALBROWSER.facebookItem123 = '${SOCIALBROWSER.to123(group)}';`;
+      code_injected += `/*##articles-generator/get-facebook-post-list.js*/`;
+      code_injected += 'facebook_run();';
+      SOCIALBROWSER.ipc('[open new popup]', {
+        show: false,
         vip: true,
         timeout: 30 * 1000,
         url: group.url,
@@ -238,16 +238,14 @@ app.connectScope(
       });
     };
     $scope.getYoutubeVideoList = function (channel) {
-      let code_injected = `SOCIALBROWSER.youtubeItem123 = '${SOCIALBROWSER.to123(
-        channel
-      )}';`;
+      let code_injected = `SOCIALBROWSER.youtubeItem123 = '${SOCIALBROWSER.to123(channel)}';`;
       code_injected += `/*##articles-generator/get-youtube-video-list.js*/`;
-      code_injected += "xxx_run();";
-      SOCIALBROWSER.ipc("[open new popup]", {
+      code_injected += 'xxx_run();';
+      SOCIALBROWSER.ipc('[open new popup]', {
         show: false,
         vip: true,
         timeout: 30 * 1000,
-        url: channel.url + "/videos",
+        url: channel.url + '/videos',
         eval: code_injected,
         allowAudio: false,
         allowDownload: false,
@@ -258,8 +256,8 @@ app.connectScope(
     };
     $scope.getYoutubeVideoInfo = function (url) {
       let code_injected = `/*##articles-generator/get-youtube-video-info.js*/`;
-      code_injected += "xxx_run();";
-      SOCIALBROWSER.ipc("[open new popup]", {
+      code_injected += 'xxx_run();';
+      SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
         timeout: 15 * 1000,
