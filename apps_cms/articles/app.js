@@ -686,10 +686,12 @@ module.exports = function init(site) {
         });
     });
   };
+
   site.get({ name: '/api/image/:folder/:name', public: true }, (req, res) => {
     res.set('Cache-Control', 'public, max-age=' + 60 * site.options.cache.images);
     res.download(site.options.upload_dir + '/' + req.params.folder + '/' + req.params.name);
   });
+  
 
   site.post({ name: '/api/articles/add', require: { Permissions: ['login'] } }, (req, res) => {
     let response = {

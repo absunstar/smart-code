@@ -188,10 +188,12 @@ app.connectScope(
     $scope.addFacebookGroup = function (facebookItem) {
       let code_injected = `/*##articles-generator/get-facebook-group-info.js*/`;
       code_injected += 'facebook_run();';
+      let url = facebookItem.url.split('?');
+
       SOCIALBROWSER.ipc('[open new popup]', {
         show: false,
         vip: true,
-        url: facebookItem.url,
+        url: url[0],
         timeout: 15 * 1000,
         eval: code_injected,
         allowAudio: false,
@@ -225,7 +227,7 @@ app.connectScope(
       code_injected += `/*##articles-generator/get-facebook-post-list.js*/`;
       code_injected += 'facebook_run();';
       SOCIALBROWSER.ipc('[open new popup]', {
-        show: false,
+        show: true,
         vip: true,
         timeout: 30 * 1000,
         url: group.url,
