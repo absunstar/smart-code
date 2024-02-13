@@ -1,23 +1,21 @@
-function facebookGroup_run() {
+function facebookPage_run() {
   SOCIALBROWSER.onLoad(() => {
+    alert("Collect Page Post List");
 
-    alert("Collect Group Post List");
-
-    if (SOCIALBROWSER.facebookGroupItem123) {
-      SOCIALBROWSER.facebookGroup = JSON.parse(
-        SOCIALBROWSER.from123(SOCIALBROWSER.facebookGroupItem123)
+    if (SOCIALBROWSER.facebookPageItem123) {
+      SOCIALBROWSER.facebookPage = JSON.parse(
+        SOCIALBROWSER.from123(SOCIALBROWSER.facebookPageItem123)
       );
     } else {
-      SOCIALBROWSER.facebookGroup = { title: "" };
+      SOCIALBROWSER.facebookPage = { title: "" };
     }
     let list = [];
     let scroll_number = 500;
 
-
     function collectPosts() {
-      let artic = document.querySelectorAll("[role=feed]")[0];
+      let artic = document.querySelectorAll("[role=article]");
 
-      artic.childNodes.forEach((art) => {
+      artic.forEach((art) => {
         let description = art.querySelector("[data-ad-comet-preview=message]");
         if (description) {
           let seeMore = description.querySelector("[role=button]");
@@ -27,28 +25,15 @@ function facebookGroup_run() {
         }
       });
       setTimeout(() => {
-        let articles = document.querySelectorAll("[role=feed]")[0];
-        articles.childNodes.forEach((article) => {
+        let articles = document.querySelectorAll("[role=article]");
+        articles.forEach((article) => {
           let obj = {};
-          let userName = article.querySelector("h3");
-          let userImage = article.querySelector("image");
-          let userLink = article.querySelector("h3 a");
           let url = article.querySelector("span span span span a");
-          let image = article.querySelector("a [referrerpolicy=origin-when-cross-origin]");
+          let image = article.querySelector(
+            "a [referrerpolicy=origin-when-cross-origin]"
+          );
           let title = article.querySelector("[data-ad-comet-preview=message]");
-          let reacts = article.querySelector("[role=button] span");
 
-          if (userName) {
-            obj.userName = userName.innerText;
-          } else {
-            return;
-          }
-          if (userLink) {
-            obj.userLink = userLink.href;
-          }
-          if (userImage && userImage.href) {
-            obj.userImage = { url: userImage.href.baseVal };
-          }
           if (url) {
             obj.url = url.href;
           }
@@ -60,9 +45,6 @@ function facebookGroup_run() {
           } else {
             obj.title = "";
           }
-          if (reacts) {
-            obj.reacts = reacts.innerText || "0";
-          }
           if (
             obj.image &&
             obj.title &&
@@ -72,11 +54,11 @@ function facebookGroup_run() {
             list.push(obj);
 
             SOCIALBROWSER.share({
-              type: "generator-facebook-group-post",
+              type: "generator-facebook-page-post",
               url: obj.url,
               image: obj.image,
               title: obj.title,
-              group: SOCIALBROWSER.facebookGroup,
+              page: SOCIALBROWSER.facebookPage,
             });
           }
         });
@@ -91,13 +73,3 @@ function facebookGroup_run() {
     }, 2000);
   });
 }
-
-
-
-
-
-
-
-
-
-

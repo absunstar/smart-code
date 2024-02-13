@@ -13,6 +13,11 @@ app.connectScope(
         as: 'facebookGroup',
         modal: '#facebookGroupModal',
       },
+      {
+        name: 'generatorFacebookPageList',
+        as: 'facebookPage',
+        modal: '#facebookPageModal',
+      },
       { name: 'generatorBloger', as: 'blogerManager', modal: '#blogerModal' },
     ],
   },
@@ -101,6 +106,17 @@ app.connectScope(
       } else if (obj.type == 'generator-facebook-group') {
         $scope.facebookGroupAdd({ ...obj.group });
       } else if (obj.type == 'generator-facebook-group-post') {
+        $scope.addArticle({
+          url: obj.url,
+          title: obj.title,
+          image: obj.image,
+          group: obj.group,
+          is_facebook: true,
+        });
+      }else if (obj.type == 'generator-facebook-page') {
+        console.log(obj);
+        $scope.facebookPageAdd({ ...obj.page });
+      } else if (obj.type == 'generator-facebook-page-post') {
         $scope.addArticle({
           url: obj.url,
           title: obj.title,
@@ -205,6 +221,24 @@ app.connectScope(
       $scope.facebookGroupItem = {};
     };
 
+    $scope.addFacebookPage = function (facebookPageItem) {
+      let code_injected = `/*##articles-generator/get-facebook-page-info.js*/`;
+      code_injected += 'facebookPage_run();';
+      SOCIALBROWSER.ipc('[open new popup]', {
+        show: true,
+        vip: true,
+        url: facebookPageItem.url,
+        timeout: 15 * 1000,
+        eval: code_injected,
+        allowAudio: false,
+        allowDownload: false,
+        allowNewWindows: false,
+        allowSaveUserData: false,
+        allowSaveUrls: false,
+      });
+      $scope.facebookPageItem = {};
+    };
+
     $scope.addYoutubeChannel = function (youtubeItem) {
       let code_injected = `/*##articles-generator/get-youtube-channel-info.js*/`;
       code_injected += 'xxx_run();';
@@ -231,6 +265,23 @@ app.connectScope(
         vip: true,
         timeout: 30 * 1000,
         url: group.url,
+        eval: code_injected,
+        allowAudio: false,
+        allowDownload: false,
+        allowNewWindows: false,
+        allowSaveUserData: false,
+        allowSaveUrls: false,
+      });
+    };
+    $scope.getFacebookPagePostList = function (page) {
+      let code_injected = `SOCIALBROWSER.facebookPageItem123 = '${SOCIALBROWSER.to123(page)}';`;
+      code_injected += `/*##articles-generator/get-facebook-page-post-list.js*/`;
+      code_injected += 'facebookPage_run();';
+      SOCIALBROWSER.ipc('[open new popup]', {
+        show: true,
+        vip: true,
+        timeout: 30 * 1000,
+        url: page.url,
         eval: code_injected,
         allowAudio: false,
         allowDownload: false,
@@ -275,5 +326,6 @@ app.connectScope(
     $scope.siteLoadAll();
     $scope.youtubeLoadAll();
     $scope.facebookGroupLoadAll();
+    $scope.facebookPageLoadAll();
   }
 );

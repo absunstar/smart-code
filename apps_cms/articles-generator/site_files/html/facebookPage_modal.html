@@ -1,0 +1,59 @@
+<div id="facebookPageModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.Facebook Page Manager##</h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.New Facebook Page##</legend>
+        <div class="row">
+          <i-control ng-model="facebookPageItem.url" label="##word.Page URL##"></i-control>
+        </div>
+        <i-button ng-click="addFacebookPage(facebookPageItem)" label="##word.Add To Page List##"></i-button>
+      </fieldset>
+      <div class="row margin padding">
+        <table class="table">
+          <tr>
+            <th>##word.logo##</th>
+            <th>##word.title##</th>
+            <th>##word.Options##</th>
+            <th>##word.Actions##</th>
+          </tr>
+          <tr ng-repeat="page in facebookPageList">
+            <td><img class="logo" ng-src="{{page.image.url}}" /></td>
+            <td class="bold">
+              <p>{{page.title}}</p>
+              <a href="{{page.url}}"></a>
+            </td>
+            <td>
+              <i-list label="##word.category##" ng-model="page.category" items="categoryList"></i-list>
+              <i-control label="##word.host##" ng-model="page.host"></i-control>
+            </td>
+            <td>
+              <i-button label="##word.Load Posts##" type="search" ng-click="getFacebookPagePostList(page)"></i-button>
+              <i-button type="save" ng-click="facebookPageUpdate(page)"></i-button>
+              <i-button type="delete" ng-click="facebookPageDelete(page)"></i-button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <table class="table">
+        <tr>
+          <th>Add</th>
+          <th>Fail</th>
+        </tr>
+        <tr>
+          <td>{{addCount}}</td>
+          <td>{{failCount}}</td>
+        </tr>
+      </table>
+      <p class="error">{{error}}</p>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#facebookPageModal')"></i-button>
+    </div>
+  </div>
+</div>

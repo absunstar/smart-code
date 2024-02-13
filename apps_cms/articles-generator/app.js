@@ -4,6 +4,7 @@ module.exports = function init(site) {
   let sites = site.connectApp({ name: 'generatorSites', allowMemory: true });
   let youtubeChannelList = site.connectApp({ name: 'generatorYoutubeChannelList', allowMemory: true });
   let facebookGroupList = site.connectApp({ name: 'generatorFacebookGroupList', allowMemory: true });
+  let facebookPageList = site.connectApp({ name: 'generatorFacebookPageList', allowMemory: true });
 
   site.onGET(
     {

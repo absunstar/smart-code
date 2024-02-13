@@ -946,23 +946,41 @@ module.exports = function init(site) {
           if (articlesDoc.facebook.group.host) {
             articlesDoc.host = articlesDoc.facebook.group.host;
           }
+          articlesDoc.translatedList[0].tagsList = [
+            ...site.removeHtml(articlesDoc.facebook.group.title).split(" "),
+            "facebook",
+            "post",
+          ];
+          articlesDoc.translatedList[0].keyWordsList = [
+            ...site.removeHtml(articlesDoc.facebook.title).split(" "),
+            ...site.removeHtml(articlesDoc.facebook.group.title).split(" "),
+          ];
         }
 
+        if (articlesDoc.facebook.page) {
+          if (articlesDoc.facebook.page.category) {
+            articlesDoc.category = articlesDoc.facebook.page.category;
+          }
+          if (articlesDoc.facebook.page.host) {
+            articlesDoc.host = articlesDoc.facebook.page.host;
+          }
+          articlesDoc.translatedList[0].tagsList = [
+            ...site.removeHtml(articlesDoc.facebook.page.title).split(" "),
+            "facebook",
+            "post",
+          ];
+          articlesDoc.translatedList[0].keyWordsList = [
+            ...site.removeHtml(articlesDoc.facebook.title).split(" "),
+            ...site.removeHtml(articlesDoc.facebook.page.title).split(" "),
+          ];
+        }
         articlesDoc.showInMainSlider = true;
         articlesDoc.showOnTop = true;
 
-        articlesDoc.translatedList[0].tagsList = [
-          ...site.removeHtml(articlesDoc.facebook.group.title).split(" "),
-          "facebook",
-          "post",
-        ];
-        articlesDoc.translatedList[0].keyWordsList = [
-          ...site.removeHtml(articlesDoc.facebook.title).split(" "),
-          ...site.removeHtml(articlesDoc.facebook.group.title).split(" "),
-        ];
+      
         articlesDoc.translatedList[0].textContent = articlesDoc.facebook.title;
         articlesDoc.translatedList[0].title = articlesDoc.facebook.title
-          ? articlesDoc.facebook.title.slice(0, 20)
+          ? articlesDoc.facebook.title.slice(0, 30)
           : "";
         articlesDoc.translatedList[0].image = {
           url: articlesDoc.facebook.image?.url,
