@@ -1,16 +1,15 @@
-function facebook_run() {
+function facebookGroup_run() {
   SOCIALBROWSER.onLoad(() => {
 
     alert("Collect Group Post List");
 
-    if (SOCIALBROWSER.facebookItem123) {
+    if (SOCIALBROWSER.facebookGroupItem123) {
       SOCIALBROWSER.facebookGroup = JSON.parse(
-        SOCIALBROWSER.from123(SOCIALBROWSER.facebookItem123)
+        SOCIALBROWSER.from123(SOCIALBROWSER.facebookGroupItem123)
       );
     } else {
       SOCIALBROWSER.facebookGroup = { title: "" };
     }
-
     let list = [];
     let scroll_number = 500;
 
@@ -31,7 +30,6 @@ function facebook_run() {
         let articles = document.querySelectorAll("[role=feed]")[0];
         articles.childNodes.forEach((article) => {
           let obj = {};
-
           let userName = article.querySelector("h3");
           let userImage = article.querySelector("image");
           let userLink = article.querySelector("h3 a");
@@ -74,7 +72,7 @@ function facebook_run() {
             list.push(obj);
 
             SOCIALBROWSER.share({
-              type: "generator-facebook-post",
+              type: "generator-facebook-group-post",
               url: obj.url,
               image: obj.image,
               title: obj.title,
@@ -83,9 +81,9 @@ function facebook_run() {
           }
         });
 
+        window.scrollTo(0, scroll_number);
+        scroll_number += 1000;
       }, 1000);
-      window.scrollTo(0, scroll_number);
-      scroll_number += 1000;
     }
 
     setInterval(() => {

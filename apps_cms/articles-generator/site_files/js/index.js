@@ -10,8 +10,8 @@ app.connectScope(
       },
       {
         name: 'generatorFacebookGroupList',
-        as: 'facebook',
-        modal: '#facebookModal',
+        as: 'facebookGroup',
+        modal: '#facebookGroupModal',
       },
       { name: 'generatorBloger', as: 'blogerManager', modal: '#blogerModal' },
     ],
@@ -99,8 +99,8 @@ app.connectScope(
           is_youtube: true,
         });
       } else if (obj.type == 'generator-facebook-group') {
-        $scope.facebookAdd({ ...obj.group });
-      } else if (obj.type == 'generator-facebook-post') {
+        $scope.facebookGroupAdd({ ...obj.group });
+      } else if (obj.type == 'generator-facebook-group-post') {
         $scope.addArticle({
           url: obj.url,
           title: obj.title,
@@ -185,10 +185,10 @@ app.connectScope(
       });
     };
 
-    $scope.addFacebookGroup = function (facebookItem) {
+    $scope.addFacebookGroup = function (facebookGroupItem) {
       let code_injected = `/*##articles-generator/get-facebook-group-info.js*/`;
-      code_injected += 'facebook_run();';
-      let url = facebookItem.url.split('?');
+      code_injected += 'facebookGroup_run();';
+      let url = facebookGroupItem.url.split('?');
 
       SOCIALBROWSER.ipc('[open new popup]', {
         show: false,
@@ -202,7 +202,7 @@ app.connectScope(
         allowSaveUserData: false,
         allowSaveUrls: false,
       });
-      $scope.facebookItem = {};
+      $scope.facebookGroupItem = {};
     };
 
     $scope.addYoutubeChannel = function (youtubeItem) {
@@ -222,10 +222,10 @@ app.connectScope(
       });
       $scope.youtubeItem = {};
     };
-    $scope.getFacebookPostList = function (group) {
-      let code_injected = `SOCIALBROWSER.facebookItem123 = '${SOCIALBROWSER.to123(group)}';`;
-      code_injected += `/*##articles-generator/get-facebook-post-list.js*/`;
-      code_injected += 'facebook_run();';
+    $scope.getFacebookGroupPostList = function (group) {
+      let code_injected = `SOCIALBROWSER.facebookGroupItem123 = '${SOCIALBROWSER.to123(group)}';`;
+      code_injected += `/*##articles-generator/get-facebook-group-post-list.js*/`;
+      code_injected += 'facebookGroup_run();';
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
@@ -274,6 +274,6 @@ app.connectScope(
     };
     $scope.siteLoadAll();
     $scope.youtubeLoadAll();
-    $scope.facebookLoadAll();
+    $scope.facebookGroupLoadAll();
   }
 );

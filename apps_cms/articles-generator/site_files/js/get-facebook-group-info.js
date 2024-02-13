@@ -1,6 +1,6 @@
-function facebook_run() {
+function facebookGroup_run() {
   SOCIALBROWSER.onLoad(() => {
-    alert('Facebook Info Activated');
+    alert('Facebook Group Info Activated');
     let group = {
       url: document.location.href,
     };

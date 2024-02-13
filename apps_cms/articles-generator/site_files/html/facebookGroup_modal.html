@@ -1,17 +1,17 @@
-<div id="facebookModal" class="modal" fixed>
+<div id="facebookGroupModal" class="modal" fixed>
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>##word.Facebook Manager##</h2>
+      <h2>##word.Facebook Group Manager##</h2>
     </div>
 
     <div class="modal-body">
       <fieldset>
         <legend>##word.New Facebook Group##</legend>
         <div class="row">
-          <i-control ng-model="facebookItem.url" label="##word.Group URL##"></i-control>
+          <i-control ng-model="facebookGroupItem.url" label="##word.Group URL##"></i-control>
         </div>
-        <i-button ng-click="addFacebookGroup(facebookItem)" label="##word.Add To Group List##"></i-button>
+        <i-button ng-click="addFacebookGroup(facebookGroupItem)" label="##word.Add To Group List##"></i-button>
       </fieldset>
       <div class="row margin padding">
         <table class="table">
@@ -21,7 +21,7 @@
             <th>##word.Options##</th>
             <th>##word.Actions##</th>
           </tr>
-          <tr ng-repeat="group in facebookList">
+          <tr ng-repeat="group in facebookGroupList">
             <td><img class="logo" ng-src="{{group.image.url}}" /></td>
             <td class="bold">
               <p>{{group.title}}</p>
@@ -32,9 +32,9 @@
               <i-control label="##word.host##" ng-model="group.host"></i-control>
             </td>
             <td>
-              <i-button label="##word.Load Posts##" type="search" ng-click="getFacebookPostList(group)"></i-button>
-              <i-button type="save" ng-click="facebookUpdate(group)"></i-button>
-              <i-button type="delete" ng-click="facebookDelete(group)"></i-button>
+              <i-button label="##word.Load Posts##" type="search" ng-click="getFacebookGroupPostList(group)"></i-button>
+              <i-button type="save" ng-click="facebookGroupUpdate(group)"></i-button>
+              <i-button type="delete" ng-click="facebookGroupDelete(group)"></i-button>
             </td>
           </tr>
         </table>
@@ -53,7 +53,7 @@
         </tr>
       </table>
       <p class="error">{{error}}</p>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal('#facebookModal')"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#facebookGroupModal')"></i-button>
     </div>
   </div>
 </div>
