@@ -225,6 +225,7 @@ module.exports = function init(site) {
       doc.is_youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
+      doc.$content = lang.textContent || lang.htmlContent || '';
     } else if (doc.type.id == 9) {
       doc.$title = doc.$title.substring(0, 70);
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
