@@ -221,6 +221,7 @@ module.exports = function init(site) {
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
       doc.$backgroundURL = doc.$coverURL;
+      doc.$content = lang.textContent || lang.htmlContent || '';
     } else if (doc.type.id == 8) {
       doc.is_youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
