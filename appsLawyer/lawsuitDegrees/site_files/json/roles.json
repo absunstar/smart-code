@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "lawsuitDegreesAdmin",
+    "En": "Lawsuit Degrees Admin",
+    "Ar": "إدارة درجات الدعوى",
+    "permissions": ["lawsuitDegreesManage"]
+}]

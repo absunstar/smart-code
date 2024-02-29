@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "adjectivesInLawsuitAdmin",
+    "En": "Adjectives In Lawsuit Admin",
+    "Ar": "إدارة الصفات في الدعوى",
+    "permissions": ["adjectivesInLawsuitManage"]
+}]

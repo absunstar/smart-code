@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "powerOfAttorneyAdmin",
+    "En": "Power Of Attorney Admin",
+    "Ar": "إدارة التوكيلات",
+    "permissions": ["powerOfAttorneyManage"]
+}]

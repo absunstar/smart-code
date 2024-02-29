@@ -1,0 +1,224 @@
+@media only screen and (max-width: 768px) {
+    body{
+        padding-right: 12px !important;
+        padding-left: 12px !important;
+    }
+    main .mainContent .content {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+    
+    .headTitle {
+        font-size: 32px !important;
+    }
+    /*Start Header*/
+    .HeaderContanier .smScreen{
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        height: fit-content;
+        padding: 16px !important;
+        margin-top: 24px !important;
+        gap: 16px;
+        border-radius: 8px;
+        background: #FFF;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .HeaderContanier .smScreen .logoAndNav {
+        max-width: 100% ;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+    }
+
+    
+    .HeaderContanier .smScreen .logoAndNav .logo{
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+    }
+    .HeaderContanier .smScreen .logoAndNav .logo p{
+        color: #000;
+         
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 30px; /* 100% */
+    }
+    
+    .HeaderContanier .smScreen .logoAndNav .logo img{
+        width: 49.362px;
+        height: 44.426px;
+        flex-shrink: 0;
+    }
+
+    .HeaderContanier .smScreen .logoAndNav .burgerMenu{
+        width: fit-content !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        background-color: var( --burgerMenu-background-color);
+        padding: 10px !important;
+        border-radius: 8px;
+    }
+
+    .HeaderContanier .smScreen .logoAndNav .burgerMenu .fas{
+
+        font-size: 26px;
+        color: var( --burgerMenu-icon-color);
+
+    }
+    
+    .HeaderContanier .smScreen .menuContainer{
+        max-width: 100% !important;
+        width: 100%;
+        max-height: 110vh;
+        height: 110vh;
+        position: absolute;
+        left: 0;
+        top: 10px;
+        z-index: 9999;
+        background-color: var(--main-background-color1);
+        padding: 16px !important;
+        transform: translateX(770px);
+        transition: transform 0.3s ease;
+    }
+
+    .HeaderContanier .smScreen .menuContainer.open{
+        transform: translateX(0px);
+    }
+
+    .HeaderContanier .smScreen .menuContainer .closeBtn{
+        font-size: 24px;
+    }
+
+    .HeaderContanier .smScreen .menuContainer .searchContanier{
+        display: flex;
+        height: 50px;
+        padding: 0px 8px !important;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        flex: 1 0 0;
+        border-radius: 8px;
+        background: #FFF;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    .HeaderContanier .smScreen .menuContainer .searchContanier .searchInput{
+        border: none;
+        width: -webkit-fill-available;
+        height: 40px;
+    }
+    .HeaderContanier .smScreen .menuContainer .searchContanier .filterButton{
+        width: 23px;
+        height: 23px;
+        background-color: #ffffff00;
+        border: none;
+    }
+    .HeaderContanier .smScreen .menuContainer .searchContanier .searchButton{
+        width: 50px;
+        height: 39px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 8px;
+    }
+    .HeaderContanier .smScreen .menuContainer .orderButton{
+        width: 100%;
+        position: relative;
+        bottom: -62vh;
+    }
+    .HeaderContanier .smScreen .menuContainer .orderButton p{
+        color: #FFF;
+         
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 23px; /* 95.833% */
+        line-height: 0px;
+        margin-bottom: 0px !important;
+    }
+    .HeaderContanier .smScreen .menuContainer .orderButton svg{
+        width: 27.6px;
+        height: 20.444px;
+        flex-shrink: 0;
+        color: #FFF;
+    }
+    .HeaderContanier .smScreen .menuContainer .logoAndNav nav .container-fluid{
+        justify-content: end;
+    }
+    .HeaderContanier .smScreen .menuContainer .logoAndNav .nav{
+        display: flex;
+    }
+    .HeaderContanier .smScreen .menuContainer .logoAndNav .nav ul{
+        display: flex;
+        width: fit-content;
+        list-style: none;
+        gap: 8px;
+        margin-bottom: 0px !important;
+    
+    }
+    .HeaderContanier .smScreen .menuContainer .logoAndNav .nav ul li a{
+        color: #000;
+         
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 30px; /* 166.667% */
+        margin-bottom: 0px !important;
+        text-decoration: none;
+    }
+    nav .container-fluid #navbarNavDropdown .navbar-nav .dropdown .dropdown-menu li .dropdown-item {
+        padding: 0.25rem 1rem !important;
+        border-bottom: 1px solid #d9d9d94a !important;
+    }
+
+    .HeaderContanier .smScreen .menuContainer .userContainer {
+        display: flex;
+        justify-content: flex-end !important;
+    }
+    .HeaderContanier .smScreen .menuContainer .userContainer .profile{
+        width: 50px;
+        height: 50px;
+        position: relative;
+        border-radius: 100px;
+        background: #1E1E1E;
+    }
+    .HeaderContanier .smScreen .menuContainer .userContainer .profile img{
+        width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    border-radius: 100px;
+    }
+    /*End Header*/
+    main .mainContent .content .contactUsContainer .contactUs .contactUsDatas .contactUsData {
+        font-size: 18px;
+    }
+    main .mainContent .content .contactUsContainer .contactUs .locationMap iframe {
+        margin-top: 24px;
+        margin-right: 0px;
+    }
+
+    main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant {
+        width: 100%;
+    }
+
+    main .mainContent .storysContainer .storys .storysAccounts::-webkit-scrollbar {
+        display: none;
+    }
+
+    main .content .lawSectionsConatiner .lawSectoins .lawSection::-webkit-scrollbar {
+        display: none;
+    }
+
+    main .mainContent .sidebarContainer .sidebar {
+        position:relative;
+        overflow-y:unset;
+    }
+    
+}

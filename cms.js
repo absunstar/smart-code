@@ -614,6 +614,7 @@ site.get('ads.txt', (req, res) => {
     res.txt('0/ads.txt');
   }
 });
+
 site.get('robots.txt', (req, res) => {
   let setting = site.getSiteSetting(req.host);
   if (setting && setting.adsTxt) {

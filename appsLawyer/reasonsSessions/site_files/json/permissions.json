@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "reasonsSessions", "name": "reasonsSessionsImport", "En": "Import", "Ar": "إستيراد" }
+]

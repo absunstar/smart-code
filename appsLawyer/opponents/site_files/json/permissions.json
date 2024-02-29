@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "opponents", "name": "opponentsImport", "En": "Import", "Ar": "إستيراد" }
+]

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="theme1/head.html"> 
+   <!--  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
+  </head>
+
+  <body class="##session.lang##">
+     <div x-import="theme1/header.html"></div>
+     
+
+    <div id="main-layout" class="container" x-import="courts/_.html" x-permissions="login"></div>
+   <!--  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+    defer
+  ></script> -->
+
+    <div x-import="theme1/footer.html"></div>
+    <script x-import="courts/index.js"></script>
+  </body>
+</html>

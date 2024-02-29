@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "typesLawsuit", "name": "typesLawsuitImport", "En": "Import", "Ar": "إستيراد" }
+]

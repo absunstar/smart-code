@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "lawsuitDegrees", "name": "lawsuitDegreesImport", "En": "Import", "Ar": "إستيراد" }
+]

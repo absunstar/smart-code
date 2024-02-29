@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "statusLawsuit", "name": "statusLawsuitImport", "En": "Import", "Ar": "إستيراد" }
+]

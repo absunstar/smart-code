@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "typesPoaAdmin",
+    "En": "Types POA Admin",
+    "Ar": "إدارة أنواع التوكيلات",
+    "permissions": ["typesPoaManage"]
+}]

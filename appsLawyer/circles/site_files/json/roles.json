@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "circlesAdmin",
+    "En": "Circles Admin",
+    "Ar": "إدارة الدوائر",
+    "permissions": ["circlesManage"]
+}]

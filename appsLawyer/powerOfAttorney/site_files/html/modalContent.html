@@ -1,0 +1,307 @@
+<div class="row">
+  <div class="row">
+    <i-control
+      ng-hide="disabledCode"
+      class="col3"
+      label="##word.Code##"
+      ng-model="item.code"
+    >
+    </i-control>
+    <i-date class="col3" label="##word.Date##" ng-model="item.date"> </i-date>
+    <i-date
+      v="r"
+      class="col3"
+      label="##word.Power Of Attorney Date##"
+      ng-model="item.powerOfAttorneyDate"
+    >
+    </i-date>
+  </div>
+  <div class="row">
+    <i-list
+      class="col3"
+      v="r"
+      label="##word.Type of power of attorney##"
+      ng-model="item.type"
+      display="name"
+      items="typesPoaList"
+      ng-get="getTypesPoaList($search)"
+    ></i-list>
+    <i-control
+      class="col3"
+      type="text"
+      v="r"
+      ng-model="item.letter"
+      label="##word.Power of attorney letter##"
+    ></i-control>
+    <i-control
+      class="col3"
+      type="text"
+      v="r"
+      ng-model="item.number"
+      label="##word.Power of attorney number##"
+    ></i-control>
+    <i-control
+      class="col3"
+      type="text"
+      v="r"
+      ng-model="item.year"
+      label="##word.For a year##"
+    ></i-control>
+  </div>
+  <fieldset>
+    <div class="tabs">
+      <div class="tabs-header full">
+        <a
+          class="tab-link"
+          onclick="site.showTabContent(event, '#informations')"
+        >
+          <span>##word.Informatins## </span></a
+        >
+        <a class="tab-link" onclick="site.showTabContent(event, '#clients')">
+          <span>##word.Clients## </span></a
+        >
+        <a class="tab-link" onclick="site.showTabContent(event, '#files')">
+          <span>##word.Files## </span></a
+        >
+      </div>
+
+      <div class="tabs-content">
+        <div id="informations" class="tab-content">
+          <fieldset>
+            <legend>##word.Place of power of attorney##</legend>
+            <div class="row">
+              <i-list
+                class="col6"
+                label="# ##word.Country##"
+                ng-change="getGovesList(item.country)"
+                ng-model="item.country"
+                display="name##session.lang##"
+                items="countriesList"
+                display2="callingCode"
+                ng-get="getCountriesList($search)"
+              ></i-list>
+              <i-list
+                help-id=""
+                class="col6"
+                label="# ##word.Governorate##"
+                ng-change="getCitiesList(item.gov)"
+                ng-model="item.gov"
+                display="name##session.lang##"
+                items="govesList"
+                ng-search="item.$gov"
+              ></i-list>
+            </div>
+
+            <div class="row">
+              <i-list
+                class="col6"
+                label="# ##word.City##"
+                ng-model="item.city"
+                ng-change="getAreasList(item.city)"
+                items="citiesList"
+                display="name##session.lang##"
+                ng-search="item.$area.$cityitem"
+              >
+              </i-list>
+              <i-list
+                class="col6"
+                label="# ##word.Area##"
+                ng-model="item.area"
+                items="areasList"
+                display="name##session.lang##"
+                ng-search="customer.$area.$areaitem"
+              >
+              </i-list>
+            </div>
+          </fieldset>
+          <fieldset>
+            <h3>##word.Description## :</h3>
+            <i-content ng-model="item.description" label="##word.Description##">
+            </i-content>
+          </fieldset>
+        </div>
+        <div id="clients" class="tab-content">
+          <fieldset>
+            <legend>##word.Clients##</legend>
+            <div class="row">
+              <i-list
+                class="col6"
+                label="##word.Client##"
+                ng-model="item.$client"
+                display="name##session.lang##"
+                items="clientsList"
+                ng-get="getClientsList($search)"
+              ></i-list>
+              <div class="col3">
+                <br />
+                <i-button
+                  type="push"
+                  label="##word.Add##"
+                  ng-click="addClients()"
+                ></i-button>
+              </div>
+            </div>
+            <p class="error">{{item.$clientError}}</p>
+            <table class="table hover bold" id="t1">
+              <tr>
+                <th class="w150">##word.Logo##</th>
+                <th>##word.Code##</th>
+                <th>##word.Name##</th>
+                <th class="not-print">##word.Actions##</th>
+              </tr>
+              <tr ng-repeat="c in item.clientsList">
+                <td>
+                  <i-image
+                    view
+                    class="logo center"
+                    ng-model="c.client.image"
+                  ></i-image>
+                </td>
+                <td class="center blue">{{c.client.code}}</td>
+                <td class="center">{{c.client.name##session.lang##}}</td>
+                <td class="center">
+                  <i-button
+                    type="delete"
+                    ng-click="item.clientsList.splice($index,1)"
+                  ></i-button>
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+          <fieldset>
+            <legend>##word.Clients Lawyers##</legend>
+            <div class="row">
+              <i-list
+                class="col6"
+                label="##word.Client Lawyer##"
+                ng-model="item.$clientLawyer"
+                display="fullName##session.lang##"
+                items="clientsLawyersList"
+                ng-get="getClientsLawyersList($search)"
+              ></i-list>
+              <div class="col3">
+                <br />
+                <i-button
+                  type="push"
+                  label="##word.Add##"
+                  ng-click="addClientsLawyers()"
+                ></i-button>
+              </div>
+            </div>
+            <p class="error">{{item.$clientLawyerError}}</p>
+            <table class="table hover bold" id="t1">
+              <tr>
+                <th class="w150">##word.Logo##</th>
+                <th>##word.Code##</th>
+                <th>##word.Name##</th>
+                <th class="not-print">##word.Actions##</th>
+              </tr>
+              <tr ng-repeat="c in item.clientsLawyersList">
+                <td>
+                  <i-image
+                    view
+                    class="logo center"
+                    ng-model="c.lawyer.image"
+                  ></i-image>
+                </td>
+                <td class="center blue">{{c.lawyer.code}}</td>
+                <td class="center">{{c.lawyer.fullName##session.lang##}}</td>
+                <td class="center">
+                  <i-button
+                    type="delete"
+                    ng-click="item.clientsLawyersList.splice($index,1)"
+                  ></i-button>
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+        </div>
+        <div id="files" class="tab-content">
+          <fieldset>
+            <legend>
+              <i-button type="push" ng-click="addFiles()"></i-button>
+              ##word.Documents##
+            </legend>
+
+            <div class="row" ng-repeat="f in customer.filesList">
+              <div class="row">
+                <div class="col10">
+                  <div class="row">
+                    <i-list
+                      class="col4"
+                      label="##word.Document Type##"
+                      ng-model="f.fileType"
+                      items="documentsTypesList"
+                      display="name##session.lang##"
+                      ng-search="customer.$fileType"
+                    >
+                    </i-list>
+
+                    <i-control
+                      class="col3"
+                      label="##word.File Name##"
+                      ng-model="f.fileName"
+                    >
+                    </i-control>
+
+                    <i-date
+                      class="col4"
+                      ng-model="f.fileDate"
+                      label="##word.File Date##"
+                    ></i-date>
+
+                    <i-file ng-model="f.file"></i-file>
+                  </div>
+                </div>
+                <div class="col2 center">
+                  <br />
+                  <br />
+                  <i-button
+                    type="delete"
+                    title="##word.Delete##"
+                    ng-click="customer.filesList.splice($index,1)"
+                  >
+                  </i-button>
+                </div>
+              </div>
+              <br />
+              <br />
+              <hr
+                style="
+                  height: 5px;
+                  color: grey;
+                  background-color: rgb(0, 0, 199);
+                "
+              />
+              <br />
+              <br />
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Add Info##</th>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.addUserInfo.name}}</p>
+        <small class="green"> {{item.addUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.addUserInfo.ip}}</p>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

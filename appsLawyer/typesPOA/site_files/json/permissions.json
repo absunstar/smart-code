@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "typesPoa", "name": "typesPoaImport", "En": "Import", "Ar": "إستيراد" }
+]

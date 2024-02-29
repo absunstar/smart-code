@@ -1,0 +1,7 @@
+[
+    { "module_name" : "public" , "screen_name" : "site-setting" , "name":"default_setting_manage" , "EN":"Manage" , "AR":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "site-setting" , "name":"default_setting_edit" , "EN":"Edit" , "AR":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "site-setting" , "name":"default_setting_view" , "EN":"View" , "AR":"عرض"},
+    { "module_name" : "public" , "screen_name" : "site-setting" , "name":"default_setting_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"}
+
+]

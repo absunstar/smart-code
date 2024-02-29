@@ -1,0 +1,35 @@
+main .content .lawSectionsConatiner .lawSectoins .lawSection {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  cursor: grab;
+  padding: 0px;
+}
+
+main .content .lawSectionsConatiner .lawSectoins .lawSection::-webkit-scrollbar {
+  display: none;
+}
+
+main .content .lawSectionsConatiner .lawSectoins .lawSection .section {
+  position: relative;
+  cursor: pointer;
+}
+main .content .lawSectionsConatiner .lawSectoins .lawSection .section .sectionImg {
+  width: 260px;
+  height: 100px;
+  min-width: 260px;
+  min-height: 100px;
+  background: #272727;
+}
+main .content .lawSectionsConatiner .lawSectoins .lawSection .section .sectionTitle {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  background: #0000002e;
+  margin: 0 auto;
+  color: #ffffff;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  text-shadow: 0 0 8px #121212;
+}

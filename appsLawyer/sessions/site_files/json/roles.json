@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "sessionsAdmin",
+    "En": "Sessions Admin",
+    "Ar": "إدارة الجلسات",
+    "permissions": ["sessionsManage"]
+}] 

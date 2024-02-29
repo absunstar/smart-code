@@ -1,0 +1,52 @@
+<div id="statusModal" class="modal small" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+
+      <p class="center" ng-show="item.$done == false">
+        ##word.Not implemented##
+        <i class="fa fa-file"></i>
+      </p>
+      <p class="center" ng-show="item.$done">
+        ##word.Implemented##
+        <i class="fa fa-file"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <p
+          class="font-25 center text-danger bold"
+          ng-show="item.$done == false"
+        >
+          ##word.Confirm the not implemented administrative work##
+        </p>
+        <p class="font-25 center text-success bold" ng-show="item.$done">
+          ##word.Confirm the implemented administrative work##
+        </p>
+        <br />
+        <hr />
+        <br />
+      </div>
+      <fieldset>
+        <h3>##word.Notes## :</h3>
+        <i-content ng-model="item.implementedNotes" label="##word.Notes##">
+        </i-content>
+      </fieldset>
+      <div class="modal-footer center">
+        <p class="error">{{error}}</p>
+
+        <i-button
+          type="save"
+          label="##word.Save##"
+          ng-click="updateImplemente(item)"
+        ></i-button>
+        <i-button
+          type="close"
+          label="##word.Close##"
+          onclick="site.hideModal( '#statusModal')"
+        ></i-button>
+      </div>
+    </div>
+  </div>
+</div>

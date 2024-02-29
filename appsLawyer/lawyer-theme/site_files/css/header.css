@@ -1,0 +1,137 @@
+.HeaderContanier .lgScreen {
+  display: none;
+  height: 100px;
+  padding: 0px 24px !important;
+  margin-top: 24px !important;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--main-background-color2);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.HeaderContanier .lgScreen .logo a {
+  display: flex;
+  width: 166.766px;
+  height: 44.426px;
+}
+.HeaderContanier .lgScreen .logo p {
+  color: #000;
+
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 100% */
+}
+
+.HeaderContanier .lgScreen .logo img {
+  width: 49.362px;
+  height: 44.426px;
+  flex-shrink: 0;
+}
+
+.HeaderContanier .lgScreen .governorat .dropdown .dropdown-menu {
+  width: inherit;
+}
+
+.HeaderContanier .lgScreen .governorat .dropdown .dropdown-menu .dropdown-item {
+  padding: 0.25rem 1rem !important;
+  border-bottom: 1px solid #d9d9d94a !important;
+}
+
+.HeaderContanier .lgScreen .searchContanier {
+  display: flex;
+  height: 50px;
+  padding: 0px 8px !important;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  border-radius: 8px;
+  background: var(--main-background-color2);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.HeaderContanier .lgScreen .searchContanier .searchInput {
+  border: none;
+  width: -webkit-fill-available;
+  height: 40px;
+  text-align: right;
+}
+.HeaderContanier .lgScreen .searchContanier .searchInput:focus-visible {
+  outline: none;
+}
+.HeaderContanier .lgScreen .searchContanier .filterButton {
+  width: 23px;
+  height: 23px;
+  background-color: #ffffff00;
+  border: none;
+}
+.HeaderContanier .lgScreen .searchContanier .searchButton {
+  width: 50px;
+  height: 39px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px !important;
+}
+
+.HeaderContanier .lgScreen .orderButton p {
+  color: #fff;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px; /* 95.833% */
+  line-height: 0px;
+  margin-bottom: 0px !important;
+}
+.HeaderContanier .lgScreen .orderButton svg {
+  width: 27.6px;
+  height: 20.444px;
+  flex-shrink: 0;
+  color: #fff;
+}
+.HeaderContanier .lgScreen .nav {
+  display: flex;
+}
+.HeaderContanier .lgScreen .nav ul {
+  display: flex;
+  width: fit-content;
+  list-style: none;
+  gap: 8px;
+  margin-bottom: 0px !important;
+}
+.HeaderContanier .lgScreen .nav ul li a {
+  color: #000;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 166.667% */
+  margin-bottom: 0px !important;
+  text-decoration: none;
+}
+nav .container-fluid #navbarNavDropdown .navbar-nav .dropdown .dropdown-menu li .dropdown-item {
+  padding: 0.25rem 1rem !important;
+  border-bottom: 1px solid #d9d9d94a !important;
+}
+.HeaderContanier .lgScreen .userContainer {
+}
+.HeaderContanier .lgScreen .userContainer .profile {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 100px;
+  background: #1e1e1e;
+}
+.HeaderContanier .lgScreen .userContainer .profile img {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  border-radius: 100px;
+}

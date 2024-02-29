@@ -1,0 +1,30 @@
+<div id="dynamicRoutes" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        Dynamic Routes
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="row">
+          <i-control label="URL" class="col10" type="text" v="r" ng-model="dynamicRoute.url"> </i-control>
+          <i-checkbox class="col2" label="active" ng-model="dynamicRoute.active"> </i-checkbox>
+          
+        </div>
+        <i-control label="Content Type" type="text" v="r" ng-model="dynamicRoute.contentType"> </i-control>
+        <i-textarea ng-model="dynamicRoutes.content" v="r" label="Content"> </i-textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="add" label="##word.add##" ng-click="addDynamicRoutes(dynamicRoute)"></i-button>
+
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#dynamicRoutes')"></i-button>
+    </div>
+  </div>
+</div>

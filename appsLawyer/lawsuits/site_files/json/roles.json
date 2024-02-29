@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "lawsuitsAdmin",
+    "En": "Lawsuits Admin",
+    "Ar": "إدارة الدعاوى القضائية",
+    "permissions": ["lawsuitsManage"]
+}]

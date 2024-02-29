@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneySearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "powerOfAttorney", "name": "powerOfAttorneyImport", "En": "Import", "Ar": "إستيراد" }
+]

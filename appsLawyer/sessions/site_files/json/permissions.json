@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "sessions", "name": "sessionsImport", "En": "Import", "Ar": "إستيراد" }
+]

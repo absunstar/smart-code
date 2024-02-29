@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="rtl" ng-app="myApp">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://egytag.com/x-css/bootstrap-5-support.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      :root{
+        --direction: rtl
+      }
+    </style>
+  </head>
+    <body >
+        <header class="HeaderContanier container">
+          <div class="lgScreen d-lg-flex">
+            <div class="logo">
+              <a href="/">
+                <p>المحامي</p>
+                <img src="../assetes/logo.png" alt="" srcset="">
+              </a>
+            </div>
+            <div class="governorat">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  اختار محافظتك
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">القاهرة</a></li>
+                  <li><a class="dropdown-item" href="#">الأسكندرية</a></li>
+                  <li><a class="dropdown-item" href="#">الاسماعلية</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="searchContanier">
+              <input class="searchInput" type="text" placeholder="ابحث عن استفسار او محامي ...">
+              <button class="filterButton">
+                <i class="fas fa-filter"></i>
+              </button>
+              <button class="searchButton">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <div class="orderButton btn">
+              <p>طلب أستشارة</p>
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        أحكام واجتهاد
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+                        <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <div class="userContainer">
+              <div class="profile">
+                <img src="" alt="" srcset="">
+              </div>
+            </div>
+          </div>
+          <div class="smScreen d-flex d-lg-none">
+            <div class="logoAndNav row row-cols-2">
+              <div class="logo col-8">
+                <p>المحامي</p>
+                <img src="../assetes/logo.png" alt="" srcset="">
+              </div>
+              <div class="burgerMenu col-4">
+                <i class="fas fa-bars"></i>
+              </div>
+            </div>
+            <div class="menuContainer">
+              <div class="closeBtn col">
+                <i class="fas fa-window-close"></i>
+              </div>
+              <div class="userAndGovernort pb-2 row row-cols-2 justify-content-between">
+                <div class="governorat col-8">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      اختار محافظتك
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">القاهرة</a></li>
+                      <li><a class="dropdown-item" href="#">الأسكندرية</a></li>
+                      <li><a class="dropdown-item" href="#">الاسماعلية</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="userContainer col-4">
+                  <div class="profile">
+                    <img src="" alt="" srcset="">
+                  </div>
+                </div>
+              </div>
+              <div class="searchContanier">
+                <input class="searchInput" type="text" placeholder="ابحث عن استفسار او محامي ...">
+                <button class="filterButton">
+                  <i class="fas fa-filter"></i>
+                </button>
+                <button class="searchButton">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    أحكام واجتهاد
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+                    <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="orderButton btn">
+                <p>طلب أستشارة</p>
+                <i class="fas fa-bullhorn"></i>
+              </div>
+            </div>
+          </div>
+        </header>
+        <main class="container">
+          <div class="row mainContent row-cols-1 row-cols-lg-2">
+            <div class="content col-lg-9">
+              <div class="profileInfoContainer">
+                <div class="profileCover"></div>
+                <div class="profileInfo row row-cols-1 row-cols-lg-2 ">
+                  <div class="profileImage col-lg-3">
+                    <img src="/assetes/Rectangle 36.png" alt="" srcset="">
+                  </div>
+                  <div class="profileNameAndType col-lg-8">
+                    <div class="profileName">
+                      <p>محمود أحمد صلاح الدين</p>
+                    </div>
+                    <div class="profileType">
+                      <p>محامي أسرة</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="aboutMeContainer">
+                <div class="aboutMeTitle headTitle">
+                  <p>نبذة عني</p>
+                </div>
+                <div class="aboutMeContent">
+                  <p>تأسس مكتب المحامي و الموثق محمود احمد في عام ٢٠١٤ و ذلك لتقديم الخدمات القانونية لكل من الشركات التجارية و الأفراد في مكة المكرمة و جدة.
+                    و منذ ذلك الحين أصبح المكتب يسعى إلى تقديم خدمات المحاماة و المرافعة و الاستشارات القانونية و الشرعية في القضايا التجارية و العقارية و العمالية و الأحوال الشخصية في جميع أنحاء المملكة العربية السعودية بشكل عام و في مكة المكرمة و جدة بشكل خاص.</p>
+                </div>
+              </div>
+              <div class="lawerServicesContanier">
+                <div class="lawerServicesTitle headTitle">
+                  <p><b>خدمات</b> يتم تقديمها</p>
+                </div>
+                <div class="lawerServices row row-cols-1 row-cols-md-2">
+                  <div class="lawerService col">
+                    <i class="fas fa-file-signature"></i>
+                    <p>صياغة العقود</p>
+                  </div>
+                  <div class="lawerService col">
+                    <i class="fas fa-city"></i>
+                    <p>تأسيس الشركات</p>
+                  </div>
+                  <div class="lawerService col">
+                    <i class="fas fa-gavel"></i>
+                    <p>قضايا مدنية</p>
+                  </div>
+                  <div class="lawerService col">
+                    <i class="fas fa-user"></i>
+                    <p>الأحوال الشخصية</p>
+                  </div>
+                </div>
+              </div>
+              <div class="contactUsContainer">
+                <div class="contactUsTitle headTitle">
+                  <p><b>تواصل</b> معي</p>
+                </div>
+                <div class="contactUs row row-cols-1 row-cols-lg-2">
+                  <div class="contactUsDatas">
+                    <div class="contactUsData eamil col">
+                      <i class="fas fa-at"></i>
+                      <p>mahmoudsalah@gmail.com</p>
+                    </div>
+                    <div class="contactUsData phone col">
+                      <i class="fas fa-phone-alt"></i>
+                      <p>+20 000 000 0000</p>
+                    </div>
+                    <div class="contactUsData website col">
+                      <i class="fas fa-globe"></i>
+                      <p>www.mahmoudlaw.com</p>
+                    </div>
+                    <div class="contactUsData faceBook col">
+                      <i class="fab fa-facebook-square"></i>
+                      <p>/mahmoudlaw</p>
+                    </div>
+                  </div>
+                  <div class="locationMap">
+                    <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55251.37451031098!2d31.258464350000004!3d30.059488450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1704447520387!5m2!1sen!2seg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class="recentlyConsultantsContanier">
+                <div class="recentlyConsultantsTitle headTitle">
+                  <p>استشارات تمت إجابتها مؤخرًا</p>
+                </div>
+                <ul class="recentlyConsultants row row-cols-1 row-cols-xl-3 row-cols-md-2">
+                  <li class="col recentlyConsultant">
+                    <div class="consultantTitle">
+                      <a href="#">
+                        <p>رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي</p>
+                      </a>
+                    </div>
+                    <div class="consultantInfo">
+                      <div class="questionBy">
+                        <a href="#">
+                          <p> بواسطة محمد علي</p>
+                        </a>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionTime">
+                        <p>تم السؤال منذ يوم</p>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionView">
+                        <p>200 مشاهدة</p>
+                      </div>
+                    </div>
+                    <div class="separative"></div>
+                    <div class="answerSection">
+                      <div class="consultantAnswer">
+                        <p>
+                          لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
+                          كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي يتضمن الإسم الكامل و الصحيح
+                        </p>
+                      </div>
+                    </div>
+                    <div class="likeAndGoodAnswer">
+                      <div class="likeAnswer">
+                        <i class="fas fa-thumbs-up"></i>
+                        <p>200 أعجاب</p>
+                      </div>
+                      <div class="goodAnswer">
+                        <i class="fas fa-check-circle"></i>
+                        <p>25 تأيد</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col recentlyConsultant">
+                    <div class="consultantTitle">
+                      <a href="#">
+                        <p>رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي</p>
+                      </a>
+                    </div>
+                    <div class="consultantInfo">
+                      <div class="questionBy">
+                        <a href="#">
+                          <p> بواسطة محمد علي</p>
+                        </a>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionTime">
+                        <p>تم السؤال منذ يوم</p>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionView">
+                        <p>200 مشاهدة</p>
+                      </div>
+                    </div>
+                    <div class="separative"></div>
+                    <div class="answerSection">
+                      <div class="consultantAnswer">
+                        <p>
+                          لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
+                          كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي يتضمن الإسم الكامل و الصحيح
+                        </p>
+                      </div>
+                    </div>
+                    <div class="likeAndGoodAnswer">
+                      <div class="likeAnswer">
+                        <i class="fas fa-thumbs-up"></i>
+                        <p>200 أعجاب</p>
+                      </div>
+                      <div class="goodAnswer">
+                        <i class="fas fa-check-circle"></i>
+                        <p>25 تأيد</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col recentlyConsultant">
+                    <div class="consultantTitle">
+                      <a href="#">
+                        <p>رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي</p>
+                      </a>
+                    </div>
+                    <div class="consultantInfo">
+                      <div class="questionBy">
+                        <a href="#">
+                          <p> بواسطة محمد علي</p>
+                        </a>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionTime">
+                        <p>تم السؤال منذ يوم</p>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionView">
+                        <p>200 مشاهدة</p>
+                      </div>
+                    </div>
+                    <div class="separative"></div>
+                    <div class="answerSection">
+                      <div class="consultantAnswer">
+                        <p>
+                          لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
+                          كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي يتضمن الإسم الكامل و الصحيح
+                        </p>
+                      </div>
+                    </div>
+                    <div class="likeAndGoodAnswer">
+                      <div class="likeAnswer">
+                        <i class="fas fa-thumbs-up"></i>
+                        <p>200 أعجاب</p>
+                      </div>
+                      <div class="goodAnswer">
+                        <i class="fas fa-check-circle"></i>
+                        <p>25 تأيد</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col recentlyConsultant">
+                    <div class="consultantTitle">
+                      <a href="#">
+                        <p>رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي</p>
+                      </a>
+                    </div>
+                    <div class="consultantInfo">
+                      <div class="questionBy">
+                        <a href="#">
+                          <p> بواسطة محمد علي</p>
+                        </a>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionTime">
+                        <p>تم السؤال منذ يوم</p>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionView">
+                        <p>200 مشاهدة</p>
+                      </div>
+                    </div>
+                    <div class="separative"></div>
+                    <div class="answerSection">
+                      <div class="consultantAnswer">
+                        <p>
+                          لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
+                          كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي يتضمن الإسم الكامل و الصحيح
+                        </p>
+                      </div>
+                    </div>
+                    <div class="likeAndGoodAnswer">
+                      <div class="likeAnswer">
+                        <i class="fas fa-thumbs-up"></i>
+                        <p>200 أعجاب</p>
+                      </div>
+                      <div class="goodAnswer">
+                        <i class="fas fa-check-circle"></i>
+                        <p>25 تأيد</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col recentlyConsultant">
+                    <div class="consultantTitle">
+                      <a href="#">
+                        <p>رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي</p>
+                      </a>
+                    </div>
+                    <div class="consultantInfo">
+                      <div class="questionBy">
+                        <a href="#">
+                          <p> بواسطة محمد علي</p>
+                        </a>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionTime">
+                        <p>تم السؤال منذ يوم</p>
+                      </div>
+                      <div class="dash">
+                        <p>/</p>
+                      </div>
+                      <div class="questionView">
+                        <p>200 مشاهدة</p>
+                      </div>
+                    </div>
+                    <div class="separative"></div>
+                    <div class="answerSection">
+                      <div class="consultantAnswer">
+                        <p>
+                          لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
+                          كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي يتضمن الإسم الكامل و الصحيح
+                        </p>
+                      </div>
+                    </div>
+                    <div class="likeAndGoodAnswer">
+                      <div class="likeAnswer">
+                        <i class="fas fa-thumbs-up"></i>
+                        <p>200 أعجاب</p>
+                      </div>
+                      <div class="goodAnswer">
+                        <i class="fas fa-check-circle"></i>
+                        <p>25 تأيد</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="cricleConsultantAskConatainer">
+                <div class="cricleConsultantAsk orderButton">
+                  <i class="fas fa-bullhorn"></i> 
+                  <p>اطلب استشارة</p>
+                </div>
+              </div>
+            </div>
+            <div class="sidebarContainer col-lg-3">
+              <div class="sidebar">
+                <div class="varafictionConatainer">
+                  <div class="varafictionStauts">
+                    <div class="varafictionStaut">
+                      <p><b>الحالة</b> موثق</p>
+                      <img src="/assetes/Vector (1).png" alt="">
+                    </div>
+                    <p class="varafictionStautsTitle">تم توثيق هذا الحساب والتأكد من بياناته</p>
+                  </div>
+                </div>
+                <div class="contactTimeContainer">
+                  <div class="contactTimeTitle">
+                    <p><b>وقت التواصل</b></p>
+                  </div>
+                  <div class="contactTimeInfo">
+                    <div class="contactTimeInfoStauts">
+                      <p>متاح</p>
+                    </div>
+                    <div class="contactTimeInfoHoure">
+                      <p>09:00 صباحاً - 09:00 مساءاً</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="askLawerContainer">
+                  <p>لديك أستفسارات لا تتردد وأطلب أستشارة من</p>
+                  <p class="lawerName">محمود احمد صلاح الدين</p>
+                  <button class="btn"><p>اطلب أستشارة الأن</p></button>
+                </div>
+                <div class="followMeContainer">
+                  <div class="followMeTitle">
+                    <p><b>تابعني على</b></p>
+                  </div>
+                  <div class="followMeChannel row row-cols-2 row-cols-lg-4">
+                    <div class="followMeChannelIcon col">
+                      <a href="http://facebook.com">
+                        <i class="fab fa-facebook-square"></i>
+                      </a>
+                    </div>
+                    <div class="followMeChannelIcon col">
+                      <a href="http://instagram.com">
+                        <i class="fab fa-instagram-square"></i>
+                      </a>
+                    </div>
+                    <div class="followMeChannelIcon col">
+                      <a href="http://x.com">
+                        <i class="fab fa-twitter-square"></i>
+                      </a>
+                    </div>
+                    <div class="followMeChannelIcon col">
+                      <a href="http://linkedin.com">
+                        <i class="fab fa-linkedin"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="adsBanner">
+                  <img src="https://placehold.co/240x240" alt="" srcset="">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </main>
+        <footer class="footerContainer container">
+          <div class="logo">
+            <p>المحامي</p>
+            <img src="../assetes/logo.png" alt="" srcset="">
+          </div>
+          <div class="footerNav">
+            <ul class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+              <li class="col"><a href="#">ادع أصدقاءك</a></li>
+              <li class="col"><a href="#">انضم إلينا</a></li>
+              <li class="col"><a href="#">عن المحامي</a></li>
+              <li class="col"><a href="#">اتفاقية الاستخدام وسياسية الخصوصية</a></li>
+              
+            </ul>
+          </div>
+          <div class="copyright">
+            <p>جميع الحقوق محفوظة 2024</p>
+          </div>
+        </footer>
+        <div class="payedConsultantConatainer hidden row align-items-center">
+          <div class="payedConsultant row row-cols-1 ">
+            <div class="closeBtn col">
+              <i class="fas fa-window-close"></i>
+            </div>
+            <div class="payedConsultantTitle col">
+              <p>خدمات المحامي القانونية المدفوعة</p>
+            </div>
+            <div class="payedConsultantTypes col row row-cols-1 row-cols-md-3 row-cols-lg-4 justify-content-center">
+              <div class="payedConsultantType col">
+                <div class="title">
+                  <p>دراسة قضية</p>
+                </div>
+                <div class="description">
+                  <p>الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر للحصول على أفضل حل لقضاياهم.</p>
+                </div>
+                <div class="price">
+                  <p>2000 جنيه</p>
+                </div>
+                <div class="featuer">
+                  <ul class="row row-cols-1">
+                    <li class="col"><p>
+                      إجابة أولية في غضون 24 ساعة
+                    </p></li>
+                    <li class="col"><p>
+                      إجابة من 5 خبراء (محامون و قضاة سابقون)
+                    </p></li>
+                    <li class="col"><p>
+                      تجربة 150 سنة متراكمة
+                    </p></li>
+                    <li class="col"><p>
+                      استشارة صوتية
+                    </p></li>
+                    <li class="col"><p>
+                      تحميل وثائق
+                    </p></li>
+                    <li class="col"><p>
+                      التبادل سري وغير ظاهر للعيان
+                    </p></li>
+                  </ul>
+                </div>
+                <div class="askButton btn">
+                  <p>طلب أستشارة</p>
+                </div>
+              </div>
+              <div class="payedConsultantType col">
+                <div class="title">
+                  <p>دراسة قضية</p>
+                </div>
+                <div class="description">
+                  <p>الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر للحصول على أفضل حل لقضاياهم.</p>
+                </div>
+                <div class="price">
+                  <p>2000 جنيه</p>
+                </div>
+                <div class="featuer">
+                  <ul class="row row-cols-1">
+                    <li class="col"><p>
+                      إجابة أولية في غضون 24 ساعة
+                    </p></li>
+                    <li class="col"><p>
+                      إجابة من 5 خبراء (محامون و قضاة سابقون)
+                    </p></li>
+                    <li class="col"><p>
+                      تجربة 150 سنة متراكمة
+                    </p></li>
+                    <li class="col"><p>
+                      استشارة صوتية
+                    </p></li>
+                    <li class="col"><p>
+                      تحميل وثائق
+                    </p></li>
+                    <li class="col"><p>
+                      التبادل سري وغير ظاهر للعيان
+                    </p></li>
+                  </ul>
+                </div>
+                <div class="askButton btn">
+                  <p>طلب أستشارة</p>
+                </div>
+              </div>
+              <div class="payedConsultantType col">
+                <div class="title">
+                  <p>دراسة قضية</p>
+                </div>
+                <div class="description">
+                  <p>الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر للحصول على أفضل حل لقضاياهم.</p>
+                </div>
+                <div class="price">
+                  <p>2000 جنيه</p>
+                </div>
+                <div class="featuer">
+                  <ul class="row row-cols-1">
+                    <li class="col"><p>
+                      إجابة أولية في غضون 24 ساعة
+                    </p></li>
+                    <li class="col"><p>
+                      إجابة من 5 خبراء (محامون و قضاة سابقون)
+                    </p></li>
+                    <li class="col"><p>
+                      تجربة 150 سنة متراكمة
+                    </p></li>
+                    <li class="col"><p>
+                      استشارة صوتية
+                    </p></li>
+                    <li class="col"><p>
+                      تحميل وثائق
+                    </p></li>
+                    <li class="col"><p>
+                      التبادل سري وغير ظاهر للعيان
+                    </p></li>
+                  </ul>
+                </div>
+                <div class="askButton btn">
+                  <p>طلب أستشارة</p>
+                </div>
+              </div>
+              <div class="payedConsultantType col">
+                <div class="title">
+                  <p>دراسة قضية</p>
+                </div>
+                <div class="description">
+                  <p>الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر للحصول على أفضل حل لقضاياهم.</p>
+                </div>
+                <div class="price">
+                  <p>2000 جنيه</p>
+                </div>
+                <div class="featuer">
+                  <ul class="row row-cols-1">
+                    <li class="col"><p>
+                      إجابة أولية في غضون 24 ساعة
+                    </p></li>
+                    <li class="col"><p>
+                      إجابة من 5 خبراء (محامون و قضاة سابقون)
+                    </p></li>
+                    <li class="col"><p>
+                      تجربة 150 سنة متراكمة
+                    </p></li>
+                    <li class="col"><p>
+                      استشارة صوتية
+                    </p></li>
+                    <li class="col"><p>
+                      تحميل وثائق
+                    </p></li>
+                    <li class="col"><p>
+                      التبادل سري وغير ظاهر للعيان
+                    </p></li>
+                  </ul>
+                </div>
+                <div class="askButton btn">
+                  <p>طلب أستشارة</p>
+                </div>
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div class="orderTextConsultingContainer hidden row justify-content-center align-items-center">
+          <div class="orderTextConsulting row row-cols-1 ">
+            <div class="closeBtn col">
+              <i class="fas fa-window-close"></i>
+            </div>
+            <div class="orderTextConsultingTitle col">
+              <p>طلب أستشارة جديدة</p>
+            </div>
+            <form class="orderTextConsultingForm col row row-cols-1">
+              <div class="Title mb-3">
+                <input type="text" class="form-control" id="consultantTitle" placeholder="ادخل عنوان الأستشارة">
+              </div>
+              <div class="consultantCategory mb-3">
+                <select id="consultantCategory" class="form-select" aria-label="Default select example">
+                  <option selected>اختر تصنيف الأستشارة</option>
+                  <option value="اسرة">اسرة</option>
+                  <option value="تجاري">تجاري</option>
+                </select>
+              </div>
+              <div class="consultantDescreption mb-3">
+                <textarea class="form-control" id="consultantDescreption" rows="3" placeholder="ادخل تفاصيل الأستشارة"></textarea>
+              </div>
+              <div class="consultantType mb-3">
+                <select id="consultantType" class="form-select" aria-label="Default select example">
+                  <option selected>اختر نوع الأستشارة</option>
+                  <option value="اسرة">استشارة سرية</option>
+                  <option value="استشارة عاجلة">استشارة عاجلة</option>
+                  <option value="استشارة مجانية">استشارة مجانية</option>
+                </select>
+              </div>
+              <div class="submitButton">
+                <input class="submit btn" type="submit" value="طلب أستشارة">
+              </div>
+            </form>
+          </div>
+        </div>
+        <script src="https://egytag.com/x-js/bootstrap-5-support.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/SectionScroll.js"></script>
+        <script src="js/orderConsultant.js"></script>
+        <script src="js/orderTextConsultant.js"></script>
+        <script src="js/storyvideoLower.js"></script>
+        <script src="js/openMobileMenu.js"></script>
+    </body>
+</html>

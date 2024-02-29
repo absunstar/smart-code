@@ -1,0 +1,107 @@
+body {
+  background-color: var(--main-background-color1) !important ;
+  margin-bottom: 0px !important;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration-line: none !important;
+  color: black !important;
+}
+
+p {
+  font-family: Arabic !important;
+  margin-bottom: 0px !important;
+  text-align: right;
+}
+
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  --bs-gutter-x: 0px !important;
+}
+
+.display {
+  display: flex !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.closeBtn {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.mainContent {
+  margin: 24px 0px !important;
+  z-index: 999 !important;
+}
+
+.mainContent .content {
+  position: relative;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.mainContent .content {
+  padding-left: 24px !important;
+}
+
+.btn {
+  display: flex !important;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  width: 186px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 8px !important;
+  border-bottom: 5px solid var(--button-border-color-0) !important;
+  background: var(--button-backgroundColor-0) !important;
+  color: var(--button-fontColor-0) !important;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  background: var(--hover-button-backgroundColor-0) !important;
+}
+
+.second-btn {
+  display: flex !important;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  width: 186px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 8px !important;
+  background-color: var(--button-backgroundColor-1);
+  border: 3px solid var(--button-border-color-1) !important;
+  color: var(--button-fontColor-1) !important;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.second-btn:hover {
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  color: var(--hover-button-fontColor-1) !important;
+  background: var(--hover-button-backgroundColor-1) !important;
+}
+
+.headTitle {
+  color: #1e1e1e;
+
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "administrativeWorksAdmin",
+    "En": "Administrative Works Admin",
+    "Ar": "إدارة الأعمال الإدارية",
+    "permissions": ["administrativeWorksManage"]
+}]

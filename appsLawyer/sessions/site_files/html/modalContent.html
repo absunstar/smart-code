@@ -1,0 +1,179 @@
+<div class="row">
+  <div class="row padding">
+    <div class="row">
+      <i-control
+        ng-hide="disabledCode"
+        class="col2"
+        label="##word.Code##"
+        ng-model="item.code"
+      >
+      </i-control>
+      <i-date class="col4" v="r" label="##word.Date##" ng-model="item.date">
+      </i-date>
+      <i-date
+        class="col4"
+        v="r"
+        label="##word.Session Date##"
+        ng-model="item.sessionDate"
+      >
+      </i-date>
+
+      <i-checkbox
+        ng-model="item.active"
+        class="col2"
+        label="##word.Active##"
+      ></i-checkbox>
+    </div>
+    <div class="row">
+      <i-list
+        class="col4"
+        label="##word.Lawsuit##"
+        ng-model="item.lawsuit"
+        display="number"
+        display2="year"
+        items="lawsuitsList"
+        ng-get="getLawsuitsList($search)"
+      ></i-list>
+      <i-list
+        class="col4"
+        label="##word.Reason Session##"
+        ng-model="item.reasonsSession"
+        display="name"
+        items="reasonsSessionsList"
+        ng-get="getreasonsSessionsList($search)"
+      ></i-list>
+      <i-control
+        class="col4"
+        label="##word.Roll Number##"
+        ng-model="item.rollNumber"
+      >
+      </i-control>
+    </div>
+  </div>
+  <fieldset>
+    <div class="tabs">
+      <div class="tabs-header full">
+        <a
+          class="tab-link"
+          onclick="site.showTabContent(event, '#informations')"
+        >
+          <span>##word.Informatins## </span></a
+        >
+        <a class="tab-link" onclick="site.showTabContent(event, '#files')">
+          <span>##word.Files## </span></a
+        >
+      </div>
+
+      <div class="tabs-content">
+        <div id="informations" class="tab-content">
+          <fieldset>
+            <h3>##word.Requests## :</h3>
+            <i-content ng-model="item.requests" label="##word.Requests##">
+            </i-content>
+          </fieldset>
+          <fieldset>
+            <h3>##word.Decision## :</h3>
+            <i-content ng-model="item.decision" label="##word.Decision##">
+            </i-content>
+          </fieldset>
+          <fieldset>
+            <h3>##word.Description## :</h3>
+            <i-content ng-model="item.description" label="##word.Description##">
+            </i-content>
+          </fieldset>
+        </div>
+        <div id="files" class="tab-content">
+          <fieldset>
+            <legend>
+              <i-button type="push" ng-click="addFiles()"></i-button>
+              ##word.Documents##
+            </legend>
+
+            <div class="row" ng-repeat="f in item.filesList">
+              <div class="row">
+                <div class="col10">
+                  <div class="row">
+                    <i-list
+                      class="col4"
+                      label="##word.Document Type##"
+                      ng-model="f.fileType"
+                      items="documentsTypesList"
+                      display="name##session.lang##"
+                      ng-search="item.$fileType"
+                    >
+                    </i-list>
+
+                    <i-control
+                      class="col3"
+                      label="##word.File Name##"
+                      ng-model="f.fileName"
+                    >
+                    </i-control>
+
+                    <i-date
+                      class="col4"
+                      ng-model="f.fileDate"
+                      label="##word.File Date##"
+                    ></i-date>
+
+                    <i-file ng-model="f.file"></i-file>
+                  </div>
+                </div>
+                <div class="col2 center">
+                  <br />
+                  <br />
+                  <i-button
+                    type="delete"
+                    title="##word.Delete##"
+                    ng-click="item.filesList.splice($index,1)"
+                  >
+                  </i-button>
+                </div>
+              </div>
+              <br />
+              <br />
+              <hr
+                style="
+                  height: 5px;
+                  color: grey;
+                  background-color: rgb(0, 0, 199);
+                "
+              />
+              <br />
+              <br />
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- <fieldset>
+    <h3>##word.Description## :</h3>
+    <i-content ng-model="item.description" label="##word.Description##">
+    </i-content>
+  </fieldset> -->
+</div>
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Add Info##</th>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.addUserInfo.name}}</p>
+        <small class="green"> {{item.addUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.addUserInfo.ip}}</p>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

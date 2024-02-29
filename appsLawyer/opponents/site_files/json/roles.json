@@ -1,0 +1,9 @@
+[
+    {
+        "moduleName": "public",
+        "name": "opponentsAdmin",
+        "En": "Opponents Admin",
+        "Ar": "إدارة الخصوم",
+        "permissions": ["opponentsManage"]
+    }
+]

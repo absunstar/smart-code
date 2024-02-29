@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "administrativeWorks", "name": "administrativeWorksImport", "En": "Import", "Ar": "إستيراد" }
+]

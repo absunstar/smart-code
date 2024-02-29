@@ -1,0 +1,21 @@
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  .HeaderContanier .lgScreen .governorat .dropdown .btn {
+    padding: 0px 8px !important;
+    width: fit-content;
+  }
+
+  .HeaderContanier .lgScreen .searchContanier {
+    width: 200px;
+  }
+
+  .HeaderContanier .lgScreen .searchContanier .searchInput {
+    width: 100px;
+  }
+
+  main .mainContent .sidebarContainer .sidebar {
+    width: 240px;
+  }
+  main .mainContent .sidebarContainer .sidebar .lawerJoin p {
+    width: 240px;
+  }
+}

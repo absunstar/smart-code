@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "opposingCounselsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "opposingCounsels", "name": "importOpposingCounsels", "En": "Import", "Ar": "إستيراد" }
+]
