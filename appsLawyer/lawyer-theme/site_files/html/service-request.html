@@ -1,0 +1,36 @@
+<div class="orderTextConsultingContainer hidden row justify-content-center align-items-center">
+    <div class="orderTextConsulting row row-cols-1">
+      <div class="closeBtn col">
+        <i class="fas fa-window-close"></i>
+      </div>
+      <div class="orderTextConsultingTitle col">
+        <p>طلب أستشارة جديدة</p>
+      </div>
+      <form class="orderTextConsultingForm col row row-cols-1">
+        <div class="Title mb-3">
+          <input type="text" class="form-control" id="consultantTitle" placeholder="ادخل عنوان الأستشارة" />
+        </div>
+        <div class="consultantCategory mb-3">
+          <select id="consultantCategory" class="form-select" aria-label="Default select example">
+            <option selected>اختر تصنيف الأستشارة</option>
+            <option value="اسرة">اسرة</option>
+            <option value="تجاري">تجاري</option>
+          </select>
+        </div>
+        <div class="consultantDescreption mb-3">
+          <textarea class="form-control" id="consultantDescreption" rows="3" placeholder="ادخل تفاصيل الأستشارة"></textarea>
+        </div>
+        <div class="consultantType mb-3">
+          <select id="consultantType" class="form-select" aria-label="Default select example">
+            <option selected>اختر نوع الأستشارة</option>
+            <option value="اسرة">استشارة سرية</option>
+            <option value="استشارة عاجلة">استشارة عاجلة</option>
+            <option value="استشارة مجانية">استشارة مجانية</option>
+          </select>
+        </div>
+        <div class="submitButton">
+          <input class="submit btn" type="submit" value="طلب أستشارة" />
+        </div>
+      </form>
+    </div>
+  </div>

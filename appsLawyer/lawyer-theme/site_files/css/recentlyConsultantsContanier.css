@@ -14,7 +14,7 @@ main .content .recentlyConsultantsContanier .recentlyConsultant .consultantTitle
 }
 
 main .content .recentlyConsultantsContanier .recentlyConsultants{
-    gap: 8px;
+    gap: 12px;
 }
 
 main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant{

@@ -2,8 +2,7 @@
 <html lang="ar" dir="rtl" class="rtl" ng-app="myApp">
   <head x-import="lawyer-theme/head.html"> </head>
   <body>
-    <div x-replace="lawyer-theme/header.html"> </div>
-   
+    <div x-replace="lawyer-theme/header.html"></div>
 
     <main class="container">
       <div class="row mainContent row-cols-1 row-cols-lg-2">
@@ -793,223 +792,16 @@
           </div>
         </div>
         <div class="sidebarContainer col-lg-3">
-          <div class="sidebar">
-            <div class="lawerJoin">
-              <p>تريد الحصول على المزيد من الموكلين لا تتردد وانضم الى اسرة المحامي</p>
-              <button class="btn">
-                <p>انضم الينا الأن</p>
-              </button>
-            </div>
-            <div class="numberAndAnalysis">
-              <div class="numberAndAnalysisTitle">
-                <h4>أرقام وأحصائيات</h4>
-              </div>
-              <div class="row row row-cols-2 numberAndAnalysisContaner">
-                <div class="col numberAndIcon">
-                  <i class="far fa-sticky-note"></i>
-                  <p>أستشارة</p>
-                  <p>10.5 الف</p>
-                </div>
-                <div class="col numberAndIcon">
-                  <i class="fas fa-gavel"></i>
-                  <p>أجابة</p>
-                  <p>10.5 الف</p>
-                </div>
-                <div class="col numberAndIcon">
-                  <i class="fas fa-comment-alt"></i>
-                  <p>تعليق</p>
-                  <p>10.5 الف</p>
-                </div>
-                <div class="col numberAndIcon">
-                  <i class="fas fa-user"></i>
-                  <p>مستخدم</p>
-                  <p>10.5 الف</p>
-                </div>
-              </div>
-            </div>
-            <div x-features="ads" class="adsBanner">
-              <img src="https://placehold.co/250x250" alt="" srcset="" />
-            </div>
-          </div>
+          <div x-replace="lawyer-theme/sidebar.html"></div>
         </div>
       </div>
     </main>
 
-    <footer class="footerContainer container">
-      <div class="logo">
-        <p>المحامي</p>
-        <img src="/lawyer/images/logo.png" alt="" srcset="" />
-      </div>
-      <div class="footerNav">
-        <ul class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-          <li class="col"><a href="#">ادع أصدقاءك</a></li>
-          <li class="col"><a href="#">انضم إلينا</a></li>
-          <li class="col"><a href="#">عن المحامي</a></li>
-          <li class="col"><a href="#">اتفاقية الاستخدام وسياسية الخصوصية</a></li>
-        </ul>
-      </div>
-      <div class="copyright">
-        <p>جميع الحقوق محفوظة 2024</p>
-      </div>
-    </footer>
+    <div x-replace="lawyer-theme/footer.html"></div>
+    <div x-replace="lawyer-theme/services.html"></div>
+    <div x-replace="lawyer-theme/service-request.html"></div>
+    <div x-replace="lawyer-theme/view-video.html"></div>
 
-    <div class="payedConsultantConatainer hidden row align-items-center">
-      <div class="payedConsultant row row-cols-1">
-        <div class="closeBtn col">
-          <i class="fas fa-window-close"></i>
-        </div>
-        <div class="payedConsultantTitle col">
-          <p>خدمات المحامي القانونية المدفوعة</p>
-        </div>
-        <div class="payedConsultantTypes col row row-cols-1 row-cols-md-3 row-cols-lg-4 justify-content-center">
-          <div class="payedConsultantType col">
-            <div class="title">
-              <p>دراسة قضية</p>
-            </div>
-            <div class="description">
-              <p>الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر للحصول على أفضل حل لقضاياهم.</p>
-            </div>
-            <div class="price">
-              <p>2000 جنيه</p>
-            </div>
-            <div class="featuer">
-              <ul class="row row-cols-1">
-                <li class="col"><p>إجابة أولية في غضون 24 ساعة</p></li>
-                <li class="col"><p>إجابة من 5 خبراء (محامون و قضاة سابقون)</p></li>
-                <li class="col"><p>تجربة 150 سنة متراكمة</p></li>
-                <li class="col"><p>استشارة صوتية</p></li>
-                <li class="col"><p>تحميل وثائق</p></li>
-                <li class="col"><p>التبادل سري وغير ظاهر للعيان</p></li>
-              </ul>
-            </div>
-            <div class="askButton btn">
-              <p>طلب أستشارة</p>
-            </div>
-          </div>
-          <div class="payedConsultantType col">
-            <div class="title">
-              <p>دراسة قضية</p>
-            </div>
-            <div class="description">
-              <p>الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر للحصول على أفضل حل لقضاياهم.</p>
-            </div>
-            <div class="price">
-              <p>2000 جنيه</p>
-            </div>
-            <div class="featuer">
-              <ul class="row row-cols-1">
-                <li class="col"><p>إجابة أولية في غضون 24 ساعة</p></li>
-                <li class="col"><p>إجابة من 5 خبراء (محامون و قضاة سابقون)</p></li>
-                <li class="col"><p>تجربة 150 سنة متراكمة</p></li>
-                <li class="col"><p>استشارة صوتية</p></li>
-                <li class="col"><p>تحميل وثائق</p></li>
-                <li class="col"><p>التبادل سري وغير ظاهر للعيان</p></li>
-              </ul>
-            </div>
-            <div class="askButton btn">
-              <p>طلب أستشارة</p>
-            </div>
-          </div>
-          <div class="payedConsultantType col">
-            <div class="title">
-              <p>دراسة قضية</p>
-            </div>
-            <div class="description">
-              <p>الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر للحصول على أفضل حل لقضاياهم.</p>
-            </div>
-            <div class="price">
-              <p>2000 جنيه</p>
-            </div>
-            <div class="featuer">
-              <ul class="row row-cols-1">
-                <li class="col"><p>إجابة أولية في غضون 24 ساعة</p></li>
-                <li class="col"><p>إجابة من 5 خبراء (محامون و قضاة سابقون)</p></li>
-                <li class="col"><p>تجربة 150 سنة متراكمة</p></li>
-                <li class="col"><p>استشارة صوتية</p></li>
-                <li class="col"><p>تحميل وثائق</p></li>
-                <li class="col"><p>التبادل سري وغير ظاهر للعيان</p></li>
-              </ul>
-            </div>
-            <div class="askButton btn">
-              <p>طلب أستشارة</p>
-            </div>
-          </div>
-          <div class="payedConsultantType col">
-            <div class="title">
-              <p>دراسة قضية</p>
-            </div>
-            <div class="description">
-              <p>الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر للحصول على أفضل حل لقضاياهم.</p>
-            </div>
-            <div class="price">
-              <p>2000 جنيه</p>
-            </div>
-            <div class="featuer">
-              <ul class="row row-cols-1">
-                <li class="col"><p>إجابة أولية في غضون 24 ساعة</p></li>
-                <li class="col"><p>إجابة من 5 خبراء (محامون و قضاة سابقون)</p></li>
-                <li class="col"><p>تجربة 150 سنة متراكمة</p></li>
-                <li class="col"><p>استشارة صوتية</p></li>
-                <li class="col"><p>تحميل وثائق</p></li>
-                <li class="col"><p>التبادل سري وغير ظاهر للعيان</p></li>
-              </ul>
-            </div>
-            <div class="askButton btn">
-              <p>طلب أستشارة</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="orderTextConsultingContainer hidden row justify-content-center align-items-center">
-      <div class="orderTextConsulting row row-cols-1">
-        <div class="closeBtn col">
-          <i class="fas fa-window-close"></i>
-        </div>
-        <div class="orderTextConsultingTitle col">
-          <p>طلب أستشارة جديدة</p>
-        </div>
-        <form class="orderTextConsultingForm col row row-cols-1">
-          <div class="Title mb-3">
-            <input type="text" class="form-control" id="consultantTitle" placeholder="ادخل عنوان الأستشارة" />
-          </div>
-          <div class="consultantCategory mb-3">
-            <select id="consultantCategory" class="form-select" aria-label="Default select example">
-              <option selected>اختر تصنيف الأستشارة</option>
-              <option value="اسرة">اسرة</option>
-              <option value="تجاري">تجاري</option>
-            </select>
-          </div>
-          <div class="consultantDescreption mb-3">
-            <textarea class="form-control" id="consultantDescreption" rows="3" placeholder="ادخل تفاصيل الأستشارة"></textarea>
-          </div>
-          <div class="consultantType mb-3">
-            <select id="consultantType" class="form-select" aria-label="Default select example">
-              <option selected>اختر نوع الأستشارة</option>
-              <option value="اسرة">استشارة سرية</option>
-              <option value="استشارة عاجلة">استشارة عاجلة</option>
-              <option value="استشارة مجانية">استشارة مجانية</option>
-            </select>
-          </div>
-          <div class="submitButton">
-            <input class="submit btn" type="submit" value="طلب أستشارة" />
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="videoStoryContainer hidden">
-      <div class="videoStroy">
-        <div class="closeBtn col">
-          <i class="fas fa-window-close"></i>
-        </div>
-        <video width="300" height="450" autoplay controls>
-          <source src="https://www.youtube.com/shorts/L7W-jr4_pbE" type="video/mp4" />
-        </video>
-      </div>
-    </div>
-
-    <div x-import="lawyer-theme/scripts.html"></div>
+    <div x-replace="lawyer-theme/scripts.html"></div>
   </body>
 </html>
