@@ -22,5 +22,5 @@ main .mainContent .storysContainer .storys .storysAccounts .storyAccount img {
   max-height: 125px !important;
   min-width: 125px !important;
   min-height: 125px !important;
-  border-radius: 10% !important;
+  border-radius: 50% !important;
 }
