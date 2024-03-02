@@ -9,7 +9,7 @@
       <div class="row">
         <div class="row center">
           <div class="row">
-            <h1 class="bold text-center">##word.login##</h1>
+            <h1 class="bold text-center">شاشة تسجيل الدخول</h1>
           </div>
 
           <div class="row">
@@ -18,21 +18,22 @@
               <i-control class="input-style" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
               <i-control class="input-style pass" label="##word.password##" type="password" v="r" ng-model="user.password"> </i-control>
               <i-checkbox class="center" label="##word.show_password##" ng-click="showPassword()" ng-model="show_password"> </i-checkbox>
+              <br />
+              <br />
+              <div class="center padding margin">
+                <i-button type="login" class2="btn-primary" ng-click="login()" class="login-button" label="##word.login_now## "> </i-button>
+              </div>
             </div>
             <div class="col3"></div>
           </div>
-          <br />
-          <br />
-          <div class="center padding margin">
-            <i-button type="login" class2="btn-primary" ng-click="login()" class="login-button" label="##word.login_now## "> </i-button>
-          </div>
-          <br />
+
           <div class="row">
             <h2 class="bold center red">{{error}}</h2>
           </div>
         </div>
       </div>
     </div>
+
     <div x-import="lawyer-theme/scripts.html"></div>
     <script x-import="login/index.js"></script>
   </body>
