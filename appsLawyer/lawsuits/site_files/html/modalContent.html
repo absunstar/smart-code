@@ -1,12 +1,6 @@
 <div class="row">
   <div class="row">
-    <i-control
-      ng-hide="disabledCode"
-      class="col3"
-      label="##word.Code##"
-      ng-model="item.code"
-    >
-    </i-control>
+ 
     <i-date class="col3" label="##word.Date##" ng-model="item.date"> </i-date>
     <i-control
       class="col3"
@@ -52,7 +46,7 @@
               v="r"
               label="##word.Court##"
               ng-model="item.court"
-              display="name"
+              display="name##session.lang##"
               items="courtsList"
               ng-change="getCirclesList(item.court.id)"
             ></i-list>
@@ -61,7 +55,7 @@
               v="r"
               label="##word.Circle##"
               ng-model="item.circle"
-              display="name"
+              display="name##session.lang##"
               items="circlesList"
             ></i-list>
           </div>
@@ -71,7 +65,7 @@
               v="r"
               label="##word.Lawsuit degree##"
               ng-model="item.lawsuitDegree"
-              display="name"
+              display="name##session.lang##"
               items="lawsuitDegreesList"
             ></i-list>
             <i-list
@@ -79,7 +73,7 @@
               v="r"
               label="##word.Status Lawsuit##"
               ng-model="item.statusLawsuit"
-              display="name"
+              display="name##session.lang##"
               items="statusLawsuitList"
             ></i-list>
             <i-list
@@ -87,7 +81,7 @@
               v="r"
               label="##word.Types Lawsuit##"
               ng-model="item.typesLawsuit"
-              display="name"
+              display="name##session.lang##"
               items="typesLawsuitList"
             ></i-list>
           </div>
@@ -118,7 +112,7 @@
                 class="col3"
                 label="##word.Adjective In Lawsuit##"
                 ng-model="item.$adjectiveInLawsuitClient"
-                display="name"
+                display="name##session.lang##"
                 items="adjectivesInLawsuitList"
               ></i-list>
               <div class="col2">
@@ -134,7 +128,6 @@
             <table class="table hover bold" id="t1">
               <tr>
                 <th class="w150">##word.Logo##</th>
-                <th>##word.Code##</th>
                 <th>##word.Name##</th>
                 <th>##word.Adjective In Lawsuit##</th>
                 <th class="not-print">##word.Actions##</th>
@@ -147,7 +140,6 @@
                     ng-model="c.client.image"
                   ></i-image>
                 </td>
-                <td class="center blue">{{c.client.code}}</td>
                 <td class="center">{{c.client.name##session.lang##}}</td>
                 <td class="center">{{c.adjectiveInLawsuit.name}}</td>
                 <td class="center">
@@ -190,7 +182,6 @@
             <table class="table hover bold" id="t1">
               <tr>
                 <th class="w150">##word.Logo##</th>
-                <th>##word.Code##</th>
                 <th>##word.Name##</th>
                 <th>##word.Adjective In Lawsuit##</th>
                 <th class="not-print">##word.Actions##</th>
@@ -203,7 +194,6 @@
                     ng-model="c.lawyer.image"
                   ></i-image>
                 </td>
-                <td class="center blue">{{c.lawyer.code}}</td>
                 <td class="center">{{c.lawyer.name##session.lang##}}</td>
                 <td class="center">{{c.adjectiveInLawsuit.name}}</td>
                 <td class="center">
@@ -248,7 +238,6 @@
             <table class="table hover bold" id="t1">
               <tr>
                 <th class="w150">##word.Logo##</th>
-                <th>##word.Code##</th>
                 <th>##word.Name##</th>
                 <th>##word.Adjective In Lawsuit##</th>
                 <th class="not-print">##word.Actions##</th>
@@ -261,7 +250,6 @@
                     ng-model="c.opponent.image"
                   ></i-image>
                 </td>
-                <td class="center blue">{{c.opponent.code}}</td>
                 <td class="center">{{c.opponent.name##session.lang##}}</td>
                 <td class="center">{{c.adjectiveInLawsuit.name}}</td>
                 <td class="center">
@@ -304,7 +292,6 @@
             <table class="table hover bold" id="t1">
               <tr>
                 <th class="w150">##word.Logo##</th>
-                <th>##word.Code##</th>
                 <th>##word.Name##</th>
                 <th>##word.Adjective In Lawsuit##</th>
                 <th class="not-print">##word.Actions##</th>
@@ -317,7 +304,6 @@
                     ng-model="c.opposingCounsel.image"
                   ></i-image>
                 </td>
-                <td class="center blue">{{c.opposingCounsel.code}}</td>
                 <td class="center">
                   {{c.opposingCounsel.name##session.lang##}}
                 </td>

@@ -153,7 +153,7 @@ module.exports = function init(site) {
             {
               title: app.name,
               appName: "Sessions",
-              setting: site.getCompanySetting(req),
+              setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
           );
@@ -170,23 +170,7 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-          _data.company = site.getCompany(req);
-
-          let numObj = {
-            company: site.getCompany(req),
-            screen: app.name,
-            date: new Date(),
-          };
-
-          let cb = site.getNumbering(numObj);
-          if (!_data.code && !cb.auto) {
-            response.error = "Must Enter Code";
-            res.json(response);
-            return;
-          } else if (cb.auto) {
-            _data.code = cb.code;
-          }
-
+       
           _data.addUserInfo = req.getUserFinger();
 
           app.add(_data, (err, doc) => {
@@ -280,7 +264,6 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          code: 1,
           sessionDate: 1,
           lawsuit: 1,
           reasonsSession: 1,
@@ -299,12 +282,9 @@ module.exports = function init(site) {
           delete where.toDate;
         }
 
-        where["company.id"] = site.getCompany(req).id;
         if (search) {
           where.$or = [];
-          where.$or.push({
-            code: site.get_RegExp(search, "i"),
-          });
+       
           where.$or.push({
             rollNumber: search,
           });

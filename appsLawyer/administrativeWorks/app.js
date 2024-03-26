@@ -153,7 +153,7 @@ module.exports = function init(site) {
             {
               title: app.name,
               appName: "Administrative Works",
-              setting: site.getCompanySetting(req),
+              setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
           );
@@ -170,22 +170,6 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-          _data.company = site.getCompany(req);
-
-          let numObj = {
-            company: site.getCompany(req),
-            screen: app.name,
-            date: new Date(),
-          };
-
-          let cb = site.getNumbering(numObj);
-          if (!_data.code && !cb.auto) {
-            response.error = "Must Enter Code";
-            res.json(response);
-            return;
-          } else if (cb.auto) {
-            _data.code = cb.code;
-          }
           
           _data.addUserInfo = req.getUserFinger();
 
@@ -307,7 +291,6 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          code: 1,
           done: 1,
           typeAdministrativeWork: 1,
           employee: 1,
@@ -318,10 +301,6 @@ module.exports = function init(site) {
 
           where.$or.push({
             id: site.get_RegExp(search, 'i'),
-          });
-
-          where.$or.push({
-            code: site.get_RegExp(search, 'i'),
           });
 
           where.$or.push({
@@ -374,14 +353,13 @@ module.exports = function init(site) {
             search = 'id';
           }
           let list = app.memoryList
-            .filter((g) => g.company && g.company.id == site.getCompany(req).id && (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search))
+            .filter((g) => (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search))
             .slice(0, limit);
           res.json({
             done: true,
             list: list,
           });
         } else {
-          where['company.id'] = site.getCompany(req).id;
           app.all({ where, select, limit }, (err, docs) => {
             res.json({
               done: true,

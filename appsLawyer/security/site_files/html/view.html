@@ -1,0 +1,77 @@
+<div ng-hide="busy" class="row">
+
+
+
+    <div class="col6 padding">
+        <br>
+        <table class="table">
+            <tr>
+                <td class="title">##word.Email##</td>
+                <td>{{user.email}}</td>
+            </tr>
+            <tr>
+                <td class="title">##word.Password##</td>
+                <td>{{user.password}}</td>
+            </tr>
+            <tr>
+                <td class="title">##word.Name##</td>
+                <td>{{user.name##session.lang##}}</td>
+            </tr>
+            <tr>
+                <td class="title">##word.Mobile##</td>
+                <td>
+                    <a ng-show="user.mobile" target="_blank" href="tel:{{user.mobile}}">
+                        {{user.mobile}}
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.Notes##</td>
+                <td>{{user.notes}}</td>
+            </tr>
+
+        </table>
+        <br>
+        <table class="table margin">
+            <tr>
+                <th>##word.Roles##</th>
+
+            </tr>
+            <tr ng-repeat="role in user.roles">
+                <td >{{role.##session.lang##}}</td>
+            </tr>
+        </table>
+
+        <br>
+        <table class="table margin">
+            <tr>
+                <th>##word.Permissions##</th>
+
+            </tr>
+            <tr ng-repeat=" p in userPermission ">
+                <td><span class="title">{{getTrans(p).##session.lang##}}</span><span ng-repeat="value in onepermission[p]"> -- {{value.##session.lang##}}
+                    </span> </td>
+                
+            </tr>
+
+        </table>
+        <br>
+
+    </div>
+
+    <div class="col6 padding">
+
+        <i-image view category="users" ng-model="user.image"></i-image>
+
+        <br>
+        <i-files view category="users" label="##word.files##" ng-model="user.files"></i-files>
+
+
+    </div>
+
+
+
+
+</div>

@@ -1,0 +1,11 @@
+[
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasManage" , "En":"Manage" , "Ar":"إدارة"},
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasAdd" , "En":"Add" , "Ar":"إضافة"},
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasUpdate" , "En":"Edit" , "Ar":"تعديل"},
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasDelete" , "En":"Delete" , "Ar":"حذف"},
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasView" , "En":"View" , "Ar":"عرض"},
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasSearch" , "En":"Search" , "Ar":"بحث"},
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasExport" , "En":"Export" , "Ar":"تصدير"},
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasPrint" , "En":"Print" , "Ar":"طباعة"},
+    { "moduleName" : "public" , "screenName" : "areas" , "name":"areasUi" , "En":"UI" , "Ar":"الواجهة الرسومية"}
+]

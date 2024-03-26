@@ -1,23 +1,16 @@
 <div class="row">
   <div class="row padding">
     <div class="row">
-      <i-control
-        ng-hide="disabledCode"
-        class="col2"
-        label="##word.Code##"
-        ng-model="item.code"
-      >
-      </i-control>
       <i-list
         label="##word.Typeof Administrative Work##"
-        class="col4"
+        class="col5"
         v="r"
         ng-model="item.typeAdministrativeWork"
         ng-get="getTypeAdministrativeWorks($search)"
-        display="name"
+        display="name##session.lang##"
         items="typeAdministrativeWorksList"
       ></i-list>
-      <i-date class="col4" label="##word.Date##" ng-model="item.date">
+      <i-date class="col5" label="##word.Date##" ng-model="item.date">
       </i-date>
       <i-checkbox
         ng-model="item.active"
@@ -41,8 +34,7 @@
             <div class="col7">
               <p class="bold">
                 <span class="darkGray">##word.Name English## : </span>
-                {{item.employee.fullNameEn}} (
-                <span class="blue">{{item.employee.code}}</span> )
+                {{item.employee.fullNameEn}}
                 <img
                   class="img-logo"
                   ng-src="{{item.employee.image.url}}"

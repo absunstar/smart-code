@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "offices", "name": "officesImport", "En": "Import", "Ar": "إستيراد" }
+]

@@ -57,12 +57,7 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-          if (
-            response.data.error &&
-            response.data.error.like("*Must Enter Code*")
-          ) {
-            $scope.error = "##word.Must Enter Code##";
-          }
+       
         }
       },
       function (err) {
@@ -285,28 +280,7 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
     });
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = "";
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/numbering/getAutomatic",
-      data: {
-        screen: $scope.appName,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+ 
 
   $scope.getTypesPoaList = function ($search) {
     if ($search && $search.length < 1) {
@@ -323,8 +297,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
-          name: 1,
+          nameAr: 1,
+          nameEn: 1,
         },
         search: $search,
       },
@@ -355,7 +329,6 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         where: { active: true, "type.id": 4, "jobType.name": "lawyers" },
         select: {
           id: 1,
-          code: 1,
           image: 1,
           fullNameEn: 1,
           fullNameAr: 1,
@@ -396,7 +369,6 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           image: 1,
           nameEn: 1,
           nameAr: 1,
@@ -432,7 +404,6 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           image: 1,
           nameEn: 1,
           nameAr: 1,
@@ -468,7 +439,6 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           image: 1,
           nameEn: 1,
           nameAr: 1,
@@ -502,8 +472,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
-          name: 1,
+          nameAr: 1,
+          nameEn: 1,
         },
       },
     }).then(
@@ -533,8 +503,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
-          name: 1,
+          nameAr: 1,
+          nameEn: 1,
         },
       },
     }).then(
@@ -564,8 +534,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
-          name: 1,
+          nameAr: 1,
+          nameEn: 1,
         },
       },
     }).then(
@@ -595,8 +565,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
-          name: 1,
+          nameAr: 1,
+          nameEn: 1,
         },
       },
     }).then(
@@ -627,8 +597,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
-          name: 1,
+          nameAr: 1,
+          nameEn: 1,
         },
       },
     }).then(

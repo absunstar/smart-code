@@ -1,0 +1,154 @@
+[
+  {
+    "name": "register_with_mobile_number",
+    "en": "Register with a mobile number",
+    "ar": "التسجيل برقم الجوال"
+  },
+  {
+    "name": "register_with_email",
+    "en": "Register with an Email",
+    "ar": "التسجيل بالبريد الإلكتروني"
+  },
+  {
+    "name": "next",
+    "en": "Next",
+    "ar": "التالي"
+  },
+  {
+    "name": "enter",
+    "en": "Enter",
+    "ar": "دخول"
+  },
+  {
+    "name": "please_wait_to_send_mobile_code_again",
+    "en": "Please wait less than a five minutes before resending the code again",
+    "ar": "برجاء الإنتظار أقل من خمس دقائق قبل إعادة إرسال الرمز مرة أخرى"
+  },
+  {
+    "name": "please_wait_to_send_email_code_again",
+    "en": "Please wait less than a five minutes before resending the code again",
+    "ar": "برجاء الإنتظار أقل من خمس دقائق قبل إعادة إرسال الرمز مرة أخرى"
+  },
+  {
+    "name": "recovery",
+    "en": "Recovery",
+    "ar": "إستعادة"
+  },
+  {
+    "name": "wrong_mail_or_phone",
+    "en": "Wrong mail or phone",
+    "ar": "البريد أو الموبايل خاطئ"
+  },
+  {
+    "name": "enter_your_mobile_or_email",
+    "en": "Enter your mobile phone or email",
+    "ar": "إدخل جوالك أو بريدك"
+  },
+  {
+    "name": "restore_password",
+    "en": "Restore password",
+    "ar": "إستعادة كلمة المرور"
+  },
+  {
+    "name": "the_new_code_has_been_sent_to_your_phone",
+    "en": "The new code has been sent to your phone",
+    "ar": "تم إرسال الرمز الجديد إلى هاتفك"
+  },
+  {
+    "name": "the_new_code_has_been_sent_to_your_email",
+    "en": "The new code has been sent to your email",
+    "ar": "تم إرسال الرمز الجديد إلى بريدك الإلكتروني"
+  },
+  {
+    "name": "agree",
+    "en": "Agree",
+    "ar": "أوافق"
+  },
+  {
+    "name": "disagree",
+    "en": "Disagree",
+    "ar": "لا أوافق"
+  },
+  {
+    "name": "mobile_number_already_used",
+    "en": "The mobile number already used",
+    "ar": "رقم الجوال مستخدم من قبل"
+  },
+  {
+    "name": "email_already_used",
+    "en": "The email already used",
+    "ar": "البريد الإلكتروني مستخدم من قبل"
+  },
+  {
+    "name": "continuation",
+    "en": "Continuation",
+    "ar": "إستمرار"
+  },
+  {
+    "name": "incorrect_code_entered",
+    "en": "Incorrect secret code entered",
+    "ar": "الرمز السري المدخل خطأ"
+  },
+  {
+    "name": "resend_code",
+    "en": "Resend Code",
+    "ar": "إعادة إرسال الرمز"
+  },
+  {
+    "name": "secret_code_sent_phone",
+    "en": "Secret code sent to your phone",
+    "ar": "الرمز السري المرسل لهاتفك"
+  },
+  {
+    "name": "secret_code_sent_email",
+    "en": "Secret code sent to your email",
+    "ar": "الرمز السري المرسل لبريدك"
+  },
+  {
+    "name": "next",
+    "en": "Next",
+    "ar": "التالي"
+  },
+  {
+    "name": "please_enter_valid_mobile_number",
+    "en": "Please enter a valid mobile number",
+    "ar": "برجاء إدخال رقم موبايل صحيح"
+  },
+  {
+    "name": "mobile_phone_number",
+    "en": "Mobile Number",
+    "ar": "رقم الجوال"
+  },
+  {
+    "name": "email_or_pass_error",
+    "en": "Email Or Password Error",
+    "ar": "إسم المستخدم أو كلمة المرور خطأ"
+  },
+  {
+    "name": "login_now",
+    "en": "Login Now",
+    "ar": "تسجيل الدخول الاّن"
+  },
+  {
+    "name": "login_via",
+    "en": "Login Via",
+    "ar": "تسجيل الدخول عبر"
+  },
+  {
+    "name": "not_registered",
+    "en": "Not registered?",
+    "ar": "غير مسجل؟"
+  },
+  { "name": "password_err_match", "en": "password does not match", "ar": "كلمة المرور غير متطابقة" },
+  { "name": "register_now", "en": "Register Now", "ar": "تسجيل الاّن" },
+  {
+    "name": "create_account",
+    "en": "Create an account",
+    "ar": "أنشئ حساب"
+  },
+  {
+    "name": "existing_user",
+    "en": "Existing user?",
+    "ar": "مستخدم موجود؟"
+  }
+]

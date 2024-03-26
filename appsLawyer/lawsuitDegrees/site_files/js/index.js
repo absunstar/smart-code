@@ -41,9 +41,7 @@ app.controller('lawsuitDegrees', function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-          if (response.data.error && response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.Must Enter Code##';
-          }
+        
         }
       },
       function (err) {
@@ -188,28 +186,7 @@ app.controller('lawsuitDegrees', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/getAutomatic',
-      data: {
-        screen: $scope.appName,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+ 
 
   $scope.showSearch = function () {
     $scope.error = '';
@@ -223,5 +200,4 @@ app.controller('lawsuitDegrees', function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getNumberingAuto();
 });

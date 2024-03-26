@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "areasAdmin",
+    "En": "Areas Admin",
+    "Ar": "إدارة المناطق",
+    "permissions": ["areasManage"]
+}]

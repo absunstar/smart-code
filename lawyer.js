@@ -58,7 +58,7 @@ site.loadLocalApp('ui-print');
 site.importApps(__dirname + '/appsLawyer');
 site.importApp(__dirname + '/apps_private/cloud_security', 'security');
 site.importApp(__dirname + '/apps_private/manage-user');
-site.importApp(__dirname + '/apps_private/companies');
+// site.importApp(__dirname + '/apps_private/companies');
 site.importApp(__dirname + '/apps_cms/cms');
 site.addFeature('lawyer');
 

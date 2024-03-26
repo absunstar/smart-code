@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "officesAdmin",
+    "En": "Offices Admin",
+    "Ar": "إدارة المكاتب",
+    "permissions": ["officesManage"]
+}]

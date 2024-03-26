@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "customersGroupsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "customersGroups", "name": "importCustomersGroups", "En": "Import", "Ar": "إستيراد" }
+]

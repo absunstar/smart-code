@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="EN" x-permissions="!login" data-ng-app="myApp">
-  <head x-import="lawyer-theme/head.html"></head>
+  <head x-import="lawyer-theme/head.html">
+    <style>
+      .register:hover {
+        color: blue !important;
+        text-decoration: underline !important;
+      }
+    </style>
+  </head>
 
   <body class="##session.lang##" ng-controller="login">
     <div x-replace="lawyer-theme/header.html"></div>
@@ -9,19 +16,48 @@
       <div class="row">
         <div class="row center">
           <div class="row">
-            <h1 class="bold text-center">شاشة تسجيل الدخول</h1>
+            <h1 class="bold text-center">##word.Login##</h1>
           </div>
 
           <div class="row">
             <div class="col3"></div>
             <div class="col6">
-              <i-control class="input-style" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
-              <i-control class="input-style pass" label="##word.password##" type="password" v="r" ng-model="user.password"> </i-control>
-              <i-checkbox class="center" label="##word.show_password##" ng-click="showPassword()" ng-model="show_password"> </i-checkbox>
+              <i-control
+                class="input-style"
+                v="r"
+                label="##word.mobile_email##"
+                ng-model="user.email"
+              >
+              </i-control>
+              <i-control
+                class="input-style pass"
+                label="##word.password##"
+                type="password"
+                v="r"
+                ng-model="user.password"
+              >
+              </i-control>
+              <i-checkbox
+                class="center"
+                label="##word.show_password##"
+                ng-click="showPassword()"
+                ng-model="show_password"
+              >
+              </i-checkbox>
               <br />
+              <a class="right register" href="/register">
+                <span>##word.Register New Account##</span>
+              </a>
               <br />
               <div class="center padding margin">
-                <i-button type="login" class2="btn-primary" ng-click="login()" class="login-button" label="##word.login_now## "> </i-button>
+                <i-button
+                  type="login"
+                  class2="btn-primary"
+                  ng-click="login()"
+                  class="login-button"
+                  label="##word.login_now## "
+                >
+                </i-button>
               </div>
             </div>
             <div class="col3"></div>

@@ -1,0 +1,11 @@
+[
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesManage" , "En":"Manage" , "Ar":"إدارة"},
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesAdd" , "En":"Add" , "Ar":"إضافة"},
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesUpdate" , "En":"Edit" , "Ar":"تعديل"},
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesDelete" , "En":"Delete" , "Ar":"حذف"},
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesView" , "En":"View" , "Ar":"عرض"},
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesSearch" , "En":"Search" , "Ar":"بحث"},
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesExport" , "En":"Export" , "Ar":"تصدير"},
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesPrint" , "En":"Print" , "Ar":"طباعة"},
+    { "moduleName" : "public" , "screenName" : "goves" , "name":"govesUi" , "En":"UI" , "Ar":"الواجهة الرسومية"}
+]

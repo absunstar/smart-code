@@ -1,0 +1,741 @@
+<div class="row">
+  <fieldset>
+    <legend>##word.Personal Informations##</legend>
+    <div class="row padding">
+      <div class="col9">
+        <div class="row">
+         
+          <i-list
+            class="col4"
+            label="##word.Group##"
+            ng-model="customer.group"
+            items="customersGroupsList"
+            display="name##session.lang##"
+            ng-search="customer.$vendorGroup"
+          ></i-list>
+          <div class="col4">
+            <i-checkbox
+              ng-show="!setting.showLawyer"
+              ng-hide="customer.id"
+              ng-click="customer.commercialCustomer?setCommercialInformations():''"
+              ng-model="customer.commercialCustomer"
+              label="##word.Commercial Customer##"
+            ></i-checkbox>
+          </div>
+          <div class="col4">
+            <i-checkbox
+              ng-model="customer.active"
+              label="##word.Active##"
+            ></i-checkbox>
+          </div>
+
+          <i-control
+            type="text"
+            v="r"
+            ng-model="customer.firstName"
+            label="##word.First Name##"
+          ></i-control>
+          <i-control
+            type="text"
+            v="r"
+            ng-model="customer.lastName"
+            label="##word.Last Name##"
+          ></i-control>
+        </div>
+      </div>
+      <div class="col3 center">
+        <i-image class="img128 center" ng-model="customer.image"></i-image>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset x-data="!setting.showLawyer">
+    <legend>##word.Accounting Informations##</legend>
+    <div class="row">
+      <div class="col4">
+        <div class="col9">
+          <i-control
+            type="number"
+            label="##word.Maturity Period##"
+            ng-model="customer.maturityPeriod"
+          ></i-control>
+        </div>
+        <div class="col3 padding">
+          <br />
+          <span>##word.Day##</span>
+        </div>
+      </div>
+      <div class="col4">
+        <div class="col9">
+          <i-control
+            type="number"
+            label="##word.Credit Limit##"
+            ng-model="customer.creditLimit"
+          >
+          </i-control>
+        </div>
+        <div class="col3 padding">
+          <br />
+          <span>##word.$##</span>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<fieldset>
+  <div class="tabs">
+    <div class="tabs-header full">
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#contactInformations')"
+      >
+        <span>##word.Contact Informatins## </span></a
+      >
+      <a
+        class="tab-link"
+        ng-show="customer.commercialCustomer"
+        onclick="site.showTabContent(event, '#taxAndBusinessInformations')"
+      >
+        <span>##word.Tax And Business Informatins## </span></a
+      >
+      <a
+        class="tab-link"
+        ng-show="customer.commercialCustomer"
+        onclick="site.showTabContent(event, '#branchesInformations')"
+      >
+        <span>##word.Branches Informatins## </span></a
+      >
+      <a
+        class="tab-link"
+        ng-show="customer.commercialCustomer"
+        onclick="site.showTabContent(event,'#bankingAccounts')"
+      >
+        <span>##word.Banking Accounts## </span></a
+      >
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#customersFiles')"
+      >
+        <span>##word.Documents## </span></a
+      >
+    </div>
+
+    <div class="tabs-content">
+      <div id="contactInformations" class="tab-content">
+        <fieldset x-data="setting.showLawyer">
+          <div class="row">
+            <i-date
+              class="col4"
+              label="##word.Date Of Birth ##"
+              ng-model="customer.dateOfBirth"
+            >
+            </i-date>
+            <fieldset class="col8">
+              <div class="col6">
+                <br />
+                <i-radio
+                  class="col6"
+                  label="##word.ID##"
+                  ng-value="id"
+                  ng-model="customer.idType"
+                >
+                </i-radio>
+                <i-radio
+                  class="col6"
+                  label="##word.Passport /Iqama##"
+                  ng-value="iqama"
+                  ng-model="customer.idType"
+                >
+                </i-radio>
+              </div>
+              <i-control
+                class="col6"
+                v="r ll10 ml10"
+                label="##word.ID /Iqama Number##"
+                ng-model="customer.idNumber"
+              >
+              </i-control>
+            </fieldset>
+          </div>
+          <div class="row">
+            <i-list
+              class="col4"
+              label="##word.Gender##"
+              ng-model="customer.gender"
+              display="name##session.lang##"
+              items="gendersList"
+              ng-search="item.$genders"
+            ></i-list>
+            <i-list
+              class="col4"
+              label="##word.Marital Status##"
+              ng-model="customer.maritalStatus"
+              display="name##session.lang##"
+              items="maritalStatusList"
+              ng-search="item.$maritalStatus"
+            ></i-list>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>##word.Contact Informations##</legend>
+          <div class="row">
+            <i-control
+              class="col3"
+              label="# ##word.Phone##"
+              ng-model="customer.phone"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="# ##word.Mobile##"
+              ng-model="customer.mobile"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Fax##"
+              ng-model="customer.fax"
+            ></i-control>
+
+            <i-control
+              help-id=""
+              class="col3"
+              label="##word.Whatsapp##"
+              ng-model="customer.whatsapp"
+            >
+            </i-control>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.Post Informations##</legend>
+          <div class="row">
+            <i-control
+              class="col6"
+              label="##word.Mailbox##"
+              ng-model="customer.mailbox"
+            ></i-control>
+
+            <i-control
+              class="col6"
+              label="##word.Post Number##"
+              ng-model="customer.postNumber"
+            >
+            </i-control>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.Web And Social Accounts##</legend>
+          <div class="row">
+            <i-control
+              class="col3"
+              label="# ##word.Website##"
+              ng-model="customer.website"
+            ></i-control>
+            <i-control
+              class="col3"
+              label="# ##word.Email##"
+              ng-model="customer.socialEmail"
+            ></i-control>
+            <i-control
+              class="col3"
+              label="##word.Facebook##"
+              ng-model="customer.facebook"
+            ></i-control>
+            <i-control
+              class="col3"
+              label="##word.Twitter##"
+              ng-model="customer.twitter"
+            ></i-control>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.Address##</legend>
+          <div class="row">
+            <i-list
+              class="col6"
+              label="# ##word.Country##"
+              ng-change="getGovesList(customer.country)"
+              ng-model="customer.country"
+              display="name##session.lang##"
+              items="countriesList"
+              display2="callingCode"
+              ng-get="getCountriesList($search)"
+            ></i-list>
+            <i-list
+              help-id=""
+              class="col6"
+              label="# ##word.Governorate##"
+              ng-change="getCitiesList(customer.gov)"
+              ng-model="customer.gov"
+              display="name##session.lang##"
+              items="govesList"
+              ng-search="customer.$gov"
+            ></i-list>
+          </div>
+
+          <div class="row">
+            <i-list
+              class="col6"
+              label="# ##word.City##"
+              ng-model="customer.city"
+              ng-change="getAreasList(customer.city)"
+              items="citiesList"
+              display="name##session.lang##"
+              ng-search="customer.$area.$cityitem"
+            >
+            </i-list>
+            <i-list
+              class="col6"
+              label="# ##word.Area##"
+              ng-model="customer.area"
+              items="areasList"
+              display="name##session.lang##"
+              ng-search="customer.$area.$areaitem"
+            >
+            </i-list>
+          </div>
+
+          <div class="row">
+            <i-control
+              class="col6"
+              label="# ##word.Address##"
+              ng-model="customer.address"
+            >
+            </i-control>
+            <i-control
+              class="col6"
+              label="##word.P.O.Box##"
+              ng-model="customer.poBox"
+            >
+            </i-control>
+          </div>
+
+          <div class="row">
+            <i-control
+              class="col6"
+              label="##word.Zip##"
+              ng-model="customer.zip"
+            >
+            </i-control>
+            <i-control
+              class="col6"
+              label="##word.E-mail##"
+              ng-model="customer.patientEmail"
+            >
+            </i-control>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>##word.Accounting##</legend>
+          <div class="row padding">
+            <i-list
+              class="col3"
+              ng-model="customer.linkBy"
+              label="##word.Link By##"
+              ng-change="getAccountingList(customer.linkBy)"
+              items="accountingLinkList"
+              display="name##session.lang##"
+            ></i-list>
+            <i-list
+              class="col3"
+              ng-model="customer.account"
+              label="##word.Account##"
+              items="accountingList"
+              display="name##session.lang##"
+            ></i-list>
+          </div>
+        </fieldset>
+      </div>
+      <div id="taxAndBusinessInformations" class="tab-content">
+        <fieldset>
+          <legend>##word.Tax Informations##</legend>
+          <div class="row">
+            <i-control
+              class="col3"
+              label="# ##word.Tax Identification Number##"
+              ng-model="customer.taxIdentificationNumber"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Tax Card Number##"
+              ng-model="customer.taxCardNumber"
+            ></i-control>
+
+            <i-control
+              x-features="!protouch"
+              class="col3"
+              label="##word.Tax Office Code##"
+              ng-model="customer.taxOfficeCode"
+            ></i-control>
+
+            <i-control
+              x-features="!protouch"
+              class="col3"
+              label="##word.Tax Office Name##"
+              ng-model="customer.taxOfficeName"
+            ></i-control>
+          </div>
+
+          <div class="row">
+            <i-control
+              class="col3"
+              label="##word.Activity Address##"
+              ng-model="customer.activityAddress"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="##word.File Number##"
+              ng-model="customer.fileNumber"
+            >
+            </i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Activity Name##"
+              ng-model="customer.activityName"
+            >
+            </i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Financier Name##"
+              ng-model="customer.financierName"
+            ></i-control>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.Commercial Registeration Information##</legend>
+          <div class="row">
+            <i-control
+              class="col3"
+              label="##word.Commercial Name##"
+              ng-model="customer.commercialName"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Business Attribute##"
+              ng-model="customer.businessAttribute"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Commercial Name##"
+              ng-model="customer.commercialName"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Trader Name##"
+              ng-model="customer.traderName"
+            >
+            </i-control>
+          </div>
+
+          <div class="row">
+            <i-list
+              class="col3"
+              label="##word.Commerical Nationality##"
+              ng-model="customer.commericalNationality"
+              items="nationalitiesList"
+              display="name##session.lang##"
+              ng-get="getNationalities($search)"
+            ></i-list>
+
+            <i-control
+              class="col3"
+              label="##word.Financial System##"
+              ng-model="customer.financialSystem"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Commercial Validity##"
+              ng-model="customer.commercialValidity"
+            ></i-control>
+
+            <i-control
+              class="col3"
+              label="##word.Trade Type##"
+              ng-model="customer.tradeType"
+            >
+            </i-control>
+          </div>
+
+          <div class="row">
+            <i-fullDate
+              class="col6"
+              label1="##word.Commercial Start Gregorian Date##"
+              label2="##word.Commercial Start Hijri Date##"
+              ng-model="customer.commercialStartDate"
+            ></i-fullDate>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="branchesInformations" class="tab-content">
+        <fieldset>
+          <legend>
+            <i-button
+              type="push"
+              ng-click="!customer.branchesList.length?customer.branchesList=[{}]:customer.branchesList.unshift({})"
+            ></i-button>
+            ##word.Branch Information##
+          </legend>
+          <fieldset ng-repeat="branch in customer.branchesList">
+            <legend>
+              <i-button
+                type="delete"
+                ng-click="customer.branchesList.splice($index,1)"
+              ></i-button>
+            </legend>
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.Name##"
+                ng-model="branch.name"
+              ></i-control>
+              <i-control
+                class="col8"
+                label="##word.Address##"
+                ng-model="branch.address"
+              ></i-control>
+              <i-control
+                class="col4"
+                label="##word.Phone##"
+                ng-model="branch.phone"
+              ></i-control>
+              <i-control
+                class="col4"
+                label="##word.Mobile##"
+                ng-model="branch.mobile"
+              ></i-control>
+              <i-control
+                class="col4"
+                label="##word.Email##"
+                ng-model="branch.email"
+              ></i-control>
+              <i-control
+                class="col4"
+                label="##word.Manger##"
+                ng-model="branch.manger"
+              ></i-control>
+              <i-control
+                class="col4"
+                label="##word.Manger Phone##"
+                ng-model="branch.mangerPhone"
+              ></i-control>
+              <i-control
+                class="col4"
+                label="##word.Manger Mobile##"
+                ng-model="branch.mangerMobile"
+              ></i-control>
+              <i-control
+                class="col4"
+                label="##word.Manger Email##"
+                ng-model="branch.mangerEmail"
+              ></i-control>
+            </div>
+          </fieldset>
+        </fieldset>
+      </div>
+
+      <div id="bankingAccounts" class="tab-content">
+        <div class="row">
+          <i-list
+            class="col4"
+            label="##word.Bank##"
+            items="banksList"
+            display="name##session.lang##"
+            ng-model="selectedBank.bank"
+            ng-change="selectedBank.swiftCode = selectedBank.bank.swiftCode;selectedBank.iban = selectedBank.bank.ibanSymbol"
+          ></i-list>
+          <i-control
+            class="col4"
+            disabled
+            label="##word.Swift Code##"
+            ng-model="selectedBank.swiftCode"
+          ></i-control>
+          <i-control
+            class="col4"
+            label="##word.Account Number##"
+            ng-model="selectedBank.accountNumber"
+          ></i-control>
+          <i-control
+            class="col4"
+            label="##word.Account Name##"
+            ng-model="selectedBank.accountName"
+          ></i-control>
+
+          <fieldset class="col6">
+            <div class="row">
+              <i-control
+                class="col8"
+                label="##word.IBAN##"
+                ng-model="selectedBank.iban"
+                minlength="selectedBank.iban.length"
+              ></i-control>
+              <div class="col4 center">
+                <div class="col6">
+                  <div class="row">
+                    <p>##word.Requried##</p>
+                    <p>{{selectedBank.bank.ibanLength}}</p>
+                  </div>
+                </div>
+                <div class="col6">
+                  <div class="row">
+                    <p>##word.Enterd##</p>
+                    <p>{{selectedBank.iban.length}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="col2">
+            <br />
+            <i-button type="push" ng-click="addBank(selectedBank)"></i-button>
+          </div>
+        </div>
+        <fieldset>
+          <legend>##word.Bank Information##</legend>
+          <div class="table-responsive">
+            <table class="table hover bold">
+              <tr>
+                <th>##word.S##</th>
+                <th>##word.Bank Name##</th>
+                <th>##word.Branch Code##</th>
+                <th>##word.IBAN##</th>
+                <th>##word.Account Number##</th>
+                <th>##word.Account Name##</th>
+                <th>##word.Status##</th>
+                <th class="not-print">##word.Actions##</th>
+              </tr>
+              <tr ng-repeat="bank in customer.bankInformationsList">
+                <td class="center">{{$index+1}}</td>
+                <td class="center">{{bank.bank.name##session.lang##}}</td>
+                <td class="center">{{bank.swiftCode}}</td>
+                <td class="center">{{bank.iban}}</td>
+                <td class="center">{{bank.accountNumber}}</td>
+                <td class="center">{{bank.accountName}}</td>
+                <td>
+                  <i-checkbox
+                    ng-model="bank.active"
+                    class="text-center text-success"
+                    label="##word.Active##"
+                    ng-if="bank.active"
+                  ></i-checkbox>
+                  <i-checkbox
+                    ng-model="bank.active"
+                    class="text-center text-danger"
+                    label="##word.Not Active##"
+                    ng-if="!bank.active"
+                  ></i-checkbox>
+                </td>
+                <td class="center">
+                  <i-button
+                    type="delete"
+                    ng-click="customer.bankInformationsList.splice($index,1)"
+                  >
+                  </i-button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="customersFiles" class="tab-content">
+        <fieldset>
+          <legend>
+            <i-button type="push" ng-click="addFiles()"></i-button>
+            ##word.Documents##
+          </legend>
+
+          <div class="row" ng-repeat="f in customer.filesList">
+            <div class="row">
+              <div class="col10">
+                <div class="row">
+                  <i-list
+                    class="col4"
+                    label="##word.Document Type##"
+                    ng-model="f.fileType"
+                    items="documentsTypesList"
+                    display="name##session.lang##"
+                    ng-search="customer.$fileType"
+                  >
+                  </i-list>
+
+                  <i-control
+                    class="col3"
+                    label="##word.File Name##"
+                    ng-model="f.fileName"
+                  >
+                  </i-control>
+
+                  <i-date
+                    class="col4"
+                    ng-model="f.fileDate"
+                    label="##word.File Date##"
+                  ></i-date>
+
+                  <i-file ng-model="f.file"></i-file>
+                </div>
+              </div>
+              <div class="col2 center">
+                <br />
+                <br />
+                <i-button
+                  type="delete"
+                  title="##word.Delete##"
+                  ng-click="customer.filesList.splice($index,1)"
+                >
+                </i-button>
+              </div>
+            </div>
+            <br />
+            <br />
+            <hr
+              style="height: 5px; color: grey; background-color: rgb(0, 0, 199)"
+            />
+            <br />
+            <br />
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Add Info##</th>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{customer.addUserInfo.name}}</p>
+        <small class="green">
+          {{customer.addUserInfo.date |date:"hh:mm"}}
+        </small>
+        <small> {{customer.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{customer.addUserInfo.ip}}</p>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{customer.editUserInfo.name}}</p>
+        <small class="green">
+          {{customer.editUserInfo.date |date:"hh:mm"}}
+        </small>
+        <small> {{customer.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{customer.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

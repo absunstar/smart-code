@@ -153,7 +153,7 @@ module.exports = function init(site) {
             {
               title: app.name,
               appName: "Power Of Attorney",
-              setting: site.getCompanySetting(req),
+              setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
           );
@@ -170,22 +170,7 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-          _data.company = site.getCompany(req);
-
-          let numObj = {
-            company: site.getCompany(req),
-            screen: app.name,
-            date: new Date(),
-          };
-
-          let cb = site.getNumbering(numObj);
-          if (!_data.code && !cb.auto) {
-            response.error = "Must Enter Code";
-            res.json(response);
-            return;
-          } else if (cb.auto) {
-            _data.code = cb.code;
-          }
+        
 
           _data.addUserInfo = req.getUserFinger();
 
@@ -280,7 +265,6 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          code: 1,
           date: 1,
           number: 1,
           letter: 1,
@@ -304,8 +288,6 @@ module.exports = function init(site) {
         if (app.allowMemory) {
           let list = app.memoryList.filter(
             (g) =>
-              g.company &&
-              g.company.id == site.getCompany(req).id &&
               (typeof where.active != "boolean" || g.active === where.active) &&
               JSON.stringify(g).contains(where.search)
           );
@@ -315,13 +297,10 @@ module.exports = function init(site) {
             list: list.slice(-limit),
           });
         } else {
-          where["company.id"] = site.getCompany(req).id;
           if (search) {
             where.$or = [];
 
-            where.$or.push({
-              code: site.get_RegExp(search, "i"),
-            });
+       
             where.$or.push({
               letter: search,
             });
@@ -371,27 +350,10 @@ module.exports = function init(site) {
 
           if (Array.isArray(docs)) {
             console.log(`Importing ${app.name} : ${docs.length}`);
-            let systemCode = 0;
             docs.forEach((doc) => {
-              let numObj = {
-                company: site.getCompany(req),
-                screen: app.name,
-                date: new Date(),
-              };
-              let cb = site.getNumbering(numObj);
-
-              if (cb.auto) {
-                systemCode = cb.code || ++systemCode;
-              } else {
-                systemCode++;
-              }
-
-              if (!doc.code) {
-                doc.code = systemCode;
-              }
+            
 
               let newDoc = {
-                code: doc.code,
                 name: doc.name ? doc.name.trim() : "",
                 image: { url: "/theme1/images/setting/powerOfAttorney.png" },
                 active: true,

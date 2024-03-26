@@ -54,7 +54,6 @@
     <div class="table-responsive">
       <table class="table hover bold" id="t1">
         <tr>
-          <th>##word.Code##</th>
           <th>##word.Power Of Attorney Date##</th>
           <th>##word.Types##</th>
           <th>##word.Letters##</th>
@@ -64,9 +63,8 @@
           <th class="not-print">##word.Actions##</th>
         </tr>
         <tr ng-repeat="item in list">
-          <td class="center">{{item.code}}</td>
           <td class="center">{{item.date |date:"dd/MM/yyyy"}}</td>
-          <td class="center">{{item.type.name}}</td>
+          <td class="center">{{item.type.name##session.lang##}}</td>
           <td class="center">{{item.letter}}</td>
           <td class="center">{{item.number}}</td>
           <td class="center">{{item.year}}</td>

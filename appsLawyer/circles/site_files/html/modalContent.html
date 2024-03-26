@@ -3,13 +3,6 @@
     <div class="col9">
       <div class="row">
         <div class="row">
-          <i-control
-            ng-hide="disabledCode"
-            class="col9"
-            label="##word.Code##"
-            ng-model="item.code"
-          >
-          </i-control>
           <i-checkbox
             ng-model="item.active"
             class="col3"
@@ -19,14 +12,20 @@
         <i-control
           type="text"
           v="r"
-          ng-model="item.name"
-          label="##word.Name##"
+          ng-model="item.nameEn"
+          label="##word.Name English##"
+        ></i-control>
+        <i-control
+          type="text"
+          v="r"
+          ng-model="item.nameAr"
+          label="##word.Name Arabic##"
         ></i-control>
         <i-list
           label="##word.Court##"
           v="r"
           ng-model="item.court"
-          display="name"
+          display="name##session.lang##"
           items="courtsList"
           ng-get="getCourtsList($search)"
         ></i-list>

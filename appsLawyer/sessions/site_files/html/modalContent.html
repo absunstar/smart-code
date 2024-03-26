@@ -1,13 +1,7 @@
 <div class="row">
   <div class="row padding">
     <div class="row">
-      <i-control
-        ng-hide="disabledCode"
-        class="col2"
-        label="##word.Code##"
-        ng-model="item.code"
-      >
-      </i-control>
+   
       <i-date class="col4" v="r" label="##word.Date##" ng-model="item.date">
       </i-date>
       <i-date
@@ -38,7 +32,7 @@
         class="col4"
         label="##word.Reason Session##"
         ng-model="item.reasonsSession"
-        display="name"
+        display="name##session.lang##"
         items="reasonsSessionsList"
         ng-get="getreasonsSessionsList($search)"
       ></i-list>

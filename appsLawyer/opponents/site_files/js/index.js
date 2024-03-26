@@ -42,9 +42,7 @@ app.controller('opponents', function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-          if (response.data.error && response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.Must Enter Code##';
-          }
+        
         }
       },
       function (err) {
@@ -186,7 +184,6 @@ app.controller('opponents', function ($scope, $http, $timeout) {
         search,
         select: {
           id: 1,
-          code: 1,
           nameAr: 1,
           nameEn: 1,
           image: 1,
@@ -209,28 +206,7 @@ app.controller('opponents', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/getAutomatic',
-      data: {
-        screen: $scope.appName,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+ 
 
   $scope.showSearch = function () {
     $scope.error = '';
@@ -268,7 +244,6 @@ app.controller('opponents', function ($scope, $http, $timeout) {
         where: { active: true },
         select: {
           id: 1,
-          code: 1,
           nameAr: 1,
           nameEn: 1,
         },
@@ -304,7 +279,6 @@ app.controller('opponents', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
           callingCode: 1,
@@ -339,7 +313,6 @@ app.controller('opponents', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
         },
@@ -402,7 +375,6 @@ app.controller('opponents', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
         },
@@ -465,7 +437,6 @@ app.controller('opponents', function ($scope, $http, $timeout) {
 
   $scope.getAll();
   $scope.getNationalities();
-  $scope.getNumberingAuto();
   $scope.getCountriesList();
   $scope.getMaritalStatus();
   $scope.getGenders();

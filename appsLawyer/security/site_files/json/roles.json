@@ -1,0 +1,30 @@
+[
+
+    {
+        "moduleName": "public",
+        "name": "userManagement",
+        "Ar": "إدارة المستخدميين",
+        "En": "User Management",
+        "permissions": [
+            "security",
+            "securityManage"
+        ]
+    },
+    {
+        "moduleName": "public",
+        "name": "menus",
+        "Ar": "مشاهدة القوائم",
+        "En": "Show Menus",
+        "permissions": [
+            "menus"
+        ]
+    }, {
+        "moduleName": "public",
+        "name": "print",
+        "Ar": "إمكانية الطباعة",
+        "En": "Print",
+        "permissions": [
+            "Print"
+        ]
+    }
+]

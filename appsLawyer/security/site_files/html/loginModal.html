@@ -1,0 +1,44 @@
+<div data-ng-controller="login" id="loginModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="text-center"><i class="fa fa-sign-in"></i> ##word.Login##</h2>
+    </div>
+
+    <div class="modal-body">
+      <h1 ng-show="busy" class="text-center"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span></h1>
+
+      <form ng-hide="busy">
+        <div class="row">
+          <i-control class="col5" ng-model="user.email" type="text" label="##word.Email##" ng-keydown="loadUserBranches($event)"></i-control>
+          <i-control class="col5" ng-model="user.password" type="password" label="##word.Password##" ng-keydown="loadUserBranches($event)"></i-control>
+          <div class="col2">
+            <br>
+            <i-button label="##word.Login##" ng-hide="busy" id="loginBtn" class="center" type="login" ng-click="loadUserBranches()"></i-button>
+          </div>
+        </div>
+
+        <div class="row">
+          <table class="table loaded hover center bold">
+            <tr ng-repeat="b in branchList">
+              <td class="blue">{{b.company.name##session.lang##}}</td>
+              <td class="green">{{b.branch.name##session.lang##}}</td>
+              <td>
+                <i-button type="login" ng-click="login(b)" lable="##word.Login##"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form>
+
+      <p class="red text-center bold">{{error}}</p>
+      <br />
+      <br />
+      <br />
+    </div>
+    <div class="modal-footer center">
+      <i-button onclick="site.hideModal('#loginModal')" type="close" label="##word.Close##"></i-button>
+    </div>
+  </div>
+</div>
+<script x-import="security/login.js"></script>

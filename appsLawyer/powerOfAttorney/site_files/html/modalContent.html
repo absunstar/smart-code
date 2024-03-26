@@ -1,11 +1,6 @@
 <div class="row">
   <div class="row">
-    <i-control
-      ng-hide="disabledCode"
-      class="col3"
-      label="##word.Code##"
-      ng-model="item.code"
-    >
+  
     </i-control>
     <i-date class="col3" label="##word.Date##" ng-model="item.date"> </i-date>
     <i-date
@@ -22,7 +17,7 @@
       v="r"
       label="##word.Type of power of attorney##"
       ng-model="item.type"
-      display="name"
+      display="name##session.lang##"
       items="typesPoaList"
       ng-get="getTypesPoaList($search)"
     ></i-list>
@@ -145,7 +140,6 @@
             <table class="table hover bold" id="t1">
               <tr>
                 <th class="w150">##word.Logo##</th>
-                <th>##word.Code##</th>
                 <th>##word.Name##</th>
                 <th class="not-print">##word.Actions##</th>
               </tr>
@@ -157,7 +151,6 @@
                     ng-model="c.client.image"
                   ></i-image>
                 </td>
-                <td class="center blue">{{c.client.code}}</td>
                 <td class="center">{{c.client.name##session.lang##}}</td>
                 <td class="center">
                   <i-button
@@ -192,7 +185,6 @@
             <table class="table hover bold" id="t1">
               <tr>
                 <th class="w150">##word.Logo##</th>
-                <th>##word.Code##</th>
                 <th>##word.Name##</th>
                 <th class="not-print">##word.Actions##</th>
               </tr>
@@ -204,7 +196,6 @@
                     ng-model="c.lawyer.image"
                   ></i-image>
                 </td>
-                <td class="center blue">{{c.lawyer.code}}</td>
                 <td class="center">{{c.lawyer.fullName##session.lang##}}</td>
                 <td class="center">
                   <i-button

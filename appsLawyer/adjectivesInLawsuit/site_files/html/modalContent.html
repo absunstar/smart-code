@@ -2,27 +2,24 @@
   <div class="row padding">
     <div class="col9">
       <div class="row">
-        <div class="row">
-          <i-control
-            ng-hide="disabledCode"
-            class="col9"
-            label="##word.Code##"
-            ng-model="item.code"
-          >
-          </i-control>
-          <i-checkbox
-            ng-model="item.active"
-            class="col3"
-            label="##word.Active##"
-          ></i-checkbox>
-        </div>
+        <i-checkbox
+          ng-model="item.active"
+          class="col3"
+          label="##word.Active##"
+        ></i-checkbox>
+
         <i-control
           type="text"
           v="r"
-          ng-model="item.name"
-          label="##word.Name##"
+          ng-model="item.nameEn"
+          label="##word.Name English##"
         ></i-control>
-     
+        <i-control
+          type="text"
+          v="r"
+          ng-model="item.nameAr"
+          label="##word.Name Arabic##"
+        ></i-control>
       </div>
     </div>
     <div class="col3 center">

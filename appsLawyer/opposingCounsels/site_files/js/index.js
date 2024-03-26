@@ -192,7 +192,6 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         search,
         select: {
           id: 1,
-          code: 1,
           nameAr: 1,
           nameEn: 1,
           image: 1,
@@ -271,7 +270,6 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         where: { active: true },
         select: {
           id: 1,
-          code: 1,
           nameAr: 1,
           nameEn: 1,
         },
@@ -306,7 +304,6 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
           callingCode: 1,
@@ -341,7 +338,6 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
         },
@@ -404,7 +400,6 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
         },

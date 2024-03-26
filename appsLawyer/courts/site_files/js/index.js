@@ -41,12 +41,7 @@ app.controller("courts", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-          if (
-            response.data.error &&
-            response.data.error.like("*Must Enter Code*")
-          ) {
-            $scope.error = "##word.Must Enter Code##";
-          }
+        
         }
       },
       function (err) {
@@ -209,7 +204,6 @@ app.controller("courts", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
           callingCode: 1,
@@ -244,7 +238,6 @@ app.controller("courts", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
         },
@@ -307,7 +300,6 @@ app.controller("courts", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          code: 1,
           nameEn: 1,
           nameAr: 1,
         },
@@ -326,28 +318,7 @@ app.controller("courts", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = "";
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/numbering/getAutomatic",
-      data: {
-        screen: $scope.appName,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+
 /*
   $scope.initMap = function () {
     const myLatlng = { lat: -25.363, lng: 131.044 };
@@ -392,5 +363,4 @@ app.controller("courts", function ($scope, $http, $timeout) {
 
   $scope.getAll();
   $scope.getCountriesList();
-  $scope.getNumberingAuto();
 });

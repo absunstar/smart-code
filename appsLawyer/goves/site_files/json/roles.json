@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "govesAdmin",
+    "En": "Governorates Admin",
+    "Ar": "إدارة المحافظات",
+    "permissions": ["govesManage"]
+}]

@@ -144,7 +144,7 @@ module.exports = function init(site) {
                     name: app.name,
                 },
                 (req, res) => {
-                    res.render(app.name + '/index.html', { title: app.name, appName: 'Circles', setting: site.getCompanySetting(req) }, { parser: 'html', compres: true });
+                    res.render(app.name + '/index.html', { title: app.name, appName: 'Circles', setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
                 }
             );
         }
@@ -156,22 +156,6 @@ module.exports = function init(site) {
                 };
 
                 let _data = req.data;
-                _data.company = site.getCompany(req);
-
-                let numObj = {
-                    company: site.getCompany(req),
-                    screen: app.name,
-                    date: new Date(),
-                };
-
-                let cb = site.getNumbering(numObj);
-                if (!_data.code && !cb.auto) {
-                    response.error = 'Must Enter Code';
-                    res.json(response);
-                    return;
-                } else if (cb.auto) {
-                    _data.code = cb.code;
-                }
 
                 _data.addUserInfo = req.getUserFinger();
 
@@ -249,10 +233,9 @@ module.exports = function init(site) {
         if (app.allowRouteAll) {
             site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
                 let where = req.body.where || {};
-                let select = req.body.select || { id: 1, code: 1, name: 1, image: 1, active: 1 };
+                let select = req.body.select || { id: 1, nameEn: 1 , nameAr: 1, image: 1, active: 1 };
                 let list = [];
                 app.memoryList
-                    .filter((g) => g.company && g.company.id == site.getCompany(req).id)
                     .forEach((doc) => {
                         let obj = { ...doc };
 
@@ -288,27 +271,9 @@ module.exports = function init(site) {
 
                     if (Array.isArray(docs)) {
                         console.log(`Importing ${app.name} : ${docs.length}`);
-                        let systemCode = 0;
                         docs.forEach((doc) => {
-                            let numObj = {
-                                company: site.getCompany(req),
-                                screen: app.name,
-                                date: new Date(),
-                            };
-                            let cb = site.getNumbering(numObj);
-
-                            if (cb.auto) {
-                                systemCode = cb.code || ++systemCode;
-                            } else {
-                                systemCode++;
-                            }
-
-                            if (!doc.code) {
-                                doc.code = systemCode;
-                            }
-
+                      
                             let newDoc = {
-                                code: doc.code,
                                 name: doc.name ? doc.name.trim() : '',
                                 image: { url: '/theme1/images/setting/circles.png' },
                                 active: true,
