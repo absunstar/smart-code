@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="Ar" data-ng-app="myApp">
   <head x-import="lawyer-theme/head.html">
+<link rel="stylesheet" href="/css/lawyer-style.css?v=##site.options.version##" />
+
     <style>
       :root {
         --body-margin-top: 0px;
@@ -112,7 +114,7 @@
                   label="##word.Country##"
                   ng-model="user.country"
                   items="countriesList"
-                  display="name_##session.lang##"
+                  display="name##session.lang##"
                   ng-search="user.$countries"
                 ></i-list>
                 <i-list
@@ -125,7 +127,6 @@
                   ng-search="user.$gov"
                 ></i-list>
                 <i-list
-                  v="r"
                   label="##word.City##"
                   ng-model="user.city"
                   ng-change="getAreasList(user.city)"
@@ -135,7 +136,6 @@
                 >
                 </i-list>
                 <i-list
-                  v="r"
                   label="##word.Area##"
                   ng-model="user.area"
                   items="areasList"
@@ -166,10 +166,10 @@
               <i-control
                 v="r"
                 class="col4 pass input-style"
-                label="##word.retype_password##"
+                label="##word.Retype Password##"
                 type="password"
                 id="pass2"
-                ng-model="user.re_password"
+                ng-model="user.rePassword"
               >
               </i-control>
               <div class="col1"></div>

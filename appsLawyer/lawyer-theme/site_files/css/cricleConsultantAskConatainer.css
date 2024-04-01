@@ -6,6 +6,10 @@ main .mainContent .content .cricleConsultantAskConatainer {
   z-index: 999 !important;
 }
 
+main .mainContent .content .cricleChangeLangConatainer {
+  margin-right: 110px;
+}
+
 main .mainContent .content .cricleConsultantAskConatainer .cricleConsultantAsk {
   display: flex;
   flex-direction: column;
@@ -21,11 +25,21 @@ main .mainContent .content .cricleConsultantAskConatainer .cricleConsultantAsk {
   color: var(--button-fontColor-0);
 }
 
-main .mainContent .content .cricleConsultantAskConatainer .cricleConsultantAsk svg {
+main
+  .mainContent
+  .content
+  .cricleConsultantAskConatainer
+  .cricleConsultantAsk
+  svg {
   font-size: 24px;
 }
 
-main .mainContent .content .cricleConsultantAskConatainer .cricleConsultantAsk p {
+main
+  .mainContent
+  .content
+  .cricleConsultantAskConatainer
+  .cricleConsultantAsk
+  p {
   font-size: 18px;
   text-align: center;
 }

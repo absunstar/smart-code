@@ -35,7 +35,7 @@ app.controller("register", function ($scope, $http, $timeout) {
     obj.length_mobile = user.country.length_mobile;
 
     if (user) {
-      if (user.password === user.re_password) {
+      if (user.password === user.rePassword) {
         $scope.busy = true;
         $http({
           method: "POST",
@@ -107,8 +107,8 @@ app.controller("register", function ($scope, $http, $timeout) {
           nameAr: 1,
           nameEn: 1,
           imageUrl: 1,
-          country_code: 1,
-          length_mobile: 1,
+          callingCode: 1,
+          lengthMobile: 1,
         },
       },
     }).then(

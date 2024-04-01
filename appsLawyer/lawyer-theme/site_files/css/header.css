@@ -118,6 +118,10 @@ nav .container-fluid #navbarNavDropdown .navbar-nav .dropdown .dropdown-menu li 
   padding: 0.25rem 1rem !important;
   border-bottom: 1px solid #d9d9d94a !important;
 }
+.newRegister {
+  color : #2087e7 !important;
+  margin-right : 2px;
+}
 .HeaderContanier .lgScreen .userContainer {
 }
 .HeaderContanier .lgScreen .userContainer .profile {
