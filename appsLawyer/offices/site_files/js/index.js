@@ -167,6 +167,7 @@ app.controller('offices', function ($scope, $http, $timeout) {
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
         where: where,
+        type : 'owner'
       },
     }).then(
       function (response) {

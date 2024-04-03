@@ -290,13 +290,13 @@ module.exports = function init(site) {
   site.post("/api/register", (req, res) => {
     let response = { done: false };
 
-    if (req.body.$encript) {
-      if (req.body.$encript === "64") {
-        req.body.email = site.fromBase64(req.body.email);
-        req.body.password = site.fromBase64(req.body.password);
-      } else if (req.body.$encript === "123") {
-        req.body.email = site.from123(req.body.email);
-        req.body.password = site.from123(req.body.password);
+    if (req.body.user.$encript) {
+      if (req.body.user.$encript === "64") {
+        req.body.user.email = site.fromBase64(req.body.user.email);
+        req.body.user.password = site.fromBase64(req.body.user.password);
+      } else if (req.body.user.$encript === "123") {
+        req.body.user.email = site.from123(req.body.user.email);
+        req.body.user.password = site.from123(req.body.user.password);
       }
     }
 
@@ -317,34 +317,38 @@ module.exports = function init(site) {
     // }
 
     let user = {
-      email: req.body.email,
-      password: req.body.password,
-      mobile: req.body.mobile,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      imageUrl: req.body.imageUrl,
-      country: req.body.country,
-      gov: req.body.gov,
-      city: req.body.city,
-      area: req.body.area,
+      email: req.body.user.email,
+      password: req.body.user.password,
+      mobile: req.body.user.mobile,
+      firstName: req.body.user.firstName,
+      lastName: req.body.user.lastName,
+      imageUrl: req.body.user.imageUrl,
+      country: req.body.user.country,
+      gov: req.body.user.gov,
+      city: req.body.user.city,
+      area: req.body.user.area,
       ip: req.ip,
-      permissions: [req.body.type],
+      officesList: [],
+      roles: [{ name: req.body.type }],
       active: true,
       type:
         req.body.type == "lawyer"
-          ? site.usersTypesList[4]
-          : site.usersTypesList[5],
+          ? site.usersTypesList[3]
+          : site.usersTypesList[4],
       created_date: new Date(),
       $req: req,
       $res: res,
     };
+    if (req.body.type == "lawyer") {
+      user.jobType = site.employeesJobsTypesList[0];
+    }
     site.security.register(user, function (err, doc) {
       if (!err) {
         if (req.body.type == "lawyer") {
           let office = {
             imageUrl: "/images/offices.png",
-            nameAr :'مكتب' + doc.firstName + doc.lastName,
-            nameEn :'مكتب' + doc.firstName + doc.lastName,
+            nameAr: "مكتب" + doc.firstName + doc.lastName,
+            nameEn: "مكتب" + doc.firstName + doc.lastName,
             active: true,
             user: {
               id: doc.id,
@@ -355,7 +359,6 @@ module.exports = function init(site) {
             },
           };
           site.call("[office][add]", office);
-
         }
         response.user = doc;
         response.done = true;

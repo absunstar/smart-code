@@ -17,7 +17,17 @@ module.exports = function init(site) {
   app.$collection = site.connectCollection(app.name);
   site.on("[office][add]", (obj) => {
     app.add(obj, (err, doc) => {
-       
+      site.security.getUser(
+        {
+          id: doc.user.id,
+        },
+        (err, user) => {
+          if (!err && user) {
+            user.officesList.push(doc.id)
+            site.security.updateUser(user, (err) => {});
+          }
+        }
+      );
     });
   });
   app.init = function () {
@@ -266,6 +276,7 @@ module.exports = function init(site) {
         let where = req.body.where || {};
         let select = req.body.select || {
           id: 1,
+          user: 1,
           nameAr: 1,
           nameEn: 1,
           image: 1,
@@ -280,7 +291,23 @@ module.exports = function init(site) {
             }
           }
           if (!where.active || doc.active) {
-            list.push(obj);
+            if (req.session.user) {
+              if (req.session.user.jobType) {
+                if (req.session.user.jobType && req.session.user.jobType.name == "lawyers") {
+                  if (req.body.type == "owner") {
+                    if (obj.user.id == req.session.user.id) {
+                      list.push(obj);
+                    }
+                  } else if (req.body.type == "myOffices") {
+                    if(req.session.user.officesList && req.session.user.officesList.some((_o) => _o === obj.id)){
+                      list.push(obj);
+                    }
+                  }
+                }
+              } else {
+                list.push(obj);
+              }
+            }
           }
         });
         res.json({

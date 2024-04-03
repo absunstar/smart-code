@@ -1,6 +1,6 @@
 const site = require('../isite')({
   port: [80, 40009],
-  lang: 'AR',
+  lang: 'Ar',
   version: Date.now(),
   name: 'lawyer',
   savingTime: 5,

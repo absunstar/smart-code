@@ -1,5 +1,5 @@
 [
-    { "module_name" : "public" , "screen_name" : "menu" , "name":"menu_manage" , "EN":"Manage" , "AR":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "menu" , "name":"menu_manage" , "En":"Manage" , "Ar":"إدارة"},
 
-    { "module_name" : "public" , "screen_name" : "menu" , "name":"menu_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "menu" , "name":"menu_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

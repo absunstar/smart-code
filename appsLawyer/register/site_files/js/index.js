@@ -1,13 +1,15 @@
 app.controller("register", function ($scope, $http, $timeout) {
   $scope.user = { imageUrl: "/images/user_logo.png" };
-  $scope.type = "client";
 
-  $scope.showTab = function (event, selector) {
-    if (selector == "#registerClient") {
-      $scope.type = "client";
-    } else if (selector == "#registerLawyer") {
-      $scope.type = "lawyer";
-    }
+  $scope.typeSelect = function (type, e) {
+    $scope.type = type;
+
+    document.querySelectorAll("button").forEach((a) => {
+      a.classList.remove("user-type-select");
+    });
+
+    let element = document.getElementById(type);
+    element.classList.add("user-type-select");
   };
 
   $scope.register = function (user) {
@@ -40,7 +42,7 @@ app.controller("register", function ($scope, $http, $timeout) {
         $http({
           method: "POST",
           url: "/api/register",
-          data: {user :obj,type :$scope.type},
+          data: { user: obj, type: $scope.type },
         }).then(
           function (response) {
             if (response.data.error) {
@@ -50,7 +52,6 @@ app.controller("register", function ($scope, $http, $timeout) {
               }
               $scope.busy = false;
             } else if (response.data.user) {
-
               window.location.href = "/";
             }
           },
@@ -64,7 +65,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       }
     }
   };
- $scope.getOfficesList = function (where) {
+  $scope.getOfficesList = function (where) {
     $scope.busy = true;
     $http({
       method: "POST",

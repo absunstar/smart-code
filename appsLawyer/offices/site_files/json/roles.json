@@ -4,4 +4,11 @@
     "En": "Offices Admin",
     "Ar": "إدارة المكاتب",
     "permissions": ["officesManage"]
+},
+{
+    "moduleName" : "lawyer" ,
+    "name": "lawyer",
+    "En": "Lawyer",
+    "Ar": "المحامي",
+    "permissions": ["officesUpdate","officesView","officesUi"]
 }]

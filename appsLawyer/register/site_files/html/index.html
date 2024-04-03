@@ -1,9 +1,38 @@
 <!DOCTYPE html>
 <html lang="Ar" data-ng-app="myApp">
   <head x-import="lawyer-theme/head.html">
-<link rel="stylesheet" href="/css/lawyer-style.css?v=##site.options.version##" />
+    <link
+      rel="stylesheet"
+      href="/css/lawyer-style.css?v=##site.options.version##"
+    />
 
     <style>
+      .register-btn {
+        margin: 15px -7px 20px 0px;
+        text-align-last: center;
+        background: #2087e7;
+        color: white;
+        border-radius: 5px;
+        font-size: x-large;
+      }
+      .user-type {
+        text-align-last: center;
+        width: 140px;
+        padding: 5px;
+        text-align: center;
+        font-weight: bold;
+        font-size: xx-large;
+        margin: 10px;
+        border-radius: 10px;
+        color: black;
+        background: snow;
+      }
+      .user-type-select {
+        color: white !important;
+        background: grey !important;
+        box-shadow: 1px 1px 5px 1px #1d1d1da6;
+      }
+
       :root {
         --body-margin-top: 0px;
         --body-margin-bottom: 0px;
@@ -56,139 +85,140 @@
 
     <div class="form" style="text-align-last: right" id="register">
       <div class="all-section tabs user-tabs">
-        <div class="tabs-header full">
-          <a
-            class="tab-link inline-block"
-            ng-click="showTab($event,'#registerClient')"
+        <div class="row">
+          <button
+            ng-click="typeSelect('client',$event)"
+            class="user-type"
+            id="client"
           >
-            ##word.Client##</a
+            <i class="fas fa-user"></i>
+            <p>##word.Client##</p>
+          </button>
+          <button
+            ng-click="typeSelect('lawyer',$event)"
+            class="user-type"
+            id="lawyer"
           >
-          <a
-            class="tab-link inline-block"
-            ng-click="showTab($event,'#registerLawyer')"
-          >
-            ##word.Lawyer##</a
-          >
+            <i class="fas fa-user-tie"></i>
+            <p>##word.Lawyer##</p>
+          </button>
         </div>
-        <div
-          class="tabs-content border margin padding border-radius5"
-          style="background-image: linear-gradient(to right, #e9e9e9, #7fffd4)"
-        >
-          <div class="row" id="emailData">
-            <div class="row">
-              <div class="col6">
-                <i-control
-                  v="r"
-                  class="input-style"
-                  label="##word.First Name##"
-                  ng-model="user.firstName"
-                >
-                </i-control>
-                <i-control
-                  v="r"
-                  class="input-style"
-                  label="##word.Last Name##"
-                  ng-model="user.lastName"
-                >
-                </i-control>
-                <i-control
-                  v="r e"
-                  class="input-style"
-                  label="##word.Email##"
-                  ng-model="user.email"
-                >
-                </i-control>
 
-                <i-control
-                  v="r"
-                  class="center input-style"
-                  label="##word.Mobile Number##"
-                  type="tel"
-                  ng-model="user.mobile"
-                >
-                </i-control>
-
-                <i-list
-                  v="r"
-                  class="center input-style"
-                  label="##word.Country##"
-                  ng-model="user.country"
-                  items="countriesList"
-                  display="name##session.lang##"
-                  ng-search="user.$countries"
-                ></i-list>
-                <i-list
-                  v="r"
-                  label="##word.Governorate##"
-                  ng-change="getCitiesList(user.gov)"
-                  ng-model="user.gov"
-                  display="name##session.lang##"
-                  items="govesList"
-                  ng-search="user.$gov"
-                ></i-list>
-                <i-list
-                  label="##word.City##"
-                  ng-model="user.city"
-                  ng-change="getAreasList(user.city)"
-                  items="citiesList"
-                  display="name##session.lang##"
-                  ng-search="user.$area.$cityitem"
-                >
-                </i-list>
-                <i-list
-                  label="##word.Area##"
-                  ng-model="user.area"
-                  items="areasList"
-                  display="name##session.lang##"
-                  ng-search="user.$area.$areaitem"
-                >
-                </i-list>
-              </div>
-              <div class="col2"></div>
-              <div class="col3">
-                <p>##word.Profile Image##</p>
-                <i-image
-                  style="width: 170px !important; height: 200px !important"
-                  ng-model="user.imageUrl"
-                ></i-image>
-              </div>
-            </div>
-            <div class="row">
+        <div class="row" id="emailData" ng-show="type">
+          <div class="row">
+            <div class="col6">
               <i-control
                 v="r"
-                class="col4 pass input-style"
-                label="##word.password##"
-                type="password"
-                id="pass1"
-                ng-model="user.password"
+                class="input-style"
+                label="##word.First Name##"
+                ng-model="user.firstName"
               >
               </i-control>
               <i-control
                 v="r"
-                class="col4 pass input-style"
-                label="##word.Retype Password##"
-                type="password"
-                id="pass2"
-                ng-model="user.rePassword"
+                class="input-style"
+                label="##word.Last Name##"
+                ng-model="user.lastName"
               >
               </i-control>
-              <div class="col1"></div>
-              <i-checkbox
-                class="col2"
-                label="##word.show_password##"
-                ng-change="showPassword()"
-                ng-model="show_password"
+              <i-control
+                v="r e"
+                class="input-style"
+                label="##word.Email##"
+                ng-model="user.email"
               >
-              </i-checkbox>
-            </div>
+              </i-control>
 
-            <button ng-click="register(user)" class="login-button">
-              ##word.register Now## <i class="fa fa-user-plus"></i>
-            </button>
+              <i-control
+                v="r"
+                class="center input-style"
+                label="##word.Mobile Number##"
+                type="tel"
+                ng-model="user.mobile"
+              >
+              </i-control>
+
+              <i-list
+                v="r"
+                class="center input-style"
+                label="##word.Country##"
+                ng-model="user.country"
+                ng-change="getGovesList(user.country)"
+                items="countriesList"
+                display="name##session.lang##"
+                ng-search="user.$countries"
+              ></i-list>
+              <i-list
+                v="r"
+                label="##word.Governorate##"
+                ng-change="getCitiesList(user.gov)"
+                ng-model="user.gov"
+                display="name##session.lang##"
+                items="govesList"
+                ng-search="user.$gov"
+              ></i-list>
+              <i-list
+                label="##word.City##"
+                ng-model="user.city"
+                ng-change="getAreasList(user.city)"
+                items="citiesList"
+                display="name##session.lang##"
+                ng-search="user.$area.$cityitem"
+              >
+              </i-list>
+              <i-list
+                label="##word.Area##"
+                ng-model="user.area"
+                items="areasList"
+                display="name##session.lang##"
+                ng-search="user.$area.$areaitem"
+              >
+              </i-list>
+            </div>
+            <div class="col2"></div>
+            <div class="col3">
+              <p>##word.Profile Image##</p>
+              <i-image
+                style="width: 170px !important; height: 200px !important"
+                ng-model="user.imageUrl"
+              ></i-image>
+            </div>
+          </div>
+          <div class="row">
+            <i-control
+              v="r"
+              class="col4 pass input-style"
+              label="##word.password##"
+              type="password"
+              id="pass1"
+              ng-model="user.password"
+            >
+            </i-control>
+            <i-control
+              v="r"
+              class="col4 pass input-style"
+              label="##word.Retype Password##"
+              type="password"
+              id="pass2"
+              ng-model="user.rePassword"
+            >
+            </i-control>
+            <div class="col1"></div>
+            <i-checkbox
+              class="col2"
+              label="##word.show_password##"
+              ng-change="showPassword()"
+              ng-model="show_password"
+            >
+            </i-checkbox>
           </div>
 
-          <h2 class="bold center red">{{error}}</h2>
+          <button ng-click="register(user)" class="register-btn">
+            ##word.register Now## <i class="fa fa-user-plus"></i>
+          </button>
         </div>
+
+        <h2 class="bold center red">{{error}}</h2>
         <div class="row">
           <form class="center">
             <p class="font-18 center">
