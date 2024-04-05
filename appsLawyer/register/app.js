@@ -331,17 +331,12 @@ module.exports = function init(site) {
       officesList: [],
       roles: [{ name: req.body.type }],
       active: true,
-      type:
-        req.body.type == "lawyer"
-          ? site.usersTypesList[3]
-          : site.usersTypesList[4],
+      type: req.body.type,
       created_date: new Date(),
       $req: req,
       $res: res,
     };
-    if (req.body.type == "lawyer") {
-      user.jobType = site.employeesJobsTypesList[0];
-    }
+
     site.security.register(user, function (err, doc) {
       if (!err) {
         if (req.body.type == "lawyer") {

@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="En" x-permissions="!login" data-ng-app="myApp">
   <head x-import="lawyer-theme/head.html">
+    <link
+      rel="stylesheet"
+      href="/css/lawyer-style.css?v=##site.options.version##"
+    />
+
     <style>
+      .register-btn {
+        margin: 15px -7px 20px 0px;
+        text-align-last: center;
+        background: #2087e7;
+        color: white;
+        border-radius: 5px;
+        font-size: x-large;
+      }
       .register:hover {
         color: blue !important;
         text-decoration: underline !important;
@@ -25,13 +38,13 @@
               <i-control
                 class="input-style"
                 v="r"
-                label="##word.mobile_email##"
+                label="##word.Mobile Or Email##"
                 ng-model="user.email"
               >
               </i-control>
               <i-control
                 class="input-style pass"
-                label="##word.password##"
+                label="##word.Password##"
                 type="password"
                 v="r"
                 ng-model="user.password"
@@ -39,32 +52,29 @@
               </i-control>
               <i-checkbox
                 class="center"
-                label="##word.show_password##"
+                label="##word.Show Password##"
                 ng-click="showPassword()"
                 ng-model="show_password"
               >
               </i-checkbox>
-              <br />
-              <a class="right register" href="/register">
-                <span>##word.Register New Account##</span>
-              </a>
-              <br />
-              <div class="center padding margin">
-                <i-button
-                  type="login"
-                  class2="btn-primary"
-                  ng-click="login()"
-                  class="login-button"
-                  label="##word.login_now## "
-                >
-                </i-button>
-              </div>
+              <button ng-click="login()" class="register-btn">
+                ##word.Login Now## <i class="fas fa-sign-in-alt"></i>
+              </button>
             </div>
             <div class="col3"></div>
           </div>
 
           <div class="row">
             <h2 class="bold center red">{{error}}</h2>
+          </div>
+          <div class="row">
+            <form >
+              <p class="font-18 ">
+                <a href="/login" class="hover-a">
+                  ##word.Register New Account## </a
+                >
+              </p>
+            </form>
           </div>
         </div>
       </div>

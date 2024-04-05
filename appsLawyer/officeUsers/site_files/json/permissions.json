@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "officeUsers", "name": "officeUsersImport", "En": "Import", "Ar": "إستيراد" }
+]

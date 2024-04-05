@@ -20,11 +20,11 @@ app.controller('login', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         if (response.data.error) {
-          $scope.error = '##word.email_or_pass_error##';
+          $scope.error = '##word.Email Or Pass Error##';
           $scope.busy = false;
         }
         if (response.data.done) {
-          window.location.href = '/admin';
+          window.location.href = '/';
         }
       },
       function (err) {

@@ -8,7 +8,13 @@
 legend {
   float: right !important;
 }
-
+.underline-hover:hover {
+  text-decoration: underline;
+}
+.hover-a:hover {
+  color: #2087e7 !important;
+  text-decoration-line: underline !important;
+}
 .form-label {
   direction: rtl;
   float: inline-start;

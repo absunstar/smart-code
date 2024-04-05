@@ -204,13 +204,19 @@
             >
             </i-control>
             <div class="col1"></div>
-            <i-checkbox
-              class="col2"
-              label="##word.show_password##"
-              ng-change="showPassword()"
-              ng-model="show_password"
-            >
-            </i-checkbox>
+            <div class="col2">
+              <i-checkbox
+                label="##word.show_password##"
+                ng-change="showPassword()"
+                ng-model="show_password"
+              >
+              </i-checkbox>
+              <p class="font-18">
+                <a href="/login" class="hover-a">
+                  ##word.Existing User## ##word.Login Now##</a
+                >
+              </p>
+            </div>
           </div>
 
           <button ng-click="register(user)" class="register-btn">
@@ -219,14 +225,6 @@
         </div>
 
         <h2 class="bold center red">{{error}}</h2>
-        <div class="row">
-          <form class="center">
-            <p class="font-18 center">
-              ##word.Existing User##
-              <a href="/login" class="underline-hover">##word.Login Now##</a>
-            </p>
-          </form>
-        </div>
 
         <div id="main-layout" class="container">
           <div class="row" id="registersouqModal"></div>

@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   let app = {
-    name: "offices",
-    allowMemory: true,
+    name: "officeUsers",
+    allowMemory: false,
     memoryList: [],
     allowCache: false,
     cacheList: [],
@@ -14,22 +14,9 @@ module.exports = function init(site) {
     allowRouteAll: true,
   };
 
-  app.$collection = site.connectCollection(app.name);
-  site.on("[office][add]", (obj) => {
-    app.add(obj, (err, doc) => {
-      site.security.getUser(
-        {
-          id: doc.user.id,
-        },
-        (err, user) => {
-          if (!err && user) {
-            user.officesList.push(doc.id);
-            site.security.updateUser(user, (err) => {});
-          }
-        }
-      );
-    });
-  });
+  app.$collection = site.connectCollection("officeUsers");
+  app.$collectionUser = site.connectCollection("users_info");
+
   app.init = function () {
     if (app.allowMemory) {
       app.$collection.findMany({}, (err, docs) => {
@@ -158,15 +145,26 @@ module.exports = function init(site) {
   if (app.allowRoute) {
     if (app.allowRouteGet) {
       site.get(
-        {
-          name: app.name,
-        },
+        [
+          { name: app.name },
+          { name: "myOfficeLawyers" },
+          { name: "myOfficeSecretary" },
+          { name: "myOfficeEmployees" },
+        ],
         (req, res) => {
+          let appName = app.name;
+          if (req.url === "/myOfficeLawyers") {
+            appName = "Lawyers Office";
+          } else if (req.url === "/myOfficeSecretary") {
+            appName = "Secretary Office";
+          } else if (req.url === "/myOfficeEmployees") {
+            appName = "Employees Office";
+          }
           res.render(
             app.name + "/index.html",
             {
-              title: app.name,
-              appName: "Offices",
+              title: appName,
+              appName: appName,
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -184,8 +182,6 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-
-          _data.addUserInfo = req.getUserFinger();
 
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -274,48 +270,169 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
+        let search = req.body.search || "";
+        let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          user: 1,
-          nameAr: 1,
           nameEn: 1,
+          nameAr: 1,
           image: 1,
           active: 1,
         };
-        let list = [];
-        app.memoryList.forEach((doc) => {
-          let obj = { ...doc };
-          for (const p in obj) {
-            if (!Object.hasOwnProperty.call(select, p)) {
-              delete obj[p];
-            }
+        if (search) {
+          where.$or = [];
+
+          where.$or.push({
+            id: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            nameAr: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            nameEn: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            idNumber: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            "gender.nameAr": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "gender.nameEn": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "maritalStatus.nameAr": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "maritalStatus.nameEn": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            phone: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            mobile: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            whatsapp: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            socialEmail: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            address: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "gov.nameAr": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "gov.nameEn": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "city.nameAr": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "city.nameEn": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "area.nameAr": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "area.nameEn": site.get_RegExp(search, "i"),
+          });
+        }
+
+        if (app.allowMemory) {
+          if (!search) {
+            search = "id";
           }
-          if (!where.active || doc.active) {
-            if (req.session.user) {
-              if (req.session.user.type == "lawyer") {
-                if (req.body.type == "owner") {
-                  if (obj.user.id == req.session.user.id) {
-                    list.push(obj);
-                  }
-                } else if (req.body.type == "myOffices") {
-                  if (
-                    req.session.user.officesList &&
-                    req.session.user.officesList.some((_o) => _o === obj.id)
-                  ) {
-                    list.push(obj);
-                  }
-                }
-              } else if(!req.session.user.type) {
-                list.push(obj);
-              }
-            }
-          }
-        });
-        res.json({
-          done: true,
-          list: list,
-        });
+          let list = app.memoryList
+            .filter(
+              (g) =>
+                (typeof where.active != "boolean" ||
+                  g.active === where.active) &&
+                JSON.stringify(g).contains(search)
+            )
+            .slice(0, limit);
+          res.json({
+            done: true,
+            list: list,
+          });
+        } else {
+          app.all({ where, select, limit }, (err, docs) => {
+            res.json({
+              done: true,
+              list: docs,
+            });
+          });
+        }
       });
+
+      site.post(
+        {
+          name: `/api/${app.name}/addUsers`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+          let _data = req.data;
+
+          let where = {};
+          where["email"] = _data.email;
+          app.$collectionUser.all({ where, select }, (err1, docs) => {
+            if (docs) {
+              response.error = "Email is exist";
+              res.json(response);
+              return;
+            } else if (err1) {
+              response.error = err1?.message || "Has Err";
+              res.json(response);
+              return;
+            }
+
+            if (!_data.email) {
+              let splitName = _data.fullNameEn.split(" ");
+              let emailAndPass =
+                splitName[0] + Math.floor(Math.random() * 1000 + 1).toString();
+              _data.email = emailAndPass;
+              _data.password = emailAndPass;
+            }
+            _data.roles = [_data.type];
+
+            if (_data.mobileList && _data.mobileList.length > 0) {
+              _data.mobile = _data.mobileList[0].mobile;
+            } else {
+              response.error = "Must Add Mobile Number";
+              res.json(response);
+              return;
+            }
+
+            _data.addUserInfo = req.getUserFinger();
+
+            app.$collectionUser.add(_data, (err, doc) => {
+              if (!err && doc) {
+                response.done = true;
+                response.doc = doc;
+                app.add({ userId: doc.id, type: user.type }, (err, doc1) => {
+                  if (!err && doc1) {
+                  } else {
+                    response.error = err.mesage;
+                  }
+                  res.json(response);
+                });
+              } else {
+                response.error = err?.message || "Add Not Exists";
+              }
+              res.json(response);
+            });
+          });
+        }
+      );
 
       site.post(`api/${app.name}/import`, (req, res) => {
         let response = {
@@ -340,8 +457,11 @@ module.exports = function init(site) {
             console.log(`Importing ${app.name} : ${docs.length}`);
             docs.forEach((doc) => {
               let newDoc = {
-                name: doc.name ? doc.name.trim() : "",
-                image: { url: "/theme1/images/setting/offices.png" },
+                nameAr: doc.nameAr,
+                nameEn: doc.nameEn,
+                email: doc.email,
+                mobile: "0" + doc.mobile,
+                image: { url: "/images/officeUsers.png" },
                 active: true,
               };
 

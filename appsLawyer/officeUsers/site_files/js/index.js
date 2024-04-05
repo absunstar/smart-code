@@ -1,11 +1,11 @@
-app.controller("opponents", function ($scope, $http, $timeout) {
+app.controller("officeUsers", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-  $scope.appName = "opponents";
-  $scope.modalID = "#opponentsManageModal";
-  $scope.modalSearchID = "#opponentsSearchModal";
+  $scope.appName = "officeUsers";
+  $scope.modalID = "#officeUsersManageModal";
+  $scope.modalSearchID = "#officeUsersSearchModal";
   $scope.mode = "add";
   $scope.structure = {
-    image: { url: "/images/opponents.png" },
+    image: { url: "/images/officeUsers.png" },
     active: true,
   };
   $scope.item = {};

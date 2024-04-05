@@ -9,14 +9,14 @@
             <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
           </div>
 
-          <i-control type="text" v="r" ng-model="item.nameEn" label="##word.Name##"></i-control>
-          <i-control type="text" v="r" ng-model="item.nameAr" label="##word.Name Arabic##"></i-control>
+          <i-control type="text" v="r" ng-model="item.firstName" label="##word.First Name##"></i-control>
+          <i-control type="text" v="r" ng-model="item.last" label="##word.Last Name##"></i-control>
           <i-list  label="##word.Office##" ng-model="item.office" display="name##session.lang##" items="officesList" ng-search="item.$offices"></i-list>
 
         </div>
       </div>
       <div class="col3 center">
-        <i-image class="img128 center" ng-model="item.image"></i-image>
+        <i-image class="img128 center" ng-model="item.imageUrl"></i-image>
       </div>
     </div>
   </fieldset>
@@ -126,7 +126,12 @@
 
           <div class="row">
             <i-control class="col6" label="##word.Zip##" ng-model="item.zip"> </i-control>
-            <i-control class="col6" label="##word.E-mail##" ng-model="item.patientEmail"> </i-control>
+            <i-control class="col6" label="##word.E-mail##" ng-model="item.socialEmail"> </i-control>
+          </div>
+
+          <div class="row">
+            <i-control class="col6" label="##word.UserName##" ng-model="item.email"> </i-control>
+            <i-control class="col6" label="##word.Password##" ng-model="item.password"> </i-control>
           </div>
         </fieldset>
      

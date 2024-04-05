@@ -1,0 +1,9 @@
+[
+    {
+        "moduleName": "public",
+        "name": "officeUsersAdmin",
+        "En": "Office Users Admin",
+        "Ar": "إدارة مستخدمين المكتب",
+        "permissions": ["officeUsersManage"]
+    }
+]
