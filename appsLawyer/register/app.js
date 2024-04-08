@@ -15,7 +15,7 @@ module.exports = function init(site) {
         "register/index.html",
         {
           title: site.setting.title,
-          imageUrl: site.setting.logo,
+          image: site.setting.logo,
           description: site.setting.description,
         },
         {
@@ -35,7 +35,7 @@ module.exports = function init(site) {
         "register/mailer.html",
         {
           title: site.setting.title,
-          imageUrl: site.setting.logo,
+          image: site.setting.logo,
           description: site.setting.description,
         },
         {
@@ -322,7 +322,7 @@ module.exports = function init(site) {
       mobile: req.body.user.mobile,
       firstName: req.body.user.firstName,
       lastName: req.body.user.lastName,
-      imageUrl: req.body.user.imageUrl,
+      image: req.body.user.image,
       country: req.body.user.country,
       gov: req.body.user.gov,
       city: req.body.user.city,
@@ -341,7 +341,7 @@ module.exports = function init(site) {
       if (!err) {
         if (req.body.type == "lawyer") {
           let office = {
-            imageUrl: "/images/offices.png",
+            image: "/images/offices.png",
             nameAr: "مكتب" + doc.firstName + doc.lastName,
             nameEn: "مكتب" + doc.firstName + doc.lastName,
             active: true,

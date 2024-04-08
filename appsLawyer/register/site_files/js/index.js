@@ -1,5 +1,5 @@
 app.controller("register", function ($scope, $http, $timeout) {
-  $scope.user = { imageUrl: "/images/user_logo.png" };
+  $scope.user = { image: "/images/user_logo.png" };
 
   $scope.typeSelect = function (type, e) {
     $scope.type = type;
@@ -26,7 +26,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       mobile: user.mobile,
       firstName: user.firstName,
       lastName: user.lastName,
-      imageUrl: user.imageUrl,
+      image: user.image,
       country: user.country,
       gov: user.gov,
       city: user.city,
@@ -78,7 +78,7 @@ app.controller("register", function ($scope, $http, $timeout) {
           id: 1,
           nameAr: 1,
           nameEn: 1,
-          imageUrl: 1,
+          image: 1,
         },
       },
     }).then(
@@ -107,7 +107,7 @@ app.controller("register", function ($scope, $http, $timeout) {
           id: 1,
           nameAr: 1,
           nameEn: 1,
-          imageUrl: 1,
+          image: 1,
           callingCode: 1,
           lengthMobile: 1,
         },

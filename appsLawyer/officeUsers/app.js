@@ -145,26 +145,15 @@ module.exports = function init(site) {
   if (app.allowRoute) {
     if (app.allowRouteGet) {
       site.get(
-        [
-          { name: app.name },
-          { name: "myOfficeLawyers" },
-          { name: "myOfficeSecretary" },
-          { name: "myOfficeEmployees" },
-        ],
+        {
+          name: app.name,
+        },
         (req, res) => {
-          let appName = app.name;
-          if (req.url === "/myOfficeLawyers") {
-            appName = "Lawyers Office";
-          } else if (req.url === "/myOfficeSecretary") {
-            appName = "Secretary Office";
-          } else if (req.url === "/myOfficeEmployees") {
-            appName = "Employees Office";
-          }
           res.render(
             app.name + "/index.html",
             {
-              title: appName,
-              appName: appName,
+              title: app.name,
+              appName: "Office Users",
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -235,7 +224,7 @@ module.exports = function init(site) {
           };
           let _data = req.data;
 
-          app.delete(_data, (err, result) => {
+          app.$collection.delete(_data, (err, result) => {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
@@ -274,10 +263,9 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
-          image: 1,
-          active: 1,
+          userId: 1,
+          type: 1,
+          office: 1,
         };
         if (search) {
           where.$or = [];
@@ -344,31 +332,35 @@ module.exports = function init(site) {
             "area.nameEn": site.get_RegExp(search, "i"),
           });
         }
-
-        if (app.allowMemory) {
-          if (!search) {
-            search = "id";
-          }
-          let list = app.memoryList
-            .filter(
-              (g) =>
-                (typeof where.active != "boolean" ||
-                  g.active === where.active) &&
-                JSON.stringify(g).contains(search)
-            )
-            .slice(0, limit);
-          res.json({
-            done: true,
-            list: list,
-          });
-        } else {
-          app.all({ where, select, limit }, (err, docs) => {
+        where["office.id"] = { $in: req.session.user.officesList };
+        where["type"] = req.body.type;
+        app.all({ where, select, limit }, (err, docs) => {
+          if (docs && docs.length > 0) {
+            let usersIdList = [];
+            docs.forEach((_doc) => {
+              usersIdList.push(_doc.userId);
+            });
+            let whereUsers = {
+              id: { $in: usersIdList },
+            };
+            app.$collectionUser.findMany(whereUsers, (err, users) => {
+              users.forEach(_user => {
+                item = docs.find((itm) => itm.userId == _user.id);
+                _user.office = item.office;
+                _user.docId = item.id;
+              });
+              res.json({
+                done: true,
+                list: users,
+              });
+            });
+          } else {
             res.json({
               done: true,
-              list: docs,
+              list: [],
             });
-          });
-        }
+          }
+        });
       });
 
       site.post(
@@ -384,8 +376,8 @@ module.exports = function init(site) {
 
           let where = {};
           where["email"] = _data.email;
-          app.$collectionUser.all({ where, select }, (err1, docs) => {
-            if (docs) {
+          app.$collectionUser.findMany(where, (err1, docs) => {
+            if (docs && docs.length) {
               response.error = "Email is exist";
               res.json(response);
               return;
@@ -402,33 +394,95 @@ module.exports = function init(site) {
               _data.email = emailAndPass;
               _data.password = emailAndPass;
             }
-            _data.roles = [_data.type];
-
-            if (_data.mobileList && _data.mobileList.length > 0) {
-              _data.mobile = _data.mobileList[0].mobile;
+            _data.roles = [{ name: _data.$role }];
+            if (_data.$role == "lawyer") {
+              _data.type = _data.$role;
             } else {
-              response.error = "Must Add Mobile Number";
-              res.json(response);
-              return;
+              _data.type = "client";
             }
-
+            // if (_data.mobileList && _data.mobileList.length > 0) {
+            //   _data.mobile = _data.mobileList[0].mobile;
+            // } else {
+            //   response.error = "Must Add Mobile Number";
+            //   res.json(response);
+            //   return;
+            // }
+            const office = { ..._data.office };
+            if (_data.office) {
+              _data.officesList = [_data.office.id];
+              delete _data.office;
+            }
             _data.addUserInfo = req.getUserFinger();
 
             app.$collectionUser.add(_data, (err, doc) => {
               if (!err && doc) {
-                response.done = true;
-                response.doc = doc;
-                app.add({ userId: doc.id, type: user.type }, (err, doc1) => {
-                  if (!err && doc1) {
+                let userOffice = {
+                  userId: doc.id,
+                  office,
+                  type: _data.$role,
+                  addUserInfo: doc.addUserInfo,
+                };
+                app.add(userOffice, (err, userOfficeDoc) => {
+                  if (!err && userOfficeDoc) {
+                    response.done = true;
+                    response.doc = userOfficeDoc;
                   } else {
-                    response.error = err.mesage;
+                    response.error = err?.message || "Add Not Exists";
                   }
                   res.json(response);
                 });
               } else {
                 response.error = err?.message || "Add Not Exists";
               }
+            });
+          });
+        }
+      );
+
+      site.post(
+        {
+          name: `/api/${app.name}/addEmployee`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+          let _data = req.data;
+
+          let where = {
+            $and: [
+              { userId: _data.userId },
+              { "office.id": _data.office.id },
+              // { type: _data.type },
+            ],
+          };
+          app.all({ where }, (err1, docs) => {
+            if (docs && docs.length) {
+              response.error = "User is exist";
               res.json(response);
+              return;
+            } else if (err1) {
+              response.error = err1?.message || "Has Err";
+              res.json(response);
+              return;
+            }
+
+            _data.addUserInfo = req.getUserFinger();
+
+            app.$collectionUser.findOne({ id: _data.userId }, (err1, user) => {
+              app.add(_data, (err, doc) => {
+                if (!err && doc) {
+                  user.officesList.push(doc.office.id);
+                  app.$collectionUser.update(user);
+                  response.done = true;
+                  response.doc = doc;
+                  res.json(response);
+                } else {
+                  response.error = err?.message || "Add Not Exists";
+                }
+                res.json(response);
+              });
             });
           });
         }

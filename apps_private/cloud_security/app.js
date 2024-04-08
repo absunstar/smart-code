@@ -1,13 +1,13 @@
 module.exports = function init(site) {
-  const $companies = site.connectCollection('companies');
+  const $companies = site.connectCollection("companies");
 
-  site.post('/api/security/permissions', (req, res) => {
+  site.post("/api/security/permissions", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
@@ -17,13 +17,13 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post('/api/security/roles', (req, res) => {
+  site.post("/api/security/roles", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
@@ -35,84 +35,100 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: 'security',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html js',
+    name: "security",
+    path: __dirname + "/site_files/html/index.html",
+    parser: "html js",
     compress: false,
   });
 
   site.get({
-    name: 'security/users',
-    path: __dirname + '/site_files/html/users.html',
-    parser: 'html js',
+    name: "security/users",
+    path: __dirname + "/site_files/html/users.html",
+    parser: "html js",
     compress: false,
   });
 
   site.get({
-    name: 'security/roles',
-    path: __dirname + '/site_files/html/roles.html',
-    parser: 'html js',
+    name: "security/roles",
+    path: __dirname + "/site_files/html/roles.html",
+    parser: "html js",
     compress: false,
   });
 
   site.get({
-    name: '/images',
-    path: __dirname + '/site_files/images',
+    name: "/images",
+    path: __dirname + "/site_files/images",
   });
 
-  site.post('/api/users/all', (req, res) => {
+  site.post("/api/users/all", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
 
     let where = req.body.where || {};
-    if (!site.feature('souq') && !site.feature('cms')) {
-      where['company.id'] = site.get_company(req).id;
-      where['branch.code'] = site.get_branch(req).code;
+    if (!site.feature("souq") && !site.feature("cms") && !site.feature("lawyer")) {
+      where["company.id"] = site.get_company(req).id;
+      where["branch.code"] = site.get_branch(req).code;
     }
 
-    if (where['search']) {
+    if (where["search"]) {
       where.$or = [];
       where.$or.push({
-        'gender.ar': site.get_RegExp(where['search'], 'i'),
+        "gender.ar": site.get_RegExp(where["search"], "i"),
       });
 
       where.$or.push({
-        'gender.en': site.get_RegExp(where['search'], 'i'),
+        "gender.en": site.get_RegExp(where["search"], "i"),
       });
 
       where.$or.push({
-        'type.ar': site.get_RegExp(where['search'], 'i'),
+        "type.ar": site.get_RegExp(where["search"], "i"),
       });
 
       where.$or.push({
-        'type.en': site.get_RegExp(where['search'], 'i'),
+        "type.en": site.get_RegExp(where["search"], "i"),
       });
 
       where.$or.push({
-        'profile.name': site.get_RegExp(where['search'], 'i'),
-      });
-
-      where.$or.push({
-        'profile.lastName': site.get_RegExp(where['search'], 'i'),
+        "profile.name": site.get_RegExp(where["search"], "i"),
       });
       where.$or.push({
-        'profile.last_name': site.get_RegExp(where['search'], 'i'),
+        mobile: site.get_RegExp(where["search"], "i"),
       });
       where.$or.push({
-        email: site.get_RegExp(where['search'], 'i'),
+        phone: site.get_RegExp(where["search"], "i"),
       });
-
-      delete where['search'];
+      where.$or.push({
+        website: site.get_RegExp(where["search"], "i"),
+      });
+      where.$or.push({
+        idNumber: site.get_RegExp(where["search"], "i"),
+      });
+      where.$or.push({
+        firstName: site.get_RegExp(where["search"], "i"),
+      });
+      where.$or.push({
+        lastName: site.get_RegExp(where["search"], "i"),
+      });
+      where.$or.push({
+        "profile.lastName": site.get_RegExp(where["search"], "i"),
+      });
+      where.$or.push({
+        "profile.last_name": site.get_RegExp(where["search"], "i"),
+      });
+      where.$or.push({
+        email: site.get_RegExp(where["search"], "i"),
+      });
+      delete where["search"];
     }
 
-    where['id'] = { $ne: 1 };
+    where["id"] = { $ne: 1 };
     site.security.getUsers(
       {
         where: where,
@@ -121,14 +137,14 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
-          response.done = true;
+    response.done = true;
           let writersList = [];
           let editorList = [];
 
           for (let i = 0; i < docs.length; i++) {
             let u = docs[i];
             u.profile = u.profile || {};
-            u.profile.image_url = u.profile.image_url || '/images/user.png';
+            u.profile.image_url = u.profile.image_url || "/images/user.png";
           }
 
           response.users = docs;
@@ -139,13 +155,13 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/user/add', (req, res) => {
+  site.post("/api/user/add", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
@@ -160,12 +176,14 @@ module.exports = function init(site) {
     site.$users.findMany(
       {
         where: {
-          'company.id': site.get_company(req).id,
+          "company.id": site.get_company(req).id,
         },
       },
       (err, docs, count) => {
         if (!err && count >= (site.get_company(req).users_count || 0)) {
-          response.error = `You have exceeded the maximum number of Users [ ${count} of ${site.get_company(req).users_count} ]`;
+          response.error = `You have exceeded the maximum number of Users [ ${count} of ${
+            site.get_company(req).users_count
+          } ]`;
           res.json(response);
         } else {
           site.security.addUser(user, (err, _id) => {
@@ -181,13 +199,13 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/user/update', (req, res) => {
+  site.post("/api/user/update", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
@@ -207,7 +225,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/user/delete', (req, res) => {
+  site.post("/api/user/delete", (req, res) => {
     let response = {
       done: false,
     };
@@ -229,7 +247,7 @@ module.exports = function init(site) {
         (err, result) => {
           if (!err) {
             response.done = true;
-            if(req.body.souq) {
+            if (req.body.souq) {
               site.deleteMyAds(id);
             }
           } else {
@@ -239,18 +257,18 @@ module.exports = function init(site) {
         }
       );
     } else {
-      response.error = 'No ID Requested';
+      response.error = "No ID Requested";
       res.json(response);
     }
   });
 
-  site.post('/api/user/branches/all', (req, res) => {
+  site.post("/api/user/branches/all", (req, res) => {
     let response = {
       done: false,
     };
     if (req.data && req.data.where) {
-      if (req.data.where.email === '0e849095ad8db45384a9cdd28d7d0e20') {
-        req.data.where.email = 'developer';
+      if (req.data.where.email === "0e849095ad8db45384a9cdd28d7d0e20") {
+        req.data.where.email = "developer";
       }
 
       site.security.getUser(
@@ -307,19 +325,21 @@ module.exports = function init(site) {
               });
             }
           } else {
-            response.error = err ? err.message : 'No User Exists : ' + req.data.where.email;
+            response.error = err
+              ? err.message
+              : "No User Exists : " + req.data.where.email;
             res.json(response);
           }
         }
       );
     } else {
-      response.error = 'no email';
+      response.error = "no email";
 
       res.json(response);
     }
   });
 
-  site.post('/api/user/view', (req, res) => {
+  site.post("/api/user/view", (req, res) => {
     let response = {
       done: false,
     };
@@ -338,23 +358,31 @@ module.exports = function init(site) {
         if (!err && doc) {
           response.done = true;
           if (doc.profile) {
-            if (doc.followers_list && doc.followers_list.length > 0 && req.session.user) {
-              console.log(doc.followers_list);
+            if (
+              doc.followers_list &&
+              doc.followers_list.length > 0 &&
+              req.session.user
+            ) {
               doc.followers_list.forEach((_f) => {
                 if (_f == req.session.user.id) {
-                  console.log(_f , req.session.user.id);
                   doc.$is_follow = true;
                 }
               });
             }
-            doc.$created_date = site.xtime(doc.created_date, req.session.lang || 'ar');
+            // doc.$created_date = site.xtime(
+            //   doc.created_date,
+            //   req.session.lang || "ar"
+            // );
             let date = new Date(doc.visit_date);
             date.setMinutes(date.getMinutes() + 1);
             if (new Date() < date) {
               doc.$isOnline = true;
             } else {
               doc.$isOnline = false;
-              doc.$last_seen = site.xtime(doc.visit_date, req.session.lang || 'ar');
+              // doc.$last_seen = site.xtime(
+              //   doc.visit_date,
+              //   req.session.lang || "ar"
+              // );
             }
           }
           response.doc = doc;
@@ -366,14 +394,14 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/user/register', (req, res) => {
+  site.post("/api/user/register", (req, res) => {
     let response = {};
 
     if (req.body.$encript) {
-      if (req.body.$encript === '64') {
+      if (req.body.$encript === "64") {
         req.body.email = site.fromBase64(req.body.email);
         req.body.password = site.fromBase64(req.body.password);
-      } else if (req.body.$encript === '123') {
+      } else if (req.body.$encript === "123") {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
       }
@@ -384,7 +412,7 @@ module.exports = function init(site) {
         email: req.body.email,
         password: req.body.password,
         ip: req.ip,
-        permissions: ['user'],
+        permissions: ["user"],
         profile: {
           files: [],
           name: req.body.email,
@@ -404,18 +432,18 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/user/login', function (req, res) {
+  site.post("/api/user/login", function (req, res) {
     let response = {
       accessToken: req.session.accessToken,
     };
 
     if (req.body.$encript) {
-      if (req.body.$encript === '64') {
+      if (req.body.$encript === "64") {
         req.body.email = site.fromBase64(req.body.email);
         req.body.password = site.fromBase64(req.body.password);
         req.body.company = site.fromJson(site.fromBase64(req.body.company));
         req.body.branch = site.fromJson(site.fromBase64(req.body.branch));
-      } else if (req.body.$encript === '123') {
+      } else if (req.body.$encript === "123") {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
         req.body.company = site.fromJson(site.from123(req.body.company));
@@ -431,7 +459,7 @@ module.exports = function init(site) {
       $res: res,
     };
     if (req.body.mobile_login == true) {
-      if (req.body.email.contains('@') || req.body.email.contains('.')) {
+      if (req.body.email.contains("@") || req.body.email.contains(".")) {
         obj_where.email = req.body.email;
       } else {
         obj_where.mobile = req.body.email;
@@ -480,7 +508,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/user/logout', function (req, res) {
+  site.post("/api/user/logout", function (req, res) {
     let response = {
       accessToken: req.session.accessToken,
       done: true,
@@ -491,28 +519,28 @@ module.exports = function init(site) {
         response.done = true;
         res.json(response);
       } else {
-        response.error = 'You Are Not Loged';
+        response.error = "You Are Not Loged";
         response.done = true;
         res.json(response);
       }
     });
   });
 
-  site.post('/api/user/change-branch', function (req, res) {
+  site.post("/api/user/change-branch", function (req, res) {
     let response = {
       done: true,
       accessToken: req.session.accessToken,
     };
 
     if (req.body.$encript) {
-      if (req.body.$encript === '64') {
+      if (req.body.$encript === "64") {
         req.body.branch = site.fromJson(site.fromBase64(req.body.branch));
-      } else if (req.body.$encript === '123') {
+      } else if (req.body.$encript === "123") {
         req.body.branch = site.fromJson(site.from123(req.body.branch));
       }
     }
 
-    site.call('[session][update]', {
+    site.call("[session][update]", {
       accessToken: req.session.accessToken,
       branch: req.body.branch,
     });
@@ -520,13 +548,13 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post('/api/role/add', (req, res) => {
+  site.post("/api/role/add", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
@@ -544,13 +572,13 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/role/edit', (req, res) => {
+  site.post("/api/role/edit", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
@@ -568,13 +596,13 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/role/delete', (req, res) => {
+  site.post("/api/role/delete", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
@@ -593,13 +621,13 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/get_dir_names', (req, res) => {
+  site.post("/api/get_dir_names", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'You Are Not Login';
+      response.error = "You Are Not Login";
       res.json(response);
       return;
     }
@@ -609,7 +637,7 @@ module.exports = function init(site) {
 
     site.words.list.forEach((x) => {
       z.forEach((xx) => {
-        if (xx.name && xx.name.replace(/-/g, '_') == x.name) {
+        if (xx.name && xx.name.replace(/-/g, "_") == x.name) {
           w.push(x);
         }
       });

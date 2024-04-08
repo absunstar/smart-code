@@ -8,16 +8,21 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     image: { url: "/images/officeUsers.png" },
     active: true,
   };
+  $scope.employee = {};
   $scope.item = {};
   $scope.list = [];
-  $scope.userOfficesList = "##session.user.officesList##".split(",").map(Number);
+  $scope.userOfficesList = "##session.user.officesList##"
+    .split(",")
+    .map(Number);
 
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
     $scope.item = { ...$scope.structure };
     site.showModal($scope.modalID);
-    $scope.item.office = $scope.officesList.find((l) => l.id == $scope.userOfficesList[0]);
+    $scope.item.office = $scope.officesList.find(
+      (l) => l.id == $scope.userOfficesList[0]
+    );
     document.querySelector(`${$scope.modalID} .tab-link`).click();
   };
 
@@ -28,11 +33,11 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-
+    _item.$role = "##query.type##";
     $scope.busy = true;
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/${$scope.appName}/add`,
+      url: `${$scope.baseURL}/api/${$scope.appName}/addUsers`,
       data: $scope.item,
     }).then(
       function (response) {
@@ -40,7 +45,40 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal($scope.modalID);
           site.resetValidated($scope.modalID);
-          $scope.list.unshift(response.data.doc);
+          $scope.getAll();
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.addEmployee = function (_item) {
+    $scope.error = "";
+    if(!_item.user || !_item.user.id || !_item.office || !_item.office.id ){
+      $scope.error = "##word.Must Select User And Office##";
+      return
+    }
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/addEmployee`,
+      data: {
+        userId : _item.user.id,
+        office : _item.office,
+        type : "##query.type##"
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          _item = {};
+          site.resetValidated("#addEmployeeOffice");
+          $scope.getAll();
         } else {
           $scope.error = response.data.error;
         }
@@ -108,7 +146,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     $scope.error = "";
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/${$scope.appName}/view`,
+      url: `${$scope.baseURL}/api/user/view`,
       data: {
         id: _item.id,
       },
@@ -144,7 +182,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/delete`,
       data: {
-        id: $scope.item.id,
+        userId: $scope.item.docId,
       },
     }).then(
       function (response) {
@@ -181,20 +219,13 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     $scope.busyAll = true;
     $scope.list = [];
     where = where || {};
-    where['office.id'] = { $in: $scope.userOfficesList }
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
         where: where,
         search,
-        select: {
-          id: 1,
-          nameAr: 1,
-          nameEn: 1,
-          image: 1,
-          active: 1,
-        },
+        type: "##query.type##",
       },
     }).then(
       function (response) {
@@ -290,6 +321,32 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.officesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getUsersList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.usersList = [];
+    $http({
+      method: "POST",
+      url: "/api/users/all",
+      data: {
+        where: { search: $search },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.usersList = response.data.users;
         }
       },
       function (err) {

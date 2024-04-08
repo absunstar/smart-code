@@ -10,5 +10,5 @@
     "name": "lawyer",
     "En": "Lawyer",
     "Ar": "المحامي",
-    "permissions": ["officesManage","opponentsManage","opposingCounselsManage"]
+    "permissions": ["officesManage","opponentsManage","opposingCounselsManage","officeUsersManage"]
 }]

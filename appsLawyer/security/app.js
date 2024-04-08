@@ -305,13 +305,13 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err && doc) {
           response.done = true;
-          if (doc.followers_list && doc.followers_list.length > 0 && req.session.user) {
-            doc.followers_list.forEach((_f) => {
-              if (_f == req.session.user.id) {
-                response.follow = true;
-              }
-            });
-          }
+          // if (doc.followers_list && doc.followers_list.length > 0 && req.session.user) {
+          //   doc.followers_list.forEach((_f) => {
+          //     if (_f == req.session.user.id) {
+          //       response.follow = true;
+          //     }
+          //   });
+          // }
           if (doc.createdDate) {
             doc.$createdDate = site.xtime(doc.createdDate, req.session.lang);
           }
@@ -414,46 +414,7 @@ module.exports = function init(site) {
 
     site.security.login(obj_where, function (err, user) {
       if (!err && user) {
-        if ((department = site.getApp('departments').memoryList.find((dep) => dep.manager && dep.manager.id == user.id))) {
-          user.isDepartmentManager = true;
-          user.department = department;
-          user.workflowPosition = site.workflowPositionsList.find((pos) => pos.id == 4);
-        }
-
-        if ((section = site.getApp('sections').memoryList.find((sec) => sec.manager && sec.manager.id == user.id))) {
-          user.isSectionManager = true;
-          user.section = section;
-          user.workflowPosition = site.workflowPositionsList.find((pos) => pos.id == 5);
-        }
-
-        if (site.getCompanySetting(req).administrativeStructure) {
-          if (site.getCompanySetting(req).administrativeStructure.ceo && site.getCompanySetting(req).administrativeStructure.ceo.id == user.id) {
-            user.isCeo = true;
-            user.workflowPosition = site.workflowPositionsList.find((pos) => pos.id == 1);
-          }
-
-          if (site.getCompanySetting(req).administrativeStructure.ceoDeputy && site.getCompanySetting(req).administrativeStructure.ceoDeputy.id == user.id) {
-            user.isCeoDeputy = true;
-          }
-
-          if (site.getCompanySetting(req).administrativeStructure.financialManager && site.getCompanySetting(req).administrativeStructure.financialManager.id == user.id) {
-            user.isFinancialManager = true;
-            user.workflowPosition = site.workflowPositionsList.find((pos) => pos.id == 2);
-          }
-
-          if (site.getCompanySetting(req).administrativeStructure.financialManagerDeputy && site.getCompanySetting(req).administrativeStructure.financialManagerDeputy.id == user.id) {
-            user.isFinancialManagerDeputy = true;
-          }
-
-          if (site.getCompanySetting(req).administrativeStructure.hrManager && site.getCompanySetting(req).administrativeStructure.hrManager.id == user.id) {
-            user.isHrManager = true;
-            user.workflowPosition = site.workflowPositionsList.find((pos) => pos.id == 3);
-          }
-
-          if (site.getCompanySetting(req).administrativeStructure.hrManagerDeputy && site.getCompanySetting(req).administrativeStructure.hrManagerDeputy.id == user.id) {
-            user.isHrManagerDeputy = true;
-          }
-        }
+      
 
         req.session.user = user;
         req.session.company = req.body.company;
@@ -471,7 +432,6 @@ module.exports = function init(site) {
           branch: req.body.branch,
         };
         response.done = true;
-        site.getCompanySetting(req);
       } else {
         response.error = err.message;
       }
@@ -498,27 +458,6 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/user/change-branch', function (req, res) {
-    let response = {
-      done: true,
-      accessToken: req.session.accessToken,
-    };
-
-    if (req.body.$encript) {
-      if (req.body.$encript === '64') {
-        req.body.branch = site.fromJson(site.fromBase64(req.body.branch));
-      } else if (req.body.$encript === '123') {
-        req.body.branch = site.fromJson(site.from123(req.body.branch));
-      }
-    }
-
-    site.call('[session][update]', {
-      accessToken: req.session.accessToken,
-      branch: req.body.branch,
-    });
-
-    res.json(response);
-  });
 
   site.post('/api/role/add', (req, res) => {
     let response = {
