@@ -1,7 +1,5 @@
 <div class="row">
   <div class="row">
-  
-    </i-control>
     <i-date class="col3" label="##word.Date##" ng-model="item.date"> </i-date>
     <i-date
       v="r"
@@ -10,6 +8,15 @@
       ng-model="item.powerOfAttorneyDate"
     >
     </i-date>
+
+    <i-list
+      class="col3"
+      label="##word.Office##"
+      ng-model="item.office"
+      display="name##session.lang##"
+      items="officesList"
+      ng-search="item.$offices"
+    ></i-list>
   </div>
   <div class="row">
     <i-list
@@ -104,7 +111,7 @@
                 ng-model="item.area"
                 items="areasList"
                 display="name##session.lang##"
-                ng-search="customer.$area.$areaitem"
+                ng-search="item.$area.$areaitem"
               >
               </i-list>
             </div>
@@ -123,7 +130,8 @@
                 class="col6"
                 label="##word.Client##"
                 ng-model="item.$client"
-                display="name##session.lang##"
+                display="firstName"
+                display2="lastName"
                 items="clientsList"
                 ng-get="getClientsList($search)"
               ></i-list>
@@ -148,10 +156,10 @@
                   <i-image
                     view
                     class="logo center"
-                    ng-model="c.client.image"
+                    ng-model="c.user.image"
                   ></i-image>
                 </td>
-                <td class="center">{{c.client.name##session.lang##}}</td>
+                <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
                 <td class="center">
                   <i-button
                     type="delete"
@@ -168,7 +176,8 @@
                 class="col6"
                 label="##word.Client Lawyer##"
                 ng-model="item.$clientLawyer"
-                display="fullName##session.lang##"
+                display="firstName"
+                display2="lastName"
                 items="clientsLawyersList"
                 ng-get="getClientsLawyersList($search)"
               ></i-list>
@@ -193,10 +202,10 @@
                   <i-image
                     view
                     class="logo center"
-                    ng-model="c.lawyer.image"
+                    ng-model="c.user.image"
                   ></i-image>
                 </td>
-                <td class="center">{{c.lawyer.fullName##session.lang##}}</td>
+                <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
                 <td class="center">
                   <i-button
                     type="delete"
@@ -214,7 +223,7 @@
               ##word.Documents##
             </legend>
 
-            <div class="row" ng-repeat="f in customer.filesList">
+            <div class="row" ng-repeat="f in item.filesList">
               <div class="row">
                 <div class="col10">
                   <div class="row">
@@ -224,7 +233,7 @@
                       ng-model="f.fileType"
                       items="documentsTypesList"
                       display="name##session.lang##"
-                      ng-search="customer.$fileType"
+                      ng-search="item.$fileType"
                     >
                     </i-list>
 
@@ -250,7 +259,7 @@
                   <i-button
                     type="delete"
                     title="##word.Delete##"
-                    ng-click="customer.filesList.splice($index,1)"
+                    ng-click="item.filesList.splice($index,1)"
                   >
                   </i-button>
                 </div>

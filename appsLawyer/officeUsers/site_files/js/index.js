@@ -8,6 +8,16 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     image: { url: "/images/officeUsers.png" },
     active: true,
   };
+  $scope.employeeType = "";
+  if ("##query.type##" == "employee") {
+    $scope.employeeType = "##word.Employee##";
+  } else if ("##query.type##" == "secretary") {
+    $scope.employeeType = "##word.Secretary##";
+  } else if ("##query.type##" == "lawyer") {
+    $scope.employeeType = "##word.Lawyer##";
+  } else if ("##query.type##" == "client") {
+    $scope.employeeType = "##word.Client##";
+  }
   $scope.employee = {};
   $scope.item = {};
   $scope.list = [];
@@ -58,9 +68,9 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
 
   $scope.addEmployee = function (_item) {
     $scope.error = "";
-    if(!_item.user || !_item.user.id || !_item.office || !_item.office.id ){
+    if (!_item.user || !_item.user.id || !_item.office || !_item.office.id) {
       $scope.error = "##word.Must Select User And Office##";
-      return
+      return;
     }
 
     $scope.busy = true;
@@ -68,9 +78,13 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/addEmployee`,
       data: {
-        userId : _item.user.id,
-        office : _item.office,
-        type : "##query.type##"
+        userId: _item.user.id,
+        office: _item.office,
+        firstName: _item.firstName,
+        lastName: _item.lastName,
+        idNumber: _item.idNumber,
+        mobile: _item.mobile,
+        type: "##query.type##",
       },
     }).then(
       function (response) {
@@ -260,7 +274,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     $scope.item.filesList.push({
       file_date: new Date(),
       file_upload_date: new Date(),
-      upload_by: "##user.name##",
+      upload_by: "##user.firstName##",
     });
   };
 

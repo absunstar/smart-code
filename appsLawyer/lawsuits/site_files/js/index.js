@@ -754,7 +754,6 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
 
   $scope.getAll();
   $scope.getDocumentsTypes();
-  $scope.getNumberingAuto();
   $scope.getClientsList();
   $scope.getOpponentsList();
   $scope.getTypesPoaList();

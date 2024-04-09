@@ -325,7 +325,7 @@
               ##word.Documents##
             </legend>
 
-            <div class="row" ng-repeat="f in customer.filesList">
+            <div class="row" ng-repeat="f in item.filesList">
               <div class="row">
                 <div class="col10">
                   <div class="row">
@@ -335,7 +335,7 @@
                       ng-model="f.fileType"
                       items="documentsTypesList"
                       display="name##session.lang##"
-                      ng-search="customer.$fileType"
+                      ng-search="item.$fileType"
                     >
                     </i-list>
 
@@ -361,7 +361,7 @@
                   <i-button
                     type="delete"
                     title="##word.Delete##"
-                    ng-click="customer.filesList.splice($index,1)"
+                    ng-click="item.filesList.splice($index,1)"
                   >
                   </i-button>
                 </div>

@@ -56,7 +56,6 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-       
         }
       },
       function (err) {
@@ -189,8 +188,8 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
     $scope.getAll({}, search);
   };
 
-  $scope.getAll = function (where,search) {
-      if ($scope.busyAll) {
+  $scope.getAll = function (where, search) {
+    if ($scope.busyAll) {
       return;
     }
     $scope.busyAll = true;
@@ -200,7 +199,7 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
         where: where,
-        search
+        search,
       },
     }).then(
       function (response) {
@@ -255,7 +254,6 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
     });
   };
 
- 
   $scope.getTypesPoaList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -289,8 +287,11 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
       }
     );
   };
-
+  
   $scope.getClientsLawyersList = function ($search) {
+    if (!$scope.item.office || !$scope.item.office.id) {
+      return;
+    }
     if ($search && $search.length < 1) {
       return;
     }
@@ -298,26 +299,25 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
     $scope.clientsLawyersList = [];
     $http({
       method: "POST",
-      url: "/api/employees/all",
+      url: "/api/users/all",
       data: {
-        where: { active: true, "type.id": 4,'jobType.name' : 'lawyers' },
+        where: {
+          search: $search,
+          officesList: $scope.item.office.id,
+          'roles.name': 'lawyer',
+        },
         select: {
           id: 1,
           image: 1,
-          fullNameEn: 1,
-          fullNameAr: 1,
-          department: 1,
-          section: 1,
-          job: 1,
-          mobile: 1,
+          firstName: 1,
+          lastName: 1,
         },
-        search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.clientsLawyersList = response.data.list;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.clientsLawyersList = response.data.users;
         }
       },
       function (err) {
@@ -328,6 +328,9 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
   };
 
   $scope.getClientsList = function ($search) {
+    if (!$scope.item.office || !$scope.item.office.id) {
+      return;
+    }
     if ($search && $search.length < 1) {
       return;
     }
@@ -335,25 +338,25 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
     $scope.clientsList = [];
     $http({
       method: "POST",
-      url: "/api/customers/all",
+      url: "/api/users/all",
       data: {
         where: {
-          active: true,
-          "type.id": 6,
+          search: $search,
+          officesList: $scope.item.office.id,
+          'roles.name': 'client',
         },
         select: {
           id: 1,
           image: 1,
-          nameEn: 1,
-          nameAr: 1,
+          firstName: 1,
+          lastName: 1,
         },
-        search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.clientsList = response.data.list;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.clientsList = response.data.users;
         }
       },
       function (err) {
@@ -492,14 +495,49 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getOfficesList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.officesList = [];
+    $http({
+      method: "POST",
+      url: "/api/offices/all",
+      data: {
+        where: {
+          active: true,
+        },
+        type: "myOffices",
+        select: {
+          id: 1,
+          nameEn: 1,
+          nameAr: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.officesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.addClients = function () {
     $scope.error = "";
     if ($scope.item.$client) {
       let index = $scope.item.clientsList.findIndex(
-        (itm) => itm.client.id == $scope.item.$client.id
+        (itm) => itm.user.id == $scope.item.$client.id
       );
       if (index === -1) {
-        $scope.item.clientsList.push({ client: $scope.item.$client });
+        $scope.item.clientsList.push({ user: $scope.item.$client });
         $scope.item.$client = {};
       } else {
         $scope.item.$clientError = "##word.Exists before##";
@@ -514,10 +552,12 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
     $scope.error = "";
     if ($scope.item.$clientLawyer) {
       let index = $scope.item.clientsLawyersList.findIndex(
-        (itm) => itm.lawyer.id == $scope.item.$clientLawyer.id
+        (itm) => itm.user.id == $scope.item.$clientLawyer.id
       );
       if (index === -1) {
-        $scope.item.clientsLawyersList.push({ lawyer: $scope.item.$clientLawyer });
+        $scope.item.clientsLawyersList.push({
+          user: $scope.item.$clientLawyer,
+        });
         $scope.item.$clientLawyer = {};
       } else {
         $scope.item.$clientLawyerError = "##word.Exists before##";
@@ -527,7 +567,6 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
       }
     }
   };
-
 
   $scope.showSearch = function () {
     $scope.error = "";
@@ -542,9 +581,7 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
   $scope.getAll();
   $scope.getDocumentsTypes();
   $scope.getCountriesList();
-  $scope.getClientsList();
   $scope.getTypesPoaList();
-  $scope.getClientsLawyersList();
   $scope.getCurrentMonthDate();
-
+  $scope.getOfficesList();
 });

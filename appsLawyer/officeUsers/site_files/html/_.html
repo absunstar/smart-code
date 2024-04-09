@@ -6,7 +6,7 @@
       <i-button
         type="add"
         x-permissions="officeUsersAdd || officeUsersManage"
-        label="##word.New Employee##"
+        label="##word.Add New## {{employeeType}}"
         ng-click="showAdd()"
       ></i-button>
       <i-button
@@ -27,38 +27,41 @@
         x-permissions="officeUsersImport || officeUsersManage"
       ></i-upload>
     </div>
-
-    <div class="row padding" id="addEmployeeOffice">
-      <i-list
-        class="col6"
-        label="##word.Search User##"
-        ng-model="employee.user"
-        display="firstName"
-        items="usersList"
-        display2="lastName"
-        ng-get="getUsersList($search)"
-      ></i-list>
-      <i-list
-        class="col4"
-        label="##word.Office##"
-        ng-model="employee.office"
-        display="name##session.lang##"
-        items="officesList"
-        ng-search="employee.$offices"
-      ></i-list>
-      <i-button
-        class="col2"
-        type="push"
-        label="##word.Add to Office##"
-        ng-click="addEmployee(employee)"
-      ></i-button>
-    </div>
+    <fieldset>
+      <legend>##word.Add to Office##</legend>
+      <div class="row padding" id="addEmployeeOffice">
+        <i-list
+          class="col6"
+          label="##word.Search User##"
+          ng-model="employee.user"
+          display="firstName"
+          items="usersList"
+          display2="lastName"
+          ng-get="getUsersList($search)"
+        ></i-list>
+        <i-list
+          class="col4"
+          label="##word.Office##"
+          ng-model="employee.office"
+          display="name##session.lang##"
+          items="officesList"
+          ng-search="employee.$offices"
+        ></i-list>
+        <i-button
+          class="col2"
+          type="push"
+          label="##word.Add to Office##"
+          ng-click="addEmployee(employee)"
+        ></i-button>
+      </div>
+    </fieldset>
     <p class="error">{{error}}</p>
     <div class="table-responsive">
       <table class="table hover bold" id="t1">
         <tr>
           <th class="w150">##word.Logo##</th>
           <th>##word.Name##</th>
+          <th>##word.Office##</th>
           <th>##word.Status##</th>
           <th class="not-print">##word.Actions##</th>
         </tr>
@@ -67,6 +70,7 @@
             <i-image view class="logo center" ng-model="item.image"></i-image>
           </td>
           <td class="center">{{item.firstName}} {{item.lastName}}</td>
+          <td class="center">{{item.office.name##session.lang##}}</td>
 
           <td class="center">
             <span class="text-success" ng-show="item.active"
@@ -86,6 +90,7 @@
 
             <i-button
               type="edit"
+              ng-show="item.addUserInfo.id == '##user.id##'"
               x-permissions="officeUsersUpdate || officeUsersManage"
               title="##word.Edit##"
               ng-click="showUpdate(item)"
