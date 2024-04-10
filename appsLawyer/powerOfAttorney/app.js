@@ -170,7 +170,6 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-        
 
           _data.addUserInfo = req.getUserFinger();
 
@@ -299,8 +298,6 @@ module.exports = function init(site) {
         } else {
           if (search) {
             where.$or = [];
-
-       
             where.$or.push({
               letter: search,
             });
@@ -320,6 +317,7 @@ module.exports = function init(site) {
               "type.name": site.get_RegExp(search, "i"),
             });
           }
+          where["office.id"] = { $in: req.session.user.officesList };
           app.all(
             { where: where, limit, select, sort: { id: -1 } },
             (err, docs) => {
@@ -351,8 +349,6 @@ module.exports = function init(site) {
           if (Array.isArray(docs)) {
             console.log(`Importing ${app.name} : ${docs.length}`);
             docs.forEach((doc) => {
-            
-
               let newDoc = {
                 name: doc.name ? doc.name.trim() : "",
                 image: { url: "/theme1/images/setting/powerOfAttorney.png" },

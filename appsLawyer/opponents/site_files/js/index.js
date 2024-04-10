@@ -10,14 +10,18 @@ app.controller("opponents", function ($scope, $http, $timeout) {
   };
   $scope.item = {};
   $scope.list = [];
-  $scope.userOfficesList = "##session.user.officesList##".split(",").map(Number);
+  $scope.userOfficesList = "##session.user.officesList##"
+    .split(",")
+    .map(Number);
 
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
     $scope.item = { ...$scope.structure };
     site.showModal($scope.modalID);
-    $scope.item.office = $scope.officesList.find((l) => l.id == $scope.userOfficesList[0]);
+    $scope.item.office = $scope.officesList.find(
+      (l) => l.id == $scope.userOfficesList[0]
+    );
     document.querySelector(`${$scope.modalID} .tab-link`).click();
   };
 
@@ -181,7 +185,7 @@ app.controller("opponents", function ($scope, $http, $timeout) {
     $scope.busyAll = true;
     $scope.list = [];
     where = where || {};
-    where['office.id'] = { $in: $scope.userOfficesList }
+    where["office.id"] = { $in: $scope.userOfficesList };
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
@@ -190,8 +194,9 @@ app.controller("opponents", function ($scope, $http, $timeout) {
         search,
         select: {
           id: 1,
-          nameAr: 1,
-          nameEn: 1,
+          firstName: 1,
+          lastName: 1,
+          office: 1,
           image: 1,
           active: 1,
         },

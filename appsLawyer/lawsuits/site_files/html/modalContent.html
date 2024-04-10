@@ -1,7 +1,14 @@
 <div class="row">
   <div class="row">
- 
     <i-date class="col3" label="##word.Date##" ng-model="item.date"> </i-date>
+    <i-list
+      class="col3"
+      label="##word.Office##"
+      ng-model="item.office"
+      display="name##session.lang##"
+      items="officesList"
+      ng-search="item.$offices"
+    ></i-list>
     <i-control
       class="col3"
       type="text"
@@ -87,7 +94,10 @@
           </div>
           <fieldset>
             <h3>##word.Lawsuit topic## :</h3>
-            <i-content ng-model="item.lawsuitTopic" label="##word.Lawsuit topic##">
+            <i-content
+              ng-model="item.lawsuitTopic"
+              label="##word.Lawsuit topic##"
+            >
             </i-content>
           </fieldset>
           <fieldset>
@@ -104,7 +114,8 @@
                 class="col5"
                 label="##word.Client##"
                 ng-model="item.$client"
-                display="name##session.lang##"
+                display="firstName"
+                display2="lastName"
                 items="clientsList"
                 ng-get="getClientsList($search)"
               ></i-list>
@@ -137,11 +148,13 @@
                   <i-image
                     view
                     class="logo center"
-                    ng-model="c.client.image"
+                    ng-model="c.user.image"
                   ></i-image>
                 </td>
-                <td class="center">{{c.client.name##session.lang##}}</td>
-                <td class="center">{{c.adjectiveInLawsuit.name}}</td>
+                <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
+                <td class="center">
+                  {{c.adjectiveInLawsuit.name##session.lang##}}
+                </td>
                 <td class="center">
                   <i-button
                     type="delete"
@@ -158,7 +171,8 @@
                 class="col5"
                 label="##word.Client Lawyer##"
                 ng-model="item.$clientLawyer"
-                display="fullName##session.lang##"
+                display="firstName"
+                display2="lastName"
                 items="clientsLawyersList"
                 ng-get="getClientsLawyersList($search)"
               ></i-list>
@@ -166,7 +180,7 @@
                 class="col3"
                 label="##word.Adjective In Lawsuit##"
                 ng-model="item.$adjectiveInLawsuitClientLawyer"
-                display="name"
+                display="name##session.lang##"
                 items="adjectivesInLawsuitList"
               ></i-list>
               <div class="col2">
@@ -191,11 +205,13 @@
                   <i-image
                     view
                     class="logo center"
-                    ng-model="c.lawyer.image"
+                    ng-model="c.user.image"
                   ></i-image>
                 </td>
-                <td class="center">{{c.lawyer.name##session.lang##}}</td>
-                <td class="center">{{c.adjectiveInLawsuit.name}}</td>
+                <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
+                <td class="center">
+                  {{c.adjectiveInLawsuit.name##session.lang##}}
+                </td>
                 <td class="center">
                   <i-button
                     type="delete"
@@ -214,7 +230,8 @@
                 class="col5"
                 label="##word.Opponent##"
                 ng-model="item.$opponent"
-                display="name##session.lang##"
+                display="firstName"
+                display2="lastName"
                 items="opponentsList"
                 ng-get="getOpponentsList($search)"
               ></i-list>
@@ -222,7 +239,7 @@
                 class="col3"
                 label="##word.Adjective In Lawsuit##"
                 ng-model="item.$adjectiveInLawsuitOpponent"
-                display="name"
+                display="name##session.lang##"
                 items="adjectivesInLawsuitList"
               ></i-list>
               <div class="col2">
@@ -247,11 +264,13 @@
                   <i-image
                     view
                     class="logo center"
-                    ng-model="c.opponent.image"
+                    ng-model="c.user.image"
                   ></i-image>
                 </td>
-                <td class="center">{{c.opponent.name##session.lang##}}</td>
-                <td class="center">{{c.adjectiveInLawsuit.name}}</td>
+                <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
+                <td class="center">
+                  {{c.adjectiveInLawsuit.name##session.lang##}}
+                </td>
                 <td class="center">
                   <i-button
                     type="delete"
@@ -268,7 +287,8 @@
                 class="col5"
                 label="##word.Opposing Counsel##"
                 ng-model="item.$opposingCounsel"
-                display="name##session.lang##"
+                display="firstName"
+                display2="lastName"
                 items="opposingCounselsList"
                 ng-get="getOpposingCounselsList($search)"
               ></i-list>
@@ -276,7 +296,7 @@
                 class="col3"
                 label="##word.Adjective In Lawsuit##"
                 ng-model="item.$adjectiveInLawsuitOpposingCounsel"
-                display="name"
+                display="name##session.lang##"
                 items="adjectivesInLawsuitList"
               ></i-list>
               <div class="col2">
@@ -301,13 +321,13 @@
                   <i-image
                     view
                     class="logo center"
-                    ng-model="c.opposingCounsel.image"
+                    ng-model="c.user.image"
                   ></i-image>
                 </td>
+                <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
                 <td class="center">
-                  {{c.opposingCounsel.name##session.lang##}}
+                  {{c.adjectiveInLawsuit.name##session.lang##}}
                 </td>
-                <td class="center">{{c.adjectiveInLawsuit.name}}</td>
                 <td class="center">
                   <i-button
                     type="delete"

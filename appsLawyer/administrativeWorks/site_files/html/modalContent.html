@@ -3,15 +3,24 @@
     <div class="row">
       <i-list
         label="##word.Typeof Administrative Work##"
-        class="col5"
+        class="col3"
         v="r"
         ng-model="item.typeAdministrativeWork"
         ng-get="getTypeAdministrativeWorks($search)"
         display="name##session.lang##"
         items="typeAdministrativeWorksList"
       ></i-list>
-      <i-date class="col5" label="##word.Date##" ng-model="item.date">
+      <i-date class="col3" label="##word.Date##" ng-model="item.date">
       </i-date>
+      <i-list
+      class="col3"
+      v="r"
+      label="##word.Office##"
+      ng-model="item.office"
+      display="name##session.lang##"
+      items="officesList"
+      ng-search="item.$offices"
+    ></i-list>
       <i-checkbox
         ng-model="item.active"
         class="col2"
@@ -24,8 +33,9 @@
         class="col4"
         v="r"
         ng-model="item.employee"
-        ng-get="getEmployees($search)"
-        display="fullName##session.lang##"
+        ng-get="getEmployeesList($search)"
+        display="firstName"
+        display2="lastName"
         items="employeesList"
       ></i-list>
       <div class="row" ng-show="item.employee.id">
@@ -33,8 +43,8 @@
           <div class="row">
             <div class="col7">
               <p class="bold">
-                <span class="darkGray">##word.Name English## : </span>
-                {{item.employee.fullNameEn}}
+                <span class="darkGray">##word.First Name## : </span>
+                {{item.employee.firstName}}
                 <img
                   class="img-logo"
                   ng-src="{{item.employee.image.url}}"
@@ -44,36 +54,17 @@
             </div>
             <div class="col5">
               <p class="bold text-right">
-                <span class="darkGray">الإسم بالعربي : </span>
-                {{item.employee.fullNameAr}}
+                <span class="darkGray"> ##word.Last Name## : </span>
+                {{item.employee.lastName}}
               </p>
             </div>
           </div>
           <div class="row">
-            <div class="col6" ng-show="item.employee.department.id">
-              <p class="bold">
-                <span class="darkGray"> ##word.department## : </span>
-                {{item.employee.department.name##session.lang##}}
-              </p>
-            </div>
+            
             <div class="col6">
               <p class="bold text-right">
                 <span class="darkGray">##word.Mobile## : </span>
                 {{item.employee.mobile}}
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col6" ng-show="item.employee.section.id">
-              <p class="bold">
-                <span class="darkGray"> ##word.Section## : </span>
-                {{item.employee.section.name##session.lang##}}
-              </p>
-            </div>
-            <div class="col6" ng-show="item.employee.job.id">
-              <p class="bold text-right">
-                <span class="darkGray"> ##word.Job## : </span>
-                {{item.employee.job.name##session.lang##}}
               </p>
             </div>
           </div>

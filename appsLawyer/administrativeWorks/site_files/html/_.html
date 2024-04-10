@@ -28,6 +28,7 @@
           <th class="w150">##word.Implementation##</th>
           <th>##word.Typeof Work##</th>
           <th>##word.Employee##</th>
+          <th>##word.Office##</th>
           <th>##word.Status##</th>
           <th class="not-print">##word.Actions##</th>
         </tr>
@@ -59,8 +60,9 @@
               </button>
             </div>
           </td>
-          <td class="center">{{item.typeAdministrativeWork.name}}</td>
-          <td class="center">{{item.employee.fullName##session.lang##}}</td>
+          <td class="center">{{item.typeAdministrativeWork.name##session.lang##}}</td>
+          <td class="center">{{item.employee.firstName}} {{item.employee.lastName}}</td>
+          <td class="center">{{item.office.name##session.lang##}}</td>
           <td class="center">
             <span class="text-success" ng-show="item.active"
               >##word.Active##</span

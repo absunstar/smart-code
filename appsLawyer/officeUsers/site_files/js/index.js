@@ -169,6 +169,8 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
+          $scope.item.$office = _item.$office;
+          $scope.item.$docId = _item.$docId;
         } else {
           $scope.error = response.data.error;
         }
@@ -196,7 +198,9 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/delete`,
       data: {
-        userId: $scope.item.docId,
+        id: $scope.item.$docId,
+        userId: $scope.item.id,
+        office: $scope.item.$office,
       },
     }).then(
       function (response) {
@@ -239,6 +243,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       data: {
         where: where,
         search,
+        all : true,
         type: "##query.type##",
       },
     }).then(

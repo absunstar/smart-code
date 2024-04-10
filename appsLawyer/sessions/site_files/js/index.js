@@ -8,6 +8,10 @@ app.controller("sessions", function ($scope, $http, $timeout) {
     image: { url: "/theme1/images/setting/sessions.png" },
     active: true,
   };
+  $scope.userOfficesList = "##session.user.officesList##"
+  .split(",")
+  .map(Number);
+
   $scope.item = {};
   $scope.list = [];
   $scope.search = { fromDate: new Date(), toDate: new Date() };
@@ -25,6 +29,9 @@ app.controller("sessions", function ($scope, $http, $timeout) {
     $scope.error = "";
     $scope.mode = "add";
     $scope.item = { ...$scope.structure,date : new Date() };
+    $scope.item.office = $scope.officesList.find(
+      (l) => l.id == $scope.userOfficesList[0]
+    );
     site.showModal($scope.modalID);
     document.querySelector(`${$scope.modalID} .tab-link`).click();
   };
@@ -189,6 +196,8 @@ app.controller("sessions", function ($scope, $http, $timeout) {
       return;
     }
     $scope.busyAll = true;
+    where = where || {};
+    where["office.id"] = { $in: $scope.userOfficesList };
     $scope.list = [];
     $http({
       method: "POST",
@@ -310,6 +319,40 @@ app.controller("sessions", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getOfficesList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.officesList = [];
+    $http({
+      method: "POST",
+      url: "/api/offices/all",
+      data: {
+        where: {
+          active: true,
+        },
+        type: "myOffices",
+        select: {
+          id: 1,
+          nameEn: 1,
+          nameAr: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.officesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
 
   $scope.addFiles = function () {
     $scope.error = "";
@@ -336,4 +379,6 @@ app.controller("sessions", function ($scope, $http, $timeout) {
   $scope.getreasonsSessionsList();
   $scope.getDocumentsTypes();
   $scope.getCurrentMonthDate();
+  $scope.getOfficesList();
+
 });

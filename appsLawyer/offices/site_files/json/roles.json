@@ -1,14 +1,25 @@
-[{
-    "moduleName" : "lawyer" ,
+[
+  {
+    "moduleName": "lawyer",
     "name": "officesAdmin",
     "En": "Offices Admin",
     "Ar": "إدارة المكاتب",
     "permissions": ["officesManage"]
-},
-{
-    "moduleName" : "lawyer" ,
+  },
+  {
+    "moduleName": "lawyer",
     "name": "lawyer",
     "En": "Lawyer",
     "Ar": "المحامي",
-    "permissions": ["officesManage","opponentsManage","opposingCounselsManage","officeUsersManage","powerOfAttorneyManage"]
-}]
+    "permissions": [
+      "officesManage",
+      "opponentsManage",
+      "opposingCounselsManage",
+      "officeUsersManage",
+      "powerOfAttorneyManage",
+      "lawsuitsManage",
+      "sessionsManage",
+      "administrativeWorksManage"
+    ]
+  }
+]

@@ -10,11 +10,17 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
   };
   $scope.item = {};
   $scope.list = [];
+  $scope.userOfficesList = "##session.user.officesList##"
+    .split(",")
+    .map(Number);
 
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
     $scope.item = { ...$scope.structure, date: new Date() };
+    $scope.item.office = $scope.officesList.find(
+      (l) => l.id == $scope.userOfficesList[0]
+    );
     site.showModal($scope.modalID);
   };
 
@@ -40,7 +46,6 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-         
         }
       },
       function (err) {
@@ -228,19 +233,21 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
     $scope.getAll({}, search);
   };
 
-
-  $scope.getAll = function (where,search) {
+  $scope.getAll = function (where, search) {
     if ($scope.busyAll) {
       return;
     }
     $scope.busyAll = true;
+    where = where || {};
+    where["office.id"] = { $in: $scope.userOfficesList };
+
     $scope.list = [];
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
         where: where,
-        search
+        search,
       },
     }).then(
       function (response) {
@@ -290,7 +297,10 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getEmployees = function ($search) {
+  $scope.getEmployeesList = function ($search) {
+    if (!$scope.item.office || !$scope.item.office.id) {
+      return;
+    }
     if ($search && $search.length < 1) {
       return;
     }
@@ -298,30 +308,26 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
     $scope.employeesList = [];
     $http({
       method: "POST",
-      url: "/api/employees/all",
+      url: "/api/users/all",
       data: {
-        where: { active: true },
+        where: {
+          search: $search,
+          officesList: $scope.item.office.id,
+          "roles.name": { $ne: "client" },
+        },
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
-          fullNameEn: 1,
-          fullNameAr: 1,
-          fingerprintCode: 1,
-          shift: 1,
           image: 1,
-          department: 1,
-          section: 1,
-          job: 1,
-          mobile: 1,
+          firstName: 1,
+          lastName: 1,
+          idNumber: 1,
         },
-        search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.employeesList = response.data.list;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.employeesList = response.data.users;
         }
       },
       function (err) {
@@ -330,9 +336,40 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
       }
     );
   };
-
- 
-
+  $scope.getOfficesList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.officesList = [];
+    $http({
+      method: "POST",
+      url: "/api/offices/all",
+      data: {
+        where: {
+          active: true,
+        },
+        type: "myOffices",
+        select: {
+          id: 1,
+          nameEn: 1,
+          nameAr: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.officesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
@@ -345,6 +382,7 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getEmployees();
+  $scope.getEmployeesList();
   $scope.getTypeAdministrativeWorks();
+  $scope.getOfficesList();
 });

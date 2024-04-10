@@ -11,10 +11,17 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
   $scope.item = {};
   $scope.list = [];
 
+  $scope.userOfficesList = "##session.user.officesList##"
+    .split(",")
+    .map(Number);
+
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
     $scope.item = { ...$scope.structure };
+    $scope.item.office = $scope.officesList.find(
+      (l) => l.id == $scope.userOfficesList[0]
+    );
     site.showModal($scope.modalID);
     document.querySelector(`${$scope.modalID} .tab-link`).click();
   };
@@ -184,6 +191,8 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
     }
     $scope.busyAll = true;
     $scope.list = [];
+    where = where || {};
+    where["office.id"] = { $in: $scope.userOfficesList };
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
@@ -192,8 +201,9 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         search,
         select: {
           id: 1,
-          nameAr: 1,
-          nameEn: 1,
+          firstName: 1,
+          lastName: 1,
+          office: 1,
           image: 1,
           active: 1,
         },
@@ -213,28 +223,6 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = "";
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/numbering/getAutomatic",
-      data: {
-        screen: $scope.appName,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
   $scope.showSearch = function () {
     $scope.error = "";
@@ -460,10 +448,45 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getOfficesList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.officesList = [];
+    $http({
+      method: "POST",
+      url: "/api/offices/all",
+      data: {
+        where: {
+          active: true,
+        },
+        type: "myOffices",
+        select: {
+          id: 1,
+          nameEn: 1,
+          nameAr: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.officesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getAll();
   $scope.getNationalities();
-  $scope.getNumberingAuto();
   $scope.getCountriesList();
   $scope.getMaritalStatus();
   $scope.getGenders();
+  $scope.getOfficesList();
 });

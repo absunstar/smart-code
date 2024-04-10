@@ -235,8 +235,8 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          firstName: 1,
+          lastName: 1,
           image: 1,
           active: 1,
         };
@@ -249,11 +249,11 @@ module.exports = function init(site) {
 
        
           where.$or.push({
-            nameAr: site.get_RegExp(search, 'i'),
+            firstName: site.get_RegExp(search, 'i'),
           });
 
           where.$or.push({
-            nameEn: site.get_RegExp(search, 'i'),
+            lastName: site.get_RegExp(search, 'i'),
           });
 
           where.$or.push({
@@ -349,8 +349,8 @@ module.exports = function init(site) {
          
 
               let newDoc = {
-                nameAr: doc.nameAr,
-                nameEn: doc.nameEn,
+                firstName: doc.firstName,
+                lastName: doc.lastName,
                 email: doc.email,
                 mobile: '0' + doc.mobile,
                 image: { url: '/images/opponents.png' },

@@ -8,6 +8,10 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
     active: true,
   };
   $scope.item = {};
+  $scope.userOfficesList = "##session.user.officesList##"
+  .split(",")
+  .map(Number);
+
   $scope.list = [];
   $scope.search = { fromDate: new Date(), toDate: new Date() };
   $scope.getCurrentMonthDate = function () {
@@ -31,6 +35,9 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       opponentsList: [],
       opposingCounselsList: [],
     };
+    $scope.item.office = $scope.officesList.find(
+      (l) => l.id == $scope.userOfficesList[0]
+    );
     site.showModal($scope.modalID);
     document.querySelector(`${$scope.modalID} .tab-link`).click();
   };
@@ -194,6 +201,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       return;
     }
     $scope.busyAll = true;
+    where = where || {};
+    where["office.id"] = { $in: $scope.userOfficesList };
     $scope.list = [];
     $http({
       method: "POST",
@@ -226,7 +235,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          nameAr: 1,
+          nameEn: 1,
         },
       },
     }).then(
@@ -315,8 +325,10 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       }
     );
   };
-
   $scope.getClientsLawyersList = function ($search) {
+    if (!$scope.item.office || !$scope.item.office.id) {
+      return;
+    }
     if ($search && $search.length < 1) {
       return;
     }
@@ -324,26 +336,25 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
     $scope.clientsLawyersList = [];
     $http({
       method: "POST",
-      url: "/api/employees/all",
+      url: "/api/users/all",
       data: {
-        where: { active: true, "type.id": 4, "jobType.name": "lawyers" },
+        where: {
+          search: $search,
+          officesList: $scope.item.office.id,
+          'roles.name': 'lawyer',
+        },
         select: {
           id: 1,
           image: 1,
-          fullNameEn: 1,
-          fullNameAr: 1,
-          department: 1,
-          section: 1,
-          job: 1,
-          mobile: 1,
+          firstName: 1,
+          lastName: 1,
         },
-        search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.clientsLawyersList = response.data.list;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.clientsLawyersList = response.data.users;
         }
       },
       function (err) {
@@ -354,6 +365,9 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
   };
 
   $scope.getClientsList = function ($search) {
+    if (!$scope.item.office || !$scope.item.office.id) {
+      return;
+    }
     if ($search && $search.length < 1) {
       return;
     }
@@ -361,25 +375,25 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
     $scope.clientsList = [];
     $http({
       method: "POST",
-      url: "/api/customers/all",
+      url: "/api/users/all",
       data: {
         where: {
-          active: true,
-          "type.id": 6,
+          search: $search,
+          officesList: $scope.item.office.id,
+          'roles.name': 'client',
         },
         select: {
           id: 1,
           image: 1,
-          nameEn: 1,
-          nameAr: 1,
+          firstName: 1,
+          lastName: 1,
         },
-        search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.clientsList = response.data.list;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.clientsList = response.data.users;
         }
       },
       function (err) {
@@ -390,6 +404,9 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
   };
 
   $scope.getOpponentsList = function ($search) {
+    if (!$scope.item.office || !$scope.item.office.id) {
+      return;
+    }
     if ($search && $search.length < 1) {
       return;
     }
@@ -401,12 +418,13 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       data: {
         where: {
           active: true,
+          'office.id' : $scope.item.office.id
         },
         select: {
           id: 1,
           image: 1,
-          nameEn: 1,
-          nameAr: 1,
+          firstName: 1,
+          lastName: 1,
         },
         search: $search,
       },
@@ -425,6 +443,9 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
   };
 
   $scope.getOpposingCounselsList = function ($search) {
+    if (!$scope.item.office || !$scope.item.office.id) {
+      return;
+    }
     if ($search && $search.length < 1) {
       return;
     }
@@ -436,12 +457,13 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       data: {
         where: {
           active: true,
+          'office.id' : $scope.item.office.id
         },
         select: {
           id: 1,
           image: 1,
-          nameEn: 1,
-          nameAr: 1,
+          firstName: 1,
+          lastName: 1,
         },
         search: $search,
       },
@@ -632,11 +654,11 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       return;
     }
     let index = $scope.item.clientsList.findIndex(
-      (itm) => itm.client.id == $scope.item.$client.id
+      (itm) => itm.user.id == $scope.item.$client.id
     );
     if (index === -1) {
       $scope.item.clientsList.push({
-        client: $scope.item.$client,
+        user: $scope.item.$client,
         adjectiveInLawsuit: $scope.item.$adjectiveInLawsuitClient,
       });
       $scope.item.$client = {};
@@ -663,13 +685,12 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       return;
     }
     let index = $scope.item.clientsLawyersList.findIndex(
-      (itm) => itm.lawyer.id == $scope.item.$clientLawyer.id
+      (itm) => itm.user.id == $scope.item.$clientLawyer.id
     );
     if (index === -1) {
-      $scope.item.$clientLawyer.nameAr = $scope.item.$clientLawyer.fullNameAr;
-      $scope.item.$clientLawyer.nameEn = $scope.item.$clientLawyer.fullNameEn;
+    
       $scope.item.clientsLawyersList.push({
-        lawyer: $scope.item.$clientLawyer,
+        user: $scope.item.$clientLawyer,
         adjectiveInLawsuit: $scope.item.$adjectiveInLawsuitClientLawyer,
       });
       $scope.item.$clientLawyer = {};
@@ -696,11 +717,11 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       return;
     }
     let index = $scope.item.opponentsList.findIndex(
-      (itm) => itm.opponent.id == $scope.item.$opponent.id
+      (itm) => itm.user.id == $scope.item.$opponent.id
     );
     if (index === -1) {
       $scope.item.opponentsList.push({
-        opponent: $scope.item.$opponent,
+        user: $scope.item.$opponent,
         adjectiveInLawsuit: $scope.item.$adjectiveInLawsuitOpponent,
       });
       $scope.item.$opponent = {};
@@ -728,11 +749,11 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
       return;
     }
     let index = $scope.item.opposingCounselsList.findIndex(
-      (itm) => itm.opposingCounsel.id == $scope.item.$opposingCounsel.id
+      (itm) => itm.user.id == $scope.item.$opposingCounsel.id
     );
     if (index === -1) {
       $scope.item.opposingCounselsList.push({
-        opposingCounsel: $scope.item.$opposingCounsel,
+        user: $scope.item.$opposingCounsel,
         adjectiveInLawsuit: $scope.item.$adjectiveInLawsuitOpposingCounsel,
       });
       $scope.item.$opposingCounsel = {};
@@ -740,6 +761,41 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
     } else {
       $scope.item.$opposingCounselError = "##word.Exists before##";
     }
+  };
+
+  $scope.getOfficesList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.officesList = [];
+    $http({
+      method: "POST",
+      url: "/api/offices/all",
+      data: {
+        where: {
+          active: true,
+        },
+        type: "myOffices",
+        select: {
+          id: 1,
+          nameEn: 1,
+          nameAr: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.officesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.showSearch = function () {
@@ -765,4 +821,5 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
   $scope.getStatusLawsuitList();
   $scope.getTypesLawsuitList();
   $scope.getCurrentMonthDate();
+  $scope.getOfficesList();
 });

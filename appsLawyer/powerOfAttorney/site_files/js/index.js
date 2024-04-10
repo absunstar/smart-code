@@ -10,6 +10,10 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
   };
   $scope.item = {};
   $scope.list = [];
+  $scope.userOfficesList = "##session.user.officesList##"
+  .split(",")
+  .map(Number);
+
   $scope.search = { fromDate: new Date(), toDate: new Date() };
   $scope.getCurrentMonthDate = function () {
     const date = new Date();
@@ -30,6 +34,9 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
       clientsList: [],
       clientsLawyersList: [],
     };
+    $scope.item.office = $scope.officesList.find(
+      (l) => l.id == $scope.userOfficesList[0]
+    );
     site.showModal($scope.modalID);
     document.querySelector(`${$scope.modalID} .tab-link`).click();
   };
@@ -193,7 +200,9 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
       return;
     }
     $scope.busyAll = true;
-    $scope.list = [];
+    where = where || {};
+    where["office.id"] = { $in: $scope.userOfficesList };
+     $scope.list = [];
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
@@ -287,7 +296,7 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
       }
     );
   };
-  
+
   $scope.getClientsLawyersList = function ($search) {
     if (!$scope.item.office || !$scope.item.office.id) {
       return;

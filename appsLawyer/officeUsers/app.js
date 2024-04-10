@@ -223,15 +223,21 @@ module.exports = function init(site) {
             done: false,
           };
           let _data = req.data;
-
-          app.$collection.delete(_data, (err, result) => {
+          app.delete({id : _data.id}, (err, result) => {
             if (!err && result.count === 1) {
-              response.done = true;
-              response.result = result;
+              app.$collectionUser.find({ id: _data.userId }, (err, user) => {
+                user.officesList = user.officesList.filter(function (item) {
+                  return item !== _data.office.id;
+                });
+                app.$collectionUser.update(user);
+                response.done = true;
+                response.result = result;
+                res.json(response);
+              });
             } else {
               response.error = err?.message || "Deleted Not Exists";
+              res.json(response);
             }
-            res.json(response);
           });
         }
       );
@@ -332,7 +338,9 @@ module.exports = function init(site) {
             "area.nameEn": site.get_RegExp(search, "i"),
           });
         }
-        where["office.id"] = { $in: req.session.user.officesList };
+        if(req.body.all){
+          where["office.id"] = { $in: req.session.user.officesList };
+        }
         where["type"] = req.body.type;
         app.all({ where, select, limit }, (err, docs) => {
           if (docs && docs.length > 0) {
@@ -344,10 +352,10 @@ module.exports = function init(site) {
               id: { $in: usersIdList },
             };
             app.$collectionUser.findMany(whereUsers, (err, users) => {
-              users.forEach(_user => {
+              users.forEach((_user) => {
                 item = docs.find((itm) => itm.userId == _user.id);
-                _user.office = item.office;
-                _user.docId = item.id;
+                _user.$office = item.office;
+                _user.$docId = item.id;
               });
               res.json({
                 done: true,

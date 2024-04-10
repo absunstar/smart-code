@@ -294,54 +294,25 @@ module.exports = function init(site) {
           done: 1,
           typeAdministrativeWork: 1,
           employee: 1,
+          office: 1,
           active: 1,
         };
         if (search) {
           where.$or = [];
-
           where.$or.push({
             id: site.get_RegExp(search, 'i'),
           });
-
           where.$or.push({
             'typeAdministrativeWork.name': site.get_RegExp(search, 'i'),
           });
-
           where.$or.push({
-            'employee.nameAr': site.get_RegExp(search, 'i'),
+            'employee.idNumber': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            'employee.nameEn': site.get_RegExp(search, 'i'),
+            'employee.firstName': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            'employee.fullNameAr': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.fullNameEn': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.job.nameAr': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.job.nameEn': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.job.nameAr': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.job.nameEn': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.department.nameAr': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.department.nameEn': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.section.nameAr': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'employee.section.nameEn': site.get_RegExp(search, 'i'),
+            'employee.lastName': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
             'employee.mobile': site.get_RegExp(search, 'i'),
@@ -360,6 +331,7 @@ module.exports = function init(site) {
             list: list,
           });
         } else {
+          where["office.id"] = { $in: req.session.user.officesList };
           app.all({ where, select, limit }, (err, docs) => {
             res.json({
               done: true,

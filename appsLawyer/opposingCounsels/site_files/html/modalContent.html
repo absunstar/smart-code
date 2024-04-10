@@ -9,8 +9,9 @@
             <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
           </div>
 
-          <i-control type="text" v="r" ng-model="item.nameEn" label="##word.Name##"></i-control>
-          <i-control type="text" v="r" ng-model="item.nameAr" label="##word.Name Arabic##"></i-control>
+          <i-control type="text" v="r" ng-model="item.firstName" label="##word.First Name##"></i-control>
+          <i-control type="text" v="r" ng-model="item.lastName" label="##word.Last Name##"></i-control>
+          <i-list  label="##word.Office##" ng-model="item.office" display="name##session.lang##" items="officesList" ng-search="item.$offices"></i-list>
         </div>
       </div>
       <div class="col3 center">
