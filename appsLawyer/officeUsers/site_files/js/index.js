@@ -44,11 +44,27 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       return;
     }
     _item.$role = "##query.type##";
+
+    if (_item.$role == "lawyer") {
+      if (!user.cardImage) {
+        $scope.error = "##word.Must Enter Card Image##";
+        return;
+      } else if (!_item.constraintType || !_item.constraintType.id) {
+        $scope.error = "##word.Must Enter Constraint Type##";
+        return;
+      } else if (!_item.cardNumber) {
+        $scope.error = "##word.Must Enter Card Number##";
+        return;
+      } else if (!_item.constraintDate) {
+        $scope.error = "##word.Must Enter Constraint Date##";
+        return;
+      }
+    }
     $scope.busy = true;
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/addUsers`,
-      data: $scope.item,
+      data: _item,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -243,7 +259,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       data: {
         where: where,
         search,
-        all : true,
+        all: true,
         type: "##query.type##",
       },
     }).then(
@@ -355,11 +371,19 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $scope.usersList = [];
+    let type = 'lawyer';
+
+    if( "##query.type##" == 'lawyer'){
+      type = 'lawyer'
+    } else {
+      type = 'client'
+      
+    }
     $http({
       method: "POST",
       url: "/api/users/all",
       data: {
-        where: { search: $search },
+        where: { search: $search,type },
       },
     }).then(
       function (response) {
@@ -504,6 +528,26 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getConstraintTypesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/constraintTypesList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.constraintTypesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getMaritalStatus = function () {
     $scope.busy = true;
     $scope.maritalStatusList = [];
@@ -552,4 +596,6 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
   $scope.getOfficesList();
   $scope.getMaritalStatus();
   $scope.getGenders();
+  $scope.getConstraintTypesList();
+  $scope.getUsersList();
 });

@@ -22,6 +22,7 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
       (l) => l.id == $scope.userOfficesList[0]
     );
     site.showModal($scope.modalID);
+    $scope.getEmployeesList();
   };
 
   $scope.add = function (_item) {
@@ -382,7 +383,6 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getEmployeesList();
   $scope.getTypeAdministrativeWorks();
   $scope.getOfficesList();
 });

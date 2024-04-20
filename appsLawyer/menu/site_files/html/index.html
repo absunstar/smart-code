@@ -1,4 +1,15 @@
 <ul class="main-menu">
+  <li class="menu-item">
+    <a
+      class="tab-link"
+      href="/offices"
+      x-permissions="officesUi || officesManage"
+    >
+      <i class="fas fa-vector-square"></i>
+      <span> ##word.Offices## </span>
+    </a>
+  </li>
+
   <li x-features="host.admin" class="menu-item">
     <a class="tab-link" href="/site-setting" x-permissions="site-setting">
       <i class="fas fa-wifi"></i>
@@ -49,25 +60,6 @@
       <span> ##word.Office Employees## </span>
     </a>
   </li>
-
-  <li x-features="host.admin" class="menu-item">
-    <a class="tab-link" href="/host-manager" x-permissions="host-manager">
-      <i class="fas fa-wifi"></i>
-      <span> ##word.Host Manager## </span>
-    </a>
-  </li>
-
-  <li class="menu-item">
-    <a
-      class="tab-link"
-      href="/manageUsers"
-      x-permissions="manageUsersUi || manageUsersManage"
-    >
-      <i class="fas fa-users"></i>
-      <span> ##word.Manage Users## </span>
-    </a>
-  </li>
-
 
   <li class="menu-item">
     <a
@@ -129,7 +121,7 @@
       <span> ##word.Lawsuits## </span>
     </a>
   </li>
-  
+
   <li class="menu-item">
     <a
       class="tab-link"
@@ -140,7 +132,7 @@
       <span> ##word.Type Administrative Works## </span>
     </a>
   </li>
-  
+
   <li class="menu-item">
     <a
       class="tab-link"
@@ -260,16 +252,6 @@
       <span> ##word.Nationalities## </span>
     </a>
   </li>
-  <li class="menu-item">
-    <a
-      class="tab-link"
-      href="/offices"
-      x-permissions="officesUi || officesManage"
-    >
-      <i class="fas fa-vector-square"></i>
-      <span> ##word.Offices## </span>
-    </a>
-  </li>
 
   <li class="menu-item">
     <a class="tab-link" href="/xwords" x-permissions="devleoper">
@@ -287,6 +269,17 @@
     <a class="tab-link" href="/security/users" x-permissions="securityManage">
       <i class="fas fa-users"></i>
       <span> ##word.Security Users## </span>
+    </a>
+  </li>
+
+  <li class="menu-item">
+    <a
+      class="tab-link"
+      href="/manageUsers"
+      x-permissions="manageUsersUi || manageUsersManage"
+    >
+      <i class="fas fa-users"></i>
+      <span> ##word.Manage Users## </span>
     </a>
   </li>
 </ul>

@@ -37,8 +37,11 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
     $scope.item.office = $scope.officesList.find(
       (l) => l.id == $scope.userOfficesList[0]
     );
+    
     site.showModal($scope.modalID);
     document.querySelector(`${$scope.modalID} .tab-link`).click();
+    $scope.getClientsList();
+    $scope.getClientsLawyersList();
   };
 
   $scope.add = function (_item) {
@@ -593,4 +596,5 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
   $scope.getTypesPoaList();
   $scope.getCurrentMonthDate();
   $scope.getOfficesList();
+
 });

@@ -19,3 +19,7 @@ legend {
   direction: rtl;
   float: inline-start;
 }
+
+.center-content{
+  justify-content: center;
+}

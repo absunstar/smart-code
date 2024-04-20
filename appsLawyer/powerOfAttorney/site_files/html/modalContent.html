@@ -16,6 +16,7 @@
       ng-model="item.office"
       display="name##session.lang##"
       items="officesList"
+      ng-change="getClientsList();getClientsLawyersList()"
       ng-search="item.$offices"
     ></i-list>
   </div>

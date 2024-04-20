@@ -31,10 +31,41 @@
             items="officesList"
             ng-search="item.$offices"
           ></i-list>
+
+          <i-control
+            ng-show="'##query.type##' == 'lawyer'"
+            class="center input-style"
+            label="##word.Card Number##"
+            type="tel"
+            ng-model="item.cardNumber"
+          >
+          </i-control>
+          <i-list
+            ng-show="'##query.type##' == 'lawyer'"
+            class="center input-style"
+            label="##word.Constraint Type##"
+            ng-model="item.constraintType"
+            items="constraintTypesList"
+            display="name##session.lang##"
+            ng-search="item.$constraintType"
+          ></i-list>
+          <i-date
+            ng-show="'##query.type##' == 'lawyer'"
+            label="##word.Constraint Date##"
+            ng-model="item.ConstraintDate"
+          >
+          </i-date>
         </div>
       </div>
       <div class="col3 center">
-        <i-image class="img128 center" ng-model="item.image"></i-image>
+        <div class="row center-content">
+          <p class="">##word.Profile Image##</p>
+          <i-image class="img128" ng-model="item.image"></i-image>
+        </div>
+        <div class="row center-content" ng-show="'##query.type##' == 'lawyer'">
+          <p class="">##word.Card Image##</p>
+          <i-image class="img128" ng-model="item.cardImage"></i-image>
+        </div>
       </div>
     </div>
   </fieldset>

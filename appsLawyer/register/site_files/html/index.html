@@ -138,6 +138,25 @@
               >
               </i-control>
 
+              <i-control
+              ng-show="type == 'lawyer'"
+                class="center input-style"
+                label="##word.Card Number##"
+                type="tel"
+                ng-model="user.cardNumber"
+              >
+              </i-control>
+              <i-list
+              ng-show="type == 'lawyer'"
+              class="center input-style"
+              label="##word.Constraint Type##"
+              ng-model="user.constraintType"
+              items="constraintTypesList"
+              display="name##session.lang##"
+              ng-search="user.$constraintType"
+            ></i-list>
+            <i-date ng-show="type == 'lawyer'" label="##word.Constraint Date##" ng-model="user.ConstraintDate">
+            </i-date>
               <i-list
                 v="r"
                 class="center input-style"
@@ -177,11 +196,20 @@
             </div>
             <div class="col2"></div>
             <div class="col3">
-              <p>##word.Profile Image##</p>
-              <i-image
-                style="width: 170px !important; height: 200px !important"
-                ng-model="user.image"
-              ></i-image>
+              <div class="row">
+                <p class="center">##word.Profile Image##</p>
+                <i-image
+                  style="width: 170px !important; height: 200px !important"
+                  ng-model="user.image"
+                ></i-image>
+              </div>
+              <div class="row" ng-show="type == 'lawyer'">
+                <p class="center">##word.Card Image##</p>
+                <i-image
+                  style="width: 170px !important; height: 200px !important"
+                  ng-model="user.cardImage"
+                ></i-image>
+              </div>
             </div>
           </div>
           <div class="row">

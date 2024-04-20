@@ -1,14 +1,22 @@
 module.exports = function init(site) {
-  const $words = site.connectCollection("words")
+  const $words = site.connectCollection("words");
 
   site.get(
     {
-        name: 'words',
+      name: "words",
     },
     (req, res) => {
-        res.render('words' + '/index.html', { title: 'words', appName: 'Governorates', setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
+      res.render(
+        "words" + "/index.html",
+        {
+          title: "words",
+          appName: "Words",
+          setting: site.getSiteSetting(req.host),
+        },
+        { parser: "html", compres: true }
+      );
     }
-);
+  );
 
   site.post({ name: "/x-api/words/importNewWords" }, (req, res) => {
     let response = {
@@ -31,6 +39,8 @@ module.exports = function init(site) {
 
       if (Array.isArray(docs)) {
         for (let i = 0; i < docs.length; i++) {
+          delete docs[i].id;
+          delete docs[i]._id;
           site.words.add(docs[i]);
         }
 
@@ -76,9 +86,13 @@ module.exports = function init(site) {
               );
               if (index != -1) {
                 num += 1;
+                delete wordsList[i].id;
+                delete wordsList[i]._id;
                 site.words.set(wordsList[i]);
               } else {
                 num2 += 1;
+                delete wordsList[i].id;
+                delete wordsList[i]._id;
                 site.words.add(wordsList[i]);
               }
             }

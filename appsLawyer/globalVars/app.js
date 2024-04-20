@@ -1,4 +1,27 @@
 module.exports = function init(site) {
+  site.constraintTypesList = [
+    {
+      id: 1,
+      nameAr: "جدول عام",
+      nameEn: "Sales",
+    },
+    {
+      id: 2,
+      nameAr: "إبتدائي",
+      nameEn: "Sale",
+    },
+    {
+      id: 3,
+      nameAr: "إستئناف",
+      nameEn: "Sale",
+    },
+    {
+      id: 4,
+      nameAr: "نقض",
+      nameEn: "Sale",
+    }
+  ];
+
   site.salesTypesList = [
     {
       id: 1,
@@ -608,6 +631,13 @@ module.exports = function init(site) {
     res.json({
       done: true,
       list: site.invoiceTypes,
+    });
+  });
+
+  site.post("/api/constraintTypesList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.constraintTypesList,
     });
   });
 

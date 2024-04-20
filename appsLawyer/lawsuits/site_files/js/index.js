@@ -40,6 +40,11 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
     );
     site.showModal($scope.modalID);
     document.querySelector(`${$scope.modalID} .tab-link`).click();
+
+    $scope.getClientsList();
+    $scope.getOpponentsList();
+    $scope.getClientsLawyersList();
+    $scope.getOpposingCounselsList();
   };
 
   $scope.add = function (_item) {
@@ -810,11 +815,8 @@ app.controller("lawsuits", function ($scope, $http, $timeout) {
 
   $scope.getAll();
   $scope.getDocumentsTypes();
-  $scope.getClientsList();
-  $scope.getOpponentsList();
   $scope.getTypesPoaList();
-  $scope.getClientsLawyersList();
-  $scope.getOpposingCounselsList();
+
   $scope.getAdjectivesInLawsuit();
   $scope.getCourtsList();
   $scope.getLawsuitDegreesList();

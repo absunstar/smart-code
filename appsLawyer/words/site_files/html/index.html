@@ -60,6 +60,7 @@
         <table class="table bold hover center" id="xwords">
           <tr>
             <th>S/N</th>
+            <th>##word.id##</th>
             <th>##word.Name##</th>
             <th>##word.English##</th>
             <th>##word.Arabic##</th>
@@ -67,6 +68,7 @@
           </tr>
           <tr ng-repeat="word in words | filter:nameSearch">
             <td>{{$index+1}}</td>
+            <td class="userPrint">{{word.id}}</td>
             <td class="userPrint">{{word.name}}</td>
             <td>
               <i-control ng-model="word.En"></i-control>

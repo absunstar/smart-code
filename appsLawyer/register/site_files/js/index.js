@@ -19,6 +19,21 @@ app.controller("register", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    if ($scope.type == "lawyer") {
+      if (!user.cardImage) {
+        $scope.error = "##word.Must Enter Card Image##";
+        return;
+      } else if (!user.constraintType || !user.constraintType.id) {
+        $scope.error = "##word.Must Enter Constraint Type##";
+        return;
+      }  else if (!user.cardNumber) {
+        $scope.error = "##word.Must Enter Card Number##";
+        return;
+      } else if (!user.constraintDate) {
+        $scope.error = "##word.Must Enter Constraint Date##";
+        return;
+      }
+    }
     let obj = {
       $encript: "123",
       email: site.to123(user.email),
@@ -86,6 +101,26 @@ app.controller("register", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.countriesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getConstraintTypesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/constraintTypesList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.constraintTypesList = response.data.list;
         }
       },
       function (err) {
@@ -226,6 +261,7 @@ app.controller("register", function ($scope, $http, $timeout) {
     }, 100);
   };
   $scope.getCountriesList();
+  $scope.getConstraintTypesList();
 });
 
 site.onLoad(() => {

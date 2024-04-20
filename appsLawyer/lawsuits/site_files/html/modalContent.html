@@ -7,6 +7,7 @@
       ng-model="item.office"
       display="name##session.lang##"
       items="officesList"
+      ng-change="getClientsList();getOpponentsList();getClientsLawyersList();getOpposingCounselsList();"
       ng-search="item.$offices"
     ></i-list>
     <i-control

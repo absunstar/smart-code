@@ -342,8 +342,8 @@ module.exports = function init(site) {
         if (req.body.type == "lawyer") {
           let office = {
             image: "/images/offices.png",
-            nameAr: "مكتب" + doc.firstName + doc.lastName,
-            nameEn: "مكتب" + doc.firstName + doc.lastName,
+            nameAr: "مكتب" + ' ' + doc.firstName + ' ' + doc.lastName,
+            nameEn: "مكتب" + ' ' + doc.firstName +' ' + doc.lastName,
             active: true,
             user: {
               id: doc.id,
