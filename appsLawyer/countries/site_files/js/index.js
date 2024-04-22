@@ -187,29 +187,6 @@ app.controller('countries', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/getAutomatic',
-      data: {
-        screen: $scope.appName,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.showSearch = function () {
     $scope.error = '';
     site.showModal($scope.modalSearchID);
@@ -222,5 +199,4 @@ app.controller('countries', function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getNumberingAuto();
 });

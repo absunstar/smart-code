@@ -91,8 +91,7 @@ app.controller("register", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameAr: 1,
-          nameEn: 1,
+          name: 1,
           image: 1,
         },
       },
@@ -140,8 +139,7 @@ app.controller("register", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameAr: 1,
-          nameEn: 1,
+          name: 1,
           image: 1,
           callingCode: 1,
           lengthMobile: 1,
@@ -174,8 +172,7 @@ app.controller("register", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
         },
       },
     }).then(
@@ -205,8 +202,7 @@ app.controller("register", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
         },
       },
     }).then(
@@ -236,8 +232,7 @@ app.controller("register", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
         },
       },
     }).then(

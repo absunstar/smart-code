@@ -8,10 +8,10 @@
           <div class="col4">
             <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
           </div>
-
+          
+          <i-list  label="##word.Office##" ng-model="item.office" display="name##session.lang##" items="officesList" ng-search="item.$offices"></i-list>
           <i-control type="text" v="r" ng-model="item.firstName" label="##word.First Name##"></i-control>
           <i-control type="text" v="r" ng-model="item.lastName" label="##word.Last Name##"></i-control>
-          <i-list  label="##word.Office##" ng-model="item.office" display="name##session.lang##" items="officesList" ng-search="item.$offices"></i-list>
 
         </div>
       </div>
@@ -85,10 +85,10 @@
           <div class="row">
             <i-list
               class="col6"
-              label="# ##word.Country##"
+              label="##word.Country##"
               ng-change="getGovesList(item.country)"
               ng-model="item.country"
-              display="name##session.lang##"
+              display="name"
               items="countriesList"
               display2="callingCode"
               ng-get="getCountriesList($search)"
@@ -96,10 +96,10 @@
             <i-list
               help-id=""
               class="col6"
-              label="# ##word.Governorate##"
+              label="##word.Governorate##"
               ng-change="getCitiesList(item.gov)"
               ng-model="item.gov"
-              display="name##session.lang##"
+              display="name"
               items="govesList"
               ng-search="item.$gov"
             ></i-list>
@@ -108,15 +108,15 @@
           <div class="row">
             <i-list
               class="col6"
-              label="# ##word.City##"
+              label="##word.City##"
               ng-model="item.city"
               ng-change="getAreasList(item.city)"
               items="citiesList"
-              display="name##session.lang##"
+              display="name"
               ng-search="item.$area.$cityitem"
             >
             </i-list>
-            <i-list class="col6" label="# ##word.Area##" ng-model="item.area" items="areasList" display="name##session.lang##" ng-search="item.$area.$areaitem"> </i-list>
+            <i-list class="col6" label="##word.Area##" ng-model="item.area" items="areasList" display="name" ng-search="item.$area.$areaitem"> </i-list>
           </div>
 
           <div class="row">

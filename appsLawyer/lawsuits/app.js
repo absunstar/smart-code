@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: "Lawsuits",
+              appName: req.word("Lawsuits"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -270,6 +270,7 @@ module.exports = function init(site) {
           year: 1,
           court: 1,
           circle: 1,
+          office: 1,
           lawsuitDegree: 1,
           active: 1,
         };
@@ -293,6 +294,9 @@ module.exports = function init(site) {
           });
           where.$or.push({
             year: search,
+          });
+          where.$or.push({
+            "office.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
             "court.name": site.get_RegExp(search, "i"),

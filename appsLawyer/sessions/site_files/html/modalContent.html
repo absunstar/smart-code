@@ -15,7 +15,7 @@
         v="r"
         label="##word.Office##"
         ng-model="item.office"
-        display="name##session.lang##"
+        display="name"
         items="officesList"
         ng-search="item.$offices"
       ></i-list>
@@ -42,7 +42,7 @@
         class="col3"
         label="##word.Reason Session##"
         ng-model="item.reasonsSession"
-        display="name##session.lang##"
+        display="name"
         items="reasonsSessionsList"
         ng-get="getreasonsSessionsList($search)"
       ></i-list>
@@ -103,7 +103,7 @@
                       label="##word.Document Type##"
                       ng-model="f.fileType"
                       items="documentsTypesList"
-                      display="name##session.lang##"
+                      display="name"
                       ng-search="item.$fileType"
                     >
                     </i-list>

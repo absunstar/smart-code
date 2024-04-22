@@ -3,7 +3,7 @@
   site.features = '##req.features##';
   site.feature = (f) => site.features.indexOf(f) !== -1;
 </script>
-
+<script x-import="ui-print/index.js"></script>
 <script x-import="lawyer-theme/sitebar.js"></script>
 <script x-import="lawyer-theme/sitebottom.js"></script>
 <script x-import="lawyer-theme/footer_lawyer.js"></script>
@@ -13,6 +13,13 @@
 </script>
 
 <script>
+   function export_to_xlsx(table, type = 'xlsx') {
+    var data = typeof table === 'string' ? document.querySelector(table) : table;
+    var excelFile = XLSX.utils.table_to_book(data, { sheet: 'sheet1' });
+    XLSX.write(excelFile, { bookType: type, bookSST: true, type: 'base64' });
+    XLSX.writeFile(excelFile, (data.id || data.tagName) + '.' + type);
+  }
+
   function xtime(_time) {
     let since_few = ' Since few ';
     let before = ' Ago ';

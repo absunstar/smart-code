@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: "Administrative Works",
+              appName: req.word("Administrative Works"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -170,7 +170,7 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-          
+
           _data.addUserInfo = req.getUserFinger();
 
           app.add(_data, (err, doc) => {
@@ -225,7 +225,7 @@ module.exports = function init(site) {
           let _data = req.data;
           _data.done = _data.$done;
           _data.changeImplementeUser = req.getUserFinger();
-          _data.changeImplementeDate =new Date();
+          _data.changeImplementeDate = new Date();
 
           app.update(_data, (err, result) => {
             if (!err) {
@@ -287,7 +287,7 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let search = req.body.search || '';
+        let search = req.body.search || "";
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
@@ -300,31 +300,39 @@ module.exports = function init(site) {
         if (search) {
           where.$or = [];
           where.$or.push({
-            id: site.get_RegExp(search, 'i'),
+            id: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'typeAdministrativeWork.name': site.get_RegExp(search, 'i'),
+            "typeAdministrativeWork.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'employee.idNumber': site.get_RegExp(search, 'i'),
+            "office.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'employee.firstName': site.get_RegExp(search, 'i'),
+            "employee.idNumber": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'employee.lastName': site.get_RegExp(search, 'i'),
+            "employee.firstName": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'employee.mobile': site.get_RegExp(search, 'i'),
+            "employee.lastName": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "employee.mobile": site.get_RegExp(search, "i"),
           });
         }
 
         if (app.allowMemory) {
           if (!search) {
-            search = 'id';
+            search = "id";
           }
           let list = app.memoryList
-            .filter((g) => (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search))
+            .filter(
+              (g) =>
+                (typeof where.active != "boolean" ||
+                  g.active === where.active) &&
+                JSON.stringify(g).contains(search)
+            )
             .slice(0, limit);
           res.json({
             done: true,
@@ -340,8 +348,6 @@ module.exports = function init(site) {
           });
         }
       });
-
-    
     }
   }
 

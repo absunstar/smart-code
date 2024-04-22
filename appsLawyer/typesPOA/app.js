@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: "Types POA",
+              appName: req.word("Types POA"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -262,8 +262,7 @@ module.exports = function init(site) {
         let where = req.body.where || {};
         let select = req.body.select || {
           id: 1,
-          nameAr: 1,
-          nameEn: 1,
+          name: 1,
           image: 1,
           active: 1,
         };

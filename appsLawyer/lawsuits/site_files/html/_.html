@@ -54,6 +54,7 @@
     <div class="table-responsive">
       <table class="table hover bold" id="t1">
         <tr>
+          <th>##word.Office##</th>
           <th>##word.Number##</th>
           <th>##word.For a year##</th>
           <th>##word.Court##</th>
@@ -62,10 +63,11 @@
           <th class="not-print">##word.Actions##</th>
         </tr>
         <tr ng-repeat="item in list">
+          <td class="center">{{item.office.name}}</td>
           <td class="center">{{item.number}}</td>
           <td class="center">{{item.year}}</td>
-          <td class="center">{{item.court.name##session.lang##}}</td>
-          <td class="center">{{item.lawsuitDegree.name##session.lang##}}</td>
+          <td class="center">{{item.court.name}}</td>
+          <td class="center">{{item.lawsuitDegree.name}}</td>
           <td class="center">
             <span class="text-success" ng-show="item.active"
               >##word.Active##</span

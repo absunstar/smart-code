@@ -166,7 +166,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: "Offices",
+              appName: req.word("Offices"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -277,8 +277,7 @@ module.exports = function init(site) {
         let select = req.body.select || {
           id: 1,
           user: 1,
-          nameAr: 1,
-          nameEn: 1,
+          name: 1,
           image: 1,
           active: 1,
         };

@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   let app = {
-    name: 'opposingCounsels',
+    name: "opposingCounsels",
     allowMemory: false,
     memoryList: [],
     allowCache: false,
@@ -14,7 +14,7 @@ module.exports = function init(site) {
     allowRouteAll: true,
   };
 
-  app.$collection = site.connectCollection('opposingCounsels');
+  app.$collection = site.connectCollection("opposingCounsels");
 
   app.init = function () {
     if (app.allowMemory) {
@@ -60,14 +60,18 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
+          let index = app.memoryList.findIndex(
+            (itm) => itm.id === result.doc.id
+          );
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
+          let index = app.cacheList.findIndex(
+            (itm) => itm.id === result.doc.id
+          );
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -144,71 +148,94 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          res.render(app.name + '/index.html', { title: app.name, appName: 'Opposing Counsels', setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
+          res.render(
+            app.name + "/index.html",
+            {
+              title: app.name,
+              appName: req.word("Opposing Counsels"),
+              setting: site.getSiteSetting(req.host),
+            },
+            { parser: "html", compres: true }
+          );
         }
       );
     }
 
     if (app.allowRouteAdd) {
-      site.post({ name: `/api/${app.name}/add`, require: { permissions: ['login'] } }, (req, res) => {
-        let response = {
-          done: false,
-        };
+      site.post(
+        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
 
-        let _data = req.data;
+          let _data = req.data;
 
-        _data.addUserInfo = req.getUserFinger();
+          _data.addUserInfo = req.getUserFinger();
 
-        app.add(_data, (err, doc) => {
-          if (!err && doc) {
-            response.done = true;
-            response.doc = doc;
-          } else {
-            response.error = err.mesage;
-          }
-          res.json(response);
-        });
-      });
+          app.add(_data, (err, doc) => {
+            if (!err && doc) {
+              response.done = true;
+              response.doc = doc;
+            } else {
+              response.error = err.mesage;
+            }
+            res.json(response);
+          });
+        }
+      );
     }
 
     if (app.allowRouteUpdate) {
-      site.post({ name: `/api/${app.name}/update`, require: { permissions: ['login'] } }, (req, res) => {
-        let response = {
-          done: false,
-        };
+      site.post(
+        {
+          name: `/api/${app.name}/update`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
 
-        let _data = req.data;
-        _data.editUserInfo = req.getUserFinger();
+          let _data = req.data;
+          _data.editUserInfo = req.getUserFinger();
 
-        app.update(_data, (err, result) => {
-          if (!err) {
-            response.done = true;
-            response.result = result;
-          } else {
-            response.error = err.message;
-          }
-          res.json(response);
-        });
-      });
+          app.update(_data, (err, result) => {
+            if (!err) {
+              response.done = true;
+              response.result = result;
+            } else {
+              response.error = err.message;
+            }
+            res.json(response);
+          });
+        }
+      );
     }
 
     if (app.allowRouteDelete) {
-      site.post({ name: `/api/${app.name}/delete`, require: { permissions: ['login'] } }, (req, res) => {
-        let response = {
-          done: false,
-        };
-        let _data = req.data;
+      site.post(
+        {
+          name: `/api/${app.name}/delete`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+          let _data = req.data;
 
-        app.delete(_data, (err, result) => {
-          if (!err && result.count === 1) {
-            response.done = true;
-            response.result = result;
-          } else {
-            response.error = err?.message || 'Deleted Not Exists';
-          }
-          res.json(response);
-        });
-      });
+          app.delete(_data, (err, result) => {
+            if (!err && result.count === 1) {
+              response.done = true;
+              response.result = result;
+            } else {
+              response.error = err?.message || "Deleted Not Exists";
+            }
+            res.json(response);
+          });
+        }
+      );
     }
 
     if (app.allowRouteView) {
@@ -223,7 +250,7 @@ module.exports = function init(site) {
             response.done = true;
             response.doc = doc;
           } else {
-            response.error = err?.message || 'Not Exists';
+            response.error = err?.message || "Not Exists";
           }
           res.json(response);
         });
@@ -233,7 +260,7 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let search = req.body.search || '';
+        let search = req.body.search || "";
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
@@ -246,74 +273,71 @@ module.exports = function init(site) {
           where.$or = [];
 
           where.$or.push({
-            id: site.get_RegExp(search, 'i'),
-          });
-
-       
-          where.$or.push({
-            firstName: site.get_RegExp(search, 'i'),
+            id: site.get_RegExp(search, "i"),
           });
 
           where.$or.push({
-            lastName: site.get_RegExp(search, 'i'),
+            firstName: site.get_RegExp(search, "i"),
           });
 
           where.$or.push({
-            idNumber: site.get_RegExp(search, 'i'),
+            lastName: site.get_RegExp(search, "i"),
           });
 
           where.$or.push({
-            'gender.nameAr': site.get_RegExp(search, 'i'),
+            idNumber: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            "gender.nameAr": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'gender.nameEn': site.get_RegExp(search, 'i'),
+            "gender.nameEn": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'maritalStatus.nameAr': site.get_RegExp(search, 'i'),
+            "maritalStatus.nameAr": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'maritalStatus.nameEn': site.get_RegExp(search, 'i'),
+            "maritalStatus.nameEn": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'phone': site.get_RegExp(search, 'i'),
+            phone: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'mobile': site.get_RegExp(search, 'i'),
+            mobile: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'whatsapp': site.get_RegExp(search, 'i'),
+            whatsapp: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'socialEmail': site.get_RegExp(search, 'i'),
+            socialEmail: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'address': site.get_RegExp(search, 'i'),
+            address: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            "gov.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'gov.nameAr': site.get_RegExp(search, 'i'),
+            "city.name": site.get_RegExp(search, "i"),
           });
+
           where.$or.push({
-            'gov.nameEn': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'city.nameAr': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'city.nameEn': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'area.nameAr': site.get_RegExp(search, 'i'),
-          });
-          where.$or.push({
-            'area.nameEn': site.get_RegExp(search, 'i'),
+            "area.name": site.get_RegExp(search, "i"),
           });
         }
         if (app.allowMemory) {
           if (!search) {
-            search = 'id';
+            search = "id";
           }
           let list = app.memoryList
-            .filter((g) => (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search))
+            .filter(
+              (g) =>
+                (typeof where.active != "boolean" ||
+                  g.active === where.active) &&
+                JSON.stringify(g).contains(search)
+            )
             .slice(0, limit);
           res.json({
             done: true,
@@ -336,24 +360,26 @@ module.exports = function init(site) {
 
         if (site.isFileExistsSync(response.file.filepath)) {
           let docs = [];
-          if (response.file.originalFilename.like('*.xls*')) {
+          if (response.file.originalFilename.like("*.xls*")) {
             let workbook = site.XLSX.readFile(response.file.filepath);
-            docs = site.XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+            docs = site.XLSX.utils.sheet_to_json(
+              workbook.Sheets[workbook.SheetNames[0]]
+            );
           } else {
-            docs = site.fromJson(site.readFileSync(response.file.filepath).toString());
+            docs = site.fromJson(
+              site.readFileSync(response.file.filepath).toString()
+            );
           }
 
           if (Array.isArray(docs)) {
             console.log(`Importing ${app.name} : ${docs.length}`);
             docs.forEach((doc) => {
-           
-
               let newDoc = {
                 firstName: doc.firstName,
                 lastName: doc.lastName,
                 email: doc.email,
-                mobile: '0' + doc.mobile,
-                image: { url: '/images/opposingCounsels.png' },
+                mobile: "0" + doc.mobile,
+                image: { url: "/images/opposingCounsels.png" },
                 active: true,
               };
 
@@ -372,11 +398,12 @@ module.exports = function init(site) {
               });
             });
           } else {
-            site.dbMessage = 'can not import unknown type : ' + site.typeof(docs);
+            site.dbMessage =
+              "can not import unknown type : " + site.typeof(docs);
             console.log(site.dbMessage);
           }
         } else {
-          site.dbMessage = 'file not exists : ' + response.file.filepath;
+          site.dbMessage = "file not exists : " + response.file.filepath;
           console.log(site.dbMessage);
         }
 

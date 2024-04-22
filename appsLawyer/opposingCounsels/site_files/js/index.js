@@ -258,8 +258,7 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         where: { active: true },
         select: {
           id: 1,
-          nameAr: 1,
-          nameEn: 1,
+          name: 1,
         },
         search: $search,
       },
@@ -292,8 +291,7 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
           callingCode: 1,
         },
         search: $search,
@@ -326,8 +324,7 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
         },
       },
     }).then(
@@ -357,8 +354,7 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
         },
       },
     }).then(
@@ -388,8 +384,7 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
         },
       },
     }).then(
@@ -464,8 +459,7 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
         type: "myOffices",
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
         },
         search: $search,
       },

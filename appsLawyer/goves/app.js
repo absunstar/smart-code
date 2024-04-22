@@ -144,7 +144,7 @@ module.exports = function init(site) {
                     name: app.name,
                 },
                 (req, res) => {
-                    res.render(app.name + '/index.html', { title: app.name, appName: 'Governorates', setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
+                    res.render(app.name + '/index.html', { title: app.name, appName: req.word('Governorates'), setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
                 }
             );
         }
@@ -235,7 +235,7 @@ module.exports = function init(site) {
                 let where = req.body.where || {};
                 let search = req.body.search || '';
                 let limit = req.body.limit || 50;
-                let select = req.body.select || { id: 1, country: 1, nameEn: 1, nameAr: 1, image: 1, active: 1 };
+                let select = req.body.select || { id: 1, country: 1, name: 1,  image: 1, active: 1 };
 
                 if (search) {
                     where.$or = [];
@@ -247,12 +247,10 @@ module.exports = function init(site) {
                  
 
                     where.$or.push({
-                        nameAr: site.get_RegExp(search, 'i'),
+                        name: site.get_RegExp(search, 'i'),
                     });
 
-                    where.$or.push({
-                        nameEn: site.get_RegExp(search, 'i'),
-                    });
+                
                 }
 
                 if (app.allowMemory) {

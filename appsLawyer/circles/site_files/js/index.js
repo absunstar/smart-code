@@ -202,8 +202,7 @@ app.controller('circles', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          nameAr: 1,
-          nameEn: 1,
+          name: 1,
         },
         search: $search,
       },
@@ -212,7 +211,6 @@ app.controller('circles', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.courtsList = response.data.list;
-          console.log($scope.courtsList);
         }
       },
       function (err) {

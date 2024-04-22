@@ -10,17 +10,15 @@
           label="##word.Country##"
           ng-change="getGovesList(item.country)"
           ng-model="item.country"
-          display="name##session.lang##"
+          display="name"
           display2="callingCode"
           items="countriesList"
           ng-get="getCountriesList($search)"
         ></i-list>
 
-        <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(item.gov)" ng-model="item.gov" display="name##session.lang##" items="govesList" ng-search="item.$gov"></i-list>
-        <i-list label="##word.City##" ng-model="item.city" v="r" items="citiesList" display="name##session.lang##" ng-search="_search.$area.$city_search"> </i-list>
-        <i-control type="text" v="r" ng-model="item.nameEn" label="##word.Name English##"></i-control>
-        <i-control type="text" v="r" ng-model="item.nameAr" label="##word.Name Arabic##"></i-control>
-        <i-control type="number" x-data="setting.showPos" ng-model="item.deliveryPrice" label="##word.Delivery Price## ##word.$##"></i-control>
+        <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(item.gov)" ng-model="item.gov" display="name" items="govesList" ng-search="item.$gov"></i-list>
+        <i-list label="##word.City##" ng-model="item.city" v="r" items="citiesList" display="name" ng-search="_search.$area.$city_search"> </i-list>
+        <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
       </div>
     </div>
     <div class="col3 center">

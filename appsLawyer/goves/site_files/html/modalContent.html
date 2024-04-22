@@ -10,13 +10,12 @@
           v="r"
           label="##word.Country##"
           ng-model="item.country"
-          display="name##session.lang##"
+          display="name"
           display2="callingCode"
           items="countriesList"
           ng-get="getCountriesList($search)"
         ></i-list>
-        <i-control type="text" v="r" ng-model="item.nameEn" label="##word.Name English##"></i-control>
-        <i-control type="text" v="r" ng-model="item.nameAr" label="##word.Name Arabic##"></i-control>
+        <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
       </div>
     </div>
     <div class="col3 center">

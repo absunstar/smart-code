@@ -164,7 +164,7 @@
                 ng-model="user.country"
                 ng-change="getGovesList(user.country)"
                 items="countriesList"
-                display="name##session.lang##"
+                display="name"
                 ng-search="user.$countries"
               ></i-list>
               <i-list
@@ -172,7 +172,7 @@
                 label="##word.Governorate##"
                 ng-change="getCitiesList(user.gov)"
                 ng-model="user.gov"
-                display="name##session.lang##"
+                display="name"
                 items="govesList"
                 ng-search="user.$gov"
               ></i-list>
@@ -181,7 +181,7 @@
                 ng-model="user.city"
                 ng-change="getAreasList(user.city)"
                 items="citiesList"
-                display="name##session.lang##"
+                display="name"
                 ng-search="user.$area.$cityitem"
               >
               </i-list>
@@ -189,7 +189,7 @@
                 label="##word.Area##"
                 ng-model="user.area"
                 items="areasList"
-                display="name##session.lang##"
+                display="name"
                 ng-search="user.$area.$areaitem"
               >
               </i-list>

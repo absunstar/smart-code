@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: "Power Of Attorney",
+              appName: req.word("Power Of Attorney"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }

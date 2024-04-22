@@ -27,7 +27,7 @@
             ng-hide="item.id"
             label="##word.Office##"
             ng-model="item.office"
-            display="name##session.lang##"
+            display="name"
             items="officesList"
             ng-search="item.$offices"
           ></i-list>
@@ -222,7 +222,7 @@
               label="# ##word.Country##"
               ng-change="getGovesList(item.country)"
               ng-model="item.country"
-              display="name##session.lang##"
+              display="name"
               items="countriesList"
               display2="callingCode"
               ng-get="getCountriesList($search)"
@@ -233,7 +233,7 @@
               label="# ##word.Governorate##"
               ng-change="getCitiesList(item.gov)"
               ng-model="item.gov"
-              display="name##session.lang##"
+              display="name"
               items="govesList"
               ng-search="item.$gov"
             ></i-list>
@@ -246,7 +246,7 @@
               ng-model="item.city"
               ng-change="getAreasList(item.city)"
               items="citiesList"
-              display="name##session.lang##"
+              display="name"
               ng-search="item.$area.$cityitem"
             >
             </i-list>
@@ -255,7 +255,7 @@
               label="# ##word.Area##"
               ng-model="item.area"
               items="areasList"
-              display="name##session.lang##"
+              display="name"
               ng-search="item.$area.$areaitem"
             >
             </i-list>

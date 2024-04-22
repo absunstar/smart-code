@@ -5,7 +5,7 @@
       class="col3"
       label="##word.Office##"
       ng-model="item.office"
-      display="name##session.lang##"
+      display="name"
       items="officesList"
       ng-change="getClientsList();getOpponentsList();getClientsLawyersList();getOpposingCounselsList();"
       ng-search="item.$offices"
@@ -54,7 +54,7 @@
               v="r"
               label="##word.Court##"
               ng-model="item.court"
-              display="name##session.lang##"
+              display="name"
               items="courtsList"
               ng-change="getCirclesList(item.court.id)"
             ></i-list>
@@ -63,7 +63,7 @@
               v="r"
               label="##word.Circle##"
               ng-model="item.circle"
-              display="name##session.lang##"
+              display="name"
               items="circlesList"
             ></i-list>
           </div>
@@ -73,7 +73,7 @@
               v="r"
               label="##word.Lawsuit degree##"
               ng-model="item.lawsuitDegree"
-              display="name##session.lang##"
+              display="name"
               items="lawsuitDegreesList"
             ></i-list>
             <i-list
@@ -81,7 +81,7 @@
               v="r"
               label="##word.Status Lawsuit##"
               ng-model="item.statusLawsuit"
-              display="name##session.lang##"
+              display="name"
               items="statusLawsuitList"
             ></i-list>
             <i-list
@@ -89,7 +89,7 @@
               v="r"
               label="##word.Types Lawsuit##"
               ng-model="item.typesLawsuit"
-              display="name##session.lang##"
+              display="name"
               items="typesLawsuitList"
             ></i-list>
           </div>
@@ -124,7 +124,7 @@
                 class="col3"
                 label="##word.Adjective In Lawsuit##"
                 ng-model="item.$adjectiveInLawsuitClient"
-                display="name##session.lang##"
+                display="name"
                 items="adjectivesInLawsuitList"
               ></i-list>
               <div class="col2">
@@ -154,7 +154,7 @@
                 </td>
                 <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
                 <td class="center">
-                  {{c.adjectiveInLawsuit.name##session.lang##}}
+                  {{c.adjectiveInLawsuit.name}}
                 </td>
                 <td class="center">
                   <i-button
@@ -181,7 +181,7 @@
                 class="col3"
                 label="##word.Adjective In Lawsuit##"
                 ng-model="item.$adjectiveInLawsuitClientLawyer"
-                display="name##session.lang##"
+                display="name"
                 items="adjectivesInLawsuitList"
               ></i-list>
               <div class="col2">
@@ -211,7 +211,7 @@
                 </td>
                 <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
                 <td class="center">
-                  {{c.adjectiveInLawsuit.name##session.lang##}}
+                  {{c.adjectiveInLawsuit.name}}
                 </td>
                 <td class="center">
                   <i-button
@@ -240,7 +240,7 @@
                 class="col3"
                 label="##word.Adjective In Lawsuit##"
                 ng-model="item.$adjectiveInLawsuitOpponent"
-                display="name##session.lang##"
+                display="name"
                 items="adjectivesInLawsuitList"
               ></i-list>
               <div class="col2">
@@ -270,7 +270,7 @@
                 </td>
                 <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
                 <td class="center">
-                  {{c.adjectiveInLawsuit.name##session.lang##}}
+                  {{c.adjectiveInLawsuit.name}}
                 </td>
                 <td class="center">
                   <i-button
@@ -297,7 +297,7 @@
                 class="col3"
                 label="##word.Adjective In Lawsuit##"
                 ng-model="item.$adjectiveInLawsuitOpposingCounsel"
-                display="name##session.lang##"
+                display="name"
                 items="adjectivesInLawsuitList"
               ></i-list>
               <div class="col2">
@@ -327,7 +327,7 @@
                 </td>
                 <td class="center">{{c.user.firstName}} {{c.user.lastName}}</td>
                 <td class="center">
-                  {{c.adjectiveInLawsuit.name##session.lang##}}
+                  {{c.adjectiveInLawsuit.name}}
                 </td>
                 <td class="center">
                   <i-button
@@ -355,7 +355,7 @@
                       label="##word.Document Type##"
                       ng-model="f.fileType"
                       items="documentsTypesList"
-                      display="name##session.lang##"
+                      display="name"
                       ng-search="item.$fileType"
                     >
                     </i-list>

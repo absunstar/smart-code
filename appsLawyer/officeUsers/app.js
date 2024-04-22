@@ -153,7 +153,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: "Office Users",
+              appName: req.word("Office Users"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -281,11 +281,11 @@ module.exports = function init(site) {
           });
 
           where.$or.push({
-            nameAr: site.get_RegExp(search, "i"),
+            firstName: site.get_RegExp(search, "i"),
           });
 
           where.$or.push({
-            nameEn: site.get_RegExp(search, "i"),
+            lastName: site.get_RegExp(search, "i"),
           });
 
           where.$or.push({
@@ -319,23 +319,15 @@ module.exports = function init(site) {
           where.$or.push({
             address: site.get_RegExp(search, "i"),
           });
+      
           where.$or.push({
-            "gov.nameAr": site.get_RegExp(search, "i"),
+            "gov.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            "gov.nameEn": site.get_RegExp(search, "i"),
+            "city.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            "city.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "city.nameEn": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "area.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "area.nameEn": site.get_RegExp(search, "i"),
+            "area.name": site.get_RegExp(search, "i"),
           });
         }
         if(req.body.all){

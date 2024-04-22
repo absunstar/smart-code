@@ -54,6 +54,7 @@
     <div class="table-responsive">
       <table class="table hover bold" id="t1">
         <tr>
+          <th>##word.Office##</th>
           <th>##word.Lawsuit Num##</th>
           <th>##word.Reason Session##</th>
           <th>##word.Roll Number##</th>
@@ -61,6 +62,7 @@
           <th class="not-print">##word.Actions##</th>
         </tr>
         <tr ng-repeat="item in list | filter:$search">
+          <td class="center">{{item.office.name}}</td>
           <td class="center">{{item.lawsuit.number}}</td>
           <td class="center">{{item.reasonsSession.name##session.lang##}}</td>
           <td class="center">{{item.rollNumber}}</td>

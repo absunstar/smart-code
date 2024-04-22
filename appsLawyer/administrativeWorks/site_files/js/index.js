@@ -279,8 +279,7 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
         where: { active: true },
         select: {
           id: 1,
-          nameAr: 1,
-          nameEn: 1,
+          name: 1,
         },
         search: $search,
       },
@@ -353,8 +352,7 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
         type: "myOffices",
         select: {
           id: 1,
-          nameEn: 1,
-          nameAr: 1,
+          name: 1,
         },
         search: $search,
       },

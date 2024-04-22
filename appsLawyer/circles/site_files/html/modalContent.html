@@ -12,20 +12,14 @@
         <i-control
           type="text"
           v="r"
-          ng-model="item.nameEn"
-          label="##word.Name English##"
-        ></i-control>
-        <i-control
-          type="text"
-          v="r"
-          ng-model="item.nameAr"
-          label="##word.Name Arabic##"
+          ng-model="item.name"
+          label="##word.Name##"
         ></i-control>
         <i-list
           label="##word.Court##"
           v="r"
           ng-model="item.court"
-          display="name##session.lang##"
+          display="name"
           items="courtsList"
           ng-get="getCourtsList($search)"
         ></i-list>

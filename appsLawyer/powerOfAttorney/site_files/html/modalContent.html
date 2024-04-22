@@ -14,7 +14,7 @@
       v="r"
       label="##word.Office##"
       ng-model="item.office"
-      display="name##session.lang##"
+      display="name"
       items="officesList"
       ng-change="getClientsList();getClientsLawyersList()"
       ng-search="item.$offices"
@@ -26,7 +26,7 @@
       v="r"
       label="##word.Type of power of attorney##"
       ng-model="item.type"
-      display="name##session.lang##"
+      display="name"
       items="typesPoaList"
       ng-get="getTypesPoaList($search)"
     ></i-list>
@@ -79,7 +79,7 @@
                 label="# ##word.Country##"
                 ng-change="getGovesList(item.country)"
                 ng-model="item.country"
-                display="name##session.lang##"
+                display="name"
                 items="countriesList"
                 display2="callingCode"
                 ng-get="getCountriesList($search)"
@@ -90,7 +90,7 @@
                 label="# ##word.Governorate##"
                 ng-change="getCitiesList(item.gov)"
                 ng-model="item.gov"
-                display="name##session.lang##"
+                display="name"
                 items="govesList"
                 ng-search="item.$gov"
               ></i-list>
@@ -103,7 +103,7 @@
                 ng-model="item.city"
                 ng-change="getAreasList(item.city)"
                 items="citiesList"
-                display="name##session.lang##"
+                display="name"
                 ng-search="item.$area.$cityitem"
               >
               </i-list>
@@ -112,7 +112,7 @@
                 label="# ##word.Area##"
                 ng-model="item.area"
                 items="areasList"
-                display="name##session.lang##"
+                display="name"
                 ng-search="item.$area.$areaitem"
               >
               </i-list>
@@ -234,7 +234,7 @@
                       label="##word.Document Type##"
                       ng-model="f.fileType"
                       items="documentsTypesList"
-                      display="name##session.lang##"
+                      display="name"
                       ng-search="item.$fileType"
                     >
                     </i-list>

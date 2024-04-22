@@ -144,7 +144,7 @@ module.exports = function init(site) {
                     name: app.name,
                 },
                 (req, res) => {
-                    res.render(app.name + '/index.html', { title: app.name, appName: 'Lawsuit Degrees', setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
+                    res.render(app.name + '/index.html', { title: app.name, appName: req.word('Lawsuit Degrees'), setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
                 }
             );
         }
@@ -234,7 +234,7 @@ module.exports = function init(site) {
         if (app.allowRouteAll) {
             site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
                 let where = req.body.where || {};
-                let select = req.body.select || { id: 1,  nameAr: 1,  nameEn: 1, image: 1, active: 1 };
+                let select = req.body.select || { id: 1,  name: 1,  image: 1, active: 1 };
                 let list = [];
                 app.memoryList
                     .forEach((doc) => {

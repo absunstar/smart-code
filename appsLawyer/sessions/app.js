@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: "Sessions",
+              appName: req.word("Sessions"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -299,6 +299,9 @@ module.exports = function init(site) {
           });
           where.$or.push({
             "reasonsSession.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "office.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
             "lawsuit.court.name": site.get_RegExp(search, "i"),
