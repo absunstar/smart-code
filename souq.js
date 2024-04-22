@@ -62,7 +62,7 @@ site.get(
         "haraj/index.html",
         {
           title: site.setting.title,
-          image_url: site.setting.logo,
+          image_url: '//' + req.host + site.setting.logo,
           description: site.setting.description,
         },
         {
