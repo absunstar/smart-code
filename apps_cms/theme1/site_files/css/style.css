@@ -21,7 +21,8 @@ body {
   margin: 0 auto;
   margin-bottom: 10px;
   position: relative;
-  left: 0;
+  background-image: url('/theme1/images/ad.png');
+  background-size: cover;
 }
 
 .free ins {
