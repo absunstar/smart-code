@@ -61,7 +61,7 @@ site.get(
         description: site.setting.description,
       };
       if (req.hasFeature('host.harajtmor')) {
-        data.image_url = '//' + req.host + '/images/haraj.jpg';
+        data.image_url = 'https://' + req.host + '/images/haraj.jpg';
       }
       res.render('haraj/index.html', data, {
         parser: 'html css js',
