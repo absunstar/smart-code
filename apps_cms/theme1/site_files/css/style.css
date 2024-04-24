@@ -29,7 +29,7 @@ body {
   max-width: 80vw;
   min-width: 100%;
   height: 100%;
-  background: red;
+  background: var(--background1xx);
 }
 .free iframe {
   max-width: 80vw;
