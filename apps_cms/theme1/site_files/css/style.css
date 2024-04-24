@@ -33,6 +33,11 @@ body {
 }
 .free iframe {
   max-width: 80vw;
+  min-height: 250px;
+}
+.free div {
+  max-width: 80vw;
+  min-height: 250px;
 }
 .free.top {
   height: 250px;
