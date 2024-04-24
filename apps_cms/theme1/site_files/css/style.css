@@ -21,8 +21,6 @@ body {
   margin: 0 auto;
   margin-bottom: 10px;
   position: relative;
-  background-image: url('/theme1/images/ad.png');
-  background-size: cover;
 }
 
 .free ins {
@@ -30,7 +28,8 @@ body {
   max-width: 80vw;
   min-width: 100%;
   min-height: 250px;
-  background: var(--background1xx);
+  background-image: url('/theme1/images/ad.png');
+  background-size: contain;
 }
 .free iframe {
   max-width: 80vw;
