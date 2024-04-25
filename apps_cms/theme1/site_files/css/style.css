@@ -119,7 +119,7 @@ body {
   font-size: 18px;
 }
 .related-search,
-.related-tags , related-ads {
+.related-tags , .related-ads {
   width: 90%;
   margin: 10px;
   padding: 20px;
