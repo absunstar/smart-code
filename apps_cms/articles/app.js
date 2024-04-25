@@ -1473,6 +1473,7 @@ module.exports = function init(site) {
                   <lastmod>${$date}</lastmod>
                   <changefreq>monthly</changefreq>
                   <priority>.8</priority>
+                  <index>${i}</index>
               </url>
               `;
       });
