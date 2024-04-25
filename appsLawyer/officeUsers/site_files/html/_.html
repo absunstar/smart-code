@@ -43,7 +43,7 @@
           class="col4"
           label="##word.Office##"
           ng-model="employee.office"
-          display="name##session.lang##"
+          display="name"
           items="officesList"
           ng-search="employee.$offices"
         ></i-list>
@@ -60,8 +60,8 @@
       <table class="table hover bold" id="t1">
         <tr>
           <th class="w150">##word.Logo##</th>
-          <th>##word.Name##</th>
           <th>##word.Office##</th>
+          <th>##word.Name##</th>
           <th>##word.Status##</th>
           <th class="not-print">##word.Actions##</th>
         </tr>
@@ -69,8 +69,8 @@
           <td>
             <i-image view class="logo center" ng-model="item.image"></i-image>
           </td>
-          <td class="center">{{item.firstName}} {{item.lastName}}</td>
           <td class="center">{{item.$office.name}}</td>
+          <td class="center">{{item.firstName}} {{item.lastName}}</td>
 
           <td class="center">
             <span class="text-success" ng-show="item.active"

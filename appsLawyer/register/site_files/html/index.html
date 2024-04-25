@@ -7,6 +7,11 @@
     />
 
     <style>
+      .register-content {
+        padding: 30px !important;
+        background-color: #2087e74d;
+        border-radius: 10px;
+      }
       .register-btn {
         margin: 15px -7px 20px 0px;
         text-align-last: center;
@@ -17,15 +22,18 @@
       }
       .user-type {
         text-align-last: center;
-        width: 140px;
-        padding: 5px;
+        width: 207px;
+        height: 200px;
+        padding: 10px;
         text-align: center;
         font-weight: bold;
-        font-size: xx-large;
-        margin: 10px;
-        border-radius: 10px;
-        color: black;
-        background: snow;
+        font-size: xxx-large;
+        margin: 35px;
+        border-radius: 20%;
+        border-color: #2087e7;
+        box-shadow: 3px 4px #2087e7ba;
+        color: #2087e7;
+        background: white;
       }
       .user-type-select {
         color: white !important;
@@ -83,173 +91,180 @@
       <h1 class="bold text-center">##word.Register##</h1>
     </div>
 
-    <div class="form" style="text-align-last: right" id="register">
-      <div class="all-section tabs user-tabs">
-        <div class="row">
-          <button
-            ng-click="typeSelect('client',$event)"
-            class="user-type"
-            id="client"
-          >
-            <i class="fas fa-user"></i>
-            <p>##word.Client##</p>
-          </button>
-          <button
-            ng-click="typeSelect('lawyer',$event)"
-            class="user-type"
-            id="lawyer"
-          >
-            <i class="fas fa-user-tie"></i>
-            <p>##word.Lawyer##</p>
-          </button>
+    <div class="form" style="text-align-last: center" id="register">
+      <div class="tabs">
+        <div class="row" ng-hide="type">
+          <div class="col3"></div>
+          <div class="col6">
+            <button
+              ng-click="typeSelect('client',$event)"
+              class="user-type"
+              id="client"
+            >
+              <i class="fas fa-user"></i>
+              <p>##word.Client##</p>
+            </button>
+            <button
+              ng-click="typeSelect('lawyer',$event)"
+              class="user-type"
+              id="lawyer"
+            >
+              <i class="fas fa-user-tie"></i>
+              <p>##word.Lawyer##</p>
+            </button>
+          </div>
         </div>
 
         <div class="row" id="emailData" ng-show="type">
-          <div class="row">
-            <div class="col6">
-              <i-control
-                v="r"
-                class="input-style"
-                label="##word.First Name##"
-                ng-model="user.firstName"
-              >
-              </i-control>
-              <i-control
-                v="r"
-                class="input-style"
-                label="##word.Last Name##"
-                ng-model="user.lastName"
-              >
-              </i-control>
-              <i-control
-                v="r e"
-                class="input-style"
-                label="##word.Email##"
-                ng-model="user.email"
-              >
-              </i-control>
-
-              <i-control
-                v="r"
-                class="center input-style"
-                label="##word.Mobile Number##"
-                type="tel"
-                ng-model="user.mobile"
-              >
-              </i-control>
-
-              <i-control
-              ng-show="type == 'lawyer'"
-                class="center input-style"
-                label="##word.Card Number##"
-                type="tel"
-                ng-model="user.cardNumber"
-              >
-              </i-control>
-              <i-list
-              ng-show="type == 'lawyer'"
-              class="center input-style"
-              label="##word.Constraint Type##"
-              ng-model="user.constraintType"
-              items="constraintTypesList"
-              display="name##session.lang##"
-              ng-search="user.$constraintType"
-            ></i-list>
-            <i-date ng-show="type == 'lawyer'" label="##word.Constraint Date##" ng-model="user.ConstraintDate">
-            </i-date>
-              <i-list
-                v="r"
-                class="center input-style"
-                label="##word.Country##"
-                ng-model="user.country"
-                ng-change="getGovesList(user.country)"
-                items="countriesList"
-                display="name"
-                ng-search="user.$countries"
-              ></i-list>
-              <i-list
-                v="r"
-                label="##word.Governorate##"
-                ng-change="getCitiesList(user.gov)"
-                ng-model="user.gov"
-                display="name"
-                items="govesList"
-                ng-search="user.$gov"
-              ></i-list>
-              <i-list
-                label="##word.City##"
-                ng-model="user.city"
-                ng-change="getAreasList(user.city)"
-                items="citiesList"
-                display="name"
-                ng-search="user.$area.$cityitem"
-              >
-              </i-list>
-              <i-list
-                label="##word.Area##"
-                ng-model="user.area"
-                items="areasList"
-                display="name"
-                ng-search="user.$area.$areaitem"
-              >
-              </i-list>
-            </div>
-            <div class="col2"></div>
-            <div class="col3">
-              <div class="row">
-                <p class="center">##word.Profile Image##</p>
-                <i-image
-                  style="width: 170px !important; height: 200px !important"
-                  ng-model="user.image"
-                ></i-image>
-              </div>
-              <div class="row" ng-show="type == 'lawyer'">
-                <p class="center">##word.Card Image##</p>
-                <i-image
-                  style="width: 170px !important; height: 200px !important"
-                  ng-model="user.cardImage"
-                ></i-image>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <i-control
-              v="r"
-              class="col4 pass input-style"
-              label="##word.password##"
-              type="password"
-              id="pass1"
-              ng-model="user.password"
-            >
-            </i-control>
-            <i-control
-              v="r"
-              class="col4 pass input-style"
-              label="##word.Retype Password##"
-              type="password"
-              id="pass2"
-              ng-model="user.rePassword"
-            >
-            </i-control>
-            <div class="col1"></div>
-            <div class="col2">
-              <i-checkbox
-                label="##word.show_password##"
-                ng-change="showPassword()"
-                ng-model="show_password"
-              >
-              </i-checkbox>
-              <p class="font-18">
-                <a href="/login" class="hover-a">
-                  ##word.Existing User## ##word.Login Now##</a
+          <div class="col1"></div>
+          <div class="col10 register-content">
+            <div class="row">
+              <div class="col6">
+                <i-control
+                  v="r"
+                  class="input-style"
+                  label="##word.First Name##"
+                  ng-model="user.firstName"
                 >
-              </p>
-            </div>
-          </div>
+                </i-control>
+                <i-control
+                  v="r"
+                  class="input-style"
+                  label="##word.Last Name##"
+                  ng-model="user.lastName"
+                >
+                </i-control>
+                <i-control
+                  v="r e"
+                  class="input-style"
+                  label="##word.Email##"
+                  ng-model="user.email"
+                >
+                </i-control>
 
-          <button ng-click="register(user)" class="register-btn">
-            ##word.register Now## <i class="fa fa-user-plus"></i>
-          </button>
+                <i-control
+                  v="r"
+                  class="center input-style"
+                  label="##word.Mobile Number##"
+                  type="tel"
+                  ng-model="user.mobile"
+                >
+                </i-control>
+
+                <i-control
+                  ng-show="type == 'lawyer'"
+                  class="center input-style"
+                  label="##word.Card Number##"
+                  type="tel"
+                  ng-model="user.cardNumber"
+                >
+                </i-control>
+                <i-list
+                  ng-show="type == 'lawyer'"
+                  class="center input-style"
+                  label="##word.Constraint Type##"
+                  ng-model="user.constraintType"
+                  items="constraintTypesList"
+                  display="name##session.lang##"
+                  ng-search="user.$constraintType"
+                ></i-list>
+                <i-date
+                  ng-show="type == 'lawyer'"
+                  label="##word.Constraint Date##"
+                  ng-model="user.ConstraintDate"
+                >
+                </i-date>
+                <i-list
+                  v="r"
+                  class="center input-style"
+                  label="##word.Country##"
+                  ng-model="user.country"
+                  ng-change="getGovesList(user.country)"
+                  items="countriesList"
+                  display="name"
+                  ng-search="user.$countries"
+                ></i-list>
+                <i-list
+                  v="r"
+                  label="##word.Governorate##"
+                  ng-change="getCitiesList(user.gov)"
+                  ng-model="user.gov"
+                  display="name"
+                  items="govesList"
+                  ng-search="user.$gov"
+                ></i-list>
+                <i-list
+                  label="##word.City##"
+                  ng-model="user.city"
+                  ng-change="getAreasList(user.city)"
+                  items="citiesList"
+                  display="name"
+                  ng-search="user.$area.$cityitem"
+                >
+                </i-list>
+                <i-list
+                  label="##word.Area##"
+                  ng-model="user.area"
+                  items="areasList"
+                  display="name"
+                  ng-search="user.$area.$areaitem"
+                >
+                </i-list>
+                <i-control
+                  v="r"
+                  class="pass input-style"
+                  label="##word.Password##"
+                  type="password"
+                  id="pass1"
+                  ng-model="user.password"
+                >
+                </i-control>
+                <i-control
+                  v="r"
+                  class="pass input-style"
+                  label="##word.Retype Password##"
+                  type="password"
+                  id="pass2"
+                  ng-model="user.rePassword"
+                >
+                </i-control>
+                <i-checkbox
+                class="right"
+                  label="##word.Show Password##"
+                  ng-change="showPassword()"
+                  ng-model="showPassword"
+                >
+                </i-checkbox>
+              </div>
+              <div class="col2"></div>
+              <div class="col3">
+                <div class="row">
+                  <p class="right-content"><span class="red bold"> * </span> ##word.Profile Image##</p>
+                  <i-image
+                  v="r"
+                    style="width: 170px !important; height: 200px !important"
+                    ng-model="user.image"
+                  ></i-image>
+                </div>
+                <div class="row" ng-show="type == 'lawyer'">
+                  <p class="right-content"><span class="red bold"> * </span> ##word.Card Image##</p>
+                  <i-image
+                    style="width: 170px !important; height: 200px !important"
+                    ng-model="user.cardImage"
+                  ></i-image>
+                </div>
+              </div>
+            </div>
+
+            <p class="font-18">
+              <a href="/login" class="hover-a">
+                ##word.Existing User## ##word.Login Now##</a
+              >
+            </p>
+            <button ng-click="register(user)" class="register-btn">
+              ##word.Register Now## <i class="fa fa-user-plus"></i>
+            </button>
+          </div>
         </div>
 
         <h2 class="bold center red">{{error}}</h2>
