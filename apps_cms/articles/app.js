@@ -1472,7 +1472,7 @@ module.exports = function init(site) {
                   <loc>${$url}</loc>
                   <lastmod>${$date}</lastmod>
                   <changefreq>monthly</changefreq>
-                  <priority>${i}</priority>
+                  <priority>0.${i}</priority>
               </url>
               `;
       });
