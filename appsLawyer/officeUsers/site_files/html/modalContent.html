@@ -10,7 +10,14 @@
               label="##word.Active##"
             ></i-checkbox>
           </div>
-
+          <i-list
+            ng-hide="item.id"
+            label="##word.Office##"
+            ng-model="item.office"
+            display="name"
+            items="officesList"
+            ng-search="item.$offices"
+          ></i-list>
           <i-control
             type="text"
             v="r"
@@ -23,14 +30,6 @@
             ng-model="item.lastName"
             label="##word.Last Name##"
           ></i-control>
-          <i-list
-            ng-hide="item.id"
-            label="##word.Office##"
-            ng-model="item.office"
-            display="name"
-            items="officesList"
-            ng-search="item.$offices"
-          ></i-list>
 
           <i-control
             ng-show="'##query.type##' == 'lawyer'"

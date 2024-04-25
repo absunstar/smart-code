@@ -223,12 +223,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
-          if (index !== -1) {
-            $scope.list.splice(index, 1);
-          }
+          $scope.getAll();
         } else {
           $scope.error = response.data.error;
         }
@@ -369,19 +364,18 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $scope.usersList = [];
-    let type = 'lawyer';
+    let type = "lawyer";
 
-    if( "##query.type##" == 'lawyer'){
-      type = 'lawyer'
+    if ("##query.type##" == "lawyer") {
+      type = "lawyer";
     } else {
-      type = 'client'
-      
+      type = "client";
     }
     $http({
       method: "POST",
       url: "/api/users/all",
       data: {
-        where: { search: $search,type },
+        where: { search: $search, type },
       },
     }).then(
       function (response) {

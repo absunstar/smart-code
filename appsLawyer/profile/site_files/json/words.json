@@ -1,0 +1,65 @@
+[
+    {
+        "name": "forgot_password",
+        "EN": "Forgot password ?",
+        "AR": "هل نسيت كلمة المرور ؟"
+    },
+    {
+        "name": "email_or_pass_error",
+        "EN": "Email Or Password Error",
+        "AR": "إسم المستخدم أو كلمة المرور خطأ"
+    },
+    {
+        "name": "login_now",
+        "EN": "Login Now",
+        "AR": "تسجيل الدخول الاّن"
+    },
+    {
+        "name": "login_via",
+        "EN": "Login Via",
+        "AR": "تسجيل الدخول عبر"
+    }
+    ,
+    {
+        "name": "not_registered",
+        "EN": "Not registered?",
+        "AR": "غير مسجل؟"
+    },
+    {
+        "name": "create_account",
+        "EN": "Create an account",
+        "AR": "أنشئ حساب"
+    },
+    {
+        "name": "firstName",
+        "EN": "First Name",
+        "AR": "الإسم الأول"
+    },
+    {
+        "name": "lastName",
+        "EN": "Last Name",
+        "AR": "الإسم الأخير"
+    },
+    {
+        "name": "show_password",
+        "EN": "Show Password",
+        "AR": "إظهار كلمة المرور"
+    },
+    {
+        "name": "password",
+        "EN": "Password",
+        "AR": "كلمة المرور"
+    },
+    {
+        "name": "retype_password",
+        "EN": "Retype password",
+        "AR": "إعادة كتابة كلمة المرور"
+    },
+    {
+        "name": "mobile_email",
+        "EN": "Mobile / Email",
+        "AR": "الجوال / البريد الإلكتروني"
+    }
+
+
+]

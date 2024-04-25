@@ -26,7 +26,7 @@
       </button>
     </div>
     <div class="orderButton btn">
-      <p>طلب أستشارة</p>
+      <p>##word.Request Consultation##</p>
       <i class="fas fa-bullhorn"></i>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -67,8 +67,15 @@
 
     <div class="userContainer">
       <div class="profile" x-permission="login">
-        <img src="/lawyer/images/profile.png" alt="" srcset="" />
-      </div>
+        <li class="nav-item dropdown">
+
+        <img src="/lawyer/images/profile.png"  href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="/profile">##word.Personal Page##</a></li>
+          <li><a class="dropdown-item" href="/sessions">##word.Dashboard##</a></li>
+        </ul>
+      </li>
+    </div>
       <a x-permission="!login" href="/login"> تسجيل الدخول </a>
       <a x-permission="!login" class="newRegister" href="/register"> مستخدم جديد </a>
     </div>
@@ -136,7 +143,7 @@
       </ul>
 
       <div class="orderButton btn">
-        <p>طلب أستشارة</p>
+        <p>##word.Request Consultation##</p>
         <i class="fas fa-bullhorn"></i>
       </div>
     </div>

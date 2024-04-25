@@ -251,7 +251,7 @@ app.controller("register", function ($scope, $http, $timeout) {
   $scope.showPassword = function () {
     $timeout(() => {
       document.querySelectorAll(".pass input").forEach((p) => {
-        p.setAttribute("type", $scope.show_password ? "text" : "password");
+        p.setAttribute("type", $scope.showPassword ? "text" : "password");
       });
     }, 100);
   };
