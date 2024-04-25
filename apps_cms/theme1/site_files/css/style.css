@@ -20,15 +20,24 @@ body {
   max-width: min(80vw, 100%);
   margin: 0 auto;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .free ins {
   margin: 0;
   max-width: 80vw;
   min-width: 100%;
+  min-height: 250px;
+  background-image: url('/theme1/images/ad.png');
+  background-size: contain;
 }
 .free iframe {
   max-width: 80vw;
+  min-height: 250px;
+}
+.free div {
+  max-width: 80vw;
+  min-height: 250px;
 }
 .free.top {
   height: 250px;

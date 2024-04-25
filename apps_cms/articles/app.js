@@ -1463,7 +1463,7 @@ module.exports = function init(site) {
     let urls = '';
     site.articlesList
       .filter((a) => a.host.like(filter))
-      .slice(0, 1000)
+      .slice(0, 10000)
       .forEach((article, i) => {
         let $url = domain + '/article/' + article.guid;
         let $date = new Date(article.publishDate).toISOString();
