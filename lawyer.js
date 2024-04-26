@@ -5,7 +5,6 @@ const site = require('../isite')({
   name: 'lawyer',
   savingTime: 5,
   log: true,
-  www: false,
   require: {
     features: [],
     permissions: [],
@@ -31,7 +30,6 @@ site.get({
   path: site.dir + '/',
   public: true,
 });
-
 
 site.get('ads.txt', (req, res) => {
   let setting = site.getSiteSetting(req.host);
@@ -62,8 +60,10 @@ site.importApp(__dirname + '/apps_private/manage-user');
 site.importApp(__dirname + '/apps_cms/cms');
 site.addFeature('lawyer');
 
-
 site.getMainHost = function (host = '') {
+  if (host == 'localhost' || host == '127.0.0.1') {
+    return host;
+  }
   let arr = host.split('.');
   if (arr.length > 1) {
     let com = arr.pop();
@@ -74,13 +74,14 @@ site.getMainHost = function (host = '') {
 };
 
 site.handleNotRoute = function (req, res) {
-  console.log(req.path)
   let host = req.headers['host'];
+  console.log('handleNotRoute : ' + host + ' : ' + req.url);
+
   let setting = site.getSiteSetting(host);
   if (!setting.host) {
-    res.redirect('/');
+    res.redirect(site.getMainHost(host), 301);
   } else {
-    res.redirect('/');
+    res.redirect(setting.host);
   }
 };
 

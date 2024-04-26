@@ -17,7 +17,6 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
   $scope.durationExpiryList = site.showObject('##data.#durationExpiry##');
 
 
-
   $scope.saveSetting = function (id) {
     if (id) {
       const v = site.validated(id);
@@ -266,7 +265,5 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
     site.showModal('#dynamicRoutes');
   };
 
-   $scope.loadWriters();
-  $scope.loadEditors();
-  $scope.loadCategories();
+  
 });

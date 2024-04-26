@@ -4,8 +4,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files',
   });
 
-
-
   site.get({
     name: ['/css/lawyer.css'],
     parser: 'css2',
@@ -49,10 +47,44 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: ['/','lawyer'],
+      name: ['/', '/lawyer'],
     },
     (req, res) => {
-      res.render(__dirname + '/site_files/html/index.html', { setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
+      let setting = site.getSiteSetting(req.host);
+      // if (!setting.host) {
+      //   res.redirect(site.getMainHost(req.host), 301);
+      //   return;
+      // }
+
+      if (!setting.languageList || setting.languageList.length == 0) {
+        res.redirect('/404', 404);
+        return;
+      }
+
+      let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+
+      if (!language) {
+        res.redirect('/404', 404);
+        return;
+      }
+      language.description = language.description || '';
+      language.keyWordsList = language.keyWordsList || [];
+      let data = {
+        setting: setting,
+        guid: '',
+        language: language,
+        filter: site.getHostFilter(req.host),
+        site_logo: language.logo?.url || '/lawyer/images/logo.png',
+        page_image: language.logo?.url || '/lawyer/images/logo.png',
+        site_name: language.siteName,
+        page_lang: language.id,
+        page_type: 'website',
+        page_title: language.siteName + ' ' + language.titleSeparator + ' ' + language.siteSlogan,
+        page_description: language.description.substr(0, 200),
+        page_keywords: language.keyWordsList.join(','),
+      };
+
+      res.render(__dirname + '/site_files/html/index.html', data, { parser: 'html', compres: true });
     }
   );
 };
