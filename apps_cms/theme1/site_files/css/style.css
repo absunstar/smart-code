@@ -119,10 +119,10 @@ body {
   font-size: 18px;
 }
 .related-search,
-.related-tags {
-  width: 90%;
-  margin: 10px;
-  padding: 20px;
+.related-tags , .related-ads {
+  width: 96%;
+  margin: 1%;
+  padding: 1%;
   background: var(--background2);
   color: var(--color2);
   border-radius: 10px;
