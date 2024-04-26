@@ -83,7 +83,10 @@ module.exports = function init(site) {
         page_description: language.description.substr(0, 200),
         page_keywords: language.keyWordsList.join(','),
       };
-
+      if (req.hasFeature('host.com')) {
+        data.site_logo = 'https://' + req.host + data.site_logo;
+        data.page_image = 'https://' + req.host + data.page_image;
+      }
       res.render(__dirname + '/site_files/html/index.html', data, { parser: 'html', compres: true });
     }
   );
