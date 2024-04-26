@@ -85,37 +85,15 @@
     </style>
   </head>
 
-  <body class="##session.lang## loaded" ng-controller="register">
+  <body class="##session.lang## loaded" ng-controller="profileEdit">
     <div x-replace="lawyer-theme/header.html"></div>
     <div class="row">
-      <h1 class="bold text-center">##word.Register##</h1>
+      <h1 class="bold text-center">##word.Edit Personal Page##</h1>
     </div>
 
-    <div class="form" style="text-align-last: center" id="register">
-      <div class="tabs">
-        <div class="row" ng-hide="type">
-          <div class="col3"></div>
-          <div class="col6">
-            <button
-              ng-click="typeSelect('client',$event)"
-              class="user-type"
-              id="client"
-            >
-              <i class="fas fa-user"></i>
-              <p>##word.Client##</p>
-            </button>
-            <button
-              ng-click="typeSelect('lawyer',$event)"
-              class="user-type"
-              id="lawyer"
-            >
-              <i class="fas fa-user-tie"></i>
-              <p>##word.Lawyer##</p>
-            </button>
-          </div>
-        </div>
+    <div class="form" id="profileEdit">
 
-        <div class="row" id="emailData" ng-show="type">
+        <div class="row" id="emailData" >
           <div class="col1"></div>
           <div class="col10 register-content">
             <div class="row">
@@ -151,7 +129,7 @@
                 >
                 </i-control>
 
-                <i-control
+                <!-- <i-control
                   ng-show="type == 'lawyer'"
                   class="center input-style"
                   label="##word.Card Number##"
@@ -171,9 +149,9 @@
                 <i-date
                   ng-show="type == 'lawyer'"
                   label="##word.Constraint Date##"
-                  ng-model="user.constraintDate"
+                  ng-model="user.ConstraintDate"
                 >
-                </i-date>
+                </i-date> -->
                 <i-list
                   v="r"
                   class="center input-style"
@@ -199,7 +177,7 @@
                   ng-change="getAreasList(user.city)"
                   items="citiesList"
                   display="name"
-                  ng-search="user.$area.$cityitem"
+                  ng-search="user.$city"
                 >
                 </i-list>
                 <i-list
@@ -207,9 +185,15 @@
                   ng-model="user.area"
                   items="areasList"
                   display="name"
-                  ng-search="user.$area.$areaitem"
+                  ng-search="user.$area"
                 >
                 </i-list>
+           
+                <fieldset>
+                  <h3>##word.Bio## :</h3>
+                  <i-content ng-model="item.bio" label="##word.Bio##">
+                  </i-content>
+                </fieldset>
                 <i-control
                   v="r"
                   class="pass input-style"
@@ -219,7 +203,7 @@
                   ng-model="user.password"
                 >
                 </i-control>
-                <i-control
+                <!-- <i-control
                   v="r"
                   class="pass input-style"
                   label="##word.Retype Password##"
@@ -227,7 +211,7 @@
                   id="pass2"
                   ng-model="user.rePassword"
                 >
-                </i-control>
+                </i-control> -->
                 <i-checkbox
                 class="right"
                   label="##word.Show Password##"
@@ -246,21 +230,16 @@
                     ng-model="user.image"
                   ></i-image>
                 </div>
-                <div class="row" ng-show="type == 'lawyer'">
+                <!-- <div class="row" ng-show="type == 'lawyer'">
                   <p class="right-content"><span class="red bold"> * </span> ##word.Card Image##</p>
                   <i-image
                     style="width: 170px !important; height: 200px !important"
                     ng-model="user.cardImage"
                   ></i-image>
-                </div>
+                </div> -->
               </div>
             </div>
 
-            <p class="font-18">
-              <a href="/login" class="hover-a">
-                ##word.Existing User## ##word.Login Now##</a
-              >
-            </p>
             <button ng-click="register(user)" class="register-btn">
               ##word.Register Now## <i class="fa fa-user-plus"></i>
             </button>
@@ -269,13 +248,10 @@
 
         <h2 class="bold center red">{{error}}</h2>
 
-        <div id="main-layout" class="container">
-          <div class="row" id="registersouqModal"></div>
-        </div>
+     
 
         <div x-import="lawyer-theme/scripts.html"></div>
-        <script x-import="register/index.js"></script>
+        <script x-import="profile/profileEdit.js"></script>
       </div>
-    </div>
   </body>
 </html>

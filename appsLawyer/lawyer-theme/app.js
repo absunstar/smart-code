@@ -4,12 +4,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files',
   });
 
-  site.get({
-    name: "profile",
-    path: __dirname + "/site_files/html/profile.html",
-    parser: "html",
-    compress: true,
-  });
 
 
   site.get({

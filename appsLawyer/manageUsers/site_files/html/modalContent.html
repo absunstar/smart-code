@@ -9,6 +9,10 @@
               ng-model="item.active"
               label="##word.Active##"
             ></i-checkbox>
+            <i-checkbox
+            ng-model="item.trusted"
+            label="##word.Trusted##"
+          ></i-checkbox>
           </div>
           <i-list
             ng-hide="item.id"
@@ -32,7 +36,7 @@
           ></i-control>
 
           <i-control
-            ng-show="'##query.type##' == 'lawyer'"
+            ng-show="item.type == 'lawyer'"
             class="center input-style"
             label="##word.Card Number##"
             type="tel"
@@ -40,7 +44,7 @@
           >
           </i-control>
           <i-list
-            ng-show="'##query.type##' == 'lawyer'"
+            ng-show="item.type == 'lawyer'"
             class="center input-style"
             label="##word.Constraint Type##"
             ng-model="item.constraintType"
@@ -49,9 +53,9 @@
             ng-search="item.$constraintType"
           ></i-list>
           <i-date
-            ng-show="'##query.type##' == 'lawyer'"
+            ng-show="item.type == 'lawyer'"
             label="##word.Constraint Date##"
-            ng-model="item.ConstraintDate"
+            ng-model="item.constraintDate"
           >
           </i-date>
         </div>
@@ -61,7 +65,7 @@
           <p class="">##word.Profile Image##</p>
           <i-image class="img128" ng-model="item.image"></i-image>
         </div>
-        <div class="row center-content" ng-show="'##query.type##' == 'lawyer'">
+        <div class="row center-content" ng-show="item.type == 'lawyer'">
           <p class="">##word.Card Image##</p>
           <i-image class="img128" ng-model="item.cardImage"></i-image>
         </div>

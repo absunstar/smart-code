@@ -24,7 +24,7 @@ main .mainContent .content .profileInfoContainer .profileInfo .profileNameAndTyp
     flex-direction: column;
     justify-content: center;
     padding-right: 16px !important;
-    gap: 8px;
+    gap: 22px;
     border-right: 8px solid #1475CF;
 
 }

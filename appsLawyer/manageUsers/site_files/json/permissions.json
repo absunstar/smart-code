@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersImport", "En": "Import", "Ar": "إستيراد" }
+]

@@ -1,11 +1,11 @@
-app.controller("officeUsers", function ($scope, $http, $timeout) {
+app.controller("manageUsers", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-  $scope.appName = "officeUsers";
-  $scope.modalID = "#officeUsersManageModal";
-  $scope.modalSearchID = "#officeUsersSearchModal";
+  $scope.appName = "manageUsers";
+  $scope.modalID = "#manageUsersManageModal";
+  $scope.modalSearchID = "#manageUsersSearchModal";
   $scope.mode = "add";
   $scope.structure = {
-    image: { url: "/images/officeUsers.png" },
+    image: { url: "/images/manageUsers.png" },
     active: true,
   };
   $scope.employeeType = "";
@@ -43,9 +43,8 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    _item.$role = "##query.type##";
 
-    if (_item.$role == "lawyer") {
+    if (_item.type == "lawyer") {
       if (!_item.cardImage) {
         $scope.error = "##word.Must Enter Card Image##";
         return;
@@ -82,42 +81,6 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.addEmployee = function (_item) {
-    $scope.error = "";
-    if (!_item.user || !_item.user.id || !_item.office || !_item.office.id) {
-      $scope.error = "##word.Must Select User And Office##";
-      return;
-    }
-
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: `${$scope.baseURL}/api/${$scope.appName}/addEmployee`,
-      data: {
-        userId: _item.user.id,
-        office: _item.office,
-        firstName: _item.firstName,
-        lastName: _item.lastName,
-        idNumber: _item.idNumber,
-        mobile: _item.mobile,
-        type: "##query.type##",
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          _item = {};
-          site.resetValidated("#addEmployeeOffice");
-          $scope.getAll();
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
 
   $scope.showUpdate = function (_item) {
     $scope.error = "";
@@ -254,8 +217,6 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       data: {
         where: where,
         search,
-        all: true,
-        type: "##query.type##",
       },
     }).then(
       function (response) {

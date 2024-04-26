@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   let app = {
-    name: "officeUsers",
+    name: "manageUsers",
     allowMemory: false,
     memoryList: [],
     allowCache: false,
@@ -153,7 +153,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Office Users"),
+              appName: req.word("Manage Users"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -330,10 +330,6 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
         }
-        if(req.body.all){
-          where["office.id"] = { $in: req.session.user.officesList };
-        }
-        where["type"] = req.body.type;
         app.all({ where, select, limit }, (err, docs) => {
           if (docs && docs.length > 0) {
             let usersIdList = [];
@@ -387,13 +383,13 @@ module.exports = function init(site) {
               return;
             }
 
-            // if (!_data.email) {
-            //   let splitName = _data.fullNameEn.split(" ");
-            //   let emailAndPass =
-            //     splitName[0] + Math.floor(Math.random() * 1000 + 1).toString();
-            //   _data.email = emailAndPass;
-            //   _data.password = emailAndPass;
-            // }
+            if (!_data.email) {
+              let splitName = _data.fullNameEn.split(" ");
+              let emailAndPass =
+                splitName[0] + Math.floor(Math.random() * 1000 + 1).toString();
+              _data.email = emailAndPass;
+              _data.password = emailAndPass;
+            }
             _data.roles = [{ name: _data.$role }];
             if (_data.$role == "lawyer") {
               _data.type = _data.$role;
@@ -439,55 +435,6 @@ module.exports = function init(site) {
         }
       );
 
-      site.post(
-        {
-          name: `/api/${app.name}/addEmployee`,
-          require: { permissions: ["login"] },
-        },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
-          let _data = req.data;
-
-          let where = {
-            $and: [
-              { userId: _data.userId },
-              { "office.id": _data.office.id },
-              // { type: _data.type },
-            ],
-          };
-          app.all({ where }, (err1, docs) => {
-            if (docs && docs.length) {
-              response.error = "User is exist";
-              res.json(response);
-              return;
-            } else if (err1) {
-              response.error = err1?.message || "Has Err";
-              res.json(response);
-              return;
-            }
-
-            _data.addUserInfo = req.getUserFinger();
-
-            app.$collectionUser.findOne({ id: _data.userId }, (err1, user) => {
-              app.add(_data, (err, doc) => {
-                if (!err && doc) {
-                  user.officesList.push(doc.office.id);
-                  app.$collectionUser.update(user);
-                  response.done = true;
-                  response.doc = doc;
-                  res.json(response);
-                } else {
-                  response.error = err?.message || "Add Not Exists";
-                }
-                res.json(response);
-              });
-            });
-          });
-        }
-      );
-
       site.post(`api/${app.name}/import`, (req, res) => {
         let response = {
           done: false,
@@ -515,7 +462,7 @@ module.exports = function init(site) {
                 nameEn: doc.nameEn,
                 email: doc.email,
                 mobile: "0" + doc.mobile,
-                image: { url: "/images/officeUsers.png" },
+                image: { url: "/images/manageUsers.png" },
                 active: true,
               };
 

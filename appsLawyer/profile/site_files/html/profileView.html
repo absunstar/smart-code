@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="rtl" ng-app="myApp">
   <head x-import="lawyer-theme/head.html"> </head>
-  <body ng-controller="lawyerTheme">
+  <body ng-controller="profileView">
     <div x-replace="lawyer-theme/header.html"></div>
     <main class="container">
       <div class="row mainContent row-cols-1 row-cols-lg-2">
@@ -10,11 +10,11 @@
             <div class="profileCover"></div>
             <div class="profileInfo row row-cols-1 row-cols-lg-2">
               <div class="profileImage col-lg-3">
-                <img src="/assetes/Rectangle 36.png" alt="" srcset="" />
+                <img src="##data.image##" alt="" srcset="" />
               </div>
               <div class="profileNameAndType col-lg-8">
                 <div class="profileName">
-                  <p>محمود أحمد صلاح الدين</p>
+                  <p>##data.firstName## ##data.lastName##</p>
                 </div>
                 <div class="profileType">
                   <p>محامي أسرة</p>
@@ -631,12 +631,14 @@
         </form>
       </div>
     </div>
-    <script src="https://egytag.com/x-js/bootstrap-5-support.js"></script>
+    <!-- <script src="https://egytag.com/x-js/bootstrap-5-support.js"></script>
     <script src="js/script.js"></script>
     <script src="js/SectionScroll.js"></script>
     <script src="js/orderConsultant.js"></script>
     <script src="js/orderTextConsultant.js"></script>
     <script src="js/storyvideoLower.js"></script>
-    <script src="js/openMobileMenu.js"></script>
+    <script src="js/openMobileMenu.js"></script> -->
+    <div x-import="lawyer-theme/scripts.html"></div>
+    <script x-import="profile/profileView.js"></script>
   </body>
 </html>
