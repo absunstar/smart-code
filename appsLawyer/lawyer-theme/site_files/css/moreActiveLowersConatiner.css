@@ -21,6 +21,7 @@ main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .Act
 
 main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer p {
   text-align: center !important;
+  padding: 5px;
 }
 
 main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .cover .lawerProfileImage {
@@ -78,14 +79,12 @@ main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .Act
 }
 
 main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerButton .btn {
-  width: 133.94px;
-  height: 32.833px;
+ 
   border-bottom: 5px solid #1475cf !important;
 }
 
 main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerButton .second-btn {
-  width: 133.94px;
-  height: 32.833px;
+ 
   border-bottom: 2px solid #1475cf !important;
 }
 
