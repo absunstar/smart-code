@@ -1,0 +1,11 @@
+[
+    { "moduleName": "public", "screenName": "services", "name": "servicesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "services", "name": "servicesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "services", "name": "servicesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "services", "name": "servicesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "services", "name": "servicesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "services", "name": "servicesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "services", "name": "servicesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "services", "name": "servicesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "services", "name": "servicesUi", "En": "UI", "Ar": "الواجهة الرسومية" }
+]

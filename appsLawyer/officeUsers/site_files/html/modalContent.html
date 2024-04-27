@@ -30,7 +30,15 @@
             ng-model="item.lastName"
             label="##word.Last Name##"
           ></i-control>
-
+          <i-list
+            ng-show="'##query.type##' == 'lawyer'"
+            class="center input-style"
+            label="##word.Specialties##"
+            ng-model="item.specialties"
+            items="specialtiesList"
+            display="name"
+            ng-search="item.$specialties"
+          ></i-list>
           <i-control
             ng-show="'##query.type##' == 'lawyer'"
             class="center input-style"

@@ -26,11 +26,14 @@ app.controller("register", function ($scope, $http, $timeout) {
       } else if (!user.constraintType || !user.constraintType.id) {
         $scope.error = "##word.Must Enter Constraint Type##";
         return;
-      }  else if (!user.cardNumber) {
+      } else if (!user.cardNumber) {
         $scope.error = "##word.Must Enter Card Number##";
         return;
       } else if (!user.constraintDate) {
         $scope.error = "##word.Must Enter Constraint Date##";
+        return;
+      } else if (!user.specialties || !user.specialties.length) {
+        $scope.error = "##word.Must Enter Specialties##";
         return;
       }
     }
@@ -43,6 +46,11 @@ app.controller("register", function ($scope, $http, $timeout) {
       lastName: user.lastName,
       image: user.image,
       country: user.country,
+      cardNumber: user.cardNumber,
+      constraintDate: user.constraintDate,
+      constraintType: user.constraintType,
+      cardImage: user.cardImage,
+      specialties: user.specialties,
       gov: user.gov,
       city: user.city,
       area: user.area,
@@ -100,6 +108,34 @@ app.controller("register", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.countriesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getSpecialtiesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/specialties/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.specialtiesList = response.data.list;
         }
       },
       function (err) {
@@ -257,6 +293,7 @@ app.controller("register", function ($scope, $http, $timeout) {
   };
   $scope.getCountriesList();
   $scope.getConstraintTypesList();
+  $scope.getSpecialtiesList();
 });
 
 site.onLoad(() => {

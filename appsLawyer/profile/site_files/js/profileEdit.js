@@ -1,5 +1,4 @@
-
-app.controller('profileEdit', function ($scope, $http, $timeout) {
+app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.displayUser = function () {
     $scope.busy = true;
     $scope.error = "";
@@ -14,7 +13,8 @@ app.controller('profileEdit', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-     
+          $scope.user.startWorkTime = $scope.user.startWorkTime || new Date();
+          $scope.user.endWorkTime = $scope.user.endWorkTime || new Date();
         } else {
           $scope.error = response.data.error;
         }
@@ -25,7 +25,59 @@ app.controller('profileEdit', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCountriesList = function (where) {
+  $scope.getServicesList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/services/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+          image: 1,
+          price: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.servicesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.addToServices = function () {
+    if ($scope.user.$service && $scope.user.$service.id) {
+      $scope.user.servicesList = $scope.user.servicesList || [];
+      if (
+        $scope.user.servicesList.some((s) => s.id === $scope.user.$service.id)
+      ) {
+        $scope.errorService = "##word.The Service Already Exists##";
+      } else {
+        $scope.user.servicesList.unshift({
+          id : $scope.user.$service.id,
+          image : $scope.user.$service.image,
+          name : $scope.user.$service.name,
+          price : $scope.user.$service.price,
+        })
+      }
+      $scope.user.$service = {};
+    }
+    $timeout(() => {
+      $scope.errorService = "";
+    }, 2000);
+  };
+
+  $scope.getCountriesList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
@@ -145,6 +197,58 @@ app.controller('profileEdit', function ($scope, $http, $timeout) {
       }
     );
   };
+
+  
+  $scope.getSpecialtiesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/specialties/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.specialtiesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.updateUser = function (user) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/user/update",
+      data: user,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.showModal("#alert");
+          $timeout(() => {
+            site.hideModal("#alert");
+          }, 1500);
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
+  };
+
   $scope.showPassword = function () {
     $timeout(() => {
       document.querySelectorAll(".pass input").forEach((p) => {
@@ -155,4 +259,6 @@ app.controller('profileEdit', function ($scope, $http, $timeout) {
 
   $scope.displayUser();
   $scope.getCountriesList();
+  $scope.getServicesList();
+  $scope.getSpecialtiesList();
 });

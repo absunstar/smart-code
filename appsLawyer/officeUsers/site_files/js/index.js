@@ -58,6 +58,9 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
       } else if (!_item.constraintDate) {
         $scope.error = "##word.Must Enter Constraint Date##";
         return;
+      }  else if (!_item.specialties || !_item.specialties.length) {
+        $scope.error = "##word.Must Enter Specialties##";
+        return;
       }
     }
     $scope.busy = true;
@@ -516,6 +519,36 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     );
   };
 
+  
+  $scope.getSpecialtiesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/specialties/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.specialtiesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
   $scope.getConstraintTypesList = function (where) {
     $scope.busy = true;
     $http({
@@ -585,5 +618,6 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
   $scope.getMaritalStatus();
   $scope.getGenders();
   $scope.getConstraintTypesList();
+  $scope.getSpecialtiesList();
   $scope.getUsersList();
 });

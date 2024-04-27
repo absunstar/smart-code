@@ -150,7 +150,15 @@
                   ng-model="user.mobile"
                 >
                 </i-control>
-
+                <i-checklist
+                  ng-show="type == 'lawyer'"
+                  class="center input-style"
+                  label="##word.Specialties##"
+                  ng-model="user.specialties"
+                  items="specialtiesList"
+                  display="name"
+                  ng-search="user.$specialties"
+                ></i-checklist>
                 <i-control
                   ng-show="type == 'lawyer'"
                   class="center input-style"
@@ -229,7 +237,7 @@
                 >
                 </i-control>
                 <i-checkbox
-                class="right"
+                  class="right"
                   label="##word.Show Password##"
                   ng-change="showPassword()"
                   ng-model="showPassword"
@@ -239,15 +247,19 @@
               <div class="col2"></div>
               <div class="col3">
                 <div class="row">
-                  <p class="right-content"><span class="red bold"> * </span> ##word.Profile Image##</p>
+                  <p class="right-content">
+                    <span class="red bold"> * </span> ##word.Profile Image##
+                  </p>
                   <i-image
-                  v="r"
+                    v="r"
                     style="width: 170px !important; height: 200px !important"
                     ng-model="user.image"
                   ></i-image>
                 </div>
                 <div class="row" ng-show="type == 'lawyer'">
-                  <p class="right-content"><span class="red bold"> * </span> ##word.Card Image##</p>
+                  <p class="right-content">
+                    <span class="red bold"> * </span> ##word.Card Image##
+                  </p>
                   <i-image
                     style="width: 170px !important; height: 200px !important"
                     ng-model="user.cardImage"

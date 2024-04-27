@@ -1,5 +1,4 @@
-
-app.controller('profileView', function ($scope, $http, $timeout) {
+app.controller("profileView", function ($scope, $http, $timeout) {
   $scope.displayUser = function () {
     $scope.busy = true;
     $scope.error = "";
@@ -14,7 +13,7 @@ app.controller('profileView', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-     
+          document.getElementById("bio").innerHTML = $scope.user.bio;
         } else {
           $scope.error = response.data.error;
         }

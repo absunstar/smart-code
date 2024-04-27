@@ -1,0 +1,11 @@
+[
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "specialties", "name": "specialtiesUi", "En": "UI", "Ar": "الواجهة الرسومية" }
+]

@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="rtl" ng-app="myApp">
-  <head x-import="lawyer-theme/head.html"> </head>
+  <head x-import="lawyer-theme/head.html">
+    <style>
+      .bio {
+        text-align-last: right;
+        padding: 15px;
+        margin: 10px;
+      }
+    </style>
+  </head>
   <body ng-controller="profileView">
     <div x-replace="lawyer-theme/header.html"></div>
     <main class="container">
@@ -10,78 +18,73 @@
             <div class="profileCover"></div>
             <div class="profileInfo row row-cols-1 row-cols-lg-2">
               <div class="profileImage col-lg-3">
-                <img src="##data.image##" alt="" srcset="" />
+                <img src="##data.image.url##" alt="" srcset="" />
               </div>
               <div class="profileNameAndType col-lg-8">
                 <div class="profileName">
                   <p>##data.firstName## ##data.lastName##</p>
                 </div>
                 <div class="profileType">
-                  <p>محامي أسرة</p>
+                  <p > <b ng-repeat="specialty in user.specialties"> - {{specialty.name}}</b> </p>
                 </div>
               </div>
             </div>
           </div>
           <div class="aboutMeContainer">
             <div class="aboutMeTitle headTitle">
-              <p>نبذة عني</p>
+              <p>##word.Bio##</p>
             </div>
             <div class="aboutMeContent">
-              <p>
-                تأسس مكتب المحامي و الموثق محمود احمد في عام ٢٠١٤ و ذلك لتقديم
-                الخدمات القانونية لكل من الشركات التجارية و الأفراد في مكة
-                المكرمة و جدة. و منذ ذلك الحين أصبح المكتب يسعى إلى تقديم خدمات
-                المحاماة و المرافعة و الاستشارات القانونية و الشرعية في القضايا
-                التجارية و العقارية و العمالية و الأحوال الشخصية في جميع أنحاء
-                المملكة العربية السعودية بشكل عام و في مكة المكرمة و جدة بشكل
-                خاص.
+              <p class="bio">
+                <span id="bio"></span>
               </p>
             </div>
           </div>
           <div class="lawerServicesContanier">
             <div class="lawerServicesTitle headTitle">
-              <p><b>خدمات</b> يتم تقديمها</p>
+              <p><b>##word.Services##</b> ##word.Are Offered##</p>
             </div>
             <div class="lawerServices row row-cols-1 row-cols-md-2">
-              <div class="lawerService col">
-                <i class="fas fa-file-signature"></i>
-                <p>صياغة العقود</p>
+              <div
+                class="lawerService tooltipService col"
+                ng-repeat="service in user.servicesList"
+              >
+                <img
+                  width="50px"
+                  height="50px"
+                  class=""
+                  ng-src="{{service.image.url}}"
+                  onerror="this.src='/images/user.png'"
+                  alt=""
+                />
+                <p class="">{{service.name}}</p>
+                <p class="servicePrice ">{{service.price}} ##word.$##</p>
+                <p ng-show="service.notes" class="serviceNotes tooltiptextService">{{service.notes}}</p>
               </div>
-              <div class="lawerService col">
-                <i class="fas fa-city"></i>
-                <p>تأسيس الشركات</p>
-              </div>
-              <div class="lawerService col">
-                <i class="fas fa-gavel"></i>
-                <p>قضايا مدنية</p>
-              </div>
-              <div class="lawerService col">
-                <i class="fas fa-user"></i>
-                <p>الأحوال الشخصية</p>
-              </div>
+             
             </div>
           </div>
           <div class="contactUsContainer">
             <div class="contactUsTitle headTitle">
-              <p><b>تواصل</b> معي</p>
+              <p><b>##word.Contact##</b> ##word.With Me##</p>
             </div>
             <div class="contactUs row row-cols-1 row-cols-lg-2">
               <div class="contactUsDatas">
                 <div class="contactUsData eamil col">
                   <i class="fas fa-at"></i>
-                  <p>mahmoudsalah@gmail.com</p>
+                  <p class="userSelect">{{user.gmail}}</p>
                 </div>
                 <div class="contactUsData phone col">
                   <i class="fas fa-phone-alt"></i>
-                  <p>+20 000 000 0000</p>
+                  <p class="userSelect">{{user.mobile}}</p>
                 </div>
                 <div class="contactUsData website col">
                   <i class="fas fa-globe"></i>
-                  <p>www.mahmoudlaw.com</p>
+                  <p class="userSelect">{{user.website}}</p>
                 </div>
                 <div class="contactUsData faceBook col">
                   <i class="fab fa-facebook-square"></i>
-                  <p>/mahmoudlaw</p>
+                  <p class="userSelect">/{{user.faceBook}}</p>
                 </div>
               </div>
               <div class="locationMap">
@@ -96,7 +99,7 @@
           </div>
           <div class="recentlyConsultantsContanier">
             <div class="recentlyConsultantsTitle headTitle">
-              <p>استشارات تمت إجابتها مؤخرًا</p>
+              <p>##word.Recently Answered Consultations##</p>
             </div>
             <ul
               class="recentlyConsultants row row-cols-1 row-cols-xl-3 row-cols-md-2"
@@ -360,54 +363,54 @@
             <div class="varafictionConatainer">
               <div class="varafictionStauts">
                 <div class="varafictionStaut">
-                  <p><b>الحالة</b> موثق</p>
+                  <p ng-show="user.trusted"><b>##word.Status##</b> ##word.Trusted##</p>
                   <img src="/assetes/Vector (1).png" alt="" />
                 </div>
-                <p class="varafictionStautsTitle">
-                  تم توثيق هذا الحساب والتأكد من بياناته
+                <p class="varafictionStautsTitle" ng-show="user.trusted">
+                  ##word.This account has been documented and its data verified##
                 </p>
               </div>
             </div>
             <div class="contactTimeContainer">
               <div class="contactTimeTitle">
-                <p><b>وقت التواصل</b></p>
+                <p><b>##word.Communication Time##</b></p>
               </div>
               <div class="contactTimeInfo">
                 <div class="contactTimeInfoStauts">
-                  <p>متاح</p>
+                  <p>##word.Available##</p>
                 </div>
                 <div class="contactTimeInfoHoure">
-                  <p>09:00 صباحاً - 09:00 مساءً</p>
+                  <p> {{user.startWorkTime  | date : 'mm : hh'}} ##word.AM## - {{user.endWorkTime | date : 'mm : hh'}} ##word.PM##</p>
                 </div>
               </div>
             </div>
             <div class="askLawerContainer">
-              <p>لديك إستفسارات لا تتردد وأطلب إستشارة من</p>
-              <p class="lawerName">عبدالله عمر محمد عبدالجبار</p>
+              <p>##word.If you have any questions, do not hesitate and ask for advice##</p>
+              <p class="lawerName">##data.firstName## ##data.lastName##</p>
               <button class="btn"><p>أطلب إستشارة الأن</p></button>
             </div>
             <div class="followMeContainer">
               <div class="followMeTitle">
-                <p><b>تابعني على</b></p>
+                <p><b>##word.Follow Me On##</b></p>
               </div>
               <div class="followMeChannel row row-cols-2 row-cols-lg-4">
                 <div class="followMeChannelIcon col">
-                  <a href="http://facebook.com">
+                  <a href="https://facebook.com/{{user.faceBook}}" target="_blank">
                     <i class="fab fa-facebook-square"></i>
                   </a>
                 </div>
                 <div class="followMeChannelIcon col">
-                  <a href="http://instagram.com">
+                  <a href="https://instagram.com/{{user.instagram}}" target="_blank">
                     <i class="fab fa-instagram-square"></i>
                   </a>
                 </div>
                 <div class="followMeChannelIcon col">
-                  <a href="http://x.com">
+                  <a href="https://twitter.com/{{user.twitter}}" target="_blank">
                     <i class="fab fa-twitter-square"></i>
                   </a>
                 </div>
                 <div class="followMeChannelIcon col">
-                  <a href="http://linkedin.com">
+                  <a href="https://linkedin.com/in/{{user.linkedin}}" target="_blank">
                     <i class="fab fa-linkedin"></i>
                   </a>
                 </div>
