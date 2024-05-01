@@ -22,6 +22,32 @@ module.exports = function init(site) {
     }
   ];
 
+  site.consultationsStatusList = [
+    {
+      id: 1,
+      nameAr: "قيد الانتظار",
+      nameEn: "pending",
+    }
+  ];
+
+  site.consultationsClassificationsList = [
+    {
+      id: 1,
+      nameAr: "إستشارة سرية",
+      nameEn: "Confidential Consultation",
+    },
+    {
+      id: 2,
+      nameAr: "إستشارة عاجلة",
+      nameEn: "Urgent Consultation",
+    },
+    {
+      id: 3,
+      nameAr: "إستشارة مجانية",
+      nameEn: "Free Consultation",
+    }
+  ];
+
   site.salesTypesList = [
     {
       id: 1,
@@ -480,6 +506,21 @@ module.exports = function init(site) {
     { id: 3, code: "list", nameEn: "List", nameAr: "قائمة" },
     { id: 4, code: "degree", nameEn: "Degree", nameAr: "درجة" },
   ];
+  
+  site.post("/api/consultationsClassifications", (req, res) => {
+    res.json({
+      done: true,
+      list: site.consultationsClassificationsList,
+    });
+  });
+
+  
+  site.post("/api/consultationsStatus", (req, res) => {
+    res.json({
+      done: true,
+      list: site.consultationsStatusList,
+    });
+  });
 
   site.post("/api/usersTypesList", (req, res) => {
     let list = [];

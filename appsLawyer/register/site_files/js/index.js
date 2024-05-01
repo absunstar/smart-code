@@ -11,7 +11,9 @@ app.controller("register", function ($scope, $http, $timeout) {
     let element = document.getElementById(type);
     element.classList.add("user-type-select");
   };
-
+  if ("##query.type##" == "lawyer") {
+    $scope.typeSelect("lawyer");
+  }
   $scope.register = function (user) {
     $scope.error = "";
     const v = site.validated("#emailData");

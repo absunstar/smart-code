@@ -121,18 +121,18 @@
 
               <i-control
                 class="center input-style"
-                label="##word.Start Of Working Time##"
+                label="##word.Start Of Communication Time##"
                 type="time"
-                ng-model="user.startWorkTime"
+                ng-model="user.startCommunicationTime"
               >
               </i-control>
            
 
               <i-control
                 class="center input-style"
-                label="##word.End Of Working Time##"
+                label="##word.End Of Communication Time##"
                 type="time"
-                ng-model="user.endWorkTime"
+                ng-model="user.endCommunicationTime"
               >
               </i-control>
 
@@ -272,8 +272,8 @@
               <i-control
                 v="e"
                 class="input-style"
-                label="##word.Gmail##"
-                ng-model="user.gmail"
+                label="##word.Contact Email##"
+                ng-model="user.contactEmail"
               >
               </i-control>
 
@@ -392,6 +392,7 @@
           </div>
         </div>
       </div>
+      <div x-replace="lawyer-theme/footer.html"></div>
 
       <div x-import="lawyer-theme/scripts.html"></div>
       <script x-import="profile/profileEdit.js"></script>

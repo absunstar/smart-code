@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "typesConsultationsAdmin",
+    "En": "Types Consultationst Admin",
+    "Ar": "إدارة أنواع الإستشارات",
+    "permissions": ["typesConsultationsManage"]
+}]

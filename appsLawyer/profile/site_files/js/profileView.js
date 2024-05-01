@@ -13,7 +13,7 @@ app.controller("profileView", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-          document.getElementById("bio").innerHTML = $scope.user.bio;
+          document.getElementById("bio").innerHTML = '##data.bio##';
         } else {
           $scope.error = response.data.error;
         }

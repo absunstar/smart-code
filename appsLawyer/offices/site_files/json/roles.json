@@ -8,6 +8,13 @@
   },
   {
     "moduleName": "lawyer",
+    "name": "client",
+    "En": "Client",
+    "Ar": "الموكل",
+    "permissions": ["client"]
+  },
+  {
+    "moduleName": "lawyer",
     "name": "lawyer",
     "En": "Lawyer",
     "Ar": "المحامي",

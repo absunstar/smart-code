@@ -25,7 +25,7 @@
                   <p>##data.firstName## ##data.lastName##</p>
                 </div>
                 <div class="profileType">
-                  <p > <b ng-repeat="specialty in user.specialties"> - {{specialty.name}}</b> </p>
+                  <p > <b  x-list1="specialties"> - ##item1.name##</b> </p>
                 </div>
               </div>
             </div>
@@ -47,19 +47,19 @@
             <div class="lawerServices row row-cols-1 row-cols-md-2">
               <div
                 class="lawerService tooltipService col"
-                ng-repeat="service in user.servicesList"
+                x-list1="servicesList"
               >
                 <img
                   width="50px"
                   height="50px"
                   class=""
-                  ng-src="{{service.image.url}}"
+                  ng-src="##item1.image.url##"
                   onerror="this.src='/images/user.png'"
                   alt=""
                 />
-                <p class="">{{service.name}}</p>
-                <p class="servicePrice ">{{service.price}} ##word.$##</p>
-                <p ng-show="service.notes" class="serviceNotes tooltiptextService">{{service.notes}}</p>
+                <p class="">##item1.name##</p>
+                <p class="servicePrice ">##item1.price## ##word.$##</p>
+                <p ng-show="service.notes" class="serviceNotes tooltiptextService">##item1.notes##</p>
               </div>
              
             </div>
@@ -70,21 +70,21 @@
             </div>
             <div class="contactUs row row-cols-1 row-cols-lg-2">
               <div class="contactUsDatas">
-                <div class="contactUsData eamil col">
+                <div class="contactUsData eamil col" x-data="contactEmail" >
                   <i class="fas fa-at"></i>
-                  <p class="userSelect">{{user.gmail}}</p>
+                  <p class="userSelect">##data.contactEmail##</p>
                 </div>
-                <div class="contactUsData phone col">
+                <div class="contactUsData phone col" x-data="mobile">
                   <i class="fas fa-phone-alt"></i>
-                  <p class="userSelect">{{user.mobile}}</p>
+                  <p class="userSelect">##data.mobile##</p>
                 </div>
-                <div class="contactUsData website col">
+                <div class="contactUsData website col" x-data="website">
                   <i class="fas fa-globe"></i>
-                  <p class="userSelect">{{user.website}}</p>
+                  <p class="userSelect">##data.website##</p>
                 </div>
-                <div class="contactUsData faceBook col">
+                <div class="contactUsData faceBook col" x-data="faceBook">
                   <i class="fab fa-facebook-square"></i>
-                  <p class="userSelect">/{{user.faceBook}}</p>
+                  <p class="userSelect">/##data.faceBook##</p>
                 </div>
               </div>
               <div class="locationMap">
@@ -354,7 +354,7 @@
           <div class="cricleConsultantAskConatainer">
             <div class="cricleConsultantAsk orderButton">
               <i class="fas fa-bullhorn"></i>
-              <p>أطلب إستشارة</p>
+              <p>##word.Request A Consultation##</p>
             </div>
           </div>
         </div>
@@ -363,10 +363,10 @@
             <div class="varafictionConatainer">
               <div class="varafictionStauts">
                 <div class="varafictionStaut">
-                  <p ng-show="user.trusted"><b>##word.Status##</b> ##word.Trusted##</p>
+                  <p x-data="trusted" ><b>##word.Status##</b> ##word.Trusted##</p>
                   <img src="/assetes/Vector (1).png" alt="" />
                 </div>
-                <p class="varafictionStautsTitle" ng-show="user.trusted">
+                <p class="varafictionStautsTitle" x-data="trusted" >
                   ##word.This account has been documented and its data verified##
                 </p>
               </div>
@@ -380,14 +380,18 @@
                   <p>##word.Available##</p>
                 </div>
                 <div class="contactTimeInfoHoure">
-                  <p> {{user.startWorkTime  | date : 'mm : hh'}} ##word.AM## - {{user.endWorkTime | date : 'mm : hh'}} ##word.PM##</p>
+                  <p> ##data.startCommunicationTime## ##word.AM## - ##data.endCommunicationTime## ##word.PM##</p>
                 </div>
               </div>
             </div>
             <div class="askLawerContainer">
               <p>##word.If you have any questions, do not hesitate and ask for advice##</p>
               <p class="lawerName">##data.firstName## ##data.lastName##</p>
-              <button class="btn"><p>أطلب إستشارة الأن</p></button>
+              <button class="btn">
+                <a href="/requestConsultations">
+                  <p>##word.Request a consultation now##</p>
+                </a>
+              </button>
             </div>
             <div class="followMeContainer">
               <div class="followMeTitle">
@@ -395,22 +399,22 @@
               </div>
               <div class="followMeChannel row row-cols-2 row-cols-lg-4">
                 <div class="followMeChannelIcon col">
-                  <a href="https://facebook.com/{{user.faceBook}}" target="_blank">
+                  <a href="https://facebook.com/##data.faceBook##" target="_blank">
                     <i class="fab fa-facebook-square"></i>
                   </a>
                 </div>
                 <div class="followMeChannelIcon col">
-                  <a href="https://instagram.com/{{user.instagram}}" target="_blank">
+                  <a href="https://instagram.com/##data.instagram##" target="_blank">
                     <i class="fab fa-instagram-square"></i>
                   </a>
                 </div>
                 <div class="followMeChannelIcon col">
-                  <a href="https://twitter.com/{{user.twitter}}" target="_blank">
+                  <a href="https://twitter.com/##data.twitter##" target="_blank">
                     <i class="fab fa-twitter-square"></i>
                   </a>
                 </div>
                 <div class="followMeChannelIcon col">
-                  <a href="https://linkedin.com/in/{{user.linkedin}}" target="_blank">
+                  <a href="https://linkedin.com/in/##data.linkedin##" target="_blank">
                     <i class="fab fa-linkedin"></i>
                   </a>
                 </div>
@@ -423,25 +427,7 @@
         </div>
       </div>
     </main>
-    <footer class="footerContainer container">
-      <div class="logo">
-        <p>المحامي</p>
-        <img src="../assetes/logo.png" alt="" srcset="" />
-      </div>
-      <div class="footerNav">
-        <ul class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-          <li class="col"><a href="#">أدع أصدقاءك</a></li>
-          <li class="col"><a href="#">انضم إلينا</a></li>
-          <li class="col"><a href="#">عن المحامي</a></li>
-          <li class="col">
-            <a href="#">إتفاقية الإستخدام وسياسية الخصوصية</a>
-          </li>
-        </ul>
-      </div>
-      <div class="copyright">
-        <p>جميع الحقوق محفوظة 2024</p>
-      </div>
-    </footer>
+   
     <div class="payedConsultantConatainer hidden row align-items-center">
       <div class="payedConsultant row row-cols-1">
         <div class="closeBtn col">
@@ -641,6 +627,8 @@
     <script src="js/orderTextConsultant.js"></script>
     <script src="js/storyvideoLower.js"></script>
     <script src="js/openMobileMenu.js"></script> -->
+    <div x-replace="lawyer-theme/footer.html"></div>
+
     <div x-import="lawyer-theme/scripts.html"></div>
     <script x-import="profile/profileView.js"></script>
   </body>

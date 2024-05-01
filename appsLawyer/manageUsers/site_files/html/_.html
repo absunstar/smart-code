@@ -3,12 +3,12 @@
     <div x-import="manageUsers/modal.html"></div>
 
     <div class="top-actions">
-      <i-button
+      <!-- <i-button
         type="add"
         x-permissions="manageUsersAdd || manageUsersManage"
         label="##word.Add New## {{employeeType}}"
         ng-click="showAdd()"
-      ></i-button>
+      ></i-button> -->
       <i-button
         type="search"
         x-permissions="manageUsersSearch || manageUsersManage"
@@ -32,7 +32,6 @@
       <table class="table hover bold" id="t1">
         <tr>
           <th class="w150">##word.Logo##</th>
-          <th>##word.Office##</th>
           <th>##word.Name##</th>
           <th>##word.Status##</th>
           <th class="not-print">##word.Actions##</th>
@@ -41,7 +40,6 @@
           <td>
             <i-image view class="logo center" ng-model="item.image"></i-image>
           </td>
-          <td class="center">{{item.$office.name}}</td>
           <td class="center">{{item.firstName}} {{item.lastName}}</td>
 
           <td class="center">

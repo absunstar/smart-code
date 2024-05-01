@@ -3,6 +3,8 @@ module.exports = function init(site) {
     name: "manageUsers",
     allowMemory: false,
     memoryList: [],
+    newList: [],
+    activeList: [],
     allowCache: false,
     cacheList: [],
     allowRoute: true,
@@ -18,25 +20,22 @@ module.exports = function init(site) {
   app.$collectionUser = site.connectCollection("users_info");
 
   app.init = function () {
-    if (app.allowMemory) {
-      app.$collection.findMany({}, (err, docs) => {
-        if (!err) {
-          if (docs.length == 0) {
-            app.cacheList.forEach((_item, i) => {
-              app.$collection.add(_item, (err, doc) => {
-                if (!err && doc) {
-                  app.memoryList.push(doc);
-                }
-              });
-            });
-          } else {
-            docs.forEach((doc) => {
-              app.memoryList.push(doc);
-            });
+    app.$collectionUser.findMany({ sort: { id: -1 } }, (err, docs) => {
+      if (!err) {
+        docs.forEach((doc) => {
+          if (doc.active && doc.roles && doc.roles[0].name == "lawyer") {
+            let obj = {
+              id: doc.id,
+              image: doc.image,
+              firstName: doc.firstName,
+              lastName: doc.lastName,
+            };
+            app.newList.push({ ...obj });
+            app.activeList.push({ ...obj, specialty: doc.specialties? doc.specialties[0] : {} });
           }
-        }
-      });
-    }
+        });
+      }
+    });
   };
   app.add = function (_item, callback) {
     app.$collection.add(_item, (err, doc) => {
@@ -199,7 +198,7 @@ module.exports = function init(site) {
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
 
-          app.update(_data, (err, result) => {
+          app.$collectionUser.update(_data, (err, result) => {
             if (!err) {
               response.done = true;
               response.result = result;
@@ -223,17 +222,11 @@ module.exports = function init(site) {
             done: false,
           };
           let _data = req.data;
-          app.delete({id : _data.id}, (err, result) => {
+          app.$collectionUser.delete({ id: _data.id }, (err, result) => {
             if (!err && result.count === 1) {
-              app.$collectionUser.find({ id: _data.userId }, (err, user) => {
-                user.officesList = user.officesList.filter(function (item) {
-                  return item !== _data.office.id;
-                });
-                app.$collectionUser.update(user);
-                response.done = true;
-                response.result = result;
-                res.json(response);
-              });
+              response.done = true;
+              response.result = result;
+              res.json(response);
             } else {
               response.error = err?.message || "Deleted Not Exists";
               res.json(response);
@@ -319,7 +312,7 @@ module.exports = function init(site) {
           where.$or.push({
             address: site.get_RegExp(search, "i"),
           });
-      
+
           where.$or.push({
             "gov.name": site.get_RegExp(search, "i"),
           });
@@ -330,32 +323,12 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
         }
-        app.all({ where, select, limit }, (err, docs) => {
-          if (docs && docs.length > 0) {
-            let usersIdList = [];
-            docs.forEach((_doc) => {
-              usersIdList.push(_doc.userId);
-            });
-            let whereUsers = {
-              id: { $in: usersIdList },
-            };
-            app.$collectionUser.findMany(whereUsers, (err, users) => {
-              users.forEach((_user) => {
-                item = docs.find((itm) => itm.userId == _user.id);
-                _user.$office = item.office;
-                _user.$docId = item.id;
-              });
-              res.json({
-                done: true,
-                list: users,
-              });
-            });
-          } else {
-            res.json({
-              done: true,
-              list: [],
-            });
-          }
+        where["id"] = { $ne: 1 };
+        app.$collectionUser.findMany(where, (err, users) => {
+          res.json({
+            done: true,
+            list: users,
+          });
         });
       });
 
@@ -434,64 +407,6 @@ module.exports = function init(site) {
           });
         }
       );
-
-      site.post(`api/${app.name}/import`, (req, res) => {
-        let response = {
-          done: false,
-          file: req.form.files.fileToUpload,
-        };
-
-        if (site.isFileExistsSync(response.file.filepath)) {
-          let docs = [];
-          if (response.file.originalFilename.like("*.xls*")) {
-            let workbook = site.XLSX.readFile(response.file.filepath);
-            docs = site.XLSX.utils.sheet_to_json(
-              workbook.Sheets[workbook.SheetNames[0]]
-            );
-          } else {
-            docs = site.fromJson(
-              site.readFileSync(response.file.filepath).toString()
-            );
-          }
-
-          if (Array.isArray(docs)) {
-            console.log(`Importing ${app.name} : ${docs.length}`);
-            docs.forEach((doc) => {
-              let newDoc = {
-                nameAr: doc.nameAr,
-                nameEn: doc.nameEn,
-                email: doc.email,
-                mobile: "0" + doc.mobile,
-                image: { url: "/images/manageUsers.png" },
-                active: true,
-              };
-
-              newDoc.company = site.getCompany(req);
-              newDoc.branch = site.getBranch(req);
-              newDoc.addUserInfo = req.getUserFinger();
-
-              app.add(newDoc, (err, doc2) => {
-                if (!err && doc2) {
-                  site.dbMessage = `Importing ${app.name} : ${doc2.id}`;
-                  console.log(site.dbMessage);
-                } else {
-                  site.dbMessage = err.message;
-                  console.log(site.dbMessage);
-                }
-              });
-            });
-          } else {
-            site.dbMessage =
-              "can not import unknown type : " + site.typeof(docs);
-            console.log(site.dbMessage);
-          }
-        } else {
-          site.dbMessage = "file not exists : " + response.file.filepath;
-          console.log(site.dbMessage);
-        }
-
-        res.json(response);
-      });
     }
   }
 

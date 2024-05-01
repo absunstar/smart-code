@@ -43,7 +43,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-
     if (_item.type == "lawyer") {
       if (!_item.cardImage) {
         $scope.error = "##word.Must Enter Card Image##";

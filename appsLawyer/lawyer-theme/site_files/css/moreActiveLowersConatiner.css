@@ -1,4 +1,8 @@
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLowersTitle {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLowersTitle {
 }
 
 main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower {
@@ -7,7 +11,12 @@ main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower {
   flex-wrap: wrap;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer {
   width: 230px;
   height: fit-content;
   background-color: white;
@@ -19,16 +28,36 @@ main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .Act
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer p {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  p {
   text-align: center !important;
   padding: 5px;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .cover .lawerProfileImage {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .cover
+  .lawerProfileImage {
   width: 100%;
+  height: 230px;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerInfo {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo {
   width: 160px;
   text-align: center;
   background-color: white;
@@ -37,22 +66,52 @@ main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .Act
   border-radius: 8px;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerInfo .lawerName {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawerName {
   font-size: 14px;
   font-weight: 600;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerInfo .lawSectionTitle {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawSectionTitle {
   font-size: 12px;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerInfo .lawerNumberStatic {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawerNumberStatic {
   display: flex;
   justify-content: center;
   gap: 8px !important;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerInfo .lawerNumberStatic .consultantInfo .consultantTitle,
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawerNumberStatic
+  .consultantInfo
+  .consultantTitle,
 .followerTitle {
   color: #b9adad;
   font-size: 12px;
@@ -61,7 +120,16 @@ main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .Act
   line-height: 141.487%;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerInfo .lawerNumberStatic .consultantInfo .consultantNumber,
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawerNumberStatic
+  .consultantInfo
+  .consultantNumber,
 .followerNumber {
   color: #1e1e1e;
   text-align: center;
@@ -71,24 +139,49 @@ main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .Act
   line-height: 141.487%; /* 21.223px */
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerButton {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerButton {
   display: flex;
   flex-direction: column;
   gap: 4px;
   margin-bottom: 16px;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerButton .btn {
- 
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerButton
+  .btn {
   border-bottom: 5px solid #1475cf !important;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .lawerButton .second-btn {
- 
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerButton
+  .second-btn {
   border-bottom: 2px solid #1475cf !important;
 }
 
-main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower .ActiveLawer .verificationIcon .icon {
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .verificationIcon
+  .icon {
   background-color: white;
   padding: 8px !important;
   position: absolute;
@@ -101,7 +194,12 @@ main .content .recentlyConsultantsContanier .recentlyConsultant {
   padding: 16px !important;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultant .consultantTitle p {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultant
+  .consultantTitle
+  p {
   color: #1e1e1e;
 
   font-size: 14px;
@@ -113,7 +211,11 @@ main .content .recentlyConsultantsContanier .recentlyConsultants {
   gap: 8px;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant {
   max-width: 316px;
   height: 300px;
   flex-shrink: 0;
@@ -123,11 +225,22 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
   position: relative;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .consultantInfo {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .consultantInfo {
   display: flex;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .consultantInfo p {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .consultantInfo
+  p {
   color: #b9adad;
 
   font-size: 10px;
@@ -141,15 +254,32 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
   -webkit-box-orient: vertical;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .separative {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .separative {
   width: 100%;
   height: 2px;
   flex-shrink: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) -0.09%, rgba(0, 0, 0, 0.2) 50.9%, rgba(0, 0, 0, 0) 99.81%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) -0.09%,
+    rgba(0, 0, 0, 0.2) 50.9%,
+    rgba(0, 0, 0, 0) 99.81%
+  );
   margin-top: 8px !important;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .numbersOfAnswerAndLawer .numbersOfAnswer {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .numbersOfAnswerAndLawer
+  .numbersOfAnswer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -167,14 +297,28 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
   font-weight: 700;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .numbersOfAnswerAndLawer {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .numbersOfAnswerAndLawer {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 8px;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .numbersOfAnswerAndLawer .firstLawer .lawerName {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .numbersOfAnswerAndLawer
+  .firstLawer
+  .lawerName {
   color: #1e1e1e;
 
   font-size: 14px;
@@ -187,7 +331,15 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
   -webkit-box-orient: vertical;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .numbersOfAnswerAndLawer .firstLawer .firstLawerAnswer {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .numbersOfAnswerAndLawer
+  .firstLawer
+  .firstLawerAnswer {
   color: #b9adad;
 
   font-size: 10px;
@@ -196,12 +348,25 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
   line-height: normal;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .consultantAnswer {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .consultantAnswer {
   max-width: 80ch;
   padding: 20px;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .consultantAnswer p {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .consultantAnswer
+  p {
   color: #1e1e1e;
 
   font-size: 11px;
@@ -215,7 +380,12 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
   -webkit-box-orient: vertical;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .likeAndGoodAnswer {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .likeAndGoodAnswer {
   display: flex;
   gap: 8px;
   position: absolute;
@@ -223,21 +393,39 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
   margin-bottom: 8px;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .likeAndGoodAnswer .likeAnswer,
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .likeAndGoodAnswer
+  .likeAnswer,
 .goodAnswer {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .likeAndGoodAnswer svg {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .likeAndGoodAnswer
+  svg {
   width: 12px;
   height: 12px;
   flex-shrink: 0;
   color: #2087e7;
 }
 
-main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .likeAndGoodAnswer p {
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .likeAndGoodAnswer
+  p {
   color: #d9d9d9;
 
   font-size: 12px;
