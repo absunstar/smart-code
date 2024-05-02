@@ -30,6 +30,13 @@
             ng-model="item.lastName"
             label="##word.Last Name##"
           ></i-control>
+          <i-control
+            v="r"
+            class="input-style"
+            label="##word.User Name##"
+            ng-model="item.userName"
+          >
+          </i-control>
           <i-list
             ng-show="'##query.type##' == 'lawyer'"
             class="center input-style"
@@ -298,7 +305,7 @@
             <i-control
               class="col6"
               v="r e"
-              label="##word.UserName##"
+              label="##word.Login E-mail##"
               ng-model="item.email"
             >
             </i-control>

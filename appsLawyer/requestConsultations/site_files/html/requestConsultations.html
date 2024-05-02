@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="lawyer-theme/head.html">
+    <link
+      rel="stylesheet"
+      href="/css/lawyer-style.css?v=##site.options.version##"
+    />
+
+    <style>
+      .send-request-btn {
+        margin: 15px -7px 20px 0px;
+        text-align-last: center;
+        background: #2087e7;
+        color: white;
+        border-radius: 5px;
+        font-size: x-large;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang##" ng-controller="requestConsultations">
+    <div x-replace="lawyer-theme/header.html"></div>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row center">
+          <div class="row">
+            <h1 class="bold text-center">##word.Request Consultations##</h1>
+          </div>
+
+          <div class="row">
+            <div class="col3"></div>
+            <div class="col6" id="requestConsultationsModal">
+              <i-control
+                v="r"
+                label="##word.Enter The Consultation Title##"
+                ng-model="item.name"
+              >
+              </i-control>
+              <i-list
+                v="r"
+                class="center input-style"
+                label="##word.Consultation Classification##"
+                ng-model="item.consultationClassification"
+                items="consultationsClassificationsList"
+                display="name##session.lang##"
+                ng-search="item.$consultationClassification"
+              ></i-list>
+              <i-list
+                v="r"
+                class="center input-style"
+                label="##word.Type Consultation##"
+                ng-model="item.typeConsultation"
+                items="typesConsultationsList"
+                display="name"
+                display2="price"
+                ng-search="item.$typeConsultation"
+              ></i-list>
+
+              <i-textarea
+                v="r"
+                label="##word.Enter The Consultation Details##"
+                ng-model="item.details"
+              >
+              </i-textarea>
+            </div>
+
+            <button ng-click="add()" class="send-request-btn">
+              ##word.Send Request## <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+
+          <div class="row">
+            <h2 class="bold center red">{{error}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="alert" class="modal alert small">
+      <div class="modal-content height-auto">
+        <div class="modal-body">
+          <h1 class="blue center">##word.Save successfully##</h1>
+        </div>
+      </div>
+    </div>
+    <div x-replace="lawyer-theme/footer.html"></div>
+    <div x-import="lawyer-theme/scripts.html"></div>
+    <script x-import="requestConsultations/requestConsultations.js"></script>
+  </body>
+</html>

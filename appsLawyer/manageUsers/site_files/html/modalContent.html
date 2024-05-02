@@ -10,9 +10,9 @@
               label="##word.Active##"
             ></i-checkbox>
             <i-checkbox
-            ng-model="item.trusted"
-            label="##word.Trusted##"
-          ></i-checkbox>
+              ng-model="item.trusted"
+              label="##word.Trusted##"
+            ></i-checkbox>
           </div>
           <i-list
             ng-hide="item.id"
@@ -34,7 +34,13 @@
             ng-model="item.lastName"
             label="##word.Last Name##"
           ></i-control>
-
+          <i-control
+            v="r"
+            class="input-style"
+            label="##word.User Name##"
+            ng-model="item.userName"
+          >
+          </i-control>
           <i-control
             ng-show="item.type == 'lawyer'"
             class="center input-style"

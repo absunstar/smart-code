@@ -26,6 +26,7 @@ module.exports = function init(site) {
               : new Date();
 
             let data = {
+              id: user.id,
               firstName: user.firstName,
               lastName: user.lastName,
               image: user.image,

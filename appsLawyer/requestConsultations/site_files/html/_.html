@@ -1,0 +1,50 @@
+<div ng-controller="requestConsultationsManage" class="loaded">
+    <div class="row" x-permissions="requestConsultationsUi || requestConsultationsManage">
+        <div x-import="requestConsultations/modal.html"></div>
+
+        <div class="top-actions">
+            <i-button type="add" x-permissions="requestConsultationsAdd || requestConsultationsManage" label="##word.New##" ng-click="showAdd()"></i-button>
+            <i-button type="search" x-permissions="requestConsultationsSearch || requestConsultationsManage" label="##word.Active##" ng-click="searchAll(search={active:true})"></i-button>
+            <i-button type="search" x-permissions="requestConsultationsSearch || requestConsultationsManage" label="##word.Not Active##" ng-click="searchAll(search={active:false})"></i-button>
+
+            <i-upload api="api/requestConsultations/import" label="Import" x-permissions="importrequestConsultations || requestConsultationsManage"></i-upload>
+        </div>
+
+        <div class="row padding">
+            <i-control ng-model="$search" x-permissions="requestConsultationsSearch || requestConsultationsManage"></i-control>
+        </div>
+        <div class="table-responsive">
+            <table class="table hover bold" id="t1">
+                <tr>
+                    <th>##word.Client##</th>
+                    <th>##word.Lawyer##</th>
+                    <th>##word.Title##</th>
+                    <th>##word.Classification##</th>
+                    <th>##word.Type##</th>
+                    <th>##word.Status##</th>
+                    <th class="not-print">##word.Actions##</th>
+                </tr>
+                <tr ng-repeat="item in list | filter:$search">
+                  
+                    <td class="center">{{item.addUserInfo.email}}</td>
+                    <td class="center">{{item.lawyer.firstName}}</td>
+                    <td class="center">{{item.name}}</td>
+                    <td class="center">{{item.consultationClassification.name##session.lang##}}</td>
+                    <td class="center">{{item.typeConsultation.name}}</td>
+                    <td class="center">{{item.status.name##session.lang##}}</td>
+
+
+                    <td class="center not-print">
+                        <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
+
+                        <i-button type="edit" x-permissions="requestConsultationsUpdate || requestConsultationsManage" title="##word.Edit##" ng-click="showUpdate(item)"></i-button>
+
+                        <i-button type="delete" x-permissions="requestConsultationsDelete || requestConsultationsManage" title="##word.Delete##" ng-click="showDelete(item)"></i-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <i-button x-permissions="requestConsultationsPrint || requestConsultationsManage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
+        <i-button x-permissions="requestConsultationsExport || requestConsultationsManage" type="export" label="##word.Export to excel##" onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"> </i-button>
+    </div>
+</div>

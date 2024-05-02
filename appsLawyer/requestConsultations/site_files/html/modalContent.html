@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="row padding">
+    <div class="row">
+      <i-control
+        v="r"
+        label="##word.Consultation Title##"
+        ng-model="item.name"
+      >
+      </i-control>
+      <i-list
+        v="r"
+        class="center input-style"
+        label="##word.Consultation Classification##"
+        ng-model="item.consultationClassification"
+        items="consultationsClassificationsList"
+        display="name##session.lang##"
+        ng-search="item.$consultationClassification"
+      ></i-list>
+      <i-list
+        v="r"
+        class="center input-style"
+        label="##word.Type Consultation##"
+        ng-model="item.typeConsultation"
+        items="typesConsultationsList"
+        display="name"
+        display2="price"
+        ng-search="item.$typeConsultation"
+      ></i-list>
+
+      <i-textarea
+        v="r"
+        label="##word.Consultation Details##"
+        ng-model="item.details"
+      >
+      </i-textarea>
+    </div>
+  </div>
+  <div class="row padding"></div>
+</div>
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Add Info##</th>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.addUserInfo.name}}</p>
+        <small class="green"> {{item.addUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.addUserInfo.ip}}</p>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "requestConsultationsAdmin",
+    "En": "Request Consultations Admin",
+    "Ar": "إدارة طلبات الإستشارات",
+    "permissions": ["requestConsultationsManage"]
+}]
