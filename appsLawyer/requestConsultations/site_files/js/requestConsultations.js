@@ -7,7 +7,6 @@ app.controller('requestConsultations', function ($scope, $http, $timeout) {
   $scope.add = function (_item) {
     $scope.error = '';
     const v = site.validated($scope.modalID);
-    console.log(v);
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;

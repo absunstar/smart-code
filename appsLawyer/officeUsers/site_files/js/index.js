@@ -8,6 +8,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
     image: { url: "/images/officeUsers.png" },
     active: true,
   };
+  
   $scope.employeeType = "";
   if ("##query.type##" == "employee") {
     $scope.employeeType = "##word.Employee##";

@@ -25,3 +25,6 @@ legend {
 .center-content{
   justify-content: center;
 }
+.tabs .tabs-content {
+  width: 100% !important;
+}

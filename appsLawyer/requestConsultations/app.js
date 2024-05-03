@@ -279,7 +279,7 @@ module.exports = function init(site) {
         site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
           let where = req.body.where || {};
           let search = req.body.search || "";
-          let limit = req.body.limit || 50;
+          let limit = req.body.limit || 100;
           let select = req.body.select || {
             id: 1,
             lawyer: 1,

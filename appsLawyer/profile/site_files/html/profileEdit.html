@@ -7,9 +7,44 @@
     />
 
     <style>
+      .req-cons {
+        border: 1px solid #2087e7;
+        display: inline-block;
+        width: 35vw !important;
+        margin: 2vw !important;
+        background: #ffffff;
+        padding: 25px;
+        height: 200px;
+        border-radius: 10px;
+        box-shadow: 1px 2px 3px 2px #2087e7;
+      }
+
+      .req-cons img {
+        height: 30px;
+        width: 40px;
+        float: left;
+      }
+
+      .req-cons-name {
+        font-size: 21px;
+        float: left;
+        font-family: system-ui;
+        font-weight: bold;
+      }
+
+      .account-number {
+        color: #2087e7;
+        font-size: 20px;
+      }
+
+      .card-title {
+        color: #959595;
+        font-size: 20px;
+      }
+
       .register-content {
         padding: 30px !important;
-        background-color: #2087e74d;
+        /*  background-color: #2087e74d; */
         border-radius: 10px;
       }
       .edit-user-btn {
@@ -88,55 +123,70 @@
   <body class="##session.lang## loaded" ng-controller="profileEdit">
     <div x-replace="lawyer-theme/header.html"></div>
     <div class="row">
-      <h1 class="bold text-center">##word.Edit Personal Page##</h1>
+      <h1 class="bold text-center">##word.Manage My Page##</h1>
     </div>
 
-    <div class="form" id="profileEdit">
-      <div class="row" id="emailData">
-        <div class="col1"></div>
-        <div class="col10 register-content">
-          <div class="row">
-            <div class="col6">
-              <i-control
-                v="r"
-                class="input-style"
-                label="##word.First Name##"
-                ng-model="user.firstName"
-              >
-              </i-control>
-              <i-control
-                v="r"
-                class="input-style"
-                label="##word.Last Name##"
-                ng-model="user.lastName"
-              >
-              </i-control>
-              <i-control
-                v="r e"
-                class="input-style"
-                label="##word.Email##"
-                ng-model="user.email"
-              >
-              </i-control>
+    <fieldset id="profileEdit">
+      <div class="tabs">
+        <div class="tabs-header full">
+          <a class="tab-link" onclick="site.showTabContent(event, '#profile')">
+            <span>##word.Personal Informatins## </span></a
+          >
+          <a
+            class="tab-link"
+            onclick="site.showTabContent(event, '#myConsultations')"
+          >
+            <span>##word.My Consultations## </span></a
+          >
+        </div>
 
-              <i-control
-                class="center input-style"
-                label="##word.Start Of Communication Time##"
-                type="time"
-                ng-model="user.startCommunicationTime"
-              >
-              </i-control>
-           
+        <div class="tabs-content">
+          <div id="profile" class="tab-content">
+            <div class="form">
+              <div class="row">
+                <div class="col1"></div>
+                <div class="col10 register-content">
+                  <div class="row">
+                    <div class="col6">
+                      <i-control
+                        v="r"
+                        class="input-style"
+                        label="##word.First Name##"
+                        ng-model="user.firstName"
+                      >
+                      </i-control>
+                      <i-control
+                        v="r"
+                        class="input-style"
+                        label="##word.Last Name##"
+                        ng-model="user.lastName"
+                      >
+                      </i-control>
+                      <i-control
+                        v="r "
+                        class="input-style"
+                        label="##word.User Name##"
+                        ng-model="user.userName"
+                      >
+                      </i-control>
 
-              <i-control
-                class="center input-style"
-                label="##word.End Of Communication Time##"
-                type="time"
-                ng-model="user.endCommunicationTime"
-              >
-              </i-control>
+                      <i-control
+                        class="center input-style"
+                        label="##word.Start Of Communication Time##"
+                        type="time"
+                        ng-model="user.startCommunicationTime"
+                      >
+                      </i-control>
 
-              <!-- <i-control
+                      <i-control
+                        class="center input-style"
+                        label="##word.End Of Communication Time##"
+                        type="time"
+                        ng-model="user.endCommunicationTime"
+                      >
+                      </i-control>
+
+                      <!-- <i-control
                   ng-show="type == 'lawyer'"
                   class="center input-style"
                   label="##word.Card Number##"
@@ -159,66 +209,74 @@
                   ng-model="user.ConstraintDate"
                 >
                 </i-date> -->
-              <i-list
-                v="r"
-                class="center input-style"
-                label="##word.Country##"
-                ng-model="user.country"
-                ng-change="getGovesList(user.country)"
-                items="countriesList"
-                display="name"
-                ng-search="user.$countries"
-              ></i-list>
-              <i-list
-                v="r"
-                label="##word.Governorate##"
-                ng-change="getCitiesList(user.gov)"
-                ng-model="user.gov"
-                display="name"
-                items="govesList"
-                ng-search="user.$gov"
-              ></i-list>
-              <i-list
-                label="##word.City##"
-                ng-model="user.city"
-                ng-change="getAreasList(user.city)"
-                items="citiesList"
-                display="name"
-                ng-search="user.$city"
-              >
-              </i-list>
-              <i-list
-                label="##word.Area##"
-                ng-model="user.area"
-                items="areasList"
-                display="name"
-                ng-search="user.$area"
-              >
-              </i-list>
-              <i-checklist
-              ng-show="user.type == 'lawyer'"
-              class="center input-style"
-              label="##word.Specialties##"
-              ng-model="user.specialties"
-              items="specialtiesList"
-              display="name"
-              ng-search="user.$specialties"
-            ></i-checklist>
-              <fieldset>
-                <h3>##word.Bio## :</h3>
-                <i-content ng-model="user.bio" label="##word.Bio##">
-                </i-content>
-              </fieldset>
-              <i-control
-                v="r"
-                class="pass input-style"
-                label="##word.Password##"
-                type="password"
-                id="pass1"
-                ng-model="user.password"
-              >
-              </i-control>
-              <!-- <i-control
+                      <i-list
+                        v="r"
+                        class="center input-style"
+                        label="##word.Country##"
+                        ng-model="user.country"
+                        ng-change="getGovesList(user.country)"
+                        items="countriesList"
+                        display="name"
+                        ng-search="user.$countries"
+                      ></i-list>
+                      <i-list
+                        v="r"
+                        label="##word.Governorate##"
+                        ng-change="getCitiesList(user.gov)"
+                        ng-model="user.gov"
+                        display="name"
+                        items="govesList"
+                        ng-search="user.$gov"
+                      ></i-list>
+                      <i-list
+                        label="##word.City##"
+                        ng-model="user.city"
+                        ng-change="getAreasList(user.city)"
+                        items="citiesList"
+                        display="name"
+                        ng-search="user.$city"
+                      >
+                      </i-list>
+                      <i-list
+                        label="##word.Area##"
+                        ng-model="user.area"
+                        items="areasList"
+                        display="name"
+                        ng-search="user.$area"
+                      >
+                      </i-list>
+                      <i-checklist
+                        ng-show="user.type == 'lawyer'"
+                        class="center input-style"
+                        label="##word.Specialties##"
+                        ng-model="user.specialties"
+                        items="specialtiesList"
+                        display="name"
+                        ng-search="user.$specialties"
+                      ></i-checklist>
+                      <fieldset>
+                        <h3>##word.Bio## :</h3>
+                        <i-content ng-model="user.bio" label="##word.Bio##">
+                        </i-content>
+                      </fieldset>
+
+                      <i-control
+                        v="r e"
+                        class="input-style"
+                        label="##word.Email##"
+                        ng-model="user.email"
+                      >
+                      </i-control>
+                      <i-control
+                        v="r"
+                        class="pass input-style"
+                        label="##word.Password##"
+                        type="password"
+                        id="pass1"
+                        ng-model="user.password"
+                      >
+                      </i-control>
+                      <!-- <i-control
                   v="r"
                   class="pass input-style"
                   label="##word.Retype Password##"
@@ -227,175 +285,235 @@
                   ng-model="user.rePassword"
                 >
                 </i-control> -->
-              <i-checkbox
-                class="right"
-                label="##word.Show Password##"
-                ng-change="showPassword()"
-                ng-model="showPassword"
-              >
-              </i-checkbox>
-            </div>
-            <div class="col6 padding">
-              <div class="row">
-                <div class="col3"></div>
-                <div class="col6">
-                  <div class="row">
-                    <p class="right-content">
-                      <span class="red bold"> * </span> ##word.Profile Image##
-                    </p>
-                    <i-image
-                      v="r"
-                      style="width: 170px !important; height: 200px !important"
-                      ng-model="user.image"
-                    ></i-image>
-                  </div>
-                </div>
-              </div>
+                      <i-checkbox
+                        class="right"
+                        label="##word.Show Password##"
+                        ng-change="showPassword()"
+                        ng-model="showPassword"
+                      >
+                      </i-checkbox>
+                    </div>
+                    <div class="col6 padding">
+                      <div class="row">
+                        <div class="col3"></div>
+                        <div class="col6">
+                          <div class="row">
+                            <p class="right-content">
+                              <span class="red bold"> * </span>
+                              ##word.Profile Image##
+                            </p>
+                            <i-image
+                              v="r"
+                              style="
+                                width: 170px !important;
+                                height: 200px !important;
+                              "
+                              ng-model="user.image"
+                            ></i-image>
+                          </div>
+                        </div>
+                      </div>
 
-              <!-- <div class="row" ng-show="type == 'lawyer'">
+                      <!-- <div class="row" ng-show="type == 'lawyer'">
                   <p class="right-content"><span class="red bold"> * </span> ##word.Card Image##</p>
                   <i-image
                     style="width: 170px !important; height: 200px !important"
                     ng-model="user.cardImage"
                   ></i-image>
                 </div> -->
-              <br />
+                      <br />
 
-              <i-control
-                v="r"
-                class="center input-style"
-                label="##word.Mobile Number##"
-                type="tel"
-                ng-model="user.mobile"
-              >
-              </i-control>
-              <i-control
-                v="e"
-                class="input-style"
-                label="##word.Contact Email##"
-                ng-model="user.contactEmail"
-              >
-              </i-control>
+                      <i-control
+                        v="r"
+                        class="center input-style"
+                        label="##word.Mobile Number##"
+                        type="tel"
+                        ng-model="user.mobile"
+                      >
+                      </i-control>
+                      <i-control
+                        v="e"
+                        class="input-style"
+                        label="##word.Contact Email##"
+                        ng-model="user.contactEmail"
+                      >
+                      </i-control>
 
-              <i-control
-                class="input-style"
-                label="##word.Website##"
-                ng-model="user.website"
-              >
-              </i-control>
+                      <i-control
+                        class="input-style"
+                        label="##word.Website##"
+                        ng-model="user.website"
+                      >
+                      </i-control>
 
-              <i-control
-                class="input-style"
-                label="##word.Facebook##"
-                ng-model="user.faceBook"
-              >
-              </i-control>
+                      <i-control
+                        class="input-style"
+                        label="##word.Facebook##"
+                        ng-model="user.faceBook"
+                      >
+                      </i-control>
 
-              <i-control
-              class="input-style"
-              label="##word.Instagram##"
-              ng-model="user.instagram"
-            >
-            </i-control>
+                      <i-control
+                        class="input-style"
+                        label="##word.Instagram##"
+                        ng-model="user.instagram"
+                      >
+                      </i-control>
 
-            <i-control
-            class="input-style"
-            label="##word.Twitter##"
-            ng-model="user.twitter"
-          >
-          </i-control>
+                      <i-control
+                        class="input-style"
+                        label="##word.Twitter##"
+                        ng-model="user.twitter"
+                      >
+                      </i-control>
 
-          <i-control
-          class="input-style"
-          label="##word.Linkedin##"
-          ng-model="user.linkedin"
-        >
-        </i-control>
+                      <i-control
+                        class="input-style"
+                        label="##word.Linkedin##"
+                        ng-model="user.linkedin"
+                      >
+                      </i-control>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <fieldset class="margin padding">
+                      <legend>##word.Services## ##word. Are Offered##</legend>
+                      <div class="row">
+                        <i-list
+                          class="col6"
+                          label="##word.Area##"
+                          ng-model="user.$service"
+                          items="servicesList"
+                          display="name"
+                          ng-search="user.$_service"
+                        >
+                        </i-list>
+                        <div class="col3">
+                          <br />
+
+                          <i-button
+                            type="push"
+                            label="##word.Add To Services##"
+                            ng-click="addToServices()"
+                          ></i-button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="table-responsive">
+                          <table class="table hover center bold">
+                            <tr>
+                              <th class="w150">##word.Logo##</th>
+                              <th>##word.Name##</th>
+                              <th>##word.price## ##word.$##</th>
+                              <th>##word.Status##</th>
+                              <th class="not-print">##word.Actions##</th>
+                            </tr>
+                            <tr ng-repeat="service in user.servicesList">
+                              <td>
+                                <i-image
+                                  view
+                                  class="logo center"
+                                  ng-model="service.image"
+                                ></i-image>
+                              </td>
+                              <td class="center">{{service.name}}</td>
+                              <td class="center">
+                                <i-control
+                                  type="number"
+                                  ng-model="service.price"
+                                >
+                                </i-control>
+                              </td>
+                              <td class="center">
+                                <i-control ng-model="service.notes"></i-control>
+                              </td>
+
+                              <td class="center not-print">
+                                <i-button
+                                  type="delete"
+                                  class="center"
+                                  title="##word.Delete##"
+                                  ng-click="user.servicesList.splice($index,1)"
+                                ></i-button>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <button ng-click="updateUser(user)" class="edit-user-btn">
+                    ##word.Save## <i class="fas fa-user-edit"></i>
+                  </button>
+                </div>
+              </div>
+
+              <h2 class="bold center red">{{error}}</h2>
+
+              <div id="alert" class="modal alert small">
+                <div class="modal-content height-auto">
+                  <div class="modal-body">
+                    <h1 class="blue center">##word.Save successfully##</h1>
+                  </div>
+                </div>
+              </div>
+              <div x-replace="lawyer-theme/footer.html"></div>
+
+              <div x-import="lawyer-theme/scripts.html"></div>
+              <script x-import="profile/profileEdit.js"></script>
             </div>
           </div>
-          <div class="row">
-            <fieldset class="margin padding">
-              <legend>##word.Services## ##word. Are Offered##</legend>
-              <div class="row">
-                <i-list
-                  class="col6"
-                  label="##word.Area##"
-                  ng-model="user.$service"
-                  items="servicesList"
-                  display="name"
-                  ng-search="user.$_service"
-                >
-                </i-list>
-                <div class="col3">
-                  <br />
+          <div id="myConsultations" class="tab-content">
+            <div class="row">
+              <div
+                class="req-cons"
+                ng-repeat="recuestCons in requestConsultationsList"
+              >
+                <p class="" ng-show="user.type == 'lawyer'">
+                  ##word.Client##
+                  <b class="userPrint account-number bold">
+                    {{recuestCons.addUserInfo.name}}
+                  </b>
+                </p>
 
-                  <i-button
-                    type="push"
-                    label="##word.Add To Services##"
-                    ng-click="addToServices()"
-                  ></i-button>
-                </div>
+                <p class="" ng-show="user.type != 'lawyer'">
+                  ##word.Lawyer##
+                  <b class="userPrint account-number bold">
+                    {{recuestCons.lawyer.firstName}}
+                    {{recuestCons.lawyer.lastName}}
+                  </b>
+                </p>
+
+                <p class="">
+                  ##word.Title##
+
+                  <b class="userPrint card-title bold">{{recuestCons.name}}</b>
+                </p>
+
+                <p class="">
+                  ##word.Type##
+
+                  <b class="userPrint card-title bold"
+                    >{{recuestCons.typeConsultation.name}}</b
+                  >
+                </p>
+
+                <p class="">
+                  ##word.Classification##
+
+                  <b class="userPrint card-title bold"
+                    >{{recuestCons.consultationClassification.name##session.lang##}}</b
+                  >
+                </p>
+
+                <p class="userPrint req-cons-name font-20">
+                  {{recuestCons.status.name##session.lang##}}
+                </p>
               </div>
-              <div class="row">
-                <div class="table-responsive">
-                  <table class="table hover center bold">
-                    <tr>
-                      <th class="w150">##word.Logo##</th>
-                      <th>##word.Name##</th>
-                      <th>##word.price## ##word.$##</th>
-                      <th>##word.Status##</th>
-                      <th class="not-print">##word.Actions##</th>
-                    </tr>
-                    <tr ng-repeat="service in user.servicesList">
-                      <td>
-                        <i-image
-                          view
-                          class="logo center"
-                          ng-model="service.image"
-                        ></i-image>
-                      </td>
-                      <td class="center">{{service.name}}</td>
-                      <td class="center">
-                        <i-control type="number" ng-model="service.price">
-                        </i-control>
-                      </td>
-                      <td class="center">
-                        <i-control ng-model="service.notes"></i-control>
-                      </td>
-
-                      <td class="center not-print">
-                        <i-button
-                          type="delete"
-                          class="center"
-                          title="##word.Delete##"
-                          ng-click="user.servicesList.splice($index,1)"
-                        ></i-button>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-          <button ng-click="updateUser(user)" class="edit-user-btn">
-            ##word.Save## <i class="fas fa-user-edit"></i>
-          </button>
-        </div>
-      </div>
-
-      <h2 class="bold center red">{{error}}</h2>
-
-      <div id="alert" class="modal alert small">
-        <div class="modal-content height-auto">
-          <div class="modal-body">
-            <h1 class="blue center">##word.Save successfully##</h1>
+            </div>
           </div>
         </div>
       </div>
-      <div x-replace="lawyer-theme/footer.html"></div>
-
-      <div x-import="lawyer-theme/scripts.html"></div>
-      <script x-import="profile/profileEdit.js"></script>
-    </div>
+    </fieldset>
   </body>
 </html>

@@ -15,6 +15,9 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
           $scope.user = response.data.doc;
           $scope.user.startWorkTime = $scope.user.startWorkTime || new Date();
           $scope.user.endWorkTime = $scope.user.endWorkTime || new Date();
+          document.querySelector(`#profileEdit .tab-link`).click();
+
+          $scope.getRequestConsultationsList();
         } else {
           $scope.error = response.data.error;
         }
@@ -64,17 +67,55 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         $scope.errorService = "##word.The Service Already Exists##";
       } else {
         $scope.user.servicesList.unshift({
-          id : $scope.user.$service.id,
-          image : $scope.user.$service.image,
-          name : $scope.user.$service.name,
-          price : $scope.user.$service.price,
-        })
+          id: $scope.user.$service.id,
+          image: $scope.user.$service.image,
+          name: $scope.user.$service.name,
+          price: $scope.user.$service.price,
+        });
       }
       $scope.user.$service = {};
     }
     $timeout(() => {
       $scope.errorService = "";
     }, 2000);
+  };
+
+  $scope.getRequestConsultationsList = function () {
+    $scope.requestConsultationsList = [];
+    let where = {};
+    if ($scope.user.type == "lawyer") {
+      where["lawyer.id"] = $scope.user.id;
+    } else {
+      where["addUserInfo.id"] = site.toNumber('##user.id##');
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/requestConsultations/all",
+      data: {
+        where,
+        select: {
+          id: 1,
+          name: 1,
+          lawyer: 1,
+          status: 1,
+          typeConsultation: 1,
+          consultationClassification: 1,
+          addUserInfo: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.requestConsultationsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.getCountriesList = function () {
@@ -198,7 +239,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     );
   };
 
-  
   $scope.getSpecialtiesList = function (where) {
     $scope.busy = true;
     $http({
