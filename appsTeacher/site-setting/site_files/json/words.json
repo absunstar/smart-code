@@ -1,0 +1,799 @@
+[
+  {
+    "name": "articles_settings",
+    "EN": "Articles Settings",
+    "AR": "إعدادات الأخبار"
+  },
+  {
+    "name": "Main Page",
+    "EN": "Main Page",
+    "AR": "الصفحة الرئيسية"
+  },
+  {
+    "name": "Main Menu",
+    "EN": "Main Menu",
+    "AR": "القائمة الرئيسية"
+  },
+  {
+    "name": "Already Existed",
+    "EN": "Already Existed",
+    "AR": "موجود من قبل"
+  },
+  {
+    "name": "showCEOinformation",
+    "EN": "showCEOinformation",
+    "AR": "ظهور بيانات المديرين "
+  },
+  {
+    "name": "ceoManager",
+    "EN": "CEO Manager",
+    "AR": "رئيس مجلس الادارة"
+  },
+  {
+    "name": "editorManager",
+    "EN": "Editor Manager",
+    "AR": "رئيس التحرير"
+  },
+  {
+    "name": "Gold Prices",
+    "EN": "Gold Prices",
+    "AR": "أسعار الذهب"
+  },
+  {
+    "name": "Match Schedule",
+    "EN": "Match Schedule",
+    "AR": "جدول المباريات"
+  },
+  {
+    "name": "Title Separator",
+    "EN": "Title Separator",
+    "AR": "فاصل العنوان"
+  },
+  {
+    "name": "Custom Style",
+    "EN": "Custom Style",
+    "AR": "شكل مخصص"
+  },
+  {
+    "name": "Auto generate",
+    "EN": "Auto generate",
+    "AR": "توليد تلقائي"
+  },
+  {
+    "name": "Show Main Menu",
+    "EN": "Show Main Menu",
+    "AR": "عرض القائمة الرئيسية"
+  },
+  {
+    "name": "Show Editor Manager Articles",
+    "EN": "Show Editor Manager Articles",
+    "AR": "عرض مقالات مدير التحرير"
+  },
+  {
+    "name": "Show Editors Articles",
+    "EN": "Show Editors Articles",
+    "AR": "عرض مقالات المحررين"
+  },
+  {
+    "name": "Show Image Gallary",
+    "EN": "Show Image Gallary",
+    "AR": "إظهار معرض الصور"
+  },
+  {
+    "name": "Show Video Gallary",
+    "EN": "Show Video Gallary",
+    "AR": "إظهار معرض الفيديو"
+  },
+  {
+    "name": "Show Poll Questions",
+    "EN": "Show Poll Questions",
+    "AR": "إظهار أسئلة الاستطلاع"
+  },
+  {
+    "name": "Show Top News",
+    "EN": "Show Top News",
+    "AR": "عرض أهم الأخبار"
+  },
+  {
+    "name": "Show Main Slider",
+    "EN": "Show Main Slider",
+    "AR": "إظهار شريط التمرير الرئيسي"
+  },
+  {
+    "name": "Show Logo",
+    "EN": "Show Logo",
+    "AR": "إظهار الشعار"
+  },
+  {
+    "name": "Show Search Bar",
+    "EN": "Show Search Bar",
+    "AR": "إظهار شريط البحث"
+  },
+  {
+    "name": "Show Top Ad",
+    "EN": "Show Top Ad",
+    "AR": "عرض الإعلان العلوي"
+  },
+  {
+    "name": "Show Side Ad",
+    "EN": "Show Side Ad",
+    "AR": "عرض إعلان جانبي"
+  },
+  {
+    "name": "Show Footer Ad",
+    "EN": "Show Footer Ad",
+    "AR": "عرض إعلان السفلي"
+  },
+  {
+    "name": "Show Article Ad",
+    "EN": "Show Article Ad",
+    "AR": "إظهار إعلان المقال"
+  },
+  {
+    "name": "Home Categories",
+    "EN": "Home Categories",
+    "AR": "أقسام الصفحة الرئيسية"
+  },
+  {
+    "name": "S/N",
+    "EN": "S/N",
+    "AR": "مسلسل"
+  },
+  {
+    "name": "Money Prices",
+    "EN": "Money Prices",
+    "AR": "أسعار العملات"
+  },
+  {
+    "name": "Show Manager",
+    "EN": "Show Manager",
+    "AR": "عرض المدير"
+  },
+  {
+    "name": "Template",
+    "EN": "Template",
+    "AR": "نموذج"
+  },
+  {
+    "name": "View Options",
+    "EN": "View Options",
+    "AR": "عرض الخيارات"
+  },
+  {
+    "name": "Team",
+    "EN": "Team",
+    "AR": "فريق"
+  },
+  {
+    "name": "Auto Creation Shortened Link",
+    "EN": "Auto Creation Shortened Link",
+    "AR": "إنشاء رابط آلي مختصر"
+  },
+  {
+    "name": "huawei_store",
+    "EN": "HUAWEI Store",
+    "AR": "متجر هواوي"
+  },
+  {
+    "name": "apple_store",
+    "EN": "APPLE Store",
+    "AR": "متجر أبل"
+  },
+  {
+    "name": "google_store",
+    "EN": "GOOGLE Store",
+    "AR": "متجر جوجل"
+  },
+  {
+    "name": "apple_store",
+    "EN": "APPLE Store",
+    "AR": "متجر أبل"
+  },
+  {
+    "name": "title",
+    "EN": "Title",
+    "AR": "عنوان (Title)"
+  },
+  {
+    "name": "social_media_accounts",
+    "EN": "Social media accounts",
+    "AR": "حسابات التواصل الإجتماعي"
+  },
+  {
+    "name": "email_and_text_messages",
+    "EN": "Email and text messages",
+    "AR": "الرسائل الإلكترونية و النصية"
+  },
+  {
+    "name": "sent_from_mail",
+    "EN": "Sent from email",
+    "AR": "البريد الإلكتروني المرسل منه"
+  },
+  {
+    "name": "port",
+    "EN": "Port",
+    "AR": "المنفذ (port)"
+  },
+  {
+    "name": "host",
+    "EN": "Host",
+    "AR": "المضيف (host)"
+  },
+  {
+    "name": "email_setting",
+    "EN": "Email setting",
+    "AR": "إعداد البريد الإلكتروني"
+  },
+  {
+    "name": "email_sending_setting",
+    "EN": "Email sending setting",
+    "AR": "إعداد إرسال البريد الإلكتروني"
+  },
+  {
+    "name": "mobile_sms",
+    "EN": "Twilio sms",
+    "AR": "(Twilio) رسائل الجوال"
+  },
+  {
+    "name": "mobile_sms",
+    "EN": "Twilio sms",
+    "AR": "(Twilio) رسائل البريد الإلكتروني"
+  },
+  {
+    "name": "auth_token_mobile",
+    "EN": "Auth Token for mobile",
+    "AR": "(Auth Token) توكن التفعيل"
+  },
+  {
+    "name": "account_id_mobile",
+    "EN": "Account ID for mobile",
+    "AR": "(Account ID) كود الحساب"
+  },
+  {
+    "name": "messaging_services_id_mobile",
+    "EN": "Messaging Services ID for mobile",
+    "AR": "(Messaging Services ID) كود الخدمة"
+  },
+  {
+    "name": "enableSendingMessagesMobile",
+    "EN": "Enable sending messages to the mobile",
+    "AR": "تفعيل إرسال الرسائل للموبايل"
+  },
+  {
+    "name": "enableSendingMessagesEmail",
+    "EN": "Enable sending messages to the email",
+    "AR": "تفعيل إرسال الرسائل للبريد الإلكتروني"
+  },
+  {
+    "name": "commercial_registration_no_show",
+    "EN": "Commercial Registration No. show",
+    "AR": "إظهار رقم السجل التجاري"
+  },
+  {
+    "name": "tax_number_show",
+    "EN": "Tax Number show",
+    "AR": "إظهار الرقم الضريبي"
+  },
+  {
+    "name": "allow_registration_through_email",
+    "EN": "Allow registration through email",
+    "AR": "السماح بالتسجيل من خلال البريد الإلكتروني"
+  },
+  {
+    "name": "warning_message_inside_ad",
+    "EN": "Warning message inside the ad",
+    "AR": "رسالة تحذيرية داخل الإعلان"
+  },
+  {
+    "name": "upload_video",
+    "EN": "Upload video",
+    "AR": "رفع مقاطع فيديو"
+  },
+  {
+    "name": "allow_video_more_upload",
+    "EN": "Allow uploading more than one video",
+    "AR": "السماح برفع أكثر من فيديو"
+  },
+  {
+    "name": "default_setting",
+    "EN": "General Setting",
+    "AR": "الإعدادات العامة"
+  },
+  {
+    "name": "order_level_length",
+    "EN": "Order level length",
+    "AR": "طول مستوى كود الطلبات"
+  },
+  {
+    "name": "categories_level_length",
+    "EN": "Categories level length",
+    "AR": "طول مستوى كود الأقسام"
+  },
+  {
+    "name": "auto_generate_categories_code",
+    "EN": "Automatic generation of Categories code",
+    "AR": "توليد آلي لكود الأقسام"
+  },
+  {
+    "name": "auto_generate_orders_code",
+    "EN": "Automatic generation of Orders code",
+    "AR": "توليد آلي لكود الطلبات"
+  },
+  {
+    "name": "site_template",
+    "EN": "Site template",
+    "AR": "القالب العام للموقع"
+  },
+  {
+    "name": "programming",
+    "EN": "Programming",
+    "AR": "برمجة"
+  },
+  {
+    "name": "site_slogan",
+    "EN": "Site slogan",
+    "AR": "شعار الموقع"
+  },
+  {
+    "name": "site_color",
+    "EN": "Site color",
+    "AR": "اللون العام للموقع"
+  },{
+    "name": "site_color_1",
+    "EN": "Site color 1",
+    "AR": "لون الموقع 1"
+  },{
+    "name": "site_color_2",
+    "EN": "Site color 2",
+    "AR": "لون الموقع 2"
+  },{
+    "name": "site_color_3",
+    "EN": "Site color 3",
+    "AR": "لون الموقع 3"
+  },
+  {
+    "name": "site_description",
+    "EN": "Site description",
+    "AR": "وصف الموقع"
+  },
+  {
+    "name": "article_status",
+    "EN": "Article status",
+    "AR": "حالة الخبر"
+  },
+  {
+    "name": "sales_email",
+    "EN": "Sales email",
+    "AR": "البريد الإلكتروني للمبيعات"
+  },
+  {
+    "name": "support_email",
+    "EN": "Support email",
+    "AR": "البريد الإلكتروني للدعم"
+  },
+  {
+    "name": "site_settings",
+    "EN": "Site Settings",
+    "AR": "إعدادات الموقع"
+  },
+  {
+    "name": "remove_logo",
+    "EN": "Remove Logo",
+    "AR": "حذف اللوجو"
+  },
+  {
+    "name": "price_offer_footer",
+    "EN": "Price Offer Footer",
+    "AR": "هامش عرض السعر"
+  },
+  {
+    "name": "qr_place",
+    "EN": "QR Place",
+    "AR": "مكان رمز الإستجابة"
+  },
+  {
+    "name": "qr_country",
+    "EN": "QR Country",
+    "AR": "بلد رمز الإستجابة"
+  },
+  {
+    "name": "thermal_printing_language",
+    "EN": "Thermal printing language",
+    "AR": "لغة الطباعة الحرارية"
+  },
+  {
+    "name": "pay_full_price_examination",
+    "EN": "Pay the full price of the Examination",
+    "AR": "دفع سعر الحجز كاملا"
+  },
+  {
+    "name": "number_best_selling",
+    "EN": "The number of best-selling items",
+    "AR": "عدد الأصناف الأكثر مبيعا"
+  },
+  {
+    "name": "default_setting_tenant_date_from",
+    "EN": "Date From",
+    "AR": "من تاريخ"
+  },
+  {
+    "name": "default_setting_tenant_date_to",
+    "EN": "Date To",
+    "AR": "إلى تاريخ"
+  },
+  {
+    "name": "other_addresses_appear",
+    "EN": "Other addresses appear",
+    "AR": "ظهور العناوين الأخرى"
+  },
+  {
+    "name": "new_address_appear",
+    "EN": "New address appear",
+    "AR": "ظهور عنوان جديد"
+  },
+  {
+    "name": "order_settings",
+    "EN": "Order settings",
+    "AR": "إعدادات الطلب"
+  },
+  {
+    "name": "link_gl_accounts_with_income_statement_and_budget",
+    "EN": "Link gl_Accounts With Income Statement And Budget",
+    "AR": "ربط الحسابات بتصنيفات قائمة الدخل والميزانية"
+  },
+  {
+    "name": "order_type",
+    "EN": "Order Type",
+    "AR": "نوع الطلب"
+  },
+  {
+    "name": "printer_program",
+    "EN": "Printer Program",
+    "AR": "برنامج الطباعة"
+  },
+  {
+    "name": "finger_program",
+    "EN": "Finger Print Program",
+    "AR": "برنامج البصمة"
+  },
+  {
+    "name": "settings_saved",
+    "EN": "Settings saved",
+    "AR": "تم حفظ الإعدادات"
+  },
+  {
+    "name": "finger_code",
+    "EN": "Finger Print Code",
+    "AR": "كود البصمة"
+  },
+  {
+    "name": "basic_printer",
+    "EN": "Basic Printer",
+    "AR": "الطابعة الرئيسية"
+  },
+  {
+    "name": "place_program",
+    "EN": "Place Program",
+    "AR": "مكان البرنامج "
+  },
+  {
+    "name": "program_ip",
+    "EN": "Program Ip",
+    "AR": " أي بي البرنامج"
+  },
+  {
+    "name": "program_port",
+    "EN": "Program Port",
+    "AR": "بورت البرنامج"
+  },
+  {
+    "name": "thermal_print",
+    "EN": "Thermal printing",
+    "AR": "الطابعة حرارية"
+  },
+  {
+    "name": "a4_printer",
+    "EN": "A4 printer",
+    "AR": "طابعة A4"
+  },
+  {
+    "name": "pdf_printer",
+    "EN": "PDF printer",
+    "AR": "طابعة PDF"
+  },
+  {
+    "name": "pdf_print",
+    "EN": "PDF print",
+    "AR": "طباعة PDF"
+  },
+  {
+    "name": "a4_printer_must_select",
+    "EN": "You must select the name of the A4 printer from the settings",
+    "AR": "يجد تحديد الطابعة A4 من الإعدادات"
+  },
+  {
+    "name": "pdf_printer_must_select",
+    "EN": "You must select the name of the PDF printer from the settings",
+    "AR": "يجد تحديد الطابعة PDF من الإعدادات"
+  },
+  {
+    "name": "thermal_printer_must_select",
+    "EN": "You must select the name of the Thermal printer from the settings",
+    "AR": "يجد تحديد الطابعة الحرارية من الإعدادات"
+  },
+  {
+    "name": "barcode_printer_must_select",
+    "EN": "You must select the name of the Barcode printer from the settings",
+    "AR": "يجد تحديد طابعة الباركود من الإعدادات"
+  },
+  {
+    "name": "auto_thermal_print",
+    "EN": "Automatic thermal printing",
+    "AR": "طباعة حرارية أوتوماتيك"
+  },
+  {
+    "name": "Print_written_amount",
+    "EN": "Print the written amount",
+    "AR": "طباعة المبلغ مكتوب"
+  },
+  {
+    "name": "user_appears_in_invoice",
+    "EN": "The user appears in the invoice",
+    "AR": "ظهور المستخدم في الفاتورة"
+  },
+  {
+    "name": "auto_thermal_print_order_screen",
+    "EN": "Automatic thermal printing For Order Screen",
+    "AR": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
+  },
+  {
+    "name": "auto_thermal_print_sales_invo",
+    "EN": "Automatic thermal printing For sales invo",
+    "AR": "طباعة حرارية أوتوماتيك لفاتورة المبيعات"
+  },
+  {
+    "name": "print_simplified_tax_invoice_sentence",
+    "EN": "Print a simplified tax invoice sentence",
+    "AR": "طباعة جملة فاتورة ضريبية مبسطة"
+  },
+  {
+    "name": "print_simplified_invoice_sentence",
+    "EN": "Print a simplified invoice sentence",
+    "AR": "طباعة جملة فاتورة مبسطة"
+  },
+  {
+    "name": "exam_header",
+    "EN": "Header Exam",
+    "AR": "مقدمة الإمتحان"
+  },
+  {
+    "name": "exam_header2",
+    "EN": "Header Exam 2",
+    "AR": "مقدمة الإمتحان 2"
+  },
+  {
+    "name": "exam_footer",
+    "EN": "Footer Exam",
+    "AR": "هامش الإمتحان"
+  },
+  {
+    "name": "exams_setting",
+    "EN": "Exams Setting",
+    "AR": "إعدادات الإمتحانات"
+  },
+  {
+    "name": "auto_generate_account_code_and_cost_center",
+    "EN": "Automatic generation of account tree code and cost centers",
+    "AR": "توليد آلي لكود شجرة الحسابات و مراكز التكلفة"
+  },
+  {
+    "name": "end_num_to_str",
+    "EN": "End Num To Text",
+    "AR": "نهاية التفقيط"
+  },
+  {
+    "name": "end_num_to_str_en",
+    "EN": "End Num To Text An Eng",
+    "AR": "نهاية التفقيط بالإنجليزية"
+  },
+  {
+    "name": "default_settings",
+    "EN": "General Settings",
+    "AR": "الإعدادت العامة"
+  },
+  {
+    "name": "discount_method",
+    "EN": "Discount Method from Store",
+    "AR": "طريقة الخصم من المخزن"
+  },
+  {
+    "name": "default_setting_tenant_date",
+    "EN": "Date",
+    "AR": "التاريخ"
+  },
+  {
+    "name": "general_Settings",
+    "EN": "General Settings",
+    "AR": "إعدادات عامة"
+  },
+  {
+    "name": "inventory_settings",
+    "EN": "Inventory",
+    "AR": "المخازن"
+  },
+  {
+    "name": "accounting_settings",
+    "EN": "Accountinng",
+    "AR": "الحسابات"
+  },
+  {
+    "name": "default_setting_sales_invoices",
+    "EN": "default_setting Sales Invoices",
+    "AR": "تقرير فواتير البيع"
+  },
+  {
+    "name": "default_setting_tenant_date",
+    "EN": "Date",
+    "AR": "التاريخ"
+  },
+  {
+    "name": "piece_name",
+    "EN": "Piece Of Name",
+    "AR": "إسم القطعة"
+  },
+  {
+    "name": "attend_absence_list",
+    "EN": "Attend & Absence List",
+    "AR": "بيان الحضور و الغياب"
+  },
+  {
+    "name": "attend_hour",
+    "EN": "Attend Hour",
+    "AR": "حضور الساعة"
+  },
+  {
+    "name": "out_hour",
+    "EN": "Out Hour",
+    "AR": "إنصراف الساعة"
+  },
+  {
+    "name": "link_warehouse_account_invoices",
+    "EN": "Linking inventory and accounting invoices",
+    "AR": "ربط الفواتير المخزنية و الحسابية"
+  },
+  {
+    "name": "default_setting_serial",
+    "EN": "Serial",
+    "AR": "رقم مسلسل"
+  },
+  {
+    "name": "default_setting_tenant_required",
+    "EN": "Required",
+    "AR": "المطلوب"
+  },
+  {
+    "name": "default_setting_tenant_total_required",
+    "EN": "Total Required",
+    "AR": "إجمالي المطلوب"
+  },
+  {
+    "name": "default_setting_tenant_total",
+    "EN": "Total Rest",
+    "AR": "إجمالي المدفوع"
+  },
+  {
+    "name": "default_setting_tenant_total_rest",
+    "EN": "Total Rest",
+    "AR": "إجمالي الباقي"
+  },
+  {
+    "name": "default_setting_tenant_rest",
+    "EN": "Rest",
+    "AR": "الباقي"
+  },
+  {
+    "name": "default_setting_tenant_paid",
+    "EN": "paid",
+    "AR": "المدفوع"
+  },
+  {
+    "name": "allowed_number",
+    "EN": "Allowed Number",
+    "AR": "العدد المسموح"
+  },
+  {
+    "name": "default_setting_tenant_date",
+    "EN": "Offer Date",
+    "AR": "التاريخ"
+  },
+  {
+    "name": "ads_settings",
+    "EN": "Ads settings",
+    "AR": "إعدادات الإعلانات"
+  },
+  {
+    "name": "default_image_for_ad",
+    "EN": "Default image for ad",
+    "AR": "صورة إفتراضية للإعلان"
+  },
+  {
+    "name": "default_image_for_store",
+    "EN": "Default image for store",
+    "AR": "صورة إفتراضية للمتجر"
+  },
+  {
+    "name": "publishing_system",
+    "EN": "Publishing system",
+    "AR": "نظام النشر"
+  },
+  {
+    "name": "publishing_date",
+    "EN": "Publishing date",
+    "AR": "تاريخ النشر"
+  },
+  {
+    "name": "adStatus",
+    "EN": "Ad status",
+    "AR": "حالة الإعلان"
+  },
+  {
+    "name": "store_status",
+    "EN": "Store status",
+    "AR": "حالة المتجر"
+  },
+  {
+    "name": "closing_system",
+    "EN": "Closing system",
+    "AR": "نظام الإنتهاء"
+  },
+  {
+    "name": "quantities_can_be_used",
+    "EN": "Quantities can be used",
+    "AR": "إمكانية إستخدام الكميات"
+  },
+  {
+    "name": "currencies_can_be_used",
+    "EN": "Currencies can be used",
+    "AR": "إمكانية إستخدام العملات"
+  },
+  {
+    "name": "upload_photos",
+    "EN": "Upload photos",
+    "AR": "رفع صور"
+  },
+  {
+    "name": "maximum_ads",
+    "EN": "Maximum ads",
+    "AR": "الحد الأقصى للإعلانات"
+  },
+  {
+    "name": "maximum_stores",
+    "EN": "Maximum stores",
+    "AR": "الحد الأقصى للمتاجر"
+  },
+  {
+    "name": "maximum_ads_for_store",
+    "EN": "Maximum ads for store",
+    "AR": "الحد الأقصى لإعلانات المتجر"
+  },
+  {
+    "name": "expiry_date",
+    "EN": "Expiry date",
+    "AR": "تاريخ الإنتهاء"
+  },
+  {
+    "name": "duration_type",
+    "EN": "Duration type",
+    "AR": "نوع المدة"
+  },
+  {
+    "name": "duration",
+    "EN": "Duration",
+    "AR": "المدة"
+  },
+  {
+    "name": "Theme Setting",
+    "EN": "Theme Setting",
+    "AR": "الشكل العام للموقع"
+  }
+]

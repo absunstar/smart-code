@@ -1,0 +1,39 @@
+<div id="govesSearchModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <p>##word.Search All## <i class="fa fa-search"></i></p>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <fieldset>
+                    <legend>##word.Search All##</legend>
+                    <div class="row">
+                        <i-control class="col3" label="##word.Name##" ng-model="search.name"></i-control>
+
+                        <div class="control col3">
+                            <label> ##word.Status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true">##word.Active##</option>
+                                <option ng-value="false">##word.Not Active##</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <p class="error">{{error}}</p>
+
+        <div class="modal-footer center">
+            <i-button type="search" label="##word.Search##" ng-click="searchAll()"> </i-button>
+
+            <i-button type="clear" label="##word.Search Empty##" ng-click="search = {}"> </i-button>
+
+            <i-button type="close" label="##word.Close##" onclick="site.hideModal('#govesSearchModal')"> </i-button>
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

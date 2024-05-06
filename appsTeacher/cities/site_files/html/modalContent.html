@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="row padding">
+        <div class="col9">
+            <div class="row">
+                <div class="row">
+             
+                    <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
+                </div>
+                <i-list help-id="" v="r" label="##word.Country##" ng-change="getGovesList(item.country)"
+                    ng-model="item.country" display="name" display2="callingCode" items="countriesList"
+                    ng-get="getCountriesList($search)"></i-list>
+                <i-list help-id="" v="r" label="##word.Governorate##" ng-model="item.gov" display="name"
+                    items="govesList" ng-search="item.$gov"></i-list>
+                <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
+            </div>
+        </div>
+        <div class="col3">
+            <i-image class="img128 center" ng-model="item.image"></i-image>
+        </div>
+    </div>
+    <div class="row padding"></div>
+</div>
+<div ng-show="mode !== 'add' " class="row">
+    <table class="table hover border">
+        <tr>
+            <th>##word.Add Info##</th>
+            <th>##word.Last Edit Info##</th>
+        </tr>
+        <tr>
+            <td class="center">
+                <p class="blue">{{item.addUserInfo.name}}</p>
+                <small class="green"> {{item.addUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{item.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{item.addUserInfo.ip}}</p>
+            </td>
+
+            <td class="center">
+                <p class="blue">{{item.editUserInfo.name}}</p>
+                <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+            </td>
+        </tr>
+    </table>
+</div>

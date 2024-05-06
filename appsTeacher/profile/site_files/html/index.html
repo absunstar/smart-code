@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="En" x-permissions="!login" data-ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link
+      rel="stylesheet"
+      href="/css/teacher-style.css?v=##site.options.version##"
+    />
+
+    <style>
+      .register-btn {
+        margin: 15px -7px 20px 0px;
+        text-align-last: center;
+        background: #2087e7;
+        color: white;
+        border-radius: 5px;
+        font-size: x-large;
+      }
+      .register:hover {
+        color: blue !important;
+        text-decoration: underline !important;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang##" ng-controller="login">
+    <div x-replace="teacher-theme/header.html"></div>
+
+    <div id="main-layout" class="container loaded" id="loginSouqModal">
+      <div class="row">
+        <div class="row center">
+          <div class="row">
+            <h1 class="bold text-center">##word.Login##</h1>
+          </div>
+
+          <div class="row">
+            <div class="col3"></div>
+            <div class="col6">
+              <i-control
+                class="input-style"
+                v="r"
+                label="##word.Mobile Or Email##"
+                ng-model="user.email"
+              >
+              </i-control>
+              <i-control
+                class="input-style pass"
+                label="##word.Password##"
+                type="password"
+                v="r"
+                ng-model="user.password"
+              >
+              </i-control>
+              <i-checkbox
+                class="center"
+                label="##word.Show Password##"
+                ng-click="showPassword()"
+                ng-model="show_password"
+              >
+              </i-checkbox>
+              <button ng-click="login()" class="register-btn">
+                ##word.Login Now## <i class="fas fa-sign-in-alt"></i>
+              </button>
+            </div>
+            <div class="col3"></div>
+          </div>
+
+          <div class="row">
+            <h2 class="bold center red">{{error}}</h2>
+          </div>
+          <div class="row">
+            <form>
+              <p class="font-18">
+                <a href="/login" class="hover-a">
+                  ##word.Register New Account##
+                </a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="teacher-theme/scripts.html"></div>
+    <script x-import="login/index.js"></script>
+  </body>
+</html>

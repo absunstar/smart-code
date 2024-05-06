@@ -1,0 +1,26 @@
+main .mainContent .storysContainer .storys .storysAccounts {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  cursor: grab;
+  padding: 0px;
+}
+
+main .mainContent .storysContainer .storys .storysAccounts::-webkit-scrollbar {
+  display: none;
+}
+
+main .mainContent .storysContainer .storys .storysAccounts .storyAccount {
+  cursor: pointer;
+  width: 125px !important;
+  height: 125px !important;
+  border-radius: 100% !important;
+}
+
+main .mainContent .storysContainer .storys .storysAccounts .storyAccount img {
+  max-width: 125px !important;
+  max-height: 125px !important;
+  min-width: 125px !important;
+  min-height: 125px !important;
+  border-radius: 50% !important;
+}

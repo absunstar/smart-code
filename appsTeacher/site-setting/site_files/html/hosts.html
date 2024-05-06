@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="##data.language.id##" dir="##data.language.direction##" data-ng-app="myApp" class="##data.language.direction##" x-permissions="articles_ui || articles_manage">
+  <head x-import="cms/head.html"> </head>
+
+  <body style="background: white" ng-controller="hosts">
+    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
+      <div class="row">
+        <br />
+        <h1 class="center bold black">##word.Host Manager##</h1>
+        <br />
+        <i-button type="add" ng-click="hostsAdd({})"></i-button>
+        <table class="table">
+          <tr>
+            <th>##word.ID##</th>
+            <th>##word.domain##</th>
+            <th>##word.filter##</th>
+            <th>##word.actions##</th>
+          </tr>
+          <tr ng-repeat="host in hostsList">
+            <td><span class="bold blue">{{host.id}} </span></td>
+            <td>
+              <i-control ng-model="host.domain"></i-control>
+            </td>
+            <td>
+              <i-control ng-model="host.filter"></i-control>
+            </td>
+            <td>
+              <i-button type="edit" ng-click="hostsUpdate(host)"></i-button>
+              <i-button type="delete" ng-click="hostsDelete(host)"></i-button>
+            </td>
+          </tr>
+        </table>
+
+        <h2 class="error">{{error}}</h2>
+      </div>
+    </div>
+
+    <div x-import="cms/scripts.html"></div>
+    <script x-import="site-setting/host.js"></script>
+  </body>
+</html>

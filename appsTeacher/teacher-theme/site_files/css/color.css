@@ -1,0 +1,36 @@
+*{
+    /*start main color*/
+
+    --main-background-color1: #ffffff;
+    --main-background-color2: #ffffff;
+    --main-background-color3: #2087E7;
+
+    /*end main color*/
+
+    /*Start burgerMenu*/
+
+    --burgerMenu-background-color: #2087E7;
+    --burgerMenu-icon-color: #ffffff;
+
+    /*EndburgerMenu*/
+
+    
+    /*start button background and font color */
+    /*button style 0*/
+    --button-backgroundColor-0: #2087E7;
+    --button-border-color-0: #1475CF;
+    --button-fontColor-0: white;
+    --hover-button-backgroundColor-0: #1475CF;
+    --hover-button-border-color-0: #2087E7;
+    --hover-button-fontColor-0: white;
+
+    /*button style 1*/
+    --button-backgroundColor-1: white;
+    --button-border-color-1: #2087E7;
+    --button-fontColor-1: #2087E7;
+    --hover-button-backgroundColor-1: #2087E7;
+    --hover-button-border-color-1: #1475CF;
+    --hover-button-fontColor-1: white;
+    /*end button background and font color*/
+    
+}

@@ -118,7 +118,7 @@ module.exports = function init(site) {
     $words.findMany({}, (err, wordsList) => {
       if (!err && wordsList) {
         response.done = true;
-        site.fs.writeFileSync("wordsFileLawyer.json", JSON.stringify(wordsList));
+        site.fs.writeFileSync("wordsFileTeacher.json", JSON.stringify(wordsList));
       } else {
         response.error = err?.message || "Not Exists";
       }

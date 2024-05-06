@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "educationalLevelsAdmin",
+    "En": "Educational Levels Admin",
+    "Ar": "إدارة المراحل الدراسية",
+    "permissions": ["educationalLevelsManage"]
+}] 

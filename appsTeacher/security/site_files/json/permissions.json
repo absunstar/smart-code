@@ -1,0 +1,31 @@
+[{
+        "name": "developer",
+        "En": "Developer",
+        "Ar": " مطور"
+    },
+    {
+        "name": "admin",
+        "En": "Admin",
+        "Ar": " مسئول"
+    },
+    {
+        "name": "owner",
+        "En": "Owner",
+        "Ar": " صاحب البرنامج"
+    },
+    {
+        "name": "security",
+        "En": "Users Management",
+        "Ar": "إدارة المستخدمين"
+    },
+    {
+        "name": "print",
+        "En": "Print",
+        "Ar": "طباعة"
+    },
+    {
+        "name": "menus",
+        "En": "Menus View",
+        "Ar": "ظهور القوائم"
+    }
+]

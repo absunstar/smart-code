@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="theme1/head.html">
+    <style>
+      i-image.photo img {
+        min-width: 240px;
+      }
+      .user {
+        padding: 10px;
+        background: var(--theme-color);
+        margin: 5px;
+        border-radius: 10px;
+      }
+
+      .title {
+        font-weight: bold;
+        color: #000 !important;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang## loaded">
+    <div x-import="theme1/header.html"></div>
+
+    <div id="main-layout" class="container">
+      <div class="row">
+        <div class="row" ng-controller="security">
+          <div x-import="security/add_role_modal.html"></div>
+          <div x-import="security/edit_role_modal.html"></div>
+          <div x-import="security/delete_role_modal.html"></div>
+          <div x-import="security/view_role_modal.html"></div>
+          <div x-permissions="securityManage " class="top-actions">
+            <i-button type="add bg-white black" ng-click="newRole()" label="##word.New Role##"></i-button>
+            <i-button type="bg-white black" label="##word.Users##" ng-click="gotoUsers()"></i-button>
+
+            <span ng-show="busy">
+              <i class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+              <span class="sr-only">Loading...</span>
+            </span>
+          </div>
+          <br />
+
+          <table class="table">
+            <tr>
+              <th style="width: 30% !important">##word.Security Roles##</th>
+              <th>##word.Actions##</th>
+            </tr>
+            <tr ng-repeat="role in roles | orderBy : 'id'">
+              <td>{{role.##session.lang##}}</td>
+              <td>
+                <i-button ng-click="displayViewRole(role)" type="view" label="##word.Role Details##"></i-button>
+                <i-button ng-click="displayUpdateRole(role)" ng-show="role.moduleName == 'custom'" type="edit" title="##word.Edit##"></i-button>
+                <i-button ng-click="displayDeleteRole(role)" ng-show="role.moduleName == 'custom'" type="remove" label="##word.Remove##"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="theme1/footer.html"></div>
+    <script x-import="security/roles.js"></script>
+  </body>
+</html>

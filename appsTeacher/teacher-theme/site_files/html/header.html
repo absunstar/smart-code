@@ -1,0 +1,152 @@
+<header class="HeaderContanier container">
+  <div class="lgScreen d-lg-flex">
+    <div class="logo">
+      <a href="/">
+        <p>المحامي</p>
+        <img src="/teacher/images/logo.png" alt="" srcset="" />
+      </a>
+    </div>
+    <div class="governorat">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">اختار محافظتك</button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">القاهرة</a></li>
+          <li><a class="dropdown-item" href="#">الأسكندرية</a></li>
+          <li><a class="dropdown-item" href="#">الاسماعلية</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="searchContanier">
+      <input class="searchInput" type="text" placeholder="ابحث عن استفسار او محامي ..." />
+      <button class="filterButton">
+        <i class="fas fa-filter"></i>
+      </button>
+      <button class="searchButton">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <div class="orderButton btn" x-permissions="!login || client ">
+      <p>##word.Request Consultation##</p>
+      <i class="fas fa-bullhorn"></i>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> أحكام واجتهاد </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+                <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> خدمات الكترونية </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+                <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="userContainer">
+      <div class="profile" x-permission="login">
+        <li class="nav-item dropdown">
+
+        <img src="/teacher/images/profile.png"  href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li>
+          <li><a class="dropdown-item" href="/profileEdit/##user.id##">##word.Manage My Page##</a></li>
+          <li><a class="dropdown-item" href="/nationalities">##word.Dashboard##</a></li>
+        </ul>
+      </li>
+    </div>
+      <a x-permission="!login" href="/login"> تسجيل الدخول </a>
+      <a x-permission="!login" class="newRegister" href="/register"> مستخدم جديد </a>
+    </div>
+
+  </div>
+  <div class="smScreen d-flex d-lg-none">
+    <div class="logoAndNav row row-cols-2">
+      <div class="logo col-8">
+        <p>المحامي</p>
+        <img src="/teacher/images/logo.png" alt="" srcset="" />
+      </div>
+      <div class="burgerMenu col-4">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="menuContainer">
+      <div class="closeBtn col">
+        <i class="fas fa-window-close"></i>
+      </div>
+      <div class="userAndGovernort pb-2 row row-cols-2 justify-content-between">
+        <div class="governorat col-8">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">اختار محافظتك</button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">القاهرة</a></li>
+              <li><a class="dropdown-item" href="#">الأسكندرية</a></li>
+              <li><a class="dropdown-item" href="#">الاسماعلية</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="userContainer col-4">
+          <div class="profile">
+            <img src="/teacher/images/profile.png" alt="" srcset="" />
+          </div>
+        </div>
+      </div>
+      <div class="searchContanier">
+        <input class="searchInput" type="text" placeholder="ابحث عن استفسار او محامي ..." />
+        <button class="filterButton">
+          <i class="fas fa-filter"></i>
+        </button>
+        <button class="searchButton">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <ul class="navbar-nav">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> أحكام واجتهاد </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+            <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">2 أحكام واجتهاد </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+            <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+            <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+          </ul>
+        </li> 
+
+      </ul>
+
+      <div class="orderButton btn" x-permissions="!login || client ">
+        <p>##word.Request Consultation##</p>
+        <i class="fas fa-bullhorn"></i>
+      </div>
+    </div>
+  </div>
+</header>

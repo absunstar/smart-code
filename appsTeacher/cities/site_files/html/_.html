@@ -1,0 +1,49 @@
+<div ng-controller="cities" class="loaded">
+    <div class="row" x-permissions="citiesUi || citiesManage">
+        <div x-import="cities/modal.html"></div>
+        <div x-import="cities/modalSearch.html"></div>
+
+        <div class="top-actions">
+            <i-button type="add" x-permissions="citiesAdd || citiesManage" label="##word.New##" ng-click="showAdd()"></i-button>
+            <i-button type="search" x-permissions="citiesSearch || citiesManage" label="##word.Active##" ng-click="searchAll(search={active:true})"></i-button>
+            <i-button type="search" x-permissions="citiesSearch || citiesManage" label="##word.Not Active##" ng-click="searchAll(search={active:false})"></i-button>
+        </div>
+
+        <div class="row padding">
+            <i-control ng-model="$search" x-permissions="citiesSearch || citiesManage"></i-control>
+        </div>
+        <div class="table-responsive">
+            <table class="table hover bold" id="t1">
+                <tr>
+                    <th class="w150">##word.Logo##</th>
+                    <th>##word.Country##</th>
+                    <th>##word.Governorate##</th>
+                    <th>##word.City##</th>
+                    <th>##word.Status##</th>
+                    <th class="not-print">##word.Actions##</th>
+                </tr>
+                <tr ng-repeat="item in list | filter:$search">
+                    <td class="center">
+                        <i-image view class="logo center" ng-model="item.image"></i-image>
+                    </td>
+                    <td class="center">{{item.country.name}}</td>
+                    <td class="center">{{item.gov.name}}</td>
+                    <td class="center">{{item.name}}</td>
+                    <td class="center">
+                        <span class="text-success" ng-show="item.active">##word.Active##</span>
+                        <span class="text-danger" ng-show="!item.active">##word.Not Active##</span>
+                    </td>
+                    <td class="center not-print">
+                        <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
+
+                        <i-button type="edit" x-permissions="citiesUpdate || citiesManage" title="##word.Edit##" ng-click="showUpdate(item)"></i-button>
+
+                        <i-button type="delete" x-permissions="citiesDelete || citiesManage" title="##word.Delete##" ng-click="showDelete(item)"></i-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <i-button x-permissions="citiesPrint || citiesManage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
+        <i-button x-permissions="citiesExport || citiesManage" type="export" label="##word.Export to excel##" onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"> </i-button>
+    </div>
+</div>

@@ -1,0 +1,435 @@
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLowersTitle {
+}
+
+main .content .moreActiveLowersConatiner .moreActiveLowers .moreActiveLower {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer {
+  width: 230px;
+  height: fit-content;
+  background-color: white;
+  border-radius: 8px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  p {
+  text-align: center !important;
+  padding: 5px;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .cover
+  .lawerProfileImage {
+  width: 100%;
+  height: 230px;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo {
+  width: 160px;
+  text-align: center;
+  background-color: white;
+  padding: 16px !important;
+  margin-top: -24px;
+  border-radius: 8px;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawerName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawSectionTitle {
+  font-size: 12px;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawerNumberStatic {
+  display: flex;
+  justify-content: center;
+  gap: 8px !important;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawerNumberStatic
+  .consultantInfo
+  .consultantTitle,
+.followerTitle {
+  color: #b9adad;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 141.487%;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerInfo
+  .lawerNumberStatic
+  .consultantInfo
+  .consultantNumber,
+.followerNumber {
+  color: #1e1e1e;
+  text-align: center;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 141.487%; /* 21.223px */
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerButton {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerButton
+  .btn {
+  border-bottom: 5px solid #1475cf !important;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .lawerButton
+  .second-btn {
+  border-bottom: 2px solid #1475cf !important;
+}
+
+main
+  .content
+  .moreActiveLowersConatiner
+  .moreActiveLowers
+  .moreActiveLower
+  .ActiveLawer
+  .verificationIcon
+  .icon {
+  background-color: white;
+  padding: 8px !important;
+  position: absolute;
+  top: 0px;
+  left: 8px;
+  border-radius: 0px 0px 8px 8px;
+}
+
+main .content .recentlyConsultantsContanier .recentlyConsultant {
+  padding: 16px !important;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultant
+  .consultantTitle
+  p {
+  color: #1e1e1e;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+main .content .recentlyConsultantsContanier .recentlyConsultants {
+  gap: 8px;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant {
+  max-width: 316px;
+  height: 300px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--main-background-color2);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .consultantInfo {
+  display: flex;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .consultantInfo
+  p {
+  color: #b9adad;
+
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 0px 2px !important;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .separative {
+  width: 100%;
+  height: 2px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) -0.09%,
+    rgba(0, 0, 0, 0.2) 50.9%,
+    rgba(0, 0, 0, 0) 99.81%
+  );
+  margin-top: 8px !important;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .numbersOfAnswerAndLawer
+  .numbersOfAnswer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60.855px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 5px solid #1475cf;
+  background: #2087e7;
+  color: var(--main-background-color2);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .numbersOfAnswerAndLawer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .numbersOfAnswerAndLawer
+  .firstLawer
+  .lawerName {
+  color: #1e1e1e;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .numbersOfAnswerAndLawer
+  .firstLawer
+  .firstLawerAnswer {
+  color: #b9adad;
+
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .consultantAnswer {
+  max-width: 80ch;
+  padding: 20px;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .answerSection
+  .consultantAnswer
+  p {
+  color: #1e1e1e;
+
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 153.668%; /* 16.903px */
+  margin-top: 8px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .likeAndGoodAnswer {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 8px;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .likeAndGoodAnswer
+  .likeAnswer,
+.goodAnswer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .likeAndGoodAnswer
+  svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: #2087e7;
+}
+
+main
+  .content
+  .recentlyConsultantsContanier
+  .recentlyConsultants
+  .recentlyConsultant
+  .likeAndGoodAnswer
+  p {
+  color: #d9d9d9;
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

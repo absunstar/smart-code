@@ -1,0 +1,35 @@
+<div class="payedConsultantConatainer hidden row align-items-center">
+  <div class="payedConsultant row row-cols-1">
+    <div class="closeBtn col">
+      <i class="fas fa-window-close"></i>
+    </div>
+    <div class="payedConsultantTitle col">
+      <p>##word.Paid legal consultations of a teacher##</p>
+    </div>
+    <div
+      class="payedConsultantTypes col row row-cols-1 row-cols-md-3 row-cols-lg-4 justify-content-center"
+    >
+      <div class="payedConsultantType col" x-list1="typesConsultationsList">
+        <div class="title">
+          <p>##item1.name##</p>
+        </div>
+        <div class="description">
+          <p>##item1.description##</p>
+        </div>
+        <div class="price">
+          <p>##item1.price## ##word.$##</p>
+        </div>
+        <div class="featuer">
+          <ul class="row row-cols-1">
+            <li class="col" x-list2="featuresList"><p>##item2.name##</p></li>
+          </ul>
+        </div>
+        <div class="askButton btn">
+          <a href="/requestConsultations?consult=##item1.id##">
+            <p>##word.Request Consultation##</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

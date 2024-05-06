@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "nationalitiesUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "nationalities", "name": "importNationalities", "En": "Import", "Ar": "إستيراد" }
+]

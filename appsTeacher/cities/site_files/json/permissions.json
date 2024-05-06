@@ -1,0 +1,11 @@
+[
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesManage" , "En":"Manage" , "Ar":"إدارة"},
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesAdd" , "En":"Add" , "Ar":"إضافة"},
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesUpdate" , "En":"Edit" , "Ar":"تعديل"},
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesDelete" , "En":"Delete" , "Ar":"حذف"},
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesView" , "En":"View" , "Ar":"عرض"},
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesSearch" , "En":"Search" , "Ar":"بحث"},
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesExport" , "En":"Export" , "Ar":"تصدير"},
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesPrint" , "En":"Print" , "Ar":"طباعة"},
+    { "moduleName" : "public" , "screenName" : "cities" , "name":"citiesUi" , "En":"UI" , "Ar":"الواجهة الرسومية"}
+]

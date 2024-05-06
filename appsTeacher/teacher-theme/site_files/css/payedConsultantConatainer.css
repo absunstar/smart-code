@@ -1,0 +1,87 @@
+.payedConsultantConatainer {
+  width: 100%;
+  height: 111.5vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  z-index: 1000 !important;
+  background-color: rgba(0, 0, 0, 0.425);
+  padding: 16px !important;
+}
+
+.payedConsultantConatainer::-webkit-scrollbar {
+  display: none;
+}
+
+.payedConsultantConatainer .payedConsultant {
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  background-color: white;
+  padding: 16px !important;
+  border-radius: 8px;
+}
+
+.payedConsultantConatainer .payedConsultant .payedConsultantTitle {
+  color: #000;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 16px !important;
+}
+
+.payedConsultantConatainer .payedConsultant .payedConsultantTypes {
+  gap: 8px !important;
+}
+
+.payedConsultantConatainer .payedConsultant .payedConsultantTypes .payedConsultantType {
+  max-width: 400px;
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 2px solid #b9adad;
+  padding: 16px !important;
+}
+.payedConsultantConatainer .payedConsultant .payedConsultantTypes .payedConsultantType .title {
+  color: #1e1e1e;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.payedConsultantConatainer .payedConsultant .payedConsultantTypes .payedConsultantType .description {
+  color: #1e1e1e;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.payedConsultantConatainer .payedConsultant .payedConsultantTypes .payedConsultantType .price {
+  color: #1e1e1e;
+  text-align: center;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.payedConsultantConatainer .payedConsultant .payedConsultantTypes .payedConsultantType .featuer {
+  color: #1e1e1e;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.payedConsultantConatainer .payedConsultant .payedConsultantTypes .payedConsultantType .askbutton {
+}

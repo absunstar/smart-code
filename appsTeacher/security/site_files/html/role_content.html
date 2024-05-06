@@ -1,0 +1,92 @@
+<div class="form">
+  <div class="tabs">
+    <div class="tabs-header full">
+      <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')"> ##word.Basic Informations## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityPublicPermissions')"> ##word.Public Permissions## </a>
+      <a class="tab-link" x-data="##setting.showHospital##" onclick="site.showTabContent(event, '#securityHmisPermissions')"> ##word.HMIS Permissions## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityAccountingPermissions')"> ##word.Accounting Permissions## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityInventoryPermissions')"> ##word.Inventory Permissions## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityHrPermissions')"> ##word.HR Permissions## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityReportPermissions')"> ##word.Report Permissions## </a>
+    </div>
+
+    <div class="tabs-content">
+      <div id="basicInformation" class="tab-content">
+        <div class="row">
+          <form class="form">
+            <i-control v="r" label="##word.Role##" ng-model="role.name"></i-control>
+            <i-control v="r" label="##word.Role Arabic##" ng-model="role.Ar"></i-control>
+            <i-control v="r" label="##word.Role English##" ng-model="role.En"></i-control>
+          </form>
+        </div>
+
+      </div>
+
+      <div id="securityPublicPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in publicScreens">
+              <legend>{{screen.name}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div x-data="##setting.showHospital##" id="securityHmisPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in hmisScreens">
+              <legend>{{screen.name}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div id="securityAccountingPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in accountingScreens">
+              <legend>{{screen.name}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div id="securityInventoryPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in inventoryScreens">
+              <legend>{{screen.name}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div id="securityHrPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in hrScreens">
+              <legend>{{screen.name}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div id="securityReportPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in reportScreens">
+              <legend>{{screen.name}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="role.$permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

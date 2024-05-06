@@ -1,0 +1,8 @@
+main .mainContent .content .adsBanner {
+  width: 100%;
+  background-color: gainsboro;
+  height: 257px;
+}
+
+main .mainContent .content .adsBanner img {
+}

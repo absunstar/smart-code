@@ -1,0 +1,42 @@
+<div ng-hide="busy" class="row">
+  <div class="col8 padding">
+    <form class="form">
+      <div class="row">
+        <i-control v="r" class="col6" label="##word.Email##" ng-model="user.email"></i-control>
+        <i-control v="r" class="col6" label="##word.Password##" ng-model="user.password" type="password"></i-control>
+      </div>
+
+      <div class="row">
+        <i-control v="r" class="col4" label="##word.Name Arabic##" ng-model="user.nameAr"></i-control>
+        <i-control v="r" class="col4" label="##word.Name English##" ng-model="user.nameEn"></i-control>
+        <i-control v="r" class="col4" label="##word.Mobile##" ng-model="user.mobile"></i-control>
+      </div>
+
+      <i-textarea ng-model="user.profile.notes" label="##word.Notes##"></i-textarea>
+    </form>
+  </div>
+
+  <div class="col4 padding">
+    <i-image category="users" ng-model="user.image"></i-image>
+    <br />
+    <br />
+    <i-file category="users" label="##word.files##" ng-model="user.files"></i-file>
+  </div>
+
+  <br />
+  <br />
+  <div class="row">
+    <div class="col4 padding">
+      <fieldset>
+        <legend>##word.Roles##</legend>
+        <i-checklist primary="name" label="" items="roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
+      </fieldset>
+    </div>
+    <div class="col8 padding">
+      <fieldset>
+        <legend>##word.Roles##</legend>
+        <i-checklist primary="name" label="" items="roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
+      </fieldset>
+    </div>
+  </div>
+</div>

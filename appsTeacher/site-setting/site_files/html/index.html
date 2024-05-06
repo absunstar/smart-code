@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="##data.language.id##" dir="##data.language.direction##" data-ng-app="myApp" class="##data.language.direction##" x-permissions="default_setting_ui || default_setting_manage">
+  <head x-import="cms/head.html">
+    <style>
+      :root {
+        --theme-color: #272727;
+      }
+      body {
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-left: 0px;
+      }
+      .tabs .tabs-header .tab-link.active {
+        border-radius: 5px;
+        border: none;
+      }
+    </style>
+  </head>
+
+  <body style="background: white" ng-controller="siteSetting">
+    <div id="main-layout" class="container">
+      <div x-import="site-setting/dynamic_routes_modal.html"></div>
+      <div class="row">
+        <br />
+        <h1 class="center bold black">##word.default_settings##</h1>
+        <i-control disabled ng-model="siteSetting.host" label="##word.Host##"></i-control>
+
+        <br />
+
+        <div x-permissions="default_setting_view || default_setting_manage" x-import="site-setting/content.html"></div>
+        <h2 class="error">{{error}}</h2>
+      </div>
+    </div>
+
+    <div id="alert" class="modal alert small">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h1 class="blue center">##word.settings_saved##</h1>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="cms/scripts.html"></div>
+    <script x-import="site-setting/index.js"></script>
+  </body>
+</html>

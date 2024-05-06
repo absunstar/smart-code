@@ -1,0 +1,55 @@
+.orderTextConsultingContainer {
+  width: 100%;
+  height: 111.5vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  z-index: 1000 !important;
+  background-color: rgba(0, 0, 0, 0.425);
+  padding: 16px !important;
+}
+
+.orderTextConsultingContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.orderTextConsultingContainer .orderTextConsulting {
+  width: 75%;
+  height: fit-content;
+  margin: 0;
+  background-color: white;
+  padding: 16px !important;
+  border-radius: 8px;
+}
+
+.orderTextConsultingContainer .orderTextConsulting .orderTextConsultingTitle {
+  color: #000;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 16px !important;
+}
+
+.orderTextConsultingContainer .orderTextConsulting .orderTextConsultingForm {
+  gap: 8px !important;
+}
+
+.orderTextConsultingContainer .orderTextConsulting .orderTextConsultingForm input,
+textarea,
+select {
+  padding: 18px !important;
+  gap: 10px;
+}
+
+.orderTextConsultingContainer .orderTextConsulting .orderTextConsultingForm .submitButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orderTextConsultingContainer .orderTextConsulting .orderTextConsultingForm .submitButton .submit {
+  padding: 0px !important;
+}

@@ -1,0 +1,11 @@
+[
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsManage" , "En":"Manage" , "Ar":"إدارة"},
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsAdd" , "En":"Add" , "Ar":"إضافة"},
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsUpdate" , "En":"Edit" , "Ar":"تعديل"},
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsDelete" , "En":"Delete" , "Ar":"حذف"},
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsView" , "En":"View" , "Ar":"عرض"},
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsSearch" , "En":"Search" , "Ar":"بحث"},
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsExport" , "En":"Export" , "Ar":"تصدير"},
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsPrint" , "En":"Print" , "Ar":"طباعة"},
+    { "moduleName" : "public" , "screenName" : "schoolYears" , "name":"schoolYearsUi" , "En":"UI" , "Ar":"الواجهة الرسومية"}
+]

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="Ar" data-ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link
+      rel="stylesheet"
+      href="/css/teacher-style.css?v=##site.options.version##"
+    />
+
+    <style>
+      .register-content {
+        padding: 30px !important;
+        /* background-color: #2087e74d; */
+        border-radius: 10px;
+      }
+      .register-btn {
+        margin: 15px -7px 20px 0px;
+        text-align-last: center;
+        background: #2087e7;
+        color: white;
+        border-radius: 5px;
+        font-size: x-large;
+      }
+      .user-type {
+        text-align-last: center;
+        width: 207px;
+        height: 200px;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: xxx-large;
+        margin: 35px;
+        border-radius: 20%;
+        border-color: #2087e7;
+        box-shadow: 3px 4px #2087e7ba;
+        color: #2087e7;
+        background: white;
+      }
+      .user-type-select {
+        color: white !important;
+        background: grey !important;
+        box-shadow: 1px 1px 5px 1px #1d1d1da6;
+      }
+
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+
+      .darkGray {
+        color: #919191;
+      }
+
+      .input-style input {
+        text-align: center;
+      }
+
+      .register-hide {
+        display: none;
+      }
+
+      .img-country img {
+        width: 44px;
+        height: 40px;
+        display: inline-block;
+      }
+
+      * {
+        max-width: initial;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
+
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang## loaded" ng-controller="register">
+    <div x-replace="teacher-theme/header.html"></div>
+    <div class="row">
+      <h1 class="bold text-center">##word.Register##</h1>
+    </div>
+
+    <div class="form" style="text-align-last: center" id="register">
+      <div class="tabs">
+      
+
+        <div class="row" id="emailData">
+          <div class="col1"></div>
+          <div class="col10 register-content">
+            <div class="row">
+              <div class="col6">
+                <i-control
+                  v="r"
+                  class="input-style"
+                  label="##word.First Name##"
+                  ng-model="user.firstName"
+                >
+                </i-control>
+                <i-control
+                  v="r"
+                  class="input-style"
+                  label="##word.Last Name##"
+                  ng-model="user.lastName"
+                >
+                </i-control>
+                <i-control
+                  v="r"
+                  class="input-style"
+                  label="##word.User Name##"
+                  ng-model="user.userName"
+                >
+                </i-control>
+
+                <i-control
+                  v="r"
+                  class="center input-style"
+                  label="##word.Mobile Number##"
+                  type="tel"
+                  ng-model="user.mobile"
+                >
+                </i-control>
+                <i-list
+                  v="r"
+                  class="center input-style"
+                  label="##word.Country##"
+                  ng-model="user.country"
+                  ng-change="getGovesList(user.country)"
+                  items="countriesList"
+                  display="name"
+                  ng-search="user.$countries"
+                ></i-list>
+                <i-list
+                  v="r"
+                  label="##word.Governorate##"
+                  ng-change="getCitiesList(user.gov)"
+                  ng-model="user.gov"
+                  display="name"
+                  items="govesList"
+                  ng-search="user.$gov"
+                ></i-list>
+                <i-list
+                  label="##word.City##"
+                  ng-model="user.city"
+                  ng-change="getAreasList(user.city)"
+                  items="citiesList"
+                  display="name"
+                  ng-search="user.$area.$cityitem"
+                >
+                </i-list>
+                <i-list
+                  label="##word.Area##"
+                  ng-model="user.area"
+                  items="areasList"
+                  display="name"
+                  ng-search="user.$area.$areaitem"
+                >
+                </i-list>
+                <i-control
+                  v="r e"
+                  class="input-style"
+                  label="##word.Login E-mail##"
+                  ng-model="user.email"
+                >
+                </i-control>
+                <i-control
+                  v="r"
+                  class="pass input-style"
+                  label="##word.Password##"
+                  type="password"
+                  id="pass1"
+                  ng-model="user.password"
+                >
+                </i-control>
+                <i-control
+                  v="r"
+                  class="pass input-style"
+                  label="##word.Retype Password##"
+                  type="password"
+                  id="pass2"
+                  ng-model="user.rePassword"
+                >
+                </i-control>
+                <i-checkbox
+                  class="right"
+                  label="##word.Show Password##"
+                  ng-change="showPassword()"
+                  ng-model="showPassword"
+                >
+                </i-checkbox>
+              </div>
+              <div class="col2"></div>
+              <div class="col3">
+                <div class="row">
+                  <p class="right-content">
+                    <span class="red bold"> * </span> ##word.Profile Image##
+                  </p>
+                  <i-image
+                    v="r"
+                    style="width: 170px !important; height: 200px !important"
+                    ng-model="user.image"
+                  ></i-image>
+                </div>
+                <div class="row" ng-show="type == 'teacher'">
+                  <p class="right-content">
+                    <span class="red bold"> * </span> ##word.Card Image##
+                  </p>
+                  <i-image
+                    style="width: 170px !important; height: 200px !important"
+                    ng-model="user.cardImage"
+                  ></i-image>
+                </div>
+              </div>
+            </div>
+
+            <p class="font-18">
+              <a href="/login" class="hover-a">
+                ##word.Existing User## ##word.Login Now##</a
+              >
+            </p>
+            <button ng-click="register(user)" class="register-btn">
+              ##word.Register Now## <i class="fa fa-user-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <h2 class="bold center red">{{error}}</h2>
+
+        <div id="main-layout" class="container">
+          <div class="row" id="registersouqModal"></div>
+        </div>
+
+        <div x-replace="teacher-theme/footer.html"></div>
+        <div x-import="teacher-theme/scripts.html"></div>
+        <script x-import="register/index.js"></script>
+      </div>
+    </div>
+  </body>
+</html>

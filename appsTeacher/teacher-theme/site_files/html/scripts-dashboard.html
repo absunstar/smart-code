@@ -1,0 +1,102 @@
+<script src="/x-js/bootstrap-5-support.js?v=##site.options.version##"></script>
+<script>
+  site.features = '##req.features##';
+  site.feature = (f) => site.features.indexOf(f) !== -1;
+</script>
+<script x-import="ui-print/index.js"></script>
+<script x-import="teacher-theme/sitebar.js"></script>
+<script x-import="teacher-theme/sitebottom.js"></script>
+<script x-import="teacher-theme/footer_teacher.js"></script>
+
+
+<script>
+   function export_to_xlsx(table, type = 'xlsx') {
+    var data = typeof table === 'string' ? document.querySelector(table) : table;
+    var excelFile = XLSX.utils.table_to_book(data, { sheet: 'sheet1' });
+    XLSX.write(excelFile, { bookType: type, bookSST: true, type: 'base64' });
+    XLSX.writeFile(excelFile, (data.id || data.tagName) + '.' + type);
+  }
+
+  function xtime(_time) {
+    let since_few = ' Since few ';
+    let before = ' Ago ';
+    let second = ' Second ';
+    let minute = ' Minute ';
+    let hour = ' Hour ';
+    let day = ' Day ';
+    let month = ' Month ';
+    let year = ' Year ';
+
+    if ('##session.lang##' == 'ar') {
+      since_few = ' منذ قليل ';
+      before = ' منذ ';
+      second = ' ثانية ';
+      minute = ' دقيقة ';
+      hour = ' ساعة ';
+      day = ' يوم ';
+      month = ' شهر ';
+      year = ' سنة ';
+    }
+
+    if (typeof _time == 'undefined' || !_time) {
+      return since_few;
+    }
+    _time = new Date().getTime() - new Date(_time).getTime();
+
+    let _type = null;
+
+    let _time_2 = null;
+    let _type_2 = null;
+
+    let times = [1, 1000, 60, 60, 24, 30, 12];
+    let times_type = ['x', second, minute, hour, day, month, year];
+
+    let offset = new Date().getTimezoneOffset();
+    if (false && offset < 0) {
+      let diff = Math.abs(offset) * 60 * 1000;
+      _time = _time + diff;
+    }
+
+    if (_time <= 10000) {
+      return since_few;
+    }
+
+    for (let i = 0; i < times.length; i++) {
+      if (_time < times[i]) {
+        break;
+      } else {
+        _type = times_type[i];
+        if (i > 0) {
+          _time_2 = _time % times[i];
+          _type_2 = times_type[i - 1];
+        }
+        _time = _time / times[i];
+      }
+    }
+
+    _time = Math.floor(_time);
+    _time_2 = Math.floor(_time_2);
+
+    if (_time_2 == 0 || _type_2 == null || _type_2 == 'x') {
+      return [before, _time, _type].join(' ');
+    } else {
+      return [before, _time, _type, _time_2, _type_2].join(' ');
+    }
+  }
+
+  $(document).on('keydown', 'select', function (e) {
+    if (e.which == 13 || e.keyCode == 13) {
+      e.preventDefault();
+      var $canfocus = $('select');
+      var index = $canfocus.index(document.activeElement) + 1;
+      if (index >= $canfocus.length) index = 0;
+      $canfocus.eq(index).focus();
+    }
+  });
+</script>
+
+<script>
+  function showMenu() {
+    $('.main-menu').toggle(200);
+  }
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="theme1/head.html">
+    <style>
+      i-image.photo img {
+        width: 128px;
+        height: 128px;
+        border: none;
+        border-radius: 0px;
+        padding: 3px;
+      }
+      .user {
+        padding: 10px;
+        border: 1px solid #eee;
+        margin: 15px;
+        border-radius: 10px;
+        height: 250px;
+        width: 250px;
+      }
+      .user:hover {
+        transform: scale(1.1);
+      }
+      .title {
+        font-weight: bold;
+        color: #000 !important;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang## loaded">
+    <div x-import="theme1/header.html"></div>
+
+    <div id="main-layout" class="container">
+      <div class="row">
+        <div class="row" ng-controller="security">
+          <div x-import="security/add_modal.html"></div>
+          <div x-import="security/view_modal.html"></div>
+          <div x-permissions="securityManage " class="top-actions">
+            <i-button type="btn add bg-white black" ng-click="newuser()" label="##word.New User##"></i-button>
+            <i-button type="bg-white black" label="##word.Roles##" ng-click="gotoRoles()"></i-button>
+
+            <span ng-show="busy">
+              <i class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+              <span class="sr-only">Loading...</span>
+            </span>
+          </div>
+          <br />
+          <div x-permissions="securityManage" class="users pointer center loaded">
+            <table class="table hover center">
+              <tr>
+                <th>##word.Image##</th>
+                <th>##word.Email##</th>
+                <th>##word.Name##</th>
+                <th>##word.Type##</th>
+                <th>##word.Actions##</th>
+              </tr>
+              <tr ng-repeat="user in list">
+                <td ng-click="details(user)">
+                  <i-image view class="logo center" ng-model="user.image"></i-image>
+                </td>
+                <td ng-click="details(user)">{{user.email}}</td>
+                <td ng-click="details(user)">{{user.name##session.lang##}}</td>
+                <td ng-click="details(user)">{{user.type.name##session.lang##}}</td>
+                <td>
+                  <i-button type="remove" ng-click="remove(user)" title="##word.Delete##"></i-button>
+                  <i-button type="edit" ng-click="edit(user)" title="##word.Edit##"></i-button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="theme1/footer.html"></div>
+    <script x-import="security/index.js"></script>
+  </body>
+</html>

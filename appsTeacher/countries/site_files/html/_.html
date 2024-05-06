@@ -1,0 +1,50 @@
+<div ng-controller="countries" class="loaded">
+    <div class="row" x-permissions="countriesUi || countriesManage">
+        <div x-import="countries/modal.html"></div>
+        <div x-import="countries/modalSearch.html"></div>
+
+        <div class="top-actions">
+            <i-button type="add" x-permissions="countriesAdd || countriesManage" label="##word.New##" ng-click="showAdd()"></i-button>
+            <i-button type="search" x-permissions="countriesSearch || countriesManage" label="##word.Active##" ng-click="searchAll(search={active:true})"></i-button>
+            <i-button type="search" x-permissions="countriesSearch || countriesManage" label="##word.Not Active##" ng-click="searchAll(search={active:false})"></i-button>
+
+            <i-upload api="api/countries/import" label="Import" x-permissions="importCountries || countriesManage"></i-upload>
+        </div>
+
+        <div class="row padding">
+            <i-control ng-model="$search" x-permissions="countriesSearch || countriesManage"></i-control>
+        </div>
+        <div class="table-responsive">
+            <table class="table hover bold" id="t1">
+                <tr>
+                    <th class="w150">##word.Logo##</th>
+                    <th>##word.Name##</th>
+                    <th>##word.Calling Code##</th>
+                    <th>##word.Status##</th>
+                    <th class="not-print">##word.Actions##</th>
+                </tr>
+                <tr ng-repeat="item in list | filter:$search">
+                    <td>
+                        <i-image view class="logo center" ng-model="item.image"></i-image>
+                    </td>
+                    <td class="center">{{item.name}}</td>
+                    <td class="center blue">{{item.callingCode}}</td>
+                    <td class="center">
+                        <span ng-show="item.active" class="text-success">##word.Active##</span>
+                        <span ng-show="!item.active" class="text-danger">##word.Not Active##</span>
+                    </td>
+
+                    <td class="center not-print">
+                        <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
+
+                        <i-button type="edit" x-permissions="countriesUpdate || countriesManage" title="##word.Edit##" ng-click="showUpdate(item)"></i-button>
+
+                        <i-button type="delete" x-permissions="countriesDelete || countriesManage" title="##word.Delete##" ng-click="showDelete(item)"></i-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <i-button x-permissions="countriesPrint || countriesManage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
+        <i-button x-permissions="countriesExport || countriesManage" type="export" label="##word.Export to excel##" onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"> </i-button>
+    </div>
+</div>
