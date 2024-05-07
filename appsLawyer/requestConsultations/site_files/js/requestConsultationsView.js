@@ -28,52 +28,22 @@ app.controller("requestConsultationsView", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.addReply = function () {
-    if ($scope.busyAddReply) {
-      return;
-    }
-
-    if (!$scope.item.$reply) {
-      $scope.error = "##word.Must Enter Comment##";
-
-      return;
-    }
-
-    $scope.busyAddReply = true;
-    $scope.error = "";
-    $http({
-      method: "POST",
-      url: `${$scope.baseURL}/api/requestConsultationsReply/add`,
-      data: {
-        requestId: site.toNumber("##query.requestId##"),
-        comment: $scope.item.$reply,
-      },
-    }).then(
-      function (response) {
-        $scope.busyAddReply = false;
-        if (response.data.done) {
-          $scope.getRepliesList();
-          $scope.item.$reply = "";
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-        $scope.busyAddReply = false;
-      }
-    );
-  };
-
   $scope.updateReply = function (type, reply) {
     if ($scope.busyUpdateReply) {
       return;
     }
-    let data = { id: reply.id,type };
+    reply = reply || {};
+    let data = { id: $scope.item.id, code: reply.code, type };
 
     if (type == "addReply") {
-      if (!reply.$replyComment) {
+      if (!$scope.item.$replyComment) {
         $scope.errorAddReply = "##word.Must Enter Comment##";
+        return;
+      }
+      data.comment = $scope.item.$replyComment;
+    } else if (type == "addSubReply") {
+      if (!reply.$replyComment) {
+        $scope.errorSubReply = "##word.Must Enter Comment##";
         return;
       }
       data.comment = reply.$replyComment;
@@ -83,15 +53,16 @@ app.controller("requestConsultationsView", function ($scope, $http, $timeout) {
 
     $scope.busyUpdateReply = true;
     $scope.errorAddReply = "";
+    $scope.errorSubReply = "";
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/requestConsultationsReply/update`,
+      url: `${$scope.baseURL}/api/requestConsultations/updateReply`,
       data,
     }).then(
       function (response) {
         $scope.busyUpdateReply = false;
         if (response.data.done) {
-          $scope.getRepliesList();
+          $scope.view();
         } else {
           $scope.errorAddReply = response.data.error;
         }
@@ -103,29 +74,6 @@ app.controller("requestConsultationsView", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getRepliesList = function () {
-    let where = { requestId: site.toNumber("##query.requestId##") };
-
-    $scope.repliesList = [];
-    $http({
-      method: "POST",
-      url: `${$scope.baseURL}/api/requestConsultationsReply/all`,
-      data: {
-        where: where,
-      },
-    }).then(
-      function (response) {
-        $scope.busyAll = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.repliesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busyAll = false;
-        $scope.error = err;
-      }
-    );
-  };
 
   $scope.getUser = function () {
     $scope.busy = true;
@@ -166,7 +114,6 @@ app.controller("requestConsultationsView", function ($scope, $http, $timeout) {
   };
 
   $scope.view();
-  $scope.getRepliesList();
   if ("##query.lawyerId##") {
     $scope.getUser();
   }

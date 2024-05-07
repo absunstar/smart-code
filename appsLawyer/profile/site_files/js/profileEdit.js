@@ -17,7 +17,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
           $scope.user.endWorkTime = $scope.user.endWorkTime || new Date();
           document.querySelector(`#profileEdit .tab-link`).click();
 
-          $scope.getRequestConsultationsList();
         } else {
           $scope.error = response.data.error;
         }
@@ -83,10 +82,10 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.getRequestConsultationsList = function () {
     $scope.requestConsultationsList = [];
     let where = {};
-    if ($scope.user.type == "lawyer") {
-      where["lawyer.id"] = $scope.user.id;
+    if (site.toNumber('##user.type##') == "lawyer") {
+      where["lawyer.id"] = site.toNumber('##user.id##');
     } else {
-      where["addUserInfo.id"] = site.toNumber('##user.id##');
+      where["user.id"] = site.toNumber('##user.id##');
     }
     $scope.busy = true;
     $http({
@@ -301,4 +300,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.getCountriesList();
   $scope.getServicesList();
   $scope.getSpecialtiesList();
+  $scope.getRequestConsultationsList();
+
 });

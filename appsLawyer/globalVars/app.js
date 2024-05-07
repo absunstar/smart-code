@@ -38,11 +38,6 @@ module.exports = function init(site) {
     },
     {
       id: 2,
-      nameAr: "إستشارة عاجلة",
-      nameEn: "Urgent Consultation",
-    },
-    {
-      id: 3,
       nameAr: "إستشارة مجانية",
       nameEn: "Free Consultation",
     }

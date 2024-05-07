@@ -4,18 +4,23 @@
 
   <body class="##session.lang##">
     <nav
-    x-import="lawyer-theme/sitebar.html"
-    class="sitebar"
-    data-ng-controller="sitebar"
-  ></nav>
+      x-import="lawyer-theme/sitebar.html"
+      class="sitebar"
+      data-ng-controller="sitebar"
+    ></nav>
 
-  <nav
-    class="sitebottom"
-    x-import="lawyer-theme/sitebottom.html"
-    ng-controller="sitebottom"
-  ></nav>
+    <nav
+      class="sitebottom"
+      x-import="lawyer-theme/sitebottom.html"
+      ng-controller="sitebottom"
+    ></nav>
 
-    <div id="main-layout" class="container" x-import="requestConsultations/_.html" x-permissions="login"></div>
+    <div
+      id="main-layout"
+      class="container"
+      x-import="requestConsultations/_.html"
+      x-permissions="login"
+    ></div>
 
     <div x-import="lawyer-theme/scripts-dashboard.html"></div>
     <script x-import="requestConsultations/index.js"></script>

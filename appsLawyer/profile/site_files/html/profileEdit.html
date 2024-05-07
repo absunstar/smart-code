@@ -170,7 +170,7 @@
                       >
                       </i-control>
 
-                      <i-control
+                     <!--  <i-control
                         class="center input-style"
                         label="##word.Start Of Communication Time##"
                         type="time"
@@ -184,7 +184,7 @@
                         type="time"
                         ng-model="user.endCommunicationTime"
                       >
-                      </i-control>
+                      </i-control> -->
 
                       <!-- <i-control
                   ng-show="type == 'lawyer'"
@@ -472,7 +472,7 @@
                 <p class="" ng-show="user.type == 'lawyer'">
                   ##word.Client##
                   <b class="userPrint account-number bold">
-                    {{recuestCons.addUserInfo.name}}
+                    {{recuestCons.user.firstName}} {{recuestCons.user.lastName}}
                   </b>
                 </p>
 
@@ -509,6 +509,9 @@
                 <p class="userPrint req-cons-name font-20">
                   {{recuestCons.status.name##session.lang##}}
                 </p>
+                <a href="/requestConsultationsView?requestId={{recuestCons.id}}">
+                  <i-button title="##word.view##" type="view"></i-button>
+                </a>
               </div>
             </div>
           </div>

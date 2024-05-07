@@ -209,7 +209,13 @@ module.exports = function init(site) {
           _data.status = site.consultationsStatusList[0];
           _data.repliesList = [];
           _data.date = new Date();
-          _data.addUserInfo = req.getUserFinger();
+          _data.watchCount = 0;
+          _data.user = {
+            firstName: req.session.user.firstName,
+            lastName: req.session.user.lastName,
+            id: req.session.user.id,
+            image: req.session.user.image,
+          };
 
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -243,7 +249,6 @@ module.exports = function init(site) {
           };
           _data.supportCount = 0;
           _data.oppositionCount = 0;
-          _data.watchCount = 0;
           _data.date = new Date();
           _data.repliesList = [];
           _data.supportList = [];
@@ -289,16 +294,18 @@ module.exports = function init(site) {
 
       site.post(
         {
-          name: `/api/requestConsultationsReply/update`,
+          name: `/api/${app.name}/updateReply`,
           require: { permissions: ["login"] },
         },
         (req, res) => {
           let response = {
             done: false,
           };
-
           let _data = req.data;
-          app.$collectionReply.findOne({ id: _data.id }, (err, doc) => {
+          app.view({ id: _data.id }, (err, doc) => {
+            let index = doc.repliesList.findIndex(
+              (itm) => itm.code === _data.code
+            );
             if (_data.type == "addReply") {
               if (!_data.comment) {
                 response.error = "Must Add Comment";
@@ -312,12 +319,36 @@ module.exports = function init(site) {
                   image: req.session.user.image,
                 },
                 date: new Date(),
+                supportCount: 0,
+                oppositionCount: 0,
+                comment: _data.comment,
+                repliesList: [],
+                supportList: [],
+                oppositionList: [],
+                code: Math.random().toString(30).slice(2) + doc.id,
+              });
+            }
+            if (_data.type == "addSubReply") {
+              if (!_data.comment) {
+                response.error = "Must Add Comment";
+                res.json(response);
+              }
+             
+              doc.repliesList[index].repliesList.push({
+                user: {
+                  firstName: req.session.user.firstName,
+                  lastName: req.session.user.lastName,
+                  id: req.session.user.id,
+                  image: req.session.user.image,
+                },
+                date: new Date(),
                 comment: _data.comment,
                 code: Math.random().toString(30).slice(2) + doc.id,
               });
             } else if (_data.type == "support") {
-              doc.supportCount += 1;
-              doc.supportList.unshift({
+              doc.repliesList[index].supportCount += 1;
+           
+              doc.repliesList[index].supportList.unshift({
                 user: {
                   firstName: req.session.user.firstName,
                   lastName: req.session.user.lastName,
@@ -327,8 +358,8 @@ module.exports = function init(site) {
                 date: new Date(),
               });
             } else if (_data.type == "opposition") {
-              doc.oppositionCount += 1;
-              doc.oppositionList.unshift({
+              doc.repliesList[index].oppositionCount += 1;
+              doc.repliesList[index].oppositionList.unshift({
                 user: {
                   firstName: req.session.user.firstName,
                   lastName: req.session.user.lastName,
@@ -338,18 +369,25 @@ module.exports = function init(site) {
                 date: new Date(),
               });
             } else if (_data.type == "unsupport") {
-              doc.supportCount -= 1;
-              doc.supportList = doc.supportList.filter(
-                (person) => person.user.id != _data.userId
-              );
+              doc.repliesList[index].supportCount -= 1;
+              doc.repliesList[index].supportList = doc.repliesList[
+                index
+              ].supportList.filter((person) => person.user.id != _data.userId);
             } else if (_data.type == "unopposition") {
-              doc.oppositionCount -= 1;
-              doc.oppositionList = doc.oppositionList.filter(
+              doc.repliesList[index].oppositionCount -= 1;
+              doc.repliesList[index].oppositionList = doc.repliesList[
+                index
+              ].oppositionList.filter(
                 (person) => person.user.id != _data.userId
               );
+            } else if (_data.type == "approve") {
+              doc.repliesList[index].approve = true;
+              doc.approveReply = true;
+            } else if (_data.type == "unapprove") {
+              doc.repliesList[index].approve = false;
+              doc.approveReply = false;
             }
-
-            app.$collectionReply.update(doc, (err, result) => {
+            app.update(doc, (err, result) => {
               if (!err) {
                 response.done = true;
                 response.result = result;
@@ -399,8 +437,29 @@ module.exports = function init(site) {
           if (!err && doc) {
             response.done = true;
             doc.$time = site.xtime(doc.date, req.session.lang || "Ar");
+            for (let i = 0; i < doc.repliesList.length; i++) {
+              let _doc = doc.repliesList[i];
+              if (req.session.user) {
+                _doc.$userSupport = _doc.supportList.some(
+                  (_f) => _f.user.id === req.session.user.id
+                );
+                _doc.$userOpposition = _doc.oppositionList.some(
+                  (_f) => _f.user.id === req.session.user.id
+                );
+              }
+
+              _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
+              if (_doc.repliesList && _doc.repliesList.length > 0) {
+                _doc.repliesList.forEach((_reply) => {
+                  _reply.$time = site.xtime(
+                    _reply.date,
+                    req.session.lang || "Ar"
+                  );
+                });
+              }
+            }
             response.doc = doc;
-            doc.watchCount +=1;
+            doc.watchCount += 1;
             app.update(doc);
           } else {
             response.error = err?.message || "Not Exists";
@@ -418,12 +477,13 @@ module.exports = function init(site) {
         let select = req.body.select || {
           id: 1,
           lawyer: 1,
-          addUserInfo: 1,
+          user: 1,
           name: 1,
           consultationClassification: 1,
           typeConsultation: 1,
           details: 1,
           status: 1,
+          approveReply: 1,
         };
         if (where && where.fromDate && where.toDate) {
           let d1 = site.toDate(where.fromDate);
@@ -510,11 +570,15 @@ module.exports = function init(site) {
               if (docs && docs.length > 0)
                 for (let i = 0; i < docs.length; i++) {
                   let _doc = docs[i];
-                  if(req.session.user){
-                    _doc.$userSupport = _doc.supportList.some((_f) => _f.user.id === req.session.user.id);
-                    _doc.$userOpposition = _doc.oppositionList.some((_f) => _f.user.id === req.session.user.id);
+                  if (req.session.user) {
+                    _doc.$userSupport = _doc.supportList.some(
+                      (_f) => _f.user.id === req.session.user.id
+                    );
+                    _doc.$userOpposition = _doc.oppositionList.some(
+                      (_f) => _f.user.id === req.session.user.id
+                    );
                   }
-                  
+
                   _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
                   if (_doc.repliesList && _doc.repliesList.length > 0) {
                     _doc.repliesList.forEach((_reply) => {

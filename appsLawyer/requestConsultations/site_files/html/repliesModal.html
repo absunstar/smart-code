@@ -1,0 +1,63 @@
+<div id="repliesModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <p class="center">
+        ##word.Replies##
+        <i class="fa fa-file"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <p class="font-20 mainColor">##word.Client##</p>
+        <p class="font-22">{{item.user.firstName}} {{item.user.lastName}}</p>
+        <p class="font-20 mainColor">##word.Consultation Title##</p>
+        <p class="font-22">{{item.name}}</p>
+
+        <div class="table-responsive">
+          <table class="table hover bold">
+            <tr>
+              <th>##word.Lawyer##</th>
+              <th>##word.Supports##</th>
+              <th>##word.Oppositions##</th>
+              <th>##word.Details##</th>
+              <th class="not-print">##word.Actions##</th>
+            </tr>
+            <tr ng-repeat="reply in item.repliesList">
+              <td class="center">
+                {{reply.user.firstName}} {{reply.user.lastName}}
+              </td>
+              <td class="center">{{reply.supportCount}}</td>
+              <td class="center">{{reply.oppositionCount}}</td>
+              <td class="center linesView">{{reply.comment}}</td>
+
+              <td class="center not-print">
+                <i-button
+                  ng-hide="reply.approve || item.approveReply"
+                  label="##word.Approve##"
+                  ng-click="updateReply('approve',reply);updateRequestApprove(true,item)"
+                ></i-button>
+
+                <i-button
+                  ng-show="reply.approve"
+                  label="##word.UnApprove##"
+                  ng-click="updateReply('unapprove',reply);updateRequestApprove(false,item)"
+                ></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <p class="error">{{error}}</p>
+      <i-button
+        type="close"
+        label="##word.Close##"
+        onclick="site.hideModal( '#repliesModal')"
+      ></i-button>
+    </div>
+  </div>
+</div>
