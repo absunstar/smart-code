@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="lawyer-theme/head.html">
+    <link
+      rel="stylesheet"
+      href="/css/lawyer-style.css?v=##site.options.version##"
+    />
+
+    <style x-import="requestConsultations/style.css"></style>
+  </head>
+
+  <body class="##session.lang##" ng-controller="requestConsultationsView">
+    <div x-replace="lawyer-theme/header.html"></div>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <div class="row">
+          <div class="row">
+            <div class="row">
+              <h1 class="bold text-center">
+                ##word.Request Consultations View##
+              </h1>
+            </div>
+            <div class="row">
+              <div class="col2"></div>
+              <div class="col8">
+                <div class="recentlyConsultantsContanier">
+                  <ul
+                    class="recentlyConsultants row"
+                  >
+                    <li class="col recentlyConsultant">
+                      <div class="consultantTitle">
+                        <a href="#">
+                          <p class="font-25">
+                            {{item.name}}
+                          </p>
+                        </a>
+                      </div>
+                      <div class="consultantInfo">
+                        <div class="questionBy">
+                          <a href="#">
+                            <p class="font-16">##word.By## ##user.firstName## ##user.lastName##</p>
+                          </a>
+                        </div>
+                        <div class="dash">
+                          <p class="font-16">/</p>
+                        </div>
+                        <div class="questionTime">
+                          <p class="font-16">##word.Asked## {{item.$time}}</p>
+                        </div>
+                        <div class="dash">
+                          <p class="font-16">/</p>
+                        </div>
+                        <div class="questionView">
+                          <p class="font-16">{{item.watchCount}} ##word.Watch##</p>
+                        </div>
+                      </div>
+                      <div class="separative"></div>
+                      <div class="answerSection">
+                        <div class="numbersOfAnswerAndLawer">
+                          <div class="numbersOfAnswer">
+                            <p>{{repliesList.length}}</p>
+                            <p>##word.Answers##</p>
+                          </div>
+                          
+                        <div class="consultantAnswer">
+                          <p class="linesView font-20">{{item.details}}</p>
+                        </div>
+                      </div>
+                      <div class="likeAndGoodAnswer">
+                        <div class="likeAnswer">
+                          <i class="fas fa-thumbs-up"></i>
+                          <p>{{item.supportCount}} ##word.Support##</p>
+                        </div>
+                        <div class="goodAnswer">
+                          <i class="fas fa-check-circle"></i>
+                          <p>{{item.supportCount}} ##word.Support##</p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+         
+
+            <div class="row">
+              <div class="col2"></div>
+              <div class="col8" id="requestConsultationsViewModal">
+                <div class="row">
+                  <div class="col3 padding bold font-25">
+                    <p>##word.Consultation Seeker##</p>
+                    <br />
+                    <p>##word.Consultation Title##</p>
+                    <br />
+                    <p>##word.Consultation Classification##</p>
+                    <br />
+                    <p>##word.Type Consultation##</p>
+                    <br />
+                    <p>##word.Consultation Details##</p>
+                  </div>
+                  <div
+                    class="col8 font-25 bold"
+                    style="border-right: 8px solid #1475cf"
+                  >
+                    <p>
+                      <a
+                        href="/profileView/##user.id##/##user.firstName##/##user.lastName##"
+                      >
+                        <img
+                          class="center userad-logo"
+                          ng-src="##user.image.url##"
+                          onerror="this.src='/images/user.png'"
+                          alt=""
+                        />
+                        <b class="user-name-stlye"
+                          >##user.firstName## ##user.lastName##</b
+                        >
+                      </a>
+                    </p>
+                    <br />
+                    <p>{{item.name}}</p>
+                    <br />
+                    <p>
+                      {{item.consultationClassification.name##session.lang##}}
+                    </p>
+                    <br />
+                    <p>{{item.typeConsultation.name}}</p>
+                    <br />
+                    <p class="linesView">{{item.details}}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div
+                  class="col9 bg-comment content-ad"
+                  ng-repeat="reply in repliesList"
+                >
+                  <div class="row">
+                    <a
+                      href="/profileView/{{reply.user.id}}/{{reply.user.firstName}}/{{reply.user.lastName}}"
+                    >
+                      <img
+                        class="center userad-logo"
+                        ng-src="{{reply.user.image.url}}"
+                        onerror="this.src='/images/user.png'"
+                        alt=""
+                      />
+                      <b class="user-name-stlye"
+                        >{{reply.user.firstName}} {{reply.user.lastName}}</b
+                      >
+                      <span class="left comment-count">
+                        {{$index + 1}}
+                        <span ng-show="10 > $index + 1">0</span></span
+                      >
+                    </a>
+
+                    <div class="time-publish margin padding">
+                      <i class="fas fa-clock"> {{reply.$time}} </i>
+                    </div>
+                  </div>
+                  <hr />
+                  <p class="text-comment bold">{{reply.comment}}</p>
+                  <a
+                    x-permission="login"
+                    class="pointer reply"
+                    ng-click="showReplyComment(reply.id)"
+                  >
+                    <i class="fa fa-comments"></i> ##word.Reply##
+                  </a>
+                  <a
+                    x-permission="lawyer"
+                    ng-show="reply.$userSupport"
+                    class="pointer reply bg-like"
+                    ng-click="updateReply('unsupport',reply)"
+                  >
+                    <i class="blue far fa-thumbs-up"></i>
+                  </a>
+                  <a
+                    x-permissions="lawyer"
+                    ng-show="!reply.$userSupport && !reply.$userOpposition"
+                    class="pointer reply"
+                    ng-click="updateReply('support',reply)"
+                  >
+                    <i class="far fa-thumbs-up"></i>
+                  </a>
+                  <a
+                    x-permissions="lawyer"
+                    ng-show="reply.$userOpposition"
+                    class="pointer reply bg-unlike"
+                    ng-click="updateReply('unopposition',reply)"
+                  >
+                    <i class="red far fa-thumbs-down"></i>
+                  </a>
+                  <a
+                    x-permissions="lawyer"
+                    ng-show="!reply.$userOpposition && !reply.$userSupport"
+                    class="pointer reply"
+                    ng-click="updateReply('opposition',reply)"
+                  >
+                    <i class="far fa-thumbs-down"></i>
+                  </a>
+                  <div
+                    class="row reply-comment"
+                    id="reply_{{reply.id}}"
+                    x-permissions="login"
+                  >
+                    <i-textarea
+                      class="input-style"
+                      v="r"
+                      ng-model="reply.$replyComment"
+                    ></i-textarea>
+                    <button
+                      class="send-reply-btn center"
+                      ng-click="updateReply('addReply',reply)"
+                    >
+                      <i class="fa fa-paper-plane"></i>
+                      ##word.Send##
+                    </button>
+
+                    <h2 class="error center bold">{{error}}</h2>
+                  </div>
+                  <div
+                    class="row"
+                    ng-repeat="r in reply.repliesList track by $index"
+                    ng-show="reply.repliesList.length > 0"
+                  >
+                    <div class="col1"></div>
+                    <div class="col11 border content-ad">
+                      <div class="row">
+                        <a
+                          href="/profile/{{r.user.id}}/{{r.user.firstName}}/{{r.user.lastName}}"
+                        >
+                          <img
+                            class="center userad-logo"
+                            ng-src="{{r.user.image.url}}"
+                            onerror="this.src='/images/user.png'"
+                            alt=""
+                          />
+                          <b class="user-name-stlye"
+                            >{{r.user.firstName}} {{r.user.lastName}}</b
+                          >
+
+                          <span class="left comment-count">
+                            {{$index + 1}}
+                            <span ng-show="10 > $index + 1">0</span></span
+                          >
+                        </a>
+
+                        <div class="time-publish margin padding">
+                          <i class="fas fa-clock"> {{r.$time}} </i>
+                        </div>
+                      </div>
+                      <hr />
+                      <p class="text-comment bold">{{r.comment}}</p>
+                      <a
+                        x-permission="login"
+                        class="pointer reply"
+                        ng-click="showReplyComment(r.code)"
+                      >
+                        <i class="fa fa-comments"></i> ##word.Reply##
+                      </a>
+                      <div
+                        class="row reply-comment"
+                        id="reply_{{r.code}}"
+                        x-permissions="login"
+                      >
+                        <i-textarea
+                          class="input-style"
+                          v="r"
+                          ng-model="reply.$replyComment"
+                        ></i-textarea>
+                        <button
+                          class="send-reply-btn center"
+                          ng-click="updateReply('addReply',reply)"
+                        >
+                          <i class="fa fa-paper-plane"></i>
+                          ##word.Send##
+                        </button>
+
+                        <h2 class="error center bold">{{error}}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" ng-show="'##user.type##' == 'lawyer'">
+                <div class="col9">
+                  <i-textarea
+                    class="input-style padding margin"
+                    ng-model="item.$reply"
+                  >
+                  </i-textarea>
+
+                  <button class="send-btn center" ng-click="addReply()">
+                    <i class="fas fa-paper-plane"></i>
+                    ##word.Send##
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <h2 class="bold center red">{{error}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div x-replace="lawyer-theme/footer.html"></div>
+    <div x-import="lawyer-theme/scripts.html"></div>
+    <script
+      x-import="requestConsultations/requestConsultationsView.js"
+    ></script>
+  </body>
+</html>

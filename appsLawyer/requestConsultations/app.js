@@ -15,6 +15,7 @@ module.exports = function init(site) {
   };
 
   app.$collection = site.connectCollection(app.name);
+  app.$collectionReply = site.connectCollection("requestConsultationsReply");
 
   app.init = function () {
     if (app.allowMemory) {
@@ -162,6 +163,23 @@ module.exports = function init(site) {
 
       site.get(
         {
+          name: "requestConsultationsView",
+        },
+        (req, res) => {
+          res.render(
+            app.name + "/requestConsultationsView.html",
+            {
+              title: app.name,
+              appName: req.word("Request A Consultations View"),
+              setting: site.getSiteSetting(req.host),
+            },
+            { parser: "html", compres: true }
+          );
+        }
+      );
+
+      site.get(
+        {
           name: "requestConsultationsManage",
         },
         (req, res) => {
@@ -189,9 +207,48 @@ module.exports = function init(site) {
           let _data = req.data;
 
           _data.status = site.consultationsStatusList[0];
+          _data.repliesList = [];
+          _data.date = new Date();
           _data.addUserInfo = req.getUserFinger();
 
           app.add(_data, (err, doc) => {
+            if (!err && doc) {
+              response.done = true;
+              response.doc = doc;
+            } else {
+              response.error = err.mesage;
+            }
+            res.json(response);
+          });
+        }
+      );
+
+      site.post(
+        {
+          name: `/api/requestConsultationsReply/add`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+
+          let _data = req.data;
+
+          _data.user = {
+            firstName: req.session.user.firstName,
+            lastName: req.session.user.lastName,
+            id: req.session.user.id,
+            image: req.session.user.image,
+          };
+          _data.supportCount = 0;
+          _data.oppositionCount = 0;
+          _data.watchCount = 0;
+          _data.date = new Date();
+          _data.repliesList = [];
+          _data.supportList = [];
+          _data.oppositionList = [];
+          app.$collectionReply.add(_data, (err, doc) => {
             if (!err && doc) {
               response.done = true;
               response.doc = doc;
@@ -226,6 +283,81 @@ module.exports = function init(site) {
               response.error = err.message;
             }
             res.json(response);
+          });
+        }
+      );
+
+      site.post(
+        {
+          name: `/api/requestConsultationsReply/update`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+
+          let _data = req.data;
+          app.$collectionReply.findOne({ id: _data.id }, (err, doc) => {
+            if (_data.type == "addReply") {
+              if (!_data.comment) {
+                response.error = "Must Add Comment";
+                res.json(response);
+              }
+              doc.repliesList.push({
+                user: {
+                  firstName: req.session.user.firstName,
+                  lastName: req.session.user.lastName,
+                  id: req.session.user.id,
+                  image: req.session.user.image,
+                },
+                date: new Date(),
+                comment: _data.comment,
+                code: Math.random().toString(30).slice(2) + doc.id,
+              });
+            } else if (_data.type == "support") {
+              doc.supportCount += 1;
+              doc.supportList.unshift({
+                user: {
+                  firstName: req.session.user.firstName,
+                  lastName: req.session.user.lastName,
+                  id: req.session.user.id,
+                  image: req.session.user.image,
+                },
+                date: new Date(),
+              });
+            } else if (_data.type == "opposition") {
+              doc.oppositionCount += 1;
+              doc.oppositionList.unshift({
+                user: {
+                  firstName: req.session.user.firstName,
+                  lastName: req.session.user.lastName,
+                  id: req.session.user.id,
+                  image: req.session.user.image,
+                },
+                date: new Date(),
+              });
+            } else if (_data.type == "unsupport") {
+              doc.supportCount -= 1;
+              doc.supportList = doc.supportList.filter(
+                (person) => person.user.id != _data.userId
+              );
+            } else if (_data.type == "unopposition") {
+              doc.oppositionCount -= 1;
+              doc.oppositionList = doc.oppositionList.filter(
+                (person) => person.user.id != _data.userId
+              );
+            }
+
+            app.$collectionReply.update(doc, (err, result) => {
+              if (!err) {
+                response.done = true;
+                response.result = result;
+              } else {
+                response.error = err.message;
+              }
+              res.json(response);
+            });
           });
         }
       );
@@ -266,7 +398,10 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
+            doc.$time = site.xtime(doc.date, req.session.lang || "Ar");
             response.doc = doc;
+            doc.watchCount +=1;
+            app.update(doc);
           } else {
             response.error = err?.message || "Not Exists";
           }
@@ -276,20 +411,81 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAll) {
-        site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+        let where = req.body.where || {};
+        let search = req.body.search || "";
+        let limit = req.body.limit || 100;
+        let select = req.body.select || {
+          id: 1,
+          lawyer: 1,
+          addUserInfo: 1,
+          name: 1,
+          consultationClassification: 1,
+          typeConsultation: 1,
+          details: 1,
+          status: 1,
+        };
+        if (where && where.fromDate && where.toDate) {
+          let d1 = site.toDate(where.fromDate);
+          let d2 = site.toDate(where.toDate);
+          d2.setDate(d2.getDate() + 1);
+          where.date = {
+            $gte: d1,
+            $lte: d2,
+          };
+          delete where.fromDate;
+          delete where.toDate;
+        }
+
+        if (search) {
+          where.$or = [];
+
+          where.$or.push({
+            number: search,
+          });
+          where.$or.push({
+            year: search,
+          });
+          where.$or.push({
+            "office.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "court.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "circle.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "lawsuitDegree.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "statusLawsuit.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "typesLawsuit.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            lawsuitTopic: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            description: site.get_RegExp(search, "i"),
+          });
+        }
+        app.all(
+          { where: where, limit, select, sort: { id: -1 } },
+          (err, docs) => {
+            res.json({ done: true, list: docs });
+          }
+        );
+      });
+
+      site.post(
+        { name: `/api/requestConsultationsReply/all`, public: true },
+        (req, res) => {
           let where = req.body.where || {};
           let search = req.body.search || "";
-          let limit = req.body.limit || 100;
-          let select = req.body.select || {
-            id: 1,
-            lawyer: 1,
-            addUserInfo: 1,
-            name: 1,
-            consultationClassification: 1,
-            typeConsultation: 1,
-            details: 1,
-            status: 1,
-          };
+          let limit = req.body.limit || 500;
+          let select = req.body.select || {};
           if (where && where.fromDate && where.toDate) {
             let d1 = site.toDate(where.fromDate);
             let d2 = site.toDate(where.toDate);
@@ -301,49 +497,40 @@ module.exports = function init(site) {
             delete where.fromDate;
             delete where.toDate;
           }
-  
+
           if (search) {
             where.$or = [];
-       
             where.$or.push({
-              number: search,
-            });
-            where.$or.push({
-              year: search,
-            });
-            where.$or.push({
-              "office.name": site.get_RegExp(search, "i"),
-            });
-            where.$or.push({
-              "court.name": site.get_RegExp(search, "i"),
-            });
-            where.$or.push({
-              "circle.name": site.get_RegExp(search, "i"),
-            });
-            where.$or.push({
-              "lawsuitDegree.name": site.get_RegExp(search, "i"),
-            });
-            where.$or.push({
-              "statusLawsuit.name": site.get_RegExp(search, "i"),
-            });
-            where.$or.push({
-              "typesLawsuit.name": site.get_RegExp(search, "i"),
-            });
-            where.$or.push({
-              lawsuitTopic: site.get_RegExp(search, "i"),
-            });
-            where.$or.push({
-              description: site.get_RegExp(search, "i"),
+              comment: site.get_RegExp(search, "i"),
             });
           }
-          app.all(
-            { where: where, limit, select, sort: { id: -1 } },
+          app.$collectionReply.findMany(
+            { where: where, limit, select, sort: { date: -1 } },
             (err, docs) => {
+              if (docs && docs.length > 0)
+                for (let i = 0; i < docs.length; i++) {
+                  let _doc = docs[i];
+                  if(req.session.user){
+                    _doc.$userSupport = _doc.supportList.some((_f) => _f.user.id === req.session.user.id);
+                    _doc.$userOpposition = _doc.oppositionList.some((_f) => _f.user.id === req.session.user.id);
+                  }
+                  
+                  _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
+                  if (_doc.repliesList && _doc.repliesList.length > 0) {
+                    _doc.repliesList.forEach((_reply) => {
+                      _reply.$time = site.xtime(
+                        _reply.date,
+                        req.session.lang || "Ar"
+                      );
+                    });
+                  }
+                }
               res.json({ done: true, list: docs });
             }
           );
-        });
-      }
+        }
+      );
+    }
   }
 
   app.init();

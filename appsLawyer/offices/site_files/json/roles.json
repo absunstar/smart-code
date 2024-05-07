@@ -19,6 +19,7 @@
     "En": "Lawyer",
     "Ar": "المحامي",
     "permissions": [
+      "lawyer",
       "officesManage",
       "opponentsManage",
       "opposingCounselsManage",

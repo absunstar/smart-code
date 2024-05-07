@@ -28,3 +28,27 @@ legend {
 .tabs .tabs-content {
   width: 100% !important;
 }
+
+.linesView {
+  -webkit-user-modify: read-write-plaintext-only;
+}
+
+.input-style textarea:focus {
+  border-width: 2px;
+}
+
+.input-style input:focus {
+  border-width: 2px;
+}
+
+.input-style input {
+  color: black;
+  border: solid 1px #1475cf;
+  border-radius: 10px !important;
+}
+
+.input-style textarea {
+  color: black;
+  border: solid 1px #1475cf;
+  border-radius: 10px !important;
+}

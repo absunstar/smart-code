@@ -5,11 +5,11 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: ["/css/lawyer.css"],
+    name: ["/css/lawyer.css"], 
     parser: "css2",
     public: true,
     compress: !0,
-    path: [
+    path: [ 
       __dirname + "/site_files/css/header.css",
       __dirname + "/site_files/css/sidebar.css",
       __dirname + "/site_files/css/sidebarProfile.css",

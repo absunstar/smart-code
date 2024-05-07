@@ -85,4 +85,71 @@ site.handleNotRoute = function (req, res) {
   }
 };
 
+site.xtime = function (_time, lang) {
+  let since_few = ' Since few ';
+  let before = ' Ago ';
+  let second = ' Second ';
+  let minute = ' Minute ';
+  let hour = ' Hour ';
+  let day = ' Day ';
+  let month = ' Month ';
+  let year = ' Year ';
+
+  if (lang == 'Ar') {
+    since_few = ' منذ قليل ';
+    before = ' منذ ';
+    second = ' ثانية ';
+    minute = ' دقيقة ';
+    hour = ' ساعة ';
+    day = ' يوم ';
+    month = ' شهر ';
+    year = ' سنة ';
+  }
+
+  if (typeof _time == 'undefined' || !_time) {
+    return since_few;
+  }
+  _time = new Date().getTime() - new Date(_time).getTime();
+
+  let _type = null;
+
+  let _time_2 = null;
+  let _type_2 = null;
+
+  let times = [1, 1000, 60, 60, 24, 30, 12];
+  let times_type = ['x', second, minute, hour, day, month, year];
+
+  let offset = new Date().getTimezoneOffset();
+  if (false && offset < 0) {
+    let diff = Math.abs(offset) * 60 * 1000;
+    _time = _time + diff;
+  }
+
+  if (_time <= 10000) {
+    return since_few;
+  }
+
+  for (let i = 0; i < times.length; i++) {
+    if (_time < times[i]) {
+      break;
+    } else {
+      _type = times_type[i];
+      if (i > 0) {
+        _time_2 = _time % times[i];
+        _type_2 = times_type[i - 1];
+      }
+      _time = _time / times[i];
+    }
+  }
+
+  _time = Math.floor(_time);
+  _time_2 = Math.floor(_time_2);
+
+  if (_time_2 == 0 || _type_2 == null || _type_2 == 'x') {
+    return [before, _time, _type].join(' ');
+  } else {
+    return [before, _time, _type, _time_2, _type_2].join(' ');
+  }
+};
+
 site.run();
