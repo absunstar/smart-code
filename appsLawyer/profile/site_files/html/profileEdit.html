@@ -40,6 +40,12 @@
       .card-title {
         color: #959595;
         font-size: 20px;
+        display: inline-block;
+        width: 60%;
+        vertical-align: text-top;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       .register-content {
@@ -138,6 +144,14 @@
           >
             <span>##word.My Consultations## </span></a
           >
+
+          <a
+          class="tab-link"
+          ng-show="user.type == 'lawyer'"
+          onclick="site.showTabContent(event, '#requestConsultations')"
+        >
+          <span>##word.Request Consultations## </span></a
+        >
         </div>
 
         <div class="tabs-content">
@@ -170,7 +184,7 @@
                       >
                       </i-control>
 
-                     <!--  <i-control
+                      <!--  <i-control
                         class="center input-style"
                         label="##word.Start Of Communication Time##"
                         type="time"
@@ -375,7 +389,7 @@
                       </i-control>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row" ng-show="user.type == 'lawyer'">
                     <fieldset class="margin padding">
                       <legend>##word.Services## ##word. Are Offered##</legend>
                       <div class="row">
@@ -467,8 +481,12 @@
             <div class="row">
               <div
                 class="req-cons"
-                ng-repeat="recuestCons in requestConsultationsList"
+                ng-repeat="recuestCons in myRequestConsultationsList"
               >
+                <div class="time-publish req-cons-name margin padding">
+                  <i class="fas fa-clock"> {{recuestCons.$time}} </i>
+                </div>
+
                 <p class="" ng-show="user.type == 'lawyer'">
                   ##word.Client##
                   <b class="userPrint account-number bold">
@@ -509,7 +527,61 @@
                 <p class="userPrint req-cons-name font-20">
                   {{recuestCons.status.name##session.lang##}}
                 </p>
-                <a href="/requestConsultationsView?requestId={{recuestCons.id}}">
+
+                <a
+                  href="/requestConsultationsView?requestId={{recuestCons.id}}"
+                >
+                  <i-button title="##word.view##" type="view"></i-button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div id="requestConsultations" class="tab-content">
+            <div class="row">
+              <div
+                class="req-cons"
+                ng-repeat="recuestCons in requestConsultationsList"
+              >
+                <div class="time-publish req-cons-name margin padding">
+                  <i class="fas fa-clock"> {{recuestCons.$time}} </i>
+                </div>
+
+                <p class="">
+                  ##word.Client##
+                  <b class="userPrint account-number bold">
+                    {{recuestCons.user.firstName}} {{recuestCons.user.lastName}}
+                  </b>
+                </p>
+
+                <p class="">
+                  ##word.Title##
+
+                  <b class="userPrint card-title bold">{{recuestCons.name}}</b>
+                </p>
+
+                <p class="">
+                  ##word.Type##
+
+                  <b class="userPrint card-title bold"
+                    >{{recuestCons.typeConsultation.name}}</b
+                  >
+                </p>
+
+                <p class="">
+                  ##word.Classification##
+
+                  <b class="userPrint card-title bold"
+                    >{{recuestCons.consultationClassification.name##session.lang##}}</b
+                  >
+                </p>
+
+                <p class="userPrint req-cons-name font-20">
+                  {{recuestCons.status.name##session.lang##}}
+                </p>
+
+                <a
+                  href="/requestConsultationsView?requestId={{recuestCons.id}}"
+                >
                   <i-button title="##word.view##" type="view"></i-button>
                 </a>
               </div>

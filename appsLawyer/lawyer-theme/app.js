@@ -5,11 +5,11 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: ["/css/lawyer.css"], 
+    name: ["/css/lawyer.css"],
     parser: "css2",
     public: true,
     compress: !0,
-    path: [ 
+    path: [
       __dirname + "/site_files/css/header.css",
       __dirname + "/site_files/css/sidebar.css",
       __dirname + "/site_files/css/sidebarProfile.css",
@@ -51,58 +51,58 @@ module.exports = function init(site) {
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host);
-      // if (!setting.host) {
-      //   res.redirect(site.getMainHost(req.host), 301);
-      //   return;
-      // }
-
-      if (!setting.languageList || setting.languageList.length == 0) {
-        res.redirect("/404", 404);
+      if (!setting.host) {
+        res.redirect(site.getMainHost(req.host), 301);
         return;
       }
 
-      let language =
-        setting.languageList.find((l) => l.id == req.session.lang) ||
-        setting.languageList[0];
-
-      if (!language) {
-        res.redirect("/404", 404);
-        return;
-      }
-      language.description = language.description || "";
-      language.keyWordsList = language.keyWordsList || [];
-      let data = {
-        setting: setting,
-        guid: "",
-        language: language,
-        filter: site.getHostFilter(req.host),
-        site_logo: language.logo?.url || "/lawyer/images/logo.png",
-        page_image: language.logo?.url || "/lawyer/images/logo.png",
-        site_name: language.siteName,
-        page_lang: language.id,
-        page_type: "website",
-        page_title:
-          language.siteName +
-          " " +
-          language.titleSeparator +
-          " " +
-          language.siteSlogan,
-        page_description: language.description.substr(0, 200),
-        page_keywords: language.keyWordsList.join(","),
-        typesConsultationsList: site.getApp("typesConsultations").memoryList,
-        specialtiesList: site.getApp("specialties").memoryList,
-        servicesList: site.getApp("services").memoryList,
-        newList: site.getApp("manageUsers").newList,
-        activeList: site.getApp("manageUsers").activeList,
-      };
-      if (req.hasFeature("host.com")) {
-        data.site_logo = "https://" + req.host + data.site_logo;
-        data.page_image = "https://" + req.host + data.page_image;
-      }
-      res.render(__dirname + "/site_files/html/index.html", data, {
-        parser: "html",
-        compres: true,
-      });
+      site.getConsultations(
+        { "status.name": "closed" },
+        (err, consultations) => {
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+            page_image: setting.logo?.url || "/lawyer/images/logo.png",
+            user_image:
+              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title:
+              setting.siteName +
+              " " +
+              setting.titleSeparator +
+              " " +
+              setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+            typesConsultationsList:
+              site.getApp("typesConsultations").memoryList,
+            specialtiesList: site.getApp("specialties").memoryList,
+            servicesList: site.getApp("services").memoryList,
+            newList: site.getApp("manageUsers").newList,
+            activeList: site.getApp("manageUsers").activeList,
+            consultationsList: [],
+          };
+          if (consultations) {
+            data.consultationsList = consultations;
+          }
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "https://" + req.host + data.site_logo;
+            data.page_image = "https://" + req.host + data.page_image;
+            data.user_image = "https://" + req.host + data.user_image;
+          }
+          res.render(__dirname + "/site_files/html/index.html", data, {
+            parser: "html",
+            compres: true,
+          });
+        }
+      );
     }
   );
 };

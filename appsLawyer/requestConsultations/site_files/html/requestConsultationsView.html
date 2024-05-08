@@ -116,14 +116,14 @@
                 <a
                   x-permission="login"
                   class="pointer reply"
-                  ng-show="!item.approveReply"
+                  ng-show="item.status.name == 'pending'"
                   ng-click="showReplyComment(reply.code)"
                 >
                   <i class="fa fa-comments"></i> ##word.Reply##
                 </a>
                 <a
                   x-permission="lawyer"
-                  ng-show="reply.$userSupport && !item.approveReply"
+                  ng-show="reply.$userSupport && item.status.name == 'pending'"
                   class="pointer reply bg-like"
                   ng-click="updateReply('unsupport',reply)"
                 >
@@ -131,7 +131,7 @@
                 </a>
                 <a
                   x-permissions="lawyer"
-                  ng-show="!reply.$userSupport && !reply.$userOpposition && !item.approveReply"
+                  ng-show="!reply.$userSupport && !reply.$userOpposition && item.status.name == 'pending'"
                   class="pointer reply"
                   ng-click="updateReply('support',reply)"
                 >
@@ -139,7 +139,7 @@
                 </a>
                 <a
                   x-permissions="lawyer"
-                  ng-show="reply.$userOpposition && !item.approveReply"
+                  ng-show="reply.$userOpposition && item.status.name == 'pending'"
                   class="pointer reply bg-unlike"
                   ng-click="updateReply('unopposition',reply)"
                 >
@@ -147,7 +147,7 @@
                 </a>
                 <a
                   x-permissions="lawyer"
-                  ng-show="!reply.$userOpposition && !reply.$userSupport && !item.approveReply"
+                  ng-show="!reply.$userOpposition && !reply.$userSupport && item.status.name == 'pending'"
                   class="pointer reply"
                   ng-click="updateReply('opposition',reply)"
                 >
@@ -208,7 +208,7 @@
                     <p class="text-comment bold">{{r.comment}}</p>
                     <a
                       x-permission="login"
-                      ng-show="!item.approveReply"
+                      ng-show="item.status.name == 'pending'"
                       class="pointer reply"
                       ng-click="showReplyComment(r.code)"
                     >
@@ -239,7 +239,7 @@
               </div>
             </div>
 
-            <div class="row" ng-show="'##user.type##' == 'lawyer' && !item.approveReply">
+            <div class="row" ng-show="'##user.type##' == 'lawyer' && item.status.name == 'pending'">
               <div class="col9">
                 <i-textarea
                   class="input-style padding margin"

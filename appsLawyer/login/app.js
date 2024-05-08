@@ -14,7 +14,45 @@ module.exports = function init(site) {
       name: ['/login'],
     },
     (req, res) => {
-      res.render(__dirname + '/site_files/html/index.html', { setting: site.getSiteSetting(req.host) }, { parser: 'html', compres: true });
+      let setting = site.getSiteSetting(req.host);
+      if (!setting.host) {
+        res.redirect(site.getMainHost(req.host), 301);
+        return;
+      }
+
+      setting.description = setting.description || "";
+      setting.keyWordsList = setting.keyWordsList || [];
+      let data = {
+        setting: setting,
+        guid: "",
+        setting: setting,
+        filter: site.getHostFilter(req.host),
+        site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+        page_image: setting.logo?.url || "/lawyer/images/logo.png",
+        user_image : req.session?.user?.image?.url || "/lawyer/images/logo.png",
+        site_name: setting.siteName,
+        page_lang: setting.id,
+        page_type: "website",
+        page_title:
+          setting.siteName +
+          " " +
+          setting.titleSeparator +
+          " " +
+          setting.siteSlogan,
+        page_description: setting.description.substr(0, 200),
+        page_keywords: setting.keyWordsList.join(","),
+        typesConsultationsList: site.getApp("typesConsultations").memoryList,
+        specialtiesList: site.getApp("specialties").memoryList,
+        servicesList: site.getApp("services").memoryList,
+        newList: site.getApp("manageUsers").newList,
+        activeList: site.getApp("manageUsers").activeList,
+      };
+      if (req.hasFeature("host.com")) {
+        data.site_logo = "https://" + req.host + data.site_logo;
+        data.page_image = "https://" + req.host + data.page_image;
+        data.user_image = "https://" + req.host + data.user_image;
+      }
+      res.render(__dirname + '/site_files/html/index.html', data, { parser: 'html', compres: true });
     }
   );
 

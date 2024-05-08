@@ -99,6 +99,36 @@ app.controller(
       );
     };
 
+    $scope.updateStatus = function (_item,type) {
+      $scope.error = "";
+      _item.status = $scope.consultationsStatusList.find((l) => l.name == type)
+    
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: `${$scope.baseURL}/api/${$scope.appName}/update`,
+        data: _item,
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+           
+            let index = $scope.list.findIndex(
+              (itm) => itm.id == response.data.result.doc.id
+            );
+            if (index !== -1) {
+              $scope.list[index] = response.data.result.doc;
+            }
+          } else {
+            $scope.error = response.data.error;
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    };
+
     $scope.showView = function (_item) {
       $scope.error = "";
       $scope.mode = "view";
@@ -303,35 +333,6 @@ app.controller(
         function (err) {
           console.log(err);
           $scope.busyAddReply = false;
-        }
-      );
-    };
-
-    $scope.getRepliesList = function (item) {
-      $scope.repliesList = [];
-      $http({
-        method: "POST",
-        url: `${$scope.baseURL}/api/requestConsultationsReply/all`,
-        data: {
-          where: {
-            requestId: item.id,
-          },
-        },
-      }).then(
-        function (response) {
-          $scope.busyAll = false;
-          if (response.data.done && response.data.list.length > 0) {
-            $scope.item = item;
-            $scope.repliesList = response.data.list;
-            $scope.item.approveReply = $scope.repliesList.some(
-              (_a) => _a.approve
-            );
-            site.showModal("#repliesModal");
-          }
-        },
-        function (err) {
-          $scope.busyAll = false;
-          $scope.error = err;
         }
       );
     };

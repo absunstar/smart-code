@@ -19,15 +19,30 @@ module.exports = function init(site) {
       id: 4,
       nameAr: "نقض",
       nameEn: "Sale",
-    }
+    },
   ];
 
   site.consultationsStatusList = [
     {
-      id: 1,
+      name: "new",
+      nameAr: "جديد",
+      nameEn: "New",
+    },
+    {
+      name: "pending",
       nameAr: "قيد الانتظار",
-      nameEn: "pending",
-    }
+      nameEn: "Pending",
+    },
+    {
+      name: "closed",
+      nameAr: "مغلق",
+      nameEn: "Closed",
+    },
+    {
+      name: "rejected",
+      nameAr: "مرفوض",
+      nameEn: "Rejected",
+    },
   ];
 
   site.consultationsClassificationsList = [
@@ -40,7 +55,7 @@ module.exports = function init(site) {
       id: 2,
       nameAr: "إستشارة مجانية",
       nameEn: "Free Consultation",
-    }
+    },
   ];
 
   site.salesTypesList = [
@@ -55,7 +70,7 @@ module.exports = function init(site) {
       nameAr: "مبيعات للشركات",
       nameEn: "Sales For Companies",
       code: "company",
-    }
+    },
   ];
 
   site.salesCategories = [
@@ -501,7 +516,7 @@ module.exports = function init(site) {
     { id: 3, code: "list", nameEn: "List", nameAr: "قائمة" },
     { id: 4, code: "degree", nameEn: "Degree", nameAr: "درجة" },
   ];
-  
+
   site.post("/api/consultationsClassifications", (req, res) => {
     res.json({
       done: true,
@@ -509,7 +524,6 @@ module.exports = function init(site) {
     });
   });
 
-  
   site.post("/api/consultationsStatus", (req, res) => {
     res.json({
       done: true,

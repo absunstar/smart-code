@@ -73,6 +73,18 @@
             ></i-button>
 
             <i-button
+              ng-show="item.status.name == 'new' || item.status.name == 'rejected'"
+              label="##word.Pending##"
+              ng-click="updateStatus(item,'pending')"
+            ></i-button>
+
+            <i-button
+              ng-show="item.status.name == 'new' || item.status.name == 'pending'"
+              label="##word.Rejection##"
+              ng-click="updateStatus(item,'rejected')"
+            ></i-button>
+
+            <i-button
               type="edit"
               x-permissions="requestConsultationsUpdate || requestConsultationsManage"
               title="##word.Edit##"
