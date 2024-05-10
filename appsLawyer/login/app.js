@@ -1,17 +1,17 @@
 module.exports = function init(site) {
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
+    name: "images",
+    path: __dirname + "/site_files/images/",
   });
 
   site.get({
-    name: 'css',
-    path: __dirname + '/site_files/css/',
+    name: "css",
+    path: __dirname + "/site_files/css/",
   });
 
   site.get(
     {
-      name: ['/login'],
+      name: ["/login"],
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host);
@@ -29,7 +29,7 @@ module.exports = function init(site) {
         filter: site.getHostFilter(req.host),
         site_logo: setting.logo?.url || "/lawyer/images/logo.png",
         page_image: setting.logo?.url || "/lawyer/images/logo.png",
-        user_image : req.session?.user?.image?.url || "/lawyer/images/logo.png",
+        user_image: req.session?.user?.image?.url || "/lawyer/images/logo.png",
         site_name: setting.siteName,
         page_lang: setting.id,
         page_type: "website",
@@ -41,36 +41,34 @@ module.exports = function init(site) {
           setting.siteSlogan,
         page_description: setting.description.substr(0, 200),
         page_keywords: setting.keyWordsList.join(","),
-        typesConsultationsList: site.getApp("typesConsultations").memoryList,
-        specialtiesList: site.getApp("specialties").memoryList,
-        servicesList: site.getApp("services").memoryList,
-        newList: site.getApp("manageUsers").newList,
-        activeList: site.getApp("manageUsers").activeList,
       };
       if (req.hasFeature("host.com")) {
         data.site_logo = "https://" + req.host + data.site_logo;
         data.page_image = "https://" + req.host + data.page_image;
         data.user_image = "https://" + req.host + data.user_image;
       }
-      res.render(__dirname + '/site_files/html/index.html', data, { parser: 'html', compres: true });
+      res.render(__dirname + "/site_files/html/index.html", data, {
+        parser: "html",
+        compres: true,
+      });
     }
   );
 
   site.get({
-    name: 'forget_password',
-    path: __dirname + '/site_files/html/forget_password.html',
-    parser: 'html',
+    name: "forget_password",
+    path: __dirname + "/site_files/html/forget_password.html",
+    parser: "html",
     compress: true,
   });
 
-  site.post('/api/forget_password/send_code', (req, res) => {
+  site.post("/api/forget_password/send_code", (req, res) => {
     let response = {
       done: false,
     };
     let mobile_or_email = req.body.mobile_or_email;
 
     let where = {};
-    if (mobile_or_email.contains('@') || mobile_or_email.contains('.')) {
+    if (mobile_or_email.contains("@") || mobile_or_email.contains(".")) {
       where.email = mobile_or_email;
     } else {
       where.mobile = mobile_or_email;
@@ -83,10 +81,11 @@ module.exports = function init(site) {
             let date = new Date(user.forget_password.date);
             date.setMinutes(date.getMinutes() + 1);
             if (new Date() > date) {
-              user.forget_password.code = user.id + Math.floor(Math.random() * 10000) + 90000;
+              user.forget_password.code =
+                user.id + Math.floor(Math.random() * 10000) + 90000;
               user.forget_password.date = new Date();
             } else {
-              response.error = 'have to wait mobile 5 Minute';
+              response.error = "have to wait mobile 5 Minute";
               res.json(response);
               return;
             }
@@ -102,7 +101,7 @@ module.exports = function init(site) {
                 to: userDoc.doc.countryCode + userDoc.doc.mobile,
                 message: `code : ${userDoc.doc.forget_password.code}`,
               });
-              response.type = 'mobile';
+              response.type = "mobile";
               response.doneSendMobile = true;
             } else if (where.email) {
               site.sendMailMessage({
@@ -110,7 +109,7 @@ module.exports = function init(site) {
                 subject: `Forget Password COde`,
                 message: `code : ${userDoc.doc.forget_password.code}`,
               });
-              response.type = 'email';
+              response.type = "email";
               response.doneSendEmail = true;
             }
 
@@ -119,7 +118,7 @@ module.exports = function init(site) {
             res.json(response);
           });
         } else {
-          response.error = 'Wrong mail or mobile';
+          response.error = "Wrong mail or mobile";
 
           res.json(response);
           return;
@@ -131,7 +130,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/forget_password/check_code', (req, res) => {
+  site.post("/api/forget_password/check_code", (req, res) => {
     let response = {
       done: false,
     };
@@ -140,7 +139,7 @@ module.exports = function init(site) {
     let code = req.body.code;
     let where = {};
 
-    if (mobile_or_email.contains('@') || mobile_or_email.contains('.')) {
+    if (mobile_or_email.contains("@") || mobile_or_email.contains(".")) {
       where.email = mobile_or_email;
     } else {
       where.mobile = mobile_or_email;
@@ -149,17 +148,20 @@ module.exports = function init(site) {
     site.security.getUser(where, (err, user) => {
       if (!err) {
         if (user) {
-          if (user.forget_password && user.forget_password.code == site.toNumber(code)) {
+          if (
+            user.forget_password &&
+            user.forget_password.code == site.toNumber(code)
+          ) {
             response.done = true;
             response.mobile_or_email = mobile_or_email;
             res.json(response);
           } else {
-            response.error = 'Incorrect code entered';
+            response.error = "Incorrect code entered";
             res.json(response);
             return;
           }
         } else {
-          response.error = 'Incorrect code entered';
+          response.error = "Incorrect code entered";
           res.json(response);
           return;
         }
@@ -170,12 +172,12 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/forget_password/newPassword', (req, res) => {
+  site.post("/api/forget_password/newPassword", (req, res) => {
     let response = {
       done: false,
     };
 
-    if (req.body.$encript === '123') {
+    if (req.body.$encript === "123") {
       req.body.mobile_or_email = site.from123(req.body.mobile_or_email);
       req.body.newPassword = site.from123(req.body.newPassword);
       req.body.code = site.from123(req.body.code);
@@ -184,7 +186,7 @@ module.exports = function init(site) {
     let code = req.body.code;
     let where = {};
 
-    if (mobile_or_email.contains('@') || mobile_or_email.contains('.')) {
+    if (mobile_or_email.contains("@") || mobile_or_email.contains(".")) {
       where.email = mobile_or_email;
     } else {
       where.mobile = mobile_or_email;
@@ -193,7 +195,10 @@ module.exports = function init(site) {
     site.security.getUser(where, (err, user) => {
       if (!err) {
         if (user) {
-          if (user.forget_password && user.forget_password.code == site.toNumber(code)) {
+          if (
+            user.forget_password &&
+            user.forget_password.code == site.toNumber(code)
+          ) {
             user.password = req.body.newPassword;
 
             delete user.forget_password;
@@ -208,12 +213,12 @@ module.exports = function init(site) {
               }
             });
           } else {
-            response.error = 'Incorrect code entered';
+            response.error = "Incorrect code entered";
             res.json(response);
             return;
           }
         } else {
-          response.error = 'Incorrect code entered';
+          response.error = "Incorrect code entered";
           res.json(response);
           return;
         }

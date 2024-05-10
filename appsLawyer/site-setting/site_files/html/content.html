@@ -1,10 +1,10 @@
 <div class="form" id="settingDefault">
   <div class="tabs">
     <div class="tabs-header full">
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.site_settings## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.Site Settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Theme Setting## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.email_and_text_messages## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.programming## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.Email And Messages## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.Programming## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#block')"> ##word.Block## </a>
     </div>
 
@@ -51,7 +51,7 @@
           </div> -->
 
           <fieldset>
-            <legend>##word.social_media_accounts##</legend>
+            <legend>##word.Social Media Accounts##</legend>
             <div class="row">
               <i-control class="col6" label="##word.Facebook Account##" ng-model="siteSetting.facebookAccount"> </i-control>
               <i-control class="col6" label="##word.Instagram Accouunt##" ng-model="siteSetting.instagramAccouunt"> </i-control>
@@ -109,7 +109,7 @@
         <div class="article-part">
           <div class="row">
             <div class="row">
-              <i-list class="col4" v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.site_template##"> </i-list>
+              <i-list class="col4" v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.Site Template##"> </i-list>
             </div>
 
             <div class="row padding margin border">
@@ -350,7 +350,7 @@
       <div id="emailAndTextMessages" class="tab-content">
         <div class="article-part">
           <fieldset>
-            <legend>##word.mobile_sms##</legend>
+            <legend>##word.Mobile SMS##</legend>
             <div class="row">
               <div class="col6">
                 <div class="article-part">
@@ -358,16 +358,16 @@
                 </div>
               </div>
 
-              <i-control class="col6" label="##word.auth_token_mobile##" ng-model="siteSetting.authTokenMobile"> </i-control>
+              <i-control class="col6" label="##word.Auth Token Mobile##" ng-model="siteSetting.authTokenMobile"> </i-control>
             </div>
             <div class="row">
-              <i-control class="col6" label="##word.account_id_mobile##" ng-model="siteSetting.accountIdMobile"> </i-control>
-              <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="siteSetting.messagingServicesIdMobile"> </i-control>
+              <i-control class="col6" label="##word.Account Id Mobile##" ng-model="siteSetting.accountIdMobile"> </i-control>
+              <i-control class="col6" label="##word.Messaging Services Id Mobile##" ng-model="siteSetting.messagingServicesIdMobile"> </i-control>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend>##word.email_sending_setting##</legend>
+            <legend>##word.Email Sending Setting##</legend>
             <div class="row">
               <div class="col6">
                 <div class="article-part">

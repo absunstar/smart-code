@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "centers", "name": "centersManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "centers", "name": "centersImport", "En": "Import", "Ar": "إستيراد" }
+]

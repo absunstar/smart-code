@@ -1,15 +1,15 @@
-<div ng-controller="centrs" class="loaded">
-    <div class="row" x-permissions="centrsUi || centrsManage">
-        <div x-import="centrs/modal.html"></div>
+<div ng-controller="centers" class="loaded">
+    <div class="row" x-permissions="centersUi || centersManage">
+        <div x-import="centers/modal.html"></div>
 
         <div class="top-actions">
-            <i-button type="add" x-permissions="centrsAdd || centrsManage" label="##word.New##"
+            <i-button type="add" x-permissions="centersAdd || centersManage" label="##word.New##"
                 ng-click="showAdd()"></i-button>
-            <i-upload api="api/centrs/import" label="Import" x-permissions="centrsImport || centrsManage"></i-upload>
+            <i-upload api="api/centers/import" label="Import" x-permissions="centersImport || centersManage"></i-upload>
         </div>
 
         <div class="row padding">
-            <i-control ng-model="$search" x-permissions="centrsSearch || centrsManage"></i-control>
+            <i-control ng-model="$search" x-permissions="centersSearch || centersManage"></i-control>
         </div>
         <div class="table-responsive">
             <table class="table hover bold" id="t1">
@@ -32,18 +32,18 @@
                     <td class="center not-print">
                         <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
 
-                        <i-button type="edit" x-permissions="centrsUpdate || centrsManage" title="##word.Edit##"
+                        <i-button type="edit" x-permissions="centersUpdate || centersManage" title="##word.Edit##"
                             ng-click="showUpdate(item)"></i-button>
 
-                        <i-button type="delete" x-permissions="centrsDelete || centrsManage" title="##word.Delete##"
+                        <i-button type="delete" x-permissions="centersDelete || centersManage" title="##word.Delete##"
                             ng-click="showDelete(item)"></i-button>
                     </td>
                 </tr>
             </table>
         </div>
-        <i-button x-permissions="centrsPrint || centrsManage" type="print" label="##word.Print##"
+        <i-button x-permissions="centersPrint || centersManage" type="print" label="##word.Print##"
             onclick="site.print('#t1')"></i-button>
-        <i-button x-permissions="centrsExport || centrsManage" type="export" label="##word.Export to excel##"
+        <i-button x-permissions="centersExport || centersManage" type="export" label="##word.Export to excel##"
             onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"> </i-button>
     </div>
 </div>

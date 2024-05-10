@@ -55,45 +55,33 @@ module.exports = function init(site) {
       //   res.redirect(site.getMainHost(req.host), 301);
       //   return;
       // }
-
-      if (!setting.languageList || setting.languageList.length == 0) {
-        res.redirect("/404", 404);
-        return;
-      }
-
-      let language =
-        setting.languageList.find((l) => l.id == req.session.lang) ||
-        setting.languageList[0];
-
-      if (!language) {
-        res.redirect("/404", 404);
-        return;
-      }
-      language.description = language.description || "";
-      language.keyWordsList = language.keyWordsList || [];
+      setting.description = setting.description || "";
+      setting.keyWordsList = setting.keyWordsList || [];
       let data = {
         setting: setting,
         guid: "",
-        language: language,
+        setting: setting,
         filter: site.getHostFilter(req.host),
-        site_logo: language.logo?.url || "/teacher/images/logo.png",
-        page_image: language.logo?.url || "/teacher/images/logo.png",
-        site_name: language.siteName,
-        page_lang: language.id,
+        site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+        page_image: setting.logo?.url || "/lawyer/images/logo.png",
+        user_image: req.session?.user?.image?.url || "/lawyer/images/logo.png",
+        site_name: setting.siteName,
+        page_lang: setting.id,
         page_type: "website",
         page_title:
-          language.siteName +
+          setting.siteName +
           " " +
-          language.titleSeparator +
+          setting.titleSeparator +
           " " +
-          language.siteSlogan,
-        page_description: language.description.substr(0, 200),
-        page_keywords: language.keyWordsList.join(","),
-
+          setting.siteSlogan,
+        page_description: setting.description.substr(0, 200),
+        page_keywords: setting.keyWordsList.join(","),
       };
+
       if (req.hasFeature("host.com")) {
         data.site_logo = "https://" + req.host + data.site_logo;
         data.page_image = "https://" + req.host + data.page_image;
+        data.user_image = "https://" + req.host + data.user_image;
       }
       res.render(__dirname + "/site_files/html/index.html", data, {
         parser: "html",

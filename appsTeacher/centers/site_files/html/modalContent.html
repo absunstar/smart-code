@@ -9,13 +9,22 @@
             label="##word.Active##"
           ></i-checkbox>
         </div>
+        <i-list
+          class="col3"
+          label="##word.Teacher##"
+          ng-model="item.teacher"
+          display="name"
+          items="teachersList"
+          ng-search="item.$teachers"
+          ng-get="getTeachersList($search)"
+
+        ></i-list>
         <i-control
           type="text"
           v="r"
           ng-model="item.name"
           label="##word.Name##"
         ></i-control>
-     
       </div>
     </div>
     <div class="col3 center">

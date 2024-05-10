@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "centersAdmin",
+    "En": "Centers Admin",
+    "Ar": "إدارة المراكز",
+    "permissions": ["centersManage"]
+}]

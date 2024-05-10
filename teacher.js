@@ -61,7 +61,7 @@ site.importApp(__dirname + '/apps_cms/cms');
 site.addFeature('teacher');
 
 site.getMainHost = function (host = '') {
-  if (host == 'localhost' || host == '127.0.0.1') {
+  if (host.contains('localhost') || host.contains('127.0.0.1')) {
     return host;
   }
   let arr = host.split('.');

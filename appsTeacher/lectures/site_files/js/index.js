@@ -1,12 +1,12 @@
-app.controller("centrs", function ($scope, $http, $timeout) {
+app.controller("lectures", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-  $scope.appName = "centrs";
-  $scope.modalID = "#centrsManageModal";
-  $scope.modalSearchID = "#centrsSearchModal";
+  $scope.appName = "lectures";
+  $scope.modalID = "#lecturesManageModal";
+  $scope.modalSearchID = "#lecturesSearchModal";
   $scope.mode = "add";
   $scope._search = {};
   $scope.structure = {
-    image: { url: "/theme1/images/setting/centrs.png" },
+    image: { url: "/theme1/images/setting/lectures.png" },
     active: true,
   };
   $scope.item = {};
@@ -15,7 +15,7 @@ app.controller("centrs", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure };
+    $scope.item = { ...$scope.structure, linksList: [], filesList: [] };
     site.showModal($scope.modalID);
   };
 
@@ -41,7 +41,12 @@ app.controller("centrs", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-        
+          if (
+            response.data.error &&
+            response.data.error.like("*Must Enter Code*")
+          ) {
+            $scope.error = "##word.Must Enter Code##";
+          }
         }
       },
       function (err) {
@@ -58,9 +63,9 @@ app.controller("centrs", function ($scope, $http, $timeout) {
     site.showModal($scope.modalID);
   };
 
-  $scope.update = function (_item) {
+  $scope.update = function (_item, modal) {
     $scope.error = "";
-    const v = site.validated($scope.modalID);
+    const v = site.validated(modal);
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -74,8 +79,8 @@ app.controller("centrs", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal($scope.modalID);
-          site.resetValidated($scope.modalID);
+          site.hideModal(modal);
+          site.resetValidated(modal);
           let index = $scope.list.findIndex(
             (itm) => itm.id == response.data.result.doc.id
           );
@@ -100,7 +105,7 @@ app.controller("centrs", function ($scope, $http, $timeout) {
     site.showModal($scope.modalID);
   };
 
-  $scope.view = function (_item) {
+  $scope.view = function (_item, type) {
     $scope.busy = true;
     $scope.error = "";
     $http({
@@ -114,6 +119,9 @@ app.controller("centrs", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
+          if (type == "quiz") {
+            site.showModal("#quizModal");
+          }
         } else {
           $scope.error = response.data.error;
         }
@@ -189,15 +197,16 @@ app.controller("centrs", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCountriesList = function ($search) {
+  $scope.getEducationalLevelsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
     }
     $scope.busy = true;
-    $scope.countriesList = [];
+    $scope.educationalLevelsList = [];
+
     $http({
       method: "POST",
-      url: "/api/countries/all",
+      url: "/api/educationalLevels/all",
       data: {
         where: {
           active: true,
@@ -205,7 +214,6 @@ app.controller("centrs", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          callingCode: 1,
         },
         search: $search,
       },
@@ -213,7 +221,7 @@ app.controller("centrs", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.countriesList = response.data.list;
+          $scope.educationalLevelsList = response.data.list;
         }
       },
       function (err) {
@@ -223,17 +231,37 @@ app.controller("centrs", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getGovesList = function (country) {
+  $scope.getTypesExpiryViewsList = function () {
     $scope.busy = true;
-    $scope.govesList = [];
-
+    $scope.typesExpiryViewsList = [];
     $http({
       method: "POST",
-      url: "/api/goves/all",
+      url: "/api/typesExpiryViewsList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.typesExpiryViewsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getSchoolYearsList = function (educationalLevel) {
+    $scope.busy = true;
+    $scope.schoolYearsList = [];
+    $http({
+      method: "POST",
+      url: "/api/schoolYears/all",
       data: {
         where: {
           active: true,
-          "country.id": country.id,
+          "educationalLevel.id": educationalLevel.id,
         },
         select: {
           id: 1,
@@ -244,7 +272,7 @@ app.controller("centrs", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.govesList = response.data.list;
+          $scope.schoolYearsList = response.data.list;
         }
       },
       function (err) {
@@ -254,98 +282,118 @@ app.controller("centrs", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCitiesList = function (gov) {
-    $scope.busy = true;
-    $scope.citiesList = [];
-    $http({
-      method: "POST",
-      url: "/api/cities/all",
-      data: {
-        where: {
-          "gov.id": gov.id,
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.citiesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+  $scope.activateQuiz = function () {
+    $scope.error = "";
+    if ($scope.activateQuiz) {
+      $scope.item.questionsList = $scope.item.questionsList || [];
+    }
   };
 
-  $scope.getAreasList = function (city) {
-    $scope.busy = true;
-    $scope.areasList = [];
-    $http({
-      method: "POST",
-      url: "/api/areas/all",
-      data: {
-        where: {
-          "city.id": city.id,
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.areasList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+  $scope.letterType = function (type, length) {
+    let numbering = [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+      22, 23,
+    ];
+    let arabic = [
+      "أ",
+      "ب",
+      "ج",
+      "د",
+      "ه",
+      "و",
+      "ز",
+      "ح",
+      "ط",
+      "ي",
+      "ك",
+      "ل",
+      "م",
+      "ن",
+      "س",
+      "ع",
+      "ف",
+      "ص",
+      "ق",
+      "ر",
+      "ش",
+      "ت",
+    ];
+    let english = [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+    ];
+    let st = "";
+    if (type == "numbering") {
+      st = numbering[length];
+    } else if (type == "arabic") {
+      st = arabic[length];
+    } else if (type == "english") {
+      st = english[length];
+    }
+    return st;
   };
 
+  $scope.addQuestion = function () {
+    $scope.error = "";
+    let numbering = $scope.letterType(
+      $scope.item.questionNumbering,
+      $scope.item.questionsList.length
+    );
 
-/*
-  $scope.initMap = function () {
-    const myLatlng = { lat: -25.363, lng: 131.044 };
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: myLatlng,
-    });
-    // Create the initial InfoWindow.
-    let infoWindow = new google.maps.InfoWindow({
-      content: "Click the map to get Lat/Lng!",
-      position: myLatlng,
-    });
+    $scope.item.questionsList.push({ answersList: [], numbering });
+  };
 
-    infoWindow.open(map);
-    // Configure the click listener.
-    map.addListener("click", (mapsMouseEvent) => {
-      // Close the current InfoWindow.
-      infoWindow.close();
-      // Create a new InfoWindow.
-      infoWindow = new google.maps.InfoWindow({
-        position: mapsMouseEvent.latLng,
-      });
-      infoWindow.setContent(
-        JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-      );
-      infoWindow.open(map);
-    });
-  }
+  $scope.addAnswer = function (question) {
+    $scope.error = "";
+    let numbering = $scope.letterType(
+      $scope.item.answerNumbering,
+      question.answersList.length
+    );
+    question.answersList.push({ correct: false, numbering });
+  };
 
-   window.initMap = $scope.initMap();
- */
+  $scope.addLinks = function () {
+    $scope.error = "";
+    $scope.item.linksList.unshift({});
+  };
+  $scope.addFiles = function () {
+    $scope.error = "";
+    $scope.item.filesList.unshift({});
+  };
+
+  $scope.correctAnswer = function (answer, question) {
+    $scope.error = "";
+
+    for (let i = 0; i < question.answersList.length; i++) {
+      question.answersList[i].correct = false;
+    }
+    answer.correct = true;
+  };
+
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
@@ -358,5 +406,6 @@ app.controller("centrs", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getCountriesList();
+  $scope.getEducationalLevelsList();
+  $scope.getTypesExpiryViewsList();
 });

@@ -11,18 +11,43 @@ module.exports = function init(site) {
       name: "register",
     },
     (req, res) => {
-      res.render(
-        "register/index.html",
-        {
-          title: site.setting.title,
-          image: site.setting.logo,
-          description: site.setting.description,
-        },
-        {
-          parser: "html css js",
-          compress: true,
-        }
-      );
+      let setting = site.getSiteSetting(req.host);
+      if (!setting.host) {
+        res.redirect(site.getMainHost(req.host), 301);
+        return;
+      }
+
+      setting.description = setting.description || "";
+      setting.keyWordsList = setting.keyWordsList || [];
+      let data = {
+        setting: setting,
+        guid: "",
+        setting: setting,
+        filter: site.getHostFilter(req.host),
+        site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+        page_image: setting.logo?.url || "/lawyer/images/logo.png",
+        user_image: req.session?.user?.image?.url || "/lawyer/images/logo.png",
+        site_name: setting.siteName,
+        page_lang: setting.id,
+        page_type: "website",
+        page_title:
+          setting.siteName +
+          " " +
+          setting.titleSeparator +
+          " " +
+          setting.siteSlogan,
+        page_description: setting.description.substr(0, 200),
+        page_keywords: setting.keyWordsList.join(","),
+      };
+      if (req.hasFeature("host.com")) {
+        data.site_logo = "https://" + req.host + data.site_logo;
+        data.page_image = "https://" + req.host + data.page_image;
+        data.user_image = "https://" + req.host + data.user_image;
+      }
+      res.render("register/index.html", data, {
+        parser: "html css js",
+        compress: true,
+      });
     }
   );
 
@@ -31,18 +56,10 @@ module.exports = function init(site) {
       name: "mailer",
     },
     (req, res) => {
-      res.render(
-        "register/mailer.html",
-        {
-          title: site.setting.title,
-          image: site.setting.logo,
-          description: site.setting.description,
-        },
-        {
-          parser: "html css js",
-          compress: true,
-        }
-      );
+      res.render("register/mailer.html", data, {
+        parser: "html css js",
+        compress: true,
+      });
     }
   );
 
@@ -326,18 +343,27 @@ module.exports = function init(site) {
       gov: req.body.user.gov,
       city: req.body.user.city,
       area: req.body.user.area,
+      latitude: req.body.user.latitude,
+      longitude: req.body.user.longitude,
+      schoolYear: req.body.user.schoolYear,
+      educationalLevel: req.body.user.educationalLevel,
+      nationalIdImage: req.body.user.nationalIdImage,
+      nationalId: req.body.user.nationalId,
+      placeType: req.body.user.placeType,
       ip: req.ip,
-      roles: [{ name: 'student' }],
-      active: true,
-      type: 'student',
-      created_date: new Date(),
+      roles: [{ name: "student" }],
+      type: "student",
+      createdDate: new Date(),
       $req: req,
       $res: res,
     };
-
+    if (req.body.user.placeType == "online") {
+      user.active = false;
+    } else {
+      user.active = true;
+    }
     site.security.register(user, function (err, doc) {
       if (!err) {
-
         response.user = doc;
         response.done = true;
       } else {

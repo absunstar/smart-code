@@ -1,11 +1,10 @@
 <div class="form" id="settingDefault">
   <div class="tabs">
     <div class="tabs-header full">
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.site_settings## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.Site Settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Theme Setting## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.email_and_text_messages## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#articlesSettings')"> ##word.articles_settings## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.programming## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.Email And Messages## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.Programming## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#block')"> ##word.Block## </a>
     </div>
 
@@ -14,36 +13,36 @@
         <div class="article-part">
           <div class="row padding border margin">
             <div class="row">
-              <i-control class="col6" label="##word.ceoManager##" ng-model="siteSetting.ceoManager"> </i-control>
-              <i-control class="col6" label="##word.editorManager##" ng-model="siteSetting.editorManager"> </i-control>
+              <i-control class="col6" label="##word.Ceo Manager##" ng-model="siteSetting.ceoManager"> </i-control>
+              <i-control class="col6" label="##word.Editor Manager##" ng-model="siteSetting.editorManager"> </i-control>
             </div>
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.email##" ng-model="siteSetting.email"> </i-control>
-            <i-control class="col6" label="##word.sales_email##" ng-model="siteSetting.salesEmail"> </i-control>
+            <i-control class="col6" label="##word.Email##" ng-model="siteSetting.email"> </i-control>
+            <i-control class="col6" label="##word.Sales Email##" ng-model="siteSetting.salesEmail"> </i-control>
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.support_email##" ng-model="siteSetting.supportEmail"> </i-control>
-            <i-control class="col6" label="##word.phone##" ng-model="siteSetting.phone"> </i-control>
+            <i-control class="col6" label="##word.Support E-mail##" ng-model="siteSetting.supportEmail"> </i-control>
+            <i-control class="col6" label="##word.Phone##" ng-model="siteSetting.phone"> </i-control>
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.link## ##word.google_store##" ng-model="siteSetting.googleStore"> </i-control>
-            <i-control class="col6" label="##word.link## ##word.apple_store##" ng-model="siteSetting.appleStore"> </i-control>
+            <i-control class="col6" label="##word.Link## ##word.Google Store##" ng-model="siteSetting.googleStore"> </i-control>
+            <i-control class="col6" label="##word.Link## ##word.Apple Store##" ng-model="siteSetting.appleStore"> </i-control>
           </div>
 
           <fieldset>
             <div class="row">
               <div class="col6">
-                <i-checkbox class="" label="##word.tax_number_show##" ng-model="siteSetting.taxNumberShow"> </i-checkbox>
+                <i-checkbox class="" label="##word.Tax Number Show##" ng-model="siteSetting.taxNumberShow"> </i-checkbox>
 
-                <i-control label="##word.tax_number##" ng-model="siteSetting.taxNumber"> </i-control>
+                <i-control label="##word.Tax Number##" ng-model="siteSetting.taxNumber"> </i-control>
               </div>
               <div class="col6">
-                <i-checkbox class="" label="##word.commercial_registration_no_show##" ng-model="siteSetting.commercialRegistrationNoShow"> </i-checkbox>
-                <i-control label="##word.commercial_registration_no##" ng-model="siteSetting.commercialRegistrationNo"> </i-control>
+                <i-checkbox class="" label="##word.Commercial Registration Dont Show##" ng-model="siteSetting.commercialRegistrationNoShow"> </i-checkbox>
+                <i-control label="##word.Commercial Registration No.##" ng-model="siteSetting.commercialRegistrationNo"> </i-control>
               </div>
             </div>
           </fieldset>
@@ -52,15 +51,15 @@
           </div> -->
 
           <fieldset>
-            <legend>##word.social_media_accounts##</legend>
+            <legend>##word.Social Media Accounts##</legend>
             <div class="row">
-              <i-control class="col6" label="##word.facebook_account##" ng-model="siteSetting.facebookAccount"> </i-control>
-              <i-control class="col6" label="##word.instagram_accouunt##" ng-model="siteSetting.instagramAccouunt"> </i-control>
+              <i-control class="col6" label="##word.Facebook Account##" ng-model="siteSetting.facebookAccount"> </i-control>
+              <i-control class="col6" label="##word.Instagram Accouunt##" ng-model="siteSetting.instagramAccouunt"> </i-control>
             </div>
 
             <div class="row">
-              <i-control class="col6" label="##word.you_tube_accouunt##" ng-model="siteSetting.youTubeAccouunt"> </i-control>
-              <i-control class="col6" label="##word.twitter_accouunt##" ng-model="siteSetting.twitterAccouunt"> </i-control>
+              <i-control class="col6" label="##word.Youtube Accouunt##" ng-model="siteSetting.youTubeAccouunt"> </i-control>
+              <i-control class="col6" label="##word.Twitter Accouunt##" ng-model="siteSetting.twitterAccouunt"> </i-control>
             </div>
 
             <div class="row">
@@ -75,51 +74,42 @@
           </fieldset>
 
           <fieldset>
-            <legend>##word.Languages##</legend>
-            <div class="row" ng-repeat="lang in siteSetting.languageList track by $index">
-              <div class="row">
-                <div class="article-part">
-                  <p class="col4 margin font-23">{{lang.name}}</p>
-                  <i-checkbox class="col3" label="##word.active##" ng-model="lang.active"> </i-checkbox>
-                </div>
-              </div>
-              <div class="row" ng-show="lang.active">
+           
+              <div class="row" >
                 <div class="col9">
                   <div class="row">
-                    <i-control label="##word.site_name##" class="col6" ng-model="lang.siteName"> </i-control>
-                    <i-control label="##word.Title Separator##" class="col6" ng-model="lang.titleSeparator"> </i-control>
+                    <i-control label="##word.Site Name##" class="col6" ng-model="siteSetting.siteName"> </i-control>
+                    <i-control label="##word.Title Separator##" class="col6" ng-model="siteSetting.titleSeparator"> </i-control>
                   </div>
                   <div class="row">
-                    <i-control label="##word.site_slogan##" ng-model="lang.siteSlogan"> </i-control>
+                    <i-control label="##word.Site Slogan##" ng-model="siteSetting.siteSlogan"> </i-control>
                   </div>
                   <div class="row">
-                    <i-textarea ng-model="lang.description" label="##word.site_description##"> </i-textarea>
+                    <i-textarea ng-model="siteSetting.description" label="##word.Site Description##"> </i-textarea>
                   </div>
                   <fieldset>
-                    <i-control label="##word.keywords##" ng-keydown="addKeyWords($event , lang)" ng-model="lang.$keyword"> </i-control>
+                    <i-control label="##word.Keywords##" ng-keydown="addKeyWords($event , siteSetting)" ng-model="siteSetting.$keyword"> </i-control>
                     <div class="row">
-                      <div class="key-words" ng-repeat="k in lang.keyWordsList">
+                      <div class="key-words" ng-repeat="k in siteSetting.keyWordsList">
                         <span>{{k}}</span>
-                        <i class="fas fa-times delete-key" ng-click="lang.keyWordsList.splice($index,1)"></i>
+                        <i class="fas fa-times delete-key" ng-click="siteSetting.keyWordsList.splice($index,1)"></i>
                       </div>
                     </div>
                   </fieldset>
                 </div>
                 <div class="col3">
-                  <i-image label="##word.logo##" class="img128" ng-model="lang.logo"></i-image>
+                  <i-image label="##word.Logo##" class="img128" ng-model="siteSetting.logo"></i-image>
                 </div>
               </div>
-              <hr />
-            </div>
           </fieldset>
         </div>
-        <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting('#siteSettings')"></i-button>
+        <i-button type="save" label="##word.Save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#siteSettings')"></i-button>
       </div>
       <div id="mainPage" class="tab-content">
         <div class="article-part">
           <div class="row">
             <div class="row">
-              <i-list class="col4" v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.site_template##"> </i-list>
+              <i-list class="col4" v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.Site Template##"> </i-list>
             </div>
 
             <div class="row padding margin border">
@@ -352,7 +342,7 @@
               </table>
             </fieldset>
 
-            <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting()"></i-button>
+            <i-button type="save" label="##word.save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting()"></i-button>
           </div>
         </div>
       </div>
@@ -360,7 +350,7 @@
       <div id="emailAndTextMessages" class="tab-content">
         <div class="article-part">
           <fieldset>
-            <legend>##word.mobile_sms##</legend>
+            <legend>##word.Mobile SMS##</legend>
             <div class="row">
               <div class="col6">
                 <div class="article-part">
@@ -368,123 +358,55 @@
                 </div>
               </div>
 
-              <i-control class="col6" label="##word.auth_token_mobile##" ng-model="siteSetting.authTokenMobile"> </i-control>
+              <i-control class="col6" label="##word.Auth Token Mobile##" ng-model="siteSetting.authTokenMobile"> </i-control>
             </div>
             <div class="row">
-              <i-control class="col6" label="##word.account_id_mobile##" ng-model="siteSetting.accountIdMobile"> </i-control>
-              <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="siteSetting.messagingServicesIdMobile"> </i-control>
+              <i-control class="col6" label="##word.Account Id Mobile##" ng-model="siteSetting.accountIdMobile"> </i-control>
+              <i-control class="col6" label="##word.Messaging Services Id Mobile##" ng-model="siteSetting.messagingServicesIdMobile"> </i-control>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend>##word.email_sending_setting##</legend>
+            <legend>##word.Email Sending Setting##</legend>
             <div class="row">
               <div class="col6">
                 <div class="article-part">
-                  <i-checkbox class="" label="##word.allow_registration_through_email##" ng-model="siteSetting.allowRegistrationEmail"> </i-checkbox>
+                  <i-checkbox class="" label="##word.Allow Registration Through E-mail##" ng-model="siteSetting.allowRegistrationEmail"> </i-checkbox>
                   <i-checkbox label="##word.enableSendingMessagesEmail##" ng-model="siteSetting.enableSendingMessagesEmail"> </i-checkbox>
                 </div>
               </div>
             </div>
             <div class="row">
-              <i-control class="col6" label="##word.host##" type="text" ng-model="siteSetting.emailSetting.host"></i-control>
-              <i-control class="col6" label="##word.port##" type="number" ng-model="siteSetting.emailSetting.port"></i-control>
+              <i-control class="col6" label="##word.Host##" type="text" ng-model="siteSetting.emailSetting.host"></i-control>
+              <i-control class="col6" label="##word.Port##" type="number" ng-model="siteSetting.emailSetting.port"></i-control>
             </div>
 
             <div class="row">
-              <i-control class="col6" label="##word.user_name##" type="text" ng-model="siteSetting.emailSetting.username"></i-control>
-              <i-control class="col6" label="##word.password##" type="password" ng-model="siteSetting.emailSetting.password"> </i-control>
+              <i-control class="col6" label="##word.Username##" type="text" ng-model="siteSetting.emailSetting.username"></i-control>
+              <i-control class="col6" label="##word.Password##" type="password" ng-model="siteSetting.emailSetting.password"> </i-control>
             </div>
 
             <div class="row">
-              <i-control class="col6" label="##word.sent_from_mail##" type="text" ng-model="siteSetting.emailSetting.from"> </i-control>
+              <i-control class="col6" label="##word.Sent From E-mail##" type="text" ng-model="siteSetting.emailSetting.from"> </i-control>
             </div>
           </fieldset>
         </div>
 
-        <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting('#email_and_text_messages')"></i-button>
-      </div>
-
-      <div id="articlesSettings" class="tab-content">
-        <fieldset>
-          <div class="row">
-            <div class="col6">
-              <i-list ng-model="siteSetting.article.status" items="articleStatusList" display="##session.lang##" ng-search="_search.$searchArticleStatus" label="##word.article_status##"></i-list>
-
-              <i-list
-                ng-model="siteSetting.article.publishingSystem"
-                items="publishingSystemList"
-                display="##session.lang##"
-                ng-search="_search.$searchPublishingSystem"
-                label="##word.publishing_system##"
-              ></i-list>
-
-              <div class="article-part">
-                <i-list ng-model="siteSetting.article.closingSystem" items="closingSystemList" display="##session.lang##" ng-search="_search.$searchClosingSystem" label="##word.closing_system##">
-                </i-list>
-                <div class="row">
-                  <i-control
-                    ng-show="siteSetting.article.closingSystem.id == 1"
-                    label="##word.duration## / ##word.day##"
-                    type="number"
-                    class="col6"
-                    ng-model="siteSetting.article.duration"
-                  ></i-control>
-                  <!-- <i-list
-                    class="col6"
-                    ng-model="siteSetting.article.durationType"
-                    items="durationExpiryList"
-                    ng-show="siteSetting.article.closingSystem.id == 1"
-                    display="##session.lang##"
-                    ng-search="_search.$searchDurationType"
-                    label="##word.duration_type##"
-                  ></i-list> -->
-                </div>
-              </div>
-
-              <i-list label="##word.language##" ng-model="siteSetting.article.language" items="siteSetting.article.languages" ng-search="siteSetting.article.language.$langSearch"> </i-list>
-
-              <i-list label="##word.writer##" ng-model="siteSetting.article.writer" items="writersList" display="profile.name" ng-search="siteSetting.article.$writerSearch"> </i-list>
-              <i-list label="##word.editor##" ng-model="siteSetting.article.editor" items="editorsList" display="profile.name" ng-search="siteSetting.article.$editorSearch"> </i-list>
-              <i-list label="##word.Category##" ng-model="siteSetting.article.category" items="topCategoryList" display="name" ng-search="siteSetting.article.$categorySearch"> </i-list>
-              <div class="row">
-                <div class="article-part">
-                  <i-checkbox class="" label="##word.Auto Creation Shortened Link##" ng-model="siteSetting.article.autoShortenedLink"> </i-checkbox>
-                </div>
-              </div>
-            </div>
-            <div class="col6">
-              <div class="row">
-                <fieldset>
-                  <legend>##word.article_template##</legend>
-                  <div class="row" ng-repeat="t in siteSetting.article.articleTypes track by $index">
-                    <div class="row">
-                      <p class="col5">{{t.##session.lang##}}</p>
-                      <i-checkbox class="col3" label="##word.active##" ng-model="t.active"> </i-checkbox>
-                    </div>
-                    <hr />
-                  </div>
-                </fieldset>
-              </div>
-            </div>
-          </div>
-
-          <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting('#adsSettings')"> </i-button>
-        </fieldset>
+        <i-button type="save" label="##word.Save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#email_and_text_messages')"></i-button>
       </div>
 
       <div id="programming" class="tab-content">
         <div class="article-part">
           <fieldset>
             <legend>
-              Meta Tags
+              ##word.Meta Tags##
               <i-button type="push" ng-click="addMetaTags(siteSetting.programming)"></i-button>
             </legend>
             <div class="row" ng-repeat="p in siteSetting.programming.metaTags track by $index">
               <div class="row">
                 <i-control type="text" class="col9" ng-model="p.name"> </i-control>
                 <i-checkbox class="col2" label="active" ng-model="p.active"> </i-checkbox>
-                <i-button type="delete" label="##word.delete##" ng-click="siteSetting.programming.metaTags.splice($index,1)"> </i-button>
+                <i-button type="delete" label="##word.Delete##" ng-click="siteSetting.programming.metaTags.splice($index,1)"> </i-button>
               </div>
               <hr />
             </div>
@@ -492,7 +414,7 @@
 
           <fieldset>
             <legend>
-              Styles
+              ##word.Styles##
               <i-button type="push" ng-click="addStyles(siteSetting.programming)"></i-button>
             </legend>
 
@@ -500,7 +422,7 @@
               <div class="row">
                 <i-control class="col9" type="text" ng-model="s.name"> </i-control>
                 <i-checkbox class="col2" label="active" ng-model="s.active"> </i-checkbox>
-                <i-button type="delete" label="##word.delete##" ng-click="siteSetting.programming.styles.splice($index,1)"> </i-button>
+                <i-button type="delete" label="##word.Delete##" ng-click="siteSetting.programming.styles.splice($index,1)"> </i-button>
               </div>
               <hr />
             </div>
@@ -508,7 +430,7 @@
 
           <fieldset>
             <legend>
-              Scripts
+              ##word.Scripts##
               <i-button type="push" ng-click="addScripts(siteSetting.programming)"></i-button>
             </legend>
 
@@ -524,16 +446,16 @@
 
           <fieldset>
             <legend>
-              Dynamic Route
+              ##word.Dynamic Route##
               <i-button type="push" ng-click="showDynamicRoutes()"></i-button>
             </legend>
 
             <table class="table hover bold" ng-show="siteSetting.programming.dynamicRoutes.length > 0">
               <tr>
-                <th>URL</th>
-                <th>Content Type</th>
-                <th class="w200">Active</th>
-                <th class="not-print w150">##word.actions##</th>
+                <th>##word.URL##</th>
+                <th>##word.Content Type##</th>
+                <th class="w200">##word.Active##</th>
+                <th class="not-print w150">##word.Actions##</th>
               </tr>
 
               <tr ng-repeat="d in siteSetting.programming.dynamicRoutes track by $index">
@@ -554,17 +476,17 @@
           </fieldset>
 
           <fieldset>
-            <legend>Custom Script</legend>
+            <legend>##word.Custom Script##</legend>
             <i-textarea ng-model="siteSetting.programming.customScript"> </i-textarea>
           </fieldset>
 
           <fieldset>
-            <legend>Ads.txt</legend>
+            <legend>##word.Ads.txt</legend>
             <i-textarea ng-model="siteSetting.adsTxt"> </i-textarea>
           </fieldset>
 
           <fieldset>
-            <legend>Ropots.txt</legend>
+            <legend>##word.Ropots.txt</legend>
             <i-textarea ng-model="siteSetting.robotsTxt"> </i-textarea>
           </fieldset>
 
@@ -577,7 +499,7 @@
             </div>
           </div>
         </div>
-        <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting('#programming')"> </i-button>
+        <i-button type="save" label="##word.save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#programming')"> </i-button>
       </div>
 
       <div id="block" class="tab-content">
@@ -624,7 +546,7 @@
             </fieldset>
           </div>
         </div>
-        <i-button type="save" label="##word.save##" x-permissions="siteSetting_edit || siteSetting_manage" ng-click="saveSetting('#block')"> </i-button>
+        <i-button type="save" label="##word.save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#block')"> </i-button>
       </div>
     </div>
   </div>

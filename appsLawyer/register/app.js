@@ -26,7 +26,7 @@ module.exports = function init(site) {
         filter: site.getHostFilter(req.host),
         site_logo: setting.logo?.url || "/lawyer/images/logo.png",
         page_image: setting.logo?.url || "/lawyer/images/logo.png",
-        user_image : req.session?.user?.image?.url || "/lawyer/images/logo.png",
+        user_image: req.session?.user?.image?.url || "/lawyer/images/logo.png",
         site_name: setting.siteName,
         page_lang: setting.id,
         page_type: "website",
@@ -49,15 +49,10 @@ module.exports = function init(site) {
         data.page_image = "https://" + req.host + data.page_image;
         data.user_image = "https://" + req.host + data.user_image;
       }
-      res.render(
-        
-        "register/index.html",
-        data,
-        {
-          parser: "html css js",
-          compress: true,
-        }
-      );
+      res.render("register/index.html", data, {
+        parser: "html css js",
+        compress: true,
+      });
     }
   );
 
@@ -366,8 +361,14 @@ module.exports = function init(site) {
       officesList: [],
       roles: [{ name: req.body.type }],
       active: true,
+      username: req.body.username,
+      cardNumber: req.body.cardNumber,
+      constraintDate: req.body.constraintDate,
+      constraintType: req.body.constraintType,
+      cardImage: req.body.cardImage,
+      specialties: req.body.specialties,
       type: req.body.type,
-      created_date: new Date(),
+      createdDate: new Date(),
       $req: req,
       $res: res,
     };
@@ -377,7 +378,7 @@ module.exports = function init(site) {
         if (req.body.type == "lawyer") {
           let office = {
             image: "/images/offices.png",
-            name: "مكتب" + ' ' + doc.firstName + ' ' + doc.lastName,
+            name: "مكتب" + " " + doc.firstName + " " + doc.lastName,
             active: true,
             user: {
               id: doc.id,

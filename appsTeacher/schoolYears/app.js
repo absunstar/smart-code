@@ -264,7 +264,6 @@ module.exports = function init(site) {
                     if (where && where['educationalLevel.id']) {
                         list = list.filter((g) => g.educationalLevel && g.educationalLevel.id == where['educationalLevel.id']);
                     }
-
                     res.json({
                         done: true,
                         list: list,

@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   let app = {
-    name: "opponents",
-    allowMemory: false,
+    name: "centers",
+    allowMemory: true,
     memoryList: [],
     allowCache: false,
     cacheList: [],
@@ -14,7 +14,7 @@ module.exports = function init(site) {
     allowRouteAll: true,
   };
 
-  app.$collection = site.connectCollection("opponents");
+  app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
     if (app.allowMemory) {
@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Opponents"),
+              appName: req.word("Centers"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -170,6 +170,8 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
+
+          _data.addUserInfo = req.getUserFinger();
 
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -258,100 +260,77 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let search = req.body.search || "";
-        let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          firstName: 1,
-          lastName: 1,
+          name: 1,
           image: 1,
           active: 1,
         };
-        if (search) {
-          where.$or = [];
+        let list = [];
+        app.memoryList.forEach((doc) => {
+          let obj = { ...doc };
 
-          where.$or.push({
-            id: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            firstName: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            lastName: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            idNumber: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "gender.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "gender.nameEn": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "maritalStatus.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "maritalStatus.nameEn": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            phone: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            mobile: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            whatsapp: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            socialEmail: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            address: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "gov.name": site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "city.name": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "area.name": site.get_RegExp(search, "i"),
-          });
-        }
-
-        if (app.allowMemory) {
-          if (!search) {
-            search = "id";
+          for (const p in obj) {
+            if (!Object.hasOwnProperty.call(select, p)) {
+              delete obj[p];
+            }
           }
-          let list = app.memoryList
-            .filter(
-              (g) =>
-                (typeof where.active != "boolean" ||
-                  g.active === where.active) &&
-                JSON.stringify(g).contains(search)
-            )
-            .slice(0, limit);
-          res.json({
-            done: true,
-            list: list,
-          });
-        } else {
-          app.all({ where, select, limit }, (err, docs) => {
-            res.json({
-              done: true,
-              list: docs,
-            });
-          });
-        }
+          if (!where.active || doc.active) {
+            list.push(obj);
+          }
+        });
+        res.json({
+          done: true,
+          list: list,
+        });
       });
-    
+
+      site.post(`api/${app.name}/import`, (req, res) => {
+        let response = {
+          done: false,
+          file: req.form.files.fileToUpload,
+        };
+
+        if (site.isFileExistsSync(response.file.filepath)) {
+          let docs = [];
+          if (response.file.originalFilename.like("*.xls*")) {
+            let workbook = site.XLSX.readFile(response.file.filepath);
+            docs = site.XLSX.utils.sheet_to_json(
+              workbook.Sheets[workbook.SheetNames[0]]
+            );
+          } else {
+            docs = site.fromJson(
+              site.readFileSync(response.file.filepath).toString()
+            );
+          }
+
+          if (Array.isArray(docs)) {
+            console.log(`Importing ${app.name} : ${docs.length}`);
+            docs.forEach((doc) => {
+              newDoc.addUserInfo = req.getUserFinger();
+
+              app.add(newDoc, (err, doc2) => {
+                if (!err && doc2) {
+                  site.dbMessage = `Importing ${app.name} : ${doc2.id}`;
+                  console.log(site.dbMessage);
+                } else {
+                  site.dbMessage = err.message;
+                  console.log(site.dbMessage);
+                }
+              });
+            });
+          } else {
+            site.dbMessage =
+              "can not import unknown type : " + site.typeof(docs);
+            console.log(site.dbMessage);
+          }
+        } else {
+          site.dbMessage = "file not exists : " + response.file.filepath;
+          console.log(site.dbMessage);
+        }
+
+        res.json(response);
+      });
     }
   }
 

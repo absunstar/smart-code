@@ -1,0 +1,92 @@
+<div id="quizModal" class="modal full" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <p class="center">
+        ##word.Quiz Manage##
+        <i class="fas fa-text-height"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <fieldset class="padding margin">
+          <legend>
+            ##word.Add Question##
+            <i-button type="push" ng-click="addQuestion()"></i-button>
+          </legend>
+          <fieldset
+            class="row padding margin"
+            ng-repeat="question in item.questionsList"
+          >
+            <div class="row">
+              <div class="col1"><p class="character-style">{{question.numbering}}</p></div>
+              <i-control
+                type="text"
+                v="r"
+                class="col9"
+                ng-model="question.name"
+                label="##word.Question Title##"
+              ></i-control>
+              <i-button
+                class="col2"
+                type="delete"
+                ng-click=" item.questionsList.splice($index,1)"
+              >
+              </i-button>
+            </div>
+
+            <fieldset class="col10 padding margin">
+              <legend>
+                ##word.Add Answer##
+                <i-button type="push" ng-click="addAnswer(question)"></i-button>
+              </legend>
+              <div class="row" ng-repeat="answer in question.answersList">
+                <div class="col1"><p class="character-style">{{answer.numbering}}</p></div>
+                <div class="col8">
+                  <i-control
+                    type="text"
+                    v="r"
+                    ng-model="answer.name"
+                    label="##word.Name##"
+                  ></i-control>
+                </div>
+                <div class="col2">
+                  <br />
+                  <i-checkbox
+                    ng-click="correctAnswer(answer,question)"
+                    ng-model="answer.correct"
+                    label="##word.Correct##"
+                  ></i-checkbox>
+                </div>
+                <div class="col1">
+                  <br />
+                  <i-button
+                    type="delete"
+                    ng-click=" question.answersList.splice($index,1)"
+                  >
+                  </i-button>
+                </div>
+              </div>
+            </fieldset>
+          </fieldset>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <p class="error">{{error}}</p>
+      <i-button
+        type="save"
+        label="##word.saveQuiz##"
+        ng-click="update(item,'#quizModal')"
+      ></i-button>
+
+      <i-button
+        type="close"
+        label="##word.Close##"
+        onclick="site.hideModal( '#quizModal')"
+      ></i-button>
+    </div>
+  </div>
+</div>

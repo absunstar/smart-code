@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   let app = {
-    name: "centrs",
-    allowMemory: true,
+    name: "lectures",
+    allowMemory: false,
     memoryList: [],
     allowCache: false,
     cacheList: [],
@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Centrs"),
+              appName: req.word("Lectures"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -172,7 +172,7 @@ module.exports = function init(site) {
           let _data = req.data;
 
           _data.addUserInfo = req.getUserFinger();
-
+          _data.date = new Date();
           app.add(_data, (err, doc) => {
             if (!err && doc) {
               response.done = true;
@@ -260,28 +260,79 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
+        let search = req.body.search || "";
+        let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
           name: 1,
+          activateQuiz: 1,
           image: 1,
           active: 1,
         };
-        let list = [];
-        app.memoryList.forEach((doc) => {
-          let obj = { ...doc };
+        if (search) {
+          where.$or = [];
 
-          for (const p in obj) {
-            if (!Object.hasOwnProperty.call(select, p)) {
-              delete obj[p];
-            }
-          }
-          if (!where.active || doc.active) {
-            list.push(obj);
-          }
-        });
-        res.json({
-          done: true,
-          list: list,
+          where.$or.push({
+            id: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            name: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            lastName: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            idNumber: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            "gender.nameAr": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "gender.nameEn": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "maritalStatus.nameAr": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "maritalStatus.nameEn": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            phone: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            mobile: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            whatsapp: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            socialEmail: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            address: site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            "gov.name": site.get_RegExp(search, "i"),
+          });
+
+          where.$or.push({
+            "city.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "area.name": site.get_RegExp(search, "i"),
+          });
+        }
+
+        app.all({ where, select, limit }, (err, docs) => {
+          res.json({
+            done: true,
+            list: docs,
+          });
         });
       });
 
@@ -307,6 +358,14 @@ module.exports = function init(site) {
           if (Array.isArray(docs)) {
             console.log(`Importing ${app.name} : ${docs.length}`);
             docs.forEach((doc) => {
+              let newDoc = {
+                name: doc.name ? doc.name.trim() : "",
+                image: { url: "/theme1/images/setting/lectures.png" },
+                active: true,
+              };
+
+              newDoc.company = site.getCompany(req);
+              newDoc.branch = site.getBranch(req);
               newDoc.addUserInfo = req.getUserFinger();
 
               app.add(newDoc, (err, doc2) => {
