@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   let app = {
-    name: "centers",
+    name: "packages",
     allowMemory: true,
     memoryList: [],
     allowCache: false,
@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Centers"),
+              appName: req.word("Packages"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -173,7 +173,6 @@ module.exports = function init(site) {
 
           _data.addUserInfo = req.getUserFinger();
           _data.host = site.getHostFilter(req.host);
-
           app.add(_data, (err, doc) => {
             if (!err && doc) {
               response.done = true;
@@ -261,12 +260,7 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let select = req.body.select || {
-          id: 1,
-          name: 1,
-          image: 1,
-          active: 1,
-        };
+        let select = req.body.select || { id: 1, name: 1, image: 1, active: 1 };
         let list = [];
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
@@ -276,64 +270,17 @@ module.exports = function init(site) {
           ) {
             list.push(obj);
           }
+
           for (const p in obj) {
             if (!Object.hasOwnProperty.call(select, p)) {
               delete obj[p];
             }
           }
-          
         });
         res.json({
           done: true,
           list: list,
         });
-      });
-
-      site.post(`api/${app.name}/import`, (req, res) => {
-        let response = {
-          done: false,
-          file: req.form.files.fileToUpload,
-        };
-
-        if (site.isFileExistsSync(response.file.filepath)) {
-          let docs = [];
-          if (response.file.originalFilename.like("*.xls*")) {
-            let workbook = site.XLSX.readFile(response.file.filepath);
-            docs = site.XLSX.utils.sheet_to_json(
-              workbook.Sheets[workbook.SheetNames[0]]
-            );
-          } else {
-            docs = site.fromJson(
-              site.readFileSync(response.file.filepath).toString()
-            );
-          }
-
-          if (Array.isArray(docs)) {
-            console.log(`Importing ${app.name} : ${docs.length}`);
-            docs.forEach((doc) => {
-              newDoc.addUserInfo = req.getUserFinger();
-
-              app.add(newDoc, (err, doc2) => {
-                if (!err && doc2) {
-                  site.dbMessage = `Importing ${app.name} : ${doc2.id}`;
-                  console.log(site.dbMessage);
-                } else {
-                  site.dbMessage = err.message;
-                  console.log(site.dbMessage);
-                }
-              });
-            });
-          } else {
-            site.dbMessage =
-              "can not import unknown type : " + site.typeof(docs);
-            console.log(site.dbMessage);
-          }
-        } else {
-          site.dbMessage = "file not exists : " + response.file.filepath;
-          console.log(site.dbMessage);
-        }
-
-        res.json(response);
       });
     }
   }

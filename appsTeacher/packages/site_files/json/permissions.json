@@ -1,0 +1,12 @@
+[
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "lawyer", "screenName": "packages", "name": "packagesImport", "En": "Import", "Ar": "إستيراد" }
+]

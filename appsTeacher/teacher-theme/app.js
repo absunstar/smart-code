@@ -50,7 +50,7 @@ module.exports = function init(site) {
       name: ["/", "/teacher"],
     },
     (req, res) => {
-      let setting = site.getSiteSetting(req.host);
+      let setting = site.getSiteSetting(req.host) || {}; 
       // if (!setting.host) {
       //   res.redirect(site.getMainHost(req.host), 301);
       //   return;

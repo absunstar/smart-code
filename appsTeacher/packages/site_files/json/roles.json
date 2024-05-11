@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "packagesAdmin",
+    "En": "Packages Admin",
+    "Ar": "إدارة مجموعة المحاضرات",
+    "permissions": ["packagesManage"]
+}] 

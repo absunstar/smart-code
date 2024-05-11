@@ -186,7 +186,7 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          let setting = site.getSiteSetting(req.host);
+          let setting = site.getSiteSetting(req.host) || {};
           setting.description = setting.description || "";
           setting.keyWordsList = setting.keyWordsList || [];
           let data = {

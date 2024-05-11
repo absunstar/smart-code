@@ -11,12 +11,12 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: ["/profileView/:id", ["lawyer/:username"]],
+      name: ["/profileView/:id", ["lawyer/:userName"]],
     },
     (req, res) => {
-      let setting = site.getSiteSetting(req.host);
+      let setting = site.getSiteSetting(req.host) || {};
       site.security.getUser(
-        { id: req.params.id, username: req.params.username },
+        { id: req.params.id, userName: req.params.userName },
         (err, user) => {
           if (user) {
             site.getConsultations(
@@ -99,7 +99,7 @@ module.exports = function init(site) {
   site.onGET("profileEdit/:id", (req, res) => {
     site.security.getUser({ id: req.params.id }, (err, user) => {
       if (user) {
-        let setting = site.getSiteSetting(req.host);
+        let setting = site.getSiteSetting(req.host) || {};
         user.site_logo = setting.logo?.url || "/lawyer/images/logo.png";
         user.page_image = user.image?.url || "/lawyer/images/logo.png";
         user.user_image =

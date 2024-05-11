@@ -11,11 +11,11 @@ module.exports = function init(site) {
       name: "register",
     },
     (req, res) => {
-      let setting = site.getSiteSetting(req.host);
-      if (!setting.host) {
-        res.redirect(site.getMainHost(req.host), 301);
-        return;
-      }
+      let setting = site.getSiteSetting(req.host) || {};
+      // if (!setting.host) {
+      //   res.redirect(site.getMainHost(req.host), 301);
+      //   return;
+      // }
 
       setting.description = setting.description || "";
       setting.keyWordsList = setting.keyWordsList || [];
@@ -354,6 +354,7 @@ module.exports = function init(site) {
       roles: [{ name: "student" }],
       type: "student",
       createdDate: new Date(),
+      host: site.getHostFilter(req.host),
       $req: req,
       $res: res,
     };

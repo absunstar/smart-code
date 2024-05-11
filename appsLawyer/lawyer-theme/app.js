@@ -50,11 +50,11 @@ module.exports = function init(site) {
       name: ["/", "/lawyer"],
     },
     (req, res) => {
-      let setting = site.getSiteSetting(req.host);
-      if (!setting.host) {
-        res.redirect(site.getMainHost(req.host), 301);
-        return;
-      }
+      let setting = site.getSiteSetting(req.host) || {};
+      // if (!setting.host) {
+      //   res.redirect(site.getMainHost(req.host), 301);
+      //   return;
+      // }
 
       site.getConsultations(
         { "status.name": "closed" },

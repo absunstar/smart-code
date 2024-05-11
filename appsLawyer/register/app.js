@@ -11,11 +11,11 @@ module.exports = function init(site) {
       name: "register",
     },
     (req, res) => {
-      let setting = site.getSiteSetting(req.host);
-      if (!setting.host) {
-        res.redirect(site.getMainHost(req.host), 301);
-        return;
-      }
+      let setting = site.getSiteSetting(req.host) || {};
+      // if (!setting.host) {
+      //   res.redirect(site.getMainHost(req.host), 301);
+      //   return;
+      // }
 
       setting.description = setting.description || "";
       setting.keyWordsList = setting.keyWordsList || [];
@@ -361,7 +361,7 @@ module.exports = function init(site) {
       officesList: [],
       roles: [{ name: req.body.type }],
       active: true,
-      username: req.body.username,
+      userName: req.body.userName,
       cardNumber: req.body.cardNumber,
       constraintDate: req.body.constraintDate,
       constraintType: req.body.constraintType,

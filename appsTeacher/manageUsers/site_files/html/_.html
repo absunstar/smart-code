@@ -3,12 +3,13 @@
     <div x-import="manageUsers/modal.html"></div>
 
     <div class="top-actions">
-      <!-- <i-button
+      <i-button
         type="add"
+        ng-show="'##query.type##' == 'teacher'"
         x-permissions="manageUsersAdd || manageUsersManage"
-        label="##word.Add New## {{employeeType}}"
-        ng-click="showAdd()"
-      ></i-button> -->
+        label="##word.Add New Teacher##"
+        ng-click="showAdd('teacher')"
+      ></i-button>
       <i-button
         type="search"
         x-permissions="manageUsersSearch || manageUsersManage"
@@ -21,11 +22,26 @@
         label="##word.Not Active##"
         ng-click="searchAll(search={active:false})"
       ></i-button>
-      <i-upload
-        api="api/manageUsers/import"
-        label="Import"
-        x-permissions="manageUsersImport || manageUsersManage"
-      ></i-upload>
+      <i-button
+        type="search"
+        x-permissions="manageUsersSearch || manageUsersManage"
+        label="##word.Not Active##"
+        ng-click="searchAll(search={active:false})"
+      ></i-button>
+      <i-button
+        type="search"
+        ng-show="'##query.type##' == 'student'"
+        x-permissions="manageUsersSearch || manageUsersManage"
+        label="##word.Online##"
+        ng-click="searchAll({placeType : 'online'})"
+      ></i-button>
+      <i-button
+        type="search"
+        ng-show="'##query.type##' == 'student'"
+        x-permissions="manageUsersSearch || manageUsersManage"
+        label="##word.Offline##"
+        ng-click="searchAll({placeType : 'offline'})"
+      ></i-button>
     </div>
     <p class="error">{{error}}</p>
     <div class="table-responsive">

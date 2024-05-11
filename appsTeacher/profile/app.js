@@ -11,11 +11,11 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: ["/profileView/:id", ["teacher/:username"]],
+      name: ["/profileView/:id", ["teacher/:userName"]],
     },
     (req, res) => {
       site.security.getUser(
-        { id: req.params.id, username: req.params.username },
+        { id: req.params.id, userName: req.params.userName },
         (err, user) => {
           if (user) {
             user.startCommunicationTime = user.startCommunicationTime

@@ -194,6 +194,10 @@ module.exports = function init(site) {
     }
   };
 
+  site.addNewHost = function (data) {
+    hostManager.add(data);
+  };
+
   site.getSiteSetting = function (host = "") {
     return (
       site.settingList.find((s) => s.host.like(host)) || {
@@ -261,7 +265,7 @@ module.exports = function init(site) {
       require: { permissions: ["login"] },
     },
     (req, res) => {
-      let setting = site.getSiteSetting(req.host);
+      let setting = site.getSiteSetting(req.host) || {};
       let language =
         setting.languageList.find((l) => l.id == req.session.lang) ||
         setting.languageList[0];
