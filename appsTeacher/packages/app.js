@@ -13,6 +13,7 @@ module.exports = function init(site) {
     allowRouteView: true,
     allowRouteAll: true,
   };
+  site.packagesList = site.packagesList || [];
 
   app.$collection = site.connectCollection(app.name);
 
@@ -159,6 +160,47 @@ module.exports = function init(site) {
           );
         }
       );
+
+      site.get(
+        {
+          name: "packageView",
+        },
+        (req, res) => {
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+            page_image: setting.logo?.url || "/lawyer/images/logo.png",
+            user_image:
+              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title:
+              setting.siteName +
+              " " +
+              setting.titleSeparator +
+              " " +
+              setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "https://" + req.host + data.site_logo;
+            data.page_image = "https://" + req.host + data.page_image;
+            data.user_image = "https://" + req.host + data.user_image;
+          }
+          res.render(app.name + "/packageView.html", data, {
+            parser: "html",
+            compres: true,
+          });
+        }
+      );
     }
 
     if (app.allowRouteAdd) {
@@ -170,7 +212,7 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-
+          _data.date = new Date();
           _data.addUserInfo = req.getUserFinger();
           _data.host = site.getHostFilter(req.host);
           app.add(_data, (err, doc) => {
@@ -260,7 +302,14 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let select = req.body.select || { id: 1, name: 1, image: 1, active: 1 };
+        let select = req.body.select || {
+          id: 1,
+          name: 1,
+          image: 1,
+          educationalLevel: 1,
+          schoolYear: 1,
+          active: 1,
+        };
         let list = [];
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
@@ -284,6 +333,102 @@ module.exports = function init(site) {
       });
     }
   }
+
+  site.post({ name: `/api/${app.name}/buyCode`, public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let _data = req.data;
+    app.view({ id: _data.packageId }, (err, doc) => {
+      if (!err && doc) {
+        site.validateCode({ code: _data.code,price :_data.packagePrice  }, (errCode, code) => {
+          if (errCode) {
+            response.error = errCode;
+            res.json(response);
+            return;
+          } else {
+            site.security.getUser(
+              {
+                id: req.session.user.id,
+              },
+              (err, user) => {
+                if (!err && user) {
+                  user.packagesList = user.packagesList || [];
+                  user.lecturesList = user.lecturesList || [];
+                  doc.lecturesList.forEach((_l) => {
+                    if (!user.lecturesList.some((l) => l.id == _l.lecture.id)) {
+                      user.lecturesList.push({
+                        lectureId: _l.lecture.id,
+                      });
+                    }
+                  });
+                  user.packagesList.push(_data.packageId);
+                  site.security.updateUser(user);
+                }
+                response.done = true;
+                res.json(response);
+              }
+            );
+          }
+        });
+      } else {
+        response.error = err?.message || "Not Exists";
+        res.json(response);
+      }
+    });
+  });
+
+  site.getPackages = function (req, callBack) {
+    callBack = callBack || function () {};
+    let packages = [];
+    if (req.session.user && req.session.user.type == "student") {
+      packages = site.packagesList.filter(
+        (a) =>
+          a.host == site.getHostFilter(req.host) &&
+          (a.placeType == req.session.user.placeType ||
+            a.placeType == "both") &&
+          a.schoolYear.id == req.session.user.schoolYear.id &&
+          a.educationalLevel.id == req.session.user.educationalLevel.id
+      );
+    } else {
+      packages = site.packagesList.filter(
+        (a) => a.host == site.getHostFilter(req.host)
+      );
+    }
+    if (packages.length > 0) {
+      callBack(null, packages);
+    } else {
+      let where = {};
+      if (req.session.user && req.session.user.type == "student") {
+        where["educationalLevel.id"] = req.session.user.educationalLevel.id;
+        where["schoolYear.id"] = req.session.user.schoolYear.id;
+        where["host"] = site.getHostFilter(req.host);
+        where["active"] = true;
+        where.$or = [
+          { placeType: req.session.user.placeType },
+          { placeType: "both" },
+        ];
+      }
+      app.$collection.findMany(
+        where,
+        (err, docs) => {
+          if (!err && docs) {
+            for (let i = 0; i < docs.length; i++) {
+              let doc = docs[i];
+              if (!site.packagesList.some((k) => k.id === doc.id)) {
+                doc.$time = site.xtime(doc.date, "Ar");
+
+                site.packagesList.push(doc);
+              }
+            }
+          }
+          callBack(err, docs);
+        },
+        true
+      );
+    }
+  };
 
   app.init();
   site.addApp(app);

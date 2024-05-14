@@ -15,6 +15,8 @@
             <table class="table hover bold" id="t1">
                 <tr>
                     <th class="w150">##word.Logo##</th>
+                    <th>##word.Educational Level##</th>
+                    <th>##word.School Year##</th>
                     <th>##word.Name##</th>
                     <th>##word.Status##</th>
                     <th class="not-print">##word.Actions##</th>
@@ -23,6 +25,8 @@
                     <td>
                         <i-image view class="logo center" ng-model="item.image"></i-image>
                     </td>
+                    <td class="center">{{item.educationalLevel.name}}</td>
+                    <td class="center">{{item.schoolYear.name}}</td>
                     <td class="center">{{item.name}}</td>
                     <td class="center">
                         <span class="text-success" ng-show="item.active">##word.Active##</span>

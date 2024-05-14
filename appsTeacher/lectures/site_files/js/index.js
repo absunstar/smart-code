@@ -70,6 +70,9 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    if(modal == '#quizModal'){
+      _item.$quiz = true;
+    }
     $scope.busy = true;
     $http({
       method: "POST",
@@ -197,6 +200,28 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     );
   };
 
+
+  $scope.getTypesExpiryViewsList = function () {
+    $scope.busy = true;
+    $scope.typesExpiryViewsList = [];
+    $http({
+      method: "POST",
+      url: "/api/typesExpiryViewsList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.typesExpiryViewsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getEducationalLevelsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -231,26 +256,6 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getTypesExpiryViewsList = function () {
-    $scope.busy = true;
-    $scope.typesExpiryViewsList = [];
-    $http({
-      method: "POST",
-      url: "/api/typesExpiryViewsList",
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.typesExpiryViewsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
   $scope.getSchoolYearsList = function (educationalLevel) {
     $scope.busy = true;

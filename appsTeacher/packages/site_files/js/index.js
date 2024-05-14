@@ -15,7 +15,12 @@ app.controller("packages", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure,price : 0 , totalLecturesPrice : 0, lecturesList: [] };
+    $scope.item = {
+      ...$scope.structure,
+      price: 0,
+      totalLecturesPrice: 0,
+      lecturesList: [],
+    };
     site.showModal($scope.modalID);
   };
 
@@ -198,29 +203,46 @@ app.controller("packages", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/lectures/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: { id: 1, name: 1 , price: 1 },
-        search: $search,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.lecturesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
+    if (
+      $scope.item.educationalLevel &&
+      $scope.item.educationalLevel.id &&
+      $scope.item.schoolYear &&
+      $scope.item.schoolYear.id &&
+      $scope.item.placeType
+    ) {
+      let where = {
+        active: true,
+        "educationalLevel.id": $scope.item.educationalLevel.id,
+        "schoolYear.id": $scope.item.schoolYear.id,
+      };
+      if ($scope.item.placeType != "both") {
+        where.$or = [
+          { placeType: $scope.item.placeType },
+          { placeType: "both" },
+        ];
       }
-    );
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/lectures/all",
+        data: {
+          where,
+          select: { id: 1, name: 1, price: 1 },
+          search: $search,
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.lecturesList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+    }
   };
 
   $scope.addLecture = function () {
@@ -247,11 +269,75 @@ app.controller("packages", function ($scope, $http, $timeout) {
     $scope.pricesCount();
   };
 
+  $scope.getEducationalLevelsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.educationalLevelsList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/educationalLevels/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.educationalLevelsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getSchoolYearsList = function (educationalLevel) {
+    $scope.busy = true;
+    $scope.schoolYearsList = [];
+    $http({
+      method: "POST",
+      url: "/api/schoolYears/all",
+      data: {
+        where: {
+          active: true,
+          "educationalLevel.id": educationalLevel.id,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.pricesCount = function () {
     $scope.error = "";
     $scope.item.totalLecturesPrice = 0;
-    $scope.item.lecturesList.forEach(_l => {
-      $scope.item.totalLecturesPrice += _l.lecture.price
+    $scope.item.lecturesList.forEach((_l) => {
+      $scope.item.totalLecturesPrice += _l.lecture.price;
     });
   };
 
@@ -268,4 +354,5 @@ app.controller("packages", function ($scope, $http, $timeout) {
 
   $scope.getAll();
   $scope.getLecturesList();
+  $scope.getEducationalLevelsList();
 });

@@ -1,13 +1,17 @@
-app.controller("centers", function ($scope, $http, $timeout) {
+app.controller("codes", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-  $scope.appName = "centers";
-  $scope.modalID = "#centersManageModal";
-  $scope.modalSearchID = "#centersSearchModal";
+  $scope.appName = "codes";
+  $scope.modalID = "#codesManageModal";
+  $scope.modalSearchID = "#codesSearchModal";
   $scope.mode = "add";
   $scope._search = {};
   $scope.structure = {
-    image: { url: "/theme1/images/setting/centers.png" },
-    active: true,
+    expired: false,
+    price: 0,
+  };
+  $scope.generate = {
+    count: 0,
+    price: 0,
   };
   $scope.item = {};
   $scope.list = [];
@@ -41,7 +45,33 @@ app.controller("centers", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-        
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.addMany = function (_item) {
+    $scope.error = "";
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/addMany`,
+      data: _item,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.generate = {
+            count: 0,
+            price: 0,
+          };
+          $scope.getAll({ expired: false });
+        } else {
+          $scope.error = response.data.error;
         }
       },
       function (err) {
@@ -189,163 +219,6 @@ app.controller("centers", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCountriesList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $scope.countriesList = [];
-    $http({
-      method: "POST",
-      url: "/api/countries/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-          callingCode: 1,
-        },
-        search: $search,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.countriesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getGovesList = function (country) {
-    $scope.busy = true;
-    $scope.govesList = [];
-
-    $http({
-      method: "POST",
-      url: "/api/goves/all",
-      data: {
-        where: {
-          active: true,
-          "country.id": country.id,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.govesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getCitiesList = function (gov) {
-    $scope.busy = true;
-    $scope.citiesList = [];
-    $http({
-      method: "POST",
-      url: "/api/cities/all",
-      data: {
-        where: {
-          "gov.id": gov.id,
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.citiesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getAreasList = function (city) {
-    $scope.busy = true;
-    $scope.areasList = [];
-    $http({
-      method: "POST",
-      url: "/api/areas/all",
-      data: {
-        where: {
-          "city.id": city.id,
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.areasList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-
-/*
-  $scope.initMap = function () {
-    const myLatlng = { lat: -25.363, lng: 131.044 };
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: myLatlng,
-    });
-    // Create the initial InfoWindow.
-    let infoWindow = new google.maps.InfoWindow({
-      content: "Click the map to get Lat/Lng!",
-      position: myLatlng,
-    });
-
-    infoWindow.open(map);
-    // Configure the click listener.
-    map.addListener("click", (mapsMouseEvent) => {
-      // Close the current InfoWindow.
-      infoWindow.close();
-      // Create a new InfoWindow.
-      infoWindow = new google.maps.InfoWindow({
-        position: mapsMouseEvent.latLng,
-      });
-      infoWindow.setContent(
-        JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-      );
-      infoWindow.open(map);
-    });
-  }
-
-   window.initMap = $scope.initMap();
- */
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
@@ -358,5 +231,4 @@ app.controller("centers", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getCountriesList();
 });

@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "codesAdmin",
+    "En": "Codes Admin",
+    "Ar": "إدارة الأكواد",
+    "permissions": ["codesManage"]
+}]

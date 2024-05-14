@@ -69,3 +69,7 @@ legend {
 .form-control {
   border: 1px solid #1475cf !important;
 }
+
+.selectAll {
+  user-select: all
+}

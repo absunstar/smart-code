@@ -101,21 +101,6 @@
         </fieldset>
         <fieldset>
           <legend>
-            ##word.Files##
-            <i-button type="push" ng-click="addFiles()"></i-button>
-          </legend>
-          <div class="row" ng-repeat="file in item.filesList">
-            <i-file class="col9" ng-model="file.name"></i-file>
-            <i-button
-              class="col2"
-              type="delete "
-              ng-click=" item.filesList.splice($index,1)"
-            >
-            </i-button>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>
             ##word.Links##
             <i-button type="push" ng-click="addLinks()"></i-button>
           </legend>
@@ -131,12 +116,44 @@
         </fieldset>
         <fieldset>
           <legend>
+            ##word.Files##
+            <i-button type="push" ng-click="addFiles()"></i-button>
+          </legend>
+          <div class="row" ng-repeat="file in item.filesList">
+            <i-file class="col9" ng-model="file.name"></i-file>
+            <i-button
+              class="col2"
+              type="delete "
+              ng-click=" item.filesList.splice($index,1)"
+            >
+            </i-button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>
             ##word.Activate Quiz##
-            <i-checkbox ng-model="item.activateQuiz" ng-change="activateQuiz()"></i-checkbox>
+            <i-checkbox
+              ng-model="item.activateQuiz"
+              ng-change="activateQuiz()"
+            ></i-checkbox>
           </legend>
           <div class="row" ng-show="item.activateQuiz">
+            <div class="row">
+              <i-control
+                type="number"
+                class="col3"
+                ng-model="item.quizDuration"
+                label="##word.Quiz Duration##"
+              ></i-control>
+              <i-control
+                type="number"
+                class="col3"
+                ng-model="item.timesEnterQuiz"
+                label="##word.Times Enter Quiz##"
+              ></i-control>
+            </div>
             <div class="col3">
-              <p>##word.Questions Numbering## :</p>
+              <p class="bold">##word.Questions Numbering## :</p>
             </div>
             <div class="col9">
               <div class="row">
@@ -170,7 +187,7 @@
 
           <div class="row" ng-show="item.activateQuiz">
             <div class="col3">
-              <p>##word.Answers Numbering## :</p>
+              <p class="bold">##word.Answers Numbering## :</p>
             </div>
             <div class="col9">
               <div class="row">

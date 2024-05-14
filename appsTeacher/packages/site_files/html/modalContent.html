@@ -2,13 +2,56 @@
   <div class="row padding">
     <div class="col9">
       <div class="row">
-        <div class="row">
-          <i-checkbox
-            ng-model="item.active"
-            class="col3"
-            label="##word.Active##"
-          ></i-checkbox>
-        </div>
+        <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
+        <i-list
+          label="##word.Educational Level##"
+          ng-change="getSchoolYearsList(item.educationalLevel)"
+          ng-model="item.educationalLevel"
+          display="name"
+          items="educationalLevelsList"
+          ng-search="item.$educationalLevel"
+        ></i-list>
+        <i-list
+          ng-change="getLecturesList()"
+          label="##word.School Year##"
+          ng-model="item.schoolYear"
+          display="name"
+          items="schoolYearsList"
+        ></i-list>
+
+        <fieldset>
+          <legend>##word.Place Type##</legend>
+          <div class="row">
+            <i-radio
+              ng-model="item.placeType"
+              ng-click="getLecturesList()"
+              label="##word.Online##"
+              class="col4"
+              ng-value="online"
+              group="placeType"
+              type="radio"
+            ></i-radio>
+            <i-radio
+              ng-model="item.placeType"
+              ng-click="getLecturesList()"
+              label="##word.Offline##"
+              class="col4"
+              ng-value="offline"
+              group="placeType"
+              type="radio"
+            ></i-radio>
+            <i-radio
+              ng-model="item.placeType"
+              ng-click="getLecturesList()"
+              label="##word.Both##"
+              class="col4"
+              ng-value="both"
+              group="placeType"
+              type="radio"
+            ></i-radio>
+          </div>
+        </fieldset>
+
         <i-control
           type="text"
           v="r"

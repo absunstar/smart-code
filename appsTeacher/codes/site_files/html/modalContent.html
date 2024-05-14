@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="row">
+    <i-control
+      type="text"
+      v="r"
+      ng-model="item.code"
+      label="##word.Code##"
+    ></i-control>
+    <i-control
+    type="number"
+    v="r"
+    ng-model="item.price"
+    label="##word.Price##"
+  ></i-control>
+  </div>
+</div>
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

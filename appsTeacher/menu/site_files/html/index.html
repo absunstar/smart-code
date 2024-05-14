@@ -10,11 +10,33 @@
   <li class="menu-item">
     <a
       class="tab-link"
+      href="/codes"
+      x-permissions="codesUi || codesManage"
+    >
+      <i class="fas fa-globe"></i>
+      <span> ##word.Generate Codes## </span>
+    </a>
+  </li>
+
+  <li class="menu-item">
+    <a
+      class="tab-link"
       href="/lectures"
       x-permissions="lecturesUi || lecturesManage"
     >
       <i class="fas fa-globe"></i>
       <span> ##word.Lectures## </span>
+    </a>
+  </li>
+
+  <li class="menu-item">
+    <a
+      class="tab-link"
+      href="/packages"
+      x-permissions="packagesUi || packagesManage"
+    >
+      <i class="fas fa-globe"></i>
+      <span> ##word.Packages## </span>
     </a>
   </li>
 
@@ -51,16 +73,7 @@
     </a>
   </li>
 
-  <li class="menu-item">
-    <a
-      class="tab-link"
-      href="/packages"
-      x-permissions="packagesUi || packagesManage"
-    >
-      <i class="fas fa-globe"></i>
-      <span> ##word.Packages## </span>
-    </a>
-  </li>
+
 
   <li class="menu-item">
     <a

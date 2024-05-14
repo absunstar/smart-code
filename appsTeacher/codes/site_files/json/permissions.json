@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "codes", "name": "codesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "codes", "name": "codesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "codes", "name": "codesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "codes", "name": "codesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "codes", "name": "codesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "codes", "name": "codesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "codes", "name": "codesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "codes", "name": "codesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "codes", "name": "codesUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "codes", "name": "importcodes", "En": "Import", "Ar": "إستيراد" }
+]

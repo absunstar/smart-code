@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   let app = {
-    name: "lectures",
+    name: "codes",
     allowMemory: false,
     memoryList: [],
-    allowCache: false,
+    allowCache: true,
     cacheList: [],
     allowRoute: true,
     allowRouteGet: true,
@@ -13,7 +13,7 @@ module.exports = function init(site) {
     allowRouteView: true,
     allowRouteAll: true,
   };
-  site.lecturesList = site.lecturesList || [];
+
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
@@ -107,18 +107,31 @@ module.exports = function init(site) {
   app.view = function (_item, callback) {
     if (callback) {
       if (app.allowMemory) {
-        if ((item = app.memoryList.find((itm) => itm.id == _item.id))) {
+        if (
+          (item = app.memoryList.find(
+            (itm) => itm.id == _item.id || itm.code == _item.code
+          ))
+        ) {
           callback(null, item);
           return;
         }
       } else if (app.allowCache) {
-        if ((item = app.cacheList.find((itm) => itm.id == _item.id))) {
+        if (
+          (item = app.cacheList.find(
+            (itm) => itm.id == _item.id || itm.code == _item.code
+          ))
+        ) {
           callback(null, item);
           return;
         }
       }
-
-      app.$collection.find({ id: _item.id }, (err, doc) => {
+      let where = {};
+      if (_item.id) {
+        where = { id: _item.id };
+      } else if (_item.code) {
+        where = { code: _item.code };
+      }
+      app.$collection.find(where, (err, doc) => {
         callback(err, doc);
 
         if (!err && doc) {
@@ -152,7 +165,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Lectures"),
+              appName: req.word("Codes"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -171,13 +184,56 @@ module.exports = function init(site) {
 
           let _data = req.data;
 
-          _data.addUserInfo = req.getUserFinger();
-          _data.date = new Date();
-          _data.host = site.getHostFilter(req.host);
           app.add(_data, (err, doc) => {
             if (!err && doc) {
               response.done = true;
               response.doc = doc;
+            } else {
+              response.error = err.mesage;
+            }
+            res.json(response);
+          });
+        }
+      );
+
+      site.post(
+        {
+          name: `/api/${app.name}/addMany`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+
+          let _data = req.data;
+          if (_data.count < 1) {
+            response.error = "Must Enter Count";
+            res.json(response);
+            return;
+          } else if (_data.price < 1) {
+            response.error = "Must Enter Price";
+            res.json(response);
+            return;
+          }
+          let codesList = [];
+          let host = site.getHostFilter(req.host);
+          for (let i = 0; i < _data.count; i++) {
+            let code = (size) =>
+              [...Array(size)]
+                .map(() => Math.floor(Math.random() * 16).toString(16))
+                .join("");
+            codesList.push({
+              code: code(15),
+              expired: false,
+              price: _data.price,
+              host,
+            });
+          }
+          app.$collection.insertMany(codesList, (err, docs) => {
+            if (!err && docs) {
+              response.done = true;
+              response.list = docs;
             } else {
               response.error = err.mesage;
             }
@@ -200,38 +256,7 @@ module.exports = function init(site) {
 
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
-          if (_data.$quiz) {
-            if (!_data.questionsList || _data.questionsList.length < 1) {
-              response.error = "Must Add Questions";
-              res.json(response);
-              return;
-            } else {
-              let errAnswersList = [];
-              let errCorrectAnswersList = [];
-              _data.questionsList.forEach((_q) => {
-                if (!_q.answersList || _q.answersList.length < 2) {
-                  errAnswersList.push(_q.numbering);
-                } else {
-                  if (!_q.answersList.some((_a) => _a.correct)) {
-                    errCorrectAnswersList.push(_q.numbering);
-                  }
-                }
-              });
-              if (errAnswersList.length > 0) {
-                response.error = `At least two answers must be added to the questions ( ${errAnswersList.join(
-                  " - "
-                )} )`;
-                res.json(response);
-                return
-              } else  if (errCorrectAnswersList.length > 0) {
-                response.error = `You must choose a correct answer in the questions ( ${errCorrectAnswersList.join(
-                  " - "
-                )} )`;
-                res.json(response);
-                return
-              }
-            }
-          }
+
           app.update(_data, (err, result) => {
             if (!err) {
               response.done = true;
@@ -296,11 +321,9 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          name: 1,
-          activateQuiz: 1,
-          image: 1,
-          placeType: 1,
-          active: 1,
+          code: 1,
+          price: 1,
+          expired: 1,
         };
         if (search) {
           where.$or = [];
@@ -308,56 +331,8 @@ module.exports = function init(site) {
           where.$or.push({
             id: site.get_RegExp(search, "i"),
           });
-
           where.$or.push({
-            name: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            lastName: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            idNumber: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "gender.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "gender.nameEn": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "maritalStatus.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "maritalStatus.nameEn": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            phone: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            mobile: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            whatsapp: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            socialEmail: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            address: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "gov.name": site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "city.name": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "area.name": site.get_RegExp(search, "i"),
+            price: site.toNumber(search),
           });
         }
         where["host"] = site.getHostFilter(req.host);
@@ -368,61 +343,32 @@ module.exports = function init(site) {
           });
         });
       });
-
-
     }
   }
 
-  site.getLectures = function (req, callBack) {
+  site.validateCode = function (obj, callBack) {
     callBack = callBack || function () {};
-    let lectures = [];
-    if (req.session.user && req.session.user.type == "student") {
-      lectures = site.lecturesList.filter(
-        (a) =>
-          a.host == site.getHostFilter(req.host) &&
-          (a.placeType == req.session.user.placeType ||
-            a.placeType == "both") &&
-          a.schoolYear.id == req.session.user.schoolYear.id &&
-          a.educationalLevel.id == req.session.user.educationalLevel.id
-      );
-    } else {
-      lectures = site.lecturesList.filter(
-        (a) => a.host == site.getHostFilter(req.host)
-      );
-    }
-    if (lectures.length > 0) {
-      callBack(null, lectures);
-    } else {
-    let where = {};
-    if (req.session.user && req.session.user.type == "student") {
-      where["educationalLevel.id"] = req.session.user.educationalLevel.id;
-      where["schoolYear.id"] = req.session.user.schoolYear.id;
-      where["host"] = site.getHostFilter(req.host);
-      where["active"] = true;
 
-      where.$or = [
-        { placeType: req.session.user.placeType },
-        { placeType: "both" },
-      ];
-    }
-      app.$collection.findMany(
-        where,
-        (err, docs) => {
-          if (!err && docs) {
-            for (let i = 0; i < docs.length; i++) {
-              let doc = docs[i];
-              if (!site.lecturesList.some((k) => k.id === doc.id)) {
-                doc.$time = site.xtime(doc.date, "Ar");
-
-                site.lecturesList.push(doc);
-              }
-            }
+    app.view(
+      { code: obj.code },
+      (err, doc) => {
+        if (doc) {
+          if (doc.expired) {
+            callBack("Code Expired");
+          } else if (doc.price != obj.price) {
+            callBack("The code price is not suitable for purchase");
+          } else {
+            doc.expired = true;
+            app.update(doc, (err1, result) => {
+              callBack(err1, result);
+            });
           }
-          callBack(err, docs);
-        },
-        true
-      );
-    }
+        } else {
+          callBack("Code Not Exist");
+        }
+      },
+      true
+    );
   };
 
   app.init();

@@ -1,0 +1,113 @@
+<div ng-controller="codes" class="loaded">
+  <div class="row" x-permissions="codesUi || codesManage">
+    <div x-import="codes/modal.html"></div>
+    <div x-import="codes/modalSearch.html"></div>
+
+    <div class="top-actions">
+      <!-- <i-button type="add" x-permissions="codesAdd || codesManage" label="##word.New##" ng-click="showAdd()"></i-button> -->
+      <i-button
+        type="search"
+        x-permissions="codesSearch || codesManage"
+        label="##word.Expired##"
+        ng-click="searchAll(search={expired:true})"
+      ></i-button>
+      <i-button
+        type="search"
+        x-permissions="codesSearch || codesManage"
+        label="##word.Available##"
+        ng-click="searchAll(search={expired:false})"
+      ></i-button>
+    </div>
+
+    <fieldset>
+      <legend>##word.Generate Codes##</legend>
+      <div class="row">
+        <i-control
+          class="col4"
+          type="number"
+          ng-model="generate.price"
+          label="##word.Price##"
+        ></i-control>
+        <i-control
+          class="col4"
+          type="number"
+          ng-model="generate.count"
+          label="##word.Count##"
+        ></i-control>
+        <div class="col3">
+          <br />
+          <i-button
+            type="push"
+            label="##word.Generate##"
+            ng-click="addMany(generate)"
+          ></i-button>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="row padding">
+      <i-control
+        ng-model="$search"
+        x-permissions="codesSearch || codesManage"
+      ></i-control>
+    </div>
+    <h2 class="error"> {{error}} </h2>
+    <div class="table-responsive">
+      <table class="table hover bold" id="t1">
+        <tr>
+          <th>##word.Code##</th>
+          <th>##word.Price##</th>
+          <th>##word.Status##</th>
+          <th class="not-print">##word.Actions##</th>
+        </tr>
+        <tr ng-repeat="item in list | filter:$search">
+          <td class="center selectAll">{{item.code}}</td>
+          <td class="center">{{item.price}}</td>
+          <td class="center">
+            <span class="text-danger" ng-show="item.expired"
+              >##word.Expired##</span
+            >
+            <span class="text-success" ng-show="!item.expired"
+              >##word.Available##</span
+            >
+          </td>
+
+          <td class="center not-print">
+            <i-button
+              type="view"
+              title="##word.View##"
+              ng-click="showView(item)"
+            ></i-button>
+
+            <i-button
+              type="edit"
+              x-permissions="codesUpdate || codesManage"
+              title="##word.Edit##"
+              ng-click="showUpdate(item)"
+            ></i-button>
+
+            <i-button
+              type="delete"
+              x-permissions="codesDelete || codesManage"
+              title="##word.Delete##"
+              ng-click="showDelete(item)"
+            ></i-button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <i-button
+      x-permissions="codesPrint || codesManage"
+      type="print"
+      label="##word.Print##"
+      onclick="site.print('#t1')"
+    ></i-button>
+    <i-button
+      x-permissions="codesExport || codesManage"
+      type="export"
+      label="##word.Export to excel##"
+      onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"
+    >
+    </i-button>
+  </div>
+</div>
