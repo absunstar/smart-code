@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link
+      rel="stylesheet"
+      href="/css/teacher-style.css?v=##site.options.version##"
+    />
+
+    <style></style>
+  </head>
+
+  <body class="##session.lang##" ng-controller="lecturesView">
+    <div x-replace="teacher-theme/header.html"></div>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <div class="row">
+          <h1 class="bold text-center">##word.Lectures##</h1>
+        </div>
+
+        <fieldset>
+          <legend>##word.Search##</legend>
+          <i-control
+          class="input-style pass"
+          v="r"
+          ng-keydown="getAll($event)"
+          ng-model="$search"
+        >
+        </fieldset>
+
+        <div class="row">
+          <div class="card" ng-repeat="item in list">
+            <div class="time-publish card-name margin padding">
+              <i class="fas fa-clock"> {{item.$time}} </i>
+            </div>
+
+            <img class="" loading="lazy" ng-src="{{item.image.url}}" />
+            <p class="center">
+              <b class="card-number bold"> ##word.$## {{item.price}} </b>
+              <s class="card-number red bold">
+                {{item.totalLecturesPrice}}
+              </s>
+            </p>
+
+            <p class="userPrint card-title bold">
+              {{item.name}}
+            </p>
+
+            <a href="/lectureView?id={{item.id}}">
+              <i-button title="##word.view##" type="view"></i-button>
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+    <div id="codeModal" class="modal codeModal small">
+      <div class="modal-content height-auto">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <i-control
+            type="text"
+            v="r"
+            ng-model="code"
+            label="##word.Code##"
+          ></i-control>
+        </div>
+        <div class="modal-footer center">
+          <p class="error">{{errorCode}}</p>
+          <i-button
+            type="save"
+            label="##word.Accept##"
+            ng-click="buyBackage(item)"
+          ></i-button>
+        </div>
+      </div>
+    </div>
+    <div x-replace="teacher-theme/footer.html"></div>
+    <div x-import="teacher-theme/scripts.html"></div>
+    <script x-import="lectures/lecturesView.js"></script>
+  </body>
+</html>

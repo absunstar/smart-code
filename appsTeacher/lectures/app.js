@@ -159,6 +159,88 @@ module.exports = function init(site) {
           );
         }
       );
+
+      site.get(
+        {
+          name: "lectureView",
+        },
+        (req, res) => {
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+            page_image: setting.logo?.url || "/lawyer/images/logo.png",
+            user_image:
+              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title:
+              setting.siteName +
+              " " +
+              setting.titleSeparator +
+              " " +
+              setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "https://" + req.host + data.site_logo;
+            data.page_image = "https://" + req.host + data.page_image;
+            data.user_image = "https://" + req.host + data.user_image;
+          }
+          res.render(app.name + "/lectureView.html", data, {
+            parser: "html",
+            compres: true,
+          });
+        }
+      );
+
+      site.get(
+        {
+          name: "lecturesView",
+        },
+        (req, res) => {
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+            page_image: setting.logo?.url || "/lawyer/images/logo.png",
+            user_image:
+              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title:
+              setting.siteName +
+              " " +
+              setting.titleSeparator +
+              " " +
+              setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "https://" + req.host + data.site_logo;
+            data.page_image = "https://" + req.host + data.page_image;
+            data.user_image = "https://" + req.host + data.user_image;
+          }
+          res.render(app.name + "/lecturesView.html", data, {
+            parser: "html",
+            compres: true,
+          });
+        }
+      );
     }
 
     if (app.allowRouteAdd) {
@@ -222,13 +304,13 @@ module.exports = function init(site) {
                   " - "
                 )} )`;
                 res.json(response);
-                return
-              } else  if (errCorrectAnswersList.length > 0) {
+                return;
+              } else if (errCorrectAnswersList.length > 0) {
                 response.error = `You must choose a correct answer in the questions ( ${errCorrectAnswersList.join(
                   " - "
                 )} )`;
                 res.json(response);
-                return
+                return;
               }
             }
           }
@@ -280,6 +362,7 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
+            doc.$time = site.xtime(doc.date, req.session.lang || "ar");
             response.doc = doc;
           } else {
             response.error = err?.message || "Not Exists";
@@ -299,6 +382,8 @@ module.exports = function init(site) {
           name: 1,
           activateQuiz: 1,
           image: 1,
+          educationalLevel: 1,
+          schoolYear: 1,
           placeType: 1,
           active: 1,
         };
@@ -360,18 +445,102 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
         }
+        if (req.body.type == "toStudent") {
+          if (req.session.user && req.session.user.type == "student") {
+            where["educationalLevel.id"] =
+              req.session.user?.educationalLevel?.id;
+            where["schoolYear.id"] = req.session.user?.schoolYear?.id;
+            where.$and = [
+              {
+                $or: [
+                  { placeType: req.session.user.placeType },
+                  { placeType: "both" },
+                ],
+              },
+              {
+                $or: [
+                  {
+                    name: site.get_RegExp(search, "i"),
+                  },
+                  {
+                    description: site.get_RegExp(search, "i"),
+                  },
+                ],
+              },
+            ];
+          }
+        } else if (req.body.type == "myStudent") {
+          if (req.session.user && req.session.user.type == "student") {
+            let idList = req.session.user.lecturesList.map(
+              (_item) => _item.lectureId
+            );
+            where["id"] = {
+              $in: idList,
+            };
+          }
+        }
         where["host"] = site.getHostFilter(req.host);
         app.all({ where, select, limit }, (err, docs) => {
+          if (req.body.type) {
+            for (let i = 0; i < docs.length; i++) {
+              docs[i].$time = site.xtime(
+                docs[i].date,
+                req.session.lang || "ar"
+              );
+            }
+          }
           res.json({
             done: true,
             list: docs,
           });
         });
       });
-
-
     }
   }
+
+  site.post({ name: `/api/${app.name}/buyCode`, public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let _data = req.data;
+    app.view({ id: _data.lectureId }, (err, doc) => {
+      if (!err && doc) {
+        site.validateCode(
+          { code: _data.code, price: _data.lecturePrice },
+          (errCode, code) => {
+            if (errCode) {
+              response.error = errCode;
+              res.json(response);
+              return;
+            } else {
+              site.security.getUser(
+                {
+                  id: req.session.user.id,
+                },
+                (err, user) => {
+                  if (!err && user) {
+                    user.lecturesList = user.lecturesList || [];
+                    if (!user.lecturesList.some((l) => l.id == doc.id)) {
+                      user.lecturesList.push({
+                        lectureId: doc.id,
+                      });
+                    }
+                    site.security.updateUser(user);
+                  }
+                  response.done = true;
+                  res.json(response);
+                }
+              );
+            }
+          }
+        );
+      } else {
+        response.error = err?.message || "Not Exists";
+        res.json(response);
+      }
+    });
+  });
 
   site.getLectures = function (req, callBack) {
     callBack = callBack || function () {};
@@ -393,18 +562,18 @@ module.exports = function init(site) {
     if (lectures.length > 0) {
       callBack(null, lectures);
     } else {
-    let where = {};
-    if (req.session.user && req.session.user.type == "student") {
-      where["educationalLevel.id"] = req.session.user.educationalLevel.id;
-      where["schoolYear.id"] = req.session.user.schoolYear.id;
-      where["host"] = site.getHostFilter(req.host);
-      where["active"] = true;
+      let where = {};
+      if (req.session.user && req.session.user.type == "student") {
+        where["educationalLevel.id"] = req.session.user.educationalLevel.id;
+        where["schoolYear.id"] = req.session.user.schoolYear.id;
+        where["host"] = site.getHostFilter(req.host);
+        where["active"] = true;
 
-      where.$or = [
-        { placeType: req.session.user.placeType },
-        { placeType: "both" },
-      ];
-    }
+        where.$or = [
+          { placeType: req.session.user.placeType },
+          { placeType: "both" },
+        ];
+      }
       app.$collection.findMany(
         where,
         (err, docs) => {

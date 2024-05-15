@@ -44,12 +44,12 @@
     </style>
   </head>
 
-  <body class="##session.lang##" ng-controller="packageView">
+  <body class="##session.lang##" ng-controller="lectureView">
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="row">
-          <h1 class="bold text-center">##word.Package##</h1>
+          <h1 class="bold text-center">##word.Lecture##</h1>
         </div>
 
         <div class="row">
@@ -61,9 +61,6 @@
                   <div style="display: ruby-text">
                     <a href="#">
                       <p class="font-25">{{item.name}}</p>
-                      <s class="red left font-22 bold padding"
-                        >{{item.totalLecturesPrice}}</s
-                      >
                       <b class="left font-22 green bold padding mainColor"
                         > ##word.$## {{item.price}} </b
                       >
@@ -95,6 +92,7 @@
           </div>
         </div>
 
+
         <div class="row">
           <h2 class="bold center red">{{error}}</h2>
         </div>
@@ -112,19 +110,17 @@
             ng-model="code"
             label="##word.Code##"
           ></i-control>
+          
         </div>
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>
-          <i-button
-            type="save"
-            label="##word.Accept##"
-            ng-click="buyBackage(item)"
-          ></i-button>
-        </div>
+          <i-button type="save" label="##word.Accept##" ng-click="buyLecture(item)"></i-button>
+      
+      </div>
       </div>
     </div>
     <div x-replace="teacher-theme/footer.html"></div>
     <div x-import="teacher-theme/scripts.html"></div>
-    <script x-import="packages/packageView.js"></script>
+    <script x-import="lectures/lectureView.js"></script>
   </body>
 </html>

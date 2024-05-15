@@ -14,7 +14,6 @@
 
     /*EndburgerMenu*/
 
-    
     /*start button background and font color */
     /*button style 0*/
     --button-backgroundColor-0: #2087E7;
@@ -32,5 +31,5 @@
     --hover-button-border-color-1: #1475CF;
     --hover-button-fontColor-1: white;
     /*end button background and font color*/
-    
+
 }

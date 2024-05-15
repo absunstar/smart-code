@@ -101,3 +101,14 @@ p {
   font-weight: 700;
   line-height: normal;
 }
+.viewAll {
+  color: #1475cf !important;
+  cursor: pointer;
+  padding: 10px;
+  font-size: larger;
+}
+
+.viewAll:hover {
+  color: #1e14cf !important;
+  font-size: 20px;
+}

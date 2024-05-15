@@ -14,53 +14,40 @@ module.exports = function init(site) {
       name: ["/profileView/:id", ["teacher/:userName"]],
     },
     (req, res) => {
+      let setting = site.getSiteSetting(req.host) || {};
       site.security.getUser(
         { id: req.params.id, userName: req.params.userName },
         (err, user) => {
           if (user) {
-            user.startCommunicationTime = user.startCommunicationTime
-              ? new Date(user.startCommunicationTime)
-              : new Date();
-            user.endCommunicationTime = user.endCommunicationTime
-              ? new Date(user.endCommunicationTime)
-              : new Date();
-
+         
             let data = {
-              id: user.id,
-              firstName: user.firstName,
-              lastName: user.lastName,
-              image: user.image,
-              bio: user.bio,
-              specialties: user.specialties,
-              servicesList: user.servicesList,
-              contactEmail: user.contactEmail,
-              mobile: user.mobile,
-              website: user.website,
-              faceBook: user.faceBook,
-              trusted: user.trusted,
-              instagram: user.instagram,
-              twitter: user.twitter,
-              linkedin: user.linkedin,
-              startCommunicationTime:
-                user.startCommunicationTime.getHours() +
-                ":" +
-                user.startCommunicationTime.getMinutes(),
-              endCommunicationTime:
-                user.endCommunicationTime.getHours() +
-                ":" +
-                user.endCommunicationTime.getMinutes(),
-              setting: {},
+              packagesList: packages,
+              lecturesList: lectures,
+              setting: setting,
               guid: "",
-              site_logo: "/teacher/images/logo.png",
-              page_image: user.image?.url || "/teacher/images/logo.png",
-              site_name: "teacher",
+              setting: setting,
+              filter: site.getHostFilter(req.host),
+              site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+              page_image: setting.logo?.url || "/lawyer/images/logo.png",
+              user_image:
+                req.session?.user?.image?.url || "/lawyer/images/logo.png",
+              site_name: setting.siteName,
+              page_lang: setting.id,
               page_type: "website",
-              page_title: user.firstName + " " + user.lastName,
-              // page_description: user.bio,
+              page_title:
+                setting.siteName +
+                " " +
+                setting.titleSeparator +
+                " " +
+                setting.siteSlogan,
+              page_description: setting.description.substr(0, 200),
+              page_keywords: setting.keyWordsList.join(","),
             };
+  
             if (req.hasFeature("host.com")) {
               data.site_logo = "https://" + req.host + data.site_logo;
               data.page_image = "https://" + req.host + data.page_image;
+              data.user_image = "https://" + req.host + data.user_image;
             }
             res.render("profile/profileView.html", data, {
               parser: "html",
