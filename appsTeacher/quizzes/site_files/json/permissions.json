@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "quizzes", "name": "quizzesImport", "En": "Import", "Ar": "إستيراد" }
+]

@@ -19,7 +19,6 @@ module.exports = function init(site) {
         { id: req.params.id, userName: req.params.userName },
         (err, user) => {
           if (user) {
-         
             let data = {
               packagesList: packages,
               lecturesList: lectures,
@@ -71,8 +70,36 @@ module.exports = function init(site) {
   site.onGET("profileEdit/:id", (req, res) => {
     site.security.getUser({ id: req.params.id }, (err, user) => {
       if (user) {
-        user.title = user.firstName + " " + user.lastName;
-        res.render("profile/profileEdit.html", user);
+        let setting = site.getSiteSetting(req.host);
+        setting.description = setting.description || "";
+        setting.keyWordsList = setting.keyWordsList || [];
+        let data = {
+          setting: setting,
+          guid: "",
+          setting: setting,
+          filter: site.getHostFilter(req.host),
+          site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+          page_image: setting.logo?.url || "/lawyer/images/logo.png",
+          user_image:
+            req.session?.user?.image?.url || "/lawyer/images/logo.png",
+          site_name: setting.siteName,
+          page_lang: setting.id,
+          page_type: "website",
+          page_title:
+            setting.siteName +
+            " " +
+            setting.titleSeparator +
+            " " +
+            setting.siteSlogan,
+          page_description: setting.description.substr(0, 200),
+          page_keywords: setting.keyWordsList.join(","),
+        };
+        if (req.hasFeature("host.com")) {
+          data.site_logo = "https://" + req.host + data.site_logo;
+          data.page_image = "https://" + req.host + data.page_image;
+          data.user_image = "https://" + req.host + data.user_image;
+        }
+        res.render("profile/profileEdit.html", data);
       }
     });
   });

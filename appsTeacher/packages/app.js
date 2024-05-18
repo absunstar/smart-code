@@ -331,6 +331,10 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
+            console.log(req.session.user?.packagesList);
+            if (req.session.user && req.session.user.packagesList && req.session.user.packagesList.some(s => s == doc.id)) {
+              doc.$buy = true;
+            }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
             response.doc = doc;
           } else {
@@ -352,6 +356,7 @@ module.exports = function init(site) {
           image: 1,
           educationalLevel: 1,
           schoolYear: 1,
+          date: 1,
           active: 1,
         };
         if (search) {

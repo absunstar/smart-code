@@ -193,6 +193,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
           schoolYear: 1,
           price: 1,
           totalLecturesPrice: 1,
+          date: 1,
         },
       },
     }).then(
@@ -225,6 +226,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
           educationalLevel: 1,
           schoolYear: 1,
           price: 1,
+          date: 1,
         },
       },
     }).then(
@@ -232,6 +234,8 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.lecturesList = response.data.list;
+          console.log($scope.lecturesList);
+
         } else {
           $scope.error = response.data.error;
         }

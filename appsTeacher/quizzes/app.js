@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   let app = {
-    name: "educationalLevels",
-    allowMemory: true,
+    name: "quizzes",
+    allowMemory: false,
     memoryList: [],
     allowCache: false,
     cacheList: [],
@@ -152,7 +152,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Educational Levels"),
+              appName: req.word("Quizzes"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -171,7 +171,11 @@ module.exports = function init(site) {
 
           let _data = req.data;
 
-          _data.addUserInfo = req.getUserFinger();
+          _data.user = {
+            id: req.session.user.id,
+            firstName: req.session.user.firstName,
+            email: req.session.user.email,
+          };
           _data.host = site.getHostFilter(req.host);
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -181,6 +185,64 @@ module.exports = function init(site) {
               response.error = err.mesage;
             }
             res.json(response);
+          });
+        }
+      );
+
+      site.post(
+        {
+          name: `/api/${app.name}/startQuiz`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+
+          let where = req.data.where;
+
+          app.$collection.find(where, (err, doc) => {
+            if (err) {
+              response.error = err?.message || "Not Exists";
+              res.json(response);
+            } else if (doc) {
+              let quiz = { ...doc };
+              response.done = true;
+              for (let i = 0; i < quiz.questionsList.length; i++) {
+                quiz.questionsList[i].answersList.forEach((_a) => {
+                  _a.userAnswer = false;
+                });
+              }
+              doc.timesEnterQuiz += 1;
+              app.$collection.update(doc);
+              response.doc = quiz;
+              res.json(response);
+            } else if (!doc) {
+              app.add(
+                {
+                  host: site.getHostFilter(req.host),
+                  user: {
+                    id: req.session.user.id,
+                    firstName: req.session.user.firstName,
+                    email: req.session.user.email,
+                  },
+                  lecture: req.data.lecture,
+                  questionsList: req.data.questionsList,
+                  correctAnswers: 0,
+                  userDegree: 0,
+                  timesEnterQuiz: 1,
+                },
+                (err, doc) => {
+                  if (!err && doc) {
+                    response.done = true;
+                    response.doc = doc;
+                  } else {
+                    response.error = err.mesage;
+                  }
+                  res.json(response);
+                }
+              );
+            }
           });
         }
       );
@@ -208,6 +270,43 @@ module.exports = function init(site) {
               response.error = err.message;
             }
             res.json(response);
+          });
+        }
+      );
+
+      site.post(
+        {
+          name: `/api/${app.name}/finishQuiz`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+
+          let _data = req.data;
+          _data.correctAnswers = 0;
+
+          for (let i = 0; i < _data.questionsList.length; i++) {
+            _data.questionsList[i].answersList.forEach((_a) => {
+              if (_a.userAnswer && _a.correct) {
+                _data.correctAnswers += 1;
+              }
+            });
+          }
+          _data.userDegree =
+            (_data.correctAnswers / _data.questionsList.length) * 100;
+          app.view({ id: _data.id }, (err, doc) => {
+            _data.timesEnterQuiz = doc.timesEnterQuiz;
+            app.update(_data, (err, result) => {
+              if (!err) {
+                response.done = true;
+                response.doc = result.doc;
+              } else {
+                response.error = err.message;
+              }
+              res.json(response);
+            });
           });
         }
       );
@@ -255,32 +354,72 @@ module.exports = function init(site) {
           res.json(response);
         });
       });
+
+      site.post(
+        { name: `/api/${app.name}/viewByUserLecture`, public: true },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+
+          let where = req.data;
+          app.$collection.find(where, (err, doc) => {
+            if (!err && doc) {
+              response.done = true;
+              response.doc = doc;
+            } else {
+              response.error = err?.message || "Not Exists";
+            }
+            res.json(response);
+          });
+        }
+      );
     }
 
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let select = req.body.select || { id: 1, name: 1, image: 1, active: 1 };
-        let list = [];
-        app.memoryList.forEach((doc) => {
-          let obj = { ...doc };
-          if (
-            (!where.active || doc.active) &&
-            obj.host == site.getHostFilter(req.host)
-          ) {
-            list.push(obj);
-          }
+        let search = req.body.search || "";
+        let limit = req.body.limit || 50;
+        let select = req.body.select || {
+          id: 1,
+          lecture: 1,
+          user: 1,
+          userDegree: 1,
+        };
+        if (where && where.fromDate && where.toDate) {
+          let d1 = site.toDate(where.fromDate);
+          let d2 = site.toDate(where.toDate);
+          d2.setDate(d2.getDate() + 1);
+          where.date = {
+            $gte: d1,
+            $lte: d2,
+          };
+          delete where.fromDate;
+          delete where.toDate;
+        }
 
-          for (const p in obj) {
-            if (!Object.hasOwnProperty.call(select, p)) {
-              delete obj[p];
-            }
+        if (search) {
+          where.$or = [];
+
+          where.$or.push({
+            number: search,
+          });
+        }
+        if (where["user"]) {
+          where["user.id"] = where["user"].id;
+          delete where["user"];
+        }
+        if (where["lecture"]) {
+          where["lecture.id"] = where["lecture"].id;
+          delete where["lecture"];
+        }
+        app.all(
+          { where: where, limit, select, sort: { id: -1 } },
+          (err, docs) => {
+            res.json({ done: true, list: docs });
           }
-        });
-        res.json({
-          done: true,
-          list: list,
-        });
+        );
       });
     }
   }

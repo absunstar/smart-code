@@ -1,21 +1,18 @@
-app.controller("lectures", function ($scope, $http, $timeout) {
+app.controller("quizzes", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-  $scope.appName = "lectures";
-  $scope.modalID = "#lecturesManageModal";
-  $scope.modalSearchID = "#lecturesSearchModal";
+  $scope.appName = "quizzes";
+  $scope.modalID = "#quizzesManageModal";
+  $scope.modalSearchID = "#quizzesSearchModal";
   $scope.mode = "add";
   $scope._search = {};
-  $scope.structure = {
-    image: { url: "/theme1/images/setting/lectures.png" },
-    active: true,
-  };
+  $scope.structure = {};
   $scope.item = {};
   $scope.list = [];
 
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure, price: 0 , linksList: [] , filesList: [] };
+    $scope.item = { ...$scope.structure };
     site.showModal($scope.modalID);
   };
 
@@ -63,15 +60,12 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     site.showModal($scope.modalID);
   };
 
-  $scope.update = function (_item, modal) {
+  $scope.update = function (_item) {
     $scope.error = "";
-    const v = site.validated(modal);
+    const v = site.validated($scope.modalID);
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    }
-    if(modal == '#quizModal'){
-      _item.$quiz = true;
     }
     $scope.busy = true;
     $http({
@@ -82,8 +76,8 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal(modal);
-          site.resetValidated(modal);
+          site.hideModal($scope.modalID);
+          site.resetValidated($scope.modalID);
           let index = $scope.list.findIndex(
             (itm) => itm.id == response.data.result.doc.id
           );
@@ -108,7 +102,7 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     site.showModal($scope.modalID);
   };
 
-  $scope.view = function (_item, type) {
+  $scope.view = function (_item) {
     $scope.busy = true;
     $scope.error = "";
     $http({
@@ -122,9 +116,6 @@ app.controller("lectures", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
-          if (type == "quiz") {
-            site.showModal("#quizModal");
-          }
         } else {
           $scope.error = response.data.error;
         }
@@ -200,53 +191,26 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     );
   };
 
-
-  $scope.getTypesExpiryViewsList = function () {
-    $scope.busy = true;
-    $scope.typesExpiryViewsList = [];
-    $http({
-      method: "POST",
-      url: "/api/typesExpiryViewsList",
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.typesExpiryViewsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getEducationalLevelsList = function ($search) {
+  $scope.getLecturesList = function ($search) {
     if ($search && $search.length < 1) {
       return;
     }
     $scope.busy = true;
-    $scope.educationalLevelsList = [];
-
     $http({
       method: "POST",
-      url: "/api/educationalLevels/all",
+      url: "/api/lectures/all",
       data: {
         where: {
           active: true,
         },
-        select: {
-          id: 1,
-          name: 1,
-        },
+        select: { id: 1, name: 1 },
         search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.educationalLevelsList = response.data.list;
+          $scope.lecturesList = response.data.list;
         }
       },
       function (err) {
@@ -255,29 +219,26 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       }
     );
   };
-
-
-  $scope.getSchoolYearsList = function (educationalLevel) {
+  $scope.getStudentsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
     $scope.busy = true;
-    $scope.schoolYearsList = [];
     $http({
       method: "POST",
-      url: "/api/schoolYears/all",
+      url: "/api/users/all",
       data: {
         where: {
-          active: true,
-          "educationalLevel.id": educationalLevel.id,
+          type: 'student',
         },
-        select: {
-          id: 1,
-          name: 1,
-        },
+        select: { id: 1, firstName: 1 },
+        search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.schoolYearsList = response.data.list;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.usersList = response.data.users;
         }
       },
       function (err) {
@@ -285,120 +246,6 @@ app.controller("lectures", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
-  };
-
-  $scope.activateQuiz = function () {
-    $scope.error = "";
-    if ($scope.activateQuiz) {
-      $scope.item.quizDuration = 45;
-      $scope.item.timesEnterQuiz = 1;
-      $scope.item.questionsList = $scope.item.questionsList || [];
-    }
-  };
-
-  $scope.letterType = function (type, length) {
-    let numbering = [
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-      22, 23,
-    ];
-    let arabic = [
-      "أ",
-      "ب",
-      "ج",
-      "د",
-      "ه",
-      "و",
-      "ز",
-      "ح",
-      "ط",
-      "ي",
-      "ك",
-      "ل",
-      "م",
-      "ن",
-      "س",
-      "ع",
-      "ف",
-      "ص",
-      "ق",
-      "ر",
-      "ش",
-      "ت",
-    ];
-    let english = [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "O",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "Z",
-    ];
-    let st = "";
-    if (type == "numbering") {
-      st = numbering[length];
-    } else if (type == "arabic") {
-      st = arabic[length];
-    } else if (type == "english") {
-      st = english[length];
-    }
-    return st;
-  };
-
-  $scope.addQuestion = function () {
-    $scope.error = "";
-    let numbering = $scope.letterType(
-      $scope.item.questionNumbering,
-      $scope.item.questionsList.length
-    );
-
-    $scope.item.questionsList.push({ answersList: [], numbering });
-  };
-
-  $scope.addAnswer = function (question) {
-    $scope.error = "";
-    let numbering = $scope.letterType(
-      $scope.item.answerNumbering,
-      question.answersList.length
-    );
-    question.answersList.push({ correct: false, numbering });
-  };
-
-  $scope.addLinks = function () {
-    $scope.error = "";
-    $scope.item.linksList.unshift({});
-  };
-  $scope.addFiles = function () {
-    $scope.error = "";
-    $scope.item.filesList.unshift({});
-  };
-
-  $scope.correctAnswer = function (answer, question) {
-    $scope.error = "";
-
-    for (let i = 0; i < question.answersList.length; i++) {
-      question.answersList[i].correct = false;
-    }
-    answer.correct = true;
   };
 
   $scope.showSearch = function () {
@@ -413,6 +260,6 @@ app.controller("lectures", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getEducationalLevelsList();
-  $scope.getTypesExpiryViewsList();
+  $scope.getLecturesList();
+  $scope.getStudentsList();
 });

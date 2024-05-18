@@ -1,0 +1,47 @@
+<style>
+  .form-check-input[type=checkbox] {
+    border-radius: .25em;
+    width: 80%;
+    height: 22px;
+}
+</style>
+<div id="tackQuizModal" class="modal" fixed>
+  <div class="modal-content height-auto">
+    <div class="modal-header">
+      <h1 class="bold center" id="timer">##word.Remaining Time## ( 45:00 )</h1>
+    </div>
+
+    <div class="modal-body">
+
+      <br>
+      <div class="row padding margin" ng-repeat="question in quiz.questionsList">
+        <fieldset>
+          <legend>{{question.numbering}} - {{question.name}}</legend>
+      
+          <div class="row " >
+            <div class="col4  border" ng-repeat="answer in question.answersList track by $index">
+              <div class="row padding margin">
+                <div class="col2">
+                  <p class="bold">( {{answer.numbering}} ) </p>
+                </div>
+                <div class="col8">
+                  <p>{{answer.name}}</p>
+                </div>
+                <div class="col2">
+                  <i-checkbox ng-change="checkCorrect(question.answersList,$index)" ng-model="answer.userAnswer"> </i-checkbox>
+                </div>
+              </div>
+            </div>
+           
+           
+           
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.Finish Quiz##" ng-click="finishQuiz(quiz)"> </i-button>
+    </div>
+  </div>
+</div>

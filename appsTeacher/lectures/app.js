@@ -362,6 +362,9 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
+            if (req.session.user && req.session.user.lecturesList &&req.session.user.lecturesList.some(s => s.lectureId == doc.id)) {
+              doc.$buy = true;
+            }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
             response.doc = doc;
           } else {
@@ -385,6 +388,7 @@ module.exports = function init(site) {
           educationalLevel: 1,
           schoolYear: 1,
           placeType: 1,
+          date: 1,
           active: 1,
         };
         if (search) {
@@ -398,52 +402,6 @@ module.exports = function init(site) {
             name: site.get_RegExp(search, "i"),
           });
 
-          where.$or.push({
-            lastName: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            idNumber: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "gender.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "gender.nameEn": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "maritalStatus.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "maritalStatus.nameEn": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            phone: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            mobile: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            whatsapp: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            socialEmail: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            address: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "gov.name": site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "city.name": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "area.name": site.get_RegExp(search, "i"),
-          });
         }
         if (req.body.type == "toStudent") {
           if (req.session.user && req.session.user.type == "student") {

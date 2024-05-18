@@ -1,0 +1,75 @@
+<div class="row padding">
+  <table class="table hover bold center">
+    <tr>
+      <th>##word.Lecture##</th>
+      <td colspan="5">{{item.lecture.name}}</td>
+    </tr>
+    <tr>
+      <th>##word.Student##</th>
+      <td colspan="5">{{item.user.firstName}}</td>
+    </tr>
+
+    <tr>
+      <th>##word.Degree##</th>
+      <td>{{item.userDegree}}</td>
+      <th>##word.Correct Answers##</th>
+      <td>{{item.correctAnswers}}</td>
+      <th>##word.Wrong Answers##</th>
+      <td>{{item.questionsList.length - item.correctAnswers}}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="row">
+  <i-control
+    type="number"
+    class="col3"
+    ng-model="item.timesEnterQuiz"
+    label="##word.Times Enter Quiz##"
+  ></i-control>
+</div>
+
+<div class="row padding margin" ng-repeat="question in item.questionsList">
+  <fieldset>
+    <legend>{{question.numbering}} - {{question.name}}</legend>
+
+    <div class="row">
+      <div
+        class="col4 border"
+        ng-repeat="answer in question.answersList track by $index"
+      >
+        <div class="row padding margin">
+          <div class="col3">
+            <p class="bold">( {{answer.numbering}} )</p>
+          </div>
+          <div class="col3">
+            <p>{{answer.name}}</p>
+          </div>
+         
+        </div>
+        <div class="row">
+          <p class="bold col6" ng-show="answer.userAnswer">
+            ##word.Student Answer##
+          </p>
+          <p class="bold col6" ng-show="answer.correct">##word.Correct Answer##</p>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<div class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>
