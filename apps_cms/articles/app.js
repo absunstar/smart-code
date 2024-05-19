@@ -473,7 +473,7 @@ module.exports = function init(site) {
             translatedList: 1,
             youtube: 1,
           },
-
+          sort: { id: -1 },
           where: options.where,
           limit: options.limit,
           skip: options.skip,
