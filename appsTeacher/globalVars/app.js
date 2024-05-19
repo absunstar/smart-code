@@ -1,48 +1,20 @@
 module.exports = function init(site) {
-  site.constraintTypesList = [
+  site.typesExpiryViewsList = [
     {
-      id: 1,
-      nameAr: "جدول عام",
-      nameEn: "Sales",
+      name: 'date',
+      nameAr: "تاريخ",
+      nameEn: "Date",
     },
     {
-      id: 2,
-      nameAr: "إبتدائي",
-      nameEn: "Sale",
-    },
-    {
-      id: 3,
-      nameAr: "إستئناف",
-      nameEn: "Sale",
-    },
-    {
-      id: 4,
-      nameAr: "نقض",
-      nameEn: "Sale",
+      name: 'day',
+      nameAr: "يوم",
+      nameEn: "Day",
+    },{
+      name: 'number',
+      nameAr: "عدد",
+      nameEn: "Number",
     }
   ];
-
-  site.consultationsStatusList = [
-    {
-      id: 1,
-      nameAr: "قيد الانتظار",
-      nameEn: "pending",
-    }
-  ];
-
-  site.consultationsClassificationsList = [
-    {
-      id: 1,
-      nameAr: "إستشارة سرية",
-      nameEn: "Confidential Consultation",
-    },
-    {
-      id: 2,
-      nameAr: "إستشارة مجانية",
-      nameEn: "Free Consultation",
-    }
-  ];
-
   site.salesTypesList = [
     {
       id: 1,
@@ -55,7 +27,7 @@ module.exports = function init(site) {
       nameAr: "مبيعات للشركات",
       nameEn: "Sales For Companies",
       code: "company",
-    }
+    },
   ];
 
   site.salesCategories = [
@@ -501,15 +473,14 @@ module.exports = function init(site) {
     { id: 3, code: "list", nameEn: "List", nameAr: "قائمة" },
     { id: 4, code: "degree", nameEn: "Degree", nameAr: "درجة" },
   ];
-  
-  site.post("/api/consultationsClassifications", (req, res) => {
+
+  site.post("/api/typesExpiryViewsList", (req, res) => {
     res.json({
       done: true,
-      list: site.consultationsClassificationsList,
+      list: site.typesExpiryViewsList,
     });
   });
 
-  
   site.post("/api/consultationsStatus", (req, res) => {
     res.json({
       done: true,
@@ -670,13 +641,6 @@ module.exports = function init(site) {
     });
   });
 
-  site.post("/api/constraintTypesList", (req, res) => {
-    res.json({
-      done: true,
-      list: site.constraintTypesList,
-    });
-  });
-
   site.post("/api/paymentTypes", (req, res) => {
     res.json({
       done: true,
@@ -746,6 +710,7 @@ module.exports = function init(site) {
       list: site.itemsTypes,
     });
   });
+
   site.post("/api/purchaseOrdersSource", (req, res) => {
     res.json({
       done: true,

@@ -32,7 +32,7 @@ site.get({
 });
 
 site.get('ads.txt', (req, res) => {
-  let setting = site.getSiteSetting(req.host);
+  let setting = site.getSiteSetting(req.host) || {};
   if (setting && setting.adsTxt) {
     res.end(setting.adsTxt);
   } else {
@@ -41,7 +41,7 @@ site.get('ads.txt', (req, res) => {
 });
 
 site.get('robots.txt', (req, res) => {
-  let setting = site.getSiteSetting(req.host);
+  let setting = site.getSiteSetting(req.host) || {};
   if (setting && setting.adsTxt) {
     res.end(setting.robotsTxt);
   } else {
@@ -61,7 +61,7 @@ site.importApp(__dirname + '/apps_cms/cms');
 site.addFeature('teacher');
 
 site.getMainHost = function (host = '') {
-  if (host == 'localhost' || host == '127.0.0.1') {
+  if (host.contains('localhost') || host.contains('127.0.0.1')) {
     return host;
   }
   let arr = host.split('.');

@@ -20,6 +20,9 @@
         border-radius: 5px;
         font-size: x-large;
       }
+      .location-btn {
+        width: 65% !important;
+      }
       .user-type {
         text-align-last: center;
         width: 207px;
@@ -93,9 +96,29 @@
 
     <div class="form" style="text-align-last: center" id="register">
       <div class="tabs">
-      
+        <div class="row" ng-hide="type">
+          <div class="col3"></div>
+          <div class="col6">
+            <button
+              ng-click="typeSelect('offline',$event)"
+              class="user-type"
+              id="offline"
+            >
+              <i class="fas fa-user"></i>
+              <p>##word.Offline##</p>
+            </button>
+            <button
+              ng-click="typeSelect('online',$event)"
+              class="user-type"
+              id="online"
+            >
+              <i class="fas fa-user-tie"></i>
+              <p>##word.Online##</p>
+            </button>
+          </div>
+        </div>
 
-        <div class="row" id="emailData">
+        <div class="row" id="emailData" ng-show="type">
           <div class="col1"></div>
           <div class="col10 register-content">
             <div class="row">
@@ -103,17 +126,11 @@
                 <i-control
                   v="r"
                   class="input-style"
-                  label="##word.First Name##"
+                  label="##word.Full name##"
                   ng-model="user.firstName"
                 >
                 </i-control>
-                <i-control
-                  v="r"
-                  class="input-style"
-                  label="##word.Last Name##"
-                  ng-model="user.lastName"
-                >
-                </i-control>
+
                 <i-control
                   v="r"
                   class="input-style"
@@ -125,9 +142,50 @@
                 <i-control
                   v="r"
                   class="center input-style"
-                  label="##word.Mobile Number##"
+                  label="##word.Student Mobile Number##"
                   type="tel"
                   ng-model="user.mobile"
+                >
+                </i-control>
+                <i-control
+                v="r"
+                class="center input-style"
+                label="##word.Parent Mobile Number##"
+                type="tel"
+                ng-model="user.parentMobile"
+              >
+              </i-control>
+                <i-list
+                  label="##word.Educational Level##"
+                  ng-change="getSchoolYearsList(user.educationalLevel)"
+                  ng-model="user.educationalLevel"
+                  v="r"
+                  display="name"
+                  items="educationalLevelsList"
+                  ng-search="user.$educationalLevel"
+                ></i-list>
+                <i-list
+                  label="##word.School Year##"
+                  ng-model="user.schoolYear"
+                  v="r"
+                  display="name"
+                  items="schoolYearsList"
+                ></i-list>
+                <i-list
+                  ng-show="type == 'offline'"
+                  class="center input-style"
+                  label="##word.Center Name##"
+                  ng-model="user.center"
+                  items="centersList"
+                  display="name"
+                  ng-search="user.$center"
+                ></i-list>
+                <i-control
+                  ng-show="type == 'online'"
+                  class="center input-style"
+                  label="##word.National ID##"
+                  type="tel"
+                  ng-model="user.nationalId"
                 >
                 </i-control>
                 <i-list
@@ -211,14 +269,23 @@
                     ng-model="user.image"
                   ></i-image>
                 </div>
-                <div class="row" ng-show="type == 'teacher'">
+                <div class="row" ng-show="type == 'online'">
                   <p class="right-content">
-                    <span class="red bold"> * </span> ##word.Card Image##
+                    <span class="red bold"> * </span> ##word.National ID Image##
                   </p>
                   <i-image
                     style="width: 170px !important; height: 200px !important"
-                    ng-model="user.cardImage"
+                    ng-model="user.nationalIdImage"
                   ></i-image>
+                </div>
+                <div class="row" ng-show="type == 'online'">
+
+                  <button ng-click="getLocation()" class="register-btn location-btn">
+                    ##word.Location## <i class="fas fa-map-marker-alt"></i>
+                  </button>
+                  <p class="font-20 text-right">##word.Latitude## :{{user.latitude}} </p>
+                  <p class="font-20 text-right">##word.Longitude## : {{user.longitude}}</p>
+                  
                 </div>
               </div>
             </div>

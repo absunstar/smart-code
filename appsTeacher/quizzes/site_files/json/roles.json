@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "quizzesAdmin",
+    "En": "Quizzes Admin",
+    "Ar": "إدارة الإختبارات",
+    "permissions": ["quizzesManage"]
+}] 

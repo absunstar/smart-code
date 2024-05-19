@@ -20,9 +20,9 @@ legend {
   float: inline-start;
 }
 .right-content {
-  text-align-last : right
+  text-align-last: right;
 }
-.center-content{
+.center-content {
   justify-content: center;
 }
 .tabs .tabs-content {
@@ -52,3 +52,73 @@ legend {
   border: solid 1px #1475cf;
   border-radius: 10px !important;
 }
+
+.text-right {
+  text-align-last: right !important;
+}
+
+.text-center {
+  text-align-last: center !important;
+}
+
+.text-left {
+  text-align-last: left !important;
+}
+
+.form-control {
+  border: 1px solid #1475cf !important;
+}
+.selectAll {
+  user-select: all
+}
+
+.character-style {
+  background: #e3e3e3;
+  text-align: center;
+  border-radius: 50%;
+  font-size: xxx-large;
+}
+
+.card {
+  border: 1px solid #2087e7;
+  display: inline-block;
+  width: 35vw !important;
+  margin: 2vw !important;
+  background: #ffffff;
+  padding: 25px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px 2px #2087e7;
+}
+
+.card img {
+  height: 55px;
+  width: 55px;
+  float: right;
+  border-radius: 50%;
+  /* margin: 5px; */
+}
+
+.card-name {
+  font-size: 21px;
+  float: left;
+  font-family: system-ui;
+  font-weight: bold;
+}
+
+.card-number {
+  color: #2087e7;
+  font-size: 20px;
+}
+
+.card-title {
+  color: #959595;
+  font-size: 20px;
+  display: inline-block;
+  width: 60%;
+  vertical-align: text-top;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+

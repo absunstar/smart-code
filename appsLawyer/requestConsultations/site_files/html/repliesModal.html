@@ -34,7 +34,7 @@
 
               <td class="center not-print">
                 <i-button
-                  ng-hide="reply.approve || item.approveReply"
+                  ng-hide="reply.approve || item.status.name != 'pending'"
                   label="##word.Approve##"
                   ng-click="updateReply('approve',reply);updateRequestApprove(true,item)"
                 ></i-button>

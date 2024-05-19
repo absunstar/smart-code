@@ -133,31 +133,31 @@
             <ul
               class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2"
             >
-              <li class="col recentlyConsultant">
+              <li class="col recentlyConsultant" x-list1="consultationsList">
                 <div class="consultantTitle">
                   <a href="#">
                     <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
+                      ##item1.name##
                     </p>
                   </a>
                 </div>
                 <div class="consultantInfo">
                   <div class="questionBy">
                     <a href="#">
-                      <p>بواسطة محمد علي</p>
+                      <p>##word.By## ##item1.user.firstName## ##item1.user.lastName##</p>
                     </a>
                   </div>
                   <div class="dash">
                     <p>/</p>
                   </div>
                   <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
+                    <p>تم السؤال ##item1.$time##</p>
                   </div>
                   <div class="dash">
                     <p>/</p>
                   </div>
                   <div class="questionView">
-                    <p>200 ##word.Watch##</p>
+                    <p>##item1.watchCount## ##word.Watch##</p>
                   </div>
                 </div>
                 <div class="separative"></div>
@@ -169,7 +169,7 @@
                     </div>
                     <div class="firstLawer">
                       <a href="#">
-                        <p class="lawerName">محمود احمد صلاح الدين</p>
+                        <p class="lawerName">##item1.lawyer.firstName## ##item1.lawyer.lastName##</p>
                       </a>
                       <p class="firstLawerAnswer">
                         ##word.The First To Respond## - تم الرد منذ يوم
@@ -178,10 +178,7 @@
                   </div>
                   <div class="consultantAnswer">
                     <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
+                      ##item1.details##
                     </p>
                   </div>
                 </div>
@@ -196,258 +193,7 @@
                   </div>
                 </div>
               </li>
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 ##word.Watch##</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="numbersOfAnswerAndLawer">
-                    <div class="numbersOfAnswer">
-                      <p>5</p>
-                      <p>##word.Answers##</p>
-                    </div>
-                    <div class="firstLawer">
-                      <a href="#">
-                        <p class="lawerName">محمود احمد صلاح الدين</p>
-                      </a>
-                      <p class="firstLawerAnswer">
-                        ##word.The First To Respond## - تم الرد منذ يوم
-                      </p>
-                    </div>
-                  </div>
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 ##word.Like##</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 ##word.Support##</p>
-                  </div>
-                </div>
-              </li>
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 ##word.Watch##</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="numbersOfAnswerAndLawer">
-                    <div class="numbersOfAnswer">
-                      <p>5</p>
-                      <p>##word.Answers##</p>
-                    </div>
-                    <div class="firstLawer">
-                      <a href="#">
-                        <p class="lawerName">محمود احمد صلاح الدين</p>
-                      </a>
-                      <p class="firstLawerAnswer">
-                        ##word.The First To Respond## - تم الرد منذ يوم
-                      </p>
-                    </div>
-                  </div>
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 ##word.Like##</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 ##word.Support##</p>
-                  </div>
-                </div>
-              </li>
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 ##word.Watch##</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="numbersOfAnswerAndLawer">
-                    <div class="numbersOfAnswer">
-                      <p>5</p>
-                      <p>##word.Answers##</p>
-                    </div>
-                    <div class="firstLawer">
-                      <a href="#">
-                        <p class="lawerName">محمود احمد صلاح الدين</p>
-                      </a>
-                      <p class="firstLawerAnswer">
-                        ##word.The First To Respond## - تم الرد منذ يوم
-                      </p>
-                    </div>
-                  </div>
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 ##word.Like##</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 ##word.Support##</p>
-                  </div>
-                </div>
-              </li>
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 ##word.Watch##</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="numbersOfAnswerAndLawer">
-                    <div class="numbersOfAnswer">
-                      <p>5</p>
-                      <p>##word.Answers##</p>
-                    </div>
-                    <div class="firstLawer">
-                      <a href="#">
-                        <p class="lawerName">محمود احمد صلاح الدين</p>
-                      </a>
-                      <p class="firstLawerAnswer">
-                        ##word.The First To Respond## - تم الرد منذ يوم
-                      </p>
-                    </div>
-                  </div>
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 ##word.Like##</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 ##word.Support##</p>
-                  </div>
-                </div>
-              </li>
+         
             </ul>
           </div>
           <div

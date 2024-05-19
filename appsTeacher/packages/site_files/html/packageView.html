@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link
+      rel="stylesheet"
+      href="/css/teacher-style.css?v=##site.options.version##"
+    />
+
+    <style>
+      .buy-btn {
+        margin: 15px -7px 20px 0px;
+        text-align-last: center;
+        background: #2087e7;
+        color: white;
+        border-radius: 5px;
+        font-size: x-large;
+      }
+      .buy:hover {
+        color: blue !important;
+        text-decoration: underline !important;
+      }
+
+      main
+        .content
+        .recentlyConsultantsContanier
+        .recentlyConsultants
+        .recentlyConsultant {
+        max-width: 100% !important;
+        height: 400px !important;
+      }
+
+      main
+        .content
+        .recentlyConsultantsContanier
+        .recentlyConsultants
+        .recentlyConsultant
+        .answerSection
+        .numbersOfAnswerAndLawer
+        .numbersOfAnswer {
+        width: 83.855px !important;
+        height: 77px !important;
+        font-size: 16px !important;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang##" ng-controller="packageView">
+    <div x-replace="teacher-theme/header.html"></div>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <div class="row">
+          <h1 class="bold text-center">##word.Package##</h1>
+        </div>
+
+        <div class="row">
+          <div class="col2"></div>
+          <div class="col8">
+            <div class="recentlyConsultantsContanier">
+              <ul class="recentlyConsultants row">
+                <li class="col recentlyConsultant">
+                  <div style="display: ruby-text">
+                    <a href="#">
+                      <p class="font-25">{{item.name}}</p>
+                      <s class="red left font-22 bold padding"
+                        >{{item.totalLecturesPrice}}</s
+                      >
+                      <b class="left font-22 green bold padding mainColor"
+                        > ##word.$## {{item.price}} </b
+                      >
+                    </a>
+                  </div>
+                  <div class="consultantInfo">
+                    <div class="questionTime">
+                      <p class="font-16">
+                        <i class="fas fa-clock">{{item.$time}}</i>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="separative"></div>
+                  <div class="answerSection">
+                    <div class="consultantAnswer">
+                      <p class="linesView font-20">
+                        <span id="description"></span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <button ng-click="showEnterCode()" ng-hide="item.$buy" class="buy-btn">
+                      ##word.Buy## <i class="fas fa-shopping-basket"></i>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+    <div id="codeModal" class="modal codeModal small">
+      <div class="modal-content height-auto">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <i-control
+            type="text"
+            v="r"
+            ng-model="code"
+            label="##word.Code##"
+          ></i-control>
+        </div>
+        <div class="modal-footer center">
+          <p class="error">{{errorCode}}</p>
+          <i-button
+            type="save"
+            label="##word.Accept##"
+            ng-click="buyBackage(item)"
+          ></i-button>
+        </div>
+      </div>
+    </div>
+    <div x-replace="teacher-theme/footer.html"></div>
+    <div x-import="teacher-theme/scripts.html"></div>
+    <script x-import="packages/packageView.js"></script>
+  </body>
+</html>

@@ -7,41 +7,6 @@
     />
 
     <style>
-      .req-cons {
-        border: 1px solid #2087e7;
-        display: inline-block;
-        width: 35vw !important;
-        margin: 2vw !important;
-        background: #ffffff;
-        padding: 25px;
-        height: 200px;
-        border-radius: 10px;
-        box-shadow: 1px 2px 3px 2px #2087e7;
-      }
-
-      .req-cons img {
-        height: 30px;
-        width: 40px;
-        float: left;
-      }
-
-      .req-cons-name {
-        font-size: 21px;
-        float: left;
-        font-family: system-ui;
-        font-weight: bold;
-      }
-
-      .account-number {
-        color: #2087e7;
-        font-size: 20px;
-      }
-
-      .card-title {
-        color: #959595;
-        font-size: 20px;
-      }
-
       .register-content {
         padding: 30px !important;
         /*  background-color: #2087e74d; */
@@ -134,9 +99,15 @@
           >
           <a
             class="tab-link"
-            onclick="site.showTabContent(event, '#myConsultations')"
+            onclick="site.showTabContent(event, '#myPackages')"
           >
-            <span>##word.My Consultations## </span></a
+            <span>##word.My Packages## </span></a
+          >
+          <a
+            class="tab-link"
+            onclick="site.showTabContent(event, '#myLectures')"
+          >
+            <span>##word.My Lectures## </span></a
           >
         </div>
 
@@ -151,15 +122,8 @@
                       <i-control
                         v="r"
                         class="input-style"
-                        label="##word.First Name##"
+                        label="##word.Full Name##"
                         ng-model="user.firstName"
-                      >
-                      </i-control>
-                      <i-control
-                        v="r"
-                        class="input-style"
-                        label="##word.Last Name##"
-                        ng-model="user.lastName"
                       >
                       </i-control>
                       <i-control
@@ -170,45 +134,6 @@
                       >
                       </i-control>
 
-                      <i-control
-                        class="center input-style"
-                        label="##word.Start Of Communication Time##"
-                        type="time"
-                        ng-model="user.startCommunicationTime"
-                      >
-                      </i-control>
-
-                      <i-control
-                        class="center input-style"
-                        label="##word.End Of Communication Time##"
-                        type="time"
-                        ng-model="user.endCommunicationTime"
-                      >
-                      </i-control>
-
-                      <!-- <i-control
-                  ng-show="type == 'teacher'"
-                  class="center input-style"
-                  label="##word.Card Number##"
-                  type="tel"
-                  ng-model="user.cardNumber"
-                >
-                </i-control>
-                <i-list
-                  ng-show="type == 'teacher'"
-                  class="center input-style"
-                  label="##word.Constraint Type##"
-                  ng-model="user.constraintType"
-                  items="constraintTypesList"
-                  display="name##session.lang##"
-                  ng-search="user.$constraintType"
-                ></i-list>
-                <i-date
-                  ng-show="type == 'teacher'"
-                  label="##word.Constraint Date##"
-                  ng-model="user.ConstraintDate"
-                >
-                </i-date> -->
                       <i-list
                         v="r"
                         class="center input-style"
@@ -245,20 +170,6 @@
                         ng-search="user.$area"
                       >
                       </i-list>
-                      <i-checklist
-                        ng-show="user.type == 'teacher'"
-                        class="center input-style"
-                        label="##word.Specialties##"
-                        ng-model="user.specialties"
-                        items="specialtiesList"
-                        display="name"
-                        ng-search="user.$specialties"
-                      ></i-checklist>
-                      <fieldset>
-                        <h3>##word.Bio## :</h3>
-                        <i-content ng-model="user.bio" label="##word.Bio##">
-                        </i-content>
-                      </fieldset>
 
                       <i-control
                         v="r e"
@@ -275,16 +186,7 @@
                         id="pass1"
                         ng-model="user.password"
                       >
-                      </i-control>
-                      <!-- <i-control
-                  v="r"
-                  class="pass input-style"
-                  label="##word.Retype Password##"
-                  type="password"
-                  id="pass2"
-                  ng-model="user.rePassword"
-                >
-                </i-control> -->
+                   
                       <i-checkbox
                         class="right"
                         label="##word.Show Password##"
@@ -314,13 +216,7 @@
                         </div>
                       </div>
 
-                      <!-- <div class="row" ng-show="type == 'teacher'">
-                  <p class="right-content"><span class="red bold"> * </span> ##word.Card Image##</p>
-                  <i-image
-                    style="width: 170px !important; height: 200px !important"
-                    ng-model="user.cardImage"
-                  ></i-image>
-                </div> -->
+                  
                       <br />
 
                       <i-control
@@ -375,73 +271,7 @@
                       </i-control>
                     </div>
                   </div>
-                  <div class="row">
-                    <fieldset class="margin padding">
-                      <legend>##word.Services## ##word. Are Offered##</legend>
-                      <div class="row">
-                        <i-list
-                          class="col6"
-                          label="##word.Area##"
-                          ng-model="user.$service"
-                          items="servicesList"
-                          display="name"
-                          ng-search="user.$_service"
-                        >
-                        </i-list>
-                        <div class="col3">
-                          <br />
-
-                          <i-button
-                            type="push"
-                            label="##word.Add To Services##"
-                            ng-click="addToServices()"
-                          ></i-button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="table-responsive">
-                          <table class="table hover center bold">
-                            <tr>
-                              <th class="w150">##word.Logo##</th>
-                              <th>##word.Name##</th>
-                              <th>##word.price## ##word.$##</th>
-                              <th>##word.Status##</th>
-                              <th class="not-print">##word.Actions##</th>
-                            </tr>
-                            <tr ng-repeat="service in user.servicesList">
-                              <td>
-                                <i-image
-                                  view
-                                  class="logo center"
-                                  ng-model="service.image"
-                                ></i-image>
-                              </td>
-                              <td class="center">{{service.name}}</td>
-                              <td class="center">
-                                <i-control
-                                  type="number"
-                                  ng-model="service.price"
-                                >
-                                </i-control>
-                              </td>
-                              <td class="center">
-                                <i-control ng-model="service.notes"></i-control>
-                              </td>
-
-                              <td class="center not-print">
-                                <i-button
-                                  type="delete"
-                                  class="center"
-                                  title="##word.Delete##"
-                                  ng-click="user.servicesList.splice($index,1)"
-                                ></i-button>
-                              </td>
-                            </tr>
-                          </table>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
+                 
                   <button ng-click="updateUser(user)" class="edit-user-btn">
                     ##word.Save## <i class="fas fa-user-edit"></i>
                   </button>
@@ -463,52 +293,55 @@
               <script x-import="profile/profileEdit.js"></script>
             </div>
           </div>
-          <div id="myConsultations" class="tab-content">
+
+          <div id="myPackages" class="tab-content">
             <div class="row">
-              <div
-                class="req-cons"
-                ng-repeat="recuestCons in requestConsultationsList"
-              >
-                <p class="" ng-show="user.type == 'teacher'">
-                  ##word.Client##
-                  <b class="userPrint account-number bold">
-                    {{recuestCons.addUserInfo.name}}
-                  </b>
+              <div class="card" ng-repeat="package in packagesList">
+                <div class="time-publish card-name margin padding">
+                  <i class="fas fa-clock"> {{package.$time}} </i>
+                </div>
+    
+                <img class="" loading="lazy" ng-src="{{package.image.url}}" />
+                <p class="center">
+                  <b class="card-number bold"> ##word.$## {{package.price}} </b>
+                  <s class="card-number red bold">
+                    {{package.totalLecturesPrice}}
+                  </s>
                 </p>
-
-                <p class="" ng-show="user.type != 'teacher'">
-                  ##word.Teacher##
-                  <b class="userPrint account-number bold">
-                    {{recuestCons.teacher.firstName}}
-                    {{recuestCons.teacher.lastName}}
-                  </b>
+    
+                <p class="userPrint card-title bold">
+                  {{package.name}}
                 </p>
+    
+                <a href="/packageView?id={{package.id}}">
+                  <i-button title="##word.view##" type="view"></i-button>
+                </a>
+              </div>
+            </div>
+          </div>
 
-                <p class="">
-                  ##word.Title##
-
-                  <b class="userPrint card-title bold">{{recuestCons.name}}</b>
+          <div id="myLectures" class="tab-content">
+            <div class="row">
+              <div class="card" ng-repeat="lecture in lecturesList">
+                <div class="time-publish card-name margin padding">
+                  <i class="fas fa-clock"> {{lecture.$time}} </i>
+                </div>
+    
+                <img class="" loading="lazy" ng-src="{{lecture.image.url}}" />
+                <p class="center">
+                  <b class="card-number bold"> ##word.$## {{lecture.price}} </b>
+                  <s class="card-number red bold">
+                    {{lecture.totalLecturesPrice}}
+                  </s>
                 </p>
-
-                <p class="">
-                  ##word.Type##
-
-                  <b class="userPrint card-title bold"
-                    >{{recuestCons.typeConsultation.name}}</b
-                  >
+    
+                <p class="userPrint card-title bold">
+                  {{lecture.name}}
                 </p>
-
-                <p class="">
-                  ##word.Classification##
-
-                  <b class="userPrint card-title bold"
-                    >{{recuestCons.consultationClassification.name##session.lang##}}</b
-                  >
-                </p>
-
-                <p class="userPrint req-cons-name font-20">
-                  {{recuestCons.status.name##session.lang##}}
-                </p>
+    
+                <a href="/lectureView?id={{lecture.id}}">
+                  <i-button title="##word.view##" type="view"></i-button>
+                </a>
               </div>
             </div>
           </div>

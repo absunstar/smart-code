@@ -3,6 +3,7 @@ module.exports = function init(site) {
     name: "requestConsultations",
     allowMemory: false,
     memoryList: [],
+    generalList: [],
     allowCache: false,
     cacheList: [],
     allowRoute: true,
@@ -13,9 +14,45 @@ module.exports = function init(site) {
     allowRouteView: true,
     allowRouteAll: true,
   };
-
+  site.consultationsList = [];
   app.$collection = site.connectCollection(app.name);
-  app.$collectionReply = site.connectCollection("requestConsultationsReply");
+
+  site.getConsultations = function (where, callBack) {
+    callBack = callBack || function () {};
+    let Consultations = [];
+    if (where["lawyer.id"]) {
+      Consultations = site.consultationsList.filter(
+        (a) =>
+          where["status.name"] == a.status.name &&
+          a.lawyer &&
+          where["lawyer.id"] == a.lawyer.id
+      );
+    } else {
+      Consultations = site.consultationsList.filter(
+        (a) => where["status.name"] == a.status.name
+      );
+    }
+    if (Consultations.length > 0) {
+      callBack(null, Consultations);
+    } else {
+      app.$collection.findMany(
+        where,
+        (err, docs) => {
+          if (!err && docs) {
+            for (let i = 0; i < docs.length; i++) {
+              let doc = docs[i];
+              if (!site.consultationsList.some((k) => k.id === doc.id)) {
+                doc.$time = site.xtime(doc.date, "Ar");
+                site.consultationsList.push(doc);
+              }
+            }
+          }
+          callBack(err, docs);
+        },
+        true
+      );
+    }
+  };
 
   app.init = function () {
     if (app.allowMemory) {
@@ -149,15 +186,45 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          res.render(
-            app.name + "/requestConsultations.html",
-            {
-              title: app.name,
-              appName: req.word("Request A Consultations"),
-              setting: site.getSiteSetting(req.host),
-            },
-            { parser: "html", compres: true }
-          );
+          let setting = site.getSiteSetting(req.host) || {};
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+            page_image: setting.logo?.url || "/lawyer/images/logo.png",
+            user_image:
+              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title:
+              setting.siteName +
+              " " +
+              setting.titleSeparator +
+              " " +
+              setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+            typesConsultationsList:
+              site.getApp("typesConsultations").memoryList,
+            specialtiesList: site.getApp("specialties").memoryList,
+            servicesList: site.getApp("services").memoryList,
+            newList: site.getApp("manageUsers").newList,
+            activeList: site.getApp("manageUsers").activeList,
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "https://" + req.host + data.site_logo;
+            data.page_image = "https://" + req.host + data.page_image;
+            data.user_image = "https://" + req.host + data.user_image;
+          }
+          res.render(app.name + "/requestConsultations.html", data, {
+            parser: "html",
+            compres: true,
+          });
         }
       );
 
@@ -166,15 +233,45 @@ module.exports = function init(site) {
           name: "requestConsultationsView",
         },
         (req, res) => {
-          res.render(
-            app.name + "/requestConsultationsView.html",
-            {
-              title: app.name,
-              appName: req.word("Request A Consultations View"),
-              setting: site.getSiteSetting(req.host),
-            },
-            { parser: "html", compres: true }
-          );
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
+            page_image: setting.logo?.url || "/lawyer/images/logo.png",
+            user_image:
+              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title:
+              setting.siteName +
+              " " +
+              setting.titleSeparator +
+              " " +
+              setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+            typesConsultationsList:
+              site.getApp("typesConsultations").memoryList,
+            specialtiesList: site.getApp("specialties").memoryList,
+            servicesList: site.getApp("services").memoryList,
+            newList: site.getApp("manageUsers").newList,
+            activeList: site.getApp("manageUsers").activeList,
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "https://" + req.host + data.site_logo;
+            data.page_image = "https://" + req.host + data.page_image;
+            data.user_image = "https://" + req.host + data.user_image;
+          }
+          res.render(app.name + "/requestConsultationsView.html", data, {
+            parser: "html",
+            compres: true,
+          });
         }
       );
 
@@ -218,42 +315,6 @@ module.exports = function init(site) {
           };
 
           app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
-
-      site.post(
-        {
-          name: `/api/requestConsultationsReply/add`,
-          require: { permissions: ["login"] },
-        },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
-
-          let _data = req.data;
-
-          _data.user = {
-            firstName: req.session.user.firstName,
-            lastName: req.session.user.lastName,
-            id: req.session.user.id,
-            image: req.session.user.image,
-          };
-          _data.supportCount = 0;
-          _data.oppositionCount = 0;
-          _data.date = new Date();
-          _data.repliesList = [];
-          _data.supportList = [];
-          _data.oppositionList = [];
-          app.$collectionReply.add(_data, (err, doc) => {
             if (!err && doc) {
               response.done = true;
               response.doc = doc;
@@ -316,6 +377,7 @@ module.exports = function init(site) {
                   firstName: req.session.user.firstName,
                   lastName: req.session.user.lastName,
                   id: req.session.user.id,
+                  type: req.session.user.type,
                   image: req.session.user.image,
                 },
                 date: new Date(),
@@ -333,12 +395,13 @@ module.exports = function init(site) {
                 response.error = "Must Add Comment";
                 res.json(response);
               }
-             
+
               doc.repliesList[index].repliesList.push({
                 user: {
                   firstName: req.session.user.firstName,
                   lastName: req.session.user.lastName,
                   id: req.session.user.id,
+                  type: req.session.user.type,
                   image: req.session.user.image,
                 },
                 date: new Date(),
@@ -347,7 +410,7 @@ module.exports = function init(site) {
               });
             } else if (_data.type == "support") {
               doc.repliesList[index].supportCount += 1;
-           
+
               doc.repliesList[index].supportList.unshift({
                 user: {
                   firstName: req.session.user.firstName,
@@ -382,10 +445,12 @@ module.exports = function init(site) {
               );
             } else if (_data.type == "approve") {
               doc.repliesList[index].approve = true;
-              doc.approveReply = true;
+              doc.status = site.consultationsStatusList[2];
+              doc.lawyer = doc.repliesList[index].user;
             } else if (_data.type == "unapprove") {
               doc.repliesList[index].approve = false;
-              doc.approveReply = false;
+              doc.status = site.consultationsStatusList[1];
+              doc.lawyer = {};
             }
             app.update(doc, (err, result) => {
               if (!err) {
@@ -483,7 +548,6 @@ module.exports = function init(site) {
           typeConsultation: 1,
           details: 1,
           status: 1,
-          approveReply: 1,
         };
         if (where && where.fromDate && where.toDate) {
           let d1 = site.toDate(where.fromDate);
@@ -534,66 +598,15 @@ module.exports = function init(site) {
         app.all(
           { where: where, limit, select, sort: { id: -1 } },
           (err, docs) => {
+            for (let i = 0; i < docs.length; i++) {
+              let _doc = docs[i];
+
+              _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
+            }
             res.json({ done: true, list: docs });
           }
         );
       });
-
-      site.post(
-        { name: `/api/requestConsultationsReply/all`, public: true },
-        (req, res) => {
-          let where = req.body.where || {};
-          let search = req.body.search || "";
-          let limit = req.body.limit || 500;
-          let select = req.body.select || {};
-          if (where && where.fromDate && where.toDate) {
-            let d1 = site.toDate(where.fromDate);
-            let d2 = site.toDate(where.toDate);
-            d2.setDate(d2.getDate() + 1);
-            where.date = {
-              $gte: d1,
-              $lte: d2,
-            };
-            delete where.fromDate;
-            delete where.toDate;
-          }
-
-          if (search) {
-            where.$or = [];
-            where.$or.push({
-              comment: site.get_RegExp(search, "i"),
-            });
-          }
-          app.$collectionReply.findMany(
-            { where: where, limit, select, sort: { date: -1 } },
-            (err, docs) => {
-              if (docs && docs.length > 0)
-                for (let i = 0; i < docs.length; i++) {
-                  let _doc = docs[i];
-                  if (req.session.user) {
-                    _doc.$userSupport = _doc.supportList.some(
-                      (_f) => _f.user.id === req.session.user.id
-                    );
-                    _doc.$userOpposition = _doc.oppositionList.some(
-                      (_f) => _f.user.id === req.session.user.id
-                    );
-                  }
-
-                  _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
-                  if (_doc.repliesList && _doc.repliesList.length > 0) {
-                    _doc.repliesList.forEach((_reply) => {
-                      _reply.$time = site.xtime(
-                        _reply.date,
-                        req.session.lang || "Ar"
-                      );
-                    });
-                  }
-                }
-              res.json({ done: true, list: docs });
-            }
-          );
-        }
-      );
     }
   }
 

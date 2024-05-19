@@ -135,10 +135,10 @@ nav .container-fluid #navbarNavDropdown .navbar-nav .dropdown .dropdown-menu li 
   background: #1e1e1e;
 }
 .HeaderContanier .lgScreen .userContainer .profile img {
-  width: 45px;
-  height: 44px;
+  width: 51px;
+  height: 51px;
   position: absolute;
-  left: 3px;
-  top: -11px;
+  left: 0px;
+  top: -17px;
   border-radius: 100px;
 }

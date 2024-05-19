@@ -1,7 +1,0 @@
-[{
-    "moduleName" : "lawyer" ,
-    "name": "centrsAdmin",
-    "En": "Centrs Admin",
-    "Ar": "إدارة المراكز",
-    "permissions": ["centrsManage"]
-}]

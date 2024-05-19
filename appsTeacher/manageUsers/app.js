@@ -16,11 +16,10 @@ module.exports = function init(site) {
     allowRouteAll: true,
   };
 
-  app.$collection = site.connectCollection("officeUsers");
-  app.$collectionUser = site.connectCollection("users_info");
+  app.$collection = site.connectCollection("users_info");
 
   app.init = function () {
-    app.$collectionUser.findMany({ sort: { id: -1 } }, (err, docs) => {
+    app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
           if (doc.active && doc.roles && doc.roles[0].name == "teacher") {
@@ -31,7 +30,10 @@ module.exports = function init(site) {
               lastName: doc.lastName,
             };
             app.newList.push({ ...obj });
-            app.activeList.push({ ...obj, specialty: doc.specialties? doc.specialties[0] : {} });
+            app.activeList.push({
+              ...obj,
+              specialty: doc.specialties ? doc.specialties[0] : {},
+            });
           }
         });
       }
@@ -170,9 +172,14 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-
+          if (_data.type == "teacher") {
+            _data.roles = [{ name: "teacher" }];
+          } else if (_data.type == "student") {
+            _data.roles = [{ name: "student" }];
+          }
           app.add(_data, (err, doc) => {
             if (!err && doc) {
+              site.addNewHost({ domain: doc.userName, filter: doc.userName });
               response.done = true;
               response.doc = doc;
             } else {
@@ -198,7 +205,7 @@ module.exports = function init(site) {
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
 
-          app.$collectionUser.update(_data, (err, result) => {
+          app.update(_data, (err, result) => {
             if (!err) {
               response.done = true;
               response.result = result;
@@ -222,7 +229,7 @@ module.exports = function init(site) {
             done: false,
           };
           let _data = req.data;
-          app.$collectionUser.delete({ id: _data.id }, (err, result) => {
+          app.delete({ id: _data.id }, (err, result) => {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
@@ -323,90 +330,17 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
         }
+        if (where["type"] == "student") {
+          where["host"] = site.getHostFilter(req.host);
+        }
         where["id"] = { $ne: 1 };
-        app.$collectionUser.findMany(where, (err, users) => {
+        app.all(where, (err, users) => {
           res.json({
             done: true,
             list: users,
           });
         });
       });
-
-      site.post(
-        {
-          name: `/api/${app.name}/addUsers`,
-          require: { permissions: ["login"] },
-        },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
-          let _data = req.data;
-
-          let where = {};
-          where["email"] = _data.email;
-          app.$collectionUser.findMany(where, (err1, docs) => {
-            if (docs && docs.length) {
-              response.error = "Email is exist";
-              res.json(response);
-              return;
-            } else if (err1) {
-              response.error = err1?.message || "Has Err";
-              res.json(response);
-              return;
-            }
-
-            if (!_data.email) {
-              let splitName = _data.fullNameEn.split(" ");
-              let emailAndPass =
-                splitName[0] + Math.floor(Math.random() * 1000 + 1).toString();
-              _data.email = emailAndPass;
-              _data.password = emailAndPass;
-            }
-            _data.roles = [{ name: _data.$role }];
-            if (_data.$role == "teacher") {
-              _data.type = _data.$role;
-            } else {
-              _data.type = "client";
-            }
-            // if (_data.mobileList && _data.mobileList.length > 0) {
-            //   _data.mobile = _data.mobileList[0].mobile;
-            // } else {
-            //   response.error = "Must Add Mobile Number";
-            //   res.json(response);
-            //   return;
-            // }
-            const office = { ..._data.office };
-            if (_data.office) {
-              _data.officesList = [_data.office.id];
-              delete _data.office;
-            }
-            _data.addUserInfo = req.getUserFinger();
-
-            app.$collectionUser.add(_data, (err, doc) => {
-              if (!err && doc) {
-                let userOffice = {
-                  userId: doc.id,
-                  office,
-                  type: _data.$role,
-                  addUserInfo: doc.addUserInfo,
-                };
-                app.add(userOffice, (err, userOfficeDoc) => {
-                  if (!err && userOfficeDoc) {
-                    response.done = true;
-                    response.doc = userOfficeDoc;
-                  } else {
-                    response.error = err?.message || "Add Not Exists";
-                  }
-                  res.json(response);
-                });
-              } else {
-                response.error = err?.message || "Add Not Exists";
-              }
-            });
-          });
-        }
-      );
     }
   }
 

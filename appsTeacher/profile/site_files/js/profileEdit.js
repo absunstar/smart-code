@@ -1,4 +1,6 @@
 app.controller("profileEdit", function ($scope, $http, $timeout) {
+  $scope.baseURL = "";
+
   $scope.displayUser = function () {
     $scope.busy = true;
     $scope.error = "";
@@ -13,107 +15,13 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-          $scope.user.startWorkTime = $scope.user.startWorkTime || new Date();
-          $scope.user.endWorkTime = $scope.user.endWorkTime || new Date();
           document.querySelector(`#profileEdit .tab-link`).click();
-
-          $scope.getRequestConsultationsList();
         } else {
           $scope.error = response.data.error;
         }
       },
       function (err) {
         console.log(err);
-      }
-    );
-  };
-
-  $scope.getServicesList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/services/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-          image: 1,
-          price: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.servicesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.addToServices = function () {
-    if ($scope.user.$service && $scope.user.$service.id) {
-      $scope.user.servicesList = $scope.user.servicesList || [];
-      if (
-        $scope.user.servicesList.some((s) => s.id === $scope.user.$service.id)
-      ) {
-        $scope.errorService = "##word.The Service Already Exists##";
-      } else {
-        $scope.user.servicesList.unshift({
-          id: $scope.user.$service.id,
-          image: $scope.user.$service.image,
-          name: $scope.user.$service.name,
-          price: $scope.user.$service.price,
-        });
-      }
-      $scope.user.$service = {};
-    }
-    $timeout(() => {
-      $scope.errorService = "";
-    }, 2000);
-  };
-
-  $scope.getRequestConsultationsList = function () {
-    $scope.requestConsultationsList = [];
-    let where = {};
-    if ($scope.user.type == "teacher") {
-      where["teacher.id"] = $scope.user.id;
-    } else {
-      where["addUserInfo.id"] = site.toNumber('##user.id##');
-    }
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/requestConsultations/all",
-      data: {
-        where,
-        select: {
-          id: 1,
-          name: 1,
-          teacher: 1,
-          status: 1,
-          typeConsultation: 1,
-          consultationClassification: 1,
-          addUserInfo: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.requestConsultationsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
       }
     );
   };
@@ -239,34 +147,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSpecialtiesList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/specialties/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.specialtiesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.updateUser = function (user) {
     $scope.busy = true;
     $http({
@@ -297,8 +177,77 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     }, 100);
   };
 
+  $scope.getPackages = function () {
+    $scope.busy = true;
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/packages/all`,
+      data: {
+        type: 'myStudent',
+        select: {
+          id: 1,
+          name: 1,
+          image: 1,
+          educationalLevel: 1,
+          schoolYear: 1,
+          price: 1,
+          totalLecturesPrice: 1,
+          date: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.packagesList = response.data.list;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.getLectures = function () {
+    $scope.busy = true;
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/lectures/all`,
+      data: {
+        type: 'myStudent',
+        select: {
+          id: 1,
+          name: 1,
+          image: 1,
+          educationalLevel: 1,
+          schoolYear: 1,
+          price: 1,
+          date: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.lecturesList = response.data.list;
+          console.log($scope.lecturesList);
+
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.getLectures();
+  $scope.getPackages();
   $scope.displayUser();
   $scope.getCountriesList();
-  $scope.getServicesList();
-  $scope.getSpecialtiesList();
 });

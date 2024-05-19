@@ -11,9 +11,7 @@ app.controller("register", function ($scope, $http, $timeout) {
     let element = document.getElementById(type);
     element.classList.add("user-type-select");
   };
-  if ("##query.type##" == "teacher") {
-    $scope.typeSelect("teacher");
-  }
+
   $scope.register = function (user) {
     $scope.error = "";
     const v = site.validated("#emailData");
@@ -21,21 +19,20 @@ app.controller("register", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.type == "teacher") {
-      if (!user.cardImage) {
-        $scope.error = "##word.Must Enter Card Image##";
+    if ($scope.type == "offline") {
+      if (!user.center || !user.center.id) {
+        $scope.error = "##word.Must Enter Center##";
         return;
-      } else if (!user.constraintType || !user.constraintType.id) {
-        $scope.error = "##word.Must Enter Constraint Type##";
+      }
+    } else if ($scope.type == "online") {
+      if (!user.nationalIdImage) {
+        $scope.error = "##word.Must Enter NationalIdImage##";
         return;
-      } else if (!user.cardNumber) {
-        $scope.error = "##word.Must Enter Card Number##";
+      } else if (!user.nationalId) {
+        $scope.error = "##word.Must Enter National ID##";
         return;
-      } else if (!user.constraintDate) {
-        $scope.error = "##word.Must Enter Constraint Date##";
-        return;
-      } else if (!user.specialties || !user.specialties.length) {
-        $scope.error = "##word.Must Enter Specialties##";
+      }  else if (!user.latitude || !user.longitude) {
+        $scope.error = "##word.Must Select Location Information##";
         return;
       }
     }
@@ -43,24 +40,24 @@ app.controller("register", function ($scope, $http, $timeout) {
       $encript: "123",
       email: site.to123(user.email),
       password: site.to123(user.password),
+      placeType: $scope.type,
       mobile: user.mobile,
       firstName: user.firstName,
       lastName: user.lastName,
       image: user.image,
+      schoolYear: user.schoolYear,
+      educationalLevel: user.educationalLevel,
+      nationalIdImage: user.nationalIdImage,
+      nationalId: user.nationalId,
       country: user.country,
-      cardNumber: user.cardNumber,
-      constraintDate: user.constraintDate,
-      constraintType: user.constraintType,
-      cardImage: user.cardImage,
-      specialties: user.specialties,
       gov: user.gov,
       city: user.city,
       area: user.area,
+      latitude: user.latitude,
+      longitude: user.longitude,
       userName: user.userName,
+      type: "Student",
     };
-
-    obj.country_code = user.country.country_code;
-    obj.length_mobile = user.country.length_mobile;
 
     if (user) {
       if (user.password === user.rePassword) {
@@ -68,7 +65,7 @@ app.controller("register", function ($scope, $http, $timeout) {
         $http({
           method: "POST",
           url: "/api/register",
-          data: { user: obj, type: $scope.type },
+          data: { user: obj, placeType: $scope.type },
         }).then(
           function (response) {
             if (response.data.error) {
@@ -91,40 +88,12 @@ app.controller("register", function ($scope, $http, $timeout) {
       }
     }
   };
-  $scope.getOfficesList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/offices/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-          image: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.countriesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
-  $scope.getSpecialtiesList = function (where) {
+  $scope.getCentersList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/specialties/all",
+      url: "/api/centers/all",
       data: {
         where: {
           active: true,
@@ -138,7 +107,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.specialtiesList = response.data.list;
+          $scope.centersList = response.data.list;
         }
       },
       function (err) {
@@ -148,25 +117,6 @@ app.controller("register", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getConstraintTypesList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/constraintTypesList",
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.constraintTypesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
   $scope.getCountriesList = function (where) {
     $scope.busy = true;
     $http({
@@ -288,6 +238,70 @@ app.controller("register", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getEducationalLevelsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.educationalLevelsList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/educationalLevels/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.educationalLevelsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getSchoolYearsList = function (educationalLevel) {
+    $scope.busy = true;
+    $scope.schoolYearsList = [];
+    $http({
+      method: "POST",
+      url: "/api/schoolYears/all",
+      data: {
+        where: {
+          active: true,
+          "educationalLevel.id": educationalLevel.id,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.showPassword = function () {
     $timeout(() => {
       document.querySelectorAll(".pass input").forEach((p) => {
@@ -296,9 +310,21 @@ app.controller("register", function ($scope, $http, $timeout) {
     }, 100);
   };
 
+  $scope.getLocation = function () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        $scope.user.latitude = position.coords.latitude;
+        $scope.user.longitude = position.coords.longitude;
+        $scope.$applyAsync();
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+
   $scope.getCountriesList();
-  $scope.getConstraintTypesList();
-  $scope.getSpecialtiesList();
+  $scope.getCentersList();
+  $scope.getEducationalLevelsList();
 });
 
 site.onLoad(() => {

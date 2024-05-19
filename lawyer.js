@@ -32,7 +32,7 @@ site.get({
 });
 
 site.get('ads.txt', (req, res) => {
-  let setting = site.getSiteSetting(req.host);
+  let setting = site.getSiteSetting(req.host) || {};
   if (setting && setting.adsTxt) {
     res.end(setting.adsTxt);
   } else {
@@ -41,7 +41,7 @@ site.get('ads.txt', (req, res) => {
 });
 
 site.get('robots.txt', (req, res) => {
-  let setting = site.getSiteSetting(req.host);
+  let setting = site.getSiteSetting(req.host) || {};
   if (setting && setting.adsTxt) {
     res.end(setting.robotsTxt);
   } else {

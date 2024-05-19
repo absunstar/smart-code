@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="Ar" data-ng-app="myApp">
+  <head x-import="teacher-theme/head-dashboard.html"></head>
+  </head>
+  <body class="Ar">
+    <nav x-import="teacher-theme/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="teacher-theme/sitebottom.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container" x-import="centers/_.html" x-permissions="login"></div>
+
+
+    <div x-import="teacher-theme/scripts-dashboard.html"></div>
+    <script x-import="centers/index.js"></script>
+  </body>
+</html>

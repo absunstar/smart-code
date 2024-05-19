@@ -8,31 +8,17 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     image: { url: "/images/manageUsers.png" },
     active: true,
   };
-  $scope.employeeType = "";
-  if ("##query.type##" == "employee") {
-    $scope.employeeType = "##word.Employee##";
-  } else if ("##query.type##" == "secretary") {
-    $scope.employeeType = "##word.Secretary##";
-  } else if ("##query.type##" == "teacher") {
-    $scope.employeeType = "##word.Teacher##";
-  } else if ("##query.type##" == "client") {
-    $scope.employeeType = "##word.Client##";
-  }
+
   $scope.employee = {};
   $scope.item = {};
   $scope.list = [];
-  $scope.userOfficesList = "##session.user.officesList##"
-    .split(",")
-    .map(Number);
 
-  $scope.showAdd = function (_item) {
+  $scope.showAdd = function (type) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure };
+    $scope.item = { ...$scope.structure, type };
     site.showModal($scope.modalID);
-    $scope.item.office = $scope.officesList.find(
-      (l) => l.id == $scope.userOfficesList[0]
-    );
+
     document.querySelector(`${$scope.modalID} .tab-link`).click();
   };
 
@@ -43,25 +29,11 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if (_item.type == "teacher") {
-      if (!_item.cardImage) {
-        $scope.error = "##word.Must Enter Card Image##";
-        return;
-      } else if (!_item.constraintType || !_item.constraintType.id) {
-        $scope.error = "##word.Must Enter Constraint Type##";
-        return;
-      } else if (!_item.cardNumber) {
-        $scope.error = "##word.Must Enter Card Number##";
-        return;
-      } else if (!_item.constraintDate) {
-        $scope.error = "##word.Must Enter Constraint Date##";
-        return;
-      }
-    }
+
     $scope.busy = true;
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/${$scope.appName}/addUsers`,
+      url: `${$scope.baseURL}/api/${$scope.appName}/add`,
       data: _item,
     }).then(
       function (response) {
@@ -79,7 +51,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.showUpdate = function (_item) {
     $scope.error = "";
@@ -147,8 +118,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
-          $scope.item.$office = _item.$office;
-          $scope.item.$docId = _item.$docId;
         } else {
           $scope.error = response.data.error;
         }
@@ -177,8 +146,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       url: `${$scope.baseURL}/api/${$scope.appName}/delete`,
       data: {
         id: $scope.item.$docId,
-        userId: $scope.item.id,
-        office: $scope.item.$office,
       },
     }).then(
       function (response) {
@@ -210,6 +177,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     $scope.busyAll = true;
     $scope.list = [];
     where = where || {};
+    where["type"] = "##query.type##";
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
@@ -276,72 +244,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.nationalitiesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-  $scope.getOfficesList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $scope.officesList = [];
-    $http({
-      method: "POST",
-      url: "/api/offices/all",
-      data: {
-        where: {
-          active: true,
-        },
-        type: "myOffices",
-        select: {
-          id: 1,
-          name: 1,
-        },
-        search: $search,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.officesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getUsersList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $scope.usersList = [];
-    let type = "teacher";
-
-    if ("##query.type##" == "teacher") {
-      type = "teacher";
-    } else {
-      type = "client";
-    }
-    $http({
-      method: "POST",
-      url: "/api/users/all",
-      data: {
-        where: { search: $search, type },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.users.length > 0) {
-          $scope.usersList = response.data.users;
         }
       },
       function (err) {
@@ -476,26 +378,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getConstraintTypesList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/constraintTypesList",
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.constraintTypesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.getMaritalStatus = function () {
     $scope.busy = true;
     $scope.maritalStatusList = [];
@@ -541,9 +423,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   $scope.getAll();
   $scope.getNationalities();
   $scope.getCountriesList();
-  $scope.getOfficesList();
   $scope.getMaritalStatus();
   $scope.getGenders();
-  $scope.getConstraintTypesList();
-  $scope.getUsersList();
 });

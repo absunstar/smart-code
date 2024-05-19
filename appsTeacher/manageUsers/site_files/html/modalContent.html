@@ -9,31 +9,15 @@
               ng-model="item.active"
               label="##word.Active##"
             ></i-checkbox>
-            <i-checkbox
-              ng-model="item.trusted"
-              label="##word.Trusted##"
-            ></i-checkbox>
           </div>
-          <i-list
-            ng-hide="item.id"
-            label="##word.Office##"
-            ng-model="item.office"
-            display="name"
-            items="officesList"
-            ng-search="item.$offices"
-          ></i-list>
+          
           <i-control
             type="text"
             v="r"
             ng-model="item.firstName"
-            label="##word.First Name##"
+            label="##word.Full Name##"
           ></i-control>
-          <i-control
-            type="text"
-            v="r"
-            ng-model="item.lastName"
-            label="##word.Last Name##"
-          ></i-control>
+
           <i-control
             v="r"
             class="input-style"
@@ -41,39 +25,13 @@
             ng-model="item.userName"
           >
           </i-control>
-          <i-control
-            ng-show="item.type == 'teacher'"
-            class="center input-style"
-            label="##word.Card Number##"
-            type="tel"
-            ng-model="item.cardNumber"
-          >
-          </i-control>
-          <i-list
-            ng-show="item.type == 'teacher'"
-            class="center input-style"
-            label="##word.Constraint Type##"
-            ng-model="item.constraintType"
-            items="constraintTypesList"
-            display="name##session.lang##"
-            ng-search="item.$constraintType"
-          ></i-list>
-          <i-date
-            ng-show="item.type == 'teacher'"
-            label="##word.Constraint Date##"
-            ng-model="item.constraintDate"
-          >
-          </i-date>
+          
         </div>
       </div>
       <div class="col3 center">
         <div class="row center-content">
           <p class="">##word.Profile Image##</p>
           <i-image class="img128" ng-model="item.image"></i-image>
-        </div>
-        <div class="row center-content" ng-show="item.type == 'teacher'">
-          <p class="">##word.Card Image##</p>
-          <i-image class="img128" ng-model="item.cardImage"></i-image>
         </div>
       </div>
     </div>
@@ -98,36 +56,17 @@
         <fieldset>
           <div class="row">
             <i-date
-              class="col4"
+              class="col6"
               label="##word.Date Of Birth ##"
               ng-model="item.dateOfBirth"
             >
             </i-date>
-            <fieldset class="col8">
-              <div class="col6">
-                <br />
-                <i-radio
-                  class="col6"
-                  label="##word.ID##"
-                  ng-value="id"
-                  ng-model="item.idType"
-                >
-                </i-radio>
-                <i-radio
-                  class="col6"
-                  label="##word.Passport /Iqama##"
-                  ng-value="iqama"
-                  ng-model="item.idType"
-                >
-                </i-radio>
-              </div>
-              <i-control
-                class="col6"
-                label="##word.ID /Iqama Number##"
-                ng-model="item.idNumber"
-              >
-              </i-control>
-            </fieldset>
+            <i-control
+            class="col6"
+            label="##word.ID /Iqama Number##"
+            ng-model="item.nationalId"
+          >
+          </i-control>
           </div>
           <div class="row">
             <i-list
@@ -300,7 +239,7 @@
             <i-control
               class="col6"
               v="r e"
-              label="##word.UserName##"
+              label="##word.Login E-mail##"
               ng-model="item.email"
             >
             </i-control>

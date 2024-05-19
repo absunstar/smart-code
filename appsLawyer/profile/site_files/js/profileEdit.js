@@ -16,7 +16,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
           $scope.user.startWorkTime = $scope.user.startWorkTime || new Date();
           $scope.user.endWorkTime = $scope.user.endWorkTime || new Date();
           document.querySelector(`#profileEdit .tab-link`).click();
-
         } else {
           $scope.error = response.data.error;
         }
@@ -79,13 +78,14 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     }, 2000);
   };
 
-  $scope.getRequestConsultationsList = function () {
-    $scope.requestConsultationsList = [];
+  $scope.getMyRequestConsultationsList = function () {
+    $scope.myRequestConsultationsList = [];
     let where = {};
-    if (site.toNumber('##user.type##') == "lawyer") {
-      where["lawyer.id"] = site.toNumber('##user.id##');
+    if ("##user.type##" == "lawyer") {
+      where["lawyer.id"] = site.toNumber("##user.id##");
+      where["status.name"] = "pending";
     } else {
-      where["user.id"] = site.toNumber('##user.id##');
+      where["user.id"] = site.toNumber("##user.id##");
     }
     $scope.busy = true;
     $http({
@@ -100,7 +100,43 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
           status: 1,
           typeConsultation: 1,
           consultationClassification: 1,
-          addUserInfo: 1,
+          user: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.myRequestConsultationsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getRequestConsultationsList = function () {
+    $scope.requestConsultationsList = [];
+    let where = {};
+    where["status.name"] = "pending";
+    where["lawyer.id"] = null;
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/requestConsultations/all",
+      data: {
+        where,
+        select: {
+          id: 1,
+          name: 1,
+          lawyer: 1,
+          status: 1,
+          typeConsultation: 1,
+          consultationClassification: 1,
+          user: 1,
         },
       },
     }).then(
@@ -300,6 +336,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.getCountriesList();
   $scope.getServicesList();
   $scope.getSpecialtiesList();
+  $scope.getMyRequestConsultationsList();
   $scope.getRequestConsultationsList();
-
 });

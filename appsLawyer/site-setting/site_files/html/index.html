@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="##data.language.id##" dir="##data.language.direction##" data-ng-app="myApp" class="##data.language.direction##" x-permissions="default_setting_ui || default_setting_manage">
+<html lang="##data.language.id##" dir="##data.language.direction##" data-ng-app="myApp" class="##data.language.direction##" x-permissions="defaultSettingUi || defaultSettingManage">
   <head x-import="cms/head.html">
     <style>
       :root {
@@ -22,12 +22,12 @@
       <div x-import="site-setting/dynamic_routes_modal.html"></div>
       <div class="row">
         <br />
-        <h1 class="center bold black">##word.default_settings##</h1>
+        <h1 class="center bold black">##word.Default Settings##</h1>
         <i-control disabled ng-model="siteSetting.host" label="##word.Host##"></i-control>
 
         <br />
 
-        <div x-permissions="default_setting_view || default_setting_manage" x-import="site-setting/content.html"></div>
+        <div x-permissions="defaultSettingView || defaultSettingManage" x-import="site-setting/content.html"></div>
         <h2 class="error">{{error}}</h2>
       </div>
     </div>
@@ -35,7 +35,7 @@
     <div id="alert" class="modal alert small">
       <div class="modal-content">
         <div class="modal-body">
-          <h1 class="blue center">##word.settings_saved##</h1>
+          <h1 class="blue center">##word.Settings Saved##</h1>
         </div>
       </div>
     </div>

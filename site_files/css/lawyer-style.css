@@ -20,9 +20,9 @@ legend {
   float: inline-start;
 }
 .right-content {
-  text-align-last : right
+  text-align-last: right;
 }
-.center-content{
+.center-content {
   justify-content: center;
 }
 .tabs .tabs-content {
@@ -53,4 +53,23 @@ legend {
 }
 .mainColor {
   color: #2087e7 !important;
+}
+
+.text-right {
+  text-align-last: right !important;
+}
+
+.text-center {
+  text-align-last: center !important;
+}
+
+.text-left {
+  text-align-last: left !important;
+}
+.form-control {
+  border: 1px solid #1475cf !important;
+}
+
+.selectAll {
+  user-select: all
 }
