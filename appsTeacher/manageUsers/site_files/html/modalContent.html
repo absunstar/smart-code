@@ -10,7 +10,7 @@
               label="##word.Active##"
             ></i-checkbox>
           </div>
-          
+
           <i-control
             type="text"
             v="r"
@@ -25,7 +25,6 @@
             ng-model="item.userName"
           >
           </i-control>
-          
         </div>
       </div>
       <div class="col3 center">
@@ -62,13 +61,23 @@
             >
             </i-date>
             <i-control
-            class="col6"
-            label="##word.ID /Iqama Number##"
-            ng-model="item.nationalId"
-          >
-          </i-control>
+              class="col6"
+              label="##word.National ID##"
+              ng-model="item.nationalId"
+            >
+            </i-control>
           </div>
           <div class="row">
+            <i-list
+              class="col4"
+              ng-show="item.placeType == 'offline'"
+              class="center input-style"
+              label="##word.Center Name##"
+              ng-model="item.center"
+              items="centersList"
+              display="name"
+              ng-search="item.$center"
+            ></i-list>
             <i-list
               class="col4"
               label="##word.Gender##"
@@ -77,14 +86,20 @@
               items="gendersList"
               ng-search="item.$genders"
             ></i-list>
-            <i-list
-              class="col4"
-              label="##word.Marital Status##"
-              ng-model="item.maritalStatus"
-              display="name##session.lang##"
-              items="maritalStatusList"
-              ng-search="item.$maritalStatus"
-            ></i-list>
+            <div class="col3">
+              <br>
+              <p class="font-20 " ng-show="item.placeType == 'online'">
+                ##word.Latitude## :{{item.latitude}}
+              </p>
+            </div>
+            <div class="col3">
+              <br>
+              <p class="font-20 " ng-show="item.placeType == 'online'">
+                ##word.Longitude## :{{item.longitude}}
+              </p>
+            </div>
+        
+          </div>
           </div>
         </fieldset>
         <fieldset>
@@ -104,8 +119,8 @@
 
             <i-control
               class="col3"
-              label="##word.Fax##"
-              ng-model="item.fax"
+              label="##word.Parent Mobile Number##"
+              ng-model="item.parentMobile"
             ></i-control>
 
             <i-control
@@ -119,35 +134,12 @@
         </fieldset>
 
         <fieldset>
-          <legend>##word.Post Informations##</legend>
-          <div class="row">
-            <i-control
-              class="col6"
-              label="##word.Mailbox##"
-              ng-model="item.mailbox"
-            ></i-control>
-
-            <i-control
-              class="col6"
-              label="##word.Post Number##"
-              ng-model="item.postNumber"
-            >
-            </i-control>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>##word.Web And Social Accounts##</legend>
+          <legend>##word.Social Accounts##</legend>
           <div class="row">
             <i-control
               class="col3"
-              label="# ##word.Website##"
-              ng-model="item.website"
-            ></i-control>
-            <i-control
-              class="col3"
-              label="# ##word.Email##"
-              ng-model="item.socialEmail"
+              label="##word.Contact Email##"
+              ng-model="item.contactEmail"
             ></i-control>
             <i-control
               class="col3"
@@ -159,6 +151,11 @@
               label="##word.Twitter##"
               ng-model="item.twitter"
             ></i-control>
+            <i-control
+              class="col3"
+              label="##word.Instagram##"
+              ng-model="item.instagram"
+            ></i-control>
           </div>
         </fieldset>
 
@@ -166,8 +163,8 @@
           <legend>##word.Address##</legend>
           <div class="row">
             <i-list
-              class="col6"
-              label="# ##word.Country##"
+              class="col3"
+              label="##word.Country##"
               ng-change="getGovesList(item.country)"
               ng-model="item.country"
               display="name"
@@ -177,64 +174,44 @@
             ></i-list>
             <i-list
               help-id=""
-              class="col6"
-              label="# ##word.Governorate##"
+              class="col3"
+              label="##word.Governorate##"
               ng-change="getCitiesList(item.gov)"
               ng-model="item.gov"
               display="name"
               items="govesList"
               ng-search="item.$gov"
             ></i-list>
-          </div>
-
-          <div class="row">
             <i-list
-              class="col6"
-              label="# ##word.City##"
+              class="col3"
+              label="##word.City##"
               ng-model="item.city"
               ng-change="getAreasList(item.city)"
               items="citiesList"
               display="name"
-              ng-search="item.$area.$cityitem"
+              ng-search="item.$area"
             >
             </i-list>
             <i-list
-              class="col6"
-              label="# ##word.Area##"
+              class="col3"
+              label="##word.Area##"
               ng-model="item.area"
               items="areasList"
               display="name"
-              ng-search="item.$area.$areaitem"
+              ng-search="item.$area"
             >
             </i-list>
           </div>
 
           <div class="row">
-            <i-control
-              class="col6"
-              label="# ##word.Address##"
-              ng-model="item.address"
-            >
-            </i-control>
-            <i-control
-              class="col6"
-              label="##word.P.O.Box##"
-              ng-model="item.poBox"
-            >
+            <i-control label="##word.Address##" ng-model="item.address">
             </i-control>
           </div>
 
-          <div class="row">
-            <i-control class="col6" label="##word.Zip##" ng-model="item.zip">
-            </i-control>
-            <i-control
-              class="col6"
-              label="##word.E-mail##"
-              ng-model="item.socialEmail"
-            >
-            </i-control>
+        
           </div>
-
+        </fieldset>
+        <fieldset>
           <div class="row">
             <i-control
               class="col6"
@@ -250,7 +227,6 @@
               ng-model="item.password"
             >
             </i-control>
-          </div>
         </fieldset>
       </div>
 

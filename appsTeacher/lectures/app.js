@@ -352,6 +352,33 @@ module.exports = function init(site) {
       );
     }
 
+    site.post({ name: `/api/${app.name}/changeView`, public: true }, (req, res) => {
+      let response = {
+        done: false,
+      };
+
+      let _data = req.data;
+      app.view(_data, (err, doc) => {
+        if (!err && doc) {
+          let index = doc.linksList.findIndex((itm) => itm.code === _data.code);
+          if (index !== -1) {
+            doc.linksList[index].views += 1;
+          }
+          app.update(doc, (err, result) => {
+            if (!err) {
+              response.done = true;
+            } else {
+              response.error = err.message;
+            }
+            res.json(response);
+          });
+        } else {
+          response.error = err?.message || "Not Exists";
+          res.json(response);
+        }
+      });
+    });
+
     if (app.allowRouteView) {
       site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
         let response = {
@@ -362,7 +389,11 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if (req.session.user && req.session.user.lecturesList &&req.session.user.lecturesList.some(s => s.lectureId == doc.id)) {
+            if (
+              req.session.user &&
+              req.session.user.lecturesList &&
+              req.session.user.lecturesList.some((s) => s.lectureId == doc.id)
+            ) {
               doc.$buy = true;
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
@@ -401,7 +432,6 @@ module.exports = function init(site) {
           where.$or.push({
             name: site.get_RegExp(search, "i"),
           });
-
         }
         if (req.body.type == "toStudent") {
           if (req.session.user && req.session.user.type == "student") {
@@ -484,6 +514,17 @@ module.exports = function init(site) {
                         lectureId: doc.id,
                       });
                     }
+                    site.addPurchaseOrder({
+                      type: "lecture",
+                      target: { id: doc.id, name: doc.name },
+                      price: doc.price,
+                      date: new Date(),
+                      user: {
+                        id: user.id,
+                        firstName: user.firstName,
+                        userName: user.userName,
+                      },
+                    });
                     site.security.updateUser(user);
                   }
                   response.done = true;

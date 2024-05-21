@@ -331,7 +331,6 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            console.log(req.session.user?.packagesList);
             if (req.session.user && req.session.user.packagesList && req.session.user.packagesList.some(s => s == doc.id)) {
               doc.$buy = true;
             }
@@ -466,6 +465,17 @@ module.exports = function init(site) {
                       }
                     });
                     user.packagesList.push(_data.packageId);
+                    site.addPurchaseOrder({
+                      type: "package",
+                      target: { id: doc.id, name: doc.name },
+                      price: doc.price,
+                      date : new Date(),
+                      user: {
+                        id: user.id,
+                        firstName: user.firstName,
+                        userName: user.userName,
+                      },
+                    });
                     site.security.updateUser(user);
                   }
                   response.done = true;

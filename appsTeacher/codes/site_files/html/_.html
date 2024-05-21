@@ -61,7 +61,7 @@
           <th class="not-print">##word.Actions##</th>
         </tr>
         <tr ng-repeat="item in list | filter:$search">
-          <td class="center selectAll">{{item.code}}</td>
+          <td class="center selectAll" id="{{item.id}}" >{{item.code}}</td>
           <td class="center">{{item.price}}</td>
           <td class="center">
             <span class="text-danger" ng-show="item.expired"
@@ -74,11 +74,14 @@
 
           <td class="center not-print">
             <i-button
-              type="view"
-              title="##word.View##"
-              ng-click="showView(item)"
+              title="##word.Copy##"
+              ng-click="copyCode(item.id)"
             ></i-button>
-
+            <i-button
+            type="view"
+            title="##word.View##"
+            ng-click="showView(item)"
+          ></i-button>
             <i-button
               type="edit"
               x-permissions="codesUpdate || codesManage"

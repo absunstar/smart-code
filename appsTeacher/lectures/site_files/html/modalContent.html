@@ -105,7 +105,8 @@
             <i-button type="push" ng-click="addLinks()"></i-button>
           </legend>
           <div class="row" ng-repeat="link in item.linksList">
-            <i-control class="col9" ng-model="link.name"></i-control>
+            <i-control class="col7" ng-model="link.url"></i-control>
+            <p class="font-20">##word.Views## {{link.views##}}</p>
             <i-button
               class="col2"
               type="delete "
@@ -120,7 +121,7 @@
             <i-button type="push" ng-click="addFiles()"></i-button>
           </legend>
           <div class="row" ng-repeat="file in item.filesList">
-            <i-file class="col9" ng-model="file.name"></i-file>
+            <i-file class="col9" ng-model="file.url"></i-file>
             <i-button
               class="col2"
               type="delete "
@@ -225,11 +226,8 @@
       <i-image class="img128 center" ng-model="item.image"></i-image>
     </div>
   </div>
-  <fieldset>
-    <h3>##word.Description## :</h3>
-    <i-content ng-model="item.description" label="##word.Description##">
-    </i-content>
-  </fieldset>
+  <i-textarea ng-model="item.description" label="##word.Description##">
+  </i-textarea>
 </div>
 <div ng-show="mode !== 'add' " class="row">
   <table class="table hover border">

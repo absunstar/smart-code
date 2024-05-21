@@ -148,13 +148,13 @@
                 >
                 </i-control>
                 <i-control
-                v="r"
-                class="center input-style"
-                label="##word.Parent Mobile Number##"
-                type="tel"
-                ng-model="user.parentMobile"
-              >
-              </i-control>
+                  v="r"
+                  class="center input-style"
+                  label="##word.Parent Mobile Number##"
+                  type="tel"
+                  ng-model="user.parentMobile"
+                >
+                </i-control>
                 <i-list
                   label="##word.Educational Level##"
                   ng-change="getSchoolYearsList(user.educationalLevel)"
@@ -279,13 +279,18 @@
                   ></i-image>
                 </div>
                 <div class="row" ng-show="type == 'online'">
-
-                  <button ng-click="getLocation()" class="register-btn location-btn">
+                  <button
+                    ng-click="getLocation()"
+                    class="register-btn location-btn"
+                  >
                     ##word.Location## <i class="fas fa-map-marker-alt"></i>
                   </button>
-                  <p class="font-20 text-right">##word.Latitude## :{{user.latitude}} </p>
-                  <p class="font-20 text-right">##word.Longitude## : {{user.longitude}}</p>
-                  
+                  <p class="font-20 text-right">
+                    ##word.Latitude## :{{user.latitude}}
+                  </p>
+                  <p class="font-20 text-right">
+                    ##word.Longitude## : {{user.longitude}}
+                  </p>
                 </div>
               </div>
             </div>

@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "purchaseOrdersAdmin",
+    "En": "Purchase Orders Admin",
+    "Ar": "إدارة أوامر الشراء",
+    "permissions": ["purchaseOrdersManage"]
+}] 

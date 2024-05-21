@@ -1,43 +1,40 @@
 module.exports = function init(site) {
   let app = {
-    name: "manageUsers",
+    name: "purchaseOrders",
     allowMemory: false,
     memoryList: [],
-    newList: [],
-    activeList: [],
     allowCache: false,
     cacheList: [],
     allowRoute: true,
     allowRouteGet: true,
-    allowRouteAdd: true,
     allowRouteUpdate: true,
     allowRouteDelete: true,
     allowRouteView: true,
     allowRouteAll: true,
   };
 
-  app.$collection = site.connectCollection("users_info");
+  app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
-      if (!err) {
-        docs.forEach((doc) => {
-          if (doc.active && doc.roles && doc.roles[0].name == "teacher") {
-            let obj = {
-              id: doc.id,
-              image: doc.image,
-              firstName: doc.firstName,
-              lastName: doc.lastName,
-            };
-            app.newList.push({ ...obj });
-            app.activeList.push({
-              ...obj,
-              specialty: doc.specialties ? doc.specialties[0] : {},
+    if (app.allowMemory) {
+      app.$collection.findMany({}, (err, docs) => {
+        if (!err) {
+          if (docs.length == 0) {
+            app.cacheList.forEach((_item, i) => {
+              app.$collection.add(_item, (err, doc) => {
+                if (!err && doc) {
+                  app.memoryList.push(doc);
+                }
+              });
+            });
+          } else {
+            docs.forEach((doc) => {
+              app.memoryList.push(doc);
             });
           }
-        });
-      }
-    });
+        }
+      });
+    }
   };
   app.add = function (_item, callback) {
     app.$collection.add(_item, (err, doc) => {
@@ -154,7 +151,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Manage Users"),
+              appName: req.word("Purchase Orders"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -163,33 +160,7 @@ module.exports = function init(site) {
       );
     }
 
-    if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
 
-          let _data = req.data;
-          if (_data.type == "teacher") {
-            _data.roles = [{ name: "teacher" }];
-          } else if (_data.type == "student") {
-            _data.roles = [{ name: "student" }];
-          }
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              site.addNewHost({ domain: doc.userName, filter: doc.userName });
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
-    }
 
     if (app.allowRouteUpdate) {
       site.post(
@@ -229,15 +200,15 @@ module.exports = function init(site) {
             done: false,
           };
           let _data = req.data;
-          app.delete({ id: _data.id }, (err, result) => {
+
+          app.delete(_data, (err, result) => {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
-              res.json(response);
             } else {
               response.error = err?.message || "Deleted Not Exists";
-              res.json(response);
             }
+            res.json(response);
           });
         }
       );
@@ -262,6 +233,7 @@ module.exports = function init(site) {
       });
     }
 
+   
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
@@ -269,80 +241,45 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          userId: 1,
           type: 1,
-          active: 1,
-          userName: 1,
+          target: 1,
+          user: 1,
+          date: 1,
+         
         };
+        if (where && where.fromDate && where.toDate) {
+          let d1 = site.toDate(where.fromDate);
+          let d2 = site.toDate(where.toDate);
+          d2.setDate(d2.getDate() + 1);
+          where.date = {
+            $gte: d1,
+            $lte: d2,
+          };
+          delete where.fromDate;
+          delete where.toDate;
+        }
+
         if (search) {
           where.$or = [];
-
+     
           where.$or.push({
-            id: site.get_RegExp(search, "i"),
+            number: search,
           });
-
-          where.$or.push({
-            firstName: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            lastName: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            idNumber: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "center.name": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "gender.nameAr": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "gender.nameEn": site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            phone: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            mobile: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            whatsapp: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            socialEmail: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            address: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "gov.name": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "city.name": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "area.name": site.get_RegExp(search, "i"),
-          });
+         
         }
-        if (where["type"] == "student") {
-          where["host"] = site.getHostFilter(req.host);
-        }
-        where["id"] = { $ne: 1 };
-        app.all(where, (err, users,count) => {
-          res.json({
-            done: true,
-            count : count,
-            list: users,
-          });
-        });
+        app.all(
+          { where: where, limit, select, sort: { id: -1 } },
+          (err, docs) => {
+            res.json({ done: true, list: docs });
+          }
+        );
       });
     }
   }
+
+  site.addPurchaseOrder = function (_options) {
+    app.add(_options);
+  };
 
   app.init();
   site.addApp(app);

@@ -79,7 +79,7 @@
                   <div class="answerSection">
                     <div class="consultantAnswer">
                       <p class="linesView font-20">
-                        <span id="description"></span>
+                      {{item.description}}
                       </p>
                     </div>
                   </div>
@@ -91,6 +91,9 @@
                     <p class="font-20">
                       ##word.Quiz Degree## : {{quiz.userDegree}}
                     </p>
+                  </div>
+                  <div class="row">
+                    <i-button ng-repeat="link in item.linksList" ng-click="openVideo(link)"></i-button>
                   </div>
                   <div class="row">
                     <button

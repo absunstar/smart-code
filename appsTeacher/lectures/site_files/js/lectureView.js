@@ -16,8 +16,6 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
-          document.getElementById("description").innerHTML =
-            $scope.item.description;
         } else {
           $scope.error = response.data.error;
         }
@@ -27,6 +25,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       }
     );
   };
+
   $scope.showEnterCode = function () {
     $scope.code = "";
     site.showModal("#codeModal");
@@ -89,6 +88,34 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.openVideo = function (link) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/quizzes/viewByUserLecture`,
+      data: {
+        "code": link.code,
+        "id": site.toNumber("##query.id##"),
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          SOCIALBROWSER.ipc("[open new popup]", {
+            url: link.url,
+            show: true,
+            center: true,
+          });
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        console.log(err);
+      }
+    );
+  
+  };
+
   $scope.finishQuiz = function (quiz) {
     $scope.error = "";
     $http({
@@ -100,7 +127,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.quiz = response.data.doc;
-          $scope.startQuizTime('finish');
+          $scope.startQuizTime("finish");
           site.hideModal("#tackQuizModal");
         } else if (response.data.error) {
           $scope.error = response.data.error;
@@ -136,7 +163,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.quiz = response.data.doc;
-          $scope.startQuizTime('start');
+          $scope.startQuizTime("start");
         } else if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like("*no questions for the exam*")) {
@@ -151,8 +178,6 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       }
     );
   };
-
-
 
   $scope.startQuizTime = function (type) {
     let minute = $scope.item.quizDuration - 1;

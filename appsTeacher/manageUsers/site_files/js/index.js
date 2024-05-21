@@ -378,27 +378,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getMaritalStatus = function () {
-    $scope.busy = true;
-    $scope.maritalStatusList = [];
-    $http({
-      method: "POST",
-      url: "/api/maritalStatus",
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.maritalStatusList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.getGenders = function () {
     $scope.busy = true;
     $scope.gendersList = [];
@@ -423,6 +402,5 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   $scope.getAll();
   $scope.getNationalities();
   $scope.getCountriesList();
-  $scope.getMaritalStatus();
   $scope.getGenders();
 });

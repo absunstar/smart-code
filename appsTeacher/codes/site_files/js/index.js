@@ -122,6 +122,19 @@ app.controller("codes", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.copyCode = function (id) {
+    // Get the text field
+    var copyText = document.getElementById(id).innerHTML;
+  
+    // Select the text field
+  
+  
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText);
+    
+    // Alert the copied text
+  }
+
   $scope.showView = function (_item) {
     $scope.error = "";
     $scope.mode = "view";

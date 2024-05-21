@@ -15,7 +15,12 @@ app.controller("lectures", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure, price: 0 , linksList: [] , filesList: [] };
+    $scope.item = {
+      ...$scope.structure,
+      price: 0,
+      linksList: [],
+      filesList: [],
+    };
     site.showModal($scope.modalID);
   };
 
@@ -70,7 +75,7 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if(modal == '#quizModal'){
+    if (modal == "#quizModal") {
       _item.$quiz = true;
     }
     $scope.busy = true;
@@ -200,7 +205,6 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.getTypesExpiryViewsList = function () {
     $scope.busy = true;
     $scope.typesExpiryViewsList = [];
@@ -255,7 +259,6 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.getSchoolYearsList = function (educationalLevel) {
     $scope.busy = true;
@@ -385,11 +388,13 @@ app.controller("lectures", function ($scope, $http, $timeout) {
 
   $scope.addLinks = function () {
     $scope.error = "";
-    $scope.item.linksList.unshift({});
+    let code = (Math.random() + 1).toString(36).substring(7);
+    $scope.item.linksList.unshift({ views: 0, code: code });
   };
+  
   $scope.addFiles = function () {
     $scope.error = "";
-    $scope.item.filesList.unshift({});
+    $scope.item.filesList.unshift({ views: 0 });
   };
 
   $scope.correctAnswer = function (answer, question) {

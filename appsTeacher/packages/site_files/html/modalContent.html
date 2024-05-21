@@ -124,11 +124,8 @@
       </tr>
     </table>
   </fieldset>
-  <fieldset>
-    <h3>##word.Description## :</h3>
-    <i-content ng-model="item.description" label="##word.Description##">
-    </i-content>
-  </fieldset>
+  <i-textarea ng-model="item.description" label="##word.Description##">
+  </i-textarea>
 </div>
 <div ng-show="mode !== 'add' " class="row">
   <table class="table hover border">

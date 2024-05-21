@@ -185,8 +185,8 @@
                         type="password"
                         id="pass1"
                         ng-model="user.password"
-                      >
-                   
+                      ></i-control>
+
                       <i-checkbox
                         class="right"
                         label="##word.Show Password##"
@@ -216,7 +216,6 @@
                         </div>
                       </div>
 
-                  
                       <br />
 
                       <i-control
@@ -232,13 +231,6 @@
                         class="input-style"
                         label="##word.Contact Email##"
                         ng-model="user.contactEmail"
-                      >
-                      </i-control>
-
-                      <i-control
-                        class="input-style"
-                        label="##word.Website##"
-                        ng-model="user.website"
                       >
                       </i-control>
 
@@ -262,16 +254,9 @@
                         ng-model="user.twitter"
                       >
                       </i-control>
-
-                      <i-control
-                        class="input-style"
-                        label="##word.Linkedin##"
-                        ng-model="user.linkedin"
-                      >
-                      </i-control>
                     </div>
                   </div>
-                 
+
                   <button ng-click="updateUser(user)" class="edit-user-btn">
                     ##word.Save## <i class="fas fa-user-edit"></i>
                   </button>
@@ -300,7 +285,7 @@
                 <div class="time-publish card-name margin padding">
                   <i class="fas fa-clock"> {{package.$time}} </i>
                 </div>
-    
+
                 <img class="" loading="lazy" ng-src="{{package.image.url}}" />
                 <p class="center">
                   <b class="card-number bold"> ##word.$## {{package.price}} </b>
@@ -308,11 +293,9 @@
                     {{package.totalLecturesPrice}}
                   </s>
                 </p>
-    
-                <p class="userPrint card-title bold">
-                  {{package.name}}
-                </p>
-    
+
+                <p class="userPrint card-title bold">{{package.name}}</p>
+
                 <a href="/packageView?id={{package.id}}">
                   <i-button title="##word.view##" type="view"></i-button>
                 </a>
@@ -326,7 +309,7 @@
                 <div class="time-publish card-name margin padding">
                   <i class="fas fa-clock"> {{lecture.$time}} </i>
                 </div>
-    
+
                 <img class="" loading="lazy" ng-src="{{lecture.image.url}}" />
                 <p class="center">
                   <b class="card-number bold"> ##word.$## {{lecture.price}} </b>
@@ -334,11 +317,9 @@
                     {{lecture.totalLecturesPrice}}
                   </s>
                 </p>
-    
-                <p class="userPrint card-title bold">
-                  {{lecture.name}}
-                </p>
-    
+
+                <p class="userPrint card-title bold">{{lecture.name}}</p>
+
                 <a href="/lectureView?id={{lecture.id}}">
                   <i-button title="##word.view##" type="view"></i-button>
                 </a>

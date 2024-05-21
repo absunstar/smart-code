@@ -197,7 +197,7 @@ app.controller('goves', function ($scope, $http, $timeout) {
                 where: {
                     active: true,
                 },
-                select: { id: 1, nameEn: 1, nameAr: 1, callingCode: 1 },
+                select: { id: 1, name: 1 },
                 search: $search,
             },
         }).then(

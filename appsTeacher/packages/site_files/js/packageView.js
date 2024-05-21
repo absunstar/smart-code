@@ -15,8 +15,6 @@ app.controller("packageView", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
-          document.getElementById("description").innerHTML =
-            $scope.item.description;
         } else {
           $scope.error = response.data.error;
         }
@@ -27,14 +25,13 @@ app.controller("packageView", function ($scope, $http, $timeout) {
     );
   };
   $scope.showEnterCode = function () {
-    $scope.code = ''
-    site.showModal('#codeModal');
-
+    $scope.code = "";
+    site.showModal("#codeModal");
   };
 
   $scope.buyBackage = function () {
     $scope.errorCode = "";
-    const v = site.validated('#codeModal');
+    const v = site.validated("#codeModal");
     if (!v.ok) {
       $scope.errorCode = v.messages[0].ar;
       return;
@@ -45,18 +42,17 @@ app.controller("packageView", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/packages/buyCode`,
       data: {
-        code :$scope.code,
-        packageId : $scope.item.id,
-        packagePrice : $scope.item.price,
-
+        code: $scope.code,
+        packageId: $scope.item.id,
+        packagePrice: $scope.item.price,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#codeModal');
-          site.resetValidated('#codeModal');
-          $scope.code = '';
+          site.hideModal("#codeModal");
+          site.resetValidated("#codeModal");
+          $scope.code = "";
         } else {
           $scope.errorCode = response.data.error;
         }
@@ -66,7 +62,6 @@ app.controller("packageView", function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.view();
 });
