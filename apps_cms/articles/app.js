@@ -219,7 +219,7 @@ module.exports = function init(site) {
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
-      doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
+      doc.yts.$subtitleURL = 'https://www.opensubtitles.org/en/search2/sublanguageid-all/moviename-' + doc.$title.replace(/\s/g, '+');
       doc.$backgroundURL = doc.$coverURL;
       doc.$content = lang.textContent || lang.htmlContent || '';
     } else if (doc.type.id == 8) {
@@ -712,7 +712,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    let setting = site.getSiteSetting(req.host) ;
+    let setting = site.getSiteSetting(req.host);
 
     if (!setting) {
       response.error = 'No Setting ';
