@@ -124,6 +124,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
+          $scope.getLecturesList();
         } else {
           $scope.error = response.data.error;
         }
@@ -227,7 +228,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
         url: "/api/lectures/all",
         data: {
           where,
-          select: { id: 1, name: 1, price: 1 },
+          select: { id: 1, name: 1, price: 1 , image: 1 },
           search: $search,
         },
       }).then(
@@ -259,7 +260,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
     }
 
     let index = $scope.item.lecturesList.findIndex(
-      (itm) => itm.id == $scope.item.$lecture.id
+      (itm) => itm.lecture.id == $scope.item.$lecture.id
     );
     if (index === -1) {
       $scope.item.lecturesList.push({

@@ -173,10 +173,10 @@ module.exports = function init(site) {
             guid: "",
             setting: setting,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
-            page_image: setting.logo?.url || "/lawyer/images/logo.png",
+            site_logo: setting.logo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
             user_image:
-              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+              req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
@@ -214,10 +214,10 @@ module.exports = function init(site) {
             guid: "",
             setting: setting,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
-            page_image: setting.logo?.url || "/lawyer/images/logo.png",
+            site_logo: setting.logo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
             user_image:
-              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+              req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
@@ -352,32 +352,91 @@ module.exports = function init(site) {
       );
     }
 
-    site.post({ name: `/api/${app.name}/changeView`, public: true }, (req, res) => {
-      let response = {
-        done: false,
-      };
+    site.post(
+      { name: `/api/${app.name}/changeView`, public: true },
+      (req, res) => {
+        let response = {
+          done: false,
+        };
 
-      let _data = req.data;
-      app.view(_data, (err, doc) => {
-        if (!err && doc) {
-          let index = doc.linksList.findIndex((itm) => itm.code === _data.code);
-          if (index !== -1) {
-            doc.linksList[index].views += 1;
-          }
-          app.update(doc, (err, result) => {
-            if (!err) {
-              response.done = true;
-            } else {
-              response.error = err.message;
+        let _data = req.data;
+        app.view(_data, (err, doc) => {
+          if (!err && doc) {
+            let index = doc.linksList.findIndex(
+              (itm) => itm.code === _data.code
+            );
+            if (index !== -1) {
+              doc.linksList[index].views += 1;
             }
+            site.security.getUser(
+              {
+                id: req.session.user.id,
+              },
+              (err, user) => {
+                if (!err && user) {
+                  let index = user.viewsList.findIndex(
+                    (itm) => itm.lectureId === doc.id && itm.code === _data.code
+                  );
+                  if (index !== -1) {
+                    if (
+                      user.viewsList[index].views >= doc.numberViews &&
+                      doc.typeExpiryView.name == "number"
+                    ) {
+                      response.error =
+                        "The number of views allowed for this video has been exceeded";
+                      res.json(response);
+                      return;
+                    } else if (doc.typeExpiryView.name == "day") {
+                      let obj = {...user.viewsList[index]}
+                      var viewDate = new Date(obj.date);
+                      viewDate.setHours(
+                        viewDate.getHours() + doc.daysAvailableViewing * 24
+                      );
+                      if (new Date().getTime() > viewDate.getTime()) {
+                        response.error =
+                          "The time limit for watching this video has been exceeded";
+                        res.json(response);
+                        return;
+                      }
+                    } else if (doc.typeExpiryView.name == "date") {
+                      doc.viewingEndDate = new Date(doc.viewingEndDate);
+                      if (new Date().getTime() > doc.viewingEndDate.getTime()) {
+                        response.error =
+                          "The time limit for watching this video has been exceeded";
+                        res.json(response);
+                        return;
+                      }
+                    }
+
+                    user.viewsList[index].views += 1;
+                  } else {
+                    user.viewsList.push({
+                      lectureId: doc.id,
+                      code: _data.code,
+                      date: new Date(),
+                      views: 1,
+                    });
+                  }
+                  site.security.updateUser(user);
+
+                  app.update(doc, (err, result) => {
+                    if (!err) {
+                      response.done = true;
+                    } else {
+                      response.error = err.message;
+                    }
+                    res.json(response);
+                  });
+                }
+              }
+            );
+          } else {
+            response.error = err?.message || "Not Exists";
             res.json(response);
-          });
-        } else {
-          response.error = err?.message || "Not Exists";
-          res.json(response);
-        }
-      });
-    });
+          }
+        });
+      }
+    );
 
     if (app.allowRouteView) {
       site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
@@ -528,6 +587,9 @@ module.exports = function init(site) {
                     site.security.updateUser(user);
                   }
                   response.done = true;
+                  doc.$buy = true;
+                  doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                  response.doc = doc
                   res.json(response);
                 }
               );

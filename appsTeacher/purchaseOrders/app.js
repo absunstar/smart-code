@@ -160,8 +160,6 @@ module.exports = function init(site) {
       );
     }
 
-
-
     if (app.allowRouteUpdate) {
       site.post(
         {
@@ -233,7 +231,6 @@ module.exports = function init(site) {
       });
     }
 
-   
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
@@ -245,7 +242,6 @@ module.exports = function init(site) {
           target: 1,
           user: 1,
           date: 1,
-         
         };
         if (where && where.fromDate && where.toDate) {
           let d1 = site.toDate(where.fromDate);
@@ -259,13 +255,27 @@ module.exports = function init(site) {
           delete where.toDate;
         }
 
+        if (where["package"]) {
+          where["type"] = "package";
+          where["target.id"] = where["package"].id;
+          delete where["package"];
+        } else if (where["lecture"]) {
+          where["type"] = "lecture";
+          where["target.id"] = where["lecture"].id;
+          delete where["lecture"];
+        }
+
+        if (where["student"]) {
+          where["user.id"] = where["student"].id;
+          delete where["student"];
+        }
+
         if (search) {
           where.$or = [];
-     
+
           where.$or.push({
             number: search,
           });
-         
         }
         app.all(
           { where: where, limit, select, sort: { id: -1 } },

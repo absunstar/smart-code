@@ -63,7 +63,7 @@
             label="##word.Days Available For Viewing##"
           ></i-control>
           <i-control
-            ng-model="item.NumberViews"
+            ng-model="item.numberViews"
             type="number"
             ng-show="item.typeExpiryView.name == 'number'"
             class="col6"
@@ -106,7 +106,8 @@
           </legend>
           <div class="row" ng-repeat="link in item.linksList">
             <i-control class="col7" ng-model="link.url"></i-control>
-            <p class="font-20">##word.Views## {{link.views##}}</p>
+            <p class="font-20 col2">##word.Code## : ({{link.code}})</p>
+            <p class="font-20 col2">##word.Views## : ({{link.views}})</p>
             <i-button
               class="col2"
               type="delete "

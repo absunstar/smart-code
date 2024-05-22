@@ -55,6 +55,8 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           site.hideModal("#codeModal");
           site.resetValidated("#codeModal");
           $scope.code = "";
+          $scope.item = response.data.doc;
+
         } else {
           $scope.errorCode = response.data.error;
         }
@@ -89,10 +91,11 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
   };
 
   $scope.openVideo = function (link) {
-    $scope.busy = true;
+    $scope.error ='';
+      $scope.busy = true;
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/quizzes/viewByUserLecture`,
+      url: `${$scope.baseURL}/api/lectures/changeView`,
       data: {
         "code": link.code,
         "id": site.toNumber("##query.id##"),
@@ -106,6 +109,9 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
             show: true,
             center: true,
           });
+        } else {
+          $scope.error = response.data.error;
+
         }
       },
       function (err) {
@@ -180,6 +186,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
   };
 
   $scope.startQuizTime = function (type) {
+    $scope.error ='';
     let minute = $scope.item.quizDuration - 1;
     let secound = 59;
     if (type == "start") {
