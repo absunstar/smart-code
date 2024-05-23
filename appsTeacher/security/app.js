@@ -72,29 +72,27 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
-    if (!site.feature('souq') || !site.feature('cms')) {
-      where['company.id'] = site.getCompany(req).id;
-      where['branch.code'] = site.getBranch(req).code;
-    }
+    let search = req.body.search || {};
 
-    if (where['search']) {
+    if (search) {
       where.$or = [];
 
       where.$or.push({
-        nameAr: site.get_RegExp(where['search'], 'i'),
+        firstName: site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({
-        nameEn: site.get_RegExp(where['search'], 'i'),
+        lastName: site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({
-        email: site.get_RegExp(where['search'], 'i'),
+        mobile: site.get_RegExp(where['search'], 'i'),
       });
 
       delete where['search'];
     }
     where['id'] = { $ne: 1 };
+    where["host"] = site.getHostFilter(req.host);
 
     site.security.getUsers(
       {
@@ -104,12 +102,10 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
-          let writersList = [];
-          let editorList = [];
 
           for (let i = 0; i < docs.length; i++) {
             let u = docs[i];
-            u.image_url = u.image_url || '/images/user.png';
+            u.image = u.image || '/images/user.png';
           }
 
           response.users = docs;

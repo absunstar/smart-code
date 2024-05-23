@@ -277,6 +277,8 @@ module.exports = function init(site) {
             number: search,
           });
         }
+        where["host"] = site.getHostFilter(req.host);
+
         app.all(
           { where: where, limit, select, sort: { id: -1 } },
           (err, docs) => {

@@ -11,7 +11,7 @@
           ng-model="_search.lecture"
           display="name"
           items="lecturesList"
-          ng-get="getLecturesList()"
+          ng-get="getLecturesList($search)"
         ></i-list>
         <i-list
           class="col4"
@@ -19,7 +19,7 @@
           ng-model="_search.package"
           display="name"
           items="packagesList"
-          ng-get="getPackagesList()"
+          ng-get="getPackagesList($search)"
         ></i-list>
         <i-list
         class="col4"
@@ -27,7 +27,7 @@
         ng-model="_search.student"
         display="firstName"
         items="studentsList"
-        ng-get="getStudentsList()"
+        ng-get="getStudentsList($search)"
       ></i-list>
       </div>
 
@@ -45,7 +45,7 @@
           <i-button
             type="search"
             label="##word.Search##"
-            ng-click="getAll()"
+            ng-click="getAll(_search)"
           ></i-button>
         </div>
       </div>
@@ -66,7 +66,6 @@
           <th>##word.Student Name##</th>
           <th>##word.Target Name##</th>
           <th>##word.Status##</th>
-          <th class="not-print">##word.Actions##</th>
         </tr>
         <tr ng-repeat="item in list">
           <td class="center">
