@@ -1,10 +1,8 @@
 module.exports = function init(site) {
   let app = {
-    name: "manageUsers",
+    name: "notifications",
     allowMemory: false,
     memoryList: [],
-    newList: [],
-    activeList: [],
     allowCache: false,
     cacheList: [],
     allowRoute: true,
@@ -16,28 +14,28 @@ module.exports = function init(site) {
     allowRouteAll: true,
   };
 
-  app.$collection = site.connectCollection("users_info");
+  app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
-      if (!err) {
-        docs.forEach((doc) => {
-          if (doc.active && doc.roles && doc.roles[0].name == "teacher") {
-            let obj = {
-              id: doc.id,
-              image: doc.image,
-              firstName: doc.firstName,
-              lastName: doc.lastName,
-            };
-            app.newList.push({ ...obj });
-            app.activeList.push({
-              ...obj,
-              specialty: doc.specialties ? doc.specialties[0] : {},
+    if (app.allowMemory) {
+      app.$collection.findMany({}, (err, docs) => {
+        if (!err) {
+          if (docs.length == 0) {
+            app.cacheList.forEach((_item, i) => {
+              app.$collection.add(_item, (err, doc) => {
+                if (!err && doc) {
+                  app.memoryList.push(doc);
+                }
+              });
+            });
+          } else {
+            docs.forEach((doc) => {
+              app.memoryList.push(doc);
             });
           }
-        });
-      }
-    });
+        }
+      });
+    }
   };
   app.add = function (_item, callback) {
     app.$collection.add(_item, (err, doc) => {
@@ -150,11 +148,46 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Manage Users"),
+              appName: req.word("Notifications"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
           );
+        }
+      );
+
+      site.get(
+        {
+          name: "notificationsView",
+        },
+        (req, res) => {
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "https://" + req.host + data.site_logo;
+            data.page_image = "https://" + req.host + data.page_image;
+            data.user_image = "https://" + req.host + data.user_image;
+          }
+          res.render(app.name + "/notificationsView.html", data, {
+            parser: "html css js",
+            compres: true,
+          });
         }
       );
     }
@@ -166,14 +199,14 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-        if (_data.type == "teacher") {
-          _data.roles = [{ name: "teacher" }];
-        } else if (_data.type == "student") {
-          _data.roles = [{ name: "student" }];
-        }
+
+        _data.addUserInfo = req.getUserFinger();
+        _data.date = new Date();
+        _data.host = site.getHostFilter(req.host);
+
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            site.addNewHost({ domain: doc.userName, filter: doc.userName });
+            site.addNotificationToStudents(doc);
             response.done = true;
             response.doc = doc;
           } else {
@@ -198,7 +231,7 @@ module.exports = function init(site) {
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
 
-          site.security.updateUser(_data, (err, result) => {
+          app.update(_data, (err, result) => {
             if (!err) {
               response.done = true;
               response.result = result;
@@ -206,52 +239,6 @@ module.exports = function init(site) {
               response.error = err.message;
             }
             res.json(response);
-          });
-        }
-      );
-
-      site.post(
-        {
-          name: `/api/${app.name}/updateStudentNotifications`,
-          require: { permissions: ["login"] },
-        },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
-
-          let _data = req.data;
-          site.security.getUser({ id: req.session.user.id }, (err, user) => {
-            if (!err) {
-              if (user) {
-                if (_data.type == "deleteAll") {
-                  user.notificationsList = [];
-                } else if (_data.type == "deleteOne") {
-                  user.notificationsList = user.notificationsList.filter((_n) => _n.id != _data.id);
-                  console.log(user.notificationsList);
-                } else if (_data.type == "showAll") {
-                  for (let i = 0; i < user.notificationsList.length; i++) {
-                    user.notificationsList[i].show = true;
-                  }
-                }
-                site.security.updateUser(user, (err1, result) => {
-                  if (!err1) {
-                    response.done = true;
-                    for (let i = 0; i < result.doc.notificationsList.length; i++) {
-                      result.doc.notificationsList[i].$time = site.xtime(result.doc.notificationsList[i].date, req.session.lang);
-                    }
-                    response.result = result.doc;
-                  } else {
-                    response.error = err1.message;
-                  }
-                  res.json(response);
-                });
-              } else {
-                res.json(response);
-              }
-            } else {
-              res.json(response);
-            }
           });
         }
       );
@@ -268,15 +255,15 @@ module.exports = function init(site) {
             done: false,
           };
           let _data = req.data;
-          site.security.deleteUser({ id: _data.id, $req: req, $res: res }, (err, result) => {
+
+          app.delete(_data, (err, result) => {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
-              res.json(response);
             } else {
               response.error = err?.message || "Deleted Not Exists";
-              res.json(response);
             }
+            res.json(response);
           });
         }
       );
@@ -289,7 +276,7 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-        security.getUser({ id: _data.id }, (err, doc) => {
+        app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
             response.doc = doc;
@@ -308,103 +295,40 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          userId: 1,
+          date: 1,
+          image: 1,
+          title: 1,
           type: 1,
-          active: 1,
-          userName: 1,
         };
         if (search) {
           where.$or = [];
 
           where.$or.push({
-            id: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            firstName: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            lastName: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            idNumber: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "center.name": site.get_RegExp(search, "i"),
+            title: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            "gender.nameAr": site.get_RegExp(search, "i"),
+            content: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            "gender.nameEn": site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            phone: site.get_RegExp(search, "i"),
+            "type.nameAr": search,
           });
           where.$or.push({
-            mobile: site.get_RegExp(search, "i"),
+            "type.nameEn": search,
           });
           where.$or.push({
-            whatsapp: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            socialEmail: site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            address: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
-            "gov.name": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "city.name": site.get_RegExp(search, "i"),
-          });
-          where.$or.push({
-            "area.name": site.get_RegExp(search, "i"),
+            "type.name": search,
           });
         }
-        if (where["type"] == "student") {
-          where["host"] = site.getHostFilter(req.host);
-        }
-        where["id"] = { $ne: 1 };
-        site.security.getUsers(where, (err, users, count) => {
+        where["host"] = site.getHostFilter(req.host);
+        app.all({ where, select, limit }, (err, docs) => {
           res.json({
             done: true,
-            count: count,
-            list: users,
+            list: docs,
           });
         });
       });
     }
   }
-
-  site.addNotificationToStudents = function (doc) {
-    let where = { type: "student" };
-    if (doc.type.name == "online") {
-      where["placeType"] = "online";
-    } else if (doc.type.name == "offline") {
-      where["placeType"] = "offline";
-    } else if (doc.type.name == "specificCenter") {
-      where["center.id"] = doc.center.id;
-    } else if (doc.type.name == "specificStudents") {
-      let studentsIds = doc.studentsList.map((_s) => _s.id);
-      where["id"] = { $in: studentsIds };
-    }
-    where["host"] = site.getHostFilter(doc.host);
-    site.security.getUsers(where, (err, docs) => {
-      if (!err && docs) {
-        for (let i = 0; i < docs.length; i++) {
-          docs[i].notificationsList.unshift({ id: doc.id, show: false, date: doc.date, image: doc.image, title: doc.title, content: doc.content });
-          site.security.updateUser(docs[i]);
-        }
-      }
-    });
-  };
 
   app.init();
   site.addApp(app);

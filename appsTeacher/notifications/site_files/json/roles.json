@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "notificationsAdmin",
+    "En": "Notifications Admin",
+    "Ar": "إدارة الإشعارات",
+    "permissions": ["notificationsManage"]
+}]

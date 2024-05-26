@@ -352,6 +352,7 @@ module.exports = function init(site) {
       placeType: req.body.user.placeType,
       ip: req.ip,
       viewsList : [],
+      notificationsList : [],
       roles: [{ name: "student" }],
       type: "student",
       createdDate: new Date(),

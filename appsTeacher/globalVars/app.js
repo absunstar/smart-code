@@ -29,6 +29,46 @@ module.exports = function init(site) {
       code: "company",
     },
   ];
+  site.notificationTypesList = [
+    {
+      nameAr: "الكل",
+      nameEn: "All",
+      name: "all",
+    },
+    {
+      nameAr: "أونلاين",
+      nameEn: "Online",
+      name: "online",
+    },
+    {
+      nameAr: "في المراكز",
+      nameEn: "Offline",
+      name: "offline",
+    },
+    {
+      nameAr: "مركز محدد",
+      nameEn: "Specific Center",
+      name: "specificCenter",
+    },
+    {
+      nameAr: "طلاب محددين",
+      nameEn: "Specific Students",
+      name: "specificStudents",
+    },
+  ];
+
+  site.questionTypesList = [
+    {
+      nameAr: "صورة",
+      nameEn: "Photo",
+      name: "photo",
+    },
+    {
+      nameAr: "نص",
+      nameEn: "Text",
+      name: "text",
+    }
+  ];
 
   site.salesCategories = [
     { id: 1, nameEn: "Direct", nameAr: "مباشرة", name: "direct" },
@@ -473,6 +513,20 @@ module.exports = function init(site) {
     { id: 3, code: "list", nameEn: "List", nameAr: "قائمة" },
     { id: 4, code: "degree", nameEn: "Degree", nameAr: "درجة" },
   ];
+
+  site.post("/api/notificationTypesList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.notificationTypesList,
+    });
+  });
+
+  site.post("/api/questionTypesList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.questionTypesList,
+    });
+  });
 
   site.post("/api/typesExpiryViewsList", (req, res) => {
     res.json({

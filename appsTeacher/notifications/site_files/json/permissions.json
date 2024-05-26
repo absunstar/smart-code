@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "notifications", "name": "notificationsImport", "En": "Import", "Ar": "إستيراد" }
+]

@@ -1,3 +1,6 @@
+if ((btn = document.querySelector("#" + "##query.btn##"))) {
+  btn.click();
+}
 app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
 
@@ -184,7 +187,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/packages/all`,
       data: {
-        type: 'myStudent',
+        type: "myStudent",
         select: {
           id: 1,
           name: 1,
@@ -218,7 +221,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/lectures/all`,
       data: {
-        type: 'myStudent',
+        type: "myStudent",
         select: {
           id: 1,
           name: 1,
@@ -235,7 +238,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.lecturesList = response.data.list;
           console.log($scope.lecturesList);
-
         } else {
           $scope.error = response.data.error;
         }
