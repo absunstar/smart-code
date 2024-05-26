@@ -163,7 +163,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, nameEn: 1, nameAr: 1, callingCode: 1 },
+        select: { id: 1, name: 1 },
         search: $search,
       },
     }).then(
@@ -219,6 +219,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
       url: "/api/users/all",
       data: {
         where: {
+          type : 'student',
           active: true,
         },
         select: { id: 1, firstName: 1, },
@@ -227,8 +228,8 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.studentsList = response.data.list;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.studentsList = response.data.users;
         }
       },
       function (err) {

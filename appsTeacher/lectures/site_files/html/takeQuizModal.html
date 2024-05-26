@@ -5,7 +5,7 @@
     height: 22px;
 }
 </style>
-<div id="tackQuizModal" class="modal" fixed>
+<div id="tackQuizModal" class="modal full" fixed>
   <div class="modal-content height-auto">
     <div class="modal-header">
       <h1 class="bold center" id="timer">##word.Remaining Time## ( 45:00 )</h1>
@@ -16,8 +16,10 @@
       <br>
       <div class="row padding margin" ng-repeat="question in quiz.questionsList">
         <fieldset>
-          <legend>{{question.numbering}} - {{question.name}}</legend>
-      
+          <legend>{{question.numbering}} <b ng-show="question.questionType.name=='text'">- {{question.name}}</b></legend>
+          <div class="row" ng-show="question.questionType.name=='photo'">
+            <img height="200px" ng-src="{{question.image.url}}" alt="">
+          </div>
           <div class="row " >
             <div class="col4  border" ng-repeat="answer in question.answersList track by $index">
               <div class="row padding margin">

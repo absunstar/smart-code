@@ -122,18 +122,51 @@ app.controller("codes", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.updateDistribution = function (_item,type) {
+    $scope.error = "";
+    $scope.busy = true;
+    if(type == 'distribution'){
+      _item.distribution = true;
+    } else if(type == 'cancleDistribution'){
+      _item.distribution = false;
+    }
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/update`,
+      data: _item,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          
+          let index = $scope.list.findIndex(
+            (itm) => itm.id == response.data.result.doc.id
+          );
+          if (index !== -1) {
+            $scope.list[index] = response.data.result.doc;
+          }
+          console.log(response.data.result.doc);
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.copyCode = function (id) {
     // Get the text field
     var copyText = document.getElementById(id).innerHTML;
-  
+
     // Select the text field
-  
-  
+
     // Copy the text inside the text field
     navigator.clipboard.writeText(copyText);
-    
+
     // Alert the copied text
-  }
+  };
 
   $scope.showView = function (_item) {
     $scope.error = "";
@@ -206,7 +239,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getAll = function (where) {
+  $scope.getAll = function (where, search) {
     $scope.busy = true;
     $scope.list = [];
     $http({
@@ -214,6 +247,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
         where: where,
+        search: search,
       },
     }).then(
       function (response) {

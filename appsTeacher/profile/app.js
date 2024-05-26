@@ -26,10 +26,10 @@ module.exports = function init(site) {
               guid: "",
               setting: setting,
               filter: site.getHostFilter(req.host),
-              site_logo: setting.logo?.url || "/lawyer/images/logo.png",
-              page_image: setting.logo?.url || "/lawyer/images/logo.png",
+              site_logo: setting.logo?.url || "/images/logo.png",
+              page_image: setting.logo?.url || "/images/logo.png",
               user_image:
-                req.session?.user?.image?.url || "/lawyer/images/logo.png",
+                req.session?.user?.image?.url || "/images/logo.png",
               site_name: setting.siteName,
               page_lang: setting.id,
               page_type: "website",
@@ -78,10 +78,10 @@ module.exports = function init(site) {
           guid: "",
           setting: setting,
           filter: site.getHostFilter(req.host),
-          site_logo: setting.logo?.url || "/lawyer/images/logo.png",
-          page_image: setting.logo?.url || "/lawyer/images/logo.png",
+          site_logo: setting.logo?.url || "/images/logo.png",
+          page_image: setting.logo?.url || "/images/logo.png",
           user_image:
-            req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            req.session?.user?.image?.url || "/images/logo.png",
           site_name: setting.siteName,
           page_lang: setting.id,
           page_type: "website",
@@ -99,7 +99,7 @@ module.exports = function init(site) {
           data.page_image = "https://" + req.host + data.page_image;
           data.user_image = "https://" + req.host + data.user_image;
         }
-        res.render("profile/profileEdit.html", data);
+        res.render("profile/profileEdit.html", data , { parser: "html css js", compres: true });
       }
     });
   });
@@ -112,7 +112,7 @@ module.exports = function init(site) {
       res.render(
         __dirname + "/site_files/html/index.html",
         { setting: site.getSiteSetting(req.host) },
-        { parser: "html", compres: true }
+        { parser: "html css js", compres: true }
       );
     }
   );

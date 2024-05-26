@@ -41,6 +41,10 @@
         height: 77px !important;
         font-size: 16px !important;
       }
+      .card {
+        width: 30vw !important;
+        height: 160px !important;
+      }
     </style>
   </head>
 
@@ -64,9 +68,9 @@
                       <s class="red left font-22 bold padding"
                         >{{item.totalLecturesPrice}}</s
                       >
-                      <b class="left font-22 green bold padding mainColor"
-                        > ##word.$## {{item.price}} </b
-                      >
+                      <b class="left font-22 green bold padding mainColor">
+                        ##word.$##  {{item.price}}
+                      </b>
                     </a>
                   </div>
                   <div class="consultantInfo">
@@ -79,19 +83,38 @@
                   <div class="separative"></div>
                   <div class="answerSection">
                     <div class="consultantAnswer">
-                      <p class="linesView font-20">
-                        {{item.description}}
-                      </p>
+                      <p class="linesView font-20">{{item.description}}</p>
                     </div>
                   </div>
                   <div class="row">
-                    <button ng-click="showEnterCode()" ng-hide="item.$buy" class="buy-btn">
+                    <button
+                      ng-click="showEnterCode()"
+                      ng-hide="item.$buy"
+                      class="buy-btn"
+                    >
                       ##word.Buy## <i class="fas fa-shopping-basket"></i>
                     </button>
                   </div>
                 </li>
               </ul>
             </div>
+            <fieldset class="row padding margin">
+              <legend>##word.Lectures##</legend>
+              <div class="card" ng-repeat="l in item.lecturesList">
+                <img class="" loading="lazy" ng-src="{{l.lecture.image.url}}" />
+                <p class="center">
+                  <b class="card-number bold">
+                    ##word.$## {{l.lecture.price}}
+                  </b>
+                </p>
+
+                <p class="userPrint card-title bold">{{l.lecture.name}}</p>
+
+                <a href="/lectureView?id={{l.lecture.id}}">
+                  <i-button title="##word.view##" type="view"></i-button>
+                </a>
+              </div>
+            </fieldset>
           </div>
         </div>
 

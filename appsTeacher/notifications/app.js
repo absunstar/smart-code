@@ -1,12 +1,13 @@
 module.exports = function init(site) {
   let app = {
-    name: "purchaseOrders",
+    name: "notifications",
     allowMemory: false,
     memoryList: [],
     allowCache: false,
     cacheList: [],
     allowRoute: true,
     allowRouteGet: true,
+    allowRouteAdd: true,
     allowRouteUpdate: true,
     allowRouteDelete: true,
     allowRouteView: true,
@@ -59,18 +60,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -151,13 +148,73 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Purchase Orders"),
+              appName: req.word("Notifications"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
           );
         }
       );
+
+      site.get(
+        {
+          name: "notificationsView",
+        },
+        (req, res) => {
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "https://" + req.host + data.site_logo;
+            data.page_image = "https://" + req.host + data.page_image;
+            data.user_image = "https://" + req.host + data.user_image;
+          }
+          res.render(app.name + "/notificationsView.html", data, {
+            parser: "html css js",
+            compres: true,
+          });
+        }
+      );
+    }
+
+    if (app.allowRouteAdd) {
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
+
+        let _data = req.data;
+
+        _data.addUserInfo = req.getUserFinger();
+        _data.date = new Date();
+        _data.host = site.getHostFilter(req.host);
+
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            site.addNotificationToStudents(doc);
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -238,60 +295,40 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          type: 1,
-          target: 1,
-          user: 1,
           date: 1,
+          image: 1,
+          title: 1,
+          type: 1,
         };
-        if (where && where.fromDate && where.toDate) {
-          let d1 = site.toDate(where.fromDate);
-          let d2 = site.toDate(where.toDate);
-          d2.setDate(d2.getDate() + 1);
-          where.date = {
-            $gte: d1,
-            $lte: d2,
-          };
-          delete where.fromDate;
-          delete where.toDate;
-        }
-
-        if (where["package"]) {
-          where["type"] = "package";
-          where["target.id"] = where["package"].id;
-          delete where["package"];
-        } else if (where["lecture"]) {
-          where["type"] = "lecture";
-          where["target.id"] = where["lecture"].id;
-          delete where["lecture"];
-        }
-
-        if (where["student"]) {
-          where["user.id"] = where["student"].id;
-          delete where["student"];
-        }
-
         if (search) {
           where.$or = [];
 
           where.$or.push({
-            number: search,
+            title: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            content: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "type.nameAr": search,
+          });
+          where.$or.push({
+            "type.nameEn": search,
+          });
+          where.$or.push({
+            "type.name": search,
           });
         }
         where["host"] = site.getHostFilter(req.host);
-
-        app.all(
-          { where: where, limit, select, sort: { id: -1 } },
-          (err, docs) => {
-            res.json({ done: true, list: docs });
-          }
-        );
+        app.all({ where, select, limit }, (err, docs) => {
+          res.json({
+            done: true,
+            list: docs,
+          });
+        });
       });
     }
   }
-
-  site.addPurchaseOrder = function (_options) {
-    app.add(_options);
-  };
 
   app.init();
   site.addApp(app);

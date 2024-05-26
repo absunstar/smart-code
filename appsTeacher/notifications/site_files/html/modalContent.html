@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="row padding">
+    <i-image class="img128" ng-model="item.image"></i-image>
+    <i-list label="##word.Type##" ng-model="item.type" v="r" display="name##session.lang##" items="notificationTypesList"></i-list>
+    <i-control type="text" v="r" ng-model="item.title" label="##word.Title##"></i-control>
+    <i-textarea type="text" v="r" ng-model="item.content" label="##word.The Content##"></i-textarea>
+    <i-list
+      ng-show="item.type.name == 'specificCenter'"
+      class="center input-style"
+      label="##word.Center Name##"
+      ng-model="item.center"
+      items="centersList"
+      display="name"
+      ng-search="user.$center"
+    ></i-list>
+    <fieldset ng-show="item.type.name == 'specificStudents'">
+      <legend>##word.Students List##</legend>
+      <div class="row">
+        <i-list label="##word.Student##" class="col10" ng-model="item.$student" display="firstName" items="studentsList" ng-get="getStudentsList($search)"></i-list>
+        <div class="col2">
+          <br />
+          <i-button type="push" title="##word.Add To List##" ng-click="addStudentsList()"></i-button>
+        </div>
+      </div>
+      <p class="error">{{item.$studentsError}}</p>
+      <table class="table hover bold">
+        <tr>
+          <th>##word.Full Name##</th>
+          <th class="not-print">##word.Actions##</th>
+        </tr>
+        <tr ng-repeat="c in item.studentsList">
+          <td class="center">{{c.firstName}}</td>
+          <td class="center">
+            <i-button
+              type="delete"
+              ng-click="item.studentsList.splice($index,1)"
+            ></i-button>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+  </div>
+</div>
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Add Info##</th>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.addUserInfo.name}}</p>
+        <small class="green"> {{item.addUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.addUserInfo.ip}}</p>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -183,7 +183,7 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-
+          _data.distribution = false;
           app.add(_data, (err, doc) => {
             if (!err && doc) {
               response.done = true;
@@ -226,6 +226,7 @@ module.exports = function init(site) {
             codesList.push({
               code: code(15),
               expired: false,
+              distribution: false,
               price: _data.price,
               host,
             });
@@ -324,6 +325,7 @@ module.exports = function init(site) {
           code: 1,
           price: 1,
           expired: 1,
+          distribution: 1,
         };
         if (search) {
           where.$or = [];
@@ -333,6 +335,9 @@ module.exports = function init(site) {
           });
           where.$or.push({
             price: site.toNumber(search),
+          });
+          where.$or.push({
+            code: search,
           });
         }
         where["host"] = site.getHostFilter(req.host);
@@ -355,6 +360,8 @@ module.exports = function init(site) {
         if (doc) {
           if (doc.expired) {
             callBack("Code Expired");
+          } else if (!doc.distribution) {
+            callBack("Code Not Distribution");
           } else if (doc.price != obj.price) {
             callBack("The code price is not suitable for purchase");
           } else {

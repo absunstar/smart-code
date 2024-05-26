@@ -60,18 +60,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -155,7 +151,7 @@ module.exports = function init(site) {
               appName: req.word("Lectures"),
               setting: site.getSiteSetting(req.host),
             },
-            { parser: "html", compres: true }
+            { parser: "html css js", compres: true }
           );
         }
       );
@@ -173,19 +169,13 @@ module.exports = function init(site) {
             guid: "",
             setting: setting,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
-            page_image: setting.logo?.url || "/lawyer/images/logo.png",
-            user_image:
-              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            site_logo: setting.logo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
-            page_title:
-              setting.siteName +
-              " " +
-              setting.titleSeparator +
-              " " +
-              setting.siteSlogan,
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
             page_keywords: setting.keyWordsList.join(","),
           };
@@ -195,7 +185,7 @@ module.exports = function init(site) {
             data.user_image = "https://" + req.host + data.user_image;
           }
           res.render(app.name + "/lectureView.html", data, {
-            parser: "html",
+            parser: "html css js",
             compres: true,
           });
         }
@@ -214,19 +204,13 @@ module.exports = function init(site) {
             guid: "",
             setting: setting,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || "/lawyer/images/logo.png",
-            page_image: setting.logo?.url || "/lawyer/images/logo.png",
-            user_image:
-              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            site_logo: setting.logo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
-            page_title:
-              setting.siteName +
-              " " +
-              setting.titleSeparator +
-              " " +
-              setting.siteSlogan,
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
             page_keywords: setting.keyWordsList.join(","),
           };
@@ -236,7 +220,7 @@ module.exports = function init(site) {
             data.user_image = "https://" + req.host + data.user_image;
           }
           res.render(app.name + "/lecturesView.html", data, {
-            parser: "html",
+            parser: "html css js",
             compres: true,
           });
         }
@@ -244,29 +228,26 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
+        let _data = req.data;
 
-          _data.addUserInfo = req.getUserFinger();
-          _data.date = new Date();
-          _data.host = site.getHostFilter(req.host);
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
+        _data.addUserInfo = req.getUserFinger();
+        _data.date = new Date();
+        _data.host = site.getHostFilter(req.host);
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -300,15 +281,11 @@ module.exports = function init(site) {
                 }
               });
               if (errAnswersList.length > 0) {
-                response.error = `At least two answers must be added to the questions ( ${errAnswersList.join(
-                  " - "
-                )} )`;
+                response.error = `At least two answers must be added to the questions ( ${errAnswersList.join(" - ")} )`;
                 res.json(response);
                 return;
               } else if (errCorrectAnswersList.length > 0) {
-                response.error = `You must choose a correct answer in the questions ( ${errCorrectAnswersList.join(
-                  " - "
-                )} )`;
+                response.error = `You must choose a correct answer in the questions ( ${errCorrectAnswersList.join(" - ")} )`;
                 res.json(response);
                 return;
               }
@@ -364,14 +341,58 @@ module.exports = function init(site) {
           if (index !== -1) {
             doc.linksList[index].views += 1;
           }
-          app.update(doc, (err, result) => {
-            if (!err) {
-              response.done = true;
-            } else {
-              response.error = err.message;
+          site.security.getUser(
+            {
+              id: req.session.user.id,
+            },
+            (err, user) => {
+              if (!err && user) {
+                let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
+                if (index !== -1) {
+                  if (user.viewsList[index].views >= doc.numberViews && doc.typeExpiryView.name == "number") {
+                    response.error = "The number of views allowed for this video has been exceeded";
+                    res.json(response);
+                    return;
+                  } else if (doc.typeExpiryView.name == "day") {
+                    let obj = { ...user.viewsList[index] };
+                    var viewDate = new Date(obj.date);
+                    viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
+                    if (new Date().getTime() > viewDate.getTime()) {
+                      response.error = "The time limit for watching this video has been exceeded";
+                      res.json(response);
+                      return;
+                    }
+                  } else if (doc.typeExpiryView.name == "date") {
+                    doc.viewingEndDate = new Date(doc.viewingEndDate);
+                    if (new Date().getTime() > doc.viewingEndDate.getTime()) {
+                      response.error = "The time limit for watching this video has been exceeded";
+                      res.json(response);
+                      return;
+                    }
+                  }
+
+                  user.viewsList[index].views += 1;
+                } else {
+                  user.viewsList.push({
+                    lectureId: doc.id,
+                    code: _data.code,
+                    date: new Date(),
+                    views: 1,
+                  });
+                }
+                site.security.updateUser(user);
+
+                app.update(doc, (err, result) => {
+                  if (!err) {
+                    response.done = true;
+                  } else {
+                    response.error = err.message;
+                  }
+                  res.json(response);
+                });
+              }
             }
-            res.json(response);
-          });
+          );
         } else {
           response.error = err?.message || "Not Exists";
           res.json(response);
@@ -389,11 +410,7 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if (
-              req.session.user &&
-              req.session.user.lecturesList &&
-              req.session.user.lecturesList.some((s) => s.lectureId == doc.id)
-            ) {
+            if (req.session.user && req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId == doc.id)) {
               doc.$buy = true;
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
@@ -435,15 +452,11 @@ module.exports = function init(site) {
         }
         if (req.body.type == "toStudent") {
           if (req.session.user && req.session.user.type == "student") {
-            where["educationalLevel.id"] =
-              req.session.user?.educationalLevel?.id;
+            where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
             where["schoolYear.id"] = req.session.user?.schoolYear?.id;
             where.$and = [
               {
-                $or: [
-                  { placeType: req.session.user.placeType },
-                  { placeType: "both" },
-                ],
+                $or: [{ placeType: req.session.user.placeType }, { placeType: "both" }],
               },
               {
                 $or: [
@@ -459,9 +472,7 @@ module.exports = function init(site) {
           }
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student") {
-            let idList = req.session.user.lecturesList.map(
-              (_item) => _item.lectureId
-            );
+            let idList = req.session.user.lecturesList.map((_item) => _item.lectureId);
             where["id"] = {
               $in: idList,
             };
@@ -471,10 +482,7 @@ module.exports = function init(site) {
         app.all({ where, select, limit }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
-              docs[i].$time = site.xtime(
-                docs[i].date,
-                req.session.lang || "ar"
-              );
+              docs[i].$time = site.xtime(docs[i].date, req.session.lang || "ar");
             }
           }
           res.json({
@@ -494,46 +502,46 @@ module.exports = function init(site) {
     let _data = req.data;
     app.view({ id: _data.lectureId }, (err, doc) => {
       if (!err && doc) {
-        site.validateCode(
-          { code: _data.code, price: _data.lecturePrice },
-          (errCode, code) => {
-            if (errCode) {
-              response.error = errCode;
-              res.json(response);
-              return;
-            } else {
-              site.security.getUser(
-                {
-                  id: req.session.user.id,
-                },
-                (err, user) => {
-                  if (!err && user) {
-                    user.lecturesList = user.lecturesList || [];
-                    if (!user.lecturesList.some((l) => l.id == doc.id)) {
-                      user.lecturesList.push({
-                        lectureId: doc.id,
-                      });
-                    }
-                    site.addPurchaseOrder({
-                      type: "lecture",
-                      target: { id: doc.id, name: doc.name },
-                      price: doc.price,
-                      date: new Date(),
-                      user: {
-                        id: user.id,
-                        firstName: user.firstName,
-                        userName: user.userName,
-                      },
+        site.validateCode({ code: _data.code, price: _data.lecturePrice }, (errCode, code) => {
+          if (errCode) {
+            response.error = errCode;
+            res.json(response);
+            return;
+          } else {
+            site.security.getUser(
+              {
+                id: req.session.user.id,
+              },
+              (err, user) => {
+                if (!err && user) {
+                  user.lecturesList = user.lecturesList || [];
+                  if (!user.lecturesList.some((l) => l.id == doc.id)) {
+                    user.lecturesList.push({
+                      lectureId: doc.id,
                     });
-                    site.security.updateUser(user);
                   }
-                  response.done = true;
-                  res.json(response);
+                  site.addPurchaseOrder({
+                    type: "lecture",
+                    target: { id: doc.id, name: doc.name },
+                    price: doc.price,
+                    date: new Date(),
+                    user: {
+                      id: user.id,
+                      firstName: user.firstName,
+                      userName: user.userName,
+                    },
+                  });
+                  site.security.updateUser(user);
                 }
-              );
-            }
+                response.done = true;
+                doc.$buy = true;
+                doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                response.doc = doc;
+                res.json(response);
+              }
+            );
           }
-        );
+        });
       } else {
         response.error = err?.message || "Not Exists";
         res.json(response);
@@ -548,15 +556,12 @@ module.exports = function init(site) {
       lectures = site.lecturesList.filter(
         (a) =>
           a.host == site.getHostFilter(req.host) &&
-          (a.placeType == req.session.user.placeType ||
-            a.placeType == "both") &&
+          (a.placeType == req.session.user.placeType || a.placeType == "both") &&
           a.schoolYear.id == req.session.user.schoolYear.id &&
           a.educationalLevel.id == req.session.user.educationalLevel.id
       );
     } else {
-      lectures = site.lecturesList.filter(
-        (a) => a.host == site.getHostFilter(req.host)
-      );
+      lectures = site.lecturesList.filter((a) => a.host == site.getHostFilter(req.host));
     }
     if (lectures.length > 0) {
       callBack(null, lectures);
@@ -568,28 +573,21 @@ module.exports = function init(site) {
         where["host"] = site.getHostFilter(req.host);
         where["active"] = true;
 
-        where.$or = [
-          { placeType: req.session.user.placeType },
-          { placeType: "both" },
-        ];
+        where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
       }
-      app.$collection.findMany(
-        where,
-        (err, docs) => {
-          if (!err && docs) {
-            for (let i = 0; i < docs.length; i++) {
-              let doc = docs[i];
-              if (!site.lecturesList.some((k) => k.id === doc.id)) {
-                doc.$time = site.xtime(doc.date, "Ar");
+      app.$collection.findMany(where, (err, docs) => {
+        if (!err && docs) {
+          for (let i = 0; i < docs.length; i++) {
+            let doc = docs[i];
+            if (!site.lecturesList.some((k) => k.id === doc.id)) {
+              doc.$time = site.xtime(doc.date, "Ar");
 
-                site.lecturesList.push(doc);
-              }
+              site.lecturesList.push(doc);
             }
           }
-          callBack(err, docs);
-        },
-        true
-      );
+        }
+        callBack(err, docs);
+      });
     }
   };
 

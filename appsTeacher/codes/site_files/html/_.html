@@ -17,6 +17,35 @@
         label="##word.Available##"
         ng-click="searchAll(search={expired:false})"
       ></i-button>
+
+      <i-button
+        type="search"
+        x-permissions="codesSearch || codesManage"
+        label="##word.Distribution##"
+        ng-click="searchAll(search={distribution:true})"
+      ></i-button>
+
+      <i-button
+        type="search"
+        x-permissions="codesSearch || codesManage"
+        label="##word.Not Distributed##"
+        ng-click="searchAll(search={distribution:false})"
+      ></i-button>
+    </div>
+
+    <div class="row padding">
+      <i-control
+        class="col9"
+        ng-model="$search"
+        x-permissions="codesSearch || codesManage"
+      ></i-control>
+      <div class="col2">
+        <i-button
+          type="search"
+          label="##word.Search##"
+          ng-click="getAll({},$search)"
+        ></i-button>
+      </div>
     </div>
 
     <fieldset>
@@ -45,23 +74,18 @@
       </div>
     </fieldset>
 
-    <div class="row padding">
-      <i-control
-        ng-model="$search"
-        x-permissions="codesSearch || codesManage"
-      ></i-control>
-    </div>
-    <h2 class="error"> {{error}} </h2>
+    <h2 class="error">{{error}}</h2>
     <div class="table-responsive">
       <table class="table hover bold" id="t1">
         <tr>
           <th>##word.Code##</th>
           <th>##word.Price##</th>
           <th>##word.Status##</th>
+          <th>##word.The Distribution##</th>
           <th class="not-print">##word.Actions##</th>
         </tr>
-        <tr ng-repeat="item in list | filter:$search">
-          <td class="center selectAll" id="{{item.id}}" >{{item.code}}</td>
+        <tr ng-repeat="item in list">
+          <td class="center selectAll" id="{{item.id}}">{{item.code}}</td>
           <td class="center">{{item.price}}</td>
           <td class="center">
             <span class="text-danger" ng-show="item.expired"
@@ -72,16 +96,38 @@
             >
           </td>
 
+          <td class="center">
+            <span class="text-danger" ng-show="item.distribution"
+              >##word.Distribution##</span
+            >
+            <span class="text-success" ng-show="!item.distribution"
+              >##word.Not Distribution##</span
+            >
+          </td>
+
           <td class="center not-print">
             <i-button
-              title="##word.Copy##"
-              ng-click="copyCode(item.id)"
+            type="save"
+               label="##word.Copy##"
+            ng-click="copyCode(item.id)"
+          ></i-button>
+            <i-button
+              
+              ng-show="!item.distribution"
+              label="##word.Distribution##"
+              ng-click="updateDistribution(item,'distribution')"
             ></i-button>
             <i-button
-            type="view"
-            title="##word.View##"
-            ng-click="showView(item)"
-          ></i-button>
+              ng-show="item.distribution"
+              label="##word.Cancle Distribution##"
+              ng-click="updateDistribution(item,'cancleDistribution')"
+            ></i-button>
+          
+            <i-button
+              type="view"
+              title="##word.View##"
+              ng-click="showView(item)"
+            ></i-button>
             <i-button
               type="edit"
               x-permissions="codesUpdate || codesManage"

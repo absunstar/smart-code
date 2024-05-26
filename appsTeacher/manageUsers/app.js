@@ -62,18 +62,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -164,31 +160,28 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
-          if (_data.type == "teacher") {
-            _data.roles = [{ name: "teacher" }];
-          } else if (_data.type == "student") {
-            _data.roles = [{ name: "student" }];
-          }
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              site.addNewHost({ domain: doc.userName, filter: doc.userName });
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
+        let _data = req.data;
+        if (_data.type == "teacher") {
+          _data.roles = [{ name: "teacher" }];
+        } else if (_data.type == "student") {
+          _data.roles = [{ name: "student" }];
         }
-      );
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            site.addNewHost({ domain: doc.userName, filter: doc.userName });
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -205,7 +198,7 @@ module.exports = function init(site) {
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
 
-          app.update(_data, (err, result) => {
+          site.security.updateUser(_data, (err, result) => {
             if (!err) {
               response.done = true;
               response.result = result;
@@ -213,6 +206,52 @@ module.exports = function init(site) {
               response.error = err.message;
             }
             res.json(response);
+          });
+        }
+      );
+
+      site.post(
+        {
+          name: `/api/${app.name}/updateStudentNotifications`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+
+          let _data = req.data;
+          site.security.getUser({ id: req.session.user.id }, (err, user) => {
+            if (!err) {
+              if (user) {
+                if (_data.type == "deleteAll") {
+                  user.notificationsList = [];
+                } else if (_data.type == "deleteOne") {
+                  user.notificationsList = user.notificationsList.filter((_n) => _n.id != _data.id);
+                  console.log(user.notificationsList);
+                } else if (_data.type == "showAll") {
+                  for (let i = 0; i < user.notificationsList.length; i++) {
+                    user.notificationsList[i].show = true;
+                  }
+                }
+                site.security.updateUser(user, (err1, result) => {
+                  if (!err1) {
+                    response.done = true;
+                    for (let i = 0; i < result.doc.notificationsList.length; i++) {
+                      result.doc.notificationsList[i].$time = site.xtime(result.doc.notificationsList[i].date, req.session.lang);
+                    }
+                    response.result = result.doc;
+                  } else {
+                    response.error = err1.message;
+                  }
+                  res.json(response);
+                });
+              } else {
+                res.json(response);
+              }
+            } else {
+              res.json(response);
+            }
           });
         }
       );
@@ -229,7 +268,7 @@ module.exports = function init(site) {
             done: false,
           };
           let _data = req.data;
-          app.delete({ id: _data.id }, (err, result) => {
+          site.security.deleteUser({ id: _data.id, $req: req, $res: res }, (err, result) => {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
@@ -250,7 +289,7 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-        app.view(_data, (err, doc) => {
+        security.getUser({ id: _data.id }, (err, doc) => {
           if (!err && doc) {
             response.done = true;
             response.doc = doc;
@@ -333,16 +372,39 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-        app.all(where, (err, users,count) => {
+        site.security.getUsers(where, (err, users, count) => {
           res.json({
             done: true,
-            count : count,
+            count: count,
             list: users,
           });
         });
       });
     }
   }
+
+  site.addNotificationToStudents = function (doc) {
+    let where = { type: "student" };
+    if (doc.type.name == "online") {
+      where["placeType"] = "online";
+    } else if (doc.type.name == "offline") {
+      where["placeType"] = "offline";
+    } else if (doc.type.name == "specificCenter") {
+      where["center.id"] = doc.center.id;
+    } else if (doc.type.name == "specificStudents") {
+      let studentsIds = doc.studentsList.map((_s) => _s.id);
+      where["id"] = { $in: studentsIds };
+    }
+    where["host"] = site.getHostFilter(doc.host);
+    site.security.getUsers(where, (err, docs) => {
+      if (!err && docs) {
+        for (let i = 0; i < docs.length; i++) {
+          docs[i].notificationsList.unshift({ id: doc.id, show: false, date: doc.date, image: doc.image, title: doc.title, content: doc.content });
+          site.security.updateUser(docs[i]);
+        }
+      }
+    });
+  };
 
   app.init();
   site.addApp(app);

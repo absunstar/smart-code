@@ -83,19 +83,19 @@
                       </p>
                     </div>
                   </div>
-                  <div class="row" ng-show="quiz.id">
+                  <div class="row" ng-show="quiz.id" x-permission="login">
                     <p class="font-20">
                       ##word.The number of remaining exam times## :
-                      {{item.timesEnterQuiz - quiz.timesEnterQuiz}}
+                      ( {{item.timesEnterQuiz - quiz.timesEnterQuiz}} )
                     </p>
                     <p class="font-20">
-                      ##word.Quiz Degree## : {{quiz.userDegree}}
+                      ##word.Quiz Degree## : ( {{quiz.userDegree}} % ) 
                     </p>
                   </div>
-                  <div class="row">
-                    <i-button ng-repeat="link in item.linksList" ng-click="openVideo(link)"></i-button>
+                  <div class="row" x-permission="login">
+                    <i-button ng-repeat="link in item.linksList" type="view" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
                   </div>
-                  <div class="row">
+                  <div class="row" x-permission="login">
                     <button
                       ng-click="showEnterCode()"
                       ng-hide="item.$buy"

@@ -3,100 +3,35 @@
     <div class="col9">
       <div class="row">
         <div class="row">
-          <i-control
-            type="text"
-            v="r"
-            class="col6"
-            ng-model="item.name"
-            label="##word.Lecture Name##"
-          ></i-control>
-          <i-control
-            type="number"
-            v="r"
-            class="col3"
-            ng-model="item.price"
-            label="##word.Price##"
-          ></i-control>
-          <i-checkbox
-            ng-model="item.active"
-            class="col3"
-            label="##word.Active##"
-          ></i-checkbox>
+          <i-control type="text" v="r" class="col6" ng-model="item.name" label="##word.Lecture Name##"></i-control>
+          <i-control type="number" v="r" class="col3" ng-model="item.price" label="##word.Price##"></i-control>
+          <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
         </div>
         <div class="row">
           <i-list
             label="##word.Educational Level##"
             ng-change="getSchoolYearsList(item.educationalLevel)"
             class="col6"
+            v="r"
             ng-model="item.educationalLevel"
             display="name"
             items="educationalLevelsList"
             ng-search="item.$educationalLevel"
           ></i-list>
-          <i-list
-            label="##word.School Year##"
-            ng-model="item.schoolYear"
-            class="col6"
-            display="name"
-            items="schoolYearsList"
-          ></i-list>
+          <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col6" v="r" display="name" items="schoolYearsList"></i-list>
         </div>
         <div class="row">
-          <i-list
-            label="##word.Type Of Expiry View##"
-            ng-model="item.typeExpiryView"
-            class="col6"
-            display="name##session.lang##"
-            items="typesExpiryViewsList"
-          ></i-list>
-          <i-date
-            ng-model="item.viewingEndDate"
-            ng-show="item.typeExpiryView.name == 'date'"
-            class="col6"
-            label="##word.Viewing End Date##"
-          ></i-date>
-          <i-control
-            ng-model="item.daysAvailableViewing"
-            ng-show="item.typeExpiryView.name == 'day'"
-            type="number"
-            class="col6"
-            label="##word.Days Available For Viewing##"
-          ></i-control>
-          <i-control
-            ng-model="item.NumberViews"
-            type="number"
-            ng-show="item.typeExpiryView.name == 'number'"
-            class="col6"
-            label="##word.Number of views##"
-          ></i-control>
+          <i-list label="##word.Type Of Expiry View##" ng-model="item.typeExpiryView" class="col6" v="r" display="name##session.lang##" items="typesExpiryViewsList"></i-list>
+          <i-date ng-model="item.viewingEndDate" ng-show="item.typeExpiryView.name == 'date'" class="col6" label="##word.Viewing End Date##"></i-date>
+          <i-control ng-model="item.daysAvailableViewing" ng-show="item.typeExpiryView.name == 'day'" type="number" class="col6" label="##word.Days Available For Viewing##"></i-control>
+          <i-control ng-model="item.numberViews" type="number" ng-show="item.typeExpiryView.name == 'number'" class="col6" label="##word.Number of views##"></i-control>
         </div>
         <fieldset>
           <legend>##word.Place Type##</legend>
           <div class="row">
-            <i-radio
-              ng-model="item.placeType"
-              label="##word.Online##"
-              class="col4"
-              ng-value="online"
-              group="placeType"
-              type="radio"
-            ></i-radio>
-            <i-radio
-              ng-model="item.placeType"
-              label="##word.Offline##"
-              class="col4"
-              ng-value="offline"
-              group="placeType"
-              type="radio"
-            ></i-radio>
-            <i-radio
-              ng-model="item.placeType"
-              label="##word.Both##"
-              class="col4"
-              ng-value="both"
-              group="placeType"
-              type="radio"
-            ></i-radio>
+            <i-radio ng-model="item.placeType" label="##word.Online##" class="col4" ng-value="online" group="placeType" type="radio"></i-radio>
+            <i-radio ng-model="item.placeType" label="##word.Offline##" class="col4" ng-value="offline" group="placeType" type="radio"></i-radio>
+            <i-radio ng-model="item.placeType" label="##word.Both##" class="col4" ng-value="both" group="placeType" type="radio"></i-radio>
           </div>
         </fieldset>
         <fieldset>
@@ -106,13 +41,9 @@
           </legend>
           <div class="row" ng-repeat="link in item.linksList">
             <i-control class="col7" ng-model="link.url"></i-control>
-            <p class="font-20">##word.Views## {{link.views##}}</p>
-            <i-button
-              class="col2"
-              type="delete "
-              ng-click=" item.linksList.splice($index,1)"
-            >
-            </i-button>
+            <p class="font-20 col2">##word.Code## : ({{link.code}})</p>
+            <p class="font-20 col2">##word.Views## : ({{link.views}})</p>
+            <i-button class="col2" type="delete " ng-click=" item.linksList.splice($index,1)"> </i-button>
           </div>
         </fieldset>
         <fieldset>
@@ -122,66 +53,28 @@
           </legend>
           <div class="row" ng-repeat="file in item.filesList">
             <i-file class="col9" ng-model="file.url"></i-file>
-            <i-button
-              class="col2"
-              type="delete "
-              ng-click=" item.filesList.splice($index,1)"
-            >
-            </i-button>
+            <i-button class="col2" type="delete " ng-click=" item.filesList.splice($index,1)"> </i-button>
           </div>
         </fieldset>
         <fieldset>
           <legend>
             ##word.Activate Quiz##
-            <i-checkbox
-              ng-model="item.activateQuiz"
-              ng-change="activateQuiz()"
-            ></i-checkbox>
+            <i-checkbox ng-model="item.activateQuiz" ng-change="activateQuiz()"></i-checkbox>
           </legend>
           <div class="row" ng-show="item.activateQuiz">
             <div class="row">
-              <i-control
-                type="number"
-                class="col3"
-                ng-model="item.quizDuration"
-                label="##word.Quiz Duration## / ##word.Minutes##"
-              ></i-control>
-              <i-control
-                type="number"
-                class="col3"
-                ng-model="item.timesEnterQuiz"
-                label="##word.Times Enter Quiz##"
-              ></i-control>
+              <i-list label="##word.Question Type##" class="col4" ng-model="item.questionType" display="name##session.lang##" items="questionTypesList"></i-list>
+              <i-control type="number" class="col4" ng-model="item.quizDuration" label="##word.Quiz Duration## / ##word.Minutes##"></i-control>
+              <i-control type="number" class="col4" ng-model="item.timesEnterQuiz" label="##word.Times Enter Quiz##"></i-control>
             </div>
             <div class="col3">
               <p class="bold">##word.Questions Numbering## :</p>
             </div>
             <div class="col9">
               <div class="row">
-                <i-radio
-                  ng-model="item.questionNumbering"
-                  label="##word.Numbering##"
-                  ng-value="numbering"
-                  group="questionNumbering"
-                  type="radio"
-                  class="col4"
-                ></i-radio>
-                <i-radio
-                  ng-model="item.questionNumbering"
-                  label="##word.Arabic##"
-                  ng-value="arabic"
-                  group="questionNumbering"
-                  type="radio"
-                  class="col4"
-                ></i-radio>
-                <i-radio
-                  ng-model="item.questionNumbering"
-                  label="##word.English##"
-                  ng-value="english"
-                  group="questionNumbering"
-                  type="radio"
-                  class="col4"
-                ></i-radio>
+                <i-radio ng-model="item.questionNumbering" label="##word.Numbering##" ng-value="numbering" group="questionNumbering" type="radio" class="col4"></i-radio>
+                <i-radio ng-model="item.questionNumbering" label="##word.Arabic##" ng-value="arabic" group="questionNumbering" type="radio" class="col4"></i-radio>
+                <i-radio ng-model="item.questionNumbering" label="##word.English##" ng-value="english" group="questionNumbering" type="radio" class="col4"></i-radio>
               </div>
             </div>
           </div>
@@ -192,30 +85,9 @@
             </div>
             <div class="col9">
               <div class="row">
-                <i-radio
-                  ng-model="item.answerNumbering"
-                  label="##word.Numbering##"
-                  ng-value="numbering"
-                  group="answerNumbering"
-                  type="radio"
-                  class="col4"
-                ></i-radio>
-                <i-radio
-                  ng-model="item.answerNumbering"
-                  label="##word.Arabic##"
-                  ng-value="arabic"
-                  group="answerNumbering"
-                  type="radio"
-                  class="col4"
-                ></i-radio>
-                <i-radio
-                  ng-model="item.answerNumbering"
-                  label="##word.English##"
-                  ng-value="english"
-                  group="answerNumbering"
-                  type="radio"
-                  class="col4"
-                ></i-radio>
+                <i-radio ng-model="item.answerNumbering" label="##word.Numbering##" ng-value="numbering" group="answerNumbering" type="radio" class="col4"></i-radio>
+                <i-radio ng-model="item.answerNumbering" label="##word.Arabic##" ng-value="arabic" group="answerNumbering" type="radio" class="col4"></i-radio>
+                <i-radio ng-model="item.answerNumbering" label="##word.English##" ng-value="english" group="answerNumbering" type="radio" class="col4"></i-radio>
               </div>
             </div>
           </div>
@@ -226,8 +98,7 @@
       <i-image class="img128 center" ng-model="item.image"></i-image>
     </div>
   </div>
-  <i-textarea ng-model="item.description" label="##word.Description##">
-  </i-textarea>
+  <i-textarea ng-model="item.description" label="##word.Description##"> </i-textarea>
 </div>
 <div ng-show="mode !== 'add' " class="row">
   <table class="table hover border">
