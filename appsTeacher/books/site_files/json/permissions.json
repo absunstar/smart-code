@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "books", "name": "booksManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "books", "name": "booksAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "books", "name": "booksUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "books", "name": "booksDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "books", "name": "booksView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "books", "name": "booksSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "books", "name": "booksExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "books", "name": "booksPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "books", "name": "booksUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "books", "name": "booksImport", "En": "Import", "Ar": "إستيراد" }
+]

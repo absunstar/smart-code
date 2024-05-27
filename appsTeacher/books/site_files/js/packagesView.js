@@ -1,16 +1,15 @@
-app.controller("lecturesView", function ($scope, $http, $timeout) {
+app.controller("booksView", function ($scope, $http, $timeout) {
   $scope.list = [];
   $scope.baseURL = "";
-
   $scope.getAll = function (ev) {
     $scope.busy = true;
     $scope.error = "";
     if (ev.which === 13) {
       $http({
         method: "POST",
-        url: `${$scope.baseURL}/api/lectures/all`,
+        url: `${$scope.baseURL}/api/books/all`,
         data: {
-          type: "toStudent",
+        type: 'toStudent',
           search: $scope.$search,
           select: {
             id: 1,

@@ -1,19 +1,20 @@
 module.exports = function init(site) {
   site.typesExpiryViewsList = [
     {
-      name: 'date',
+      name: "date",
       nameAr: "تاريخ",
       nameEn: "Date",
     },
     {
-      name: 'day',
+      name: "day",
       nameAr: "يوم",
       nameEn: "Day",
-    },{
-      name: 'number',
+    },
+    {
+      name: "number",
       nameAr: "عدد",
       nameEn: "Number",
-    }
+    },
   ];
   site.salesTypesList = [
     {
@@ -27,6 +28,24 @@ module.exports = function init(site) {
       nameAr: "مبيعات للشركات",
       nameEn: "Sales For Companies",
       code: "company",
+    },
+  ];
+
+  site.purchaseOrdersTargetList = [
+    {
+      nameAr: "مجموعة محاضرات",
+      nameEn: "Packages",
+      name: "package",
+    },
+    {
+      nameAr: "محاضرات",
+      nameEn: "Lectures",
+      name: "lecture",
+    },
+    {
+      nameAr: "كتب",
+      nameEn: "Books",
+      name: "book",
     },
   ];
   site.notificationTypesList = [
@@ -67,7 +86,7 @@ module.exports = function init(site) {
       nameAr: "نص",
       nameEn: "Text",
       name: "text",
-    }
+    },
   ];
 
   site.salesCategories = [
@@ -528,6 +547,13 @@ module.exports = function init(site) {
     });
   });
 
+  site.post("/api/purchaseOrdersTargetList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.purchaseOrdersTargetList,
+    });
+  });
+
   site.post("/api/typesExpiryViewsList", (req, res) => {
     res.json({
       done: true,
@@ -643,10 +669,7 @@ module.exports = function init(site) {
     });
   });
   site.post("/api/salesCategories", (req, res) => {
-    if (
-      site.getCompanySetting(req).showRestaurant &&
-      site.salesCategories.length == 2
-    ) {
+    if (site.getCompanySetting(req).showRestaurant && site.salesCategories.length == 2) {
       site.salesCategories.push({
         id: 3,
         nameEn: "Table",

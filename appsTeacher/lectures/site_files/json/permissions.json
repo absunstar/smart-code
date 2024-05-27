@@ -1,12 +1,12 @@
 [
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesManage", "En": "Manage", "Ar": "إدارة" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesAdd", "En": "Add", "Ar": "إضافة" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesUpdate", "En": "Edit", "Ar": "تعديل" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesDelete", "En": "Delete", "Ar": "حذف" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesView", "En": "View", "Ar": "عرض" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesSearch", "En": "Search", "Ar": "بحث" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesExport", "En": "Export", "Ar": "تصدير" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesPrint", "En": "Print", "Ar": "طباعة" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesUi", "En": "UI", "Ar": "الواجهة الرسومية" },
-    { "moduleName": "lawyer", "screenName": "lectures", "name": "lecturesImport", "En": "Import", "Ar": "إستيراد" }
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "lectures", "name": "lecturesImport", "En": "Import", "Ar": "إستيراد" }
 ]
