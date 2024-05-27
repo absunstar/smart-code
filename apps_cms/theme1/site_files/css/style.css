@@ -575,7 +575,7 @@ a {
 .MS-newstime {
   position: relative;
   top: -70%;
-  left: 0;
+  left: 10%;
   transform: translate(-50%, -50%);
   padding-bottom: 16px;
   gap: 3px;
