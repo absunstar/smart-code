@@ -288,6 +288,7 @@ a {
   box-shadow: 1px 0px 8px var(--background2x);
   height: 100%;
   width: 100%;
+  min-width: 100%;
   min-height: 296px;
 }
 
@@ -559,7 +560,7 @@ a {
   width: fit-content;
   height: auto;
   position: relative;
-  top: -400px;
+  top: -75px;
   font-size: 24px;
   font-weight: bold;
   overflow: hidden;
@@ -573,7 +574,7 @@ a {
 
 .MS-newstime {
   position: relative;
-  top: -387px;
+  top: -70px;
   left: 10%;
   transform: translate(-50%, -50%);
   padding-bottom: 16px;
