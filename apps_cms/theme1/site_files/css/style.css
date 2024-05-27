@@ -560,7 +560,7 @@ a {
   width: fit-content;
   height: auto;
   position: relative;
-  top: -75%;
+  top: -70%;
   font-size: 24px;
   font-weight: bold;
   overflow: hidden;
@@ -586,6 +586,7 @@ a {
   border-right: 12px solid var(--background2);
   box-shadow: 1px 8px 10px #000;
   width: 20%;
+  min-width: 225px;
 }
 
 .MS-slider-container {
