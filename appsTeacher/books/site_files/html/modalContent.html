@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="row padding">
+    <div class="col9">
+      <div class="row">
+        <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
+        <i-list
+          label="##word.Educational Level##"
+          ng-change="getSchoolYearsList(item.educationalLevel)"
+          ng-model="item.educationalLevel"
+          display="name"
+          items="educationalLevelsList"
+          ng-search="item.$educationalLevel"
+        ></i-list>
+        <i-list
+          ng-change="getLecturesList()"
+          label="##word.School Year##"
+          ng-model="item.schoolYear"
+          display="name"
+          items="schoolYearsList"
+        ></i-list>
+
+        <fieldset>
+          <legend>##word.Place Type##</legend>
+          <div class="row">
+            <i-radio
+              ng-model="item.placeType"
+              ng-click="getLecturesList()"
+              label="##word.Online##"
+              class="col4"
+              ng-value="online"
+              group="placeType"
+              type="radio"
+            ></i-radio>
+            <i-radio
+              ng-model="item.placeType"
+              ng-click="getLecturesList()"
+              label="##word.Offline##"
+              class="col4"
+              ng-value="offline"
+              group="placeType"
+              type="radio"
+            ></i-radio>
+            <i-radio
+              ng-model="item.placeType"
+              ng-click="getLecturesList()"
+              label="##word.Both##"
+              class="col4"
+              ng-value="both"
+              group="placeType"
+              type="radio"
+            ></i-radio>
+          </div>
+        </fieldset>
+
+        <i-control
+          type="text"
+          v="r"
+          ng-model="item.name"
+          label="##word.Name##"
+        ></i-control>
+
+        <i-control
+          type="number"
+          v="r"
+          ng-model="item.price"
+          label="##word.Price##"
+        ></i-control>
+      </div>
+    </div>
+    <div class="col3 center">
+      <i-image class="img128 center" ng-model="item.image"></i-image>
+    </div>
+  </div>
+ 
+  <i-textarea ng-model="item.description" label="##word.Description##">
+  </i-textarea>
+</div>
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Add Info##</th>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.addUserInfo.name}}</p>
+        <small class="green"> {{item.addUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.addUserInfo.ip}}</p>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

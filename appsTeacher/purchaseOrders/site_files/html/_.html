@@ -6,7 +6,14 @@
 
       <div class="row">
         <i-list
-          class="col4"
+          class="col3"
+          label="##word.Type"
+          ng-model="_search.targetType"
+          display="name##session.lang##"
+          items="purchaseOrdersTargetList"
+        ></i-list>
+        <i-list
+          class="col3"
           label="##word.Lecture##"
           ng-model="_search.lecture"
           display="name"
@@ -14,7 +21,7 @@
           ng-get="getLecturesList($search)"
         ></i-list>
         <i-list
-          class="col4"
+          class="col3"
           label="##word.Package##"
           ng-model="_search.package"
           display="name"
@@ -22,7 +29,7 @@
           ng-get="getPackagesList($search)"
         ></i-list>
         <i-list
-        class="col4"
+        class="col3"
         label="##word.Student##"
         ng-model="_search.student"
         display="firstName"

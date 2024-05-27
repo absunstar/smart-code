@@ -525,6 +525,7 @@ module.exports = function init(site) {
                     target: { id: doc.id, name: doc.name },
                     price: doc.price,
                     date: new Date(),
+                    host :site.getHostFilter(req.host),
                     user: {
                       id: user.id,
                       firstName: user.firstName,

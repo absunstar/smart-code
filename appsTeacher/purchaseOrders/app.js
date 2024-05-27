@@ -59,18 +59,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -256,13 +252,17 @@ module.exports = function init(site) {
         }
 
         if (where["package"]) {
-          where["type"] = "package";
           where["target.id"] = where["package"].id;
           delete where["package"];
-        } else if (where["lecture"]) {
-          where["type"] = "lecture";
+        }
+        if (where["lecture"]) {
           where["target.id"] = where["lecture"].id;
           delete where["lecture"];
+        }
+
+        if (where["targetType"]) {
+          where["type"] = where["targetType"].name;
+          delete where["targetType"];
         }
 
         if (where["student"]) {
@@ -278,13 +278,10 @@ module.exports = function init(site) {
           });
         }
         where["host"] = site.getHostFilter(req.host);
-
-        app.all(
-          { where: where, limit, select, sort: { id: -1 } },
-          (err, docs) => {
-            res.json({ done: true, list: docs });
-          }
-        );
+        console.log(where);
+        app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
+          res.json({ done: true, list: docs });
+        });
       });
     }
   }

@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "booksAdmin",
+    "En": "Books Admin",
+    "Ar": "إدارة الكتب",
+    "permissions": ["booksManage"]
+}] 
