@@ -74,33 +74,38 @@
           </fieldset>
 
           <fieldset>
-           
-              <div class="row" >
-                <div class="col9">
+            <div class="row">
+              <div class="col9">
+                <div class="row">
+                  <i-control label="##word.Site Name##" class="col6" ng-model="siteSetting.siteName"> </i-control>
+                  <i-control label="##word.Title Separator##" class="col6" ng-model="siteSetting.titleSeparator"> </i-control>
+                </div>
+
+                <div class="row">
+                  <i-control label="##word.Site Slogan##" ng-model="siteSetting.siteSlogan"> </i-control>
+                </div>
+
+                <div class="row">
+                  <i-textarea ng-model="siteSetting.description" label="##word.Site Description##"> </i-textarea>
+                  <i-textarea ng-model="siteSetting.textPurchaseByBook" label="##word.Text purchase by book##"> </i-textarea>
+                  <i-textarea ng-model="siteSetting.textPurchaseByCode" label="##word.Text purchase by code##"> </i-textarea>
+                </div>
+
+                <fieldset>
+                  <i-control label="##word.Keywords##" ng-keydown="addKeyWords($event , siteSetting)" ng-model="siteSetting.$keyword"> </i-control>
                   <div class="row">
-                    <i-control label="##word.Site Name##" class="col6" ng-model="siteSetting.siteName"> </i-control>
-                    <i-control label="##word.Title Separator##" class="col6" ng-model="siteSetting.titleSeparator"> </i-control>
-                  </div>
-                  <div class="row">
-                    <i-control label="##word.Site Slogan##" ng-model="siteSetting.siteSlogan"> </i-control>
-                  </div>
-                  <div class="row">
-                    <i-textarea ng-model="siteSetting.description" label="##word.Site Description##"> </i-textarea>
-                  </div>
-                  <fieldset>
-                    <i-control label="##word.Keywords##" ng-keydown="addKeyWords($event , siteSetting)" ng-model="siteSetting.$keyword"> </i-control>
-                    <div class="row">
-                      <div class="key-words" ng-repeat="k in siteSetting.keyWordsList">
-                        <span>{{k}}</span>
-                        <i class="fas fa-times delete-key" ng-click="siteSetting.keyWordsList.splice($index,1)"></i>
-                      </div>
+                    <div class="key-words" ng-repeat="k in siteSetting.keyWordsList">
+                      <span>{{k}}</span>
+                      <i class="fas fa-times delete-key" ng-click="siteSetting.keyWordsList.splice($index,1)"></i>
                     </div>
-                  </fieldset>
-                </div>
-                <div class="col3">
-                  <i-image label="##word.Logo##" class="img128" ng-model="siteSetting.logo"></i-image>
-                </div>
+                  </div>
+                </fieldset>
               </div>
+
+              <div class="col3">
+                <i-image label="##word.Logo##" class="img128" ng-model="siteSetting.logo"></i-image>
+              </div>
+            </div>
           </fieldset>
         </div>
         <i-button type="save" label="##word.Save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#siteSettings')"></i-button>

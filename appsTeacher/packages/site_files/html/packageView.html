@@ -129,12 +129,15 @@
           <span class="close">&times;</span>
         </div>
         <div class="modal-body">
-          <i-control
+          <p class="purchase-text">##data.setting.textPurchaseByCode##</p>
+          <fieldset>
+            <legend>##word.Code##</legend>
+            <i-control
             type="text"
             v="r"
             ng-model="code"
-            label="##word.Code##"
-          ></i-control>
+            ></i-control>
+          </fieldset>
         </div>
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>

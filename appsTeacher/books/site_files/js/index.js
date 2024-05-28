@@ -6,7 +6,7 @@ app.controller("books", function ($scope, $http, $timeout) {
   $scope.mode = "add";
   $scope._search = {};
   $scope.structure = {
-    image: { url: "/theme1/images/setting/books.png" },
+    image: { url: "/images/books.png" },
     active: true,
   };
   $scope.item = {};
@@ -18,8 +18,6 @@ app.controller("books", function ($scope, $http, $timeout) {
     $scope.item = {
       ...$scope.structure,
       price: 0,
-      totalLecturesPrice: 0,
-      lecturesList: [],
     };
     site.showModal($scope.modalID);
   };
@@ -46,10 +44,7 @@ app.controller("books", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-          if (
-            response.data.error &&
-            response.data.error.like("*Must Enter Code*")
-          ) {
+          if (response.data.error && response.data.error.like("*Must Enter Code*")) {
             $scope.error = "##word.Must Enter Code##";
           }
         }
@@ -86,9 +81,7 @@ app.controller("books", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal($scope.modalID);
           site.resetValidated($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list[index] = response.data.result.doc;
           }
@@ -158,9 +151,7 @@ app.controller("books", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list.splice(index, 1);
           }
@@ -200,8 +191,6 @@ app.controller("books", function ($scope, $http, $timeout) {
     );
   };
 
-
- 
   $scope.getEducationalLevelsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -265,7 +254,6 @@ app.controller("books", function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.showSearch = function () {
     $scope.error = "";

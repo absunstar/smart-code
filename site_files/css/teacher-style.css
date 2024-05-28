@@ -122,3 +122,22 @@ legend {
   text-overflow: ellipsis;
 }
 
+.purchase-text {
+  text-align: center;
+    font-size: x-large;
+    padding: inherit;
+    margin: revert;
+    white-space: pre;
+}
+
+.gray-bg {
+  background-color: #ececec !important;
+}
+
+.scrollx-menu {
+  padding: 10px !important;
+    overflow-x: scroll;
+    flex-direction: column-reverse;
+    height: 23vw !important;
+    scrollbar-color: #2087e7 #e7e7e7
+}

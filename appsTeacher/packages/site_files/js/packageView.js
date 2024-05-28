@@ -53,6 +53,8 @@ app.controller("packageView", function ($scope, $http, $timeout) {
           site.hideModal("#codeModal");
           site.resetValidated("#codeModal");
           $scope.code = "";
+          $scope.item = response.data.doc;
+
         } else {
           $scope.errorCode = response.data.error;
         }

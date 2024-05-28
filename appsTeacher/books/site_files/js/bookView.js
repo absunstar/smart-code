@@ -29,7 +29,7 @@ app.controller("bookView", function ($scope, $http, $timeout) {
     site.showModal("#codeModal");
   };
 
-  $scope.buyBackage = function () {
+  $scope.buyBook = function () {
     $scope.errorCode = "";
     const v = site.validated("#codeModal");
     if (!v.ok) {
@@ -42,7 +42,7 @@ app.controller("bookView", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/books/buyCode`,
       data: {
-        code: $scope.code,
+        address: $scope.address,
         bookId: $scope.item.id,
         bookPrice: $scope.item.price,
       },
@@ -52,7 +52,8 @@ app.controller("bookView", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal("#codeModal");
           site.resetValidated("#codeModal");
-          $scope.code = "";
+          $scope.address = "";
+          $scope.item = response.data.doc;
         } else {
           $scope.errorCode = response.data.error;
         }

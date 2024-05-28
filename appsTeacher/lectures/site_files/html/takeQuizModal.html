@@ -18,7 +18,7 @@
         <fieldset>
           <legend>{{question.numbering}} <b ng-show="question.questionType.name=='text'">- {{question.name}}</b></legend>
           <div class="row" ng-show="question.questionType.name=='photo'">
-            <img height="200px" ng-src="{{question.image.url}}" alt="">
+            <img class="zoom" ng-src="{{question.image.url}}" alt="">
           </div>
           <div class="row " >
             <div class="col4  border" ng-repeat="answer in question.answersList track by $index">

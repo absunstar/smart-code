@@ -23,6 +23,11 @@
       .btn-danger {
         font-size: x-large;
       }
+      .site-name {
+        padding: 10px;
+    font-size: x-large;
+    display: inline-block;
+      }
     </style>
   </head>
 
@@ -42,8 +47,13 @@
               <div class="time-publish card-name margin padding">
                 <i class="fas fa-clock"> {{item.$time}} </i>
               </div>
+               <p>
+                 <img class="" loading="lazy" ng-src="##data.site_logo##" />
+                 <b class="site-name">
 
-              <img class="" loading="lazy" ng-src="{{item.image.url}}" />
+                   ##data.site_name##
+                  </b>
+                </p>
 
               <p class="userPrint card-title bold">{{item.title}}</p>
 

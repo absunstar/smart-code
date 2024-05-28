@@ -16,9 +16,8 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
             id: 1,
             name: 1,
             image: 1,
-            educationalLevel: 1,
-            schoolYear: 1,
             price: 1,
+            date: 1,
           },
         },
       }).then(

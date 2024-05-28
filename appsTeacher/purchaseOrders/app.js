@@ -235,6 +235,7 @@ module.exports = function init(site) {
         let select = req.body.select || {
           id: 1,
           type: 1,
+          price: 1,
           target: 1,
           user: 1,
           date: 1,
@@ -250,11 +251,11 @@ module.exports = function init(site) {
           delete where.fromDate;
           delete where.toDate;
         }
-
         if (where["package"]) {
           where["target.id"] = where["package"].id;
           delete where["package"];
         }
+
         if (where["lecture"]) {
           where["target.id"] = where["lecture"].id;
           delete where["lecture"];
@@ -278,9 +279,22 @@ module.exports = function init(site) {
           });
         }
         where["host"] = site.getHostFilter(req.host);
-        console.log(where);
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
-          res.json({ done: true, list: docs });
+          let totalPackages = 0;
+          let totalLectures = 0;
+          let totalBooks = 0;
+          let totalPurchases = 0;
+          for (let i = 0; i < docs.length; i++) {
+            totalPurchases += docs[i].price;
+            if (docs[i].type == "lecture") {
+              totalLectures += docs[i].price;
+            } else if (docs[i].type == "package") {
+              totalPackages += docs[i].price;
+            } else if (docs[i].type == "book") {
+              totalBooks += docs[i].price;
+            }
+          }
+          res.json({ done: true, list: docs, totalPurchases, totalLectures, totalBooks, totalPackages });
         });
       });
     }

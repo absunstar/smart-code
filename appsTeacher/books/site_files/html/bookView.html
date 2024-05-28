@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="En" data-ng-app="myApp">
   <head x-import="teacher-theme/head.html">
-    <link
-      rel="stylesheet"
-      href="/css/teacher-style.css?v=##site.options.version##"
-    />
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
     <style>
       .buy-btn {
@@ -20,23 +17,12 @@
         text-decoration: underline !important;
       }
 
-      main
-        .content
-        .recentlyConsultantsContanier
-        .recentlyConsultants
-        .recentlyConsultant {
+      main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant {
         max-width: 100% !important;
         height: 400px !important;
       }
 
-      main
-        .content
-        .recentlyConsultantsContanier
-        .recentlyConsultants
-        .recentlyConsultant
-        .answerSection
-        .numbersOfAnswerAndLawer
-        .numbersOfAnswer {
+      main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .numbersOfAnswerAndLawer .numbersOfAnswer {
         width: 83.855px !important;
         height: 77px !important;
         font-size: 16px !important;
@@ -65,21 +51,10 @@
                   <div style="display: ruby-text">
                     <a href="#">
                       <p class="font-25">{{item.name}}</p>
-                      <s class="red left font-22 bold padding"
-                        >{{item.totalLecturesPrice}}</s
-                      >
-                      <b class="left font-22 green bold padding mainColor">
-                        ##word.$##  {{item.price}}
-                      </b>
+                      <b class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </b>
                     </a>
                   </div>
-                  <div class="consultantInfo">
-                    <div class="questionTime">
-                      <p class="font-16">
-                        <i class="fas fa-clock">{{item.$time}}</i>
-                      </p>
-                    </div>
-                  </div>
+
                   <div class="separative"></div>
                   <div class="answerSection">
                     <div class="consultantAnswer">
@@ -87,34 +62,11 @@
                     </div>
                   </div>
                   <div class="row">
-                    <button
-                      ng-click="showEnterCode()"
-                      ng-hide="item.$buy"
-                      class="buy-btn"
-                    >
-                      ##word.Buy## <i class="fas fa-shopping-basket"></i>
-                    </button>
+                    <button ng-click="showEnterCode()" ng-hide="item.$buy" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
                   </div>
                 </li>
               </ul>
             </div>
-            <fieldset class="row padding margin">
-              <legend>##word.Lectures##</legend>
-              <div class="card" ng-repeat="l in item.lecturesList">
-                <img class="" loading="lazy" ng-src="{{l.lecture.image.url}}" />
-                <p class="center">
-                  <b class="card-number bold">
-                    ##word.$## {{l.lecture.price}}
-                  </b>
-                </p>
-
-                <p class="userPrint card-title bold">{{l.lecture.name}}</p>
-
-                <a href="/lectureView?id={{l.lecture.id}}">
-                  <i-button title="##word.view##" type="view"></i-button>
-                </a>
-              </div>
-            </fieldset>
           </div>
         </div>
 
@@ -129,20 +81,16 @@
           <span class="close">&times;</span>
         </div>
         <div class="modal-body">
-          <i-control
-            type="text"
-            v="r"
-            ng-model="code"
-            label="##word.Code##"
-          ></i-control>
+          <p class="purchase-text">##data.setting.textPurchaseByBook##</p>
+
+          <fieldset>
+            <legend>##word.Write the detailed address to which you want the book delivered##</legend>
+            <i-textarea type="text" v="r" ng-model="address"></i-textarea>
+          </fieldset>
         </div>
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>
-          <i-button
-            type="save"
-            label="##word.Accept##"
-            ng-click="buyBackage(item)"
-          ></i-button>
+          <i-button type="save" label="##word.Accept##" ng-click="buyBook(item)"></i-button>
         </div>
       </div>
     </div>

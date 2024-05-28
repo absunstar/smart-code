@@ -524,8 +524,9 @@ module.exports = function init(site) {
                     type: "lecture",
                     target: { id: doc.id, name: doc.name },
                     price: doc.price,
+                    code: _data.code,
                     date: new Date(),
-                    host :site.getHostFilter(req.host),
+                    host: site.getHostFilter(req.host),
                     user: {
                       id: user.id,
                       firstName: user.firstName,
@@ -552,44 +553,44 @@ module.exports = function init(site) {
 
   site.getLectures = function (req, callBack) {
     callBack = callBack || function () {};
-    let lectures = [];
+    // let lectures = [];
+    // if (req.session.user && req.session.user.type == "student") {
+    //   lectures = site.lecturesList.filter(
+    //     (a) =>
+    //       a.host == site.getHostFilter(req.host) &&
+    //       (a.placeType == req.session.user.placeType || a.placeType == "both") &&
+    //       a.schoolYear.id == req.session.user.schoolYear.id &&
+    //       a.educationalLevel.id == req.session.user.educationalLevel.id
+    //   );
+    // } else {
+    //   lectures = site.lecturesList.filter((a) => a.host == site.getHostFilter(req.host));
+    // }
+    // if (lectures.length > 0) {
+    //   callBack(null, lectures);
+    // } else {
+    let where = {};
     if (req.session.user && req.session.user.type == "student") {
-      lectures = site.lecturesList.filter(
-        (a) =>
-          a.host == site.getHostFilter(req.host) &&
-          (a.placeType == req.session.user.placeType || a.placeType == "both") &&
-          a.schoolYear.id == req.session.user.schoolYear.id &&
-          a.educationalLevel.id == req.session.user.educationalLevel.id
-      );
-    } else {
-      lectures = site.lecturesList.filter((a) => a.host == site.getHostFilter(req.host));
+      where["educationalLevel.id"] = req.session.user.educationalLevel.id;
+      where["schoolYear.id"] = req.session.user.schoolYear.id;
+      where["host"] = site.getHostFilter(req.host);
+      where["active"] = true;
+
+      where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
     }
-    if (lectures.length > 0) {
-      callBack(null, lectures);
-    } else {
-      let where = {};
-      if (req.session.user && req.session.user.type == "student") {
-        where["educationalLevel.id"] = req.session.user.educationalLevel.id;
-        where["schoolYear.id"] = req.session.user.schoolYear.id;
-        where["host"] = site.getHostFilter(req.host);
-        where["active"] = true;
+    app.$collection.findMany(where, (err, docs) => {
+      if (!err && docs) {
+        for (let i = 0; i < docs.length; i++) {
+          let doc = docs[i];
+          if (!site.lecturesList.some((k) => k.id === doc.id)) {
+            doc.$time = site.xtime(doc.date, "Ar");
 
-        where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
-      }
-      app.$collection.findMany(where, (err, docs) => {
-        if (!err && docs) {
-          for (let i = 0; i < docs.length; i++) {
-            let doc = docs[i];
-            if (!site.lecturesList.some((k) => k.id === doc.id)) {
-              doc.$time = site.xtime(doc.date, "Ar");
-
-              site.lecturesList.push(doc);
-            }
+            site.lecturesList.push(doc);
           }
         }
-        callBack(err, docs);
-      });
-    }
+      }
+      callBack(err, docs);
+    });
+    // }
   };
 
   app.init();

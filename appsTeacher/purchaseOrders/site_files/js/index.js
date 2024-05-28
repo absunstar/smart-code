@@ -140,6 +140,10 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
+          $scope.totalPurchases = response.data.totalPurchases;
+          $scope.totalLectures = response.data.totalLectures;
+          $scope.totalBooks = response.data.totalBooks;
+          $scope.totalPackages = response.data.totalPackages;
           site.hideModal($scope.modalSearchID);
           $scope.search = {};
         }

@@ -18,7 +18,7 @@
               <a href="/packagesView" class="viewAll">##word.View All##</a>
             </div>
             <ul
-              class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2"
+              class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu"
             >
               <li class="col recentlyConsultant" x-list1="packagesList">
                 <div class="consultantTitle">
@@ -63,14 +63,14 @@
             </ul>
           </div>
 
-          <div class="recentlyConsultantsContanier">
+          <div class="recentlyConsultantsContanier" ng-show="'##user.placeType##' == 'offline'">
             <div class="recentlyConsultantsTitle">
               <p class="headTitle">##word.Lectures##</p>
               <a href="/lecturesView" class="viewAll">##word.View All##</a>
 
             </div>
             <ul
-              class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2"
+              class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu"
             >
               <li class="col recentlyConsultant" x-list1="lecturesList">
                 <div class="consultantTitle">
@@ -112,15 +112,52 @@
           
             </ul>
           </div>
-          <div
-            class="cricleConsultantAskConatainer"
-            x-permissions="!login || client "
-          >
-            <div class="cricleConsultantAsk orderButton">
-              <i class="fas fa-bullhorn"></i>
-              <p>##word.Request A Consultation##</p>
+
+          <div class="recentlyConsultantsContanier">
+            <div class="recentlyConsultantsTitle">
+              <p class="headTitle">##word.Books##</p>
+              <a href="/booksView" class="viewAll">##word.View All##</a>
             </div>
+            <ul
+              class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu"
+            >
+              <li class="col recentlyConsultant" x-list1="booksList">
+                <div class="consultantTitle">
+                  <a href="/bookView?id=##item1.id##">
+                    <p>
+                      ##item1.name##
+                    </p>
+                  </a>
+                </div>
+                <div class="consultantInfo">
+                  <div class="questionBy">
+                    <a href="#">
+                    </a>
+                  </div>
+                 
+                </div>
+                <div class="separative"></div>
+                <div class="answerSection">
+                 
+                  <div class="consultantAnswer">
+                    <p>
+                      ##item1.description##
+                    </p>
+                  </div>
+                </div>
+                <div class="likeAndGoodAnswer">
+                  <div class="likeAnswer">
+                
+                  </div>
+                  <div class="goodAnswer">
+                  
+                  </div>
+                </div>
+              </li>
+          
+            </ul>
           </div>
+        
           <!-- <div ng-click="changeLang('Ar')" class=" cricleConsultantAskConatainer cricleChangeLangConatainer">
             <div class="cricleConsultantAsk">
               <i class="fas fa-language"></i>

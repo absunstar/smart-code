@@ -315,7 +315,6 @@ module.exports = function init(site) {
             if (req.session.user && req.session.user.booksList && req.session.user.booksList.some((s) => s == doc.id)) {
               doc.$buy = true;
             }
-            doc.$time = site.xtime(doc.date, req.session.lang || "ar");
             response.doc = doc;
           } else {
             response.error = err?.message || "Not Exists";
@@ -364,19 +363,12 @@ module.exports = function init(site) {
           if (req.session.user && req.session.user.type == "student") {
             where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
             where["schoolYear.id"] = req.session.user?.schoolYear?.id;
-            where.$and = [
+            where.$or = [
               {
-                $or: [{ placeType: req.session.user.placeType }, { placeType: "both" }],
+                name: site.get_RegExp(search, "i"),
               },
               {
-                $or: [
-                  {
-                    name: site.get_RegExp(search, "i"),
-                  },
-                  {
-                    description: site.get_RegExp(search, "i"),
-                  },
-                ],
+                description: site.get_RegExp(search, "i"),
               },
             ];
           }
@@ -392,9 +384,7 @@ module.exports = function init(site) {
         where["host"] = site.getHostFilter(req.host);
         app.all({ where, select, limit }, (err, docs) => {
           if (req.body.type) {
-            for (let i = 0; i < docs.length; i++) {
-              docs[i].$time = site.xtime(docs[i].date, req.session.lang || "ar");
-            }
+            for (let i = 0; i < docs.length; i++) {}
           }
           res.json({
             done: true,
@@ -413,45 +403,38 @@ module.exports = function init(site) {
     let _data = req.data;
     app.view({ id: _data.bookId }, (err, doc) => {
       if (!err && doc) {
-        site.validateCode({ code: _data.code, price: _data.bookPrice }, (errCode, code) => {
-          if (errCode) {
-            response.error = errCode;
-            res.json(response);
-            return;
-          } else {
-            site.security.getUser(
-              {
-                id: req.session.user.id,
-              },
-              (err, user) => {
-                if (!err && user) {
-                  user.booksList = user.booksList || [];
-                  if (!user.booksList.some((l) => l.id == doc.id)) {
-                    user.booksList.push(doc.id);
-                  }
-                  site.addPurchaseOrder({
-                    type: "book",
-                    target: { id: doc.id, name: doc.name },
-                    price: doc.price,
-                    date: new Date(),
-                    host :site.getHostFilter(req.host),
-                    user: {
-                      id: user.id,
-                      firstName: user.firstName,
-                      userName: user.userName,
-                    },
-                  });
-                  site.security.updateUser(user);
-                }
-                response.done = true;
-                doc.$buy = true;
-                doc.$time = site.xtime(doc.date, req.session.lang || "ar");
-                response.doc = doc;
-                res.json(response);
+        site.security.getUser(
+          {
+            id: req.session.user.id,
+          },
+          (err, user) => {
+            if (!err && user) {
+              user.booksList = user.booksList || [];
+              if (!user.booksList.some((l) => l.id == doc.id)) {
+                user.booksList.push(doc.id);
               }
-            );
+              site.addPurchaseOrder({
+                type: "book",
+                target: { id: doc.id, name: doc.name },
+                price: doc.price,
+                address: _data.address,
+                date: new Date(),
+                host: site.getHostFilter(req.host),
+                user: {
+                  id: user.id,
+                  firstName: user.firstName,
+                  userName: user.userName,
+                },
+              });
+              site.security.updateUser(user);
+            }
+            response.done = true;
+            doc.$buy = true;
+
+            response.doc = doc;
+            res.json(response);
           }
-        });
+        );
       } else {
         response.error = err?.message || "Not Exists";
         res.json(response);
@@ -461,47 +444,38 @@ module.exports = function init(site) {
 
   site.getBooks = function (req, callBack) {
     callBack = callBack || function () {};
-    let books = [];
+    // let books = [];
+    // if (req.session.user && req.session.user.type == "student") {
+    //   books = site.booksList.filter(
+    //     (a) => a.host == site.getHostFilter(req.host) && a.schoolYear.id == req.session.user.schoolYear.id && a.educationalLevel.id == req.session.user.educationalLevel.id
+    //   );
+    // } else {
+    //   books = site.booksList.filter((a) => a.host == site.getHostFilter(req.host));
+    // }
+    // if (books.length > 0) {
+    //   callBack(null, books);
+    // } else {
+    let where = {};
     if (req.session.user && req.session.user.type == "student") {
-      books = site.booksList.filter(
-        (a) =>
-          a.host == site.getHostFilter(req.host) &&
-          (a.placeType == req.session.user.placeType || a.placeType == "both") &&
-          a.schoolYear.id == req.session.user.schoolYear.id &&
-          a.educationalLevel.id == req.session.user.educationalLevel.id
-      );
-    } else {
-      books = site.booksList.filter((a) => a.host == site.getHostFilter(req.host));
+      where["educationalLevel.id"] = req.session.user.educationalLevel.id;
+      where["schoolYear.id"] = req.session.user.schoolYear.id;
+      where["host"] = site.getHostFilter(req.host);
+      where["active"] = true;
     }
-    if (books.length > 0) {
-      callBack(null, books);
-    } else {
-      let where = {};
-      if (req.session.user && req.session.user.type == "student") {
-        where["educationalLevel.id"] = req.session.user.educationalLevel.id;
-        where["schoolYear.id"] = req.session.user.schoolYear.id;
-        where["host"] = site.getHostFilter(req.host);
-        where["active"] = true;
-        where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
-      }
-      app.$collection.findMany(
-        where,
-        (err, docs) => {
-          if (!err && docs) {
-            for (let i = 0; i < docs.length; i++) {
-              let doc = docs[i];
-              if (!site.booksList.some((k) => k.id === doc.id)) {
-                doc.$time = site.xtime(doc.date, "Ar");
+    app.$collection.findMany(where, (err, docs) => {
+      if (!err && docs) {
+        for (let i = 0; i < docs.length; i++) {
+          let doc = docs[i];
+          if (!site.booksList.some((k) => k.id === doc.id)) {
+            doc.$time = site.xtime(doc.date, "Ar");
 
-                site.booksList.push(doc);
-              }
-            }
+            site.booksList.push(doc);
           }
-          callBack(err, docs);
-        },
-        true
-      );
-    }
+        }
+      }
+      callBack(err, docs);
+    });
+    // }
   };
 
   app.init();

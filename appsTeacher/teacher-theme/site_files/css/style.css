@@ -112,3 +112,11 @@ p {
   color: #1e14cf !important;
   font-size: 20px;
 }
+
+.scrollx-menu {
+  padding: 10px !important;
+    overflow-x: scroll;
+    flex-direction: column-reverse;
+    height: 23vw !important;
+    scrollbar-color: #2087e7 #e7e7e7
+}

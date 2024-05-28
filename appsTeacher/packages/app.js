@@ -61,18 +61,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -176,17 +172,11 @@ module.exports = function init(site) {
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             page_image: setting.logo?.url || "/images/logo.png",
-            user_image:
-              req.session?.user?.image?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
-            page_title:
-              setting.siteName +
-              " " +
-              setting.titleSeparator +
-              " " +
-              setting.siteSlogan,
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
             page_keywords: setting.keyWordsList.join(","),
           };
@@ -217,17 +207,11 @@ module.exports = function init(site) {
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             page_image: setting.logo?.url || "/images/logo.png",
-            user_image:
-              req.session?.user?.image?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
-            page_title:
-              setting.siteName +
-              " " +
-              setting.titleSeparator +
-              " " +
-              setting.siteSlogan,
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
             page_keywords: setting.keyWordsList.join(","),
           };
@@ -245,28 +229,25 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
-          _data.date = new Date();
-          _data.addUserInfo = req.getUserFinger();
-          _data.host = site.getHostFilter(req.host);
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
+        let _data = req.data;
+        _data.date = new Date();
+        _data.addUserInfo = req.getUserFinger();
+        _data.host = site.getHostFilter(req.host);
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -331,7 +312,7 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if (req.session.user && req.session.user.packagesList && req.session.user.packagesList.some(s => s == doc.id)) {
+            if (req.session.user && req.session.user.packagesList && req.session.user.packagesList.some((s) => s == doc.id)) {
               doc.$buy = true;
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
@@ -381,15 +362,11 @@ module.exports = function init(site) {
 
         if (req.body.type == "toStudent") {
           if (req.session.user && req.session.user.type == "student") {
-            where["educationalLevel.id"] =
-              req.session.user?.educationalLevel?.id;
+            where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
             where["schoolYear.id"] = req.session.user?.schoolYear?.id;
             where.$and = [
               {
-                $or: [
-                  { placeType: req.session.user.placeType },
-                  { placeType: "both" },
-                ],
+                $or: [{ placeType: req.session.user.placeType }, { placeType: "both" }],
               },
               {
                 $or: [
@@ -406,7 +383,7 @@ module.exports = function init(site) {
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student") {
             let idList = req.session.user.packagesList.map((_item) => _item);
-            where['id'] = {
+            where["id"] = {
               $in: idList,
             };
           }
@@ -416,10 +393,7 @@ module.exports = function init(site) {
         app.all({ where, select, limit }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
-              docs[i].$time = site.xtime(
-                docs[i].date,
-                req.session.lang || "ar"
-              );
+              docs[i].$time = site.xtime(docs[i].date, req.session.lang || "ar");
             }
           }
           res.json({
@@ -439,53 +413,49 @@ module.exports = function init(site) {
     let _data = req.data;
     app.view({ id: _data.packageId }, (err, doc) => {
       if (!err && doc) {
-        site.validateCode(
-          { code: _data.code, price: _data.packagePrice },
-          (errCode, code) => {
-            if (errCode) {
-              response.error = errCode;
-              res.json(response);
-              return;
-            } else {
-              site.security.getUser(
-                {
-                  id: req.session.user.id,
-                },
-                (err, user) => {
-                  if (!err && user) {
-                    user.packagesList = user.packagesList || [];
-                    user.lecturesList = user.lecturesList || [];
-                    doc.lecturesList.forEach((_l) => {
-                      if (
-                        !user.lecturesList.some((l) => l.id == _l.lecture.id)
-                      ) {
-                        user.lecturesList.push({
-                          lectureId: _l.lecture.id,
-                        });
-                      }
-                    });
-                    user.packagesList.push(_data.packageId);
-                    site.addPurchaseOrder({
-                      type: "package",
-                      target: { id: doc.id, name: doc.name },
-                      price: doc.price,
-                      date : new Date(),
-                    host :site.getHostFilter(req.host),
-                      user: {
-                        id: user.id,
-                        firstName: user.firstName,
-                        userName: user.userName,
-                      },
-                    });
-                    site.security.updateUser(user);
-                  }
-                  response.done = true;
-                  res.json(response);
+        site.validateCode({ code: _data.code, price: _data.packagePrice }, (errCode, code) => {
+          if (errCode) {
+            response.error = errCode;
+            res.json(response);
+            return;
+          } else {
+            site.security.getUser(
+              {
+                id: req.session.user.id,
+              },
+              (err, user) => {
+                if (!err && user) {
+                  user.packagesList = user.packagesList || [];
+                  user.lecturesList = user.lecturesList || [];
+                  doc.lecturesList.forEach((_l) => {
+                    if (!user.lecturesList.some((l) => l.id == _l.lecture.id)) {
+                      user.lecturesList.push({
+                        lectureId: _l.lecture.id,
+                      });
+                    }
+                  });
+                  user.packagesList.push(_data.packageId);
+                  site.addPurchaseOrder({
+                    type: "package",
+                    target: { id: doc.id, name: doc.name },
+                    code: _data.code,
+                    price: doc.price,
+                    date: new Date(),
+                    host: site.getHostFilter(req.host),
+                    user: {
+                      id: user.id,
+                      firstName: user.firstName,
+                      userName: user.userName,
+                    },
+                  });
+                  site.security.updateUser(user);
                 }
-              );
-            }
+                response.done = true;
+                res.json(response);
+              }
+            );
           }
-        );
+        });
       } else {
         response.error = err?.message || "Not Exists";
         res.json(response);
@@ -495,53 +465,46 @@ module.exports = function init(site) {
 
   site.getPackages = function (req, callBack) {
     callBack = callBack || function () {};
-    let packages = [];
+    // let packages = [];
+    // if (req.session.user && req.session.user.type == "student") {
+    //   packages = site.packagesList.filter(
+    //     (a) =>
+    //       a.host == site.getHostFilter(req.host) &&
+    //       (a.placeType == req.session.user.placeType ||
+    //         a.placeType == "both") &&
+    //       a.schoolYear.id == req.session.user.schoolYear.id &&
+    //       a.educationalLevel.id == req.session.user.educationalLevel.id
+    //   );
+    // } else {
+    //   packages = site.packagesList.filter(
+    //     (a) => a.host == site.getHostFilter(req.host)
+    //   );
+    // }
+    // if (packages.length > 0) {
+    //   callBack(null, packages);
+    // } else {
+    let where = {};
     if (req.session.user && req.session.user.type == "student") {
-      packages = site.packagesList.filter(
-        (a) =>
-          a.host == site.getHostFilter(req.host) &&
-          (a.placeType == req.session.user.placeType ||
-            a.placeType == "both") &&
-          a.schoolYear.id == req.session.user.schoolYear.id &&
-          a.educationalLevel.id == req.session.user.educationalLevel.id
-      );
-    } else {
-      packages = site.packagesList.filter(
-        (a) => a.host == site.getHostFilter(req.host)
-      );
+      where["educationalLevel.id"] = req.session.user.educationalLevel.id;
+      where["schoolYear.id"] = req.session.user.schoolYear.id;
+      where["host"] = site.getHostFilter(req.host);
+      where["active"] = true;
+      where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
     }
-    if (packages.length > 0) {
-      callBack(null, packages);
-    } else {
-      let where = {};
-      if (req.session.user && req.session.user.type == "student") {
-        where["educationalLevel.id"] = req.session.user.educationalLevel.id;
-        where["schoolYear.id"] = req.session.user.schoolYear.id;
-        where["host"] = site.getHostFilter(req.host);
-        where["active"] = true;
-        where.$or = [
-          { placeType: req.session.user.placeType },
-          { placeType: "both" },
-        ];
-      }
-      app.$collection.findMany(
-        where,
-        (err, docs) => {
-          if (!err && docs) {
-            for (let i = 0; i < docs.length; i++) {
-              let doc = docs[i];
-              if (!site.packagesList.some((k) => k.id === doc.id)) {
-                doc.$time = site.xtime(doc.date, "Ar");
+    app.$collection.findMany(where, (err, docs) => {
+      if (!err && docs) {
+        for (let i = 0; i < docs.length; i++) {
+          let doc = docs[i];
+          if (!site.packagesList.some((k) => k.id === doc.id)) {
+            doc.$time = site.xtime(doc.date, "Ar");
 
-                site.packagesList.push(doc);
-              }
-            }
+            site.packagesList.push(doc);
           }
-          callBack(err, docs);
-        },
-        true
-      );
-    }
+        }
+      }
+      callBack(err, docs);
+    });
+    // }
   };
 
   app.init();

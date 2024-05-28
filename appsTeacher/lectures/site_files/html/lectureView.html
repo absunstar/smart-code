@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="En" data-ng-app="myApp">
   <head x-import="teacher-theme/head.html">
-    <link
-      rel="stylesheet"
-      href="/css/teacher-style.css?v=##site.options.version##"
-    />
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
     <style>
+      .zoom {
+        transition: transform 0.4s;
+        width: 57%;
+        height: 180px;
+        margin: 0 auto;
+      }
+
+      .zoom:hover {
+        -ms-transform: scale(1.8); /* IE 9 */
+        -webkit-transform: scale(1.8); /* Safari 3-8 */
+        transform: scale(1.8);
+      }
+
       .buy-btn {
         margin: 15px -7px 20px 0px;
         text-align-last: center;
@@ -20,23 +30,12 @@
         text-decoration: underline !important;
       }
 
-      main
-        .content
-        .recentlyConsultantsContanier
-        .recentlyConsultants
-        .recentlyConsultant {
+      main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant {
         max-width: 100% !important;
         height: 500px !important;
       }
 
-      main
-        .content
-        .recentlyConsultantsContanier
-        .recentlyConsultants
-        .recentlyConsultant
-        .answerSection
-        .numbersOfAnswerAndLawer
-        .numbersOfAnswer {
+      main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .numbersOfAnswerAndLawer .numbersOfAnswer {
         width: 83.855px !important;
         height: 77px !important;
         font-size: 16px !important;
@@ -63,9 +62,7 @@
                   <div style="display: ruby-text">
                     <a href="#">
                       <p class="font-25">{{item.name}}</p>
-                      <b class="left font-22 green bold padding mainColor">
-                        ##word.$## {{item.price}}
-                      </b>
+                      <b class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </b>
                     </a>
                   </div>
                   <div class="consultantInfo">
@@ -78,36 +75,19 @@
                   <div class="separative"></div>
                   <div class="answerSection">
                     <div class="consultantAnswer">
-                      <p class="linesView font-20">
-                      {{item.description}}
-                      </p>
+                      <p class="linesView font-20">{{item.description}}</p>
                     </div>
                   </div>
                   <div class="row" ng-show="quiz.id" x-permission="login">
-                    <p class="font-20">
-                      ##word.The number of remaining exam times## :
-                      ( {{item.timesEnterQuiz - quiz.timesEnterQuiz}} )
-                    </p>
-                    <p class="font-20">
-                      ##word.Quiz Degree## : ( {{quiz.userDegree}} % ) 
-                    </p>
+                    <p class="font-20">##word.The number of remaining exam times## : ( {{item.timesEnterQuiz - quiz.timesEnterQuiz}} )</p>
+                    <p class="font-20">##word.Quiz Degree## : ( {{quiz.userDegree}} % )</p>
                   </div>
                   <div class="row" x-permission="login">
                     <i-button ng-repeat="link in item.linksList" type="view" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
                   </div>
                   <div class="row" x-permission="login">
-                    <button
-                      ng-click="showEnterCode()"
-                      ng-hide="item.$buy"
-                      class="buy-btn"
-                    >
-                      ##word.Buy## <i class="fas fa-shopping-basket"></i>
-                    </button>
-                    <button
-                      ng-click="startQuiz()"
-                      ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz"
-                      class="buy-btn"
-                    >
+                    <button ng-click="showEnterCode()" ng-hide="item.$buy" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
+                    <button ng-click="startQuiz()" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                       ##word.Take A Quiz##
                       <i class="fas fa-chalkboard-teacher"></i>
                     </button>
@@ -129,20 +109,15 @@
           <span class="close">&times;</span>
         </div>
         <div class="modal-body">
-          <i-control
-            type="text"
-            v="r"
-            ng-model="code"
-            label="##word.Code##"
-          ></i-control>
+          <p class="purchase-text">##data.setting.textPurchaseByCode##</p>
+          <fieldset>
+            <legend>##word.Code##</legend>
+            <i-control type="text" v="r" ng-model="code"></i-control>
+          </fieldset>
         </div>
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>
-          <i-button
-            type="save"
-            label="##word.Accept##"
-            ng-click="buyLecture(item)"
-          ></i-button>
+          <i-button type="save" label="##word.Accept##" ng-click="buyLecture(item)"></i-button>
         </div>
       </div>
     </div>
