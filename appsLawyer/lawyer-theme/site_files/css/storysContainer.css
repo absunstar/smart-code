@@ -3,7 +3,8 @@ main .mainContent .storysContainer .storys .storysAccounts {
   gap: 8px;
   overflow-x: auto;
   cursor: grab;
-  padding: 0px;
+  padding: 5px;
+  background: #f7f7f7;
 }
 
 main .mainContent .storysContainer .storys .storysAccounts::-webkit-scrollbar {
