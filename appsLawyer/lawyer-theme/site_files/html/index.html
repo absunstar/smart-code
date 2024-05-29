@@ -24,18 +24,11 @@
           <div class="lawSectionsConatiner">
             <div class="lawSectoins">
               <div class="lawSectionsTitle">
-                <p class="headTitle">
-                  ##word.Choose From Legal Specializations##
-                </p>
+                <p class="headTitle">##word.Choose From Legal Specializations##</p>
               </div>
               <ul class="lawSection">
                 <li class="section" x-list1="specialtiesList">
-                  <img
-                    src="##item1.image.url##"
-                    alt=""
-                    srcset=""
-                    class="sectionImg"
-                  />
+                  <img src="##item1.image.url##" alt="" srcset="" class="sectionImg" />
                   <p class="sectionTitle">##item1.name##</p>
                 </li>
               </ul>
@@ -49,12 +42,7 @@
               </div>
               <ul class="lawSection">
                 <li class="section" x-list1="servicesList">
-                  <img
-                    src="##item1.image.url##"
-                    alt=""
-                    srcset=""
-                    class="sectionImg"
-                  />
+                  <img src="##item1.image.url##" onerror="this.onerror=null;this.parentNode.remove(this)" alt="" srcset="" class="sectionImg" />
                   <p class="sectionTitle">##item1.name##</p>
                 </li>
               </ul>
@@ -66,29 +54,19 @@
               <div class="moreActiveLowersTitle">
                 <p class="headTitle">##word.The Most Active Lawyers##</p>
               </div>
-              <ul
-                class="moreActiveLower row row-cols-1 row-cols-lg-4 row-cols-md-2 justify-content-center justify-content-lg-start"
-              >
+              <ul class="moreActiveLower row row-cols-1 row-cols-lg-4 row-cols-md-2 justify-content-center justify-content-lg-start">
                 <li class="ActiveLawer col" x-list1="activeList">
                   <div class="cover">
-                    <img
-                      src="##item1.image.url##"
-                      alt=""
-                      class="lawerProfileImage"
-                    />
+                    <img src="##item1.image.url##" alt="" class="lawerProfileImage" />
                   </div>
                   <div class="lawerInfo">
                     <div class="lawerName">
-                      <a
-                        href="/profileView/##item1.id##"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="/profileView/##item1.id##" target="_blank" rel="noopener noreferrer">
                         <p>##item1.firstName## ##item1.lastName##</p>
                       </a>
                     </div>
                     <div class="lawSectionTitle">
-                      <p >##item1.specialty.name##</p>
+                      <p>##item1.specialty.name##</p>
                     </div>
                     <div class="lawerNumberStatic">
                       <div class="consultantInfo">
@@ -130,15 +108,11 @@
             <div class="recentlyConsultantsTitle">
               <p class="headTitle">##word.Recently answered consultations##</p>
             </div>
-            <ul
-              class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2"
-            >
+            <ul class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2">
               <li class="col recentlyConsultant" x-list1="consultationsList">
                 <div class="consultantTitle">
                   <a href="#">
-                    <p>
-                      ##item1.name##
-                    </p>
+                    <p>##item1.name##</p>
                   </a>
                 </div>
                 <div class="consultantInfo">
@@ -171,15 +145,11 @@
                       <a href="#">
                         <p class="lawerName">##item1.lawyer.firstName## ##item1.lawyer.lastName##</p>
                       </a>
-                      <p class="firstLawerAnswer">
-                        ##word.The First To Respond## - تم الرد منذ يوم
-                      </p>
+                      <p class="firstLawerAnswer">##word.The First To Respond## - تم الرد منذ يوم</p>
                     </div>
                   </div>
                   <div class="consultantAnswer">
-                    <p>
-                      ##item1.details##
-                    </p>
+                    <p>##item1.details##</p>
                   </div>
                 </div>
                 <div class="likeAndGoodAnswer">
@@ -193,13 +163,9 @@
                   </div>
                 </div>
               </li>
-         
             </ul>
           </div>
-          <div
-            class="cricleConsultantAskConatainer"
-            x-permissions="!login || client "
-          >
+          <div class="cricleConsultantAskConatainer" x-permissions="!login || client ">
             <div class="cricleConsultantAsk orderButton">
               <i class="fas fa-bullhorn"></i>
               <p>##word.Request A Consultation##</p>
