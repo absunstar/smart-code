@@ -44,22 +44,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> أحكام واجتهاد </a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ##word.online Services## </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
-                <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
+                <li><a class="dropdown-item" href="https://moi.gov.eg/home/index"> ##word.moi Site## </a></li>
+                <li><a class="dropdown-item" href="https://moi.gov.eg/home/directorypolice"> ##word.directorypolice site## </a></li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> خدمات الكترونية </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
-                <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
-              </ul>
-            </li>
-
           </ul>
         </div>
       </div>
@@ -68,19 +59,17 @@
     <div class="userContainer">
       <div class="profile" x-permission="login">
         <li class="nav-item dropdown">
-
-        <img src="##data.user_image##"  href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li>
-          <li><a class="dropdown-item" href="/profileEdit/##user.id##">##word.Manage My Page##</a></li>
-          <li><a class="dropdown-item" href="/sessions">##word.Dashboard##</a></li>
-        </ul>
-      </li>
-    </div>
+          <img src="##data.user_image##" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li>
+            <li><a class="dropdown-item" href="/profileEdit/##user.id##">##word.Manage My Page##</a></li>
+            <li><a class="dropdown-item" href="/sessions">##word.Dashboard##</a></li>
+          </ul>
+        </li>
+      </div>
       <a x-permission="!login" href="/login"> تسجيل الدخول </a>
       <a x-permission="!login" class="newRegister" href="/register"> مستخدم جديد </a>
     </div>
-
   </div>
   <div class="smScreen d-flex d-lg-none">
     <div class="logoAndNav row row-cols-2">
@@ -124,7 +113,6 @@
       </div>
 
       <ul class="navbar-nav">
-
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> أحكام واجتهاد </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -139,8 +127,7 @@
             <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
             <li><a class="dropdown-item" href="#">صفحات قانونية</a></li>
           </ul>
-        </li> 
-
+        </li>
       </ul>
 
       <div class="orderButton btn" x-permissions="!login || client ">
