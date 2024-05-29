@@ -313,6 +313,11 @@ module.exports = function init(site) {
       doc.$hasMiniTitle = true;
       doc.$miniTitleClass = '';
     }
+
+    if (site.options.useLocalImages) {
+      doc.$imageURL = '/article-image/' + doc.guid;
+    }
+
     return doc;
   };
   site.handleSearchArticle = function (doc, options = {}) {
@@ -400,6 +405,10 @@ module.exports = function init(site) {
     delete doc.publishDate;
     delete doc._id;
     delete doc.type;
+
+    if (site.options.useLocalImages) {
+      doc.$imageURL = '/article-image/' + doc.guid;
+    }
 
     return doc;
   };
