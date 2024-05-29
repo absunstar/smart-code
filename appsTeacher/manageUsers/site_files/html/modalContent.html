@@ -5,26 +5,12 @@
       <div class="col9">
         <div class="row">
           <div class="col4">
-            <i-checkbox
-              ng-model="item.active"
-              label="##word.Active##"
-            ></i-checkbox>
+            <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
           </div>
 
-          <i-control
-            type="text"
-            v="r"
-            ng-model="item.firstName"
-            label="##word.Full Name##"
-          ></i-control>
+          <i-control type="text" v="r" ng-model="item.firstName" label="##word.Full Name##"></i-control>
 
-          <i-control
-            v="r"
-            class="input-style"
-            label="##word.User Name##"
-            ng-model="item.userName"
-          >
-          </i-control>
+          <i-control v="r" class="input-style" label="##word.User Name##" ng-model="item.userName"> </i-control>
         </div>
       </div>
       <div class="col3 center">
@@ -39,33 +25,16 @@
 <fieldset>
   <div class="tabs">
     <div class="tabs-header full">
-      <a
-        class="tab-link"
-        onclick="site.showTabContent(event, '#contactInformations')"
-      >
-        <span>##word.Contact Informatins## </span></a
-      >
-      <a class="tab-link" onclick="site.showTabContent(event, '#files')">
-        <span>##word.Documents## </span></a
-      >
+      <a class="tab-link" onclick="site.showTabContent(event, '#contactInformations')"> <span>##word.Contact Informatins## </span></a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#files')"> <span>##word.Documents## </span></a>
     </div>
 
     <div class="tabs-content">
       <div id="contactInformations" class="tab-content">
         <fieldset>
           <div class="row">
-            <i-date
-              class="col6"
-              label="##word.Date Of Birth ##"
-              ng-model="item.dateOfBirth"
-            >
-            </i-date>
-            <i-control
-              class="col6"
-              label="##word.National ID##"
-              ng-model="item.nationalId"
-            >
-            </i-control>
+            <i-date class="col6" label="##word.Date Of Birth ##" ng-model="item.dateOfBirth"> </i-date>
+            <i-control class="col6" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
           </div>
           <div class="row">
             <i-list
@@ -78,84 +47,37 @@
               display="name"
               ng-search="item.$center"
             ></i-list>
-            <i-list
-              class="col4"
-              label="##word.Gender##"
-              ng-model="item.gender"
-              display="name##session.lang##"
-              items="gendersList"
-              ng-search="item.$genders"
-            ></i-list>
+            <i-list class="col4" label="##word.Gender##" ng-model="item.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
             <div class="col3">
-              <br>
-              <p class="font-20 " ng-show="item.placeType == 'online'">
-                ##word.Latitude## :{{item.latitude}}
-              </p>
+              <br />
+              <p class="font-20" ng-show="item.placeType == 'online'">##word.Latitude## :{{item.latitude}}</p>
             </div>
             <div class="col3">
-              <br>
-              <p class="font-20 " ng-show="item.placeType == 'online'">
-                ##word.Longitude## :{{item.longitude}}
-              </p>
+              <br />
+              <p class="font-20" ng-show="item.placeType == 'online'">##word.Longitude## :{{item.longitude}}</p>
             </div>
-        
-          </div>
           </div>
         </fieldset>
         <fieldset>
           <legend>##word.Contact Informations##</legend>
           <div class="row">
-            <i-control
-              class="col3"
-              label="# ##word.Phone##"
-              ng-model="item.phone"
-            ></i-control>
+            <i-control class="col3" label="# ##word.Phone##" ng-model="item.phone"></i-control>
 
-            <i-control
-              class="col3"
-              label="# ##word.Mobile##"
-              ng-model="item.mobile"
-            ></i-control>
+            <i-control class="col3" label="# ##word.Mobile##" ng-model="item.mobile"></i-control>
 
-            <i-control
-              class="col3"
-              label="##word.Parent Mobile Number##"
-              ng-model="item.parentMobile"
-            ></i-control>
+            <i-control class="col3" label="##word.Parent Mobile Number##" ng-model="item.parentMobile"></i-control>
 
-            <i-control
-              help-id=""
-              class="col3"
-              label="##word.Whatsapp##"
-              ng-model="item.whatsapp"
-            >
-            </i-control>
+            <i-control help-id="" class="col3" label="##word.Whatsapp##" ng-model="item.whatsapp"> </i-control>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>##word.Social Accounts##</legend>
           <div class="row">
-            <i-control
-              class="col3"
-              label="##word.Contact Email##"
-              ng-model="item.contactEmail"
-            ></i-control>
-            <i-control
-              class="col3"
-              label="##word.Facebook##"
-              ng-model="item.facebook"
-            ></i-control>
-            <i-control
-              class="col3"
-              label="##word.Twitter##"
-              ng-model="item.twitter"
-            ></i-control>
-            <i-control
-              class="col3"
-              label="##word.Instagram##"
-              ng-model="item.instagram"
-            ></i-control>
+            <i-control class="col3" label="##word.Contact Email##" ng-model="item.contactEmail"></i-control>
+            <i-control class="col3" label="##word.Facebook##" ng-model="item.facebook"></i-control>
+            <i-control class="col3" label="##word.Twitter##" ng-model="item.twitter"></i-control>
+            <i-control class="col3" label="##word.Instagram##" ng-model="item.instagram"></i-control>
           </div>
         </fieldset>
 
@@ -172,61 +94,20 @@
               display2="callingCode"
               ng-get="getCountriesList($search)"
             ></i-list>
-            <i-list
-              help-id=""
-              class="col3"
-              label="##word.Governorate##"
-              ng-change="getCitiesList(item.gov)"
-              ng-model="item.gov"
-              display="name"
-              items="govesList"
-              ng-search="item.$gov"
-            ></i-list>
-            <i-list
-              class="col3"
-              label="##word.City##"
-              ng-model="item.city"
-              ng-change="getAreasList(item.city)"
-              items="citiesList"
-              display="name"
-              ng-search="item.$area"
-            >
-            </i-list>
-            <i-list
-              class="col3"
-              label="##word.Area##"
-              ng-model="item.area"
-              items="areasList"
-              display="name"
-              ng-search="item.$area"
-            >
-            </i-list>
+            <i-list help-id="" class="col3" label="##word.Governorate##" ng-change="getCitiesList(item.gov)" ng-model="item.gov" display="name" items="govesList" ng-search="item.$gov"></i-list>
+            <i-list class="col3" label="##word.City##" ng-model="item.city" ng-change="getAreasList(item.city)" items="citiesList" display="name" ng-search="item.$area"> </i-list>
+            <i-list class="col3" label="##word.Area##" ng-model="item.area" items="areasList" display="name" ng-search="item.$area"> </i-list>
           </div>
 
           <div class="row">
-            <i-control label="##word.Address##" ng-model="item.address">
-            </i-control>
-          </div>
-
-        
+            <i-control label="##word.Address##" ng-model="item.address"> </i-control>
           </div>
         </fieldset>
         <fieldset>
           <div class="row">
-            <i-control
-              class="col6"
-              v="r e"
-              label="##word.Login E-mail##"
-              ng-model="item.email"
-            >
-            </i-control>
-            <i-control
-              class="col6"
-              v="r"
-              label="##word.Password##"
-              ng-model="item.password"
-            >
-            </i-control>
+            <i-control class="col6" v="r e" label="##word.Login E-mail##" ng-model="item.email"> </i-control>
+            <i-control class="col6" v="r" label="##word.Password##" ng-model="item.password"> </i-control>
+          </div>
         </fieldset>
       </div>
 
@@ -241,28 +122,11 @@
             <div class="row">
               <div class="col10">
                 <div class="row">
-                  <i-list
-                    class="col4"
-                    label="##word.Document Type##"
-                    ng-model="f.fileType"
-                    items="documentsTypesList"
-                    display="name##session.lang##"
-                    ng-search="item.$fileType"
-                  >
-                  </i-list>
+                  <i-list class="col4" label="##word.Document Type##" ng-model="f.fileType" items="documentsTypesList" display="name##session.lang##" ng-search="item.$fileType"> </i-list>
 
-                  <i-control
-                    class="col3"
-                    label="##word.File Name##"
-                    ng-model="f.fileName"
-                  >
-                  </i-control>
+                  <i-control class="col3" label="##word.File Name##" ng-model="f.fileName"> </i-control>
 
-                  <i-date
-                    class="col4"
-                    ng-model="f.fileDate"
-                    label="##word.File Date##"
-                  ></i-date>
+                  <i-date class="col4" ng-model="f.fileDate" label="##word.File Date##"></i-date>
 
                   <i-file ng-model="f.file"></i-file>
                 </div>
@@ -270,19 +134,12 @@
               <div class="col2 center">
                 <br />
                 <br />
-                <i-button
-                  type="delete"
-                  title="##word.Delete##"
-                  ng-click="item.filesList.splice($index,1)"
-                >
-                </i-button>
+                <i-button type="delete" title="##word.Delete##" ng-click="item.filesList.splice($index,1)"> </i-button>
               </div>
             </div>
             <br />
             <br />
-            <hr
-              style="height: 5px; color: grey; background-color: rgb(0, 0, 199)"
-            />
+            <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
             <br />
             <br />
           </div>

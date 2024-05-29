@@ -1,4 +1,6 @@
 app.controller("codes", function ($scope, $http, $timeout) {
+  $scope.setting = site.showObject(`##data.#setting##`);
+  $scope.invoiceLogo = document.location.origin + $scope.setting.codeCard.url;
   $scope.baseURL = "";
   $scope.appName = "codes";
   $scope.modalID = "#codesManageModal";
@@ -106,9 +108,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal($scope.modalID);
           site.resetValidated($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list[index] = response.data.result.doc;
           }
@@ -122,12 +122,12 @@ app.controller("codes", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateDistribution = function (_item,type) {
+  $scope.updateDistribution = function (_item, type) {
     $scope.error = "";
     $scope.busy = true;
-    if(type == 'distribution'){
+    if (type == "distribution") {
       _item.distribution = true;
-    } else if(type == 'cancleDistribution'){
+    } else if (type == "cancleDistribution") {
       _item.distribution = false;
     }
     $http({
@@ -138,10 +138,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list[index] = response.data.result.doc;
           }
@@ -157,15 +154,8 @@ app.controller("codes", function ($scope, $http, $timeout) {
   };
 
   $scope.copyCode = function (id) {
-    // Get the text field
     var copyText = document.getElementById(id).innerHTML;
-
-    // Select the text field
-
-    // Copy the text inside the text field
     navigator.clipboard.writeText(copyText);
-
-    // Alert the copied text
   };
 
   $scope.showView = function (_item) {
@@ -223,9 +213,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list.splice(index, 1);
           }
@@ -235,6 +223,50 @@ app.controller("codes", function ($scope, $http, $timeout) {
       },
       function (err) {
         console.log(err);
+      }
+    );
+  };
+
+  $scope.codesPrint = function (where) {
+    if ($scope.busy) return;
+    $scope.busy = true;
+    const v = site.validated('#printCodeData');
+   /*  if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      console.log( v.messages,"ddddddddddddddddddddd");
+      return;
+    } */
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/all`,
+      data: {
+        where: where,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.error = "";
+          $("#codesPrint").removeClass("hidden");
+          $scope.codesList = response.data.list;
+          $timeout(() => {
+            site.print({
+              selector: "#codesPrint",
+              ip: "127.0.0.1",
+              port: "60080",
+              pageSize: "A4",
+              printer: "Microsoft Print to PDF",
+            });
+          }, 500);
+        /*   $timeout(() => {
+            $scope.busy = false;
+            $("#codesPrint").addClass("hidden");
+          }, 8000); */
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
       }
     );
   };

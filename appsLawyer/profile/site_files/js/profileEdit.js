@@ -13,8 +13,8 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-          $scope.user.startWorkTime = $scope.user.startWorkTime || new Date();
-          $scope.user.endWorkTime = $scope.user.endWorkTime || new Date();
+          $scope.user.startWorkTime = new Date($scope.user.startWorkTime) || new Date();
+          $scope.user.endWorkTime = new Date($scope.user.endWorkTime) || new Date();
           document.querySelector(`#profileEdit .tab-link`).click();
         } else {
           $scope.error = response.data.error;
@@ -59,9 +59,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.addToServices = function () {
     if ($scope.user.$service && $scope.user.$service.id) {
       $scope.user.servicesList = $scope.user.servicesList || [];
-      if (
-        $scope.user.servicesList.some((s) => s.id === $scope.user.$service.id)
-      ) {
+      if ($scope.user.servicesList.some((s) => s.id === $scope.user.$service.id)) {
         $scope.errorService = "##word.The Service Already Exists##";
       } else {
         $scope.user.servicesList.unshift({

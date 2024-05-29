@@ -1,0 +1,41 @@
+<!-- <style>
+  .logoPrint {
+    width: 130px;
+    height: 110px;
+    margin: 1px;
+    padding: 1px;
+    border-radius: 0;
+    border: 1px solid var(--background-color);
+  }
+</style> -->
+<style>
+  .container1 {
+    display: contents;
+}
+  .logoPrint {
+  width: 6cm;
+  height: 3cm;
+}
+.code {
+  color: #000;
+    font-size: smaller;
+    font-weight: bold;
+    position: absolute;
+    display: inline-grid;
+    transform: translate(151%, 180%);
+}
+.serial {
+    color: #000;
+    font-size: smaller;
+    font-weight: bold;
+    position: absolute;
+    display: inline-grid;
+    transform: translate(211px, 95px);
+}
+</style>
+<div class="container1" ng-repeat="sInvoice in codesList">
+  <!-- <p ng-repeat="sInvoice in codesList"><span class="bold font-25">##word.Patient## : </span> <span class="font-20">{{sInvoice.code}}</span></p> -->
+    <img class="logoPrint" ng-src="{{invoiceLogo}}" />
+    <div class="code">{{sInvoice.code}}</div>
+    <div class="serial">{{sInvoice.id}}</div>
+</div>

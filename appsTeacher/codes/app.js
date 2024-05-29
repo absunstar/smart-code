@@ -60,18 +60,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -107,20 +103,12 @@ module.exports = function init(site) {
   app.view = function (_item, callback) {
     if (callback) {
       if (app.allowMemory) {
-        if (
-          (item = app.memoryList.find(
-            (itm) => itm.id == _item.id || itm.code == _item.code
-          ))
-        ) {
+        if ((item = app.memoryList.find((itm) => itm.id == _item.id || itm.code == _item.code))) {
           callback(null, item);
           return;
         }
       } else if (app.allowCache) {
-        if (
-          (item = app.cacheList.find(
-            (itm) => itm.id == _item.id || itm.code == _item.code
-          ))
-        ) {
+        if ((item = app.cacheList.find((itm) => itm.id == _item.id || itm.code == _item.code))) {
           callback(null, item);
           return;
         }
@@ -175,26 +163,23 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
-          _data.distribution = false;
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
+        let _data = req.data;
+        _data.distribution = false;
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
 
       site.post(
         {
@@ -219,10 +204,7 @@ module.exports = function init(site) {
           let codesList = [];
           let host = site.getHostFilter(req.host);
           for (let i = 0; i < _data.count; i++) {
-            let code = (size) =>
-              [...Array(size)]
-                .map(() => Math.floor(Math.random() * 16).toString(16))
-                .join("");
+            let code = (size) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join("");
             codesList.push({
               code: code(15),
               expired: false,
@@ -339,6 +321,14 @@ module.exports = function init(site) {
           where.$or.push({
             code: search,
           });
+        }
+        if (where.from && where.to) {
+          where["id"] = {
+            $gte: where.from,
+            $lte: where.to,
+          };
+          delete where.from
+          delete where.to
         }
         where["host"] = site.getHostFilter(req.host);
         app.all({ where, select, limit }, (err, docs) => {

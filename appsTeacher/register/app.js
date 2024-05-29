@@ -339,6 +339,7 @@ module.exports = function init(site) {
       mobile: req.body.user.mobile,
       firstName: req.body.user.firstName,
       lastName: req.body.user.lastName,
+      userName: req.body.user.userName,
       image: req.body.user.image,
       gov: req.body.user.gov,
       city: req.body.user.city,

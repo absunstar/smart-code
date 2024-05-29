@@ -3,18 +3,9 @@
     <div class="col9">
       <div class="row">
         <div class="row">
-          <i-checkbox
-            ng-model="item.active"
-            class="col3"
-            label="##word.Active##"
-          ></i-checkbox>
+          <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
         </div>
-        <i-control
-          type="text"
-          v="r"
-          ng-model="item.name"
-          label="##word.Name##"
-        ></i-control>
+        <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
       </div>
     </div>
     <div class="col3 center">
@@ -24,7 +15,7 @@
   <fieldset>
     <legend>##word.Address##</legend>
     <i-list
-      label="# ##word.Country##"
+      label="##word.Country##"
       ng-change="getGovesList(item.country)"
       ng-model="item.country"
       display="name"
@@ -32,41 +23,37 @@
       display2="callingCode"
       ng-get="getCountriesList($search)"
     ></i-list>
-    <i-list
-      help-id=""
-      label="# ##word.Governorate##"
-      ng-change="getCitiesList(item.gov)"
-      ng-model="item.gov"
-      display="name"
-      items="govesList"
-      ng-search="item.$gov"
-    ></i-list>
+    <i-list help-id="" label="##word.Governorate##" ng-change="getCitiesList(item.gov)" ng-model="item.gov" display="name" items="govesList" ng-search="item.$gov"></i-list>
 
-    <i-list
-      label="# ##word.City##"
-      ng-model="item.city"
-      ng-change="getAreasList(item.city)"
-      items="citiesList"
-      display="name"
-      ng-search="item.$area.$cityitem"
-    >
-    </i-list>
-    <i-list
-      label="# ##word.Area##"
-      ng-model="item.area"
-      items="areasList"
-      display="name"
-      ng-search="item.$area.$areaitem"
-    >
-    </i-list>
+    <i-list label="##word.City##" ng-model="item.city" ng-change="getAreasList(item.city)" items="citiesList" display="name" ng-search="item.$area.$cityitem"> </i-list>
+    <i-list label="##word.Area##" ng-model="item.area" items="areasList" display="name" ng-search="item.$area.$areaitem"> </i-list>
   </fieldset>
-  <!-- <fieldset>
-    <h3>##word.Description## :</h3>
-    <i-content ng-model="item.description" label="##word.Description##">
-    </i-content>
-  </fieldset> -->
 
-  <div id="map"></div>
+  <fieldset>
+    <legend>##word.Work Days## <i-button type="push" label="##word.Add To List##" ng-click="addDay(item)"></i-button></legend>
+
+    <div ng-repeat="d in item.daysList">
+      <i-button type="delete" ng-click="item.daysList.splice($index,1)"></i-button>
+
+      <div class="row">
+        <i-list label="##word.Day##" class="col8" ng-model="d.day" v="r" display="name##session.lang##" items="weekDaysList"></i-list>
+        <div class="col4">
+          <br />
+          <i-button type="push" label="##word.Add Appointments##" ng-click="addAppointments(d)"></i-button>
+        </div>
+        <fieldset>
+          <div class="row" ng-repeat="a in d.appointmentsList">
+            <i-control class="center input-style col5" label="##word.Start Time##" type="time" ng-model="a.startTime"> </i-control>
+            <i-control class="center input-style col5" label="##word.End Time##" type="time" ng-model="a.endTime"> </i-control>
+            <div class="col2">
+              <br />
+              <i-button type="delete" ng-click="d.appointmentsList.splice($index,1)"></i-button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </fieldset>
 </div>
 <div ng-show="mode !== 'add' " class="row">
   <table class="table hover border">

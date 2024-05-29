@@ -15,7 +15,7 @@ app.controller("centers", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure };
+    $scope.item = { ...$scope.structure, daysList: [] };
     site.showModal($scope.modalID);
   };
 
@@ -41,7 +41,6 @@ app.controller("centers", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-        
         }
       },
       function (err) {
@@ -76,9 +75,7 @@ app.controller("centers", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal($scope.modalID);
           site.resetValidated($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list[index] = response.data.result.doc;
           }
@@ -114,6 +111,12 @@ app.controller("centers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
+          $scope.item.daysList.forEach((day) => {
+            day.appointmentsList.forEach((_appointment) => {
+              _appointment.startTime = new Date(_appointment.startTime) || new Date();
+              _appointment.endTime = new Date(_appointment.endTime) || new Date();
+            });
+          });
         } else {
           $scope.error = response.data.error;
         }
@@ -147,9 +150,7 @@ app.controller("centers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list.splice(index, 1);
           }
@@ -314,8 +315,28 @@ app.controller("centers", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getWeekDays = function () {
+    $scope.busy = true;
+    $scope.weekDaysList = [];
+    $http({
+      method: "POST",
+      url: "/api/weekDays",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.weekDaysList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
 
-/*
+  /*
   $scope.initMap = function () {
     const myLatlng = { lat: -25.363, lng: 131.044 };
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -346,6 +367,18 @@ app.controller("centers", function ($scope, $http, $timeout) {
 
    window.initMap = $scope.initMap();
  */
+
+  $scope.addDay = function (item) {
+    $scope.error = "";
+    item.daysList = item.daysList || [];
+    item.daysList.push({ appointmentsList: [] });
+  };
+
+  $scope.addAppointments = function (item) {
+    $scope.error = "";
+    item.appointmentsList.push({});
+  };
+
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
@@ -359,4 +392,5 @@ app.controller("centers", function ($scope, $http, $timeout) {
 
   $scope.getAll();
   $scope.getCountriesList();
+  $scope.getWeekDays();
 });
