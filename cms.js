@@ -1,5 +1,6 @@
 const site = require('../isite')({
   port: [80, 8080],
+  useLocalImages: false,
   lang: 'AR',
   version: Date.now(),
   name: 'cms',

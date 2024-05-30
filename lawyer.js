@@ -61,28 +61,22 @@ site.importApp(__dirname + '/apps_cms/cms');
 site.addFeature('lawyer');
 
 site.getMainHost = function (host = '') {
-  if (host == 'localhost' || host == '127.0.0.1') {
-    return host;
-  }
-  let arr = host.split('.');
-  if (arr.length > 1) {
-    let com = arr.pop();
-    let domain = arr.pop();
-    return '//' + domain + '.' + com;
-  }
+  // if (host == 'localhost' || host == '127.0.0.1') {
+  //   return host;
+  // }
+  // let arr = host.split('.');
+  // if (arr.length > 1) {
+  //   let com = arr.pop();
+  //   let domain = arr.pop();
+  //   return '//' + domain + '.' + com;
+  // }
   return host;
 };
 
 site.handleNotRoute = function (req, res) {
   let host = req.headers['host'];
-  console.log('handleNotRoute : ' + host + ' : ' + req.url);
-
-  let setting = site.getSiteSetting(host);
-  if (!setting.host) {
-    res.redirect(site.getMainHost(host), 301);
-  } else {
-    res.redirect(setting.host);
-  }
+  console.log('handleNotRoute : ', req.url);
+  res.end();
 };
 
 site.xtime = function (_time, lang) {

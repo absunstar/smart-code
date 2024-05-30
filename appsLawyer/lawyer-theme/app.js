@@ -2,6 +2,7 @@ module.exports = function init(site) {
   site.get({
     name: "/lawyer",
     path: __dirname + "/site_files",
+    public : true
   });
 
   site.get({

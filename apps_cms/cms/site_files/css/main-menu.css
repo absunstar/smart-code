@@ -10,7 +10,7 @@
   text-align: center;
   background: #fff;
   padding: 20px;
-  min-width: var(--menu-width);
+  max-width: var(--menu-width);
   overflow: auto;
 }
 

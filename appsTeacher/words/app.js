@@ -18,7 +18,7 @@ module.exports = function init(site) {
     }
   );
 
-  site.post({ name: "/x-api/words/importNewWords" }, (req, res) => {
+  site.post({ name: "/api/words/importNewOnly" }, (req, res) => {
     let response = {
       done: false,
       file: req.form.files.fileToUpload,
@@ -55,7 +55,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post({ name: "/x-api/words/importReplaceWords" }, (req, res) => {
+  site.post({ name: "/api/words/importAndReplace" }, (req, res) => {
     let response = {
       done: false,
       file: req.form.files.fileToUpload,
