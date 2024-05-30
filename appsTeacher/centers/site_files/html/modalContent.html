@@ -27,6 +27,8 @@
 
     <i-list label="##word.City##" ng-model="item.city" ng-change="getAreasList(item.city)" items="citiesList" display="name" ng-search="item.$area.$cityitem"> </i-list>
     <i-list label="##word.Area##" ng-model="item.area" items="areasList" display="name" ng-search="item.$area.$areaitem"> </i-list>
+    <i-textarea  ng-model="item.address" label="##word.Address##"></i-textarea>
+  
   </fieldset>
 
   <fieldset>
@@ -54,7 +56,21 @@
       </div>
     </div>
   </fieldset>
+  <div class="row">
+    <i-control ng-model="item.latitude" label="##word.Latitude##"></i-control>
+    <i-control ng-model="item.longitude" label="##word.Longitude##"></i-control>
+  
+  </div>
+  <div class="locationMap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55251.37451031098!2d31.258464350000004!3d30.059488450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1704447520387!5m2!1sen!2seg"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
 </div>
+
 <div ng-show="mode !== 'add' " class="row">
   <table class="table hover border">
     <tr>

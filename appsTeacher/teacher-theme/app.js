@@ -55,6 +55,11 @@ module.exports = function init(site) {
       //   res.redirect(site.getMainHost(req.host), 301);
       //   return;
       // }
+      let notificationsCount = 0;
+      if(req.session.user) {
+        let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
+        notificationsCount = notifications.length
+      }
 
       site.getPackages(req, (err, packages) => {
         site.getLectures(req, (err, lectures) => {
@@ -67,6 +72,8 @@ module.exports = function init(site) {
               booksList: books,
               guid: "",
               setting: setting,
+              notificationsCount: notificationsCount,
+              notificationsList: req.session.user.notificationsList.slice(0, 7),
               filter: site.getHostFilter(req.host),
               site_logo: setting.logo?.url || "/images/logo.png",
               page_image: setting.logo?.url || "/images/logo.png",
@@ -78,7 +85,6 @@ module.exports = function init(site) {
               page_description: setting.description.substr(0, 200),
               page_keywords: setting.keyWordsList.join(","),
             };
-
             if (req.hasFeature("host.com")) {
               data.site_logo = "https://" + req.host + data.site_logo;
               data.page_image = "https://" + req.host + data.page_image;

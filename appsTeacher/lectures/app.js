@@ -161,10 +161,18 @@ module.exports = function init(site) {
           name: "lectureView",
         },
         (req, res) => {
+          let notificationsCount = 0;
+          if(req.session.user) {
+            let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
+            notificationsCount = notifications.length
+          }
+
           let setting = site.getSiteSetting(req.host);
           setting.description = setting.description || "";
           setting.keyWordsList = setting.keyWordsList || [];
           let data = {
+            notificationsCount: notificationsCount,
+            notificationsList: req.session.user.notificationsList.slice(0, 7),
             setting: setting,
             guid: "",
             setting: setting,
@@ -196,10 +204,18 @@ module.exports = function init(site) {
           name: "lecturesView",
         },
         (req, res) => {
+          let notificationsCount = 0;
+          if(req.session.user) {
+            let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
+            notificationsCount = notifications.length
+          }
+
           let setting = site.getSiteSetting(req.host);
           setting.description = setting.description || "";
           setting.keyWordsList = setting.keyWordsList || [];
           let data = {
+            notificationsCount: notificationsCount,
+            notificationsList: req.session.user.notificationsList.slice(0, 7),
             setting: setting,
             guid: "",
             setting: setting,

@@ -230,8 +230,8 @@ app.controller("codes", function ($scope, $http, $timeout) {
   $scope.codesPrint = function (where) {
     if ($scope.busy) return;
     $scope.busy = true;
-    const v = site.validated('#printCodeData');
-   /*  if (!v.ok) {
+    const v = site.validated("#printCodeData");
+    /*  if (!v.ok) {
       $scope.error = v.messages[0].ar;
       console.log( v.messages,"ddddddddddddddddddddd");
       return;
@@ -255,10 +255,11 @@ app.controller("codes", function ($scope, $http, $timeout) {
               ip: "127.0.0.1",
               port: "60080",
               pageSize: "A4",
-              printer: "Microsoft Print to PDF",
+              printer: "Microsoft Print to PDF", 
+              dpi: { horizontal: 200, vertical: 640 },
             });
           }, 500);
-        /*   $timeout(() => {
+          /*   $timeout(() => {
             $scope.busy = false;
             $("#codesPrint").addClass("hidden");
           }, 8000); */

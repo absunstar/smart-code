@@ -43,55 +43,43 @@
     </style>
   </head>
 
-  <body class="##session.lang##" ng-controller="lectureView">
+  <body class="##session.lang##" ng-controller="centersView">
     <div x-replace="teacher-theme/header.html"></div>
-    <div x-import="lectures/takeQuizModal.html"></div>
-
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="row">
-          <h1 class="bold text-center">##word.Lecture##</h1>
+          <h1 class="bold text-center">##word.Centers##</h1>
         </div>
 
-        <div class="row">
+        <div class="row padding margin" ng-repeat="center in list">
           <div class="col2"></div>
-          <div class="col8">
+          <div class="col8 padding margin">
             <div class="recentlyConsultantsContanier">
               <ul class="recentlyConsultants row">
                 <li class="col recentlyConsultant">
                   <div style="display: ruby-text">
                     <a href="#">
-                      <p class="font-25">{{item.name}}</p>
-                      <b class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </b>
+                      <p class="font-25 center">{{center.name}}</p>
                     </a>
                   </div>
-                  <div class="consultantInfo">
-                    <div class="questionTime">
-                      <p class="font-16">
-                        <i class="fas fa-clock">{{item.$time}}</i>
-                      </p>
-                    </div>
-                  </div>
+                
                   <div class="separative"></div>
                   <div class="answerSection">
                     <div class="consultantAnswer">
-                      <p class="linesView font-20">{{item.description}}</p>
+                      <p class="linesView font-20">{{center.country.name}} - {{center.gov.name}} - {{center.city.name}} - {{center.area.name}}</p>
+                      <p class="linesView font-20">{{center.address}}</p>
                     </div>
                   </div>
-                  <div class="row" ng-show="quiz.id" x-permission="login">
-                    <p class="font-20">##word.The number of remaining exam times## : ( {{item.timesEnterQuiz - quiz.timesEnterQuiz}} )</p>
-                    <p class="font-20">##word.Quiz Degree## : ( {{quiz.userDegree}} % )</p>
-                  </div>
-                  <div class="row" x-permission="login">
-                    <i-button ng-repeat="link in item.linksList" type="view" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
-                  </div>
-                  <div class="row" x-permission="login">
-                    <button ng-click="showEnterCode()" ng-hide="item.$buy" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
-                    <button ng-click="startQuiz()" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
-                      ##word.Take A Quiz##
-                      <i class="fas fa-chalkboard-teacher"></i>
-                    </button>
-                  </div>
+                  <fieldset ng-repeat="d in center.daysList">
+                    <legend>{{d.day.name##session.lang##}}</legend>
+                    <div class="row padding margin" ng-repeat="appointment in d.appointmentsList">
+                      <p class="col3 font-19 bold">##word.From## : {{appointment.startTime |date:"hh:mm a"}}</p>
+                      <p class="col3 font-19 bold">##word.To## : {{appointment.endTime |date:"hh:mm a"}}</p>
+                    </div>
+                  </fieldset>
+                  <iframe  width="100%" id="location_{{center.id}}" src = "{{center.locationSrc}}"></iframe>
+
+                  <br />
                 </li>
               </ul>
             </div>
@@ -109,20 +97,16 @@
           <span class="close">&times;</span>
         </div>
         <div class="modal-body">
-          <p class="purchase-text">##data.setting.textPurchaseByCode##</p>
-          <fieldset>
-            <legend>##word.Code##</legend>
-            <i-control type="text" v="r" ng-model="code"></i-control>
-          </fieldset>
+          <i-control type="text" v="r" ng-model="code" label="##word.Code##"></i-control>
         </div>
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>
-          <i-button type="save" label="##word.Accept##" ng-click="buyLecture(item)"></i-button>
+          <i-button type="save" label="##word.Accept##" ng-click="buyBackage(center)"></i-button>
         </div>
       </div>
     </div>
     <div x-replace="teacher-theme/footer.html"></div>
     <div x-import="teacher-theme/scripts.html"></div>
-    <script x-import="lectures/lectureView.js"></script>
+    <script x-import="centers/centersView.js"></script>
   </body>
 </html>

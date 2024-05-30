@@ -19,7 +19,7 @@
 
       main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant {
         max-width: 100% !important;
-        height: 400px !important;
+        height: auto !important;
       }
 
       main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .numbersOfAnswerAndLawer .numbersOfAnswer {
@@ -57,8 +57,9 @@
 
                   <div class="separative"></div>
                   <div class="answerSection">
-                    <div class="consultantAnswer">
-                      <p class="linesView font-20">{{item.description}}</p>
+                    <div class=" row">
+                      <p class="linesView font-20 col6">{{item.description}}</p>
+                      <img class="col5" width="100% !important" height="400px !important" ng-src="{{item.image.url}}" alt="">
                     </div>
                   </div>
                   <div class="row">

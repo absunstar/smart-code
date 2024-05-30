@@ -120,3 +120,69 @@ p {
     height: 23vw !important;
     scrollbar-color: #2087e7 #e7e7e7
 }
+.notifacation-padge {
+  position: absolute;
+  background: red;
+  color: white;
+  width: 21px;
+  font-size: smaller;
+  padding: 2px;
+  border-radius: 50%;
+  text-align-last: center;
+  bottom: 25px;
+  left: 20px;
+}
+.notifacation-icon {
+  font-size: xx-large;
+  color: #2087e7;
+}
+
+.notification-menu {
+  display: none;
+  position: absolute;
+  width: 400px;
+  left: 109px;
+  top: 98px;
+  bottom: auto;
+  padding: 15px;
+  text-align: center;
+  border-top: none;
+  background: #f3f3f3;
+  border-radius: 40px 10px 10px 10px;
+  overflow: hidden;
+  border: #f1f1f1 solid;
+  z-index: 9999;
+}
+.notifacation-title {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 2px;
+  margin: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 80%;
+  text-overflow: ellipsis;
+}
+
+.notifacation-content {
+  font-size: 17px;
+  color: #616161;
+  overflow: hidden;
+  width: 90%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.notification-viewAll {
+  text-align: center;
+  color: #2087e7;
+  font-size: larger;
+  font-family: fantasy !important;
+}
+
+.separative{
+  height: 2px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) -0.09%, rgba(0, 0, 0, 0.20) 50.9%, rgba(0, 0, 0, 0.00) 99.81%);
+  margin-top: 5px !important;
+
+}

@@ -18,24 +18,23 @@
 }
 .code {
   color: #000;
-    font-size: smaller;
+    font-size: 11px;
     font-weight: bold;
     position: absolute;
     display: inline-grid;
-    transform: translate(151%, 180%);
+    transform: translate(170%, 220%);
 }
 .serial {
-    color: #000;
-    font-size: smaller;
-    font-weight: bold;
+  color: #000;
+    font-size: xx-small;
     position: absolute;
     display: inline-grid;
-    transform: translate(211px, 95px);
+    transform: translate(206px, 96px);
 }
 </style>
 <div class="container1" ng-repeat="sInvoice in codesList">
   <!-- <p ng-repeat="sInvoice in codesList"><span class="bold font-25">##word.Patient## : </span> <span class="font-20">{{sInvoice.code}}</span></p> -->
     <img class="logoPrint" ng-src="{{invoiceLogo}}" />
     <div class="code">{{sInvoice.code}}</div>
-    <div class="serial">{{sInvoice.id}}</div>
+    <div class="serial">{{1000 + sInvoice.id}}</div>
 </div>
