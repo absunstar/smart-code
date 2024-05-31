@@ -56,7 +56,7 @@ module.exports = function init(site) {
       //   return;
       // }
       let notificationsCount = 0;
-      if(req.session.user) {
+      if(req.session.user && req.session.user.notificationsList) {
         let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
         notificationsCount = notifications.length
       }
@@ -73,7 +73,7 @@ module.exports = function init(site) {
               guid: "",
               setting: setting,
               notificationsCount: notificationsCount,
-              notificationsList: req.session.user.notificationsList.slice(0, 7),
+              notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
               filter: site.getHostFilter(req.host),
               site_logo: setting.logo?.url || "/images/logo.png",
               page_image: setting.logo?.url || "/images/logo.png",

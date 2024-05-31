@@ -162,7 +162,7 @@ module.exports = function init(site) {
         },
         (req, res) => {
           let notificationsCount = 0;
-          if(req.session.user) {
+          if(req.session.user && req.session.user.notificationsList) {
             let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
             notificationsCount = notifications.length
           }
@@ -172,7 +172,7 @@ module.exports = function init(site) {
           setting.keyWordsList = setting.keyWordsList || [];
           let data = {
             notificationsCount: notificationsCount,
-            notificationsList: req.session.user.notificationsList.slice(0, 7),
+            notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
             setting: setting,
             guid: "",
             setting: setting,
@@ -205,7 +205,7 @@ module.exports = function init(site) {
         },
         (req, res) => {
           let notificationsCount = 0;
-          if(req.session.user) {
+          if(req.session.user && req.session.user.notificationsList) {
             let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
             notificationsCount = notifications.length
           }
@@ -215,7 +215,7 @@ module.exports = function init(site) {
           setting.keyWordsList = setting.keyWordsList || [];
           let data = {
             notificationsCount: notificationsCount,
-            notificationsList: req.session.user.notificationsList.slice(0, 7),
+            notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
             setting: setting,
             guid: "",
             setting: setting,

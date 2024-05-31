@@ -132,6 +132,7 @@ p {
   bottom: 25px;
   left: 20px;
 }
+
 .notifacation-icon {
   font-size: xx-large;
   color: #2087e7;
@@ -140,15 +141,15 @@ p {
 .notification-menu {
   display: none;
   position: absolute;
-  width: 400px;
+  width: 480px;
   left: 109px;
-  top: 98px;
+  top: 108px;
   bottom: auto;
-  padding: 15px;
   text-align: center;
   border-top: none;
-  background: #f3f3f3;
-  border-radius: 40px 10px 10px 10px;
+  background: white;
+  border-radius: 13px 13px 13px 13px;
+  box-shadow: 1px 2px 1px 0px #c9c9c9b3;
   overflow: hidden;
   border: #f1f1f1 solid;
   z-index: 9999;
@@ -185,4 +186,8 @@ p {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) -0.09%, rgba(0, 0, 0, 0.20) 50.9%, rgba(0, 0, 0, 0.00) 99.81%);
   margin-top: 5px !important;
 
+}
+
+.notifacation-data:hover {
+  background-color: #f2f2f2;
 }

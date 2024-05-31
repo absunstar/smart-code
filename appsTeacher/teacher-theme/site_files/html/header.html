@@ -25,7 +25,7 @@
         <i class="fas fa-search"></i>
       </button>
     </div>
-   <!--  <div class="orderButton btn" x-permissions="!login || client ">
+    <!--  <div class="orderButton btn" x-permissions="!login || client ">
       <p>##word.Request Consultation##</p>
       <i class="fas fa-bullhorn"></i>
     </div> -->
@@ -42,7 +42,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-       <!--  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <!--  <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
 
             <li class="nav-item dropdown">
@@ -72,33 +72,35 @@
     <div class="userContainer">
       <div class="profile" x-permission="login">
         <li class="nav-item dropdown">
-
-        <img src="##data.user_image##"  href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
-          <li><a class="dropdown-item" href="/profileEdit/##user.id##">##word.Manage My Page##</a></li>
-          <li><a class="dropdown-item"x-permissions="admin" href="/lectures">##word.Dashboard##</a></li>
-        </ul>
-      </li>
-    </div>
+          <img src="##data.user_image##" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
+            <li><a class="dropdown-item" href="/profileEdit/##user.id##">##word.Manage My Page##</a></li>
+            <li><a class="dropdown-item" x-permissions="admin" href="/lectures">##word.Dashboard##</a></li>
+          </ul>
+        </li>
+      </div>
       <a x-permission="!login" href="/login"> تسجيل الدخول </a>
       <a x-permission="!login" class="newRegister" href="/register"> مستخدم جديد </a>
     </div>
     <div class="notification-menu" style="display: none">
       <div class="profile" x-permission="login">
-        <div x-list1="notificationsList">
-          <p class="notifacation-title">##item1.title##</p>
-          <p class="notifacation-content">##item1.content##</p>
+        <div x-list1="notificationsList" class="pointer padding notifacation-data">
+          <a href="/notificationsView">
+            <div class="row">
+              <div class="col3"></div>
+              <div class="col9">
+                <p class="padding notifacation-title">##item1.title##</p>
+                <p class="padding notifacation-content">##item1.content##</p>
+              </div>
+            </div>
+          </a>
           <div class="separative"></div>
         </div>
         <a href="/notificationsView">
-          <p class="notification-viewAll">
-
-            ##word.View All##
-          </p>
+          <p class="notification-viewAll">##word.View All##</p>
         </a>
       </div>
     </div>
   </div>
- 
 </header>
