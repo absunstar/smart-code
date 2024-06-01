@@ -29,11 +29,14 @@ body {
 }
 .free img {
   margin: 5%;
+  margin-bottom: 0;
   width: 90%;
   height: 60%;
 }
 .free p {
   text-align: center;
+  background: var(--background1x);
+  color: var(--color1);
 }
 .free ins {
   margin: 0;
