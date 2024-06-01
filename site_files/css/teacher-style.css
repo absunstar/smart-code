@@ -136,7 +136,7 @@ legend {
 
 .scrollx-menu {
   padding: 10px !important;
-    overflow-x: scroll;
+    overflow-x: auto;
     flex-direction: column-reverse;
     height: 23vw !important;
     scrollbar-color: #2087e7 #e7e7e7

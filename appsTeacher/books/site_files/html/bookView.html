@@ -27,10 +27,7 @@
         height: 77px !important;
         font-size: 16px !important;
       }
-      .card {
-        width: 30vw !important;
-        height: 160px !important;
-      }
+    
       .btn {
         width: 100%;
       }
@@ -54,15 +51,15 @@
                   <div style="display: ruby-text">
                     <a href="#">
                       <p class="font-25">{{item.name}}</p>
-                      <b class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </b>
+                      <i class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </i>
                     </a>
                   </div>
 
                   <div class="separative"></div>
                   <div class="answerSection">
-                    <div class=" row">
-                      <p class="linesView font-20 col6">{{item.description}}</p>
-                      <img class="col5" width="100% !important" height="400px !important" ng-src="{{item.image.url}}" alt="">
+                    <div class="row">
+                      <p class="linesView font-20 padding margin col6">{{item.description}}</p>
+                      <img class="col5" width="100% !important" height="400px !important" ng-src="{{item.image.url}}" alt="" />
                     </div>
                   </div>
                   <div class="row">

@@ -163,9 +163,9 @@ module.exports = function init(site) {
         },
         (req, res) => {
           let notificationsCount = 0;
-          if(req.session.user && req.session.user.notificationsList) {
-            let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
-            notificationsCount = notifications.length
+          if (req.session.user && req.session.user.notificationsList) {
+            let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+            notificationsCount = notifications.length;
           }
           let setting = site.getSiteSetting(req.host);
           setting.description = setting.description || "";
@@ -205,9 +205,9 @@ module.exports = function init(site) {
         },
         (req, res) => {
           let notificationsCount = 0;
-          if(req.session.user && req.session.user.notificationsList) {
-            let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
-            notificationsCount = notifications.length
+          if (req.session.user && req.session.user.notificationsList) {
+            let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+            notificationsCount = notifications.length;
           }
           let setting = site.getSiteSetting(req.host);
           setting.description = setting.description || "";
@@ -479,6 +479,18 @@ module.exports = function init(site) {
 
   site.getPackages = function (req, callBack) {
     callBack = callBack || function () {};
+
+    let limit = req.body.limit || 7;
+    let select = req.body.select || {
+      id: 1,
+      name: 1,
+      image: 1,
+      description : 1,
+      price : 1,
+      totalLecturesPrice : 1,
+      date: 1,
+    };
+
     // let packages = [];
     // if (req.session.user && req.session.user.type == "student") {
     //   packages = site.packagesList.filter(
@@ -505,7 +517,7 @@ module.exports = function init(site) {
       where["active"] = true;
       where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
     }
-    app.$collection.findMany(where, (err, docs) => {
+    app.$collection.findMany({ where, select, limit }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];

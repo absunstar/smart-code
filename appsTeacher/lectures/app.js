@@ -113,8 +113,14 @@ module.exports = function init(site) {
           return;
         }
       }
+      let where = {};
+      if(_item._id) {
+        where._id = _item._id
+      } else {
+        where.id = _item.id
 
-      app.$collection.find({ id: _item.id }, (err, doc) => {
+      }
+      app.$collection.find(where, (err, doc) => {
         callback(err, doc);
 
         if (!err && doc) {
@@ -158,13 +164,35 @@ module.exports = function init(site) {
 
       site.get(
         {
+          name: "view-video",
+        },
+        (req, res) => {
+          app.$collection.find({_id :req.query.id}, (err, lecture) => {
+            if (!err && lecture) {
+             let video = lecture.linksList.find((itm) => itm.code == req.query.code)
+              res.render(
+                app.name + "/view-video.html",
+                {
+                  title: app.name,
+                  appName: req.word("Video"),
+                  setting: site.getSiteSetting(req.host),
+                  videoId: video.url.split('?v=')[1],
+                },
+                { parser: "html css js", compres: true }
+              );
+            }
+          });
+        }
+      );
+      site.get(
+        {
           name: "lectureView",
         },
         (req, res) => {
           let notificationsCount = 0;
-          if(req.session.user && req.session.user.notificationsList) {
-            let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
-            notificationsCount = notifications.length
+          if (req.session.user && req.session.user.notificationsList) {
+            let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+            notificationsCount = notifications.length;
           }
 
           let setting = site.getSiteSetting(req.host);
@@ -205,9 +233,9 @@ module.exports = function init(site) {
         },
         (req, res) => {
           let notificationsCount = 0;
-          if(req.session.user && req.session.user.notificationsList) {
-            let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
-            notificationsCount = notifications.length
+          if (req.session.user && req.session.user.notificationsList) {
+            let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+            notificationsCount = notifications.length;
           }
 
           let setting = site.getSiteSetting(req.host);
@@ -363,6 +391,17 @@ module.exports = function init(site) {
             },
             (err, user) => {
               if (!err && user) {
+                if (_data.socialBrowserID) {
+                  if (user.socialBrowserID) {
+                    if (user.socialBrowserID != _data.socialBrowserID) {
+                      response.error = "The video cannot be watched due to a new device. Please contact support";
+                      res.json(response);
+                      return;
+                    }
+                  } else {
+                    user.socialBrowserID = _data.socialBrowserID;
+                  }
+                }
                 let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
                 if (index !== -1) {
                   if (user.viewsList[index].views >= doc.numberViews && doc.typeExpiryView.name == "number") {
@@ -569,6 +608,15 @@ module.exports = function init(site) {
 
   site.getLectures = function (req, callBack) {
     callBack = callBack || function () {};
+    let limit = req.body.limit || 7;
+        let select = req.body.select || {
+          id: 1,
+          name: 1,
+          image: 1,
+          description : 1,
+          price : 1,
+          date: 1,
+        };
     // let lectures = [];
     // if (req.session.user && req.session.user.type == "student") {
     //   lectures = site.lecturesList.filter(
@@ -593,7 +641,7 @@ module.exports = function init(site) {
 
       where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
     }
-    app.$collection.findMany(where, (err, docs) => {
+    app.$collection.findMany({where,select, limit}, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];
