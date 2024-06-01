@@ -115,9 +115,9 @@ p {
 
 .scrollx-menu {
   padding: 10px !important;
-    overflow-x: scroll;
+    overflow-x: auto;
     flex-direction: column-reverse;
-    height: 23vw !important;
+    height: 25vw !important;
     scrollbar-color: #2087e7 #e7e7e7
 }
 .notifacation-padge {
@@ -163,6 +163,12 @@ p {
   white-space: nowrap;
   width: 80%;
   text-overflow: ellipsis;
+}
+
+.notifacation-logo {
+  height: 100%;
+    border-radius: 50%;
+    padding: 1px;
 }
 
 .notifacation-content {

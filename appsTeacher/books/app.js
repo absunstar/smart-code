@@ -453,6 +453,15 @@ module.exports = function init(site) {
 
   site.getBooks = function (req, callBack) {
     callBack = callBack || function () {};
+    let limit = req.body.limit || 7;
+    let select = req.body.select || {
+      id: 1,
+      name: 1,
+      image: 1,
+      description : 1,
+      price : 1,
+      date: 1,
+    };
     // let books = [];
     // if (req.session.user && req.session.user.type == "student") {
     //   books = site.booksList.filter(
@@ -471,7 +480,7 @@ module.exports = function init(site) {
       where["host"] = site.getHostFilter(req.host);
       where["active"] = true;
     }
-    app.$collection.findMany(where, (err, docs) => {
+    app.$collection.findMany({where,select, limit}, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];

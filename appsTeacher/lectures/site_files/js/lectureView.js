@@ -56,7 +56,6 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           site.resetValidated("#codeModal");
           $scope.code = "";
           $scope.item = response.data.doc;
-
         } else {
           $scope.errorCode = response.data.error;
         }
@@ -91,27 +90,40 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
   };
 
   $scope.openVideo = function (link) {
-    $scope.error ='';
-      $scope.busy = true;
+    if (!window.SOCIALBROWSER) {
+      site.showModal("#socialBrowserModal");
+      return;
+    }
+
+    $scope.error = "";
+    $scope.busy = true;
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/lectures/changeView`,
       data: {
-        "code": link.code,
-        "id": site.toNumber("##query.id##"),
+        socialBrowserID: SOCIALBROWSER.var.core.id,
+        code: link.code,
+        id: site.toNumber("##query.id##"),
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          let code_injected = `/*##lectures/custom-youtube-video.js*/`;
+          code_injected += 'youtubeRun();';
           SOCIALBROWSER.ipc("[open new popup]", {
-            url: link.url,
+            url: document.location.origin + "/view-video?code=" + link.code + "&id=" + $scope.item._id,
+            eval: code_injected,
             show: true,
             center: true,
+            allowMenu: false,
+            allowWindows: false,
+            allowDev: false,
+            width: 800,
+            height: 800,
           });
         } else {
           $scope.error = response.data.error;
-
         }
       },
       function (err) {
@@ -119,7 +131,6 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
-  
   };
 
   $scope.finishQuiz = function (quiz) {
@@ -186,7 +197,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
   };
 
   $scope.startQuizTime = function (type) {
-    $scope.error ='';
+    $scope.error = "";
     let minute = $scope.item.quizDuration - 1;
     let secound = 59;
     if (type == "start") {
@@ -197,11 +208,9 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         clearInterval(timeQuizInterval);
       }
       if ("##session.lang##" == "Ar") {
-        document.getElementById("timer").innerHTML =
-          "##word.Remaining Time##" + " ( " + secound + " : " + minute + " ) ";
+        document.getElementById("timer").innerHTML = "##word.Remaining Time##" + " ( " + secound + " : " + minute + " ) ";
       } else {
-        document.getElementById("timer").innerHTML =
-          "##word.Remaining Time##" + " ( " + minute + " : " + secound + " ) ";
+        document.getElementById("timer").innerHTML = "##word.Remaining Time##" + " ( " + minute + " : " + secound + " ) ";
       }
       secound--;
       if (secound == 0) {

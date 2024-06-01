@@ -71,9 +71,9 @@
                       <s class="red left font-22 bold padding"
                         >{{item.totalLecturesPrice}}</s
                       >
-                      <b class="left font-22 green bold padding mainColor">
+                      <i class="left font-22 green bold padding mainColor">
                         ##word.$##  {{item.price}}
-                      </b>
+                      </i>
                     </a>
                   </div>
                   <div class="consultantInfo">
@@ -85,8 +85,9 @@
                   </div>
                   <div class="separative"></div>
                   <div class="answerSection">
-                    <div class="consultantAnswer">
-                      <p class="linesView font-20">{{item.description}}</p>
+                    <div class="row">
+                      <p class="linesView font-20 padding margin col6">{{item.description}}</p>
+                      <img class="col5" width="100% !important" height="400px !important" ng-src="{{item.image.url}}" alt="" />
                     </div>
                   </div>
                   <div class="row">
@@ -106,9 +107,9 @@
               <div class="card" ng-repeat="l in item.lecturesList">
                 <img class="" loading="lazy" ng-src="{{l.lecture.image.url}}" />
                 <p class="center">
-                  <b class="card-number bold">
+                  <i class="card-number bold">
                     ##word.$## {{l.lecture.price}}
-                  </b>
+                  </i>
                 </p>
 
                 <p class="userPrint card-title bold">{{l.lecture.name}}</p>

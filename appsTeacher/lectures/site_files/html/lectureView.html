@@ -64,8 +64,10 @@
                 <li class="col recentlyConsultant">
                   <div style="display: ruby-text">
                     <a href="#">
-                      <p class="font-25">{{item.name}}</p>
-                      <b class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </b>
+                      <p class="font-25">{{item.name}}
+                        
+                      </p>
+                      <i class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </i>
                     </a>
                   </div>
                   <div class="consultantInfo">
@@ -77,8 +79,9 @@
                   </div>
                   <div class="separative"></div>
                   <div class="answerSection">
-                    <div class="consultantAnswer">
-                      <p class="linesView font-20">{{item.description}}</p>
+                    <div class="row">
+                      <p class="linesView font-20 padding margin col6">{{item.description}}</p>
+                      <img class="col5" width="100% !important" height="400px !important" ng-src="{{item.image.url}}" alt="" />
                     </div>
                   </div>
                   <div class="row" ng-show="quiz.id" x-permission="login">
@@ -121,6 +124,22 @@
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>
           <i-button type="save" label="##word.Accept##" ng-click="buyLecture(item)"></i-button>
+        </div>
+      </div>
+    </div>
+    <div id="socialBrowserModal" class="modal codeModal small">
+      <div class="modal-content height-auto">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <p class="bold center font-20">##word.Please download a social browser to watch the video through the link below##</p>
+          <a href="https://social-browser.com/" target="_blank">
+            <p class="center bold blue font-22 padding margin">https://social-browser.com</p>
+          </a>
+        </div>
+        <div class="modal-footer center">
+          <p class="error">{{errorCode}}</p>
         </div>
       </div>
     </div>

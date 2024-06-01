@@ -19,7 +19,7 @@ main .content .recentlyConsultantsContanier .recentlyConsultants{
 
 main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant{
     max-width: 316px;
-    height: 300px;
+    height: 345px;
     flex-shrink: 0;
     border-radius: 8px;
     background: var(--main-background-color2);
@@ -48,6 +48,7 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
 
     width: 100%;
     height: 2px;
+    display: flex;
     flex-shrink: 0;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) -0.09%, rgba(0, 0, 0, 0.20) 50.9%, rgba(0, 0, 0, 0.00) 99.81%);
     margin-top: 8px !important;
@@ -108,7 +109,11 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
 
 main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .consultantAnswer{
     max-width: 80ch;
+    overflow: hidden;
     padding: 20px;
+    height: 90px !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .consultantAnswer p{
@@ -151,4 +156,24 @@ main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsul
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+}
+
+.img-recentlyConsultants {
+    height: 59%;
+    width: 100%;
+    border-radius: 1px 0px 10px 10px;
+}
+
+.name-recentlyConsultants {
+    overflow: hidden;
+    width: 60% !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: absolute;
+    display: -webkit-box;
+}
+.clock-recentlyConsultants {
+    margin-top: 19px;
+    color: #b9adad;
+    font-size: smaller;
 }
