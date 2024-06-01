@@ -23,9 +23,12 @@ body {
   position: relative;
 }
 .free img {
-  margin: 0;
-  width: 100%;
-  height: 100%;
+  margin: 5%;
+  width: 90%;
+  height: 70%;
+}
+.free p {
+  text-align: center;
 }
 .free ins {
   margin: 0;
