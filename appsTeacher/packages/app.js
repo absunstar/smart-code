@@ -479,6 +479,7 @@ module.exports = function init(site) {
 
   site.getPackages = function (req, callBack) {
     callBack = callBack || function () {};
+    site.packagesList = [];
 
     let limit = req.body.limit || 7;
     let select = req.body.select || {
@@ -522,7 +523,7 @@ module.exports = function init(site) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];
           if (!site.packagesList.some((k) => k.id === doc.id)) {
-            doc.$time = site.xtime(doc.date, "Ar");
+            doc.time = site.xtime(doc.date, "Ar");
 
             site.packagesList.push(doc);
           }

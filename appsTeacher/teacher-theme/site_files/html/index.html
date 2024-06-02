@@ -11,21 +11,96 @@
             <img src=" " alt="" srcset="" />
           </div>
 
-          <div class="recentlyConsultantsContanier">
-            <div class="recentlyConsultantsTitle">
-              <p class="headTitle">##word.Packages##</p>
-              <a href="/packagesView" class="viewAll">##word.View All##</a>
+          <div id="panner1">
+            <div class="callgafl">
+              <a href="/packagesView"><span class="number">##word.View All##</span></a> ##word.Packages##<span class="arrowLeft"></span><span class="arrowRight"></span>
             </div>
-            <ul class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
+          </div>
+          <div class="scrollx-menu">
+            <figure class="image-block" x-list1="packagesList">
+              <p class="name">##item1.name##</p>
+              <img src="##item1.image.url##" alt="" />
+              <figcaption>
+                <!--   <h3>
+                  ##word.More Info##
+                </h3> -->
+                <p>##item1.description##</p>
+                <div class="row">
+                  <a class="col-6" href="/packageView?id=##item1.id##">
+                    <button>##word.view##</button>
+                  </a>
+
+                  <i class="price col-6"
+                    >##word.$## ##item1.price##
+                    <s class="red">##item1.totalLecturesPrice##</s>
+                  </i>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!--   <div class="panel">
+              <div class="ring">
+                <div class="card card1"></div>
+                <div class="border">
+                  <p class="title">Brazil</p>
+                  <div class="slide">
+                    <h6 class="para">Latest Deals from Heathrow</h6>
+                    <div class="line">
+                      <h6 class="para">OUT</h6> <i class="fa fa-plane" aria-hidden="true"></i>
+                      <h6 class="para">£849</h6>
+                    </div>
+                    <div class="line">
+                      <h6 class="para">RTN</h6> <i class="fa fa-plane" aria-hidden="true"></i>
+                      <h6 class="para">£659</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+          <!-- 
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap" rel="stylesheet" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+            <div class="card" x-list1="packagesList">
+              <img src="##item1.image.url##" alt="" />
+              <div class="card-content">
+                <h2>##item1.name##</h2>
+                <p>
+                  ##item1.description##
+                </p>
+                <a href="#" class="button">
+                  Find out more
+                  <span class="material-symbols-outlined"> arrow_right_alt </span>
+                </a>
+              </div>
+            </div> -->
+
+          <!--      <div class="card" x-list1="packagesList">
+              <img src="##item1.image.url##" style="width: 100%" />
+              <p class="card-name">##item1.name##</p>
+              <div class="separative"></div>
+              <div class="card-info">
+                <i class="price">##word.$## ##item1.price## </i>
+                <s class="red padding">##item1.totalLecturesPrice##</s>
+                <i class="fas fa-clock right clock-recentlyConsultants">##item1.time##</i>
+              </div>
+              <p class="card-disc">##item1.description##</p>
+              <p><button>##word.View##</button></p>
+            </div>
+ -->
+          <!--  <ul class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
               <li class="col recentlyConsultant" x-list1="packagesList">
                 <div class="consultantTitle">
                   <a href="/packageView?id=##item1.id##">
                     <p>
                       <i class="name-recentlyConsultants">##item1.name##</i>
-                      <s class="red font-16 left bold padding">##item1.totalLecturesPrice##</s>
+
                       <i class="left green bold padding mainColor"> ##word.$## ##item1.price## </i>
                     </p>
-                 
                   </a>
                 </div>
                 <div class="consultantInfo">
@@ -34,7 +109,7 @@
                   </div>
 
                   <div class="questionTime">
-                    <i class="fas fa-clock clock-recentlyConsultants">##item1.$time##</i>
+                    <i class="fas fa-clock clock-recentlyConsultants">##item1.time##</i>
                   </div>
 
                   <div class="questionView"></div>
@@ -51,8 +126,7 @@
                   <div class="goodAnswer"></div>
                 </div>
               </li>
-            </ul>
-          </div>
+            </ul> -->
 
           <div class="recentlyConsultantsContanier" ng-show="'##user.placeType##' == 'offline'">
             <div class="recentlyConsultantsTitle">
@@ -75,8 +149,7 @@
                   </div>
 
                   <div class="questionTime">
-                    <i class="fas fa-clock clock-recentlyConsultants">##item1.$time##</i>
-
+                    <i class="fas fa-clock clock-recentlyConsultants">##item1.time##</i>
                   </div>
                 </div>
                 <div class="separative"></div>
@@ -99,6 +172,39 @@
               <p class="headTitle">##word.Books##</p>
               <a href="/booksView" class="viewAll">##word.View All##</a>
             </div>
+
+            <div class="nft" x-list1="booksList">
+              <div class="main">
+                <img class="tokenImage" src="##item1.image.url##" alt="NFT" />
+                <h2>##item1.name##</h2>
+                <p class="description">##item1.description##</p>
+                <div class="tokenInfo">
+                  <div class="price">
+                    <ins>##word.$##</ins>
+                    <p>##item1.price##</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--  <div class="wrap animate pop" x-list1="booksList">
+              <div class="overlay">
+                <div class="overlay-content animate slide-left delay-2">
+                  <h1 class="animate slide-left pop delay-4">##item1.name##</h1>
+                  <p class="animate slide-left pop delay-5" style="color: white; margin-bottom: 2.5rem">Kingdom: <em>Plantae</em></p>
+                </div>
+                <div class="image-content animate slide delay-5"></div>
+                <div class="dots animate">
+                  <div class="dot animate slide-up delay-6"></div>
+                  <div class="dot animate slide-up delay-7"></div>
+                  <div class="dot animate slide-up delay-8"></div>
+                </div>
+              </div>
+              <div class="text">
+                <p><img class="inset" src="##item1.image.url##" alt="" />##item1.description##</p>
+              </div>
+            </div> -->
+            <!-- 
             <ul class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
               <li class="col recentlyConsultant" x-list1="booksList">
                 <div class="consultantTitle">
@@ -127,14 +233,15 @@
                 </div>
               </li>
             </ul>
-          </div>
+          </div> -->
 
-          <!-- <div ng-click="changeLang('Ar')" class=" cricleConsultantAskConatainer cricleChangeLangConatainer">
+            <!-- <div ng-click="changeLang('Ar')" class=" cricleConsultantAskConatainer cricleChangeLangConatainer">
             <div class="cricleConsultantAsk">
               <i class="fas fa-language"></i>
               <p>عربي</p>
             </div>
-          </div> -->
+            -->
+          </div>
         </div>
         <div class="sidebarContainer col-lg-3">
           <div x-replace="teacher-theme/sidebar.html"></div>

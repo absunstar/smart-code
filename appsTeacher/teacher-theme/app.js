@@ -60,7 +60,6 @@ module.exports = function init(site) {
         let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
         notificationsCount = notifications.length
       }
-
       site.getPackages(req, (err, packages) => {
         site.getLectures(req, (err, lectures) => {
           site.getBooks(req, (err, books) => {

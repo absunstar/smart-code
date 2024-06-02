@@ -115,12 +115,16 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
             url: document.location.origin + "/view-video?code=" + link.code + "&id=" + $scope.item._id,
             eval: code_injected,
             show: true,
+            iframe : true,
             center: true,
             allowMenu: false,
             allowWindows: false,
+            allowAudio: true,
             allowDev: false,
             width: 800,
             height: 800,
+            security: true,
+            $timeout: 5000,
           });
         } else {
           $scope.error = response.data.error;
