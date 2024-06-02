@@ -532,10 +532,7 @@ module.exports = function init(site) {
   });
 
   site.post("/api/usersTypesList", (req, res) => {
-    let list = [];
-    if (!site.getCompanySetting(req).showHospital) {
-      site.usersTypesList.splice(4, 1);
-    }
+  
     res.json({
       done: true,
       list: site.usersTypesList,
@@ -633,7 +630,6 @@ module.exports = function init(site) {
   });
   site.post("/api/salesCategories", (req, res) => {
     if (
-      site.getCompanySetting(req).showRestaurant &&
       site.salesCategories.length == 2
     ) {
       site.salesCategories.push({
