@@ -172,6 +172,7 @@
               <img class="d-flex col-sm-3" src="##item1.$imageURL##" alt="" />
               <p class="d-flex col-sm-9">##item1.$title##</p>
             </a>
+            <div x-data="setting.showSideAd" x-import="theme1/ad-social.html" class="related-tags"></div>
             <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
           </div>
         </div>
@@ -181,7 +182,7 @@
             <div x-import="theme1/related.html"></div>
           </div>
 
-          <div class="d-none d-lg-flex col-lg-3 mt-3 justify-content-center justify-content-center align-items-center p-0 m-0">
+          <div class="d-none d-lg-flex col-lg-3 mt-3 justify-content-center justify-content-center align-items-center p-0 m-0 flex-column">
             <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
           </div>
         </div>
