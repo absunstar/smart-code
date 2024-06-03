@@ -3,7 +3,15 @@
   <head x-import="teacher-theme/head.html">
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
-    <style></style>
+    <style>
+      figure  {
+        figcaption {
+          .price {
+            left : 10px !important
+          } 
+        }
+      }
+    </style>
   </head>
 
   <body class="##session.lang##" ng-controller="packagesView">
@@ -28,14 +36,14 @@
                 <figcaption>
                   <p>{{item.description}}</p>
                   <div class="row">
-                    <a class="col-6" href="/packageView?id={{item.id}}">
-                      <button>##word.More##..</button>
-                    </a>
-
                     <i class="price col-6"
                       >##word.$## {{item.price}}
                       <s class="red">{{item.totalLecturesPrice}}</s>
                     </i>
+
+                    <a class="col-6" href="/packageView?id={{item.id}}">
+                      <button>##word.More##..</button>
+                    </a>
                   </div>
                 </figcaption>
               </figure>

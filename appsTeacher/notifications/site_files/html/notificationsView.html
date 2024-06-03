@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
     <style>
-      .card {
+    /*   .card {
         width: 70vw !important;
         margin: 2vw !important;
         height: 18vw !important;
@@ -25,8 +25,91 @@
       }
       .site-name {
         padding: 10px;
-    font-size: x-large;
-    display: inline-block;
+        font-size: x-large;
+        display: inline-block;
+      }
+ */
+      @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background: #eff1f3;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      .section-50 {
+        padding: 50px 0;
+      }
+
+      .m-b-50 {
+        margin-bottom: 50px;
+      }
+
+      .dark-link {
+        color: #333;
+      }
+
+      .heading-line {
+        position: relative;
+        padding-bottom: 5px;
+      }
+
+      .heading-line:after {
+        content: "";
+        height: 4px;
+        width: 75px;
+        background-color: #29b6f6;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
+      .notification-ui_dd-content {
+        margin-bottom: 30px;
+      }
+
+      .notification-list {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 20px;
+        margin-bottom: 7px;
+        background: #fff;
+        -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+      }
+
+      .notification-list--unread {
+        border-left: 2px solid #29b6f6;
+      }
+
+      .notification-list .notification-list_content {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .notification-list .notification-list_content .notification-list_img img {
+        height: 48px;
+        width: 48px;
+        border-radius: 50px;
+        margin-right: 20px;
+      }
+
+      .notification-list .notification-list_content .notification-list_detail p {
+        margin: 7px !important;
+        line-height: 1.2;
+      }
+
+      .notification-list .notification-list_feature-img img {
+        height: 48px;
+        width: 48px;
+        border-radius: 5px;
+        margin-left: 20px;
       }
     </style>
   </head>
@@ -36,54 +119,42 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="row">
-          <h1 class="bold text-center">##word.Notifications##</h1>
-        </div>
-        <div class="row">
+          <h1 class="m-b-50 heading-line center">##word.Notifications## <i class="fa fa-bell text-muted"></i> </h1>
           <i-button label="##word.Delete All##" type="delete" ng-click="updateStudentNotifications('deleteAll')"></i-button>
         </div>
-        <fieldset>
-          <div class="row">
-            <div class="card" ng-repeat="item in user.notificationsList">
-              <div class="time-publish card-name margin padding">
-                <i class="fas fa-clock"> {{item.$time}} </i>
-              </div>
-               <p>
-                 <img class="" loading="lazy" ng-src="##data.site_logo##" />
-                 <b class="site-name">
 
-                   ##data.site_name##
-                  </b>
-                </p>
+        <section class="section-50">
+          <div class="container">
 
-              <p class="userPrint card-title bold">{{item.title}}</p>
-
-              <p class="userPrint linesView card-content bold">{{item.content}}</p>
-              <div class="row">
-                <i-button title="##word.Delete##" type="delete" ng-click="updateStudentNotifications('deleteOne',item.id)"></i-button>
+            <div class="notification-ui_dd-content">
+              <div class="notification-list notification-list--unread" ng-repeat="item in user.notificationsList">
+                <div class="notification-list_content">
+                  <div class="notification-list_img">
+                    <img src="##data.user_image##" alt="user" />
+                  </div>
+                  <div class="notification-list_detail">
+                    <p class="font-21"><b class="padding margin">##data.site_name##</b>{{item.title}}</p>
+                    <p class="text-muted font-19">{{item.content}}</p>
+                    <p class="text-muted">
+                      <small> <i class="fas fa-clock"> {{item.$time}} </i></small>
+                    </p>
+                  </div>
+                </div>
+                <div class="notification-list_feature-img">
+                  <img ng-src="{{item.image.url}}" alt="Feature image" />
+                  <i-button title="##word.Delete##" type="delete" ng-click="updateStudentNotifications('deleteOne',item.id)"></i-button>
+                </div>
               </div>
             </div>
           </div>
-        </fieldset>
+        </section>
 
         <div class="row">
           <h2 class="bold center red">{{error}}</h2>
         </div>
       </div>
     </main>
-    <div id="codeModal" class="modal codeModal small">
-      <div class="modal-content height-auto">
-        <div class="modal-header">
-          <span class="close">&times;</span>
-        </div>
-        <div class="modal-body">
-          <i-control type="text" v="r" ng-model="code" label="##word.Code##"></i-control>
-        </div>
-        <div class="modal-footer center">
-          <p class="error">{{errorCode}}</p>
-          <i-button type="save" label="##word.Accept##" ng-click="buyBackage(item)"></i-button>
-        </div>
-      </div>
-    </div>
+
     <div x-replace="teacher-theme/footer.html"></div>
     <div x-import="teacher-theme/scripts.html"></div>
     <script x-import="notifications/notificationsView.js"></script>
