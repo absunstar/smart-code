@@ -75,7 +75,7 @@
           <img src="##data.user_image##" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
-            <li><a class="dropdown-item" href="/profileEdit/##user.id##">##word.Manage My Page##</a></li>
+            <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##">##word.Manage My Page##</a></li>
             <li><a class="dropdown-item" x-permissions="admin" href="/lectures">##word.Dashboard##</a></li>
           </ul>
         </li>

@@ -86,7 +86,7 @@
                   </div>
                   <div class="row" ng-show="quiz.id" x-permission="login">
                     <p class="font-20">##word.The number of remaining exam times## : ( {{item.timesEnterQuiz - quiz.timesEnterQuiz}} )</p>
-                    <p class="font-20">##word.Quiz Degree## : ( {{quiz.userDegree}} % )</p>
+                    <p class="font-20">##word.Quiz Degree## : ( {{quiz.userDegree | xmoney2}} % )</p>
                   </div>
                   <div class="row" x-permission="login">
                     <i-button ng-repeat="link in item.linksList" type="view" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
@@ -132,8 +132,9 @@
         <div class="modal-header">
           <span class="close">&times;</span>
         </div>
-        <div class="modal-body">
+        <div class="modal-body center">
           <p class="bold center font-20">##word.Please download a social browser to watch the video through the link below##</p>
+          <i class="fas fa-arrow-down padding margin font-25"></i>
           <a href="https://social-browser.com/" target="_blank">
             <p class="center bold blue font-22 padding margin">https://social-browser.com</p>
           </a>

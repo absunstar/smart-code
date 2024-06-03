@@ -52,7 +52,7 @@
         <tr ng-repeat="item in list">
           <td class="center">{{item.user.firstName}}</td>
           <td class="center">{{item.lecture.name}}</td>
-          <td class="center">{{item.userDegree}} %</td>
+          <td class="center">{{item.userDegree | xmoney2}} %</td>
           <td class="center not-print">
             <i-button
               type="view"

@@ -3,7 +3,7 @@ if ((btn = document.querySelector("#" + "##query.btn##"))) {
 }
 app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-
+  console.log("##query.id##");
   $scope.displayUser = function () {
     $scope.busy = true;
     $scope.error = "";
@@ -11,7 +11,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/user/view",
       data: {
-        id: site.toNumber("##params.id##"),
+        _id: "##query.id##",
       },
     }).then(
       function (response) {
@@ -235,7 +235,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.lecturesList = response.data.list;
-          console.log($scope.lecturesList);
         } else {
           $scope.error = response.data.error;
         }

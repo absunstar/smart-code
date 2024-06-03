@@ -8,7 +8,7 @@ app.controller("bookView", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/books/view`,
       data: {
-        id: site.toNumber("##query.id##"),
+        _id: "##query.id##",
       },
     }).then(
       function (response) {

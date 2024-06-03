@@ -287,47 +287,51 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
     // if (!req.session.user) {
     //   response.error = 'You Are Not Login';
     //   res.json(response);
     //   return;
     // }
-
-    site.security.getUser(
-      {
+    let where = {};
+    if (req.body.id) {
+      where = {
         id: req.body.id,
-      },
-      (err, doc) => {
-        if (!err && doc) {
-          response.done = true;
+      };
+    } else if (req.body._id) {
+      where = {
+        _id: site.mongodb.ObjectID(req.body._id),
+      };
+    }
 
-          if (doc.createdDate) {
-            doc.$createdDate = site.xtime(doc.createdDate, req.session.lang);
-          }
-          let date = new Date(doc.visit_date);
-          date.setMinutes(date.getMinutes() + 1);
-          if (new Date() < date) {
-            doc.$isOnline = true;
-          } else {
-            doc.$isOnline = false;
-            if (doc.visitDate) {
-              doc.$lastSeen = site.xtime(doc.visitDate, req.session.lang);
-            }
-          }
-          if (req.body.type == "notifications") {
-            for (let i = 0; i < doc.notificationsList.length; i++) {
-              doc.notificationsList[i].$time = site.xtime(doc.notificationsList[i].date, req.session.lang);
-            }
-          }
+    site.security.getUser(where, (err, doc) => {
+      if (!err && doc) {
+        response.done = true;
 
-          response.doc = doc;
-        } else if (err) {
-          response.error = err.message;
+        if (doc.createdDate) {
+          doc.$createdDate = site.xtime(doc.createdDate, req.session.lang);
         }
-        res.json(response);
+        let date = new Date(doc.visit_date);
+        date.setMinutes(date.getMinutes() + 1);
+        if (new Date() < date) {
+          doc.$isOnline = true;
+        } else {
+          doc.$isOnline = false;
+          if (doc.visitDate) {
+            doc.$lastSeen = site.xtime(doc.visitDate, req.session.lang);
+          }
+        }
+        if (req.body.type == "notifications") {
+          for (let i = 0; i < doc.notificationsList.length; i++) {
+            doc.notificationsList[i].$time = site.xtime(doc.notificationsList[i].date, req.session.lang);
+          }
+        }
+
+        response.doc = doc;
+      } else if (err) {
+        response.error = err.message;
       }
-    );
+      res.json(response);
+    });
   });
 
   site.post("/api/user/register", (req, res) => {

@@ -115,7 +115,13 @@ module.exports = function init(site) {
         }
       }
 
-      app.$collection.find({ id: _item.id }, (err, doc) => {
+      let where = {};
+      if (_item._id) {
+        where._id = _item._id;
+      } else {
+        where.id = _item.id;
+      }
+      app.$collection.find(where, (err, doc) => {
         callback(err, doc);
 
         if (!err && doc) {
@@ -162,11 +168,10 @@ module.exports = function init(site) {
           name: "bookView",
         },
         (req, res) => {
-
           let notificationsCount = 0;
-          if(req.session.user && req.session.user.notificationsList) {
-            let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
-            notificationsCount = notifications.length
+          if (req.session.user && req.session.user.notificationsList) {
+            let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+            notificationsCount = notifications.length;
           }
 
           let setting = site.getSiteSetting(req.host);
@@ -458,8 +463,8 @@ module.exports = function init(site) {
       id: 1,
       name: 1,
       image: 1,
-      description : 1,
-      price : 1,
+      description: 1,
+      price: 1,
       date: 1,
     };
     // let books = [];
@@ -480,7 +485,7 @@ module.exports = function init(site) {
       where["host"] = site.getHostFilter(req.host);
       where["active"] = true;
     }
-    app.$collection.findMany({where,select, limit}, (err, docs) => {
+    app.$collection.findMany({ where, select, limit }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];

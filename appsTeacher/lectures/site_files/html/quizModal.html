@@ -18,7 +18,7 @@
           <fieldset class="row padding margin" ng-repeat="question in item.questionsList">
             <div class="row">
               <div class="col1"><p class="character-style">{{question.numbering}}</p></div>
-              <i-list label="##word.Question Type##" class="col4" ng-model="question.questionType" display="name##session.lang##" items="questionTypesList"></i-list>
+              <i-list label="##word.Question Type##"primary="name" class="col4" ng-model="question.questionType" display="name##session.lang##" items="questionTypesList"></i-list>
               <i-image class="img128 col4" ng-show="question.questionType.name == 'photo'" ng-model="question.image"></i-image>
 
               <i-button class="col2" type="delete" ng-click=" item.questionsList.splice($index,1)"> </i-button>

@@ -101,6 +101,7 @@ module.exports = function init(site) {
       }
     );
   };
+  
   app.view = function (_item, callback) {
     if (callback) {
       if (app.allowMemory) {
@@ -114,8 +115,14 @@ module.exports = function init(site) {
           return;
         }
       }
+      let where = {};
+      if(_item._id) {
+        where._id = _item._id
+      } else {
+        where.id = _item.id
+      }
 
-      app.$collection.find({ id: _item.id }, (err, doc) => {
+      app.$collection.find(where, (err, doc) => {
         callback(err, doc);
 
         if (!err && doc) {
@@ -326,7 +333,7 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if (req.session.user && req.session.user.packagesList && req.session.user.packagesList.some((s) => s == doc.id)) {
+            if (req.session.user && req.session.user.packagesList && req.session.user.packagesList.some((s) => s.toString() == doc._id.toString())) {
               doc.$buy = true;
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
@@ -397,7 +404,7 @@ module.exports = function init(site) {
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student" && req.session.user.packagesList) {
             let idList = req.session.user.packagesList.map((_item) => _item);
-            where["id"] = {
+            where["_id"] = {
               $in: idList,
             };
           }
@@ -442,16 +449,16 @@ module.exports = function init(site) {
                   user.packagesList = user.packagesList || [];
                   user.lecturesList = user.lecturesList || [];
                   doc.lecturesList.forEach((_l) => {
-                    if (!user.lecturesList.some((l) => l.id == _l.lecture.id)) {
+                    if (!user.lecturesList.some((l) => l.id == _l.lecture._id)) {
                       user.lecturesList.push({
-                        lectureId: _l.lecture.id,
+                      lectureId: site.mongodb.ObjectID(_l.lecture._id),
                       });
                     }
                   });
-                  user.packagesList.push(_data.packageId);
+                  user.packagesList.push(doc._id);
                   site.addPurchaseOrder({
                     type: "package",
-                    target: { id: doc.id, name: doc.name },
+                    target: { id: doc._id, name: doc.name },
                     code: _data.code,
                     price: doc.price,
                     date: new Date(),
@@ -465,6 +472,9 @@ module.exports = function init(site) {
                   site.security.updateUser(user);
                 }
                 response.done = true;
+                doc.$buy = true;
+                doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                response.doc = doc;
                 res.json(response);
               }
             );

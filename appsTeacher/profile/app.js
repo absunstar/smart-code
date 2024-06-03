@@ -67,8 +67,8 @@ module.exports = function init(site) {
   //   });
   // });
 
-  site.onGET("profileEdit/:id", (req, res) => {
-    site.security.getUser({ id: req.params.id }, (err, user) => {
+  site.onGET("profileEdit", (req, res) => {
+    site.security.getUser({ _id: site.mongodb.ObjectID(req.query.id) }, (err, user) => {
       if (user) {
         let setting = site.getSiteSetting(req.host);
         setting.description = setting.description || "";
