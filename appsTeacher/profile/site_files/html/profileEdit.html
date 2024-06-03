@@ -12,7 +12,7 @@
       .edit-user-btn {
         margin: 15px -7px 20px 0px;
         text-align-last: center;
-        background: #008000d9;
+        background: #2087e7;
         color: white;
         border-radius: 5px;
         font-size: x-large;
@@ -172,13 +172,12 @@
                   </div>
                 </div>
               </div>
-            
             </div>
           </div>
 
           <div id="myPackages" class="tab-content">
             <div class="row">
-              <ul class="row row-cols-1 row-cols-lg-4 row-cols-md-2">
+              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
                 <li ng-repeat="package in packagesList">
                   <figure class="image-block">
                     <p class="name">{{package.name}}</p>
@@ -189,7 +188,7 @@
                         <a class="col-6" href="/packageView?id={{package.id}}">
                           <button>##word.More##..</button>
                         </a>
-    
+
                         <i class="price col-6"
                           >##word.$## {{package.price}}
                           <s class="red">{{package.totalLecturesPrice}}</s>
@@ -199,13 +198,12 @@
                   </figure>
                 </li>
               </ul>
-            
             </div>
           </div>
 
           <div id="myLectures" class="tab-content">
             <div class="row">
-              <ul class="row row-cols-1 row-cols-lg-4 row-cols-md-2">
+              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
                 <li ng-repeat="lecture in lecturesList">
                   <figure class="image-block">
                     <p class="name">{{lecture.name}}</p>
@@ -216,7 +214,7 @@
                         <a class="col-6" href="/lectureView?id={{lecture.id}}">
                           <button>##word.More##..</button>
                         </a>
-    
+
                         <i class="price col-6">##word.$## {{lecture.price}} </i>
                       </div>
                     </figcaption>
