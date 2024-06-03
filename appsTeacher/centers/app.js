@@ -192,9 +192,9 @@ module.exports = function init(site) {
             page_keywords: setting.keyWordsList.join(","),
           };
           if (req.hasFeature("host.com")) {
-            data.site_logo = "https://" + req.host + data.site_logo;
-            data.page_image = "https://" + req.host + data.page_image;
-            data.user_image = "https://" + req.host + data.user_image;
+            data.site_logo = "http://" + req.host + data.site_logo;
+            data.page_image = "http://" + req.host + data.page_image;
+            data.user_image = "http://" + req.host + data.user_image;
           }
           res.render(app.name + "/centersView.html", data, {
             parser: "html css js",
