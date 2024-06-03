@@ -1,38 +1,38 @@
 <div ng-controller="manageUsers" class="loaded">
-  <div class="row" x-permissions="manageUsersUi || manageUsersManage">
+  <div class="row" x-permissions="manageUsersUi || manageUsersManage || manageStudents">
     <div x-import="manageUsers/modal.html"></div>
 
     <div class="top-actions">
       <i-button
         type="add"
         ng-show="'##query.type##' == 'teacher'"
-        x-permissions="manageUsersAdd || manageUsersManage"
+        x-permissions="manageUsersAdd || manageUsersManage || manageStudents"
         label="##word.Add New Teacher##"
         ng-click="showAdd('teacher')"
       ></i-button>
       <i-button
         type="search"
-        x-permissions="manageUsersSearch || manageUsersManage"
+        x-permissions="manageUsersSearch || manageUsersManage || manageStudents"
         label="##word.Active##"
         ng-click="getAll(search={active:true})"
       ></i-button>
       <i-button
         type="search"
-        x-permissions="manageUsersSearch || manageUsersManage"
+        x-permissions="manageUsersSearch || manageUsersManage || manageStudents"
         label="##word.Not Active##"
         ng-click="getAll(search={active:false})"
       ></i-button>
       <i-button
         type="search"
         ng-show="'##query.type##' == 'student'"
-        x-permissions="manageUsersSearch || manageUsersManage"
+        x-permissions="manageUsersSearch || manageUsersManage || manageStudents"
         label="##word.Online##"
         ng-click="getAll({placeType : 'online'})"
       ></i-button>
       <i-button
         type="search"
         ng-show="'##query.type##' == 'student'"
-        x-permissions="manageUsersSearch || manageUsersManage"
+        x-permissions="manageUsersSearch || manageUsersManage || manageStudents"
         label="##word.Offline##"
         ng-click="getAll({placeType : 'offline'})"
       ></i-button>
@@ -86,14 +86,14 @@
 
             <i-button
               type="edit"
-              x-permissions="manageUsersUpdate || manageUsersManage"
+              x-permissions="manageUsersUpdate || manageUsersManage || manageStudents"
               title="##word.Edit##"
               ng-click="showUpdate(item)"
             ></i-button>
 
             <i-button
               type="delete"
-              x-permissions="manageUsersDelete || manageUsersManage"
+              x-permissions="manageUsersDelete || manageUsersManage || manageStudents"
               title="##word.Delete##"
               ng-click="showDelete(item)"
             ></i-button>
@@ -102,13 +102,13 @@
       </table>
     </div>
     <i-button
-      x-permissions="manageUsersPrint || manageUsersManage"
+      x-permissions="manageUsersPrint || manageUsersManage || manageStudents"
       type="print"
       label="##word.Print##"
       onclick="site.print('#t1')"
     ></i-button>
     <i-button
-      x-permissions="manageUsersExport || manageUsersManage"
+      x-permissions="manageUsersExport || manageUsersManage || manageStudents"
       type="export"
       label="##word.Export to excel##"
       onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"

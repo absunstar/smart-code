@@ -28,32 +28,7 @@
       <div class="form">
         <div class="row">
           <div class="row">
-            <i-list
-              class="col4"
-              v="r"
-              ng-model="user.type"
-              ng-change="changeUserType(user.type)"
-              items="usersTypesList"
-              display="name##session.lang##"
-              ng-search="user.$type"
-              label="##word.User Type##"
-            ></i-list>
-            <i-list
-              ng-show="user.type.name == 'employees'"
-              class="col4"
-              ng-model="user.jobType"
-              items="employeesJobsTypesList"
-              display="name##session.lang##"
-              ng-search="user.$jobType"
-              label="##word.Employee Type##"
-            ></i-list>
-            <i-control
-              ng-hide="disabledCode"
-              class="col2"
-              label="##word.Code##"
-              ng-model="user.code"
-            >
-            </i-control>
+
             <i-checkbox
               label="##word.Active##"
               class="col2"
@@ -77,7 +52,7 @@
             ></i-control>
           </div>
         </div>
-        <div class="tabs" ng-show="user.type.id">
+        <div class="tabs" >
           <div class="tabs-header full">
             <a
               class="tab-link"

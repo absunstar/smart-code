@@ -1,7 +1,7 @@
 <ul class="main-menu">
 
   <li class="menu-item">
-    <a class="tab-link" href="/site-setting" x-permissions="site-setting">
+    <a class="tab-link" href="/site-setting" x-permissions="defaultSettingManage">
       <i class="fas fa-wifi"></i>
       <span> ##word.Default Setting## </span>
     </a>
@@ -138,14 +138,14 @@
   </li>
 
   <li class="menu-item">
-    <a class="tab-link" href="/cities" x-permissions="cityUi || cityManage">
+    <a class="tab-link" href="/cities" x-permissions="citiesUi || citiesManage">
       <i class="fas fa-city"></i>
       <span> ##word.Cities## </span>
     </a>
   </li>
 
   <li class="menu-item">
-    <a class="tab-link" href="/areas" x-permissions="areaUi || areaManage">
+    <a class="tab-link" href="/areas" x-permissions="areasUi || areasManage">
       <i class="fas fa-vector-square"></i>
       <span> ##word.Areas## </span>
     </a>
@@ -159,6 +159,16 @@
     >
       <i class="fas fa-vector-square"></i>
       <span> ##word.Nationalities## </span>
+    </a>
+  </li>
+
+  <li class="menu-item">
+    <a
+      class="tab-link"
+      href="/manageUsers?type=student"
+    >
+      <i class="fas fa-users"></i>
+      <span> ##word.Manage Students## </span>
     </a>
   </li>
 
@@ -192,14 +202,5 @@
     </a>
   </li>
 
-  <li class="menu-item">
-    <a
-      class="tab-link"
-      href="/manageUsers?type=student"
-      x-permissions="manageUsersUi || manageUsersManage"
-    >
-      <i class="fas fa-users"></i>
-      <span> ##word.Manage Students## </span>
-    </a>
-  </li>
+ 
 </ul>

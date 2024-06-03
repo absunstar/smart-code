@@ -1,12 +1,12 @@
 [
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsManage", "En": "Manage", "Ar": "إدارة" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsAdd", "En": "Add", "Ar": "إضافة" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsUpdate", "En": "Edit", "Ar": "تعديل" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsDelete", "En": "Delete", "Ar": "حذف" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsView", "En": "View", "Ar": "عرض" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsSearch", "En": "Search", "Ar": "بحث" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsExport", "En": "Export", "Ar": "تصدير" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsPrint", "En": "Print", "Ar": "طباعة" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
-    { "moduleName": "lawyer", "screenName": "educationalLevels", "name": "educationalLevelsImport", "En": "Import", "Ar": "إستيراد" }
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "educationalLevels", "name": "educationalLevelsImport", "En": "Import", "Ar": "إستيراد" }
 ]

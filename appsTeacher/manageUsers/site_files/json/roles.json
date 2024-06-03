@@ -5,5 +5,30 @@
         "En": "Users Admin",
         "Ar": "إدارة المستخدمين",
         "permissions": ["manageUsersManage"]
-    }
+    },{
+        "moduleName": "public",
+        "name": "teacher",
+        "En": "Teacher",
+        "Ar": "مدرس",
+        "permissions": [
+          "teacher",
+          "defaultSettingManage",
+          "govesManage",
+          "areasManage",
+          "booksManage",
+          "centersManage",
+          "citiesManage",
+          "codesManage",
+          "countriesManage",
+          "educationalLevelsManage",
+          "lecturesManage",
+          "nationalitiesManage",
+          "notificationsManage",
+          "packagesManage",
+          "purchaseOrdersManage",
+          "quizzesManage",
+          "schoolYearsManage",
+          "manageStudents"
+        ]
+      }
 ]
