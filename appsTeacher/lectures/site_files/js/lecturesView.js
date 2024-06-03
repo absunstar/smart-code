@@ -17,6 +17,7 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
             name: 1,
             image: 1,
             price: 1,
+            description: 1,
             date: 1,
           },
         },

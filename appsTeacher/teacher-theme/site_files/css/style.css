@@ -117,7 +117,7 @@ p {
   padding: 10px !important;
   overflow-x: auto;
   flex-direction: column-reverse;
-  height: 25vw !important;
+  height: 37vw !important;
   scrollbar-color: #2087e7 #e7e7e7;
 }
 .notifacation-padge {
@@ -168,7 +168,7 @@ p {
 .notifacation-logo {
   height: 100%;
   border-radius: 50%;
-  padding: 1px;
+  padding: 3px;
 }
 
 .notifacation-content {
@@ -266,7 +266,7 @@ figure {
   justify-content: center;
   width: 350px;
   margin: 10px;
-  height: 430px;
+  height: 500px;
   border-radius: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -305,7 +305,7 @@ figure {
   }
   figcaption {
     position: absolute;
-    bottom: -50%;
+    bottom: 0%;
     left: 0;
     width: 100%;
     margin: 0;
@@ -332,14 +332,14 @@ figure {
 
     p {
       border-radius: 10px;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgb(0 0 0 / 45%);
       font-size: 15px;
-      line-height: 1.7;
+      line-height: 1.8;
       padding: 10px;
       text-align: center;
-      max-height: 135px;
+      max-height: 120px;
       overflow: hidden;
-      white-space: pre;
+      white-space: normal;
       text-overflow: ellipsis;
     }
     button {
@@ -367,12 +367,11 @@ figure {
   height: 500px;
   float: right;
   border: 1px solid #ffffff22;
-  background-color: #282c34;
-  background: linear-gradient(120deg, rgb(20 117 207) 0%, rgb(0 0 1 / 78%) 100%);
-  box-shadow: 0 7px 20px 5px #00000066;
-  border-radius: 0.7rem;
+  background: linear-gradient(120deg, rgb(141 194 243) 0%, rgb(18 127 229) 100%);
+  box-shadow: 0 7px 20px 5px #a4adff;
+  border-radius: 0px 10px 10px 0px;
+  border-left: 7px dashed #d6e0ff;
   backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
   overflow: hidden;
   transition: 0.5s all;
   hr {
@@ -381,13 +380,18 @@ figure {
     border-bottom: 1px solid #88888855;
     margin-top: 0;
   }
+  h2 {
+    text-align: center;
+    font-family: 'Font Awesome 5 Free';
+    color: white;
+    font-size: 2rem;
+  }
   ins {
     text-decoration: none;
   }
   .main {
     display: flex;
     flex-direction: column;
-    width: 90%;
     padding: 1rem;
     .tokenImage {
       border-radius: 0.5rem;
@@ -397,7 +401,7 @@ figure {
     }
     .description {
       margin: 0.5rem 0;
-      color: #a89ec9;
+      color: #e6edff;
       overflow: hidden;
       height: 123px;
       white-space: inherit;
@@ -411,12 +415,26 @@ figure {
         font-size: larger;
         display: flex;
         align-items: center;
-        color: #76bdff;
+        color: #cde7ff;
         font-weight: 700;
         ins {
           margin-left: 0.7rem;
           margin-right: 0.5rem;
         }
+      }
+      button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 0 0;
+        padding: 8px 30px;
+        background-color: #000cd3;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
       }
     }
   }
@@ -432,7 +450,7 @@ figure {
   }
   &:hover {
     border: 1px solid #ffffff44;
-    box-shadow: 0 7px 50px 10px #000000aa;
+    box-shadow: 0 7px 25px 10px #0061bc;
     transform: scale(1.015);
     filter: brightness(1.3);
     ::before {
@@ -454,20 +472,18 @@ figure {
   }
 }
 
-
-
-#panner1 {  
+#panner1 {
   margin: auto;
-  width: 80%;
   padding-top: 50px;
   font-family: helvetica, arial, sans-serif;
-  }  
+}
 
-.callgafl {  
+.callgafl {
   text-align: center;
   padding: 0.5em 20px;
   margin-left: -20px;
   margin-top: 0;
+  margin-bottom: 15px;
   position: relative;
   width: 100%;
   box-shadow: 1px 1px 10px #292929;
@@ -475,40 +491,44 @@ figure {
   text-shadow: 0 2px 1px #292929;
   font-weight: bold;
   font-size: xx-large;
-  background: linear-gradient(to bottom, #2087e7 0%, #002548 100%);
+  background: linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
 }
-.arrowLeft {  
-   width: 0; height: 0;  
-   line-height: 0;  
-   border-left: 20px solid transparent;  
-   border-top: 10px solid #3A000E;  
-   top: 100%;  
-   left: 0;  
-   position: absolute;
+.arrowLeft {
+  width: 0;
+  height: 0;
+  line-height: 0;
+  border-left: 20px solid transparent;
+  border-top: 10px solid #1475cf;
+  top: 100%;
+  left: 0;
+  position: absolute;
 }
-.arrowRight {  
-   width: 0; height: 0;  
-   line-height: 0;  
-   border-right: 20px solid transparent;  
-   border-top: 10px solid #3A000E;  
-   top: 100%;  
-   right: 0;  
-   position: absolute;
+.arrowRight {
+  width: 0;
+  height: 0;
+  line-height: 0;
+  border-right: 20px solid transparent;
+  border-top: 10px solid #1475cf;
+  top: 100%;
+  right: 0;
+  position: absolute;
 }
 .number {
   padding: 0 1em;
   font-size: 20px;
   float: left;
-  color: #dce9ff;
+  color: white;
 }
 
 @media screen and (max-width: 768px) {
-.callgafl { font-size: 1.3em; }
-.arrowRight, .arrowLeft { 
-  top: 100%;
-}
-.number { 
-
-  font-size: 1em;
- } 
+  .callgafl {
+    font-size: 1.3em;
+  }
+  .arrowRight,
+  .arrowLeft {
+    top: 100%;
+  }
+  .number {
+    font-size: 1em;
+  }
 }

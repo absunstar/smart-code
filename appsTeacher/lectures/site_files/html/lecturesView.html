@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="En" data-ng-app="myApp">
   <head x-import="teacher-theme/head.html">
-    <link
-      rel="stylesheet"
-      href="/css/teacher-style.css?v=##site.options.version##"
-    />
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
     <style></style>
   </head>
@@ -13,40 +10,34 @@
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
-        <div class="row">
-          <h1 class="bold text-center">##word.Lectures##</h1>
-        </div>
-
         <fieldset>
           <legend>##word.Search##</legend>
-          <i-control
-          class="input-style pass"
-          v="r"
-          ng-keydown="getAll($event)"
-          ng-model="$search"
-        >
+          <i-control class="input-style pass" v="r" ng-keydown="getAll($event)" ng-model="$search"></i-control>
         </fieldset>
 
         <div class="row">
-          <div class="card" ng-repeat="item in list">
-            <div class="time-publish card-name margin padding">
-              <i class="fas fa-clock"> {{item.$time}} </i>
-            </div>
-
-            <img class="" loading="lazy" ng-src="{{item.image.url}}" />
-            <p class="center">
-              <b class="card-number bold"> ##word.$## {{item.price}} </b>
-
-            </p>
-
-            <p class="userPrint card-title bold">
-              {{item.name}}
-            </p>
-
-            <a href="/lectureView?id={{item.id}}">
-              <i-button title="##word.view##" type="view"></i-button>
-            </a>
+          <div id="panner1">
+            <div class="callgafl">##word.Lectuers##<span class="arrowLeft"></span><span class="arrowRight"></span></div>
           </div>
+
+          <ul class="row row-cols-1 row-cols-lg-4 row-cols-md-2">
+            <li ng-repeat="item in list">
+              <figure class="image-block">
+                <p class="name">{{item.name}}</p>
+                <img ng-src="{{item.image.url}}" alt="" />
+                <figcaption>
+                  <p>{{item.description}}</p>
+                  <div class="row">
+                    <a class="col-6" href="/lectureView?id={{item.id}}">
+                      <button>##word.More##..</button>
+                    </a>
+
+                    <i class="price col-6">##word.$## {{item.price}} </i>
+                  </div>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
         </div>
 
         <div class="row">
@@ -54,29 +45,7 @@
         </div>
       </div>
     </main>
-    <div id="codeModal" class="modal codeModal small">
-      <div class="modal-content height-auto">
-        <div class="modal-header">
-          <span class="close">&times;</span>
-        </div>
-        <div class="modal-body">
-          <i-control
-            type="text"
-            v="r"
-            ng-model="code"
-            label="##word.Code##"
-          ></i-control>
-        </div>
-        <div class="modal-footer center">
-          <p class="error">{{errorCode}}</p>
-          <i-button
-            type="save"
-            label="##word.Accept##"
-            ng-click="buyBackage(item)"
-          ></i-button>
-        </div>
-      </div>
-    </div>
+
     <div x-replace="teacher-theme/footer.html"></div>
     <div x-import="teacher-theme/scripts.html"></div>
     <script x-import="lectures/lecturesView.js"></script>

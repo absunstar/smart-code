@@ -395,7 +395,7 @@ module.exports = function init(site) {
             ];
           }
         } else if (req.body.type == "myStudent") {
-          if (req.session.user && req.session.user.type == "student") {
+          if (req.session.user && req.session.user.type == "student" && req.session.user.packagesList) {
             let idList = req.session.user.packagesList.map((_item) => _item);
             where["id"] = {
               $in: idList,
