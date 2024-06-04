@@ -25,7 +25,7 @@ app.connectScope(
     $scope.setting = site.showObject('##data.#setting##');
     $scope.categoryList = site.showObject('##data.#categoryList##');
     $scope.bloger = {};
-
+    $scope.host = 'torrent';
     $scope.addCount = 0;
     $scope.failCount = 0;
 
@@ -113,7 +113,7 @@ app.connectScope(
           group: obj.group,
           is_facebook: true,
         });
-      }else if (obj.type == 'generator-facebook-page') {
+      } else if (obj.type == 'generator-facebook-page') {
         console.log(obj);
         $scope.facebookPageAdd({ ...obj.page });
       } else if (obj.type == 'generator-facebook-page-post') {

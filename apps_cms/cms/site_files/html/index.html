@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="##session.lang##" class="loaded" ng-app="myApp">
+<html lang="##session.lang##" dir="##session.langDir##" class="loaded" ng-app="myApp">
+  <head x-import="cms/head.html"> </head>
 
-<head x-import="cms/head.html">
+  <body class="##session.lang## ##session.langDir##">
+    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-</head>
+    <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
+      <h1 class="center">Home</h1>
+    </div>
 
-<body class="##session.lang##" >
-  <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
-
-  <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
-  <div id="main-layout" class="container">
-    <h1 class="center"> Home </h1>
-  </div>
-
-  <div x-import="cms/scripts.html"></div>
-</body>
-
+    <div x-import="cms/scripts.html"></div>
+  </body>
 </html>

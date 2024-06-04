@@ -2,25 +2,24 @@
   <div class="row">
     <div class="col">
       <a x-permissions="menu_ui || menu_manage" id="menu-btn" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
-      <a class="title" href="/"> Site Control Panel </a>
+      <a class="title" href="/articles"> Admin Control Panel </a>
     </div>
 
     <div class="col user-info">
-      <span class="app-name"> ##data.appName##</span>
+      <span class="app-name"> ##data.appName## </span>
       <img x-feature="login" onclick="event.stopPropagation(); $('.user-menu').toggle(100)" src="##user.profile.image##" onerror="this.src='/images/user.png'" alt="" />
       <a class="" x-features="!login" href="/login"> ##word.login##</a>
       <div x-feature="login" class="user-menu">
         <img src="##user.profile.image##" onerror="this.src='/images/user.png'" alt="" />
-        <p class="user-name">##user.profile.name## ##user.profile.lastName##</p>
-        <a href="mailto:##user.email##" class="user-email">##user.email##</a>
+        <p class="user-name">
+          <span class="bold">##user.profile.name## ##user.profile.lastName##</span>
+          <a href="mailto:##user.email##" class="user-email">##user.email##</a>
+        </p>
 
         <a class="btn" href="/manage_user">
-          <span>##word.manage_your_personal_account##</span>
+          <span>##word.Account Setting##</span>
         </a>
-
-        <a class="btn" ng-click="logout()">
-          <span>##word.security_logout##</span>
-        </a>
+        <i-button type="logout" ng-click="logout()" label="##word.Logout##"></i-button>
       </div>
     </div>
   </div>
