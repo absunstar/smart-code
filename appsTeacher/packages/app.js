@@ -455,6 +455,7 @@ module.exports = function init(site) {
                       });
                     }
                   });
+                  
                   user.packagesList.push(doc._id);
                   site.addPurchaseOrder({
                     type: "package",
