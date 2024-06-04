@@ -638,18 +638,19 @@ module.exports = function init(site) {
     if (req.session.user && req.session.user.type == "student") {
       where["educationalLevel.id"] = req.session.user.educationalLevel.id;
       where["schoolYear.id"] = req.session.user.schoolYear.id;
-      where["host"] = site.getHostFilter(req.host);
-      where["active"] = true;
-
+      
       where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
     }
+    where["active"] = true;
+    where["host"] = site.getHostFilter(req.host);
+    console.log(where);
     app.$collection.findMany({where,select, limit}, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];
           if (!site.lecturesList.some((k) => k.id === doc.id)) {
             doc.time = site.xtime(doc.date, "Ar");
-            // site.lecturesList.push(doc);
+             site.lecturesList.push(doc);
           }
         }
       }
