@@ -8,11 +8,5 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/feedback_type.json',
   });
 
-  site.get({
-    name: 'admin',
-    require: { features: ['browser.social'] },
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: true,
-  });
+  
 };

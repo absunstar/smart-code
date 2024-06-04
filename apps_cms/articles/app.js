@@ -589,6 +589,7 @@ module.exports = function init(site) {
   site.get(
     {
       name: 'articles',
+      require: { features: ['browser.social'], permissions: ['admin'] },
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host) || {};
