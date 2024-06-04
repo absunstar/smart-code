@@ -492,7 +492,7 @@ module.exports = function init(site) {
           if (!site.booksList.some((k) => k.id === doc.id)) {
             doc.$time = site.xtime(doc.date, "Ar");
 
-            site.booksList.push(doc);
+            // site.booksList.push(doc);
           }
         }
       }

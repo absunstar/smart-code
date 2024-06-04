@@ -535,7 +535,7 @@ module.exports = function init(site) {
           if (!site.packagesList.some((k) => k.id === doc.id)) {
             doc.time = site.xtime(doc.date, "Ar");
 
-            site.packagesList.push(doc);
+            // site.packagesList.push(doc);
           }
         }
       }

@@ -649,7 +649,7 @@ module.exports = function init(site) {
           let doc = docs[i];
           if (!site.lecturesList.some((k) => k.id === doc.id)) {
             doc.time = site.xtime(doc.date, "Ar");
-            site.lecturesList.push(doc);
+            // site.lecturesList.push(doc);
           }
         }
       }
