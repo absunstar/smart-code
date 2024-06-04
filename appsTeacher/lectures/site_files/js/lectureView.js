@@ -103,7 +103,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       data: {
         socialBrowserID: SOCIALBROWSER.var.core.id,
         code: link.code,
-        _id: site.toNumber("##query.id##"),
+        _id: "##query.id##",
       },
     }).then(
       function (response) {

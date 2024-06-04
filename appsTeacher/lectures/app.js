@@ -114,11 +114,10 @@ module.exports = function init(site) {
         }
       }
       let where = {};
-      if(_item._id) {
-        where._id = site.mongodb.ObjectID(_item._id)
+      if (_item._id) {
+        where._id = site.mongodb.ObjectID(_item._id);
       } else {
-        where.id = _item.id
-
+        where.id = _item.id;
       }
       app.$collection.find(where, (err, doc) => {
         callback(err, doc);
@@ -167,16 +166,16 @@ module.exports = function init(site) {
           name: "view-video",
         },
         (req, res) => {
-          app.$collection.find({_id :req.query.id}, (err, lecture) => {
+          app.$collection.find({ _id: site.mongodb.ObjectID(req.query.id) }, (err, lecture) => {
             if (!err && lecture) {
-             let video = lecture.linksList.find((itm) => itm.code == req.query.code)
+              let video = lecture.linksList.find((itm) => itm.code == req.query.code);
               res.render(
                 app.name + "/view-video.html",
                 {
                   title: app.name,
                   appName: req.word("Video"),
                   setting: site.getSiteSetting(req.host),
-                  videoId: video.url.split('?v=')[1],
+                  videoId: video.url.split("?v=")[1],
                 },
                 { parser: "html css js", compres: true }
               );
@@ -336,7 +335,6 @@ module.exports = function init(site) {
             }
           }
           app.update(_data, (err, result) => {
-
             if (!err) {
               response.done = true;
               response.result = result;
@@ -611,14 +609,14 @@ module.exports = function init(site) {
     callBack = callBack || function () {};
     site.lecturesList = [];
     let limit = req.body.limit || 7;
-        let select = req.body.select || {
-          id: 1,
-          name: 1,
-          image: 1,
-          description : 1,
-          price : 1,
-          date: 1,
-        };
+    let select = req.body.select || {
+      id: 1,
+      name: 1,
+      image: 1,
+      description: 1,
+      price: 1,
+      date: 1,
+    };
     // let lectures = [];
     // if (req.session.user && req.session.user.type == "student") {
     //   lectures = site.lecturesList.filter(
@@ -638,18 +636,18 @@ module.exports = function init(site) {
     if (req.session.user && req.session.user.type == "student") {
       where["educationalLevel.id"] = req.session.user.educationalLevel.id;
       where["schoolYear.id"] = req.session.user.schoolYear.id;
-      
+
       where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
     }
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
-    app.$collection.findMany({where,select, limit}, (err, docs) => {
+    app.$collection.findMany({ where, select, limit }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];
           if (!site.lecturesList.some((k) => k.id === doc.id)) {
             doc.time = site.xtime(doc.date, "Ar");
-             site.lecturesList.push(doc);
+            site.lecturesList.push(doc);
           }
         }
       }
