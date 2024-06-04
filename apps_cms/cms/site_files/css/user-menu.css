@@ -12,7 +12,7 @@
 .user-info a:hover {
   transform: scale(1.1);
 }
-.ltr .user-info a,
+.ltr ,
 .ltr .user-info > img {
   float: right;
 }
@@ -45,13 +45,12 @@
   width: auto;
   max-width: 350px;
   left: 0px;
-  top: 45px;
+  top: 50px;
   bottom: auto;
   padding: 15px;
   text-align: center;
   border-top: none;
   background: var(--theme-color);
-  border-radius: 0px 0px 50px 0px;
   overflow: hidden;
 }
 

@@ -1,6 +1,5 @@
 <div ng-controller="sitebar">
-
- <!--  <div class="user-side-header" x-permissions="login">
+  <!--  <div class="user-side-header" x-permissions="login">
     <div class="side-header">
 
       <li class="deskside-header">
@@ -38,21 +37,17 @@
   <div class="user-menu" style="display: none">
     <div class="center profile" x-permission="login">
       <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.lastName##">
-
-        <img class="center border-circle" src="##user.profile.image##" onerror="this.src='/images/user.png'"
-          alt="" />
-        <br />
+        <img class="center border-circle" src="##user.profile.image##" onerror="this.src='/images/user.png'" alt="" />
       </a>
-      <span class="user-name"> </span> <br />
 
       <span class="user-name"> ##user.profile.name## ##user.profile.lastName## </span> <br />
-      <h5 class="grayDark userPrint center">##user.email##</h5>
+      <p class="grayDark userPrint center">##user.email##</p>
       <br />
       <div class="center">
         <a id="bord_edit" class="usermenu-btn center" href="/manage_user">
           <span class="black">##word.manage_your_personal_account##</span>
         </a>
-        <br>
+        <br />
         <a id="bord_edit" class="usermenu-btn center" x-permissions="menus" href="/countries">
           <span class="black">##word.dashboard##</span>
         </a>
@@ -63,68 +58,46 @@
       <div class="link logout-btn center" ng-click="logout()">##word.security_logout##</div>
     </div>
   </div>
-  <header >
+  <header>
     <div class="firstheader">
       <ul class="nav1">
-        <li><a href="/" class="nav-link underline-hover">
-          <i class="fa-solid fa-house"></i>
-            ##word.main##</a>
+        <li>
+          <a href="/" class="nav-link underline-hover">
+            <i class="fa-solid fa-house"></i>
+            ##word.main##</a
+          >
         </li>
-        <li><a
-            href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name}}"
-            class="nav-link underline-hover">{{category_header_list[0].name}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name}}"
-            class="nav-link underline-hover">{{category_header_list[1].name}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name}}"
-            class="nav-link underline-hover">{{category_header_list[2].name}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name}}"
-            class="nav-link underline-hover">{{category_header_list[3].name}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name}}"
-            class="nav-link underline-hover">{{category_header_list[4].name}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name}}"
-            class="nav-link underline-hover">{{category_header_list[5].name}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name}}"
-            class="nav-link underline-hover">{{category_header_list[6].name}}</a></li>
-        <li><a href="/more_categories" class="nav-link underline-hover">
-          <i class="fa-solid fa-sitemap"></i>
+        <li><a href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name}}" class="nav-link underline-hover">{{category_header_list[0].name}}</a></li>
+        <li><a href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name}}" class="nav-link underline-hover">{{category_header_list[1].name}}</a></li>
+        <li><a href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name}}" class="nav-link underline-hover">{{category_header_list[2].name}}</a></li>
+        <li><a href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name}}" class="nav-link underline-hover">{{category_header_list[3].name}}</a></li>
+        <li><a href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name}}" class="nav-link underline-hover">{{category_header_list[4].name}}</a></li>
+        <li><a href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name}}" class="nav-link underline-hover">{{category_header_list[5].name}}</a></li>
+        <li><a href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name}}" class="nav-link underline-hover">{{category_header_list[6].name}}</a></li>
+        <li>
+          <a href="/more_categories" class="nav-link underline-hover">
+            <i class="fa-solid fa-sitemap"></i>
             ##word.more_categories##
-          </a></li>
+          </a>
+        </li>
       </ul>
     </div>
     <div class="mobile">
       <div class="scrollmenu">
-        <a
-        href="/">##word.main##</a>
-        <a
-          href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name}}">{{category_header_list[0].name}}</a>
-        <a
-          href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name}}">{{category_header_list[1].name}}</a>
-        <a
-          href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name}}">{{category_header_list[2].name}}</a>
-        <a
-          href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name}}">{{category_header_list[3].name}}</a>
-        <a
-          href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name}}">{{category_header_list[4].name}}</a>
-        <a
-          href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name}}">{{category_header_list[5].name}}</a>
-        <a
-          href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name}}">{{category_header_list[6].name}}</a>
-     
+        <a href="/">##word.main##</a>
+        <a href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name}}">{{category_header_list[0].name}}</a>
+        <a href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name}}">{{category_header_list[1].name}}</a>
+        <a href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name}}">{{category_header_list[2].name}}</a>
+        <a href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name}}">{{category_header_list[3].name}}</a>
+        <a href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name}}">{{category_header_list[4].name}}</a>
+        <a href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name}}">{{category_header_list[5].name}}</a>
+        <a href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name}}">{{category_header_list[6].name}}</a>
       </div>
-
     </div>
     <div class="secondeheader-b">
       <div class="secondeheader">
         <div class="logo center" href="/">
-
-          <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##data.setting.logo##"
-            onerror="this.src='/images/user.png'" alt="" />
+          <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##data.setting.logo##" onerror="this.src='/images/user.png'" alt="" />
           <span class="haraj_name pointer" ng-click="indexLocation()">##data.setting.site_name##</span>
           <i class="burger-icon padding fa-solid fa-bars fa-sm"></i>
         </div>
@@ -133,16 +106,24 @@
             <div class="searchicon">
               <!-- <img src="/assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" /> -->
             </div>
-            <input type="search" placeholder="##word.search_here_for_what_you_want##" ng-model="search.text_search" id
-              ng-disabled="disabled" autofocus v ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()"
-              x-input="true" />
-            <button ng-click="searchAll(search)" class="add-button" type="search"><img class="add-icon"
-                src="/assets/search.png" alt="" width="25px" height="25px" /><a>##word.search##</a></button>
+            <input
+              type="search"
+              placeholder="##word.search_here_for_what_you_want##"
+              ng-model="search.text_search"
+              id
+              ng-disabled="disabled"
+              autofocus
+              v
+              ng-model="ngModel"
+              ng-change="ngChange()"
+              ngkeydown="ngKeydown()"
+              x-input="true"
+            />
+            <button ng-click="searchAll(search)" class="add-button" type="search"><img class="add-icon" src="/assets/search.png" alt="" width="25px" height="25px" /><a>##word.search##</a></button>
           </div>
-
         </form>
         <div class="mobile-filter">
-          <i class="burger-icon padding fa-solid fa-arrow-down-wide-short fa-2xl"></i>
+          <i class="burger-icon padding fa.user-menu-solid fa-arrow-down-wide-short fa-2xl"></i>
         </div>
         <div class="user">
           <i class="close-menu fa-solid fa-xmark fa-lg"></i>
@@ -160,20 +141,16 @@
               <a href="/login">##word.login##</a>
             </div>
           </div>
-          <a x-lang="AR" ng-click="changeLang('en')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i>
-            ##word.en_lang## </a>
-          <a x-lang="EN" ng-click="changeLang('ar')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i>
-            ##word.ar_lang## </a>
+          <a x-lang="AR" ng-click="changeLang('en')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.en_lang## </a>
+          <a x-lang="EN" ng-click="changeLang('ar')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.ar_lang## </a>
 
           <div class="info">
             <a x-features="login" class="desktop" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()">
-              <img class="center border-circle" src="##user.profile.image##" onerror="this.src='/images/user.png'"
-                alt="" /> </a>
+              <img class="center border-circle" src="##user.profile.image##" onerror="this.src='/images/user.png'" alt="" />
+            </a>
             <div class="center profile mobile margin-info-menu" x-permission="login">
               <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.lastName##">
-
-                <img class="center border-circle" src="##user.profile.image##" onerror="this.src='/images/user.png'"
-                  alt="" /> <br />
+                <img class="center border-circle" src="##user.profile.image##" onerror="this.src='/images/user.png'" alt="" /> <br />
               </a>
 
               <span class="user-name font-21"> ##user.profile.name## ##user.profile.lastName## </span> <br />
@@ -183,7 +160,7 @@
                 <a id="bord_edit" class="usermenu-btn center" href="/manage_user">
                   <span class="black">##word.manage_your_personal_account##</span>
                 </a>
-                <br>
+                <br />
                 <a id="bord_edit" class="usermenu-btn center" x-permissions="menus" href="/countries">
                   <span class="black">##word.dashboard##</span>
                 </a>
@@ -191,68 +168,55 @@
 
               <br />
 
-              <div class="link logout-btn center" x-permission="login" ng-click="logout()">##word.security_logout##
-              </div>
+              <div class="link logout-btn center" x-permission="login" ng-click="logout()">##word.security_logout##</div>
             </div>
           </div>
 
           <div>
-
             <div class="mobilesection-head hidden"><a>روابط هامه</a></div>
             <div class="follow mobile">
               <a>##word.Follow Us## </a>
               <ul>
                 <li>
-                  <a target="_blank" href="https://www.youtube.com/##data.setting.you_tube_accouunt##"><i
-                      class="social-icon fab fa-youtube fa-social"></i></a>
+                  <a target="_blank" href="https://www.youtube.com/##data.setting.you_tube_accouunt##"><i class="social-icon fab fa-youtube fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" href="https://www.instagram.com/##data.setting.instagram_accouunt##" xlink="done"><i
-                      class="social-icon fab fa-instagram fa-social"></i></a>
+                  <a target="_blank" href="https://www.instagram.com/##data.setting.instagram_accouunt##" xlink="done"><i class="social-icon fab fa-instagram fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" href="https://www.twitter.com/##data.setting.twitter_accouunt##" xlink="done"><i
-                      class="social-icon fab fa-twitter fa-social"></i></a>
+                  <a target="_blank" href="https://www.twitter.com/##data.setting.twitter_accouunt##" xlink="done"><i class="social-icon fab fa-twitter fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" class="icon-facebook" href="https://www.facebook.com/##data.setting.facebook_account##"
-                    xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
+                  <a target="_blank" class="icon-facebook" href="https://www.facebook.com/##data.setting.facebook_account##" xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
                 </li>
               </ul>
             </div>
             <div class="row mobile">
               <div class="row">
                 <a class="row">##word.phone_support##</a>
-                <i class="contact-icon fa-solid fa-phone"></i> <a target="_blank"
-                  href="##data.setting.phone##"> ##data.setting.phone## </a>
+                <i class="contact-icon fa-solid fa-phone"></i> <a target="_blank" href="##data.setting.phone##"> ##data.setting.phone## </a>
               </div>
               <div class="row">
                 <a class="row">##word.email_support##</a>
-                <i class="contact-icon fa-solid fa-at"></i> <a target="_blank"
-                  href="##data.setting.email##"> ##data.setting.email## </a>
+                <i class="contact-icon fa-solid fa-at"></i> <a target="_blank" href="##data.setting.email##"> ##data.setting.email## </a>
               </div>
             </div>
-
           </div>
           <hr class="cf-mobile" />
-          <a x-lang="AR" ng-click="changeLang('en')" class="ds-dv link left lang-btn"> <i class="fa fa-globe"></i>
+          <a x-lang="AR" ng-click="changeLang('en')" class="ds-dv link left lang-btn">
+            <i class="fa fa-globe"></i>
             ##word.en_lang##
           </a>
-          <a x-lang="EN" ng-click="changeLang('ar')" class="ds-dv link left lang-btn"> <i class="fa fa-globe"></i>
+          <a x-lang="EN" ng-click="changeLang('ar')" class="ds-dv link left lang-btn">
+            <i class="fa fa-globe"></i>
             ##word.ar_lang##
           </a>
-
-     
         </div>
       </div>
     </div>
-
-
-
-
   </header>
   <div class="addads">
     <li class="mobile-header">
@@ -261,7 +225,7 @@
         <!-- <span style="min-height: 22px">##data.setting.site_name##</span> -->
       </a>
     </li>
-  
+
     <li class="mobile-header" x-permission="login">
       <a class="tab_link" href="/messages">
         <i class="fa-solid fa-envelope"></i>
@@ -291,7 +255,7 @@
         <i class="fa-solid fa-sitemap"></i>
       </a>
     </li>
-  
+
     <li class="mobile-header" x-permission="login" ng-show="##data.setting.order_settings.activate_orders##">
       <a class="notification" href="/cart">
         <i class="fa-solid fa-cart-shopping"></i>
@@ -299,8 +263,6 @@
         <!-- <span style="min-height: 22px; font-size: 20px">##word.cart##</span> -->
       </a>
     </li>
-
-
 
     <!--   <li class="mobile-header" x-permission="login">
    
@@ -312,11 +274,8 @@
   function createContent() {
     if ('##user.id##') {
       window.location.href = '/create_content';
-
     } else {
       window.location.href = '/login';
-
     }
-  };
-
+  }
 </script>

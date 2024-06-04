@@ -6,7 +6,7 @@
     </div>
 
     <div class="modal-body">
-      <i-button ng-click="generateYTS()" label="Generate Posts"></i-button>
+      <i-button type="search" ng-click="generateYTS()" label="Generate YTS Posts"></i-button>
       <div class="row padding">
         <i-list class="col4" label="##word.category##" ng-model="category" items="categoryList"></i-list>
         <i-control class="col4" ng-model="host" label="##word.Host##"></i-control>
@@ -35,8 +35,8 @@
     </div>
 
     <div class="modal-footer center">
-      <h2 class="error">{{error}}</h2>
-      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#ytsModal')"></i-button>
+      <p class="error">{{error}}</p>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#ytsModal')"></i-button>
     </div>
   </div>
 </div>
