@@ -88,10 +88,10 @@
                     <p class="font-20">##word.The number of remaining exam times## : ( {{item.timesEnterQuiz - quiz.timesEnterQuiz}} )</p>
                     <p class="font-20">##word.Quiz Degree## : ( {{quiz.userDegree | xmoney2}} % )</p>
                   </div>
-                  <div class="row" x-permission="login">
+                  <div class="row" ng-show="item.$buy" x-permission="login">
                     <i-button ng-repeat="link in item.linksList" type="view" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
                   </div>
-                  <div class="row" ng-show="item.$buy" x-permission="login">
+                  <div class="row"  x-permission="login">
                     <button ng-click="showEnterCode()" ng-hide="item.$buy || '##user.placeType##' == 'online'" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
                     <button ng-click="startQuiz()" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                       ##word.Take A Quiz##
