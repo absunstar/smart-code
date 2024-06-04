@@ -8,5 +8,6 @@
     { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersExport", "En": "Export", "Ar": "تصدير" },
     { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersPrint", "En": "Print", "Ar": "طباعة" },
     { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageStudents", "En": "Students Manage", "Ar": "إدارة الطلاب" },
     { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersImport", "En": "Import", "Ar": "إستيراد" }
 ]

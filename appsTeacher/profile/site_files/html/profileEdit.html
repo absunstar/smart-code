@@ -12,7 +12,7 @@
       .edit-user-btn {
         margin: 15px -7px 20px 0px;
         text-align-last: center;
-        background: #008000d9;
+        background: #2087e7;
         color: white;
         border-radius: 5px;
         font-size: x-large;
@@ -172,51 +172,55 @@
                   </div>
                 </div>
               </div>
-            
             </div>
           </div>
 
           <div id="myPackages" class="tab-content">
             <div class="row">
-              <div class="card" ng-repeat="package in packagesList">
-                <div class="time-publish card-name margin padding">
-                  <i class="fas fa-clock"> {{package.$time}} </i>
-                </div>
+              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+                <li ng-repeat="package in packagesList">
+                  <figure class="image-block">
+                    <p class="name">{{package.name}}</p>
+                    <img ng-src="{{package.image.url}}" alt="" />
+                    <figcaption>
+                      <p>{{package.description}}</p>
+                      <div class="row">
+                        <a class="col-6" href="/packageView?id={{package._id}}">
+                          <button>##word.More##..</button>
+                        </a>
 
-                <img class="" loading="lazy" ng-src="{{package.image.url}}" />
-                <p class="center">
-                  <b class="card-number bold"> ##word.$## {{package.price}} </b>
-                  <s class="card-number red bold"> {{package.totalLecturesPrice}} </s>
-                </p>
-
-                <p class="userPrint card-title bold">{{package.name}}</p>
-
-                <a href="/packageView?id={{package._id}}">
-                  <i-button title="##word.view##" type="view"></i-button>
-                </a>
-              </div>
+                        <i class="price col-6"
+                          >##word.$## {{package.price}}
+                          <s class="red">{{package.totalLecturesPrice}}</s>
+                        </i>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li>
+              </ul>
             </div>
           </div>
 
           <div id="myLectures" class="tab-content">
             <div class="row">
-              <div class="card" ng-repeat="lecture in lecturesList">
-                <div class="time-publish card-name margin padding">
-                  <i class="fas fa-clock"> {{lecture.$time}} </i>
-                </div>
+              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+                <li ng-repeat="lecture in lecturesList">
+                  <figure class="image-block">
+                    <p class="name">{{lecture.name}}</p>
+                    <img ng-src="{{lecture.image.url}}" alt="" />
+                    <figcaption>
+                      <p>{{lecture.description}}</p>
+                      <div class="row">
+                        <a class="col-6" href="/lectureView?id={{lecture._id}}">
+                          <button>##word.More##..</button>
+                        </a>
 
-                <img class="" loading="lazy" ng-src="{{lecture.image.url}}" />
-                <p class="center">
-                  <b class="card-number bold"> ##word.$## {{lecture.price}} </b>
-                  <s class="card-number red bold"> {{lecture.totalLecturesPrice}} </s>
-                </p>
-
-                <p class="userPrint card-title bold">{{lecture.name}}</p>
-
-                <a href="/lectureView?id={{lecture.id}}">
-                  <i-button title="##word.view##" type="view"></i-button>
-                </a>
-              </div>
+                        <i class="price col-6">##word.$## {{lecture.price}} </i>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

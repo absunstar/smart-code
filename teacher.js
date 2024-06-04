@@ -1,5 +1,5 @@
 const site = require('../isite')({
-  port: [80, 40009],
+  port: [80, 40021],
   lang: 'Ar',
   version: Date.now(),
   name: 'teacher',
@@ -151,5 +151,21 @@ site.handleNotRoute = function (req, res) {
     res.redirect(setting.host);
   }
 };
+
+site.get("/x-update", (req, res) => {
+  site.cmd("git pull", (data) => {
+    res.end(data);
+    console.log(data);
+    site.cmd("pm2 restart 21", (data) => {
+      console.log(data);
+    });
+  });
+});
+
+site.get("/x-restart", (req, res) => {
+  site.cmd("pm2 restart 0", (data) => {
+    console.log(data);
+  });
+});
 
 site.run();

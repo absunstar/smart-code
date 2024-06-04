@@ -1,33 +1,58 @@
 function youtubeRun() {
   SOCIALBROWSER.onLoad(() => {
-    /* alert('Youtube Video Run'); */
-
-    let timer = null;
-
-    timer = setInterval(() => {
-      if (document.querySelector('[aria-label="Share"]')) {
-        document.querySelector('[aria-label="Share"]').style.display = "none";
+    window.oncontextmenu = function () {
+      if ((div = document.querySelector(".ytp-popup.ytp-contextmenu"))) {
+        div.remove();
       }
-      if (
-        document.querySelector("[role=link]") &&
-        document.querySelector('[aria-label="Watch on YouTube"]') &&
-        document.querySelector('[aria-label="Watch later"]') &&
-        document.querySelector('[aria-label="Share"]') &&
-        document.querySelector('[data-sessionlink="feature=player-title"]') &&
-        document.querySelector('[aria-label="Photo image of Garri Frischer"]') &&
-        document.querySelector('[data-sessionlink="feature=player-button"]') &&
-        document.querySelector('[class="ytp-title-expanded-heading"]')
-      ) {
-        document.querySelector("[role=link]").style.display = "none";
-        document.querySelector('[aria-label="Watch on YouTube"]').style.display = "none";
-        document.querySelector('[aria-label="Watch later"]').style.display = "none";
-        document.querySelector('[aria-label="Share"]').style.display = "none";
-        document.querySelector('[data-sessionlink="feature=player-title"]').style.display = "none";
-        document.querySelector('[aria-label="Photo image of Garri Frischer"]').style.display = "none";
-        document.querySelector('[class="ytp-title-expanded-heading"]').style.display = "none";
-        document.querySelector('[data-sessionlink="feature=player-button"]').style.display = "none";
-        document.querySelector('[aria-live="polite"]').style.display = "none";
+      return false;
+    };
+    if ((div = document.querySelector('[aria-label="Watch on YouTube"]'))) {
+      div.remove();
+    }
+    
+    if ((div = document.querySelector(".ytp-pause-overlay"))) {
+      div.remove();
+    }
+
+    if ((div = document.querySelector('[aria-label="Share"]'))) {
+      div.style.display = "none";
+    }
+    if ((div = document.querySelector("[role=link]"))) {
+      div.style.display = "none";
+    }
+
+    if ((div = document.querySelector('[aria-label="Watch later"]'))) {
+      div.style.display = "none";
+    }
+    if ((div = document.querySelector('[data-sessionlink="feature=player-title"]'))) {
+      div.style.display = "none";
+    }
+    if ((div = document.querySelector('[aria-label="Photo image of Garri Frischer"]'))) {
+      div.style.display = "none";
+    }
+    if ((div = document.querySelector(".ytp-title-expanded-heading"))) {
+      div.style.display = "none";
+    }
+    if ((div = document.querySelector('[data-sessionlink="feature=player-button"]'))) {
+      div.style.display = "none";
+    }
+    if ((div = document.querySelector('[aria-live="polite"]'))) {
+      div.style.display = "none";
+    }
+    if ((div = document.querySelector(".ytp-chrome-top.ytp-show-cards-title"))) {
+      div.remove();
+    }
+
+    setInterval(() => {
+      if ((div = document.querySelector('[aria-label="Watch on YouTube"]'))) {
+        div.remove();
       }
-    }, 1000);
+      if ((div = document.querySelector('[aria-label="Channel watermark"]'))) {
+        div.remove();
+      }
+      if ((div = document.querySelector(".ytp-pause-overlay"))) {
+        div.remove();
+      }
+    }, 500);
   });
 }

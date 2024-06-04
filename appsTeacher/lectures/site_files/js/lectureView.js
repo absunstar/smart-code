@@ -9,7 +9,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/lectures/view`,
       data: {
-        id: site.toNumber("##query.id##"),
+        _id: "##query.id##",
       },
     }).then(
       function (response) {
@@ -74,7 +74,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       url: `${$scope.baseURL}/api/quizzes/viewByUserLecture`,
       data: {
         "user.id": site.toNumber("##user.id##"),
-        "lecture.id": site.toNumber("##query.id##"),
+        "lecture._id": "##query.id##",
       },
     }).then(
       function (response) {
@@ -103,7 +103,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       data: {
         socialBrowserID: SOCIALBROWSER.var.core.id,
         code: link.code,
-        id: site.toNumber("##query.id##"),
+        _id: site.toNumber("##query.id##"),
       },
     }).then(
       function (response) {
@@ -115,12 +115,16 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
             url: document.location.origin + "/view-video?code=" + link.code + "&id=" + $scope.item._id,
             eval: code_injected,
             show: true,
+            iframe : true,
             center: true,
             allowMenu: false,
             allowWindows: false,
+            allowAudio: true,
             allowDev: false,
             width: 800,
             height: 800,
+            security: true,
+            $timeout: 5000,
           });
         } else {
           $scope.error = response.data.error;
@@ -173,7 +177,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           "user.id": site.toNumber("##user.id##"),
         },
         questionsList: $scope.item.questionsList,
-        lecture: { id: $scope.item.id, name: $scope.item.name },
+        lecture: { _id: $scope.item._id, id: $scope.item.id, name: $scope.item.name },
       },
     }).then(
       function (response) {

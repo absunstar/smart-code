@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="En" data-ng-app="myApp">
-  <head x-import="theme1/head.html">
+  <head x-import="teacher-theme/head-dashboard.html"></head>
     <style>
       i-image.photo img {
         min-width: 240px;
@@ -20,16 +20,25 @@
   </head>
 
   <body class="##session.lang## loaded">
-    <div x-import="theme1/header.html"></div>
+    <nav
+    x-import="teacher-theme/sitebar.html"
+    class="sitebar"
+    data-ng-controller="sitebar"
+  ></nav>
 
-    <div id="main-layout" class="container" data-ng-controller="security">
+  <nav
+    class="sitebottom"
+    x-import="teacher-theme/sitebottom.html"
+    ng-controller="sitebottom"
+  ></nav>
+    <div id="main-layout" class="container" ng-controller="security">
       <div class="row">
         <i-button label="##word.Security Users##" ng-click="gotoUsers()"></i-button>
         <i-button label="##word.Security Roles##" ng-click="gotoRoles()"></i-button>
       </div>
     </div>
 
-    <div x-import="theme1/footer.html"></div>
+    <div x-import="teacher-theme/scripts-dashboard.html"></div>
     <script x-import="security/index.js"></script>
   </body>
 </html>

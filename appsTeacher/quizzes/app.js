@@ -60,18 +60,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -162,32 +158,29 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
+        let _data = req.data;
 
-          _data.user = {
-            id: req.session.user.id,
-            firstName: req.session.user.firstName,
-            email: req.session.user.email,
-          };
-          _data.host = site.getHostFilter(req.host);
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
+        _data.user = {
+          id: req.session.user.id,
+          firstName: req.session.user.firstName,
+          email: req.session.user.email,
+        };
+        _data.host = site.getHostFilter(req.host);
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
 
       site.post(
         {
@@ -230,6 +223,7 @@ module.exports = function init(site) {
                   questionsList: req.data.questionsList,
                   correctAnswers: 0,
                   userDegree: 0,
+                  date: new Date(),
                   timesEnterQuiz: 1,
                 },
                 (err, doc) => {
@@ -286,7 +280,7 @@ module.exports = function init(site) {
 
           let _data = req.data;
           _data.correctAnswers = 0;
-
+          _data.editDate = new Date();
           for (let i = 0; i < _data.questionsList.length; i++) {
             _data.questionsList[i].answersList.forEach((_a) => {
               if (_a.userAnswer && _a.correct) {
@@ -294,8 +288,7 @@ module.exports = function init(site) {
               }
             });
           }
-          _data.userDegree =
-            (_data.correctAnswers / _data.questionsList.length) * 100;
+          _data.userDegree = (_data.correctAnswers / _data.questionsList.length) * 100;
           app.view({ id: _data.id }, (err, doc) => {
             _data.timesEnterQuiz = doc.timesEnterQuiz;
             app.update(_data, (err, result) => {
@@ -355,25 +348,23 @@ module.exports = function init(site) {
         });
       });
 
-      site.post(
-        { name: `/api/${app.name}/viewByUserLecture`, public: true },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/viewByUserLecture`, public: true }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let where = req.data;
-          app.$collection.find(where, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err?.message || "Not Exists";
-            }
-            res.json(response);
-          });
-        }
-      );
+        let where = req.data;
+     
+        app.$collection.find(where, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err?.message || "Not Exists";
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteAll) {
@@ -414,12 +405,9 @@ module.exports = function init(site) {
           where["lecture.id"] = where["lecture"].id;
           delete where["lecture"];
         }
-        app.all(
-          { where: where, limit, select, sort: { id: -1 } },
-          (err, docs) => {
-            res.json({ done: true, list: docs });
-          }
-        );
+        app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
+          res.json({ done: true, list: docs });
+        });
       });
     }
   }

@@ -1,6 +1,6 @@
 app.controller("codes", function ($scope, $http, $timeout) {
   $scope.setting = site.showObject(`##data.#setting##`);
-  $scope.invoiceLogo = document.location.origin + $scope.setting.codeCard.url;
+  $scope.invoiceLogo = document.location.origin + $scope.setting?.codeCard?.url;
   $scope.baseURL = "";
   $scope.appName = "codes";
   $scope.modalID = "#codesManageModal";

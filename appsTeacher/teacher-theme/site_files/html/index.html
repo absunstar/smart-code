@@ -10,131 +10,90 @@
           <div x-features="ads" class="adsBanner">
             <img src=" " alt="" srcset="" />
           </div>
-
-          <div class="recentlyConsultantsContanier">
-            <div class="recentlyConsultantsTitle">
-              <p class="headTitle">##word.Packages##</p>
-              <a href="/packagesView" class="viewAll">##word.View All##</a>
+          <div class="row">
+            <div id="panner1">
+              <div class="callgafl">
+                <a href="/packagesView"><span class="number">##word.View All##</span></a> ##word.Packages##<span class="arrowLeft"></span><span class="arrowRight"></span>
+              </div>
             </div>
-            <ul class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
-              <li class="col recentlyConsultant" x-list1="packagesList">
-                <div class="consultantTitle">
-                  <a href="/packageView?id=##item1.id##">
-                    <p>
-                      <i class="name-recentlyConsultants">##item1.name##</i>
-                      <s class="red font-16 left bold padding">##item1.totalLecturesPrice##</s>
-                      <i class="left green bold padding mainColor"> ##word.$## ##item1.price## </i>
-                    </p>
-                 
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#"> </a>
-                  </div>
 
-                  <div class="questionTime">
-                    <i class="fas fa-clock clock-recentlyConsultants">##item1.$time##</i>
-                  </div>
-
-                  <div class="questionView"></div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="consultantAnswer">
-                    <p class="font-15">##item1.description##</p>
-                  </div>
-                </div>
-                <img class="img-recentlyConsultants" src="##item1.image.url##" alt="" />
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer"></div>
-                  <div class="goodAnswer"></div>
-                </div>
+            <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
+              <li x-list1="packagesList">
+                <figure class="image-block">
+                  <p class="name">##item1.name##</p>
+                  <img src="##item1.image.url##" alt="" />
+                  <figcaption>
+                    <p>##item1.description##</p>
+                    <div class="row">
+                      <i class="price col-6"
+                        >##word.$## ##item1.price##
+                        <s class="red">##item1.totalLecturesPrice##</s>
+                      </i>
+                      <a class="col-6" href="/packageView?id=##item1._id##">
+                        <button>##word.More##..</button>
+                      </a>
+                    </div>
+                  </figcaption>
+                </figure>
               </li>
             </ul>
           </div>
 
-          <div class="recentlyConsultantsContanier" ng-show="'##user.placeType##' == 'offline'">
-            <div class="recentlyConsultantsTitle">
-              <p class="headTitle">##word.Lectures##</p>
-              <a href="/lecturesView" class="viewAll">##word.View All##</a>
+          <div class="row" ng-show="'##user.placeType##' == 'offline'">
+            <div id="panner1">
+              <div class="callgafl">
+                <a href="/lecturesView"><span class="number">##word.View All##</span></a> ##word.Lectures##<span class="arrowLeft"></span><span class="arrowRight"></span>
+              </div>
             </div>
-            <ul class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
-              <li class="col recentlyConsultant" x-list1="lecturesList">
-                <div class="consultantTitle">
-                  <a href="/lectureView?id=##item1.id##">
-                    <p>
-                      <i class="name-recentlyConsultants">##item1.name##</i>
-                      <i class="left green bold padding mainColor"> ##word.$## ##item1.price## </i>
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#"> </a>
-                  </div>
 
-                  <div class="questionTime">
-                    <i class="fas fa-clock clock-recentlyConsultants">##item1.$time##</i>
-
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="consultantAnswer">
-                    <p class="font-15">##item1.description##</p>
-                  </div>
-                </div>
-                <img class="img-recentlyConsultants" src="##item1.image.url##" alt="" />
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer"></div>
-                  <div class="goodAnswer"></div>
-                </div>
+            <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
+              <li x-list1="lecturesList">
+                <figure class="image-block">
+                  <p class="name">##item1.name##</p>
+                  <img src="##item1.image.url##" alt="" />
+                  <figcaption>
+                    <p>##item1.description##</p>
+                    <div class="row">
+                      <i class="price col-6">##word.$## ##item1.price## </i>
+                      <a class="col-6" href="/lectureView?id=##item1._id##">
+                        <button>##word.More##..</button>
+                      </a>
+                    </div>
+                  </figcaption>
+                </figure>
               </li>
             </ul>
           </div>
 
-          <div class="recentlyConsultantsContanier">
-            <div class="recentlyConsultantsTitle">
-              <p class="headTitle">##word.Books##</p>
-              <a href="/booksView" class="viewAll">##word.View All##</a>
+          <div class="row">
+            <div id="panner1">
+              <div class="callgafl">
+                <a href="/booksView"><span class="number">##word.View All##</span></a> ##word.Books##<span class="arrowLeft"></span><span class="arrowRight"></span>
+              </div>
             </div>
-            <ul class="recentlyConsultants row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
-              <li class="col recentlyConsultant" x-list1="booksList">
-                <div class="consultantTitle">
-                  <a href="/bookView?id=##item1.id##">
-                    <p>
-                      <i class="name-recentlyConsultants">##item1.name##</i>
-                      <i class="left green bold padding mainColor"> ##word.$## ##item1.price## </i>
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#"> </a>
+
+            <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2 scrollx-menu">
+              <li x-list1="booksList">
+                <div class="nft">
+                  <div class="main">
+                    <img class="tokenImage" src="##item1.image.url##" alt="NFT" />
+                    <h2>##item1.name##</h2>
+                    <p class="description">##item1.description##</p>
+                    <div class="tokenInfo">
+
+                      <div class="price">
+                        <ins>##word.$##</ins>
+                        <p>##item1.price##</p>
+                      </div>
+                      <a class="" href="/bookView?id=##item1._id##">
+                        <button>##word.More##..</button>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="consultantAnswer">
-                    <p class="font-15">##item1.description##</p>
-                  </div>
-                </div>
-                <img class="img-recentlyConsultants" src="##item1.image.url##" alt="" />
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer"></div>
-                  <div class="goodAnswer"></div>
                 </div>
               </li>
             </ul>
           </div>
-
-          <!-- <div ng-click="changeLang('Ar')" class=" cricleConsultantAskConatainer cricleChangeLangConatainer">
-            <div class="cricleConsultantAsk">
-              <i class="fas fa-language"></i>
-              <p>عربي</p>
-            </div>
-          </div> -->
         </div>
         <div class="sidebarContainer col-lg-3">
           <div x-replace="teacher-theme/sidebar.html"></div>

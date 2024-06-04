@@ -180,9 +180,9 @@ module.exports = function init(site) {
             page_keywords: setting.keyWordsList.join(","),
           };
           if (req.hasFeature("host.com")) {
-            data.site_logo = "https://" + req.host + data.site_logo;
-            data.page_image = "https://" + req.host + data.page_image;
-            data.user_image = "https://" + req.host + data.user_image;
+            data.site_logo = "//" + req.host + data.site_logo;
+            data.page_image = "//" + req.host + data.page_image;
+            data.user_image = "//" + req.host + data.user_image;
           }
           res.render(app.name + "/notificationsView.html", data, {
             parser: "html css js",

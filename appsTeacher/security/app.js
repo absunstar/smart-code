@@ -1,5 +1,4 @@
 module.exports = function init(site) {
-  const $companies = site.connectCollection("companies");
 
   site.post("/api/security/permissions", (req, res) => {
     let response = {
@@ -131,22 +130,7 @@ module.exports = function init(site) {
     user.$req = req;
     user.$res = res;
 
-    user.company = site.getCompany(req);
-    user.branch = site.getBranch(req);
-    let numObj = {
-      company: site.getCompany(req),
-      screen: user.type.name,
-      date: new Date(),
-    };
-
-    let cb = site.getNumbering(numObj);
-    if (!user.code && !cb.auto) {
-      response.error = "Must Enter Code";
-      res.json(response);
-      return;
-    } else if (cb.auto) {
-      user.code = cb.code;
-    }
+   
 
     site.security.addUser(user, (err, _id) => {
       if (!err) {
@@ -218,116 +202,56 @@ module.exports = function init(site) {
     }
   });
 
-  site.post("/api/user/branches/all", (req, res) => {
-    let response = {
-      done: false,
-    };
-    if (req.data && req.data.where) {
-      site.security.getUser(req.data.where, (err, user) => {
-        if (!err && user) {
-          response.done = true;
-          let branchList = [];
-          site.getApp("companies").memoryList.forEach((co) => {
-            if (user.isAdmin) {
-              co.branchList = co.branchList || [];
-              co.branchList.forEach((br) => {
-                branchList.push({
-                  company: {
-                    id: co.id,
-                    code: co.code,
-                    nameAr: co.nameAr,
-                    nameEn: co.nameEn,
-                  },
-                  branch: {
-                    code: br.code,
-                    nameAr: br.nameAr,
-                    nameEn: br.nameEn,
-                  },
-                });
-              });
-            } else if (user.branchList && user.branchList.length > 0) {
-              user.branchList.forEach((b) => {
-                if (co.id === b.company.id) {
-                  co.branchList = co.branchList || [];
-                  co.branchList.forEach((br) => {
-                    if (b.branch.code == br.code) {
-                      branchList.push({
-                        company: {
-                          id: co.id,
-                          code: co.code,
-                          nameAr: co.nameAr,
-                          nameEn: co.nameEn,
-                        },
-                        branch: {
-                          code: br.code,
-                          nameAr: br.nameAr,
-                          nameEn: br.nameEn,
-                        },
-                      });
-                    }
-                  });
-                }
-              });
-            }
-          });
-          response.list = branchList;
-          res.json(response);
-        } else {
-          response.error = err ? err.message : "No User Exists : " + req.data.where.email;
-          res.json(response);
-        }
-      });
-    } else {
-      response.error = "no email";
-      res.json(response);
-    }
-  });
 
   site.post("/api/user/view", (req, res) => {
     let response = {
       done: false,
     };
-
     // if (!req.session.user) {
     //   response.error = 'You Are Not Login';
     //   res.json(response);
     //   return;
     // }
-
-    site.security.getUser(
-      {
+    let where = {};
+    if (req.body.id) {
+      where = {
         id: req.body.id,
-      },
-      (err, doc) => {
-        if (!err && doc) {
-          response.done = true;
+      };
+    } else if (req.body._id) {
+      where = {
+        _id: site.mongodb.ObjectID(req.body._id),
+      };
+    }
 
-          if (doc.createdDate) {
-            doc.$createdDate = site.xtime(doc.createdDate, req.session.lang);
-          }
-          let date = new Date(doc.visit_date);
-          date.setMinutes(date.getMinutes() + 1);
-          if (new Date() < date) {
-            doc.$isOnline = true;
-          } else {
-            doc.$isOnline = false;
-            if (doc.visitDate) {
-              doc.$lastSeen = site.xtime(doc.visitDate, req.session.lang);
-            }
-          }
-          if (req.body.type == "notifications") {
-            for (let i = 0; i < doc.notificationsList.length; i++) {
-              doc.notificationsList[i].$time = site.xtime(doc.notificationsList[i].date, req.session.lang);
-            }
-          }
+    site.security.getUser(where, (err, doc) => {
+      if (!err && doc) {
+        response.done = true;
 
-          response.doc = doc;
-        } else if (err) {
-          response.error = err.message;
+        if (doc.createdDate) {
+          doc.$createdDate = site.xtime(doc.createdDate, req.session.lang);
         }
-        res.json(response);
+        let date = new Date(doc.visit_date);
+        date.setMinutes(date.getMinutes() + 1);
+        if (new Date() < date) {
+          doc.$isOnline = true;
+        } else {
+          doc.$isOnline = false;
+          if (doc.visitDate) {
+            doc.$lastSeen = site.xtime(doc.visitDate, req.session.lang);
+          }
+        }
+        if (req.body.type == "notifications") {
+          for (let i = 0; i < doc.notificationsList.length; i++) {
+            doc.notificationsList[i].$time = site.xtime(doc.notificationsList[i].date, req.session.lang);
+          }
+        }
+
+        response.doc = doc;
+      } else if (err) {
+        response.error = err.message;
       }
-    );
+      res.json(response);
+    });
   });
 
   site.post("/api/user/register", (req, res) => {
@@ -374,20 +298,17 @@ module.exports = function init(site) {
       if (req.body.$encript === "64") {
         req.body.email = site.fromBase64(req.body.email);
         req.body.password = site.fromBase64(req.body.password);
-        req.body.company = site.fromJson(site.fromBase64(req.body.company));
-        req.body.branch = site.fromJson(site.fromBase64(req.body.branch));
+      
       } else if (req.body.$encript === "123") {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
-        req.body.company = site.fromJson(site.from123(req.body.company));
-        req.body.branch = site.fromJson(site.from123(req.body.branch));
+       
       }
     }
 
     let obj_where = {
       password: req.body.password,
-      company: req.body.company,
-      branch: req.body.branch,
+    
       $req: req,
       $res: res,
     };
@@ -410,8 +331,7 @@ module.exports = function init(site) {
     site.security.login(obj_where, function (err, user) {
       if (!err && user) {
         req.session.user = user;
-        req.session.company = req.body.company;
-        req.session.branch = req.body.branch;
+      
         site.saveSession(req.session);
 
         response.user = {
@@ -421,8 +341,7 @@ module.exports = function init(site) {
           targetId: user.refInfo ? user.refInfo.id : null,
           type: user.type,
           permissions: user.permissions,
-          company: req.body.company,
-          branch: req.body.branch,
+       
         };
         response.done = true;
       } else {

@@ -44,9 +44,9 @@ module.exports = function init(site) {
             };
   
             if (req.hasFeature("host.com")) {
-              data.site_logo = "https://" + req.host + data.site_logo;
-              data.page_image = "https://" + req.host + data.page_image;
-              data.user_image = "https://" + req.host + data.user_image;
+              data.site_logo = "//" + req.host + data.site_logo;
+              data.page_image = "//" + req.host + data.page_image;
+              data.user_image = "//" + req.host + data.user_image;
             }
             res.render("profile/profileView.html", data, {
               parser: "html",
@@ -67,8 +67,8 @@ module.exports = function init(site) {
   //   });
   // });
 
-  site.onGET("profileEdit/:id", (req, res) => {
-    site.security.getUser({ id: req.params.id }, (err, user) => {
+  site.onGET("profileEdit", (req, res) => {
+    site.security.getUser({ _id: site.mongodb.ObjectID(req.query.id) }, (err, user) => {
       if (user) {
         let setting = site.getSiteSetting(req.host);
         setting.description = setting.description || "";
@@ -102,9 +102,9 @@ module.exports = function init(site) {
           page_keywords: setting.keyWordsList.join(","),
         };
         if (req.hasFeature("host.com")) {
-          data.site_logo = "https://" + req.host + data.site_logo;
-          data.page_image = "https://" + req.host + data.page_image;
-          data.user_image = "https://" + req.host + data.user_image;
+          data.site_logo = "//" + req.host + data.site_logo;
+          data.page_image = "//" + req.host + data.page_image;
+          data.user_image = "//" + req.host + data.user_image;
         }
         res.render("profile/profileEdit.html", data , { parser: "html css js", compres: true });
       }

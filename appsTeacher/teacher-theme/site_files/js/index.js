@@ -11,7 +11,6 @@ app.controller('teacherTheme', function ($scope, $http, $timeout) {
         }
     });
   };
-
   $scope.loadTeachers = function (where) {
     $scope.error = '';
     $scope.busy = true;

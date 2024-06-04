@@ -115,7 +115,7 @@ module.exports = function init(site) {
       }
       let where = {};
       if(_item._id) {
-        where._id = _item._id
+        where._id = site.mongodb.ObjectID(_item._id)
       } else {
         where.id = _item.id
 
@@ -216,9 +216,9 @@ module.exports = function init(site) {
             page_keywords: setting.keyWordsList.join(","),
           };
           if (req.hasFeature("host.com")) {
-            data.site_logo = "https://" + req.host + data.site_logo;
-            data.page_image = "https://" + req.host + data.page_image;
-            data.user_image = "https://" + req.host + data.user_image;
+            data.site_logo = "//" + req.host + data.site_logo;
+            data.page_image = "//" + req.host + data.page_image;
+            data.user_image = "//" + req.host + data.user_image;
           }
           res.render(app.name + "/lectureView.html", data, {
             parser: "html css js",
@@ -336,6 +336,7 @@ module.exports = function init(site) {
             }
           }
           app.update(_data, (err, result) => {
+
             if (!err) {
               response.done = true;
               response.result = result;
@@ -465,7 +466,7 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if (req.session.user && req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId == doc.id)) {
+            if (req.session.user && req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == doc._id.toString())) {
               doc.$buy = true;
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
@@ -526,9 +527,9 @@ module.exports = function init(site) {
             ];
           }
         } else if (req.body.type == "myStudent") {
-          if (req.session.user && req.session.user.type == "student") {
+          if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
             let idList = req.session.user.lecturesList.map((_item) => _item.lectureId);
-            where["id"] = {
+            where["_id"] = {
               $in: idList,
             };
           }
@@ -572,12 +573,12 @@ module.exports = function init(site) {
                   user.lecturesList = user.lecturesList || [];
                   if (!user.lecturesList.some((l) => l.id == doc.id)) {
                     user.lecturesList.push({
-                      lectureId: doc.id,
+                      lectureId: site.mongodb.ObjectID(doc._id),
                     });
                   }
                   site.addPurchaseOrder({
                     type: "lecture",
-                    target: { id: doc.id, name: doc.name },
+                    target: { id: doc._id, name: doc.name },
                     price: doc.price,
                     code: _data.code,
                     date: new Date(),
@@ -608,6 +609,7 @@ module.exports = function init(site) {
 
   site.getLectures = function (req, callBack) {
     callBack = callBack || function () {};
+    site.lecturesList = [];
     let limit = req.body.limit || 7;
         let select = req.body.select || {
           id: 1,
@@ -646,8 +648,7 @@ module.exports = function init(site) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];
           if (!site.lecturesList.some((k) => k.id === doc.id)) {
-            doc.$time = site.xtime(doc.date, "Ar");
-
+            doc.time = site.xtime(doc.date, "Ar");
             site.lecturesList.push(doc);
           }
         }
