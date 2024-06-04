@@ -643,7 +643,6 @@ module.exports = function init(site) {
     }
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
-    console.log(where);
     app.$collection.findMany({where,select, limit}, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
