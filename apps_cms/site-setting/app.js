@@ -69,10 +69,10 @@ module.exports = function init(site) {
       AR: 'Youtube Video',
     },
     {
-      "id": 9,
-      "EN": "Facebook Post",
-      "AR": "Facebook Post"
-    }
+      id: 9,
+      EN: 'Facebook Post',
+      AR: 'Facebook Post',
+    },
   ];
   site.publishingSystem = [
     {
@@ -229,13 +229,22 @@ module.exports = function init(site) {
     }
   });
 
-  site.get(
+  site.onGET(
     {
       name: 'host-manager',
       require: { permissions: ['login'] },
     },
     (req, res) => {
-      res.render('site-setting/hosts.html', {}, { parser: 'html' });
+      let setting = site.getSiteSetting(req.host);
+      let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
+      res.render(
+        'site-setting/hosts.html',
+        {
+          setting: setting,
+          language: language,
+        },
+        { parser: 'html css js' }
+      );
     }
   );
 
@@ -260,7 +269,7 @@ module.exports = function init(site) {
           articleStatus: site.articleStatus,
           durationExpiry: site.durationExpiry,
         },
-        { parser: 'html' }
+        { parser: 'html css js' }
       );
     }
   );
