@@ -12,7 +12,7 @@
 .user-info a:hover {
   transform: scale(1.1);
 }
-.ltr ,
+.ltr .user-info,
 .ltr .user-info > img {
   float: right;
 }
