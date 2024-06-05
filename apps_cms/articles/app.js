@@ -1335,10 +1335,11 @@ module.exports = function init(site) {
         </item>
         `;
     });
+    let channelTitle = lang.siteName + ' ' + text + ' [ from ' + site.rssStartSlice + ' to ' + (site.rssStartSlice + limit) + ' ] of ' + list.length + 'Article Global RSS';
     let xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
       <channel>
-            <title> ${lang.siteName} ${text} [from ${site.rssStartSlice} to ${site.rssStartSlice + limit}] of ${list.length} Global RSS</title>
+            <title>${channelTitle}</title>
             <link>${domain}</link>
             <description>${lang.siteName} Articles Rss Feeds</description>
             ${urls}
