@@ -175,12 +175,17 @@
     ad_user_data: 'denied',
     ad_personalization: 'denied',
     analytics_storage: 'denied',
+    wait_for_update: 500,
   });
   setTimeout(() => {
+    localStorage.setItem('consentGranted', 'true');
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('consent', 'update', {
-      ad_storage: 'granted',
       ad_user_data: 'granted',
       ad_personalization: 'granted',
+      ad_storage: 'granted',
       analytics_storage: 'granted',
     });
   }, 1000 * 2);
