@@ -20,7 +20,8 @@
 .followUs {
   color: var(--color1);
   background: var(--background1);
-  border: 2px solid var(--background2);
+  border: 5px solid var(--background2);
+  border-radius: 10px;
 }
 
 .followUs  p {

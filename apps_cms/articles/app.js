@@ -237,7 +237,7 @@ module.exports = function init(site) {
     }
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
-    doc.$description = site.escapeHtml(doc.$content).substring(0, 180);
+    doc.$description = site.escapeHtml(doc.$content).substring(0, 180).replace("'", '');
     lang.keyWordsList = lang.keyWordsList || [];
     doc.$keyWordsList = [];
     lang.keyWordsList.forEach((k, i) => {
