@@ -1312,13 +1312,9 @@ module.exports = function init(site) {
     } else if (req.params.id) {
       list = [site.articlesList.find((p) => p.id == req.params.id)];
     } else {
-      if (site.rssStartSlice + limit < site.articlesList.length) {
-        site.rssStartSlice += limit;
-      } else {
-        site.rssStartSlice = 0;
-      }
       let to = site.rssStartSlice + limit;
       list = site.articlesList.filter((a) => a.$imageURL && a.host.like(filter)).slice(site.rssStartSlice, to);
+      site.rssStartSlice += limit;
       if (list.length == 0) {
         site.rssStartSlice = 0;
         let to = site.rssStartSlice + limit;
