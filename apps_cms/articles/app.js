@@ -1412,7 +1412,51 @@ module.exports = function init(site) {
       }
     });
   });
+  site.onGET({ name: ['/rss-pin'], public: true }, (req, res) => {
+    let text = ' Pin RSS ';
+    let setting = site.getSiteSetting(req.host);
+    let lang = setting.languageList[0];
+    let domain = 'https://' + req.host;
 
+    if (site.pinPost && site.pinPost.$pinDate && (new Date().getTime() - site.pinPost.$pinDate.getTime()) / 1000 < 60 * 15) {
+      res.set('Content-Type', 'application/xml');
+      res.end(site.getRssXmlString([site.pinPost], domain, lang.siteName + text));
+      return;
+    }
+
+    let filter = site.getHostFilter(req.host);
+
+    if (filter.indexOf('*') !== -1) {
+      filter = filter.split('*');
+      filter.forEach((n, i) => {
+        filter[i] = site.escapeRegx(n);
+      });
+      filter = filter.join('.*');
+    } else {
+      filter = site.escapeRegx(filter);
+    }
+    filter = '^' + filter + '$';
+
+    site.$articles.find({ host: new RegExp(filter, 'gium'), pinPost: { $exists: false } }, (err, doc) => {
+      if (!err && doc) {
+        doc.pinPost = true;
+        site.$articles.update(doc);
+        doc = site.handleArticle({ ...doc });
+        site.articlesList.push(doc);
+        doc.$pinDate = new Date();
+        doc.full_url = domain + '/article/' + doc.guid;
+        doc.$date2 = new Date(doc.publishDate).toISOString();
+
+        site.pinPost = doc;
+
+        res.set('Content-Type', 'application/xml');
+        res.end(site.getRssXmlString([site.pinPost], domain, lang.siteName + text));
+      } else {
+        res.set('Content-Type', 'application/xml');
+        res.end(site.getRssXmlString([], domain, lang.siteName + text));
+      }
+    });
+  });
   site.onGET({ name: ['/feed'], public: true }, (req, res) => {
     let limit = req.query.limit || 10;
     let list = [];
