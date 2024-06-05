@@ -1298,6 +1298,8 @@ module.exports = function init(site) {
   site.rssStartSlice = 0;
   site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
     let limit = parseInt(req.query.limit || 10);
+    let to = site.rssStartSlice + limit;
+
     let list = [];
     let text = '';
 
@@ -1312,12 +1314,10 @@ module.exports = function init(site) {
     } else if (req.params.id) {
       list = [site.articlesList.find((p) => p.id == req.params.id)];
     } else {
-      let to = site.rssStartSlice + limit;
       list = site.articlesList.filter((a) => a.$imageURL && a.host.like(filter)).slice(site.rssStartSlice, to);
-      site.rssStartSlice += limit;
       if (list.length == 0) {
         site.rssStartSlice = 0;
-        let to = site.rssStartSlice + limit;
+        to = site.rssStartSlice + limit;
         list = site.articlesList.filter((a) => a.$imageURL && a.host.like(filter)).slice(site.rssStartSlice, to);
       }
     }
@@ -1351,6 +1351,7 @@ module.exports = function init(site) {
      </rss>`;
     res.set('Content-Type', 'application/xml');
     res.end(xml);
+    site.rssStartSlice += limit;
   });
 
   site.facebookPost = null;
