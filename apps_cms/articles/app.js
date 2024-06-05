@@ -237,7 +237,7 @@ module.exports = function init(site) {
     }
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
-    doc.$description = site.escapeHtml(doc.$content).substring(0, 180).replaceAll(':', ' ');
+    doc.$description = site.escapeHtml(doc.$content).substring(0, 180);
     lang.keyWordsList = lang.keyWordsList || [];
     doc.$keyWordsList = [];
     lang.keyWordsList.forEach((k, i) => {
@@ -1304,23 +1304,24 @@ module.exports = function init(site) {
 
     let urls = '';
     list.forEach((doc, i) => {
-      doc.full_url = domain + '/article/' + doc.guid;
-      doc.$date2 = new Date(doc.publishDate).toISOString();
+      let url = domain + '/article/' + doc.guid;
+      let date = new Date(doc.publishDate).toISOString();
+      let description = doc.$description.replaceAll(':', ' ').replaceAll('&', ' ');
       urls += `
         <item>
           <guid>${doc.guid}</guid>
           <title>${doc.$title}</title>
-          <link>${doc.full_url}</link>
+          <link>${url}</link>
           <image>${domain}/article-image/${doc.guid}</image>
-          <description>${doc.$description}</description>
-          <pubDate>${doc.$date2}</pubDate>
+          <description>${description}</description>
+          <pubDate>${date}</pubDate>
         </item>
         `;
     });
     let xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
       <channel>
-            <title> ${lang.siteName} ${text} Global RSS</title>
+            <title> ${lang.siteName} ${text} ${list.length} Global RSS</title>
             <link>${domain}</link>
             <description>${lang.siteName} Articles Rss Feeds</description>
             ${urls}
