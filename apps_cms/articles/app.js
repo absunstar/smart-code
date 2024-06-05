@@ -1328,13 +1328,18 @@ module.exports = function init(site) {
       let date = new Date(doc.publishDate).toISOString();
       let title = site.escapeXML(doc.$title);
       let description = site.escapeXML(doc.$description);
+      let hashTag = ' '
+      doc.$tagsList.forEach((tag) => {
+        hashTag += '  #' + tag;
+      });
+      hashTag += ' Download Torrents Movies in High Qualtiy 720p , 1080p , 2k , 4k , 8k'
       urls += `
         <item>
           <guid>${doc.guid}</guid>
           <title>${title}</title>
           <link>${url}</link>
           <image>${domain}/article-image/${doc.guid}</image>
-          <description>${description}</description>
+          <description>${description + hashTag}</description>
           <pubDate>${date}</pubDate>
         </item>
         `;
