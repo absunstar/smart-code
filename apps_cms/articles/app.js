@@ -1319,6 +1319,11 @@ module.exports = function init(site) {
       }
       let to = site.rssStartSlice + limit;
       list = site.articlesList.filter((a) => a.$imageURL && a.host.like(filter)).slice(site.rssStartSlice, to);
+      if (list.length == 0) {
+        site.rssStartSlice = 0;
+        let to = site.rssStartSlice + limit;
+        list = site.articlesList.filter((a) => a.$imageURL && a.host.like(filter)).slice(site.rssStartSlice, to);
+      }
     }
 
     let urls = '';
