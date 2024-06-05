@@ -1300,7 +1300,9 @@ module.exports = function init(site) {
     let limit = parseInt(req.query.limit || 10);
     let list = [];
     let text = '';
+
     let setting = site.getSiteSetting(req.host);
+    let filter = site.getHostFilter(req.host);
 
     let lang = setting.languageList[0];
     let domain = 'https://' + req.host;
@@ -1316,7 +1318,7 @@ module.exports = function init(site) {
         site.rssStartSlice = 0;
       }
       let to = site.rssStartSlice + limit;
-      list = site.articlesList.filter((p) => p.$imageURL).slice(site.rssStartSlice, to);
+      list = site.articlesList.filter((a) => a.$imageURL && a.host.like(filter)).slice(site.rssStartSlice, to);
     }
 
     let urls = '';
