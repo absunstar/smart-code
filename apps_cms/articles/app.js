@@ -96,7 +96,7 @@ module.exports = function init(site) {
       if (!unsafe) {
         return '';
       }
-      return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/:/g, '&quot;');
+      return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     } catch (error) {
       return unsafe;
     }
@@ -237,7 +237,7 @@ module.exports = function init(site) {
     }
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
-    doc.$description = site.escapeHtml(doc.$content).substring(0, 180);
+    doc.$description = site.escapeHtml(doc.$content).substring(0, 180).replaceAll(':', ' ');
     lang.keyWordsList = lang.keyWordsList || [];
     doc.$keyWordsList = [];
     lang.keyWordsList.forEach((k, i) => {
