@@ -48,7 +48,7 @@
 <link rel="alternate" type="application/rss+xml" title="##data.page_title##" href="/rss" />
 <link rel="stylesheet" href="/css/theme1.css?version=##site.time##" />
 
-<meta name="p:domain_verify" content="d149e0c1a11c5994f3d7e39b423d9c12"/>
+<meta name="p:domain_verify" content="d149e0c1a11c5994f3d7e39b423d9c12" />
 
 <style>
   * {
@@ -169,6 +169,21 @@
   }
   gtag('js', new Date());
   gtag('config', 'G-SJEBBEFC7P');
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+  });
+  setTimeout(() => {
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted',
+    });
+  }, 1000 * 2);
 </script>
 
 <script x-data="setting.addScript">
