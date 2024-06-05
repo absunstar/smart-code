@@ -75,6 +75,8 @@ site.get(
     if (setting.siteTemplate.id == 1) {
       site.articlesList = site.articlesList || [];
       let options = {
+        domain: 'https://' + req.host,
+        url : 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -191,6 +193,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         domain: 'https://' + req.host,
+        url : 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -320,6 +323,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         domain: 'https://' + req.host,
+        url: 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -462,6 +466,7 @@ site.get(
 
         let options = {
           domain: 'https://' + req.host,
+          url: 'https://' + req.host + req.url,
           filter: filter,
           language: language,
           setting: setting,
