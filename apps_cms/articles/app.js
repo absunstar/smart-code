@@ -1295,6 +1295,7 @@ module.exports = function init(site) {
     );
   });
 
+  site.rssStartSlice = 0;
   site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
     let limit = req.query.limit || 10;
     let list = [];
@@ -1309,7 +1310,12 @@ module.exports = function init(site) {
     } else if (req.params.id) {
       list = [site.articlesList.find((p) => p.id == req.params.id)];
     } else {
-      list = site.articlesList.filter((p) => p.$imageURL).slice(0, limit);
+      if (site.rssStartSlice + limit < site.articlesList.length) {
+        site.rssStartSlice += limit;
+      } else {
+        site.rssStartSlice = 0;
+      }
+      list = site.articlesList.filter((p) => p.$imageURL).slice(site.rssStartSlice, limit);
     }
 
     let urls = '';
@@ -1332,7 +1338,7 @@ module.exports = function init(site) {
     let xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
       <channel>
-            <title> ${lang.siteName} ${text} ${list.length} Global RSS</title>
+            <title> ${lang.siteName} ${text} [from ${site.rssStartSlice} to ${site.rssStartSlice + limit}] of ${list.length} Global RSS</title>
             <link>${domain}</link>
             <description>${lang.siteName} Articles Rss Feeds</description>
             ${urls}
