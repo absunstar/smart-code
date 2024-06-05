@@ -1334,7 +1334,7 @@ module.exports = function init(site) {
   site.getRssXmlString = function (list, domain, siteName) {
     let urls = '';
     list.forEach((doc) => {
-      let hashTag = '  ';
+      let hashTag = '#torrent ';
       doc.$tagsList.forEach((tag) => {
         hashTag += '  #' + tag;
       });
@@ -1342,13 +1342,14 @@ module.exports = function init(site) {
       urls += `
       <item>
         <guid>${doc.guid}</guid>
-        <title>${doc.$title} ${hashTag}</title>
+        <title>${doc.$title}</title>
         <link>${doc.full_url}</link>
         <image>${domain}/article-image/${doc.guid}</image>
         <description>
           <![CDATA[
             ${doc.$content}
-            #Download Now Free ( high Quality #1080p or #720p )  
+            ${hashTag}
+            Download Free Movies Torrents ( 720p , 1080p , 2k , 4k , 8k )  
           ]]>
         </description>
         <pubDate>${doc.$date2}</pubDate>
