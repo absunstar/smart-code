@@ -101,6 +101,16 @@ module.exports = function init(site) {
       return unsafe;
     }
   };
+  site.escapeXML = function (unsafe) {
+    try {
+      if (!unsafe) {
+        return '';
+      }
+      return unsafe.replace(/&/g, '').replace(/</g, '').replace(/>/g, '').replace(/"/g, '').replaceAll(':', '');
+    } catch (error) {
+      return unsafe;
+    }
+  };
   site.removeHtml = function (unsafe) {
     try {
       if (!unsafe) {
@@ -1306,8 +1316,8 @@ module.exports = function init(site) {
     list.forEach((doc, i) => {
       let url = domain + '/article/' + doc.guid;
       let date = new Date(doc.publishDate).toISOString();
-      let title = doc.$title.replaceAll(':', ' ').replaceAll('&', ' ');
-      let description = doc.$description.replaceAll(':', ' ').replaceAll('&', ' ');
+      let title = site.escapeXML(doc.$title);
+      let description = site.escapeXML(doc.$description);
       urls += `
         <item>
           <guid>${doc.guid}</guid>
