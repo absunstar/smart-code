@@ -1306,11 +1306,12 @@ module.exports = function init(site) {
     list.forEach((doc, i) => {
       let url = domain + '/article/' + doc.guid;
       let date = new Date(doc.publishDate).toISOString();
+      let title = doc.$title.replaceAll(':', ' ').replaceAll('&', ' ');
       let description = doc.$description.replaceAll(':', ' ').replaceAll('&', ' ');
       urls += `
         <item>
           <guid>${doc.guid}</guid>
-          <title>${doc.$title}</title>
+          <title>${title}</title>
           <link>${url}</link>
           <image>${domain}/article-image/${doc.guid}</image>
           <description>${description}</description>
