@@ -1297,7 +1297,7 @@ module.exports = function init(site) {
 
   site.rssStartSlice = 0;
   site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
-    let limit = req.query.limit || 10;
+    let limit = parseInt(req.query.limit || 10);
     let list = [];
     let text = '';
     let setting = site.getSiteSetting(req.host);
