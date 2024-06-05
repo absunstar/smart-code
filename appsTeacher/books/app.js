@@ -482,9 +482,9 @@ module.exports = function init(site) {
     if (req.session.user && req.session.user.type == "student") {
       where["educationalLevel.id"] = req.session.user.educationalLevel.id;
       where["schoolYear.id"] = req.session.user.schoolYear.id;
-      where["host"] = site.getHostFilter(req.host);
-      where["active"] = true;
     }
+    where["active"] = true;
+    where["host"] = site.getHostFilter(req.host);
     app.$collection.findMany({ where, select, limit }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {

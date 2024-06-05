@@ -405,6 +405,7 @@ module.exports = function init(site) {
           where["lecture.id"] = where["lecture"].id;
           delete where["lecture"];
         }
+        where["host"] = site.getHostFilter(req.host);
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
           res.json({ done: true, list: docs });
         });

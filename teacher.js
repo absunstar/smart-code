@@ -163,7 +163,7 @@ site.get("/x-update", (req, res) => {
 });
 
 site.get("/x-restart", (req, res) => {
-  site.cmd("pm2 restart 0", (data) => {
+  site.cmd("pm2 restart 21", (data) => {
     console.log(data);
   });
 });

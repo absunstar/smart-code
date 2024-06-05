@@ -449,12 +449,13 @@ module.exports = function init(site) {
                   user.packagesList = user.packagesList || [];
                   user.lecturesList = user.lecturesList || [];
                   doc.lecturesList.forEach((_l) => {
-                    if (!user.lecturesList.some((l) => l.id == _l.lecture._id)) {
+                    if (!user.lecturesList.some((l) =>_l.lecture && l.id == _l.lecture._id)) {
                       user.lecturesList.push({
                       lectureId: site.mongodb.ObjectID(_l.lecture._id),
                       });
                     }
                   });
+                  
                   user.packagesList.push(doc._id);
                   site.addPurchaseOrder({
                     type: "package",
@@ -524,10 +525,10 @@ module.exports = function init(site) {
     if (req.session.user && req.session.user.type == "student") {
       where["educationalLevel.id"] = req.session.user.educationalLevel.id;
       where["schoolYear.id"] = req.session.user.schoolYear.id;
-      where["host"] = site.getHostFilter(req.host);
-      where["active"] = true;
       where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
     }
+    where["host"] = site.getHostFilter(req.host);
+    where["active"] = true;
     app.$collection.findMany({ where, select, limit }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
@@ -535,7 +536,7 @@ module.exports = function init(site) {
           if (!site.packagesList.some((k) => k.id === doc.id)) {
             doc.time = site.xtime(doc.date, "Ar");
 
-            site.packagesList.push(doc);
+            // site.packagesList.push(doc);
           }
         }
       }
