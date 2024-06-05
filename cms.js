@@ -367,7 +367,7 @@ site.get(
       options.categoryName = options.$categoryLang.name;
       options.page_image = options.$categoryLang.image?.url || options.site_logo;
       options.page_title = language.siteName + ' ' + language.titleSeparator + ' ' + options.$categoryLang.name;
-      options.page_description = options.$categoryLang.description;
+      options.page_description = options.$categoryLang.description || options.page_description;
 
       site.searchArticles({ category: category, host: options.filter, page: page, limit: limit }, (err, result) => {
         if (!err && result) {
