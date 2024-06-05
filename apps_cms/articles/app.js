@@ -1328,7 +1328,7 @@ module.exports = function init(site) {
       let date = new Date(doc.publishDate).toISOString();
       let title = site.escapeXML(doc.$title);
       let description = site.escapeXML(doc.$description);
-      let hashTag = ' ';
+      let hashTag = ' #torrent';
       if (doc.$yts) {
         doc.$tagsList.forEach((tag) => {
           hashTag += '  #' + tag;
