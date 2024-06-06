@@ -128,7 +128,7 @@
                   ng-search="user.$educationalLevel"
                 ></i-list>
                 <i-list label="##word.School Year##" ng-model="user.schoolYear" v="r" display="name" items="schoolYearsList"></i-list>
-                <i-list ng-show="type == 'offline'" class="center input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name" ng-search="user.$center"></i-list>
+                <i-list ng-show="type == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name" ng-search="user.$center"></i-list>
                 <i-control ng-show="type == 'online'" class="center input-style" label="##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
                 <i-list
                   v="r"
@@ -141,22 +141,23 @@
                   ng-search="user.$countries"
                 ></i-list>
                 <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(user.gov)" ng-model="user.gov" display="name" items="govesList" ng-search="user.$gov"></i-list>
-                <i-list label="##word.City##" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name" ng-search="user.$area.$cityitem"> </i-list>
-                <i-list label="##word.Area##" ng-model="user.area" items="areasList" display="name" ng-search="user.$area.$areaitem"> </i-list>
+                <i-list x-data="setting.citiesAndAreasShow" label="##word.City##" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name" ng-search="user.$area.$cityitem"> </i-list>
+                <i-list x-data="setting.citiesAndAreasShow" label="##word.Area##" ng-model="user.area" items="areasList" display="name" ng-search="user.$area.$areaitem"> </i-list>
+                <i-control v="r" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
                 <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
-                <i-control v="r" class="pass input-style" label="##word.Password##" type="password" id="pass1" ng-model="user.password"> </i-control>
-                <i-control v="r" class="pass input-style" label="##word.Retype Password##" type="password" id="pass2" ng-model="user.rePassword"> </i-control>
-                <i-checkbox class="right" label="##word.Show Password##" ng-change="showPassword()" ng-model="showPassword"> </i-checkbox>
+                <i-control v="r" class="pass input-style" label="##word.Password##" type="password" ng-model="user.password"> </i-control>
+                <i-control v="r" class="pass input-style" label="##word.Retype Password##" type="password" ng-model="user.rePassword"> </i-control>
+                <i-checkbox class="right" label="##word.Show Password##" ng-change="showPassword()" ng-model="show_password"> </i-checkbox>
               </div>
               <div class="col2"></div>
               <div class="col3">
                 <div class="row">
                   <p class="right-content"><span class="red bold"> * </span> ##word.Profile Image##</p>
-                  <i-image v="r" style="width: 170px !important; height: 200px !important" ng-model="user.image"></i-image>
+                  <i-image v="r" class="img256" ng-model="user.image"></i-image>
                 </div>
                 <div class="row" ng-show="type == 'online'">
                   <p class="right-content"><span class="red bold"> * </span> ##word.National ID Image##</p>
-                  <i-image style="width: 170px !important; height: 200px !important" ng-model="user.nationalIdImage"></i-image>
+                  <i-image class="img256" ng-model="user.nationalIdImage"></i-image>
                 </div>
                 <div class="row" ng-show="type == 'online'">
                   <button ng-click="getLocation()" class="register-btn location-btn">##word.Location## <i class="fas fa-map-marker-alt"></i></button>

@@ -378,6 +378,35 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getCentersList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/centers/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.centersList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
   $scope.getGenders = function () {
     $scope.busy = true;
     $scope.gendersList = [];
@@ -403,4 +432,5 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   $scope.getNationalities();
   $scope.getCountriesList();
   $scope.getGenders();
+  $scope.getCentersList();
 });

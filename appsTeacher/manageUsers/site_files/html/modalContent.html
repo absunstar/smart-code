@@ -11,12 +11,16 @@
           <i-control type="text" v="r" ng-model="item.firstName" label="##word.Full Name##"></i-control>
 
           <i-control v="r" class="input-style" label="##word.User Name##" ng-model="item.userName"> </i-control>
+            <i-date label="##word.Date Of Birth ##" ng-model="item.dateOfBirth"> </i-date>
+            <i-control ng-show="item.placeType == 'online'" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
+            <i-control label="##word.BrowserId##" ng-model="item.socialBrowserID"> </i-control>
         </div>
       </div>
       <div class="col3 center">
         <div class="row center-content">
           <p class="">##word.Profile Image##</p>
-          <i-image class="img128" ng-model="item.image"></i-image>
+          <i-image class="img256" ng-model="item.image"></i-image>
+          <i-image class="img256" ng-show="item.placeType == 'online'" ng-model="item.nationalIdImage"></i-image>
         </div>
       </div>
     </div>
@@ -32,10 +36,8 @@
     <div class="tabs-content">
       <div id="contactInformations" class="tab-content">
         <fieldset>
-          <div class="row">
-            <i-date class="col6" label="##word.Date Of Birth ##" ng-model="item.dateOfBirth"> </i-date>
-            <i-control class="col6" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
-          </div>
+         
+        
           <div class="row">
             <i-list
               class="col4"
@@ -61,9 +63,9 @@
         <fieldset>
           <legend>##word.Contact Informations##</legend>
           <div class="row">
-            <i-control class="col3" label="# ##word.Phone##" ng-model="item.phone"></i-control>
+            <i-control class="col3" label="##word.Phone##" ng-model="item.phone"></i-control>
 
-            <i-control class="col3" label="# ##word.Mobile##" ng-model="item.mobile"></i-control>
+            <i-control class="col3" label="##word.Mobile##" ng-model="item.mobile"></i-control>
 
             <i-control class="col3" label="##word.Parent Mobile Number##" ng-model="item.parentMobile"></i-control>
 
@@ -95,8 +97,8 @@
               ng-get="getCountriesList($search)"
             ></i-list>
             <i-list help-id="" class="col3" label="##word.Governorate##" ng-change="getCitiesList(item.gov)" ng-model="item.gov" display="name" items="govesList" ng-search="item.$gov"></i-list>
-            <i-list class="col3" label="##word.City##" ng-model="item.city" ng-change="getAreasList(item.city)" items="citiesList" display="name" ng-search="item.$area"> </i-list>
-            <i-list class="col3" label="##word.Area##" ng-model="item.area" items="areasList" display="name" ng-search="item.$area"> </i-list>
+            <i-list class="col3" x-data="setting.citiesAndAreasShow" label="##word.City##" ng-model="item.city" ng-change="getAreasList(item.city)" items="citiesList" display="name" ng-search="item.$area"> </i-list>
+            <i-list class="col3" x-data="setting.citiesAndAreasShow" label="##word.Area##" ng-model="item.area" items="areasList" display="name" ng-search="item.$area"> </i-list>
           </div>
 
           <div class="row">
@@ -105,7 +107,7 @@
         </fieldset>
         <fieldset>
           <div class="row">
-            <i-control class="col6" v="r e" label="##word.Login E-mail##" ng-model="item.email"> </i-control>
+            <i-control class="col6" v="r" label="##word.Login E-mail##" ng-model="item.email"> </i-control>
             <i-control class="col6" v="r" label="##word.Password##" ng-model="item.password"> </i-control>
           </div>
         </fieldset>

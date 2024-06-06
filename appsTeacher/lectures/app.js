@@ -608,7 +608,8 @@ module.exports = function init(site) {
   site.getLectures = function (req, callBack) {
     callBack = callBack || function () {};
     site.lecturesList = [];
-    let limit = req.body.limit || 7;
+    let setting = site.getSiteSetting(req.host);
+    let limit = setting.lecturesLimit || 6;
     let select = req.body.select || {
       id: 1,
       name: 1,

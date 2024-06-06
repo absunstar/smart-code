@@ -26,6 +26,7 @@ app.controller("bookView", function ($scope, $http, $timeout) {
   };
   $scope.showEnterCode = function () {
     $scope.code = "";
+    $scope.address = '##user.address##';
     site.showModal("#codeModal");
   };
 

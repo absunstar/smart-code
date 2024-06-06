@@ -111,7 +111,7 @@
 
                       <i-list
                         v="r"
-                        class="center input-style"
+                        class="input-style"
                         label="##word.Country##"
                         ng-model="user.country"
                         ng-change="getGovesList(user.country)"
@@ -122,10 +122,11 @@
 
                       <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(user.gov)" ng-model="user.gov" display="name" items="govesList" ng-search="user.$gov"></i-list>
 
-                      <i-list label="##word.City##" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name" ng-search="user.$city"> </i-list>
+                      <i-list label="##word.City##" x-data="setting.citiesAndAreasShow" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name" ng-search="user.$city"> </i-list>
 
-                      <i-list label="##word.Area##" ng-model="user.area" items="areasList" display="name" ng-search="user.$area"> </i-list>
+                      <i-list label="##word.Area##"  x-data="setting.citiesAndAreasShow" ng-model="user.area" items="areasList" display="name" ng-search="user.$area"> </i-list>
 
+                      <i-control v="r" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
                       <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
 
                       <i-control v="r" class="pass input-style" label="##word.Password##" type="password" id="pass1" ng-model="user.password"></i-control>
@@ -148,7 +149,7 @@
 
                       <br />
 
-                      <i-control v="r" class="center input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
+                      <i-control v="r" class="input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
                       <i-control v="e" class="input-style" label="##word.Contact Email##" ng-model="user.contactEmail"> </i-control>
 
                       <i-control class="input-style" label="##word.Facebook##" ng-model="user.faceBook"> </i-control>
