@@ -38,9 +38,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal($scope.modalID);
           site.resetValidated($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list[index] = response.data.result.doc;
           }
@@ -109,9 +107,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list.splice(index, 1);
           }
@@ -128,6 +124,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
   $scope.getAll = function (where) {
     $scope.busy = true;
     $scope.list = [];
+    where["type"] = "##query.type##";
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
@@ -141,9 +138,9 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           $scope.totalPurchases = response.data.totalPurchases;
-          $scope.totalLectures = response.data.totalLectures;
+       /*    $scope.totalLectures = response.data.totalLectures;
           $scope.totalBooks = response.data.totalBooks;
-          $scope.totalPackages = response.data.totalPackages;
+          $scope.totalPackages = response.data.totalPackages; */
           site.hideModal($scope.modalSearchID);
           $scope.search = {};
         }
@@ -159,6 +156,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
+    $scope.lecturesList = [];
     $scope.busy = true;
     $http({
       method: "POST",
@@ -188,6 +186,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
+    $scope.packagesList = [];
     $scope.busy = true;
     $http({
       method: "POST",
@@ -213,6 +212,36 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getBooksList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.booksList = [];
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/books/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name: 1 },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.booksList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getStudentsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -223,10 +252,10 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
       url: "/api/users/all",
       data: {
         where: {
-          type : 'student',
+          type: "student",
           active: true,
         },
-        select: { id: 1, firstName: 1, },
+        select: { id: 1, firstName: 1 },
         search: $search,
       },
     }).then(
@@ -242,7 +271,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
       }
     );
   };
-
+/* 
   $scope.getPurchaseOrdersTargetList = function () {
     $scope.busy = true;
     $scope.purchaseOrdersTargetList = [];
@@ -263,7 +292,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
       }
     );
   };
-
+ */
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
@@ -275,9 +304,10 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
-  $scope.getAll();
+  $scope.getAll({});
+  $scope.getBooksList();
   $scope.getPackagesList();
   $scope.getLecturesList();
   $scope.getStudentsList();
-  $scope.getPurchaseOrdersTargetList();
+/*   $scope.getPurchaseOrdersTargetList(); */
 });

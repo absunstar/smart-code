@@ -4,9 +4,10 @@
 
     <div class="top-actions">
       <div class="row">
-        <i-list class="col3" label="##word.Type##" ng-model="_search.targetType" display="name##session.lang##" items="purchaseOrdersTargetList"></i-list>
-        <i-list class="col3" label="##word.Lecture##" ng-model="_search.lecture" display="name" items="lecturesList" ng-get="getLecturesList($search)"></i-list>
-        <i-list class="col3" label="##word.Package##" ng-model="_search.package" display="name" items="packagesList" ng-get="getPackagesList($search)"></i-list>
+<!--         <i-list class="col3" label="##word.Type##" ng-model="_search.targetType" display="name##session.lang##" items="purchaseOrdersTargetList"></i-list>
+ -->        <i-list class="col3" ng-show="'##query.type##' == 'lecture'" label="##word.Lecture##" ng-model="_search.lecture" display="name" items="lecturesList" ng-get="getLecturesList($search)"></i-list>
+        <i-list class="col3" label="##word.Package##" ng-show="'##query.type##' == 'package'" ng-model="_search.package" display="name" items="packagesList" ng-get="getPackagesList($search)"></i-list>
+        <i-list class="col3" label="##word.Book##" ng-show="'##query.type##' == 'book'" ng-model="_search.book" display="name" items="booksList" ng-get="getBooksList($search)"></i-list>
         <i-list class="col3" label="##word.Student##" ng-model="_search.student" display="firstName" items="studentsList" ng-get="getStudentsList($search)"></i-list>
       </div>
 
@@ -24,12 +25,12 @@
       <i-control ng-model="$search" x-permissions="purchaseOrdersSearch || purchaseOrdersManage"></i-control>
     </div>
     <div class="row margin">
-      <div class="col3">
-        <fieldset class="gray-bg">
+      <div class="col4">
+        <fieldset class="gray-bg center">
           <p class="bold font-19">##word.Total Purchases## : {{totalPurchases | xmoney2}} <span class="currency">##word.$##</span></p>
         </fieldset>
       </div>
-      <div class="col3">
+    <!--   <div class="col3">
         <fieldset class="gray-bg">
           <p class="bold font-19">##word.Total Lectures## : {{totalLectures | xmoney2}} <span class="currency">##word.$##</span></p>
         </fieldset>
@@ -43,33 +44,28 @@
         <fieldset class="gray-bg">
           <p class="bold font-19">##word.Total Books## : {{totalBooks | xmoney2}} <span class="currency">##word.$##</span></p>
         </fieldset>
-      </div>
+      </div> -->
     </div>
     <div class="table-responsive">
       <table class="table hover bold" id="t1">
         <tr>
-          <th>##word.Type##</th>
+          <th>##word.Name##</th>
           <th>##word.Date##</th>
           <th>##word.Code##</th>
           <th>##word.Student Name##</th>
-          <th>##word.Target Name##</th>
           <th>##word.Price##</th>
           <th>##word.Status##</th>
         </tr>
         <tr ng-repeat="item in list">
-          <td class="center">
-            <span ng-show="item.type == 'lecture'">##word.Lecture##</span>
-            <span ng-show="item.type == 'package'">##word.Package##</span>
-            <span ng-show="item.type == 'book'">##word.Book##</span>
-          </td>
+      
+          <td class="center">{{item.target.name}}</td>
           <td class="center">{{item.date |date:"dd - MM - yyyy"}}</td>
           <td class="center">
             {{item.code}}
             <p ng-show="!item.code">##word.Not Exist##</p>
           </td>
           <td class="center">{{item.user.firstName}}</td>
-          <td class="center">{{item.target.name}}</td>
-          <td class="center">{{item.price}}</td>
+          <td class="center">{{item.price}} <span class="currency">##word.$##</span></td>
           <td class="center not-print">
             <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
             <!-- 

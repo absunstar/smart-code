@@ -43,7 +43,7 @@ app.controller("bookView", function ($scope, $http, $timeout) {
       url: `${$scope.baseURL}/api/books/buyCode`,
       data: {
         address: $scope.address,
-        bookId: $scope.item.id,
+        bookId: $scope.item._id,
         bookPrice: $scope.item.price,
       },
     }).then(

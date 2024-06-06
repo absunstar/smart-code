@@ -235,6 +235,7 @@ module.exports = function init(site) {
         let select = req.body.select || {
           id: 1,
           type: 1,
+          code: 1,
           price: 1,
           target: 1,
           user: 1,
@@ -252,12 +253,18 @@ module.exports = function init(site) {
           delete where.toDate;
         }
         if (where["package"]) {
-          where["target.id"] = where["package"].id;
+          where["target.id"] = site.mongodb.ObjectID(where["package"]._id);
           delete where["package"];
         }
 
+        if (where["book"]) {
+          where["target.id"] = site.mongodb.ObjectID(where["book"]._id);
+          delete where["book"];
+        }
+
+
         if (where["lecture"]) {
-          where["target.id"] = where["lecture"].id;
+          where["target.id"] = site.mongodb.ObjectID(where["lecture"]._id);
           delete where["lecture"];
         }
 
@@ -280,21 +287,26 @@ module.exports = function init(site) {
         }
         where["host"] = site.getHostFilter(req.host);
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
-          let totalPackages = 0;
-          let totalLectures = 0;
-          let totalBooks = 0;
+          // let totalPackages = 0;
+          // let totalLectures = 0;
+          // let totalBooks = 0;
           let totalPurchases = 0;
           for (let i = 0; i < docs.length; i++) {
             totalPurchases += docs[i].price;
-            if (docs[i].type == "lecture") {
-              totalLectures += docs[i].price;
-            } else if (docs[i].type == "package") {
-              totalPackages += docs[i].price;
-            } else if (docs[i].type == "book") {
-              totalBooks += docs[i].price;
-            }
+            // if (docs[i].type == "lecture") {
+            //   totalLectures += docs[i].price;
+            // } else if (docs[i].type == "package") {
+            //   totalPackages += docs[i].price;
+            // } else if (docs[i].type == "book") {
+            //   totalBooks += docs[i].price;
+            // }
           }
-          res.json({ done: true, list: docs, totalPurchases, totalLectures, totalBooks, totalPackages });
+          res.json({
+            done: true,
+            list: docs,
+            totalPurchases,
+            // totalLectures, totalBooks, totalPackages
+          });
         });
       });
     }
