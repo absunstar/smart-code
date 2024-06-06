@@ -75,6 +75,8 @@ site.get(
     if (setting.siteTemplate.id == 1) {
       site.articlesList = site.articlesList || [];
       let options = {
+        domain: 'https://' + req.host,
+        url : 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -191,6 +193,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         domain: 'https://' + req.host,
+        url : 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -320,6 +323,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         domain: 'https://' + req.host,
+        url: 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -363,7 +367,7 @@ site.get(
       options.categoryName = options.$categoryLang.name;
       options.page_image = options.$categoryLang.image?.url || options.site_logo;
       options.page_title = language.siteName + ' ' + language.titleSeparator + ' ' + options.$categoryLang.name;
-      options.page_description = options.$categoryLang.description;
+      options.page_description = options.$categoryLang.description || options.page_description;
 
       site.searchArticles({ category: category, host: options.filter, page: page, limit: limit }, (err, result) => {
         if (!err && result) {
@@ -414,106 +418,6 @@ site.get(
   }
 );
 
-// site.get(
-//   {
-//     name: ['/category/:id/:title', '/category/:id'],
-//   },
-//   (req, res) => {
-//     let setting = site.getSiteSetting(req.host);
-//     if (!setting.host) {
-//       res.redirect(site.getMainHost(req.host), 301);
-//       return;
-//     }
-//     if (!setting || !setting.siteTemplate || !setting.languageList) {
-//       res.redirect('/404', 404);
-//       return;
-//     }
-//     if (req.host.like('*torrent*')) {
-//       req.session.lang = 'EN';
-//     } else {
-//       req.session.lang = 'AR';
-//     }
-//     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
-
-//     if (!language) {
-//       res.redirect('/404', 404);
-//       return;
-//     }
-
-//     let options = {
-//       domain: 'https://' + req.host,
-//       guid: '',
-//       filter: site.getHostFilter(req.host),
-//       language: language,
-//       setting: setting,
-//       site_name: language.siteName,
-//       site_logo: language.logo?.url,
-//       page_image: language.logo?.url,
-//       page_type: 'website',
-//       page_title: language.siteName + ' ' + language.titleSeparator + ' ' + language.siteSlogan,
-//       page_description: language.description.substr(0, 200),
-//       page_keywords: language.keyWordsList.join(','),
-//       page_lang: language.id,
-//       categories: [],
-//       page: {},
-//     };
-
-//     let category = site.categoryList.find((c) => c.id == req.params.id && c.host.like(options.filter));
-
-//     if (!category) {
-//       res.redirect('/');
-//       return;
-//     }
-
-//     options.topNews = site.getTopArticles(options.filter, category);
-
-//     options.list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 50);
-//     if (req.session.lang == 'AR') {
-//       options.list.forEach((doc) => {
-//         doc.$date = doc.$date1;
-//         doc.$day = doc.$day1;
-//       });
-//     } else {
-//       options.list.forEach((doc) => {
-//         doc.$date = doc.$date2;
-//         doc.$day = doc.$day2;
-//       });
-//     }
-//     options.list1 = options.list.splice(0, 10);
-//     options.list2 = options.list.splice(0, 10);
-//     options.list3 = options.list.splice(0, 10);
-//     options.list4 = options.list.splice(0, 10);
-//     options.list5 = options.list.splice(0, 10);
-
-//     options.MainSliderNews = {
-//       list: site.articlesList.filter((a) => a.showInMainSlider === true && a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, 10),
-//     };
-//     options.MainSliderNews.article = options.MainSliderNews.list[0];
-
-//     options.menuList = site.menuList
-//       .filter((m) => m.host.like(options.filter))
-//       .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url }));
-//     options.menuList1 = options.menuList.slice(0, 8);
-//     options.menuList2 = options.menuList.slice(8, 20);
-//     options.menuList3 = options.menuList.slice(20);
-
-//     options.$categoryLang = category.translatedList.find((l) => l.language.id == language.id) || category.translatedList[0];
-//     options.categoryName = options.$categoryLang.name;
-//     options.page_image = options.$categoryLang.image?.url || options.site_logo;
-//     options.page_title = language.siteName + ' ' + language.titleSeparator + ' ' + options.$categoryLang.name;
-//     options.page_description = options.$categoryLang.description;
-
-//     if (setting.siteTemplate.id == 1) {
-//       res.render('theme1/category.html', options, {
-//         parser: 'html css js',
-//       });
-//     } else {
-//       res.redirect('/404');
-//       return;
-//     }
-//   }
-// );
-
 site.get(
   {
     name: ['/article/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/torrent/:guid'],
@@ -562,6 +466,7 @@ site.get(
 
         let options = {
           domain: 'https://' + req.host,
+          url: 'https://' + req.host + req.url,
           filter: filter,
           language: language,
           setting: setting,

@@ -19,15 +19,18 @@
 
 .followUs {
   color: var(--color1);
+  background: var(--background1);
+  border: 5px solid var(--background2);
+  border-radius: 10px;
 }
 
-.followUs > p {
+.followUs  p {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 30px;
   color: var(--color1);
 }
 .socialMediaIcon {
-  font-size: 24px;
+  font-size: 30px;
 }
 .socialMediaIcon a {
   color: var(--color1);

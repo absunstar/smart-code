@@ -27,24 +27,28 @@
 <link rel="publisher" href="/" />
 <link rel="author" href="/" />
 
-<meta itemprop="url" property="og:url" content="##req.url##" />
+<meta itemprop="url" property="og:url" content="##data.url##" />
 
 <meta property="og:type" content="##data.page_type##" />
 <meta property="og:title" content="##data.page_title##" />
-<meta property="og:url" content="##req.url##" />
+<meta property="og:url" content="##data.url##" />
 <meta property="og:description" content="##data.page_description##" />
 <meta property="og:image" content="##data.page_image##" />
 <meta property="og:site_name" content="##data.site_name##" />
 <meta property="og:locale" content="##data.page_lang" />
 
-<meta name="twitter:url" content="##req.url##" />
+<meta name="twitter:url" content="##data.url##" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:description" content="##data.page_description##" />
 <meta name="twitter:title" content="##data.page_title##" />
 <meta name="twitter:image" content="##data.page_image##" />
 
+<link rel="canonical" href="##data.url##" />
+
 <link rel="alternate" type="application/rss+xml" title="##data.page_title##" href="/rss" />
 <link rel="stylesheet" href="/css/theme1.css?version=##site.time##" />
+
+<meta name="p:domain_verify" content="d149e0c1a11c5994f3d7e39b423d9c12" />
 
 <style>
   * {
@@ -165,6 +169,26 @@
   }
   gtag('js', new Date());
   gtag('config', 'G-SJEBBEFC7P');
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500,
+  });
+  setTimeout(() => {
+    localStorage.setItem('consentGranted', 'true');
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('consent', 'update', {
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      ad_storage: 'granted',
+      analytics_storage: 'granted',
+    });
+  }, 1000 * 2);
 </script>
 
 <script x-data="setting.addScript">

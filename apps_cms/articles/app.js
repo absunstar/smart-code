@@ -96,7 +96,17 @@ module.exports = function init(site) {
       if (!unsafe) {
         return '';
       }
-      return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+      return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    } catch (error) {
+      return unsafe;
+    }
+  };
+  site.escapeXML = function (unsafe) {
+    try {
+      if (!unsafe) {
+        return '';
+      }
+      return unsafe.replace(/&/g, '').replace(/</g, '').replace(/>/g, '').replace(/"/g, '').replaceAll(':', '');
     } catch (error) {
       return unsafe;
     }
@@ -1285,11 +1295,16 @@ module.exports = function init(site) {
     );
   });
 
+  site.rssStartSlice = 0;
   site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
-    let limit = req.query.limit || 10;
+    let limit = parseInt(req.query.limit || 10);
+    let to = site.rssStartSlice + limit;
+
     let list = [];
     let text = '';
+
     let setting = site.getSiteSetting(req.host);
+    let filter = site.getHostFilter(req.host);
 
     let lang = setting.languageList[0];
     let domain = 'https://' + req.host;
@@ -1299,28 +1314,44 @@ module.exports = function init(site) {
     } else if (req.params.id) {
       list = [site.articlesList.find((p) => p.id == req.params.id)];
     } else {
-      list = site.articlesList.filter((p) => p.$imageURL).slice(0, limit);
+      list = site.articlesList.filter((a) => a.$imageURL && a.host.like(filter)).slice(site.rssStartSlice, to);
+      if (list.length == 0) {
+        site.rssStartSlice = 0;
+        to = site.rssStartSlice + limit;
+        list = site.articlesList.filter((a) => a.$imageURL && a.host.like(filter)).slice(site.rssStartSlice, to);
+      }
     }
 
     let urls = '';
     list.forEach((doc, i) => {
-      doc.full_url = domain + '/article/' + doc.guid;
-      doc.$date2 = new Date(doc.publishDate).toISOString();
+      let url = domain + '/article/' + doc.guid;
+      let date = new Date(doc.publishDate).toISOString();
+      let title = site.escapeXML(doc.$title);
+      let description = site.escapeXML(doc.$content);
+      let hashTag = ' #torrent';
+      if (doc.$yts) {
+        doc.$tagsList.forEach((tag) => {
+          hashTag += '  #' + tag;
+        });
+        hashTag += ' Download Torrents Movies in High Qualtiy 720p , 1080p , 2k , 4k , 8k';
+      }
+
       urls += `
         <item>
           <guid>${doc.guid}</guid>
-          <title>${doc.$title}</title>
-          <link>${doc.full_url}</link>
+          <title>${title}</title>
+          <link>${url}</link>
           <image>${domain}/article-image/${doc.guid}</image>
-          <description>${doc.$description}</description>
-          <pubDate>${doc.$date2}</pubDate>
+          <description>${description + hashTag}</description>
+          <pubDate>${date}</pubDate>
         </item>
         `;
     });
+    let channelTitle = lang.siteName + ' ' + text + ' [ from ' + site.rssStartSlice + ' to ' + (site.rssStartSlice + limit) + ' ] of ' + site.articlesList.length + ' Article Global RSS';
     let xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
       <channel>
-            <title> ${lang.siteName} ${text} Global RSS</title>
+            <title>${channelTitle}</title>
             <link>${domain}</link>
             <description>${lang.siteName} Articles Rss Feeds</description>
             ${urls}
@@ -1328,13 +1359,14 @@ module.exports = function init(site) {
      </rss>`;
     res.set('Content-Type', 'application/xml');
     res.end(xml);
+    site.rssStartSlice += limit;
   });
 
   site.facebookPost = null;
   site.getRssXmlString = function (list, domain, siteName) {
     let urls = '';
     list.forEach((doc) => {
-      let hashTag = '  ';
+      let hashTag = '#torrent ';
       doc.$tagsList.forEach((tag) => {
         hashTag += '  #' + tag;
       });
@@ -1342,13 +1374,14 @@ module.exports = function init(site) {
       urls += `
       <item>
         <guid>${doc.guid}</guid>
-        <title>${doc.$title} ${hashTag}</title>
+        <title>${doc.$title}</title>
         <link>${doc.full_url}</link>
         <image>${domain}/article-image/${doc.guid}</image>
         <description>
           <![CDATA[
             ${doc.$content}
-            #Download Now Free ( high Quality #1080p or #720p )  
+            ${hashTag}
+            Download Free Movies Torrents ( 720p , 1080p , 2k , 4k , 8k )  
           ]]>
         </description>
         <pubDate>${doc.$date2}</pubDate>
@@ -1412,7 +1445,51 @@ module.exports = function init(site) {
       }
     });
   });
+  site.onGET({ name: ['/rss-pin'], public: true }, (req, res) => {
+    let text = ' Pin RSS ';
+    let setting = site.getSiteSetting(req.host);
+    let lang = setting.languageList[0];
+    let domain = 'https://' + req.host;
 
+    if (site.pinPost && site.pinPost.$pinDate && (new Date().getTime() - site.pinPost.$pinDate.getTime()) / 1000 < 60 * 15) {
+      res.set('Content-Type', 'application/xml');
+      res.end(site.getRssXmlString([site.pinPost], domain, lang.siteName + text));
+      return;
+    }
+
+    let filter = site.getHostFilter(req.host);
+
+    if (filter.indexOf('*') !== -1) {
+      filter = filter.split('*');
+      filter.forEach((n, i) => {
+        filter[i] = site.escapeRegx(n);
+      });
+      filter = filter.join('.*');
+    } else {
+      filter = site.escapeRegx(filter);
+    }
+    filter = '^' + filter + '$';
+
+    site.$articles.find({ host: new RegExp(filter, 'gium'), pinPost: { $exists: false } }, (err, doc) => {
+      if (!err && doc) {
+        doc.pinPost = true;
+        site.$articles.update(doc);
+        doc = site.handleArticle({ ...doc });
+        site.articlesList.push(doc);
+        doc.$pinDate = new Date();
+        doc.full_url = domain + '/article/' + doc.guid;
+        doc.$date2 = new Date(doc.publishDate).toISOString();
+
+        site.pinPost = doc;
+
+        res.set('Content-Type', 'application/xml');
+        res.end(site.getRssXmlString([site.pinPost], domain, lang.siteName + text));
+      } else {
+        res.set('Content-Type', 'application/xml');
+        res.end(site.getRssXmlString([], domain, lang.siteName + text));
+      }
+    });
+  });
   site.onGET({ name: ['/feed'], public: true }, (req, res) => {
     let limit = req.query.limit || 10;
     let list = [];
