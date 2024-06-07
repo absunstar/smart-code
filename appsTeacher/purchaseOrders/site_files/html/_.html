@@ -51,7 +51,8 @@
         <tr>
           <th>##word.Name##</th>
           <th>##word.Date##</th>
-          <th>##word.Code##</th>
+          <th ng-show="'##query.type##' != 'book'">##word.Code##</th>
+          <th ng-show="'##query.type##' == 'book'">##word.Address##</th>
           <th>##word.Student Name##</th>
           <th>##word.Price##</th>
           <th>##word.Status##</th>
@@ -60,9 +61,12 @@
       
           <td class="center">{{item.target.name}}</td>
           <td class="center">{{item.date |date:"dd - MM - yyyy"}}</td>
-          <td class="center">
+          <td class="center" ng-show="'##query.type##' != 'book'">
             {{item.code}}
             <p ng-show="!item.code">##word.Not Exist##</p>
+          </td>
+          <td class="center" ng-show="'##query.type##' == 'book'">
+            {{item.address}}
           </td>
           <td class="center">{{item.user.firstName}}</td>
           <td class="center">{{item.price}} <span class="currency">##word.$##</span></td>

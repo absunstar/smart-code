@@ -96,14 +96,15 @@
   top: 5px;
   position: absolute;
 }
+
 .cbh-phone {
   display: block;
   position: fixed;
-  right: 0px;
+  left: -37px;
   bottom: -40px;
   visibility: hidden;
   background-color: transparent;
-  width: 200px;
+  width: 350px;
   height: 200px;
   cursor: pointer;
   z-index: 999;
@@ -116,6 +117,18 @@
 }
 .cbh-phone.cbh-show {
   visibility: visible;
+}
+.cbh-phone p {
+  font-weight: bold;
+  font-size: larger;
+  position: absolute;
+  top: 70px;
+  color: white;
+  font-family: 'Droid Arabic Kufi'!important;
+  left: 145px;
+  background: linear-gradient(120deg, rgb(64 245 187) 0%, rgb(46 203 113) 100%);
+  padding: 10px;
+  border-radius: 20px 20px 20px 0px;
 }
 @-webkit-keyframes fadeInRight {
   0% {

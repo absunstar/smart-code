@@ -464,8 +464,27 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if (req.session.user && req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == doc._id.toString())) {
-              doc.$buy = true;
+            if(req.session.user) {
+              if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == doc._id.toString())) {
+                doc.$buy = true;
+                let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
+                if (index !== -1) {
+                  if (req.session.user.viewsList[index].views >= doc.numberViews && doc.typeExpiryView.name == "number") {
+                    response.error = "The number of views allowed for this video has been exceeded";
+                    res.json(response);
+                    return;
+                  } else if (doc.typeExpiryView.name == "day") {
+                    let obj = { ...req.session.user.viewsList[index] };
+                    var viewDate = new Date(obj.date);
+                    viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
+                    if (new Date().getTime() > viewDate.getTime()) {
+                    
+                    }
+                  }
+
+                  user.viewsList[index].views += 1;
+                }
+              }
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
             response.doc = doc;
@@ -642,7 +661,7 @@ module.exports = function init(site) {
     }
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
-    app.$collection.findMany({ where, select, limit }, (err, docs) => {
+    app.$collection.findMany({ where, select, limit,sort: {id : -1} }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];

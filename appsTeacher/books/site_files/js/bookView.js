@@ -26,8 +26,12 @@ app.controller("bookView", function ($scope, $http, $timeout) {
   };
   $scope.showEnterCode = function () {
     $scope.code = "";
-    $scope.address = '##user.address##';
-    site.showModal("#codeModal");
+    if (site.toNumber("##user.id##") < 1) {
+      window.location.href = "/login";
+    } else {
+      $scope.address = '##user.address##';
+      site.showModal("#codeModal");
+    }
   };
 
   $scope.buyBook = function () {

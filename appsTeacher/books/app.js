@@ -486,7 +486,7 @@ module.exports = function init(site) {
     }
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
-    app.$collection.findMany({ where, select, limit }, (err, docs) => {
+    app.$collection.findMany({ where, select, limit,sort: {id : -1} }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];

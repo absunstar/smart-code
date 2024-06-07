@@ -28,7 +28,11 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
 
   $scope.showEnterCode = function () {
     $scope.code = "";
-    site.showModal("#codeModal");
+    if (site.toNumber("##user.id##") < 1) {
+      window.location.href = "/login";
+    } else {
+      site.showModal("#codeModal");
+    }
   };
 
   $scope.buyLecture = function () {
@@ -110,12 +114,12 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           let code_injected = `/*##lectures/custom-youtube-video.js*/`;
-          code_injected += 'youtubeRun();';
+          code_injected += "youtubeRun();";
           SOCIALBROWSER.ipc("[open new popup]", {
             url: document.location.origin + "/view-video?code=" + link.code + "&id=" + $scope.item._id,
             eval: code_injected,
             show: true,
-            iframe : true,
+            iframe: true,
             center: true,
             allowMenu: false,
             allowWindows: false,

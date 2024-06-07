@@ -238,6 +238,7 @@ module.exports = function init(site) {
           code: 1,
           price: 1,
           target: 1,
+          address: 1,
           user: 1,
           date: 1,
         };
