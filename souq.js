@@ -117,7 +117,7 @@ site.sendMobileTaqnyatMessage = function (options) {
   let bodyObject = {
     recipients: [options.to],
     body: options.message,
-    sender: site.setting.auth_token_mobile_taqnyat,
+    sender: site.setting.account_sender_taqnya,
   };
   console.log(bodyObject);
   return site
