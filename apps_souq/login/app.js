@@ -147,7 +147,7 @@ module.exports = function init(site) {
             return;
           }
         } else {
-          response.error = 'Incorrect code entered';
+          response.error = 'Incorrect User Mobile';
           res.json(response);
           return;
         }
