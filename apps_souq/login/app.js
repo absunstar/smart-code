@@ -131,6 +131,7 @@ module.exports = function init(site) {
       where.email = mobile_or_email;
     } else {
       where.mobile = mobile_or_email;
+      where.mobile = where.mobile.replace('966', '');
     }
 
     site.security.getUser(where, (err, user) => {
