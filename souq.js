@@ -114,6 +114,12 @@ site.sendMobileTwilioMessage = function (options) {
 
 site.sendMobileTaqnyatMessage = function (options) {
   console.log(options);
+  let bodyObject = {
+    recipients: [options.to],
+    body: options.message,
+    sender: site.setting.auth_token_mobile_taqnyat,
+  };
+  console.log(bodyObject);
   return site
     .fetch('https://api.taqnyat.sa/v1/messages', {
       method: 'POST',
@@ -121,11 +127,7 @@ site.sendMobileTaqnyatMessage = function (options) {
         Authorization: `Bearer ${site.setting.auth_token_mobile_taqnyat}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        recipients: [options.to],
-        body: options.message,
-        sender: site.setting.auth_token_mobile_taqnyat,
-      }),
+      body: JSON.stringify(bodyObject),
       agent: function (_parsedURL) {
         return new site.https.Agent({
           keepAlive: true,
