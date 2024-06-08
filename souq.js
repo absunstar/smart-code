@@ -125,7 +125,6 @@ site.sendMobileTaqnyatMessage = function (options) {
         recipients: [options.to],
         body: options.message,
         sender: site.setting.auth_token_mobile_taqnyat,
-        scheduledDatetime: new Date(),
       }),
       agent: function (_parsedURL) {
         return new site.https.Agent({
@@ -135,6 +134,9 @@ site.sendMobileTaqnyatMessage = function (options) {
     })
     .then((res) => {
       return res.json();
+    })
+    .then((data) => {
+      console.log(data);
     })
     .catch((err) => {
       console.log(err);
