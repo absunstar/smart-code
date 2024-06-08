@@ -54,7 +54,7 @@ module.exports = function init(site) {
       where.email = mobile_or_email;
     } else {
       where.mobile = mobile_or_email;
-      if (where.mobile.startWith('966')) {
+      if (where.mobile.startsWith('966')) {
         where.mobile.replace('966', '');
       }
     }
