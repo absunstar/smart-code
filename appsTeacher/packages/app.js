@@ -101,7 +101,7 @@ module.exports = function init(site) {
       }
     );
   };
-  
+
   app.view = function (_item, callback) {
     if (callback) {
       if (app.allowMemory) {
@@ -116,10 +116,10 @@ module.exports = function init(site) {
         }
       }
       let where = {};
-      if(_item._id) {
-        where._id = _item._id
+      if (_item._id) {
+        where._id = _item._id;
       } else {
-        where.id = _item.id
+        where.id = _item.id;
       }
 
       app.$collection.find(where, (err, doc) => {
@@ -449,13 +449,13 @@ module.exports = function init(site) {
                   user.packagesList = user.packagesList || [];
                   user.lecturesList = user.lecturesList || [];
                   doc.lecturesList.forEach((_l) => {
-                    if (!user.lecturesList.some((l) =>_l.lecture && l.id == _l.lecture._id)) {
+                    if (!user.lecturesList.some((l) => _l.lecture && l.id == _l.lecture._id)) {
                       user.lecturesList.push({
-                      lectureId: site.mongodb.ObjectID(_l.lecture._id),
+                        lectureId: site.mongodb.ObjectID(_l.lecture._id),
                       });
                     }
                   });
-                  
+
                   user.packagesList.push(doc._id);
                   site.addPurchaseOrder({
                     type: "package",
@@ -492,14 +492,15 @@ module.exports = function init(site) {
     callBack = callBack || function () {};
     site.packagesList = [];
 
-    let limit = req.body.limit || 7;
+    let setting = site.getSiteSetting(req.host);
+    let limit = setting.lecturesLimit || 6;
     let select = req.body.select || {
       id: 1,
       name: 1,
       image: 1,
-      description : 1,
-      price : 1,
-      totalLecturesPrice : 1,
+      description: 1,
+      price: 1,
+      totalLecturesPrice: 1,
       date: 1,
     };
 
@@ -529,7 +530,7 @@ module.exports = function init(site) {
     }
     where["host"] = site.getHostFilter(req.host);
     where["active"] = true;
-    app.$collection.findMany({ where, select, limit }, (err, docs) => {
+    app.$collection.findMany({ where, select, limit,sort: {id : -1} }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];

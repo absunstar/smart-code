@@ -368,6 +368,70 @@ app.controller("centers", function ($scope, $http, $timeout) {
    window.initMap = $scope.initMap();
  */
 
+  $scope.getEducationalLevelsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.educationalLevelsList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/educationalLevels/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.educationalLevelsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getSchoolYearsList = function (educationalLevel) {
+    $scope.busy = true;
+    $scope.schoolYearsList = [];
+    $http({
+      method: "POST",
+      url: "/api/schoolYears/all",
+      data: {
+        where: {
+          active: true,
+          "educationalLevel.id": educationalLevel.id,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.addDay = function (item) {
     $scope.error = "";
     item.daysList = item.daysList || [];
@@ -391,6 +455,7 @@ app.controller("centers", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
+  $scope.getEducationalLevelsList();
   $scope.getCountriesList();
   $scope.getWeekDays();
 });

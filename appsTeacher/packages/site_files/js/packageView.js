@@ -26,7 +26,11 @@ app.controller("packageView", function ($scope, $http, $timeout) {
   };
   $scope.showEnterCode = function () {
     $scope.code = "";
-    site.showModal("#codeModal");
+    if (site.toNumber("##user.id##") < 1) {
+      window.location.href = "/login";
+    } else {
+      site.showModal("#codeModal");
+    }
   };
 
   $scope.buyBackage = function () {

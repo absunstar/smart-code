@@ -60,18 +60,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -164,11 +160,10 @@ module.exports = function init(site) {
           name: "centersView",
         },
         (req, res) => {
-
           let notificationsCount = 0;
-          if(req.session.user && req.session.user.notificationsList) {
-            let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
-            notificationsCount = notifications.length
+          if (req.session.user && req.session.user.notificationsList) {
+            let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+            notificationsCount = notifications.length;
           }
 
           let setting = site.getSiteSetting(req.host);
@@ -205,29 +200,26 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
+        let _data = req.data;
 
-          _data.addUserInfo = req.getUserFinger();
-          _data.host = site.getHostFilter(req.host);
+        _data.addUserInfo = req.getUserFinger();
+        _data.host = site.getHostFilter(req.host);
 
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -308,31 +300,39 @@ module.exports = function init(site) {
           id: 1,
           name: 1,
           image: 1,
+          educationalLevel: 1,
+          schoolYear: 1,
           active: 1,
+          host: 1,
+          
         };
         let list = [];
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
-          if (
-            (!where.active || doc.active) &&
-            obj.host == site.getHostFilter(req.host)
-          ) {
-            list.push(obj);
-          }
           for (const p in obj) {
             if (!Object.hasOwnProperty.call(select, p)) {
               delete obj[p];
             }
           }
-          
+          if ((!where.active || doc.active) && obj.host == site.getHostFilter(req.host)) {
+            if (req.body.view) {
+              if (req.session.user && req.session.user.type == "student") {
+                if (req.session.user.educationalLevel.id == obj.educationalLevel.id && req.session.user.schoolYear.id == obj.schoolYear.id) {
+                  list.push(obj);
+                }
+              } else {
+                list.push(obj);
+              }
+            } else {
+              list.push(obj);
+            }
+          }
         });
         res.json({
           done: true,
           list: list,
         });
       });
-
-   
     }
   }
 

@@ -1,0 +1,25 @@
+<div id="pageImplementUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.page_implement_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="pages/content_update.html"></div>
+            <div x-import="pages/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updatePageImplement(pages)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#pageImplementUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

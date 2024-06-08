@@ -30,12 +30,7 @@ module.exports = function init(site) {
         site_name: setting.siteName,
         page_lang: setting.id,
         page_type: "website",
-        page_title:
-          setting.siteName +
-          " " +
-          setting.titleSeparator +
-          " " +
-          setting.siteSlogan,
+        page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
         page_description: setting.description.substr(0, 200),
         page_keywords: setting.keyWordsList.join(","),
       };
@@ -154,19 +149,14 @@ module.exports = function init(site) {
                       to: result.doc.country.country_code + result.doc.mobile,
                       message: `code : ${result.doc.code}`,
                     });
-                  } else if (
-                    site.setting.enable_sending_messages_mobile_taqnyat
-                  ) {
+                  } else if (site.setting.enable_sending_messages_mobile_taqnyat) {
                     site.sendMobileTaqnyatMessage({
                       to: result.doc.country.country_code + result.doc.mobile,
                       message: `code : ${result.doc.code}`,
                     });
                   }
                   response.done_send_mobile = true;
-                } else if (
-                  result.doc.type == "email" &&
-                  site.setting.enable_sending_messages_email
-                ) {
+                } else if (result.doc.type == "email" && site.setting.enable_sending_messages_email) {
                   site.sendMailMessage({
                     to: result.doc.email,
                     subject: `Rejester Code`,
@@ -213,19 +203,14 @@ module.exports = function init(site) {
                           to: result.country.country_code + result.mobile,
                           message: `code : ${result.code}`,
                         });
-                      } else if (
-                        site.setting.enable_sending_messages_mobile_taqnyat
-                      ) {
+                      } else if (site.setting.enable_sending_messages_mobile_taqnyat) {
                         site.sendMobileTaqnyatMessage({
                           to: result.country.country_code + result.mobile,
                           message: `code : ${result.code}`,
                         });
                       }
                       response.done_send_mobile = true;
-                    } else if (
-                      result.type == "email" &&
-                      site.setting.enable_sending_messages_email
-                    ) {
+                    } else if (result.type == "email" && site.setting.enable_sending_messages_email) {
                       site.sendMailMessage({
                         to: result.email,
                         subject: `Rejester Code`,
@@ -255,11 +240,7 @@ module.exports = function init(site) {
 
     let regex = /^\d*(\.\d+)?$/;
 
-    if (
-      body.country &&
-      body.country.length_mobile &&
-      body.mobile.match(regex)
-    ) {
+    if (body.country && body.country.length_mobile && body.mobile.match(regex)) {
       if (body.mobile.toString().length == body.country.length_mobile) {
         response.done = true;
       } else {
@@ -352,9 +333,9 @@ module.exports = function init(site) {
       nationalId: req.body.user.nationalId,
       placeType: req.body.user.placeType,
       ip: req.ip,
-      viewsList : [],
-      booksList :[],
-      notificationsList : [],
+      viewsList: [],
+      booksList: [],
+      notificationsList: [],
       roles: [{ name: "student" }],
       type: "student",
       createdDate: new Date(),
@@ -364,18 +345,27 @@ module.exports = function init(site) {
     };
     if (req.body.user.placeType == "online") {
       user.active = false;
+      site.security.addUser(user, function (err, doc) {
+        if (!err) {
+          response.user = doc;
+          response.done = true;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      });
     } else {
       user.active = true;
+      site.security.register(user, function (err, doc) {
+        if (!err) {
+          response.user = doc;
+          response.done = true;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      });
     }
-    site.security.register(user, function (err, doc) {
-      if (!err) {
-        response.user = doc;
-        response.done = true;
-      } else {
-        response.error = err.message;
-      }
-      res.json(response);
-    });
   });
 
   site.post("/api/mailer/all", (req, res) => {

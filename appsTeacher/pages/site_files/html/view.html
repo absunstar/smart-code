@@ -1,0 +1,26 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold hover">
+                    <tr>
+                        <td class="title">##word.page_implement_name##</td>
+                        <td class="center">{{pages.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="pages.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="pages.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="pages.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="pages/action_info.html"></div>

@@ -10,11 +10,15 @@ app.controller("centersView", function ($scope, $http, $timeout) {
         method: "POST",
         url: `${$scope.baseURL}/api/centers/all`,
         data: {
+          view : true,
           select: {
             id: 1,
+            host: 1,
             name: 1,
             image: 1,
             daysList: 1,
+            educationalLevel: 1,
+            schoolYear: 1,
             country: 1,
             gov: 1,
             city: 1,

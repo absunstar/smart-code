@@ -1,5 +1,4 @@
 module.exports = function init(site) {
-
   site.post("/api/security/permissions", (req, res) => {
     let response = {
       done: false,
@@ -130,8 +129,6 @@ module.exports = function init(site) {
     user.$req = req;
     user.$res = res;
 
-   
-
     site.security.addUser(user, (err, _id) => {
       if (!err) {
         response.done = true;
@@ -201,7 +198,6 @@ module.exports = function init(site) {
       res.json(response);
     }
   });
-
 
   site.post("/api/user/view", (req, res) => {
     let response = {
@@ -289,70 +285,67 @@ module.exports = function init(site) {
       }
     );
   });
-
-  site.post("/api/user/login", function (req, res) {
+  site.post({ name: '/api/user/login', public: true }, function (req, res) {
     let response = {
       accessToken: req.session.accessToken,
     };
+
     if (req.body.$encript) {
-      if (req.body.$encript === "64") {
+      if (req.body.$encript === '64') {
         req.body.email = site.fromBase64(req.body.email);
         req.body.password = site.fromBase64(req.body.password);
-      
-      } else if (req.body.$encript === "123") {
+      } else if (req.body.$encript === '123') {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
-       
       }
     }
 
-    let obj_where = {
-      password: req.body.password,
-    
-      $req: req,
-      $res: res,
-    };
-    if (req.body.mobile_login == true) {
-      if (req.body.email.contains("@") || req.body.email.contains(".")) {
-        obj_where.email = req.body.email;
-      } else {
-        obj_where.mobile = req.body.email;
-      }
-    } else {
-      obj_where.email = req.body.email;
-    }
-    // if (site.security.isUserLogin(req, res)) {
-    //   response.error = "Login Error , You Are Loged "
-    //   response.done = true
-    //   res.json(response)
-    //   return
-    // }
-
-    site.security.login(obj_where, function (err, user) {
-      if (!err && user) {
-        req.session.user = user;
-      
-        site.saveSession(req.session);
-
-        response.user = {
-          id: user.id,
-          _id: user._id,
-          email: user.email,
-          targetId: user.refInfo ? user.refInfo.id : null,
-          type: user.type,
-          permissions: user.permissions,
-       
-        };
-        response.done = true;
-      } else {
-        response.error = err.message;
-      }
-
+    if (site.security.isUserLogin(req, res)) {
+      response.error = 'Login Error , You Are Loged';
       res.json(response);
-    });
+      return;
+    }
+    site.security.getUser(
+      {
+        email: req.body.email,
+      },
+      (err, doc) => {
+        if (!err) {
+          let _user = { ...doc };
+
+          if (_user.active == false) {
+            response.error = 'The account is inactive';
+            res.json(response);
+            return;
+          }
+
+          site.security.login(
+            {
+              email: req.body.email,
+              password: req.body.password,
+              $req: req,
+              $res: res,
+            },
+            function (err, user) {
+              if (!err) {
+                response.user = user;
+
+                response.done = true;
+              } else {
+                response.error = err.message;
+              }
+
+              res.json(response);
+            }
+          );
+        } else {
+          response.error = err.message;
+        }
+      }
+    );
   });
 
-  site.post("/api/user/logout", function (req, res) {
+  site.post('/api/user/logout', function (req, res) {
     let response = {
       accessToken: req.session.accessToken,
       done: true,
@@ -363,7 +356,7 @@ module.exports = function init(site) {
         response.done = true;
         res.json(response);
       } else {
-        response.error = "You Are Not Loged";
+        response.error = 'You Are Not Loged';
         response.done = true;
         res.json(response);
       }

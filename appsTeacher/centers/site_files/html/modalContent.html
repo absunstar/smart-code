@@ -6,6 +6,16 @@
           <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
         </div>
         <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
+          <i-list
+            label="##word.Educational Level##"
+            ng-change="getSchoolYearsList(item.educationalLevel)"
+            v="r"
+            ng-model="item.educationalLevel"
+            display="name"
+            items="educationalLevelsList"
+            ng-search="item.$educationalLevel"
+          ></i-list>
+          <i-list label="##word.School Year##" ng-model="item.schoolYear"  v="r" display="name" items="schoolYearsList"></i-list>
       </div>
     </div>
     <div class="col3 center">
