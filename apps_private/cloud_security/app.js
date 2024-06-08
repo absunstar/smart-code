@@ -463,6 +463,7 @@ module.exports = function init(site) {
         obj_where.email = req.body.email;
       } else {
         obj_where.mobile = req.body.email;
+        obj_where.mobile = obj_where.mobile.replace('966', '');
       }
     } else {
       obj_where.email = req.body.email;
