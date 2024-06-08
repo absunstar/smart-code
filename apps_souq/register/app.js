@@ -142,7 +142,7 @@ module.exports = function init(site) {
                   ) {
                     site.sendMobileTaqnyatMessage({
                       to: result.doc.country.country_code + result.doc.mobile,
-                      message: `code : ${result.doc.code}`,
+                      message: `harajtmor code : ${result.doc.code}`,
                     });
                   }
                   response.done_send_mobile = true;
@@ -201,7 +201,7 @@ module.exports = function init(site) {
                       ) {
                         site.sendMobileTaqnyatMessage({
                           to: result.country.country_code + result.mobile,
-                          message: `code : ${result.code}`,
+                          message: `harajtmor code : ${result.code}`,
                         });
                       }
                       response.done_send_mobile = true;

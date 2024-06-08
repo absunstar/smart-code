@@ -86,7 +86,7 @@ module.exports = function init(site) {
               } else if(site.setting.enable_sending_messages_mobile_taqnyat) {
                 site.sendMobileTaqnyatMessage({
                   to: user_doc.doc.country_code + user_doc.doc.mobile,
-                  message: `code : ${user_doc.doc.forget_password.code}`,
+                  message: `harajtmor code : ${user_doc.doc.forget_password.code}`,
                 });
               }
               response.type = 'mobile'
