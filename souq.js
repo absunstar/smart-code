@@ -113,6 +113,7 @@ site.sendMobileTwilioMessage = function (options) {
 };
 
 site.sendMobileTaqnyatMessage = function (options) {
+  console.log(options);
   return site
     .fetch('https://api.taqnyat.sa/v1/messages', {
       method: 'POST',
@@ -134,8 +135,10 @@ site.sendMobileTaqnyatMessage = function (options) {
     })
     .then((res) => {
       return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  // console.log(options);
 };
 
 site.sendMailMessage = function (obj) {

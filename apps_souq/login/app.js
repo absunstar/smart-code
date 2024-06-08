@@ -108,7 +108,6 @@ module.exports = function init(site) {
 
         } else {
           response.error = 'Wrong mail or mobile';
-
           res.json(response);
           return;
         }
