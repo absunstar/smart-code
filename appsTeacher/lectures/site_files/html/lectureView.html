@@ -88,8 +88,11 @@
                     <p class="font-20">##word.The number of remaining exam times## : ( {{item.timesEnterQuiz - quiz.timesEnterQuiz}} )</p>
                     <p class="font-20">##word.Quiz Degree## : ( {{quiz.userDegree | xmoney2}} % )</p>
                   </div>
-                  <div class="row" ng-show="item.$buy" x-permission="login">
-                    <i-button ng-repeat="link in item.linksList" type="view" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
+                  <div class="row" ng-repeat="link in item.linksList" ng-show="item.$buy" x-permission="login">
+                    <i-button  type="view" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
+                    <i ng-show="item.typeExpiryView.name == 'number'">##word.Number of views remaining## {{link.remainNumber}}</i>
+                    <i ng-show="item.typeExpiryView.name == 'day'">##word.Number of remaining viewing days## {{link.remainDay}}</i>
+                    <i ng-show="item.typeExpiryView.name == 'date'">##word.Views expire on date## {{link.remainDate | date : 'dd- MM -yyyy'}}</i>
                   </div>
                   <div class="row"  >
                     <button ng-click="showEnterCode()" ng-hide="item.$buy || '##user.placeType##' == 'online'" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>

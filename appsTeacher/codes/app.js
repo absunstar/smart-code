@@ -327,8 +327,8 @@ module.exports = function init(site) {
             $gte: where.from,
             $lte: where.to,
           };
-          delete where.from
-          delete where.to
+          delete where.from;
+          delete where.to;
         }
         where["host"] = site.getHostFilter(req.host);
         app.all({ where, select, limit }, (err, docs) => {
@@ -340,6 +340,43 @@ module.exports = function init(site) {
       });
     }
   }
+
+  site.post(
+    {
+      name: `/api/${app.name}/updateAllDistribution`,
+      require: { permissions: ["login"] },
+    },
+    (req, res) => {
+      let response = {
+        done: false,
+      };
+
+      let _data = req.data;
+
+      if (!_data.from || !_data.to || _data.from > _data.to) {
+        response.error = "Must Send Correct Data";
+        res.json(response);
+        return;
+      }
+
+      let where = {};
+
+      where["id"] = {
+        $gte: _data.from,
+        $lte: _data.to,
+      };
+
+      app.$collection.updateAll({ where, set: { distribution: _data.type } }, (err, result) => {
+        if (!err) {
+          response.done = true;
+          response.result = result;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      });
+    }
+  );
 
   site.validateCode = function (obj, callBack) {
     callBack = callBack || function () {};

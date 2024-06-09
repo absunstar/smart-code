@@ -130,13 +130,19 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
             security: true,
             $timeout: 5000,
           });
+          if($scope.item.typeExpiryView && $scope.item.typeExpiryView.name == 'number') {
+            let index = $scope.item.linksList.findIndex((itm) => itm.code === link.code);
+            if (index !== -1) {
+              $scope.item.linksList[index].remainNumber -= 1;
+            }
+           
+          }
         } else {
           $scope.error = response.data.error;
         }
       },
       function (err) {
         $scope.busy = false;
-        console.log(err);
       }
     );
   };

@@ -401,9 +401,9 @@ module.exports = function init(site) {
                     user.socialBrowserID = _data.socialBrowserID;
                   }
                 }
-                let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
+                let index = user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _data.code);
                 if (index !== -1) {
-                  if (user.viewsList[index].views >= doc.numberViews && doc.typeExpiryView.name == "number") {
+                  if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
                     response.error = "The number of views allowed for this video has been exceeded";
                     res.json(response);
                     return;
@@ -417,8 +417,8 @@ module.exports = function init(site) {
                       return;
                     }
                   } else if (doc.typeExpiryView.name == "date") {
-                    doc.viewingEndDate = new Date(doc.viewingEndDate);
-                    if (new Date().getTime() > doc.viewingEndDate.getTime()) {
+                    doc.dateAvailableViews = new Date(doc.dateAvailableViews);
+                    if (new Date().getTime() > doc.dateAvailableViews.getTime()) {
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
@@ -428,7 +428,7 @@ module.exports = function init(site) {
                   user.viewsList[index].views += 1;
                 } else {
                   user.viewsList.push({
-                    lectureId: doc.id,
+                    lectureId: doc._id,
                     code: _data.code,
                     date: new Date(),
                     views: 1,
@@ -464,26 +464,39 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if(req.session.user) {
+            if (req.session.user) {
               if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == doc._id.toString())) {
                 doc.$buy = true;
-                let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
-                if (index !== -1) {
-                  if (req.session.user.viewsList[index].views >= doc.numberViews && doc.typeExpiryView.name == "number") {
-                    response.error = "The number of views allowed for this video has been exceeded";
-                    res.json(response);
-                    return;
-                  } else if (doc.typeExpiryView.name == "day") {
-                    let obj = { ...req.session.user.viewsList[index] };
-                    var viewDate = new Date(obj.date);
-                    viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-                    if (new Date().getTime() > viewDate.getTime()) {
+                doc.linksList.forEach((_video) => {
+                  let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _video.code);
+                  if (index !== -1) {
+                    if ( doc.typeExpiryView.name == "number") {
+                      _video.remainNumber = doc.numberAvailableViews - req.session.user.viewsList[index].views;
                     
+                      return;
+                    } else if (doc.typeExpiryView.name == "day") {
+                      var viewDate = new Date(req.session.user.viewsList[index].date);
+                      viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
+                      _video.remainDay = viewDate.getDate() -new Date().getDate();
+                    
+                    } else if ( doc.typeExpiryView.name == "date") {
+                      _video.remainDate = doc.dateAvailableViews;
+                    }
+
+                  } else {
+                    if ( doc.typeExpiryView.name == "number") {
+                      _video.remainNumber = doc.numberAvailableViews;
+                    
+                      return;
+                    } else if (doc.typeExpiryView.name == "day") {
+                
+                      _video.remainDay =doc.daysAvailableViewing;
+                    
+                    } else if ( doc.typeExpiryView.name == "date") {
+                      _video.remainDate = doc.dateAvailableViews;
                     }
                   }
-
-                  user.viewsList[index].views += 1;
-                }
+                });
               }
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
@@ -588,7 +601,7 @@ module.exports = function init(site) {
               (err, user) => {
                 if (!err && user) {
                   user.lecturesList = user.lecturesList || [];
-                  if (!user.lecturesList.some((l) => l.id == doc.id)) {
+                  if (!user.lecturesList.some((l) => l._id.toString() == doc._id.toString())) {
                     user.lecturesList.push({
                       lectureId: site.mongodb.ObjectID(doc._id),
                     });
@@ -661,7 +674,7 @@ module.exports = function init(site) {
     }
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
-    app.$collection.findMany({ where, select, limit,sort: {id : -1} }, (err, docs) => {
+    app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];
