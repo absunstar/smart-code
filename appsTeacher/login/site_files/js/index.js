@@ -23,8 +23,6 @@ app.controller('login', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
           if (response.data.error.like('*The account is inactive*')) {
             $scope.error = "##word.The account is not activated, please contact support##"
-          } else if (response.data.error.like('*The account is inactive*')) {
-            $scope.error = "##word.The account is not activated, please contact support##"
           }
           $scope.busy = false;
         }

@@ -67,7 +67,8 @@
                       <p class="font-25">{{item.name}}
                         
                       </p>
-                      <i class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </i>
+                      <i class="left font-22 green bold padding mainColor" ng-show="item.price"> ##word.$## {{item.price}} </i>
+                      <i class="left font-22 green bold padding mainColor" ng-show="!item.price"> ##word.Free## </i>
                     </a>
                   </div>
                   <div class="consultantInfo">

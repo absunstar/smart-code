@@ -298,6 +298,28 @@ module.exports = function init(site) {
       }
     }
 
+    if (req.body.user.placeType == "offline") {
+      if (!req.body.user.center || !req.body.user.center.id) {
+        response.error = "Must Enter Center";
+        res.json(response);
+        return;
+      }
+    } else if (req.body.user.placeType == "online") {
+      if (!req.body.user.nationalIdImage) {
+        response.error = "Must Enter NationalIdImage";
+        res.json(response);
+        return;
+      } else if (!req.body.user.nationalId) {
+        response.error = "Must Enter National ID";
+        res.json(response);
+        return;
+      } else if (!req.body.user.latitude || !req.body.user.longitude) {
+        response.error = "Must Select Location Information";
+        res.json(response);
+        return;
+      }
+    }
+
     // let regex = /^\d*(\.\d+)?$/;
 
     // if (req.body.length_mobile && req.body.mobile.match(regex)) {
@@ -332,6 +354,7 @@ module.exports = function init(site) {
       nationalIdImage: req.body.user.nationalIdImage,
       nationalId: req.body.user.nationalId,
       placeType: req.body.user.placeType,
+      address: req.body.user.address,
       ip: req.ip,
       viewsList: [],
       booksList: [],
@@ -356,6 +379,10 @@ module.exports = function init(site) {
       });
     } else {
       user.active = true;
+      user.center = {
+       id : req.body.user.id,
+       name : req.body.user.name,
+      }
       site.security.register(user, function (err, doc) {
         if (!err) {
           response.user = doc;

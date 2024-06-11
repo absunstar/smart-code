@@ -4,6 +4,13 @@
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
     <style>
+      figure {
+        & figcaption {
+          .price {
+            right: 60px !important;
+          }
+        }
+      }
       .register-content {
         padding: 30px !important;
         /*  background-color: #2087e74d; */
@@ -122,9 +129,18 @@
 
                       <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(user.gov)" ng-model="user.gov" display="name" items="govesList" ng-search="user.$gov"></i-list>
 
-                      <i-list label="##word.City##" x-data="setting.citiesAndAreasShow" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name" ng-search="user.$city"> </i-list>
+                      <i-list
+                        label="##word.City##"
+                        x-data="setting.citiesAndAreasShow"
+                        ng-model="user.city"
+                        ng-change="getAreasList(user.city)"
+                        items="citiesList"
+                        display="name"
+                        ng-search="user.$city"
+                      >
+                      </i-list>
 
-                      <i-list label="##word.Area##"  x-data="setting.citiesAndAreasShow" ng-model="user.area" items="areasList" display="name" ng-search="user.$area"> </i-list>
+                      <i-list label="##word.Area##" x-data="setting.citiesAndAreasShow" ng-model="user.area" items="areasList" display="name" ng-search="user.$area"> </i-list>
 
                       <i-control v="r" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
                       <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
@@ -216,7 +232,8 @@
                           <button>##word.More##..</button>
                         </a>
 
-                        <i class="price col-6">##word.$## {{lecture.price}} </i>
+                        <i class="price col-6" ng-show="lecture.price">##word.$## {{lecture.price}} </i>
+                        <i class="price col-6" ng-show="!lecture.price">##word.Free## </i>
                       </div>
                     </figcaption>
                   </figure>

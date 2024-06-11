@@ -470,29 +470,25 @@ module.exports = function init(site) {
                 doc.linksList.forEach((_video) => {
                   let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _video.code);
                   if (index !== -1) {
-                    if ( doc.typeExpiryView.name == "number") {
+                    if (doc.typeExpiryView.name == "number") {
                       _video.remainNumber = doc.numberAvailableViews - req.session.user.viewsList[index].views;
-                    
+
                       return;
                     } else if (doc.typeExpiryView.name == "day") {
                       var viewDate = new Date(req.session.user.viewsList[index].date);
                       viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-                      _video.remainDay = viewDate.getDate() -new Date().getDate();
-                    
-                    } else if ( doc.typeExpiryView.name == "date") {
+                      _video.remainDay = viewDate.getDate() - new Date().getDate();
+                    } else if (doc.typeExpiryView.name == "date") {
                       _video.remainDate = doc.dateAvailableViews;
                     }
-
                   } else {
-                    if ( doc.typeExpiryView.name == "number") {
+                    if (doc.typeExpiryView.name == "number") {
                       _video.remainNumber = doc.numberAvailableViews;
-                    
+
                       return;
                     } else if (doc.typeExpiryView.name == "day") {
-                
-                      _video.remainDay =doc.daysAvailableViewing;
-                    
-                    } else if ( doc.typeExpiryView.name == "date") {
+                      _video.remainDay = doc.daysAvailableViewing;
+                    } else if (doc.typeExpiryView.name == "date") {
                       _video.remainDate = doc.dateAvailableViews;
                     }
                   }
@@ -565,7 +561,7 @@ module.exports = function init(site) {
           }
         }
         where["host"] = site.getHostFilter(req.host);
-        app.all({ where, select, limit }, (err, docs) => {
+        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
               docs[i].$time = site.xtime(docs[i].date, req.session.lang || "ar");
@@ -589,7 +585,7 @@ module.exports = function init(site) {
     app.view({ id: _data.lectureId }, (err, doc) => {
       if (!err && doc) {
         site.validateCode({ code: _data.code, price: _data.lecturePrice }, (errCode, code) => {
-          if (errCode) {
+          if (errCode && _data.lecturePrice > 0) {
             response.error = errCode;
             res.json(response);
             return;
@@ -601,7 +597,7 @@ module.exports = function init(site) {
               (err, user) => {
                 if (!err && user) {
                   user.lecturesList = user.lecturesList || [];
-                  if (!user.lecturesList.some((l) => l._id.toString() == doc._id.toString())) {
+                  if (!user.lecturesList.some((l) => l.lectureId.toString() == doc._id.toString())) {
                     user.lecturesList.push({
                       lectureId: site.mongodb.ObjectID(doc._id),
                     });

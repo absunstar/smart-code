@@ -411,7 +411,7 @@ module.exports = function init(site) {
         }
 
         where["host"] = site.getHostFilter(req.host);
-        app.all({ where, select, limit }, (err, docs) => {
+        app.all({ where, select, limit,sort: {id : -1} }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
               docs[i].$time = site.xtime(docs[i].date, req.session.lang || "ar");
