@@ -320,6 +320,10 @@ module.exports = function init(site) {
                 if (req.session.user.educationalLevel.id == obj.educationalLevel.id && req.session.user.schoolYear.id == obj.schoolYear.id) {
                   list.push(obj);
                 }
+              } else if (!req.session.user) {
+                if (where.educationalLevelId == obj.educationalLevel.id && where.schoolYearId == obj.schoolYear.id) {
+                  list.push(obj);
+                }
               } else {
                 list.push(obj);
               }

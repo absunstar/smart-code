@@ -127,7 +127,7 @@
                   items="educationalLevelsList"
                   ng-search="user.$educationalLevel"
                 ></i-list>
-                <i-list label="##word.School Year##" ng-model="user.schoolYear" v="r" display="name" items="schoolYearsList"></i-list>
+                <i-list label="##word.School Year##" ng-model="user.schoolYear" v="r" display="name" ng-change="getCentersList()" items="schoolYearsList"></i-list>
                 <i-list ng-show="type == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name" ng-search="user.$center"></i-list>
                 <i-control ng-show="type == 'online'" class="center input-style" label="##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
                 <i-list
@@ -179,7 +179,13 @@
         <div id="main-layout" class="container">
           <div class="row" id="registersouqModal"></div>
         </div>
-
+        <div id="alert" class="modal alert small" fixed>
+          <div class="modal-content">
+            <div class="modal-body">
+              <h1 class="blue center">##word.The account is not activated, please contact support##</h1>
+            </div>
+          </div>
+        </div>
         <div x-replace="teacher-theme/footer.html"></div>
         <div x-import="teacher-theme/scripts.html"></div>
         <script x-import="register/index.js"></script>

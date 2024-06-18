@@ -22,9 +22,9 @@
         </div>
         <div class="row">
           <i-list label="##word.Type Of Expiry View##" ng-model="item.typeExpiryView" class="col6" v="r" display="name##session.lang##" items="typesExpiryViewsList"></i-list>
-          <i-date ng-model="item.viewingEndDate" ng-show="item.typeExpiryView.name == 'date'" class="col6" label="##word.Viewing End Date##"></i-date>
+          <i-date ng-model="item.dateAvailableViews" ng-show="item.typeExpiryView.name == 'date'" class="col6" label="##word.Viewing End Date##"></i-date>
           <i-control ng-model="item.daysAvailableViewing" ng-show="item.typeExpiryView.name == 'day'" type="number" class="col6" label="##word.Days Available For Viewing##"></i-control>
-          <i-control ng-model="item.numberViews" type="number" ng-show="item.typeExpiryView.name == 'number'" class="col6" label="##word.Number of views##"></i-control>
+          <i-control ng-model="item.numberAvailableViews" type="number" ng-show="item.typeExpiryView.name == 'number'" class="col6" label="##word.Number of views##"></i-control>
         </div>
         <fieldset>
           <legend>##word.Place Type##</legend>

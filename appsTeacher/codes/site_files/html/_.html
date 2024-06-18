@@ -7,9 +7,7 @@
       <!-- <i-button type="add" x-permissions="codesAdd || codesManage" label="##word.New##" ng-click="showAdd()"></i-button> -->
       <i-button type="search" x-permissions="codesSearch || codesManage" label="##word.Expired##" ng-click="searchAll(search={expired:true})"></i-button>
       <i-button type="search" x-permissions="codesSearch || codesManage" label="##word.Available##" ng-click="searchAll(search={expired:false})"></i-button>
-
       <i-button type="search" x-permissions="codesSearch || codesManage" label="##word.Distribution##" ng-click="searchAll(search={distribution:true})"></i-button>
-
       <i-button type="search" x-permissions="codesSearch || codesManage" label="##word.Not Distributed##" ng-click="searchAll(search={distribution:false})"></i-button>
     </div>
 
@@ -19,9 +17,20 @@
         <i-button type="search" label="##word.Search##" ng-click="getAll({},$search)"></i-button>
       </div>
     </div>
+    <fieldset>
+      <legend>##word.Distribution##</legend>
+      <div class="row">
+        <i-control class="col4" v="r" type="number" ng-model="distribution.from" label="##word.Serial From##"></i-control>
+        <i-control class="col4" v="r" type="number" ng-model="distribution.to" label="##word.Serial To##"></i-control>
+        <div class="col3">
+          <i-button type="save" label="##word.Distribution##" ng-click="updateAllDistribution(distribution,true)"></i-button>
+          <i-button type="save" label="##word.Not Distributed##" ng-click="updateAllDistribution(distribution,false)"></i-button>
+        </div>
+      </div>
+    </fieldset>
     <fieldset id="printCodeData">
       <legend>##word.Print##</legend>
-      <div class="row" >
+      <div class="row">
         <i-control class="col4" v="r" type="number" ng-model="print.from" label="##word.Serial From##"></i-control>
         <i-control class="col4" v="r" type="number" ng-model="print.to" label="##word.Serial To##"></i-control>
         <div class="col2">

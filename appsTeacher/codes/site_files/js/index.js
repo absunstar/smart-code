@@ -15,6 +15,10 @@ app.controller("codes", function ($scope, $http, $timeout) {
     count: 0,
     price: 0,
   };
+  $scope.distribution = {
+    from: 0,
+    to: 0,
+  };
   $scope.item = {};
   $scope.list = [];
 
@@ -122,6 +126,30 @@ app.controller("codes", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.updateAllDistribution = function (_item, type) {
+    $scope.error = "";
+    $scope.busy = true;
+    _item.type = type;
+
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/updateAllDistribution`,
+      data: _item,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.getAll();
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.updateDistribution = function (_item, type) {
     $scope.error = "";
     $scope.busy = true;
@@ -142,8 +170,8 @@ app.controller("codes", function ($scope, $http, $timeout) {
           if (index !== -1) {
             $scope.list[index] = response.data.result.doc;
           }
-          console.log(response.data.result.doc);
         } else {
+          console.log(response.data.error);
           $scope.error = response.data.error;
         }
       },
@@ -255,7 +283,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
               ip: "127.0.0.1",
               port: "60080",
               pageSize: "A4",
-              printer: "Microsoft Print to PDF", 
+              printer: "Microsoft Print to PDF",
               dpi: { horizontal: 200, vertical: 640 },
             });
           }, 500);

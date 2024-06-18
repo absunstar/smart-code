@@ -28,19 +28,24 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
 
   $scope.showEnterCode = function () {
     $scope.code = "";
+
     if (site.toNumber("##user.id##") < 1) {
       window.location.href = "/login";
+    } else if ($scope.item.price === 0) {
+      $scope.buyLecture("free");
     } else {
       site.showModal("#codeModal");
     }
   };
 
-  $scope.buyLecture = function () {
+  $scope.buyLecture = function (type) {
     $scope.errorCode = "";
-    const v = site.validated("#codeModal");
-    if (!v.ok) {
-      $scope.errorCode = v.messages[0].ar;
-      return;
+    if (type != "free") {
+      const v = site.validated("#codeModal");
+      if (!v.ok) {
+        $scope.errorCode = v.messages[0].ar;
+        return;
+      }
     }
 
     $scope.busy = true;
@@ -130,13 +135,18 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
             security: true,
             $timeout: 5000,
           });
+          if ($scope.item.typeExpiryView && $scope.item.typeExpiryView.name == "number") {
+            let index = $scope.item.linksList.findIndex((itm) => itm.code === link.code);
+            if (index !== -1) {
+              $scope.item.linksList[index].remainNumber -= 1;
+            }
+          }
         } else {
           $scope.error = response.data.error;
         }
       },
       function (err) {
         $scope.busy = false;
-        console.log(err);
       }
     );
   };

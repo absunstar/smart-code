@@ -31,7 +31,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       } else if (!user.nationalId) {
         $scope.error = "##word.Must Enter National ID##";
         return;
-      }  else if (!user.latitude || !user.longitude) {
+      } else if (!user.latitude || !user.longitude) {
         $scope.error = "##word.Must Select Location Information##";
         return;
       }
@@ -53,6 +53,8 @@ app.controller("register", function ($scope, $http, $timeout) {
       gov: user.gov,
       city: user.city,
       area: user.area,
+      center: user.center,
+      address: user.address,
       latitude: user.latitude,
       longitude: user.longitude,
       userName: user.userName,
@@ -75,7 +77,14 @@ app.controller("register", function ($scope, $http, $timeout) {
               }
               $scope.busy = false;
             } else if (response.data.user) {
-              window.location.href = "/";
+              if ($scope.type == "online") {
+                site.showModal('#alert');
+                $timeout(() => {
+                  window.location.href = "/";
+                }, 5000);
+              } else {
+                window.location.href = "/";
+              }
             }
           },
           function (err) {
@@ -90,31 +99,39 @@ app.controller("register", function ($scope, $http, $timeout) {
   };
 
   $scope.getCentersList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/centers/all",
-      data: {
-        where: {
-          active: true,
+    if ($scope.user.schoolYear && $scope.user.schoolYear.id && $scope.user.educationalLevel && $scope.user.educationalLevel.id) {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/centers/all",
+        data: {
+          where: {
+            active: true,
+            schoolYearId: $scope.user.schoolYear.id,
+            educationalLevelId: $scope.user.educationalLevel.id,
+          },
+          view: true,
+          select: {
+            id: 1,
+            name: 1,
+            host: 1,
+            educationalLevel: 1,
+            schoolYear: 1,
+          },
         },
-        select: {
-          id: 1,
-          name: 1,
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.centersList = response.data.list;
+          }
         },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.centersList = response.data.list;
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+      );
+    }
   };
 
   $scope.getCountriesList = function (where) {
@@ -323,7 +340,6 @@ app.controller("register", function ($scope, $http, $timeout) {
   };
 
   $scope.getCountriesList();
-  $scope.getCentersList();
   $scope.getEducationalLevelsList();
 });
 
