@@ -756,11 +756,11 @@ module.exports = function init(site) {
       };
 
       articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
-      if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
-        response.error = 'No Description or Rating';
-        res.json(response);
-        return;
-      }
+      // if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
+      //   response.error = 'No Description or Rating';
+      //   res.json(response);
+      //   return;
+      // }
       articlesDoc.showInMainSlider = true;
       articlesDoc.showOnTop = true;
 
@@ -771,7 +771,8 @@ module.exports = function init(site) {
       articlesDoc.translatedList[0].cover = {
         url: articlesDoc.yts.large_cover_image,
       };
-      articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full;
+      articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full || '';
+      articlesDoc.translatedList[0].rating = articlesDoc.yts.rating || '';
 
       if (Array.isArray(articlesDoc.yts.genres)) {
         articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
@@ -872,26 +873,43 @@ module.exports = function init(site) {
     articlesDoc.guid = articlesDoc.guid || site.md5(articlesDoc.translatedList[0].title);
     articlesDoc.host = articlesDoc.host || req.host;
 
-    site.$articles.add(articlesDoc, (err, doc) => {
+    site.$articles.find({ guid: articlesDoc.guid }, (err, doc) => {
       if (!err && doc) {
         response.done = true;
-        response.doc = doc;
-        if (doc.type.id == 9 && doc.facebook) {
-          site.downloadImage(doc.facebook.image.url, (image) => {
-            doc.translatedList[0].image = image;
-            site.$articles.update(doc, (err, result) => {
-              if (!err && result.doc) {
-                site.articlesList.unshift(site.handleArticle({ ...result.doc }));
-              }
-            });
-          });
-        } else {
-          site.articlesList.unshift(site.handleArticle({ ...doc }));
+        response.updated = true;
+        if (articlesDoc.yts) {
+          doc.translatedList[0].rating = articlesDoc.translatedList[0].rating;
+          doc.translatedList[0].title = articlesDoc.translatedList[0].title;
+          doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent;
+          doc.translatedList[0].yts = articlesDoc.translatedList[0].yts;
         }
+        doc.translatedList[0].host = articlesDoc.translatedList[0].host;
+
+        res.json(response);
+        site.$articles.update(doc);
       } else {
-        response.error = err?.message;
+        site.$articles.add(articlesDoc, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+            if (doc.type.id == 9 && doc.facebook) {
+              site.downloadImage(doc.facebook.image.url, (image) => {
+                doc.translatedList[0].image = image;
+                site.$articles.update(doc, (err, result) => {
+                  if (!err && result.doc) {
+                    site.articlesList.unshift(site.handleArticle({ ...result.doc }));
+                  }
+                });
+              });
+            } else {
+              site.articlesList.unshift(site.handleArticle({ ...doc }));
+            }
+          } else {
+            response.error = err?.message;
+          }
+          res.json(response);
+        });
       }
-      res.json(response);
     });
   });
 
