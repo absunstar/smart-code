@@ -481,7 +481,7 @@ module.exports = function init(site) {
       } else if (options.tag) {
         options.search = 'tag_' + options.tag;
         $or.push({
-          'translatedList.tagsList': { $regex: new RegExp(options.tag, 'gium') },
+          'translatedList.tagsList': options.tag,
         });
       }
 
