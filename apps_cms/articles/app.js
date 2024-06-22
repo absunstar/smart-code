@@ -269,7 +269,7 @@ module.exports = function init(site) {
     lang.tagsList = lang.tagsList || [doc.$title];
 
     lang.tagsList.forEach((k, i) => {
-      k = site.removeHtml(k);
+      k = site.removeHtml(k).replace(' ', '-');
       if (!k || k.length < 2) {
         return;
       }
@@ -895,6 +895,9 @@ module.exports = function init(site) {
       articlesDoc.active = true;
     }
 
+    articlesDoc.translatedList[0].tagsList.forEach((tag, i) => {
+      articlesDoc.translatedList[0].tagsList[i] = tag.replace(' ', '-');
+    });
     articlesDoc.guid = articlesDoc.guid || site.md5(articlesDoc.translatedList[0].title);
     articlesDoc.host = articlesDoc.host || req.host;
 
@@ -1338,6 +1341,9 @@ module.exports = function init(site) {
               } else if (!lang.tagsList.includes(doc.yts.year.toString())) {
                 lang.tagsList.push(doc.yts.year);
               }
+              lang.tagsList.forEach((tag, i) => {
+                lang.tagsList[i] = tag.replace(' ', '-');
+              });
               site.$articles.update(doc, (err, result) => {
                 console.log(err || result.doc.id);
               });
@@ -1386,7 +1392,7 @@ module.exports = function init(site) {
       let hashTag = ' #torrent';
       if (doc.$yts) {
         doc.$tagsList.forEach((tag) => {
-          hashTag += '  #' + tag;
+          hashTag += '  #' + tag.replace('-', '_');
         });
         hashTag += ' Download Torrents Movies in High Qualtiy 720p , 1080p , 2k , 4k , 8k';
       }
@@ -1423,7 +1429,7 @@ module.exports = function init(site) {
     list.forEach((doc) => {
       let hashTag = '#torrent ';
       doc.$tagsList.forEach((tag) => {
-        hashTag += '  #' + tag;
+        hashTag += '  #' + tag.replace('-', '_');
       });
 
       urls += `
