@@ -259,7 +259,7 @@ site.get(
           }
 
           if (result.tag) {
-            options.page_title = `${language.siteName} ${language.titleSeparator} ${req.word('search results for ')} ${result.tag}  ( ${result.count} articles ) [ page ${result.page} of ${
+            options.page_title = `${language.siteName} ${language.titleSeparator} ${req.word('search results for tag ')} "${result.tag}"  ( ${result.count} articles ) [ page ${result.page} of ${
               options.pageCount
             } ]`;
           } else {
