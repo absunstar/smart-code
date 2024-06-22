@@ -270,7 +270,7 @@ module.exports = function init(site) {
 
     lang.tagsList.forEach((k, i) => {
       k = site.removeHtml(k);
-      if (!k || k.length < 4) {
+      if (!k || k.length < 2) {
         return;
       }
       doc.$tagsList.push(k);
@@ -425,7 +425,10 @@ module.exports = function init(site) {
   site.searchArticles = function (options, callBack) {
     callBack = callBack || function () {};
     options = options || {};
+
     options.search = options.search || '';
+    options.tag = options.tag || '';
+
     options.host = options.host || '';
     options.page = options.page || 1;
     options.page = parseInt(options.page);
@@ -461,19 +464,27 @@ module.exports = function init(site) {
       options.where = { 'category.id': options.category.id };
     } else {
       let $or = [];
-      $or.push({
-        'translatedList.title': { $regex: new RegExp(options.search, 'gium') },
-      });
-      options.search.split(' ').forEach((s) => {
-        if (s.length > 2) {
-          $or.push({
-            'translatedList.tagsList': { $regex: new RegExp(s, 'gium') },
-          });
-          $or.push({
-            'translatedList.title': { $regex: new RegExp(s, 'gium') },
-          });
-        }
-      });
+      if (options.search) {
+        $or.push({
+          'translatedList.title': { $regex: new RegExp(options.search, 'gium') },
+        });
+        options.search.split(' ').forEach((s) => {
+          if (s.length > 2) {
+            $or.push({
+              'translatedList.tagsList': { $regex: new RegExp(s, 'gium') },
+            });
+            $or.push({
+              'translatedList.title': { $regex: new RegExp(s, 'gium') },
+            });
+          }
+        });
+      } else if (options.tag) {
+        options.search = 'tag_' + options.tag;
+        $or.push({
+          'translatedList.tagsList': { $regex: new RegExp(options.tag, 'gium') },
+        });
+      }
+
       options.where = {
         $and: [{ host: options.host }, { $or: $or }],
       };
@@ -507,6 +518,7 @@ module.exports = function init(site) {
               id: options.host + '_' + options.search + '_' + options.page + '_' + options.limit,
               category: options.category,
               search: options.search,
+              tag: options.tag,
               page: options.page,
               limit: options.limit,
               count: count,
@@ -779,13 +791,20 @@ module.exports = function init(site) {
 
       if (Array.isArray(articlesDoc.yts.genres)) {
         articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
-        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres, articlesDoc.yts.year.toString()];
+        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres];
         articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.yts.title).split(' '), ...articlesDoc.yts.genres];
+      }
+      if (articlesDoc.yts.year) {
+        articlesDoc.translatedList[0].tagsList.push(articlesDoc.yts.year.toString());
+      }
+      if (articlesDoc.yts.language) {
+        articlesDoc.translatedList[0].tagsList.push(articlesDoc.yts.language);
       }
       articlesDoc.yts.torrents = articlesDoc.yts.torrents || [];
       articlesDoc.yts.torrents.forEach((torrent) => {
         articlesDoc.translatedList[0].tagsList.push(torrent.quality);
       });
+
       if (articlesDoc.yts.date_uploaded) {
         articlesDoc.publishDate = new Date(articlesDoc.yts.date_uploaded);
       }
@@ -1304,6 +1323,11 @@ module.exports = function init(site) {
                     lang.tagsList.push(torrent.quality);
                   }
                 });
+              }
+              if (doc.yts.language) {
+                if (!lang.tagsList.includes(doc.yts.language)) {
+                  lang.tagsList.push(doc.yts.language);
+                }
               }
               if (lang.tagsList.includes(doc.yts.year)) {
                 lang.tagsList.splice(

@@ -76,7 +76,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         domain: 'https://' + req.host,
-        url : 'https://' + req.host + req.url,
+        url: 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -149,7 +149,7 @@ site.get(
 
 site.get(
   {
-    name: ['/result'],
+    name: ['/result', '/results'],
   },
   (req, res) => {
     let setting = site.getSiteSetting(req.host);
@@ -179,7 +179,8 @@ site.get(
 
     language.description = language.description || '';
     let query = req.query.search_query || '';
-    if (query.length < 3) {
+    let tag = req.query.tag || '';
+    if (query && query.length < 3) {
       res.redirect('/');
       return;
     }
@@ -193,7 +194,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         domain: 'https://' + req.host,
-        url : 'https://' + req.host + req.url,
+        url: 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -220,7 +221,7 @@ site.get(
       options.menuList2 = options.menuList.slice(8, 20);
       options.menuList3 = options.menuList.slice(20);
 
-      site.searchArticles({ search: query, host: options.filter, page: page, limit: limit }, (err, result) => {
+      site.searchArticles({ search: query, tag: tag, host: options.filter, page: page, limit: limit }, (err, result) => {
         if (!err && result) {
           let list = [...result.list];
 
