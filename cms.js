@@ -397,16 +397,15 @@ site.get(
             for (let index = 1; index < options.pageCount + 1; index++) {
               options.pageList.push({
                 name: index,
-                url: '/category/' + category.id + '/' + options.categoryName + '?page=' + index + '&limit=' + result.limit,
+                url: '/category/' + category.id + '/' + options.categoryName.replaceAll(' ', '-') + '?page=' + index + '&limit=' + result.limit,
               });
             }
           }
 
-          options.page_title = `${language.siteName} ${language.titleSeparator} ${options.categoryName} ( ${result.count} articles ) [ page ${result.page} of ${
+          options.page_title = `${language.siteName} ${language.titleSeparator} ${options.categoryName.replaceAll(' ', '-')} ( ${result.count} articles ) [ page ${result.page} of ${
             options.pageCount
           } ]`;
 
-         
           options.list = list;
           options.list1 = options.list.splice(0, 10);
           options.list2 = options.list.splice(0, 10);
