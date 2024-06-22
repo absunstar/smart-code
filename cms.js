@@ -402,9 +402,11 @@ site.get(
             }
           }
 
-          options.page_title =
-            language.siteName + ' ' + language.titleSeparator + ' ' + options.categoryName + ' ' + ' [ ' + result.count + ' ] ' + ' - page ' + result.page + ' of ' + options.pageCount;
+          options.page_title = `${language.siteName} ${language.titleSeparator} ${options.categoryName} ( ${result.count} articles ) [ page ${result.page} of ${
+            options.pageCount
+          } ]`;
 
+         
           options.list = list;
           options.list1 = options.list.splice(0, 10);
           options.list2 = options.list.splice(0, 10);
