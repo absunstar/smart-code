@@ -269,11 +269,11 @@ module.exports = function init(site) {
     lang.tagsList = lang.tagsList || [doc.$title];
 
     lang.tagsList.forEach((k, i) => {
-      k = site.removeHtml(k).replace(' ', '-');
+      k = site.removeHtml(k);
       if (!k || k.length < 2) {
         return;
       }
-      doc.$tagsList.push(k);
+      doc.$tagsList.push(k.replace(' ', '-'));
     });
 
     doc.publishDate = doc.publishDate || new Date();
