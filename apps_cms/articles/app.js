@@ -774,12 +774,18 @@ module.exports = function init(site) {
       articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full || '';
       articlesDoc.translatedList[0].rating = articlesDoc.yts.rating || '';
 
+      articlesDoc.translatedList[0].tagsList = articlesDoc.translatedList[0].tagsList || [];
+      articlesDoc.translatedList[0].keyWordsList = articlesDoc.translatedList[0].keyWordsList || [];
+
       if (Array.isArray(articlesDoc.yts.genres)) {
         articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
-        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres, articlesDoc.yts.year];
+        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres, articlesDoc.yts.year.toString()];
         articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.yts.title).split(' '), ...articlesDoc.yts.genres];
       }
-
+      articlesDoc.yts.torrents = articlesDoc.yts.torrents || [];
+      articlesDoc.yts.torrents.forEach((torrent) => {
+        articlesDoc.translatedList[0].tagsList.push(torrent.quality);
+      });
       if (articlesDoc.yts.date_uploaded) {
         articlesDoc.publishDate = new Date(articlesDoc.yts.date_uploaded);
       }
@@ -1290,17 +1296,24 @@ module.exports = function init(site) {
           docs.forEach((doc) => {
             let lang = doc.translatedList[0];
             lang.tagsList = lang.tagsList || [];
-            if (doc.yts && lang.tagsList.includes(doc.yts.year)) {
-              lang.tagsList.splice(
-                lang.tagsList.findIndex((t) => t == doc.yts.year),
-                1
-              );
-              lang.tagsList.push(doc.yts.year.toString());
-              site.$articles.update(doc, (err, result) => {
-                console.log(err || result.doc.id);
-              });
-            } else if (doc.yts && !lang.tagsList.includes(doc.yts.year.toString())) {
-              lang.tagsList.push(doc.yts.year);
+
+            if (doc.yts) {
+              if (doc.yts.torrents) {
+                doc.yts.torrents.forEach((torrent) => {
+                  if (!lang.tagsList.includes(torrent.quality)) {
+                    lang.tagsList.push(torrent.quality);
+                  }
+                });
+              }
+              if (lang.tagsList.includes(doc.yts.year)) {
+                lang.tagsList.splice(
+                  lang.tagsList.findIndex((t) => t == doc.yts.year),
+                  1
+                );
+                lang.tagsList.push(doc.yts.year.toString());
+              } else if (!lang.tagsList.includes(doc.yts.year.toString())) {
+                lang.tagsList.push(doc.yts.year);
+              }
               site.$articles.update(doc, (err, result) => {
                 console.log(err || result.doc.id);
               });
