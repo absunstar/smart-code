@@ -273,7 +273,7 @@ module.exports = function init(site) {
       if (!k || k.length < 2) {
         return;
       }
-      doc.$tagsList.push(k.replace(' ', '-'));
+      doc.$tagsList.push(k);
     });
 
     doc.publishDate = doc.publishDate || new Date();
