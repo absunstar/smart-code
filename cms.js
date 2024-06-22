@@ -259,13 +259,13 @@ site.get(
           }
 
           if (result.tag) {
-            options.page_title = `${language.siteName} ${language.titleSeparator} ${req.word('search results for ')} ${result.tag}  = ${result.count} films [page ${result.page} of ${
+            options.page_title = `${language.siteName} ${language.titleSeparator} ${req.word('search results for ')} ${result.tag}  ( ${result.count} articles ) [ page ${result.page} of ${
               options.pageCount
-            }]`;
+            } ]`;
           } else {
-            options.page_title = `${language.siteName} ${language.titleSeparator} ${req.word('search results for ')} ${result.search}  = ${result.count} films [page ${result.page} of ${
+            options.page_title = `${language.siteName} ${language.titleSeparator} ${req.word('search results for ')} ${result.search}  ( ${result.count} articles ) [ page ${result.page} of ${
               options.pageCount
-            }]`;
+            } ]`;
           }
 
           options.list = list;
