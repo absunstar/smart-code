@@ -241,28 +241,56 @@ site.get(
           if (result.count > result.limit) {
             options.pagging = true;
             options.pageList = [];
-            for (let index = 1; index < options.pageCount + 1; index++) {
-              options.pageList.push({
-                name: index,
-                url: '/result?search_query=' + result.search + '&page=' + index + '&limit=' + result.limit,
-              });
+            if (result.tag) {
+              for (let index = 1; index < options.pageCount + 1; index++) {
+                options.pageList.push({
+                  name: index,
+                  url: '/results?tag=' + result.tag + '&page=' + index + '&limit=' + result.limit,
+                });
+              }
+            } else {
+              for (let index = 1; index < options.pageCount + 1; index++) {
+                options.pageList.push({
+                  name: index,
+                  url: '/results?search_query=' + result.search + '&page=' + index + '&limit=' + result.limit,
+                });
+              }
             }
           }
-          options.page_title =
-            language.siteName +
-            ' ' +
-            language.titleSeparator +
-            ' ' +
-            req.word('Search results for ') +
-            ' ' +
-            result.search +
-            ' [ ' +
-            result.count +
-            ' ] ' +
-            ' - page ' +
-            result.page +
-            ' of ' +
-            options.pageCount;
+
+          if (result.tag) {
+            options.page_title =
+              language.siteName +
+              ' ' +
+              language.titleSeparator +
+              ' ' +
+              req.word('Search results for tag ') +
+              ' ' +
+              result.tag +
+              ' [ ' +
+              result.count +
+              ' ] ' +
+              ' - page ' +
+              result.page +
+              ' of ' +
+              options.pageCount;
+          } else {
+            options.page_title =
+              language.siteName +
+              ' ' +
+              language.titleSeparator +
+              ' ' +
+              req.word('Search results for ') +
+              ' ' +
+              result.search +
+              ' [ ' +
+              result.count +
+              ' ] ' +
+              ' - page ' +
+              result.page +
+              ' of ' +
+              options.pageCount;
+          }
 
           options.list = list;
           options.list1 = options.list.splice(0, 10);
