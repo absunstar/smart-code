@@ -137,7 +137,7 @@ module.exports = function init(site) {
         .replace(/\s+/g, ' ')
         .trim();
     } catch (error) {
-      return unsafe;
+      return unsafe || '';
     }
   };
   site.filterLetters = function (str, lettersToRemove = ['  ', ':', '=', '"', "'", '؟']) {
