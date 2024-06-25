@@ -145,7 +145,11 @@ app.connectScope(
           if (response.data.done) {
             $scope.addCount++;
             if (movie.is_yts) {
-              $scope.ytsAddCount++;
+              if (response.data.updated) {
+                $scope.ytsUpdatedCount++;
+              } else {
+                $scope.ytsAddCount++;
+              }
             }
           } else {
             if (movie.is_yts) {
@@ -179,6 +183,7 @@ app.connectScope(
     $scope.ytsGetCount = 0;
     $scope.ytsSendCount = 0;
     $scope.ytsAddCount = 0;
+    $scope.ytsUpdatedCount = 0;
     $scope.ytsfailCount = 0;
 
     $scope.generateYTS = function () {

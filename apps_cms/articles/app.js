@@ -137,7 +137,7 @@ module.exports = function init(site) {
         .replace(/\s+/g, ' ')
         .trim();
     } catch (error) {
-      return unsafe;
+      return unsafe || '';
     }
   };
   site.filterLetters = function (str, lettersToRemove = ['  ', ':', '=', '"', "'", '؟']) {
@@ -270,7 +270,7 @@ module.exports = function init(site) {
 
     lang.tagsList.forEach((k, i) => {
       k = site.removeHtml(k);
-      if (!k || k.length < 4) {
+      if (!k || k.length < 2) {
         return;
       }
       doc.$tagsList.push(k);
@@ -425,7 +425,10 @@ module.exports = function init(site) {
   site.searchArticles = function (options, callBack) {
     callBack = callBack || function () {};
     options = options || {};
+
     options.search = options.search || '';
+    options.tag = options.tag || '';
+
     options.host = options.host || '';
     options.page = options.page || 1;
     options.page = parseInt(options.page);
@@ -461,19 +464,27 @@ module.exports = function init(site) {
       options.where = { 'category.id': options.category.id };
     } else {
       let $or = [];
-      $or.push({
-        'translatedList.title': { $regex: new RegExp(options.search, 'gium') },
-      });
-      options.search.split(' ').forEach((s) => {
-        if (s.length > 2) {
-          $or.push({
-            'translatedList.tagsList': { $regex: new RegExp(s, 'gium') },
-          });
-          $or.push({
-            'translatedList.title': { $regex: new RegExp(s, 'gium') },
-          });
-        }
-      });
+      if (options.search) {
+        $or.push({
+          'translatedList.title': { $regex: new RegExp(options.search, 'gium') },
+        });
+        options.search.split(' ').forEach((s) => {
+          if (s.length > 2) {
+            $or.push({
+              'translatedList.tagsList': { $regex: new RegExp(s, 'gium') },
+            });
+            $or.push({
+              'translatedList.title': { $regex: new RegExp(s, 'gium') },
+            });
+          }
+        });
+      } else if (options.tag) {
+        options.search = 'tag_' + options.tag;
+        $or.push({
+          'translatedList.tagsList': options.tag,
+        });
+      }
+
       options.where = {
         $and: [{ host: options.host }, { $or: $or }],
       };
@@ -507,6 +518,7 @@ module.exports = function init(site) {
               id: options.host + '_' + options.search + '_' + options.page + '_' + options.limit,
               category: options.category,
               search: options.search,
+              tag: options.tag,
               page: options.page,
               limit: options.limit,
               count: count,
@@ -756,11 +768,11 @@ module.exports = function init(site) {
       };
 
       articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
-      if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
-        response.error = 'No Description or Rating';
-        res.json(response);
-        return;
-      }
+      // if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
+      //   response.error = 'No Description or Rating';
+      //   res.json(response);
+      //   return;
+      // }
       articlesDoc.showInMainSlider = true;
       articlesDoc.showOnTop = true;
 
@@ -771,13 +783,27 @@ module.exports = function init(site) {
       articlesDoc.translatedList[0].cover = {
         url: articlesDoc.yts.large_cover_image,
       };
-      articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full;
+      articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full || '';
+      articlesDoc.translatedList[0].rating = articlesDoc.yts.rating || '';
+
+      articlesDoc.translatedList[0].tagsList = articlesDoc.translatedList[0].tagsList || [];
+      articlesDoc.translatedList[0].keyWordsList = articlesDoc.translatedList[0].keyWordsList || [];
 
       if (Array.isArray(articlesDoc.yts.genres)) {
         articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
-        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres, articlesDoc.yts.year];
+        articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres];
         articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.yts.title).split(' '), ...articlesDoc.yts.genres];
       }
+      if (articlesDoc.yts.year) {
+        articlesDoc.translatedList[0].tagsList.push(articlesDoc.yts.year.toString());
+      }
+      if (articlesDoc.yts.language) {
+        articlesDoc.translatedList[0].tagsList.push(articlesDoc.yts.language);
+      }
+      articlesDoc.yts.torrents = articlesDoc.yts.torrents || [];
+      articlesDoc.yts.torrents.forEach((torrent) => {
+        articlesDoc.translatedList[0].tagsList.push(torrent.quality);
+      });
 
       if (articlesDoc.yts.date_uploaded) {
         articlesDoc.publishDate = new Date(articlesDoc.yts.date_uploaded);
@@ -869,29 +895,49 @@ module.exports = function init(site) {
       articlesDoc.active = true;
     }
 
+    articlesDoc.translatedList[0].tagsList.forEach((tag, i) => {
+      articlesDoc.translatedList[0].tagsList[i] = tag.replace(' ', '-');
+    });
     articlesDoc.guid = articlesDoc.guid || site.md5(articlesDoc.translatedList[0].title);
     articlesDoc.host = articlesDoc.host || req.host;
 
-    site.$articles.add(articlesDoc, (err, doc) => {
+    site.$articles.find({ guid: articlesDoc.guid }, (err, doc) => {
       if (!err && doc) {
         response.done = true;
-        response.doc = doc;
-        if (doc.type.id == 9 && doc.facebook) {
-          site.downloadImage(doc.facebook.image.url, (image) => {
-            doc.translatedList[0].image = image;
-            site.$articles.update(doc, (err, result) => {
-              if (!err && result.doc) {
-                site.articlesList.unshift(site.handleArticle({ ...result.doc }));
-              }
-            });
-          });
-        } else {
-          site.articlesList.unshift(site.handleArticle({ ...doc }));
+        response.updated = true;
+        if (articlesDoc.yts) {
+          doc.translatedList[0].rating = articlesDoc.translatedList[0].rating;
+          doc.translatedList[0].title = articlesDoc.translatedList[0].title;
+          doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent;
+          doc.translatedList[0].yts = articlesDoc.translatedList[0].yts;
         }
+        doc.translatedList[0].host = articlesDoc.translatedList[0].host;
+
+        res.json(response);
+        site.$articles.update(doc);
       } else {
-        response.error = err?.message;
+        site.$articles.add(articlesDoc, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+            if (doc.type.id == 9 && doc.facebook) {
+              site.downloadImage(doc.facebook.image.url, (image) => {
+                doc.translatedList[0].image = image;
+                site.$articles.update(doc, (err, result) => {
+                  if (!err && result.doc) {
+                    site.articlesList.unshift(site.handleArticle({ ...result.doc }));
+                  }
+                });
+              });
+            } else {
+              site.articlesList.unshift(site.handleArticle({ ...doc }));
+            }
+          } else {
+            response.error = err?.message;
+          }
+          res.json(response);
+        });
       }
-      res.json(response);
     });
   });
 
@@ -1272,17 +1318,32 @@ module.exports = function init(site) {
           docs.forEach((doc) => {
             let lang = doc.translatedList[0];
             lang.tagsList = lang.tagsList || [];
-            if (doc.yts && lang.tagsList.includes(doc.yts.year)) {
-              lang.tagsList.splice(
-                lang.tagsList.findIndex((t) => t == doc.yts.year),
-                1
-              );
-              lang.tagsList.push(doc.yts.year.toString());
-              site.$articles.update(doc, (err, result) => {
-                console.log(err || result.doc.id);
+
+            if (doc.yts) {
+              if (doc.yts.torrents) {
+                doc.yts.torrents.forEach((torrent) => {
+                  if (!lang.tagsList.includes(torrent.quality)) {
+                    lang.tagsList.push(torrent.quality);
+                  }
+                });
+              }
+              if (doc.yts.language) {
+                if (!lang.tagsList.includes(doc.yts.language)) {
+                  lang.tagsList.push(doc.yts.language);
+                }
+              }
+              if (lang.tagsList.includes(doc.yts.year)) {
+                lang.tagsList.splice(
+                  lang.tagsList.findIndex((t) => t == doc.yts.year),
+                  1
+                );
+                lang.tagsList.push(doc.yts.year.toString());
+              } else if (!lang.tagsList.includes(doc.yts.year.toString())) {
+                lang.tagsList.push(doc.yts.year);
+              }
+              lang.tagsList.forEach((tag, i) => {
+                lang.tagsList[i] = tag.replace(' ', '-');
               });
-            } else if (doc.yts && !lang.tagsList.includes(doc.yts.year.toString())) {
-              lang.tagsList.push(doc.yts.year);
               site.$articles.update(doc, (err, result) => {
                 console.log(err || result.doc.id);
               });
@@ -1331,7 +1392,7 @@ module.exports = function init(site) {
       let hashTag = ' #torrent';
       if (doc.$yts) {
         doc.$tagsList.forEach((tag) => {
-          hashTag += '  #' + tag;
+          hashTag += '  #' + tag.replace('-', '_');
         });
         hashTag += ' Download Torrents Movies in High Qualtiy 720p , 1080p , 2k , 4k , 8k';
       }
@@ -1368,7 +1429,7 @@ module.exports = function init(site) {
     list.forEach((doc) => {
       let hashTag = '#torrent ';
       doc.$tagsList.forEach((tag) => {
-        hashTag += '  #' + tag;
+        hashTag += '  #' + tag.replace('-', '_');
       });
 
       urls += `

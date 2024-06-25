@@ -76,7 +76,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         domain: 'https://' + req.host,
-        url : 'https://' + req.host + req.url,
+        url: 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -149,7 +149,7 @@ site.get(
 
 site.get(
   {
-    name: ['/result'],
+    name: ['/result', '/results'],
   },
   (req, res) => {
     let setting = site.getSiteSetting(req.host);
@@ -179,7 +179,8 @@ site.get(
 
     language.description = language.description || '';
     let query = req.query.search_query || '';
-    if (query.length < 3) {
+    let tag = req.query.tag || '';
+    if (query && query.length < 3) {
       res.redirect('/');
       return;
     }
@@ -193,7 +194,7 @@ site.get(
       site.articlesList = site.articlesList || [];
       let options = {
         domain: 'https://' + req.host,
-        url : 'https://' + req.host + req.url,
+        url: 'https://' + req.host + req.url,
         guid: '',
         language: language,
         filter: site.getHostFilter(req.host),
@@ -220,7 +221,7 @@ site.get(
       options.menuList2 = options.menuList.slice(8, 20);
       options.menuList3 = options.menuList.slice(20);
 
-      site.searchArticles({ search: query, host: options.filter, page: page, limit: limit }, (err, result) => {
+      site.searchArticles({ search: query, tag: tag, host: options.filter, page: page, limit: limit }, (err, result) => {
         if (!err && result) {
           let list = [...result.list];
 
@@ -240,28 +241,32 @@ site.get(
           if (result.count > result.limit) {
             options.pagging = true;
             options.pageList = [];
-            for (let index = 1; index < options.pageCount + 1; index++) {
-              options.pageList.push({
-                name: index,
-                url: '/result?search_query=' + result.search + '&page=' + index + '&limit=' + result.limit,
-              });
+            if (result.tag) {
+              for (let index = 1; index < options.pageCount + 1; index++) {
+                options.pageList.push({
+                  name: index,
+                  url: '/results?tag=' + result.tag + '&page=' + index + '&limit=' + result.limit,
+                });
+              }
+            } else {
+              for (let index = 1; index < options.pageCount + 1; index++) {
+                options.pageList.push({
+                  name: index,
+                  url: '/results?search_query=' + result.search + '&page=' + index + '&limit=' + result.limit,
+                });
+              }
             }
           }
-          options.page_title =
-            language.siteName +
-            ' ' +
-            language.titleSeparator +
-            ' ' +
-            req.word('Search results for ') +
-            ' ' +
-            result.search +
-            ' [ ' +
-            result.count +
-            ' ] ' +
-            ' - page ' +
-            result.page +
-            ' of ' +
-            options.pageCount;
+
+          if (result.tag) {
+            options.page_title = `${language.siteName} ${language.titleSeparator} ${req.word('search results for tag ')} "${result.tag}"  ( ${result.count} articles ) [ page ${result.page} of ${
+              options.pageCount
+            } ]`;
+          } else {
+            options.page_title = `${language.siteName} ${language.titleSeparator} ${req.word('search results for ')} "${result.search}"  ( ${result.count} articles ) [ page ${result.page} of ${
+              options.pageCount
+            } ]`;
+          }
 
           options.list = list;
           options.list1 = options.list.splice(0, 10);
@@ -392,13 +397,14 @@ site.get(
             for (let index = 1; index < options.pageCount + 1; index++) {
               options.pageList.push({
                 name: index,
-                url: '/category/' + category.id + '/' + options.categoryName + '?page=' + index + '&limit=' + result.limit,
+                url: '/category/' + category.id + '/' + options.categoryName.replaceAll(' ', '-') + '?page=' + index + '&limit=' + result.limit,
               });
             }
           }
 
-          options.page_title =
-            language.siteName + ' ' + language.titleSeparator + ' ' + options.categoryName + ' ' + ' [ ' + result.count + ' ] ' + ' - page ' + result.page + ' of ' + options.pageCount;
+          options.page_title = `${language.siteName} ${language.titleSeparator} ${options.categoryName.replaceAll(' ', '-')} ( ${result.count} articles ) [ page ${result.page} of ${
+            options.pageCount
+          } ]`;
 
           options.list = list;
           options.list1 = options.list.splice(0, 10);
