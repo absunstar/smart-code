@@ -2,8 +2,9 @@
   <div class="lgScreen d-lg-flex">
     <div class="logo">
       <a href="/">
-        <p>##data.site_name##</p>
-        <img ng-src="##data.site_logo##" alt="" srcset="" />
+        <p x-data="setting.nameBesidLogoShow">##data.site_name##</p>
+        <img x-data="setting.nameBesidLogoShow" ng-src="##data.site_logo##" alt="" srcset="" />
+        <img x-data="setting.nameBesidLogoShow == false" ng-src="##data.site_logo##" alt="" srcset="" />
       </a>
     </div>
 <!--     <div class="governorat">

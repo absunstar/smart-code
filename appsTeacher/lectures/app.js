@@ -169,6 +169,8 @@ module.exports = function init(site) {
           app.$collection.find({ _id: site.mongodb.ObjectID(req.query.id) }, (err, lecture) => {
             if (!err && lecture) {
               let video = lecture.linksList.find((itm) => itm.code == req.query.code);
+              let videoId = video.url.contains("?v=") ? video.url.split("?v=")[1] : video.url.split("youtu.be/")[1];
+              console.log(videoId);
               res.render(
                 app.name + "/view-video.html",
                 {
@@ -469,23 +471,35 @@ module.exports = function init(site) {
                 doc.$buy = true;
                 doc.linksList.forEach((_video) => {
                   let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _video.code);
+                  _video.isValid = false;
                   if (index !== -1) {
                     if (doc.typeExpiryView.name == "number") {
                       _video.remainNumber = doc.numberAvailableViews - req.session.user.viewsList[index].views;
-
+                      if (_video.remainNumber > 1) {
+                        _video.isValid = true;
+                      }
                       return;
                     } else if (doc.typeExpiryView.name == "day") {
                       var viewDate = new Date(req.session.user.viewsList[index].date);
                       viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-                      _video.remainDay = viewDate.getDate() - new Date().getDate();
+                      let newDate = new Date() ;
+                      let diffTime = Math.abs(viewDate - newDate);
+
+                      _video.remainDay = Math.floor(diffTime/(1000*60*60*24));
+                      if (_video.remainDay > 1) {
+                        _video.isValid = true;
+                      }
                     } else if (doc.typeExpiryView.name == "date") {
                       _video.remainDate = doc.dateAvailableViews;
+                      if (new Date().getTime() <= doc.dateAvailableViews.getTime()) {
+                        _video.isValid = true;
+                      }
                     }
                   } else {
+                    _video.isValid = true;
+
                     if (doc.typeExpiryView.name == "number") {
                       _video.remainNumber = doc.numberAvailableViews;
-
-                      return;
                     } else if (doc.typeExpiryView.name == "day") {
                       _video.remainDay = doc.daysAvailableViewing;
                     } else if (doc.typeExpiryView.name == "date") {

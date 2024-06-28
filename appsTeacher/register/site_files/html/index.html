@@ -4,6 +4,13 @@
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
     <style>
+      .alert-msg {
+        font-size: x-large;
+        color: white;
+        padding: 10px;
+        background: linear-gradient(120deg, rgb(244 82 82) 0%, rgb(229 18 18 / 86%) 100%);
+        margin: 10px;
+      }
       .register-content {
         padding: 30px !important;
         /* background-color: #2087e74d; */
@@ -141,7 +148,16 @@
                   ng-search="user.$countries"
                 ></i-list>
                 <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(user.gov)" ng-model="user.gov" display="name" items="govesList" ng-search="user.$gov"></i-list>
-                <i-list x-data="setting.citiesAndAreasShow" label="##word.City##" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name" ng-search="user.$area.$cityitem"> </i-list>
+                <i-list
+                  x-data="setting.citiesAndAreasShow"
+                  label="##word.City##"
+                  ng-model="user.city"
+                  ng-change="getAreasList(user.city)"
+                  items="citiesList"
+                  display="name"
+                  ng-search="user.$area.$cityitem"
+                >
+                </i-list>
                 <i-list x-data="setting.citiesAndAreasShow" label="##word.Area##" ng-model="user.area" items="areasList" display="name" ng-search="user.$area.$areaitem"> </i-list>
                 <i-control v="r" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
                 <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
@@ -155,10 +171,12 @@
                   <p class="right-content"><span class="red bold"> * </span> ##word.Profile Image##</p>
                   <i-image v="r" class="img256" ng-model="user.image"></i-image>
                 </div>
+                <br>
                 <div class="row" ng-show="type == 'online'">
                   <p class="right-content"><span class="red bold"> * </span> ##word.National ID Image##</p>
                   <i-image class="img256" ng-model="user.nationalIdImage"></i-image>
                 </div>
+                <br>
                 <div class="row" ng-show="type == 'online'">
                   <button ng-click="getLocation()" class="register-btn location-btn">##word.Location## <i class="fas fa-map-marker-alt"></i></button>
                   <p class="font-20 text-right">##word.Latitude## :{{user.latitude}}</p>
@@ -170,10 +188,11 @@
             <p class="font-18">
               <a href="/login" class="hover-a"> ##word.Existing User## ##word.Login Now##</a>
             </p>
+            <p class="alert-msg">##data.setting.registerAlert##</p>
             <button ng-click="register(user)" class="register-btn">##word.Register Now## <i class="fa fa-user-plus"></i></button>
           </div>
         </div>
-
+        
         <h2 class="bold center red">{{error}}</h2>
 
         <div id="main-layout" class="container">

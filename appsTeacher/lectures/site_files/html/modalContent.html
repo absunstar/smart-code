@@ -34,18 +34,7 @@
             <i-radio ng-model="item.placeType" label="##word.Both##" class="col4" ng-value="both" group="placeType" type="radio"></i-radio>
           </div>
         </fieldset>
-        <fieldset>
-          <legend>
-            ##word.Links##
-            <i-button type="push" ng-click="addLinks()"></i-button>
-          </legend>
-          <div class="row" ng-repeat="link in item.linksList">
-            <i-control class="col7" ng-model="link.url"></i-control>
-            <p class="font-20 col2">##word.Code## : ({{link.code}})</p>
-            <p class="font-20 col2">##word.Views## : ({{link.views}})</p>
-            <i-button class="col2" type="delete " ng-click=" item.linksList.splice($index,1)"> </i-button>
-          </div>
-        </fieldset>
+       
         <fieldset>
           <legend>
             ##word.Files##
@@ -98,6 +87,30 @@
       <i-image class="img128 center" ng-model="item.image"></i-image>
     </div>
   </div>
+  <fieldset>
+    <legend>
+      ##word.Links##
+      <i-button type="push" ng-click="addLinks()"></i-button>
+    </legend>
+    <div class="row" ng-repeat="link in item.linksList">
+      <i-control class="col4" label="##word.Url##" ng-model="link.url"></i-control>
+      <i-control class="col4" label="##word.Title##" ng-model="link.name"></i-control>
+      <div class="col1 center">
+        <p class="font-20">##word.Code##</p>
+        <p class="font-20">({{link.code}})</p>
+
+      </div>
+      <div class="col1 center">
+        <p class="font-20">##word.Views##</p>
+        <p class="font-20">({{link.views}})</p>
+      </div>
+      <div class="col1">
+        <br>
+
+        <i-button type="delete " ng-click=" item.linksList.splice($index,1)"> </i-button>
+      </div>
+    </div>
+  </fieldset>
   <i-textarea ng-model="item.description" label="##word.Description##"> </i-textarea>
 </div>
 <div ng-show="mode !== 'add' " class="row">

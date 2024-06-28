@@ -344,12 +344,12 @@ app.controller("lectures", function ($scope, $http, $timeout) {
   $scope.addLinks = function () {
     $scope.error = "";
     let code = (Math.random() + 1).toString(36).substring(7);
-    $scope.item.linksList.unshift({ views: 0, code: code });
+    $scope.item.linksList.push({ views: 0, code: code });
   };
 
   $scope.addFiles = function () {
     $scope.error = "";
-    $scope.item.filesList.unshift({ views: 0 });
+    $scope.item.filesList.push({ views: 0 });
   };
 
   $scope.correctAnswer = function (answer, question) {
