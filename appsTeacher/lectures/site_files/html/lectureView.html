@@ -64,9 +64,7 @@
                 <li class="col recentlyConsultant">
                   <div style="display: ruby-text">
                     <a href="#">
-                      <p class="font-25">{{item.name}}
-                        
-                      </p>
+                      <p class="font-25">{{item.name}}</p>
                       <i class="left font-22 green bold padding mainColor" ng-show="item.price"> ##word.$## {{item.price}} </i>
                       <i class="left font-22 green bold padding mainColor" ng-show="!item.price"> ##word.Free## </i>
                     </a>
@@ -89,13 +87,22 @@
                     <p class="font-20">##word.The number of remaining exam times## : ( {{item.timesEnterQuiz - quiz.timesEnterQuiz}} )</p>
                     <p class="font-20">##word.Quiz Degree## : ( {{quiz.userDegree | xmoney2}} % )</p>
                   </div>
-                  <div class="row" ng-repeat="link in item.linksList" ng-show="item.$buy" x-permission="login">
-                    <i-button  type="view" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
-                    <i ng-show="item.typeExpiryView.name == 'number'">##word.Number of views remaining## {{link.remainNumber}}</i>
-                    <i ng-show="item.typeExpiryView.name == 'day'">##word.Number of remaining viewing days## {{link.remainDay}}</i>
-                    <i ng-show="item.typeExpiryView.name == 'date'">##word.Views expire on date## {{link.remainDate | date : 'dd- MM -yyyy'}}</i>
+
+                  <div class="row" ng-repeat="file in item.filesList" ng-show="item.$buy" x-permission="login">
+                    <i-file class="col6"  view ng-model="file.url"></i-file>
                   </div>
-                  <div class="row"  >
+
+                  <div class="row" ng-repeat="link in item.linksList" ng-show="item.$buy" x-permission="login">
+                    <i-button type="view" class="col2" label="##word.Video## {{$index +1}}" ng-click="openVideo(link)"></i-button>
+                    <div class="col6">
+                      <br>
+                      <br>
+                      <p ng-show="item.typeExpiryView.name == 'number'">##word.Number of views remaining## {{link.remainNumber}}</p>
+                      <p ng-show="item.typeExpiryView.name == 'day'">##word.Number of remaining viewing days## {{link.remainDay}}</p>
+                      <p ng-show="item.typeExpiryView.name == 'date'">##word.Views expire on date## {{link.remainDate | date : 'dd- MM -yyyy'}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
                     <button ng-click="showEnterCode()" ng-hide="item.$buy || '##user.placeType##' == 'online'" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
                     <button ng-click="startQuiz()" x-permission="login" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                       ##word.Take A Quiz##
