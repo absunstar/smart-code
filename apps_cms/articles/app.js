@@ -481,7 +481,7 @@ module.exports = function init(site) {
       } else if (options.tag) {
         options.search = 'tag_' + options.tag;
         $or.push({
-          'translatedList.tagsList': options.tag,
+          'translatedList.tagsList': { $regex: new RegExp(options.tag, 'i') },
         });
       }
 
