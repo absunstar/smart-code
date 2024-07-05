@@ -1,7 +1,7 @@
 
 .HeaderContanier .lgScreen {
   display: none;
-  height: 162px;
+  height: 90px;
   padding: 0px 24px !important;
   margin-top: 24px !important;
   justify-content: flex-start;
@@ -32,8 +32,8 @@ i-checklist label {
 }
 
 .HeaderContanier .lgScreen .logo img {
-  width: 15cm;
-  height: 4cm;
+  width: 15%;
+  height: 77px;
   flex-shrink: 0;
   position: absolute;
   top: 46px;

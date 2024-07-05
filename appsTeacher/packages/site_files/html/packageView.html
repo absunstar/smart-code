@@ -154,7 +154,7 @@
 
             <hr />
             <div class="row">
-              <button ng-click="showEnterCode()" ng-hide="item.$buy" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
+              <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
             </div>
           </div>
           <div class="col1"></div>

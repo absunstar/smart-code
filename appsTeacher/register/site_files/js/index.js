@@ -61,6 +61,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       image: user.image,
       schoolYear: user.schoolYear,
       educationalLevel: user.educationalLevel,
+      parentMobile: user.parentMobile,
       gender: user.gender,
       bitrhOfDate: user.bitrhOfDate,
       nationalIdImage: user.nationalIdImage,

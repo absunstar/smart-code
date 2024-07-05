@@ -1,5 +1,5 @@
 .nameNotBesidLogoShow {
-  width: 21cm;
+  width: 100%;
   height: 7cm;
 }
 .footerContainer {
@@ -22,6 +22,7 @@
 .footerContainer .logo {
   display: flex;
   font-size: 30px;
+  width: 100%;
 }
 
 .footerContainer .footerNav {

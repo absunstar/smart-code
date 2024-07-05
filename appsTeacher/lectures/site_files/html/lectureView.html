@@ -206,7 +206,7 @@
                   <p class="font-20 padding">##word.The number of remaining exam times## : <span class="quiz-degree">{{item.timesEnterQuiz - quiz.timesEnterQuiz}}</span></p>
                 </div>
                 <div class="row">
-                  <button ng-click="showEnterCode()" ng-hide="item.$buy || '##user.placeType##' == 'online'  || item.type.name == 'public'" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
+                  <button ng-click="showEnterCode()" ng-hide="item.$buy || '##user.placeType##' == 'online'  || item.type.name == 'public' || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
                   <button ng-click="startQuiz()" x-permission="login" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                     ##word.Take A Quiz##
                     <i class="fas fa-chalkboard-teacher"></i>

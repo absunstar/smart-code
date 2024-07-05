@@ -27,7 +27,8 @@ module.exports = function init(site) {
               setting: setting,
               filter: site.getHostFilter(req.host),
               site_logo: setting.logo?.url || "/images/logo.png",
-              page_image: setting.logo?.url || "/images/logo.png",
+        site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+        page_image: setting.logo?.url || "/images/logo.png",
               user_image:
                 req.session?.user?.image?.url || "/images/logo.png",
               site_name: setting.siteName,
@@ -45,6 +46,7 @@ module.exports = function init(site) {
   
             if (req.hasFeature("host.com")) {
               data.site_logo = "//" + req.host + data.site_logo;
+              data.site_footer_logo = "//" + req.host + data.site_footer_logo;
               data.page_image = "//" + req.host + data.page_image;
               data.user_image = "//" + req.host + data.user_image;
             }
@@ -86,6 +88,7 @@ module.exports = function init(site) {
           setting: setting,
           filter: site.getHostFilter(req.host),
           site_logo: setting.logo?.url || "/images/logo.png",
+          site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
           page_image: setting.logo?.url || "/images/logo.png",
           user_image:
             req.session?.user?.image?.url || "/images/logo.png",
@@ -103,6 +106,7 @@ module.exports = function init(site) {
         };
         if (req.hasFeature("host.com")) {
           data.site_logo = "//" + req.host + data.site_logo;
+          data.site_footer_logo = "//" + req.host + data.site_footer_logo;
           data.page_image = "//" + req.host + data.page_image;
           data.user_image = "//" + req.host + data.user_image;
         }
