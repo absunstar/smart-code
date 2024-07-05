@@ -1,4 +1,16 @@
 module.exports = function init(site) {
+  site.lecturesTypesList = [
+    {
+      name: "public",
+      nameAr: "عام",
+      nameEn: "Public",
+    },
+    {
+      name: "private",
+      nameAr: "خاص",
+      nameEn: "Private",
+    }
+  ];
   site.typesExpiryViewsList = [
     {
       name: "date",
@@ -551,6 +563,13 @@ module.exports = function init(site) {
     res.json({
       done: true,
       list: site.purchaseOrdersTargetList,
+    });
+  });
+
+  site.post("/api/lecturesTypesList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.lecturesTypesList,
     });
   });
 

@@ -27,7 +27,7 @@
       .location-btn {
         width: 65% !important;
       }
-      .user-type {
+      .user-place-type {
         text-align-last: center;
         width: 195px;
         height: 180px;
@@ -42,7 +42,7 @@
         color: #2087e7;
         background: white;
       }
-      .user-type-select {
+      .user-place-type-select {
         color: white !important;
         background: grey !important;
         box-shadow: 1px 1px 5px 1px #1d1d1da6;
@@ -100,21 +100,34 @@
 
     <div class="form" style="text-align-last: center" id="register">
       <div class="tabs">
-        <div class="row" ng-hide="type">
+        <div class="row" ng-hide="user.type">
           <div class="col3"></div>
           <div class="col6">
-            <button ng-click="typeSelect('offline',$event)" class="user-type" id="offline">
+            <button ng-click="typeSelect('parent',$event)" class="user-place-type" id="parent">
+              <i class="fas fa-user-friends"></i>
+              <p>##word.Parent##</p>
+            </button>
+            <button ng-click="typeSelect('student',$event)" class="user-place-type" id="student">
+              <i class="fas fa-user-graduate"></i>
+              <p>##word.Student##</p>
+            </button>
+          </div>
+        </div>
+        <div class="row" ng-hide="user.placeType || !user.type || user.type == 'parent'">
+          <div class="col3"></div>
+          <div class="col6">
+            <button ng-click="placeTypeSelect('offline',$event)" class="user-place-type" id="offline">
               <i class="fas fa-user"></i>
               <p>##word.Offline##</p>
             </button>
-            <button ng-click="typeSelect('online',$event)" class="user-type" id="online">
+            <button ng-click="placeTypeSelect('online',$event)" class="user-place-type" id="online">
               <i class="fas fa-user-tie"></i>
               <p>##word.Online##</p>
             </button>
           </div>
         </div>
 
-        <div class="row" id="emailData" ng-show="type">
+        <div class="row" id="emailData" ng-show="user.placeType || user.type == 'parent'">
           <div class="col1"></div>
           <div class="col10 register-content">
             <div class="row">
@@ -123,20 +136,30 @@
 
                 <i-control v="r" class="input-style" label="##word.User Name##" ng-model="user.userName"> </i-control>
 
-                <i-control v="r" class="center input-style" label="##word.Student Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
-                <i-control v="r" class="center input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
+                <i-control v="r" class="center input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
+                <i-control ng-show="user.type == 'student'" class="center input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
                 <i-list
                   label="##word.Educational Level##"
                   ng-change="getSchoolYearsList(user.educationalLevel)"
                   ng-model="user.educationalLevel"
-                  v="r"
                   display="name"
                   items="educationalLevelsList"
                   ng-search="user.$educationalLevel"
+                  ng-show="user.type== 'student'"
                 ></i-list>
-                <i-list label="##word.School Year##" ng-model="user.schoolYear" v="r" display="name" ng-change="getCentersList()" items="schoolYearsList"></i-list>
-                <i-list ng-show="type == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name" ng-search="user.$center"></i-list>
-                <i-control ng-show="type == 'online'" class="center input-style" label="##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
+                <i-list label="##word.School Year##" ng-show="user.type== 'student'" ng-model="user.schoolYear" display="name" ng-change="getCentersList()" items="schoolYearsList"></i-list>
+                <i-list
+                  ng-show="user.placeType == 'offline'"
+                  class="input-style"
+                  label="##word.Center Name##"
+                  ng-model="user.center"
+                  items="centersList"
+                  display="name"
+                  ng-search="user.$center"
+                ></i-list>
+                <i-control ng-show="user.placeType == 'online'" class="center input-style" label="##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
+                <i-list class="col4" label="##word.Gender##" v="r" ng-model="user.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
+                <i-date label="##word.Birth Of Date##" v="r" ng-model="user.bitrhOfDate"> </i-date>
                 <i-list
                   v="r"
                   class="center input-style"
@@ -171,13 +194,13 @@
                   <p class="right-content"><span class="red bold"> * </span> ##word.Profile Image##</p>
                   <i-image v="r" class="img256" ng-model="user.image"></i-image>
                 </div>
-                <br>
-                <div class="row" ng-show="type == 'online'">
+                <br />
+                <div class="row" ng-show="user.placeType == 'online'">
                   <p class="right-content"><span class="red bold"> * </span> ##word.National ID Image##</p>
                   <i-image class="img256" ng-model="user.nationalIdImage"></i-image>
                 </div>
-                <br>
-                <div class="row" ng-show="type == 'online'">
+                <br />
+                <div class="row" ng-show="user.placeType == 'online'">
                   <button ng-click="getLocation()" class="register-btn location-btn">##word.Location## <i class="fas fa-map-marker-alt"></i></button>
                   <p class="font-20 text-right">##word.Latitude## :{{user.latitude}}</p>
                   <p class="font-20 text-right">##word.Longitude## : {{user.longitude}}</p>
@@ -192,7 +215,7 @@
             <button ng-click="register(user)" class="register-btn">##word.Register Now## <i class="fa fa-user-plus"></i></button>
           </div>
         </div>
-        
+
         <h2 class="bold center red">{{error}}</h2>
 
         <div id="main-layout" class="container">

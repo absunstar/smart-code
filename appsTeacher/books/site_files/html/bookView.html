@@ -4,14 +4,7 @@
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
     <style>
-      .buy-btn {
-        margin: 15px -7px 20px 0px;
-        text-align-last: center;
-        background: #2087e7;
-        color: white;
-        border-radius: 5px;
-        font-size: x-large;
-      }
+
       .buy:hover {
         color: blue !important;
         text-decoration: underline !important;
@@ -31,6 +24,81 @@
       .btn {
         width: 100%;
       }
+      .content-main-img {
+        width: 100% !important;
+        height: 360px !important;
+        border-radius: 0px !important;
+      }
+
+      .time-publish {
+        display: flex;
+        color: #919191;
+        font-size: 13px;
+        align-items: center;
+      }
+
+      .bg-ad {
+        background-color: #fffaed;
+        border-radius: 13px;
+      }
+      .content-ad {
+        border-radius: 15px !important;
+        margin-top: 20px !important;
+        padding: 15px !important;
+      }
+
+      .content-img {
+        width: 90% !important;
+        height: auto !important;
+      }
+      .bg-white {
+        display: flex;
+        width: 140px;
+      }
+      .display-ad-name {
+        font-size: 34px;
+        font-weight: bold;
+        color: #2087e7;
+        margin: 5px;
+      }
+      .card-title{
+        width: 80% !important;
+      }
+      .price {
+        width: 100% !important;
+        padding: 0;
+        margin-right: 5px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .text-comment {
+        font-size: 24px;
+        padding: 15px;
+        margin-right: 10px;
+        font-family: ui-monospace !important;
+        white-space: pre-wrap;
+      }
+
+      .gray-desc {
+        color: #5a6257;
+      }
+
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+
+      body {
+        background-color: #ecf5f2 !important;
+
+        background-repeat: repeat !important;
+      }
+      * {
+        max-width: initial;
+      }
     </style>
   </head>
 
@@ -38,11 +106,42 @@
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
-        <div class="row">
-          <h1 class="bold text-center">##word.Book##</h1>
+        <div class="margin row padding">
+          <div class="col1"></div>
+          <div class="col10 bg-white content-ad">
+            <div class="row">
+              <p class="display-ad-name">{{item.name}}</p>
+              <div class="col6">
+                <div class="row bg-ad padding margin">
+                
+
+                  <div class="row">
+                    <p class="col4 price">
+                      ##word.Price## <span class="green"> {{item.price}} ##word.$## </span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <p class="text-comment gray-desc">{{item.description}}</p>
+                </div>
+              </div>
+
+              <div class="col1"></div>
+              <div class="col4">
+                <img class="content-main-img" view ng-src="{{item.image.url}}" />
+              </div>
+            </div>
+
+            <hr />
+            <div class="row">
+              <button ng-click="showEnterCode()" ng-hide="item.$buy" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
+            </div>
+          </div>
+          <div class="col1"></div>
         </div>
 
-        <div class="row">
+       <!--  <div class="row">
           <div class="col2"></div>
           <div class="col8">
             <div class="recentlyConsultantsContanier">
@@ -69,7 +168,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="row">
           <h2 class="bold center red">{{error}}</h2>

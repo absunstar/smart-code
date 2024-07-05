@@ -1,6 +1,7 @@
+
 .HeaderContanier .lgScreen {
   display: none;
-  height: 100px;
+  height: 200px;
   padding: 0px 24px !important;
   margin-top: 24px !important;
   justify-content: flex-start;
@@ -31,9 +32,11 @@ i-checklist label {
 }
 
 .HeaderContanier .lgScreen .logo img {
-  width: 49.362px;
-  height: 44.426px;
+  width: 18cm;
+  height: 5cm;
   flex-shrink: 0;
+  position: absolute;
+  top: 46px;
 }
 
 .HeaderContanier .lgScreen .governorat .dropdown .dropdown-menu {

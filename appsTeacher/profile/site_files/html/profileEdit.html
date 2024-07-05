@@ -101,8 +101,8 @@
           <a class="tab-link" onclick="site.showTabContent(event, '#profile')">
             <span>##word.Personal Informatins## </span>
           </a>
-          <a class="tab-link" onclick="site.showTabContent(event, '#myPackages')" id="myPackages"> <span>##word.My Packages## </span></a>
-          <a class="tab-link" onclick="site.showTabContent(event, '#myLectures')"> <span>##word.My Lectures## </span></a>
+          <a class="tab-link" ng-show="user.type == 'student'" onclick="site.showTabContent(event, '#myPackages')" id="myPackages"> <span>##word.My Packages## </span></a>
+          <a class="tab-link" ng-show="user.type == 'student'" onclick="site.showTabContent(event, '#myLectures')"> <span>##word.My Lectures## </span></a>
         </div>
 
         <div class="tabs-content">
@@ -115,7 +115,7 @@
                     <div class="col6">
                       <i-control v="r" class="input-style" label="##word.Full Name##" ng-model="user.firstName"> </i-control>
                       <i-control v="r " class="input-style" label="##word.User Name##" ng-model="user.userName"> </i-control>
-
+                      <i-date label="##word.Birth Of Date##" v="r" ng-model="user.bitrhOfDate"> </i-date>
                       <i-list
                         v="r"
                         class="input-style"
@@ -166,6 +166,8 @@
                       <br />
 
                       <i-control v="r" class="input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
+                      <i-list label="##word.Parent##" ng-get="getParentsList($search)" ng-show="user.type == 'student'" x-data="setting.showParent" ng-model="user.parent" items="parentsList" display="firstName" ng-search="user.$parent"> </i-list>
+                      <i-control ng-show="user.type == 'student'" class="center input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
                       <i-control v="e" class="input-style" label="##word.Contact Email##" ng-model="user.contactEmail"> </i-control>
 
                       <i-control class="input-style" label="##word.Facebook##" ng-model="user.faceBook"> </i-control>

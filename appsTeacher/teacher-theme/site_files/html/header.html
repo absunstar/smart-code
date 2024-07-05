@@ -1,10 +1,10 @@
 <header class="HeaderContanier container">
   <div class="lgScreen d-lg-flex">
-    <div class="logo">
+    <div class="logo" style="width: 40cm !important">
       <a href="/">
         <p x-data="setting.nameBesidLogoShow">##data.site_name##</p>
         <img x-data="setting.nameBesidLogoShow" ng-src="##data.site_logo##" alt="" srcset="" />
-        <img x-data="setting.nameBesidLogoShow == false" ng-src="##data.site_logo##" alt="" srcset="" />
+        <img x-data="setting.nameNotBesidLogoShow" class="" ng-src="##data.site_logo##" alt="" srcset="" />
       </a>
     </div>
 <!--     <div class="governorat">
@@ -17,6 +17,7 @@
         </ul>
       </div>
     </div> -->
+    <!--
     <div class="searchContanier">
       <input class="searchInput" type="text" placeholder="ابحث عن استفسار ..." />
       <button class="filterButton">
@@ -26,7 +27,9 @@
         <i class="fas fa-search"></i>
       </button>
     </div>
-    <!--  <div class="orderButton btn" x-permissions="!login || client ">
+    -->
+    <!--
+      <div class="orderButton btn" x-permissions="!login || client ">
       <p>##word.Request Consultation##</p>
       <i class="fas fa-bullhorn"></i>
     </div> -->

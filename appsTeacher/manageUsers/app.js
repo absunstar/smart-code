@@ -312,6 +312,8 @@ module.exports = function init(site) {
           type: 1,
           active: 1,
           userName: 1,
+          firstName: 1,
+          email: 1,
         };
         if (search) {
           where.$or = [];
@@ -370,7 +372,7 @@ module.exports = function init(site) {
         }
         if (where["type"] == "student") {
           where["host"] = site.getHostFilter(req.host);
-        }
+        }.345
         where["id"] = { $ne: 1 };
         site.security.getUsers(where, (err, users, count) => {
           res.json({

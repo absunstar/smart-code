@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
+
+    <style>
+      figure  {
+        figcaption {
+          .price {
+            left : 10px !important
+          } 
+        }
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang##" ng-controller="lecturesStudentView">
+    <div x-replace="teacher-theme/header.html"></div>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        
+
+        <div class="row">
+
+          <div class="table-responsive">
+            <table class="table hover bold" id="t1">
+                <tr>
+                    <th>##word.Lecture##</th>
+                    <th>##word.Status##</th>
+                    <th>##word.Degree##</th>
+                    <th>##word.Quiz Date##</th>
+                    <th>##word.Times Enter Quiz##</th>
+                    <th>##word.Questions Count##</th>
+                    <th>##word.Correct Answers##</th>
+                    <th>##word.Wrong Answers##</th>
+                </tr>
+                <tr ng-repeat="item in list | filter:$search">
+                 
+                    <td class="center">{{item.name}}</td>
+                    <td class="center">
+                        <span class="text-success" ng-show="item.quiz.done">##word.Complete##</span>
+                        <span class="text-danger" ng-show="!item.quiz.done && item.activateQuiz">##word.Not Complete##</span>
+                        <span class="text-danger" ng-show="!item.activateQuiz">##word.Not Found Quiz##</span>
+                    </td>
+                    <td class="center">
+                      <span ng-show="item.quiz.userDegree < 50" class="red">{{item.quiz.userDegree | xmoney2}}</span>
+                      <span ng-show="item.quiz.userDegree >= 50" class="green">{{item.quiz.userDegree | xmoney2}}</span>
+                      %
+                    </td>
+                    <td class="center">{{item.quiz.date  | date : 'dd - MM - yyyy'}}</td>
+                    <td class="center">{{item.quiz.timesEnterQuiz}}</td>
+                    <td class="center">{{item.quiz.questionsCount}}</td>
+                    <td class="center">{{item.quiz.correctAnswers}}</td>
+                    <td class="center">{{item.quiz.wrongAnswers}}</td>
+                  
+                </tr>
+            </table>
+        </div>
+         
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+
+    <div x-replace="teacher-theme/footer.html"></div>
+    <div x-import="teacher-theme/scripts.html"></div>
+    <script x-import="parentsReports/lecturesStudentView.js"></script>
+  </body>
+</html>

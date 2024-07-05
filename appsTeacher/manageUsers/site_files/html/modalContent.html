@@ -11,9 +11,9 @@
           <i-control type="text" v="r" ng-model="item.firstName" label="##word.Full Name##"></i-control>
 
           <i-control v="r" class="input-style" label="##word.User Name##" ng-model="item.userName"> </i-control>
-            <i-date label="##word.Date Of Birth ##" ng-model="item.dateOfBirth"> </i-date>
+            <i-date label="##word.Birth Of Date##" ng-model="item.bitrhOfDate"> </i-date>
             <i-control ng-show="item.placeType == 'online'" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
-            <i-control label="##word.BrowserId##" ng-model="item.socialBrowserID"> </i-control>
+            <i-control label="##word.BrowserId##" ng-show="item.type.name == 'student'" ng-model="item.socialBrowserID"> </i-control>
         </div>
       </div>
       <div class="col3 center">
@@ -49,7 +49,7 @@
               display="name"
               ng-search="item.$center"
             ></i-list>
-            <i-list class="col4" label="##word.Gender##" ng-model="item.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
+            <i-list class="col4" v="r" label="##word.Gender##" ng-model="item.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
             <div class="col3">
               <br />
               <p class="font-20" ng-show="item.placeType == 'online'">##word.Latitude## :{{item.latitude}}</p>

@@ -240,6 +240,27 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getLecturesTypesList = function () {
+    $scope.busy = true;
+    $scope.lecturesTypesList = [];
+    $http({
+      method: "POST",
+      url: "/api/lecturesTypesList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.lecturesTypesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getEducationalLevelsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -375,5 +396,6 @@ app.controller("lectures", function ($scope, $http, $timeout) {
   $scope.getAll();
   $scope.getEducationalLevelsList();
   $scope.getTypesExpiryViewsList();
+  $scope.getLecturesTypesList();
   $scope.getQuestionTypesList();
 });

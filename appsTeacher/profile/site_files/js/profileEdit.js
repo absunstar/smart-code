@@ -3,7 +3,6 @@ if ((btn = document.querySelector("#" + "##query.btn##"))) {
 }
 app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-  console.log("##query.id##");
   $scope.displayUser = function () {
     $scope.busy = true;
     $scope.error = "";
@@ -209,6 +208,38 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
       },
       function (err) {
         console.log(err);
+      }
+    );
+  };
+
+  $scope.getParentsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.parentsList = [];
+    $http({
+      method: "POST",
+      url: "/api/manageUsers/all",
+      data: {
+        where: {
+          email: $search,
+        },
+        select: {
+          id: 1,
+          firstName: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.parentsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
       }
     );
   };

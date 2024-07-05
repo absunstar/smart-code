@@ -215,6 +215,7 @@ module.exports = function init(site) {
                 {
                   host: site.getHostFilter(req.host),
                   user: {
+                    _id: req.session.user._id,
                     id: req.session.user.id,
                     firstName: req.session.user.firstName,
                     email: req.session.user.email,
@@ -354,7 +355,7 @@ module.exports = function init(site) {
         };
 
         let where = req.data;
-     
+
         app.$collection.find(where, (err, doc) => {
           if (!err && doc) {
             response.done = true;
@@ -412,6 +413,30 @@ module.exports = function init(site) {
       });
     }
   }
+
+  site.getQuizzesToStudent = function (req, callBack) {
+    callBack = callBack || function () {};
+
+    let where = {};
+    site.security.getUser({ "_id": req.body.studentId }, (err, user) => {
+      if (!err) {
+        if (user) {
+          where["user.id"] = user.id;
+          app.$collection.findMany({ where }, (err, docs) => {
+            callBack(err, docs);
+          });
+        } else {
+          callBack(err, null);
+        return
+        }
+      } else {
+        callBack(err, null);
+        return
+
+      }
+    });
+  
+  };
 
   app.init();
   site.addApp(app);

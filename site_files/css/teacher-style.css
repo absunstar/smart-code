@@ -69,7 +69,7 @@ legend {
   border: 1px solid #1475cf !important;
 }
 .selectAll {
-  user-select: all
+  user-select: all;
 }
 
 .character-style {
@@ -92,11 +92,14 @@ legend {
 }
 
 .card img {
-  height: 55px;
-  width: 55px;
+  height: 100%;
   float: right;
-  border-radius: 50%;
-  /* margin: 5px; */
+  padding: 2px;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.bg-aliceblue {
+  color: aliceblue;
 }
 
 .card-name {
@@ -122,12 +125,30 @@ legend {
   text-overflow: ellipsis;
 }
 
+.buy-btn {
+  border: 3px solid #0075e3;
+  margin: 15px -5px 20px 0px;
+  text-align-last: center;
+  background: #2087e7;
+  color: white;
+  border-radius: 5px;
+  font-size: x-large;
+}
+
+.buy-btn:hover {
+
+  background: #1475cf;
+ 
+}
+
 .purchase-text {
+  background: #2087e7;
+  color: white;
   text-align: center;
-    font-size: x-large;
-    padding: inherit;
-    margin: revert;
-    white-space: pre;
+  font-size: x-large;
+  padding: inherit;
+  margin: revert;
+  white-space: pre;
 }
 
 .gray-bg {
@@ -136,8 +157,8 @@ legend {
 
 .scrollx-menu {
   padding: 10px !important;
-    overflow-x: auto;
-    flex-direction: column-reverse;
-    height: 37vw !important;
-    scrollbar-color: #2087e7 #e7e7e7
+  overflow-x: auto;
+  flex-direction: column-reverse;
+  height: 37vw !important;
+  scrollbar-color: #2087e7 #e7e7e7;
 }

@@ -1,94 +1,80 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="myApp">
+<html lang="Ar" data-ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
-<head>
-    <title>##word.brand_title## |  ##data.title##</title>
-    <link rel="icon" type="image/x-icon" href="##data.image_url##">
-    <meta name="description" content="##data.description##">
+    <title>##word.brand_title## | ##data.page.title##</title>
+    <link rel="icon" type="image/x-icon" href="##data.page.image##" />
+    <meta name="description" content="##data.page.description##" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/haraj.css" />
-    <link rel="stylesheet" href="/x-css/all.css" />
-    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+
     <style>
-        * {
-            max-width: initial;
-        }
+      * {
+        max-width: initial;
+      }
 
-        b {
-            overflow-wrap: anywhere;
-        }
+      b {
+        overflow-wrap: anywhere;
+      }
 
-        .line-through {
-            text-decoration: line-through;
-        }
+      .line-through {
+        text-decoration: line-through;
+      }
 
-        .userad-logo {
-            border-radius: 50%;
-            height: 25px;
-            width: 25px;
-            margin: -5px 10px -5px 0px !important
-        }
+      .userad-logo {
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        margin: -5px 10px -5px 0px !important;
+      }
 
-        :root {
-            --body-margin-top: 0px;
-            --body-margin-bottom: 0px;
-            --zoom: 100%;
-            --fieldset-border: none;
-            --fieldset-background: #fff;
-        }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
 
-        body {
-            /* background-color: #bbb !important;
+      body {
+        /* background-color: #bbb !important;
             background-image: url(/assets/palm.svg) !important; */
-            background-color: #ecf9f6;
-            background-repeat: repeat !important;
-        }
+        background-color: #ecf9f6;
+        background-repeat: repeat !important;
+      }
     </style>
-    <style x-lang="ar">
-        .nav1 {
-            flex-direction: initial;
-            padding: 7px;
-        }
+    <style x-lang="Ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
 
-        :root {
-            --direction: rtl;
-            --text-align: right;
-            --float: right;
-        }
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
 
-        #main-layout {
-            max-width: 95%;
-            margin: 0 auto !important;
-            margin-top: 10px !important;
-            margin-bottom: 10px !important;
-            padding: 35px !important;
-            border-radius: 10px;
-        }
+      #main-layout {
+        max-width: 95%;
+        margin: 0 auto !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+        padding: 35px !important;
+        border-radius: 10px;
+      }
     </style>
-</head>
+  </head>
 
-<body class="##session.lang## loaded">
+  <body class="##session.lang## loaded">
+    <div x-replace="teacher-theme/header.html"></div>
 
-    <div x-import="haraj/header.html"></div>
+    <div id="main-layout" class="container bg-white">##data.page.content##</div>
 
-    <div id="main-layout" class="container bg-white">
-
-        ##data.content##
-
-    </div>
-
-    <script>
-
-    </script>
-
-    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-
-    <div x-import="haraj/scripts.html"></div>
-
-</body>
-
+    <div x-replace="teacher-theme/footer.html"></div>
+    <div x-import="teacher-theme/scripts.html"></div>
+  </body>
 </html>

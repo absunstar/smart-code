@@ -1,9 +1,15 @@
 <style>
-  .form-check-input[type=checkbox] {
-    border-radius: .25em;
+  .form-check-input[type="checkbox"] {
+    border-radius: 0.25em;
     width: 80%;
     height: 22px;
-}
+  }
+  .answers {
+    border-right: 2px blue solid;
+    border-end-start-radius: 20px;
+    margin: 7px;
+    border-width: thick;
+  }
 </style>
 <div id="tackQuizModal" class="modal full" fixed>
   <div class="modal-content height-auto">
@@ -12,19 +18,18 @@
     </div>
 
     <div class="modal-body">
-
-      <br>
+      <br />
       <div class="row padding margin" ng-repeat="question in quiz.questionsList">
         <fieldset>
           <legend>{{question.numbering}} <b ng-show="question.questionType.name=='text'">- {{question.name}}</b></legend>
           <div class="row" ng-show="question.questionType.name=='photo'">
-            <img class="zoom" ng-src="{{question.image.url}}" alt="">
+            <img class="zoom" ng-src="{{question.image.url}}" alt="" />
           </div>
-          <div class="row " >
-            <div class="col4  border" ng-repeat="answer in question.answersList track by $index">
+          <div class="row">
+            <div class="col4 answers" ng-repeat="answer in question.answersList track by $index">
               <div class="row padding margin">
                 <div class="col2">
-                  <p class="bold">( {{answer.numbering}} ) </p>
+                  <p class="bold">( {{answer.numbering}} )</p>
                 </div>
                 <div class="col8">
                   <p>{{answer.name}}</p>
@@ -34,11 +39,10 @@
                 </div>
               </div>
             </div>
-           
-           
-           
           </div>
         </fieldset>
+        <div class="separative"></div>
+        
       </div>
     </div>
 

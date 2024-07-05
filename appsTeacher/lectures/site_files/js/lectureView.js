@@ -191,7 +191,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           "user.id": site.toNumber("##user.id##"),
         },
         questionsList: $scope.item.questionsList,
-        lecture: { _id: $scope.item._id, id: $scope.item.id, name: $scope.item.name },
+        lecture: { _id: $scope.item._id, id: $scope.item.id, name: $scope.item.name , educationalLevel : $scope.item.educationalLevel , schoolYear : $scope.item.schoolYear },
       },
     }).then(
       function (response) {

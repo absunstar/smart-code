@@ -11,7 +11,7 @@
 
     <tr>
       <th>##word.Degree##</th>
-      <td>{{item.userDegree}}</td>
+      <td>{{item.userDegree | xmoney2}} %</td>
       <th>##word.Correct Answers##</th>
       <td>{{item.correctAnswers}}</td>
       <th>##word.Wrong Answers##</th>
@@ -21,12 +21,12 @@
 </div>
 
 <div class="row">
-  <i-control
-    type="number"
-    class="col3"
-    ng-model="item.timesEnterQuiz"
-    label="##word.Times Enter Quiz##"
-  ></i-control>
+  <i-control type="number" class="col3" ng-model="item.timesEnterQuiz" label="##word.Times Enter Quiz##"></i-control>
+  <div class="col1"></div>
+  <div class="col2"><p class="center">##word.Correct Answer##</p></div>
+  <div class="col1 correct-answer"></div>
+  <div class="col2"><p class="center">##word.Student Answer##</p></div>
+  <div class="col1 student-answer"></div>
 </div>
 
 <div class="row padding margin" ng-repeat="question in item.questionsList">
@@ -34,23 +34,13 @@
     <legend>{{question.numbering}} - {{question.name}}</legend>
 
     <div class="row">
-      <div
-        class="col4 border"
-        ng-repeat="answer in question.answersList track by $index"
-      >
+      <div class="col4 border" ng-repeat="answer in question.answersList track by $index">
         <div class="row padding margin">
-          <div class="col3">
-            <p class="bold">( {{answer.numbering}} )</p>
-          </div>
-          <div class="col3">
-            <p>{{answer.name}}</p>
-          </div>
+          <p><span class="bold">( {{answer.numbering}} )</span> {{answer.name}}</p>
         </div>
         <div class="row">
-          <p class="bold col6" ng-show="answer.userAnswer">
-            ##word.Student Answer##
-          </p>
-          <p class="bold col6" ng-show="answer.correct">##word.Correct Answer##</p>
+          <div class="col1 margin correct-answer" ng-show="answer.correct"></div>
+          <div class="col1 margin student-answer" ng-show="answer.userAnswer"></div>
         </div>
       </div>
     </div>

@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "parentsReportsAdmin",
+    "En": "Parents Reports Admin",
+    "Ar": "إدارة تقارير الأباء",
+    "permissions": ["parentsReportsManage"]
+}] 

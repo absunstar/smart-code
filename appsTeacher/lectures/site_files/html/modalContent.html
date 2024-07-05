@@ -8,17 +8,18 @@
           <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
         </div>
         <div class="row">
+          <i-list label="##word.Type##" ng-model="item.type" class="col4" v="r" display="name##session.lang##" items="lecturesTypesList"></i-list>
           <i-list
             label="##word.Educational Level##"
             ng-change="getSchoolYearsList(item.educationalLevel)"
-            class="col6"
+            class="col4"
             v="r"
             ng-model="item.educationalLevel"
             display="name"
             items="educationalLevelsList"
             ng-search="item.$educationalLevel"
           ></i-list>
-          <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col6" v="r" display="name" items="schoolYearsList"></i-list>
+          <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col4" v="r" display="name" items="schoolYearsList"></i-list>
         </div>
         <div class="row">
           <i-list label="##word.Type Of Expiry View##" ng-model="item.typeExpiryView" class="col6" v="r" display="name##session.lang##" items="typesExpiryViewsList"></i-list>
@@ -45,7 +46,7 @@
             <i-button class="col2" type="delete " ng-click=" item.filesList.splice($index,1)"> </i-button>
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset ng-show="item.type.name == 'private'">
           <legend>
             ##word.Activate Quiz##
             <i-checkbox ng-model="item.activateQuiz" ng-change="activateQuiz()"></i-checkbox>

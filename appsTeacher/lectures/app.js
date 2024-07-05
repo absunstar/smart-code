@@ -170,7 +170,6 @@ module.exports = function init(site) {
             if (!err && lecture) {
               let video = lecture.linksList.find((itm) => itm.code == req.query.code);
               let videoId = video.url.contains("?v=") ? video.url.split("?v=")[1] : video.url.split("youtu.be/")[1];
-              console.log(videoId);
               res.render(
                 app.name + "/view-video.html",
                 {
@@ -386,9 +385,14 @@ module.exports = function init(site) {
           if (index !== -1) {
             doc.linksList[index].views += 1;
           }
+          if (!req.session.user && doc.type.name == "public") {
+            response.done = true;
+            res.json(response);
+            return;
+          }
           site.security.getUser(
             {
-              id: req.session.user.id,
+              id: req.session?.user?.id,
             },
             (err, user) => {
               if (!err && user) {
@@ -482,10 +486,10 @@ module.exports = function init(site) {
                     } else if (doc.typeExpiryView.name == "day") {
                       var viewDate = new Date(req.session.user.viewsList[index].date);
                       viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-                      let newDate = new Date() ;
+                      let newDate = new Date();
                       let diffTime = Math.abs(viewDate - newDate);
 
-                      _video.remainDay = Math.floor(diffTime/(1000*60*60*24));
+                      _video.remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
                       if (_video.remainDay > 1) {
                         _video.isValid = true;
                       }
@@ -508,6 +512,10 @@ module.exports = function init(site) {
                   }
                 });
               }
+            } else {
+              doc.linksList.forEach((_video) => {
+                _video.isValid = true;
+              });
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
             response.doc = doc;
@@ -568,7 +576,10 @@ module.exports = function init(site) {
           }
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
-            let idList = req.session.user.lecturesList.map((_item) => _item.lectureId);
+            let idList = [];
+            req.session.user.lecturesList.forEach((element) => {
+              idList.push(site.mongodb.ObjectID(element.lectureId));
+            });
             where["_id"] = {
               $in: idList,
             };
@@ -647,6 +658,42 @@ module.exports = function init(site) {
     });
   });
 
+  site.getLecturesToStudent = function (req, callBack) {
+    callBack = callBack || function () {};
+    let select = {
+      id: 1,
+      name: 1,
+      image: 1,
+      price: 1,
+      activateQuiz: 1,
+    };
+    let where = {};
+    site.security.getUser({ _id: req.body.studentId }, (err, user) => {
+      if (!err) {
+        if (user) {
+          let idList = [];
+          user.lecturesList.forEach((element) => {
+            idList.push(site.mongodb.ObjectID(element.lectureId));
+          });
+
+          where["_id"] = {
+            $in: idList,
+          };
+          app.$collection.findMany({ where, select, sort: { id: -1 } }, (err, docs) => {
+            callBack(err, docs);
+          });
+        } else {
+          callBack(err, null);
+
+          return;
+        }
+      } else {
+        callBack(err, null);
+      }
+    });
+  
+  };
+
   site.getLectures = function (req, callBack) {
     callBack = callBack || function () {};
     site.lecturesList = [];
@@ -687,10 +734,13 @@ module.exports = function init(site) {
     app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
-          let doc = docs[i];
-          if (!site.lecturesList.some((k) => k.id === doc.id)) {
-            doc.time = site.xtime(doc.date, "Ar");
-            site.lecturesList.push(doc);
+          if (docs[i].price == 0) {
+            docs[i].$isFree = true;
+          }
+
+          if (!site.lecturesList.some((k) => k.id === docs[i].id)) {
+            docs[i].time = site.xtime(docs[i].date, "Ar");
+            site.lecturesList.push(docs[i]);
           }
         }
       }

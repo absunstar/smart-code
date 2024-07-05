@@ -298,6 +298,26 @@ module.exports = function init(site) {
       }
     }
 
+    if(req.body.user.type == 'student') {
+      if(!req.body.user.parentMobile) {
+        response.error = "Must Enter Parent Mobile No.";
+        res.json(response);
+        return;
+      }
+
+      if(!req.body.user.educationalLevel || !req.body.user.educationalLevel.id) {
+        response.error = "Must Enter Educational Level";
+        res.json(response);
+        return;
+      }
+
+      if(!req.body.user.schoolYear || !req.body.user.schoolYear.id) {
+      response.error = "Must Enter School Year";
+      res.json(response);
+      return;
+    }
+  }
+
     if (req.body.user.placeType == "offline") {
       if (!req.body.user.center || !req.body.user.center.id) {
         response.error = "Must Enter Center";
@@ -350,6 +370,8 @@ module.exports = function init(site) {
       latitude: req.body.user.latitude,
       longitude: req.body.user.longitude,
       schoolYear: req.body.user.schoolYear,
+      gender: req.body.user.gender,
+      bitrhOfDate: req.body.user.bitrhOfDate,
       educationalLevel: req.body.user.educationalLevel,
       nationalIdImage: req.body.user.nationalIdImage,
       nationalId: req.body.user.nationalId,
@@ -359,8 +381,8 @@ module.exports = function init(site) {
       viewsList: [],
       booksList: [],
       notificationsList: [],
-      roles: [{ name: "student" }],
-      type: "student",
+      roles: [{ name: req.body.user.type }],
+      type: req.body.user.type,
       createdDate: new Date(),
       host: site.getHostFilter(req.host),
       $req: req,

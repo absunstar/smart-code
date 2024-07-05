@@ -56,46 +56,69 @@ module.exports = function init(site) {
       //   return;
       // }
       let notificationsCount = 0;
-      if(req.session.user && req.session.user.notificationsList) {
-        let notifications = req.session.user.notificationsList.filter(_n => !_n.show)
-        notificationsCount = notifications.length
+      if (req.session.user && req.session.user.notificationsList) {
+        let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+        notificationsCount = notifications.length;
       }
-      site.getPackages(req, (err, packages) => {
-        site.getLectures(req, (err, lectures) => {
-          site.getBooks(req, (err, books) => {
-            setting.description = setting.description || "";
-            setting.keyWordsList = setting.keyWordsList || [];
-            let data = {
-              packagesList: packages,
-              lecturesList: lectures,
-              booksList: books,
-              guid: "",
-              setting: setting,
-              notificationsCount: notificationsCount,
-              notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
-              filter: site.getHostFilter(req.host),
-              site_logo: setting.logo?.url || "/images/logo.png",
-              page_image: setting.logo?.url || "/images/logo.png",
-              user_image: req.session?.user?.image?.url || "/images/logo.png",
-              site_name: setting.siteName,
-              page_lang: setting.id,
-              page_type: "website",
-              page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
-              page_description: setting.description.substr(0, 200),
-              page_keywords: setting.keyWordsList.join(","),
-            };
-            if (req.hasFeature("host.com")) {
-              data.site_logo = "//" + req.host + data.site_logo;
-              data.page_image = "//" + req.host + data.page_image;
-              data.user_image = "//" + req.host + data.user_image;
-            }
-            res.render(__dirname + "/site_files/html/index.html", data, {
-              parser: "html",
-              compres: true,
+      site.security.getUsers(
+        {
+          where: {
+            'parent.id': req.session?.user?.id,
+          },
+        },
+        (err, children) => {
+          site.getPackages(req, (err, packages) => {
+            site.getLectures(req, (err, lectures) => {
+              site.getBooks(req, (err, books) => {
+                setting.description = setting.description || "";
+                setting.keyWordsList = setting.keyWordsList || [];
+
+                let data = {
+                  childrenList: children,
+                  packagesList: packages,
+                  lecturesList: lectures,
+                  booksList: books,
+                  guid: "",
+                  setting: setting,
+                  notificationsCount: notificationsCount,
+                  notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
+                  filter: site.getHostFilter(req.host),
+                  site_logo: setting.logo?.url || "/images/logo.png",
+                  page_image: setting.logo?.url || "/images/logo.png",
+                  user_image: req.session?.user?.image?.url || "/images/logo.png",
+                  site_name: setting.siteName,
+                  page_lang: setting.id,
+                  page_type: "website",
+                  page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+                  page_description: setting.description.substr(0, 200),
+                  page_keywords: setting.keyWordsList.join(","),
+                };
+
+                if (req.session.user) {
+                  if (req.session.user.type == "student") {
+                    data.isStudent = true;
+                  }
+                  if (req.session.user.type == "parent") {
+                    data.isParent = true;
+                  }
+                } else {
+                  data.isStudent = true;
+                }
+
+                if (req.hasFeature("host.com")) {
+                  data.site_logo = "//" + req.host + data.site_logo;
+                  data.page_image = "//" + req.host + data.page_image;
+                  data.user_image = "//" + req.host + data.user_image;
+                }
+                res.render(__dirname + "/site_files/html/index.html", data, {
+                  parser: "html",
+                  compres: true,
+                });
+              });
             });
           });
-        });
-      });
+        }
+      );
     }
   );
 };

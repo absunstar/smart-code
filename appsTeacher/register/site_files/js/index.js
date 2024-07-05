@@ -1,8 +1,22 @@
 app.controller("register", function ($scope, $http, $timeout) {
   $scope.user = { image: "/images/user_logo.png" };
+  $scope.setting = site.showObject(`##data.#setting##`);
+  if(!$scope.setting.showParent) {
+    $scope.user.type = 'student'
+  }
+  $scope.placeTypeSelect = function (type, e) {
+    $scope.user.placeType = type;
+
+    document.querySelectorAll("button").forEach((a) => {
+      a.classList.remove("user-type-select");
+    });
+
+    let element = document.getElementById(type);
+    element.classList.add("user-type-select");
+  };
 
   $scope.typeSelect = function (type, e) {
-    $scope.type = type;
+    $scope.user.type = type;
 
     document.querySelectorAll("button").forEach((a) => {
       a.classList.remove("user-type-select");
@@ -19,12 +33,12 @@ app.controller("register", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.type == "offline") {
+    if ($scope.user.placeType == "offline") {
       if (!user.center || !user.center.id) {
         $scope.error = "##word.Must Enter Center##";
         return;
       }
-    } else if ($scope.type == "online") {
+    } else if ($scope.user.placeType == "online") {
       if (!user.nationalIdImage) {
         $scope.error = "##word.Must Enter NationalIdImage##";
         return;
@@ -40,13 +54,15 @@ app.controller("register", function ($scope, $http, $timeout) {
       $encript: "123",
       email: site.to123(user.email),
       password: site.to123(user.password),
-      placeType: $scope.type,
+      placeType: user.placeType,
       mobile: user.mobile,
       firstName: user.firstName,
       lastName: user.lastName,
       image: user.image,
       schoolYear: user.schoolYear,
       educationalLevel: user.educationalLevel,
+      gender: user.gender,
+      bitrhOfDate: user.bitrhOfDate,
       nationalIdImage: user.nationalIdImage,
       nationalId: user.nationalId,
       country: user.country,
@@ -58,7 +74,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       latitude: user.latitude,
       longitude: user.longitude,
       userName: user.userName,
-      type: "Student",
+      type: user.type,
     };
 
     if (user) {
@@ -67,7 +83,7 @@ app.controller("register", function ($scope, $http, $timeout) {
         $http({
           method: "POST",
           url: "/api/register",
-          data: { user: obj, placeType: $scope.type },
+          data: { user: obj, placeType: user.placeType },
         }).then(
           function (response) {
             if (response.data.error) {
@@ -77,7 +93,7 @@ app.controller("register", function ($scope, $http, $timeout) {
               }
               $scope.busy = false;
             } else if (response.data.user) {
-              if ($scope.type == "online") {
+              if (user.placeType == "online") {
                 site.showModal('#alert');
                 $timeout(() => {
                   window.location.href = "/";
@@ -319,6 +335,27 @@ app.controller("register", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getGenders = function () {
+    $scope.busy = true;
+    $scope.gendersList = [];
+    $http({
+      method: "POST",
+      url: "/api/genders",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.gendersList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.showPassword = function () {
     $timeout(() => {
       document.querySelectorAll(".pass input").forEach((p) => {
@@ -341,6 +378,7 @@ app.controller("register", function ($scope, $http, $timeout) {
 
   $scope.getCountriesList();
   $scope.getEducationalLevelsList();
+  $scope.getGenders();
 });
 
 site.onLoad(() => {

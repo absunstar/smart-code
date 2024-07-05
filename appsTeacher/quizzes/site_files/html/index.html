@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="En" data-ng-app="myApp">
-  <head x-import="teacher-theme/head-dashboard.html"></head>
+  <head x-import="teacher-theme/head-dashboard.html">
+    <style>
+      .correct-answer {
+        background: #00b800;
+        height: 20px;
+        width: 20px !important;
+        border-radius: 50%;
+      }
+
+      .student-answer {
+        background: #2087e7;
+        height: 20px;
+        width: 20px !important;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
 
   <body class="##session.lang##">
-    <nav
-    x-import="teacher-theme/sitebar.html"
-    class="sitebar"
-    data-ng-controller="sitebar"
-  ></nav>
+    <nav x-import="teacher-theme/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-  <nav
-    class="sitebottom"
-    x-import="teacher-theme/sitebottom.html"
-    ng-controller="sitebottom"
-  ></nav>
-
+    <nav class="sitebottom" x-import="teacher-theme/sitebottom.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container" x-import="quizzes/_.html" x-permissions="login"></div>
 

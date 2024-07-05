@@ -315,6 +315,7 @@ module.exports = function init(site) {
       data.host = data.host || req.host;
       let index = site.settingList.findIndex((s) => s.host == data.host);
       if (index > -1) {
+        data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
         $siteSetting.update(data, (err, result) => {
           if (!err && result.doc) {
             response.done = true;
@@ -330,6 +331,8 @@ module.exports = function init(site) {
       } else {
         delete data.id;
         delete data._id;
+        data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
+
         $siteSetting.add(data, (err, doc) => {
           if (!err && doc) {
             response.done = true;

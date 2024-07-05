@@ -1,7 +1,8 @@
 <footer class="footerContainer container">
   <div class="logo">
-    <p style="padding: 10px">##data.site_name##</p>
-    <img height="80px" ng-src="##data.site_logo##" alt="" srcset="" />
+    <p style="padding: 10px" x-data="setting.nameBesidLogoShow">##data.site_name##</p>
+    <img height="80px" x-data="setting.nameBesidLogoShow" ng-src="##data.site_logo##" alt="" srcset="" />
+    <img x-data="setting.nameNotBesidLogoShow" class="nameNotBesidLogoShow" ng-src="##data.site_logo##" alt="" srcset="" />
   </div>
 
   <div class="phone-call cbh-phone cbh-green cbh-show cbh-static" id="clbh_phone_div">
@@ -38,13 +39,13 @@
 
   <div class="footerNav">
     <ul class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-      <li class="col"><a href="#" class="hover-a">أدع أصدقاءك</a></li>
-      <li class="col"><a href="#" class="hover-a">إنضم إلينا</a></li>
+      <li class="col"><a href="/page/inviteFriends" class="hover-a">أدع أصدقاءك</a></li>
+      <li class="col"><a href="/page/joinUs" class="hover-a">إنضم إلينا</a></li>
       <!--       <li class="col"><a href="#" class="hover-a">عن المحامي</a></li>
  -->
-      <li class="col"><a href="#" class="hover-a">إتفاقية الإستخدام</a></li>
+      <li class="col"><a href="/page/usageAgreement" class="hover-a">إتفاقية الإستخدام</a></li>
       <li class="col"><a href="#" class="hover-a">,</a></li>
-      <li class="col"><a href="#" class="hover-a">سياسية الخصوصية</a></li>
+      <li class="col"><a href="/page/privacyPolicy" class="hover-a">سياسية الخصوصية</a></li>
     </ul>
   </div>
   <div class="copyright">

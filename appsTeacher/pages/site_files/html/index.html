@@ -1,114 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="page_implement_ui || page_implement_manage" data-ng-app="myApp">
+<html lang="Ar" x-permissions="page_implement_ui || page_implement_manage" data-ng-app="myApp">
+  <head x-import="teacher-theme/head-dashboard.html">
+    <style>
 
-<head x-import="0/head.html">
-  <style x-import="haraj/editor.css"></style>
+    </style>
+  </head>
 
-</head>
+  <body class="##session.lang## loaded" ng-controller="pages">
+    <nav
+    x-import="teacher-theme/sitebar.html"
+    class="sitebar"
+    data-ng-controller="sitebar"
+  ></nav>
 
-<body class="##session.lang## loaded" ng-controller="pages">
-  <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+  <nav
+    class="sitebottom"
+    x-import="teacher-theme/sitebottom.html"
+    ng-controller="sitebottom"
+  ></nav>
 
-  <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
-  <div id="main-layout" class="container">
-    <div class="row">
+    <div id="main-layout" class="container">
       <div class="row">
-        <div x-permissions="page_implement_add || page_implement_manage" x-import="pages/add_modal.html"></div>
-        <div x-permissions="page_implement_update || page_implement_manage" x-import="pages/update_modal.html">
-        </div>
-        <div x-permissions="page_implement_delete || page_implement_manage" x-import="pages/delete_modal.html">
-        </div>
-        <div x-permissions="page_implement_view || page_implement_manage" x-import="pages/view_modal.html">
-        </div>
-        <div x-permissions="page_implement_search || page_implement_manage"
-          x-import="pages/search_all_modal.html"></div>
-
         <div class="row">
-          <h1 class="bold text-center">##word.pages##</h1>
-        </div>
+          <div x-permissions="page_implement_add || page_implement_manage" x-import="pages/add_modal.html"></div>
+          <div x-permissions="page_implement_update || page_implement_manage" x-import="pages/update_modal.html"></div>
+          <div x-permissions="page_implement_delete || page_implement_manage" x-import="pages/delete_modal.html"></div>
+          <div x-permissions="page_implement_view || page_implement_manage" x-import="pages/view_modal.html"></div>
+          <div x-permissions="page_implement_search || page_implement_manage" x-import="pages/search_all_modal.html"></div>
 
-        <div class="top-actions">
-          <i-button x-permissions="page_implement_add || page_implement_manage" type="add"
-            label="##word.page_implement_new##" ng-click="displayAddPageImplement()"></i-button>
+          <div class="row">
+            <h1 class="bold text-center">##word.pages##</h1>
+          </div>
 
-          <i-button x-permissions="page_implement_search || page_implement_manage" type="search"
-            label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+          <div class="top-actions">
+            <i-button x-permissions="page_implement_add || page_implement_manage" type="add" label="##word.New##" ng-click="displayAddPageImplement()"></i-button>
 
-          <h3 class="bold text-center">##word.count## : {{count}}</h3>
-        </div>
+            <i-button x-permissions="page_implement_search || page_implement_manage" type="search" label="##word.Search All##" ng-click="displaySearchModal()"></i-button>
 
-        <table x-permissions="login" class="table hover bold" id="t1">
-          <tr>
-            <th class="not-print">##word.logo##</th>
-            <th>##word.page_implement_name##</th>
-            <th>##word.url##</th>
-            <th class="not-print">##word.actions##</th>
-          </tr>
-          <tr ng-repeat="c in list">
-            <td class="center not-print">
-              <i-image view class="logo" ng-model="c.image_url"></i-image>
-            </td>
-            <td class="center">{{c.title}}</td>
-            <td class="center">{{c.url}}</td>
+            <h3 class="bold text-center">##word.Count## : {{count}}</h3>
+          </div>
 
+          <table x-permissions="login" class="table hover bold" id="t1">
+            <tr>
+              <th class="not-print">##word.Logo##</th>
+              <th>##word.Name##</th>
+              <th>##word.Url##</th>
+              <th class="not-print">##word.Actions##</th>
+            </tr>
+            <tr ng-repeat="c in list">
+              <td class="center not-print">
+                <i-image view class="logo" ng-model="c.image"></i-image>
+              </td>
+              <td class="center">{{c.title}}</td>
+              <td class="center">{{c.url}}</td>
 
-            <td class="center not-print">
-          <!--     <i-button x-permissions="page_implement_view || page_implement_manage" type="view"
+              <td class="center not-print">
+                <!--     <i-button x-permissions="page_implement_view || page_implement_manage" type="view"
                 label="##word.details##" ng-click="displayDetailsPageImplement(c)"></i-button> -->
 
-              <i-button x-permissions="page_implement_update || page_implement_manage" type="edit" label="##word.edit##"
-                ng-click="displayUpdatePageImplement(c)"></i-button>
+                <i-button x-permissions="page_implement_update || page_implement_manage" type="edit" label="##word.Edit##" ng-click="displayUpdatePageImplement(c)"></i-button>
 
-              <i-button x-permissions="page_implement_delete || page_implement_manage" type="delete"
-                label="##word.delete##" ng-click="displayDeletePageImplement(c)"></i-button>
-            </td>
-          </tr>
-        </table>
-        <i-button x-permissions="page_implement_print || page_implement_manage" type="print" label="##word.print##"
-          onclick="site.print('#t1')"></i-button>
+                <i-button x-permissions="page_implement_delete || page_implement_manage" type="delete" label="##word.Delete##" ng-click="displayDeletePageImplement(c)"></i-button>
+              </td>
+            </tr>
+          </table>
+          <i-button x-permissions="page_implement_print || page_implement_manage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div x-import="haraj/scripts.html"></div>
-  <script x-import="haraj/editor.js"></script>
-  <script x-import="pages/index.js"></script>
-  <script>
-   window.addEditor =  WebShareEditor.create('content_area', {
-      toolbarItem: [
-        ['undo', 'redo'],
-        ['font', 'fontSize', 'formatBlock'],
-        ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-        ['removeFormat'],
-        ['fontColor', 'hiliteColor'],
-        ['outdent', 'indent'],
-        ['align', 'horizontalRule', 'list', 'table'],
-        ['link', 'image', 'video'],
-        /* ['fullScreen', 'showBlocks', 'codeView'],
-         ['preview', 'print'],
-         ['save', 'template'], */
-      ],
-      width: '100%',
-      minHeight: '300px',
-    });
-    window.editEditor =  WebShareEditor.create('content_area2', {
-      toolbarItem: [
-        ['undo', 'redo'],
-        ['font', 'fontSize', 'formatBlock'],
-        ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-        ['removeFormat'],
-        ['fontColor', 'hiliteColor'],
-        ['outdent', 'indent'],
-        ['align', 'horizontalRule', 'list', 'table'],
-        ['link', 'image', 'video'],
-        /* ['fullScreen', 'showBlocks', 'codeView'],
-         ['preview', 'print'],
-         ['save', 'template'], */
-      ],
-      width: '100%',
-      minHeight: '300px',
-    });
-  </script>
-</body>
-
+    <div x-import="teacher-theme/scripts-dashboard.html"></div>
+    <script x-import="pages/index.js"></script>
+  </body>
 </html>
