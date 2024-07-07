@@ -263,7 +263,8 @@ module.exports = function init(site) {
         _data.date = new Date();
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
-        app.add(_data, (err, doc) => {
+_data.teacherId = site.getSiteSetting(req.host).teacherId;
+app.add(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
             response.doc = doc;
@@ -414,7 +415,7 @@ module.exports = function init(site) {
           }
         }
 
-        where["host"] = site.getHostFilter(req.host);
+        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
         app.all({ where, select, limit,sort: {id : -1} }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
@@ -468,6 +469,7 @@ module.exports = function init(site) {
                     price: doc.price,
                     date: new Date(),
                     host: site.getHostFilter(req.host),
+                    teacherId : site.getSiteSetting(req.host).teacherId,
                     user: {
                       id: user.id,
                       firstName: user.firstName,
@@ -532,7 +534,7 @@ module.exports = function init(site) {
       where["schoolYear.id"] = req.session.user.schoolYear.id;
       where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
     }
-    where["host"] = site.getHostFilter(req.host);
+    where["teacherId"] = site.getSiteSetting(req.host).teacherId;
     where["active"] = true;
     app.$collection.findMany({ where, select, limit,sort: {id : -1} }, (err, docs) => {
       if (!err && docs) {

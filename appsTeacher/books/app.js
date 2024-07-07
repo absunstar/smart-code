@@ -256,6 +256,7 @@ module.exports = function init(site) {
         _data.date = new Date();
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
+        _data.teacherId = site.getSiteSetting(req.host).teacherId;
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
@@ -399,8 +400,8 @@ module.exports = function init(site) {
           }
         }
 
-        where["host"] = site.getHostFilter(req.host);
-        app.all({ where, select, limit,sort: {id : -1} }, (err, docs) => {
+        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {}
           }
@@ -438,6 +439,7 @@ module.exports = function init(site) {
                 address: _data.address,
                 date: new Date(),
                 host: site.getHostFilter(req.host),
+                teacherId: site.getSiteSetting(req.host).teacherId,
                 user: {
                   id: user.id,
                   firstName: user.firstName,
@@ -489,8 +491,8 @@ module.exports = function init(site) {
       where["schoolYear.id"] = req.session.user.schoolYear.id;
     }
     where["active"] = true;
-    where["host"] = site.getHostFilter(req.host);
-    app.$collection.findMany({ where, select, limit,sort: {id : -1} }, (err, docs) => {
+    where["teacherId"] = setting.teacherId;
+    app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];

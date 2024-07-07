@@ -210,6 +210,7 @@ module.exports = function init(site) {
               expired: false,
               distribution: false,
               price: _data.price,
+              teacherId: site.getSiteSetting(req.host).teacherId,
               host,
             });
           }
@@ -330,7 +331,7 @@ module.exports = function init(site) {
           delete where.from;
           delete where.to;
         }
-        where["host"] = site.getHostFilter(req.host);
+        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
         app.all({ where, select, limit }, (err, docs) => {
           res.json({
             done: true,

@@ -286,7 +286,7 @@ module.exports = function init(site) {
             number: search,
           });
         }
-        where["host"] = site.getHostFilter(req.host);
+        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
           // let totalPackages = 0;
           // let totalLectures = 0;

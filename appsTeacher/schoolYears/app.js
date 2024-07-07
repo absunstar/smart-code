@@ -173,6 +173,7 @@ module.exports = function init(site) {
 
           _data.addUserInfo = req.getUserFinger();
           _data.host = site.getHostFilter(req.host);
+          _data.teacherId = site.getSiteSetting(req.host).teacherId;
 
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -292,7 +293,7 @@ module.exports = function init(site) {
               (g) =>
                 (typeof where.active != "boolean" ||
                   g.active === where.active) &&
-                JSON.stringify(g).contains(search) && g.host == site.getHostFilter(req.host)
+                JSON.stringify(g).contains(search) && g.teacherId == site.getSiteSetting(req.host).teacherId
             )
             .slice(0, limit);
 

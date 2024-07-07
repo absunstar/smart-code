@@ -90,8 +90,7 @@ module.exports = function init(site) {
       delete where["search"];
     }
     where["id"] = { $ne: 1 };
-    where["host"] = site.getHostFilter(req.host);
-
+    where["teacherId"] = site.getSiteSetting(req.host).teacherId;
     site.security.getUsers(
       {
         where: where,

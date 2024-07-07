@@ -72,6 +72,7 @@ module.exports = function init(site) {
     let page_implement_doc = req.body;
     page_implement_doc.$req = req;
     page_implement_doc.$res = res;
+    _data.teacherId = site.getSiteSetting(req.host).teacherId;
 
     page_implement_doc.add_user_info = site.security.getUserFinger({
       $req: req,
@@ -217,6 +218,7 @@ module.exports = function init(site) {
       });
       delete where['name'];
     }
+    where["teacherId"] = site.getSiteSetting(req.host).teacherId;
 
     $pages.findMany(
       {

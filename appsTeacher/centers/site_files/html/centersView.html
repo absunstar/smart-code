@@ -4,25 +4,6 @@
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
 
     <style>
-      .zoom {
-        transition: transform 0.4s;
-        width: 57%;
-        height: 180px;
-        margin: 0 auto;
-      }
-
-      .zoom:hover {
-        -ms-transform: scale(1.8); /* IE 9 */
-        -webkit-transform: scale(1.8); /* Safari 3-8 */
-        transform: scale(1.8);
-      }
-
-
-      .buy:hover {
-        color: blue !important;
-        text-decoration: underline !important;
-      }
-
       main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant {
         max-width: 100% !important;
         height: auto !important;
@@ -33,6 +14,17 @@
         height: 77px !important;
         font-size: 16px !important;
       }
+      .times-date {
+        background: #2c87db;
+        color: white !important;
+        padding: 1px 8px 1px 8px;
+        border-radius: 15px;
+        margin: 3px;
+        display: inline-flex;
+      }
+      .line-a:hover {
+        border-bottom: solid;
+      } 
     </style>
   </head>
   
@@ -45,9 +37,43 @@
           <h1 class="bold text-center">##word.Centers##</h1>
         </div>
 
-        <div class="row padding margin" ng-repeat="center in list">
-          <div class="col2"></div>
-          <div class="col8 padding margin">
+        <div class="table-responsive">
+          <table class="table hover bold" id="t1">
+            <tr>
+              <th class="w50">#</th>
+              <th>##word.Name##</th>
+              <th class="w450">##word.Dates##</th>
+              <th class="w350">##word.Address##</th>
+              <th class="w200">##word.Location##</th>
+              <th>##word.Mobile No.##</th>
+            </tr>
+            <tr ng-repeat="item in list">
+              <td class="center">{{$index + 1}}</td>
+              <td class="center">{{item.name}}</td>
+              <td class="center">
+                <div class="row" ng-repeat="d in item.daysList">
+                  <div class="col3">
+                    <p>{{d.day.name##session.lang##}}</p>
+                  </div>
+                  <div class="col8">
+                    <span class="times-date" ng-repeat="a in d.appointmentsList">{{a.startTime |date:"hh:mm a"}} </span>
+                  </div>
+                </div>
+              </td>
+              <td class="center">{{item.address}}</td>
+              <td class="center"><iframe height="100px" id="location_{{item.id}}" src="{{item.locationSrc}}"></iframe></td>
+              <td class="center">
+                <a class="mainColor line-a" href="tel:{{item.mobile}}">
+                  {{item.mobile}}
+                  <i class="fas fa-mobile" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="row padding margin">
+          <div class="col4 padding margin" ng-repeat="center in list">
             <div class="recentlyConsultantsContanier">
               <ul class="recentlyConsultants row">
                 <li class="col recentlyConsultant">
@@ -56,7 +82,7 @@
                       <p class="font-25 center">{{center.name}}</p>
                     </a>
                   </div>
-                
+
                   <div class="separative"></div>
                   <div class="answerSection">
                     <div class="consultantAnswer">
@@ -67,11 +93,11 @@
                   <fieldset ng-repeat="d in center.daysList">
                     <legend>{{d.day.name##session.lang##}}</legend>
                     <div class="row padding margin" ng-repeat="appointment in d.appointmentsList">
-                      <p class="col3 font-19 bold">##word.From## : {{appointment.startTime |date:"hh:mm a"}}</p>
-                      <p class="col3 font-19 bold">##word.To## : {{appointment.endTime |date:"hh:mm a"}}</p>
+                      <p class="col4 font-19 bold">##word.From## : {{appointment.startTime |date:"hh:mm a"}}</p>
+                      <p class="col4 font-19 bold">##word.To## : {{appointment.endTime |date:"hh:mm a"}}</p>
                     </div>
                   </fieldset>
-                  <iframe  width="100%" id="location_{{center.id}}" src = "{{center.locationSrc}}"></iframe>
+                  <iframe width="100%" id="location_{{center.id}}" src="{{center.locationSrc}}"></iframe>
 
                   <br />
                 </li>
@@ -85,20 +111,7 @@
         </div>
       </div>
     </main>
-    <div id="codeModal" class="modal codeModal small">
-      <div class="modal-content height-auto">
-        <div class="modal-header">
-          <span class="close">&times;</span>
-        </div>
-        <div class="modal-body">
-          <i-control type="text" v="r" ng-model="code" label="##word.Code##"></i-control>
-        </div>
-        <div class="modal-footer center">
-          <p class="error">{{errorCode}}</p>
-          <i-button type="save" label="##word.Accept##" ng-click="buyBackage(center)"></i-button>
-        </div>
-      </div>
-    </div>
+
     <div x-replace="teacher-theme/footer.html"></div>
     <div x-import="teacher-theme/scripts.html"></div>
     <script x-import="centers/centersView.js"></script>
