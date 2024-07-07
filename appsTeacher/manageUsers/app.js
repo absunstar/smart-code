@@ -165,12 +165,15 @@ module.exports = function init(site) {
           done: false,
         };
 
+        let setting = site.getSiteSetting(req.host);
         let _data = req.data;
         if (_data.type == "teacher") {
           _data.roles = [{ name: "teacher" }];
         } else if (_data.type == "student") {
           _data.roles = [{ name: "student" }];
         }
+        _data.teacherId = site.getSiteSetting(req.host).teacherId || 0;
+
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             site.addNewHost({ domain: doc.userName, filter: doc.userName });
@@ -224,11 +227,12 @@ module.exports = function init(site) {
           site.security.getUser({ id: req.session.user.id }, (err, user) => {
             if (!err) {
               if (user) {
+                user.notificationsList = user.notificationsList || [];
+
                 if (_data.type == "deleteAll") {
                   user.notificationsList = [];
                 } else if (_data.type == "deleteOne") {
                   user.notificationsList = user.notificationsList.filter((_n) => _n.id != _data.id);
-                  console.log(user.notificationsList);
                 } else if (_data.type == "showAll") {
                   for (let i = 0; i < user.notificationsList.length; i++) {
                     user.notificationsList[i].show = true;
@@ -303,6 +307,7 @@ module.exports = function init(site) {
 
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+        let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || "";
         let limit = req.body.limit || 50;
@@ -359,7 +364,6 @@ module.exports = function init(site) {
           where.$or.push({
             address: site.get_RegExp(search, "i"),
           });
-
           where.$or.push({
             "gov.name": site.get_RegExp(search, "i"),
           });
@@ -370,9 +374,9 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
         }
-        if (where["type"] == "student") {
-          where["host"] = site.getHostFilter(req.host);
-        }.345
+        // if (where["type"] == "student") {
+        // }
+        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
         where["id"] = { $ne: 1 };
         site.security.getUsers(where, (err, users, count) => {
           res.json({
@@ -397,7 +401,9 @@ module.exports = function init(site) {
       let studentsIds = doc.studentsList.map((_s) => _s.id);
       where["id"] = { $in: studentsIds };
     }
-    where["host"] = site.getHostFilter(doc.host);
+
+    where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+
     site.security.getUsers(where, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {

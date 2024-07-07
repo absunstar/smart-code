@@ -171,6 +171,7 @@ module.exports = function init(site) {
           email: req.session.user.email,
         };
         _data.host = site.getHostFilter(req.host);
+        _data.teacherId = site.getSiteSetting(req.host).teacherId;
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
@@ -214,6 +215,7 @@ module.exports = function init(site) {
               app.add(
                 {
                   host: site.getHostFilter(req.host),
+                  teacherId : site.getSiteSetting(req.host).teacherId,
                   user: {
                     _id: req.session.user._id,
                     id: req.session.user.id,
@@ -406,7 +408,7 @@ module.exports = function init(site) {
           where["lecture.id"] = where["lecture"].id;
           delete where["lecture"];
         }
-        where["host"] = site.getHostFilter(req.host);
+        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
           res.json({ done: true, list: docs });
         });
@@ -418,7 +420,7 @@ module.exports = function init(site) {
     callBack = callBack || function () {};
 
     let where = {};
-    site.security.getUser({ "_id": req.body.studentId }, (err, user) => {
+    site.security.getUser({ _id: req.body.studentId }, (err, user) => {
       if (!err) {
         if (user) {
           where["user.id"] = user.id;
@@ -427,15 +429,13 @@ module.exports = function init(site) {
           });
         } else {
           callBack(err, null);
-        return
+          return;
         }
       } else {
         callBack(err, null);
-        return
-
+        return;
       }
     });
-  
   };
 
   app.init();

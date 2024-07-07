@@ -314,8 +314,9 @@ module.exports = function init(site) {
       let data = req.data;
       data.host = data.host || req.host;
       let index = site.settingList.findIndex((s) => s.host == data.host);
+      data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
+      data.teacherId = data.teacher && data.teacher.id ? data.teacher.id : 0
       if (index > -1) {
-        data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
         $siteSetting.update(data, (err, result) => {
           if (!err && result.doc) {
             response.done = true;

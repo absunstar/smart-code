@@ -289,6 +289,7 @@ module.exports = function init(site) {
 
   site.post("/api/register", (req, res) => {
     let response = { done: false };
+    let setting = site.getSiteSetting(req.host);
 
     if (req.body.user.$encript) {
       if (req.body.user.$encript === "64") {
@@ -300,25 +301,25 @@ module.exports = function init(site) {
       }
     }
 
-    if(req.body.user.type == 'student') {
-      if(!req.body.user.parentMobile) {
+    if (req.body.user.type == "student") {
+      if (!req.body.user.parentMobile) {
         response.error = "Must Enter Parent Mobile No.";
         res.json(response);
         return;
       }
 
-      if(!req.body.user.educationalLevel || !req.body.user.educationalLevel.id) {
+      if (!req.body.user.educationalLevel || !req.body.user.educationalLevel.id) {
         response.error = "Must Enter Educational Level";
         res.json(response);
         return;
       }
 
-      if(!req.body.user.schoolYear || !req.body.user.schoolYear.id) {
-      response.error = "Must Enter School Year";
-      res.json(response);
-      return;
+      if (!req.body.user.schoolYear || !req.body.user.schoolYear.id) {
+        response.error = "Must Enter School Year";
+        res.json(response);
+        return;
+      }
     }
-  }
 
     if (req.body.user.placeType == "offline") {
       if (!req.body.user.center || !req.body.user.center.id) {
@@ -390,6 +391,7 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     };
+    user.teacherId = setting.teacher && setting.teacher.id ? setting.teacher.id : 0;
     if (req.body.user.placeType == "online") {
       user.active = false;
       site.security.addUser(user, function (err, doc) {
@@ -404,9 +406,9 @@ module.exports = function init(site) {
     } else {
       user.active = true;
       user.center = {
-       id : req.body.user.id,
-       name : req.body.user.name,
-      }
+        id: req.body.user.id,
+        name: req.body.user.name,
+      };
       site.security.register(user, function (err, doc) {
         if (!err) {
           response.user = doc;

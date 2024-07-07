@@ -1,7 +1,6 @@
-
 .HeaderContanier .lgScreen {
   display: none;
-  height: 90px;
+  height: 95px;
   padding: 0px 24px !important;
   margin-top: 24px !important;
   justify-content: flex-start;
@@ -16,7 +15,19 @@
 i-checklist label {
   float: right !important;
 }
+.login-btn {
+  background: #227fd6;
+  color: white !important;
+  padding: 6px 10px 8px 10px;
+  margin: 5px;
+  border-radius: 25px;
+}
+.login-btn:hover {
+  background: #0a579f;
+}
+.HeaderContanier .lgScreen .logo  {
 
+}
 .HeaderContanier .lgScreen .logo a {
   display: flex;
   width: 166.766px;
@@ -24,21 +35,28 @@ i-checklist label {
 }
 .HeaderContanier .lgScreen .logo p {
   color: #000;
-
-  font-size: 30px;
+  font-size: 45px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px; /* 100% */
+  line-height: 30px;
+  padding: 0px 0px 0px 10px;
+  font-family: ui-monospace !important;
 }
 
-.HeaderContanier .lgScreen .logo img {
-  width: 15%;
-  height: 77px;
+.logoImg1 {
+  width: 100px;
+  height: 90px;
+  flex-shrink: 0;
+  position: relative;
+  bottom: 23px;
+}
+.logoImg2 {
+  width: 280px;
+  height: 90px;
   flex-shrink: 0;
   position: absolute;
-  top: 46px;
+  top: 43px;
 }
-
 .HeaderContanier .lgScreen .governorat .dropdown .dropdown-menu {
   width: inherit;
 }
@@ -125,21 +143,41 @@ nav .container-fluid #navbarNavDropdown .navbar-nav .dropdown .dropdown-menu li 
   border-bottom: 1px solid #d9d9d94a !important;
 }
 .newRegister {
-  color : #2087e7 !important;
-  margin-right : 2px;
+  color: #2087e7 !important;
+  margin-right: 2px;
+}
+.button-screen {
+  margin-inline: auto;
+}
+.button-screen a {
+  padding: 30px;
+  margin: 10px;
+  font-size: 25px;
+  font-family: fantasy;
+  font-weight: bold;
+  border-right: 5px solid;
+  border-left: 5px solid;
+  border-radius: 30px 0px 30px 0px;
+  background: #0d6fc9 !important;
+  color: white !important;
+}
+.button-screen a:hover {
+  color: #0d6fc9 !important;
+  background: white !important;
+
 }
 .HeaderContanier .lgScreen .userContainer {
 }
 .HeaderContanier .lgScreen .userContainer .profile {
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   position: relative;
   border-radius: 100px;
   background: #1e1e1e;
 }
 .HeaderContanier .lgScreen .userContainer .profile img {
-  width: 51px;
-  height: 51px;
+  width: 64px;
+  height: 64px;
   position: absolute;
   left: 0px;
   top: -17px;

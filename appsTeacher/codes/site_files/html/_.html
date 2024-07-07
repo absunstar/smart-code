@@ -18,35 +18,34 @@
       </div>
     </div>
     <fieldset>
-      <legend>##word.Distribution##</legend>
+      <legend>##word.Generate Codes##</legend>
       <div class="row">
-        <i-control class="col4" v="r" type="number" ng-model="distribution.from" label="##word.Serial From##"></i-control>
-        <i-control class="col4" v="r" type="number" ng-model="distribution.to" label="##word.Serial To##"></i-control>
+        <i-control class="col4" type="number" ng-model="generate.price" label="##word.Price##"></i-control>
+        <i-control class="col4" type="number" ng-model="generate.count" label="##word.Count##"></i-control>
         <div class="col3">
-          <i-button type="save" label="##word.Distribution##" ng-click="updateAllDistribution(distribution,true)"></i-button>
-          <i-button type="save" label="##word.Not Distributed##" ng-click="updateAllDistribution(distribution,false)"></i-button>
+          <i-button type="push" label="##word.Generate##" ng-click="addMany(generate)"></i-button>
         </div>
       </div>
     </fieldset>
+
     <fieldset id="printCodeData">
       <legend>##word.Print##</legend>
       <div class="row">
         <i-control class="col4" v="r" type="number" ng-model="print.from" label="##word.Serial From##"></i-control>
         <i-control class="col4" v="r" type="number" ng-model="print.to" label="##word.Serial To##"></i-control>
         <div class="col2">
-          <br />
           <i-button type="print" label="##word.Print##" ng-click="codesPrint(print)"></i-button>
         </div>
       </div>
     </fieldset>
     <fieldset>
-      <legend>##word.Generate Codes##</legend>
+      <legend>##word.Distribution##</legend>
       <div class="row">
-        <i-control class="col4" type="number" ng-model="generate.price" label="##word.Price##"></i-control>
-        <i-control class="col4" type="number" ng-model="generate.count" label="##word.Count##"></i-control>
+        <i-control class="col4" v="r" type="number" ng-model="distribution.from" label="##word.Serial From##"></i-control>
+        <i-control class="col4" v="r" type="number" ng-model="distribution.to" label="##word.Serial To##"></i-control>
         <div class="col3">
-          <br />
-          <i-button type="push" label="##word.Generate##" ng-click="addMany(generate)"></i-button>
+          <i-button label="##word.Distribution##" ng-click="updateAllDistribution(distribution,true)"></i-button>
+          <i-button label="##word.Not Distributed##" ng-click="updateAllDistribution(distribution,false)"></i-button>
         </div>
       </div>
     </fieldset>

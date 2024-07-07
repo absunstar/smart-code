@@ -18,10 +18,7 @@
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
-        <fieldset>
-          <legend>##word.Search##</legend>
-          <i-control class="input-style pass" v="r" ng-keydown="getAll($event)" ng-model="$search"></i-control>
-        </fieldset>
+          <i-control label="##word.Search##" class="input-style pass" v="r" ng-keydown="getAll($event)" ng-model="$search"></i-control>
 
         <div class="row">
           <div id="panner1">

@@ -205,6 +205,7 @@ module.exports = function init(site) {
         _data.addUserInfo = req.getUserFinger();
         _data.date = new Date();
         _data.host = site.getHostFilter(req.host);
+        _data.teacherId = site.getSiteSetting(req.host).teacherId;
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
@@ -321,7 +322,7 @@ module.exports = function init(site) {
             "type.name": search,
           });
         }
-        where["host"] = site.getHostFilter(req.host);
+        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
         app.all({ where, select, limit }, (err, docs) => {
           res.json({
             done: true,

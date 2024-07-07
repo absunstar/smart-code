@@ -211,6 +211,7 @@ module.exports = function init(site) {
 
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
+        _data.teacherId = site.getSiteSetting(req.host).teacherId;
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
@@ -306,7 +307,6 @@ module.exports = function init(site) {
           schoolYear: 1,
           active: 1,
           host: 1,
-          
         };
         let list = [];
         app.memoryList.forEach((doc) => {
@@ -316,7 +316,7 @@ module.exports = function init(site) {
               delete obj[p];
             }
           }
-          if ((!where.active || doc.active) && obj.host == site.getHostFilter(req.host)) {
+          if ((!where.active || doc.active) && doc.teacherId == site.getSiteSetting(req.host).teacherId) {
             if (req.body.view) {
               if (req.session.user && req.session.user.type == "student") {
                 if (req.session.user.educationalLevel.id == obj.educationalLevel.id && req.session.user.schoolYear.id == obj.schoolYear.id) {

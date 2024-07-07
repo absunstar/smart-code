@@ -113,6 +113,9 @@ legend {
   color: #2087e7;
   font-size: 20px;
 }
+.mainColor {
+  color: #2087e7 !important;
+}
 
 .card-title {
   color: #959595;

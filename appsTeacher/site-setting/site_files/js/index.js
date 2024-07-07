@@ -1,27 +1,24 @@
-let btn1 = document.querySelector('#settingDefault .tab-link');
+let btn1 = document.querySelector("#settingDefault .tab-link");
 if (btn1) {
   btn1.click();
 }
 
-app.controller('siteSetting', function ($scope, $http, $timeout) {
+app.controller("siteSetting", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.siteSetting = site.showObject('##data.#setting##');
-  $scope.siteTemplateList = site.showObject('##data.#templateList##');
-  console.log($scope.siteSetting);
-  $scope.publishingSystemList = site.showObject('##data.#publishingSystem##');
-  $scope.closingSystemList = site.showObject('##data.#closingSystem##');
-
-  $scope.siteColorList = site.showObject('##data.#siteColor##');
-  $scope.articleStatusList = site.showObject('##data.#articleStatus##');
-  $scope.durationExpiryList = site.showObject('##data.#durationExpiry##');
-
+  $scope.siteSetting = site.showObject("##data.#setting##");
+  $scope.siteTemplateList = site.showObject("##data.#templateList##");
+  $scope.publishingSystemList = site.showObject("##data.#publishingSystem##");
+  $scope.closingSystemList = site.showObject("##data.#closingSystem##");
+  $scope.siteColorList = site.showObject("##data.#siteColor##");
+  $scope.articleStatusList = site.showObject("##data.#articleStatus##");
+  $scope.durationExpiryList = site.showObject("##data.#durationExpiry##");
 
   $scope.saveSetting = function (id) {
     if (id) {
       const v = site.validated(id);
       if (!v.ok) {
-        $scope.error = v.messages[0]['##session.lang##'];
+        $scope.error = v.messages[0]["##session.lang##"];
         return;
       }
     }
@@ -30,16 +27,16 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
     $scope.siteSetting.goldPricesList.forEach((g) => {
       g.increase = false;
       g.decrease = false;
-      if (g.type == 'increase') {
+      if (g.type == "increase") {
         g.increase = true;
-      } else if (g.type == 'decrease') {
+      } else if (g.type == "decrease") {
         g.decrease = true;
       }
     });
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/set-site-setting',
+      method: "POST",
+      url: "/api/set-site-setting",
       data: $scope.siteSetting,
     }).then(
       function (response) {
@@ -47,9 +44,9 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
         if (!response.data.done) {
           $scope.error = response.data.error;
         } else {
-          site.showModal('#alert');
+          site.showModal("#alert");
           $timeout(() => {
-            site.hideModal('#alert');
+            site.hideModal("#alert");
           }, 1500);
         }
       },
@@ -61,14 +58,14 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
   };
 
   $scope.loadWriters = function (where) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     where = where || {};
-    where['type.id'] = 1;
+    where["type.id"] = 1;
 
     $http({
-      method: 'POST',
-      url: '/api/users/all',
+      method: "POST",
+      url: "/api/users/all",
       data: {
         where: where,
         select: { id: 1, profile: 1 },
@@ -88,14 +85,14 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
   };
 
   $scope.loadEditors = function (where) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     where = where || {};
-    where['type.id'] = 2;
+    where["type.id"] = 2;
 
     $http({
-      method: 'POST',
-      url: '/api/users/all',
+      method: "POST",
+      url: "/api/users/all",
       data: {
         where: where,
         select: { id: 1, profile: 1 },
@@ -115,13 +112,13 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
   };
 
   $scope.loadCategories = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.categoryList = [];
     $scope.topCategoryList = [];
     $http({
-      method: 'POST',
-      url: '/api/categories/all',
+      method: "POST",
+      url: "/api/categories/all",
       data: {
         where: {
           active: true,
@@ -143,8 +140,38 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getTeachersList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/users/all",
+      data: {
+        where: {
+          type: "teacher",
+          active: true,
+        },
+        select: { id: 1, firstName: 1 },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.users.length > 0) {
+          $scope.teachersList = response.data.users;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.addKeyWords = function (ev, lang) {
-    $scope.error = '';
+    $scope.error = "";
     if (ev.which !== 13 || !lang.$keyword) {
       return;
     }
@@ -156,16 +183,16 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
       lang.keyWordsList.push(lang.$keyword);
     }
 
-    lang.$keyword = '';
+    lang.$keyword = "";
   };
 
   $scope.upDownList = function (list, type, index) {
     let element = list[index];
     let toIndex = index;
 
-    if (type == 'up') {
+    if (type == "up") {
       toIndex = index - 1;
-    } else if (type == 'down') {
+    } else if (type == "down") {
       toIndex = index + 1;
     }
 
@@ -174,14 +201,14 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
   };
 
   $scope.addMainCategory = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.siteSetting.$category && $scope.siteSetting.$category.id) {
       $scope.siteSetting.mainCategoryList = $scope.siteSetting.mainCategoryList || [];
       let index = $scope.siteSetting.mainCategoryList.findIndex((itm) => itm.id == $scope.siteSetting.$category.id);
       if (index === -1) {
         $scope.siteSetting.mainCategoryList.unshift($scope.siteSetting.$category);
       } else {
-        $scope.error = '##word.Already Existed##';
+        $scope.error = "##word.Already Existed##";
         return;
       }
       $scope.siteSetting.$category = {};
@@ -189,81 +216,81 @@ app.controller('siteSetting', function ($scope, $http, $timeout) {
   };
 
   $scope.addMetaTags = function (programming) {
-    $scope.error = '';
+    $scope.error = "";
     programming.metaTags = programming.metaTags || [];
     programming.metaTags.unshift({ active: true });
   };
 
   $scope.addStyles = function (programming) {
-    $scope.error = '';
+    $scope.error = "";
     programming.styles = programming.styles || [];
     programming.styles.unshift({ active: true });
   };
 
   $scope.addScripts = function (programming) {
-    $scope.error = '';
+    $scope.error = "";
     programming.scripts = programming.scripts || [];
     programming.scripts.unshift({ active: true });
   };
 
   $scope.addGoldPrices = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.siteSetting.goldPricesList = $scope.siteSetting.goldPricesList || [];
     $scope.siteSetting.goldPricesList.unshift({});
   };
 
   $scope.addMoneyPrices = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.siteSetting.moneyPricesList = $scope.siteSetting.moneyPricesList || [];
     $scope.siteSetting.moneyPricesList.unshift({});
   };
 
   $scope.addPrayerTimings = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.siteSetting.prayerTimingsList = $scope.siteSetting.prayerTimingsList || [];
     $scope.siteSetting.prayerTimingsList.unshift({});
   };
 
   $scope.addMatchSchedule = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.siteSetting.matchScheduleList = $scope.siteSetting.matchScheduleList || [];
-    $scope.siteSetting.matchScheduleList.unshift({ image1: { url: '/theme1/images/football.png' }, image2: { url: '/theme1/images/football.png' } });
+    $scope.siteSetting.matchScheduleList.unshift({ image1: { url: "/theme1/images/football.png" }, image2: { url: "/theme1/images/football.png" } });
   };
 
   $scope.addBlockIp = function (block) {
-    $scope.error = '';
+    $scope.error = "";
     block.ipList = block.ipList || [];
     block.ipList.unshift({});
   };
 
   $scope.addBlockDomains = function (block) {
-    $scope.error = '';
+    $scope.error = "";
     block.domainsList = block.domainsList || [];
     block.domainsList.unshift({});
   };
 
   $scope.addBlockUserAgent = function (block) {
-    $scope.error = '';
+    $scope.error = "";
     block.userAgentList = block.userAgentList || [];
     block.userAgentList.unshift({});
   };
 
   $scope.addDynamicRoutes = function (dynamicRoute) {
-    $scope.error = '';
-    const v = site.validated('#dynamicRoutes');
+    $scope.error = "";
+    const v = site.validated("#dynamicRoutes");
     if (!v.ok) {
-      $scope.error = v.messages[0]['##session.lang##'];
+      $scope.error = v.messages[0]["##session.lang##"];
       return;
     }
     $scope.siteSetting.programming.dynamicRoutes = $scope.siteSetting.programming.dynamicRoutes || [];
     $scope.siteSetting.programming.dynamicRoutes.unshift({ ...dynamicRoute });
-    site.hideModal('#dynamicRoutes');
+    site.hideModal("#dynamicRoutes");
   };
 
   $scope.showDynamicRoutes = function () {
     $scope.dynamicRoute = { active: true };
-    site.showModal('#dynamicRoutes');
+    site.showModal("#dynamicRoutes");
   };
 
-  
+  $scope.getTeachersList();
 });

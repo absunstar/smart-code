@@ -17,6 +17,7 @@ app.controller("centersView", function ($scope, $http, $timeout) {
             name: 1,
             image: 1,
             daysList: 1,
+            mobile: 1,
             educationalLevel: 1,
             schoolYear: 1,
             country: 1,

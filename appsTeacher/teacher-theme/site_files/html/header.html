@@ -1,10 +1,21 @@
 <header class="HeaderContanier container">
   <div class="lgScreen d-lg-flex">
-    <div class="logo" style="width: 82% !important">
+    <div class="logo" >
       <a href="/">
         <p x-data="setting.nameBesidLogoShow">##data.site_name##</p>
-        <img x-data="setting.nameBesidLogoShow" ng-src="##data.site_logo##" alt="" srcset="" />
-        <img x-data="setting.nameNotBesidLogoShow" class="" ng-src="##data.site_logo##" alt="" srcset="" />
+        <img class="logoImg1" x-data="setting.nameBesidLogoShow" ng-src="##data.site_logo##" alt="" srcset="" />
+        <img class="logoImg2" x-data="setting.nameNotBesidLogoShow" class="" ng-src="##data.site_logo##" alt="" srcset="" />
+      </a>
+    </div>
+    <div class="button-screen">
+      <a href="/packagesView" x-data="setting.showPackages">
+        ##word.Packages##
+      </a>
+      <a href="/lecturesView" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures">
+        ##word.Lectures##
+      </a>
+      <a href="/booksView" x-data="setting.showBooks">
+        ##word.Books##
       </a>
     </div>
 <!--     <div class="governorat">
@@ -67,12 +78,12 @@
           </ul>
         </div> -->
       </div>
-      <a x-features="login" class="desktop" href="#" onclick="event.stopPropagation(); $('.notification-menu').toggle()">
-        <i class="fas fa-bell notifacation-icon"></i>
-        <i x-data="notificationsCount" class="notifacation-padge">##data.notificationsCount##</i>
-      </a>
     </nav>
-
+    
+    <a x-features="login" class="desktop" href="#" onclick="event.stopPropagation(); $('.notification-menu').toggle()">
+      <i class="fas fa-bell notifacation-icon"></i>
+      <i x-data="notificationsCount" class="notifacation-padge">##data.notificationsCount##</i>
+    </a>
     <div class="userContainer">
       <div class="profile" x-permission="login">
         <li class="nav-item dropdown">
@@ -85,7 +96,7 @@
           </ul>
         </li>
       </div>
-      <a x-permission="!login" href="/login"> تسجيل الدخول </a>
+      <a x-permission="!login" class="login-btn" href="/login"> تسجيل الدخول </a>
       <a x-permission="!login" class="newRegister" href="/register"> مستخدم جديد </a>
     </div>
     <div class="notification-menu" style="display: none">

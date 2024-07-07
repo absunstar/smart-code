@@ -287,10 +287,10 @@ app.controller("codes", function ($scope, $http, $timeout) {
               dpi: { horizontal: 200, vertical: 640 },
             });
           }, 500);
-          /*   $timeout(() => {
+            $timeout(() => {
             $scope.busy = false;
             $("#codesPrint").addClass("hidden");
-          }, 8000); */
+          }, 8000);
         }
       },
       function (err) {

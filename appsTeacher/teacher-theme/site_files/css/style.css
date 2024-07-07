@@ -134,7 +134,7 @@ p {
 }
 
 .notifacation-icon {
-  font-size: xx-large;
+  font-size: 40px;
   color: #2087e7;
 }
 
@@ -520,7 +520,11 @@ figure {
   float: left;
   color: white;
 }
-
+.banner-site {
+  width: 100%;
+  height: 600px;
+  object-fit: contain;
+}
 @media screen and (max-width: 768px) {
   .callgafl {
     font-size: 1.3em;

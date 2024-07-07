@@ -5,6 +5,10 @@
     <div x-replace="teacher-theme/header.html"></div>
 
     <main class="container">
+      <div>
+        <img x-data="setting.showBanner" class="banner-site" ng-src="##data.banner##" alt="" srcset="" />
+      </div>
+
       <div class="row mainContent row-cols-1 row-cols-lg-2">
         <div class="content col-lg-9">
           <div>
@@ -12,6 +16,7 @@
               <img src=" " alt="" srcset="" />
             </div>
 
+          
             <div class="row" x-data="isParent">
               <div id="panner1">
                 <div class="callgafl">##word.Students##<span class="arrowLeft"></span><span class="arrowRight"></span></div>
