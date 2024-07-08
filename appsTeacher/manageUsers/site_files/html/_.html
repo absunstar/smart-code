@@ -38,7 +38,7 @@
       ></i-button>
     </div>
     <div class="row">
-      <i-control ng-model="$search" class="col9"></i-control>
+      <i-control ng-model="$search" label="##word.Search All##" class="col9"></i-control>
       <i-button
         type="search"
         class="col3"
@@ -58,7 +58,7 @@
           <th>##word.Status##</th>
           <th class="not-print">##word.Actions##</th>
         </tr>
-        <tr ng-repeat="item in list | filter:$search">
+        <tr ng-repeat="item in list">
           <td>
             {{$index + 1}}
           </td>

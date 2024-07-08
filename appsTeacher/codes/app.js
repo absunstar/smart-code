@@ -201,27 +201,33 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-          let codesList = [];
-          let host = site.getHostFilter(req.host);
-          for (let i = 0; i < _data.count; i++) {
-            let code = (size) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join("");
-            codesList.push({
-              code: code(15),
-              expired: false,
-              distribution: false,
-              price: _data.price,
-              teacherId: site.getSiteSetting(req.host).teacherId,
-              host,
-            });
-          }
-          app.$collection.insertMany(codesList, (err, docs) => {
-            if (!err && docs) {
-              response.done = true;
-              response.list = docs;
-            } else {
-              response.error = err.mesage;
+          let where = {};
+          where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+          let select = { id: 1 };
+          app.all({ where, select }, (err, docs, count) => {
+            let codesList = [];
+            let host = site.getHostFilter(req.host);
+            for (let i = 0; i < _data.count; i++) {
+              let code = (size) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join("");
+              codesList.push({
+                serial: count + i + 1,
+                code: code(15),
+                expired: false,
+                distribution: false,
+                price: _data.price,
+                teacherId: site.getSiteSetting(req.host).teacherId,
+                host,
+              });
             }
-            res.json(response);
+            app.$collection.insertMany(codesList, (err, docs) => {
+              if (!err && docs) {
+                response.done = true;
+                response.list = docs;
+              } else {
+                response.error = err.mesage;
+              }
+              res.json(response);
+            });
           });
         }
       );
@@ -305,6 +311,7 @@ module.exports = function init(site) {
         let limit = req.body.limit || 1000;
         let select = req.body.select || {
           id: 1,
+          serial: 1,
           code: 1,
           price: 1,
           expired: 1,
@@ -314,7 +321,10 @@ module.exports = function init(site) {
           where.$or = [];
 
           where.$or.push({
-            id: site.get_RegExp(search, "i"),
+            id: site.toNumber(search),
+          });
+          where.$or.push({
+            serial: site.toNumber(search),
           });
           where.$or.push({
             price: site.toNumber(search),
@@ -324,7 +334,7 @@ module.exports = function init(site) {
           });
         }
         if (where.from && where.to) {
-          where["id"] = {
+          where["serial"] = {
             $gte: where.from,
             $lte: where.to,
           };
@@ -332,7 +342,7 @@ module.exports = function init(site) {
           delete where.to;
         }
         where["teacherId"] = site.getSiteSetting(req.host).teacherId;
-        app.all({ where, select, limit }, (err, docs) => {
+        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,
             list: docs,
@@ -361,7 +371,7 @@ module.exports = function init(site) {
       }
 
       let where = {};
-
+      where["teacherId"] = site.getSiteSetting(req.host).teacherId;
       where["id"] = {
         $gte: _data.from,
         $lte: _data.to,

@@ -127,7 +127,9 @@ legend {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
+.main-menu {
+  max-width: 350px !important;
+}
 .buy-btn {
   border: 3px solid #0075e3;
   margin: 15px -5px 20px 0px;
