@@ -147,9 +147,10 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/users/all",
+      url: "/api/manageUsers/all",
       data: {
         where: {
+          email: $search,
           type: "teacher",
           active: true,
         },
@@ -292,5 +293,4 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     site.showModal("#dynamicRoutes");
   };
 
-  $scope.getTeachersList();
 });

@@ -374,9 +374,10 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
         }
-        // if (where["type"] == "student") {
-        // }
-        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        if (where["type"] != "teacher") {
+
+          where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        }
         where["id"] = { $ne: 1 };
         site.security.getUsers(where, (err, users, count) => {
           res.json({
