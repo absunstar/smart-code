@@ -155,7 +155,6 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
           active: true,
         },
         select: { id: 1, firstName: 1 },
-        search: $search,
       },
     }).then(
       function (response) {
