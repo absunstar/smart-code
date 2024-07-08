@@ -2,6 +2,7 @@
 <html lang="En" data-ng-app="myApp">
   <head x-import="teacher-theme/head.html">
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
+    <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
     <style>
 
@@ -107,8 +108,7 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="margin row padding">
-          <div class="col1"></div>
-          <div class="col10 bg-white content-ad">
+          <div class="row bg-white content-ad">
             <div class="row">
               <p class="display-ad-name">{{item.name}}</p>
               <div class="col6">
@@ -128,7 +128,7 @@
               </div>
 
               <div class="col1"></div>
-              <div class="col4">
+              <div class="col5">
                 <img class="content-main-img" view ng-src="{{item.image.url}}" />
               </div>
             </div>

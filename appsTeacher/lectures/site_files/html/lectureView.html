@@ -2,6 +2,7 @@
 <html lang="En" data-ng-app="myApp">
   <head x-import="teacher-theme/head.html">
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
+    <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
     <style>
       .zoom {
@@ -143,6 +144,7 @@
         color: white;
         background: #2087e7;
       }
+     
     </style>
   </head>
 
@@ -153,8 +155,7 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="margin row padding">
-          <div class="col1"></div>
-          <div class="col10 bg-white content-ad">
+          <div class="row bg-white content-ad">
             <div class="row">
               <p class="display-ad-name">{{item.name}}</p>
               <div class="col6">
@@ -166,7 +167,8 @@
                   </div>
 
                   <div class="row">
-                    <p class="col4 price">##word.Price## 
+                    <p class="col4 price">
+                      ##word.Price##
                       <span class="green" ng-show="item.price > 0"> {{item.price}} ##word.$## </span>
                       <span class="green" ng-show="item.price == 0">##word.Free## </span>
                     </p>
@@ -177,11 +179,11 @@
                   <p class="text-comment gray-desc">{{item.description}}</p>
                 </div>
 
-                <div class="row" ng-repeat="file in item.filesList" ng-show="item.$buy || item.type.name == 'public'" >
-                  <i-file  view ng-model="file.url"></i-file>
+                <div class="row" ng-repeat="file in item.filesList" ng-show="item.$buy || item.type.name == 'public'">
+                  <i-file view ng-model="file.url"></i-file>
                 </div>
 
-                <div class="row video-box" ng-repeat="link in item.linksList" ng-show="item.$buy || item.type.name == 'public'" >
+                <div class="row video-box" ng-repeat="link in item.linksList" ng-show="item.$buy || item.type.name == 'public'">
                   <i-button type="view" class="col4" label="{{link.name}}" ng-click="openVideo(link)"></i-button>
                   <div class="col8" ng-show="link.isValid">
                     <br />
@@ -206,7 +208,13 @@
                   <p class="font-20 padding">##word.The number of remaining exam times## : <span class="quiz-degree">{{item.timesEnterQuiz - quiz.timesEnterQuiz}}</span></p>
                 </div>
                 <div class="row">
-                  <button ng-click="showEnterCode()" ng-hide="item.$buy || '##user.placeType##' == 'online'  || item.type.name == 'public' || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
+                  <button
+                    ng-click="showEnterCode()"
+                    ng-hide="item.$buy || '##user.placeType##' == 'online'  || item.type.name == 'public' || ('##user.type##' && '##user.type##' != 'student')"
+                    class="buy-btn"
+                  >
+                    ##word.Buy## <i class="fas fa-shopping-basket"></i>
+                  </button>
                   <button ng-click="startQuiz()" x-permission="login" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                     ##word.Take A Quiz##
                     <i class="fas fa-chalkboard-teacher"></i>
@@ -215,16 +223,13 @@
               </div>
 
               <div class="col1"></div>
-              <div class="col4">
+              <div class="col5">
                 <img class="content-main-img" view ng-src="{{item.image.url}}" />
               </div>
             </div>
-
-          
           </div>
-          <div class="col1"></div>
         </div>
-  
+
         <div class="row">
           <h2 class="bold center red">{{error}}</h2>
         </div>

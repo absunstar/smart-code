@@ -82,16 +82,21 @@ legend {
 .card {
   border: 1px solid #2087e7;
   display: inline-block;
-  width: 35vw !important;
-  margin: 2vw !important;
+  width: 25% !important;
+  margin: 10px 10px 10px 10px !important;
   background: #ffffff;
   padding: 25px;
   height: 200px;
   border-radius: 10px;
   box-shadow: 1px 2px 3px 2px #2087e7;
+  div {
+    width: 50%;
+    float: left;
+  }
 }
 
 .card img {
+  width: 45%;
   height: 100%;
   float: right;
   padding: 2px;

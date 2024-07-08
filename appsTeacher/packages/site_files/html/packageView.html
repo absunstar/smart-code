@@ -2,6 +2,7 @@
 <html lang="En" data-ng-app="myApp">
   <head x-import="teacher-theme/head.html">
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
+    <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
     <style>
       .buy:hover {
@@ -20,7 +21,6 @@
         font-size: 16px !important;
       }
       .card {
-        width: 25% !important;
         height: 130px !important;
       }
 
@@ -111,8 +111,7 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="margin row padding">
-          <div class="col1"></div>
-          <div class="col10 bg-white content-ad">
+          <div class="row bg-white content-ad">
             <div class="row">
               <p class="display-ad-name">{{item.name}}</p>
               <div class="col6">
@@ -143,8 +142,8 @@
             </div>
 
             <a class="card row" ng-repeat="l in item.lecturesList" href="/lectureView?id={{l.lecture._id}}">
-              <img class="col4" loading="lazy" ng-src="{{l.lecture.image.url}}" />
-              <div class="col8 padding">
+              <img class="" loading="lazy" ng-src="{{l.lecture.image.url}}" />
+              <div class=" padding">
                 <p class="userPrint card-title bold">{{l.lecture.name}}</p>
                 <p class="">
                   <i class="card-number bold"> ##word.$## {{l.lecture.price}} </i>

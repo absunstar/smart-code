@@ -28,6 +28,7 @@ module.exports = function init(site) {
       __dirname + "/site_files/css/footer.css",
       __dirname + "/site_files/css/color.css",
       __dirname + "/site_files/css/style.css",
+      __dirname + "/site_files/css/mobile.css",
     ],
   });
 
