@@ -372,7 +372,7 @@ module.exports = function init(site) {
 
       let where = {};
       where["teacherId"] = site.getSiteSetting(req.host).teacherId;
-      where["id"] = {
+      where["serial"] = {
         $gte: _data.from,
         $lte: _data.to,
       };
