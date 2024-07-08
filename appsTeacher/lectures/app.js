@@ -252,6 +252,7 @@ module.exports = function init(site) {
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             page_image: setting.logo?.url || "/images/logo.png",
+            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
             user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
@@ -261,9 +262,10 @@ module.exports = function init(site) {
             page_keywords: setting.keyWordsList.join(","),
           };
           if (req.hasFeature("host.com")) {
-            data.site_logo = "https://" + req.host + data.site_logo;
-            data.page_image = "https://" + req.host + data.page_image;
-            data.user_image = "https://" + req.host + data.user_image;
+            data.site_logo = "//" + req.host + data.site_logo;
+            data.site_footer_logo = "//" + req.host + data.site_footer_logo;
+            data.page_image = "//" + req.host + data.page_image;
+            data.user_image = "//" + req.host + data.user_image;
           }
           res.render(app.name + "/lecturesView.html", data, {
             parser: "html css js",
@@ -677,6 +679,7 @@ module.exports = function init(site) {
       if (!err) {
         if (user) {
           let idList = [];
+          user.lecturesList = user.lecturesList || [];
           user.lecturesList.forEach((element) => {
             idList.push(site.mongodb.ObjectID(element.lectureId));
           });

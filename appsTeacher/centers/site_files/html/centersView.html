@@ -24,10 +24,9 @@
       }
       .line-a:hover {
         border-bottom: solid;
-      } 
+      }
     </style>
   </head>
-  
 
   <body class="##session.lang##" ng-controller="centersView">
     <div x-replace="teacher-theme/header.html"></div>
@@ -41,7 +40,7 @@
           <table class="table hover bold" id="t1">
             <tr>
               <th class="w50">#</th>
-              <th>##word.Name##</th>
+              <th>##word.Center Name##</th>
               <th class="w450">##word.Dates##</th>
               <th class="w350">##word.Address##</th>
               <th class="w200">##word.Location##</th>
@@ -70,40 +69,6 @@
               </td>
             </tr>
           </table>
-        </div>
-
-        <div class="row padding margin">
-          <div class="col4 padding margin" ng-repeat="center in list">
-            <div class="recentlyConsultantsContanier">
-              <ul class="recentlyConsultants row">
-                <li class="col recentlyConsultant">
-                  <div style="display: ruby-text">
-                    <a href="#">
-                      <p class="font-25 center">{{center.name}}</p>
-                    </a>
-                  </div>
-
-                  <div class="separative"></div>
-                  <div class="answerSection">
-                    <div class="consultantAnswer">
-                      <p class="linesView font-20">{{center.country.name}} - {{center.gov.name}} - {{center.city.name}} - {{center.area.name}}</p>
-                      <p class="linesView font-20">{{center.address}}</p>
-                    </div>
-                  </div>
-                  <fieldset ng-repeat="d in center.daysList">
-                    <legend>{{d.day.name##session.lang##}}</legend>
-                    <div class="row padding margin" ng-repeat="appointment in d.appointmentsList">
-                      <p class="col4 font-19 bold">##word.From## : {{appointment.startTime |date:"hh:mm a"}}</p>
-                      <p class="col4 font-19 bold">##word.To## : {{appointment.endTime |date:"hh:mm a"}}</p>
-                    </div>
-                  </fieldset>
-                  <iframe width="100%" id="location_{{center.id}}" src="{{center.locationSrc}}"></iframe>
-
-                  <br />
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
 
         <div class="row">

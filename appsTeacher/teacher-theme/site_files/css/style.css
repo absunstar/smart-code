@@ -189,8 +189,8 @@ p {
 
 .separative {
   height: 2px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) -0.09%, rgba(0, 0, 0, 0.2) 50.9%, rgba(0, 0, 0, 0) 99.81%);
-  margin-top: 5px !important;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) -0.09%, rgb(52 94 255 / 79%) 50.9%, rgba(0, 0, 0, 0) 99.81%);
+  margin: 15px !important;
 }
 
 .notifacation-data:hover {
@@ -260,7 +260,6 @@ p {
 
 figure {
   position: relative;
-  display: inline-grid;
   align-items: center;
   float: inline-start;
   justify-content: center;
@@ -302,6 +301,7 @@ figure {
   }
   img {
     height: 100%;
+    width: 100%;
     transition: 0.25s;
   }
   figcaption {
@@ -317,15 +317,15 @@ figure {
     line-height: 1;
     transition: 0.25s;
     div {
-      display: flex;
+      background: linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
+      border-radius: 13px;
     }
     /* 	h3 {
 			margin: 0 0 20px;
 			padding: 0;
 		} */
     .price {
-      top: 15px;
-      left: 55px;
+      text-align: center;
       font-weight: bold;
       position: relative;
       font-size: large;
@@ -358,6 +358,19 @@ figure {
       cursor: pointer;
     }
   }
+}
+
+.price-more-card {
+  margin: 10px 0px 0px 0px !important;
+  padding: 10px !important;
+}
+
+.more-card {
+  position: relative;
+  text-align: center;
+  color: white !important;
+  font-weight: bold;
+  font-size: larger;
 }
 
 .nft {
@@ -473,67 +486,54 @@ figure {
   }
 }
 
-#panner1 {
-  margin: auto;
-  padding-top: 50px;
+.banner-word {
+  text-align: center;
+  /* color: #1e7cd4; */
+  font-weight: bold;
+  font-size: 40px;
   font-family: helvetica, arial, sans-serif;
 }
+.banner-word span {
+  border-bottom: 4px solid #2481d7;
+  border-radius: 5px;
+}
 
-.callgafl {
-  text-align: center;
-  padding: 0.5em 20px;
-  margin-left: -20px;
-  margin-top: 0;
-  margin-bottom: 15px;
-  position: relative;
-  width: 100%;
-  box-shadow: 1px 1px 10px #292929;
-  color: #fff;
-  text-shadow: 0 2px 1px #292929;
-  font-weight: bold;
-  font-size: xx-large;
-  background: linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
-}
-.arrowLeft {
-  width: 0;
-  height: 0;
-  line-height: 0;
-  border-left: 20px solid transparent;
-  border-top: 10px solid #1475cf;
-  top: 100%;
-  left: 0;
-  position: absolute;
-}
-.arrowRight {
-  width: 0;
-  height: 0;
-  line-height: 0;
-  border-right: 20px solid transparent;
-  border-top: 10px solid #1475cf;
-  top: 100%;
-  right: 0;
-  position: absolute;
-}
-.number {
-  padding: 0 1em;
-  font-size: 20px;
+.banner-viewAll {
   float: left;
-  color: white;
+  font-size: x-large;
 }
+
+.banner-viewAll:hover {
+  color: #2087e7 !important;
+  border-bottom: 2px solid;
+  border-radius: 3px;
+}
+
+.student-parent {
+  display: -webkit-box;
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 3px dashed;
+  }
+  span {
+    font-size: large;
+    position: relative;
+    top: 100px;
+    left: 170px;
+    background: #2087e7;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+  }
+}
+
 .banner-site {
   width: 100%;
   height: 600px;
   object-fit: contain;
 }
 @media screen and (max-width: 768px) {
-  .callgafl {
-    font-size: 1.3em;
-  }
-  .arrowRight,
-  .arrowLeft {
-    top: 100%;
-  }
-  .number {
-    font-size: 1em;
-  }
+ 
 }

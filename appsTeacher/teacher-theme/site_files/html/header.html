@@ -9,12 +9,15 @@
     </div>
     <div class="button-screen">
       <a href="/packagesView" x-data="setting.showPackages">
+        <i class="fas fa-layer-group"></i>
         ##word.Packages##
       </a>
       <a href="/lecturesView" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures">
+        <i class="fas fa-chalkboard-teacher"></i>
         ##word.Lectures##
       </a>
       <a href="/booksView" x-data="setting.showBooks">
+        <i class="fas fa-book"></i>
         ##word.Books##
       </a>
     </div>

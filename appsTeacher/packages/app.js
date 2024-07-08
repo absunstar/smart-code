@@ -202,7 +202,7 @@ module.exports = function init(site) {
             data.user_image = "//" + req.host + data.user_image;
           }
           res.render(app.name + "/packageView.html", data, {
-            parser: "html",
+            parser: "html css js",
             compres: true,
           });
         }
@@ -246,7 +246,7 @@ module.exports = function init(site) {
             data.user_image = "//" + req.host + data.user_image;
           }
           res.render(app.name + "/packagesView.html", data, {
-            parser: "html",
+            parser: "html css js",
             compres: true,
           });
         }

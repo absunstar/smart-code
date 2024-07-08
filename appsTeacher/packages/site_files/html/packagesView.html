@@ -21,9 +21,6 @@
         <i-control label="##word.Search##" class="input-style pass" v="r" ng-keydown="getAll($event)" ng-model="$search"></i-control>
 
         <div class="row">
-          <div id="panner1">
-            <div class="callgafl">##word.Packages##<span class="arrowLeft"></span><span class="arrowRight"></span></div>
-          </div>
 
           <ul class="row row-cols-1 row-cols-lg-4 row-cols-md-2">
             <li ng-repeat="item in list">
@@ -32,14 +29,14 @@
                 <img ng-src="{{item.image.url}}" alt="" />
                 <figcaption>
                   <p>{{item.description}}</p>
-                  <div class="row">
+                  <div class="row price-more-card">
                     <i class="price col-6"
                       >##word.$## {{item.price}}
                       <s class="red">{{item.totalLecturesPrice}}</s>
                     </i>
 
-                    <a class="col-6" href="/packageView?id={{item._id}}">
-                      <button>##word.More##..</button>
+                    <a class="col-6 more-card" href="/packageView?id={{item._id}}">
+                      ##word.More##..
                     </a>
                   </div>
                 </figcaption>

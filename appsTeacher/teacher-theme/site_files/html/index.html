@@ -16,34 +16,28 @@
               <img src=" " alt="" srcset="" />
             </div>
 
-          
             <div class="row" x-data="isParent">
-              <div id="panner1">
-                <div class="callgafl">##word.Students##<span class="arrowLeft"></span><span class="arrowRight"></span></div>
+              <div class="banner-word">
+                <span> ##word.Students## </span>
               </div>
 
               <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
                 <li x-list1="childrenList">
-                  <figure class="image-block">
-                    <p class="name">##item1.firstName##</p>
-                    <img src="##item1.image.url##" alt="" />
-                    <figcaption>
-                      <div class="row">
-                        <a class="col-6" href="/lecturesStudentView?id=##item1._id##">
-                          <button>##word.More##..</button>
-                        </a>
-                      </div>
-                    </figcaption>
-                  </figure>
+                  <a href="/lecturesStudentView?id=##item1._id##">
+                    <div class="student-parent" href="/lecturesStudentView?id=##item1._id##">
+                      <img src="##item1.image.url##" alt="" />
+                      <span class="name">##item1.firstName##</span>
+                    </div>
+                  </a>
                 </li>
               </ul>
+              <div class="separative"></div>
             </div>
 
             <div class="row" x-data="setting.showPackages">
-              <div id="panner1">
-                <div class="callgafl">
-                  <a href="/packagesView"><span class="number">##word.View All##</span></a> ##word.Packages##<span class="arrowLeft"></span><span class="arrowRight"></span>
-                </div>
+              <div class="banner-word">
+                <span> ##word.Packages## </span>
+                <a class="banner-viewAll" href="/packagesView">##word.View All##</a>
               </div>
 
               <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
@@ -53,26 +47,24 @@
                     <img src="##item1.image.url##" alt="" />
                     <figcaption>
                       <p>##item1.description##</p>
-                      <div class="row">
+                      <div class="row price-more-card">
                         <i class="price col-6"
                           >##word.$## ##item1.price##
                           <s class="red">##item1.totalLecturesPrice##</s>
                         </i>
-                        <a class="col-6" href="/packageView?id=##item1._id##">
-                          <button>##word.More##..</button>
-                        </a>
+                        <a class="col-6 more-card" href="/packageView?id=##item1._id##"> ##word.More##.. </a>
                       </div>
                     </figcaption>
                   </figure>
                 </li>
               </ul>
+              <div class="separative"></div>
             </div>
 
             <div class="row" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures">
-              <div id="panner1">
-                <div class="callgafl">
-                  <a href="/lecturesView"><span class="number">##word.View All##</span></a> ##word.Lectures##<span class="arrowLeft"></span><span class="arrowRight"></span>
-                </div>
+              <div class="banner-word">
+                <span> ##word.Lectures## </span>
+                <a class="banner-viewAll" href="/lecturesView">##word.View All##</a>
               </div>
 
               <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
@@ -82,26 +74,23 @@
                     <img src="##item1.image.url##" alt="" />
                     <figcaption>
                       <p>##item1.description##</p>
-                      <div class="row">
+                      <div class="row price-more-card">
                         <i class="price col-6" x-show-item1="price">##word.$## ##item1.price## </i>
                         <i class="price col-6" x-show-item1="$isFree">##word.Free## </i>
-                        <a class="col-6" href="/lectureView?id=##item1._id##">
-                          <button>##word.More##..</button>
-                        </a>
+                        <a class="col-6 more-card" href="/lectureView?id=##item1._id##"> ##word.More##.. </a>
                       </div>
                     </figcaption>
                   </figure>
                 </li>
               </ul>
+              <div class="separative"></div>
             </div>
 
             <div class="row" x-data="setting.showBooks">
-              <div id="panner1">
-                <div class="callgafl">
-                  <a href="/booksView"><span class="number">##word.View All##</span></a> ##word.Books##<span class="arrowLeft"></span><span class="arrowRight"></span>
-                </div>
+              <div class="banner-word">
+                <span> ##word.Books## </span>
+                <a class="banner-viewAll" href="/booksView">##word.View All##</a>
               </div>
-
               <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
                 <li x-list1="booksList">
                   <div class="nft">
