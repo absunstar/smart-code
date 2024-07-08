@@ -379,7 +379,6 @@ module.exports = function init(site) {
           where["teacherId"] = site.getSiteSetting(req.host).teacherId;
         }
         where["id"] = { $ne: 1 };
-        console.log(where);
         site.security.getUsers(where, (err, users, count) => {
           res.json({
             done: true,

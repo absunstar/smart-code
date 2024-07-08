@@ -159,8 +159,8 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.users.length > 0) {
-          $scope.teachersList = response.data.users;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.teachersList = response.data.list;
         }
       },
       function (err) {
