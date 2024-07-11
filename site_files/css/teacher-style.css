@@ -172,3 +172,7 @@ legend {
   height: 37vw !important;
   scrollbar-color: #2087e7 #e7e7e7;
 }
+.tabs .tabs-header .tab-link.active {
+ 
+  color: white !important;
+}

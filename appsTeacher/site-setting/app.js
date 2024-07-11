@@ -208,6 +208,20 @@ module.exports = function init(site) {
     );
   };
 
+  site.getTeacherSetting = function (req, host = "") {
+    let teacherId = null;
+    let setting = site.settingList.find((s) => s.host.like(host)) || {
+      ...site.defaultSetting,
+      ...site.settingList[0],
+      host: "",
+    };
+
+    if (setting.isShared) {
+      
+    }
+    return teacherId;
+  };
+
   site.supportedLanguageList.forEach((l) => {
     site.defaultSetting.languageList.push({ ...l });
   });
@@ -266,9 +280,7 @@ module.exports = function init(site) {
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host) || {};
-      let language =
-        setting.languageList.find((l) => l.id == req.session.lang) ||
-        setting.languageList[0];
+      let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
       res.render(
         "site-setting/index.html",
@@ -305,43 +317,40 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post(
-    { name: "/api/set-site-setting", require: { permissions: ["login"] } },
-    (req, res) => {
-      let response = {
-        done: false,
-      };
-      let data = req.data;
-      data.host = data.host || req.host;
-      let index = site.settingList.findIndex((s) => s.host == data.host);
+  site.post({ name: "/api/set-site-setting", require: { permissions: ["login"] } }, (req, res) => {
+    let response = {
+      done: false,
+    };
+    let data = req.data;
+    data.host = data.host || req.host;
+    let index = site.settingList.findIndex((s) => s.host == data.host);
+    data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
+    data.teacherId = data.teacher && data.teacher.id ? data.teacher.id : 0;
+    if (index > -1) {
+      $siteSetting.update(data, (err, result) => {
+        if (!err && result.doc) {
+          response.done = true;
+          site.settingList[index] = {
+            ...site.settingList[index],
+            ...result.doc,
+          };
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      });
+    } else {
+      delete data.id;
+      delete data._id;
       data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
-      data.teacherId = data.teacher && data.teacher.id ? data.teacher.id : 0
-      if (index > -1) {
-        $siteSetting.update(data, (err, result) => {
-          if (!err && result.doc) {
-            response.done = true;
-            site.settingList[index] = {
-              ...site.settingList[index],
-              ...result.doc,
-            };
-          } else {
-            response.error = err.message;
-          }
-          res.json(response);
-        });
-      } else {
-        delete data.id;
-        delete data._id;
-        data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
 
-        $siteSetting.add(data, (err, doc) => {
-          if (!err && doc) {
-            response.done = true;
-            site.settingList.push({ ...doc });
-          }
-          res.json(response);
-        });
-      }
+      $siteSetting.add(data, (err, doc) => {
+        if (!err && doc) {
+          response.done = true;
+          site.settingList.push({ ...doc });
+        }
+        res.json(response);
+      });
     }
-  );
+  });
 };

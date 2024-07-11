@@ -3,7 +3,6 @@ module.exports = function init(site) {
     name: "/teacher",
     path: __dirname + "/site_files",
   });
-
   site.get({
     name: ["/css/teacher.css"],
     parser: "css2",
@@ -28,7 +27,7 @@ module.exports = function init(site) {
       __dirname + "/site_files/css/footer.css",
       __dirname + "/site_files/css/color.css",
       __dirname + "/site_files/css/style.css",
-      __dirname + "/site_files/css/mobile.css",
+      __dirname + "/site_files/css/teacher-mobile.css",
     ],
   });
 

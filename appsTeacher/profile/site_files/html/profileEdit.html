@@ -5,6 +5,23 @@
     <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
     <style>
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+
+      body {
+        background-color: #eceff5 !important;
+
+        background-repeat: repeat !important;
+      }
+      * {
+        max-width: initial;
+      }
+
       figure {
         & figcaption {
           .price {
@@ -23,7 +40,8 @@
         background: #2087e7;
         color: white;
         border-radius: 5px;
-        font-size: x-large;
+        font-size: xx-large;
+        width: 100%;
       }
       .user-type {
         text-align-last: center;
@@ -75,6 +93,18 @@
       * {
         max-width: initial;
       }
+      figure {
+        & figcaption {
+          .price {
+            right: 0px !important;
+          }
+        }
+      }
+      @media screen and (max-width: 480px) {
+        .display-content {
+          display: contents;
+        }
+      }
     </style>
     <style x-lang="ar">
       .nav1 {
@@ -110,8 +140,7 @@
           <div id="profile" class="tab-content">
             <div class="form">
               <div class="row">
-                <div class="col1"></div>
-                <div class="col10 register-content">
+                <div class="register-content">
                   <div class="row">
                     <div class="col6">
                       <i-control v="r" class="input-style" label="##word.Full Name##" ng-model="user.firstName"> </i-control>
@@ -148,7 +177,7 @@
 
                       <i-control v="r" class="pass input-style" label="##word.Password##" type="password" id="pass1" ng-model="user.password"></i-control>
 
-                      <i-checkbox class="right" label="##word.Show Password##" ng-change="showPassword()" ng-model="showPassword"> </i-checkbox>
+                      <i-checkbox class="right display-content" label="##word.Show Password##" ng-change="showPassword()" ng-model="showPassword"> </i-checkbox>
                     </div>
                     <div class="col6 padding">
                       <div class="row">
@@ -167,7 +196,17 @@
                       <br />
 
                       <i-control v="r" class="input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
-                      <i-list label="##word.Parent##" ng-get="getParentsList($search)" ng-show="user.type == 'student'" x-data="setting.showParent" ng-model="user.parent" items="parentsList" display="firstName" ng-search="user.$parent"> </i-list>
+                      <i-list
+                        label="##word.Parent##"
+                        ng-get="getParentsList($search)"
+                        ng-show="user.type == 'student'"
+                        x-data="setting.showParent"
+                        ng-model="user.parent"
+                        items="parentsList"
+                        display="firstName"
+                        ng-search="user.$parent"
+                      >
+                      </i-list>
                       <i-control ng-show="user.type == 'student'" class="center input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
                       <i-control v="e" class="input-style" label="##word.Contact Email##" ng-model="user.contactEmail"> </i-control>
 
@@ -204,15 +243,12 @@
                     <img ng-src="{{package.image.url}}" alt="" />
                     <figcaption>
                       <p>{{package.description}}</p>
-                      <div class="row">
-                        <a class="col-6" href="/packageView?id={{package._id}}">
-                          <button>##word.More##..</button>
-                        </a>
-
+                      <div class="row price-more-card">
                         <i class="price col-6"
                           >##word.$## {{package.price}}
                           <s class="red">{{package.totalLecturesPrice}}</s>
                         </i>
+                        <a class="col-6 more-card" href="/packageView?id={{package._id}}"> ##word.More##.. </a>
                       </div>
                     </figcaption>
                   </figure>
@@ -230,13 +266,10 @@
                     <img ng-src="{{lecture.image.url}}" alt="" />
                     <figcaption>
                       <p>{{lecture.description}}</p>
-                      <div class="row">
-                        <a class="col-6" href="/lectureView?id={{lecture._id}}">
-                          <button>##word.More##..</button>
-                        </a>
-
+                      <div class="row price-more-card">
                         <i class="price col-6" ng-show="lecture.price">##word.$## {{lecture.price}} </i>
                         <i class="price col-6" ng-show="!lecture.price">##word.Free## </i>
+                        <a class="col-6 more-card" href="/lectureView?id={{lecture._id}}"> ##word.More##.. </a>
                       </div>
                     </figcaption>
                   </figure>

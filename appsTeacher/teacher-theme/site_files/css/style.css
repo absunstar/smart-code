@@ -509,6 +509,10 @@ figure {
   border-radius: 3px;
 }
 
+.student-parent-main {
+  margin: 15px;
+}
+
 .student-parent {
   display: -webkit-box;
   img {
@@ -536,4 +540,22 @@ figure {
 }
 @media screen and (max-width: 768px) {
  
+}
+
+
+:root {
+  --body-margin-top: 0px;
+  --body-margin-bottom: 0px;
+  --zoom: 100%;
+  --fieldset-border: none;
+  --fieldset-background: #fff;
+}
+
+body {
+  background-color: #eceff5 !important;
+
+  background-repeat: repeat !important;
+}
+* {
+  max-width: initial;
 }

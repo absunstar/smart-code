@@ -78,6 +78,11 @@
       * {
         max-width: initial;
       }
+      @media screen and (max-width: 480px) {
+        .user-place-type {
+          width: -webkit-fill-available;
+        }
+      }
     </style>
     <style x-lang="ar">
       .nav1 {
@@ -102,35 +107,28 @@
     <div class="form" style="text-align-last: center" id="register">
       <div class="tabs">
         <div class="row" ng-hide="user.type">
-          <div class="col3"></div>
-          <div class="col6">
-            <button ng-click="typeSelect('parent',$event)" class="user-place-type" id="parent">
-              <i class="fas fa-user-friends"></i>
-              <p>##word.Parent##</p>
-            </button>
-            <button ng-click="typeSelect('student',$event)" class="user-place-type" id="student">
-              <i class="fas fa-user-graduate"></i>
-              <p>##word.Student##</p>
-            </button>
-          </div>
+          <button ng-click="typeSelect('parent',$event)" class="user-place-type" id="parent">
+            <i class="fas fa-user-friends"></i>
+            <p>##word.Parent##</p>
+          </button>
+          <button ng-click="typeSelect('student',$event)" class="user-place-type" id="student">
+            <i class="fas fa-user-graduate"></i>
+            <p>##word.Student##</p>
+          </button>
         </div>
         <div class="row" ng-hide="user.placeType || !user.type || user.type == 'parent'">
-          <div class="col3"></div>
-          <div class="col6">
-            <button ng-click="placeTypeSelect('offline',$event)" class="user-place-type" id="offline">
-              <i class="fas fa-user"></i>
-              <p>##word.Offline##</p>
-            </button>
-            <button ng-click="placeTypeSelect('online',$event)" class="user-place-type" id="online">
-              <i class="fas fa-user-tie"></i>
-              <p>##word.Online##</p>
-            </button>
-          </div>
+          <button ng-click="placeTypeSelect('offline',$event)" class="user-place-type" id="offline">
+            <i class="fas fa-user"></i>
+            <p>##word.Offline##</p>
+          </button>
+          <button ng-click="placeTypeSelect('online',$event)" class="user-place-type" id="online">
+            <i class="fas fa-user-tie"></i>
+            <p>##word.Online##</p>
+          </button>
         </div>
 
         <div class="row" id="emailData" ng-show="user.placeType || user.type == 'parent'">
-          <div class="col1"></div>
-          <div class="col10 register-content">
+          <div class="register-content">
             <div class="row">
               <div class="col6">
                 <i-control v="r" class="input-style" label="##word.Full name##" ng-model="user.firstName"> </i-control>
