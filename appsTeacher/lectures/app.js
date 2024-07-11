@@ -479,6 +479,7 @@ module.exports = function init(site) {
               if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == doc._id.toString())) {
                 doc.$buy = true;
                 doc.linksList.forEach((_video) => {
+                  req.session.user.viewsList = req.session.user.viewsList || [];
                   let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _video.code);
                   _video.isValid = false;
                   if (index !== -1) {
