@@ -172,11 +172,15 @@ module.exports = function init(site) {
         } else if (_data.type == "student") {
           _data.roles = [{ name: "student" }];
         }
-        _data.teacherId = site.getSiteSetting(req.host).teacherId || 0;
+
+       
+        _data.host = site.getHostFilter(req.host);
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            site.addNewHost({ domain: doc.userName, filter: doc.userName });
+            if (!setting.isShared) {
+              site.addNewHost({ domain: doc.userName, filter: doc.userName });
+            }
             response.done = true;
             response.doc = doc;
           } else {
@@ -375,7 +379,6 @@ module.exports = function init(site) {
           });
         }
         if (where["type"] != "teacher") {
-
           where["teacherId"] = site.getSiteSetting(req.host).teacherId;
         }
         where["id"] = { $ne: 1 };
@@ -414,6 +417,26 @@ module.exports = function init(site) {
       }
     });
   };
+
+
+  site.getTeachers = function (req, callBack) {
+    callBack = callBack || function () {};
+    let select = req.body.select || {
+      id: 1,
+      firstName: 1,
+      image: 1,
+      title: 1,
+      bio: 1,
+    };
+    let where = {};
+    where["active"] = true;
+    where["host"] = site.getHostFilter(req.host);
+    app.$collection.findMany({ where, select }, (err, docs) => {
+      callBack(err, docs);
+    });
+    // }
+  };
+
 
   app.init();
   site.addApp(app);

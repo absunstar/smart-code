@@ -15,6 +15,16 @@
 i-checklist label {
   float: right !important;
 }
+.exit-teacher {
+  background: linear-gradient(to bottom, #70b8fb 0%, #1475cf00 100%);
+  color: black !important;
+  padding: 6px 10px 8px 10px;
+  margin: 5px;
+  border-radius: 25px;
+}
+.exit-teacher:hover {
+  background: #eceff5;
+}
 .login-btn {
   background: linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
   color: white !important;

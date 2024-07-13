@@ -54,6 +54,7 @@
           </ul>
         </li>
       </div>
+      <a class="exit-teacher" x-data="isTeacher" href="#" ng-click="exitTeacher();"> تبديل المدرس </a>
       <a x-permission="!login" class="login-btn" href="/login"> تسجيل الدخول </a>
       <a x-permission="!login" class="newRegister" href="/register"> مستخدم جديد </a>
     </div>
@@ -110,12 +111,12 @@
           </li>
         </div> -->
 
-         <div class="governorat col-8">
+        <div class="governorat col-8">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">##word.My Menu##</button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item"  href="/profileEdit?id=##session.user._id##">##word.Manage My Page##</a></li>
-              <li><a class="dropdown-item"  x-permissions="admin || teacher" href="/lectures">##word.Dashboard##</a></li>
+              <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##">##word.Manage My Page##</a></li>
+              <li><a class="dropdown-item" x-permissions="admin || teacher" href="/lectures">##word.Dashboard##</a></li>
               <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
             </ul>
           </div>
@@ -128,9 +129,9 @@
       </div>
 
       <div class="userContainer" x-permission="!login">
- 
-        <a  class="login-btn" href="/login"> تسجيل الدخول </a>
-        <a  class="newRegister" href="/register"> مستخدم جديد </a>
+        <a class="exit-teacher" ng-click="exitTeacher();"> تبديل المدرس </a>
+        <a class="login-btn" href="/login"> تسجيل الدخول </a>
+        <a class="newRegister" href="/register"> مستخدم جديد </a>
       </div>
 
       <div class="button-screen">

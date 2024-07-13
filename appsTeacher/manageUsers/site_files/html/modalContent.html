@@ -7,13 +7,13 @@
           <div class="col4">
             <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
           </div>
-
           <i-control type="text" v="r" ng-model="item.firstName" label="##word.Full Name##"></i-control>
-
           <i-control v="r" class="input-style" label="##word.User Name##" ng-model="item.userName"> </i-control>
-            <i-date label="##word.Birth Of Date##" ng-model="item.bitrhOfDate"> </i-date>
-            <i-control ng-show="item.placeType == 'online'" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
-            <i-control label="##word.BrowserId##" ng-show="item.type.name == 'student'" ng-model="item.socialBrowserID"> </i-control>
+          <i-date label="##word.Birth Of Date##" ng-model="item.bitrhOfDate"> </i-date>
+          <i-control ng-show="item.placeType == 'online'" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
+          <i-control label="##word.BrowserId##" ng-show="item.type == 'student'" ng-model="item.socialBrowserID"> </i-control>
+          <i-control label="##word.Title##" ng-show="item.type == 'teacher'" ng-model="item.title"> </i-control>
+          <i-control label="##word.Bio##" ng-show="item.type == 'teacher'" ng-model="item.bio"> </i-control>
         </div>
       </div>
       <div class="col3 center">
@@ -36,8 +36,6 @@
     <div class="tabs-content">
       <div id="contactInformations" class="tab-content">
         <fieldset>
-         
-        
           <div class="row">
             <i-list
               class="col4"
@@ -97,7 +95,17 @@
               ng-get="getCountriesList($search)"
             ></i-list>
             <i-list help-id="" class="col3" label="##word.Governorate##" ng-change="getCitiesList(item.gov)" ng-model="item.gov" display="name" items="govesList" ng-search="item.$gov"></i-list>
-            <i-list class="col3" x-data="setting.citiesAndAreasShow" label="##word.City##" ng-model="item.city" ng-change="getAreasList(item.city)" items="citiesList" display="name" ng-search="item.$area"> </i-list>
+            <i-list
+              class="col3"
+              x-data="setting.citiesAndAreasShow"
+              label="##word.City##"
+              ng-model="item.city"
+              ng-change="getAreasList(item.city)"
+              items="citiesList"
+              display="name"
+              ng-search="item.$area"
+            >
+            </i-list>
             <i-list class="col3" x-data="setting.citiesAndAreasShow" label="##word.Area##" ng-model="item.area" items="areasList" display="name" ng-search="item.$area"> </i-list>
           </div>
 

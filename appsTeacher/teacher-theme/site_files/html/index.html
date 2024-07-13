@@ -6,9 +6,8 @@
 
     <main class="container">
       <div x-data="setting.showBanner">
-        <img  class="banner-site" ng-src="##data.banner##" alt="" srcset="" />
+        <img class="banner-site" ng-src="##data.banner##" alt="" srcset="" />
         <div class="separative"></div>
-
       </div>
 
       <div class="row mainContent row-cols-1 row-cols-lg-2">
@@ -18,6 +17,28 @@
               <img src=" " alt="" srcset="" />
             </div>
 
+            <div class="row" x-data="showTeachers">
+              <div class="banner-word">
+                <span> ##word.Teachers## </span>
+              </div>
+
+              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+                <li class="teacher-main-li" x-list1="teachersList">
+                  <a  ng-click="selectTeacher(##item1.id##)" href="#">
+                    <div class="teacher-main-div">
+                      <img src="##item1.image.url##" alt="" />
+                      <div>
+                        <p class="center font-20 bold margin">##item1.firstName##</p>
+                        <p class="center">##item1.title##</p>
+                        <p class="teacher-main-bio">##item1.bio##</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <div class="separative"></div>
+            </div>
+
             <div class="row" x-data="isParent">
               <div class="banner-word">
                 <span> ##word.Students## </span>
@@ -25,7 +46,7 @@
 
               <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
                 <li class="student-parent-main" x-list1="childrenList">
-                  <a   href="/lecturesStudentView?id=##item1._id##">
+                  <a href="/lecturesStudentView?id=##item1._id##">
                     <div class="student-parent" href="/lecturesStudentView?id=##item1._id##">
                       <img src="##item1.image.url##" alt="" />
                       <span class="name">##item1.firstName##</span>

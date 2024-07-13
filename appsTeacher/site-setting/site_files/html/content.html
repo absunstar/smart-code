@@ -14,8 +14,7 @@
           <div class="row padding border margin">
             <div class="row">
               <i-control class="col6" label="##word.Ceo Manager##" ng-model="siteSetting.ceoManager"> </i-control>
-              <i-list class="col6" label="##word.Teacher##" ng-model="siteSetting.teacher" display="firstName" items="teachersList" ng-get="getTeachersList($search)"></i-list>
-
+              <i-list class="col6" label="##word.Teacher##" ng-hide="siteSetting.isShared" ng-model="siteSetting.teacher" display="firstName" items="teachersList" ng-get="getTeachersList($search)"></i-list>
             </div>
           </div>
 
@@ -130,6 +129,7 @@
                 </div>
 
                 <div class="row">
+                  <i-checkbox class="" label="##word.Shared Site##" ng-model="siteSetting.isShared"> </i-checkbox>
                   <i-checkbox class="" label="##word.Cities And Areas Show##" ng-model="siteSetting.citiesAndAreasShow"> </i-checkbox>
                   <i-checkbox class="" label="##word.Nationalities Show##" ng-model="siteSetting.nationalitiesShow"> </i-checkbox>
                   <i-checkbox class="" label="##word.Name Besid Logo Show##" ng-model="siteSetting.nameBesidLogoShow"> </i-checkbox>

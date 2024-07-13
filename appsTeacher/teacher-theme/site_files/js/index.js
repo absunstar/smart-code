@@ -11,22 +11,18 @@ app.controller('teacherTheme', function ($scope, $http, $timeout) {
         }
     });
   };
-  $scope.loadTeachers = function (where) {
+  $scope.selectTeacher = function (id) {
     $scope.error = '';
     $scope.busy = true;
-    where = where || {};
-    where['type'] = 'teacher';
     $http({
       method: 'POST',
-      url: '/api/users/all',
-      data: {
-        where: where,
-      },
+      url: '/api/selectTeacher',
+      data: id,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.teachersList = response.data.users;
+          window.location.href = '/';
         }
       },
       function (err) {
@@ -35,6 +31,27 @@ app.controller('teacherTheme', function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.exitTeacher = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/exitTeacher',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          window.location.href = '/';
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.logout = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -53,5 +70,4 @@ app.controller('teacherTheme', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.loadTeachers();
 });

@@ -166,7 +166,13 @@ module.exports = function init(site) {
         let _data = req.data;
 
         _data.addUserInfo = req.getUserFinger();
-        _data.teacherId = site.getSiteSetting(req.host).teacherId;
+        if (site.getTeacherSetting(req) == null) {
+          response.error = "There Is No Teacher";
+          res.json(response);
+          return;
+        }
+        _data.teacherId = site.getTeacherSetting(req);
+
         _data.host = site.getHostFilter(req.host);
         app.add(_data, (err, doc) => {
           if (!err && doc) {
@@ -258,7 +264,7 @@ module.exports = function init(site) {
         let list = [];
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
-          if ((!where.active || doc.active) && doc.teacherId == site.getSiteSetting(req.host).teacherId) {
+          if ((!where.active || doc.active) && ((site.getTeacherSetting(req) && doc.teacherId == site.getTeacherSetting(req)) || doc.host == site.getHostFilter(req.host))) {
             list.push(obj);
           }
 

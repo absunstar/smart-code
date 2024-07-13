@@ -185,8 +185,8 @@ module.exports = function init(site) {
             setting: setting,
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
-        site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
-        page_image: setting.logo?.url || "/images/logo.png",
+            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
             user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
@@ -229,8 +229,8 @@ module.exports = function init(site) {
             setting: setting,
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
-        site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
-        page_image: setting.logo?.url || "/images/logo.png",
+            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
             user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
@@ -263,8 +263,14 @@ module.exports = function init(site) {
         _data.date = new Date();
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
-_data.teacherId = site.getSiteSetting(req.host).teacherId;
-app.add(_data, (err, doc) => {
+        if (site.getTeacherSetting(req) == null) {
+          response.error = "There Is No Teacher";
+          res.json(response);
+          return;
+        }
+        _data.teacherId = site.getTeacherSetting(req);
+
+        app.add(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
             response.doc = doc;
@@ -416,7 +422,7 @@ app.add(_data, (err, doc) => {
         }
 
         where["teacherId"] = site.getSiteSetting(req.host).teacherId;
-        app.all({ where, select, limit,sort: {id : -1} }, (err, docs) => {
+        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
               docs[i].$time = site.xtime(docs[i].date, req.session.lang || "ar");
@@ -469,7 +475,7 @@ app.add(_data, (err, doc) => {
                     price: doc.price,
                     date: new Date(),
                     host: site.getHostFilter(req.host),
-                    teacherId : site.getSiteSetting(req.host).teacherId,
+                    teacherId: site.getSiteSetting(req.host).teacherId,
                     user: {
                       id: user.id,
                       firstName: user.firstName,
@@ -536,7 +542,7 @@ app.add(_data, (err, doc) => {
     }
     where["teacherId"] = site.getSiteSetting(req.host).teacherId;
     where["active"] = true;
-    app.$collection.findMany({ where, select, limit,sort: {id : -1} }, (err, docs) => {
+    app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
           let doc = docs[i];

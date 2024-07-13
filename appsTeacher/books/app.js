@@ -256,7 +256,12 @@ module.exports = function init(site) {
         _data.date = new Date();
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
-        _data.teacherId = site.getSiteSetting(req.host).teacherId;
+        if(site.getTeacherSetting(req) == null) {
+          response.error = 'There Is No Teacher';
+          res.json(response);
+          return
+        }
+        _data.teacherId = site.getTeacherSetting(req);
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
@@ -400,7 +405,11 @@ module.exports = function init(site) {
           }
         }
 
-        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        if(site.getTeacherSetting(req)){
+          where["teacherId"] =site.getTeacherSetting(req);
+        } else {
+          where["host"] =site.getHostFilter(req.host);
+        }
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {}
@@ -474,24 +483,18 @@ module.exports = function init(site) {
       price: 1,
       date: 1,
     };
-    // let books = [];
-    // if (req.session.user && req.session.user.type == "student") {
-    //   books = site.booksList.filter(
-    //     (a) => a.host == site.getHostFilter(req.host) && a.schoolYear.id == req.session.user.schoolYear.id && a.educationalLevel.id == req.session.user.educationalLevel.id
-    //   );
-    // } else {
-    //   books = site.booksList.filter((a) => a.host == site.getHostFilter(req.host));
-    // }
-    // if (books.length > 0) {
-    //   callBack(null, books);
-    // } else {
+
     let where = {};
     if (req.session.user && req.session.user.type == "student") {
       where["educationalLevel.id"] = req.session.user.educationalLevel.id;
       where["schoolYear.id"] = req.session.user.schoolYear.id;
     }
     where["active"] = true;
-    where["teacherId"] = setting.teacherId;
+    if(site.getTeacherSetting(req)){
+      where["teacherId"] =site.getTeacherSetting(req);
+    } else {
+      where["host"] =site.getHostFilter(req.host);
+    }
     app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {

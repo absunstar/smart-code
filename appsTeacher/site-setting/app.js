@@ -208,16 +208,45 @@ module.exports = function init(site) {
     );
   };
 
-  site.getTeacherSetting = function (req, host = "") {
+  site.getTeacherSetting = function (req) {
     let teacherId = null;
-    let setting = site.settingList.find((s) => s.host.like(host)) || {
+    let setting = site.settingList.find((s) => s.host.like(req.host)) || {
       ...site.defaultSetting,
       ...site.settingList[0],
       host: "",
     };
 
     if (setting.isShared) {
-      
+      if (req.session.user && req.session.user.type == "teacher") {
+        teacherId = req.session.user.id;
+      } else if (req.session.teacherId) {
+        teacherId = req.session.teacherId;
+      }
+    } else {
+      if (setting.teacher && setting.teacher.id) {
+        teacherId = setting.teacher.id;
+      }
+    }
+    return teacherId;
+  };
+
+  site.getTeacherSettingToGet = function (req) {
+    let teacherId = null;
+    let setting = site.settingList.find((s) => s.host.like(req.host)) || {
+      ...site.defaultSetting,
+      ...site.settingList[0],
+      host: "",
+    };
+
+    if (setting.isShared) {
+      if (req.session.user && req.session.user.type == "teacher") {
+        teacherId = req.session.user.id;
+      } else {
+      }
+    } else {
+      if (setting.teacher && setting.teacher.id) {
+        teacherId = setting.teacher.id;
+      }
     }
     return teacherId;
   };

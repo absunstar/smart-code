@@ -60,18 +60,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -162,30 +158,32 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
+        let _data = req.data;
 
-          _data.addUserInfo = req.getUserFinger();
-          _data.host = site.getHostFilter(req.host);
-          _data.teacherId = site.getSiteSetting(req.host).teacherId;
-
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
+        _data.addUserInfo = req.getUserFinger();
+        _data.host = site.getHostFilter(req.host);
+        if (site.getTeacherSetting(req) == null) {
+          response.error = "There Is No Teacher";
+          res.json(response);
+          return;
         }
-      );
+        _data.teacherId = site.getTeacherSetting(req);
+
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -291,18 +289,14 @@ module.exports = function init(site) {
           let list = app.memoryList
             .filter(
               (g) =>
-                (typeof where.active != "boolean" ||
-                  g.active === where.active) &&
-                JSON.stringify(g).contains(search) && g.teacherId == site.getSiteSetting(req.host).teacherId
+                (typeof where.active != "boolean" || g.active === where.active) &&
+                JSON.stringify(g).contains(search) &&
+                ((site.getTeacherSetting(req) && g.teacherId == site.getTeacherSetting(req)) || g.host == site.getHostFilter(req.host))
             )
             .slice(0, limit);
 
           if (where && where["educationalLevel.id"]) {
-            list = list.filter(
-              (g) =>
-                g.educationalLevel &&
-                g.educationalLevel.id == where["educationalLevel.id"]
-            );
+            list = list.filter((g) => g.educationalLevel && g.educationalLevel.id == where["educationalLevel.id"]);
           }
           res.json({
             done: true,

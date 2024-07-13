@@ -201,6 +201,13 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
+          let teacherId = site.getTeacherSetting(req);
+          if(teacherId == null) {
+            response.error = 'There Is No Teacher';
+            res.json(response);
+            return
+          }
+  
           let where = {};
           where["teacherId"] = site.getSiteSetting(req.host).teacherId;
           let select = { id: 1 };
@@ -215,7 +222,7 @@ module.exports = function init(site) {
                 expired: false,
                 distribution: false,
                 price: _data.price,
-                teacherId: site.getSiteSetting(req.host).teacherId,
+                teacherId: teacherId,
                 host,
               });
             }

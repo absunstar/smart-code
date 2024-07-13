@@ -69,17 +69,22 @@ module.exports = function init(site) {
       return;
     }
 
-    let page_implement_doc = req.body;
-    page_implement_doc.$req = req;
-    page_implement_doc.$res = res;
-    _data.teacherId = site.getSiteSetting(req.host).teacherId;
-
-    page_implement_doc.add_user_info = site.security.getUserFinger({
+    let _data = req.body;
+    _data.$req = req;
+    _data.$res = res;
+    _data.host = site.getHostFilter(req.host);
+    if (site.getTeacherSetting(req) == null) {
+      response.error = "There Is No Teacher";
+      res.json(response);
+      return;
+    }
+    _data.teacherId = site.getTeacherSetting(req);
+    _data.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    $pages.add(page_implement_doc, (err, doc) => {
+    $pages.add(_data, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;

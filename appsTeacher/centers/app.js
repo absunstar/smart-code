@@ -211,7 +211,12 @@ module.exports = function init(site) {
 
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
-        _data.teacherId = site.getSiteSetting(req.host).teacherId;
+        if(site.getTeacherSetting(req) == null) {
+          response.error = 'There Is No Teacher';
+          res.json(response);
+          return
+        }
+        _data.teacherId = site.getTeacherSetting(req);
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
