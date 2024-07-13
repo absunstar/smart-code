@@ -119,31 +119,11 @@ module.exports = function init(site) {
     return teacherId;
   };
 
-  site.supportedLanguageList.forEach((l) => {
-    site.defaultSetting.languageList.push({ ...l });
-  });
+
 
   $siteSetting.findAll({ sort: { id: 1 } }, (err, docs) => {
     if (!err && docs && docs.length > 0) {
       docs.forEach((doc) => {
-        if (!doc.article.articleTypes) {
-          doc.article.articleTypes = site.articleTypes;
-        }
-
-        if (!doc.article.languages) {
-          doc.article.languages = [...site.supportedLanguageList];
-        }
-
-        if (!doc.languageList) {
-          doc.languageList = [...site.supportedLanguageList];
-        } else {
-          doc.languageList.forEach((lang, i) => {
-            doc.languageList[i] = {
-              ...doc.languageList[i],
-              ...site.supportedLanguageList[i],
-            };
-          });
-        }
         site.settingList.push({ ...doc });
       });
       site.defaultSetting = { ...site.defaultSetting, ...site.settingList[0] };
