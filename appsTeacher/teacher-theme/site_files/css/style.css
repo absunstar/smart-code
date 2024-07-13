@@ -359,7 +359,9 @@ figure {
     }
   }
 }
-
+.content-right {
+  text-align: -webkit-right;
+}
 .teacher-main-li {
   padding: 10px;
   margin: 10px;

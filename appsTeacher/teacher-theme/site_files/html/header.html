@@ -37,6 +37,7 @@
         </button>
       </div>
     </nav>
+    <a class="exit-teacher" x-data="isTeacher" href="#" ng-click="exitTeacher();"> ##word.Change Teacher##</a>
 
     <a x-features="login" class="desktop" href="#" onclick="event.stopPropagation(); $('.notification-menu').toggle()">
       <i class="fas fa-bell notifacation-icon"></i>
@@ -54,7 +55,6 @@
           </ul>
         </li>
       </div>
-      <a class="exit-teacher" x-data="isTeacher" href="#" ng-click="exitTeacher();"> تبديل المدرس </a>
       <a x-permission="!login" class="login-btn" href="/login"> تسجيل الدخول </a>
       <a x-permission="!login" class="newRegister" href="/register"> مستخدم جديد </a>
     </div>
@@ -99,7 +99,7 @@
       <div class="closeBtn row">
         <i class="fas fa-window-close"></i>
       </div>
-      <div class="userAndGovernort pb-2 row row-cols-2 justify-content-between" x-permission="login">
+      <div class="userAndGovernort pb-2 row row-cols-3" x-permission="login">
         <!-- <div class="profile" x-permission="login">
           <li class="nav-item dropdown">
             <img src="##data.user_image##" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
@@ -110,8 +110,31 @@
             </ul>
           </li>
         </div> -->
-
-        <div class="governorat col-8">
+        <div class="col-5">
+          <a class="exit-teacher" x-data="isTeacher" href="#" ng-click="exitTeacher();"> ##word.Change Teacher##</a>
+        </div>
+        <div class="col-3 center">
+          <a x-features="login" href="#" onclick="event.stopPropagation(); $('.notification-menu').toggle()">
+            <i class="fas fa-bell notifacation-icon"></i>
+            <i x-data="notificationsCount" class="notifacation-padge">##data.notificationsCount##</i>
+          </a>
+        </div>
+        <div class="userContainer col-3">
+          <div class="profile">
+            <li class="nav-item dropdown">
+              <img src="##data.user_image##" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
+                <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##">##word.Manage My Page##</a></li>
+                <li><a class="dropdown-item" x-permissions="admin || teacher" href="/lectures">##word.Dashboard##</a></li>
+                <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
+              </ul>
+            </li>
+          </div>
+        </div>
+      </div>
+   <!--    <div class="userAndGovernort pb-2 row row-cols-2 justify-content-between" x-permission="login">
+        <div class="governorat col-5">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">##word.My Menu##</button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -121,15 +144,16 @@
             </ul>
           </div>
         </div>
-        <div class="userContainer col-4">
-          <div class="profile">
-            <img src="##data.user_image##" alt="" srcset="" />
+        <div class="governorat col-5">
+          <div class="dropdown">
+            <button class="btn btn-secondary" x-data="isTeacher" ng-click="exitTeacher();" type="button" aria-expanded="false">##word.Change Teacher##</button>
           </div>
         </div>
+     
       </div>
-
+ -->
       <div class="userContainer" x-permission="!login">
-        <a class="exit-teacher" ng-click="exitTeacher();"> تبديل المدرس </a>
+        <a class="exit-teacher" x-data="isTeacher" href="#" ng-click="exitTeacher();"> ##word.Change Teacher##</a>
         <a class="login-btn" href="/login"> تسجيل الدخول </a>
         <a class="newRegister" href="/register"> مستخدم جديد </a>
       </div>
@@ -146,6 +170,27 @@
         <a href="/booksView" x-data="setting.showBooks">
           <i class="fas fa-book"></i>
           ##word.Books##
+        </a>
+      </div>
+    </div>
+    <div class="notification-menu" style="display: none">
+      <div class="profile" x-permission="login">
+        <div x-list1="notificationsList" class="pointer padding notifacation-data">
+          <a href="/notificationsView">
+            <div class="row">
+              <div class="col2">
+                <img class="notifacation-logo" src="##data.site_logo##" alt="" />
+              </div>
+              <div class="col10">
+                <p class="padding notifacation-title">##item1.title##</p>
+                <p class="padding notifacation-content">##item1.content##</p>
+              </div>
+            </div>
+          </a>
+          <div class="separative"></div>
+        </div>
+        <a href="/notificationsView">
+          <p class="notification-viewAll">##word.View All##</p>
         </a>
       </div>
     </div>

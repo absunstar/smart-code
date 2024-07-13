@@ -86,10 +86,11 @@
     transform: translateX(770px);
     transition: transform 0.3s ease;
   }
-
+  
   .HeaderContanier .smScreen .menuContainer.open {
     transform: translateX(0px);
     background: #eceff5;
+    margin-top: 10px !important;
   }
 
   .HeaderContanier .smScreen .menuContainer .closeBtn {
@@ -179,6 +180,19 @@
     width: 170px;
   }
 
+  .notifacation-icon {
+    margin-top: 10px;
+  }
+  .exit-teacher {
+    background: linear-gradient(to bottom, #70b8fb 0%, #1475cf00 100%);
+    color: black !important;
+    padding: 10px;
+    margin: 5px;
+    font-weight: bold;
+    border-radius: 25px;
+    margin-top: 12px !important;
+    display: inline-block;
+  }
   .dropdown-menu {
     width: 170px;
   }
@@ -188,7 +202,8 @@
   }
 
   .HeaderContanier .smScreen .menuContainer .userContainer {
-    display: -webkit-inline-box;
+    display: table !important;
+    text-align: -webkit-center;
     justify-content: flex-end !important;
   }
   .HeaderContanier .smScreen .menuContainer .userContainer .profile {
@@ -201,7 +216,7 @@
   .HeaderContanier .smScreen .menuContainer .userContainer .profile img {
     width: 64px;
     height: 64px;
-    position: absolute;
+    position: none;
     left: 0px;
     top: 0px;
     border-radius: 100px;
