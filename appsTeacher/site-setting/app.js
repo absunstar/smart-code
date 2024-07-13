@@ -8,106 +8,6 @@ module.exports = function init(site) {
 
   site.settingList = [];
 
-  site.supportedLanguageList = [
-    {
-      id: "AR",
-      name: "عربي",
-      direction: "rtl",
-    },
-    {
-      id: "EN",
-      name: "English",
-      direction: "ltr",
-    },
-    {
-      id: "FR",
-      name: "French",
-      direction: "ltr",
-    },
-    {
-      id: "TR",
-      name: "Turki",
-      direction: "rtl",
-    },
-  ];
-
-  site.articleTypes = [
-    {
-      id: 1,
-      EN: "Standred",
-      AR: "افتراضى",
-    },
-    {
-      id: 2,
-      EN: "advanced",
-      AR: "متطور",
-    },
-    {
-      id: 3,
-      EN: "Multi-Paragraph",
-      AR: "متعدد الفقرات",
-    },
-    {
-      id: 4,
-      EN: "Multi-Paragraph advanced",
-      AR: "متعدد الفقرات متطور",
-    },
-    {
-      id: 5,
-      EN: "Multi-Image",
-      AR: "متعدد الصور",
-    },
-    {
-      id: 6,
-      EN: "google-news",
-      AR: "أخبار جوجل",
-    },
-    {
-      id: 7,
-      EN: "yts-movie",
-      AR: "yts-movie",
-    },
-    {
-      id: 8,
-      EN: "Youtube Video",
-      AR: "Youtube Video",
-    },
-    {
-      id: 9,
-      EN: "Facebook Post",
-      AR: "Facebook Post",
-    },
-  ];
-  site.publishingSystem = [
-    {
-      id: 1,
-      EN: "Immediately",
-      AR: "فوري",
-    },
-    {
-      id: 2,
-      EN: "By User",
-      AR: "بواسطة المستخدم",
-    },
-  ];
-  site.closingSystem = [
-    {
-      id: 1,
-      EN: "After a specified period",
-      AR: "بعد مدة محددة",
-    },
-    {
-      id: 2,
-      EN: "By User",
-      AR: "بواسطة المستخدم",
-    },
-    {
-      id: 3,
-      EN: "For Ever",
-      AR: "الى الابد",
-    },
-  ];
-
   site.siteColor = [
     {
       id: "#d7373f",
@@ -130,40 +30,8 @@ module.exports = function init(site) {
       AR: "أسود",
     },
   ];
-  site.articleStatus = [
-    {
-      id: 1,
-      EN: "Active",
-      AR: "نشط",
-    },
-    {
-      id: 2,
-      EN: "Under review",
-      AR: "قيد المراجعة",
-    },
-    {
-      id: 3,
-      EN: "Forbidden",
-      AR: "محظور",
-    },
-  ];
-  site.durationExpiry = [
-    {
-      id: 1,
-      EN: "Hour",
-      AR: "ساعة",
-    },
-    {
-      id: 2,
-      EN: "Day",
-      AR: "يوم",
-    },
-    {
-      id: 3,
-      EN: "Month",
-      AR: "شهر",
-    },
-  ];
+
+
   site.defaultSetting = {
     host: "",
     lengthOrder: 0,
