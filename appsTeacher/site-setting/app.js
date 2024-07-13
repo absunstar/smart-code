@@ -219,8 +219,8 @@ module.exports = function init(site) {
     if (setting.isShared) {
       if (req.session.user && req.session.user.type == "teacher") {
         teacherId = req.session.user.id;
-      } else if (req.session.teacherId) {
-        teacherId = req.session.teacherId;
+      } else if (req.session.selectedTeacherId) {
+        teacherId = req.session.selectedTeacherId;
       }
     } else {
       if (setting.teacher && setting.teacher.id) {

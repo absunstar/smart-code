@@ -378,8 +378,10 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
         }
-        if (where["type"] != "teacher") {
-          where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        if ((teacherId = site.getTeacherSetting(req))) {
+          where["teacherId"] = teacherId;
+        } else {
+          where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
         site.security.getUsers(where, (err, users, count) => {
@@ -406,7 +408,11 @@ module.exports = function init(site) {
       where["id"] = { $in: studentsIds };
     }
 
-    where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+    if ((teacherId = site.getTeacherSetting(req))) {
+      where["teacherId"] = teacherId;
+    } else {
+      where["host"] = site.getHostFilter(req.host);
+    }
 
     site.security.getUsers(where, (err, docs) => {
       if (!err && docs) {
@@ -431,6 +437,7 @@ module.exports = function init(site) {
     let where = {};
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
+    where["type"] = 'teacher';
     app.$collection.findMany({ where, select }, (err, docs) => {
       callBack(err, docs);
     });

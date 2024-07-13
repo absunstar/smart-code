@@ -256,12 +256,14 @@ module.exports = function init(site) {
         _data.date = new Date();
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
-        if(site.getTeacherSetting(req) == null) {
-          response.error = 'There Is No Teacher';
+        if (teacherId = site.getTeacherSetting(req)) {
+          _data.teacherId = teacherId;
+        } else {
+          response.error = "There Is No Teacher";
           res.json(response);
-          return
+          return;
         }
-        _data.teacherId = site.getTeacherSetting(req);
+
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
@@ -404,11 +406,10 @@ module.exports = function init(site) {
             };
           }
         }
-
-        if(site.getTeacherSetting(req)){
-          where["teacherId"] =site.getTeacherSetting(req);
+        if (teacherId = site.getTeacherSetting(req)) {
+          where["teacherId"] = teacherId;
         } else {
-          where["host"] =site.getHostFilter(req.host);
+          where["host"] = site.getHostFilter(req.host);
         }
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
@@ -441,6 +442,7 @@ module.exports = function init(site) {
               if (!user.booksList.some((l) => l.toString() == doc._id.toString())) {
                 user.booksList.push(doc._id);
               }
+
               site.addPurchaseOrder({
                 type: "book",
                 target: { id: doc._id, name: doc.name },
@@ -448,7 +450,8 @@ module.exports = function init(site) {
                 address: _data.address,
                 date: new Date(),
                 host: site.getHostFilter(req.host),
-                teacherId: site.getSiteSetting(req.host).teacherId,
+                teacherId: site.getTeacherSetting(req) || doc.teacherId,
+                status : site.bookStatusList[0] ,
                 user: {
                   id: user.id,
                   firstName: user.firstName,
@@ -490,10 +493,11 @@ module.exports = function init(site) {
       where["schoolYear.id"] = req.session.user.schoolYear.id;
     }
     where["active"] = true;
-    if(site.getTeacherSetting(req)){
-      where["teacherId"] =site.getTeacherSetting(req);
+
+    if ((teacherId = site.getTeacherSetting(req))) {
+      where["teacherId"] = teacherId;
     } else {
-      where["host"] =site.getHostFilter(req.host);
+      where["host"] = site.getHostFilter(req.host);
     }
     app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
       if (!err && docs) {

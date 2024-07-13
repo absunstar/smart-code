@@ -171,7 +171,13 @@ module.exports = function init(site) {
           email: req.session.user.email,
         };
         _data.host = site.getHostFilter(req.host);
-        _data.teacherId = site.getSiteSetting(req.host).teacherId;
+        if ((teacherId = site.getTeacherSetting(req))) {
+          _data.teacherId = teacherId;
+        } else {
+          response.error = "There Is No Teacher";
+          res.json(response);
+          return;
+        }
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
@@ -215,7 +221,7 @@ module.exports = function init(site) {
               app.add(
                 {
                   host: site.getHostFilter(req.host),
-                  teacherId : site.getSiteSetting(req.host).teacherId,
+                  teacherId: site.getTeacherSetting(req),
                   user: {
                     _id: req.session.user._id,
                     id: req.session.user.id,
@@ -408,7 +414,12 @@ module.exports = function init(site) {
           where["lecture.id"] = where["lecture"].id;
           delete where["lecture"];
         }
-        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        if ((teacherId = site.getTeacherSetting(req))) {
+          where["teacherId"] = teacherId;
+        } else {
+          where["host"] = site.getHostFilter(req.host);
+        }
+        
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
           res.json({ done: true, list: docs });
         });

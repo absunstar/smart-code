@@ -104,9 +104,9 @@
       <h1 class="bold text-center">##word.Register##</h1>
     </div>
 
-    <div class="form" style="text-align-last: center" id="register">
+    <div class="form" id="register">
       <div class="tabs">
-        <div class="row" ng-hide="user.type">
+        <div class="row place-center" ng-hide="user.type">
           <button ng-click="typeSelect('parent',$event)" class="user-place-type" id="parent">
             <i class="fas fa-user-friends"></i>
             <p>##word.Parent##</p>
@@ -116,7 +116,7 @@
             <p>##word.Student##</p>
           </button>
         </div>
-        <div class="row" ng-hide="user.placeType || !user.type || user.type == 'parent'">
+        <div class="row place-center" ng-hide="user.placeType || !user.type || user.type == 'parent'">
           <button ng-click="placeTypeSelect('offline',$event)" class="user-place-type" id="offline">
             <i class="fas fa-user"></i>
             <p>##word.Offline##</p>

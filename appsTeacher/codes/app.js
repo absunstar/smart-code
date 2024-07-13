@@ -209,7 +209,7 @@ module.exports = function init(site) {
           }
   
           let where = {};
-          where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+          where["teacherId"] = teacherId;
           let select = { id: 1 };
           app.all({ where, select }, (err, docs, count) => {
             let codesList = [];
@@ -348,7 +348,11 @@ module.exports = function init(site) {
           delete where.from;
           delete where.to;
         }
-        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        if ((teacherId = site.getTeacherSetting(req))) {
+          where["teacherId"] = teacherId;
+        } else {
+          where["host"] = site.getHostFilter(req.host);
+        }
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,

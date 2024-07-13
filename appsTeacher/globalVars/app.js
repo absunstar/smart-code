@@ -1,4 +1,21 @@
 module.exports = function init(site) {
+  site.bookStatusList = [
+    {
+      name: "newOrder",
+      nameAr: "طلب جديد",
+      nameEn: "New Order",
+    },
+    {
+      name: "canceled",
+      nameAr: "تم الإلغاء",
+      nameEn: "Canceled",
+    },
+    {
+      name: "delivered",
+      nameAr: "تم التسليم",
+      nameEn: "Delivered",
+    }
+  ];
   site.lecturesTypesList = [
     {
       name: "public",
@@ -563,6 +580,13 @@ module.exports = function init(site) {
     res.json({
       done: true,
       list: site.purchaseOrdersTargetList,
+    });
+  });
+
+  site.post("/api/bookStatusList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.bookStatusList,
     });
   });
 

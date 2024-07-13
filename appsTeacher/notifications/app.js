@@ -205,7 +205,13 @@ module.exports = function init(site) {
         _data.addUserInfo = req.getUserFinger();
         _data.date = new Date();
         _data.host = site.getHostFilter(req.host);
-        _data.teacherId = site.getSiteSetting(req.host).teacherId;
+        if ((teacherId = site.getTeacherSetting(req))) {
+          _data.teacherId = teacherId;
+        } else {
+          response.error = "There Is No Teacher";
+          res.json(response);
+          return;
+        }
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
@@ -322,7 +328,12 @@ module.exports = function init(site) {
             "type.name": search,
           });
         }
-        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        if ((teacherId = site.getTeacherSetting(req))) {
+          where["teacherId"] = teacherId;
+        } else {
+          where["host"] = site.getHostFilter(req.host);
+        }
+        
         app.all({ where, select, limit }, (err, docs) => {
           res.json({
             done: true,

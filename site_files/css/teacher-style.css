@@ -4,7 +4,9 @@
   --text-align: right !important;
   margin-right: 15px !important;
 }
-
+.place-center {
+  place-content: center;
+}
 legend {
   float: right !important;
 }

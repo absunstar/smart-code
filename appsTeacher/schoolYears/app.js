@@ -172,7 +172,13 @@ module.exports = function init(site) {
           res.json(response);
           return;
         }
-        _data.teacherId = site.getTeacherSetting(req);
+        if ((teacherId = site.getTeacherSetting(req))) {
+          _data.teacherId = teacherId;
+        } else {
+          response.error = "There Is No Teacher";
+          res.json(response);
+          return;
+        }
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
@@ -286,12 +292,12 @@ module.exports = function init(site) {
           if (!search) {
             search = "id";
           }
+          let teacherId = site.getTeacherSetting(req);
+          let host = site.getHostFilter(req.host);
           let list = app.memoryList
             .filter(
               (g) =>
-                (typeof where.active != "boolean" || g.active === where.active) &&
-                JSON.stringify(g).contains(search) &&
-                ((site.getTeacherSetting(req) && g.teacherId == site.getTeacherSetting(req)) || g.host == site.getHostFilter(req.host))
+                (typeof where.active != "boolean" || g.active === where.active) && JSON.stringify(g).contains(search) &&  (g.teacherId == teacherId || (g.host == host && !teacherId))
             )
             .slice(0, limit);
 

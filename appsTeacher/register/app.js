@@ -391,10 +391,10 @@ module.exports = function init(site) {
       type: req.body.user.type,
       createdDate: new Date(),
       host: site.getHostFilter(req.host),
+      teacherId : site.getTeacherSetting(req),
       $req: req,
       $res: res,
     };
-    user.teacherId = setting.teacher && setting.teacher.id ? setting.teacher.id : 0;
     if (req.body.user.placeType == "online") {
       user.active = false;
       site.security.addUser(user, function (err, doc) {

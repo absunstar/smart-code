@@ -181,6 +181,31 @@ module.exports = function init(site) {
           });
         }
       );
+      site.post(
+        {
+          name: `/api/${app.name}/updateStatus`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+          let _data = req.data;
+          app.view({ id: _data.id }, (err, doc) => {
+            doc.editUserInfo = req.getUserFinger();
+            doc.status = site.bookStatusList.find((itm) => itm.name == _data.type);
+            app.update(doc, (err, result) => {
+              if (!err) {
+                response.done = true;
+                response.doc = result.doc;
+              } else {
+                response.error = err.message;
+              }
+              res.json(response);
+            });
+          });
+        }
+      );
     }
 
     if (app.allowRouteDelete) {
@@ -240,6 +265,7 @@ module.exports = function init(site) {
           target: 1,
           address: 1,
           user: 1,
+          status: 1,
           date: 1,
         };
         if (where && where.fromDate && where.toDate) {
@@ -263,10 +289,14 @@ module.exports = function init(site) {
           delete where["book"];
         }
 
-
         if (where["lecture"]) {
           where["target.id"] = site.mongodb.ObjectID(where["lecture"]._id);
           delete where["lecture"];
+        }
+
+        if (where["status"]) {
+          where["status.name"] = where["status"].name;
+          delete where["status"];
         }
 
         if (where["targetType"]) {
@@ -286,7 +316,11 @@ module.exports = function init(site) {
             number: search,
           });
         }
-        where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+        if ((teacherId = site.getTeacherSetting(req))) {
+          where["teacherId"] = teacherId;
+        } else {
+          where["host"] = site.getHostFilter(req.host);
+        }
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
           // let totalPackages = 0;
           // let totalLectures = 0;

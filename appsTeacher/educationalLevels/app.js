@@ -166,12 +166,13 @@ module.exports = function init(site) {
         let _data = req.data;
 
         _data.addUserInfo = req.getUserFinger();
-        if (site.getTeacherSetting(req) == null) {
+        if ((teacherId = site.getTeacherSetting(req))) {
+          _data.teacherId = teacherId;
+        } else {
           response.error = "There Is No Teacher";
           res.json(response);
           return;
         }
-        _data.teacherId = site.getTeacherSetting(req);
 
         _data.host = site.getHostFilter(req.host);
         app.add(_data, (err, doc) => {
@@ -262,9 +263,11 @@ module.exports = function init(site) {
         let where = req.body.where || {};
         let select = req.body.select || { id: 1, name: 1, image: 1, active: 1 };
         let list = [];
+        let teacherId = site.getTeacherSetting(req);
+        let host = site.getHostFilter(req.host);
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
-          if ((!where.active || doc.active) && ((site.getTeacherSetting(req) && doc.teacherId == site.getTeacherSetting(req)) || doc.host == site.getHostFilter(req.host))) {
+          if ((!where.active || doc.active) && (doc.teacherId == teacherId || (doc.host == host && !teacherId))) {
             list.push(obj);
           }
 

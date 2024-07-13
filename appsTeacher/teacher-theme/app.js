@@ -80,9 +80,9 @@ module.exports = function init(site) {
                     lecturesList: lectures,
                     booksList: books,
                     teachersList: teachers,
-                    isTeacher: req.session.teacherId ? true : false,
+                    isTeacher: req.session.selectedTeacherId ? true : false,
                     guid: "",
-                    showTeachers: setting.isShared && !req.session.teacherId ? true : false,
+                    showTeachers: setting.isShared && !req.session.selectedTeacherId ? true : false,
                     setting: setting,
                     notificationsCount: notificationsCount,
                     notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
@@ -135,7 +135,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    req.session.teacherId = req.data
+    req.session.selectedTeacherId = req.data
     site.saveSession(req.session);
     response.done = true;
     res.json(response);
@@ -145,7 +145,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    req.session.teacherId = null;
+    req.session.selectedTeacherId = null;
     site.saveSession(req.session);
     response.done = true;
     res.json(response);

@@ -211,12 +211,13 @@ module.exports = function init(site) {
 
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
-        if(site.getTeacherSetting(req) == null) {
-          response.error = 'There Is No Teacher';
+        if ((teacherId = site.getTeacherSetting(req))) {
+          _data.teacherId = teacherId;
+        } else {
+          response.error = "There Is No Teacher";
           res.json(response);
-          return
+          return;
         }
-        _data.teacherId = site.getTeacherSetting(req);
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
@@ -314,6 +315,8 @@ module.exports = function init(site) {
           host: 1,
         };
         let list = [];
+        let teacherId = site.getTeacherSetting(req);
+        let host = site.getHostFilter(req.host);
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
           for (const p in obj) {
@@ -321,19 +324,19 @@ module.exports = function init(site) {
               delete obj[p];
             }
           }
-          if ((!where.active || doc.active) && doc.teacherId == site.getSiteSetting(req.host).teacherId) {
+          if ((!where.active || doc.active) && (doc.teacherId == teacherId || (doc.host == host && !teacherId))) {
             if (req.body.view) {
               if (req.session.user && req.session.user.type == "student") {
                 if (req.session.user.educationalLevel.id == obj.educationalLevel.id && req.session.user.schoolYear.id == obj.schoolYear.id) {
                   list.push(obj);
                 }
-              } 
+              }
               // else if (!req.session.user) {
               //   if (where.educationalLevelId == obj.educationalLevel.id && where.schoolYearId == obj.schoolYear.id) {
               //     list.push(obj);
               //   }
               // }
-               else {
+              else {
                 list.push(obj);
               }
             } else {

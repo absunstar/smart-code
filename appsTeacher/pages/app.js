@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $pages = site.connectCollection('pages');
+  const $pages = site.connectCollection("pages");
   site.pages_list = [];
   $pages.findMany({}, (err, docs) => {
     if (!err && docs) {
@@ -8,21 +8,19 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
+    name: "images",
+    path: __dirname + "/site_files/images/",
   });
 
   site.get({
-    name: 'pages',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
+    name: "pages",
+    path: __dirname + "/site_files/html/index.html",
+    parser: "html",
     compress: true,
   });
 
-  
-
-  site.onGET('/page/:url', (req, res) => {
-    let exists = false
+  site.onGET("/page/:url", (req, res) => {
+    let exists = false;
     let setting = site.getSiteSetting(req.host);
     setting.description = setting.description || "";
     setting.keyWordsList = setting.keyWordsList || [];
@@ -46,25 +44,25 @@ module.exports = function init(site) {
       data.page_image = "https://" + req.host + data.page_image;
       data.user_image = "https://" + req.host + data.user_image;
     }
-    site.pages_list.forEach(page => {
+    site.pages_list.forEach((page) => {
       if (page.url == req.params.url) {
-        exists = true
-        data.page = page
-        res.render('pages/page.html', data);
+        exists = true;
+        data.page = page;
+        res.render("pages/page.html", data);
       }
-    })
+    });
 
-    if(!exists){
-      res.render('pages/page.html', data);
+    if (!exists) {
+      res.render("pages/page.html", data);
     }
-  })
+  });
 
-  site.post('/api/pages/add', (req, res) => {
+  site.post("/api/pages/add", (req, res) => {
     let response = {
       done: false,
     };
     if (!req.session.user) {
-      response.error = 'Please Login First';
+      response.error = "Please Login First";
       res.json(response);
       return;
     }
@@ -78,7 +76,13 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    _data.teacherId = site.getTeacherSetting(req);
+    if ((teacherId = site.getTeacherSetting(req))) {
+      _data.teacherId = teacherId;
+    } else {
+      response.error = "There Is No Teacher";
+      res.json(response);
+      return;
+    }
     _data.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
@@ -96,13 +100,13 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/pages/update', (req, res) => {
+  site.post("/api/pages/update", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'Please Login First';
+      response.error = "Please Login First";
       res.json(response);
       return;
     }
@@ -115,45 +119,46 @@ module.exports = function init(site) {
     });
 
     if (!page_implement_doc.id) {
-      response.error = 'No id';
+      response.error = "No id";
       res.json(response);
       return;
     }
 
-
-    $pages.edit({
-      where: {
-        id: page_implement_doc.id
+    $pages.edit(
+      {
+        where: {
+          id: page_implement_doc.id,
+        },
+        set: page_implement_doc,
+        $req: req,
+        $res: res,
       },
-      set: page_implement_doc,
-      $req: req,
-      $res: res
-    }, (err, result) => {
-      if (!err && result) {
-        response.done = true
-        site.pages_list.forEach((a, i) => {
-          if (a.id === result.doc.id) {
-            site.pages_list[i] = result.doc;
-          }
-        });
-      } else {
-        response.error = 'Code Already Exist'
+      (err, result) => {
+        if (!err && result) {
+          response.done = true;
+          site.pages_list.forEach((a, i) => {
+            if (a.id === result.doc.id) {
+              site.pages_list[i] = result.doc;
+            }
+          });
+        } else {
+          response.error = "Code Already Exist";
+        }
+        res.json(response);
       }
-      res.json(response)
-    })
-
+    );
   });
 
-  site.post('/api/pages/view', (req, res) => {
+  site.post("/api/pages/view", (req, res) => {
     let response = {
       done: false,
     };
-  
+
     let ad = null;
     site.pages_list.forEach((a) => {
       if (req.body.id && a.id == req.body.id) {
         ad = a;
-      } else  if (req.body.url && a.url == req.body.url) {
+      } else if (req.body.url && a.url == req.body.url) {
         ad = a;
       }
     });
@@ -163,68 +168,76 @@ module.exports = function init(site) {
       response.doc = ad;
       res.json(response);
     } else {
-      response.error = 'no id';
+      response.error = "no id";
       res.json(response);
     }
   });
 
-  site.post('/api/pages/delete', (req, res) => {
+  site.post("/api/pages/delete", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'Please Login First';
+      response.error = "Please Login First";
       res.json(response);
       return;
     }
 
     if (!req.body.id) {
-      response.error = 'no id';
+      response.error = "no id";
       res.json(response);
       return;
     }
 
-    $pages.delete({
-      id: req.body.id,
-      $req: req,
-      $res: res
-    }, (err, result) => {
-      if (!err) {
-        response.done = true
-        site.pages_list.splice(site.pages_list.findIndex(a => a.id === req.body.id), 1)
-      } else {
-        response.error = err.message
+    $pages.delete(
+      {
+        id: req.body.id,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err) {
+          response.done = true;
+          site.pages_list.splice(
+            site.pages_list.findIndex((a) => a.id === req.body.id),
+            1
+          );
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-      res.json(response)
-    })
-
+    );
   });
 
-  site.post('/api/pages/all', (req, res) => {
+  site.post("/api/pages/all", (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = 'Please Login First';
+      response.error = "Please Login First";
       res.json(response);
       return;
     }
 
     let where = req.body.where || {};
-    if (where['name']) {
+    if (where["name"]) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
+        name_ar: site.get_RegExp(where["name"], "i"),
       });
       where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
+        name_en: site.get_RegExp(where["name"], "i"),
       });
-      delete where['name'];
+      delete where["name"];
     }
-    where["teacherId"] = site.getSiteSetting(req.host).teacherId;
-
+    if ((teacherId = site.getTeacherSetting(req))) {
+      where["teacherId"] = teacherId;
+    } else {
+      where["host"] = site.getHostFilter(req.host);
+    }
     $pages.findMany(
       {
         select: req.body.select || {},
