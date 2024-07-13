@@ -391,7 +391,7 @@ module.exports = function init(site) {
       type: req.body.user.type,
       createdDate: new Date(),
       host: site.getHostFilter(req.host),
-      teacherId : site.getTeacherSetting(req),
+      teacherId: setting.isShared ? null : site.getTeacherSetting(req),
       $req: req,
       $res: res,
     };
