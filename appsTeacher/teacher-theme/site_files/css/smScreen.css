@@ -258,8 +258,8 @@
   }
 
   .logoImg2 {
-    width: 100% !important;
-    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     flex-shrink: 0;
     position: sticky;
     top: 43px;
@@ -275,8 +275,8 @@
   }
 
   .logoImg1 {
-    width: 100px !important;
-    height: 55px !important;
+    max-width: 100px !important;
+    max-height: 55px !important;
     flex-shrink: 0;
     position: inherit;
     flex-shrink: 0;

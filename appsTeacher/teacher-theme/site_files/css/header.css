@@ -54,15 +54,15 @@ i-checklist label {
 }
 
 .logoImg1 {
-  width: 100px;
-  height: 90px;
+  max-width: 100px;
+  max-height: 90px;
   flex-shrink: 0;
   position: relative;
   bottom: 23px;
 }
 .logoImg2 {
-  width: 280px;
-  height: 90px;
+  max-width: 280px;
+  max-height: 90px;
   flex-shrink: 0;
   position: absolute;
   top: 43px;
@@ -162,12 +162,11 @@ nav .container-fluid #navbarNavDropdown .navbar-nav .dropdown .dropdown-menu li 
 .button-screen a {
   padding: 15px;
   font-size: 25px;
-  color: #227fd6 !important;
+  color: #3494ed !important;
   font-family: fantasy;
 }
 .button-screen a:hover {
-  font-size: 30px;
-  padding: 1px !important;
+  color: #1275d2 !important;
 }
 .HeaderContanier .lgScreen .userContainer {
 }

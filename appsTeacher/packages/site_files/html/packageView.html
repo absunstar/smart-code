@@ -22,6 +22,7 @@
       }
       .card {
         height: 130px !important;
+        width: 45% !important;
       }
 
       .btn {
@@ -64,7 +65,7 @@
         color: #2087e7;
         margin: 5px;
       }
-      .card-title{
+      .card-title {
         width: 80% !important;
       }
       .price {
@@ -102,7 +103,12 @@
       * {
         max-width: initial;
       }
-      
+
+      @media only screen and (max-width: 768px) {
+        .card {
+          width: 100% !important;
+        }
+      }
     </style>
   </head>
 
@@ -133,27 +139,29 @@
                 <div class="row">
                   <p class="text-comment gray-desc">{{item.description}}</p>
                 </div>
+
+                <a class="card row" ng-repeat="l in item.lecturesList" href="/lectureView?id={{l.lecture._id}}">
+                  <img class="" loading="lazy" ng-src="{{l.lecture.image.url}}" />
+                  <div class="padding">
+                    <p class="userPrint card-title bold">{{l.lecture.name}}</p>
+                    <p class="">
+                      <i class="card-number bold"> ##word.$## {{l.lecture.price}} </i>
+                    </p>
+                  </div>
+                </a>
+
+                <hr />
+                <div class="row">
+                  <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">
+                    ##word.Buy## <i class="fas fa-shopping-basket"></i>
+                  </button>
+                </div>
               </div>
 
               <div class="col1"></div>
               <div class="col4">
                 <img class="content-main-img" view ng-src="{{item.image.url}}" />
               </div>
-            </div>
-
-            <a class="card row" ng-repeat="l in item.lecturesList" href="/lectureView?id={{l.lecture._id}}">
-              <img class="" loading="lazy" ng-src="{{l.lecture.image.url}}" />
-              <div class=" padding">
-                <p class="userPrint card-title bold">{{l.lecture.name}}</p>
-                <p class="">
-                  <i class="card-number bold"> ##word.$## {{l.lecture.price}} </i>
-                </p>
-              </div>
-            </a>
-
-            <hr />
-            <div class="row">
-              <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
             </div>
           </div>
           <div class="col1"></div>

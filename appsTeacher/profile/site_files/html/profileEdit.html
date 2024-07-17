@@ -238,20 +238,22 @@
             <div class="row">
               <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
                 <li ng-repeat="package in packagesList">
-                  <figure class="image-block">
-                    <p class="name">{{package.name}}</p>
-                    <img ng-src="{{package.image.url}}" alt="" />
-                    <figcaption>
-                      <p>{{package.description}}</p>
-                      <div class="row price-more-card">
-                        <i class="price col-6"
-                          >##word.$## {{package.price}}
-                          <s class="red">{{package.totalLecturesPrice}}</s>
-                        </i>
-                        <a class="col-6 more-card" href="/packageView?id={{package._id}}"> ##word.More##.. </a>
-                      </div>
-                    </figcaption>
-                  </figure>
+                  <a href="/packageView?id={{package._id}}">
+                    <figure class="image-block">
+                      <p class="name">{{package.name}}</p>
+                      <img ng-src="{{package.image.url}}" alt="" />
+                      <figcaption>
+                        <p>{{package.description}}</p>
+                        <div class="row price-more-card">
+                          <i class="price col-6"
+                            >##word.$## {{package.price}}
+                            <s class="red">{{package.totalLecturesPrice}}</s>
+                          </i>
+                          <span class="col-6 more-card"> ##word.More##.. </span>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -261,18 +263,20 @@
             <div class="row">
               <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
                 <li ng-repeat="lecture in lecturesList">
-                  <figure class="image-block">
-                    <p class="name">{{lecture.name}}</p>
-                    <img ng-src="{{lecture.image.url}}" alt="" />
-                    <figcaption>
-                      <p>{{lecture.description}}</p>
-                      <div class="row price-more-card">
-                        <i class="price col-6" ng-show="lecture.price">##word.$## {{lecture.price}} </i>
-                        <i class="price col-6" ng-show="!lecture.price">##word.Free## </i>
-                        <a class="col-6 more-card" href="/lectureView?id={{lecture._id}}"> ##word.More##.. </a>
-                      </div>
-                    </figcaption>
-                  </figure>
+                  <a href="/lectureView?id={{lecture._id}}">
+                    <figure class="image-block">
+                      <p class="name">{{lecture.name}}</p>
+                      <img ng-src="{{lecture.image.url}}" alt="" />
+                      <figcaption>
+                        <p>{{lecture.description}}</p>
+                        <div class="row price-more-card">
+                          <i class="price col-6" ng-show="lecture.price">##word.$## {{lecture.price}} </i>
+                          <i class="price col-6" ng-show="!lecture.price">##word.Free## </i>
+                          <span class="col-6 more-card"> ##word.More##.. </apan>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </a>
                 </li>
               </ul>
             </div>

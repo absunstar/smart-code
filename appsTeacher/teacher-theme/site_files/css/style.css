@@ -520,6 +520,11 @@ figure {
 }
 
 .banner-word {
+  padding: 10px;
+  margin: 10px 0px 10px 0px;
+  background: white;
+  border: 1px solid #b2b2b2;
+  border-radius: 10px;
   text-align: center;
   /* color: #1e7cd4; */
   font-weight: bold;
@@ -533,11 +538,12 @@ figure {
 
 .banner-viewAll {
   float: left;
-  font-size: x-large;
+  font-size: large;
+  margin-top: 10px;
+  color: #2481d7 !important;
 }
 
 .banner-viewAll:hover {
-  color: #2087e7 !important;
   border-bottom: 2px solid;
   border-radius: 3px;
 }

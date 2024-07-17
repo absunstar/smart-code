@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
     <style>
-        figure  {
+      figure {
         figcaption {
           .price {
-            left : 10px !important
-          } 
+            left: 10px !important;
+          }
         }
       }
     </style>
@@ -19,29 +19,25 @@
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
-          <i-control label="##word.Search##" class="input-style pass" v="r" ng-keydown="getAll($event)" ng-model="$search"></i-control>
+        <i-control label="##word.Search##" class="input-style pass" v="r" ng-keydown="getAll($event)" ng-model="$search"></i-control>
 
         <div class="row">
-        
-
           <ul class="row row-cols-1 row-cols-lg-4 row-cols-md-2">
             <li ng-repeat="item in list">
-              <figure class="image-block">
-                <p class="name">{{item.name}}</p>
-                <img ng-src="{{item.image.url}}" alt="" />
-                <figcaption>
-                  <p>{{item.description}}</p>
-                  <div class="row price-more-card">
-                  
-                    <i class="price col-6" ng-show="item.price">##word.$## {{item.price}} </i>
-                    <i class="price col-6" ng-hide="item.price">##word.Free## </i>
-                    <a class="col-6  more-card" href="/lectureView?id={{item._id}}">
-                      ##word.More##..
-                    </a>
-
-                  </div>
-                </figcaption>
-              </figure>
+              <a href="/lectureView?id={{item._id}}">
+                <figure class="image-block">
+                  <p class="name">{{item.name}}</p>
+                  <img ng-src="{{item.image.url}}" alt="" />
+                  <figcaption>
+                    <p>{{item.description}}</p>
+                    <div class="row price-more-card">
+                      <i class="price col-6" ng-show="item.price">##word.$## {{item.price}} </i>
+                      <i class="price col-6" ng-hide="item.price">##word.Free## </i>
+                      <span class="col-6 more-card"> ##word.More##.. </span>
+                    </div>
+                  </figcaption>
+                </figure>
+              </a>
             </li>
           </ul>
         </div>
