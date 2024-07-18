@@ -69,8 +69,8 @@
                   <i-image view class="logo center" ng-model="user.image"></i-image>
                 </td>
                 <td ng-click="details(user)">{{user.email}}</td>
-                <td ng-click="details(user)">{{user.name##session.lang##}}</td>
-                <td ng-click="details(user)">{{user.type.name##session.lang##}}</td>
+                <td ng-click="details(user)">{{user.firstName}} {{user.lastName}}</td>
+                <td ng-click="details(user)">{{user.type}}</td>
                 <td>
                   <i-button type="remove" ng-click="remove(user)" title="##word.Delete##"></i-button>
                   <i-button type="edit" ng-click="edit(user)" title="##word.Edit##"></i-button>

@@ -90,7 +90,12 @@ module.exports = function init(site) {
       delete where["search"];
     }
     where["id"] = { $ne: 1 };
-    where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+    if ((teacherId = site.getTeacherSetting(req))) {
+      where["teacherId"] = teacherId;
+    } else {
+      where["host"] = site.getHostFilter(req.host);
+    }
+
     site.security.getUsers(
       {
         where: where,
@@ -127,6 +132,7 @@ module.exports = function init(site) {
     let user = req.body;
     user.$req = req;
     user.$res = res;
+    user.host = site.getHostFilter(req.host);
 
     site.security.addUser(user, (err, _id) => {
       if (!err) {

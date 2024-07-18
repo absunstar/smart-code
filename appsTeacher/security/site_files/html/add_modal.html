@@ -28,101 +28,23 @@
       <div class="form">
         <div class="row">
           <div class="row">
-
-            <i-checkbox
-              label="##word.Active##"
-              class="col2"
-              ng-model="user.active"
-            ></i-checkbox>
+            <i-checkbox label="##word.Active##" class="col2" ng-model="user.active"></i-checkbox>
           </div>
 
           <div class="row">
-            <i-control
-              v="r"
-              class="col6"
-              label="##word.Email##"
-              ng-model="user.email"
-            ></i-control>
-            <i-control
-              v="r"
-              class="col6"
-              label="##word.Password##"
-              ng-model="user.password"
-              type="password"
-            ></i-control>
+            <i-control v="r" class="col6" label="##word.Email##" ng-model="user.email"></i-control>
+            <i-control v="r" class="col6" label="##word.Password##" ng-model="user.password" type="password"></i-control>
           </div>
         </div>
-        <div class="tabs" >
+        <div class="tabs">
           <div class="tabs-header full">
-            <a
-              class="tab-link"
-              onclick="site.showTabContent(event, '#basicInformation')"
-            >
-              ##word.Basic Information##
-            </a>
-            <a
-              class="tab-link"
-              ng-show="user.type.id == 4"
-              onclick="site.showTabContent(event, '#printersData')"
-            >
+            <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')"> ##word.Basic Information## </a>
+            <a class="tab-link" ng-show="user.type.id == 4" onclick="site.showTabContent(event, '#printersData')">
               <span> ##word.Printers Data## </span>
             </a>
-            <a
-              class="tab-link"
-              onclick="site.showTabContent(event, '#securityRoles')"
-            >
-              ##word.Roles##
-            </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#securityRoles')"> ##word.Roles## </a>
 
-            <a
-              class="tab-link"
-              onclick="site.showTabContent(event, '#securityPublicPermissions')"
-            >
-              ##word.Public Permissions##
-            </a>
-
-            <a
-              class="tab-link"
-              x-data="##setting.showHospital##"
-              onclick="site.showTabContent(event, '#securityHmisPermissions')"
-            >
-              ##word.HMIS Permissions##
-            </a>
-
-            <a
-              class="tab-link"
-              onclick="site.showTabContent(event, '#securityAccountingPermissions')"
-            >
-              ##word.Accounting Permissions##
-            </a>
-
-            <a
-              class="tab-link"
-              onclick="site.showTabContent(event, '#securityHrPermissions')"
-            >
-              ##word.Hr Permissions##
-            </a>
-
-            <a
-              class="tab-link"
-              onclick="site.showTabContent(event, '#securityInventoryPermissions')"
-            >
-              ##word.Inventory Permissions##
-            </a>
-
-            <a
-              class="tab-link"
-              onclick="site.showTabContent(event, '#securityReportPermissions')"
-            >
-              ##word.Report Permissions##
-            </a>
-
-            <a
-              class="tab-link"
-              onclick="site.showTabContent(event, '#securityAssginBranches')"
-            >
-              ##word.Branches##
-            </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#securityPublicPermissions')"> ##word.Public Permissions## </a>
           </div>
 
           <div class="tabs-content">
@@ -131,172 +53,22 @@
                 <div class="col10">
                   <form class="form">
                     <div class="row">
-                      <i-control
-                        v="r"
-                        class="col6"
-                        label="##word.Name Arabic##"
-                        ng-model="user.nameAr"
-                      ></i-control>
-                      <i-control
-                        v="r"
-                        class="col6"
-                        label="##word.Name English##"
-                        ng-model="user.nameEn"
-                      ></i-control>
+                      <i-control v="r" class="col6" label="##word.firstName##" ng-model="user.firstName"></i-control>
+                      <i-control v="r" class="col6" label="##word.lastName##" ng-model="user.lastName"></i-control>
                     </div>
 
+                
                     <div class="row">
-                      <i-list
-                        class="col6"
-                        ng-show="user.type.id == 7"
-                        label="##word.Vendor Group##"
-                        ng-model="item.group"
-                        items="vendorsGroupsList"
-                        display="name##session.lang##"
-                        ng-search="item.$vendorGroup"
-                      ></i-list>
-                      <i-list
-                        class="col6"
-                        ng-show="user.type.id == 6"
-                        label="##word.Customer Group##"
-                        ng-model="item.group"
-                        items="customersGroupsList"
-                        display="name##session.lang##"
-                        ng-search="item.$vendorGroup"
-                      ></i-list>
-                      <i-checkbox
-                        ng-show="!user.id && user.type.id == 6"
-                        class="col6"
-                        ng-model="user.commercialCustomer"
-                        label="##word.Commercial Customer##"
-                      ></i-checkbox>
+                      <i-control v="r" class="col4" label="##word.Mobile##" ng-model="user.mobile"></i-control>
                     </div>
-                    <div class="row">
-                      <i-control
-                        v="r"
-                        class="col4"
-                        label="##word.Mobile##"
-                        ng-model="user.mobile"
-                      ></i-control>
-                      <i-list
-                        class="col4"
-                        ng-show="user.type.id == 4"
-                        ng-model="user.store"
-                        items="storesList"
-                        display="name##session.lang##"
-                        ng-search="user.$_store"
-                        label="##word.Store##"
-                      ></i-list>
-                    </div>
-                    <div class="row" ng-show="user.type.id == 4">
-                      <i-list
-                        class="col4"
-                        ng-model="user.safeCash"
-                        items="safesCashList"
-                        display="name##session.lang##"
-                        ng-search="user.$_safeCash"
-                        label="##word.Safe Cash##"
-                      ></i-list>
-                      <i-list
-                        class="col4"
-                        ng-model="user.safeBank"
-                        items="safesBankList"
-                        display="name##session.lang##"
-                        ng-search="user.$_safeBank"
-                        label="##word.Safe Bank##"
-                      ></i-list>
-                    </div>
-                    <i-textarea
-                      ng-model="user.notes"
-                      label="##word.Notes##"
-                    ></i-textarea>
+                 
+                    <i-textarea ng-model="user.notes" label="##word.Notes##"></i-textarea>
                   </form>
                 </div>
                 <div class="col2">
-                  <i-image
-                    class="img128 center"
-                    category="users"
-                    ng-model="user.image"
-                  ></i-image>
+                  <i-image class="img128 center" category="users" ng-model="user.image"></i-image>
                 </div>
               </div>
-            </div>
-
-            <div id="printersData" class="tab-content">
-              <fieldset>
-                <div class="row">
-                  <i-list
-                    ng-search="user.$printerPath"
-                    class="col4"
-                    display="name##session.lang##"
-                    ng-model="user.thermalPrinter"
-                    label="##word.Thermal printer##"
-                    items="printersPathsList"
-                  >
-                  </i-list>
-
-                  <i-list
-                    ng-search="user.$a4Printer"
-                    class="col4"
-                    display="name##session.lang##"
-                    ng-model="user.a4Printer"
-                    label="##word.A4 printer##"
-                    items="printersPathsList"
-                  >
-                  </i-list>
-
-                  <i-list
-                    ng-search="user.$pdfPrinter"
-                    class="col4"
-                    display="name##session.lang##"
-                    ng-model="user.pdfPrinter"
-                    label="##word.PDF printer##"
-                    items="printersPathsList"
-                  >
-                  </i-list>
-
-                  <i-list
-                    ng-search="user.$barcodePrinter"
-                    class="col4"
-                    display="name##session.lang##"
-                    ng-model="user.barcodePrinter"
-                    label="##word.Barcode printer##"
-                    items="printersPathsList"
-                  >
-                  </i-list>
-
-                  <i-list
-                    ng-search="user.$labelPrinter"
-                    class="col4"
-                    display="name##session.lang##"
-                    ng-model="user.labelPrinter"
-                    label="##word.Label printer##"
-                    items="printersPathsList"
-                  >
-                  </i-list>
-                </div>
-
-                <div class="row">
-                  <i-checkbox
-                    class="col4"
-                    label="##word.Auto thermal print order screen##"
-                    ng-model="user.autoThermalPrintOrderScreen"
-                  >
-                  </i-checkbox>
-                  <i-checkbox
-                    class="col4"
-                    label="##word.Auto thermal print sales invoice##"
-                    ng-model="user.autoThermalPrintSalesInvo"
-                  >
-                  </i-checkbox>
-                  <i-checkbox
-                    class="col4"
-                    label="##word.Auto thermal print Vouchers##"
-                    ng-model="user.autoThermalPrintVoucher"
-                  >
-                  </i-checkbox>
-                </div>
-              </fieldset>
             </div>
 
             <div id="securityRoles" class="tab-content">
@@ -304,20 +76,10 @@
                 <fieldset>
                   <legend>##word.Public Roles##</legend>
                   <div class="row">
-                    <i-checkbox
-                      label="##word.Check All##"
-                      ng-model="$publicRoles"
-                      ng-change="checkAll('publicRoles')"
-                    ></i-checkbox>
+                    <i-checkbox label="##word.Check All##" ng-model="$publicRoles" ng-change="checkAll('publicRoles')"></i-checkbox>
                   </div>
 
-                  <i-checklist
-                    primary="name"
-                    label=""
-                    items="publicRoles"
-                    display="##session.lang##"
-                    ng-model="user.roles"
-                  ></i-checklist>
+                  <i-checklist primary="name" label="" items="publicRoles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                 </fieldset>
               </div>
 
@@ -325,118 +87,9 @@
                 <fieldset>
                   <legend>##word.Custom Roles##</legend>
                   <div class="row">
-                    <i-checkbox
-                      label="##word.Check All##"
-                      ng-model="$customRoles"
-                      ng-change="checkAll('customRoles')"
-                    ></i-checkbox>
+                    <i-checkbox label="##word.Check All##" ng-model="$customRoles" ng-change="checkAll('customRoles')"></i-checkbox>
                   </div>
-                  <i-checklist
-                    primary="name"
-                    label=""
-                    items="custom_roles"
-                    display="##session.lang##"
-                    ng-model="user.roles"
-                  ></i-checklist>
-                </fieldset>
-              </div>
-
-              <div class="row padding">
-                <fieldset>
-                  <legend>##word.Accounting Roles##</legend>
-                  <div class="row">
-                    <i-checkbox
-                      label="##word.Check All##"
-                      ng-model="$accountingRoles"
-                      ng-change="checkAll('accountingRoles')"
-                    ></i-checkbox>
-                  </div>
-                  <i-checklist
-                    primary="name"
-                    label=""
-                    items="accountingRoles"
-                    display="##session.lang##"
-                    ng-model="user.roles"
-                  ></i-checklist>
-                </fieldset>
-              </div>
-
-              <div class="row padding">
-                <fieldset>
-                  <legend>##word.Hr Roles##</legend>
-                  <div class="row">
-                    <i-checkbox
-                      label="##word.Check All##"
-                      ng-model="$hrRoles"
-                      ng-change="checkAll('hrRoles')"
-                    ></i-checkbox>
-                  </div>
-                  <i-checklist
-                    primary="name"
-                    label=""
-                    items="hrRoles"
-                    display="##session.lang##"
-                    ng-model="user.roles"
-                  ></i-checklist>
-                </fieldset>
-              </div>
-
-              <div class="row padding" x-data="##setting.showHospital##">
-                <fieldset>
-                  <legend>##word.HMIS Roles##</legend>
-                  <div class="row">
-                    <i-checkbox
-                      label="##word.Check All##"
-                      ng-model="$hmisRoles"
-                      ng-change="checkAll('hmisRoles')"
-                    ></i-checkbox>
-                  </div>
-                  <i-checklist
-                    primary="name"
-                    label=""
-                    items="hmisRoles"
-                    display="##session.lang##"
-                    ng-model="user.roles"
-                  ></i-checklist>
-                </fieldset>
-              </div>
-
-              <div class="row padding">
-                <fieldset>
-                  <legend>##word.Inventory Roles##</legend>
-                  <div class="row">
-                    <i-checkbox
-                      label="##word.Check All##"
-                      ng-model="$inventoryRoles"
-                      ng-change="checkAll('inventoryRoles')"
-                    ></i-checkbox>
-                  </div>
-                  <i-checklist
-                    primary="name"
-                    label=""
-                    items="inventoryRoles"
-                    display="##session.lang##"
-                    ng-model="user.roles"
-                  ></i-checklist>
-                </fieldset>
-              </div>
-              <div class="row padding">
-                <fieldset>
-                  <legend>##word.Report Roles##</legend>
-                  <div class="row">
-                    <i-checkbox
-                      label="##word.Check All##"
-                      ng-model="$reportRoles"
-                      ng-change="checkAll('reportRoles')"
-                    ></i-checkbox>
-                  </div>
-                  <i-checklist
-                    primary="name"
-                    label=""
-                    items="reportRoles"
-                    display="##session.lang##"
-                    ng-model="user.roles"
-                  ></i-checklist>
+                  <i-checklist primary="name" label="" items="custom_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
                 </fieldset>
               </div>
             </div>
@@ -446,141 +99,10 @@
                 <div class="row padding">
                   <fieldset ng-repeat="screen in publicScreens">
                     <legend>{{screen.name}}</legend>
-                    <i-checklist
-                      primary="name"
-                      label=""
-                      items="screen.permissions"
-                      display="##session.lang##"
-                      ng-model="user.permissions"
-                    ></i-checklist>
+                    <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
                   </fieldset>
                 </div>
               </div>
-            </div>
-
-            <div id="securityAccountingPermissions" class="tab-content">
-              <div class="row">
-                <div class="row padding">
-                  <fieldset ng-repeat="screen in accountingScreens">
-                    <legend>{{screen.name}}</legend>
-                    <i-checklist
-                      primary="name"
-                      label=""
-                      items="screen.permissions"
-                      display="##session.lang##"
-                      ng-model="user.permissions"
-                    ></i-checklist>
-                  </fieldset>
-                </div>
-              </div>
-            </div>
-
-            <div id="securityHrPermissions" class="tab-content">
-              <div class="row">
-                <div class="row padding">
-                  <fieldset ng-repeat="screen in hrScreens">
-                    <legend>{{screen.name}}</legend>
-                    <i-checklist
-                      primary="name"
-                      label=""
-                      items="screen.permissions"
-                      display="##session.lang##"
-                      ng-model="user.permissions"
-                    ></i-checklist>
-                  </fieldset>
-                </div>
-              </div>
-            </div>
-
-            <div id="securityInventoryPermissions" class="tab-content">
-              <div class="row">
-                <div class="row padding">
-                  <fieldset ng-repeat="screen in inventoryScreens">
-                    <legend>{{screen.name}}</legend>
-                    <i-checklist
-                      primary="name"
-                      label=""
-                      items="screen.permissions"
-                      display="##session.lang##"
-                      ng-model="user.permissions"
-                    ></i-checklist>
-                  </fieldset>
-                </div>
-              </div>
-            </div>
-
-            <div
-              x-data="##setting.showHospital##"
-              id="securityHmisPermissions"
-              class="tab-content"
-            >
-              <div class="row">
-                <div class="row padding">
-                  <fieldset ng-repeat="screen in hmisScreens">
-                    <legend>{{screen.name}}</legend>
-                    <i-checklist
-                      primary="name"
-                      label=""
-                      items="screen.permissions"
-                      display="##session.lang##"
-                      ng-model="user.permissions"
-                    ></i-checklist>
-                  </fieldset>
-                </div>
-              </div>
-            </div>
-
-            <div id="securityReportPermissions" class="tab-content">
-              <div class="row">
-                <div class="row padding">
-                  <fieldset ng-repeat="screen in reportScreens">
-                    <legend>{{screen.name}}</legend>
-                    <i-checklist
-                      primary="name"
-                      label=""
-                      items="screen.permissions"
-                      display="##session.lang##"
-                      ng-model="user.permissions"
-                    ></i-checklist>
-                  </fieldset>
-                </div>
-              </div>
-            </div>
-
-            <div id="securityAssginBranches" class="tab-content">
-              <fieldset>
-                <legend>
-                  <i-button
-                    type="push"
-                    ng-click="user.branchList.push({})"
-                  ></i-button>
-                  ##word.Bbranches##
-                </legend>
-                <div class="row" ng-repeat="info in user.branchList">
-                  <i-list
-                    label="##word.Company##"
-                    ng-search="_search.$company_search"
-                    display="name##session.lang##"
-                    class="col5"
-                    items="companyList"
-                    ng-model="info.company"
-                  >
-                  </i-list>
-                  <i-list
-                    label="##word.Branch##"
-                    ng-search="_search.$branch_search"
-                    primary="code"
-                    display="name##session.lang##"
-                    class="col5"
-                    items="info.company.branchList"
-                    ng-model="info.branch"
-                  ></i-list>
-                  <i-button
-                    type="delete"
-                    ng-click="user.branchList.length === 1 || user.branchList.splice($index,1)"
-                  ></i-button>
-                </div>
-              </fieldset>
             </div>
           </div>
         </div>
@@ -588,29 +110,10 @@
     </div>
     <h2 class="red bold center">{{error}}</h2>
     <div class="modal-footer center">
-      <i-button
-        type="save"
-        ng-show="mode == 'edit'"
-        label="##word.Save##"
-        ng-click="update(user)"
-      ></i-button>
-      <i-button
-        type="add"
-        ng-show="mode == 'add'"
-        label="##word.Add User##"
-        ng-click="add()"
-      ></i-button>
-      <i-button
-        type="delete"
-        ng-show="mode == 'delete'"
-        title="##word.Delete##"
-        ng-click="delete(user)"
-      ></i-button>
-      <i-button
-        type="exit"
-        label="##word.Close##"
-        onclick="site.hideModal('#addUserModal')"
-      ></i-button>
+      <i-button type="save" ng-show="mode == 'edit'" label="##word.Save##" ng-click="update(user)"></i-button>
+      <i-button type="add" ng-show="mode == 'add'" label="##word.Add User##" ng-click="add()"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete'" title="##word.Delete##" ng-click="delete(user)"></i-button>
+      <i-button type="exit" label="##word.Close##" onclick="site.hideModal('#addUserModal')"></i-button>
     </div>
   </div>
 </div>
