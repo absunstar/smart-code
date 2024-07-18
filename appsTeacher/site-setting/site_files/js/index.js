@@ -256,12 +256,19 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     $scope.siteSetting.matchScheduleList = $scope.siteSetting.matchScheduleList || [];
     $scope.siteSetting.matchScheduleList.unshift({ image1: { url: "/theme1/images/football.png" }, image2: { url: "/theme1/images/football.png" } });
   };
-
+  
+  $scope.addBlockPrograms = function () {
+    $scope.error = "";
+    $scope.siteSetting.blockPrograms = $scope.siteSetting.blockPrograms || {};
+    $scope.siteSetting.blockPrograms.programsNamesList = $scope.siteSetting.blockPrograms.programsNamesList || [];
+    $scope.siteSetting.blockPrograms.programsNamesList.unshift({});
+  };
   $scope.addBlockIp = function (block) {
     $scope.error = "";
     block.ipList = block.ipList || [];
     block.ipList.unshift({});
   };
+
 
   $scope.addBlockDomains = function (block) {
     $scope.error = "";

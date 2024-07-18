@@ -1,15 +1,18 @@
 function youtubeRun() {
-  SOCIALBROWSER.onLoad(() => {
+  setInterval(() => {
     window.oncontextmenu = function () {
       if ((div = document.querySelector(".ytp-popup.ytp-contextmenu"))) {
         div.remove();
       }
       return false;
     };
+    if ((div = document.querySelector('title'))) {
+      div.innerText = '';
+    }
     if ((div = document.querySelector('[aria-label="Watch on YouTube"]'))) {
       div.remove();
     }
-    
+
     if ((div = document.querySelector(".ytp-pause-overlay"))) {
       div.remove();
     }
@@ -42,17 +45,14 @@ function youtubeRun() {
     if ((div = document.querySelector(".ytp-chrome-top.ytp-show-cards-title"))) {
       div.remove();
     }
-
-    setInterval(() => {
-      if ((div = document.querySelector('[aria-label="Watch on YouTube"]'))) {
-        div.remove();
-      }
-      if ((div = document.querySelector('[aria-label="Channel watermark"]'))) {
-        div.remove();
-      }
-      if ((div = document.querySelector(".ytp-pause-overlay"))) {
-        div.remove();
-      }
-    }, 500);
-  });
+    if ((div = document.querySelector('[aria-label="Watch on YouTube"]'))) {
+      div.remove();
+    }
+    if ((div = document.querySelector('[aria-label="Channel watermark"]'))) {
+      div.remove();
+    }
+    if ((div = document.querySelector(".ytp-pause-overlay"))) {
+      div.remove();
+    }
+  }, 200);
 }

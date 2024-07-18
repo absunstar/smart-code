@@ -6,6 +6,7 @@
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.Email And Messages## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.Programming## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#block')"> ##word.Block## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#blockPrograms')"> ##word.Block Programs## </a>
     </div>
 
     <div class="tabs-content">
@@ -589,6 +590,26 @@
           </div>
         </div>
         <i-button type="save" label="##word.save##" ng-click="saveSetting('#block')"> </i-button>
+      </div>
+
+      <div id="blockPrograms" class="tab-content">
+        <div class="article-part">
+          <div class="row">
+            <fieldset>
+              <legend>
+                ##word.Programs Names##
+                <i-button type="push" ng-click="addBlockPrograms()"></i-button>
+              </legend>
+              <div class="row" ng-repeat="i in siteSetting.blockPrograms.programsNamesList track by $index">
+                <i-control type="text" class="col9" ng-model="i.name"> </i-control>
+                <i-button type="delete" class="col2" label="##word.delete##" ng-click="siteSetting.blockPrograms.programsNamesList.splice($index,1)"> </i-button>
+              </div>
+            </fieldset>
+          </div>
+
+        
+        </div>
+        <i-button type="save" label="##word.save##" ng-click="saveSetting('#blockPrograms')"> </i-button>
       </div>
 
     </div>
