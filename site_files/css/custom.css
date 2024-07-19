@@ -440,7 +440,7 @@ hr.dot {
   font-size: 25px;
   line-height: 25px;
   transition: 0.5s;
-  padding: 5px;
+  /* padding: 5px; */
 }
 .social-menu ul li .fab:hover {
   color: #ffffff;
