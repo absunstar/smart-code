@@ -1,7 +1,7 @@
 const site = require('../isite')({
   port: [80, 40017],
   lang: 'ar',
-  version: '2023.03.07.2',
+  version: Date.now(),
   name: 'souq',
   savingTime: 5,
   log: true,
@@ -165,6 +165,22 @@ site.sendMailMessage = function (obj) {
     site.sendMail(obj);
   }
 };
+
+site.get("/x-update", (req, res) => {
+  site.cmd("git pull", (data) => {
+    res.end(data);
+    console.log(data);
+    site.cmd("pm2 restart 0", (data) => {
+      console.log(data);
+    });
+  });
+});
+
+site.get("/x-restart", (req, res) => {
+  site.cmd("pm2 restart 0", (data) => {
+    console.log(data);
+  });
+});
 
 // site.on('zk attend', attend=>{
 //     console.log(attend)
