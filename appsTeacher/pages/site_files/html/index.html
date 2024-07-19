@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="Ar" x-permissions="page_implement_ui || page_implement_manage" data-ng-app="myApp">
+<html lang="Ar" x-permissions="pageImplementUi || pageImplementManage" data-ng-app="myApp">
   <head x-import="teacher-theme/head-dashboard.html">
     <style>
 
@@ -22,20 +22,20 @@
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
-          <div x-permissions="page_implement_add || page_implement_manage" x-import="pages/add_modal.html"></div>
-          <div x-permissions="page_implement_update || page_implement_manage" x-import="pages/update_modal.html"></div>
-          <div x-permissions="page_implement_delete || page_implement_manage" x-import="pages/delete_modal.html"></div>
-          <div x-permissions="page_implement_view || page_implement_manage" x-import="pages/view_modal.html"></div>
-          <div x-permissions="page_implement_search || page_implement_manage" x-import="pages/search_all_modal.html"></div>
+          <div x-permissions="pageImplementAdd || pageImplementManage" x-import="pages/add_modal.html"></div>
+          <div x-permissions="pageImplementUpdate || pageImplementManage" x-import="pages/update_modal.html"></div>
+          <div x-permissions="pageImplementDelete || pageImplementManage" x-import="pages/delete_modal.html"></div>
+          <div x-permissions="pageImplementView || pageImplementManage" x-import="pages/view_modal.html"></div>
+          <div x-permissions="pageImplementSearch || pageImplementManage" x-import="pages/search_all_modal.html"></div>
 
           <div class="row">
-            <h1 class="bold text-center">##word.pages##</h1>
+            <h1 class="bold text-center">##word.Pages##</h1>
           </div>
 
           <div class="top-actions">
-            <i-button x-permissions="page_implement_add || page_implement_manage" type="add" label="##word.New##" ng-click="displayAddPageImplement()"></i-button>
+            <i-button x-permissions="pageImplementAdd || pageImplementManage" type="add" label="##word.New##" ng-click="displayAddPageImplement()"></i-button>
 
-            <i-button x-permissions="page_implement_search || page_implement_manage" type="search" label="##word.Search All##" ng-click="displaySearchModal()"></i-button>
+            <i-button x-permissions="pageImplementsearch || pageImplementManage" type="search" label="##word.Search All##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.Count## : {{count}}</h3>
           </div>
@@ -55,16 +55,16 @@
               <td class="center">{{c.url}}</td>
 
               <td class="center not-print">
-                <!--     <i-button x-permissions="page_implement_view || page_implement_manage" type="view"
+                <!--     <i-button x-permissions="pageImplementview || pageImplementManage" type="view"
                 label="##word.details##" ng-click="displayDetailsPageImplement(c)"></i-button> -->
 
-                <i-button x-permissions="page_implement_update || page_implement_manage" type="edit" label="##word.Edit##" ng-click="displayUpdatePageImplement(c)"></i-button>
+                <i-button x-permissions="pageImplementUpdate || pageImplementManage" type="edit" label="##word.Edit##" ng-click="displayUpdatePageImplement(c)"></i-button>
 
-                <i-button x-permissions="page_implement_delete || page_implement_manage" type="delete" label="##word.Delete##" ng-click="displayDeletePageImplement(c)"></i-button>
+                <i-button x-permissions="pageImplementDelete || pageImplementManage" type="delete" label="##word.Delete##" ng-click="displayDeletePageImplement(c)"></i-button>
               </td>
             </tr>
           </table>
-          <i-button x-permissions="page_implement_print || page_implement_manage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
+          <i-button x-permissions="pageImplementPrint || pageImplementManage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
         </div>
       </div>
     </div>

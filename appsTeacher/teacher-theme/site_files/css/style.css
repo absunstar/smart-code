@@ -536,13 +536,13 @@ figure {
   font-family: helvetica, arial, sans-serif;
 }
 .banner-word span {
-  font-size: 45px;
+  font-size: 50px;
   font-weight: 600;
-  font-family: monospace;
-  color: #2481d7;
+  font-family: "Thabit";
+  color: #000000;
   text-transform: uppercase;
-  text-shadow: 1px 1px 0px #b8cbfc, 1px 2px 0px #a8d5ff, 1px 3px 0px #7fc1ff, 1px 4px 0px #2e9bff, 1px 5px 0px #9ed0ff, 1px 6px 0px #dbe3ff, 1px 10px 5px rgb(181 193 255 / 64%),
-    1px 15px 10px rgb(0 43 255 / 40%), 1px 20px 30px rgb(31 94 255 / 30%), 1px 25px 50px rgb(0 43 254 / 20%);
+  text-shadow: 1px 1px 0px #ffffff, 1px 2px 0px #c4c4c4, 1px 3px 0px #cccccc, 1px 4px 0px #bfbfbf, 1px 5px 0px #9a9a9a, 1px 6px 0px #e4e4e4, 1px 10px 5px rgb(199 199 199 / 64%),
+    1px 15px 10px rgb(122 122 122 / 40%), 1px 20px 30px rgb(182 182 183 / 30%), 1px 25px 50px rgb(198 198 198 / 20%);
 }
 
 .banner-viewAll {
