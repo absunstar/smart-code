@@ -1,20 +1,20 @@
 [
   {
-    "moduleName": "lawyer",
+    "moduleName": "public",
     "name": "officesAdmin",
     "En": "Offices Admin",
     "Ar": "إدارة المكاتب",
     "permissions": ["officesManage"]
   },
   {
-    "moduleName": "lawyer",
+    "moduleName": "public",
     "name": "client",
     "En": "Client",
     "Ar": "الموكل",
     "permissions": ["client"]
   },
   {
-    "moduleName": "lawyer",
+    "moduleName": "public",
     "name": "lawyer",
     "En": "Lawyer",
     "Ar": "المحامي",

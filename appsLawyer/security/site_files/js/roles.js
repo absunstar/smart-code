@@ -300,27 +300,7 @@ app.controller('security', function ($scope, $http, $interval) {
     );
   };
 
-  $scope.getCompanyList = function () {
-    $scope.companyList = [];
 
-    $http({
-      method: 'POST',
-      url: '/api/companies/all',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.companyList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getCompanyList();
 
   $scope.loadRoles();
   $scope.loadPermissions();

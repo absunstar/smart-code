@@ -1,18 +1,18 @@
-app.controller('security', function ($scope, $http, $interval) {
+app.controller("security", function ($scope, $http, $interval) {
   $scope.gotoUsers = function () {
-    window.location.href = '/security/users';
+    window.location.href = "/security/users";
   };
 
   $scope.gotoRoles = function () {
-    window.location.href = '/security/roles';
+    window.location.href = "/security/roles";
   };
 
   $scope.trans = [];
 
   $scope.loadAll = function () {
     $http({
-      method: 'POST',
-      url: '/api/users/all',
+      method: "POST",
+      url: "/api/users/all",
       data: {},
     }).then(
       function (response) {
@@ -29,20 +29,20 @@ app.controller('security', function ($scope, $http, $interval) {
 
   $scope.loadRoles = function () {
     $http({
-      method: 'POST',
-      url: '/api/security/roles',
+      method: "POST",
+      url: "/api/security/roles",
       data: {},
     }).then(
       function (response) {
         if (response.data.done) {
           $scope.roles = response.data.roles;
-          $scope.accountingRoles = $scope.roles.filter((s) => s.moduleName == 'accounting');
-          $scope.hrRoles = $scope.roles.filter((s) => s.moduleName == 'hr');
-          $scope.inventoryRoles = $scope.roles.filter((s) => s.moduleName == 'inventory');
-          $scope.customRoles = $scope.roles.filter((s) => s.moduleName == 'custom');
-          $scope.publicRoles = $scope.roles.filter((s) => s.moduleName == 'public');
-          $scope.hmisRoles = $scope.roles.filter((s) => s.moduleName == 'hmis');
-          $scope.reportRoles = $scope.roles.filter((s) => s.moduleName == 'report');
+          $scope.accountingRoles = $scope.roles.filter((s) => s.moduleName == "accounting");
+          $scope.hrRoles = $scope.roles.filter((s) => s.moduleName == "hr");
+          $scope.inventoryRoles = $scope.roles.filter((s) => s.moduleName == "inventory");
+          $scope.customRoles = $scope.roles.filter((s) => s.moduleName == "custom");
+          $scope.publicRoles = $scope.roles.filter((s) => s.moduleName == "public");
+          $scope.hmisRoles = $scope.roles.filter((s) => s.moduleName == "hmis");
+          $scope.reportRoles = $scope.roles.filter((s) => s.moduleName == "report");
         }
       },
       function (err) {
@@ -53,8 +53,8 @@ app.controller('security', function ($scope, $http, $interval) {
 
   $scope.loadPermissions = function () {
     $http({
-      method: 'POST',
-      url: '/api/security/permissions',
+      method: "POST",
+      url: "/api/security/permissions",
       data: {},
     }).then(
       function (response) {
@@ -80,8 +80,8 @@ app.controller('security', function ($scope, $http, $interval) {
           });
 
           $http({
-            method: 'POST',
-            url: '/api/get_dir_names',
+            method: "POST",
+            url: "/api/get_dir_names",
             data: $scope.screens,
           }).then(
             function (response) {
@@ -89,7 +89,7 @@ app.controller('security', function ($scope, $http, $interval) {
               if (data) {
                 $scope.trans = data;
                 $scope.screens.forEach((s) => {
-                  let newname = data.find((el) => el.name == s.name.replace(/-/g, '_'));
+                  let newname = data.find((el) => el.name == s.name.replace(/-/g, "_"));
                   if (newname) {
                     s.nameAr = newname.Ar;
                     s.nameEn = newname.En;
@@ -100,12 +100,12 @@ app.controller('security', function ($scope, $http, $interval) {
             function (err) {}
           );
 
-          $scope.hrScreens = $scope.screens.filter((s) => s.moduleName == 'hr');
-          $scope.accountingScreens = $scope.screens.filter((s) => s.moduleName == 'accounting');
-          $scope.inventoryScreens = $scope.screens.filter((s) => s.moduleName == 'inventory');
-          $scope.publicScreens = $scope.screens.filter((s) => s.moduleName == 'public');
-          $scope.hmisScreens = $scope.screens.filter((s) => s.moduleName == 'hmis');
-          $scope.reportScreens = $scope.screens.filter((s) => s.moduleName == 'report');
+          $scope.hrScreens = $scope.screens.filter((s) => s.moduleName == "hr");
+          $scope.accountingScreens = $scope.screens.filter((s) => s.moduleName == "accounting");
+          $scope.inventoryScreens = $scope.screens.filter((s) => s.moduleName == "inventory");
+          $scope.publicScreens = $scope.screens.filter((s) => s.moduleName == "public");
+          $scope.hmisScreens = $scope.screens.filter((s) => s.moduleName == "hmis");
+          $scope.reportScreens = $scope.screens.filter((s) => s.moduleName == "report");
           $scope.permissions = response.data.permissions;
         }
       },
@@ -116,32 +116,31 @@ app.controller('security', function ($scope, $http, $interval) {
   };
 
   $scope.getTrans = function (name) {
-    let newName = $scope.trans.find((el) => el.name == name.replace(/-/g, '_'));
+    let newName = $scope.trans.find((el) => el.name == name.replace(/-/g, "_"));
     if (newName) {
       return newName;
     }
     return 0;
   };
 
-
   $scope.addPermission = function () {
-    if ($scope.permission == '') {
+    if ($scope.permission == "") {
       return;
     }
     for (let i = 0; i < $scope.user.permissions.length; i++) {
       let p = $scope.user.permissions[i];
       if (p === $scope.permission) {
-        $scope.permission = '';
+        $scope.permission = "";
         return;
       }
     }
     $scope.user.permissions.push($scope.permission);
-    $scope.permission = '';
+    $scope.permission = "";
   };
 
   $scope.checkAll = function (name) {
     $scope[name].forEach((r) => {
-      r.$selected = $scope['$' + name];
+      r.$selected = $scope["$" + name];
       if (r.$selected) {
         let exists = false;
         $scope.user.roles.forEach((r2) => {
@@ -208,23 +207,23 @@ app.controller('security', function ($scope, $http, $interval) {
     $scope.permissionEditor = false;
     $scope.imageEditor = false;
     $scope.fileEditor = false;
-    $scope.mode = 'add';
-    $scope.user = { image: { url: '/images/user.png' }, active: true, files: [], branchList: [{}], permissions: [], roles: [] };
-    site.showModal('#addUserModal');
-    document.querySelector('#addUserModal .tab-link').click();
+    $scope.mode = "add";
+    $scope.user = { image: { url: "/images/user.png" }, active: true, files: [], permissions: [], roles: [] };
+    site.showModal("#addUserModal");
+    document.querySelector("#addUserModal .tab-link").click();
   };
 
   $scope.add = function () {
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/user/add',
+      method: "POST",
+      url: "/api/user/add",
       data: $scope.user,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#addUserModal');
+          site.hideModal("#addUserModal");
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;
@@ -236,10 +235,10 @@ app.controller('security', function ($scope, $http, $interval) {
 
   $scope.edit = function (user) {
     $scope.view(user);
-    $scope.mode = 'edit';
-    $scope.user = { image: { url: '/images/user.png' }, files: [], permissions: [], roles: [] };
-    site.showModal('#addUserModal');
-    document.querySelector('#addUserModal .tab-link').click();
+    $scope.mode = "edit";
+    $scope.user = { image: { url: "/images/user.png" }, files: [], permissions: [], roles: [] };
+    site.showModal("#addUserModal");
+    document.querySelector("#addUserModal .tab-link").click();
     /*     document.querySelector('#updateUserModal .tab-link').click();
      */
   };
@@ -247,14 +246,14 @@ app.controller('security', function ($scope, $http, $interval) {
   $scope.update = function () {
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/user/update',
+      method: "POST",
+      url: "/api/user/update",
       data: $scope.user,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#addUserModal');
+          site.hideModal("#addUserModal");
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;
@@ -266,10 +265,10 @@ app.controller('security', function ($scope, $http, $interval) {
 
   $scope.remove = function (user) {
     $scope.view(user);
-    $scope.mode = 'delete';
-    $scope.user = { image: { url: '/images/user.png' }, files: [], permissions: [], newpermissions: [], roles: [] };
-    site.showModal('#addUserModal');
-    document.querySelector('#addUserModal .tab-link').click();
+    $scope.mode = "delete";
+    $scope.user = { image: { url: "/images/user.png" }, files: [], permissions: [], newpermissions: [], roles: [] };
+    site.showModal("#addUserModal");
+    document.querySelector("#addUserModal .tab-link").click();
   };
 
   $scope.view = function (user) {
@@ -277,15 +276,14 @@ app.controller('security', function ($scope, $http, $interval) {
     $scope.userPermission = [];
     $scope.onepermission = [];
     $http({
-      method: 'POST',
-      url: '/api/user/view',
+      method: "POST",
+      url: "/api/user/view",
       data: { id: user.id },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-          $scope.user.branchList = $scope.user.branchList || [];
 
           $scope.user.permissions.forEach((x) => {
             if ($scope.onepermission.hasOwnProperty(x.screenName)) {
@@ -307,21 +305,21 @@ app.controller('security', function ($scope, $http, $interval) {
 
   $scope.details = function (user) {
     $scope.view(user);
-    $scope.user = { image: { url: '/images/user.png' }, files: [], permissions: [], roles: [] };
-    site.showModal('#viewUserModal');
+    $scope.user = { image: { url: "/images/user.png" }, files: [], permissions: [], roles: [] };
+    site.showModal("#viewUserModal");
   };
 
   $scope.delete = function () {
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/user/delete',
+      method: "POST",
+      url: "/api/user/delete",
       data: { id: $scope.user.id, name: $scope.user.name },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#addUserModal');
+          site.hideModal("#addUserModal");
           $scope.loadAll();
         } else {
           $scope.error = response.data.error;
@@ -331,246 +329,7 @@ app.controller('security', function ($scope, $http, $interval) {
     );
   };
 
-  $scope.getCompanyList = function () {
-    $scope.companyList = [];
-
-    $http({
-      method: 'POST',
-      url: '/api/companies/all',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.companyList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getUsersTypesList = function () {
-    $scope.usersTypesList = [];
-
-    $http({
-      method: 'POST',
-      url: '/api/usersTypesList',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.usersTypesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getEmployeesJobsTypesList = function () {
-    $scope.employeesJobsTypesList = [];
-
-    $http({
-      method: 'POST',
-      url: '/api/employeesJobsTypesList',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.employeesJobsTypesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.loadStores = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/stores/all',
-      data: { select: { id: 1, nameAr: 1, nameEn: 1, type: 1, code: 1 } },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.storesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.loadSafes = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/safes/all',
-      data: { select: { id: 1, nameAr: 1, nameEn: 1,type:1} },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.safesCashList = response.data.list.filter((s) => s.type.id == 1);
-          $scope.safesBankList = response.data.list.filter((s) => s.type.id == 2);
-
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getPrintersPath = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/printersPaths/all',
-      data: {
-        where: { active: true },
-        select: {
-          id: 1,
-          nameAr: 1,
-          nameEn: 1,
-          type: 1,
-          ipDevice: 1,
-          PortDevice: 1,
-          ip: 1,
-          code: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.printersPathsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getNumberingAuto = function (type) {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/getAutomatic',
-      data: {
-        screen: type.name,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        } else {
-          $scope.disabledCode = false;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.changeUserType = function (type) {
-    $scope.getNumberingAuto(type);
-    if(type.id == 6) {
-      $scope.getCustomersGroups();
-    } else if(type.id == 7) {
-      $scope.getVendorsGroups();
-    }
-  };
-
-  $scope.getVendorsGroups = function () {
-    $scope.busy = true;
-    $scope.vendorsGroupsList = [];
-    $http({
-      method: 'POST',
-      url: '/api/vendorsGroups/all',
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          code: 1,
-          nameEn: 1,
-          nameAr: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.vendorsGroupsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getCustomersGroups = function () {
-    $scope.busy = true;
-    $scope.customersGroupsList = [];
-    $http({
-        method: 'POST',
-        url: '/api/customersGroups/all',
-        data: {
-            where: {
-                active: true,
-            },
-            select: {
-                id: 1,
-                code: 1,
-                nameEn: 1,
-                nameAr: 1,
-            },
-        },
-    }).then(
-        function (response) {
-            $scope.busy = false;
-            if (response.data.done && response.data.list.length > 0) {
-                $scope.customersGroupsList = response.data.list;
-            }
-        },
-        function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-        }
-    );
-};
-
-  $scope.getCompanyList();
-  $scope.loadStores();
-  $scope.loadSafes();
-  $scope.getPrintersPath();
   $scope.loadAll();
   $scope.loadRoles();
   $scope.loadPermissions();
-  $scope.getUsersTypesList();
-  $scope.getEmployeesJobsTypesList();
-
 });

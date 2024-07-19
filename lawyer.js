@@ -54,8 +54,8 @@ site.templateList = [];
 site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');
 site.importApps(__dirname + '/appsLawyer');
-site.importApp(__dirname + '/apps_private/cloud_security', 'security');
-site.importApp(__dirname + '/apps_private/manage-user');
+// site.importApp(__dirname + '/apps_private/cloud_security', 'security');
+// site.importApp(__dirname + '/apps_private/manage-user');
 // site.importApp(__dirname + '/apps_private/companies');
 site.importApp(__dirname + '/apps_cms/cms');
 site.addFeature('lawyer');
@@ -145,5 +145,21 @@ site.xtime = function (_time, lang) {
     return [before, _time, _type, _time_2, _type_2].join(' ');
   }
 };
+
+site.get("/x-update", (req, res) => {
+  site.cmd("git pull", (data) => {
+    res.end(data);
+    console.log(data);
+    site.cmd("pm2 restart 20", (data) => {
+      console.log(data);
+    });
+  });
+});
+
+site.get("/x-restart", (req, res) => {
+  site.cmd("pm2 restart 20", (data) => {
+    console.log(data);
+  });
+});
 
 site.run();

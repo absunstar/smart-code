@@ -1,5 +1,5 @@
 [{
-    "moduleName" : "lawyer" ,
+    "moduleName" : "public" ,
     "name": "statusLawsuitAdmin",
     "En": "Status Lawsuit Admin",
     "Ar": "إدارة حالات الدعوى",

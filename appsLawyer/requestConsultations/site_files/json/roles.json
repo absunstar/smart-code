@@ -1,5 +1,5 @@
 [{
-    "moduleName" : "lawyer" ,
+    "moduleName" : "public" ,
     "name": "requestConsultationsAdmin",
     "En": "Request Consultations Admin",
     "Ar": "إدارة طلبات الإستشارات",

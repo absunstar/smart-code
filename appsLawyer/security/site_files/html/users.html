@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="En" data-ng-app="myApp">
-  <head x-import="theme1/head.html">
+  <head x-import="lawyer-theme/head-dashboard.html"></head>
     <style>
       i-image.photo img {
         width: 128px;
@@ -28,7 +28,17 @@
   </head>
 
   <body class="##session.lang## loaded">
-    <div x-import="theme1/header.html"></div>
+    <nav
+    x-import="lawyer-theme/sitebar.html"
+    class="sitebar"
+    data-ng-controller="sitebar"
+  ></nav>
+
+  <nav
+    class="sitebottom"
+    x-import="lawyer-theme/sitebottom.html"
+    ng-controller="sitebottom"
+  ></nav>
 
     <div id="main-layout" class="container">
       <div class="row">
@@ -59,8 +69,8 @@
                   <i-image view class="logo center" ng-model="user.image"></i-image>
                 </td>
                 <td ng-click="details(user)">{{user.email}}</td>
-                <td ng-click="details(user)">{{user.name##session.lang##}}</td>
-                <td ng-click="details(user)">{{user.type.name##session.lang##}}</td>
+                <td ng-click="details(user)">{{user.firstName}} {{user.lastName}}</td>
+                <td ng-click="details(user)">{{user.type}}</td>
                 <td>
                   <i-button type="remove" ng-click="remove(user)" title="##word.Delete##"></i-button>
                   <i-button type="edit" ng-click="edit(user)" title="##word.Edit##"></i-button>
@@ -72,7 +82,7 @@
       </div>
     </div>
 
-    <div x-import="theme1/footer.html"></div>
+    <div x-import="lawyer-theme/scripts-dashboard.html"></div>
     <script x-import="security/index.js"></script>
   </body>
 </html>

@@ -1,12 +1,12 @@
 [
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsManage", "En": "Manage", "Ar": "إدارة" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsAdd", "En": "Add", "Ar": "إضافة" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsUpdate", "En": "Edit", "Ar": "تعديل" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsDelete", "En": "Delete", "Ar": "حذف" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsView", "En": "View", "Ar": "عرض" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsSearch", "En": "Search", "Ar": "بحث" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsExport", "En": "Export", "Ar": "تصدير" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsPrint", "En": "Print", "Ar": "طباعة" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
-    { "moduleName": "lawyer", "screenName": "requestConsultations", "name": "requestConsultationsImport", "En": "Import", "Ar": "إستيراد" }
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "requestConsultations", "name": "requestConsultationsImport", "En": "Import", "Ar": "إستيراد" }
 ]
