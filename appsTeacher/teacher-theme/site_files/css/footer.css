@@ -644,3 +644,8 @@
   margin-left: -60px;
   border-radius: 100%;
 }
+
+.hover-a:hover {
+  color: #2087e7 !important;
+  text-decoration-line: underline !important;
+}

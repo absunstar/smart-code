@@ -135,7 +135,11 @@ p {
 
 .notifacation-icon {
   font-size: 40px;
-  color: #2087e7;
+  color: #3494ed;
+}
+
+.notifacation-icon:hover {
+  color: #1275d2 !important;
 }
 
 .notification-menu {
@@ -522,8 +526,8 @@ figure {
 .banner-word {
   padding: 10px;
   margin: 10px 0px 10px 0px;
-  background: white;
-  border: 1px solid #b2b2b2;
+  /* background: white;
+  border: 1px solid #b2b2b2; */
   border-radius: 10px;
   text-align: center;
   /* color: #1e7cd4; */
@@ -532,8 +536,13 @@ figure {
   font-family: helvetica, arial, sans-serif;
 }
 .banner-word span {
-  border-bottom: 4px solid #2481d7;
-  border-radius: 5px;
+  font-size: 45px;
+  font-weight: 600;
+  font-family: monospace;
+  color: #2481d7;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0px #b8cbfc, 1px 2px 0px #a8d5ff, 1px 3px 0px #7fc1ff, 1px 4px 0px #2e9bff, 1px 5px 0px #9ed0ff, 1px 6px 0px #dbe3ff, 1px 10px 5px rgb(181 193 255 / 64%),
+    1px 15px 10px rgb(0 43 255 / 40%), 1px 20px 30px rgb(31 94 255 / 30%), 1px 25px 50px rgb(0 43 254 / 20%);
 }
 
 .banner-viewAll {
