@@ -396,8 +396,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.userAd = response.data.doc;
-          $scope.userAd.$mobileAd =
-            $scope.userAd.country_code + $scope.ad.mobile;
+          
         } else {
           $scope.error = response.data.error;
         }

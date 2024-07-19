@@ -152,6 +152,11 @@
             <i-control label="##word.main_title##" type="text" ng-model="default_setting.commission_main_title"></i-control>
             <i-textarea label="##word.description##" type="text" ng-model="default_setting.commission_description"></i-textarea>
             <i-textarea label="##word.transfer_form_text##" type="text" ng-model="default_setting.transfer_form_text"></i-textarea>
+            <div class="row">
+            <i-checkbox label="##word.show_commission_add_content##" class="col3" ng-model="default_setting.show_commission_add_content"></i-checkbox>
+            <i-control ng-show="default_setting.show_commission_add_content" label="##word.commission_value## %" type="text" class="col3" ng-model="default_setting.commission_value"></i-control>
+
+            </div>
           </div>
           <div class="col1"></div>
           <div class="col3">

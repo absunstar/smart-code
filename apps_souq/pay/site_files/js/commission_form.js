@@ -5,8 +5,12 @@ app.controller('commission_form', function ($scope, $http, $timeout) {
 
   $scope.calc = function () {
     $timeout(() => {
+      let commission_value = 0;
+      if($scope.defaultSettings.show_commission_add_content){
+        commission_value = site.toNumber($scope.defaultSettings.commission_value)
+      }
       $scope.commission_due = 0;
-     $scope.commission_due = ($scope.price *1) / 100;
+     $scope.commission_due = ($scope.price * commission_value) / 100;
      if($scope.commission_due < 1) {
       $scope.commission_due = 0;
      }

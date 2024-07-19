@@ -5,6 +5,16 @@
     "ar": "مشغل بواسطة"
   },
   {
+    "name": "show_commission_add_content",
+    "en": "The commission show when you add an ad",
+    "ar": "ظهور العمولة عند إضافة إعلان"
+  },
+  {
+    "name": "commission_value",
+    "en": "Commission Value",
+    "ar": "قيمة العمولة"
+  },
+  {
     "name": "bank_accounts",
     "en": "Bank accounts",
     "ar": "الحسابات البنكية"

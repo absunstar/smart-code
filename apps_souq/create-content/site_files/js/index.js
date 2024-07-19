@@ -1,15 +1,14 @@
-app.controller('create_content', function ($scope, $http, $timeout) {
+app.controller("create_content", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.ad = {};
-
   $scope.displayAddAd = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.ad = {
       feedback_list: [],
       ad_rating: 0,
       date: new Date(),
-      set_price: 'no',
+      set_price: "no",
       number_views: 0,
       number_comments: 0,
       number_favorites: 0,
@@ -42,7 +41,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         {
           price: 0,
           discount: 0,
-          discount_type: 'number',
+          discount_type: "number",
           net_value: 0,
           available_quantity: 0,
           maximum_order: 0,
@@ -50,12 +49,21 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         },
       ];
 
-      $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
+      $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || "/images/content.png";
+    }
+
+    if (!$scope.defaultSettings.show_commission_add_content) {
+      setTimeout(() => {
+        $scope.ad.$accept_deal = true;
+        $("#adDeal").hide();
+        $("#adCategory").show("slow");
+        $scope.$applyAsync();
+      }, 500);
     }
   };
   $scope.addAd = function () {
-    $scope.error = '';
-    const v = site.validated('#adAddModal');
+    $scope.error = "";
+    const v = site.validated("#adAddModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -81,8 +89,8 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/contents/add',
+      method: "POST",
+      url: "/api/contents/add",
       data: $scope.ad,
     }).then(
       function (response) {
@@ -91,21 +99,21 @@ app.controller('create_content', function ($scope, $http, $timeout) {
           if (!$scope.defaultSettings.stores_settings.activate_stores) {
             $scope.address = {};
           }
-          site.showModal('#alert');
+          site.showModal("#alert");
           $timeout(() => {
-            site.hideModal('#alert');
-            window.location.href = '/';
+            site.hideModal("#alert");
+            window.location.href = "/";
           }, 1500);
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*maximum number of adds exceeded*')) {
-            $scope.error = '##word.err_maximum_adds##';
-          } else if (response.data.error.like('*store must specifi*')) {
-            $scope.error = '##word.store_must_specified##';
-          } else if (response.data.error.like('*must be specified in feed*')) {
-            $scope.error = '##word.user_must_specified_in_feedbacks##';
-          } else if (response.data.error.like('*date is greater than the date of public*')) {
-            $scope.error = '##word.today_date_greater_than_date_publication##';
+          if (response.data.error.like("*maximum number of adds exceeded*")) {
+            $scope.error = "##word.err_maximum_adds##";
+          } else if (response.data.error.like("*store must specifi*")) {
+            $scope.error = "##word.store_must_specified##";
+          } else if (response.data.error.like("*must be specified in feed*")) {
+            $scope.error = "##word.user_must_specified_in_feedbacks##";
+          } else if (response.data.error.like("*date is greater than the date of public*")) {
+            $scope.error = "##word.today_date_greater_than_date_publication##";
           }
         }
       },
@@ -117,20 +125,20 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.acceptDeal = function (ad) {
     ad.$accept_deal = true;
-    $('#adDeal').hide();
-    $('#adCategory').show('slow');
+    $("#adDeal").hide();
+    $("#adCategory").show("slow");
   };
 
   $scope.loadMainCategories = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.mainCategories = [];
     $http({
-      method: 'POST',
-      url: '/api/main_categories/all',
+      method: "POST",
+      url: "/api/main_categories/all",
       data: {
         where: {
-          status: 'active',
+          status: "active",
         },
         select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1, category_require_list: 1, parent_id: 1, image_url: 1, type: 1 },
         top: true,
@@ -141,7 +149,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.category_list = response.data.list;
           $scope.top_category_list = response.data.top_list;
-          if ('##query.id##' != 'undefined') {
+          if ("##query.id##" != "undefined") {
             $scope.displayAd();
           }
         }
@@ -156,19 +164,18 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   $scope.acceptCategory = function (ad, cat) {
     $scope.loadSubCategory2(cat);
     console.log(cat.type);
-      $('#adCategory').hide();
-      if (cat.category_require_list && cat.category_require_list.length > 0) {
-        $('#adCategoryRequire').show('slow');
-      } else if ($scope.defaultSettings.content.new_address_appear) {
-        $('#adAddressType').show('slow');
-      } else {
-        $scope.showAddress(ad, 'main');
-      }
-    
+    $("#adCategory").hide();
+    if (cat.category_require_list && cat.category_require_list.length > 0) {
+      $("#adCategoryRequire").show("slow");
+    } else if ($scope.defaultSettings.content.new_address_appear) {
+      $("#adAddressType").show("slow");
+    } else {
+      $scope.showAddress(ad, "main");
+    }
   };
 
   $scope.loadSubCategory2 = function (c) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.ad.main_category = c;
     $scope.ad.category_require_list = c.category_require_list;
     $scope.ad.$category1 = $scope.ad.main_category;
@@ -184,7 +191,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSubCategory3 = function (c) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.ad.main_category = c;
     $scope.ad.$category2 = $scope.ad.main_category;
     $scope.subCategoriesList3 = [];
@@ -198,7 +205,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSubCategory4 = function (c) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.ad.main_category = c;
     $scope.ad.$category3 = $scope.ad.main_category;
     $scope.subCategoriesList4 = [];
@@ -211,7 +218,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSubCategory5 = function (c) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.ad.main_category = c;
     $scope.ad.$category4 = $scope.ad.main_category;
     $scope.subCategoriesList5 = [];
@@ -222,26 +229,23 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     });
   };
 
-
-
-
   $scope.calcDiscount = function (obj) {
-    $scope.error = '';
+    $scope.error = "";
     $timeout(() => {
       let discount = obj.discount || 0;
-      if (obj.discount_type == 'percent') discount = (obj.price * obj.discount) / 100;
+      if (obj.discount_type == "percent") discount = (obj.price * obj.discount) / 100;
 
       obj.net_value = obj.price - discount;
     }, 200);
   };
 
   $scope.addQuantity = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.ad.quantity_list = $scope.ad.quantity_list || [];
     let obj = {
       price: 0,
       discount: 0,
-      discount_type: 'number',
+      discount_type: "number",
       net_value: 0,
       available_quantity: 0,
       maximum_order: 0,
@@ -250,22 +254,21 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.ad.quantity_list.push(obj);
   };
   $scope.addImage = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.ad.images_list = $scope.ad.images_list || [];
     if ($scope.ad.$image && $scope.ad.$image.image_url) {
       $scope.ad.images_list.push({
         image_url: $scope.ad.$image.image_url,
         description: $scope.ad.$image.desc,
       });
-    };
-    $scope.ad.$image = { image_url: '/images/no.jpg' };
+    }
+    $scope.ad.$image = { image_url: "/images/no.jpg" };
   };
 
   $scope.addVideos = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.ad.videos_list = $scope.ad.videos_list || [];
     if ($scope.ad.$video && $scope.ad.$video.link) {
-
       $scope.ad.videos_list.push({
         link: $scope.ad.$video.link,
         description: $scope.ad.$video.desc,
@@ -275,52 +278,48 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   };
 
   $scope.doneSelectMainImage = function () {
-    $scope.error = '';
-    $('#adMainImage').hide();
-    $('#adAnotherImages').show('slow');
-
+    $scope.error = "";
+    $("#adMainImage").hide();
+    $("#adAnotherImages").show("slow");
   };
 
   $scope.doneSelectImages = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.defaultSettings.content.upload_video) {
-      $('#adAnotherImages').hide();
-      $('#adVideo').show('slow');
+      $("#adAnotherImages").hide();
+      $("#adVideo").show("slow");
     } else {
-      $('#adAnotherImages').hide();
-      $('#adContent').show('slow');
+      $("#adAnotherImages").hide();
+      $("#adContent").show("slow");
     }
   };
 
   $scope.doneSelectVideos = function () {
-    $scope.error = '';
-    $('#adVideo').hide();
-    $('#adContent').show('slow');
+    $scope.error = "";
+    $("#adVideo").hide();
+    $("#adContent").show("slow");
   };
 
   $scope.upDownList = function (list, type, index) {
-
     let element = list[index];
     let toIndex = index;
 
-    if (type == 'up') {
-      toIndex = index - 1
-    } else if (type == 'down') {
-      toIndex = index + 1
+    if (type == "up") {
+      toIndex = index - 1;
+    } else if (type == "down") {
+      toIndex = index + 1;
     }
 
     list.splice(index, 1);
     list.splice(toIndex, 0, element);
-
   };
-
 
   $scope.getCurrenciesList = function () {
     $scope.busy = true;
     $scope.currenciesList = [];
     $http({
-      method: 'POST',
-      url: '/api/currency/all',
+      method: "POST",
+      url: "/api/currency/all",
       data: {
         where: { active: true },
       },
@@ -339,12 +338,12 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   };
 
   $scope.getAdsStatusList = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.aStatusList = [];
     $http({
-      method: 'POST',
-      url: '/api/content_status/all',
+      method: "POST",
+      url: "/api/content_status/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -361,8 +360,8 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.unitsList = [];
     $http({
-      method: 'POST',
-      url: '/api/units/all',
+      method: "POST",
+      url: "/api/units/all",
       data: {
         where: { active: true },
       },
@@ -382,60 +381,56 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.adBack = function (id1, id2) {
     $(`#${id1}`).hide();
-    $(`#${id2}`).show('slow');
+    $(`#${id2}`).show("slow");
   };
 
   $scope.continuationNotSelectAddress = function () {
-    $('#adAddressType').hide();
-    $('#adMainImage').show('slow');
+    $("#adAddressType").hide();
+    $("#adMainImage").show("slow");
   };
 
   $scope.continuationToSelectAddress = function () {
-    $('#adCategoryRequire').hide();
+    $("#adCategoryRequire").hide();
     if ($scope.defaultSettings.content.new_address_appear) {
-
-      $('#adAddressType').show('slow');
+      $("#adAddressType").show("slow");
     } else {
-      $scope.showAddress($scope.ad, 'main');
-
+      $scope.showAddress($scope.ad, "main");
     }
   };
 
   $scope.showAddress = function (ad, type) {
     ad.$address_type = type;
-    $('#adAddressType').hide();
-    $('#adAddressSelect').show('slow');
+    $("#adAddressType").hide();
+    $("#adAddressSelect").show("slow");
   };
 
   $scope.selectAddress = function (index) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.address = $scope.address || {};
-    if ($scope.ad.$address_type == 'main') {
+    if ($scope.ad.$address_type == "main") {
       $scope.ad.address = $scope.address.main;
-    } else if ($scope.ad.$address_type == 'other') {
+    } else if ($scope.ad.$address_type == "other") {
       $scope.address.other_list = $scope.address.other_list || [];
       $scope.address.other_list.forEach((_other, i) => {
         if (i == index) {
           $scope.ad.address = { ..._other };
         }
-
       });
-    } else if ($scope.ad.$address_type == 'new') {
+    } else if ($scope.ad.$address_type == "new") {
       $scope.ad.address = $scope.address.new;
-
     }
 
-    $('#adAddressSelect').hide();
-    $('#adMainImage').show('slow');
+    $("#adAddressSelect").hide();
+    $("#adMainImage").show("slow");
   };
 
   $scope.getUser = function () {
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/user/view',
+      method: "POST",
+      url: "/api/user/view",
       data: {
-        id: site.toNumber('##user.id##'),
+        id: site.toNumber("##user.id##"),
       },
     }).then(
       function (response) {
@@ -453,7 +448,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) { }
+      function (err) {}
     );
   };
 
@@ -461,10 +456,10 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.myStoreslist = [];
     $http({
-      method: 'POST',
-      url: '/api/stores/all',
+      method: "POST",
+      url: "/api/stores/all",
       data: {
-        where: { 'user.id': site.toNumber('##user.id##') },
+        where: { "user.id": site.toNumber("##user.id##") },
         select: { id: 1, name: 1, user: 1, address: 1 },
       },
     }).then(
@@ -483,7 +478,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.viewCategories = function (c) {
     $scope.category = c;
-    site.showModal('#categoriesViewModal');
+    site.showModal("#categoriesViewModal");
   };
 
   $scope.selectCategory = function (c) {
@@ -495,32 +490,37 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.displayAd = function () {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
     $http({
-      method: 'POST',
-      url: '/api/contents/view',
+      method: "POST",
+      url: "/api/contents/view",
       data: {
-        id: site.toNumber('##query.id##'),
+        id: site.toNumber("##query.id##"),
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.ad = response.data.doc;
-          if (!$scope.ad.main_category.parent_list_id || $scope.ad.main_category.parent_list_id && $scope.ad.main_category.parent_list_id.length < 1) {
+          if (!$scope.ad.main_category.parent_list_id || ($scope.ad.main_category.parent_list_id && $scope.ad.main_category.parent_list_id.length < 1)) {
             $scope.ad.$category1 = $scope.ad.main_category;
           } else {
-            let category_str = '$category';
-            let subCategories = 'subCategoriesList';
+            let category_str = "$category";
+            let subCategories = "subCategoriesList";
             $scope.ad.main_category.parent_list_id.forEach((_m, i) => {
-              $scope.ad[category_str + (i + 1)] = $scope.category_list.find(_c => { return _c.id == _m });
-              $scope[subCategories + (i + 2)] = $scope.category_list.filter(_c => { return _c.parent_id == _m })
+              $scope.ad[category_str + (i + 1)] = $scope.category_list.find((_c) => {
+                return _c.id == _m;
+              });
+              $scope[subCategories + (i + 2)] = $scope.category_list.filter((_c) => {
+                return _c.parent_id == _m;
+              });
             });
             $scope.ad[category_str + ($scope.ad.main_category.parent_list_id.length + 1)] = $scope.ad.main_category;
-            $scope[subCategories + ($scope.ad.main_category.parent_list_id.length + 2)] = $scope.category_list.filter(_c => { return _c.parent_id == $scope.ad.main_category })
-
+            $scope[subCategories + ($scope.ad.main_category.parent_list_id.length + 2)] = $scope.category_list.filter((_c) => {
+              return _c.parent_id == $scope.ad.main_category;
+            });
           }
-          $scope.ad.$address_type = 'main';
+          $scope.ad.$address_type = "main";
         } else {
           $scope.error = response.data.error;
         }
@@ -531,20 +531,18 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.getDefaultSetting = function () {
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/default_setting/get',
+      method: "POST",
+      url: "/api/default_setting/get",
       data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          if ('##query.id##' == 'undefined') {
-
+          if ("##query.id##" == "undefined") {
             $scope.displayAddAd();
           }
           if (!$scope.defaultSettings.stores_settings.activate_stores) {
@@ -559,14 +557,13 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.updateAd = function (ad) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     ad.ad_status = $scope.defaultSettings.content.status;
     $http({
-      method: 'POST',
-      url: '/api/contents/update',
+      method: "POST",
+      url: "/api/contents/update",
       data: ad,
     }).then(
       function (response) {
@@ -574,8 +571,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         if (response.data.done) {
           window.location.href = `/manage_user`;
         } else {
-          $scope.error = 'Please Login First';
-
+          $scope.error = "Please Login First";
         }
       },
       function (err) {
@@ -590,5 +586,4 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   $scope.getAdsStatusList();
   $scope.getMyStoresList();
   $scope.getDefaultSetting();
-
 });

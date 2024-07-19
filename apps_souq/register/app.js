@@ -134,12 +134,12 @@ module.exports = function init(site) {
                 if (result.doc.type == "mobile") {
                   if (site.setting.enable_sending_messages_mobile) {
                     site.sendMobileTwilioMessage({
-                      to: result.doc.country.country_code + result.doc.mobile,
+                      to: result.doc.mobile,
                       message: `code : ${result.doc.code}`,
                     });
                   } else if (site.setting.enable_sending_messages_mobile_taqnyat) {
                     site.sendMobileTaqnyatMessage({
-                      to: result.doc.country.country_code + result.doc.mobile,
+                      to: result.doc.mobile,
                       message: `harajtmor code : ${result.doc.code}`,
                     });
                   }
@@ -166,7 +166,7 @@ module.exports = function init(site) {
           if (mailer_doc.type == "email") {
             where.email = mailer_doc.email;
           } else if (mailer_doc.type == "mobile") {
-            where.mobile = mailer_doc.mobile;
+            where.mobile = mailer_doc.country.country_code + mailer_doc.mobile;
           }
           site.security.getUser(where, (err, user_doc) => {
             if (!err) {
@@ -181,6 +181,10 @@ module.exports = function init(site) {
               } else {
                 mailer_doc.code = Math.floor(Math.random() * 10000) + 90000;
                 mailer_doc.date = new Date();
+                if (mailer_doc.country && mailer_doc.country.country_code) {
+                  mailer_doc.mobile = mailer_doc.country.country_code + mailer_doc.mobile;
+                }
+                mailer_doc.country.country_code;
                 $mailer.add(mailer_doc, (err, result) => {
                   if (!err) {
                     response.done = true;
@@ -188,12 +192,12 @@ module.exports = function init(site) {
                     if (result.type == "mobile") {
                       if (site.setting.enable_sending_messages_mobile) {
                         site.sendMobileTwilioMessage({
-                          to: result.country.country_code + result.mobile,
+                          to: result.mobile,
                           message: `code : ${result.code}`,
                         });
                       } else if (site.setting.enable_sending_messages_mobile_taqnyat) {
                         site.sendMobileTaqnyatMessage({
-                          to: result.country.country_code + result.mobile,
+                          to: result.mobile,
                           message: `harajtmor code : ${result.code}`,
                         });
                       }
@@ -229,7 +233,7 @@ module.exports = function init(site) {
     let regex = /^\d*(\.\d+)?$/;
 
     if (body.country && body.country.length_mobile && body.mobile.match(regex)) {
-      if (body.mobile.toString().length == body.country.length_mobile) {
+      if (body.mobile.toString().length == body.country.length_mobile + body.country.country_code.length) {
         response.done = true;
       } else {
         response.error = `Please enter a valid mobile number length ${body.country.length_mobile}`;
@@ -289,7 +293,7 @@ module.exports = function init(site) {
     let regex = /^\d*(\.\d+)?$/;
 
     if (req.body.length_mobile && req.body.mobile.match(regex)) {
-      if (req.body.mobile.toString().length == req.body.length_mobile) {
+      if (req.body.mobile.toString().length == req.body.length_mobile + req.body.country_code.length) {
         response.done = true;
       } else {
         response.error = `Please enter a valid mobile number length ${req.body.length_mobile}`;
@@ -304,7 +308,7 @@ module.exports = function init(site) {
     let user = {
       email: req.body.email,
       password: req.body.password,
-      mobile: req.body.mobile,
+      mobile:req.body.mobile,
       feedback_list: [],
       followers_list: [],
       follow_category_list: [],

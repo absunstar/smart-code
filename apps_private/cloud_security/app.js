@@ -503,7 +503,7 @@ module.exports = function init(site) {
 
   site.post('/api/user/logout', function (req, res) {
     let response = {
-      accessToken: req.session.accessToken,
+      accessToken: null,
       done: true,
     };
 

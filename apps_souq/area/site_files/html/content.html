@@ -15,11 +15,10 @@
           <div class="row">
             <i-list help-id="" v="r" class="col4" label="##word.country##" ng-change="getGovesList(area.country)" ng-model="area.country" display="name_##session.lang##" items="countriesList" ng-search="_search.$city_country"></i-list>
 
-            <i-list class="col3" label="##word.gov##" ng-model="area.gov" items="govesList" ng-change="getCityList(area.gov)" display="name_##session.lang##" ng-search="_search.$area.$gov_search"> </i-list>
+            <i-list class="col3" label="##word.gov##" v="r" ng-model="area.gov" items="govesList" ng-change="getCityList(area.gov)" display="name_##session.lang##" ng-search="_search.$area.$gov_search"> </i-list>
 
-            <i-list class="col3" label="##word.city##" ng-model="area.city" items="cityList" display="name_##session.lang##" ng-search="_search.$area.$city_search"> </i-list>
+            <i-list class="col3" label="##word.city##" v="r" ng-model="area.city" items="cityList" display="name_##session.lang##" ng-search="_search.$area.$city_search"> </i-list>
 
-            <i-control help-id="price_delivery_service" v="r" type="number" class="col2" x-features="restaurant || pos || erp || ecommerce" label="##word.price_delivery_service##" ng-model="area.price_delivery_service"></i-control>
           </div>
         </div>
 

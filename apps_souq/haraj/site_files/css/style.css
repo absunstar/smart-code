@@ -337,10 +337,10 @@ i-image img:hover {
 }
 
 .haraj_name {
-  background-image: linear-gradient(to left, #009688, gold, #009688, gold);
+  background-image: linear-gradient(to left, #009688, #bcaa13, #009688, #aa9526);
   -webkit-background-clip: text;
   color: transparent;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: bold;
   padding-left: 10px;
   font-family: 'Arabic';
@@ -583,9 +583,12 @@ i.fa.fa-check {
   font-family: 'Arabic';
   font-size: 18px;
   font-weight: bold;
-  right: -5px;
+  right: 15px;
+  text-align: center;
   bottom: 0px;
-  text-shadow: 1px 1px 5px #000;
+  text-shadow: 1px 1px 8px #000;
+  margin: 0;
+  padding: 0px;
 }
 .darkgray {
   color: #7d7d7d;
