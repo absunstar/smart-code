@@ -137,19 +137,14 @@ module.exports = function init(site) {
                       to: result.doc.country.country_code + result.doc.mobile,
                       message: `code : ${result.doc.code}`,
                     });
-                  } else if (
-                    site.setting.enable_sending_messages_mobile_taqnyat
-                  ) {
+                  } else if (site.setting.enable_sending_messages_mobile_taqnyat) {
                     site.sendMobileTaqnyatMessage({
                       to: result.doc.country.country_code + result.doc.mobile,
                       message: `harajtmor code : ${result.doc.code}`,
                     });
                   }
                   response.done_send_mobile = true;
-                } else if (
-                  result.doc.type == "email" &&
-                  site.setting.enable_sending_messages_email
-                ) {
+                } else if (result.doc.type == "email" && site.setting.enable_sending_messages_email) {
                   site.sendMailMessage({
                     to: result.doc.email,
                     subject: `Rejester Code`,
@@ -196,19 +191,14 @@ module.exports = function init(site) {
                           to: result.country.country_code + result.mobile,
                           message: `code : ${result.code}`,
                         });
-                      } else if (
-                        site.setting.enable_sending_messages_mobile_taqnyat
-                      ) {
+                      } else if (site.setting.enable_sending_messages_mobile_taqnyat) {
                         site.sendMobileTaqnyatMessage({
                           to: result.country.country_code + result.mobile,
                           message: `harajtmor code : ${result.code}`,
                         });
                       }
                       response.done_send_mobile = true;
-                    } else if (
-                      result.type == "email" &&
-                      site.setting.enable_sending_messages_email
-                    ) {
+                    } else if (result.type == "email" && site.setting.enable_sending_messages_email) {
                       site.sendMailMessage({
                         to: result.email,
                         subject: `Rejester Code`,
@@ -238,11 +228,7 @@ module.exports = function init(site) {
 
     let regex = /^\d*(\.\d+)?$/;
 
-    if (
-      body.country &&
-      body.country.length_mobile &&
-      body.mobile.match(regex)
-    ) {
+    if (body.country && body.country.length_mobile && body.mobile.match(regex)) {
       if (body.mobile.toString().length == body.country.length_mobile) {
         response.done = true;
       } else {
@@ -315,7 +301,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-
     let user = {
       email: req.body.email,
       password: req.body.password,
@@ -325,6 +310,7 @@ module.exports = function init(site) {
       follow_category_list: [],
       ip: req.ip,
       country_code: req.body.country_code,
+      country: site.country_list ? site.country_list.find((l) => l.country_code == req.body.country_code) : {},
       permissions: ["user"],
       active: true,
       type: {
@@ -355,8 +341,7 @@ module.exports = function init(site) {
 
     if (site.defaultSettingDoc && site.defaultSettingDoc.stores_settings) {
       if (site.defaultSettingDoc.stores_settings.maximum_stores) {
-        user.maximum_stores =
-          site.defaultSettingDoc.stores_settings.maximum_stores;
+        user.maximum_stores = site.defaultSettingDoc.stores_settings.maximum_stores;
       } else {
         user.maximum_stores = 2;
       }
