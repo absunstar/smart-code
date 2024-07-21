@@ -168,7 +168,7 @@ module.exports = function init(site) {
         _data.addUserInfo = req.getUserFinger();
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
-        } else {
+        } else if(site.getSiteSetting(req.host).isShared) {
           response.error = "There Is No Teacher";
           res.json(response);
           return;
@@ -267,7 +267,7 @@ module.exports = function init(site) {
         let host = site.getHostFilter(req.host);
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
-          if ((!where.active || doc.active) && (doc.teacherId == teacherId || (doc.host == host && !teacherId))) {
+          if ((!where.active || doc.active) && (doc.teacherId === teacherId || (doc.host == host && !teacherId))) {
             list.push(obj);
           }
 

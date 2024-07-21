@@ -213,10 +213,10 @@ module.exports = function init(site) {
         _data.host = site.getHostFilter(req.host);
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
-        } else {
-          response.error = "There Is No Teacher";
-          res.json(response);
-          return;
+        // } else {
+        //   response.error = "There Is No Teacher";
+        //   res.json(response);
+        //   return;
         }
 
         app.add(_data, (err, doc) => {
@@ -324,7 +324,7 @@ module.exports = function init(site) {
               delete obj[p];
             }
           }
-          if ((!where.active || doc.active) && (doc.teacherId == teacherId || (doc.host == host && !teacherId))) {
+          if ((!where.active || doc.active) && (doc.teacherId === teacherId || (doc.host == host && !teacherId))) {
             if (req.body.view) {
               if (req.session.user && req.session.user.type == "student") {
                 if (req.session.user.educationalLevel.id == obj.educationalLevel.id && req.session.user.schoolYear.id == obj.schoolYear.id) {

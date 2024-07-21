@@ -80,7 +80,7 @@ module.exports = function init(site) {
     }
     if ((teacherId = site.getTeacherSetting(req))) {
       _data.teacherId = teacherId;
-    } else {
+    } else if(site.getSiteSetting(req.host).isShared) {
       response.error = "There Is No Teacher";
       res.json(response);
       return;

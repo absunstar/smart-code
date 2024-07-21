@@ -174,7 +174,7 @@ module.exports = function init(site) {
         }
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
-        } else {
+        } else if(site.getSiteSetting(req.host).isShared) {
           response.error = "There Is No Teacher";
           res.json(response);
           return;
@@ -297,7 +297,7 @@ module.exports = function init(site) {
           let list = app.memoryList
             .filter(
               (g) =>
-                (typeof where.active != "boolean" || g.active === where.active) && JSON.stringify(g).contains(search) &&  (g.teacherId == teacherId || (g.host == host && !teacherId))
+                (typeof where.active != "boolean" || g.active === where.active) && JSON.stringify(g).contains(search) &&  (g.teacherId === teacherId || (g.host == host && !teacherId))
             )
             .slice(0, limit);
 
