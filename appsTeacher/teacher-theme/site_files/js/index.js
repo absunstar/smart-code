@@ -70,4 +70,13 @@ app.controller('teacherTheme', function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.centersView = function () {
+    $scope.error = '';
+    if('##user.id##' > 0) {
+      window.location.href = '/centersView';
+    } else {
+      window.location.href = '/login';
+
+    }
+  };
 });

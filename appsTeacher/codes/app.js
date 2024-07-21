@@ -374,7 +374,6 @@ module.exports = function init(site) {
       };
 
       let _data = req.data;
-
       if (!_data.from || !_data.to || _data.from > _data.to) {
         response.error = "Must Send Correct Data";
         res.json(response);
@@ -382,12 +381,12 @@ module.exports = function init(site) {
       }
 
       let where = {};
-      where["teacherId"] = site.getSiteSetting(req.host).teacherId;
+      where["teacherId"] = site.getTeacherSetting(req);
       where["serial"] = {
         $gte: _data.from,
         $lte: _data.to,
       };
-
+      console.log(where);
       app.$collection.updateAll({ where, set: { distribution: _data.type } }, (err, result) => {
         if (!err) {
           response.done = true;

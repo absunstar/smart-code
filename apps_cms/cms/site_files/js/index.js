@@ -62,7 +62,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
           $scope.ContentBusy = false;
           $scope.error = err;
           $timeout(() => {
-            window.autoLoadingPosts = true;
+            window.autoLoadingPosts = true; 
           }, 2000);
         }
       );

@@ -1,6 +1,6 @@
 <ul class="main-menu">
   <li class="menu-item">
-    <a class="tab-link" href="/site-setting" x-permissions="defaultSettingManage">
+    <a class="tab-link" href="/site-setting" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'" x-permissions="defaultSettingManage">
       <i class="fas fa-wifi"></i>
       <span> ##word.Default Setting## </span>
     </a>
@@ -75,55 +75,6 @@
   </li>
 
   <li class="menu-item">
-    <a class="tab-link" href="/educationalLevels" x-permissions="educationalLevelsUi || educationalLevelsManage">
-      <i class="fas fa-globe"></i>
-      <span> ##word.Educational Levels## </span>
-    </a>
-  </li>
-
-  <li class="menu-item">
-    <a class="tab-link" href="/schoolYears" x-permissions="schoolYearsUi || schoolYearsManage">
-      <i class="fas fa-globe"></i>
-      <span> ##word.School Years## </span>
-    </a>
-  </li>
-
-  <li class="menu-item">
-    <a class="tab-link" href="/countries" x-permissions="countriesUi || countriesManage">
-      <i class="fas fa-globe"></i>
-      <span> ##word.Countries## </span>
-    </a>
-  </li>
-
-  <li class="menu-item">
-    <a class="tab-link" href="/goves" x-permissions="govesUi || govesManage">
-      <i class="fas fa-street-view"></i>
-      <span> ##word.Goves## </span>
-    </a>
-  </li>
-
-  <li class="menu-item" x-data="setting.citiesAndAreasShow">
-    <a class="tab-link" href="/cities" x-permissions="citiesUi || citiesManage">
-      <i class="fas fa-city"></i>
-      <span> ##word.Cities## </span>
-    </a>
-  </li>
-
-  <li class="menu-item" x-data="setting.citiesAndAreasShow">
-    <a class="tab-link" href="/areas" x-permissions="areasUi || areasManage">
-      <i class="fas fa-vector-square"></i>
-      <span> ##word.Areas## </span>
-    </a>
-  </li>
-
-  <li class="menu-item" x-data="setting.nationalitiesShow">
-    <a class="tab-link" href="/nationalities" x-permissions="nationalitiesUi || nationalitiesManage">
-      <i class="fas fa-vector-square"></i>
-      <span> ##word.Nationalities## </span>
-    </a>
-  </li>
-
-  <li class="menu-item">
     <a class="tab-link" href="/manageUsers?type=student">
       <i class="fas fa-users"></i>
       <span> ##word.Manage Students## </span>
@@ -143,13 +94,7 @@
       <span> ##word.Manage Teachers## </span>
     </a>
   </li>
-  
-  <li class="menu-item">
-    <a class="tab-link" href="/pages" x-permissions="pageImplementUi || pageImplementManage">
-      <i class="fas fa-users"></i>
-      <span> ##word.Pages## </span>
-    </a>
-  </li>
+
   <li class="menu-item">
     <a class="tab-link" href="/words" x-permissions="devleoper">
       <i class="fas fa-users"></i>
@@ -174,6 +119,60 @@
     <a class="tab-link" href="/host-manager" x-permissions="devleoper">
       <i class="fas fa-users"></i>
       <span> ##word.Host Manager## </span>
+    </a>
+  </li>
+  <li class="menu-item" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'">
+    <a class="tab-link" href="/pages" x-permissions="pageImplementUi || pageImplementManage">
+      <i class="fas fa-users"></i>
+      <span> ##word.Pages## </span>
+    </a>
+  </li>
+  <li class="menu-item" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'">
+    <a class="tab-link" href="/educationalLevels" x-permissions="educationalLevelsUi || educationalLevelsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Educational Levels## </span>
+    </a>
+  </li>
+
+  <li class="menu-item" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'">
+    <a class="tab-link" href="/schoolYears" x-permissions="schoolYearsUi || schoolYearsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.School Years## </span>
+    </a>
+  </li>
+
+  <li class="menu-item" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'">
+    <a class="tab-link" href="/countries" x-permissions="countriesUi || countriesManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Countries##</span>
+    </a>
+  </li>
+
+  <li class="menu-item" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'">
+    <a class="tab-link" href="/goves" x-permissions="govesUi || govesManage">
+      <i class="fas fa-street-view"></i>
+      <span> ##word.Goves## </span>
+    </a>
+  </li>
+
+  <li class="menu-item" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'" x-data="setting.citiesAndAreasShow">
+    <a class="tab-link" href="/cities" x-permissions="citiesUi || citiesManage">
+      <i class="fas fa-city"></i>
+      <span> ##word.Cities## </span>
+    </a>
+  </li>
+
+  <li class="menu-item" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'" x-data="setting.citiesAndAreasShow">
+    <a class="tab-link" href="/areas" x-permissions="areasUi || areasManage">
+      <i class="fas fa-vector-square"></i>
+      <span> ##word.Areas## </span>
+    </a>
+  </li>
+
+  <li class="menu-item" x-data="setting.nationalitiesShow">
+    <a class="tab-link" href="/nationalities" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'" x-permissions="nationalitiesUi || nationalitiesManage">
+      <i class="fas fa-vector-square"></i>
+      <span> ##word.Nationalities## </span>
     </a>
   </li>
 </ul>
