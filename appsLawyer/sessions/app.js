@@ -265,6 +265,7 @@ module.exports = function init(site) {
         let select = req.body.select || {
           id: 1,
           sessionDate: 1,
+          office: 1,
           lawsuit: 1,
           reasonsSession: 1,
           rollNumber: 1,

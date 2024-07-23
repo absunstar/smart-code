@@ -73,3 +73,28 @@ legend {
 .selectAll {
   user-select: all
 }
+.cart {
+  border: 3px solid #00856a;
+  display: inline-block;
+  width: 50vw !important;
+  margin: 10px 0px 10px 0px !important;
+  box-shadow: 2px 2px 5px 0px #00856a;
+  background: white;
+  padding: 25px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.cart img {
+  height: 33px;
+  width: 45px;
+  padding: 2px;
+}
+
+.darkGray {
+  color: #707070 !important;
+}
+.img-logo {
+  height: 28px;
+  vertical-align: top;
+}
