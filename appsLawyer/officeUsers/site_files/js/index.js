@@ -57,6 +57,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
         $scope.error = "##word.Must Enter Card Number##";
         return;
       } else if (!_item.constraintDate) {
+        console.log(_item.constraintDate);
         $scope.error = "##word.Must Enter Constraint Date##";
         return;
       }  else if (!_item.specialties || !_item.specialties.length) {

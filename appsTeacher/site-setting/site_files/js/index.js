@@ -57,89 +57,6 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.loadWriters = function (where) {
-    $scope.error = "";
-    $scope.busy = true;
-    where = where || {};
-    where["type.id"] = 1;
-
-    $http({
-      method: "POST",
-      url: "/api/users/all",
-      data: {
-        where: where,
-        select: { id: 1, profile: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.writersList = response.data.users;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.loadEditors = function (where) {
-    $scope.error = "";
-    $scope.busy = true;
-    where = where || {};
-    where["type.id"] = 2;
-
-    $http({
-      method: "POST",
-      url: "/api/users/all",
-      data: {
-        where: where,
-        select: { id: 1, profile: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.editorsList = response.data.users;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.loadCategories = function () {
-    $scope.error = "";
-    $scope.busy = true;
-    $scope.categoryList = [];
-    $scope.topCategoryList = [];
-    $http({
-      method: "POST",
-      url: "/api/categories/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: { id: 1, translatedList: 1, parentListId: 1, topParentId: 1, parentId: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.topCategoryList = response.data.topList;
-          $scope.categoryList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.getTeachersList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -200,20 +117,6 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     list.splice(toIndex, 0, element);
   };
 
-  $scope.addMainCategory = function () {
-    $scope.error = "";
-    if ($scope.siteSetting.$category && $scope.siteSetting.$category.id) {
-      $scope.siteSetting.mainCategoryList = $scope.siteSetting.mainCategoryList || [];
-      let index = $scope.siteSetting.mainCategoryList.findIndex((itm) => itm.id == $scope.siteSetting.$category.id);
-      if (index === -1) {
-        $scope.siteSetting.mainCategoryList.unshift($scope.siteSetting.$category);
-      } else {
-        $scope.error = "##word.Already Existed##";
-        return;
-      }
-      $scope.siteSetting.$category = {};
-    }
-  };
 
   $scope.addMetaTags = function (programming) {
     $scope.error = "";

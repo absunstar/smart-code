@@ -187,6 +187,7 @@ module.exports = function init(site) {
   });
 
   site.post("/api/get-site-setting", (req, res) => {
+    console.log(req.host);
     let response = {
       doc: site.getSiteSetting(req.host),
       done: true,

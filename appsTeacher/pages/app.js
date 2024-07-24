@@ -73,17 +73,9 @@ module.exports = function init(site) {
     _data.$req = req;
     _data.$res = res;
     _data.host = site.getHostFilter(req.host);
-    if (site.getTeacherSetting(req) == null) {
-      response.error = "There Is No Teacher";
-      res.json(response);
-      return;
-    }
+ 
     if ((teacherId = site.getTeacherSetting(req))) {
       _data.teacherId = teacherId;
-    } else if(site.getSiteSetting(req.host).isShared) {
-      response.error = "There Is No Teacher";
-      res.json(response);
-      return;
     }
     _data.add_user_info = site.security.getUserFinger({
       $req: req,
