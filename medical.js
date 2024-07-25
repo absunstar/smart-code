@@ -1,7 +1,7 @@
 const site = require('../isite')({
   port: [80, 40012],
   lang: 'ar',
-  version: '2023.03.07.2',
+  version: Date.now(),
   name: 'medical',
   require: {
     features: [],
@@ -16,7 +16,7 @@ const site = require('../isite')({
     },
   },
   security: {
-    keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
+    keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99', '710998fd1b7c0235170265650770a4b1', '820a6b58c2beed9f67932b476c7d8a21'],
   },
 });
 

@@ -14,38 +14,38 @@ module.exports = function init(site) {
   })
 
 
-  site.on('[register][room][add]', doc => {
+  // site.on('[register][room][add]', doc => {
 
-    $room.add({
-      building: {
-        id: doc.building.id,
-        code: doc.building.code,
-        name_ar: doc.building.name_ar,
-        name_en: doc.building.name_en
-      },
-      floor: {
-        id: doc.id,
-        code: doc.code,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en,
-      },
-      name_ar: "حجرة إفتراضية",
-      name_en: "Default Room",
-      code : '1-Test',
-      image_url: '/images/room.png',
-      company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en,
-      },
-      branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en,
-      },
-      active: true
-    }, (err, doc) => { })
-  })
+  //   $room.add({
+  //     building: {
+  //       id: doc.building.id,
+  //       code: doc.building.code,
+  //       name_ar: doc.building.name_ar,
+  //       name_en: doc.building.name_en
+  //     },
+  //     floor: {
+  //       id: doc.id,
+  //       code: doc.code,
+  //       name_ar: doc.name_ar,
+  //       name_en: doc.name_en,
+  //     },
+  //     name_ar: "حجرة إفتراضية",
+  //     name_en: "Default Room",
+  //     code : '1-Test',
+  //     image_url: '/images/room.png',
+  //     company: {
+  //       id: doc.company.id,
+  //       name_ar: doc.company.name_ar,
+  //       name_en: doc.company.name_en,
+  //     },
+  //     branch: {
+  //       code: doc.branch.code,
+  //       name_ar: doc.branch.name_ar,
+  //       name_en: doc.branch.name_en,
+  //     },
+  //     active: true
+  //   }, (err, doc) => { })
+  // })
 
 
 
