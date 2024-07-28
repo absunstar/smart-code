@@ -37,6 +37,7 @@ module.exports = function init(site) {
         site_logo: setting.logo?.url || "/images/logo.png",
         site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
         page_image: setting.logo?.url || "/images/logo.png",
+        powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
         user_image: req.session?.user?.image?.url || "/images/logo.png",
         site_name: setting.siteName,
         page_lang: setting.id,
@@ -50,6 +51,7 @@ module.exports = function init(site) {
         data.site_footer_logo = "//" + req.host + data.site_footer_logo;
         data.page_image = "//" + req.host + data.page_image;
         data.user_image = "//" + req.host + data.user_image;
+        data.powerdByLogo = "//" + req.host + data.powerdByLogo;
       }
       res.render(app.name + "/lecturesStudentView.html", data, {
         parser: "html",

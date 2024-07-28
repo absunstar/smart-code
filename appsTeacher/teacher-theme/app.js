@@ -88,6 +88,7 @@ module.exports = function init(site) {
                     notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
                     filter: site.getHostFilter(req.host),
                     site_logo: setting.logo?.url || "/images/logo.png",
+                    powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
                     site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
                     banner: setting.banner?.url || "/images/logo.png",
                     page_image: setting.logo?.url || "/images/logo.png",
@@ -117,6 +118,7 @@ module.exports = function init(site) {
                     data.banner = "//" + req.host + data.banner;
                     data.page_image = "//" + req.host + data.page_image;
                     data.user_image = "//" + req.host + data.user_image;
+                    data.powerdByLogo = "//" + req.host + data.powerdByLogo;
                   }
                   res.render(__dirname + "/site_files/html/index.html", data, {
                     parser: "html",
