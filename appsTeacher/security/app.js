@@ -159,7 +159,6 @@ module.exports = function init(site) {
     user.$req = req;
     user.$res = res;
     delete user.$$hashKey;
-
     site.security.updateUser(user, (err) => {
       if (!err) {
         response.done = true;

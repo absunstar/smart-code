@@ -37,7 +37,7 @@
         font-weight: bold;
         font-size: 32px;
         margin: 35px;
-        border-radius: 20%;
+        border-radius: 50%;
         border-color: #2087e7;
         box-shadow: 3px 4px #2087e7ba;
         color: #2087e7;
@@ -79,9 +79,9 @@
         max-width: initial;
       }
       @media screen and (max-width: 480px) {
-        .user-place-type {
+        /* .user-place-type {
           width: -webkit-fill-available;
-        }
+        } */
       }
     </style>
     <style x-lang="ar">
@@ -156,7 +156,7 @@
                   display="name"
                   ng-search="user.$center"
                 ></i-list>
-                <i-control ng-show="user.placeType == 'online'" class="center input-style" label="##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
+                <i-control ng-show="user.placeType == 'online'" class="center input-style" label="##word.Number## ##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
                 <i-list label="##word.Gender##" v="r" ng-model="user.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
                 <i-date label="##word.Birth Of Date##" v="r" ng-model="user.bitrhOfDate"> </i-date>
                 <i-list

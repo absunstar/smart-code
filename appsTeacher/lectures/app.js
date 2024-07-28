@@ -543,7 +543,7 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "";
-        let limit = req.body.limit || 50;
+        let limit = req.body.limit || 20;
         let select = req.body.select || {
           id: 1,
           name: 1,
@@ -564,6 +564,15 @@ module.exports = function init(site) {
 
           where.$or.push({
             name: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            description: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "educationalLevel.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "schoolYear.name": site.get_RegExp(search, "i"),
           });
         }
         if (req.body.type == "toStudent") {

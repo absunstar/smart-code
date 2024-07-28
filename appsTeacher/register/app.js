@@ -290,7 +290,6 @@ module.exports = function init(site) {
   site.post("/api/register", (req, res) => {
     let response = { done: false };
     let setting = site.getSiteSetting(req.host);
-
     if (req.body.user.$encript) {
       if (req.body.user.$encript === "64") {
         req.body.user.email = site.fromBase64(req.body.user.email);
@@ -399,6 +398,7 @@ module.exports = function init(site) {
       user.active = false;
       site.security.addUser(user, function (err, doc) {
         if (!err) {
+          console.log(doc);
           response.user = doc;
           response.done = true;
         } else {
