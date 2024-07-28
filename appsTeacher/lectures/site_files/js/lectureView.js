@@ -130,7 +130,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
             trusted: true,
             showDevTools: false,
             allowMenu: true,
-            allowDevTools: true,
+            allowDevTools: false,
             allowDownload: false,
             allowAds: false,
             allowNewWindows: false,
