@@ -179,6 +179,38 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     }, 100);
   };
 
+  
+  $scope.getBooks = function () {
+    $scope.busy = true;
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/books/all`,
+      data: {
+        type: "myStudent",
+        select: {
+          id: 1,
+          name: 1,
+          image: 1,
+          description: 1,
+          price: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.booksList = response.data.list;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.getPackages = function () {
     $scope.busy = true;
     $scope.error = "";
@@ -282,4 +314,5 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.getPackages();
   $scope.displayUser();
   $scope.getCountriesList();
+  $scope.getBooks();
 });

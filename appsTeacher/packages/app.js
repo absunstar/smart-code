@@ -187,8 +187,8 @@ module.exports = function init(site) {
             site_logo: setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
             page_image: setting.logo?.url || "/images/logo.png",
-      powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
-      user_image: req.session?.user?.image?.url || "/images/logo.png",
+            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
@@ -233,8 +233,8 @@ module.exports = function init(site) {
             site_logo: setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
             page_image: setting.logo?.url || "/images/logo.png",
-      powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
-      user_image: req.session?.user?.image?.url || "/images/logo.png",
+            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
@@ -455,8 +455,8 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    if(!req.session.user){
-      response.error = 'You are not login'
+    if (!req.session.user) {
+      response.error = "You are not login";
       res.json(response);
     }
     let _data = req.data;
@@ -477,7 +477,7 @@ module.exports = function init(site) {
                   user.packagesList = user.packagesList || [];
                   user.lecturesList = user.lecturesList || [];
                   doc.lecturesList.forEach((_l) => {
-                    if (!user.lecturesList.some((l) => _l.lecture && l.id == _l.lecture._id)) {
+                    if (!user.lecturesList.some((l) => _l.lecture && l.id && l.id.toString() == _l.lecture._id.toString())) {
                       user.lecturesList.push({
                         lectureId: site.mongodb.ObjectID(_l.lecture._id),
                       });

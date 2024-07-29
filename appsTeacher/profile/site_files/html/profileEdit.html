@@ -132,8 +132,9 @@
           <a class="tab-link" onclick="site.showTabContent(event, '#profile')">
             <span>##word.Personal Informatins## </span>
           </a>
-          <a class="tab-link" ng-show="user.type == 'student'" onclick="site.showTabContent(event, '#myPackages')" id="myPackages"> <span>##word.My Packages## </span></a>
-          <a class="tab-link" ng-show="user.type == 'student'" onclick="site.showTabContent(event, '#myLectures')"> <span>##word.My Lectures## </span></a>
+          <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myPackages')" id="myPackages"> <span>##word.My Packages## </span></a>
+          <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myLectures')"> <span>##word.My Lectures## </span></a>
+          <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myBooks')"> <span>##word.My Books## </span></a>
         </div>
 
         <div class="tabs-content">
@@ -272,7 +273,30 @@
                         <div class="row price-more-card">
                           <i class="price col-6" ng-show="lecture.price">##word.$## {{lecture.price}} </i>
                           <i class="price col-6" ng-show="!lecture.price">##word.Free## </i>
-                          <span class="col-6 more-card"> ##word.More##.. </apan>
+                          <span class="col-6 more-card"> ##word.More##.. </span>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="myBooks" class="tab-content">
+            <div class="row">
+              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+                <li ng-repeat="book in booksList">
+                  <a href="/bookView?id={{book._id}}">
+                    <figure class="image-block">
+                      <p class="name">{{book.name}}</p>
+                      <img ng-src="{{book.image.url}}" alt="" />
+                      <figcaption>
+                        <p>{{book.description}}</p>
+                        <div class="row price-more-card">
+                          <i class="price col-6" ng-show="book.price">##word.$## {{book.price}} </i>
+                          <i class="price col-6" ng-show="!book.price">##word.Free## </i>
+                          <span class="col-6 more-card"> ##word.More##.. </span>
                         </div>
                       </figcaption>
                     </figure>

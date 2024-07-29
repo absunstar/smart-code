@@ -115,7 +115,7 @@ module.exports = function init(site) {
       }
       let where = {};
       if (_item._id) {
-        where._id = site.mongodb.ObjectID(_item._id);
+        where._id = _item._id;
       } else {
         where.id = _item.id;
       }
@@ -166,7 +166,7 @@ module.exports = function init(site) {
           name: "view-video",
         },
         (req, res) => {
-          app.$collection.find({ _id: site.mongodb.ObjectID(req.query.id) }, (err, lecture) => {
+          app.$collection.find({ _id: req.query.id }, (err, lecture) => {
             if (!err && lecture) {
               let video = lecture.linksList.find((itm) => itm.code == req.query.code);
               let videoId = video.url.contains("?v=") ? video.url.split("?v=")[1] : video.url.split("youtu.be/")[1];
@@ -626,14 +626,13 @@ module.exports = function init(site) {
           if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
             let idList = [];
             req.session.user.lecturesList.forEach((element) => {
-              idList.push(site.mongodb.ObjectID(element.lectureId));
+              idList.push(element.lectureId);
             });
             where["_id"] = {
               $in: idList,
             };
           }
         }
-        where["host"] = site.getHostFilter(req.host);
         if ((teacherId = site.getTeacherSetting(req))) {
           where["teacherId"] = teacherId;
         } else {
@@ -677,7 +676,7 @@ module.exports = function init(site) {
                   user.lecturesList = user.lecturesList || [];
                   if (!user.lecturesList.some((l) => l.lectureId.toString() == doc._id.toString())) {
                     user.lecturesList.push({
-                      lectureId: site.mongodb.ObjectID(doc._id),
+                      lectureId: doc._id,
                     });
                   }
                   site.addPurchaseOrder({
@@ -728,7 +727,7 @@ module.exports = function init(site) {
           let idList = [];
           user.lecturesList = user.lecturesList || [];
           user.lecturesList.forEach((element) => {
-            idList.push(site.mongodb.ObjectID(element.lectureId));
+            idList.push(element.lectureId);
           });
 
           where["_id"] = {

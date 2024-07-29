@@ -359,7 +359,6 @@ module.exports = function init(site) {
     //   res.json(response);
     //   return;
     // }
-    console.log(req.body.user.placeType);
     let user = {
       email: req.body.user.email,
       password: req.body.user.password,
@@ -367,27 +366,16 @@ module.exports = function init(site) {
       firstName: req.body.user.firstName,
       lastName: req.body.user.lastName,
       userName: req.body.user.userName,
-      parentMobile: req.body.user.parentMobile,
       image: req.body.user.image,
       country: req.body.user.country,
       gov: req.body.user.gov,
       gov: req.body.user.gov,
       city: req.body.user.city,
       area: req.body.user.area,
-      latitude: req.body.user.latitude,
-      longitude: req.body.user.longitude,
-      schoolYear: req.body.user.schoolYear,
       gender: req.body.user.gender,
       bitrhOfDate: req.body.user.bitrhOfDate,
-      educationalLevel: req.body.user.educationalLevel,
-      nationalIdImage: req.body.user.nationalIdImage,
-      nationalId: req.body.user.nationalId,
-      placeType: req.body.user.placeType,
       address: req.body.user.address,
       ip: req.ip,
-      viewsList: [],
-      booksList: [],
-      notificationsList: [],
       roles: [{ name: req.body.user.type }],
       permissions: [{ name: req.body.user.type }],
       type: req.body.user.type,
@@ -397,9 +385,24 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     };
+    if (req.body.user.type == "student") {
+      user.viewsList = [];
+      user.booksList = [];
+      user.notificationsList = [];
+      user.lecturesList = [];
+      user.packagesList = [];
+      user.parentMobile = req.body.user.parentMobile;
+      user.schoolYear = req.body.user.schoolYear;
+      user.educationalLevel = req.body.user.educationalLevel;
+      user.placeType = req.body.user.placeType;
+    }
     if (req.body.user.placeType == "online") {
+      user.nationalIdImage = req.body.user.nationalIdImage;
+      user.nationalId = req.body.user.nationalId;
+      user.latitude = req.body.user.latitude;
+      user.longitude = req.body.user.longitude;
       user.active = false;
-      user.permissions.push({ name: 'online' })
+      user.permissions.push({ name: "online" });
       site.security.addUser(user, function (err, doc) {
         if (!err) {
           console.log(doc);
@@ -411,14 +414,16 @@ module.exports = function init(site) {
         res.json(response);
       });
     } else {
-    if (req.body.user.placeType == "offline") {
-      user.permissions.push({ name: 'offline' })
-    }
+      if (req.body.user.placeType == "offline") {
+
+
+        user.permissions.push({ name: "offline" });
+        user.center = {
+          id: req.body.user.center.id,
+          name: req.body.user.center.name,
+        };
+      }
       user.active = true;
-      user.center = {
-        id: req.body.user.id,
-        name: req.body.user.name,
-      };
       site.security.register(user, function (err, doc) {
         if (!err) {
           response.user = doc;

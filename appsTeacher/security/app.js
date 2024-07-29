@@ -219,7 +219,7 @@ module.exports = function init(site) {
       };
     } else if (req.body._id) {
       where = {
-        _id: site.mongodb.ObjectID(req.body._id),
+        _id: req.body._id,
       };
     }
 
@@ -289,23 +289,23 @@ module.exports = function init(site) {
       }
     );
   });
-  site.post({ name: '/api/user/login', public: true }, function (req, res) {
+  site.post({ name: "/api/user/login", public: true }, function (req, res) {
     let response = {
       accessToken: req.session.accessToken,
     };
 
     if (req.body.$encript) {
-      if (req.body.$encript === '64') {
+      if (req.body.$encript === "64") {
         req.body.email = site.fromBase64(req.body.email);
         req.body.password = site.fromBase64(req.body.password);
-      } else if (req.body.$encript === '123') {
+      } else if (req.body.$encript === "123") {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
       }
     }
 
     if (site.security.isUserLogin(req, res)) {
-      response.error = 'Login Error , You Are Loged';
+      response.error = "Login Error , You Are Loged";
       res.json(response);
       return;
     }
@@ -318,7 +318,7 @@ module.exports = function init(site) {
           let _user = { ...doc };
 
           if (_user.active == false) {
-            response.error = 'The account is inactive';
+            response.error = "The account is inactive";
             res.json(response);
             return;
           }
@@ -349,7 +349,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/user/logout', function (req, res) {
+  site.post("/api/user/logout", function (req, res) {
     let response = {
       accessToken: req.session.accessToken,
       done: true,
@@ -360,7 +360,7 @@ module.exports = function init(site) {
         response.done = true;
         res.json(response);
       } else {
-        response.error = 'You Are Not Loged';
+        response.error = "You Are Not Loged";
         response.done = true;
         res.json(response);
       }

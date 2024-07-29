@@ -405,7 +405,7 @@ module.exports = function init(site) {
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student") {
             let idList = req.session.user.booksList.map((_item) => _item);
-            where["id"] = {
+            where["_id"] = {
               $in: idList,
             };
           }
@@ -443,7 +443,7 @@ module.exports = function init(site) {
           (err, user) => {
             if (!err && user) {
               user.booksList = user.booksList || [];
-              if (!user.booksList.some((l) => l.toString() == doc._id.toString())) {
+              if (!user.booksList.some((l) => l == doc._id.toString())) {
                 user.booksList.push(doc._id);
               }
 

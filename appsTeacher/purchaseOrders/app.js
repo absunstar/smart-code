@@ -280,17 +280,17 @@ module.exports = function init(site) {
           delete where.toDate;
         }
         if (where["package"]) {
-          where["target.id"] = site.mongodb.ObjectID(where["package"]._id);
+          where["target.id"] =where["package"]._id;
           delete where["package"];
         }
 
         if (where["book"]) {
-          where["target.id"] = site.mongodb.ObjectID(where["book"]._id);
+          where["target.id"] =where["book"]._id;
           delete where["book"];
         }
 
         if (where["lecture"]) {
-          where["target.id"] = site.mongodb.ObjectID(where["lecture"]._id);
+          where["target.id"] =where["lecture"]._id;
           delete where["lecture"];
         }
 
