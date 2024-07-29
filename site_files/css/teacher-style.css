@@ -138,13 +138,14 @@ legend {
   max-width: 350px !important;
 }
 .buy-btn {
-  border: 3px solid #0075e3;
+  border: 3px solid linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
   margin: 15px -5px 20px 0px;
   text-align-last: center;
   background: #2087e7;
   color: white;
   border-radius: 5px;
   font-size: x-large;
+
 }
 
 .buy-btn:hover {
@@ -154,13 +155,14 @@ legend {
 }
 
 .purchase-text {
-  background: #2087e7;
+  background: linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
   color: white;
   text-align: center;
   font-size: x-large;
   padding: inherit;
   margin: revert;
   white-space: pre;
+  border-radius: 10px;
 }
 
 .gray-bg {

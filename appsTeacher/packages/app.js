@@ -455,7 +455,10 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
+    if(!req.session.user){
+      response.error = 'You are not login'
+      res.json(response);
+    }
     let _data = req.data;
     app.view({ id: _data.packageId }, (err, doc) => {
       if (!err && doc) {

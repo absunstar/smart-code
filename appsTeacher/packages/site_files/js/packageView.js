@@ -33,7 +33,7 @@ app.controller("packageView", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.buyBackage = function () {
+  $scope.buyPackage = function () {
     $scope.errorCode = "";
     const v = site.validated("#codeModal");
     if (!v.ok) {

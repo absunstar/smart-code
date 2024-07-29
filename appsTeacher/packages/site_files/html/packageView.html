@@ -21,7 +21,7 @@
         font-size: 16px !important;
       }
       .card {
-        height: 130px !important;
+        height: 100px !important;
         width: 45% !important;
       }
 
@@ -66,6 +66,7 @@
         margin: 5px;
       }
       .card-title {
+        font-size: 15px !important;
         width: 80% !important;
       }
       .price {
@@ -87,6 +88,9 @@
         color: #5a6257;
       }
 
+      .card-img {
+      }
+
       :root {
         --body-margin-top: 0px;
         --body-margin-bottom: 0px;
@@ -104,10 +108,18 @@
         max-width: initial;
       }
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 480px) {
         .card {
           width: 100% !important;
+          div {
+            width: 60% !important;
+            float: unset !important;
+          }
         }
+        .card img {
+          width: 30% !important;
+        }
+
       }
     </style>
   </head>
@@ -141,8 +153,8 @@
                 </div>
 
                 <a class="card row" ng-repeat="l in item.lecturesList" href="/lectureView?id={{l.lecture._id}}">
-                  <img class="" loading="lazy" ng-src="{{l.lecture.image.url}}" />
-                  <div class="padding">
+                  <img class="col4" loading="lazy" ng-src="{{l.lecture.image.url}}" />
+                  <div class="padding col8">
                     <p class="userPrint card-title bold">{{l.lecture.name}}</p>
                     <p class="">
                       <i class="card-number bold"> ##word.$## {{l.lecture.price}} </i>
@@ -187,7 +199,7 @@
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>
           <div class="row">
-            <button ng-click="buyBackage(item)" class="buy-btn">##word.Accept## <i class="fas fa-check-circle"></i></button>
+            <button ng-click="buyPackage(item)" class="buy-btn">##word.Accept## <i class="fas fa-check-circle"></i></button>
           </div>
         </div>
       </div>
