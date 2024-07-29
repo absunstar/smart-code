@@ -485,23 +485,30 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
+            let _doc = { ...doc };
+            if (req.data.type == "toStudent") {
+              delete _doc.questionsList;
+            }
             if (req.session.user) {
-              if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == doc._id.toString())) {
-                doc.$buy = true;
-                doc.linksList.forEach((_video) => {
+              if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == _doc._id.toString())) {
+                _doc.$buy = true;
+                _doc.linksList.forEach((_video) => {
+                  if (req.data.type == "toStudent") {
+                    delete _video.url;
+                  }
                   req.session.user.viewsList = req.session.user.viewsList || [];
-                  let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _video.code);
+                  let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId.toString() === _doc._id.toString() && itm.code === _video.code);
                   _video.isValid = false;
                   if (index !== -1) {
-                    if (doc.typeExpiryView.name == "number") {
-                      _video.remainNumber = doc.numberAvailableViews - req.session.user.viewsList[index].views;
+                    if (_doc.typeExpiryView.name == "number") {
+                      _video.remainNumber = _doc.numberAvailableViews - req.session.user.viewsList[index].views;
                       if (_video.remainNumber > 1) {
                         _video.isValid = true;
                       }
                       return;
-                    } else if (doc.typeExpiryView.name == "day") {
+                    } else if (_doc.typeExpiryView.name == "day") {
                       var viewDate = new Date(req.session.user.viewsList[index].date);
-                      viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
+                      viewDate.setHours(viewDate.getHours() + _doc.daysAvailableViewing * 24);
                       let newDate = new Date();
                       let diffTime = Math.abs(viewDate - newDate);
 
@@ -509,32 +516,48 @@ module.exports = function init(site) {
                       if (_video.remainDay > 1) {
                         _video.isValid = true;
                       }
-                    } else if (doc.typeExpiryView.name == "date") {
-                      _video.remainDate = doc.dateAvailableViews;
-                      if (new Date().getTime() <= doc.dateAvailableViews.getTime()) {
+                    } else if (_doc.typeExpiryView.name == "date") {
+                      _video.remainDate = _doc.dateAvailableViews;
+                      if (new Date().getTime() <= _doc.dateAvailableViews.getTime()) {
                         _video.isValid = true;
                       }
                     }
                   } else {
                     _video.isValid = true;
 
-                    if (doc.typeExpiryView.name == "number") {
-                      _video.remainNumber = doc.numberAvailableViews;
-                    } else if (doc.typeExpiryView.name == "day") {
-                      _video.remainDay = doc.daysAvailableViewing;
-                    } else if (doc.typeExpiryView.name == "date") {
-                      _video.remainDate = doc.dateAvailableViews;
+                    if (_doc.typeExpiryView.name == "number") {
+                      _video.remainNumber = _doc.numberAvailableViews;
+                    } else if (_doc.typeExpiryView.name == "day") {
+                      _video.remainDay = _doc.daysAvailableViewing;
+                    } else if (_doc.typeExpiryView.name == "date") {
+                      _video.remainDate = _doc.dateAvailableViews;
                     }
                   }
                 });
+              } else {
+                
+                if ( req.data.type == "toStudent") {
+                  if (_doc.type && _doc.type.name == 'private') {
+                    delete _doc.filesList;
+                  }
+                  _doc.linksList.forEach((_video) => {
+                    delete _video.url;
+                  });
+                }
               }
             } else {
-              doc.linksList.forEach((_video) => {
+              if (_doc.type && _doc.type.name == 'private' && req.data.type == "toStudent") {
+                delete _doc.filesList;
+              }
+              _doc.linksList.forEach((_video) => {
+                if (req.data.type == "toStudent") {
+                  delete _video.url;
+                }
                 _video.isValid = true;
               });
             }
-            doc.$time = site.xtime(doc.date, req.session.lang || "ar");
-            response.doc = doc;
+            _doc.$time = site.xtime(_doc.date, req.session.lang || "ar");
+            response.doc = _doc;
           } else {
             response.error = err?.message || "Not Exists";
           }
@@ -782,6 +805,13 @@ module.exports = function init(site) {
       callBack(err, docs);
     });
     // }
+  };
+
+  site.getLecture = function (where, callBack) {
+    callBack = callBack || function () {};
+    app.view(where, (err, doc) => {
+      callBack(err, doc);
+    });
   };
 
   app.init();

@@ -88,41 +88,41 @@
     </a>
   </li>
 
-  <li class="menu-item">
-    <a class="tab-link" href="/manageUsers?type=teacher" x-permissions="securityManage">
+  <li class="menu-item" x-permissions="securityManage">
+    <a class="tab-link" href="/manageUsers?type=teacher">
       <i class="fas fa-users"></i>
       <span> ##word.Manage Teachers## </span>
     </a>
   </li>
 
-  <li class="menu-item">
-    <a class="tab-link" href="/words" x-permissions="devleoper">
+  <li class="menu-item" x-permissions="devleoper">
+    <a class="tab-link" href="/words">
       <i class="fas fa-users"></i>
       <span> ##word.Words Manage## </span>
     </a>
   </li>
 
-  <li class="menu-item">
-    <a class="tab-link" href="/security/roles" x-permissions="devleoper">
+  <li class="menu-item" x-permissions="devleoper">
+    <a class="tab-link" href="/security/roles">
       <i class="fas fa-users"></i>
       <span> ##word.Security Roles## </span>
     </a>
   </li>
-  <li class="menu-item">
-    <a class="tab-link" href="/security/users" x-permissions="devleoper">
+  <li class="menu-item" x-permissions="devleoper">
+    <a class="tab-link" href="/security/users">
       <i class="fas fa-users"></i>
       <span> ##word.Security Users## </span>
     </a>
   </li>
 
-  <li class="menu-item">
-    <a class="tab-link" href="/host-manager" x-permissions="devleoper">
+  <li class="menu-item" x-permissions="devleoper">
+    <a class="tab-link" href="/host-manager">
       <i class="fas fa-users"></i>
       <span> ##word.Host Manager## </span>
     </a>
   </li>
-  <li class="menu-item" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'">
-    <a class="tab-link" href="/pages" x-permissions="pageImplementUi || pageImplementManage">
+  <li class="menu-item" x-permissions="pageImplementUi || pageImplementManage" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'">
+    <a class="tab-link" href="/pages" >
       <i class="fas fa-users"></i>
       <span> ##word.Pages## </span>
     </a>

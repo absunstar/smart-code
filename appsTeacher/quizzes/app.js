@@ -192,7 +192,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/startQuiz`,
-          require: { permissions: ["login"] },
+          require: { permissions: ["student"] },
         },
         (req, res) => {
           let response = {
@@ -200,52 +200,69 @@ module.exports = function init(site) {
           };
 
           let where = req.data.where;
-
-          app.$collection.find(where, (err, doc) => {
-            if (err) {
-              response.error = err?.message || "Not Exists";
-              res.json(response);
-            } else if (doc) {
-              let quiz = { ...doc };
-              response.done = true;
-              for (let i = 0; i < quiz.questionsList.length; i++) {
-                quiz.questionsList[i].answersList.forEach((_a) => {
-                  _a.userAnswer = false;
-                });
-              }
-              doc.timesEnterQuiz += 1;
-              app.$collection.update(doc);
-              response.doc = quiz;
-              res.json(response);
-            } else if (!doc) {
-              app.add(
-                {
-                  host: site.getHostFilter(req.host),
-                  teacherId: site.getTeacherSetting(req),
-                  user: {
-                    _id: req.session.user._id,
-                    id: req.session.user.id,
-                    firstName: req.session.user.firstName,
-                    email: req.session.user.email,
-                  },
-                  lecture: req.data.lecture,
-                  questionsList: req.data.questionsList,
-                  correctAnswers: 0,
-                  userDegree: 0,
-                  date: new Date(),
-                  timesEnterQuiz: 1,
-                },
-                (err, doc) => {
-                  if (!err && doc) {
-                    response.done = true;
-                    response.doc = doc;
-                  } else {
-                    response.error = err.mesage;
-                  }
-                  res.json(response);
+          site.getLecture({ id: req.data.lectureId }, (err, lecture) => {
+            app.$collection.find(where, (err, doc) => {
+              if (err) {
+                response.error = err?.message || "Not Exists";
+                res.json(response);
+              } else if (doc) {
+                let quiz = { ...doc };
+                response.done = true;
+                quiz.questionsList = quiz.questionsList || [];
+                for (let i = 0; i < quiz.questionsList.length; i++) {
+                  quiz.questionsList[i].answersList.forEach((_a) => {
+                    _a.userAnswer = false;
+                  });
                 }
-              );
-            }
+                doc.timesEnterQuiz += 1;
+
+                app.$collection.update(doc, (err, result) => {
+                  for (let i = 0; i < quiz.questionsList.length; i++) {
+                    quiz.questionsList[i].answersList.forEach((_a) => {
+                      delete _a.correct;
+                    });
+                  }
+                  response.doc = quiz;
+                  res.json(response);
+                });
+              } else if (!doc) {
+                app.add(
+                  {
+                    host: site.getHostFilter(req.host),
+                    teacherId: site.getTeacherSetting(req),
+                    user: {
+                      _id: req.session.user._id,
+                      id: req.session.user.id,
+                      firstName: req.session.user.firstName,
+                      email: req.session.user.email,
+                    },
+                    lecture: { _id: lecture._id.toString(), id: lecture.id, name: lecture.name, educationalLevel: lecture.educationalLevel, schoolYear: lecture.schoolYear },
+                    questionsList: lecture.questionsList,
+                    correctAnswers: 0,
+                    userDegree: 0,
+                    date: new Date(),
+                    timesEnterQuiz: 1,
+                  },
+                  (err, doc) => {
+                    if (!err && doc) {
+                      let _doc = { ...doc };
+                      response.done = true;
+                      _doc.questionsList = _doc.questionsList || [];
+                      _doc.questionsList.forEach((_q) => {
+                        _q.answersList = _q.answersList || [];
+                        _q.answersList.forEach((_a) => {
+                          delete _a.correct;
+                        });
+                      });
+                      response.doc = _doc;
+                    } else {
+                      response.error = err.mesage;
+                    }
+                    res.json(response);
+                  }
+                );
+              }
+            });
           });
         }
       );
@@ -288,22 +305,31 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
-          _data.correctAnswers = 0;
-          _data.editDate = new Date();
-          for (let i = 0; i < _data.questionsList.length; i++) {
-            _data.questionsList[i].answersList.forEach((_a) => {
-              if (_a.userAnswer && _a.correct) {
-                _data.correctAnswers += 1;
-              }
-            });
-          }
-          _data.userDegree = (_data.correctAnswers / _data.questionsList.length) * 100;
           app.view({ id: _data.id }, (err, doc) => {
-            _data.timesEnterQuiz = doc.timesEnterQuiz;
-            app.update(_data, (err, result) => {
+            doc.correctAnswers = 0;
+            doc.editDate = new Date();
+            for (let i = 0; i < doc.questionsList.length; i++) {
+              let question = _data.questionsList.find((_q) => _q.numbering == doc.questionsList[i].numbering);
+              doc.questionsList[i].answersList.forEach((_a) => {
+                let answer = question.answersList.find((_q) => _q.numbering == _a.numbering);
+                _a.userAnswer = answer.userAnswer;
+                if (_a.userAnswer && _a.correct) {
+                  doc.correctAnswers += 1;
+                }
+              });
+            }
+            doc.userDegree = (doc.correctAnswers / doc.questionsList.length) * 100;
+            doc.timesEnterQuiz = doc.timesEnterQuiz;
+            app.update(doc, (err, result) => {
               if (!err) {
                 response.done = true;
-                response.doc = result.doc;
+                let _doc = { ...result.doc };
+                for (let i = 0; i < _doc.questionsList.length; i++) {
+                  _doc.questionsList[i].answersList.forEach((_a) => {
+                    delete _a.correct;
+                  });
+                }
+                response.doc = _doc;
               } else {
                 response.error = err.message;
               }
@@ -318,7 +344,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/delete`,
-          require: { permissions: ["login"] },
+          require: { permissions: ["teacher"] },
         },
         (req, res) => {
           let response = {
@@ -340,7 +366,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteView) {
-      site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/view`, require: { permissions: ["teacher"] } }, (req, res) => {
         let response = {
           done: false,
         };
@@ -357,17 +383,24 @@ module.exports = function init(site) {
         });
       });
 
-      site.post({ name: `/api/${app.name}/viewByUserLecture`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/viewByUserLecture`, require: { permissions: ["login"] } }, (req, res) => {
         let response = {
           done: false,
         };
 
         let where = req.data;
-
         app.$collection.find(where, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            response.doc = doc;
+            let _doc = { ...doc };
+            _doc.questionsList = _doc.questionsList || [];
+            _doc.questionsList.forEach((_q) => {
+              _q.answersList = _q.answersList || [];
+              _q.answersList.forEach((_a) => {
+                delete _a.correct;
+              });
+            });
+            response.doc = _doc;
           } else {
             response.error = err?.message || "Not Exists";
           }
@@ -377,7 +410,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAll) {
-      site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/all`, require: { permissions: ["teacher"] } }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "";
         let limit = req.body.limit || 50;
@@ -419,7 +452,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        
+
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
           res.json({ done: true, list: docs });
         });

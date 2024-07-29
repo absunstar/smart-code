@@ -359,7 +359,7 @@ module.exports = function init(site) {
     //   res.json(response);
     //   return;
     // }
-
+    console.log(req.body.user.placeType);
     let user = {
       email: req.body.user.email,
       password: req.body.user.password,
@@ -389,6 +389,7 @@ module.exports = function init(site) {
       booksList: [],
       notificationsList: [],
       roles: [{ name: req.body.user.type }],
+      permissions: [{ name: req.body.user.type }],
       type: req.body.user.type,
       createdDate: new Date(),
       host: site.getHostFilter(req.host),
@@ -398,6 +399,7 @@ module.exports = function init(site) {
     };
     if (req.body.user.placeType == "online") {
       user.active = false;
+      user.permissions.push({ name: 'online' })
       site.security.addUser(user, function (err, doc) {
         if (!err) {
           console.log(doc);
@@ -409,6 +411,9 @@ module.exports = function init(site) {
         res.json(response);
       });
     } else {
+    if (req.body.user.placeType == "offline") {
+      user.permissions.push({ name: 'offline' })
+    }
       user.active = true;
       user.center = {
         id: req.body.user.id,

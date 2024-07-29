@@ -169,8 +169,10 @@ module.exports = function init(site) {
         let _data = req.data;
         if (_data.type == "teacher") {
           _data.roles = [{ name: "teacher" }];
+          _data.permissions = [{ name: "teacher" }];
         } else if (_data.type == "student") {
           _data.roles = [{ name: "student" }];
+          _data.permissions = [{ name: "student" }];
         }
 
        

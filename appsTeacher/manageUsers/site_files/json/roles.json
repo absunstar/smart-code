@@ -12,6 +12,7 @@
         "Ar": "مدرس",
         "permissions": [
           "teacher",
+          "pageImplementManage",
           "defaultSettingManage",
           "govesManage",
           "areasManage",

@@ -86,7 +86,7 @@
               <div class="separative"></div>
             </div>
 
-            <div class="row" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures">
+            <div class="row" x-permissions="offline || teacher || admin || !login" x-data="setting.showLectures">
               <div class="banner-word">
                 <span> ##word.Lectures## </span>
                 <a class="banner-viewAll" href="/lecturesView">##word.View All##</a>

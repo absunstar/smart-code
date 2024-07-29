@@ -10,6 +10,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       url: `${$scope.baseURL}/api/lectures/view`,
       data: {
         _id: "##query.id##",
+        type: "toStudent",
       },
     }).then(
       function (response) {
@@ -203,8 +204,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           "lecture.id": $scope.item.id,
           "user.id": site.toNumber("##user.id##"),
         },
-        questionsList: $scope.item.questionsList,
-        lecture: { _id: $scope.item._id, id: $scope.item.id, name: $scope.item.name, educationalLevel: $scope.item.educationalLevel, schoolYear: $scope.item.schoolYear },
+        lectureId: $scope.item.id,
       },
     }).then(
       function (response) {

@@ -163,7 +163,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["teacher"] } }, (req, res) => {
         let response = {
           done: false,
         };
@@ -184,7 +184,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/addMany`,
-          require: { permissions: ["login"] },
+          require: { permissions: ["teacher"] },
         },
         (req, res) => {
           let response = {
@@ -202,12 +202,12 @@ module.exports = function init(site) {
             return;
           }
           let teacherId = site.getTeacherSetting(req);
-          if(teacherId == null) {
-            response.error = 'There Is No Teacher';
+          if (teacherId == null) {
+            response.error = "There Is No Teacher";
             res.json(response);
-            return
+            return;
           }
-  
+
           let where = {};
           where["teacherId"] = teacherId;
           let select = { id: 1 };
@@ -244,7 +244,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/update`,
-          require: { permissions: ["login"] },
+          require: { permissions: ["teacher"] },
         },
         (req, res) => {
           let response = {
@@ -271,7 +271,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/delete`,
-          require: { permissions: ["login"] },
+          require: { permissions: ["teacher"] },
         },
         (req, res) => {
           let response = {
@@ -293,7 +293,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteView) {
-      site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/view`, require: { permissions: ["teacher"] } }, (req, res) => {
         let response = {
           done: false,
         };
@@ -312,7 +312,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAll) {
-      site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/all`, require: { permissions: ["teacher"] } }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "";
         let limit = req.body.limit || 1000;
@@ -366,7 +366,7 @@ module.exports = function init(site) {
   site.post(
     {
       name: `/api/${app.name}/updateAllDistribution`,
-      require: { permissions: ["login"] },
+      require: { permissions: ["teacher"] },
     },
     (req, res) => {
       let response = {
@@ -386,7 +386,6 @@ module.exports = function init(site) {
         $gte: _data.from,
         $lte: _data.to,
       };
-      console.log(where);
       app.$collection.updateAll({ where, set: { distribution: _data.type } }, (err, result) => {
         if (!err) {
           response.done = true;

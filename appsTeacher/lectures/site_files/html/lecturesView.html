@@ -15,7 +15,7 @@
     </style>
   </head>
 
-  <body class="##session.lang##" ng-controller="lecturesView">
+  <body class="##session.lang##" ng-controller="lecturesView" x-permissions="offline || teacher || admin || !login">
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
