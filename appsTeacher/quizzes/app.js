@@ -206,6 +206,11 @@ module.exports = function init(site) {
                 response.error = err?.message || "Not Exists";
                 res.json(response);
               } else if (doc) {
+                if (doc.timesEnterQuiz >= lecture.timesEnterQuiz) {
+                  response.error = "The number of times the quiz has been entered has been exceeded.";
+                  res.json(response);
+                  return;
+                }
                 let quiz = { ...doc };
                 response.done = true;
                 quiz.questionsList = quiz.questionsList || [];
@@ -400,6 +405,7 @@ module.exports = function init(site) {
                 delete _a.correct;
               });
             });
+            _doc.userDegree = site.toNumber(_doc.userDegree);
             response.doc = _doc;
           } else {
             response.error = err?.message || "Not Exists";
