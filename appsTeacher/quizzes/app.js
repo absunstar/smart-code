@@ -113,6 +113,7 @@ module.exports = function init(site) {
           return;
         }
       }
+      
 
       app.$collection.find({ id: _item.id }, (err, doc) => {
         callback(err, doc);
