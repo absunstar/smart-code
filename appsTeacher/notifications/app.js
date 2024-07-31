@@ -217,7 +217,7 @@ module.exports = function init(site) {
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            site.addNotificationToStudents(doc);
+            site.addNotificationToStudents(doc,req);
             response.done = true;
             response.doc = doc;
           } else {

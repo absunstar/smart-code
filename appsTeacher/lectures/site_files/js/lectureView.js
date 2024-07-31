@@ -246,7 +246,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       secound--;
       if (secound == 0) {
         if (secound <= 1 && minute < 1) {
-          clearInterval(timeQuizInterval);
+          $scope.finishQuiz($scope.quiz);
         }
         minute--;
         secound = 60;

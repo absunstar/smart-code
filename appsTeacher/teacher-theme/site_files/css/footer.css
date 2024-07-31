@@ -31,7 +31,6 @@
   padding: 0px 0px 0px 10px;
   font-size: xxx-large;
   font-family: ui-monospace !important;
-
 }
 
 .footerContainer .footerNav {
@@ -54,9 +53,12 @@
   text-align: center;
   padding: 0 8px !important;
 }
+.social-menu {
+  display: -webkit-inline-box;
+}
 .social-menu ul {
   position: relative;
-  display: inline-flex;
+  display: contents;
 }
 .social-menu ul li {
   list-style: none;
@@ -124,10 +126,10 @@
   z-index: 999;
   -webkit-backface-visibility: hidden;
   -webkit-transform: translateZ(0);
-  -webkit-transition: visibility .5s;
-  -moz-transition: visibility .5s;
-  -o-transition: visibility .5s;
-  transition: visibility .5s;
+  -webkit-transition: visibility 0.5s;
+  -moz-transition: visibility 0.5s;
+  -o-transition: visibility 0.5s;
+  transition: visibility 0.5s;
 }
 .cbh-phone.cbh-show {
   visibility: visible;
@@ -138,7 +140,7 @@
   position: absolute;
   top: 70px;
   color: white;
-  font-family: 'Droid Arabic Kufi'!important;
+  font-family: "Droid Arabic Kufi" !important;
   left: 145px;
   background: linear-gradient(120deg, rgb(64 245 187) 0%, rgb(46 203 113) 100%);
   padding: 10px;

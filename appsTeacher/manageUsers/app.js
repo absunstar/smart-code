@@ -398,7 +398,7 @@ module.exports = function init(site) {
     }
   }
 
-  site.addNotificationToStudents = function (doc) {
+  site.addNotificationToStudents = function (doc,req) {
     let where = { type: "student" };
     if (doc.type.name == "online") {
       where["placeType"] = "online";
@@ -420,6 +420,7 @@ module.exports = function init(site) {
     site.security.getUsers(where, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {
+          docs[i].notificationsList = docs[i].notificationsList || [];
           docs[i].notificationsList.unshift({ id: doc.id, show: false, date: doc.date, image: doc.image, title: doc.title, content: doc.content });
           site.security.updateUser(docs[i]);
         }

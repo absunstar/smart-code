@@ -312,6 +312,7 @@ module.exports = function init(site) {
 
           let _data = req.data;
           app.view({ id: _data.id }, (err, doc) => {
+            if(doc){
             doc.correctAnswers = 0;
             doc.editDate = new Date();
             for (let i = 0; i < doc.questionsList.length; i++) {
@@ -326,6 +327,8 @@ module.exports = function init(site) {
             }
             doc.userDegree = (doc.correctAnswers / doc.questionsList.length) * 100;
             doc.timesEnterQuiz = doc.timesEnterQuiz;
+            doc.userDegree = site.toNumber(doc.userDegree);
+            
             app.update(doc, (err, result) => {
               if (!err) {
                 response.done = true;
@@ -341,6 +344,11 @@ module.exports = function init(site) {
               }
               res.json(response);
             });
+          } else {
+            response.error = 'Quiz not exist';
+            res.json(response);
+
+          }
           });
         }
       );

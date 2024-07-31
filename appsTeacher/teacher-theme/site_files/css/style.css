@@ -173,6 +173,7 @@ p {
   height: 100%;
   border-radius: 50%;
   padding: 3px;
+  width: 80px;
 }
 
 .notifacation-content {
@@ -586,7 +587,8 @@ figure {
   height: 600px;
   object-fit: contain;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
+
 }
 
 :root {
