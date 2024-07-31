@@ -398,11 +398,18 @@ module.exports = function init(site) {
     }
   );
 
-  site.validateCode = function (obj, callBack) {
+  site.validateCode = function (req, obj, callBack) {
     callBack = callBack || function () {};
-
-    app.view(
-      { code: obj.code },
+    let where = {
+      code: obj.code,
+    };
+    if ((teacherId = site.getTeacherSetting(req))) {
+      where["teacherId"] = teacherId;
+    } else {
+      where["host"] = site.getHostFilter(req.host);
+    }
+    app.$collection.find(
+      where,
       (err, doc) => {
         if (doc) {
           if (doc.expired) {

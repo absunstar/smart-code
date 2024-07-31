@@ -488,7 +488,6 @@ module.exports = function init(site) {
             let _doc = { ...doc };
             if (req.data.type == "toStudent") {
               delete _doc.questionsList;
-             
             }
             if (req.session.user) {
               if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == _doc._id.toString())) {
@@ -536,9 +535,8 @@ module.exports = function init(site) {
                   }
                 });
               } else {
-                
-                if ( req.data.type == "toStudent") {
-                  if (_doc.type && _doc.type.name == 'private') {
+                if (req.data.type == "toStudent") {
+                  if (_doc.type && _doc.type.name == "private") {
                     delete _doc.filesList;
                   }
                   _doc.linksList.forEach((_video) => {
@@ -547,7 +545,7 @@ module.exports = function init(site) {
                 }
               }
             } else {
-              if (_doc.type && _doc.type.name == 'private' && req.data.type == "toStudent") {
+              if (_doc.type && _doc.type.name == "private" && req.data.type == "toStudent") {
                 delete _doc.filesList;
               }
               _doc.linksList.forEach((_video) => {
@@ -662,8 +660,8 @@ module.exports = function init(site) {
     let _data = req.data;
     app.view({ id: _data.lectureId }, (err, doc) => {
       if (!err && doc) {
-        site.validateCode({ code: _data.code, price: _data.lecturePrice }, (errCode, code) => {
-          if (errCode && _data.lecturePrice > 0) {
+        site.validateCode(req, { code: _data.code, price: doc.price }, (errCode, code) => {
+          if (errCode && doc.price > 0) {
             response.error = errCode;
             res.json(response);
             return;
@@ -697,9 +695,9 @@ module.exports = function init(site) {
                   site.security.updateUser(user);
                 }
                 response.done = true;
-                doc.$buy = true;
-                doc.$time = site.xtime(doc.date, req.session.lang || "ar");
-                response.doc = doc;
+                // doc.$buy = true;
+                // doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                // response.doc = doc;
                 res.json(response);
               }
             );

@@ -462,8 +462,8 @@ module.exports = function init(site) {
     let _data = req.data;
     app.view({ id: _data.packageId }, (err, doc) => {
       if (!err && doc) {
-        site.validateCode({ code: _data.code, price: _data.packagePrice }, (errCode, code) => {
-          if (errCode) {
+        site.validateCode(req,{ code: _data.code, price: doc.price }, (errCode, code) => {
+          if (errCode  && doc.price > 0) {
             response.error = errCode;
             res.json(response);
             return;
@@ -502,9 +502,9 @@ module.exports = function init(site) {
                   site.security.updateUser(user);
                 }
                 response.done = true;
-                doc.$buy = true;
-                doc.$time = site.xtime(doc.date, req.session.lang || "ar");
-                response.doc = doc;
+                // doc.$buy = true;
+                // doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                // response.doc = doc;
                 res.json(response);
               }
             );
