@@ -91,7 +91,7 @@
       }
 
       .notification-list .notification-list_content {
-       width: 100%;
+        width: 100%;
       }
 
       .notification-list .notification-list_content .notification-list_img img {
@@ -121,7 +121,7 @@
       <div id="main-layout" class="content loaded">
         <div class="row">
           <h1 class="m-b-50 heading-line center">##word.Notifications## <i class="fa fa-bell text-muted"></i></h1>
-          <i-button label="##word.Delete All##" type="delete" ng-click="updateStudentNotifications('deleteAll')"></i-button>
+          <i-button label="##word.Delete All##" ng-show="user.notificationsList.length > 0" type="delete" ng-click="updateStudentNotifications('deleteAll')"></i-button>
         </div>
 
         <section class="section-50">
@@ -131,13 +131,13 @@
                 <div class="notification-list_content">
                   <div class="notification-list_img">
                     <img src="##data.user_image##" alt="user" />
-                    <img class="float-left" ng-src="{{item.image.url}}" alt="Feature image" />
+                    <img class="float-left" ng-show="item.image.url" ng-src="{{item.image.url}}" alt="Feature image" />
+                    <span class="text-muted padding">
+                      <small> <i class="fas fa-clock"> {{item.$time}} </i></small>
+                    </span>
                     <div class="notification-list_detail">
                       <p class="font-21"><b class="padding margin">##data.site_name##</b>{{item.title}}</p>
                       <p class="text-muted font-19">{{item.content}}</p>
-                      <p class="text-muted">
-                        <small> <i class="fas fa-clock"> {{item.$time}} </i></small>
-                      </p>
                       <i-button title="##word.Delete##" type="delete" ng-click="updateStudentNotifications('deleteOne',item.id)"></i-button>
                     </div>
                   </div>
