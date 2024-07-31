@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
     <style>
-    /*   .card {
+      /*   .card {
         width: 70vw !important;
         margin: 2vw !important;
         height: 18vw !important;
@@ -31,7 +31,9 @@
       }
  */
       @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
-
+      .float-left {
+        float: left;
+      }
       body {
         font-family: "Roboto", sans-serif;
         background: #eff1f3;
@@ -120,30 +122,27 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="row">
-          <h1 class="m-b-50 heading-line center">##word.Notifications## <i class="fa fa-bell text-muted"></i> </h1>
+          <h1 class="m-b-50 heading-line center">##word.Notifications## <i class="fa fa-bell text-muted"></i></h1>
           <i-button label="##word.Delete All##" type="delete" ng-click="updateStudentNotifications('deleteAll')"></i-button>
         </div>
 
         <section class="section-50">
           <div class="container">
-
             <div class="notification-ui_dd-content">
               <div class="notification-list notification-list--unread" ng-repeat="item in user.notificationsList">
                 <div class="notification-list_content">
                   <div class="notification-list_img">
                     <img src="##data.user_image##" alt="user" />
+                    <img class="float-left" ng-src="{{item.image.url}}" alt="Feature image" />
+                    <div class="notification-list_detail">
+                      <p class="font-21"><b class="padding margin">##data.site_name##</b>{{item.title}}</p>
+                      <p class="text-muted font-19">{{item.content}}</p>
+                      <p class="text-muted">
+                        <small> <i class="fas fa-clock"> {{item.$time}} </i></small>
+                      </p>
+                      <i-button title="##word.Delete##" type="delete" ng-click="updateStudentNotifications('deleteOne',item.id)"></i-button>
+                    </div>
                   </div>
-                  <div class="notification-list_detail">
-                    <p class="font-21"><b class="padding margin">##data.site_name##</b>{{item.title}}</p>
-                    <p class="text-muted font-19">{{item.content}}</p>
-                    <p class="text-muted">
-                      <small> <i class="fas fa-clock"> {{item.$time}} </i></small>
-                    </p>
-                  </div>
-                </div>
-                <div class="notification-list_feature-img">
-                  <img ng-src="{{item.image.url}}" alt="Feature image" />
-                  <i-button title="##word.Delete##" type="delete" ng-click="updateStudentNotifications('deleteOne',item.id)"></i-button>
                 </div>
               </div>
             </div>
