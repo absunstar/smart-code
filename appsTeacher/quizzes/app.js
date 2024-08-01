@@ -221,7 +221,7 @@ module.exports = function init(site) {
                   });
                 }
                 doc.timesEnterQuiz += 1;
-
+                doc.date = new Date();
                 app.$collection.update(doc, (err, result) => {
                   for (let i = 0; i < quiz.questionsList.length; i++) {
                     quiz.questionsList[i].answersList.forEach((_a) => {

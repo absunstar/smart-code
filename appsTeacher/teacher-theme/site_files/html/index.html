@@ -121,7 +121,7 @@
               <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
                 <li x-list1="booksList">
                   <div class="nft">
-                    <div class="main">
+                    <a class="main"  href="/bookView?id=##item1._id##">
                       <img class="tokenImage" src="##item1.image.url##" alt="NFT" />
                       <h2>##item1.name##</h2>
                       <p class="description">##item1.description##</p>
@@ -130,11 +130,10 @@
                           <ins>##word.$##</ins>
                           <p>##item1.price##</p>
                         </div>
-                        <a class="" href="/bookView?id=##item1._id##">
-                          <span class="white font-20">##word.More##..</span>
-                        </a>
+                        <span class="white font-20">##word.More##..</span>
+                       
                       </div>
-                    </div>
+                    </a>
                   </div>
                 </li>
               </ul>

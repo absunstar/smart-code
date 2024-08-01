@@ -246,6 +246,7 @@ module.exports = function init(site) {
                 site.security.updateUser(user, (err1, result) => {
                   if (!err1) {
                     response.done = true;
+                    result.doc.notificationsList = result.doc.notificationsList || [];
                     for (let i = 0; i < result.doc.notificationsList.length; i++) {
                       result.doc.notificationsList[i].$time = site.xtime(result.doc.notificationsList[i].date, req.session.lang);
                     }
@@ -398,17 +399,23 @@ module.exports = function init(site) {
     }
   }
 
-  site.addNotificationToStudents = function (doc,req) {
-    let where = { type: "student" };
-    if (doc.type.name == "online") {
-      where["placeType"] = "online";
-    } else if (doc.type.name == "offline") {
-      where["placeType"] = "offline";
-    } else if (doc.type.name == "specificCenter") {
-      where["center.id"] = doc.center.id;
-    } else if (doc.type.name == "specificStudents") {
-      let studentsIds = doc.studentsList.map((_s) => _s.id);
-      where["id"] = { $in: studentsIds };
+  site.addNotificationToStudents = function (doc, req) {
+    let where = {};
+    if (doc.type.name == "parent") {
+      where["type"] = "parent";
+    } else {
+      where["type"] = "student";
+
+      if (doc.type.name == "online") {
+        where["placeType"] = "online";
+      } else if (doc.type.name == "offline") {
+        where["placeType"] = "offline";
+      } else if (doc.type.name == "specificCenter") {
+        where["center.id"] = doc.center.id;
+      } else if (doc.type.name == "specificStudents") {
+        let studentsIds = doc.studentsList.map((_s) => _s.id);
+        where["id"] = { $in: studentsIds };
+      }
     }
 
     if ((teacherId = site.getTeacherSetting(req))) {

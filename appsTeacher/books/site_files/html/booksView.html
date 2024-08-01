@@ -19,7 +19,7 @@
           <ul class="row row-cols-1 row-cols-lg-4 row-cols-md-2">
             <li ng-repeat="item in list">
               <div class="nft">
-                <div class="main">
+                <a class="main" href="/bookView?id={{item._id}}">
                   <img class="tokenImage" ng-src="{{item.image.url}}" alt="NFT" />
                   <h2>{{item.name}}</h2>
                   <p class="description">{{item.description}}</p>
@@ -28,11 +28,9 @@
                       <ins>##word.$##</ins>
                       <p>{{item.price}}</p>
                     </div>
-                    <a class="" href="/bookView?id={{item._id}}">
                       <span class="white font-20">##word.More##..</span>
-                    </a>
                   </div>
-                </div>
+                </a>
               </div>
             </li>
           </ul>

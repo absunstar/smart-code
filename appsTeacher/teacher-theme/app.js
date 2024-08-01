@@ -78,7 +78,6 @@ module.exports = function init(site) {
                 site.getBooks(req, (errBooks, books) => {
                   setting.description = setting.description || "";
                   setting.keyWordsList = setting.keyWordsList || [];
-
                   let data = {
                     childrenList: children,
                     packagesList: packages,

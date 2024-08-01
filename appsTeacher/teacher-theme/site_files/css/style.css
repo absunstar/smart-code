@@ -553,12 +553,13 @@ figure {
   float: left;
   font-size: large;
   margin-top: 10px;
-  color: #2481d7 !important;
+  font-family: sans-serif;
 }
 
 .banner-viewAll:hover {
   border-bottom: 2px solid;
   border-radius: 3px;
+  color: #043aaf !important;
 }
 
 .student-parent-main {
@@ -584,12 +585,14 @@ figure {
     border-radius: 10px;
   }
 }
-
+.black {
+  color: black !important;
+}
 .banner-site {
   width: 100%;
   height: 600px;
   object-fit: fill;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 @media screen and (max-width: 480px) {
   .notification-menu {

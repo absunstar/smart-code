@@ -14,7 +14,7 @@ module.exports = function init(site) {
       name: "delivered",
       nameAr: "تم التسليم",
       nameEn: "Delivered",
-    }
+    },
   ];
   site.lecturesTypesList = [
     {
@@ -26,7 +26,7 @@ module.exports = function init(site) {
       name: "private",
       nameAr: "خاص",
       nameEn: "Private",
-    }
+    },
   ];
   site.typesExpiryViewsList = [
     {
@@ -83,11 +83,7 @@ module.exports = function init(site) {
       nameEn: "All",
       name: "all",
     },
-    {
-      nameAr: "أونلاين",
-      nameEn: "Online",
-      name: "online",
-    },
+
     {
       nameAr: "في المراكز",
       nameEn: "Offline",
@@ -563,6 +559,21 @@ module.exports = function init(site) {
   ];
 
   site.post("/api/notificationTypesList", (req, res) => {
+    let setting = site.getSiteSetting(req.host);
+    if (setting.isOnline) {
+      site.notificationTypesList.push({
+        nameAr: "أونلاين",
+        nameEn: "Online",
+        name: "online",
+      });
+    }
+    if (setting.showParent) {
+      site.notificationTypesList.push({
+        nameAr: "الأباء",
+        nameEn: "Parents",
+        name: "parent",
+      });
+    }
     res.json({
       done: true,
       list: site.notificationTypesList,
