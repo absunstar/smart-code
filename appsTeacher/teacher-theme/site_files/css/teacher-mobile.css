@@ -29,4 +29,7 @@
   .notifacation-logo {
     position: sticky !important;
     }
+    body {
+      background-repeat: repeat !important;
+    }
 }

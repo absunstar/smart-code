@@ -608,7 +608,7 @@ figure {
 body {
 
   background-image: url(../images/teacher1.jpg) !important;
-  background-repeat: repeat !important;
+  background-repeat: round;
 }
 * {
   max-width: initial;
