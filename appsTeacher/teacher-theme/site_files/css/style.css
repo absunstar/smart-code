@@ -606,8 +606,8 @@ figure {
 }
 
 body {
-  background-color: #eceff5 !important;
 
+  background-image: url(../images/teacher1.jpg) !important;
   background-repeat: repeat !important;
 }
 * {
