@@ -9,7 +9,7 @@
   height: fit-content;
   padding: 16px !important;
   margin-top: 24px !important;
-  margin-bottom: 24px !important;
+  /* margin-bottom: 24px !important; */
   justify-content: center;
   align-items: center;
   gap: 8px;

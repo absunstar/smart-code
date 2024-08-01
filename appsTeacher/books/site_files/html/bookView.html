@@ -26,9 +26,11 @@
         width: 100%;
       }
       .content-main-img {
-        width: 100% !important;
-        height: 360px !important;
+        /* width: 100% !important;
+        height: 360px !important; */
         border-radius: 0px !important;
+        max-width: 100%;
+        border-radius: 15px !important;
       }
 
       .time-publish {
@@ -108,10 +110,11 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="margin row padding">
-          <div class="row bg-white content-ad">
+          <div class="col2"></div>
+          <div class="col8 bg-white content-ad">
             <div class="row">
               <p class="display-ad-name">{{item.name}}</p>
-              <div class="col6">
+              <div class="col7">
                 <div class="row bg-ad padding margin">
                 
 
@@ -125,18 +128,19 @@
                 <div class="row">
                   <p class="text-comment gray-desc">{{item.description}}</p>
                 </div>
+                <hr />
+                <div class="row">
+                  <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
+                </div>
               </div>
 
               <div class="col1"></div>
-              <div class="col5">
+              <div class="col4 center">
                 <img class="content-main-img" view ng-src="{{item.image.url}}" />
               </div>
             </div>
 
-            <hr />
-            <div class="row">
-              <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
-            </div>
+           
           </div>
           <div class="col1"></div>
         </div>

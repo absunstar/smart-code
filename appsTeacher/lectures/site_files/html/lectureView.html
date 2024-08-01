@@ -37,9 +37,11 @@
         width: 100%;
       }
       .content-main-img {
-        width: 100% !important;
-        height: 360px !important;
+        /* width: 100% !important;
+        height: 360px !important; */
         border-radius: 0px !important;
+        max-width: 100%;
+        border-radius: 15px !important;
       }
 
       .time-publish {
@@ -159,10 +161,11 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="margin row padding">
-          <div class="row bg-white content-ad">
+          <div class="col2"></div>
+          <div class="col8 bg-white content-ad">
             <div class="row">
               <p class="display-ad-name">{{item.name}}</p>
-              <div class="col6">
+              <div class="col7">
                 <div class="row bg-ad padding margin">
                   <div class="row">
                     <div class="time-publish font-18 margin padding">
@@ -188,19 +191,13 @@
                 </div>
 
                 <div class="row video-box" ng-repeat="link in item.linksList" ng-show="item.$buy || item.type.name == 'public'">
-                  <i-button type="view" class="col4" label="{{link.name}}" ng-click="openVideo(link)"></i-button>
-                  <div class="col8" ng-show="link.isValid">
-                    <br />
-                    <br />
-                    <p class="remain-video-text bottom-15" ng-show="item.typeExpiryView.name == 'number'">##word.Number of views remaining## {{link.remainNumber}}</p>
-                    <p class="remain-video-text bottom-15" ng-show="item.typeExpiryView.name == 'day'">##word.Number of remaining viewing days## {{link.remainDay}}</p>
-                    <p class="remain-video-text bottom-15" ng-show="item.typeExpiryView.name == 'date'">##word.Views expire on date## {{link.remainDate | date : 'dd- MM -yyyy'}}</p>
-                  </div>
-                  <div class="col8" ng-show="!link.isValid">
-                    <br />
-                    <br />
-                    <p>##word.Can`t Watch The Video##</p>
-                  </div>
+                  <i-button type="view" label="{{link.name}}" ng-click="openVideo(link)"></i-button>
+                  <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'number' &&link.isValid">##word.Number of views remaining## {{link.remainNumber}}</span>
+                  <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'day'&&link.isValid">##word.Number of remaining viewing days## {{link.remainDay}}</span>
+                  <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'date'&&link.isValid">##word.Views expire on date## {{link.remainDate | date : 'dd- MM -yyyy'}}</span>
+                  <span ng-show="!link.isValid">##word.Can`t Watch The Video##</span>
+
+               
                 </div>
                 <div class="row video-box padding margin" ng-show="quiz.id" x-permission="login">
                   <p class="font-20 padding">
@@ -227,7 +224,7 @@
               </div>
 
               <div class="col1"></div>
-              <div class="col5">
+              <div class="col4 center">
                 <img class="content-main-img" view ng-src="{{item.image.url}}" />
               </div>
             </div>

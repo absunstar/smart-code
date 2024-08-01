@@ -29,9 +29,11 @@
         width: 100%;
       }
       .content-main-img {
-        width: 100% !important;
-        height: 360px !important;
+        /* width: 100% !important;
+        height: 360px !important; */
         border-radius: 0px !important;
+        max-width: 100%;
+        border-radius: 15px !important;
       }
 
       .time-publish {
@@ -129,10 +131,11 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="margin row padding">
-          <div class="row bg-white content-ad">
+          <div class="col2"></div>
+          <div class="col8 bg-white content-ad">
             <div class="row">
               <p class="display-ad-name">{{item.name}}</p>
-              <div class="col6">
+              <div class="col7">
                 <div class="row bg-ad padding margin">
                   <div class="row">
                     <div class="time-publish font-18 margin padding">
