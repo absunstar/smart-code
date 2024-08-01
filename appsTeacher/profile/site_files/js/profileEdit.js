@@ -256,7 +256,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
       data: {
         where: {
           email: $search,
-          type: "teacher",
+          type: "parent",
           active: true,
         },
         select: {

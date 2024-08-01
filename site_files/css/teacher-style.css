@@ -140,6 +140,9 @@ legend {
 .pre-text {
   white-space: pre-wrap !important;
 }
+.userPrint {
+  user-select: text;
+}
 .buy-btn {
   border: 3px solid linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
   margin: 15px -5px 20px 0px;

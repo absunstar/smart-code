@@ -726,7 +726,7 @@ module.exports = function init(site) {
           let idList = [];
           user.lecturesList = user.lecturesList || [];
           user.lecturesList.forEach((element) => {
-            idList.push(element.lectureId);
+            idList.push(site.mongodb.ObjectID(element.lectureId ));
           });
 
           where["_id"] = {

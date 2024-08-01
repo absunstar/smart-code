@@ -477,7 +477,8 @@ module.exports = function init(site) {
                   user.packagesList = user.packagesList || [];
                   user.lecturesList = user.lecturesList || [];
                   doc.lecturesList.forEach((_l) => {
-                    if (!user.lecturesList.some((l) => _l.lecture && l.id && l.id.toString() == _l.lecture._id.toString())) {
+                    if (!user.lecturesList.some((l) => _l.lecture && l.lectureId && l.lectureId.toString() == _l.lecture._id.toString())) {
+
                       user.lecturesList.push({
                         lectureId: site.mongodb.ObjectID(_l.lecture._id),
                       });

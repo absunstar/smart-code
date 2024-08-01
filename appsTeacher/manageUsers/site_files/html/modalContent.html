@@ -50,11 +50,11 @@
             <i-list class="col4" v="r" label="##word.Gender##" ng-model="item.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
             <div class="col3">
               <br />
-              <p class="font-20" ng-show="item.placeType == 'online'">##word.Latitude## :{{item.latitude}}</p>
+              <p class="font-20" ng-show="item.placeType == 'online'">##word.Latitude## : <span class="userPrint"> {{item.latitude}}</span></p>
             </div>
             <div class="col3">
               <br />
-              <p class="font-20" ng-show="item.placeType == 'online'">##word.Longitude## :{{item.longitude}}</p>
+              <p class="font-20" ng-show="item.placeType == 'online'">##word.Longitude## : <span class="userPrint"> {{item.longitude}}</span></p>
             </div>
           </div>
         </fieldset>

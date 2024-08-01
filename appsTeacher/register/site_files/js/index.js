@@ -4,6 +4,10 @@ app.controller("register", function ($scope, $http, $timeout) {
   if(!$scope.setting.showParent) {
     $scope.user.type = 'student'
   }
+  if(!$scope.setting.isOnline) {
+    $scope.user.placeType = 'offline'
+
+  }
   $scope.placeTypeSelect = function (type, e) {
     $scope.user.placeType = type;
 
