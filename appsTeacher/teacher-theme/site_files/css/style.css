@@ -196,8 +196,10 @@ p {
 }
 
 .separative {
+  filter: brightness(1.3);
   height: 2px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) -0.09%, rgb(52 94 255 / 79%) 50.9%, rgba(0, 0, 0, 0) 99.81%);
+  box-shadow: 0 7px 20px 5px #b9caf5;
+  background: linear-gradient(78deg, rgb(174 194 245) -0.09%, rgb(52 94 255 / 79%) 50.9%, rgb(255 255 255 / 0%) 99.81%);
   margin: 15px !important;
 }
 
@@ -588,7 +590,8 @@ figure {
 .banner-site {
   width: 100%;
   height: 600px;
-  object-fit: contain;
+  object-fit: fill;
+  border-radius: 20px;
 }
 @media screen and (max-width: 480px) {
   .notification-menu {
