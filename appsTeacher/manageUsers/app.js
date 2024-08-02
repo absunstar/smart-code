@@ -319,6 +319,7 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
+          image: 1,
           userId: 1,
           type: 1,
           active: 1,
