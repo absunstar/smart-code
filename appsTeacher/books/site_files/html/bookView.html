@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
     <style>
-
       .buy:hover {
         color: blue !important;
         text-decoration: underline !important;
@@ -21,7 +20,7 @@
         height: 77px !important;
         font-size: 16px !important;
       }
-    
+
       .btn {
         width: 100%;
       }
@@ -64,7 +63,7 @@
         color: #2087e7;
         margin: 5px;
       }
-      .card-title{
+      .card-title {
         width: 80% !important;
       }
       .price {
@@ -116,13 +115,9 @@
               <p class="display-ad-name">{{item.name}}</p>
               <div class="col7">
                 <div class="row bg-ad padding margin">
-                
+                  <p class="price padding margin">##word.Price## <span class="green"> {{item.price}} ##word.$## </span></p>
 
-                  <div class="row">
-                    <p class="col4 price">
-                      ##word.Price## <span class="green"> {{item.price}} ##word.$## </span>
-                    </p>
-                  </div>
+                  <p class="price padding margin">##word.Code## #<span class="userPrint gray"> {{item.code}} </span></p>
                 </div>
 
                 <div class="row">
@@ -130,7 +125,9 @@
                 </div>
                 <hr />
                 <div class="row">
-                  <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
+                  <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">
+                    ##word.Buy## <i class="fas fa-shopping-basket"></i>
+                  </button>
                 </div>
               </div>
 
@@ -139,13 +136,11 @@
                 <img class="content-main-img" view ng-src="{{item.image.url}}" />
               </div>
             </div>
-
-           
           </div>
           <div class="col1"></div>
         </div>
 
-       <!--  <div class="row">
+        <!--  <div class="row">
           <div class="col2"></div>
           <div class="col8">
             <div class="recentlyConsultantsContanier">

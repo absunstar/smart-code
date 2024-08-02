@@ -121,7 +121,6 @@
         .card img {
           width: 30% !important;
         }
-
       }
     </style>
   </head>
@@ -143,12 +142,11 @@
                     </div>
                   </div>
 
-                  <div class="row">
-                    <p class="col4 price">
-                      ##word.Price## <span class="green"> {{item.price}} ##word.$## </span>
-                      <s class="red padding">{{item.totalLecturesPrice}}</s>
-                    </p>
-                  </div>
+                  <p class="price padding margin">
+                    ##word.Price## <span class="green"> {{item.price}} ##word.$## </span>
+                    <s class="red padding">{{item.totalLecturesPrice}}</s>
+                  </p>
+                  <p class="price padding margin">##word.Code## # <span class="userPrint gray"> {{item.code}} </span></p>
                 </div>
 
                 <div class="row">

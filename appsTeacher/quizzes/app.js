@@ -113,7 +113,6 @@ module.exports = function init(site) {
           return;
         }
       }
-      
 
       app.$collection.find({ id: _item.id }, (err, doc) => {
         callback(err, doc);
@@ -201,7 +200,12 @@ module.exports = function init(site) {
           };
 
           let where = req.data.where;
-          site.getLecture({ id: req.data.lectureId }, (err, lecture) => {
+          if (!where || !where["lecture.id"]) {
+            res.json(response);
+            return;
+          }
+          where["user.id"] = req.session.user.id;
+          site.getLecture({ id: where["lecture.id"] }, (err, lecture) => {
             app.$collection.find(where, (err, doc) => {
               if (err) {
                 response.error = err?.message || "Not Exists";
@@ -312,43 +316,42 @@ module.exports = function init(site) {
 
           let _data = req.data;
           app.view({ id: _data.id }, (err, doc) => {
-            if(doc){
-            doc.correctAnswers = 0;
-            doc.editDate = new Date();
-            for (let i = 0; i < doc.questionsList.length; i++) {
-              let question = _data.questionsList.find((_q) => _q.numbering == doc.questionsList[i].numbering);
-              doc.questionsList[i].answersList.forEach((_a) => {
-                let answer = question.answersList.find((_q) => _q.numbering == _a.numbering);
-                _a.userAnswer = answer.userAnswer;
-                if (_a.userAnswer && _a.correct) {
-                  doc.correctAnswers += 1;
-                }
-              });
-            }
-            doc.userDegree = (doc.correctAnswers / doc.questionsList.length) * 100;
-            doc.timesEnterQuiz = doc.timesEnterQuiz;
-            doc.userDegree = site.toNumber(doc.userDegree);
-            
-            app.update(doc, (err, result) => {
-              if (!err) {
-                response.done = true;
-                let _doc = { ...result.doc };
-                for (let i = 0; i < _doc.questionsList.length; i++) {
-                  _doc.questionsList[i].answersList.forEach((_a) => {
-                    delete _a.correct;
-                  });
-                }
-                response.doc = _doc;
-              } else {
-                response.error = err.message;
+            if (doc) {
+              doc.correctAnswers = 0;
+              doc.editDate = new Date();
+              for (let i = 0; i < doc.questionsList.length; i++) {
+                let question = _data.questionsList.find((_q) => _q.numbering == doc.questionsList[i].numbering);
+                doc.questionsList[i].answersList.forEach((_a) => {
+                  let answer = question.answersList.find((_q) => _q.numbering == _a.numbering);
+                  _a.userAnswer = answer.userAnswer;
+                  if (_a.userAnswer && _a.correct) {
+                    doc.correctAnswers += 1;
+                  }
+                });
               }
-              res.json(response);
-            });
-          } else {
-            response.error = 'Quiz not exist';
-            res.json(response);
+              doc.userDegree = (doc.correctAnswers / doc.questionsList.length) * 100;
+              doc.timesEnterQuiz = doc.timesEnterQuiz;
+              doc.userDegree = site.toNumber(doc.userDegree);
 
-          }
+              app.update(doc, (err, result) => {
+                if (!err) {
+                  response.done = true;
+                  let _doc = { ...result.doc };
+                  for (let i = 0; i < _doc.questionsList.length; i++) {
+                    _doc.questionsList[i].answersList.forEach((_a) => {
+                      delete _a.correct;
+                    });
+                  }
+                  response.doc = _doc;
+                } else {
+                  response.error = err.message;
+                }
+                res.json(response);
+              });
+            } else {
+              response.error = "Quiz not exist";
+              res.json(response);
+            }
           });
         }
       );
@@ -403,6 +406,13 @@ module.exports = function init(site) {
         };
 
         let where = req.data;
+        if (!where || !where["lecture._id"]) {
+          res.json(response);
+          return;
+        }
+        where["lecture._id"] = where["lecture._id"].toString();
+        where["user.id"] = req.session.user.id;
+        
         app.$collection.find(where, (err, doc) => {
           if (!err && doc) {
             response.done = true;

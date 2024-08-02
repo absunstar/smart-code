@@ -46,10 +46,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-          if (
-            response.data.error &&
-            response.data.error.like("*Must Enter Code*")
-          ) {
+          if (response.data.error && response.data.error.like("*Must Enter Code*")) {
             $scope.error = "##word.Must Enter Code##";
           }
         }
@@ -86,9 +83,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal($scope.modalID);
           site.resetValidated($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list[index] = response.data.result.doc;
           }
@@ -158,9 +153,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list.splice(index, 1);
           }
@@ -204,23 +197,14 @@ app.controller("packages", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
-    if (
-      $scope.item.educationalLevel &&
-      $scope.item.educationalLevel.id &&
-      $scope.item.schoolYear &&
-      $scope.item.schoolYear.id &&
-      $scope.item.placeType
-    ) {
+    if ($scope.item.educationalLevel && $scope.item.educationalLevel.id && $scope.item.schoolYear && $scope.item.schoolYear.id && $scope.item.placeType) {
       let where = {
         active: true,
         "educationalLevel.id": $scope.item.educationalLevel.id,
         "schoolYear.id": $scope.item.schoolYear.id,
       };
       if ($scope.item.placeType != "both") {
-        where.$or = [
-          { placeType: $scope.item.placeType },
-          { placeType: "both" },
-        ];
+        where.$or = [{ placeType: $scope.item.placeType }, { placeType: "both" }];
       }
       $scope.busy = true;
       $http({
@@ -228,7 +212,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
         url: "/api/lectures/all",
         data: {
           where,
-          select: { id: 1, name: 1, price: 1 , image: 1 },
+          select: { id: 1, name: 1, price: 1, image: 1, code: 1 },
           search: $search,
         },
       }).then(
@@ -244,7 +228,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
         }
       );
     } else {
-      $scope.error = 'Must Select Educational Level , School Year And Place Type';
+      $scope.error = "Must Select Educational Level , School Year And Place Type";
       return;
     }
   };
@@ -259,9 +243,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
       return;
     }
 
-    let index = $scope.item.lecturesList.findIndex(
-      (itm) => itm.lecture.id == $scope.item.$lecture.id
-    );
+    let index = $scope.item.lecturesList.findIndex((itm) => itm.lecture.id == $scope.item.$lecture.id);
     if (index === -1) {
       $scope.item.lecturesList.push({
         lecture: $scope.item.$lecture,

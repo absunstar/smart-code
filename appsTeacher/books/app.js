@@ -260,7 +260,7 @@ module.exports = function init(site) {
         _data.date = new Date();
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
-        if (teacherId = site.getTeacherSetting(req)) {
+        if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
         } else {
           response.error = "There Is No Teacher";
@@ -270,12 +270,25 @@ module.exports = function init(site) {
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            response.done = true;
-            response.doc = doc;
+            let setting = site.getSiteSetting(req.host);
+            if (setting.isShared) {
+              doc.code = (req.session?.user?.prefix || req.session?.user?.id.toString()) + "B" + doc.id.toString();
+            } else {
+              doc.code = (setting.teacher.prefix || req.session?.user?.id.toString()) + "B" + doc.id.toString();
+            }
+            app.update(doc, (err, result) => {
+              if (!err && result) {
+                response.done = true;
+                response.doc = result.doc;
+              } else {
+                response.error = err.mesage;
+              }
+              res.json(response);
+            });
           } else {
             response.error = err.mesage;
+            res.json(response);
           }
-          res.json(response);
         });
       });
     }
@@ -365,18 +378,17 @@ module.exports = function init(site) {
           image: 1,
           educationalLevel: 1,
           schoolYear: 1,
-          date: 1,
+          code: 1,
           active: 1,
         };
         if (search) {
           where.$or = [];
 
           where.$or.push({
-            id: site.get_RegExp(search, "i"),
-          });
-
-          where.$or.push({
             name: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            code: search,
           });
           where.$or.push({
             description: site.get_RegExp(search, "i"),
@@ -393,14 +405,7 @@ module.exports = function init(site) {
           if (req.session.user && req.session.user.type == "student") {
             where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
             where["schoolYear.id"] = req.session.user?.schoolYear?.id;
-            where.$or = [
-              {
-                name: site.get_RegExp(search, "i"),
-              },
-              {
-                description: site.get_RegExp(search, "i"),
-              },
-            ];
+           
           }
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student") {
@@ -410,11 +415,12 @@ module.exports = function init(site) {
             };
           }
         }
-        if (teacherId = site.getTeacherSetting(req)) {
+        if ((teacherId = site.getTeacherSetting(req))) {
           where["teacherId"] = teacherId;
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {}
@@ -455,7 +461,7 @@ module.exports = function init(site) {
                 date: new Date(),
                 host: site.getHostFilter(req.host),
                 teacherId: site.getTeacherSetting(req) || doc.teacherId,
-                status : site.bookStatusList[0] ,
+                status: site.bookStatusList[0],
                 user: {
                   id: user.id,
                   firstName: user.firstName,
@@ -488,7 +494,7 @@ module.exports = function init(site) {
       image: 1,
       description: 1,
       price: 1,
-      date: 1,
+      code: 1,
     };
 
     let where = {};

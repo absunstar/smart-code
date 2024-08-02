@@ -173,13 +173,13 @@
                     </div>
                   </div>
 
-                  <div class="row">
-                    <p class="col4 price">
-                      ##word.Price##
-                      <span class="green" ng-show="item.price > 0"> {{item.price}} ##word.$## </span>
-                      <span class="green" ng-show="item.price == 0">##word.Free## </span>
-                    </p>
-                  </div>
+                  <p class="price padding margin">
+                    ##word.Price##
+                    <span class="green" ng-show="item.price > 0"> {{item.price}} ##word.$## </span>
+                    <span class="green" ng-show="item.price == 0">##word.Free## </span>
+                  </p>
+
+                  <p class="price padding margin">##word.Code## # <span class="userPrint gray"> {{item.code}} </span></p>
                 </div>
 
                 <div class="row">
@@ -196,8 +196,6 @@
                   <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'day'&&link.isValid">##word.Number of remaining viewing days## {{link.remainDay}}</span>
                   <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'date'&&link.isValid">##word.Views expire on date## {{link.remainDate | date : 'dd- MM -yyyy'}}</span>
                   <span ng-show="!link.isValid">##word.Can`t Watch The Video##</span>
-
-               
                 </div>
                 <div class="row video-box padding margin" ng-show="quiz.id" x-permission="login">
                   <p class="font-20 padding">

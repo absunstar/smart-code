@@ -71,13 +71,14 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
           type: "teacher",
           active: true,
         },
-        select: { id: 1, firstName: 1 },
+        select: { id: 1, firstName: 1, prefix: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.teachersList = response.data.list;
+          
         }
       },
       function (err) {
@@ -116,7 +117,6 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     list.splice(index, 1);
     list.splice(toIndex, 0, element);
   };
-
 
   $scope.addMetaTags = function (programming) {
     $scope.error = "";
@@ -159,7 +159,7 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     $scope.siteSetting.matchScheduleList = $scope.siteSetting.matchScheduleList || [];
     $scope.siteSetting.matchScheduleList.unshift({ image1: { url: "/theme1/images/football.png" }, image2: { url: "/theme1/images/football.png" } });
   };
-  
+
   $scope.addBlockPrograms = function () {
     $scope.error = "";
     $scope.siteSetting.blockPrograms = $scope.siteSetting.blockPrograms || {};
@@ -171,7 +171,6 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     block.ipList = block.ipList || [];
     block.ipList.unshift({});
   };
-
 
   $scope.addBlockDomains = function (block) {
     $scope.error = "";
@@ -201,5 +200,4 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     $scope.dynamicRoute = { active: true };
     site.showModal("#dynamicRoutes");
   };
-
 });

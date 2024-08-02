@@ -209,7 +209,7 @@ module.exports = function init(site) {
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
             page_image: setting.logo?.url || "/images/logo.png",
             powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
-            user_image: req.setting?.user?.image?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
@@ -280,7 +280,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["teacher"] } }, (req, res) => {
         let response = {
           done: false,
         };
@@ -297,14 +297,28 @@ module.exports = function init(site) {
           res.json(response);
           return;
         }
+
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            response.done = true;
-            response.doc = doc;
+            let setting = site.getSiteSetting(req.host);
+            if (setting.isShared) {
+              doc.code = (req.session?.user?.prefix || req.session?.user?.id.toString()) + "L" + doc.id.toString();
+            } else {
+              doc.code = (setting.teacher.prefix || req.session?.user?.id.toString()) + "L" + doc.id.toString();
+            }
+            app.update(doc, (err, result) => {
+              if (!err && result) {
+                response.done = true;
+                response.doc = result.doc;
+              } else {
+                response.error = err.mesage;
+              }
+              res.json(response);
+            });
           } else {
             response.error = err.mesage;
+            res.json(response);
           }
-          res.json(response);
         });
       });
     }
@@ -313,7 +327,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/update`,
-          require: { permissions: ["login"] },
+          require: { permissions: ["teacher"] },
         },
         (req, res) => {
           let response = {
@@ -367,7 +381,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/delete`,
-          require: { permissions: ["login"] },
+          require: { permissions: ["teacher"] },
         },
         (req, res) => {
           let response = {
@@ -476,7 +490,25 @@ module.exports = function init(site) {
     });
 
     if (app.allowRouteView) {
-      site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/view`, require: { permissions: ["teacher"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
+
+        let _data = req.data;
+        app.view(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+
+            response.doc = doc;
+          } else {
+            response.error = err?.message || "Not Exists";
+          }
+          res.json(response);
+        });
+      });
+
+      site.post({ name: `/api/${app.name}/viewToStudent`, public: true }, (req, res) => {
         let response = {
           done: false,
         };
@@ -486,16 +518,14 @@ module.exports = function init(site) {
           if (!err && doc) {
             response.done = true;
             let _doc = { ...doc };
-            if (req.data.type == "toStudent") {
-              delete _doc.questionsList;
-            }
+            delete _doc.questionsList;
+
             if (req.session.user) {
               if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == _doc._id.toString())) {
                 _doc.$buy = true;
                 _doc.linksList.forEach((_video) => {
-                  if (req.data.type == "toStudent") {
-                    delete _video.url;
-                  }
+                  delete _video.url;
+
                   req.session.user.viewsList = req.session.user.viewsList || [];
                   let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId.toString() === _doc._id.toString() && itm.code === _video.code);
                   _video.isValid = false;
@@ -535,27 +565,24 @@ module.exports = function init(site) {
                   }
                 });
               } else {
-                if (req.data.type == "toStudent") {
-                  if (_doc.type && _doc.type.name == "private") {
-                    delete _doc.filesList;
-                  }
-                  _doc.linksList.forEach((_video) => {
-                    delete _video.url;
-                  });
+                if (_doc.type && _doc.type.name == "private") {
+                  delete _doc.filesList;
                 }
+                _doc.linksList.forEach((_video) => {
+                  delete _video.url;
+                });
               }
             } else {
-              if (_doc.type && _doc.type.name == "private" && req.data.type == "toStudent") {
+              if (_doc.type && _doc.type.name == "private") {
                 delete _doc.filesList;
               }
               _doc.linksList.forEach((_video) => {
-                if (req.data.type == "toStudent") {
-                  delete _video.url;
-                }
+                delete _video.url;
+
                 _video.isValid = true;
               });
             }
-            _doc.$time = site.xtime(_doc.date, req.session.lang || "ar");
+            _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
             response.doc = _doc;
           } else {
             response.error = err?.message || "Not Exists";
@@ -566,7 +593,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAll) {
-      site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/all`, require: { permissions: ["teacher"] } }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "";
         let limit = req.body.limit || 20;
@@ -579,6 +606,7 @@ module.exports = function init(site) {
           schoolYear: 1,
           placeType: 1,
           date: 1,
+          code: 1,
           active: 1,
         };
         if (search) {
@@ -587,7 +615,57 @@ module.exports = function init(site) {
           where.$or.push({
             id: site.get_RegExp(search, "i"),
           });
+          where.$or.push({
+            code: search,
+          });
+          where.$or.push({
+            name: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            description: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "educationalLevel.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "schoolYear.name": site.get_RegExp(search, "i"),
+          });
+        }
 
+        if ((teacherId = site.getTeacherSetting(req))) {
+          where["teacherId"] = teacherId;
+        } else {
+          where["host"] = site.getHostFilter(req.host);
+        }
+        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
+          res.json({
+            done: true,
+            list: docs,
+          });
+        });
+      });
+      site.post({ name: `/api/${app.name}/allToStudent`, public: true }, (req, res) => {
+        let where = req.body.where || {};
+        let search = req.body.search || "";
+        let limit = req.body.limit || 20;
+        let select = {
+          id: 1,
+          name: 1,
+          image: 1,
+          price: 1,
+          description: 1,
+          date: 1,
+          code: 1,
+        };
+        if (search) {
+          where.$or = [];
+
+          where.$or.push({
+            id: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            code: search,
+          });
           where.$or.push({
             name: site.get_RegExp(search, "i"),
           });
@@ -612,10 +690,19 @@ module.exports = function init(site) {
               {
                 $or: [
                   {
+                    code: search,
+                  },
+                  {
                     name: site.get_RegExp(search, "i"),
                   },
                   {
                     description: site.get_RegExp(search, "i"),
+                  },
+                  {
+                    "educationalLevel.name": site.get_RegExp(search, "i"),
+                  },
+                  {
+                    "schoolYear.name": site.get_RegExp(search, "i"),
                   },
                 ],
               },
@@ -625,7 +712,7 @@ module.exports = function init(site) {
           if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
             let idList = [];
             req.session.user.lecturesList.forEach((element) => {
-              idList.push(element.lectureId);
+              idList.push(site.mongodb.ObjectID(element.lectureId));
             });
             where["_id"] = {
               $in: idList,
@@ -637,6 +724,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
@@ -675,7 +763,7 @@ module.exports = function init(site) {
                   user.lecturesList = user.lecturesList || [];
                   if (!user.lecturesList.some((l) => l.lectureId.toString() == doc._id.toString())) {
                     user.lecturesList.push({
-                      lectureId: doc._id,
+                      lectureId: doc._id.toString(),
                     });
                   }
                   site.addPurchaseOrder({
@@ -718,6 +806,7 @@ module.exports = function init(site) {
       image: 1,
       price: 1,
       activateQuiz: 1,
+      code: 1,
     };
     let where = {};
     site.security.getUser({ _id: req.body.studentId }, (err, user) => {
@@ -726,7 +815,7 @@ module.exports = function init(site) {
           let idList = [];
           user.lecturesList = user.lecturesList || [];
           user.lecturesList.forEach((element) => {
-            idList.push(site.mongodb.ObjectID(element.lectureId ));
+            idList.push(site.mongodb.ObjectID(element.lectureId));
           });
 
           where["_id"] = {
@@ -758,6 +847,7 @@ module.exports = function init(site) {
       description: 1,
       price: 1,
       date: 1,
+      code: 1,
     };
     // let lectures = [];
     // if (req.session.user && req.session.user.type == "student") {

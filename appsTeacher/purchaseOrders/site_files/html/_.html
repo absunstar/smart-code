@@ -70,7 +70,7 @@
           <td class="center" ng-click="showView(item)">{{item.user.firstName}}</td>
           <td class="center" ng-click="showView(item)" ng-show="'##query.type##' == 'book'">{{item.address}}</td>
           <td class="center" ng-click="showView(item)">{{item.price}} <span class="currency">##word.$##</span></td>
-          <td class="center not-print">
+          <td class="center not-print" ng-show="'##query.type##' == 'book'">
             <p>{{item.status.name##session.lang##}}</p>
             <i-button type="save" ng-hide="item.status.name == 'delivered'" label="##word.Delivered##" ng-click="updateBookStatus( item ,'delivered')"></i-button>
             <i-button type="close" ng-hide="item.status.name == 'canceled'" label="##word.Canceled##" ng-click="updateBookStatus( item ,'canceled')"></i-button>

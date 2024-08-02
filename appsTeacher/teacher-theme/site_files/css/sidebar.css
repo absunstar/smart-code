@@ -14,8 +14,8 @@ main .mainContent .sidebarContainer .sidebar {
 main .mainContent .sidebarContainer .sidebar .lawerJoin {
   width: 100%;
   padding: 16px !important;
-  text-align: center;
-  display: flex;
+  text-align: -webkit-center;
+  display: inline-table;
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
@@ -29,6 +29,11 @@ main .mainContent .sidebarContainer .sidebar .lawerJoin p {
   margin: 0px !important;
   text-align: center;
   width: 250px;
+}
+
+main .mainContent .sidebarContainer .sidebar .lawerJoin a {
+  text-align: -webkit-center;
+
 }
 
 main .mainContent .sidebarContainer .sidebar .numberAndAnalysis {

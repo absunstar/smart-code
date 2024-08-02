@@ -237,7 +237,7 @@
 
           <div id="myPackages" class="tab-content">
             <div class="row">
-              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+              <ul class="row ul-list">
                 <li ng-repeat="package in packagesList">
                   <a href="/packageView?id={{package._id}}">
                     <figure class="image-block">
@@ -262,7 +262,7 @@
 
           <div id="myLectures" class="tab-content">
             <div class="row">
-              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+              <ul class="row ul-list">
                 <li ng-repeat="lecture in lecturesList">
                   <a href="/lectureView?id={{lecture._id}}">
                     <figure class="image-block">
@@ -285,22 +285,22 @@
 
           <div id="myBooks" class="tab-content">
             <div class="row">
-              <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
-                <li ng-repeat="book in booksList">
-                  <a href="/bookView?id={{book._id}}">
-                    <figure class="image-block">
-                      <p class="name">{{book.name}}</p>
-                      <img ng-src="{{book.image.url}}" alt="" />
-                      <figcaption>
-                        <p>{{book.description}}</p>
-                        <div class="row price-more-card">
-                          <i class="price col-6" ng-show="book.price">##word.$## {{book.price}} </i>
-                          <i class="price col-6" ng-show="!book.price">##word.Free## </i>
-                          <span class="col-6 more-card"> ##word.More##.. </span>
+              <ul class="row ul-list">
+                <li ng-repeat="item in booksList">
+                  <div class="nft">
+                    <a class="main" href="/bookView?id={{item._id}}">
+                      <img class="tokenImage" ng-src="{{item.image.url}}" alt="NFT" />
+                      <h2>{{item.name}}</h2>
+                      <p class="description">{{item.description}}</p>
+                      <div class="tokenInfo">
+                        <div class="price">
+                          <ins>##word.$##</ins>
+                          <p>{{item.price}}</p>
                         </div>
-                      </figcaption>
-                    </figure>
-                  </a>
+                        <span class="white font-20">##word.More##..</span>
+                      </div>
+                    </a>
+                  </div>
                 </li>
               </ul>
             </div>

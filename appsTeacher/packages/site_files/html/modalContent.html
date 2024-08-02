@@ -8,11 +8,13 @@
           ng-change="getSchoolYearsList(item.educationalLevel)"
           ng-model="item.educationalLevel"
           display="name"
+          v="r"
           items="educationalLevelsList"
           ng-search="item.$educationalLevel"
         ></i-list>
         <i-list
           ng-change="getLecturesList()"
+          v="r"
           label="##word.School Year##"
           ng-model="item.schoolYear"
           display="name"

@@ -38,10 +38,7 @@ module.exports = function init(site) {
     siteTemplate: { id: 1 },
     mainCategoryList: [],
     programming: {},
-    languageList: [],
-    article: {
-      articleTypes: site.articleTypes,
-    },
+   
     block: {},
     siteColor1: "#272727",
     siteColor2: "#d7373f",

@@ -8,18 +8,11 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       $http({
         method: "POST",
-        url: `${$scope.baseURL}/api/lectures/all`,
+        url: `${$scope.baseURL}/api/lectures/allToStudent`,
         data: {
           type: "toStudent",
           search: $scope.$search,
-          select: {
-            id: 1,
-            name: 1,
-            image: 1,
-            price: 1,
-            description: 1,
-            date: 1,
-          },
+          
         },
       }).then(
         function (response) {

@@ -269,6 +269,8 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.parentsList = response.data.list;
+          console.log();
+          
         }
       },
       function (err) {
@@ -283,7 +285,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     $scope.error = "";
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/lectures/all`,
+      url: `${$scope.baseURL}/api/lectures/allToStudent`,
       data: {
         type: "myStudent",
         select: {

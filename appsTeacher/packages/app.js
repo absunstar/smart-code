@@ -282,12 +282,25 @@ module.exports = function init(site) {
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            response.done = true;
-            response.doc = doc;
+            let setting = site.getSiteSetting(req.host);
+            if (setting.isShared) {
+              doc.code = (req.session?.user?.prefix || req.session?.user?.id.toString()) + "P" + doc.id.toString();
+            } else {
+              doc.code = (setting.teacher.prefix || req.session?.user?.id.toString()) + "P" + doc.id.toString();
+            }
+            app.update(doc, (err, result) => {
+              if (!err && result) {
+                response.done = true;
+                response.doc = result.doc;
+              } else {
+                response.error = err.mesage;
+              }
+              res.json(response);
+            });
           } else {
             response.error = err.mesage;
+            res.json(response);
           }
-          res.json(response);
         });
       });
     }
@@ -380,14 +393,15 @@ module.exports = function init(site) {
           schoolYear: 1,
           date: 1,
           active: 1,
+          code: 1,
         };
+
         if (search) {
           where.$or = [];
 
           where.$or.push({
-            id: site.get_RegExp(search, "i"),
+            code: site.get_RegExp(search, "i"),
           });
-
           where.$or.push({
             name: site.get_RegExp(search, "i"),
           });
@@ -413,10 +427,19 @@ module.exports = function init(site) {
               {
                 $or: [
                   {
+                    code: search,
+                  },
+                  {
                     name: site.get_RegExp(search, "i"),
                   },
                   {
                     description: site.get_RegExp(search, "i"),
+                  },
+                  {
+                    "educationalLevel.name": site.get_RegExp(search, "i"),
+                  },
+                  {
+                    "schoolYear.name": site.get_RegExp(search, "i"),
                   },
                 ],
               },
@@ -462,8 +485,8 @@ module.exports = function init(site) {
     let _data = req.data;
     app.view({ id: _data.packageId }, (err, doc) => {
       if (!err && doc) {
-        site.validateCode(req,{ code: _data.code, price: doc.price }, (errCode, code) => {
-          if (errCode  && doc.price > 0) {
+        site.validateCode(req, { code: _data.code, price: doc.price }, (errCode, code) => {
+          if (errCode && doc.price > 0) {
             response.error = errCode;
             res.json(response);
             return;
@@ -478,9 +501,8 @@ module.exports = function init(site) {
                   user.lecturesList = user.lecturesList || [];
                   doc.lecturesList.forEach((_l) => {
                     if (!user.lecturesList.some((l) => _l.lecture && l.lectureId && l.lectureId.toString() == _l.lecture._id.toString())) {
-
                       user.lecturesList.push({
-                        lectureId: site.mongodb.ObjectID(_l.lecture._id),
+                        lectureId: _l.lecture._id,
                       });
                     }
                   });
@@ -532,6 +554,7 @@ module.exports = function init(site) {
       price: 1,
       totalLecturesPrice: 1,
       date: 1,
+      code: 1,
     };
 
     // let packages = [];

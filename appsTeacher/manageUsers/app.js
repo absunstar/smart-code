@@ -388,7 +388,7 @@ module.exports = function init(site) {
           }
         }
         where["id"] = { $ne: 1 };
-        site.security.getUsers(where, (err, users, count) => {
+        app.$collection.findMany({ where, select }, (err, users, count) => {
           res.json({
             done: true,
             count: count,

@@ -7,10 +7,9 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
     $scope.error = "";
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/lectures/view`,
+      url: `${$scope.baseURL}/api/lectures/viewToStudent`,
       data: {
         _id: "##query.id##",
-        type: "toStudent",
       },
     }).then(
       function (response) {
@@ -83,7 +82,6 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/quizzes/viewByUserLecture`,
       data: {
-        "user.id": site.toNumber("##user.id##"),
         "lecture._id": "##query.id##",
       },
     }).then(
@@ -202,9 +200,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       data: {
         where: {
           "lecture.id": $scope.item.id,
-          "user.id": site.toNumber("##user.id##"),
         },
-        lectureId: $scope.item.id,
       },
     }).then(
       function (response) {
