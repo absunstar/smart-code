@@ -83,21 +83,15 @@ module.exports = function init(site) {
       nameEn: "All",
       name: "all",
     },
-
-    {
-      nameAr: "في المراكز",
-      nameEn: "Offline",
-      name: "offline",
-    },
-    {
-      nameAr: "مركز محدد",
-      nameEn: "Specific Center",
-      name: "specificCenter",
-    },
     {
       nameAr: "طلاب محددين",
       nameEn: "Specific Students",
       name: "specificStudents",
+    },
+    {
+      nameAr: "في المراكز",
+      nameEn: "Offline",
+      name: "offline",
     },
   ];
 

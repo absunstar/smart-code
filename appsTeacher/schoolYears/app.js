@@ -167,17 +167,9 @@ module.exports = function init(site) {
 
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
-        if (site.getTeacherSetting(req) == null) {
-          response.error = "There Is No Teacher";
-          res.json(response);
-          return;
-        }
+
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
-        } else if(site.getSiteSetting(req.host).isShared) {
-          response.error = "There Is No Teacher";
-          res.json(response);
-          return;
         }
 
         app.add(_data, (err, doc) => {
@@ -294,10 +286,13 @@ module.exports = function init(site) {
           }
           let teacherId = site.getTeacherSetting(req);
           let host = site.getHostFilter(req.host);
+          let setting = site.getSiteSetting(req.host);
           let list = app.memoryList
             .filter(
               (g) =>
-                (typeof where.active != "boolean" || g.active === where.active) && JSON.stringify(g).contains(search) &&  (g.teacherId === teacherId || (g.host == host && !teacherId))
+                (typeof where.active != "boolean" || g.active === where.active) &&
+                JSON.stringify(g).contains(search) &&
+                ((g.teacherId === teacherId && !setting.isShared) || (g.host == host && setting.isShared))
             )
             .slice(0, limit);
 

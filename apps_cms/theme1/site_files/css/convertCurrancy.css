@@ -67,7 +67,7 @@
    border: 2px solid var(--secondary-color);
    border-radius: 50px;
  }
-
+ 
  .addOrRemoveCurrancy , .swetchCurrancyselect, .CurrancyequalSelected{
    padding-bottom: 8px;
  }

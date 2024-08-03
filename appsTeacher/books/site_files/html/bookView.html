@@ -39,15 +39,7 @@
         align-items: center;
       }
 
-      .bg-ad {
-        background-color: #fffaed;
-        border-radius: 13px;
-      }
-      .content-ad {
-        border-radius: 15px !important;
-        margin-top: 20px !important;
-        padding: 15px !important;
-      }
+
 
       .content-img {
         width: 90% !important;
@@ -57,12 +49,7 @@
         display: flex;
         width: 140px;
       }
-      .display-ad-name {
-        font-size: 34px;
-        font-weight: bold;
-        color: #2087e7;
-        margin: 5px;
-      }
+
       .card-title {
         width: 80% !important;
       }
@@ -115,7 +102,7 @@
               <p class="display-ad-name">{{item.name}}</p>
               <div class="col7">
                 <div class="row bg-ad padding margin">
-                  <p class="price padding margin">##word.Price## <span class="green"> {{item.price}} ##word.$## </span></p>
+                  <p class="price padding margin">##word.Price## <span class=""> {{item.price}} ##word.$## </span></p>
 
                   <p class="price padding margin">##word.Code## #<span class="userPrint gray"> {{item.code}} </span></p>
                 </div>
@@ -139,35 +126,6 @@
           </div>
           <div class="col1"></div>
         </div>
-
-        <!--  <div class="row">
-          <div class="col2"></div>
-          <div class="col8">
-            <div class="recentlyConsultantsContanier">
-              <ul class="recentlyConsultants row">
-                <li class="col recentlyConsultant">
-                  <div style="display: ruby-text">
-                    <a href="#">
-                      <p class="font-25">{{item.name}}</p>
-                      <i class="left font-22 green bold padding mainColor"> ##word.$## {{item.price}} </i>
-                    </a>
-                  </div>
-
-                  <div class="separative"></div>
-                  <div class="answerSection">
-                    <div class="row">
-                      <p class="linesView font-20 padding margin col6">{{item.description}}</p>
-                      <img class="col5" width="100% !important" height="400px !important" ng-src="{{item.image.url}}" alt="" />
-                    </div>
-                  </div>
-                  <div class="row" >
-                    <button ng-click="showEnterCode()" ng-hide="item.$buy" class="buy-btn">##word.Buy## <i class="fas fa-shopping-basket"></i></button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
 
         <div class="row">
           <h2 class="bold center red">{{error}}</h2>

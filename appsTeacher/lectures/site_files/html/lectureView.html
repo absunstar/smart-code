@@ -51,16 +51,6 @@
         align-items: center;
       }
 
-      .bg-ad {
-        background-color: #fffaed;
-        border-radius: 13px;
-      }
-      .content-ad {
-        border-radius: 15px !important;
-        margin-top: 20px !important;
-        padding: 15px !important;
-      }
-
       .content-img {
         width: 90% !important;
         height: auto !important;
@@ -69,12 +59,7 @@
         display: flex;
         width: 140px;
       }
-      .display-ad-name {
-        font-size: 34px;
-        font-weight: bold;
-        color: #2087e7;
-        margin: 5px;
-      }
+
       .card-title {
         width: 80% !important;
       }
@@ -114,10 +99,11 @@
         max-width: initial;
       }
       .video-box {
-        background: #eceff5;
+        background: var(--background4);
         border-radius: 10px;
         padding: 10px !important;
         margin: 5px !important;
+        color: var(--color4);
       }
       .bg-red {
         background-color: red !important;
@@ -175,8 +161,8 @@
 
                   <p class="price padding margin">
                     ##word.Price##
-                    <span class="green" ng-show="item.price > 0"> {{item.price}} ##word.$## </span>
-                    <span class="green" ng-show="item.price == 0">##word.Free## </span>
+                    <span class="" ng-show="item.price > 0"> {{item.price}} ##word.$## </span>
+                    <span class="" ng-show="item.price == 0">##word.Free## </span>
                   </p>
 
                   <p class="price padding margin">##word.Code## # <span class="userPrint gray"> {{item.code}} </span></p>

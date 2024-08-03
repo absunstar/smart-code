@@ -392,8 +392,8 @@ module.exports = function init(site) {
       user.lecturesList = [];
       user.packagesList = [];
       user.parentMobile = req.body.user.parentMobile;
-      user.schoolYear = req.body.user.schoolYear;
       user.educationalLevel = req.body.user.educationalLevel;
+      user.schoolYear = req.body.user.schoolYear;
       user.placeType = req.body.user.placeType;
     }
     if (req.body.user.placeType == "online") {

@@ -143,26 +143,11 @@ legend {
 .userPrint {
   user-select: text;
 }
-.buy-btn {
-  border: 3px solid linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
-  margin: 15px -5px 20px 0px;
-  text-align-last: center;
-  background: #2087e7;
-  color: white;
-  border-radius: 5px;
-  font-size: x-large;
 
-}
-
-.buy-btn:hover {
-
-  background: #1475cf;
- 
-}
 
 .purchase-text {
-  background: linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
-  color: white;
+  background: var(--background4);
+  color: var(--color4);
   text-align: center;
   font-size: x-large;
   padding: inherit;
@@ -181,8 +166,4 @@ legend {
   flex-direction: column-reverse;
   height: 37vw !important;
   scrollbar-color: #2087e7 #e7e7e7;
-}
-.tabs .tabs-header .tab-link.active {
- 
-  color: white !important;
 }

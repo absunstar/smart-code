@@ -37,11 +37,14 @@
       .edit-user-btn {
         margin: 15px -7px 20px 0px;
         text-align-last: center;
-        background: #2087e7;
-        color: white;
+        background: var(--button-background);
+        color: var(--button-color);
         border-radius: 5px;
         font-size: xx-large;
         width: 100%;
+      }
+      .edit-user-btn:hover {
+        filter: brightness(1.1);
       }
       .user-type {
         text-align-last: center;
@@ -93,6 +96,9 @@
       * {
         max-width: initial;
       }
+      fieldset {
+        background: none;
+      }
       figure {
         & figcaption {
           .price {
@@ -123,7 +129,7 @@
   <body class="##session.lang## loaded" ng-controller="profileEdit">
     <div x-replace="teacher-theme/header.html"></div>
     <div class="row">
-      <h1 class="bold text-center">##word.Manage My Page##</h1>
+      <h1 class="bold text-center color2">##word.Manage My Page##</h1>
     </div>
 
     <fieldset id="profileEdit">
@@ -185,11 +191,11 @@
                         <div class="col3"></div>
                         <div class="col6">
                           <div class="row">
-                            <p class="right-content">
+                            <p class="right-content label-color">
                               <span class="red bold"> * </span>
                               ##word.Profile Image##
                             </p>
-                            <i-image v="r" style="width: 170px !important; height: 200px !important" ng-model="user.image"></i-image>
+                            <i-image v="r" class="img256" ng-model="user.image"></i-image>
                           </div>
                         </div>
                       </div>

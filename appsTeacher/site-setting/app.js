@@ -44,11 +44,13 @@ module.exports = function init(site) {
     siteColor2: "#d7373f",
     siteColor3: "#8bc34a",
     siteColor4: "#8bc34a",
+    siteButtonColor: "#8bc34a",
     siteBackground1: "#d9d9d9",
     siteBackground2: "#000000",
     siteBackground1: "#ffffff",
     siteBackground3: "#ffffff",
     siteBackground4: "#ffffff",
+    siteButtonBackground: "#ffffff",
   };
   site.getHostFilter = function (domain = "") {
     let h = hostManager.memoryList.find((h) => domain.like(h.domain));

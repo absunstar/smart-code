@@ -168,10 +168,6 @@ module.exports = function init(site) {
         _data.addUserInfo = req.getUserFinger();
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
-        } else if(site.getSiteSetting(req.host).isShared) {
-          response.error = "There Is No Teacher";
-          res.json(response);
-          return;
         }
 
         _data.host = site.getHostFilter(req.host);
@@ -265,9 +261,11 @@ module.exports = function init(site) {
         let list = [];
         let teacherId = site.getTeacherSetting(req);
         let host = site.getHostFilter(req.host);
+    let setting = site.getSiteSetting(req.host);
+
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
-          if ((!where.active || doc.active) && (doc.teacherId === teacherId || (doc.host == host && !teacherId))) {
+          if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared) || (doc.host == host && setting.isShared))) {
             list.push(obj);
           }
 

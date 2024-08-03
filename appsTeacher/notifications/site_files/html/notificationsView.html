@@ -54,8 +54,8 @@
       }
 
       .heading-line {
-        position: relative;
         padding-bottom: 5px;
+        color: var(--color2) !important;
       }
 
       .heading-line:after {
@@ -88,6 +88,7 @@
 
       .notification-list--unread {
         border-left: 2px solid #29b6f6;
+        border-radius: 15px;
       }
 
       .notification-list .notification-list_content {
@@ -120,7 +121,7 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="row">
-          <h1 class="m-b-50 heading-line center">##word.Notifications## <i class="fa fa-bell text-muted black"></i></h1>
+          <h1 class="m-b-50 heading-line center">##word.Notifications## <i class="fa fa-bell text-muted color2"></i></h1>
           <i-button label="##word.Delete All##" ng-show="user.notificationsList.length > 0" type="delete" ng-click="updateStudentNotifications('deleteAll')"></i-button>
         </div>
 

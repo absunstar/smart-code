@@ -387,6 +387,8 @@ module.exports = function init(site) {
           } else {
             where["host"] = site.getHostFilter(req.host);
           }
+        } else if (setting.isShared) {
+          where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
         app.$collection.findMany({ where, select }, (err, users, count) => {
@@ -411,11 +413,19 @@ module.exports = function init(site) {
         where["placeType"] = "online";
       } else if (doc.type.name == "offline") {
         where["placeType"] = "offline";
-      } else if (doc.type.name == "specificCenter") {
-        where["center.id"] = doc.center.id;
+        if (doc.center.id) {
+          where["center.id"] = doc.center.id;
+        }
       } else if (doc.type.name == "specificStudents") {
         let studentsIds = doc.studentsList.map((_s) => _s.id);
         where["id"] = { $in: studentsIds };
+      }
+
+      if (doc.educationalLevel.id) {
+        where["educationalLevel.id"] = doc.educationalLevel.id;
+      }
+      if (doc.schoolYear.id) {
+        where["schoolYear.id"] = doc.schoolYear.id;
       }
     }
 

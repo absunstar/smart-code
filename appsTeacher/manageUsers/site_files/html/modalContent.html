@@ -13,8 +13,8 @@
           <i-control ng-show="item.placeType == 'online'" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
           <i-control label="##word.BrowserId##" ng-show="item.type == 'student'" ng-model="item.socialBrowserID"> </i-control>
           <i-control label="##word.Prefix##" ng-show="item.type == 'teacher'" ng-model="item.prefix"> </i-control>
-          <i-control label="##word.Title##" ng-show="item.type == 'teacher'" ng-model="item.title"> </i-control>
-          <i-control label="##word.Bio##" ng-show="item.type == 'teacher'" ng-model="item.bio"> </i-control>
+          <i-control label="##word.Title##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.title"> </i-control>
+          <i-control label="##word.Bio##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.bio"> </i-control>
         </div>
       </div>
       <div class="col3 center">

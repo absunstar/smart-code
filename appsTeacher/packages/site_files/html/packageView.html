@@ -43,16 +43,6 @@
         align-items: center;
       }
 
-      .bg-ad {
-        background-color: #fffaed;
-        border-radius: 13px;
-      }
-      .content-ad {
-        border-radius: 15px !important;
-        margin-top: 20px !important;
-        padding: 15px !important;
-      }
-
       .content-img {
         width: 90% !important;
         height: auto !important;
@@ -61,12 +51,7 @@
         display: flex;
         width: 140px;
       }
-      .display-ad-name {
-        font-size: 34px;
-        font-weight: bold;
-        color: #2087e7;
-        margin: 5px;
-      }
+
       .card-title {
         font-size: 15px !important;
         width: 80% !important;
@@ -143,7 +128,7 @@
                   </div>
 
                   <p class="price padding margin">
-                    ##word.Price## <span class="green"> {{item.price}} ##word.$## </span>
+                    ##word.Price## <span class=""> {{item.price}} ##word.$## </span>
                     <s class="red padding">{{item.totalLecturesPrice}}</s>
                   </p>
                   <p class="price padding margin">##word.Code## # <span class="userPrint gray"> {{item.code}} </span></p>

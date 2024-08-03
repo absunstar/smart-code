@@ -1,6 +1,8 @@
 app.controller("manageUsers", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
   $scope.appName = "manageUsers";
+  $scope.setting = site.showObject(`##data.#setting##`);
+
   $scope.modalID = "#manageUsersManageModal";
   $scope.modalSearchID = "#manageUsersSearchModal";
   $scope.mode = "add";

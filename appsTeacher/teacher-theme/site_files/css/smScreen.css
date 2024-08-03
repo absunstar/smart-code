@@ -281,7 +281,7 @@
     position: inherit;
     flex-shrink: 0;
   }
-  .student-parent-main {
+/*   .student-parent-main {
     display: ruby;
     text-align: center;
     margin: 0px !important;
@@ -305,5 +305,12 @@
       top: auto !important;
       left: 0px !important;
     }
-  }
+  } */
+
+  .student-parent-main {
+    margin-bottom: 50px;
+    margin-right: 0px !important;
+    justify-content: center;
+    display: flex;
+}
 }

@@ -135,13 +135,36 @@ p {
 
 .notifacation-icon {
   font-size: 40px;
-  color: #3494ed;
+  color: var(--color1) !important;
 }
 
 .notifacation-icon:hover {
-  color: #1275d2 !important;
+  filter: brightness(0.9) !important;
 }
-
+.color1 {
+  color: var(--color1) !important;
+}
+.color2 {
+  color: var(--color2) !important;
+}
+.color3 {
+  color: var(--color3) !important;
+}
+.color4 {
+  color: var(--color4) !important;
+}
+.background1 {
+  background: var(--background1) !important;
+}
+.background2 {
+  background: var(--background2) !important;
+}
+.background3 {
+  background: var(--background3) !important;
+}
+.background4 {
+  background: var(--background4) !important;
+}
 .notification-menu {
   display: none;
   position: absolute;
@@ -330,7 +353,9 @@ figure {
     line-height: 1;
     transition: 0.25s;
     div {
-      background: linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
+      background: var(--button-background);
+      color: var(--button-color);
+
       border-radius: 13px;
     }
     /* 	h3 {
@@ -405,18 +430,50 @@ figure {
   text-overflow: ellipsis;
   color: lightslategray;
 }
+.modal {
+  background-color: var(--background2) !important;
+}
+.modal-header {
+  background-color: var(--background2) !important;
 
+}
 .price-more-card {
   margin: 10px 0px 0px 0px !important;
   padding: 10px !important;
 }
-
+.bg-ad {
+  background-color: var(--background4);
+  border-radius: 13px;
+  color: var(--color4);
+}
 .more-card {
   position: relative;
   text-align: center;
-  color: white !important;
   font-weight: bold;
   font-size: larger;
+}
+.buy-btn {
+  /*  border: 3px solid linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%); */
+  margin: 15px -5px 20px 0px;
+  text-align-last: center;
+  background: var(--button-background);
+  color: var(--button-color);
+  border-radius: 5px;
+  font-size: x-large;
+}
+
+.btn {
+  background: var(--button-background) !important;
+  color: var(--button-color) !important;
+  border-bottom: none !important;
+}
+.btn:hover {
+  filter: brightness(1.1) !important;
+  background-color: var(--button-background) !important;
+}
+
+.buy-btn:hover {
+  filter: brightness(1.1);
 }
 
 .nft {
@@ -520,7 +577,28 @@ figure {
     }
   }
 }
+label {
+  color: var(--label-color);
+}
 
+.tabs .tabs-header .tab-link.active {
+  background: var(--button-background) !important;
+  color: var(--button-color) !important;
+  border-radius: 15px !important;
+}
+
+.tabs .tabs-header .tab-link:hover {
+  background: var(--button-background) !important;
+  color: var(--button-color) !important;
+  border-radius: 15px !important;
+}
+
+fieldset legend {
+  color: var(--label-color);
+}
+.label-color {
+  color: var(--label-color) !important;
+}
 .bg {
   position: fixed;
   top: 50%;
@@ -530,6 +608,18 @@ figure {
     font-size: 20rem;
     filter: opacity(0.5);
   }
+}
+.display-ad-name {
+  font-size: 34px;
+  font-weight: bold;
+  color: var(--color3) !important;
+  margin: 5px;
+}
+.content-ad {
+  border-radius: 15px !important;
+  margin-top: 20px !important;
+  padding: 15px !important;
+  background: var(--background3) !important;
 }
 
 .banner-word {
@@ -548,7 +638,7 @@ figure {
   font-size: 50px;
   font-weight: 600;
   font-family: sans-serif;
-  color: #000000;
+  color: var(--color2);
   /* text-transform: uppercase;
   text-shadow: 1px 1px 0px #ffffff, 1px 2px 0px #c4c4c4, 1px 3px 0px #cccccc, 1px 4px 0px #bfbfbf, 1px 5px 0px #9a9a9a, 1px 6px 0px #e4e4e4, 1px 10px 5px rgb(199 199 199 / 64%),
     1px 15px 10px rgb(122 122 122 / 40%), 1px 20px 30px rgb(182 182 183 / 30%), 1px 25px 50px rgb(198 198 198 / 20%); */
@@ -559,35 +649,38 @@ figure {
   font-size: large;
   margin-top: 10px;
   font-family: sans-serif;
+  color: var(--color2) !important;
 }
 
 .banner-viewAll:hover {
   border-bottom: 2px solid;
   border-radius: 3px;
-  color: #043aaf !important;
+  filter: brightness(0.8) !important;
 }
 
 .student-parent-main {
-  margin: 15px;
+  margin-bottom: 50px;
+  margin-right: 20px;
 }
 
 .student-parent {
   display: -webkit-box;
   img {
-    height: 200px;
-    width: 200px;
+    height: 170px;
+    width: 170px;
     border-radius: 50%;
-    border: 3px dashed;
+    border: 1px solid;
   }
-  span {
+  p {
     font-size: large;
-    position: relative;
-    top: 100px;
-    left: 170px;
-    background: #2087e7;
-    color: white;
+    position: absolute;
+    display: table-row;
+    background: var(--button-background);
+    color: var(--button-color);
     padding: 7px;
     border-radius: 10px;
+    width: 170px;
+    text-align-last: center;
   }
 }
 .black {

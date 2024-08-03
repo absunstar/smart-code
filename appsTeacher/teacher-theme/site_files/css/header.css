@@ -9,7 +9,7 @@
   flex-shrink: 0;
   align-self: stretch;
   border-radius: 8px;
-  background: var(--main-background-color2);
+  background: var(--background1);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 }
 i-checklist label {
@@ -26,14 +26,16 @@ i-checklist label {
   background: #eceff5;
 }
 .login-btn {
-  background: linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%);
-  color: white !important;
+  background: var(--button-background);
+  color: var(--button-color) !important;
+
   padding: 6px 10px 8px 10px;
   margin: 5px;
   border-radius: 25px;
 }
 .login-btn:hover {
-  background: #0a579f;
+  filter: brightness(1.1);
+
 }
 .HeaderContanier .lgScreen .logo  {
 
@@ -153,8 +155,11 @@ nav .container-fluid #navbarNavDropdown .navbar-nav .dropdown .dropdown-menu li 
   border-bottom: 1px solid #d9d9d94a !important;
 }
 .newRegister {
-  color: #2087e7 !important;
+  color: var(--color1) !important;
   margin-right: 2px;
+}
+.newRegister:hover {
+  filter: brightness(0.9) !important;
 }
 .button-screen {
   margin-inline: auto;
@@ -162,11 +167,11 @@ nav .container-fluid #navbarNavDropdown .navbar-nav .dropdown .dropdown-menu li 
 .button-screen a {
   padding: 15px;
   font-size: 25px;
-  color: #3494ed !important;
+  color: var(--color1) !important;
   font-family: sans-serif;
 }
 .button-screen a:hover {
-  color: #1275d2 !important;
+  filter: brightness(0.8) !important;
 }
 .HeaderContanier .lgScreen .userContainer {
 }

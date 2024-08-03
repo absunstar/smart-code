@@ -20,7 +20,7 @@ main .mainContent .sidebarContainer .sidebar .lawerJoin {
   align-items: center;
   flex-shrink: 0;
   border-radius: 8px;
-  background: var(--main-background-color2);
+  background: var(--background3);
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
   gap: 16px;
 }
@@ -29,11 +29,19 @@ main .mainContent .sidebarContainer .sidebar .lawerJoin p {
   margin: 0px !important;
   text-align: center;
   width: 250px;
+  color: var(--color3);
 }
 
 main .mainContent .sidebarContainer .sidebar .lawerJoin a {
   text-align: -webkit-center;
 
+}
+
+main .mainContent .sidebarContainer .sidebar .lawerJoin button {
+background: var(--button-background) !important;
+color: var(--button-color) !important;
+border-bottom: unset !important;
+width: 100%;
 }
 
 main .mainContent .sidebarContainer .sidebar .numberAndAnalysis {

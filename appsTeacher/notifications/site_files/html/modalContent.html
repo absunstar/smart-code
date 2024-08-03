@@ -2,10 +2,18 @@
   <div class="row padding">
     <i-image class="img128" ng-model="item.image"></i-image>
     <i-list label="##word.Type##" ng-model="item.type" v="r" display="name##session.lang##" items="notificationTypesList"></i-list>
-    <i-control type="text" v="r" ng-model="item.title" label="##word.Title##"></i-control>
-    <i-textarea type="text" v="r" ng-model="item.content" label="##word.The Content##"></i-textarea>
+   
+    <i-list ng-show="item.type.name != 'parent'"
+      label="##word.Educational Level##"
+      ng-change="getSchoolYearsList(item.educationalLevel)"
+      ng-model="item.educationalLevel"
+      display="name"
+      items="educationalLevelsList"
+      ng-search="item.$educationalLevel"
+    ></i-list>
+    <i-list ng-show="item.type.name != 'parent'"label="##word.School Year##" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
     <i-list
-      ng-show="item.type.name == 'specificCenter'"
+      ng-show="item.type.name == 'offline'"
       class="center input-style"
       label="##word.Center Name##"
       ng-model="item.center"
@@ -31,14 +39,14 @@
         <tr ng-repeat="c in item.studentsList">
           <td class="center">{{c.firstName}}</td>
           <td class="center">
-            <i-button
-              type="delete"
-              ng-click="item.studentsList.splice($index,1)"
-            ></i-button>
+            <i-button type="delete" ng-click="item.studentsList.splice($index,1)"></i-button>
           </td>
         </tr>
       </table>
     </fieldset>
+
+    <i-control type="text" v="r" ng-model="item.title" label="##word.Title##"></i-control>
+    <i-textarea type="text" v="r" ng-model="item.content" label="##word.The Content##"></i-textarea>
   </div>
 </div>
 <div ng-show="mode !== 'add' " class="row">

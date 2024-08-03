@@ -20,10 +20,14 @@
       .register-btn {
         margin: 15px -7px 20px 0px;
         text-align-last: center;
-        background: #2087e7;
-        color: white;
+        background: var(--button-background);
+        color: var(--button-color);
+        border: 1px solid black !important;
         border-radius: 5px;
         font-size: x-large;
+      }
+      .register-btn:hover {
+        filter: brightness(1.1);
       }
       .location-btn {
         width: 65% !important;
@@ -38,10 +42,10 @@
         font-size: 32px;
         margin: 35px;
         border-radius: 50%;
-        border-color: #2087e7;
-        box-shadow: 3px 4px #2087e7ba;
-        color: #2087e7;
-        background: white;
+        /* border-color: #2087e7; */
+        background: var(--background3);
+        /* box-shadow: 3px 4px #2087e7ba; */
+        color: var(--color3);
       }
       .user-place-type-select {
         color: white !important;
@@ -101,7 +105,7 @@
   <body class="##session.lang## loaded" ng-controller="register">
     <div x-replace="teacher-theme/header.html"></div>
     <div class="row">
-      <h1 class="bold text-center">##word.Register##</h1>
+      <h1 class="bold text-center color2">##word.Register##</h1>
     </div>
 
     <div class="form" id="register">
@@ -190,19 +194,19 @@
               <div class="col2"></div>
               <div class="col3">
                 <div class="row">
-                  <p class="right-content"><span class="red bold"> * </span> ##word.Profile Image##</p>
+                  <p class="right-content label-color"><span class="red bold"> * </span> ##word.Profile Image##</p>
                   <i-image v="r" class="img256" ng-model="user.image"></i-image>
                 </div>
                 <br />
                 <div class="row" ng-show="user.placeType == 'online'">
-                  <p class="right-content"><span class="red bold"> * </span> ##word.National ID Image##</p>
+                  <p class="right-content label-color"><span class="red bold"> * </span> ##word.National ID Image##</p>
                   <i-image class="img256" ng-model="user.nationalIdImage"></i-image>
                 </div>
                 <br />
                 <div class="row" ng-show="user.placeType == 'online'">
                   <button ng-click="getLocation()" class="register-btn location-btn">##word.Location## <i class="fas fa-map-marker-alt"></i></button>
-                  <p class="font-20 text-right">##word.Latitude## :{{user.latitude}}</p>
-                  <p class="font-20 text-right">##word.Longitude## : {{user.longitude}}</p>
+                  <p class="font-20 text-right label-color">##word.Latitude## :{{user.latitude}}</p>
+                  <p class="font-20 text-right label-color">##word.Longitude## : {{user.longitude}}</p>
                 </div>
               </div>
             </div>
