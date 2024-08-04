@@ -405,7 +405,6 @@ module.exports = function init(site) {
       user.permissions.push({ name: "online" });
       site.security.addUser(user, function (err, doc) {
         if (!err) {
-          console.log(doc);
           response.user = doc;
           response.done = true;
         } else {

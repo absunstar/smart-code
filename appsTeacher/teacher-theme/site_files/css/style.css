@@ -403,8 +403,8 @@ figure {
 .teacher-main-li {
   padding: 10px;
   margin: 10px;
-  height: 460px;
-  width: 370px;
+  height: 390px;
+  width: 270px;
 }
 
 .teacher-main-div {
@@ -412,8 +412,8 @@ figure {
   background: white;
   border-radius: 15px;
   img {
-    height: 350px;
-    width: 350px !important;
+    height: 225px;
+    width: 250px !important;
     padding: 5px;
     border-radius: 15px 15px 0px 0px;
   }

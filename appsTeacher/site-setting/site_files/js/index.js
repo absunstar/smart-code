@@ -7,6 +7,8 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.siteSetting = site.showObject("##data.#setting##");
+  console.log($scope.siteSetting.id);
+  
   $scope.siteTemplateList = site.showObject("##data.#templateList##");
   $scope.publishingSystemList = site.showObject("##data.#publishingSystem##");
   $scope.closingSystemList = site.showObject("##data.#closingSystem##");

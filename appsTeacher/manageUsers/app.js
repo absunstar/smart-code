@@ -157,6 +157,44 @@ module.exports = function init(site) {
           );
         }
       );
+      site.get(
+        {
+          name: "teachersView",
+        },
+        (req, res) => {
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            setting: setting,
+            guid: "",
+            setting: setting,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/images/logo.png",
+            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "//" + req.host + data.site_logo;
+            data.site_footer_logo = "//" + req.host + data.site_footer_logo;
+            data.page_image = "//" + req.host + data.page_image;
+            data.user_image = "//" + req.host + data.user_image;
+            data.powerdByLogo = "//" + req.host + data.powerdByLogo;
+          }
+          res.render(app.name + "/teachersView.html", data, {
+            parser: "html",
+            compres: true,
+          });
+        }
+      );
     }
 
     if (app.allowRouteAdd) {
@@ -316,7 +354,7 @@ module.exports = function init(site) {
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || "";
-        let limit = req.body.limit || 50;
+        let limit = req.body.limit || 20;
         let select = req.body.select || {
           id: 1,
           image: 1,
@@ -369,6 +407,12 @@ module.exports = function init(site) {
             socialEmail: site.get_RegExp(search, "i"),
           });
           where.$or.push({
+            bio: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            title: site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
             address: site.get_RegExp(search, "i"),
           });
           where.$or.push({
@@ -391,7 +435,7 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-        app.$collection.findMany({ where, select }, (err, users, count) => {
+        app.$collection.findMany({ where, select,limit }, (err, users, count) => {
           res.json({
             done: true,
             count: count,
@@ -448,6 +492,7 @@ module.exports = function init(site) {
 
   site.getTeachers = function (req, callBack) {
     callBack = callBack || function () {};
+    let limit = req.body.limit || 9;
     let select = req.body.select || {
       id: 1,
       firstName: 1,
@@ -459,7 +504,7 @@ module.exports = function init(site) {
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
     where["type"] = "teacher";
-    app.$collection.findMany({ where, select }, (err, docs) => {
+    app.$collection.findMany({ where, select,limit }, (err, docs) => {
       callBack(err, docs);
     });
     // }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
+    <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
+
+    <style></style>
+  </head>
+
+  <body class="##session.lang##" ng-controller="booksView">
+    <div x-replace="teacher-theme/header.html"></div>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <i-control label="##word.Search##" class="input-style pass" v="r" ng-keydown="getAll($event)" ng-model="$search"></i-control>
+
+        <div class="row">
+          <ul class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+            <li class="teacher-main-li" ng-repeat="item in list">
+              <a ng-click="selectTeacher(item.id)" href="#">
+                <div class="teacher-main-div">
+                  <img src="{{item.image.url}}" alt="" />
+                  <div>
+                    <p class="center font-20 bold margin">{{item.firstName}}</p>
+                    <p class="center">{{item.title}}</p>
+                    <p class="teacher-main-bio">{{item.bio}}</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+
+    <div x-replace="teacher-theme/footer.html"></div>
+    <div x-import="teacher-theme/scripts.html"></div>
+    <script x-import="manageUsers/teachersView.js"></script>
+  </body>
+</html>

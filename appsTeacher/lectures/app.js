@@ -170,13 +170,14 @@ module.exports = function init(site) {
             if (!err && lecture) {
               let video = lecture.linksList.find((itm) => itm.code == req.query.code);
               let videoId = video.url.contains("?v=") ? video.url.split("?v=")[1] : video.url.split("youtu.be/")[1];
+
               res.render(
                 app.name + "/view-video.html",
                 {
                   title: app.name,
                   appName: req.word("Video"),
                   setting: site.getSiteSetting(req.host),
-                  videoId: video.url.split("?v=")[1],
+                  videoId: videoId,
                 },
                 { parser: "html css js", compres: true }
               );
@@ -227,6 +228,28 @@ module.exports = function init(site) {
           res.render(app.name + "/lectureView.html", data, {
             parser: "html css js",
             compres: true,
+          });
+        }
+      );
+
+      site.post(
+        {
+          name: `/api/${app.name}/view-video`,
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+          let _data = req.data;
+          
+          app.$collection.find({ _id: _data._id }, (err, lecture) => {
+            if (!err && lecture) {
+              let video = lecture.linksList.find((itm) => itm.code == _data.code);
+              let videoId = video.url.contains("?v=") ? video.url.split("?v=")[1] : video.url.split("youtu.be/")[1];
+              response.done = true;
+              response.videoId = videoId;
+              res.json(response);
+            }
           });
         }
       );
@@ -402,12 +425,15 @@ module.exports = function init(site) {
       );
     }
 
-    site.post({ name: `/api/${app.name}/changeView`, public: true }, (req, res) => {
+    site.post({ name: `/api/${app.name}/changeView`, require: { permissions: ["login"] } }, (req, res) => {
       let response = {
         done: false,
       };
 
       let _data = req.data;
+      // if(typeof _data._id == 'string') {
+      //   _data._id = site.mongodb.ObjectID(_data._id)
+      // }
       app.view(_data, (err, doc) => {
         if (!err && doc) {
           let index = doc.linksList.findIndex((itm) => itm.code === _data.code);
@@ -436,6 +462,82 @@ module.exports = function init(site) {
                     user.socialBrowserID = _data.socialBrowserID;
                   }
                 }
+                let index = user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _data.code);
+                if (index !== -1) {
+                  if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
+                    response.error = "The number of views allowed for this video has been exceeded";
+                    res.json(response);
+                    return;
+                  } else if (doc.typeExpiryView.name == "day") {
+                    let obj = { ...user.viewsList[index] };
+                    var viewDate = new Date(obj.date);
+                    viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
+                    if (new Date().getTime() > viewDate.getTime()) {
+                      response.error = "The time limit for watching this video has been exceeded";
+                      res.json(response);
+                      return;
+                    }
+                  } else if (doc.typeExpiryView.name == "date") {
+                    doc.dateAvailableViews = new Date(doc.dateAvailableViews);
+                    if (new Date().getTime() > doc.dateAvailableViews.getTime()) {
+                      response.error = "The time limit for watching this video has been exceeded";
+                      res.json(response);
+                      return;
+                    }
+                  }
+
+                  user.viewsList[index].views += 1;
+                } else {
+                  user.viewsList.push({
+                    lectureId: doc._id,
+                    code: _data.code,
+                    date: new Date(),
+                    views: 1,
+                  });
+                }
+                site.security.updateUser(user);
+
+                app.update(doc, (err, result) => {
+                  if (!err) {
+                    response.done = true;
+                  } else {
+                    response.error = err.message;
+                  }
+                  res.json(response);
+                });
+              }
+            }
+          );
+        } else {
+          response.error = err?.message || "Not Exists";
+          res.json(response);
+        }
+      });
+    });
+
+    site.post({ name: `/api/${app.name}/changeViewMobile`, require: { permissions: ["login"] } }, (req, res) => {
+      let response = {
+        done: false,
+      };
+
+      let _data = req.data;
+      app.view(_data, (err, doc) => {
+        if (!err && doc) {
+          let index = doc.linksList.findIndex((itm) => itm.code === _data.code);
+          if (index !== -1) {
+            doc.linksList[index].views += 1;
+          }
+          if (!req.session.user && doc.type.name == "public") {
+            response.done = true;
+            res.json(response);
+            return;
+          }
+          site.security.getUser(
+            {
+              id: req.session?.user?.id,
+            },
+            (err, user) => {
+              if (!err && user) {
                 let index = user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _data.code);
                 if (index !== -1) {
                   if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
@@ -877,6 +979,7 @@ module.exports = function init(site) {
     } else {
       where["host"] = site.getHostFilter(req.host);
     }
+
     app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
       if (!err && docs) {
         for (let i = 0; i < docs.length; i++) {

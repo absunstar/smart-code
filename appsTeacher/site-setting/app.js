@@ -152,23 +152,16 @@ module.exports = function init(site) {
   site.get(
     {
       name: "site-setting",
-      require: { permissions: ["login"] },
+      require: { permissions: ["developer"] },
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host) || {};
-      let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
       res.render(
         "site-setting/index.html",
         {
-          language: language,
           setting: setting,
-          templateList: site.templateList,
-          publishingSystem: site.publishingSystem,
-          closingSystem: site.closingSystem,
           siteColor: site.siteColor,
-          articleStatus: site.articleStatus,
-          durationExpiry: site.durationExpiry,
         },
         { parser: "html" }
       );
@@ -186,7 +179,7 @@ module.exports = function init(site) {
   });
 
   site.post("/api/get-site-setting", (req, res) => {
-    console.log(req.host);
+      
     let response = {
       doc: site.getSiteSetting(req.host),
       done: true,

@@ -144,7 +144,6 @@ legend {
   user-select: text;
 }
 
-
 .purchase-text {
   background: var(--background4);
   color: var(--color4);
@@ -159,7 +158,9 @@ legend {
 .gray-bg {
   background-color: #ececec !important;
 }
-
+i-button {
+  display: contents !important;
+}
 .scrollx-menu {
   padding: 10px !important;
   overflow-x: auto;
