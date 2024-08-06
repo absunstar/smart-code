@@ -158,9 +158,9 @@ legend {
 .gray-bg {
   background-color: #ececec !important;
 }
-i-button {
+/* i-button {
   display: contents !important;
-}
+} */
 .scrollx-menu {
   padding: 10px !important;
   overflow-x: auto;

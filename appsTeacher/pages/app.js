@@ -48,17 +48,11 @@ module.exports = function init(site) {
       data.user_image = "https://" + req.host + data.user_image;
       data.powerdByLogo = "https://" + req.host + data.powerdByLogo;
     }
-    site.pages_list.forEach((page) => {
-      if (page.url == req.params.url) {
-        exists = true;
-        data.page = page;
-        res.render("pages/page.html", data);
-      }
-    });
+    let page = site.pages_list.find((itm) => itm.url == req.params.url && itm.host == site.getHostFilter(req.host) );
 
-    if (!exists) {
-      res.render("pages/page.html", data);
-    }
+    data.page = page;
+    
+    res.render("pages/page.html", data);
   });
 
   site.post("/api/pages/add", (req, res) => {
@@ -75,7 +69,7 @@ module.exports = function init(site) {
     _data.$req = req;
     _data.$res = res;
     _data.host = site.getHostFilter(req.host);
- 
+
     if ((teacherId = site.getTeacherSetting(req))) {
       _data.teacherId = teacherId;
     }
