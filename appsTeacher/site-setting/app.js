@@ -118,8 +118,6 @@ module.exports = function init(site) {
     return teacherId;
   };
 
-
-
   $siteSetting.findAll({ sort: { id: 1 } }, (err, docs) => {
     if (!err && docs && docs.length > 0) {
       docs.forEach((doc) => {
