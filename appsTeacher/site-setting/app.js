@@ -152,7 +152,7 @@ module.exports = function init(site) {
   site.get(
     {
       name: "site-setting",
-      require: { permissions: ["developer"] },
+      require: { permissions: ["teacher"] },
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host) || {};
