@@ -142,8 +142,9 @@ site.xtime = function (_time, lang) {
 
 site.handleNotRoute = function (req, res) {
   let host = req.headers['host'];
-  console.log('handleNotRoute : ' + host + ' : ' + req.url);
-  
+ // console.log('handleNotRoute : ' + host + ' : ' + req.url);
+  res.end();
+  return;
   let setting = site.getSiteSetting(host);
   if (!setting.host) {
     res.redirect(site.getMainHost(host), 301);

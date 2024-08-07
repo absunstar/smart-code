@@ -18,21 +18,22 @@
         border: none;
         display: none;
       }
-      #blocker{
+      #blocker {
         position: fixed;
         left: 0px;
         top: 0px;
-        height: 900%;
+        height: 20%;
         width: 100%;
         background-color: transparent;
         border: none;
         display: block;
+         z-index: 999999; 
       }
     </style>
   </head>
   <body class="##session.lang##" ng-controller="view-video">
     <div id="blocker"></div>
-    <iframe src="https://www.youtube.com/embed/##data.videoId##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="##data.videoURL##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <div x-import="teacher-theme/scripts.html"></div>
     <script x-import="lectures/view-video.js"></script>
   </body>

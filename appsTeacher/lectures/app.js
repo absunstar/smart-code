@@ -169,7 +169,11 @@ module.exports = function init(site) {
           app.$collection.find({ _id: req.query.id }, (err, lecture) => {
             if (!err && lecture) {
               let video = lecture.linksList.find((itm) => itm.code == req.query.code);
-              let videoId = video.url.contains("?v=") ? video.url.split("?v=")[1] : video.url.split("youtu.be/")[1];
+              let videoURL = video.url;
+              // handle links
+              if(videoURL.like('*youtu*')){
+                videoURL = 'https://www.youtube.com/embed/' + videoURL.split('=')[1].split('&')[0];
+              }
 
               res.render(
                 app.name + "/view-video.html",
@@ -177,7 +181,7 @@ module.exports = function init(site) {
                   title: app.name,
                   appName: req.word("Video"),
                   setting: site.getSiteSetting(req.host),
-                  videoId: videoId,
+                  videoURL: videoURL,
                 },
                 { parser: "html css js", compres: true }
               );
@@ -228,28 +232,6 @@ module.exports = function init(site) {
           res.render(app.name + "/lectureView.html", data, {
             parser: "html css js",
             compres: true,
-          });
-        }
-      );
-
-      site.post(
-        {
-          name: `/api/${app.name}/view-video`,
-        },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
-          let _data = req.data;
-          
-          app.$collection.find({ _id: _data._id }, (err, lecture) => {
-            if (!err && lecture) {
-              let video = lecture.linksList.find((itm) => itm.code == _data.code);
-              let videoId = video.url.contains("?v=") ? video.url.split("?v=")[1] : video.url.split("youtu.be/")[1];
-              response.done = true;
-              response.videoId = videoId;
-              res.json(response);
-            }
           });
         }
       );
