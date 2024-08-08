@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "departments", "name": "departmentsImport", "En": "Import", "Ar": "إستيراد" }
+]

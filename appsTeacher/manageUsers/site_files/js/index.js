@@ -81,9 +81,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal($scope.modalID);
           site.resetValidated($scope.modalID);
-          let index = $scope.list.findIndex(
-            (itm) => itm.id == response.data.result.doc.id
-          );
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list[index] = response.data.result.doc;
           }
@@ -408,7 +406,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.getGenders = function () {
     $scope.busy = true;
     $scope.gendersList = [];
@@ -429,10 +426,177 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.getSchoolsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.schoollsList = [];
 
+    $http({
+      method: "POST",
+      url: "/api/school/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.schoollsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  $scope.getSubjectsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.subjectsList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/subjects/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.subjectsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  $scope.getDepartmentsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.departmentsList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/departments/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.departmentsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  $scope.getEducationalLevelsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.educationalLevelsList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/educationalLevels/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.educationalLevelsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getSchoolYearsList = function (educationalLevel) {
+    $scope.busy = true;
+    $scope.schoolYearsList = [];
+    $http({
+      method: "POST",
+      url: "/api/schoolYears/all",
+      data: {
+        where: {
+          active: true,
+          "educationalLevel.id": educationalLevel.id,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
   $scope.getAll();
   $scope.getNationalities();
   $scope.getCountriesList();
   $scope.getGenders();
   $scope.getCentersList();
+  $scope.getEducationalLevelsList();
+  if ($scope.setting.isCenter) {
+    $scope.getSchoolsList();
+    $scope.getDepartmentsList();
+    $scope.getSubjectsList();
+  }
 });

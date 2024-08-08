@@ -1,29 +1,26 @@
-app.controller("books", function ($scope, $http, $timeout) {
-  $scope.baseURL = "";
-  $scope.appName = "books";
-  $scope.modalID = "#booksManageModal";
-  $scope.modalSearchID = "#booksSearchModal";
-  $scope.mode = "add";
+app.controller('departments', function ($scope, $http, $timeout) {
+  $scope.baseURL = '';
+  $scope.appName = 'departments';
+  $scope.modalID = '#departmentsManageModal';
+  $scope.modalSearchID = '#departmentsSearchModal';
+  $scope.mode = 'add';
   $scope._search = {};
   $scope.structure = {
-    image: { url: "/images/books.png" },
+    image: {url : '/theme1/images/setting/departments.png'},
     active: true,
   };
   $scope.item = {};
   $scope.list = [];
 
   $scope.showAdd = function (_item) {
-    $scope.error = "";
-    $scope.mode = "add";
-    $scope.item = {
-      ...$scope.structure,
-      price: 0,
-    };
+    $scope.error = '';
+    $scope.mode = 'add';
+    $scope.item = { ...$scope.structure };
     site.showModal($scope.modalID);
   };
 
   $scope.add = function (_item) {
-    $scope.error = "";
+    $scope.error = '';
     const v = site.validated($scope.modalID);
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
@@ -32,7 +29,7 @@ app.controller("books", function ($scope, $http, $timeout) {
 
     $scope.busy = true;
     $http({
-      method: "POST",
+      method: 'POST',
       url: `${$scope.baseURL}/api/${$scope.appName}/add`,
       data: $scope.item,
     }).then(
@@ -44,8 +41,8 @@ app.controller("books", function ($scope, $http, $timeout) {
           $scope.list.unshift(response.data.doc);
         } else {
           $scope.error = response.data.error;
-          if (response.data.error && response.data.error.like("*Must Enter Code*")) {
-            $scope.error = "##word.Must Enter Code##";
+          if (response.data.error && response.data.error.like('*Must Enter Code*')) {
+            $scope.error = '##word.Must Enter Code##';
           }
         }
       },
@@ -56,15 +53,15 @@ app.controller("books", function ($scope, $http, $timeout) {
   };
 
   $scope.showUpdate = function (_item) {
-    $scope.error = "";
-    $scope.mode = "edit";
+    $scope.error = '';
+    $scope.mode = 'edit';
     $scope.view(_item);
     $scope.item = {};
     site.showModal($scope.modalID);
   };
 
   $scope.update = function (_item) {
-    $scope.error = "";
+    $scope.error = '';
     const v = site.validated($scope.modalID);
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
@@ -72,7 +69,7 @@ app.controller("books", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
+      method: 'POST',
       url: `${$scope.baseURL}/api/${$scope.appName}/update`,
       data: _item,
     }).then(
@@ -96,8 +93,8 @@ app.controller("books", function ($scope, $http, $timeout) {
   };
 
   $scope.showView = function (_item) {
-    $scope.error = "";
-    $scope.mode = "view";
+    $scope.error = '';
+    $scope.mode = 'view';
     $scope.item = {};
     $scope.view(_item);
     site.showModal($scope.modalID);
@@ -105,9 +102,9 @@ app.controller("books", function ($scope, $http, $timeout) {
 
   $scope.view = function (_item) {
     $scope.busy = true;
-    $scope.error = "";
+    $scope.error = '';
     $http({
-      method: "POST",
+      method: 'POST',
       url: `${$scope.baseURL}/api/${$scope.appName}/view`,
       data: {
         id: _item.id,
@@ -128,8 +125,8 @@ app.controller("books", function ($scope, $http, $timeout) {
   };
 
   $scope.showDelete = function (_item) {
-    $scope.error = "";
-    $scope.mode = "delete";
+    $scope.error = '';
+    $scope.mode = 'delete';
     $scope.item = {};
     $scope.view(_item);
     site.showModal($scope.modalID);
@@ -137,10 +134,10 @@ app.controller("books", function ($scope, $http, $timeout) {
 
   $scope.delete = function (_item) {
     $scope.busy = true;
-    $scope.error = "";
+    $scope.error = '';
 
     $http({
-      method: "POST",
+      method: 'POST',
       url: `${$scope.baseURL}/api/${$scope.appName}/delete`,
       data: {
         id: $scope.item.id,
@@ -168,7 +165,7 @@ app.controller("books", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.list = [];
     $http({
-      method: "POST",
+      method: 'POST',
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
         where: where,
@@ -190,72 +187,10 @@ app.controller("books", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getEducationalLevelsList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $scope.educationalLevelsList = [];
-
-    $http({
-      method: "POST",
-      url: "/api/educationalLevels/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-        search: $search,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.educationalLevelsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getSchoolYearsList = function (educationalLevel) {
-    $scope.busy = true;
-    $scope.schoolYearsList = [];
-    $http({
-      method: "POST",
-      url: "/api/schoolYears/all",
-      data: {
-        where: {
-          active: true,
-          "educationalLevel.id": educationalLevel.id,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+ 
 
   $scope.showSearch = function () {
-    $scope.error = "";
+    $scope.error = '';
     site.showModal($scope.modalSearchID);
   };
 
@@ -266,5 +201,4 @@ app.controller("books", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getEducationalLevelsList();
 });

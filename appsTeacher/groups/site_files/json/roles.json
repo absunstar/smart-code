@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "groupsAdmin",
+    "En": "Groups Admin",
+    "Ar": "إدارة المجموعات",
+    "permissions": ["groupsManage"]
+}]

@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "groups", "name": "groupsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupsImport", "En": "Import", "Ar": "إستيراد" }
+]

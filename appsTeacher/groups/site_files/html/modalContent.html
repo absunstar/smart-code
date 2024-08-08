@@ -2,29 +2,32 @@
   <div class="row padding">
     <div class="col9">
       <div class="row">
-        <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
-        <i-list
-          label="##word.Educational Level##"
-          ng-change="getSchoolYearsList(item.educationalLevel)"
-          ng-model="item.educationalLevel"
-          v="r"
-          display="name"
-          items="educationalLevelsList"
-          ng-search="item.$educationalLevel"
-        ></i-list>
-        <i-list label="##word.School Year##" v="r" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
-
+        <div class="row">
+          <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
+        </div>
         <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
-
-        <i-control type="number" v="r" ng-model="item.price" label="##word.Price##"></i-control>
+      </div>
+      <div class="row">
+        <i-list v="r" class="col6" label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList" ng-get="getSubjectsList($search)"></i-list>
+        <i-list
+          class="col6"
+          v="r"
+          label="##word.Teacher##"
+          ng-model="item.teacher"
+          display="firstName"
+          items="teachersList"
+          ng-get="getTeachersList($search)"
+        ></i-list>
       </div>
     </div>
     <div class="col3 center">
       <i-image class="img128 center" ng-model="item.image"></i-image>
     </div>
   </div>
-
-  <i-textarea ng-model="item.description" label="##word.Description##"> </i-textarea>
+  <fieldset>
+    <h3>##word.Description## :</h3>
+    <i-content ng-model="item.description" label="##word.Description##"> </i-content>
+  </fieldset>
 </div>
 <div ng-show="mode !== 'add' " class="row">
   <table class="table hover border">

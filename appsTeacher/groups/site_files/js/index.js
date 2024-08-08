@@ -1,12 +1,12 @@
-app.controller("books", function ($scope, $http, $timeout) {
+app.controller("groups", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-  $scope.appName = "books";
-  $scope.modalID = "#booksManageModal";
-  $scope.modalSearchID = "#booksSearchModal";
+  $scope.appName = "groups";
+  $scope.modalID = "#groupsManageModal";
+  $scope.modalSearchID = "#groupsSearchModal";
   $scope.mode = "add";
   $scope._search = {};
   $scope.structure = {
-    image: { url: "/images/books.png" },
+    image: { url: "/theme1/images/setting/groups.png" },
     active: true,
   };
   $scope.item = {};
@@ -15,10 +15,7 @@ app.controller("books", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = {
-      ...$scope.structure,
-      price: 0,
-    };
+    $scope.item = { ...$scope.structure };
     site.showModal($scope.modalID);
   };
 
@@ -190,31 +187,26 @@ app.controller("books", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getEducationalLevelsList = function ($search) {
+  $scope.getSubjectsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
     }
     $scope.busy = true;
-    $scope.educationalLevelsList = [];
-
     $http({
       method: "POST",
-      url: "/api/educationalLevels/all",
+      url: "/api/subjects/all",
       data: {
         where: {
           active: true,
         },
-        select: {
-          id: 1,
-          name: 1,
-        },
+        select: { id: 1, name: 1 },
         search: $search,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.educationalLevelsList = response.data.list;
+          $scope.subjectsList = response.data.list;
         }
       },
       function (err) {
@@ -224,27 +216,27 @@ app.controller("books", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSchoolYearsList = function (educationalLevel) {
+  $scope.getTeachersList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
     $scope.busy = true;
-    $scope.schoolYearsList = [];
     $http({
       method: "POST",
-      url: "/api/schoolYears/all",
+      url: "/api/manageUsers/all",
       data: {
+        search: $search,
         where: {
+          type: "teacher",
           active: true,
-          "educationalLevel.id": educationalLevel.id,
         },
-        select: {
-          id: 1,
-          name: 1,
-        },
+        select: { id: 1, firstName: 1, prefix: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.schoolYearsList = response.data.list;
+          $scope.teachersList = response.data.list;
         }
       },
       function (err) {
@@ -266,5 +258,6 @@ app.controller("books", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getEducationalLevelsList();
+  $scope.getSubjectsList();
+  $scope.getTeachersList();
 });

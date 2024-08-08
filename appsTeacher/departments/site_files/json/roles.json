@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "departmentsAdmin",
+    "En": "Departments Admin",
+    "Ar": "إدارة الشعبة الدراسية",
+    "permissions": ["departmentsManage"]
+}]

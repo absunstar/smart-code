@@ -214,18 +214,35 @@ module.exports = function init(site) {
         }
 
         _data.host = site.getHostFilter(req.host);
-
+        let date = new Date();
+        let d = date.getDate().toString();
+        let h = date.getHours().toString();
+        let m = date.getMinutes().toString();
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            if (!setting.isShared) {
+            if (!setting.isShared && !setting.isCenter) {
               site.addNewHost({ domain: doc.userName, filter: doc.userName });
             }
-            response.done = true;
-            response.doc = doc;
+            if (doc.type == "student" && setting.isCenter) {
+              doc.barcode = doc.id.toString() + "00" + d + h + m;
+              app.update(doc, (err1, result) => {
+                if (!err1 && doc) {
+                  response.done = true;
+                  response.doc = result.doc;
+                } else {
+                  response.error = err1.mesage;
+                }
+                res.json(response);
+              });
+            } else {
+              response.done = true;
+              response.doc = doc;
+              res.json(response);
+            }
           } else {
             response.error = err.mesage;
+            res.json(response);
           }
-          res.json(response);
         });
       });
     }
@@ -364,6 +381,7 @@ module.exports = function init(site) {
           userName: 1,
           firstName: 1,
           email: 1,
+          barcode: 1,
         };
         if (search) {
           where.$or = [];
@@ -426,7 +444,7 @@ module.exports = function init(site) {
           });
         }
         if (where["type"] != "teacher") {
-          if ((teacherId = site.getTeacherSetting(req))) {
+          if ((teacherId = site.getTeacherSetting(req)) && !setting.isCenter) {
             where["teacherId"] = teacherId;
           } else {
             where["host"] = site.getHostFilter(req.host);
@@ -435,7 +453,8 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-        app.$collection.findMany({ where, select,limit }, (err, users, count) => {
+        
+        app.$collection.findMany({ where, select, limit ,sort :{id :-1} }, (err, users, count) => {
           res.json({
             done: true,
             count: count,
@@ -504,7 +523,7 @@ module.exports = function init(site) {
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
     where["type"] = "teacher";
-    app.$collection.findMany({ where, select,limit }, (err, docs) => {
+    app.$collection.findMany({ where, select, limit }, (err, docs) => {
       callBack(err, docs);
     });
     // }

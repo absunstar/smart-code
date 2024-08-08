@@ -5,6 +5,30 @@
       <span> ##word.Default Setting## </span>
     </a>
   </li>
+  <li class="menu-item" x-data="setting.isCenter">
+    <a class="tab-link" href="/school"  x-permissions="schoolUi || schoolManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.School## </span>
+    </a>
+  </li>
+  <li class="menu-item" x-data="setting.isCenter">
+    <a class="tab-link" href="/departments"  x-permissions="departmentsUi || departmentsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Departments## </span>
+    </a>
+  </li>
+  <li class="menu-item" x-data="setting.isCenter">
+    <a class="tab-link" href="/subjects"  x-permissions="subjectsUi || subjectsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Subjects## </span>
+    </a>
+  </li>
+  <li class="menu-item" x-data="setting.isCenter">
+    <a class="tab-link" href="/groups"  x-permissions="groupsUi || groupsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Groups## </span>
+    </a>
+  </li>
 
   <li class="menu-item">
     <a class="tab-link" href="/codes" x-permissions="codesUi || codesManage">

@@ -88,7 +88,7 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
-  };
+  }; 
 
   $scope.addKeyWords = function (ev, lang) {
     $scope.error = "";

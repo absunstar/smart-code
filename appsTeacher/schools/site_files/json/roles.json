@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "schoolsAdmin",
+    "En": "Schools Admin",
+    "Ar": "إدارة المدارس",
+    "permissions": ["schoolsManage"]
+}]

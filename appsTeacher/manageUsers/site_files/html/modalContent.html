@@ -15,6 +15,7 @@
           <i-control label="##word.Prefix##" ng-show="item.type == 'teacher'" ng-model="item.prefix"> </i-control>
           <i-control label="##word.Title##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.title"> </i-control>
           <i-control label="##word.Bio##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.bio"> </i-control>
+          <i-list label="##word.Subject##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'teacher'" ng-model="item.subject" display="name" items="subjectsList"></i-list>
         </div>
       </div>
       <div class="col3 center">
@@ -49,6 +50,9 @@
               ng-search="item.$center"
             ></i-list>
             <i-list class="col4" v="r" label="##word.Gender##" ng-model="item.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
+            <i-control label="##word.Parent Job" class="col4" x-date="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.parentJob"> </i-control>
+            <i-list label="##word.School##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.school" display="name" items="schoolsList"></i-list>
+ 
             <div class="col3">
               <br />
               <p class="font-20" ng-show="item.placeType == 'online'">##word.Latitude## : <span class="userPrint"> {{item.latitude}}</span></p>
@@ -57,6 +61,19 @@
               <br />
               <p class="font-20" ng-show="item.placeType == 'online'">##word.Longitude## : <span class="userPrint"> {{item.longitude}}</span></p>
             </div>
+          </div>
+          <div class="row" x-date="setting.isCenter" ng-show="item.type == 'student'"> 
+            <i-list label="##word.Department##" class="col4" ng-model="item.department" display="name" items="departmentsList"></i-list>
+            <i-list
+              class="col4"
+              label="##word.Educational Level##"
+              ng-change="getSchoolYearsList(item.educationalLevel)"
+              ng-model="item.educationalLevel"
+              display="name"
+              items="educationalLevelsList"
+              ng-search="item.$educationalLevel"
+            ></i-list>
+            <i-list label="##word.School Year##" class="col4" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
           </div>
         </fieldset>
         <fieldset>

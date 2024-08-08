@@ -192,6 +192,13 @@ module.exports = function init(site) {
     { id: 2, nameEn: "Deferred Invoice", nameAr: "فاتورة آجل" },
   ];
 
+  site.paymentMethodList = [
+    { name: 'normal', nameEn: "Normal", nameAr: "عادي" },
+    { name: 'monthly', nameEn: "Monthly", nameAr: "شهري" },
+    { name: 'reduced', nameEn: "Reduced", nameAr: "مخفض" },
+    { name: 'exempt', nameEn: "Exempt", nameAr: "معفى" },
+  ];
+
   site.paymentTypes = [
     {
       id: 1,
@@ -571,6 +578,13 @@ module.exports = function init(site) {
     res.json({
       done: true,
       list: site.notificationTypesList,
+    });
+  });
+
+  site.post("/api/paymentMethodList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.paymentMethodList,
     });
   });
 

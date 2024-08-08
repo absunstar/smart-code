@@ -1,4 +1,4 @@
-app.controller("booksView", function ($scope, $http, $timeout) {
+app.controller("teachersView", function ($scope, $http, $timeout) {
   $scope.list = [];
   $scope.baseURL = "";
   $scope.getAll = function () {
@@ -57,5 +57,8 @@ app.controller("booksView", function ($scope, $http, $timeout) {
     );
   };
 
+
   $scope.getAll();
+  $scope.getEducationalLevelsList();
+  $scope.getSchoolsList();
 });

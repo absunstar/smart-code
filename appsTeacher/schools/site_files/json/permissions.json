@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "schools", "name": "schoolsImport", "En": "Import", "Ar": "إستيراد" }
+]
