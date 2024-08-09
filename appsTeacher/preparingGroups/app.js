@@ -164,7 +164,11 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-
+        if (!_data.date) {
+          response.error = "A suitable group must be selected.";
+          res.json(response);
+          return;
+        }
         _data.addUserInfo = req.getUserFinger();
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
@@ -175,6 +179,7 @@ module.exports = function init(site) {
           if (!err && doc) {
             response.done = true;
             response.doc = doc;
+            site.bookingAppointmentGroup({ groupId: doc.group.id, date: doc.date, day: doc.day });
           } else {
             response.error = err.mesage;
           }

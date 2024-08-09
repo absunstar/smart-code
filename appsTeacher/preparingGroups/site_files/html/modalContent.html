@@ -16,10 +16,10 @@
         ng-get="getGroupsList($search)"
       ></i-list>
     </div>
-    <div class="row" ng-show="item.group.id">
+    <div class="row" ng-show="item.date">
       <h2>##word.Date## : {{item.date | date : 'dd / MM / yyyy'}}</h2>
       <h2>##word.Day## : {{item.day.name##session.lang##}}</h2>
-      <i-button label="##word.Student Management##" type="push" class="col4" onclick="site.showModal( '#studentsModal')"></i-button>
+      <i-button label="##word.Student Management##" type="push" class="col4" ng-click="error = '' " onclick="site.showModal( '#studentsModal')"></i-button>
     </div>
   </div>
   <fieldset>

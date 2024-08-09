@@ -162,6 +162,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   };
 
   $scope.getTeachersList = function ($search) {
+    $scope.error = "";
     if ($search && $search.length < 1) {
       return;
     }
@@ -192,6 +193,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   };
 
   $scope.getGroupsList = function ($search) {
+    $scope.error = "";
     $scope.groupsList = [];
     if ($search && $search.length < 1) {
       return;
@@ -250,6 +252,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll = function (where) {
+    $scope.error = "";
     $scope.busy = true;
     $scope.list = [];
     $http({
@@ -293,6 +296,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
+    $scope.error = "";
     $scope.getAll($scope.search);
     site.hideModal($scope.modalSearchID);
     $scope.search = {};

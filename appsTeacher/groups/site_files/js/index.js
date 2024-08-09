@@ -413,6 +413,11 @@ app.controller("groups", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.pushSpceficIndex = function (index) {
+    $scope.error = "";
+    $scope.dayList.splice(index, 0, { date: new Date() });
+  };
+
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
