@@ -1,29 +1,66 @@
 <div class="row">
   <div class="row padding">
-    <div class="col9">
-      <div class="row">
-        <div class="row">
-          <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
-        </div>
-        <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
-      </div>
-      <div class="row">
-        <i-list v="r" class="col6" label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList" ng-get="getSubjectsList($search)"></i-list>
-        <i-list
-          class="col6"
-          v="r"
-          label="##word.Teacher##"
-          ng-model="item.teacher"
-          display="firstName"
-          items="teachersList"
-          ng-get="getTeachersList($search)"
-        ></i-list>
-      </div>
+    <div class="row">
+      <i-control type="text" v="r" class="col6" ng-model="item.name" label="##word.Name##"></i-control>
+      <i-button label="##word.Student Management##" type="push" class="col4" onclick="site.showModal( '#studentsModal')"></i-button>
+      <i-checkbox ng-model="item.active" class="col2" label="##word.Active##"></i-checkbox>
     </div>
-    <div class="col3 center">
-      <i-image class="img128 center" ng-model="item.image"></i-image>
+    <div class="row">
+      <i-list v="r" class="col6" ng-change="getTeachersList()" label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList" ng-get="getSubjectsList($search)"></i-list>
+      <i-list class="col6" v="r" label="##word.Teacher##" ng-model="item.teacher" display="firstName" items="teachersList" ng-get="getTeachersList($search)"></i-list>
+    </div>
+    <div class="row">
+      <i-list
+        label="##word.Educational Level##"
+        ng-change="getSchoolYearsList(item.educationalLevel)"
+        class="col6"
+        v="r"
+        ng-model="item.educationalLevel"
+        display="name"
+        items="educationalLevelsList"
+        ng-search="item.$educationalLevel"
+      ></i-list>
+      <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col6" v="r" display="name" items="schoolYearsList"></i-list>
     </div>
   </div>
+
+  <fieldset>
+    <legend>##word.Appointments##</legend>
+    <div class="row">
+      <i-date label="##word.Start Date##" v="r" class="col5" ng-model="item.startDate"> </i-date>
+      <i-date label="##word.End Date##" v="r" class="col5" ng-model="item.endDate"> </i-date>
+    </div>
+    <div class="row">
+      <i-checklist label="##word.Working Days##" v="r" class="col8" ng-model="item.days" items="weekDaysList" display="name##session.lang##"> </i-checklist>
+      <i-button type="push" label="##word.Generate Appointments##" class="col3" ng-click="generateAppointments(item)"></i-button>
+    </div>
+    <div class="row" ng-show="item.dayList.length > 0">
+      <div class="table-responsive">
+        <table class="table hover bold" id="t2">
+          <tr>
+            <th>##word.Date##</th>
+            <th>##word.Day##</th>
+            <th>##word.Status##</th>
+            <th class="not-print">##word.Actions##</th>
+          </tr>
+          <tr ng-repeat="d in item.dayList">
+            <td class="center">
+              <i-date ng-model="d.date" ng-click="changeDay(d)"> </i-date>
+            </td>
+            <td class="center">{{d.day.name##session.lang##}}</td>
+            <td class="center">
+              <span class="text-success" ng-show="d.active">##word.Booked##</span>
+              <span class="text-danger" ng-show="!d.active">##word.Not Booked##</span>
+            </td>
+
+            <td class="center not-print">
+              <i-button type="delete" title="##word.Delete##" ng-click="item.dayList.splice($index,1)"></i-button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </fieldset>
   <fieldset>
     <h3>##word.Description## :</h3>
     <i-content ng-model="item.description" label="##word.Description##"> </i-content>

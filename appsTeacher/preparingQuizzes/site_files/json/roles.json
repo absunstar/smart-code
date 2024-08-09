@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "preparingQuizzesAdmin",
+    "En": "Preparing Groups Admin",
+    "Ar": "إدارة تحضير إمتحان",
+    "permissions": ["preparingQuizzesManage"]
+}] 

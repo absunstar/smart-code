@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "lawyer" ,
+    "name": "preparingGroupsAdmin",
+    "En": "Preparing Groups Admin",
+    "Ar": "إدارة تحضير مجموعة",
+    "permissions": ["preparingGroupsManage"]
+}] 

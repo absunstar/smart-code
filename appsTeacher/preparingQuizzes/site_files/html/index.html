@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="teacher-theme/head-dashboard.html"></head>
+
+  <body class="##session.lang##">
+    <nav
+    x-import="teacher-theme/sitebar.html"
+    class="sitebar"
+    data-ng-controller="sitebar"
+  ></nav>
+
+  <nav
+    class="sitebottom"
+    x-import="teacher-theme/sitebottom.html"
+    ng-controller="sitebottom"
+  ></nav>
+
+
+    <div id="main-layout" class="container" x-import="preparingQuizzes/_.html" x-permissions="login"></div>
+
+    <div x-import="teacher-theme/scripts-dashboard.html"></div>
+    <script x-import="preparingQuizzes/index.js"></script>
+  </body>
+</html>

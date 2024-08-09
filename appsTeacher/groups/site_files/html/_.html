@@ -1,6 +1,7 @@
 <div ng-controller="groups" class="loaded">
     <div class="row" x-permissions="groupsUi || groupsManage">
         <div x-import="groups/modal.html"></div>
+        <div x-import="groups/studentsModal.html"></div>
 
         <div class="top-actions">
             <i-button type="add" x-permissions="groupsAdd || groupsManage" label="##word.New##"
@@ -14,16 +15,17 @@
         <div class="table-responsive">
             <table class="table hover bold" id="t1">
                 <tr>
-                    <th class="w150">##word.Logo##</th>
                     <th>##word.Name##</th>
+                    <th>##word.Teacher##</th>
+                    <th>##word.Subject##</th>
                     <th>##word.Status##</th>
                     <th class="not-print">##word.Actions##</th>
                 </tr>
                 <tr ng-repeat="item in list | filter:$search">
-                    <td>
-                        <i-image view class="logo center" ng-model="item.image"></i-image>
-                    </td>
+                 
                     <td class="center">{{item.name}}</td>
+                    <td class="center">{{item.teacher.firstName}}</td>
+                    <td class="center">{{item.subject.name}}</td>
                     <td class="center">
                         <span class="text-success" ng-show="item.active">##word.Active##</span>
                         <span class="text-danger" ng-show="!item.active">##word.Not Active##</span>

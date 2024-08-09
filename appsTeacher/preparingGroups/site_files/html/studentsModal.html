@@ -1,0 +1,61 @@
+<div id="studentsModal" class="modal full" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <p class="center">
+        ##word.Students##
+        <i class="fa fa-pencil"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-button type="search" label="##word.All##" ng-click="$search = ''"></i-button>
+        <i-button type="search" label="##word.Attendance##" ng-click="$search = 'true'"></i-button>
+        <i-button type="search" label="##word.Absences##" ng-click="$search = 'false'"></i-button>
+      </div>
+
+      <div class="row">
+        <i-control type="text" ng-model="$search" label="##word.Student Search##"></i-control>
+      </div>
+      <p class="error">{{error}}</p>
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table hover bold" id="t-students">
+            <tr>
+              <th>##word.Full Name##</th>
+              <th>##word.Barcode##</th>
+              <th>##word.Mobile##</th>
+              <th>##word.Parent Mobile##</th>
+              <th>##word.Status##</th>
+              <th>##word.Attendance##</th>
+              <th>##word.Departure##</th>
+              <th class="not-print">##word.Actions##</th>
+            </tr>
+            <tr ng-repeat="s in item.studentList | filter:$search">
+              <td class="center">{{s.student.firstName}}</td>
+              <td class="center userPrint">{{s.student.barcode}}</td>
+              <td class="center">{{s.student.mobile}}</td>
+              <td class="center">{{s.student.parentMobile}}</td>
+              <td class="center">
+                <span class="text-success" ng-show="s.attend">##word.Attended##</span>
+                <span class="text-danger" ng-show="s.attend == false">##word.Absence##</span>
+              </td>
+              <td class="center">{{s.attendDate | date : 'mm : hh '}}</td>
+              <td class="center">{{s.departureDate | date : 'mm : hh '}}</td>
+              <td class="center not-print">
+                <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend')"></i-button>
+                <i-button ng-show="s.attend && !s.departureDate" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>
+                <i-button type="close" ng-hide="s.attend == false && s.departureDate" label="##word.Absence##" ng-click="setAttendance(s,'absence')"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.Save##" onclick="site.hideModal( '#studentsModal')"></i-button>
+    </div>
+  </div>
+</div>

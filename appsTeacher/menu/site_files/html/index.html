@@ -6,9 +6,9 @@
     </a>
   </li>
   <li class="menu-item" x-data="setting.isCenter">
-    <a class="tab-link" href="/school"  x-permissions="schoolUi || schoolManage">
+    <a class="tab-link" href="/schools"  x-permissions="schoolsUi || schoolsManage">
       <i class="fas fa-globe"></i>
-      <span> ##word.School## </span>
+      <span> ##word.Schools## </span>
     </a>
   </li>
   <li class="menu-item" x-data="setting.isCenter">
@@ -29,6 +29,22 @@
       <span> ##word.Groups## </span>
     </a>
   </li>
+
+  <li class="menu-item" x-data="setting.isCenter">
+    <a class="tab-link" href="/preparingGroups"  x-permissions="preparingGroupsUi || preparingGroupsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Preparing Groups## </span>
+    </a>
+  </li>
+
+  
+  <li class="menu-item" x-data="setting.isCenter">
+    <a class="tab-link" href="/preparingQuizzes"  x-permissions="preparingQuizzesUi || preparingQuizzesManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Preparing Quizzes## </span>
+    </a>
+  </li>
+
 
   <li class="menu-item">
     <a class="tab-link" href="/codes" x-permissions="codesUi || codesManage">

@@ -268,13 +268,13 @@ module.exports = function init(site) {
   ];
 
   site.weekDays = [
-    { id: 1, index: 6, nameEn: "Saturday", nameAr: "السبت" },
-    { id: 2, index: 0, nameEn: "Sunday", nameAr: "الأحد" },
-    { id: 3, index: 1, nameEn: "Monday", nameAr: "الإثنين" },
-    { id: 4, index: 2, nameEn: "Tuesday", nameAr: "الثلاثاء" },
-    { id: 5, index: 3, nameEn: "Wednesday", nameAr: "الأربعاء" },
-    { id: 6, index: 4, nameEn: "Thursday", nameAr: "الخميس" },
-    { id: 7, index: 5, nameEn: "Friday", nameAr: "الجمعة" },
+    { id: 1, code: 6, nameEn: "Saturday", nameAr: "السبت" },
+    { id: 2, code: 0, nameEn: "Sunday", nameAr: "الأحد" },
+    { id: 3, code: 1, nameEn: "Monday", nameAr: "الإثنين" },
+    { id: 4, code: 2, nameEn: "Tuesday", nameAr: "الثلاثاء" },
+    { id: 5, code: 3, nameEn: "Wednesday", nameAr: "الأربعاء" },
+    { id: 6, code: 4, nameEn: "Thursday", nameAr: "الخميس" },
+    { id: 7, code: 5, nameEn: "Friday", nameAr: "الجمعة" },
   ];
 
   site.delayDiscountsTypes = [
@@ -570,7 +570,7 @@ module.exports = function init(site) {
     }
     if (setting.showParent) {
       site.notificationTypesList.push({
-        nameAr: "الأباء",
+        nameAr: "ولي الأمر",
         nameEn: "Parents",
         name: "parent",
       });

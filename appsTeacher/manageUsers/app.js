@@ -397,7 +397,9 @@ module.exports = function init(site) {
           where.$or.push({
             lastName: site.get_RegExp(search, "i"),
           });
-
+          where.$or.push({
+            barcode: search,
+          });
           where.$or.push({
             idNumber: site.get_RegExp(search, "i"),
           });
@@ -453,8 +455,8 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-        
-        app.$collection.findMany({ where, select, limit ,sort :{id :-1} }, (err, users, count) => {
+
+        app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({
             done: true,
             count: count,

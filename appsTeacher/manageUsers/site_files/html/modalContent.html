@@ -15,7 +15,6 @@
           <i-control label="##word.Prefix##" ng-show="item.type == 'teacher'" ng-model="item.prefix"> </i-control>
           <i-control label="##word.Title##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.title"> </i-control>
           <i-control label="##word.Bio##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.bio"> </i-control>
-          <i-list label="##word.Subject##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'teacher'" ng-model="item.subject" display="name" items="subjectsList"></i-list>
         </div>
       </div>
       <div class="col3 center">
@@ -50,8 +49,9 @@
               ng-search="item.$center"
             ></i-list>
             <i-list class="col4" v="r" label="##word.Gender##" ng-model="item.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
-            <i-control label="##word.Parent Job" class="col4" x-date="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.parentJob"> </i-control>
+            <i-control label="##word.Parent Job##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.parentJob"> </i-control>
             <i-list label="##word.School##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.school" display="name" items="schoolsList"></i-list>
+            <i-list label="##word.Subject##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'teacher'" ng-model="item.subject" display="name" items="subjectsList"></i-list>
  
             <div class="col3">
               <br />

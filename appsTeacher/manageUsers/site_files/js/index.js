@@ -145,7 +145,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/delete`,
       data: {
-        id: $scope.item.$docId,
+        id: $scope.item.id,
       },
     }).then(
       function (response) {
@@ -431,11 +431,11 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       return;
     }
     $scope.busy = true;
-    $scope.schoollsList = [];
+    $scope.schoolsList = [];
 
     $http({
       method: "POST",
-      url: "/api/school/all",
+      url: "/api/schools/all",
       data: {
         where: {
           active: true,
@@ -450,7 +450,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.schoollsList = response.data.list;
+          $scope.schoolsList = response.data.list;
         }
       },
       function (err) {

@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   let app = {
-    name: "groups",
-    allowMemory: false,
+    name: "preparingGroups",
+    allowMemory: true,
     memoryList: [],
     allowCache: false,
     cacheList: [],
@@ -148,7 +148,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Groups"),
+              appName: req.word("Preparing Groups"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -236,7 +236,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteView) {
-      site.post({ name: `/api/${app.name}/view`, require: { permissions: ["login"] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
         let response = {
           done: false,
         };
@@ -255,7 +255,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAll) {
-      site.post({ name: `/api/${app.name}/all`, require: { permissions: ["login"] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || "";
@@ -306,36 +306,6 @@ module.exports = function init(site) {
         });
       });
     }
-
-    site.post({ name: `/api/${app.name}/handleToPreparingGroup`, require: { permissions: ["login"] } }, (req, res) => {
-      let response = {
-        done: false,
-      };
-
-      let _data = req.data;
-      app.view(_data, (err, doc) => {
-        if (!err && doc) {
-          response.done = true;
-          let date = new Date();
-          let result = {};
-          let index = doc.dayList.findIndex(
-            (itm) => new Date(itm.date).getDate() === date.getDate() && new Date(itm.date).getMonth() === date.getMonth() && new Date(itm.date).getFullYear() === date.getFullYear() && !itm.active
-          );
-          if (index !== -1) {
-            result.validDay = doc.dayList[index];
-          } else {
-            res.json(response);
-            return;
-          }
-          result.studentList = doc.studentList;
-          response.doc = result;
-          res.json(response);
-        } else {
-          response.error = err?.message || "Not Exists";
-          res.json(response);
-        }
-      });
-    });
   }
 
   app.init();

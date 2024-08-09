@@ -1,12 +1,12 @@
-app.controller("groups", function ($scope, $http, $timeout) {
+app.controller("preparingGroups", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
-  $scope.appName = "groups";
-  $scope.modalID = "#groupsManageModal";
-  $scope.modalSearchID = "#groupsSearchModal";
+  $scope.appName = "preparingGroups";
+  $scope.modalID = "#preparingGroupsManageModal";
+  $scope.modalSearchID = "#preparingGroupsSearchModal";
   $scope.mode = "add";
   $scope._search = {};
   $scope.structure = {
-    image: { url: "/theme1/images/setting/groups.png" },
+    image: { url: "/theme1/images/setting/preparingGroups.png" },
     active: true,
   };
   $scope.item = {};
@@ -15,7 +15,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure, dayList: [], studentList: [] };
+    $scope.item = { ...$scope.structure, studentList: [] };
     site.showModal($scope.modalID);
   };
 
@@ -161,6 +161,94 @@ app.controller("groups", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getTeachersList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/manageUsers/all",
+      data: {
+        search: $search,
+        where: {
+          type: "teacher",
+          active: true,
+        },
+        select: { id: 1, firstName: 1, prefix: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.teachersList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getGroupsList = function ($search) {
+    $scope.groupsList = [];
+    if ($search && $search.length < 1) {
+      return;
+    }
+    if (!$scope.item.teacher || !$scope.item.teacher.id) {
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/groups/all",
+      data: {
+        search: $search,
+        where: {
+          "teacher.id": $scope.item.teacher.id,
+          active: true,
+        },
+        select: { id: 1, name: 1, educationalLevel: 1, schoolYear: 1, subject: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.groupsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.handleToPreparingGroup = function (id) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/groups/handleToPreparingGroup",
+      data: { id: id },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.item.studentList = response.data.doc.studentList;
+          $scope.item.date = response.data.doc.validDay.date;
+          $scope.item.day = response.data.doc.validDay.day;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getAll = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -187,229 +275,15 @@ app.controller("groups", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getWeekDaysList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/weekDays",
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.weekDaysList = response.data.list;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getSubjectsList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/subjects/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: { id: 1, name: 1 },
-        search: $search,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.subjectsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getStudent = function (ev, $search) {
+  $scope.setAttendance = function (item, type) {
     $scope.error = "";
-    if (ev.which !== 13) {
-      return;
-    }
-
-    if (!$scope.item.educationalLevel || !$scope.item.educationalLevel.id || !$scope.item.schoolYear || !$scope.item.schoolYear.id) {
-      $scope.error = "##word.Data Not Completed##";
-      return;
-    }
-
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/manageUsers/all",
-      data: {
-        search: $search,
-        where: {
-          type: "student",
-          "educationalLevel.id": $scope.item.educationalLevel.id,
-          "schoolYear.id": $scope.item.schoolYear.id,
-          active: true,
-        },
-        select: { id: 1, firstName: 1, barcode: 1, mobile: 1, parentMobile: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
-            $scope.item.studentList.push({ student: response.data.list[0], attend: false });
-          } else {
-            $scope.error = "##word.Student Exist##";
-          }
-        } else {
-          $scope.error = "##word.Not Found##";
-        }
-        $scope.item.$studentSearch = "";
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getTeachersList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    if (!$scope.item.subject || !$scope.item.subject.id) {
-      return;
-    }
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/manageUsers/all",
-      data: {
-        search: $search,
-        where: {
-          type: "teacher",
-          "subject.id": $scope.item.subject.id,
-          active: true,
-        },
-        select: { id: 1, firstName: 1, prefix: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.teachersList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getEducationalLevelsList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $scope.educationalLevelsList = [];
-
-    $http({
-      method: "POST",
-      url: "/api/educationalLevels/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-        search: $search,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.educationalLevelsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getSchoolYearsList = function (educationalLevel) {
-    $scope.busy = true;
-    $scope.schoolYearsList = [];
-    $http({
-      method: "POST",
-      url: "/api/schoolYears/all",
-      data: {
-        where: {
-          active: true,
-          "educationalLevel.id": educationalLevel.id,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.schoolYearsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.generateAppointments = function (item) {
-    $scope.error = "";
-    if (item.startDate && item.endDate) {
-      let start = new Date(item.startDate);
-      let end = new Date(item.endDate);
-      item.dayList = [];
-      let index = item.days.findIndex((itm) => itm.code === start.getDay());
-      if (index !== -1) {
-        item.dayList.push({ date: new Date(start), day: item.days[index] });
-      }
-      while (new Date(start) <= new Date(end)) {
-        start.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
-        let index = item.days.findIndex((itm) => itm.code === start.getDay());
-        if (index !== -1 && new Date(start) <= new Date(end)) {
-          item.dayList.push({ date: new Date(start), day: item.days[index] });
-        }
-        if (new Date(start) == new Date(end)) {
-          break;
-        }
-      }
-    }
-  };
-
-  $scope.changeDay = function (item) {
-    $scope.error = "";
-    item.date = new Date(item.date);
-    let index = $scope.weekDaysList.findIndex((itm) => itm.code === item.date.getDay());
-    if (index !== -1) {
-      item.day = $scope.weekDaysList[index];
+    if (type == "attend") {
+      item.attendDate = new Date();
+      item.attend = true;
+    } else if (type == "absence") {
+      item.attend = false;
+    } else if (type == "departure") {
+      item.departureDate = new Date();
     }
   };
 
@@ -425,7 +299,5 @@ app.controller("groups", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getSubjectsList();
-  $scope.getWeekDaysList();
-  $scope.getEducationalLevelsList();
+  $scope.getTeachersList();
 });

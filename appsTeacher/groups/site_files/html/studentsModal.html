@@ -1,0 +1,46 @@
+<div id="studentsModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <p class="center">
+        ##word.Students##
+        <i class="fa fa-pencil"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-control type="text" class="col9" ng-model="item.$studentSearch" ng-keydown="getStudent($event,item.$studentSearch)" label="##word.Student Search##"></i-control>
+        <i-button type="search" class="col3" label="##word.Search##" ng-click="getStudent({which : 13},item.$studentSearch)"></i-button>
+      </div>
+      <p class="error">{{error}}</p>
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table hover bold" id="t-students">
+            <tr>
+              <th>##word.Full Name##</th>
+              <th>##word.Barcode##</th>
+              <th>##word.Mobile##</th>
+              <th>##word.Parent Mobile##</th>
+              <th class="not-print">##word.Actions##</th>
+            </tr>
+            <tr ng-repeat="s in item.studentList | filter:$search">
+              <td class="center">{{s.student.firstName}}</td>
+              <td class="center userPrint">{{s.student.barcode}}</td>
+              <td class="center">{{s.student.mobile}}</td>
+              <td class="center">{{s.student.parentMobile}}</td>
+              <td class="center not-print">
+                <i-button type="delete" label="##word.Delete##" ng-click="item.studentList.splice($index,1)"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+
+      <i-button type="save" label="##word.Save##" onclick="site.hideModal( '#studentsModal')"></i-button>
+    </div>
+  </div>
+</div>

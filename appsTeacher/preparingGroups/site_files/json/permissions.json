@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "preparingGroups", "name": "preparingGroupsImport", "En": "Import", "Ar": "إستيراد" }
+]
