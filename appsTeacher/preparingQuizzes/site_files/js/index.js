@@ -15,7 +15,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure, studentList: [] };
+    $scope.item = { ...$scope.structure, studentList: [], date: new Date() };
     site.showModal($scope.modalID);
   };
 
@@ -160,7 +160,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       }
     );
   };
-
+  /* 
   $scope.getTeachersList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -189,16 +189,14 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
-  };
+  }; */
 
   $scope.getGroupsList = function ($search) {
     $scope.groupsList = [];
     if ($search && $search.length < 1) {
       return;
     }
-    if (!$scope.item.teacher || !$scope.item.teacher.id) {
-      return;
-    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -206,40 +204,15 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       data: {
         search: $search,
         where: {
-          "teacher.id": $scope.item.teacher.id,
           active: true,
         },
-        select: { id: 1, name: 1, educationalLevel: 1, schoolYear: 1, subject: 1 },
+        select: { id: 1, name: 1, educationalLevel: 1, subject: 1, teacher: 1, schoolYear: 1, subject: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.groupsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.handleToPreparingGroup = function (id) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/groups/handleToPreparingGroup",
-      data: { id: id },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.item.studentList = response.data.doc.studentList;
-          $scope.item.date = response.data.doc.validDay.date;
-          $scope.item.day = response.data.doc.validDay.day;
-        } else {
-          $scope.error = response.data.error;
         }
       },
       function (err) {
@@ -275,6 +248,28 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.handleToPreparingGroup = function (id) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/groups/handleToPreparingGroup",
+      data: { id: id },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.item.studentList = response.data.doc.studentList;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.setAttendance = function (item, type) {
     $scope.error = "";
     if (type == "attend") {
@@ -285,6 +280,19 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
     } else if (type == "departure") {
       item.departureDate = new Date();
     }
+  };
+
+  $scope.selectGroup = function () {
+    $scope.error = "";
+
+    $scope.item.subject = { ...$scope.item.group.subject };
+    $scope.item.teacher = { ...$scope.item.group.teacher };
+    $scope.item.educationalLevel = { ...$scope.item.group.educationalLevel };
+    $scope.item.schoolYear = { ...$scope.item.group.schoolYear };
+    delete $scope.item.group.subject;
+    delete $scope.item.group.teacher;
+    delete $scope.item.group.educationalLevel;
+    delete $scope.item.group.schoolYear;
   };
 
   $scope.showSearch = function () {
@@ -299,5 +307,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getTeachersList();
+  $scope.getGroupsList();
+  /*   $scope.getTeachersList();
+   */
 });

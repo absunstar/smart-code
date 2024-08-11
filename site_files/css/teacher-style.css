@@ -168,3 +168,37 @@ legend {
   height: 37vw !important;
   scrollbar-color: #2087e7 #e7e7e7;
 }
+.person-cart:hover {
+  background: #0064ff17;
+}
+.underline {
+  text-decoration-line: underline;
+}
+.person-cart {
+  border: 3px solid #00856a;
+  display: inline-block;
+  width: 50vw !important;
+  margin: 10px 0px 10px 0px !important;
+  box-shadow: 2px 2px 5px 0px #00856a;
+  background: white;
+  padding: 25px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.person-cart img {
+  height: 45px;
+  width: 45px;
+  padding: 2px;
+  border-radius: 50%;
+}
+
+.cart-number {
+  color: var(--theme-color);
+  font-size: 20px;
+  display: inherit;
+}
+
+.darkGray {
+  color: #707070 !important;
+}

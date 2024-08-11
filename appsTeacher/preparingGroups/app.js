@@ -179,7 +179,7 @@ module.exports = function init(site) {
           if (!err && doc) {
             response.done = true;
             response.doc = doc;
-            site.bookingAppointmentGroup({ groupId: doc.group.id, date: doc.date, day: doc.day });
+            site.bookingAppointmentGroup({ groupId: doc.group.id, date: _data.date, day: doc.day });
           } else {
             response.error = err.mesage;
           }

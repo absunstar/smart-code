@@ -52,14 +52,14 @@
             <i-control label="##word.Parent Job##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.parentJob"> </i-control>
             <i-list label="##word.School##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.school" display="name" items="schoolsList"></i-list>
             <i-list label="##word.Subject##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'teacher'" ng-model="item.subject" display="name" items="subjectsList"></i-list>
- 
-            <div class="col3">
+
+            <div class="col3" ng-show="item.placeType == 'online'">
               <br />
-              <p class="font-20" ng-show="item.placeType == 'online'">##word.Latitude## : <span class="userPrint"> {{item.latitude}}</span></p>
+              <p class="font-20" >##word.Latitude## : <span class="userPrint"> {{item.latitude}}</span></p>
             </div>
-            <div class="col3">
+            <div class="col3" ng-show="item.placeType == 'online'">
               <br />
-              <p class="font-20" ng-show="item.placeType == 'online'">##word.Longitude## : <span class="userPrint"> {{item.longitude}}</span></p>
+              <p class="font-20" >##word.Longitude## : <span class="userPrint"> {{item.longitude}}</span></p>
             </div>
           </div>
           <div class="row" ng-show="item.type == 'student'">
@@ -83,7 +83,7 @@
 
             <i-control class="col3" label="##word.Mobile##" ng-model="item.mobile"></i-control>
 
-            <i-control class="col3" label="##word.Parent Mobile Number##" ng-model="item.parentMobile"></i-control>
+            <i-control class="col3" ng-show="item.type == 'student'" label="##word.Parent Mobile Number##" ng-model="item.parentMobile"></i-control>
 
             <i-control help-id="" class="col3" label="##word.Whatsapp##" ng-model="item.whatsapp"> </i-control>
           </div>

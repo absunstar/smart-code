@@ -287,9 +287,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
-    if (!$scope.item.subject || !$scope.item.subject.id) {
-      return;
-    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -298,10 +296,9 @@ app.controller("groups", function ($scope, $http, $timeout) {
         search: $search,
         where: {
           type: "teacher",
-          "subject.id": $scope.item.subject.id,
           active: true,
         },
-        select: { id: 1, firstName: 1, prefix: 1 },
+        select: { id: 1, firstName: 1, image: 1, prefix: 1, mobile: 1, subject: 1 },
       },
     }).then(
       function (response) {
@@ -413,6 +410,13 @@ app.controller("groups", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.selectTeacher = function () {
+    $scope.error = "";
+    $scope.item.subject = { ...$scope.item.teacher.subject };
+    delete $scope.item.teacher.subject;
+    
+  };
+
   $scope.pushSpceficIndex = function (index) {
     $scope.error = "";
     $scope.dayList.splice(index, 0, { date: new Date() });
@@ -433,4 +437,5 @@ app.controller("groups", function ($scope, $http, $timeout) {
   $scope.getSubjectsList();
   $scope.getWeekDaysList();
   $scope.getEducationalLevelsList();
+  $scope.getTeachersList();
 });

@@ -161,7 +161,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getTeachersList = function ($search) {
+  /*   $scope.getTeachersList = function ($search) {
     $scope.error = "";
     if ($search && $search.length < 1) {
       return;
@@ -190,7 +190,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
-  };
+  }; */
 
   $scope.getGroupsList = function ($search) {
     $scope.error = "";
@@ -198,9 +198,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
-    if (!$scope.item.teacher || !$scope.item.teacher.id) {
-      return;
-    }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -208,10 +206,9 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       data: {
         search: $search,
         where: {
-          "teacher.id": $scope.item.teacher.id,
           active: true,
         },
-        select: { id: 1, name: 1, educationalLevel: 1, schoolYear: 1, subject: 1 },
+        select: { id: 1, name: 1, educationalLevel: 1, schoolYear: 1, subject: 1, teacher: 1 },
       },
     }).then(
       function (response) {
@@ -232,7 +229,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/groups/handleToPreparingGroup",
-      data: { id: id },
+      data: { id: id, type: "validDay" },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -290,6 +287,17 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.selectGroup = function () {
+    $scope.error = "";
+    $scope.item.subject = { ...$scope.item.group.subject };
+    $scope.item.teacher = { ...$scope.item.group.teacher };
+    $scope.item.educationalLevel = { ...$scope.item.group.educationalLevel };
+    $scope.item.schoolYear = { ...$scope.item.group.schoolYear };
+    delete $scope.item.group.subject;
+    delete $scope.item.group.teacher;
+    delete $scope.item.group.educationalLevel;
+    delete $scope.item.group.schoolYear;
+  };
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
@@ -303,5 +311,6 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll();
-  $scope.getTeachersList();
+  $scope.getGroupsList();
+  /* $scope.getTeachersList(); */
 });

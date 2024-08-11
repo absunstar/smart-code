@@ -1,25 +1,12 @@
 <!DOCTYPE html>
 <html lang="##data.language.id##" dir="##data.language.direction##" data-ng-app="myApp" class="##data.language.direction##" x-permissions="defaultSettingUi || defaultSettingManage">
-  <head x-import="cms/head.html">
-    <style>
-      :root {
-        --theme-color: #272727;
-      }
-      body {
-        margin-top: 0px;
-        margin-right: 0px;
-        margin-left: 0px;
-      }
-      .tabs .tabs-header .tab-link.active {
-        border-radius: 5px;
-        border: none;
-      }
-    </style>
-  </head>
+  <head x-import="teacher-theme/head-dashboard.html"></head>
 
-  <body style="background: white" ng-controller="siteSetting">
+  <body ng-controller="siteSetting">
+    <nav x-import="teacher-theme/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="teacher-theme/sitebottom.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container">
-      <div x-import="site-setting/dynamic_routes_modal.html"></div>
       <div class="row">
         <br />
         <h1 class="center bold black">##word.Default Settings##</h1>
@@ -40,7 +27,7 @@
       </div>
     </div>
 
-    <div x-import="cms/scripts.html"></div>
+    <div x-import="teacher-theme/scripts-dashboard.html"></div>
     <script x-import="site-setting/index.js"></script>
   </body>
 </html>

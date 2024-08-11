@@ -2,13 +2,10 @@
   <div class="row padding">
     <div class="row">
       <i-control type="text" v="r" class="col6" ng-model="item.name" label="##word.Name##"></i-control>
-      <i-button label="##word.Student Management##" type="push" class="col4" onclick="site.showModal( '#studentsModal')"></i-button>
+      <i-button label="##word.Student Management##" type="list" class="col4" onclick="site.showModal( '#studentsModal')"></i-button>
       <i-checkbox ng-model="item.active" class="col2" label="##word.Active##"></i-checkbox>
     </div>
-    <div class="row">
-      <i-list v="r" class="col6" ng-change="getTeachersList()" label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList" ng-get="getSubjectsList($search)"></i-list>
-      <i-list class="col6" v="r" label="##word.Teacher##" ng-model="item.teacher" display="firstName" items="teachersList" ng-get="getTeachersList($search)"></i-list>
-    </div>
+
     <div class="row">
       <i-list
         label="##word.Educational Level##"
@@ -22,6 +19,31 @@
       ></i-list>
       <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col6" v="r" display="name" items="schoolYearsList"></i-list>
     </div>
+    <div class="row">
+      <i-list class="col6" v="r" label="##word.Teacher##" ng-change="selectTeacher()" ng-model="item.teacher" display="firstName" items="teachersList" ng-get="getTeachersList($search)"></i-list>
+    </div>
+    <div class="row" ng-show="item.teacher.id">
+      <div class="person-cart">
+        <div class="row">
+          <div class="col7">
+            <p class="bold">
+              <span class="darkGray">##word.Name## : </span> {{item.teacher.firstName}}
+              <img class="img-logo" ng-src="{{item.teacher.image.url}}" alt="" />
+            </p>
+          </div>
+          <div class="col5">
+            <p class="bold text-right"><span class="darkGray">##word.Mobile## : </span> {{item.teacher.mobile}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col7">
+            <p class="bold">
+              <span class="darkGray">##word.Subject## : </span> {{item.subject.name}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <fieldset>
@@ -32,7 +54,7 @@
     </div>
     <div class="row">
       <i-checklist label="##word.Working Days##" v="r" class="col8" ng-model="item.days" items="weekDaysList" display="name##session.lang##"> </i-checklist>
-      <i-button type="push" label="##word.Generate Appointments##" class="col3" ng-click="generateAppointments(item)"></i-button>
+      <i-button type="reset" label="##word.Generate Appointments##" class="col3" ng-click="generateAppointments(item)"></i-button>
     </div>
     <div class="row" ng-show="item.dayList.length > 0">
       <div class="table-responsive">

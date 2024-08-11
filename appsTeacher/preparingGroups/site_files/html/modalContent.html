@@ -4,22 +4,58 @@
       <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
     </div>
     <div class="row">
-      <i-list class="col6" v="r" ng-change="getGroupsList()" label="##word.Teacher##" ng-model="item.teacher" display="firstName" items="teachersList" ng-get="getTeachersList($search)"></i-list>
       <i-list
         class="col6"
         v="r"
         label="##word.Group##"
         ng-model="item.group"
         display="name"
-        ng-change="handleToPreparingGroup(item.group.id)"
+        ng-change="handleToPreparingGroup(item.group.id);selectGroup()"
         items="groupsList"
         ng-get="getGroupsList($search)"
       ></i-list>
     </div>
+
+    <i-button label="##word.Student Management##" ng-show="item.date" type="list" ng-click="error = '' " onclick="site.showModal( '#studentsModal')"></i-button>
+
+ 
     <div class="row" ng-show="item.date">
-      <h2>##word.Date## : {{item.date | date : 'dd / MM / yyyy'}}</h2>
-      <h2>##word.Day## : {{item.day.name##session.lang##}}</h2>
-      <i-button label="##word.Student Management##" type="push" class="col4" ng-click="error = '' " onclick="site.showModal( '#studentsModal')"></i-button>
+      <div class="person-cart">
+        <div class="row">
+          <div class="col7">
+            <p class="bold"><span class="darkGray">##word.Name## : </span> {{item.group.name}}</p>
+          </div>
+          <div class="col5">
+            <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.subject.name}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col7">
+            <p class="bold"><span class="darkGray">##word.Tacher## : </span> {{item.teacher.firstName}}</p>
+          </div>
+          <div class="col5">
+            <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{item.teacher.mobile}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col7">
+            <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.educationalLevel.name}}</p>
+          </div>
+          <div class="col5">
+            <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.schoolYear.name}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col7">
+            <p class="bold"><span class="darkGray">##word.Date## : </span> {{item.date | date : 'dd / MM / yyyy'}}</p>
+          </div>
+          <div class="col5">
+            <p class="bold"><span class="darkGray">##word.Day## : </span> {{item.day.name##session.lang##}}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <fieldset>

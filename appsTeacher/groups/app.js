@@ -318,21 +318,23 @@ module.exports = function init(site) {
           response.done = true;
           let date = new Date();
           let result = {};
-          let index = doc.dayList.findIndex(
-            (itm) => new Date(itm.date).getDate() === date.getDate() && new Date(itm.date).getMonth() === date.getMonth() && new Date(itm.date).getFullYear() === date.getFullYear() && !itm.active
-          );
-          if (index !== -1) {
-            if (!doc.dayList[index].isBook) {
-              result.validDay = doc.dayList[index];
+          if (_data.type == "validDay") {
+            let index = doc.dayList.findIndex(
+              (itm) => new Date(itm.date).getDate() === date.getDate() && new Date(itm.date).getMonth() === date.getMonth() && new Date(itm.date).getFullYear() === date.getFullYear() && !itm.active
+            );
+            if (index !== -1) {
+              if (!doc.dayList[index].isBook) {
+                result.validDay = doc.dayList[index];
+              } else {
+                response.error = "Today's lecture is already booked.";
+                res.json(response);
+                return;
+              }
             } else {
-              response.error = "Today's lecture is already booked.";
+              response.error = "There are no lectures available today";
               res.json(response);
               return;
             }
-          } else {
-            response.error = "There are no lectures available today";
-            res.json(response);
-            return;
           }
           result.studentList = doc.studentList;
           response.doc = result;
@@ -349,15 +351,20 @@ module.exports = function init(site) {
     app.view({ id: _options.groupId }, (err, doc) => {
       if (doc) {
         _options.date = new Date(_options.date);
-        let index = doc.dayList.findIndex((itm) => new Date(itm.date).getDate() === _options.date.getDate() && new Date(itm.date).getMonth() === _options.date.getMonth() && new Date(itm.date).getFullYear() === _options.date.getFullYear() && itm.day.id === _options.day.id);
-        if (index !== -1) {          
+        let index = doc.dayList.findIndex(
+          (itm) =>
+            new Date(itm.date).getDate() === _options.date.getDate() &&
+            new Date(itm.date).getMonth() === _options.date.getMonth() &&
+            new Date(itm.date).getFullYear() === _options.date.getFullYear() &&
+            itm.day.id === _options.day.id
+        );
+        if (index !== -1) {
           doc.dayList[index].isBook = true;
           app.update(doc);
         }
       }
     });
   };
-
 
   app.init();
   site.addApp(app);

@@ -403,7 +403,18 @@ module.exports = function init(site) {
           where.$or.push({
             idNumber: site.get_RegExp(search, "i"),
           });
-
+          where.$or.push({
+            "educationalLevel.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "schoolYear.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "school.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "subject.name": site.get_RegExp(search, "i"),
+          });
           where.$or.push({
             "center.name": site.get_RegExp(search, "i"),
           });
