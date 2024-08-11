@@ -49,9 +49,9 @@
               ng-search="item.$center"
             ></i-list>
             <i-list class="col4" v="r" label="##word.Gender##" ng-model="item.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
-            <i-control label="##word.Parent Job##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.parentJob"> </i-control>
-            <i-list label="##word.School##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.school" display="name" items="schoolsList"></i-list>
-            <i-list label="##word.Subject##" class="col4" x-date="setting.isCenter" ng-show="item.type == 'teacher'" ng-model="item.subject" display="name" items="subjectsList"></i-list>
+            <i-control label="##word.Parent Job##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.parentJob"> </i-control>
+            <i-list label="##word.School##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.school" display="name" items="schoolsList"></i-list>
+            <i-list label="##word.Subject##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'teacher'" ng-model="item.subject" display="name" items="subjectsList"></i-list>
  
             <div class="col3">
               <br />
@@ -62,8 +62,8 @@
               <p class="font-20" ng-show="item.placeType == 'online'">##word.Longitude## : <span class="userPrint"> {{item.longitude}}</span></p>
             </div>
           </div>
-          <div class="row" x-date="setting.isCenter" ng-show="item.type == 'student'"> 
-            <i-list label="##word.Department##" class="col4" ng-model="item.department" display="name" items="departmentsList"></i-list>
+          <div class="row" ng-show="item.type == 'student'">
+            <i-list label="##word.Department##" x-data="setting.isCenter" class="col4" ng-model="item.department" display="name" items="departmentsList"></i-list>
             <i-list
               class="col4"
               label="##word.Educational Level##"
