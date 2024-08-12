@@ -316,9 +316,9 @@ module.exports = function init(site) {
       app.view(_data, (err, doc) => {
         if (!err && doc) {
           response.done = true;
-          let date = new Date();
           let result = {};
           if (_data.type == "validDay") {
+            let date = new Date(_data.date);
             let index = doc.dayList.findIndex(
               (itm) => new Date(itm.date).getDate() === date.getDate() && new Date(itm.date).getMonth() === date.getMonth() && new Date(itm.date).getFullYear() === date.getFullYear() && !itm.active
             );

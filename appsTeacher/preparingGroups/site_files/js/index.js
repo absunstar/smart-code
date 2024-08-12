@@ -251,7 +251,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/groups/handleToPreparingGroup",
-      data: { id: id, type: "validDay" },
+      data: { id: id, type: "validDay" ,date : new Date()},
     }).then(
       function (response) {
         $scope.busy = false;
