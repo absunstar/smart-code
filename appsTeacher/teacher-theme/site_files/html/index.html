@@ -10,7 +10,7 @@
         <div class="separative"></div>
       </div>
 
-      <div class="row mainContent row-cols-1 row-cols-lg-2">
+      <div class="row mainContent row-cols-1 row-cols-lg-2" x-data="setting.isEducationalPlatform">
         <div class="content col-lg-9">
           <div>
             <div x-features="ads" class="adsBanner">
@@ -122,7 +122,7 @@
               <ul class="row ul-list">
                 <li x-list1="booksList">
                   <div class="nft">
-                    <a class="main"  href="/bookView?id=##item1._id##">
+                    <a class="main" href="/bookView?id=##item1._id##">
                       <img class="tokenImage" src="##item1.image.url##" alt="NFT" />
                       <h2>##item1.name##</h2>
                       <p class="description">##item1.description##</p>
@@ -132,7 +132,6 @@
                           <p>##item1.price##</p>
                         </div>
                         <span class="white font-20">##word.More##..</span>
-                       
                       </div>
                     </a>
                   </div>

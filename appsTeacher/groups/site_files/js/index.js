@@ -378,6 +378,28 @@ app.controller("groups", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.clickMoblie = function (item, type) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/clickMobile`,
+      data: { id: $scope.item.id, studentId: item.student.id, type: type },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (type == "studentMobile") {
+          item.clickStudentMoblie = true;
+        } else if (type == "parentMobile") {
+          item.clickSParentMobile = true;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.generateAppointments = function (item) {
     $scope.error = "";
     if (item.startDate && item.endDate) {

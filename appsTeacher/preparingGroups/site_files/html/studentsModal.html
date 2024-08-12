@@ -30,19 +30,31 @@
               <th>##word.Status##</th>
               <th>##word.Attendance##</th>
               <th>##word.Departure##</th>
+              <th>##word.Notes##</th>
               <th class="not-print">##word.Actions##</th>
             </tr>
             <tr ng-repeat="s in item.studentList | filter:$search">
               <td class="center">{{s.student.firstName}}</td>
               <td class="center userPrint">{{s.student.barcode}}</td>
-              <td class="center">{{s.student.mobile}}</td>
-              <td class="center">{{s.student.parentMobile}}</td>
+              <td class="center">
+                <a target="_blank" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
+                  <i class="fas fa-mobile-alt"></i>
+                  {{s.student.mobile}}
+                </a>
+              </td>
+              <td class="center">
+                <a target="_blank" ng-class="{'change-color-link' : s.clickSParentMobile}" ng-click="clickMoblie(s,'parentMobile')" href="https://wa.me/{{s.student.parentMobile}}">
+                  <i class="fas fa-mobile-alt"></i>
+                  {{s.student.parentMobile}}
+                </a>
+              </td>
               <td class="center">
                 <span class="text-success" ng-show="s.attend">##word.Attended##</span>
                 <span class="text-danger" ng-show="s.attend == false">##word.Absence##</span>
               </td>
               <td class="center">{{s.attendDate | date : 'mm : hh '}}</td>
               <td class="center">{{s.departureDate | date : 'mm : hh '}}</td>
+              <td class="center"><i-control ng-model="s.notes"></i-control></td>
               <td class="center not-print">
                 <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend')"></i-button>
                 <i-button ng-show="s.attend && !s.departureDate" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>

@@ -1,7 +1,7 @@
 module.exports = function init(site) {
   let app = {
     name: "preparingQuizzes",
-    allowMemory: true,
+    allowMemory: false,
     memoryList: [],
     allowCache: false,
     cacheList: [],
@@ -264,6 +264,8 @@ module.exports = function init(site) {
           id: 1,
           name: 1,
           teacher: 1,
+          group: 1,
+          date: 1,
           subject: 1,
           active: 1,
         };
@@ -306,6 +308,32 @@ module.exports = function init(site) {
         });
       });
     }
+
+    site.post({ name: `/api/${app.name}/clickMobile`, public: true }, (req, res) => {
+      let response = {
+        done: false,
+      };
+
+      let _data = req.data;
+      app.view(_data, (err, doc) => {
+        if (!err && doc) {
+          response.done = true;
+          let index = doc.studentList.findIndex((itm) => itm.student.id === _data.studentId);
+          if (index !== -1) {
+            if (_data.type == "studentMobile") {
+              doc.studentList[index].clickStudentMoblie = true;
+            } else if (_data.type == "parentMobile") {
+              doc.studentList[index].clickSParentMobile = true;
+            }
+            app.update(doc);
+          }
+        } else {
+          response.error = err?.message || "Not Exists";
+        }
+        res.json(response);
+      });
+    });
+    
   }
 
   app.init();

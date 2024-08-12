@@ -143,6 +143,16 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
+          let appName = req.word("Purchase Orders");
+          if (req.query) {
+            if (req.query.type == "lecture") {
+              appName = req.word("Purchase Lectures");
+            } else if (req.query.type == "package") {
+              appName = req.word("Purchase Packages");
+            } else if (req.query.type == "book") {
+              appName = req.word("Purchase Books");
+            }
+          }
           res.render(
             app.name + "/index.html",
             {

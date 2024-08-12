@@ -36,8 +36,18 @@
             <tr ng-repeat="s in item.studentList | filter:$search">
               <td class="center">{{s.student.firstName}}</td>
               <td class="center userPrint">{{s.student.barcode}}</td>
-              <td class="center">{{s.student.mobile}}</td>
-              <td class="center">{{s.student.parentMobile}}</td>
+              <td class="center">
+                <a target="_blank" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
+                  <i class="fas fa-mobile-alt"></i>
+                  {{s.student.mobile}}
+                </a>
+              </td>
+              <td class="center">
+                <a target="_blank" ng-class="{'change-color-link' : s.clickSParentMobile}" ng-click="clickMoblie(s,'parentMobile')" href="https://wa.me/{{s.student.parentMobile}}">
+                  <i class="fas fa-mobile-alt"></i>
+                  {{s.student.parentMobile}}
+                </a>
+              </td>
               <td class="center">
                 <span class="text-success" ng-show="s.attend">##word.Attended##</span>
                 <span class="text-danger" ng-show="s.attend == false">##word.Absence##</span>

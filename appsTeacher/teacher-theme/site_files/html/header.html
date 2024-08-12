@@ -8,18 +8,20 @@
       </a>
     </div>
     <div class="button-screen">
-      <a class="button-screen-a" href="/packagesView" x-data="setting.showPackages">
-        <i class="fas fa-layer-group"></i>
-        ##word.Packages##
-      </a>
-      <a class="button-screen-a" href="/lecturesView" x-permissions="offline || teacher || admin || !login" x-data="setting.showLectures">
-        <i class="fas fa-chalkboard-teacher"></i>
-        ##word.Lectures##
-      </a>
-      <a class="button-screen-a" href="/booksView" x-data="setting.showBooks">
-        <i class="fas fa-book"></i>
-        ##word.Books##
-      </a>
+      <div x-data="setting.isEducationalPlatform">
+        <a class="button-screen-a" href="/packagesView" x-data="setting.showPackages">
+          <i class="fas fa-layer-group"></i>
+          ##word.Packages##
+        </a>
+        <a class="button-screen-a" href="/lecturesView" x-permissions="offline || teacher || admin || !login" x-data="setting.showLectures">
+          <i class="fas fa-chalkboard-teacher"></i>
+          ##word.Lectures##
+        </a>
+        <a class="button-screen-a" href="/booksView" x-data="setting.showBooks">
+          <i class="fas fa-book"></i>
+          ##word.Books##
+        </a>
+      </div>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -50,7 +52,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
             <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##">##word.Manage My Page##</a></li>
-            <li><a class="dropdown-item" x-permissions="admin || teacher" href="/lectures">##word.Dashboard##</a></li>
+            <li><a class="dropdown-item" x-permissions="admin || teacher" href="/countries">##word.Dashboard##</a></li>
             <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
           </ul>
         </li>
@@ -158,7 +160,7 @@
         <a class="newRegister" href="/register"> مستخدم جديد </a>
       </div>
 
-      <div class="button-screen">
+      <div class="button-screen" x-data="setting.isEducationalPlatform">
         <a href="/packagesView" x-data="setting.showPackages">
           <i class="fas fa-layer-group"></i>
           ##word.Packages##

@@ -347,6 +347,31 @@ module.exports = function init(site) {
     });
   }
 
+  site.post({ name: `/api/${app.name}/clickMobile`, public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let _data = req.data;
+    app.view(_data, (err, doc) => {
+      if (!err && doc) {
+        response.done = true;
+        let index = doc.studentList.findIndex((itm) => itm.student.id === _data.studentId);
+        if (index !== -1) {
+          if (_data.type == "studentMobile") {
+            doc.studentList[index].clickStudentMoblie = true;
+          } else if (_data.type == "parentMobile") {
+            doc.studentList[index].clickSParentMobile = true;
+          }
+          app.update(doc);
+        }
+      } else {
+        response.error = err?.message || "Not Exists";
+      }
+      res.json(response);
+    });
+  });
+
   site.bookingAppointmentGroup = function (_options) {
     app.view({ id: _options.groupId }, (err, doc) => {
       if (doc) {

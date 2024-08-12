@@ -15,6 +15,7 @@
           <i-control label="##word.Prefix##" ng-show="item.type == 'teacher'" ng-model="item.prefix"> </i-control>
           <i-control label="##word.Title##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.title"> </i-control>
           <i-control label="##word.Bio##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.bio"> </i-control>
+          <i-control label="##word.Barcode##" ng-show="item.type == 'student' && setting.isCenter && !setting.autoStudentBarcode" ng-model="item.barcode"> </i-control>
         </div>
       </div>
       <div class="col3 center">
@@ -63,17 +64,17 @@
             </div>
           </div>
           <div class="row" ng-show="item.type == 'student'">
-            <i-list label="##word.Department##" x-data="setting.isCenter" class="col4" ng-model="item.department" display="name" items="departmentsList"></i-list>
             <i-list
-              class="col4"
-              label="##word.Educational Level##"
-              ng-change="getSchoolYearsList(item.educationalLevel)"
-              ng-model="item.educationalLevel"
-              display="name"
-              items="educationalLevelsList"
-              ng-search="item.$educationalLevel"
+            class="col4"
+            label="##word.Educational Level##"
+            ng-change="getSchoolYearsList(item.educationalLevel)"
+            ng-model="item.educationalLevel"
+            display="name"
+            items="educationalLevelsList"
+            ng-search="item.$educationalLevel"
             ></i-list>
             <i-list label="##word.School Year##" class="col4" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
+            <i-list label="##word.Department##" x-data="setting.isCenter" class="col4" ng-model="item.department" display="name" items="departmentsList"></i-list>
           </div>
         </fieldset>
         <fieldset>

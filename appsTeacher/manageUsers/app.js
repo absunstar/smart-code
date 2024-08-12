@@ -146,11 +146,22 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
+          let appName = req.word("Manage Users");
+          if (req.query) {
+            if (req.query.type == "student") {
+              appName = req.word("Manage Students");
+            } else if (req.query.type == "teacher") {
+              appName = req.word("Manage Teachers");
+            } else if (req.query.type == "parent") {
+              appName = req.word("Manage Parents");
+            }
+          }
+
           res.render(
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Manage Users"),
+              appName: appName,
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -223,7 +234,7 @@ module.exports = function init(site) {
             if (!setting.isShared && !setting.isCenter) {
               site.addNewHost({ domain: doc.userName, filter: doc.userName });
             }
-            if (doc.type == "student" && setting.isCenter) {
+            if (doc.type == "student" && setting.isCenter && setting.autoStudentBarcode) {
               doc.barcode = doc.id.toString() + "00" + d + h + m;
               app.update(doc, (err1, result) => {
                 if (!err1 && doc) {

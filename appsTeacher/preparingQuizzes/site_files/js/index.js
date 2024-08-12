@@ -277,11 +277,33 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       item.attend = true;
     } else if (type == "absence") {
       item.attend = false;
+      delete item.attendDate;
+      delete item.departureDate;
     } else if (type == "departure") {
       item.departureDate = new Date();
     }
   };
-
+  $scope.clickMoblie = function (item, type) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/clickMobile`,
+      data: { id: $scope.item.id, studentId: item.student.id, type: type },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (type == "studentMobile") {
+          item.clickStudentMoblie = true;
+        } else if (type == "parentMobile") {
+          item.clickSParentMobile = true;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
   $scope.selectGroup = function () {
     $scope.error = "";
 

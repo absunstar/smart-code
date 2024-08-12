@@ -202,3 +202,6 @@ legend {
 .darkGray {
   color: #707070 !important;
 }
+.change-color-link {
+  color: blueviolet;
+}
