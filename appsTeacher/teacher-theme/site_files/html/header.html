@@ -52,7 +52,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
             <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##">##word.Manage My Page##</a></li>
-            <li><a class="dropdown-item" x-permissions="admin || teacher" href="/countries">##word.Dashboard##</a></li>
+            <li><a class="dropdown-item" x-permissions="admin || teacher" href="/manageUsers?type=student">##word.Dashboard##</a></li>
             <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
           </ul>
         </li>
