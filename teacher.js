@@ -155,7 +155,7 @@ site.handleNotRoute = function (req, res) {
 
 site.get("/x-update", (req, res) => {
   site.cmd("git pull", (data) => {
-    res.end(data);
+    res.end(data || 'error');
     console.log(data);
     site.cmd("pm2 restart 21", (data) => {
       console.log(data);
