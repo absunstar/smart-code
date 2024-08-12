@@ -1,5 +1,5 @@
 [{
-    "moduleName" : "lawyer" ,
+    "moduleName" : "public" ,
     "name": "subjectsAdmin",
     "En": "Subjects Admin",
     "Ar": "إدارة المواد الدراسية",
