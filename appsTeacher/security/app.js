@@ -90,11 +90,14 @@ module.exports = function init(site) {
       delete where["search"];
     }
     where["id"] = { $ne: 1 };
-    if ((teacherId = site.getTeacherSetting(req))) {
-      where["teacherId"] = teacherId;
-    } else {
-      where["host"] = site.getHostFilter(req.host);
-    }
+    where["type"] = { $ne: 'student' };
+    // if ((teacherId = site.getTeacherSetting(req))) {
+    //   where["teacherId"] = teacherId;
+    // } else {
+    //   where["host"] = site.getHostFilter(req.host);
+    // }
+
+
 
     site.security.getUsers(
       {
