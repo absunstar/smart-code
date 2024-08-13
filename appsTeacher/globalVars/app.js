@@ -193,10 +193,10 @@ module.exports = function init(site) {
   ];
 
   site.paymentMethodList = [
-    { name: 'normal', nameEn: "Normal", nameAr: "عادي" },
-    { name: 'monthly', nameEn: "Monthly", nameAr: "شهري" },
-    { name: 'reduced', nameEn: "Reduced", nameAr: "مخفض" },
-    { name: 'exempt', nameEn: "Exempt", nameAr: "معفى" },
+    { name: "normal", nameEn: "Normal", nameAr: "عادي" },
+    { name: "monthly", nameEn: "Monthly", nameAr: "شهري" },
+    { name: "reduced", nameEn: "Reduced", nameAr: "مخفض" },
+    { name: "exempt", nameEn: "Exempt", nameAr: "معفى" },
   ];
 
   site.paymentTypes = [
@@ -561,14 +561,14 @@ module.exports = function init(site) {
 
   site.post("/api/notificationTypesList", (req, res) => {
     let setting = site.getSiteSetting(req.host);
-    if (setting.isOnline) {
+    if (setting.isOnline && !site.notificationTypesList.some((n) => n.name == "online")) {
       site.notificationTypesList.push({
         nameAr: "أونلاين",
         nameEn: "Online",
         name: "online",
       });
     }
-    if (setting.showParent) {
+    if (setting.showParent && !site.notificationTypesList.some((n) => n.name == "parent")) {
       site.notificationTypesList.push({
         nameAr: "ولي الأمر",
         nameEn: "Parents",

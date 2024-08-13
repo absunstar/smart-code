@@ -251,7 +251,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/groups/handleToPreparingGroup",
-      data: { id: id, type: "validDay" ,date : new Date()},
+      data: { id: id, type: "validDay", date: new Date() },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -322,9 +322,28 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     delete $scope.item.group.educationalLevel;
     delete $scope.item.group.schoolYear;
   };
+
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
+  };
+
+  $scope.numberAbsencesAttendance = function () {
+    $scope.error = "";
+    $scope.item.attendanceCount = $scope.item.studentList.filter((s) => s.attend).length;
+    $scope.item.absenceCount = $scope.item.studentList.filter((s) => !s.attend).length;
+  };
+
+  $scope.attendStudent = function (search, ev) {
+    $scope.error = "";
+    if (ev.which == 13) {
+      let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
+      if (index !== -1 && !$scope.item.studentList[index].attend) {
+        $scope.item.studentList[index].attendDate = new Date();
+        $scope.item.studentList[index].attend = true;
+        $scope.numberAbsencesAttendance();
+      }
+    }
   };
 
   $scope.searchAll = function () {

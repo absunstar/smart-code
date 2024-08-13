@@ -317,6 +317,24 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
     delete $scope.item.group.schoolYear;
   };
 
+  $scope.numberAbsencesAttendance = function () {
+    $scope.error = "";
+    $scope.item.attendanceCount = $scope.item.studentList.filter((s) => s.attend).length;
+    $scope.item.absenceCount = $scope.item.studentList.filter((s) => !s.attend).length;
+  };
+
+  $scope.attendStudent = function (search, ev) {
+    $scope.error = "";
+    if (ev.which == 13) {
+      let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
+      if (index !== -1 && !$scope.item.studentList[index].attend) {
+        $scope.item.studentList[index].attendDate = new Date();
+        $scope.item.studentList[index].attend = true;
+        $scope.numberAbsencesAttendance();
+      }
+    }
+  };
+
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);

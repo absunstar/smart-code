@@ -28,13 +28,9 @@ module.exports = function init(site) {
       let docs = [];
       if (response.file.originalFilename.like("*.xls*")) {
         let workbook = site.XLSX.readFile(response.file.filepath);
-        docs = site.XLSX.utils.sheet_to_json(
-          workbook.Sheets[workbook.SheetNames[0]]
-        );
+        docs = site.XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
       } else {
-        docs = site.fromJson(
-          site.readFileSync(response.file.filepath).toString()
-        );
+        docs = site.fromJson(site.readFileSync(response.file.filepath).toString());
       }
 
       if (Array.isArray(docs)) {
@@ -64,13 +60,9 @@ module.exports = function init(site) {
       let wordsList = [];
       if (response.file.originalFilename.like("*.xls*")) {
         let workbook = site.XLSX.readFile(response.file.filepath);
-        wordsList = site.XLSX.utils.sheet_to_json(
-          workbook.Sheets[workbook.SheetNames[0]]
-        );
+        wordsList = site.XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
       } else {
-        wordsList = site.fromJson(
-          site.readFileSync(response.file.filepath).toString()
-        );
+        wordsList = site.fromJson(site.readFileSync(response.file.filepath).toString());
       }
       if (Array.isArray(wordsList)) {
         $words.findMany({}, (err, docs) => {
@@ -78,12 +70,7 @@ module.exports = function init(site) {
           let num2 = 0;
           for (let i = 0; i < wordsList.length; i++) {
             if (wordsList[i].Ar || wordsList[i].En) {
-              let index = docs.findIndex(
-                (w) =>
-                  w.name == wordsList[i].name ||
-                  w.Ar == wordsList[i].Ar ||
-                  w.En == wordsList[i].En
-              );
+              let index = docs.findIndex((w) => w.name == wordsList[i].name || w.Ar == wordsList[i].Ar || w.En == wordsList[i].En);
               if (index != -1) {
                 num += 1;
                 delete wordsList[i].id;
@@ -100,8 +87,7 @@ module.exports = function init(site) {
           site.words.save();
         });
       } else {
-        site.dbMessage =
-          "can not import unknown type : " + site.typeof(wordsList);
+        site.dbMessage = "can not import unknown type : " + site.typeof(wordsList);
         console.log(site.dbMessage);
       }
     } else {
@@ -118,7 +104,7 @@ module.exports = function init(site) {
     $words.findMany({}, (err, wordsList) => {
       if (!err && wordsList) {
         response.done = true;
-        site.fs.writeFileSync("wordsFileTeacher.json", JSON.stringify(wordsList));
+        site.fs.writeFileSync(site.options.download_dir + "/wordsFileTeacher.json", JSON.stringify(wordsList));
       } else {
         response.error = err?.message || "Not Exists";
       }

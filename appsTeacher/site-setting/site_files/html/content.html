@@ -10,18 +10,8 @@
       <div id="siteSettings" class="tab-content">
         <div class="article-part">
           <div class="row padding border margin">
-            <div class="row">
-              <i-control class="col6" label="##word.Ceo Manager##" ng-model="siteSetting.ceoManager"> </i-control>
-              <i-list
-                class="col6"
-                label="##word.Teacher##"
-                x-permissions="admin"
-                ng-hide="siteSetting.isShared"
-                ng-model="siteSetting.teacher"
-                display="firstName"
-                items="teachersList"
-                ng-get="getTeachersList($search)"
-              ></i-list>
+            <div class="row" ng-hide="siteSetting.isShared">
+              <i-list class="col6" label="##word.Teacher##" x-permissions="admin" ng-model="siteSetting.teacher" display="firstName" items="teachersList" ng-get="getTeachersList($search)"></i-list>
             </div>
           </div>
 
@@ -40,7 +30,7 @@
             <i-control class="col6" label="##word.Link## ##word.Apple Store##" ng-model="siteSetting.appleStore"> </i-control>
           </div>
 
-          <div class="row">
+          <div class="row" ng-show="siteSetting.isEducationalPlatform">
             <i-control class="col3" type="number" label="##word.Packages Limit##" ng-model="siteSetting.packagesLimit"> </i-control>
             <i-control class="col3" type="number" label="##word.Lectures Limit##" ng-model="siteSetting.lecturesLimit"> </i-control>
             <i-control class="col3" type="number" label="##word.Books Limit##" ng-model="siteSetting.booksLimit"> </i-control>
@@ -87,8 +77,8 @@
                 </div>
                 <div class="row">
                   <i-textarea ng-model="siteSetting.description" label="##word.Site Description##"> </i-textarea>
-                  <i-textarea ng-model="siteSetting.textPurchaseByBook" label="##word.Text purchase by book##"> </i-textarea>
-                  <i-textarea ng-model="siteSetting.textPurchaseByCode" label="##word.Text purchase by code##"> </i-textarea>
+                  <i-textarea ng-model="siteSetting.textPurchaseByBook" ng-show="siteSetting.isEducationalPlatform" label="##word.Text purchase by book##"> </i-textarea>
+                  <i-textarea ng-model="siteSetting.textPurchaseByCode" ng-show="siteSetting.isEducationalPlatform" label="##word.Text purchase by code##"> </i-textarea>
                   <i-textarea ng-model="siteSetting.textOurPlacesTimes" label="##word.Text our places and times##"> </i-textarea>
                 </div>
 
@@ -107,15 +97,15 @@
                 <div class="row">
                   <i-checkbox label="##word.Educational Platform##" x-permissions="admin" ng-model="siteSetting.isEducationalPlatform"> </i-checkbox>
                   <i-checkbox label="##word.Active Center##" x-permissions="admin" ng-model="siteSetting.isCenter"> </i-checkbox>
-                  <i-checkbox label="##word.Shared Site##" x-permissions="admin" ng-model="siteSetting.isShared"> </i-checkbox>
-                  <i-checkbox label="##word.Online active##" ng-model="siteSetting.isOnline"> </i-checkbox>
+                  <i-checkbox label="##word.Shared Site##" x-permissions="admin" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isShared"> </i-checkbox>
+                  <i-checkbox label="##word.Online active##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isOnline"> </i-checkbox>
                   <i-checkbox label="##word.Cities And Areas Show##" ng-model="siteSetting.citiesAndAreasShow"> </i-checkbox>
                   <i-checkbox label="##word.Nationalities Show##" ng-model="siteSetting.nationalitiesShow"> </i-checkbox>
                   <i-checkbox label="##word.Name Besid Logo Show##" ng-model="siteSetting.nameBesidLogoShow"> </i-checkbox>
                   <i-checkbox label="##word.Parent Show##" ng-model="siteSetting.showParent"> </i-checkbox>
-                  <i-checkbox label="##word.Packages Show##" ng-model="siteSetting.showPackages"> </i-checkbox>
-                  <i-checkbox label="##word.Lectures Show##" ng-model="siteSetting.showLectures"> </i-checkbox>
-                  <i-checkbox label="##word.Books Show##" ng-model="siteSetting.showBooks"> </i-checkbox>
+                  <i-checkbox label="##word.Packages Show##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showPackages"> </i-checkbox>
+                  <i-checkbox label="##word.Lectures Show##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showLectures"> </i-checkbox>
+                  <i-checkbox label="##word.Books Show##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showBooks"> </i-checkbox>
                   <i-checkbox label="##word.Banner Show##" ng-model="siteSetting.showBanner"> </i-checkbox>
                   <i-checkbox label="##word.Auto Student Barcode##" ng-show="siteSetting.isCenter" ng-model="siteSetting.autoStudentBarcode"> </i-checkbox>
                 </div>
