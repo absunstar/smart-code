@@ -337,6 +337,7 @@ module.exports = function init(site) {
             }
           }
           result.studentList = doc.studentList;
+          result.date = date;
           response.doc = result;
           res.json(response);
         } else {
