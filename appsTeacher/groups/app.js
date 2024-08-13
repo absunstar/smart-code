@@ -335,9 +335,9 @@ module.exports = function init(site) {
               res.json(response);
               return;
             }
+            result.date = date;
           }
           result.studentList = doc.studentList;
-          result.date = date;
           response.doc = result;
           res.json(response);
         } else {
