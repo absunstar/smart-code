@@ -112,7 +112,10 @@
       </div>
     </div>
   </fieldset>
-  <i-textarea ng-model="item.description" label="##word.Description##"> </i-textarea>
+  <fieldset>
+    <legend>##word.Description##</legend>
+    <i-textarea ng-model="item.description"> </i-textarea>
+  </fieldset>
 </div>
 <div ng-show="mode !== 'add' " class="row">
   <table class="table hover border">

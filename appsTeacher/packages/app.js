@@ -394,6 +394,7 @@ module.exports = function init(site) {
           date: 1,
           active: 1,
           code: 1,
+      
         };
 
         if (search) {

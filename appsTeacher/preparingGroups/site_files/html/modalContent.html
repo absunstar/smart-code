@@ -55,12 +55,20 @@
             <p class="bold"><span class="darkGray">##word.Day## : </span> {{item.day.name##session.lang##}}</p>
           </div>
         </div>
+        <div class="row">
+          <div class="col7">
+            <p class="bold"><span class="darkGray">##word.Payment Method## : </span> {{item.group.paymentMethod.name##session.lang##}}</p>
+          </div>
+          <div class="col5">
+            <p class="bold"><span class="darkGray">##word.Price## : </span> {{item.group.price}} ##word.$##</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <fieldset>
-    <legend>##word.Description## :</legend>
-    <i-content ng-model="item.description" label="##word.Description##"> </i-content>
+    <legend>##word.Description##</legend>
+    <i-textarea ng-model="item.description"> </i-textarea>
   </fieldset>
 </div>
 <div ng-show="mode !== 'add' " class="row">

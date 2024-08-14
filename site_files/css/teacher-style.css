@@ -211,7 +211,11 @@ legend {
   margin: 2px !important;
   border-radius: 5px;
 }
-
+.border-dashed {
+  border: 2px black dashed;
+  margin: 2px !important;
+  border-radius: 5px;
+}
 .logoPrint {
   width: 240px;
   height: 130px;

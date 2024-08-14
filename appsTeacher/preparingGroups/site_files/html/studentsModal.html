@@ -9,6 +9,44 @@
     </div>
 
     <div class="modal-body">
+      <div class="row" ng-show="item.date">
+        <div class="person-cart">
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Name## : </span> {{item.group.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.subject.name}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Teacher## : </span> {{item.teacher.firstName}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{item.teacher.mobile}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.educationalLevel.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.schoolYear.name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Date## : </span> {{item.date | date : 'dd / MM / yyyy'}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Day## : </span> {{item.day.name##session.lang##}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col5">
           <i-button type="search" label="##word.All##" ng-click="$search = ''"></i-button>

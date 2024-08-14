@@ -266,6 +266,8 @@ module.exports = function init(site) {
           teacher: 1,
           subject: 1,
           active: 1,
+          paymentMethod: 1,
+          price: 1,
         };
         if (search) {
           where.$or = [];
