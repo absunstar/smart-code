@@ -43,9 +43,8 @@
               <th>##word.Barcode##</th>
               <th>##word.Mobile##</th>
               <th>##word.Parent Mobile##</th>
-              <th>##word.Status##</th>
               <th>##word.Attendance##</th>
-              <th>##word.Departure##</th>
+              <th class="w200" ng-show="item.group.paymentMethod.name == 'lecture'">##word.Paid##</th>
               <th>##word.Notes##</th>
               <th class="not-print">##word.Actions##</th>
             </tr>
@@ -65,12 +64,19 @@
                 </a>
               </td>
               <td class="center">
-                <span class="text-success" ng-show="s.attend">##word.Attended##</span>
-                <span class="text-danger" ng-show="s.attend == false">##word.Absence##</span>
+                <p class="green">{{s.attendDate | date : 'mm : hh '}}</p>
+                <p class="red">{{s.departureDate | date : 'mm : hh '}}</p>
+                <p class="text-danger" ng-show="s.attend == false">##word.Absence##</p>
               </td>
-              <td class="center">{{s.attendDate | date : 'mm : hh '}}</td>
-              <td class="center">{{s.departureDate | date : 'mm : hh '}}</td>
-              <td class="center"><i-control ng-model="s.notes"></i-control></td>
+              <td class="center" ng-show="item.group.paymentMethod.name == 'lecture'">
+                <i-button type="save" ng-show="s.price != item.group.price" label="##word.Paid##" ng-click="studentPAid(s,'paid')"></i-button>
+
+                <i-button type="print" ng-show="s.price == item.group.price" label="##word.Print##" ng-click="thermalPrint(s)"></i-button>
+                <i-button type="close" ng-show="s.price == item.group.price" title="##word.Cancel Paid##" ng-click="studentPAid(s,'unpaid')"></i-button>
+              </td>
+              <td class="center">
+                <i-control ng-model="s.notes"></i-control>
+              </td>
               <td class="center not-print">
                 <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend');numberAbsencesAttendance()"></i-button>
                 <i-button ng-show="s.attend && !s.departureDate" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>

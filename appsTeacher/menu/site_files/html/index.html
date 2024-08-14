@@ -1,4 +1,5 @@
 <ul class="main-menu">
+
   <li class="menu-item">
     <a class="tab-link" href="/site-setting" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'" x-permissions="defaultSettingManage">
       <i class="fas fa-wifi"></i>
@@ -33,16 +34,25 @@
       <span> ##word.Schools## </span>
     </a>
   </li>
+
   <li class="menu-item" x-data="setting.isCenter">
     <a class="tab-link" href="/departments" x-permissions="departmentsUi || departmentsManage">
       <i class="fas fa-globe"></i>
       <span> ##word.Departments## </span>
     </a>
   </li>
+
   <li class="menu-item" x-data="setting.isCenter">
     <a class="tab-link" href="/subjects" x-permissions="subjectsUi || subjectsManage">
       <i class="fas fa-globe"></i>
       <span> ##word.Subjects## </span>
+    </a>
+  </li>
+
+  <li class="menu-item" x-data="setting.isCenter">
+    <a class="tab-link" href="/printersPaths" x-permissions="printersPathsUi || printersPathsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Printers Paths## </span>
     </a>
   </li>
 

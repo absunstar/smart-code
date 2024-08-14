@@ -20,6 +20,11 @@
       <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col6" v="r" display="name" items="schoolYearsList"></i-list>
     </div>
     <div class="row">
+      <i-list label="##word.Payment Method##" ng-model="item.paymentMethod" class="col6" v="r" display="name##session.lang##" items="groupPaymentMethodList"></i-list>
+      <i-control v="r" type="number" class="col3" ng-model="item.price" label="##word.Price## ##word.$##"></i-control>
+
+    </div>
+    <div class="row">
       <i-list class="col6" v="r" label="##word.Teacher##" ng-change="selectTeacher()" ng-model="item.teacher" display="firstName" items="teachersList" ng-get="getTeachersList($search)"></i-list>
     </div>
     <div class="row" ng-show="item.teacher.id">

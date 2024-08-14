@@ -1,0 +1,75 @@
+<div id="paymentsModal" class="modal full" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <p class="center">
+        ##word.Student Payments##
+        <i class="fa fa-pencil"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <h2 class="col3 center border-1 bold padding">
+          <p>##word.Amount Required##</p>
+          {{item.price}} ##word.$##
+        </h2>
+      </div>
+      <div class="row">
+        <i-date class="col4" ng-click="changePaymentMonth(studentItem)" ng-model="studentItem.$date" label="##word.Date##"></i-date>
+        <i-list label="##word.Month##" ng-model="studentItem.$month" class="col2" display="name##session.lang##" items="monthList"></i-list>
+        <i-control type="number" class="col2" ng-change="calcRemain(studentItem)" ng-model="studentItem.$price" label="##word.Paid##"></i-control>
+        <i-control type="number" disabled class="col2" ng-model="studentItem.$remain" label="##word.Remain##"></i-control>
+        <i-button type="push" class="col2" label="##word.Pay##" ng-click="addStudentPayment(studentItem)"></i-button>
+      </div>
+      <p class="error">{{error}}</p>
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table bold" id="t-students">
+            <tr>
+              <th>##word.Month##</th>
+              <th>##word.Total Paid##</th>
+              <th>##word.Remain##</th>
+              <th>##word.Payments List##</th>
+              <th>##word.Actions##</th>
+            </tr>
+            <tr ng-repeat="s in studentItem.paymentList">
+              <td class="center bold">{{s.month.name##session.lang##}}</td>
+              <td class="center bold">{{s.price}} ##word.$##</td>
+              <td class="center bold">{{s.remain}} ##word.$##</td>
+              <td class="center">
+                <div class="row" ng-show="s.remain > 0">
+                  <i-date class="col7" ng-model="s.$date" label="##word.Date##"></i-date>
+                  <i-control type="number" class="col3" ng-model="s.$price" label="##word.Paid##"></i-control>
+                  <i-button type="push" class="col2" label="##word.Pay##" ng-click="addSubPayment(s)"></i-button>
+                </div>
+                <table class="table hover bold">
+                  <tr>
+                    <th>##word.Date##</th>
+                    <th>##word.paid##</th>
+                    <th>##word.Actions##</th>
+                  </tr>
+                  <tr ng-repeat="p in s.paymentList">
+                    <td class="center">{{p.date | date : 'dd / MM / yyyy'}}</td>
+                    <td class="center">{{p.price}} ##word.$##</td>
+                    <td class="center">
+                      <i-button type="print" label="##word.Print##" ng-click="thermalPrint(s,p)"></i-button>
+                      <i-button type="delete" label="##word.Delete##" ng-click="calcPayments(studentItem);s.paymentList.splice($index,1)"></i-button>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td class="center">
+                <i-button type="delete" label="##word.Delete##" ng-click="studentItem.paymentList.splice($index,1)"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.Save##" onclick="site.hideModal( '#paymentsModal')"></i-button>
+    </div>
+  </div>
+</div>

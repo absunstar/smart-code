@@ -1,5 +1,6 @@
 app.controller("preparingGroups", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
+  $scope.setting = site.showObject(`##data.#setting##`);
   $scope.appName = "preparingGroups";
   $scope.modalID = "#preparingGroupsManageModal";
   $scope.modalSearchID = "#preparingGroupsSearchModal";
@@ -208,7 +209,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name: 1, educationalLevel: 1, schoolYear: 1, subject: 1, teacher: 1 },
+        select: { id: 1, name: 1, educationalLevel: 1, schoolYear: 1, subject: 1, teacher: 1, paymentMethod: 1, price: 1 },
       },
     }).then(
       function (response) {
@@ -346,6 +347,56 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     }
   };
 
+  if ($scope.setting && $scope.setting.logo) {
+    $scope.invoiceLogo = document.location.origin + $scope.setting.logo.url;
+  }
+
+  $scope.thermalPrint = function (obj) {
+    $scope.error = "";
+    if ($scope.busy) return;
+    $scope.busy = true;
+    if ($scope.setting.thermalPrinter) {
+      $("#thermalPrint").removeClass("hidden");
+      $scope.thermal = {
+        printDate: new Date(),
+        date: $scope.item.date,
+        groupName: $scope.item.group.name,
+        student: obj.student,
+        price: obj.price,
+        totalNet: obj.price,
+      };
+
+      let printer = $scope.setting.thermalPrinter;
+      if ("##user.thermalPrinter##" && "##user.thermalPrinter.id##" > 0) {
+        printer = JSON.parse("##user.thermalPrinter##");
+      }
+      $timeout(() => {
+        site.print({
+          selector: "#thermalPrint",
+          ip: printer.ipDevice,
+          port: printer.portDevice,
+          pageSize: "Letter",
+          printer: printer.ip.name.trim(),
+          dpi: { horizontal: 200, vertical: 600 },
+        });
+      }, 500);
+    } else {
+      $scope.error = "##word.Thermal Printer Must Select##";
+    }
+    $scope.busy = false;
+    $timeout(() => {
+      $("#thermalPrint").addClass("hidden");
+    }, 8000);
+  };
+  $scope.studentPAid = function (item, type) {
+    $scope.error = "";
+    if (type == "paid") {
+      item.price = $scope.item.group.price;
+      $scope.thermalPrint(item);
+    } else if (type == "unpaid") {
+      item.price = 0;
+    }
+  };
   $scope.searchAll = function () {
     $scope.error = "";
     $scope.getAll($scope.search);

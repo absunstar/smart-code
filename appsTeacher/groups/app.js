@@ -269,7 +269,6 @@ module.exports = function init(site) {
         };
         if (search) {
           where.$or = [];
-
           where.$or.push({
             id: site.get_RegExp(search, "i"),
           });

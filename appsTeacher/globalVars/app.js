@@ -16,6 +16,81 @@ module.exports = function init(site) {
       nameEn: "Delivered",
     },
   ];
+
+  site.monthList = [
+    {
+      code : 0,
+      name: "jan",
+      nameAr: "يناير",
+      nameEn: "Jan",
+    },
+    {
+      code : 1,
+      name: "feb",
+      nameAr: "فبراير",
+      nameEn: "Feb",
+    },
+    {
+      code : 2,
+      name: "mar",
+      nameAr: "مارس",
+      nameEn: "Mar",
+    },
+    {
+      code : 3,
+      name: "apr",
+      nameAr: "إبريل",
+      nameEn: "Apr",
+    },
+    {
+      code : 4,
+      name: "may",
+      nameAr: "مايو",
+      nameEn: "May",
+    },
+    {
+      code : 5,
+      name: "jun",
+      nameAr: "يونيو",
+      nameEn: "Jun",
+    },
+    {
+      code : 6,
+      name: "jul",
+      nameAr: "يوليو",
+      nameEn: "Jul",
+    },
+    {
+      code : 7,
+      name: "aug",
+      nameAr: "أغسطس",
+      nameEn: "Aug",
+    },
+    {
+      code : 8,
+      name: "sept",
+      nameAr: "سبتمبر",
+      nameEn: "Sept",
+    },
+    {
+      code : 9,
+      name: "oct",
+      nameAr: "أكتوبر",
+      nameEn: "Oct",
+    },
+    {
+      code : 10,
+      name: "nov",
+      nameAr: "نوفمبر",
+      nameEn: "Nov",
+    },
+    {
+      code : 11,
+      name: "dec",
+      nameAr: "ديسمبر",
+      nameEn: "Dec",
+    },
+  ];
   site.lecturesTypesList = [
     {
       name: "public",
@@ -108,26 +183,6 @@ module.exports = function init(site) {
     },
   ];
 
-  site.salesCategories = [
-    { id: 1, nameEn: "Direct", nameAr: "مباشرة", name: "direct" },
-    { id: 2, nameEn: "Delivery", nameAr: "توصيل", name: "delivery" },
-  ];
-
-  site.deliveryOrderStatus = [
-    {
-      id: 1,
-      nameEn: "Under Process",
-      nameAr: "قيد التجهيز",
-      name: "underProcess",
-    },
-    { id: 2, nameEn: "On The Way", nameAr: "في الطريق", name: "onTheWay" },
-  ];
-
-  site.employeesJobsTypesList = [
-    { nameEn: "Teacher", nameAr: "محامي", name: "teachers" },
-    { nameEn: "Employee", nameAr: "موظف", name: "employees" },
-  ];
-
   site.deliveryStatus = [
     { id: 1, nameEn: "New", nameAr: "جديد", name: "new" },
     { id: 2, nameEn: "Approved", nameAr: "معتمد", name: "approved" },
@@ -192,8 +247,13 @@ module.exports = function init(site) {
     { id: 2, nameEn: "Deferred Invoice", nameAr: "فاتورة آجل" },
   ];
 
+  site.groupPaymentMethodList = [
+    { name: "lecture", nameEn: "Lecture", nameAr: "محاضرة" },
+    { name: "monthly", nameEn: "Monthly", nameAr: "شهري" },
+  ];
+
   site.paymentMethodList = [
-    { name: "normal", nameEn: "Normal", nameAr: "عادي" },
+    { name: "lecture", nameEn: "Lecture", nameAr: "محاضرة" },
     { name: "monthly", nameEn: "Monthly", nameAr: "شهري" },
     { name: "reduced", nameEn: "Reduced", nameAr: "مخفض" },
     { name: "exempt", nameEn: "Exempt", nameAr: "معفى" },
@@ -519,13 +579,6 @@ module.exports = function init(site) {
     { id: 3, nameEn: "Year", nameAr: "سنة" },
   ];
 
-  site.scientificRanks = [
-    { id: 1, nameEn: "Consultant", nameAr: "إستشاري" },
-    { id: 2, nameEn: "Senior Specialist", nameAr: "أخصائي أول" },
-    { id: 3, nameEn: "Specialist", nameAr: "أخصائي" },
-    { id: 4, nameEn: "General Practitioner", nameAr: "ممارس عام" },
-  ];
-
   site.vouchersTypes = [
     {
       id: "generalSalesInvoice",
@@ -578,6 +631,20 @@ module.exports = function init(site) {
     res.json({
       done: true,
       list: site.notificationTypesList,
+    });
+  });
+
+  site.post("/api/monthList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.monthList,
+    });
+  });
+
+  site.post("/api/groupPaymentMethodList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.groupPaymentMethodList,
     });
   });
 
@@ -641,19 +708,6 @@ module.exports = function init(site) {
     });
   });
 
-  site.post("/api/deliveryOrderStatus", (req, res) => {
-    res.json({
-      done: true,
-      list: site.deliveryOrderStatus,
-    });
-  });
-
-  site.post("/api/scientificRanks", (req, res) => {
-    res.json({
-      done: true,
-      list: site.scientificRanks,
-    });
-  });
 
   site.post("/api/employeesJobsTypesList", (req, res) => {
     res.json({
@@ -730,20 +784,7 @@ module.exports = function init(site) {
       list: site.deliveryStatus,
     });
   });
-  site.post("/api/salesCategories", (req, res) => {
-    if (site.getCompanySetting(req).showRestaurant && site.salesCategories.length == 2) {
-      site.salesCategories.push({
-        id: 3,
-        nameEn: "Table",
-        nameAr: "طاولة",
-        name: "table",
-      });
-    }
-    res.json({
-      done: true,
-      list: site.salesCategories,
-    });
-  });
+
 
   site.post("/api/visitTypes", (req, res) => {
     res.json({

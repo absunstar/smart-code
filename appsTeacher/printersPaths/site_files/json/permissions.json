@@ -1,0 +1,11 @@
+[
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsManage" , "En":"Manage" , "Ar":"إدارة"},
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsAdd" , "En":"Add" , "Ar":"إضافة"},
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsUpdate" , "En":"Edit" , "Ar":"تعديل"},
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsDelete" , "En":"Delete" , "Ar":"حذف"},
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsView" , "En":"View" , "Ar":"عرض"},
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsSearch" , "En":"Search" , "Ar":"بحث"},
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsExport" , "En":"Export" , "Ar":"تصدير"},
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsPrint" , "En":"Print" , "Ar":"طباعة"},
+    { "moduleName" : "public" , "screenName" : "printersPaths" , "name":"printersPathsUi" , "En":"UI" , "Ar":"الواجهة الرسومية"}
+]

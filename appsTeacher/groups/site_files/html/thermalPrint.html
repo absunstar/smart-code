@@ -1,0 +1,50 @@
+<div class="hidden" id="thermalPrint" style="width: 100%; margin-top: 0%">
+  <div class="content page">
+    <div class="center" ng-show="invoiceLogo">
+      <img class="logoPrint" ng-src="{{invoiceLogo}}" />
+    </div>
+
+    <div class="row">
+      <div class="center col-12 border-1">
+        <span class="black font-20 bold">الطالب : {{thermal.student.firstName}}</span>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="center col-12">
+        <span class="black col-3 font-15">Date :</span>
+        <span class="col-6 font-16 bold"> {{thermal.printDate |date:"dd / MM / yyyy" }} </span>
+        <span class="black col-3 font-15">: التاريخ</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="center col-12">
+        <span class="black col-3 font-15">Time :</span>
+        <span class="col-6 font-16 bold"> {{thermal.printDate |date:"hh : mm a" }} </span>
+        <span class="black col-3 font-15">: الوقت</span>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row border-1">
+      <div class="col-1"></div>
+
+      <div class="col-4 font-18 black">
+        <p class="font-18 black">##word.Group Name##</p>
+        <p class="font-18 black">##word.Date##</p>
+        <p class="font-18 black" ng-show="thermal.month">##word.Month##</p>
+        <p class="font-18 black">##word.Paid##</p>
+        <p class="font-18 black" ng-show="thermal.remain >= 0">##word.Remain##</p>
+      </div>
+      <div class="col-7 bold">
+        <p class="font-18 black">{{thermal.groupName}}</p>
+        <p class="font-18 black">{{thermal.date | date:"dd / MM / yyyy"}}</p>
+        <p class="font-18 black" ng-show="thermal.month">{{thermal.month.name##session.lang##}}</p>
+        <p class="font-18 black">{{thermal.price}} ##word.$##</p>
+        <p class="font-18 black" ng-show="thermal.remain >= 0">{{thermal.remain}} ##word.$##</p>
+      </div>
+    </div>
+  </div>
+</div>

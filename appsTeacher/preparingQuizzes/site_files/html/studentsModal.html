@@ -43,10 +43,8 @@
               <th>##word.Barcode##</th>
               <th>##word.Mobile##</th>
               <th>##word.Parent Mobile##</th>
-              <th>##word.Status##</th>
-              <th class="w200">##word.Degree##</th>
               <th>##word.Attendance##</th>
-              <th>##word.Departure##</th>
+              <th class="w200">##word.Degree##</th>
               <th class="not-print">##word.Actions##</th>
             </tr>
             <tr ng-repeat="s in item.studentList | filter:$search">
@@ -65,14 +63,13 @@
                 </a>
               </td>
               <td class="center">
-                <span class="text-success" ng-show="s.attend">##word.Attended##</span>
-                <span class="text-danger" ng-show="s.attend == false">##word.Absence##</span>
+                <p class="green">{{s.attendDate | date : 'mm : hh '}}</p>
+                <p class="red">{{s.departureDate | date : 'mm : hh '}}</p>
+                <p class="text-danger" ng-show="s.attend == false">##word.Absence##</p>
               </td>
               <td class="center">
                 <i-control ng-show="s.attend" ng-model="s.degree" type="number"></i-control>
               </td>
-              <td class="center">{{s.attendDate | date : 'mm : hh '}}</td>
-              <td class="center">{{s.departureDate | date : 'mm : hh '}}</td>
               <td class="center not-print">
                 <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend');numberAbsencesAttendance()"></i-button>
                 <i-button ng-show="s.attend && !s.departureDate" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>

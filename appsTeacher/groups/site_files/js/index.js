@@ -1,5 +1,6 @@
 app.controller("groups", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
+  $scope.setting = site.showObject(`##data.#setting##`);
   $scope.appName = "groups";
   $scope.modalID = "#groupsManageModal";
   $scope.modalSearchID = "#groupsSearchModal";
@@ -314,6 +315,49 @@ app.controller("groups", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getGroupPaymentMethodList = function () {
+    $scope.busy = true;
+    $scope.groupPaymentMethodList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/groupPaymentMethodList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.groupPaymentMethodList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getMonthList = function () {
+    $scope.busy = true;
+    $scope.monthList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/monthList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.monthList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
   $scope.getEducationalLevelsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -436,7 +480,6 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $scope.error = "";
     $scope.item.subject = { ...$scope.item.teacher.subject };
     delete $scope.item.teacher.subject;
-    
   };
 
   $scope.pushSpceficIndex = function (index) {
@@ -449,15 +492,137 @@ app.controller("groups", function ($scope, $http, $timeout) {
     site.showModal($scope.modalSearchID);
   };
 
+  $scope.thermalPrint = function (obj,subObj) {
+    $scope.error = "";
+    if ($scope.busy) return;
+    $scope.busy = true;
+    if ($scope.setting.thermalPrinter) {
+      $("#thermalPrint").removeClass("hidden");
+      $scope.thermal = {
+        printDate: new Date(),
+        date: subObj.date,
+        month: obj.month,
+        groupName: $scope.item.name,
+        student: $scope.studentItem.student,
+        price: subObj.price,
+        remain: obj.remain,
+        totalNet: obj.price,
+      };
+
+      let printer = $scope.setting.thermalPrinter;
+      if ("##user.thermalPrinter##" && "##user.thermalPrinter.id##" > 0) {
+        printer = JSON.parse("##user.thermalPrinter##");
+      }
+      $timeout(() => {
+        site.print({
+          selector: "#thermalPrint",
+          ip: printer.ipDevice,
+          port: printer.portDevice,
+          pageSize: "Letter",
+          printer: printer.ip.name.trim(),
+          dpi: { horizontal: 200, vertical: 600 },
+        });
+      }, 500);
+    } else {
+      $scope.error = "##word.Thermal Printer Must Select##";
+    }
+    $scope.busy = false;
+    $timeout(() => {
+      $("#thermalPrint").addClass("hidden");
+    }, 8000);
+  };
+
+  $scope.showStudentPayments = function (item) {
+    $scope.error = "";
+    $scope.studentItem = item;
+    $scope.studentItem.$date = new Date();
+    let index = $scope.monthList.findIndex((itm) => itm.code == $scope.studentItem.$date.getMonth());
+    if (index !== -1) {
+      $scope.studentItem.$month = $scope.monthList[index];
+    }
+    site.showModal("#paymentsModal");
+  };
+
+  $scope.changePaymentMonth = function (item) {
+    $scope.error = "";
+    item.$date = new Date(item.$date);
+    let index = $scope.monthList.findIndex((itm) => itm.code == item.$date.getMonth());
+    if (index !== -1) {
+      item.$month = $scope.monthList[index];
+    }
+  };
+
+  $scope.addStudentPayment = function (item) {
+    $scope.error = "";
+
+    item.paymentList = item.paymentList || [];
+    if (item.$date && item.$month && item.$month.name && item.$price > 0 && $scope.item.price >= item.$price) {
+      if (item.paymentList.some((p) => p.month.name == item.$month.name)) {
+        $scope.error = "##word.This Month Is Exist##";
+        return;
+      }
+      item.paymentList.unshift({ price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: item.$date, price: item.$price }] });
+      delete item.$price;
+      delete item.$month;
+      delete item.$remain;
+      item.$date = new Date();
+    } else {
+      $scope.error = "##word.Data must be correct completed##";
+    }
+  };
+  $scope.addSubPayment = function (item) {
+    if (item.$date && item.$price) {
+      if (item.$price > item.remain) {
+        $scope.error = "##word.The payment cannot be greater than the remaining amount##";
+        return;
+      }
+      item.paymentList.unshift({ date: item.$date, price: item.$price });
+      $scope.calcPayments(item);
+      delete item.$price;
+    } else {
+      $scope.error = "##word.Data must be correct completed##";
+    }
+  };
+
+  $scope.calcPayments = function (item) {
+    $scope.error = "";
+    $timeout(() => {
+      item.paymentList = item.paymentList || [];
+      item.price = 0;
+      item.paymentList.forEach((_item) => {
+        console.log(_item);
+
+        item.price += _item.price;
+      });
+      item.remain = $scope.item.price - item.price;
+    }, 300);
+  };
+
+  $scope.calcRemain = function (item) {
+    $scope.error = "";
+    $timeout(() => {
+      if (item.$price > $scope.item.price) {
+        return;
+      }
+      item.$remain = $scope.item.price - item.$price;
+    }, 300);
+  };
+
   $scope.searchAll = function () {
     $scope.getAll($scope.search);
     site.hideModal($scope.modalSearchID);
     $scope.search = {};
   };
 
+  if ($scope.setting && $scope.setting.logo) {
+    $scope.invoiceLogo = document.location.origin + $scope.setting.logo.url;
+  }
+
   $scope.getAll();
   $scope.getSubjectsList();
   $scope.getWeekDaysList();
   $scope.getEducationalLevelsList();
+  $scope.getGroupPaymentMethodList();
+  $scope.getMonthList();
   $scope.getTeachersList();
 });
