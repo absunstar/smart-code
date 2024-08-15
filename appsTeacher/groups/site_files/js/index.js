@@ -492,7 +492,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     site.showModal($scope.modalSearchID);
   };
 
-  $scope.thermalPrint = function (obj,subObj) {
+  $scope.thermalPrint = function (obj, subObj) {
     $scope.error = "";
     if ($scope.busy) return;
     $scope.busy = true;
@@ -608,7 +608,20 @@ app.controller("groups", function ($scope, $http, $timeout) {
     }, 300);
   };
 
+  $scope.exceptionRemain = function (item, option) {
+    $scope.error = "";
+    if (option == true) {
+      item.remain = 0;
+      item.exception = true;
+    } else if (option == false) {
+      item.remain = $scope.item.price - item.price;
+
+      item.exception = false;
+    }
+  };
+
   $scope.searchAll = function () {
+    $scope.error = "";
     $scope.getAll($scope.search);
     site.hideModal($scope.modalSearchID);
     $scope.search = {};

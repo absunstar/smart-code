@@ -8,7 +8,7 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
 
   $scope.siteSetting = site.showObject("##data.#setting##");
   console.log($scope.siteSetting.id);
-  
+
   $scope.siteTemplateList = site.showObject("##data.#templateList##");
   $scope.publishingSystemList = site.showObject("##data.#publishingSystem##");
   $scope.closingSystemList = site.showObject("##data.#closingSystem##");
@@ -80,7 +80,6 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.teachersList = response.data.list;
-          
         }
       },
       function (err) {
@@ -88,14 +87,14 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
-  }; 
+  };
 
   $scope.getPrintersPaths = function () {
     $scope.busy = true;
     $scope.printersPathsList = [];
     $http({
-      method: 'POST',
-      url: '/api/printersPaths/all',
+      method: "POST",
+      url: "/api/printersPaths/all",
       data: {
         where: { active: true },
         select: {
@@ -119,6 +118,15 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+  $scope.addInvoiceHeader = function () {
+    $scope.siteSetting.invoiceHeader = $scope.siteSetting.invoiceHeader || [];
+    $scope.siteSetting.invoiceHeader.unshift({});
+  };
+  
+  $scope.addInvoiceFooter = function () {
+    $scope.siteSetting.invoiceFooter = $scope.siteSetting.invoiceFooter || [];
+    $scope.siteSetting.invoiceFooter.unshift({});
   };
 
 
