@@ -11,9 +11,9 @@
     <div class="modal-body">
       <div class="row">
         <div class="col5">
-          <i-button type="search" label="##word.All##" ng-click="$search = ''"></i-button>
-          <i-button type="search" label="##word.Attendance##" ng-click="$search = 'true'"></i-button>
-          <i-button type="search" label="##word.Absences##" ng-click="$search = 'false'"></i-button>
+          <i-button type="search" label="##word.All##" ng-click="$search = ''; $search2 = ''"></i-button>
+          <i-button type="search" label="##word.Attendance##" ng-click="$search2 = 'true'"></i-button>
+          <i-button type="search" label="##word.Absences##" ng-click="$search2 = 'false'"></i-button>
         </div>
         <div class="table-responsive col6">
           <table class="table hover bold" id="t-students">
@@ -32,7 +32,7 @@
       </div>
 
       <div class="row">
-        <i-control type="text"  ng-keydown="attendStudent($search,$event)" ng-model="$search" label="##word.Student Search##"></i-control>
+        <i-control type="text" ng-keydown="attendStudent($search,$event)" ng-model="$search" label="##word.Student Search##"></i-control>
       </div>
       <p class="error">{{error}}</p>
       <div class="row">
@@ -47,8 +47,8 @@
               <th class="w200">##word.Degree##</th>
               <th class="not-print">##word.Actions##</th>
             </tr>
-            <tr ng-repeat="s in item.studentList | filter:$search">
-              <td class="center">{{s.student.firstName}}</td>
+            <tr ng-repeat="s in item.studentList | filter:$search | filter:$search2">
+              <td class="center" ng-class="{'bg-yellow' : s.new === true}">{{s.student.firstName}}</td>
               <td class="center userPrint">{{s.student.barcode}}</td>
               <td class="center">
                 <a target="_blank" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
@@ -74,6 +74,7 @@
                 <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend');numberAbsencesAttendance()"></i-button>
                 <i-button ng-show="s.attend && !s.departureDate" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>
                 <i-button type="close" ng-hide="s.attend == false && s.departureDate" label="##word.Absence##" ng-click="setAttendance(s,'absence');numberAbsencesAttendance()"></i-button>
+                <i-button type="delete" label="##word.Delete##" ng-show="s.new == true" ng-click="item.studentList.splice($index,1)"></i-button>
               </td>
             </tr>
           </table>

@@ -37,7 +37,7 @@
               <td class="center bold">{{s.month.name##session.lang##}}</td>
               <td class="center bold">{{s.price}} ##word.$##</td>
               <td class="center bold">
-                {{s.remain}} ##word.$##
+                <p>{{s.remain}} ##word.$##</p>
                 <i-button type="save" ng-show="s.remain > 0" label="##word.Exception##" ng-click="exceptionRemain(s,true)"></i-button>
                 <i-button type="exit" ng-show="s.exception" title="##word.Cancel Exception##" ng-click="exceptionRemain(s,false)"></i-button>
               </td>

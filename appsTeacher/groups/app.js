@@ -338,6 +338,11 @@ module.exports = function init(site) {
             }
             result.date = date;
           }
+          if (_data.type == "validDay" && doc.paymentMethod.name == "lecture") {
+
+            doc.studentList = doc.studentList.map((obj) => ({ ...obj, paidType: "notPaid" }));
+          }
+
           result.studentList = doc.studentList;
           response.doc = result;
           res.json(response);

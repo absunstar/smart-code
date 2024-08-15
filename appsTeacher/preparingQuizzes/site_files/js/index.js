@@ -321,20 +321,63 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
     $scope.error = "";
     $scope.item.attendanceCount = $scope.item.studentList.filter((s) => s.attend).length;
     $scope.item.absenceCount = $scope.item.studentList.filter((s) => !s.attend).length;
+    $scope.$applyAsync();
+
   };
 
   $scope.attendStudent = function (search, ev) {
     $scope.error = "";
     if (ev.which == 13) {
+      if ($scope.busyAttend) {
+        return;
+      }
+      $scope.busyAttend = true;
       let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
-      if (index !== -1 && !$scope.item.studentList[index].attend) {
-        $scope.item.studentList[index].attendDate = new Date();
-        $scope.item.studentList[index].attend = true;
-        $scope.numberAbsencesAttendance();
+      if (index !== -1) {
+        if (!$scope.item.studentList[index].attend) {
+          $scope.item.studentList[index].attendDate = new Date();
+          $scope.item.studentList[index].attend = true;
+          $scope.numberAbsencesAttendance();
+        }
+        $scope.busyAttend = false;
+      } else {
+        $http({
+          method: "POST",
+          url: "/api/manageUsers/all",
+          data: {
+            where: {
+              type: "student",
+              barcode: search,
+              "educationalLevel.id": $scope.item.educationalLevel.id,
+              "schoolYear.id": $scope.item.schoolYear.id,
+              active: true,
+            },
+            select: { id: 1, firstName: 1, barcode: 1, mobile: 1, parentMobile: 1 },
+          },
+        }).then(
+          function (response) {
+            $scope.busyAttend = false;
+            if (response.data.done && response.data.list.length > 0) {
+              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
+                let stu = { student: response.data.list[0], attend: true,attendDate : new Date(), new: true };
+                $scope.item.studentList.push(stu);
+                $scope.numberAbsencesAttendance();
+              } else {
+                $scope.error = "##word.Student Exist##";
+              }
+            } else {
+              $scope.error = "##word.Not Found##";
+            }
+            $scope.item.$studentSearch = "";
+          },
+          function (err) {
+            $scope.busyAttend = false;
+            $scope.error = err;
+          }
+        );
       }
     }
   };
-
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);

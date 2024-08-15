@@ -297,6 +297,12 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.getStudentPaid = function () {
+    if ($scope.item.group.paymentMethod && $scope.item.group.paymentMethod.name == "lecture") {
+      $scope.item.paidCount = $scope.item.studentList.filter((s) => s.paidType == "donePaid").length;
+      $scope.item.notPaidCount = $scope.item.studentList.filter((s) => s.paidType == "notPaid").length;
+    }
+  };
 
   $scope.setAttendance = function (item, type) {
     $scope.error = "";
@@ -333,16 +339,63 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     $scope.error = "";
     $scope.item.attendanceCount = $scope.item.studentList.filter((s) => s.attend).length;
     $scope.item.absenceCount = $scope.item.studentList.filter((s) => !s.attend).length;
+    $scope.$applyAsync();
+
   };
 
   $scope.attendStudent = function (search, ev) {
     $scope.error = "";
     if (ev.which == 13) {
+      if ($scope.busyAttend) {
+        return;
+      }
+      $scope.busyAttend = true;
       let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
-      if (index !== -1 && !$scope.item.studentList[index].attend) {
-        $scope.item.studentList[index].attendDate = new Date();
-        $scope.item.studentList[index].attend = true;
-        $scope.numberAbsencesAttendance();
+      if (index !== -1) {
+        if (!$scope.item.studentList[index].attend) {
+          $scope.item.studentList[index].attendDate = new Date();
+          $scope.item.studentList[index].attend = true;
+          $scope.numberAbsencesAttendance();
+        }
+        $scope.busyAttend = false;
+      } else {
+        $http({
+          method: "POST",
+          url: "/api/manageUsers/all",
+          data: {
+            where: {
+              type: "student",
+              barcode: search,
+              "educationalLevel.id": $scope.item.educationalLevel.id,
+              "schoolYear.id": $scope.item.schoolYear.id,
+              active: true,
+            },
+            select: { id: 1, firstName: 1, barcode: 1, mobile: 1, parentMobile: 1 },
+          },
+        }).then(
+          function (response) {
+            $scope.busyAttend = false;
+            if (response.data.done && response.data.list.length > 0) {
+              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
+                let stu = { student: response.data.list[0], attend: true,attendDate : new Date(), new: true };
+                if ($scope.item.group.paymentMethod && $scope.item.group.paymentMethod.name == "lecture") {
+                  stu.paidType = "notPaid";
+                }
+                $scope.item.studentList.push(stu);
+                $scope.numberAbsencesAttendance();
+              } else {
+                $scope.error = "##word.Student Exist##";
+              }
+            } else {
+              $scope.error = "##word.Not Found##";
+            }
+            $scope.item.$studentSearch = "";
+          },
+          function (err) {
+            $scope.busyAttend = false;
+            $scope.error = err;
+          }
+        );
       }
     }
   };
@@ -388,13 +441,15 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       $("#thermalPrint").addClass("hidden");
     }, 8000);
   };
-  $scope.studentPAid = function (item, type) {
+  $scope.studentPaid = function (item, type) {
     $scope.error = "";
-    if (type == "paid") {
+    if (type == "donePaid") {
       item.price = $scope.item.group.price;
+      item.paidType = type;
       $scope.thermalPrint(item);
-    } else if (type == "unpaid") {
+    } else if (type == "notPaid") {
       item.price = 0;
+      item.paidType = type;
     }
   };
   $scope.searchAll = function () {

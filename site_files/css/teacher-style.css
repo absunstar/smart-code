@@ -192,7 +192,9 @@ legend {
   padding: 2px;
   border-radius: 50%;
 }
-
+.bg-yellow {
+  background: yellow !important;
+}
 .cart-number {
   color: var(--theme-color);
   font-size: 20px;
