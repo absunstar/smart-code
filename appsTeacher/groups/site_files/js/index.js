@@ -556,7 +556,11 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $scope.error = "";
 
     item.paymentList = item.paymentList || [];
-    if (item.$date && item.$month && item.$month.name && item.$price > 0 && $scope.item.price >= item.$price) {
+    if (item.$price > $scope.studentItem.requiredPayment) {
+      $scope.error = "##word.The amount paid is greater than what was required to be paid##";
+      return;
+    }
+    if (item.$date && item.$month && item.$month.name && item.$price > 0) {
       if (item.paymentList.some((p) => p.month.name == item.$month.name)) {
         $scope.error = "##word.This Month Is Exist##";
         return;
@@ -590,21 +594,35 @@ app.controller("groups", function ($scope, $http, $timeout) {
       item.paymentList = item.paymentList || [];
       item.price = 0;
       item.paymentList.forEach((_item) => {
-        console.log(_item);
-
         item.price += _item.price;
       });
-      item.remain = $scope.item.price - item.price;
+      item.remain = $scope.studentItem.requiredPayment - item.price;
     }, 300);
   };
-
+  $scope.calcRequiredPayment = function (item) {
+    $scope.error = "";
+    $timeout(() => {
+      item.discountValue = ($scope.item.price * item.discount) / 100;
+      item.requiredPayment = $scope.item.price - item.discountValue;
+    }, 300);
+  };
+  $scope.exemptPayment = function (item, option) {
+    if (option == true) {
+      item.requiredPayment = 0;
+      item.discount = 100;
+    } else if (option == false) {
+      item.requiredPayment = $scope.item.price;
+      item.discount = 0;
+    }
+    item.exempt = option;
+  };
   $scope.calcRemain = function (item) {
     $scope.error = "";
     $timeout(() => {
-      if (item.$price > $scope.item.price) {
+      if (item.$price > item.requiredPayment) {
         return;
       }
-      item.$remain = $scope.item.price - item.$price;
+      item.$remain = item.requiredPayment - item.$price;
     }, 300);
   };
 
@@ -614,7 +632,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
       item.remain = 0;
       item.exception = true;
     } else if (option == false) {
-      item.remain = $scope.item.price - item.price;
+      item.remain = $scope.studentItem.requiredPayment - item.price;
 
       item.exception = false;
     }

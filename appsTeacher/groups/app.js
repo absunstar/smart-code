@@ -339,7 +339,6 @@ module.exports = function init(site) {
             result.date = date;
           }
           if (_data.type == "validDay" && doc.paymentMethod.name == "lecture") {
-
             doc.studentList = doc.studentList.map((obj) => ({ ...obj, paidType: "notPaid" }));
           }
 
@@ -397,7 +396,12 @@ module.exports = function init(site) {
       }
     });
   };
-
+  site.getGroup = function (where, callBack) {    
+    callBack = callBack || function () {};
+    app.$collection.find(where, (err, doc) => {
+      callBack(err, doc);
+    });
+  };
   app.init();
   site.addApp(app);
 };

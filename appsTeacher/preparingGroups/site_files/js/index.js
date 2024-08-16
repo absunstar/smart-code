@@ -303,7 +303,6 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       $scope.item.notPaidCount = $scope.item.studentList.filter((s) => s.paidType == "notPaid").length;
     }
   };
-
   $scope.setAttendance = function (item, type) {
     $scope.error = "";
     if (type == "attend") {
@@ -337,10 +336,10 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
 
   $scope.numberAbsencesAttendance = function () {
     $scope.error = "";
+    
     $scope.item.attendanceCount = $scope.item.studentList.filter((s) => s.attend).length;
     $scope.item.absenceCount = $scope.item.studentList.filter((s) => !s.attend).length;
     $scope.$applyAsync();
-
   };
 
   $scope.attendStudent = function (search, ev) {
@@ -361,7 +360,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       } else {
         $http({
           method: "POST",
-          url: "/api/manageUsers/all",
+          url: "/api/manageUsers/toDifferentGroup",
           data: {
             where: {
               type: "student",
@@ -370,24 +369,35 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
               "schoolYear.id": $scope.item.schoolYear.id,
               active: true,
             },
-            select: { id: 1, firstName: 1, barcode: 1, mobile: 1, parentMobile: 1 },
+            subjectId: $scope.item.subject.id,
           },
         }).then(
           function (response) {
             $scope.busyAttend = false;
-            if (response.data.done && response.data.list.length > 0) {
-              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
-                let stu = { student: response.data.list[0], attend: true,attendDate : new Date(), new: true };
+            if (response.data.done && response.data.doc) {
+              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {                
+                let stu = {
+                  student: response.data.doc.student,
+                  group: response.data.doc.group,
+                  discount: response.data.doc.discount,
+                  discountValue: response.data.doc.discountValue,
+                  requiredPayment: response.data.doc.requiredPayment,
+                  exempt: response.data.doc.exempt,
+                  attend: true,
+                  attendDate: new Date(),
+                  new: true,
+                };
                 if ($scope.item.group.paymentMethod && $scope.item.group.paymentMethod.name == "lecture") {
                   stu.paidType = "notPaid";
                 }
-                $scope.item.studentList.push(stu);
+                $scope.item.studentList.unshift(stu);
                 $scope.numberAbsencesAttendance();
+                $scope.getStudentPaid();
               } else {
                 $scope.error = "##word.Student Exist##";
               }
             } else {
-              $scope.error = "##word.Not Found##";
+              $scope.error = response.data.error || "##word.Not Found##";
             }
             $scope.item.$studentSearch = "";
           },
@@ -415,8 +425,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
         date: $scope.item.date,
         groupName: $scope.item.group.name,
         student: obj.student,
-        price: obj.price,
-        totalNet: obj.price,
+        price: obj.requiredPayment,
       };
 
       let printer = $scope.setting.thermalPrinter;

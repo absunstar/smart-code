@@ -343,7 +343,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       } else {
         $http({
           method: "POST",
-          url: "/api/manageUsers/all",
+          url: "/api/manageUsers/toDifferentGroup",
           data: {
             where: {
               type: "student",
@@ -352,15 +352,15 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
               "schoolYear.id": $scope.item.schoolYear.id,
               active: true,
             },
-            select: { id: 1, firstName: 1, barcode: 1, mobile: 1, parentMobile: 1 },
+            subjectId : $scope.item.subject.id
           },
         }).then(
           function (response) {
             $scope.busyAttend = false;
-            if (response.data.done && response.data.list.length > 0) {
-              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
-                let stu = { student: response.data.list[0], attend: true,attendDate : new Date(), new: true };
-                $scope.item.studentList.push(stu);
+            if (response.data.done && response.data.doc) {
+              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {
+                let stu = { student: response.data.doc.student, group: response.data.doc.group, attend: true, attendDate: new Date(), new: true };
+                $scope.item.studentList.unshift(stu);
                 $scope.numberAbsencesAttendance();
               } else {
                 $scope.error = "##word.Student Exist##";

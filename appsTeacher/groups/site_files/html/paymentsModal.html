@@ -10,20 +10,54 @@
 
     <div class="modal-body">
       <div class="row">
-        <h2 class="col3 center border-1 bold padding">
-          <p>##word.Amount Required##</p>
-          {{item.price}} ##word.$##
-        </h2>
+        <div class="person-cart">
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{item.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.subject.name}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Teacher## : </span> {{item.teacher.firstName}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{item.teacher.mobile}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.educationalLevel.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.schoolYear.name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Payment Method## : </span> {{item.paymentMethod.name##session.lang##}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Price## : </span> {{item.price}} ##word.$##</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <i-date class="col4" ng-click="changePaymentMonth(studentItem)" ng-model="studentItem.$date" label="##word.Date##"></i-date>
+      <div class="row" ng-show="studentItem.requiredPayment > 0">
+        <i-date class="col3" ng-click="changePaymentMonth(studentItem)" ng-model="studentItem.$date" label="##word.Date##"></i-date>
         <i-list label="##word.Month##" ng-model="studentItem.$month" class="col2" display="name##session.lang##" items="monthList"></i-list>
-        <i-control type="number" class="col2" ng-change="calcRemain(studentItem)" ng-model="studentItem.$price" label="##word.Paid##"></i-control>
-        <i-control type="number" disabled class="col2" ng-model="studentItem.$remain" label="##word.Remain##"></i-control>
-        <i-button type="push" class="col2" label="##word.Pay##" ng-click="addStudentPayment(studentItem)"></i-button>
+        <i-control type="number" disabled class="col2" ng-model="studentItem.requiredPayment" label="##word.Required payment## ##word.$##"></i-control>
+        <i-control type="number" class="col2" ng-change="calcRemain(studentItem)" ng-model="studentItem.$price" label="##word.Paid## ##word.$##"></i-control>
+        <i-control type="number" disabled class="col1" ng-model="studentItem.discount" label="##word.Discount## %"></i-control>
+        <i-control type="number" disabled class="col1" ng-model="studentItem.$remain" label="##word.Remain## ##word.$##"></i-control>
+        <i-button type="push" class="col1" label="##word.Pay##" ng-click="addStudentPayment(studentItem)"></i-button>
       </div>
       <p class="error">{{error}}</p>
-      <div class="row">
+      <div class="row" ng-show="studentItem.paymentList.length > 0">
         <div class="table-responsive">
           <table class="table bold" id="t-students">
             <tr>
@@ -58,7 +92,7 @@
                     <td class="center">{{p.price}} ##word.$##</td>
                     <td class="center">
                       <i-button type="print" label="##word.Print##" ng-click="thermalPrint(s,p)"></i-button>
-                      <i-button type="delete" label="##word.Delete##" ng-click="calcPayments(studentItem);s.paymentList.splice($index,1)"></i-button>
+                      <i-button type="delete" label="##word.Delete##" ng-click="s.paymentList.splice($index,1);calcPayments(s)"></i-button>
                     </td>
                   </tr>
                 </table>

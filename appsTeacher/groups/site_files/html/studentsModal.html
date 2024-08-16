@@ -10,6 +10,44 @@
 
     <div class="modal-body">
       <div class="row">
+        <div class="person-cart">
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{item.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.subject.name}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Teacher## : </span> {{item.teacher.firstName}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{item.teacher.mobile}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.educationalLevel.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.schoolYear.name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Payment Method## : </span> {{item.paymentMethod.name##session.lang##}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Price## : </span> {{item.price}} ##word.$##</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <i-control type="text" class="col9" ng-model="item.$studentSearch" ng-keydown="getStudent($event,item.$studentSearch)" label="##word.Student Search##"></i-control>
         <i-button type="search" class="col3" label="##word.Search##" ng-click="getStudent({which : 13},item.$studentSearch)"></i-button>
       </div>
@@ -22,6 +60,7 @@
               <th>##word.Barcode##</th>
               <th>##word.Mobile##</th>
               <th>##word.Parent Mobile##</th>
+              <th class="w150">##word.Discount## %</th>
               <th class="not-print">##word.Actions##</th>
             </tr>
             <tr ng-repeat="s in item.studentList | filter:$search">
@@ -39,8 +78,11 @@
                   {{s.student.parentMobile}}
                 </a>
               </td>
-           
-
+              <td class="center">
+                <i-control type="number" ng-hide="s.exempt" ng-change="calcRequiredPayment(s)" ng-model="s.discount"></i-control>
+                <i-button type="save" ng-show="!s.exempt" label="##word.Exempt##" ng-click="exemptPayment(s,true)"></i-button>
+                <i-button type="exit" ng-show="s.exempt" title="##word.Cancel Exempt##" ng-click="exemptPayment(s,false)"></i-button>
+              </td>
               <td class="center not-print">
                 <i-button type="view" label="##word.Payments##" ng-show="item.paymentMethod.name == 'monthly'" ng-click="showStudentPayments(s)"></i-button>
                 <i-button type="delete" label="##word.Delete##" ng-click="item.studentList.splice($index,1)"></i-button>
@@ -52,7 +94,6 @@
     </div>
 
     <div class="modal-footer center">
-
       <i-button type="save" label="##word.Save##" onclick="site.hideModal( '#studentsModal')"></i-button>
     </div>
   </div>

@@ -13,7 +13,7 @@
         <div class="person-cart">
           <div class="row">
             <div class="col7">
-              <p class="bold"><span class="darkGray">##word.Name## : </span> {{item.group.name}}</p>
+              <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{item.group.name}}</p>
             </div>
             <div class="col5">
               <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.subject.name}}</p>
@@ -101,7 +101,10 @@
               <th class="not-print">##word.Actions##</th>
             </tr>
             <tr ng-repeat="s in item.studentList | filter:$search | filter:$search2">
-              <td class="center" ng-class="{'bg-yellow' : s.new === true}">{{s.student.firstName}}</td>
+              <td class="center" ng-class="{'bg-yellow' : s.new === true}">
+                {{s.student.firstName}}
+                <p ng-show="s.new">( {{s.group.name}} )</p>
+              </td>
               <td class="center userPrint">{{s.student.barcode}}</td>
               <td class="center">
                 <a target="_blank" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
@@ -121,7 +124,9 @@
                 <p class="text-danger" ng-show="s.attend == false">##word.Absence##</p>
               </td>
               <td class="center" ng-show="item.group.paymentMethod.name == 'lecture'">
-                <i-button type="save" ng-show="s.paidType == 'notPaid' && s.attend" label="##word.Paid##" ng-click="studentPaid(s,'donePaid');getStudentPaid()"></i-button>
+                <p ng-show="s.requiredPayment > 0">{{s.requiredPayment}} ##word.$##</p>
+                <p ng-show="s.exempt">##word.Exempt## </p>
+                <i-button type="save" ng-show="s.paidType == 'notPaid' && s.attend && !s.exempt" label="##word.Paid##" ng-click="studentPaid(s,'donePaid');getStudentPaid()"></i-button>
                 <i-button type="print" ng-show="s.paidType == 'donePaid'" label="##word.Print##" ng-click="thermalPrint(s)"></i-button>
                 <i-button type="close" ng-show="s.paidType == 'donePaid'" title="##word.Cancel Paid##" ng-click="studentPaid(s,'notPaid');getStudentPaid()"></i-button>
               </td>
@@ -132,7 +137,7 @@
                 <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend');numberAbsencesAttendance()"></i-button>
                 <i-button ng-show="s.attend && !s.departureDate" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>
                 <i-button type="close" ng-hide="s.attend == false && s.departureDate" label="##word.Absence##" ng-click="setAttendance(s,'absence');numberAbsencesAttendance()"></i-button>
-                <i-button type="delete" label="##word.Delete##" ng-show="s.new == true" ng-click="item.studentList.splice($index,1)"></i-button>
+                <i-button type="delete" label="##word.Delete##" ng-show="s.new == true" ng-click="item.studentList.splice($index,1);numberAbsencesAttendance();getStudentPaid()"></i-button>
               </td>
             </tr>
           </table>

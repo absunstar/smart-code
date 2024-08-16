@@ -9,6 +9,34 @@
     </div>
 
     <div class="modal-body">
+      <div class="row" ng-show="item.group.id">
+        <div class="person-cart">
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{item.group.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.subject.name}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Teacher## : </span> {{item.teacher.firstName}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{item.teacher.mobile}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.educationalLevel.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.schoolYear.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col5">
           <i-button type="search" label="##word.All##" ng-click="$search = ''; $search2 = ''"></i-button>
@@ -48,7 +76,10 @@
               <th class="not-print">##word.Actions##</th>
             </tr>
             <tr ng-repeat="s in item.studentList | filter:$search | filter:$search2">
-              <td class="center" ng-class="{'bg-yellow' : s.new === true}">{{s.student.firstName}}</td>
+              <td class="center" ng-class="{'bg-yellow' : s.new === true}">
+                {{s.student.firstName}}
+                <p ng-show="s.new">( {{s.group.name}} )</p>
+              </td>
               <td class="center userPrint">{{s.student.barcode}}</td>
               <td class="center">
                 <a target="_blank" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
@@ -74,7 +105,7 @@
                 <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend');numberAbsencesAttendance()"></i-button>
                 <i-button ng-show="s.attend && !s.departureDate" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>
                 <i-button type="close" ng-hide="s.attend == false && s.departureDate" label="##word.Absence##" ng-click="setAttendance(s,'absence');numberAbsencesAttendance()"></i-button>
-                <i-button type="delete" label="##word.Delete##" ng-show="s.new == true" ng-click="item.studentList.splice($index,1)"></i-button>
+                <i-button type="delete" label="##word.Delete##" ng-show="s.new == true" ng-click="item.studentList.splice($index,1);numberAbsencesAttendance()"></i-button>
               </td>
             </tr>
           </table>

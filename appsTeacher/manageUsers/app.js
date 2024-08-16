@@ -477,7 +477,7 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-        
+
         app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({
             done: true,
@@ -487,6 +487,51 @@ module.exports = function init(site) {
         });
       });
     }
+    site.post({ name: `/api/${app.name}/toDifferentGroup`, public: true }, (req, res) => {
+      let response = {
+        done: false,
+      };
+
+      let where = req.body.where || {};
+
+      app.$collection.find(where, (err, doc) => {
+        if (!err && doc) {
+          response.done = true;
+
+          site.getGroup(
+            { "studentList.student.id": doc.id, "subject.id": req.body.subjectId, "educationalLevel.id": doc.educationalLevel.id, "schoolYear.id": doc.schoolYear.id },
+            (errCode, group) => {
+              if (group && group.id) {
+                let studentGroup = group.studentList.find((itm) => itm.student.id == doc.id);                
+                response.doc = {
+                  student: {
+                    id: doc.id,
+                    firstName: doc.firstName,
+                    barcode: doc.barcode,
+                    mobile: doc.mobile,
+                    parentMobile: doc.parentMobile,
+                  },
+                  discount: studentGroup.discount,
+                  discountValue: studentGroup.discountValue,
+                  requiredPayment: studentGroup.requiredPayment,
+                  exempt: studentGroup.exempt,
+                  group: {
+                    id: group.id,
+                    name: group.name,
+                  },
+                };
+              } else {
+                response.error = "There is no matching group for the student data";
+              }
+              res.json(response);
+            }
+          );
+        } else {
+          response.error = err?.message || "Not Exists";
+          res.json(response);
+        }
+      });
+    });
   }
 
   site.addNotificationToStudents = function (doc, req) {

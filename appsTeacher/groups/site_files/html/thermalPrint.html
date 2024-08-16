@@ -38,7 +38,6 @@
         <p class="font-18 black">##word.Group Name##</p>
         <p class="font-18 black">##word.Payment Date##</p>
         <p class="font-18 black" ng-show="thermal.month">##word.Month##</p>
-        <p class="font-18 black">##word.Paid##</p>
         <p class="font-18 black" ng-show="thermal.remain >= 0">##word.Remain##</p>
       </div>
       <div class="col-7 bold">
@@ -46,7 +45,15 @@
         <p class="font-18 black">{{thermal.date | date:"dd / MM / yyyy"}}</p>
         <p class="font-18 black" ng-show="thermal.month">{{thermal.month.name##session.lang##}}</p>
         <p class="font-18 black" ng-show="thermal.remain >= 0">{{thermal.remain}} ##word.$##</p>
-        <p class="font-20 black border-dashed">{{thermal.price}} ##word.$##</p>
+      </div>
+    </div>
+    <div class="row border-dashed">
+      <div class="col-1"></div>
+      <div class="col-4 font-18 black">
+        <p class="font-22 black">##word.Amount Paid##</p>
+      </div>
+      <div class="col-7 bold">
+        <p class="font-22 black ">{{thermal.price}} ##word.$##</p>
       </div>
     </div>
 
