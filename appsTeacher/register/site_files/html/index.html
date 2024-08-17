@@ -9,6 +9,8 @@
         font-size: x-large;
         color: white;
         padding: 10px;
+        border-radius: 15px;
+        text-align: center;
         background: linear-gradient(120deg, rgb(244 82 82) 0%, rgb(229 18 18 / 86%) 100%);
         margin: 10px;
       }
@@ -131,7 +133,7 @@
           </button>
         </div>
 
-        <div class="row" id="emailData" ng-show="user.placeType || user.type == 'parent'">
+        <div class="row" id="emailData" ng-show="(user.placeType && user.type) || user.type == 'parent'">
           <div class="register-content">
             <div class="row">
               <div class="col6">

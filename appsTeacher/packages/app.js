@@ -367,7 +367,7 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if (req.session.user && req.session.user.packagesList && req.session.user.packagesList.some((s) => s.toString() == doc._id.toString())) {
+            if (req.session.user && req.session.user.packagesList && req.session.user.packagesList.some((s) => s == doc.id)) {
               doc.$buy = true;
             }
             doc.$time = site.xtime(doc.date, req.session.lang || "ar");
@@ -449,7 +449,7 @@ module.exports = function init(site) {
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student" && req.session.user.packagesList) {
             let idList = req.session.user.packagesList.map((_item) => _item);
-            where["_id"] = {
+            where["id"] = {
               $in: idList,
             };
           }
@@ -501,17 +501,17 @@ module.exports = function init(site) {
                   user.packagesList = user.packagesList || [];
                   user.lecturesList = user.lecturesList || [];
                   doc.lecturesList.forEach((_l) => {
-                    if (!user.lecturesList.some((l) => _l.lecture && l.lectureId && l.lectureId.toString() == _l.lecture._id.toString())) {
+                    if (!user.lecturesList.some((l) => _l.lecture && l.lectureId && l.lectureId == _l.lecture.id)) {
                       user.lecturesList.push({
-                        lectureId: _l.lecture._id,
+                        lectureId: _l.lecture.id,
                       });
                     }
                   });
 
-                  user.packagesList.push(doc._id);
+                  user.packagesList.push(doc.id);
                   site.addPurchaseOrder({
                     type: "package",
-                    target: { id: doc._id, name: doc.name },
+                    target: { id: doc.id, name: doc.name },
                     code: _data.code,
                     price: doc.price,
                     date: new Date(),

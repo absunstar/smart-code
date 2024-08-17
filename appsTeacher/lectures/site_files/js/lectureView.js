@@ -16,6 +16,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
+          $scope.quizView();
         } else {
           $scope.error = response.data.error;
         }
@@ -82,7 +83,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/quizzes/viewByUserLecture`,
       data: {
-        "lecture._id": "##query.id##",
+        "lecture.id": $scope.item.id,
       },
     }).then(
       function (response) {
@@ -260,5 +261,4 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
   };
 
   $scope.view();
-  $scope.quizView();
 });

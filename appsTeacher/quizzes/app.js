@@ -246,7 +246,7 @@ module.exports = function init(site) {
                       firstName: req.session.user.firstName,
                       email: req.session.user.email,
                     },
-                    lecture: { _id: lecture._id.toString(), id: lecture.id, name: lecture.name, educationalLevel: lecture.educationalLevel, schoolYear: lecture.schoolYear },
+                    lecture: { _id: lecture._id, id: lecture.id, name: lecture.name, educationalLevel: lecture.educationalLevel, schoolYear: lecture.schoolYear },
                     questionsList: lecture.questionsList,
                     correctAnswers: 0,
                     userDegree: 0,
@@ -406,11 +406,11 @@ module.exports = function init(site) {
         };
 
         let where = req.data;
-        if (!where || !where["lecture._id"]) {
+        if (!where || !where["lecture.id"]) {
           res.json(response);
           return;
         }
-        where["lecture._id"] = where["lecture._id"].toString();
+        where["lecture.id"] = where["lecture.id"];
         where["user.id"] = req.session.user.id;
         
         app.$collection.find(where, (err, doc) => {

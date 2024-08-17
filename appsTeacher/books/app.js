@@ -355,7 +355,7 @@ module.exports = function init(site) {
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
-            if (req.session.user && req.session.user.booksList && req.session.user.booksList.some((s) => s.toString() == doc._id.toString())) {
+            if (req.session.user && req.session.user.booksList && req.session.user.booksList.some((s) => s == doc.id)) {
               doc.$buy = true;
             }
             response.doc = doc;
@@ -405,12 +405,11 @@ module.exports = function init(site) {
           if (req.session.user && req.session.user.type == "student") {
             where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
             where["schoolYear.id"] = req.session.user?.schoolYear?.id;
-           
           }
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student") {
             let idList = req.session.user.booksList.map((_item) => _item);
-            where["_id"] = {
+            where["id"] = {
               $in: idList,
             };
           }
@@ -449,13 +448,13 @@ module.exports = function init(site) {
           (err, user) => {
             if (!err && user) {
               user.booksList = user.booksList || [];
-              if (!user.booksList.some((l) => l == doc._id.toString())) {
-                user.booksList.push(doc._id);
+              if (!user.booksList.some((l) => l == doc.id)) {
+                user.booksList.push(doc.id);
               }
 
               site.addPurchaseOrder({
                 type: "book",
-                target: { id: doc._id, name: doc.name },
+                target: { id: doc.id, name: doc.name },
                 price: doc.price,
                 address: _data.address,
                 date: new Date(),

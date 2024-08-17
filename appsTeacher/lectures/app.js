@@ -166,6 +166,7 @@ module.exports = function init(site) {
           name: "view-video",
         },
         (req, res) => {
+          
           app.$collection.find({ _id: req.query.id }, (err, lecture) => {
             if (!err && lecture) {
               let video = lecture.linksList.find((itm) => itm.code == req.query.code);
@@ -173,8 +174,7 @@ module.exports = function init(site) {
               // handle links
               if(videoURL.like('*youtu*')){
                 videoURL = 'https://www.youtube.com/embed/' + videoURL.split('=')[1].split('&')[0];
-              }
-
+              }              
               res.render(
                 app.name + "/view-video.html",
                 {
@@ -444,7 +444,7 @@ module.exports = function init(site) {
                     user.socialBrowserID = _data.socialBrowserID;
                   }
                 }
-                let index = user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _data.code);
+                let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
                 if (index !== -1) {
                   if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
                     response.error = "The number of views allowed for this video has been exceeded";
@@ -471,7 +471,7 @@ module.exports = function init(site) {
                   user.viewsList[index].views += 1;
                 } else {
                   user.viewsList.push({
-                    lectureId: doc._id,
+                    lectureId: doc.id,
                     code: _data.code,
                     date: new Date(),
                     views: 1,
@@ -520,7 +520,7 @@ module.exports = function init(site) {
             },
             (err, user) => {
               if (!err && user) {
-                let index = user.viewsList.findIndex((itm) => itm.lectureId.toString() === doc._id.toString() && itm.code === _data.code);
+                let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
                 if (index !== -1) {
                   if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
                     response.error = "The number of views allowed for this video has been exceeded";
@@ -547,7 +547,7 @@ module.exports = function init(site) {
                   user.viewsList[index].views += 1;
                 } else {
                   user.viewsList.push({
-                    lectureId: doc._id,
+                    lectureId: doc.id,
                     code: _data.code,
                     date: new Date(),
                     views: 1,
@@ -605,13 +605,13 @@ module.exports = function init(site) {
             delete _doc.questionsList;
 
             if (req.session.user) {
-              if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId.toString() == _doc._id.toString())) {
+              if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId == _doc.id)) {
                 _doc.$buy = true;
                 _doc.linksList.forEach((_video) => {
                   delete _video.url;
 
                   req.session.user.viewsList = req.session.user.viewsList || [];
-                  let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId.toString() === _doc._id.toString() && itm.code === _video.code);
+                  let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId === _doc.id && itm.code === _video.code);
                   _video.isValid = false;
                   if (index !== -1) {
                     if (_doc.typeExpiryView.name == "number") {
@@ -796,9 +796,9 @@ module.exports = function init(site) {
           if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
             let idList = [];
             req.session.user.lecturesList.forEach((element) => {
-              idList.push(site.mongodb.ObjectID(element.lectureId));
+              idList.push(element.lectureId);
             });
-            where["_id"] = {
+            where["id"] = {
               $in: idList,
             };
           }
@@ -808,7 +808,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
@@ -845,14 +845,14 @@ module.exports = function init(site) {
               (err, user) => {
                 if (!err && user) {
                   user.lecturesList = user.lecturesList || [];
-                  if (!user.lecturesList.some((l) => l.lectureId.toString() == doc._id.toString())) {
+                  if (!user.lecturesList.some((l) => l.lectureId == doc.id)) {
                     user.lecturesList.push({
-                      lectureId: doc._id.toString(),
+                      lectureId: doc.id,
                     });
                   }
                   site.addPurchaseOrder({
                     type: "lecture",
-                    target: { id: doc._id, name: doc.name },
+                    target: { id: doc.id, name: doc.name },
                     price: doc.price,
                     code: _data.code,
                     date: new Date(),
@@ -893,16 +893,16 @@ module.exports = function init(site) {
       code: 1,
     };
     let where = {};
-    site.security.getUser({ _id: req.body.studentId }, (err, user) => {
+    site.security.getUser({ id: req.body.studentId }, (err, user) => {
       if (!err) {
         if (user) {
           let idList = [];
           user.lecturesList = user.lecturesList || [];
           user.lecturesList.forEach((element) => {
-            idList.push(site.mongodb.ObjectID(element.lectureId));
+            idList.push(element.lectureId);
           });
 
-          where["_id"] = {
+          where["id"] = {
             $in: idList,
           };
           app.$collection.findMany({ where, select, sort: { id: -1 } }, (err, docs) => {
