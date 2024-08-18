@@ -22,10 +22,8 @@
   height: 32px;
   width: 32px;
   border-radius: 50%;
-  box-shadow: 1px 1px 5px 2px #fff;
   margin: 0px;
   object-fit: contain;
-  mix-blend-mode: luminosity;
 }
 
 .user-info > .btn {

@@ -1,8 +1,8 @@
 :root {
-  --theme-color: #009688;
+  --theme-color: #272727;
   --modal-color: #000;
   --brand-color: #ffffff;
-  --body-background: #fafafa;
+  --body-background: #fff;
   --bs-body-bg: var(--body-background);
   --tabs-content-width: 100%;
   --scrollbar-background-color: var(--theme-color);
@@ -19,10 +19,10 @@
 
 .app-name {
   padding: 0px 20px 4px;
-  color: white;
+  color: #fff;
   font-size: 19px;
   font-weight: 800;
-  background: #00bcd4;
+  background: #000;
   border-radius: 30px;
   text-align: center;
   display: inline-block;
