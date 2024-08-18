@@ -368,7 +368,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
             } else {
               $scope.error = "##word.Not Found##";
             }
-            $scope.item.$studentSearch = "";
+            $scope.$search = "";
           },
           function (err) {
             $scope.busyAttend = false;

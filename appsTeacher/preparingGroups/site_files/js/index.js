@@ -336,7 +336,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
 
   $scope.numberAbsencesAttendance = function () {
     $scope.error = "";
-    
+
     $scope.item.attendanceCount = $scope.item.studentList.filter((s) => s.attend).length;
     $scope.item.absenceCount = $scope.item.studentList.filter((s) => !s.attend).length;
     $scope.$applyAsync();
@@ -375,7 +375,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busyAttend = false;
             if (response.data.done && response.data.doc) {
-              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {                
+              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {
                 let stu = {
                   student: response.data.doc.student,
                   group: response.data.doc.group,
@@ -399,7 +399,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
             } else {
               $scope.error = response.data.error || "##word.Not Found##";
             }
-            $scope.item.$studentSearch = "";
+            $scope.$search = "";
           },
           function (err) {
             $scope.busyAttend = false;
@@ -455,7 +455,9 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     if (type == "donePaid") {
       item.price = $scope.item.group.price;
       item.paidType = type;
-      $scope.thermalPrint(item);
+      if ($scope.setting.autoPrint) {
+        $scope.thermalPrint(item);
+      }
     } else if (type == "notPaid") {
       item.price = 0;
       item.paidType = type;

@@ -148,16 +148,11 @@
         <fieldset>
           <legend>##word.Printer Program##</legend>
           <div class="row">
-            <i-list
-              ng-search="siteSetting.$printerPath"
-              class="col6"
-              
-              display="name"
-              ng-model="siteSetting.thermalPrinter"
-              label="##word.Thermal printer##"
-              items="printersPathsList"
-            >
-            </i-list>
+            <i-list ng-search="siteSetting.$printerPath" class="col6" display="name" ng-model="siteSetting.thermalPrinter" label="##word.Thermal printer##" items="printersPathsList"> </i-list>
+          </div>
+          <div class="col1"></div>
+          <div class="col5">
+            <i-checkbox label="##word.Auto Print##" ng-model="siteSetting.autoPrint"> </i-checkbox>
           </div>
           <div class="row">
             <fieldset>
@@ -170,13 +165,7 @@
                 <i-control class="col8" ng-model="h.name"></i-control>
 
                 <i-button class="col1" type="up" ng-click="upDownList(siteSetting.invoiceHeader, 'up',$index)" ng-hide="$index == 0"> </i-button>
-                <i-button
-                  class="col1"
-                  type="down"
-                  ng-click="upDownList(siteSetting.invoiceHeader, 'down',$index)"
-                  ng-hide="$index == (siteSetting.invoiceHeader.length - 1) "
-                >
-                </i-button>
+                <i-button class="col1" type="down" ng-click="upDownList(siteSetting.invoiceHeader, 'down',$index)" ng-hide="$index == (siteSetting.invoiceHeader.length - 1) "> </i-button>
                 <i-button class="col1" type="delete" ng-click="siteSetting.invoiceHeader.length ==1 || siteSetting.invoiceHeader.splice($index,1)"> </i-button>
               </div>
             </fieldset>
@@ -191,13 +180,7 @@
                 <div ng-repeat="f in siteSetting.invoiceFooter track by $index" class="row">
                   <i-control class="col8" ng-model="f.name"></i-control>
                   <i-button class="col1" type="up" ng-click="upDownList(siteSetting.invoiceFooter, 'up',$index)" ng-hide="$index == 0"> </i-button>
-                  <i-button
-                    class="col1"
-                    type="down"
-                    ng-click="upDownList(siteSetting.invoiceFooter, 'down',$index)"
-                    ng-hide="$index == (siteSetting.invoiceFooter.length - 1) "
-                  >
-                  </i-button>
+                  <i-button class="col1" type="down" ng-click="upDownList(siteSetting.invoiceFooter, 'down',$index)" ng-hide="$index == (siteSetting.invoiceFooter.length - 1) "> </i-button>
                   <i-button class="col1" type="delete" ng-click="siteSetting.invoiceFooter.length ==1 || siteSetting.invoiceFooter.splice($index,1)"> </i-button>
                 </div>
               </fieldset>

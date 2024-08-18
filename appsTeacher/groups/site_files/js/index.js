@@ -268,13 +268,14 @@ app.controller("groups", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
-            $scope.item.studentList.push({ student: response.data.list[0], attend: false });
+            $scope.item.studentList.push({ student: response.data.list[0], attend: false, discount: 0 });
           } else {
             $scope.error = "##word.Student Exist##";
           }
         } else {
           $scope.error = "##word.Not Found##";
         }
+
         $scope.item.$studentSearch = "";
       },
       function (err) {
@@ -540,6 +541,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     if (index !== -1) {
       $scope.studentItem.$month = $scope.monthList[index];
     }
+    $scope.calcRequiredPayment(item);
     site.showModal("#paymentsModal");
   };
 
@@ -570,6 +572,9 @@ app.controller("groups", function ($scope, $http, $timeout) {
       delete item.$month;
       delete item.$remain;
       item.$date = new Date();
+      if ($scope.setting.autoPrint) {
+        $scope.thermalPrint(item.paymentList[0], item.paymentList[0].paymentList[0]);
+      }
     } else {
       $scope.error = "##word.Data must be correct completed##";
     }
@@ -581,13 +586,16 @@ app.controller("groups", function ($scope, $http, $timeout) {
         return;
       }
       item.paymentList.unshift({ date: item.$date, price: item.$price });
-      $scope.calcPayments(item);
+      item.price += item.$price;
+      item.remain = $scope.studentItem.requiredPayment - item.price;
+      if ($scope.setting.autoPrint) {
+        $scope.thermalPrint(item, item.paymentList[0]);
+      }
       delete item.$price;
     } else {
       $scope.error = "##word.Data must be correct completed##";
     }
   };
-
   $scope.calcPayments = function (item) {
     $scope.error = "";
     $timeout(() => {

@@ -56,22 +56,22 @@
 
             <div class="col3" ng-show="item.placeType == 'online'">
               <br />
-              <p class="font-20" >##word.Latitude## : <span class="userPrint"> {{item.latitude}}</span></p>
+              <p class="font-20">##word.Latitude## : <span class="userPrint"> {{item.latitude}}</span></p>
             </div>
             <div class="col3" ng-show="item.placeType == 'online'">
               <br />
-              <p class="font-20" >##word.Longitude## : <span class="userPrint"> {{item.longitude}}</span></p>
+              <p class="font-20">##word.Longitude## : <span class="userPrint"> {{item.longitude}}</span></p>
             </div>
           </div>
           <div class="row" ng-show="item.type == 'student'">
             <i-list
-            class="col4"
-            label="##word.Educational Level##"
-            ng-change="getSchoolYearsList(item.educationalLevel)"
-            ng-model="item.educationalLevel"
-            display="name"
-            items="educationalLevelsList"
-            ng-search="item.$educationalLevel"
+              class="col4"
+              label="##word.Educational Level##"
+              ng-change="getSchoolYearsList(item.educationalLevel)"
+              ng-model="item.educationalLevel"
+              display="name"
+              items="educationalLevelsList"
+              ng-search="item.$educationalLevel"
             ></i-list>
             <i-list label="##word.School Year##" class="col4" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
             <i-list label="##word.Department##" x-data="setting.isCenter" class="col4" ng-model="item.department" display="name" items="departmentsList"></i-list>
@@ -134,8 +134,8 @@
         </fieldset>
         <fieldset>
           <div class="row">
-            <i-control class="col6" v="r" label="##word.Login E-mail##" ng-model="item.email"> </i-control>
-            <i-control class="col6" v="r" label="##word.Password##" ng-model="item.password"> </i-control>
+            <i-control class="col6" label="##word.Login E-mail##" ng-model="item.email"> </i-control>
+            <i-control class="col6" label="##word.Password##" ng-model="item.password"> </i-control>
           </div>
         </fieldset>
       </div>
