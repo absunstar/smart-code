@@ -118,6 +118,9 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
+          if ($scope.setting.isCenter && "##query.type##" == "student") {
+            $scope.getStudentGroupsList();
+          }
         } else {
           $scope.error = response.data.error;
         }
@@ -657,11 +660,98 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     }
     $scope.item.$studentGroupsList = $scope.item.$studentGroupsList || [];
     if (!$scope.item.$studentGroupsList.some((g) => g.group && g.group.id === $scope.item.$selectGroup.group.id)) {
-      $scope.item.$studentGroupsList.unshift({ ...$scope.item.$selectGroup });
-      $scope.item.$selectGroup = {};
+      if (!$scope.item.id) {
+        $scope.item.$studentGroupsList.unshift({ ...$scope.item.$selectGroup });
+        $scope.item.$selectGroup = {};
+      } else {
+        if ($scope.busyAddGroup) {
+          return;
+        }
+        $scope.busyAddGroup = true;
+        $http({
+          method: "POST",
+          url: "/api/groups/addStudentToGroup",
+          data: {
+            student: { id: $scope.item.id, firstName: $scope.item.firstName, barcode: $scope.item.barcode, mobile: $scope.item.mobile, parentMobile: $scope.item.parentMobile },
+            groupId: $scope.item.$selectGroup.group.id,
+            discount: $scope.item.$selectGroup.discount,
+            discountValue: $scope.item.$selectGroup.discountValue,
+            requiredPayment: $scope.item.$selectGroup.requiredPayment,
+            exempt: $scope.item.$selectGroup.exempt,
+          },
+        }).then(
+          function (response) {
+            $scope.busyAddGroup = false;
+            if (response.data.done) {
+              $scope.item.$selectGroup = {};
+              $scope.getStudentGroupsList();
+            }
+          },
+          function (err) {
+            $scope.busyAddGroup = false;
+            $scope.error = err;
+          }
+        );
+      }
     } else {
       $scope.error = "##word.Group Is Exist##";
       return;
+    }
+  };
+
+  $scope.getStudentGroupsList = function () {
+    $scope.error = "";
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/groups/studentGroups",
+      data: {
+        active: true,
+        "educationalLevel.id": $scope.item.educationalLevel.id,
+        "schoolYear.id": $scope.item.schoolYear.id,
+        "studentList.student.id": $scope.item.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.item.$studentGroupsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  $scope.deleteStudentGroup = function (index, item) {
+    if (!$scope.item.id) {
+      $scope.item.$studentGroupsList.splice(index, 1);
+    } else {
+      if ($scope.busyDeleteGroup) {
+        return;
+      }
+      $scope.busyDeleteGroup = true;
+      $http({
+        method: "POST",
+        url: "/api/groups/deleteStudentFromGroup",
+        data: {
+          studentId: $scope.item.id,
+          groupId: item.group.id,
+        },
+      }).then(
+        function (response) {
+          $scope.busyDeleteGroup = false;
+          if (response.data.done) {
+            $scope.getStudentGroupsList();
+          }
+        },
+        function (err) {
+          $scope.busyDeleteGroup = false;
+          $scope.error = err;
+        }
+      );
     }
   };
 
@@ -680,7 +770,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   $scope.getGenders();
   $scope.getCentersList();
   $scope.getEducationalLevelsList();
-  if ($scope.setting.isCenter) {
+  if ($scope.setting.isCenter && "##query.type##" == "student") {
     $scope.getSchoolsList();
     $scope.getDepartmentsList();
     $scope.getSubjectsList();

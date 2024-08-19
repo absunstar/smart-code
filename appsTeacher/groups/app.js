@@ -378,6 +378,90 @@ module.exports = function init(site) {
     });
   });
 
+  site.post({ name: `/api/${app.name}/studentGroups`, public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.data;
+    app.all(where, (err, docs) => {
+      if (!err && docs) {
+        response.done = true;
+        let list = [];
+        for (let i = 0; i < docs.length; i++) {
+          let index = docs[i].studentList.findIndex((itm) => itm.student.id === where['studentList.student.id']);
+          if (index !== -1) {
+            list.push({
+              group: { id: docs[i].id,name: docs[i].name, teacher: docs[i].teacher, paymentMethod: docs[i].paymentMethod, price: docs[i].price },
+              discount: docs[i].studentList[index].discount,
+              exempt: docs[i].studentList[index].exempt,
+              discountValue: docs[i].studentList[index].discountValue,
+              requiredPayment: docs[i].studentList[index].requiredPayment,
+            });
+          }
+        }
+        
+        response.list = list;
+      } else {
+        response.error = err?.message || "Not Exists";
+      }
+      res.json(response);
+    });
+  });
+
+  site.post({ name: `/api/${app.name}/deleteStudentFromGroup`, public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let _data = req.data;
+    app.$collection.find({ id: _data.groupId }, (err, doc) => {
+      
+      if (!err && doc) {
+        response.done = true;
+          doc.studentList = doc.studentList.filter(s => s.student.id !== _data.studentId)        
+          app.update(doc, (err1, result) => {
+            
+            res.json(response);
+          });
+        
+      }else {
+        response.error = err?.message || "Not Exists";
+        res.json(response);
+      }
+    });
+  });
+
+  site.post({ name: `/api/${app.name}/addStudentToGroup`, public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let _data = req.data;
+    app.$collection.find({ id: _data.groupId }, (err, doc) => {
+      
+      if (!err && doc) {
+        response.done = true;
+          doc.studentList.unshift({
+            student: { id: _data.student.id, firstName: _data.student.firstName, barcode: _data.student.barcode, mobile: _data.student.mobile, parentMobile: _data.student.parentMobile },
+            attend: false,
+            discount: _data.discount,
+            discountValue: _data.discountValue,
+            requiredPayment: _data.requiredPayment,
+            exempt: _data.exempt,
+          })
+          app.update(doc, (err1, result) => {
+            
+            res.json(response);
+          });
+        
+      }else {
+        response.error = err?.message || "Not Exists";
+        res.json(response);
+      }
+    });
+  });
+
   site.bookingAppointmentGroup = function (_options) {
     app.view({ id: _options.groupId }, (err, doc) => {
       if (doc) {
@@ -396,12 +480,14 @@ module.exports = function init(site) {
       }
     });
   };
+
   site.getGroup = function (where, callBack) {
     callBack = callBack || function () {};
     app.$collection.find(where, (err, doc) => {
       callBack(err, doc);
     });
   };
+
   site.addStudentToGroups = function (student, groupList) {
     let idList = [];
     groupList.forEach((element) => {

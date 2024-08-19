@@ -195,14 +195,17 @@
                 <td class="center">{{g.group.name}}</td>
                 <td class="center">{{g.group.teacher.firstName}} {{item.lastName}}</td>
                 <td class="center">{{g.group.paymentMethod.name##session.lang##}}</td>
-                <td class="center">{{g.group.price}}</td>
+                <td class="center">{{g.group.price}} ##word.$##</td>
                 <td class="center">
-                  <p ng-hide="g.exempt">{{g.discount}} %</p>
-                  <p ng-show="g.exempt">##word.Exempt##</p>
+                  <p >{{g.discount}} %</p>
                 </td>
-                <td class="center">{{g.requiredPayment}}</td>
                 <td class="center">
-                  <i-button type="delete" label="##word.Delete##" ng-click="studentGroupsList.splice($index,1)"></i-button>
+                  <p ng-hide="g.exempt">{{g.requiredPayment}} ##word.$## </p>
+                  <p ng-show="g.exempt">##word.Exempt##</p>
+
+                </td>
+                <td class="center">
+                  <i-button type="delete" label="##word.Delete##" ng-click="deleteStudentGroup($index,g)"></i-button>
                 </td>
               </tr>
             </table>
