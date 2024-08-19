@@ -132,6 +132,82 @@
             <i-control label="##word.Address##" ng-model="item.address"> </i-control>
           </div>
         </fieldset>
+        <fieldset ng-show="setting.isCenter">
+          <legend>##word.Groups##</legend>
+          <div class="row" ng-show="item.$selectGroup.group">
+            <div class="person-cart">
+              <div class="row">
+                <div class="col7">
+                  <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{item.$selectGroup.group.name}}</p>
+                </div>
+                <div class="col5">
+                  <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.$selectGroup.group.subject.name}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col7">
+                  <p class="bold"><span class="darkGray">##word.Teacher## : </span> {{item.$selectGroup.group.teacher.firstName}}</p>
+                </div>
+                <div class="col5">
+                  <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{item.$selectGroup.group.teacher.mobile}}</p>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col7">
+                  <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.$selectGroup.group.educationalLevel.name}}</p>
+                </div>
+                <div class="col5">
+                  <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.$selectGroup.group.schoolYear.name}}</p>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col7">
+                  <p class="bold"><span class="darkGray">##word.Payment Method## : </span> {{item.$selectGroup.group.paymentMethod.name##session.lang##}}</p>
+                </div>
+                <div class="col5">
+                  <p class="bold"><span class="darkGray">##word.Price## : </span> {{item.$selectGroup.group.price}} ##word.$##</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <i-list class="col4" label="##word.Group##" ng-model="item.$selectGroup.group" display="name" items="groupsList" ng-get="getGroupsList($search)"></i-list>
+            <i-control type="number" class="col2" ng-change="calcRequiredPayment(item.$selectGroup)" ng-hide="item.$selectGroup.exempt" label="##word.Discount## %" ng-model="item.$selectGroup.discount"> </i-control>
+            <i-button type="save" class="col2" ng-hide="item.$selectGroup.exempt" label="##word.Exempt##" ng-click="exemptPayment(item.$selectGroup,true)"></i-button>
+            <i-button type="exit" class="col2" ng-show="item.$selectGroup.exempt" label="##word.Cancel Exempt##" ng-click="exemptPayment(item.$selectGroup,false)"></i-button>
+            <i-button type="push" class="col2" label="##word.Add To Groups##" ng-click="addGroup()"> </i-button>
+          </div>
+        
+          <div class="table-responsive">
+            <table class="table center hover bold">
+              <tr>
+                <th>##word.Group Name##</th>
+                <th>##word.Teacher Name##</th>
+                <th>##word.Payment Method##</th>
+                <th>##word.Price##</th>
+                <th>##word.Discount##</th>
+                <th>##word.Required Payment##</th>
+                <th class="not-print">##word.Actions##</th>
+              </tr>
+              <tr ng-repeat="g in item.$studentGroupsList">
+                <td class="center">{{g.group.name}}</td>
+                <td class="center">{{g.group.teacher.firstName}} {{item.lastName}}</td>
+                <td class="center">{{g.group.paymentMethod.name##session.lang##}}</td>
+                <td class="center">{{g.group.price}}</td>
+                <td class="center">
+                  <p ng-hide="g.exempt">{{g.discount}} %</p>
+                  <p ng-show="g.exempt">##word.Exempt##</p>
+                </td>
+                <td class="center">{{g.requiredPayment}}</td>
+                <td class="center">
+                  <i-button type="delete" label="##word.Delete##" ng-click="studentGroupsList.splice($index,1)"></i-button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </fieldset>
         <fieldset>
           <div class="row">
             <i-control class="col6" label="##word.Login E-mail##" ng-model="item.email"> </i-control>

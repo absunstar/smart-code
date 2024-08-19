@@ -164,6 +164,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.searchGetAll = function (ev, search) {
+    $scope.error = "";
     if (ev && ev.which != 13) {
       return;
     }
@@ -171,6 +172,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getAll = function (where, search) {
+    $scope.error = "";
     if ($scope.busyAll) {
       return;
     }
@@ -207,6 +209,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
+    $scope.error = "";
     $scope.getAll($scope.search);
     site.hideModal($scope.modalSearchID);
     $scope.search = {};
@@ -223,6 +226,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getNationalities = function ($search) {
+    $scope.error = "";
     if ($search && $search.length < 1) {
       return;
     }
@@ -254,6 +258,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getCountriesList = function ($search) {
+    $scope.error = "";
     if ($search && $search.length < 1) {
       return;
     }
@@ -288,6 +293,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getGovesList = function (country) {
+    $scope.error = "";
     $scope.busy = true;
     $scope.govesList = [];
 
@@ -319,6 +325,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getCitiesList = function (gov) {
+    $scope.error = "";
     $scope.busy = true;
     $scope.citiesList = [];
     $http({
@@ -349,6 +356,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getAreasList = function (city) {
+    $scope.error = "";
     $scope.busy = true;
     $scope.areasList = [];
     $http({
@@ -379,6 +387,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getCentersList = function () {
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
@@ -407,6 +416,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getGenders = function () {
+    $scope.error = "";
     $scope.busy = true;
     $scope.gendersList = [];
     $http({
@@ -427,6 +437,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
   $scope.getSchoolsList = function ($search) {
+    $scope.error = "";
     if ($search && $search.length < 1) {
       return;
     }
@@ -460,6 +471,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
   $scope.getSubjectsList = function ($search) {
+    $scope.error = "";
     if ($search && $search.length < 1) {
       return;
     }
@@ -493,6 +505,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
   $scope.getDepartmentsList = function ($search) {
+    $scope.error = "";
     if ($search && $search.length < 1) {
       return;
     }
@@ -526,6 +539,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
   $scope.getEducationalLevelsList = function ($search) {
+    $scope.error = "";
     if ($search && $search.length < 1) {
       return;
     }
@@ -560,6 +574,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   };
 
   $scope.getSchoolYearsList = function (educationalLevel) {
+    $scope.error = "";
     $scope.busy = true;
     $scope.schoolYearsList = [];
     $http({
@@ -587,6 +602,77 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.getGroupsList = function ($search) {
+    $scope.error = "";
+    $scope.groupsList = [];
+    if ($search && $search.length < 1) {
+      return;
+    }
+    if (!$scope.item.educationalLevel || !$scope.item.educationalLevel.id || !$scope.item.schoolYear || !$scope.item.schoolYear.id) {
+      $scope.error = "##word.Must Select Educational Level And School Year";
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/groups/all",
+      data: {
+        search: $search,
+        where: {
+          active: true,
+          "educationalLevel.id": $scope.item.educationalLevel.id,
+          "schoolYear.id": $scope.item.schoolYear.id,
+        },
+        select: { id: 1, name: 1, educationalLevel: 1, subject: 1, teacher: 1, schoolYear: 1, paymentMethod: 1, price: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.groupsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  $scope.calcRequiredPayment = function (item) {
+    $scope.error = "";
+    if (item.group && item.group.id) {
+      $timeout(() => {
+        item.discountValue = (item.group.price * item.discount) / 100;
+        item.requiredPayment = item.group.price - item.discountValue;
+      }, 300);
+    }
+  };
+  $scope.addGroup = function () {
+    $scope.error = "";
+    if (!$scope.item.$selectGroup || !$scope.item.$selectGroup.group || !$scope.item.$selectGroup.group.id) {
+      $scope.error = "##word.Must Select Group##";
+      return;
+    }
+    $scope.item.$studentGroupsList = $scope.item.$studentGroupsList || [];
+    if (!$scope.item.$studentGroupsList.some((g) => g.group && g.group.id === $scope.item.$selectGroup.group.id)) {
+      $scope.item.$studentGroupsList.unshift({ ...$scope.item.$selectGroup });
+      $scope.item.$selectGroup = {};
+    } else {
+      $scope.error = "##word.Group Is Exist##";
+      return;
+    }
+  };
+
+  $scope.exemptPayment = function (item, option) {
+    if (option == true) {
+      item.discount = 100;
+    } else if (option == false) {
+      item.discount = 0;
+    }
+    item.exempt = option;
+    $scope.calcRequiredPayment(item);
   };
   $scope.getAll();
   $scope.getNationalities();

@@ -66,7 +66,7 @@
   margin: 0 10px;
 }
 .social-menu ul li .fab {
-  color: var(--button-color);
+  color: white;
   font-size: 25px;
   line-height: 25px;
   transition: 0.5s;
@@ -81,7 +81,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--button-background);
+  /* background-color: var(--button-background); */
   text-align: center;
   transition: 0.5s;
   transform: translate(0, 0px);
@@ -90,19 +90,19 @@
 .social-menu ul li a:hover {
   transform: rotate(0deg) skew(0deg) translate(0, -10px);
 }
-.social-menu ul li:nth-child(5) a:hover {
+.linkedin-icon {
   background-color: #0077b5;
 }
-.social-menu ul li:nth-child(4) a:hover {
+.facebook-icon {
   background-color: #0866ff;
 }
-.social-menu ul li:nth-child(3) a:hover {
+.twitter-icon {
   background-color: #55acee;
 }
-.social-menu ul li:nth-child(2) a:hover {
+.instagram-icon {
   background-image: linear-gradient(to right top, #405de6, #5851db, #833ab4, #c13584, #fd1d1d, #f56040, #f77737, #fcaf45, #ffdc80);
 }
-.social-menu ul li:nth-child(1) a:hover {
+.youtube-icon {
   background-color: red;
 }
 

@@ -396,10 +396,37 @@ module.exports = function init(site) {
       }
     });
   };
-  site.getGroup = function (where, callBack) {    
+  site.getGroup = function (where, callBack) {
     callBack = callBack || function () {};
     app.$collection.find(where, (err, doc) => {
       callBack(err, doc);
+    });
+  };
+  site.addStudentToGroups = function (student, groupList) {
+    let idList = [];
+    groupList.forEach((element) => {
+      idList.push(element.group.id);
+    });
+
+    let where = {};
+    where["id"] = {
+      $in: idList,
+    };
+    app.all(where, (err, docs) => {
+      if (!err && docs) {
+        for (let i = 0; i < docs.length; i++) {
+          let g = groupList.find((itm) => itm.group.id == docs[i].id);
+          docs[i].studentList.unshift({
+            student: { id: student.id, firstName: student.firstName, barcode: student.barcode, mobile: student.mobile, parentMobile: student.parentMobile },
+            attend: false,
+            discount: g.discount,
+            discountValue: g.discountValue,
+            requiredPayment: g.requiredPayment,
+            exempt: g.exempt,
+          });
+          app.update(docs[i]);
+        }
+      }
     });
   };
   app.init();

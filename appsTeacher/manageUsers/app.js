@@ -223,7 +223,7 @@ module.exports = function init(site) {
           _data.roles = [{ name: "student" }];
           _data.permissions = [{ name: "student" }];
         }
-
+        
         _data.host = site.getHostFilter(req.host);
         let date = new Date();
         let d = date.getDate().toString();
@@ -233,6 +233,9 @@ module.exports = function init(site) {
           if (!err && doc) {
             if (!setting.isShared && !setting.isCenter) {
               site.addNewHost({ domain: doc.userName, filter: doc.userName });
+            }            
+            if (_data.$studentGroupsList && _data.$studentGroupsList.length > 0) {
+              site.addStudentToGroups(doc, _data.$studentGroupsList);
             }
             if (doc.type == "student" && setting.isCenter && setting.autoStudentBarcode) {
               doc.barcode = doc.id.toString() + "00" + d + h + m;
@@ -251,6 +254,7 @@ module.exports = function init(site) {
               res.json(response);
             }
           } else {
+
             response.error = err.mesage;
             res.json(response);
           }
@@ -502,7 +506,7 @@ module.exports = function init(site) {
             { "studentList.student.id": doc.id, "subject.id": req.body.subjectId, "educationalLevel.id": doc.educationalLevel.id, "schoolYear.id": doc.schoolYear.id },
             (errCode, group) => {
               if (group && group.id) {
-                let studentGroup = group.studentList.find((itm) => itm.student.id == doc.id);                
+                let studentGroup = group.studentList.find((itm) => itm.student.id == doc.id);
                 response.doc = {
                   student: {
                     id: doc.id,
