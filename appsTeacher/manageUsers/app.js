@@ -232,7 +232,7 @@ module.exports = function init(site) {
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             if (!setting.isShared && !setting.isCenter) {
-              site.addNewHost({ domain: doc.userName, filter: doc.userName });
+              site.addNewHost({ domain: doc.username, filter: doc.username });
             }            
             if (_data.$studentGroupsList && _data.$studentGroupsList.length > 0) {
               site.addStudentToGroups(doc, _data.$studentGroupsList);
@@ -393,7 +393,7 @@ module.exports = function init(site) {
           userId: 1,
           type: 1,
           active: 1,
-          userName: 1,
+          username: 1,
           firstName: 1,
           email: 1,
           barcode: 1,

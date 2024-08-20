@@ -361,7 +361,7 @@ module.exports = function init(site) {
       officesList: [],
       roles: [{ name: req.body.type }],
       active: true,
-      userName: req.body.userName,
+      username: req.body.username,
       cardNumber: req.body.cardNumber,
       constraintDate: req.body.constraintDate,
       constraintType: req.body.constraintType,

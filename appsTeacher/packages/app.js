@@ -520,7 +520,7 @@ module.exports = function init(site) {
                     user: {
                       id: user.id,
                       firstName: user.firstName,
-                      userName: user.userName,
+                      username: user.username,
                     },
                   });
                   site.security.updateUser(user);

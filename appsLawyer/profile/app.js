@@ -11,11 +11,11 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: ['/profileView/:id', ['lawyer/:userName']],
+      name: ['/profileView/:id', ['lawyer/:username']],
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host) || {};
-      site.security.getUser({ id: req.params.id, userName: req.params.userName }, (err, user) => {
+      site.security.getUser({ id: req.params.id, username: req.params.username }, (err, user) => {
         if (user) {
           site.getConsultations({ 'status.name': 'closed', 'lawyer.id': user.id }, (err, consultations) => {
             user.startCommunicationTime = user.startCommunicationTime ? new Date(user.startCommunicationTime) : new Date();

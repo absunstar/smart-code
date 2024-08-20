@@ -30,7 +30,7 @@ function facebookGroup_run() {
         let articles = document.querySelectorAll("[role=feed]")[0];
         articles.childNodes.forEach((article) => {
           let obj = {};
-          let userName = article.querySelector("h3");
+          let username = article.querySelector("h3");
           let userImage = article.querySelector("image");
           let userLink = article.querySelector("h3 a");
           let url = article.querySelector("span span span span a");
@@ -38,8 +38,8 @@ function facebookGroup_run() {
           let title = article.querySelector("[data-ad-comet-preview=message]");
           let reacts = article.querySelector("[role=button] span");
 
-          if (userName) {
-            obj.userName = userName.innerText;
+          if (username) {
+            obj.username = username.innerText;
           } else {
             return;
           }

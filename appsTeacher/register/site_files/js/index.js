@@ -78,7 +78,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       address: user.address,
       latitude: user.latitude,
       longitude: user.longitude,
-      userName: user.userName,
+      username: user.username,
       type: user.type,
     };
 
