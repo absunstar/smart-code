@@ -195,7 +195,6 @@ module.exports = function init(site) {
     data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
     data.teacherId = data.teacher && data.teacher.id ? data.teacher.id : 0;
     if (index > -1) {
-      console.log(data);
       
       $siteSetting.edit(data, (err, result) => {
         if (!err && result.doc) {

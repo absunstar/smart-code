@@ -1,0 +1,11 @@
+[
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "printTexts", "name": "printTextsUi", "En": "UI", "Ar": "الواجهة الرسومية" }
+]
