@@ -56,7 +56,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       gov: user.gov,
       city: user.city,
       area: user.area,
-      userName: user.userName,
+      username: user.username,
     };
 
     obj.country_code = user.country.country_code;

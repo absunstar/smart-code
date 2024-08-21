@@ -365,7 +365,7 @@ module.exports = function init(site) {
       mobile: req.body.user.mobile,
       firstName: req.body.user.firstName,
       lastName: req.body.user.lastName,
-      userName: req.body.user.userName,
+      username: req.body.user.username,
       image: req.body.user.image,
       country: req.body.user.country,
       gov: req.body.user.gov,
