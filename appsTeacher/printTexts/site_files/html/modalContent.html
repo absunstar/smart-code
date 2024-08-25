@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="row padding">
+    <div class="row">
+      <div class="row">
+        <i-date ng-model="item.date" class="col7" label="##word.Date##"></i-date>
+        <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
+      </div>
+      <fieldset>
+        <legend>
+          <i-button label="##word.Add Text##" type="push" ng-click="item.textList.push({})"></i-button>
+        </legend>
+        <div class="row" ng-repeat="t in item.textList">
+          <i-control ng-model="t.text" class="col9"></i-control>
+          <i-button class="col1" type="up" ng-click="upDownList(item.textList, 'up',$index)" ng-hide="$index == 0"> </i-button>
+          <i-button class="col1" type="down" ng-click="upDownList(item.textList, 'down',$index)" ng-hide="$index == (item.textList.length - 1) "> </i-button>
+          <i-button class="col1" type="delete" ng-click="item.textList.splice($index,1)"> </i-button>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Add User Info##</th>
+      <th>##word.Edit User Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.addUserInfo.name}}</p>
+        <small class="green"> {{item.addUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.addUserInfo.ip}}</p>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

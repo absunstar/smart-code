@@ -16,6 +16,7 @@
           <i-control label="##word.Title##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.title"> </i-control>
           <i-control label="##word.Bio##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.bio"> </i-control>
           <i-control label="##word.Barcode##" ng-show="item.type == 'student' && setting.isCenter && !setting.autoStudentBarcode" ng-model="item.barcode"> </i-control>
+          <i-control label="##word.Discount##" ng-change="changeMainDiscount()" class="col4" ng-show="item.type == 'student' && setting.isCenter" type="number" ng-model="item.discount"> </i-control>
         </div>
       </div>
       <div class="col3 center">
@@ -31,12 +32,12 @@
 <fieldset>
   <div class="tabs">
     <div class="tabs-header full">
-      <a class="tab-link" onclick="site.showTabContent(event, '#contactInformations')"> <span>##word.Contact Informatins## </span></a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#generalInformations')"> <span>##word.General Informatins## </span></a>
       <a class="tab-link" onclick="site.showTabContent(event, '#files')"> <span>##word.Documents## </span></a>
     </div>
 
     <div class="tabs-content">
-      <div id="contactInformations" class="tab-content">
+      <div id="generalInformations" class="tab-content">
         <fieldset>
           <div class="row">
             <i-list

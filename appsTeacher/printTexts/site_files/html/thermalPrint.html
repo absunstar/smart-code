@@ -1,0 +1,40 @@
+<div class="hidden" id="thermalPrint" style="width: 100%; margin-top: 0%">
+  <div class="content page">
+    <div class="center" ng-show="invoiceLogo">
+      <img class="logoPrint" ng-src="{{invoiceLogo}}" />
+    </div>
+    <br ng-show="setting.invoiceHeader.length > 0" />
+    <div class="row center" ng-repeat="i in setting.invoiceHeader">
+      <p class="black font-14 center">{{i.name}}</p>
+    </div>
+    <br />
+    <div class="row border-dashed">
+      <div class="row center">
+        <div class="col-12">
+          <div class="col-1"></div>
+          <span class="black col-4 font-15">Date / التاريخ</span>
+          <span class="col-7 font-16 bold"> {{thermal.date |date:"dd / MM / yyyy" }} </span>
+        </div>
+      </div>
+
+      <div class="row center">
+        <div class="col-12">
+          <div class="col-1"></div>
+          <span class="black col-4 font-15">Time / الوقت</span>
+          <span class="col-7 font-16 bold"> {{thermal.date |date:"hh : mm a" }} </span>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row" ng-repeat="t in thermal.textList">
+      <p class="bold center font-20">{{t.text}}</p>
+    </div>
+
+    <br ng-show="setting.invoiceFooter.length > 0" />
+    <div class="row center" ng-repeat="i in setting.invoiceFooter">
+      <p class="black font-14 center">{{i.name}}</p>
+    </div>
+  </div>
+</div>

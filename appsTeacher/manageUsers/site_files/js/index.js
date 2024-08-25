@@ -18,7 +18,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   $scope.showAdd = function (type) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure, type };
+    $scope.item = { ...$scope.structure, type, $selectGroup: {} };
     site.showModal($scope.modalID);
 
     document.querySelector(`${$scope.modalID} .tab-link`).click();
@@ -643,10 +643,28 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       }
     );
   };
+
+  $scope.changeMainDiscount = function () {
+    $scope.error = "";
+    $timeout(() => {
+      if ($scope.item.discount > 100 || $scope.item.discount < 0) {
+        $scope.error = "##word.Error entering discount##";
+        return;
+      } else {
+        $scope.item.$selectGroup = $scope.item.$selectGroup || {};
+        $scope.item.$selectGroup.discount = $scope.item.discount;
+      }
+    }, 300);
+  };
+
   $scope.calcRequiredPayment = function (item) {
     $scope.error = "";
     if (item.group && item.group.id) {
       $timeout(() => {
+        if (item.discount > 100 || item.discount < 0) {
+          $scope.error = "##word.Error entering discount##";
+          return;
+        }
         item.discountValue = (item.group.price * item.discount) / 100;
         item.requiredPayment = item.group.price - item.discountValue;
       }, 300);
@@ -662,7 +680,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     if (!$scope.item.$studentGroupsList.some((g) => g.group && g.group.id === $scope.item.$selectGroup.group.id)) {
       if (!$scope.item.id) {
         $scope.item.$studentGroupsList.unshift({ ...$scope.item.$selectGroup });
-        $scope.item.$selectGroup = {};
+        $scope.item.$selectGroup = { discount: $scope.item.discount };
       } else {
         if ($scope.busyAddGroup) {
           return;
@@ -683,7 +701,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busyAddGroup = false;
             if (response.data.done) {
-              $scope.item.$selectGroup = {};
+              $scope.item.$selectGroup = { discount: $scope.item.discount };
               $scope.getStudentGroupsList();
             }
           },

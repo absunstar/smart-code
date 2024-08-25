@@ -1,0 +1,48 @@
+<div ng-controller="printTexts" class="loaded">
+    <div class="row" x-permissions="printTextsUi || printTextsManage">
+        <div x-import="printTexts/modal.html"></div>
+        <div x-import="printTexts/modalSearch.html"></div>
+
+        <div class="top-actions">
+            <i-button type="add" x-permissions="printTextsAdd || printTextsManage" label="##word.New##" ng-click="showAdd()"></i-button>
+            <i-button type="search" x-permissions="printTextsSearch || printTextsManage" label="##word.Active##" ng-click="searchAll(search={active:true})"></i-button>
+            <i-button type="search" x-permissions="printTextsSearch || printTextsManage" label="##word.Not Active##" ng-click="searchAll(search={active:false})"></i-button>
+
+            <i-upload api="api/printTexts/import" label="Import" x-permissions="importprintTexts || printTextsManage"></i-upload>
+        </div>
+
+        <div class="row padding">
+            <i-control ng-model="$search" x-permissions="printTextsSearch || printTextsManage"></i-control>
+        </div>
+        <div class="table-responsive">
+            <table class="table hover bold" id="t1">
+                <tr>
+                    <th>##word.Date##</th>
+                    <th>##word.Text##</th>
+                    <th>##word.Status##</th>
+                    <th class="not-print">##word.Actions##</th>
+                </tr>
+                <tr ng-repeat="item in list | filter:$search">
+                   
+                    <td class="center blue">{{item.date | date: 'dd / MM / yyyy'}}</td>
+                    <td class="center">{{item.textList[0].text}}</td>
+                    <td class="center">
+                        <span ng-show="item.active" class="text-success">##word.Active##</span>
+                        <span ng-show="!item.active" class="text-danger">##word.Not Active##</span>
+                    </td>
+
+                    <td class="center not-print">
+                        <i-button type="print" title="##word.Print##" ng-click="thermalPrint(item)"></i-button>
+                        <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
+                        <i-button type="edit" x-permissions="printTextsUpdate || printTextsManage" title="##word.Edit##" ng-click="showUpdate(item)"></i-button>
+                        <i-button type="delete" x-permissions="printTextsDelete || printTextsManage" title="##word.Delete##" ng-click="showDelete(item)"></i-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <i-button x-permissions="printTextsPrint || printTextsManage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
+        <i-button x-permissions="printTextsExport || printTextsManage" type="export" label="##word.Export to excel##" onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"> </i-button>
+    </div>
+  <div x-import="printTexts/thermalPrint.html"></div>
+
+</div>

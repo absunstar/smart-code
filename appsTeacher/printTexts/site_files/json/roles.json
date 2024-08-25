@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "printTextsAdmin",
+    "En": "Print Texts Admin",
+    "Ar": "إدارة طباعة نصوص",
+    "permissions": ["printTextsManage"]
+}]

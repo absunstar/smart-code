@@ -1,5 +1,4 @@
 <ul class="main-menu">
-
   <li class="menu-item">
     <a class="tab-link" href="/site-setting" ng-hide="'##data.setting.isShared##' == 'true' && '##user.type##' == 'teacher'" x-permissions="defaultSettingManage">
       <i class="fas fa-wifi"></i>
@@ -188,6 +187,13 @@
     <a class="tab-link" href="/schoolYears" x-permissions="schoolYearsUi || schoolYearsManage">
       <i class="fas fa-globe"></i>
       <span> ##word.School Years## </span>
+    </a>
+  </li>
+
+  <li class="menu-item" x-permissions="printTextsUi || printTextsManage">
+    <a class="tab-link" href="/printTexts">
+      <i class="fas fa-vector-square"></i>
+      <span> ##word.Print Texts## </span>
     </a>
   </li>
 
