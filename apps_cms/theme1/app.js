@@ -103,6 +103,7 @@ module.exports = function init(site) {
     public: true,
     compress: !0,
     path: [
+      'client-side/site.js',
       __dirname + '/site_files/js/bootstrap.bundle.min.js',
       __dirname + '/site_files/js/script.js',
       __dirname + '/site_files/js/mainSlider.js',
