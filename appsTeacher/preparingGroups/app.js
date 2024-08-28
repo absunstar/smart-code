@@ -306,7 +306,6 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
-          
           res.json({
             done: true,
             list: docs,
@@ -340,6 +339,43 @@ module.exports = function init(site) {
       });
     });
   }
+
+  site.getPreparingGroups = function (where, callBack) {
+    callBack = callBack || function () {};
+    let select = {
+      id: 1,
+      studentList: 1,
+      date: 1,
+    };
+    if (where && where.dateFrom) {
+      let d1 = site.toDate(where.dateFrom);
+      let d2 = site.toDate(where.dateTo);
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        $gte: d1,
+        $lt: d2,
+      };
+      delete where.dateFrom;
+      delete where.dateTo;
+    } else if (where.dateFrom) {
+      let d1 = site.toDate(where.dateFrom);
+      let d2 = site.toDate(where.dateFrom);
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        $gte: d1,
+        $lt: d2,
+      };
+    }
+    if (where.group && where.group.id) {
+      where["group.id"] = where.group.id;
+      delete where["group"];
+    }
+
+    app.$collection.findMany({ where, select, sort: { id: -1 } }, (err, docs) => {
+      callBack(err, docs);
+    });
+    // }
+  };
 
   app.init();
   site.addApp(app);

@@ -240,7 +240,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.getStudent = function (ev, $search) {
     $scope.error = "";
-    if (ev.which !== 13) {
+    if (ev.which !== 13 || !$search) {
       return;
     }
 
@@ -268,7 +268,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
-            $scope.item.studentList.push({ student: response.data.list[0], attend: false, discount: 0 });
+            $scope.item.studentList.unshift({ student: response.data.list[0], attend: false, discount: 0 ,discountValue :0 ,requiredPayment :$scope.item.price });
           } else {
             $scope.error = "##word.Student Exist##";
           }
@@ -567,7 +567,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         $scope.error = "##word.This Month Is Exist##";
         return;
       }
-      item.paymentList.unshift({ price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: item.$date, price: item.$price }] });
+      item.paymentList.unshift({date : item.$date, price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: new Date(), price: item.$price }] });
       delete item.$price;
       delete item.$month;
       delete item.$remain;

@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "groupsAmountsReportsAdmin",
+    "En": "Groups Amounts Reports Admin",
+    "Ar": "إدارة تقارير مدفوعات المجموعات ",
+    "permissions": ["groupsAmountsReportsManage"]
+}] 

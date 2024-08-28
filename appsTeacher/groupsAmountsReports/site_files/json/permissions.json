@@ -1,0 +1,8 @@
+[
+  { "moduleName": "public", "screenName": "groupsAmountsReports", "name": "groupsAmountsReportsManage", "En": "Manage", "Ar": "إدارة" },
+  { "moduleName": "public", "screenName": "groupsAmountsReports", "name": "groupsAmountsReportsView", "En": "View", "Ar": "عرض" },
+  { "moduleName": "public", "screenName": "groupsAmountsReports", "name": "groupsAmountsReportsSearch", "En": "Search", "Ar": "بحث" },
+  { "moduleName": "public", "screenName": "groupsAmountsReports", "name": "groupsAmountsReportsExport", "En": "Export", "Ar": "تصدير" },
+  { "moduleName": "public", "screenName": "groupsAmountsReports", "name": "groupsAmountsReportsPrint", "En": "Print", "Ar": "طباعة" },
+  { "moduleName": "public", "screenName": "groupsAmountsReports", "name": "groupsAmountsReportsUi", "En": "UI", "Ar": "الواجهة الرسومية" }
+]

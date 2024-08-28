@@ -1,0 +1,139 @@
+<div id="detailsModal" class="modal full" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <p class="center">
+        ##word.Details List##
+        <i class="fa fa-file"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row" ng-show="search.group.id">
+        <div class="person-cart">
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{search.group.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Subject## : </span> {{search.group.subject.name}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Teacher## : </span> {{search.group.teacher.firstName}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{search.group.teacher.mobile}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{search.group.educationalLevel.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.School Year## : </span> {{search.group.schoolYear.name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Payment Method## : </span> {{search.group.paymentMethod.name##session.lang##}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Price## : </span> {{search.group.price}} ##word.$##</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="error">{{error}}</p>
+      <div class="row" ng-show="search.group.paymentMethod.name == 'lecture'">
+        <div class="table-responsive">
+          <table class="table hover bold" id="t-students">
+            <tr>
+              <th>##word.Full Name##</th>
+              <th>##word.Barcode##</th>
+              <th>##word.Mobile##</th>
+              <th>##word.Parent Mobile##</th>
+              <th>##word.Attendance##</th>
+              <th class="w200">##word.Paid##</th>
+              <th>##word.Notes##</th>
+            </tr>
+            <tr ng-repeat="s in detail.paymentList | filter:$search | filter:$search2">
+              <td class="center" ng-class="{'bg-yellow' : s.new === true}">
+                {{s.student.firstName}}
+                <p ng-show="s.new">( {{s.group.name}} )</p>
+              </td>
+              <td class="center userPrint">{{s.student.barcode}}</td>
+              <td class="center">
+                <a target="_blank" href="https://wa.me/{{s.student.mobile}}">
+                  {{s.student.mobile}}
+                  <i class="fas fa-mobile-alt"></i>
+                </a>
+              </td>
+              <td class="center">
+                <a target="_blank" href="https://wa.me/{{s.student.parentMobile}}">
+                  {{s.student.parentMobile}}
+                  <i class="fas fa-mobile-alt"></i>
+                </a>
+              </td>
+              <td class="center">
+                <p class="green">{{s.attendDate | date : 'mm : hh '}}</p>
+                <p class="red">{{s.departureDate | date : 'mm : hh '}}</p>
+                <p class="text-danger" ng-show="s.attend == false">##word.Absence##</p>
+              </td>
+              <td class="center">
+                <p ng-show="s.requiredPayment > 0">{{s.requiredPayment}} ##word.$##</p>
+                <p ng-show="s.exempt">##word.Exempt##</p>
+                <p ng-show="!s.exempt && s.paidType == 'notPaid'">##word.Paid##</p>
+                <p ng-show="!s.exempt && s.paidType == 'donePaid'">##word.Not Paid##</p>
+              </td>
+              <td class="center">
+                <p>{{s.notes}}</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="row" ng-show="search.group.paymentMethod.name == 'monthly'">
+        <div class="table-responsive">
+          <table class="table bold" id="t-students">
+            <tr>
+              <th>##word.Month##</th>
+              <th>##word.Total Paid##</th>
+              <th>##word.Remain##</th>
+              <th>##word.Payments List##</th>
+            </tr>
+            <tr ng-repeat="s in detail.paymentList">
+              <td class="center bold">{{s.month.name##session.lang##}}</td>
+              <td class="center bold">{{s.price}} ##word.$##</td>
+              <td class="center bold">
+                <p>{{s.remain}} ##word.$##</p>
+                <p ng-show="s.exception">##word.Exception##</p>
+              </td>
+              <td class="center">
+                <table class="table hover bold">
+                  <tr>
+                    <th>##word.Date##</th>
+                    <th>##word.Paid##</th>
+                  </tr>
+                  <tr ng-repeat="p in s.paymentList">
+                    <td class="center">{{p.date | date : 'dd / MM / yyyy'}}</td>
+                    <td class="center">{{p.price}} ##word.$##</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="close" label="##word.Close##" onclick="site.hideModal( '#detailsModal')"></i-button>
+    </div>
+  </div>
+</div>

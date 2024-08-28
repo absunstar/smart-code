@@ -322,12 +322,11 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
     $scope.item.attendanceCount = $scope.item.studentList.filter((s) => s.attend).length;
     $scope.item.absenceCount = $scope.item.studentList.filter((s) => !s.attend).length;
     $scope.$applyAsync();
-
   };
 
   $scope.attendStudent = function (search, ev) {
     $scope.error = "";
-    if (ev.which == 13) {
+    if (ev.which == 13 && search) {
       if ($scope.busyAttend) {
         return;
       }
@@ -352,7 +351,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
               "schoolYear.id": $scope.item.schoolYear.id,
               active: true,
             },
-            subjectId : $scope.item.subject.id
+            subjectId: $scope.item.subject.id,
           },
         }).then(
           function (response) {

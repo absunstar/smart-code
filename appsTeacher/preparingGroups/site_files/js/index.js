@@ -344,7 +344,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
 
   $scope.attendStudent = function (search, ev) {
     $scope.error = "";
-    if (ev.which == 13) {
+    if (ev.which == 13 && search) {
       if ($scope.busyAttend) {
         return;
       }
