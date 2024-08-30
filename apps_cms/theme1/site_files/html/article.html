@@ -160,9 +160,17 @@
                 <span class="bold"> ##word.related Search##</span>
                 <a x-list1="article.$keyWordsList" rel="nofollow" href="/results?search_query=##item1.##"> <i>##item1.##</i> </a>
               </div>
+
               <div class="related-tags">
                 <a x-list1="article.$tagsList" rel="nofollow" href="/results?tag=##item1.##"> <b>##item1.##</b> </a>
               </div>
+
+              <div x-data="shortLink.id" class="steps">
+                <h2 class="center">Step ##data.shortLink.step## / ##data.shortLink.maxStep##</h2>
+                <h3 class="counter">Waiting <span></span> sec</h3>
+                <a href="/article/random" class="btn"> Click to Next Step >>>> </a>
+              </div>
+
               <div x-data="setting.showArticleAd" x-import="theme1/ad-article.html" class="related-ads"></div>
             </div>
           </div>
@@ -191,5 +199,25 @@
     </div>
     <div x-import="theme1/wedgite.html"></div>
     <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
+    <script x-data="shortLink">
+      let counterTimeout = parseInt('##data.shortLink.timeout##' || 30);
+      window.countInterval = setInterval(() => {
+        if ((counter = document.querySelector('.counter span'))) {
+          let count = parseInt(counter.innerText || counterTimeout);
+          count--;
+          if (count < 0) {
+            clearInterval(window.countInterval);
+            if ((a = document.querySelector('.steps h3'))) {
+              a.style.display = 'none';
+            }
+            if ((a = document.querySelector('.steps a'))) {
+              a.style.display = 'block';
+            }
+          } else {
+            counter.innerText = count;
+          }
+        }
+      }, 1000);
+    </script>
   </body>
 </html>
