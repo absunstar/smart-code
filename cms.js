@@ -447,14 +447,15 @@ site.onGET('/s/create', (req, res) => {
   });
 });
 site.onGET('/s/:guid', (req, res) => {
-  req.session.shortLink = site.shortLinkList.find((s) => s.guid == req.params.guid) || {
+  let shortLink = site.shortLinkList.find((s) => s.guid == req.params.guid) || {
     guid: req.params.guid,
     url: req.query.url || 'https://social-browser.com/download/' + site.md5(req.params.guid),
     step: 0,
     maxStep: 4,
     timeout: 30,
   };
-
+  req.session.shortLink = { ...shortLink };
+  req.session.shortLink.step = 0;
   req.session.$save();
 
   req.params.guid = 'random';
