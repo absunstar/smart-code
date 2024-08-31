@@ -257,7 +257,7 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-        _data.date = new Date();
+        _data.date = site.getDate();
         _data.addUserInfo = req.getUserFinger();
         _data.host = site.getHostFilter(req.host);
         if ((teacherId = site.getTeacherSetting(req))) {
@@ -457,7 +457,7 @@ module.exports = function init(site) {
                 target: { id: doc.id, name: doc.name },
                 price: doc.price,
                 address: _data.address,
-                date: new Date(),
+                date: site.getDate(),
                 host: site.getHostFilter(req.host),
                 teacherId: site.getTeacherSetting(req) || doc.teacherId,
                 status: site.bookStatusList[0],

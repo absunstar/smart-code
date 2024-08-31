@@ -233,9 +233,9 @@ module.exports = function init(site) {
         if (doc.createdDate) {
           doc.$createdDate = site.xtime(doc.createdDate, req.session.lang);
         }
-        let date = new Date(doc.visit_date);
+        let date = site.getDate(doc.visit_date);
         date.setMinutes(date.getMinutes() + 1);
-        if (new Date() < date) {
+        if (site.getDate() < date) {
           doc.$isOnline = true;
         } else {
           doc.$isOnline = false;

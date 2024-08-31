@@ -222,8 +222,8 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     $scope.error = "";
     $scope.item.filesList = $scope.item.filesList || [];
     $scope.item.filesList.push({
-      file_date: new Date(),
-      file_upload_date: new Date(),
+      file_date: site.getDate(),
+      file_upload_date: site.getDate(),
       upload_by: "##user.firstName##",
     });
   };

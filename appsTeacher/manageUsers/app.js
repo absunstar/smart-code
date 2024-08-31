@@ -225,7 +225,7 @@ module.exports = function init(site) {
         }
         
         _data.host = site.getHostFilter(req.host);
-        let date = new Date();
+        let date = site.getDate();
         let d = date.getDate().toString();
         let h = date.getHours().toString();
         let m = date.getMinutes().toString();

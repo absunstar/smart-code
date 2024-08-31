@@ -205,7 +205,7 @@ module.exports = function init(site) {
         let _data = req.data;
 
         _data.addUserInfo = req.getUserFinger();
-        _data.date = new Date();
+        _data.date = site.getDate();
         _data.host = site.getHostFilter(req.host);
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;

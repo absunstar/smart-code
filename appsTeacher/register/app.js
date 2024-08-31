@@ -91,7 +91,7 @@ module.exports = function init(site) {
 
     site.ipList.push({
       ip: req.ip,
-      time: new Date().getTime(),
+      time: site.getDate().getTime(),
     });
 
     let mailer_doc = req.body;
@@ -114,22 +114,22 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err && doc) {
           if (mailer_doc.mobile) {
-            let date = new Date(doc.date);
+            let date = site.getDate(doc.date);
             date.setMinutes(date.getMinutes() + 5);
-            if (new Date() > date) {
+            if (site.getDate() > date) {
               doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
-              doc.date = new Date();
+              doc.date = site.getDate();
             } else {
               response.error = "have to wait mobile 5 Minute";
               res.json(response);
               return;
             }
           } else if (mailer_doc.email) {
-            let date = new Date(doc.date);
+            let date = site.getDate(doc.date);
             date.setMinutes(date.getMinutes() + 1);
-            if (new Date() > date) {
+            if (site.getDate() > date) {
               doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
-              doc.date = new Date();
+              doc.date = site.getDate();
             } else {
               response.error = "have to wait email";
               res.json(response);
@@ -196,7 +196,7 @@ module.exports = function init(site) {
                 return;
               } else {
                 mailer_doc.code = Math.floor(Math.random() * 10000) + 90000;
-                mailer_doc.date = new Date();
+                mailer_doc.date = site.getDate();
                 $mailer.add(mailer_doc, (err, result) => {
                   if (!err) {
                     response.done = true;
@@ -379,7 +379,7 @@ module.exports = function init(site) {
       roles: [{ name: req.body.user.type }],
       permissions: [{ name: req.body.user.type }],
       type: req.body.user.type,
-      createdDate: new Date(),
+      createdDate: site.getDate(),
       host: site.getHostFilter(req.host),
       teacherId: setting.isShared ? null : site.getTeacherSetting(req),
       $req: req,

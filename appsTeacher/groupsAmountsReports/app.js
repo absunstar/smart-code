@@ -116,13 +116,13 @@ module.exports = function init(site) {
               response.result = result;
               res.json(response);
             } else {
-              let dateFrom = where.dateFrom ? new Date(where.dateFrom) : null;
-              let dateTo = where.dateTo ? new Date(where.dateTo) : null;
+              let dateFrom = where.dateFrom ? site.getDate(where.dateFrom) : null;
+              let dateTo = where.dateTo ? site.getDate(where.dateTo) : null;
               // dateTo1.setMonth(dateTo1.getMonth() + 1);
 
               for (let i = 0; i < group.studentList.length; i++) {
-                let dateFrom1 = where.dateFrom ? new Date(where.dateFrom) : null;
-                let dateTo1 = where.dateTo ? new Date(where.dateTo) : null;
+                let dateFrom1 = where.dateFrom ? site.getDate(where.dateFrom) : null;
+                let dateTo1 = where.dateTo ? site.getDate(where.dateTo) : null;
                 let monthList = [];
                 while (dateFrom1 < dateTo1) {
                   monthList.push({ month: dateFrom1.getMonth(), year: dateFrom1.getFullYear(), isFound: false });
@@ -138,7 +138,7 @@ module.exports = function init(site) {
                 group.studentList[i].paymentList = group.studentList[i].paymentList || [];
 
                 group.studentList[i].paymentList.forEach((_p) => {
-                  _p.date = new Date(_p.date);
+                  _p.date = site.getDate(_p.date);
                   let indx = monthList.findIndex((itm) => itm.month == _p.date.getMonth() && itm.year == _p.date.getFullYear());
                   if (indx !== -1) {
                     monthList[indx].isFound = true;
@@ -155,7 +155,7 @@ module.exports = function init(site) {
                 });
                 monthList.forEach((_m) => {
                   if (!_m.isFound) {
-                    let indx = preparingGroup.findIndex((k) => new Date(k.date).getMonth() == _m.month && new Date(k.date).getFullYear() == _m.year);
+                    let indx = preparingGroup.findIndex((k) => site.getDate(k.date).getMonth() == _m.month && site.getDate(k.date).getFullYear() == _m.year);
                     if (indx !== -1 && preparingGroup[indx].studentList.some((k) => k.student.id === group.studentList[i].student.id && k.attend)) {
                       obj.totalRequired += group.studentList[i].requiredPayment;
                       obj.totalRemain += group.studentList[i].requiredPayment;

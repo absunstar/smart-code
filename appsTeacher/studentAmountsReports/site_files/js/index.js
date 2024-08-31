@@ -1,6 +1,6 @@
 app.controller("studentAmountsReports", function ($scope, $http, $timeout) {
   $scope.list = [];
-  $scope.search = {dateFrom : new Date()};
+  $scope.search = {dateFrom : site.getDate()};
   $scope.baseURL = "";
   $scope.getAll = function (search) {
     const v = site.validated("#studentAmountsReportsSearch");

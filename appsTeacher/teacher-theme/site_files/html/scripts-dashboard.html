@@ -41,7 +41,7 @@
     if (typeof _time == 'undefined' || !_time) {
       return since_few;
     }
-    _time = new Date().getTime() - new Date(_time).getTime();
+    _time = site.getDate().getTime() - site.getDate(_time).getTime();
 
     let _type = null;
 
@@ -51,7 +51,7 @@
     let times = [1, 1000, 60, 60, 24, 30, 12];
     let times_type = ['x', second, minute, hour, day, month, year];
 
-    let offset = new Date().getTimezoneOffset();
+    let offset = site.getDate().getTimezoneOffset();
     if (false && offset < 0) {
       let diff = Math.abs(offset) * 60 * 1000;
       _time = _time + diff;

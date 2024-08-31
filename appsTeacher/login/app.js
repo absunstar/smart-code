@@ -80,11 +80,11 @@ module.exports = function init(site) {
       if (!err) {
         if (user) {
           if (user.forget_password) {
-            let date = new Date(user.forget_password.date);
+            let date = site.getDate(user.forget_password.date);
             date.setMinutes(date.getMinutes() + 1);
-            if (new Date() > date) {
+            if (site.getDate() > date) {
               user.forget_password.code = user.id + Math.floor(Math.random() * 10000) + 90000;
-              user.forget_password.date = new Date();
+              user.forget_password.date = site.getDate();
             } else {
               response.error = 'have to wait mobile 5 Minute';
               res.json(response);
@@ -93,7 +93,7 @@ module.exports = function init(site) {
           } else {
             user.forget_password = {
               code: user.id + Math.floor(Math.random() * 10000) + 90000,
-              date: new Date(),
+              date: site.getDate(),
             };
           }
           site.security.updateUser(user, (err, userDoc) => {

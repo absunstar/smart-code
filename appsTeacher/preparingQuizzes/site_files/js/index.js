@@ -15,7 +15,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure, studentList: [], date: new Date() };
+    $scope.item = { ...$scope.structure, studentList: [], date: site.getDate() };
     site.showModal($scope.modalID);
   };
 
@@ -273,14 +273,14 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
   $scope.setAttendance = function (item, type) {
     $scope.error = "";
     if (type == "attend") {
-      item.attendDate = new Date();
+      item.attendDate = site.getDate();
       item.attend = true;
     } else if (type == "absence") {
       item.attend = false;
       delete item.attendDate;
       delete item.departureDate;
     } else if (type == "departure") {
-      item.departureDate = new Date();
+      item.departureDate = site.getDate();
     }
   };
   $scope.clickMoblie = function (item, type) {
@@ -334,7 +334,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
       if (index !== -1) {
         if (!$scope.item.studentList[index].attend) {
-          $scope.item.studentList[index].attendDate = new Date();
+          $scope.item.studentList[index].attendDate = site.getDate();
           $scope.item.studentList[index].attend = true;
           $scope.numberAbsencesAttendance();
         }
@@ -358,7 +358,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
             $scope.busyAttend = false;
             if (response.data.done && response.data.doc) {
               if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {
-                let stu = { student: response.data.doc.student, group: response.data.doc.group, attend: true, attendDate: new Date(), new: true };
+                let stu = { student: response.data.doc.student, group: response.data.doc.group, attend: true, attendDate: site.getDate(), new: true };
                 $scope.item.studentList.unshift(stu);
                 $scope.numberAbsencesAttendance();
               } else {

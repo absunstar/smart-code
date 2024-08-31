@@ -293,7 +293,7 @@ module.exports = function init(site) {
         let _data = req.data;
 
         _data.addUserInfo = req.getUserFinger();
-        _data.date = new Date();
+        _data.date = site.getDate();
         _data.host = site.getHostFilter(req.host);
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
@@ -452,16 +452,16 @@ module.exports = function init(site) {
                     return;
                   } else if (doc.typeExpiryView.name == "day") {
                     let obj = { ...user.viewsList[index] };
-                    var viewDate = new Date(obj.date);
+                    var viewDate = site.getDate(obj.date);
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-                    if (new Date().getTime() > viewDate.getTime()) {
+                    if (site.getDate().getTime() > viewDate.getTime()) {
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
                     }
                   } else if (doc.typeExpiryView.name == "date") {
-                    doc.dateAvailableViews = new Date(doc.dateAvailableViews);
-                    if (new Date().getTime() > doc.dateAvailableViews.getTime()) {
+                    doc.dateAvailableViews = site.getDate(doc.dateAvailableViews);
+                    if (site.getDate().getTime() > doc.dateAvailableViews.getTime()) {
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
@@ -473,7 +473,7 @@ module.exports = function init(site) {
                   user.viewsList.push({
                     lectureId: doc.id,
                     code: _data.code,
-                    date: new Date(),
+                    date: site.getDate(),
                     views: 1,
                   });
                 }
@@ -528,16 +528,16 @@ module.exports = function init(site) {
                     return;
                   } else if (doc.typeExpiryView.name == "day") {
                     let obj = { ...user.viewsList[index] };
-                    var viewDate = new Date(obj.date);
+                    var viewDate = site.getDate(obj.date);
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-                    if (new Date().getTime() > viewDate.getTime()) {
+                    if (site.getDate().getTime() > viewDate.getTime()) {
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
                     }
                   } else if (doc.typeExpiryView.name == "date") {
-                    doc.dateAvailableViews = new Date(doc.dateAvailableViews);
-                    if (new Date().getTime() > doc.dateAvailableViews.getTime()) {
+                    doc.dateAvailableViews = site.getDate(doc.dateAvailableViews);
+                    if (site.getDate().getTime() > doc.dateAvailableViews.getTime()) {
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
@@ -549,7 +549,7 @@ module.exports = function init(site) {
                   user.viewsList.push({
                     lectureId: doc.id,
                     code: _data.code,
-                    date: new Date(),
+                    date: site.getDate(),
                     views: 1,
                   });
                 }
@@ -621,9 +621,9 @@ module.exports = function init(site) {
                       }
                       return;
                     } else if (_doc.typeExpiryView.name == "day") {
-                      var viewDate = new Date(req.session.user.viewsList[index].date);
+                      var viewDate = site.getDate(req.session.user.viewsList[index].date);
                       viewDate.setHours(viewDate.getHours() + _doc.daysAvailableViewing * 24);
-                      let newDate = new Date();
+                      let newDate = site.getDate();
                       let diffTime = Math.abs(viewDate - newDate);
 
                       _video.remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
@@ -632,7 +632,7 @@ module.exports = function init(site) {
                       }
                     } else if (_doc.typeExpiryView.name == "date") {
                       _video.remainDate = _doc.dateAvailableViews;
-                      if (new Date().getTime() <= _doc.dateAvailableViews.getTime()) {
+                      if (site.getDate().getTime() <= _doc.dateAvailableViews.getTime()) {
                         _video.isValid = true;
                       }
                     }
@@ -855,7 +855,7 @@ module.exports = function init(site) {
                     target: { id: doc.id, name: doc.name },
                     price: doc.price,
                     code: _data.code,
-                    date: new Date(),
+                    date: site.getDate(),
                     host: site.getHostFilter(req.host),
                     teacherId: site.getTeacherSetting(req) || doc.teacherId,
                     user: {

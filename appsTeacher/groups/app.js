@@ -319,11 +319,11 @@ module.exports = function init(site) {
           response.done = true;
           let result = {};
           if (_data.type == "validDay") {
-            let date = new Date(_data.date);
+            let date = site.getDate(_data.date);
             console.log(date,_data.date);
 
             let index = doc.dayList.findIndex(
-              (itm) => new Date(itm.date).getDate() === date.getDate() && new Date(itm.date).getMonth() === date.getMonth() && new Date(itm.date).getFullYear() === date.getFullYear() && !itm.isBook
+              (itm) => site.getDate(itm.date).getDate() === date.getDate() && site.getDate(itm.date).getMonth() === date.getMonth() && site.getDate(itm.date).getFullYear() === date.getFullYear() && !itm.isBook
             );
             console.log(doc.dayList);
             
@@ -469,12 +469,12 @@ module.exports = function init(site) {
   site.bookingAppointmentGroup = function (_options) {
     app.view({ id: _options.groupId }, (err, doc) => {
       if (doc) {
-        _options.date = new Date(_options.date);
+        _options.date = site.getDate(_options.date);
         let index = doc.dayList.findIndex(
           (itm) =>
-            new Date(itm.date).getDate() === _options.date.getDate() &&
-            new Date(itm.date).getMonth() === _options.date.getMonth() &&
-            new Date(itm.date).getFullYear() === _options.date.getFullYear() &&
+            site.getDate(itm.date).getDate() === _options.date.getDate() &&
+            site.getDate(itm.date).getMonth() === _options.date.getMonth() &&
+            site.getDate(itm.date).getFullYear() === _options.date.getFullYear() &&
             itm.day.id === _options.day.id
         );
         if (index !== -1) {

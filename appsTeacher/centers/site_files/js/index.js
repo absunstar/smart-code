@@ -113,8 +113,8 @@ app.controller("centers", function ($scope, $http, $timeout) {
           $scope.item = response.data.doc;
           $scope.item.daysList.forEach((day) => {
             day.appointmentsList.forEach((_appointment) => {
-              _appointment.startTime = new Date(_appointment.startTime) || new Date();
-              _appointment.endTime = new Date(_appointment.endTime) || new Date();
+              _appointment.startTime = site.getDate(_appointment.startTime) || site.getDate();
+              _appointment.endTime = site.getDate(_appointment.endTime) || site.getDate();
             });
           });
         } else {

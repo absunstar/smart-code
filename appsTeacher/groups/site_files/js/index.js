@@ -448,23 +448,21 @@ app.controller("groups", function ($scope, $http, $timeout) {
   $scope.generateAppointments = function (item) {
     $scope.error = "";
     if (item.startDate && item.endDate) {
-      let start = new Date(item.startDate);
-      let end = new Date(item.endDate);
+      let start = site.getDate(item.startDate);
+      let end = site.getDate(item.endDate);
       /* end.setHours(0, 0, 0, 0); */
       item.dayList = [];
       let index = item.days.findIndex((itm) => itm.code === start.getDay());
       if (index !== -1) {
-        item.dayList.push({ date: new Date(start), day: item.days[index] });
+        item.dayList.push({ date: site.getDate(start), day: item.days[index] });
       }
-      while (new Date(start) <= new Date(end)) {
+      while (site.getDate(start) <= site.getDate(end)) {
         start.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
         let index = item.days.findIndex((itm) => itm.code === start.getDay());
-        if (index !== -1 && new Date(start) <= new Date(end)) {
-          let _start = new Date(start);
-          _start.setHours(12, 0, 0, 0);
-          item.dayList.push({ date: _start, day: item.days[index] });
+        if (index !== -1 && site.getDate(start) <= site.getDate(end)) {
+          item.dayList.push({ date: site.getDate(start), day: item.days[index] });
         }
-        if (new Date(start) == new Date(end)) {
+        if (site.getDate(start) == site.getDate(end)) {
           break;
         }
       }
@@ -473,7 +471,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.changeDay = function (item) {
     $scope.error = "";
-    item.date = new Date(item.date);
+    item.date = site.getDate(item.date);
     item.date.setHours(0, 0, 0, 0);
     let index = $scope.weekDaysList.findIndex((itm) => itm.code === item.date.getDay());
     if (index !== -1) {
@@ -489,7 +487,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.pushSpceficIndex = function (index) {
     $scope.error = "";
-    $scope.dayList.splice(index, 0, { date: new Date() });
+    $scope.dayList.splice(index, 0, { date: site.getDate() });
   };
 
   $scope.showSearch = function () {
@@ -504,7 +502,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     if ($scope.setting.thermalPrinter) {
       $("#thermalPrint").removeClass("hidden");
       $scope.thermal = {
-        printDate: new Date(),
+        printDate: site.getDate(),
         date: subObj.date,
         month: obj.month,
         groupName: $scope.item.name,
@@ -540,7 +538,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
   $scope.showStudentPayments = function (item) {
     $scope.error = "";
     $scope.studentItem = item;
-    $scope.studentItem.$date = new Date();
+    $scope.studentItem.$date = site.getDate();
     let index = $scope.monthList.findIndex((itm) => itm.code == $scope.studentItem.$date.getMonth());
     if (index !== -1) {
       $scope.studentItem.$month = $scope.monthList[index];
@@ -551,7 +549,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.changePaymentMonth = function (item) {
     $scope.error = "";
-    item.$date = new Date(item.$date);
+    item.$date = site.getDate(item.$date);
     let index = $scope.monthList.findIndex((itm) => itm.code == item.$date.getMonth());
     if (index !== -1) {
       item.$month = $scope.monthList[index];
@@ -571,11 +569,11 @@ app.controller("groups", function ($scope, $http, $timeout) {
         $scope.error = "##word.This Month Is Exist##";
         return;
       }
-      item.paymentList.unshift({ date: item.$date, price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: new Date(), price: item.$price }] });
+      item.paymentList.unshift({ date: item.$date, price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: site.getDate(), price: item.$price }] });
       delete item.$price;
       delete item.$month;
       delete item.$remain;
-      item.$date = new Date();
+      item.$date = site.getDate();
       if ($scope.setting.autoPrint) {
         $scope.thermalPrint(item.paymentList[0], item.paymentList[0].paymentList[0]);
       }

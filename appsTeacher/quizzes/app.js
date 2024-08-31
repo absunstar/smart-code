@@ -225,7 +225,7 @@ module.exports = function init(site) {
                   });
                 }
                 doc.timesEnterQuiz += 1;
-                doc.date = new Date();
+                doc.date = site.getDate();
                 app.$collection.update(doc, (err, result) => {
                   for (let i = 0; i < quiz.questionsList.length; i++) {
                     quiz.questionsList[i].answersList.forEach((_a) => {
@@ -250,7 +250,7 @@ module.exports = function init(site) {
                     questionsList: lecture.questionsList,
                     correctAnswers: 0,
                     userDegree: 0,
-                    date: new Date(),
+                    date: site.getDate(),
                     timesEnterQuiz: 1,
                   },
                   (err, doc) => {
@@ -318,7 +318,7 @@ module.exports = function init(site) {
           app.view({ id: _data.id }, (err, doc) => {
             if (doc) {
               doc.correctAnswers = 0;
-              doc.editDate = new Date();
+              doc.editDate = site.getDate();
               for (let i = 0; i < doc.questionsList.length; i++) {
                 let question = _data.questionsList.find((_q) => _q.numbering == doc.questionsList[i].numbering);
                 doc.questionsList[i].answersList.forEach((_a) => {

@@ -15,7 +15,7 @@ app.controller("printTexts", function ($scope, $http, $timeout) {
   $scope.showAdd = function (_item) {
     $scope.error = "";
     $scope.mode = "add";
-    $scope.item = { ...$scope.structure, textList: [{ text: "" }] ,date : new Date()};
+    $scope.item = { ...$scope.structure, textList: [{ text: "" }] ,date : site.getDate()};
     site.showModal($scope.modalID);
   };
 
