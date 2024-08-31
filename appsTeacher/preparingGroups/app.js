@@ -305,7 +305,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
+        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {          
           res.json({
             done: true,
             list: docs,
@@ -344,8 +344,12 @@ module.exports = function init(site) {
     callBack = callBack || function () {};
     let select = {
       id: 1,
+      group: 1,
+      teacher: 1,
+      subject: 1,
       studentList: 1,
       date: 1,
+      day: 1,
     };
     if (where && where.dateFrom) {
       let d1 = site.toDate(where.dateFrom);
@@ -371,6 +375,11 @@ module.exports = function init(site) {
       delete where["group"];
     }
 
+    if (where.student && where.student.id) {
+      where["studentList.student.id"] = where.student.id;
+      delete where["student"];
+    }
+    
     app.$collection.findMany({ where, select, sort: { id: -1 } }, (err, docs) => {
       callBack(err, docs);
     });

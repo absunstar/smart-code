@@ -41,7 +41,11 @@ module.exports = function init(site) {
       };
 
       let where = req.data;
-
+      if (where.dateFrom > where.ToFrom) {
+        response.error = "Dates is Wrong";
+        res.json(response);
+        return;
+      }
       let result = {
         list: [],
         totalRequired: 0,
@@ -51,24 +55,26 @@ module.exports = function init(site) {
       site.getGroup({ id: where.group.id }, (err, group) => {
         if (!err && group) {
           response.done = true;
-          if (group.paymentMethod.name == "lecture") {
-            site.getPreparingGroups(where, (err, preparingGroup) => {
+          site.getPreparingGroups({ ...where }, (err, preparingGroup) => {
+            if (group.paymentMethod.name == "lecture") {
               if (preparingGroup && preparingGroup.length > 0) {
                 for (let i = 0; i < preparingGroup.length; i++) {
                   preparingGroup[i].studentList.forEach((_s) => {
                     _s.requiredPayment = _s.requiredPayment || 0;
                     let index = result.list.findIndex((itm) => itm.student && itm.student.id === _s.student.id);
                     if (index !== -1) {
-                      result.list[index].paymentList.push(_s);
-                      result.list[index].totalRequired += _s.requiredPayment;
-                      if (_s.attend && !_s.exempt) {
-                        if (_s.paidType == "donePaid") {
-                          result.totalPaid += _s.requiredPayment;
-                          result.list[index].totalPaid += _s.requiredPayment;
-                        }
-                        if (_s.paidType == "notPaid") {
-                          result.totalRemain += _s.requiredPayment;
-                          result.list[index].totalRemain += _s.requiredPayment;
+                      if (_s.attend) {
+                        result.list[index].paymentList.push(_s);
+                        result.list[index].totalRequired += _s.requiredPayment;
+                        if (_s.attend && !_s.exempt) {
+                          if (_s.paidType == "donePaid") {
+                            result.totalPaid += _s.requiredPayment;
+                            result.list[index].totalPaid += _s.requiredPayment;
+                          }
+                          if (_s.paidType == "notPaid") {
+                            result.totalRemain += _s.requiredPayment;
+                            result.list[index].totalRemain += _s.requiredPayment;
+                          }
                         }
                       }
                     } else {
@@ -107,60 +113,62 @@ module.exports = function init(site) {
               }
               response.result = result;
               res.json(response);
-            });
-          } else {
-            let dateFrom = where.dateFrom ? new Date(where.dateFrom) : null;
-            let dateTo = where.dateTo ? new Date(where.dateTo) : null;
-            let dateFrom1 = where.dateFrom ? new Date(where.dateFrom) : null;
-            let dateTo1 = where.dateTo ? new Date(where.dateTo) : null;
-            let monthList = [];
-            // dateTo1.setMonth(dateTo1.getMonth() + 1);
+            } else {
+              let dateFrom = where.dateFrom ? new Date(where.dateFrom) : null;
+              let dateTo = where.dateTo ? new Date(where.dateTo) : null;
+              // dateTo1.setMonth(dateTo1.getMonth() + 1);
 
-            while (dateFrom1 < dateTo1) {
-              monthList.push({ month: dateFrom1.getMonth(), year: dateFrom1.getFullYear(), isFound: false });
-              dateFrom1.setMonth(dateFrom1.getMonth() + 1);
+              for (let i = 0; i < group.studentList.length; i++) {
+                let dateFrom1 = where.dateFrom ? new Date(where.dateFrom) : null;
+                let dateTo1 = where.dateTo ? new Date(where.dateTo) : null;
+                let monthList = [];
+                while (dateFrom1 < dateTo1) {
+                  monthList.push({ month: dateFrom1.getMonth(), year: dateFrom1.getFullYear(), isFound: false });
+                  dateFrom1.setMonth(dateFrom1.getMonth() + 1);
+                }
+                let obj = {
+                  student: group.studentList[i].student,
+                  paymentList: [],
+                  totalRequired: 0,
+                  totalPaid: 0,
+                  totalRemain: 0,
+                };
+                group.studentList[i].paymentList = group.studentList[i].paymentList || [];
+
+                group.studentList[i].paymentList.forEach((_p) => {
+                  _p.date = new Date(_p.date);
+                  let indx = monthList.findIndex((itm) => itm.month == _p.date.getMonth() && itm.year == _p.date.getFullYear());
+                  if (indx !== -1) {
+                    monthList[indx].isFound = true;
+                  }
+                  if (_p.date.getTime() <= dateTo.getTime() && _p.date.getTime() >= dateFrom.getTime()) {
+                    obj.totalRequired += _p.price + _p.remain;
+                    obj.totalPaid += _p.price;
+                    obj.totalRemain += _p.remain;
+                    result.totalRequired += _p.price + _p.remain;
+                    result.totalPaid += _p.price;
+                    result.totalRemain += _p.remain;
+                    obj.paymentList.unshift(_p);
+                  }
+                });
+                monthList.forEach((_m) => {
+                  if (!_m.isFound) {
+                    let indx = preparingGroup.findIndex((k) => new Date(k.date).getMonth() == _m.month && new Date(k.date).getFullYear() == _m.year);
+                    if (indx !== -1 && preparingGroup[indx].studentList.some((k) => k.student.id === group.studentList[i].student.id && k.attend)) {
+                      obj.totalRequired += group.studentList[i].requiredPayment;
+                      obj.totalRemain += group.studentList[i].requiredPayment;
+                      result.totalRequired += group.studentList[i].requiredPayment;
+                      result.totalRemain += group.studentList[i].requiredPayment;
+                    }
+                  }
+                });
+                result.list.push(obj);
+              }
+
+              response.result = result;
+              res.json(response);
             }
-
-            for (let i = 0; i < group.studentList.length; i++) {
-              let obj = {
-                student: group.studentList[i].student,
-                paymentList: [],
-                totalRequired: 0,
-                totalPaid: 0,
-                totalRemain: 0,
-              };
-              group.studentList[i].paymentList = group.studentList[i].paymentList || [];
-
-              group.studentList[i].paymentList.forEach((_p) => {
-                _p.date = new Date(_p.date);
-                let indx = monthList.findIndex((itm) => itm.month == _p.date.getMonth() && itm.year == _p.date.getFullYear());
-                if (indx !== -1) {
-                  monthList[indx].isFound = true;
-                }
-                if (_p.date.getTime() <= dateTo.getTime() && _p.date.getTime() >= dateFrom.getTime()) {
-                  obj.totalRequired += _p.price + _p.remain;
-                  obj.totalPaid += _p.price;
-                  obj.totalRemain += _p.remain;
-                  result.totalRequired += _p.price + _p.remain;
-                  result.totalPaid += _p.price;
-                  result.totalRemain += _p.remain;
-                  obj.paymentList.unshift(_p);
-                }
-              });
-
-              monthList.forEach((_m) => {
-                if (!_m.isFound) {
-                  obj.totalRequired += group.studentList[i].requiredPayment;
-                  obj.totalRemain += group.studentList[i].requiredPayment;
-                  result.totalRequired += group.studentList[i].requiredPayment;
-                  result.totalRemain += group.studentList[i].requiredPayment;
-                }
-              });
-              result.list.push(obj);
-            }
-            response.result = result;
-            res.json(response);
-          }
+          });
         } else {
           response.error = err.mesage || "Not Found";
           res.json(response);

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="En" data-ng-app="myApp">
+  <head x-import="teacher-theme/head-dashboard.html"></head>
+
+  <body class="##session.lang##" ng-controller="studentAmountsReports">
+    <div x-import="studentAmountsReports/detailsModal.html"></div>
+    <nav x-import="teacher-theme/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="teacher-theme/sitebottom.html" ng-controller="sitebottom"></nav>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <div id="studentAmountsReportsSearch" class="row">
+          <div class="row">
+            <i-date class="col6" ng-model="search.dateFrom" label="##word.Date From##"></i-date>
+            <i-date class="col6" ng-model="search.dateTo" label="##word.Date To##"></i-date>
+          </div>
+          <div class="row">
+            <i-list class="col6" v="r" label="##word.Student##" ng-model="search.student" display="firstName" items="studentsList" ng-get="getStudentsList($search)"></i-list>
+            <i-button class="col3" label="##word.Search##" type="search" ng-click="getAll(search)"></i-button>
+          </div>
+        </div>
+
+        <div class="row" ng-show="search.student.id">
+          <div class="person-cart">
+            <div class="row">
+              <div class="col7">
+                <p class="bold"><span class="darkGray">##word.Student Name## : </span> {{search.student.firstName}}</p>
+              </div>
+              <div class="col5">
+                <p class="bold"><span class="darkGray">##word.Barcode## : </span> {{search.student.barcode}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col7">
+                <p class="bold">
+                  <span class="darkGray">##word.Parent Mobile## : </span>
+                  <a target="_blank" href="https://wa.me/{{search.student.parentMobile}}">
+                    {{search.student.parentMobile}}
+                    <i class="fas fa-mobile-alt"></i>
+                  </a>
+                </p>
+              </div>
+              <div class="col5">
+                <p class="bold">
+                  <span class="darkGray">##word.Mobile## : </span>
+                  <a target="_blank" href="https://wa.me/{{search.student.mobile}}">
+                    {{search.student.mobile}}
+                    <i class="fas fa-mobile-alt"></i>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive col6" ng-show="search.student.id">
+          <table class="table hover bold">
+            <tr>
+              <th>##word.Total Required##</th>
+              <th>##word.Total Paid##</th>
+              <th>##word.Total Remain##</th>
+            </tr>
+            <tr>
+              <td class="center">{{item.totalRequired}} ##word.$##</td>
+              <td class="center">{{item.totalPaid}} ##word.$##</td>
+              <td class="center">{{item.totalRemain}} ##word.$##</td>
+            </tr>
+          </table>
+        </div>
+      
+        <div class="row">
+          <div class="table-responsive">
+            <table class="table hover bold" id="t1">
+              <tr>
+                <th>##word.Group##</th>
+                <th>##word.Teacher##</th>
+                <th>##word.Subject##</th>
+                <th>##word.Payment Method##</th>
+                <th>##word.Total Required##</th>
+                <th>##word.Total Paid##</th>
+                <th>##word.Total Remain##</th>
+                <th>##word.Details##</th>
+              </tr>
+              <tr ng-repeat="item in item.list | filter:$search">
+                <td class="center">{{item.group.name}}</td>
+                <td class="center">{{item.teacher.firstName}}</td>
+                <td class="center">{{item.subject.name}}</td>
+                <td class="center">{{item.group.paymentMethod.name##session.lang##}}</td>
+                <td class="center">{{item.totalRequired}} ##word.$##</td>
+                <td class="center">{{item.totalPaid}} ##word.$##</td>
+                <td class="center">{{item.totalRemain}} ##word.$##</td>
+                <td class="center"><i-button type="view" ng-click="displayDetails(item)"></i-button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+
+    <div x-import="teacher-theme/scripts-dashboard.html"></div>
+
+    <script x-import="studentAmountsReports/index.js"></script>
+  </body>
+</html>

@@ -13,6 +13,38 @@
         <div class="person-cart">
           <div class="row">
             <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Student Name## : </span> {{studentItem.student.firstName}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Barcode## : </span> {{studentItem.student.barcode}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col7">
+              <p class="bold">
+                <span class="darkGray">##word.Parent Mobile## : </span>
+                <a target="_blank" href="https://wa.me/{{studentItem.student.parentMobile}}">
+                  {{studentItem.student.parentMobile}}
+                  <i class="fas fa-mobile-alt"></i>
+                </a>
+              </p>
+            </div>
+            <div class="col5">
+              <p class="bold">
+                <span class="darkGray">##word.Mobile## : </span>
+                <a target="_blank" href="https://wa.me/{{studentItem.student.mobile}}">
+                  {{studentItem.student.mobile}}
+                  <i class="fas fa-mobile-alt"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="person-cart">
+          <div class="row">
+            <div class="col7">
               <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{item.name}}</p>
             </div>
             <div class="col5">

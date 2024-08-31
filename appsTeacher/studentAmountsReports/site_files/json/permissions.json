@@ -1,0 +1,8 @@
+[
+  { "moduleName": "public", "screenName": "studentAmountsReports", "name": "studentAmountsReportsManage", "En": "Manage", "Ar": "إدارة" },
+  { "moduleName": "public", "screenName": "studentAmountsReports", "name": "studentAmountsReportsView", "En": "View", "Ar": "عرض" },
+  { "moduleName": "public", "screenName": "studentAmountsReports", "name": "studentAmountsReportsSearch", "En": "Search", "Ar": "بحث" },
+  { "moduleName": "public", "screenName": "studentAmountsReports", "name": "studentAmountsReportsExport", "En": "Export", "Ar": "تصدير" },
+  { "moduleName": "public", "screenName": "studentAmountsReports", "name": "studentAmountsReportsPrint", "En": "Print", "Ar": "طباعة" },
+  { "moduleName": "public", "screenName": "studentAmountsReports", "name": "studentAmountsReportsUi", "En": "UI", "Ar": "الواجهة الرسومية" }
+]

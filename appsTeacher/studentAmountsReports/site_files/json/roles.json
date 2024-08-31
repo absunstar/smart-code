@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "studentAmountsReportsAdmin",
+    "En": "Student Amounts Reports Admin",
+    "Ar": "إدارة تقارير مدفوعات الطالب ",
+    "permissions": ["studentAmountsReportsManage"]
+}] 
