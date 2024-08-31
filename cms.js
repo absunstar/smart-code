@@ -424,6 +424,44 @@ site.get(
   }
 );
 
+site.$shortLinkList = site.connectCollection('shortLinkList');
+site.shortLinkList = [];
+site.$shortLinkList.findMany({}, (err, docs) => {
+  if (!err && docs) {
+    site.shortLinkList = docs;
+  }
+});
+site.onGET('/s/create', (req, res) => {
+  let shortLink = {
+    guid: site.md5(new Date().getTime().toString() + Math.random().toString()),
+    url: req.query.url || 'https://social-browser.com',
+    step: parseInt(req.query.step || 0),
+    maxStep: parseInt(req.query.maxstep || 4),
+    timeout: parseInt(req.query.timeout || 30),
+  };
+  site.$shortLinkList.add(shortLink, (err, doc) => {
+    if (!err && doc) {
+      site.shortLinkList.push(doc);
+      res.end('https://' + req.host + '/s/' + doc.guid);
+    }
+  });
+});
+site.onGET('/s/:guid', (req, res) => {
+  let shortLink = site.shortLinkList.find((s) => s.guid == req.params.guid) || {
+    guid: req.params.guid,
+    url: req.query.url || 'https://social-browser.com/download/' + site.md5(req.params.guid),
+    step: 0,
+    maxStep: 4,
+    timeout: 30,
+  };
+  req.session.shortLink = { ...shortLink };
+  req.session.shortLink.step = 0;
+  req.session.$save();
+
+  req.params.guid = 'random';
+  site.callRoute('/article/:guid', req, res);
+});
+
 site.get(
   {
     name: ['/article/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/torrent/:guid'],
@@ -512,6 +550,17 @@ site.get(
         }
         options.latestList = site.getLatestArticles(article);
         options.topNews = site.getTopArticles(options.filter, article.category);
+        if (req.session.shortLink) {
+          req.session.shortLink.step++;
+          if (req.session.shortLink.step > req.session.shortLink.maxStep) {
+            res.redirect(req.session.shortLink.url);
+            req.session.shortLink = null;
+            req.session.$save();
+            return;
+          }
+          req.session.$save();
+          options.shortLink = req.session.shortLink;
+        }
 
         res.render('theme1/article.html', options, {
           parser: 'html css js',
