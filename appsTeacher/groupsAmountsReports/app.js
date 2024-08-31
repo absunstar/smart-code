@@ -47,6 +47,7 @@ module.exports = function init(site) {
         return;
       }
       let result = {
+        
         list: [],
         totalRequired: 0,
         totalPaid: 0,
