@@ -11,8 +11,8 @@
       <div id="main-layout" class="content loaded">
         <div id="studentAmountsReportsSearch" class="row">
           <div class="row">
-            <i-date class="col6" ng-model="search.dateFrom" label="##word.Date From##"></i-date>
-            <i-date class="col6" ng-model="search.dateTo" label="##word.Date To##"></i-date>
+            <i-date v="r" class="col6" ng-model="search.dateFrom" label="##word.Date From##"></i-date>
+            <i-date v="r" class="col6" ng-model="search.dateTo" label="##word.Date To##"></i-date>
           </div>
           <div class="row">
             <i-list class="col6" v="r" label="##word.Student##" ng-model="search.student" display="firstName" items="studentsList" ng-get="getStudentsList($search)"></i-list>
