@@ -325,6 +325,7 @@ module.exports = function init(site) {
             let index = doc.dayList.findIndex(
               (itm) => new Date(itm.date).getDate() === date.getDate() && new Date(itm.date).getMonth() === date.getMonth() && new Date(itm.date).getFullYear() === date.getFullYear() && !itm.isBook
             );
+            console.log(doc.dayList);
             
             if (index !== -1) {
               if (!doc.dayList[index].isBook) {
