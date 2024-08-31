@@ -461,7 +461,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         let index = item.days.findIndex((itm) => itm.code === start.getDay());
         if (index !== -1 && new Date(start) <= new Date(end)) {
           let _start = new Date(start);
-          _start.setHours(0, 0, 0, 0);
+          _start.setHours(12, 0, 0, 0);
           item.dayList.push({ date: _start, day: item.days[index] });
         }
         if (new Date(start) == new Date(end)) {
