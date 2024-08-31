@@ -256,6 +256,7 @@ module.exports = function init(site) {
 
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, require: { permissions: ["login"] } }, (req, res) => {
+
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || "";
@@ -320,12 +321,10 @@ module.exports = function init(site) {
           let result = {};
           if (_data.type == "validDay") {
             let date = site.getDate(_data.date);
-            console.log(date,_data.date);
 
             let index = doc.dayList.findIndex(
               (itm) => site.getDate(itm.date).getDate() === date.getDate() && site.getDate(itm.date).getMonth() === date.getMonth() && site.getDate(itm.date).getFullYear() === date.getFullYear() && !itm.isBook
             );
-            console.log(doc.dayList);
             
             if (index !== -1) {
               if (!doc.dayList[index].isBook) {
