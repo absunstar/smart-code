@@ -157,14 +157,14 @@ site.get("/x-update", (req, res) => {
   site.cmd("git pull", (data) => {
     res.end(data || 'error');
     console.log(data);
-    site.cmd("pm2 restart 21", (data) => {
+    site.cmd("pm2 restart 17", (data) => {
       console.log(data);
     });
   });
 });
 
 site.get("/x-restart", (req, res) => {
-  site.cmd("pm2 restart 21", (data) => {
+  site.cmd("pm2 restart 17", (data) => {
     console.log(data);
   });
 });
