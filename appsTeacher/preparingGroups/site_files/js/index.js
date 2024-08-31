@@ -306,14 +306,14 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   $scope.setAttendance = function (item, type) {
     $scope.error = "";
     if (type == "attend") {
-      item.attendDate = site.getDate();
+      item.attendDate = new Date();
       item.attend = true;
     } else if (type == "absence") {
       item.attend = false;
       delete item.attendDate;
       delete item.departureDate;
     } else if (type == "departure") {
-      item.departureDate = site.getDate();
+      item.departureDate = new Date();
     }
   };
 
