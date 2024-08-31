@@ -268,7 +268,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
-            $scope.item.studentList.unshift({ student: response.data.list[0], attend: false, discount: 0 ,discountValue :0 ,requiredPayment :$scope.item.price });
+            $scope.item.studentList.unshift({ student: response.data.list[0], attend: false, discount: 0, discountValue: 0, requiredPayment: $scope.item.price });
           } else {
             $scope.error = "##word.Student Exist##";
           }
@@ -450,6 +450,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     if (item.startDate && item.endDate) {
       let start = new Date(item.startDate);
       let end = new Date(item.endDate);
+      end.setHours(0, 0, 0, 0);
       item.dayList = [];
       let index = item.days.findIndex((itm) => itm.code === start.getDay());
       if (index !== -1) {
@@ -459,9 +460,11 @@ app.controller("groups", function ($scope, $http, $timeout) {
         start.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
         let index = item.days.findIndex((itm) => itm.code === start.getDay());
         if (index !== -1 && new Date(start) <= new Date(end)) {
-          item.dayList.push({ date: new Date(start), day: item.days[index] });
+          let _start = new Date(start);
+          _start.setHours(0, 0, 0, 0);
+          item.dayList.push({ date: _start, day: item.days[index] });
         }
-        if (new Date(start) == new Date(end)) {
+        if (new Date(_start) == new Date(end)) {
           break;
         }
       }
@@ -471,6 +474,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
   $scope.changeDay = function (item) {
     $scope.error = "";
     item.date = new Date(item.date);
+    item.date.setHours(0, 0, 0, 0);
     let index = $scope.weekDaysList.findIndex((itm) => itm.code === item.date.getDay());
     if (index !== -1) {
       item.day = $scope.weekDaysList[index];
@@ -567,7 +571,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         $scope.error = "##word.This Month Is Exist##";
         return;
       }
-      item.paymentList.unshift({date : item.$date, price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: new Date(), price: item.$price }] });
+      item.paymentList.unshift({ date: item.$date, price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: new Date(), price: item.$price }] });
       delete item.$price;
       delete item.$month;
       delete item.$remain;
