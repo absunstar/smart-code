@@ -320,6 +320,8 @@ module.exports = function init(site) {
           let result = {};
           if (_data.type == "validDay") {
             let date = new Date(_data.date);
+            console.log(date,_data.date);
+            
             let index = doc.dayList.findIndex(
               (itm) => new Date(itm.date).getDate() === date.getDate() && new Date(itm.date).getMonth() === date.getMonth() && new Date(itm.date).getFullYear() === date.getFullYear() && !itm.isBook
             );
