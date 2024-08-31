@@ -53,6 +53,7 @@ module.exports = function init(site) {
         totalPaid: 0,
         totalRemain: 0,
       };
+      
       site.getGroup({ id: where.group.id }, (err, group) => {
         if (!err && group) {
           response.done = true;

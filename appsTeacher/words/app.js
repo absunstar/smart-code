@@ -37,7 +37,7 @@ module.exports = function init(site) {
         for (let i = 0; i < docs.length; i++) {
           delete docs[i].id;
           delete docs[i]._id;
-          site.words.add(docs[i]);
+          site.words.set(docs[i]);
         }
 
         site.words.save();
