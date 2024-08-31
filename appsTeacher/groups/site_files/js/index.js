@@ -450,7 +450,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     if (item.startDate && item.endDate) {
       let start = new Date(item.startDate);
       let end = new Date(item.endDate);
-      end.setHours(0, 0, 0, 0);
+      /* end.setHours(0, 0, 0, 0); */
       item.dayList = [];
       let index = item.days.findIndex((itm) => itm.code === start.getDay());
       if (index !== -1) {
@@ -464,7 +464,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
           _start.setHours(0, 0, 0, 0);
           item.dayList.push({ date: _start, day: item.days[index] });
         }
-        if (new Date(_start) == new Date(end)) {
+        if (new Date(start) == new Date(end)) {
           break;
         }
       }
