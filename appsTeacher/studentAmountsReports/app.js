@@ -41,7 +41,7 @@ module.exports = function init(site) {
       };
 
       let where = req.data;
-      if (where.dateFrom > where.ToFrom) {
+      if (where.dateFrom > where.dateTo || !where.dateTo) {
         response.error = "Dates is Wrong";
         res.json(response);
         return;
