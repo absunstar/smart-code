@@ -165,8 +165,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           $scope.busy = false;
         }
       );
-    /* } else if (site.isMobile()) { */
-    } else {
+    } else if (site.isMobile()) {
       $http({
         method: "POST",
         url: `${$scope.baseURL}/api/lectures/changeViewMobile`,
@@ -180,11 +179,10 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
         }
       });
-    } 
-  /*   else {
+    } else {
       site.showModal("#socialBrowserModal");
       return;
-    } */
+    }
   };
 
   $scope.finishQuiz = function (quiz) {
