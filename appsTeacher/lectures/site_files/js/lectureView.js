@@ -179,6 +179,9 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
         }
       });
+    } else {
+      site.showModal("#socialBrowserModal");
+      return;
     }
   };
 
