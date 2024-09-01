@@ -1,6 +1,8 @@
 app.controller("lectureView", function ($scope, $http, $timeout) {
   $scope.item = {};
   $scope.quiz = {};
+  $scope.setting = site.showObject(`##data.#setting##`);
+
   $scope.baseURL = "";
   $scope.view = function () {
     $scope.busy = true;
@@ -99,69 +101,85 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
   };
 
   $scope.openVideo = function (link) {
-    if (!window.SOCIALBROWSER) {
+    if (!window.SOCIALBROWSER && !$scope.setting.allowVideoMobile) {
       site.showModal("#socialBrowserModal");
       return;
     }
 
     $scope.error = "";
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: `${$scope.baseURL}/api/lectures/changeView`,
-      data: {
-        socialBrowserID: SOCIALBROWSER.var.core.id,
-        code: link.code,
-        _id: "##query.id##",
-      },
-    }).then(
-      function (response) {
+    if (window.SOCIALBROWSER) {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: `${$scope.baseURL}/api/lectures/changeView`,
+        data: {
+          socialBrowserID: SOCIALBROWSER.var.core.id,
+          code: link.code,
+          _id: "##query.id##",
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            let code_injected = `/*##lectures/custom-youtube-video.js*/`;
+            code_injected += "youtubeRun();";
+            SOCIALBROWSER.ipc("[open new popup]", {
+              url: document.location.origin + "/view-video?code=" + link.code + "&id=" + $scope.item._id,
+              eval: code_injected,
+              show: true,
+              iframe: true,
+              center: true,
+              maximize: true,
+              trusted: true,
+              showDevTools: false,
+              allowMenu: true,
+              allowDevTools: false,
+              allowDownload: false,
+              allowAds: false,
+              allowNewWindows: false,
+              allowSaveUserData: false,
+              allowSaveUrls: false,
+              allowSocialBrowser: true,
+              // allowRedirect: false,
+              allowSelfRedirect: false,
+              allowSelfWindow: false,
+              allowJavascript: true,
+              allowAudio: true,
+              allowPopup: false,
+              width: 800,
+              height: 800,
+              security: false,
+              $timeout: 5000,
+            });
+            if ($scope.item.typeExpiryView && $scope.item.typeExpiryView.name == "number") {
+              let index = $scope.item.linksList.findIndex((itm) => itm.code === link.code);
+              if (index !== -1) {
+                $scope.item.linksList[index].remainNumber -= 1;
+              }
+            }
+          } else {
+            $scope.error = response.data.error;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+        }
+      );
+    } else if (site.isMobile()) {
+      $http({
+        method: "POST",
+        url: `${$scope.baseURL}/api/lectures/changeViewMobile`,
+        data: {
+          code: link.code,
+          _id: "##query.id##",
+        },
+      }).then(function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          let code_injected = `/*##lectures/custom-youtube-video.js*/`;
-          code_injected += "youtubeRun();";
-          SOCIALBROWSER.ipc("[open new popup]", {
-            url: document.location.origin + "/view-video?code=" + link.code + "&id=" + $scope.item._id,
-            eval: code_injected,
-            show: true,
-            iframe: true,
-            center: true,
-            maximize: true,
-            trusted: true,
-            showDevTools: false,
-            allowMenu: true,
-            allowDevTools: false,
-            allowDownload: false,
-            allowAds: false,
-            allowNewWindows: false,
-            allowSaveUserData: false,
-            allowSaveUrls: false,
-            allowSocialBrowser: true,
-            // allowRedirect: false,
-            allowSelfRedirect: false,
-            allowSelfWindow: false,
-            allowJavascript: true,
-            allowAudio: true,
-            allowPopup: false,
-            width: 800,
-            height: 800,
-            security: false,
-            $timeout: 5000,
-          });
-          if ($scope.item.typeExpiryView && $scope.item.typeExpiryView.name == "number") {
-            let index = $scope.item.linksList.findIndex((itm) => itm.code === link.code);
-            if (index !== -1) {
-              $scope.item.linksList[index].remainNumber -= 1;
-            }
-          }
-        } else {
-          $scope.error = response.data.error;
+          window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
         }
-      },
-      function (err) {
-        $scope.busy = false;
-      }
-    );
+      });
+    }
   };
 
   $scope.finishQuiz = function (quiz) {

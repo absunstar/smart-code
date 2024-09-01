@@ -27,7 +27,7 @@
         background-color: transparent;
         border: none;
         display: block;
-         z-index: 999999; 
+        z-index: 999999;
       }
     </style>
   </head>
@@ -36,5 +36,10 @@
     <iframe src="##data.videoURL##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <div x-import="teacher-theme/scripts.html"></div>
     <script x-import="lectures/view-video.js"></script>
+    <script>
+      if (!window.SOCIALBROWSER) {
+        document.querySelector("iframe").removeAttribute("allowfullscreen");
+      }
+    </script>
   </body>
 </html>
