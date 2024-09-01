@@ -11,12 +11,7 @@ a {
   text-decoration-line: none !important;
   color: black !important;
 }
-.view {
-  a {
 
-    display: -webkit-box !important;
-  }
-}
 p {
   font-family: Arabic !important;
   margin-bottom: 0px !important;
