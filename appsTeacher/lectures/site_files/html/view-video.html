@@ -29,10 +29,21 @@
         display: block;
         z-index: 999999;
       }
+      #blocker2 {
+        position: fixed;
+        bottom: 0px;
+        height: 5%;
+        width: 30%;
+        background-color: transparent;
+        border: none;
+        display: block;
+        z-index: 999999;
+      }
     </style>
   </head>
   <body class="##session.lang##" ng-controller="view-video">
     <div id="blocker"></div>
+    <div id="blocker2"></div>
     <iframe src="##data.videoURL##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <div x-import="teacher-theme/scripts.html"></div>
     <script x-import="lectures/view-video.js"></script>
