@@ -52,12 +52,14 @@
         document.querySelector("iframe").removeAttribute("allowfullscreen");
       }
       switch (screen.orientation.type) {
-      /*   case "landscape-primary":
-          console.log("That looks good.");
+         case "landscape-primary":
+         document.getElementById("blocker2").style.height = "13%";
+         document.getElementById("blocker2").style.width = "15%";
           break;
         case "landscape-secondary":
-          console.log("Mmmh… the screen is upside down!");
-          break; */
+        document.getElementById("blocker2").style.height = "13%";
+        document.getElementById("blocker2").style.width = "15%";
+          break; 
         case "portrait-secondary":
         case "portrait-primary":
         document.getElementById("blocker2").style.height = "6%";
