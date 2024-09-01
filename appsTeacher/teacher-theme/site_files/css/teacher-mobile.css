@@ -28,8 +28,10 @@
   }
   .notifacation-logo {
     position: sticky !important;
-    }
-    body {
-      background-repeat: repeat !important;
-    }
+  }
+  body {
+    background-repeat: repeat !important;
+  }
+
+
 }
