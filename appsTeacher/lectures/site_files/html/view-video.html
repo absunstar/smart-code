@@ -51,6 +51,22 @@
       if (!window.SOCIALBROWSER) {
         document.querySelector("iframe").removeAttribute("allowfullscreen");
       }
+      switch (screen.orientation.type) {
+      /*   case "landscape-primary":
+          console.log("That looks good.");
+          break;
+        case "landscape-secondary":
+          console.log("Mmmh… the screen is upside down!");
+          break; */
+        case "portrait-secondary":
+        case "portrait-primary":
+        document.getElementById("blocker2").style.height = "5%";
+        document.getElementById("blocker2").style.width = "27%";
+          break;
+        default:
+        document.getElementById("blocker2").style.height = "5%";
+        document.getElementById("blocker2").style.width = "27%";
+      }
     </script>
   </body>
 </html>
