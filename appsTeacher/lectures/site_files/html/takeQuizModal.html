@@ -33,7 +33,7 @@
         <fieldset>
           <legend>{{question.numbering}} <b ng-show="question.questionType.name=='text'">- {{question.name}}</b></legend>
           <div class="row" ng-show="question.questionType.name=='photo'">
-            <img class="zoom" ng-src="{{question.image.url}}" alt="" />
+            <img ontouchstart="site.zoomElement(this)" ondblclick="site.zoomElement(this)" ng-src="{{question.image.url}}" alt="" />
           </div>
           <div class="row">
             <div class="col4 answers" ng-repeat="answer in question.answersList track by $index">
