@@ -28,7 +28,7 @@ nav .brand .title .fa {
 nav .brand a.title {
   font-size: 22px;
   font-weight: bold;
-  color: var(--brand-color);
+  color: var(--brand-color) !important;
   text-decoration: none;
 }
 
