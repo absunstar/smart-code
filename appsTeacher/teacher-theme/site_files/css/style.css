@@ -710,6 +710,7 @@ fieldset legend {
 body {
   background-image: var(--background-image) !important;
   background: fixed;
+  background-repeat: round;
 }
 * {
   max-width: initial;
