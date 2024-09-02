@@ -218,20 +218,20 @@ module.exports = function init(site) {
                 }
                 let quiz = { ...doc };
                 response.done = true;
-                quiz.questionsList = quiz.questionsList || [];
-                for (let i = 0; i < quiz.questionsList.length; i++) {
-                  quiz.questionsList[i].answersList.forEach((_a) => {
-                    _a.userAnswer = false;
-                  });
-                }
+                quiz.questionsList = lecture.questionsList || [];
+                // for (let i = 0; i < quiz.questionsList.length; i++) {
+                //   quiz.questionsList[i].answersList.forEach((_a) => {
+                //     _a.userAnswer = false;
+                //   });
+                // }
                 doc.timesEnterQuiz += 1;
                 doc.date = site.getDate();
                 app.$collection.update(doc, (err, result) => {
-                  for (let i = 0; i < quiz.questionsList.length; i++) {
-                    quiz.questionsList[i].answersList.forEach((_a) => {
-                      delete _a.correct;
-                    });
-                  }
+                  // for (let i = 0; i < quiz.questionsList.length; i++) {
+                  //   quiz.questionsList[i].answersList.forEach((_a) => {
+                  //     delete _a.correct;
+                  //   });
+                  // }
                   response.doc = quiz;
                   res.json(response);
                 });
