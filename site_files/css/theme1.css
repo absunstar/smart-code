@@ -231,7 +231,7 @@ fieldset > legend + * {
   --btn-color: #000;
   --btn-background-color: #fff;
   --fieldset-border: 1px solid var(--theme-color);
-  --fieldset-background: none;
+  /* --fieldset-background: none; */
   --legend-color: #444;
   --tabs-header-link-color: #444;
   --tabs-header-link-color2: #ffffff;
