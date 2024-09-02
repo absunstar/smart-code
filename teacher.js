@@ -1,7 +1,7 @@
 const site = require('../isite')({
   port: [80, 40021],
   lang: 'Ar',
-  version: Date.now(),
+  version: new Date().getTime(),
   name: 'teacher',
   savingTime: 5,
   log: true,
@@ -142,7 +142,7 @@ site.xtime = function (_time, lang) {
 
 site.handleNotRoute = function (req, res) {
   let host = req.headers['host'];
- // console.log('handleNotRoute : ' + host + ' : ' + req.url);
+  // console.log('handleNotRoute : ' + host + ' : ' + req.url);
   res.end();
   return;
   let setting = site.getSiteSetting(host);
@@ -153,19 +153,16 @@ site.handleNotRoute = function (req, res) {
   }
 };
 
-site.get("/x-update", (req, res) => {
-  site.cmd("git pull", (data) => {
+site.get('/x-update', (req, res) => {
+  site.cmd('git pull', (data) => {
     res.end(data || 'error');
     console.log(data);
-    site.cmd("pm2 restart 17", (data) => {
-      
-    });
+    site.cmd('pm2 restart 17', (data) => {});
   });
 });
 
-site.get("/x-restart", (req, res) => {
-  site.cmd("pm2 restart 17", (data) => {
-  });
+site.get('/x-restart', (req, res) => {
+  site.cmd('pm2 restart 17', (data) => {});
 });
 
 site.run();
