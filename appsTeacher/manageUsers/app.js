@@ -596,7 +596,7 @@ module.exports = function init(site) {
     where["active"] = true;
     where["host"] = site.getHostFilter(req.host);
     where["type"] = "teacher";
-    app.$collection.findMany({ where, select, limit }, (err, docs) => {
+    app.$collection.findMany({ where, select, limit,sort : {priorityAppearance : 1} }, (err, docs) => {
       callBack(err, docs);
     });
     // }
