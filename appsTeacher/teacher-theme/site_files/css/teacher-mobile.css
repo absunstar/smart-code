@@ -30,6 +30,6 @@
     position: sticky !important;
   }
   body {
-    background-repeat: repeat !important;
+   /*  background-repeat: repeat !important; */
   }
 }

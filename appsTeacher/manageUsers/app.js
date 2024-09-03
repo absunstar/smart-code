@@ -584,7 +584,7 @@ module.exports = function init(site) {
 
   site.getTeachers = function (req, callBack) {
     callBack = callBack || function () {};
-    let limit = req.body.limit || 9;
+    let limit = req.body.limit || 18;
     let select = req.body.select || {
       id: 1,
       firstName: 1,
