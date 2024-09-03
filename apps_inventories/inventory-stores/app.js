@@ -148,7 +148,7 @@ module.exports = function init(site) {
       } else {
 
         if (_id) {
-          $stores.delete({ _id: $stores.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+          $stores.delete({ _id: $stores.ObjectId(_id), $req: req, $res: res }, (err, result) => {
             if (!err) {
               response.done = true
             }
@@ -173,7 +173,7 @@ module.exports = function init(site) {
 
     $stores.findOne({
       where: {
-        _id: site.mongodb.ObjectID(req.body._id)
+        _id: site.mongodb.ObjectId(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {

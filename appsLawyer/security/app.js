@@ -216,7 +216,7 @@ module.exports = function init(site) {
       };
     } else if (req.body._id) {
       where = {
-        _id: site.mongodb.ObjectID(req.body._id),
+        _id: site.mongodb.ObjectId(req.body._id),
       };
     }
 

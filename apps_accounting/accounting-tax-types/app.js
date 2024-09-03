@@ -137,7 +137,7 @@ module.exports = function init(site) {
 
 
     if (_id) {
-      $tax_types.delete({ _id: $tax_types.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+      $tax_types.delete({ _id: $tax_types.ObjectId(_id), $req: req, $res: res }, (err, result) => {
         if (!err) {
           response.done = true
         }
@@ -153,7 +153,7 @@ module.exports = function init(site) {
     response.done = false
     $tax_types.findOne({
       where: {
-        _id: site.mongodb.ObjectID(req.body._id)
+        _id: site.mongodb.ObjectId(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {

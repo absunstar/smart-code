@@ -91,7 +91,7 @@ module.exports = function init(site) {
     }
     let _id = req.body._id
     if (_id) {
-      $facilities_codes.delete({ _id: $facilities_codes.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+      $facilities_codes.delete({ _id: $facilities_codes.ObjectId(_id), $req: req, $res: res }, (err, result) => {
         if (!err) {
           response.done = true
         }
@@ -107,7 +107,7 @@ module.exports = function init(site) {
     response.done = false
     $facilities_codes.findOne({
       where: {
-        _id: site.mongodb.ObjectID(req.body._id)
+        _id: site.mongodb.ObjectId(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {

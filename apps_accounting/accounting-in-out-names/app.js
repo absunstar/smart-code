@@ -158,7 +158,7 @@ module.exports = function init(site) {
 
     let _id = req.body._id
     if (_id) {
-      $in_out_names.delete({ _id: $in_out_names.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+      $in_out_names.delete({ _id: $in_out_names.ObjectId(_id), $req: req, $res: res }, (err, result) => {
         if (!err) {
           response.done = true
         }
@@ -181,7 +181,7 @@ module.exports = function init(site) {
 
     $in_out_names.findOne({
       where: {
-        _id: site.mongodb.ObjectID(req.body._id)
+        _id: site.mongodb.ObjectId(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {

@@ -139,7 +139,7 @@ module.exports = function init(site) {
 
     if (_id) {
       $item_transaction.delete({
-        _id: $item_transaction.ObjectID(_id),
+        _id: $item_transaction.ObjectId(_id),
         $req: req,
         $res: res
       }, (err, result) => {
@@ -185,7 +185,7 @@ module.exports = function init(site) {
 
     $item_transaction.findOne({
       where: {
-        _id: site.mongodb.ObjectID(req.body._id)
+        _id: site.mongodb.ObjectId(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {

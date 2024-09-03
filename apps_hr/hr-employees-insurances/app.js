@@ -102,7 +102,7 @@ module.exports = function init(site) {
 
 
     if (_id) {
-      $employees_insurances.delete({ _id: $employees_insurances.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+      $employees_insurances.delete({ _id: $employees_insurances.ObjectId(_id), $req: req, $res: res }, (err, result) => {
         if (!err) {
           response.done = true
         }
@@ -125,7 +125,7 @@ module.exports = function init(site) {
 
     $employees_insurances.findOne({
       where: {
-        _id: site.mongodb.ObjectID(req.body._id)
+        _id: site.mongodb.ObjectId(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {

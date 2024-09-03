@@ -107,7 +107,7 @@ module.exports = function init(site) {
     let _id = req.body._id
     if (_id) {
       $employee_offer.delete({
-        _id: $employee_offer.ObjectID(_id),
+        _id: $employee_offer.ObjectId(_id),
         $req: req,
         $res: res
       }, (err, result) => {
@@ -134,7 +134,7 @@ module.exports = function init(site) {
 
     $employee_offer.findOne({
       where: {
-        _id: site.mongodb.ObjectID(req.body._id)
+        _id: site.mongodb.ObjectId(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {

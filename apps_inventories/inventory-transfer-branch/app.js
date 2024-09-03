@@ -288,7 +288,7 @@ module.exports = function init(site) {
 
 
             if (_id) {
-              $transfer_branch.delete({ _id: $transfer_branch.ObjectID(_id), $req: req, $res: res }, (err, result) => {
+              $transfer_branch.delete({ _id: $transfer_branch.ObjectId(_id), $req: req, $res: res }, (err, result) => {
                 if (!err) {
                   response.done = true
                   let Obj = {
@@ -343,7 +343,7 @@ module.exports = function init(site) {
     response.done = false
     $transfer_branch.findOne({
       where: {
-        _id: site.mongodb.ObjectID(req.body._id)
+        _id: site.mongodb.ObjectId(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {
