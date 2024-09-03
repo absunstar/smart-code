@@ -164,7 +164,7 @@
                 ></i-list>
                 <i-control ng-show="user.placeType == 'online'" class="center input-style" label="##word.Number## ##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
                 <i-list label="##word.Gender##" v="r" ng-model="user.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
-                <i-date label="##word.Birth Of Date##" v="r" ng-model="user.bitrhOfDate"> </i-date>
+                <i-date label="##word.Birth Of Date##" ng-model="user.bitrhOfDate"> </i-date>
                 <i-list
                   v="r"
                   class="center input-style"

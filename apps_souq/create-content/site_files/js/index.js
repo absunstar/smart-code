@@ -280,7 +280,11 @@ app.controller("create_content", function ($scope, $http, $timeout) {
   $scope.doneSelectMainImage = function () {
     $scope.error = "";
     $("#adMainImage").hide();
-    $("#adAnotherImages").show("slow");
+    if($scope.defaultSettings.content.upload_photos){
+      $("#adAnotherImages").show("slow");
+    } else {
+      
+    }
   };
 
   $scope.doneSelectImages = function () {
