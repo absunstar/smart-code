@@ -100,6 +100,8 @@ module.exports = function init(site) {
           data.powerdByLogo = "//" + req.host + data.powerdByLogo;
         }
         res.render("profile/profileEdit.html", data, { parser: "html css js", compres: true });
+      }else{
+        res.end();
       }
     });
   });
