@@ -735,7 +735,6 @@ module.exports = function init(site) {
     delete where['price_from'];
     delete where['price_to'];
     delete where['search_ads'];
-    console.log(where);
     
     $content.findMany(
       {
