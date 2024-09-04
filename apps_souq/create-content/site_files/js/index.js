@@ -163,7 +163,6 @@ app.controller("create_content", function ($scope, $http, $timeout) {
 
   $scope.acceptCategory = function (ad, cat) {
     $scope.loadSubCategory2(cat);
-    console.log(cat.type);
     $("#adCategory").hide();
     if (cat.category_require_list && cat.category_require_list.length > 0) {
       $("#adCategoryRequire").show("slow");
@@ -282,8 +281,12 @@ app.controller("create_content", function ($scope, $http, $timeout) {
     $("#adMainImage").hide();
     if($scope.defaultSettings.content.upload_photos){
       $("#adAnotherImages").show("slow");
+    } else if($scope.defaultSettings.content.upload_video) {
+      $("#adVideo").show("slow");
     } else {
       
+      $("#adContent").show("slow");
+
     }
   };
 

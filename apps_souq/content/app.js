@@ -618,10 +618,45 @@ module.exports = function init(site) {
         name: site.get_RegExp(where['text_search'], 'i'),
       });
       where.$or.push({
+        description: site.get_RegExp(where['text_search'], 'i'),
+      });
+      where.$or.push({
         'main_category.name_ar': site.get_RegExp(where['text_search'], 'i'),
       });
       where.$or.push({
         'main_category.name_en': site.get_RegExp(where['text_search'], 'i'),
+      });
+
+      where.$or.push({
+        'address.detailed_address': site.get_RegExp(where['text_search'], 'i'),
+      });
+
+      where.$or.push({
+        'address.country.name_ar': site.get_RegExp(where['text_search'], 'i'),
+      });
+      where.$or.push({
+        'address.country.name_en': site.get_RegExp(where['text_search'], 'i'),
+      });
+
+      where.$or.push({
+        'address.gov.name_ar': site.get_RegExp(where['text_search'], 'i'),
+      });
+      where.$or.push({
+        'address.gov.name_en': site.get_RegExp(where['text_search'], 'i'),
+      });
+
+      where.$or.push({
+        'address.city.name_ar': site.get_RegExp(where['text_search'], 'i'),
+      });
+      where.$or.push({
+        'address.city.name_en': site.get_RegExp(where['text_search'], 'i'),
+      });
+
+      where.$or.push({
+        'address.area.name_ar': site.get_RegExp(where['text_search'], 'i'),
+      });
+      where.$or.push({
+        'address.area.name_en': site.get_RegExp(where['text_search'], 'i'),
       });
     }
 
@@ -700,6 +735,8 @@ module.exports = function init(site) {
     delete where['price_from'];
     delete where['price_to'];
     delete where['search_ads'];
+    console.log(where);
+    
     $content.findMany(
       {
         sort: req.body.sort || {
