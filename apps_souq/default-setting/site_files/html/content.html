@@ -32,7 +32,9 @@
 
             <div class="col1"></div>
             <div class="col3">
-              <i-image ng-model="default_setting.logo"></i-image>
+              <i-image class="img128" ng-model="default_setting.logo"></i-image>
+              <h3>##word.clock_logo##</h3>
+              <i-image class="img128" ng-model="default_setting.clock_logo"></i-image>
             </div>
           </div>
 
@@ -93,6 +95,22 @@
           <div class="col3">
             <i-image ng-model="default_setting.powered_logo"></i-image>
           </div>
+        </fieldset>
+        <fieldset>
+          <legend>##word.pages_show##</legend>
+          <i-checkbox class="row" label="التسجيل" ng-model="default_setting.show_page_register"> </i-checkbox>
+          <i-checkbox class="row" label="حساب و سداد عمولة الموقع" ng-model="default_setting.show_page_commission"> </i-checkbox>
+          <i-checkbox class="row" label="الإعلانات المميزة" ng-model="default_setting.show_page_featured_ads"> </i-checkbox>
+          <i-checkbox class="row" label="سداد رسوم السلع و الخدمات المكررة" ng-model="default_setting.show_page_pay_duplicate_goods"> </i-checkbox>
+          <i-checkbox class="row" label="إتفاقية الاستخدام" ng-model="default_setting.show_page_terms_use"> </i-checkbox>
+          <i-checkbox class="row" label="توثيق العضوية و إضافة التراخيص" ng-model="default_setting.show_page_membership_verification"> </i-checkbox>
+          <i-checkbox class="row" label="نظام التقييم" ng-model="default_setting.show_page_evaluation_system"> </i-checkbox>
+          <i-checkbox class="row" label="نظام الخصم" ng-model="default_setting.show_page_discount_system"> </i-checkbox>
+          <i-checkbox class="row" label="القائمة السوداء و إرشادات التعامل" ng-model="default_setting.show_page_blacklist_andling"> </i-checkbox>
+          <i-checkbox class="row" label="قائمة السلع والإعلانات الممنوعة" ng-model="default_setting.show_page_prohibited_goods_advertisements"> </i-checkbox>
+          <i-checkbox class="row" label="الأسئلة الشائعة" ng-model="default_setting.show_page_frequently_questions"> </i-checkbox>
+
+
         </fieldset>
         <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#site_settings')"></i-button>
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>

@@ -15,9 +15,19 @@
     "ar": "قيمة العمولة"
   },
   {
+    "name": "pages_show",
+    "en": "Pages Show",
+    "ar": "ظهور الصفحات"
+  },
+  {
     "name": "bank_accounts",
     "en": "Bank accounts",
     "ar": "الحسابات البنكية"
+  },
+  {
+    "name": "clock_logo",
+    "en": "Clock Logo",
+    "ar": "شعار الساعة"
   },
   {
     "name": "account_number",
