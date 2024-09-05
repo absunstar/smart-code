@@ -11,30 +11,30 @@
 <style>
   .container1 {
     display: contents;
-}
+  }
   .logoPrint {
-  width: 6cm;
-  height: 3cm;
-}
-.code {
-  color: #000;
+    width: 6cm;
+    height: 4cm;
+  }
+  .code {
+    color: #000;
     font-size: 11px;
     font-weight: bold;
     position: absolute;
     display: inline-grid;
-    transform: translate(170%, 220%);
-}
-.serial {
-  color: #000;
+    transform: translate(170%, 305%);
+  }
+  .serial {
+    color: #000;
     font-size: xx-small;
     position: absolute;
     display: inline-grid;
-    transform: translate(206px, 96px);
-}
+    transform: translate(206px, 132px);
+  }
 </style>
 <div class="container1" ng-repeat="sInvoice in codesList">
   <!-- <p ng-repeat="sInvoice in codesList"><span class="bold font-25">##word.Patient## : </span> <span class="font-20">{{sInvoice.code}}</span></p> -->
-    <img class="logoPrint" ng-src="{{invoiceLogo}}" />
-    <div class="code">{{sInvoice.code}}</div>
-    <div class="serial">{{1000 + sInvoice.id}}</div>
+  <img class="logoPrint" ng-src="{{invoiceLogo}}" />
+  <div class="code">{{sInvoice.code}}</div>
+  <div class="serial">{{1000 + sInvoice.id}}</div>
 </div>
