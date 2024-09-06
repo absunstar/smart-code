@@ -15,6 +15,11 @@
     "ar": "قيمة العمولة"
   },
   {
+    "name": "hide_city_area",
+    "en": "Hide City And Area",
+    "ar": "إخفاء المدينة و المنطقة"
+},
+  {
     "name": "pages_show",
     "en": "Pages Show",
     "ar": "ظهور الصفحات"

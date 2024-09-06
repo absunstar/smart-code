@@ -4,9 +4,9 @@
 
     <i-list class="col3 input-style" label="##word.gov##" ng-model="ngModel.gov" items="govesList" ng-change="getCityList(ngModel.gov)" display="name_##session.lang##" ng-search="_search.$ngModel.$gov_search"> </i-list>
 
-    <i-list class="col3 input-style" ng-change="getAreaList(ngModel.city)" label="##word.city##" ng-model="ngModel.city" items="cityList" display="name_##session.lang##" ng-search="_search.$ngModel.$city_search"> </i-list>
+    <i-list class="col3 input-style" ng-hide="##setting.hide_city_area##" ng-change="getAreaList(ngModel.city)" label="##word.city##" ng-model="ngModel.city" items="cityList" display="name_##session.lang##" ng-search="_search.$ngModel.$city_search"> </i-list>
 
-    <i-list class="col3 input-style" label="##word.area##" ng-model="ngModel.area" items="areaList" display="name_##session.lang##" ng-search="_search.$ngModel.$area_search"> </i-list>
+    <i-list class="col3 input-style" ng-hide="##setting.hide_city_area##" label="##word.area##" ng-model="ngModel.area" items="areaList" display="name_##session.lang##" ng-search="_search.$ngModel.$area_search"> </i-list>
   </div>
 
   <div class="row">
