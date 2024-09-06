@@ -39,12 +39,28 @@ module.exports = function init(site) {
     compress: false,
   });
 
-  site.get({
-    name: "security/users",
-    path: __dirname + "/site_files/html/users.html",
-    parser: "html js",
-    compress: false,
-  });
+  site.get(
+    {
+      name: 'security/users',
+    },
+    (req, res) => {
+      res.render(
+        'security' + "/users.html",
+        {
+          title: 'security/users',
+          appName: req.word("Users"),
+          setting: site.getSiteSetting(req.host),
+        },
+        { parser: "html", compres: true }
+      );
+    }
+  );
+  // site.get({
+  //   name: "security/users",
+  //   path: __dirname + "/site_files/html/users.html",
+  //   parser: "html js",
+  //   compress: false,
+  // });
 
   site.get({
     name: "security/roles",
@@ -91,7 +107,7 @@ module.exports = function init(site) {
     }
     where["id"] = { $ne: 1 };
     where["type"] = {
-      $and: [
+      $or: [
         {
           $ne: 'student'
         },
