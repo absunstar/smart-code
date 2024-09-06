@@ -85,7 +85,7 @@ app.controller("create_content", function ($scope, $http, $timeout) {
          }
        } */
     } else if ($scope.ad.store) {
-      $scope.ad.address = {};
+      $scope.ad.address = $scope.ad.store.address;
     }
     $scope.busy = true;
     $http({
@@ -447,7 +447,7 @@ app.controller("create_content", function ($scope, $http, $timeout) {
           if ($scope.user) {
             $scope.ad.mobile = $scope.user.mobile;
             $scope.address = {
-              main: $scope.user.profile.main_address,
+              main: {},
               other_list: $scope.user.profile.other_addresses_list,
             };
           }
