@@ -111,6 +111,9 @@
             <div class="FilterGroup__ContentWrapper-kok8t0-2 BJDme" id="xtags-filter">
               <div>
                 <div class="row">
+                  <i-control label="##word.search_all##" ng-change="smartSearch(search)" ng-model="search.text_search"> </i-control>
+                </div>
+                <div class="row">
                   <i-checkbox class="row" label="##word.only_new##" class="pointer" ng-click="searchAll(search)" ng-model="search.new"></i-checkbox>
                   <i-checkbox class="row" class="pointer" label="##word.nearby_ads##" ng-click="searchAll(search)" ng-model="search.near"> </i-checkbox>
                   <i-checkbox class="row" label="##word.only_with_photos##" class="pointer" ng-click="searchAll(search)" ng-model="search.with_photos"></i-checkbox>
@@ -156,7 +159,7 @@
               </div>
             </div>
           </div>
-          <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
+        <!--   <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
             <span class="FilterGroup__Label-kok8t0-1 bdSIGk"
               >##word.quick_navigate##
               <div class="filter-toggel">
@@ -175,7 +178,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </aside>
       <div class="main-content">

@@ -1,5 +1,10 @@
 app.controller('haraj', function ($scope, $http, $timeout) {
   $scope.search = { price_from: 0, price_to: 100000000 };
+  $scope.smartSearch = function (where) {
+    $timeout(() => {
+      $scope.getContentList({which :13},where)
+    }, 500);
+  }
   $scope.getContentList = function (ev, where) {
     if ($scope.ContentBusy) {
       return;
