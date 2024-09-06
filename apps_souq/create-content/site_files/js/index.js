@@ -85,7 +85,7 @@ app.controller("create_content", function ($scope, $http, $timeout) {
          }
        } */
     } else if ($scope.ad.store) {
-      $scope.ad.address = $scope.ad.store.address;
+      $scope.ad.address = {};
     }
     $scope.busy = true;
     $http({
