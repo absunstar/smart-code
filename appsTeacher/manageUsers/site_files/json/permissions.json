@@ -9,5 +9,6 @@
     { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersPrint", "En": "Print", "Ar": "طباعة" },
     { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersUi", "En": "UI", "Ar": "الواجهة الرسومية" },
     { "moduleName": "public", "screenName": "manageUsers", "name": "manageStudents", "En": "Students Manage", "Ar": "إدارة الطلاب" },
+    { "moduleName": "public", "screenName": "manageUsers", "name": "manageParents", "En": "Parents Manage", "Ar": "إدارة أولياء الأمور" },
     { "moduleName": "public", "screenName": "manageUsers", "name": "manageUsersImport", "En": "Import", "Ar": "إستيراد" }
 ]

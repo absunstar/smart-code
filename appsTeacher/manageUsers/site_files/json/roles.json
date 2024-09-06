@@ -29,6 +29,7 @@
           "purchaseOrdersManage",
           "quizzesManage",
           "schoolYearsManage",
+          "manageParents",
           "manageStudents"
         ]
       }

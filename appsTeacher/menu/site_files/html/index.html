@@ -136,15 +136,15 @@
       <span> ##word.Books## </span>
     </a>
   </li>
-
-  <li class="menu-item">
+  
+  <li class="menu-item" x-permissions="manageStudents">
     <a class="tab-link" href="/manageUsers?type=student">
       <i class="fas fa-users"></i>
       <span> ##word.Manage Students## </span>
     </a>
   </li>
 
-  <li class="menu-item" x-data="setting.showParent">
+  <li class="menu-item" x-data="setting.showParent"  x-permissions="manageParents">
     <a class="tab-link" href="/manageUsers?type=parent">
       <i class="fas fa-users"></i>
       <span> ##word.Manage Parents## </span>
