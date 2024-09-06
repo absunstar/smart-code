@@ -41,13 +41,13 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: 'security/users',
+      name: "security/users",
     },
     (req, res) => {
       res.render(
-        'security' + "/users.html",
+        "security" + "/users.html",
         {
-          title: 'security/users',
+          title: "security/users",
           appName: req.word("Users"),
           setting: site.getSiteSetting(req.host),
         },
@@ -106,24 +106,23 @@ module.exports = function init(site) {
       delete where["search"];
     }
     where["id"] = { $ne: 1 };
-    where["type"] = {
-      $or: [
-        {
-          $ne: 'student'
-        },
-        {
-          $ne: 'teacher'
-        },
-      ],
-    }
-    
-    { $ne: 'student' };
+
+    where.$and = [
+      {
+       type :  {$ne: "student"},
+      },
+      {
+        type :  {$ne: "teacher"},
+      },
+      {
+        type :  {$ne: "parent"},
+      },
+    ];
     // if ((teacherId = site.getTeacherSetting(req))) {
     //   where["teacherId"] = teacherId;
     // } else {
     //   where["host"] = site.getHostFilter(req.host);
     // }
-
 
 
     site.security.getUsers(
