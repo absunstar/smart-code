@@ -90,7 +90,18 @@ module.exports = function init(site) {
       delete where["search"];
     }
     where["id"] = { $ne: 1 };
-    where["type"] = { $ne: 'student' };
+    where["type"] = {
+      $and: [
+        {
+          $ne: 'student'
+        },
+        {
+          $ne: 'teacher'
+        },
+      ],
+    }
+    
+    { $ne: 'student' };
     // if ((teacherId = site.getTeacherSetting(req))) {
     //   where["teacherId"] = teacherId;
     // } else {
