@@ -11,11 +11,11 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: ["/profileView/:id", ["teacher/:username"]],
+      name: ["/profileView/:id"],
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host) || {};
-      site.security.getUser({ id: req.params.id, username: req.params.username }, (err, user) => {
+      site.security.getUser({ id: req.params.id }, (err, user) => {
         if (user) {
           let data = {
             packagesList: packages,

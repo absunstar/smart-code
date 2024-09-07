@@ -861,7 +861,6 @@ module.exports = function init(site) {
                     user: {
                       id: user.id,
                       firstName: user.firstName,
-                      username: user.username,
                     },
                   });
                   site.security.updateUser(user);

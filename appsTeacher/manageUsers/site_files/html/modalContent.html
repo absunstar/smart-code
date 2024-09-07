@@ -8,7 +8,7 @@
             <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
           </div>
           <i-control type="text" v="r" ng-model="item.firstName" label="##word.Full Name##"></i-control>
-          <i-control v="r" class="input-style" label="##word.User Name##" ng-model="item.username"> </i-control>
+          <i-control v="r" ng-show="item.type == 'teacher'" class="input-style" label="##word.User Name##" ng-model="item.username"> </i-control>
           <i-date label="##word.Birth Of Date##" ng-model="item.bitrhOfDate"> </i-date>
           <i-control ng-show="item.placeType == 'online'" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
           <i-control label="##word.BrowserId##" ng-show="item.type == 'student'" ng-model="item.socialBrowserID"> </i-control>
@@ -154,7 +154,7 @@
                   <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{item.$selectGroup.group.teacher.mobile}}</p>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col7">
                   <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.$selectGroup.group.educationalLevel.name}}</p>
@@ -163,7 +163,7 @@
                   <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.$selectGroup.group.schoolYear.name}}</p>
                 </div>
               </div>
-    
+
               <div class="row">
                 <div class="col7">
                   <p class="bold"><span class="darkGray">##word.Payment Method## : </span> {{item.$selectGroup.group.paymentMethod.name##session.lang##}}</p>
@@ -176,12 +176,20 @@
           </div>
           <div class="row">
             <i-list class="col4" label="##word.Group##" ng-model="item.$selectGroup.group" display="name" items="groupsList" ng-get="getGroupsList($search)"></i-list>
-            <i-control type="number" class="col2" ng-change="calcRequiredPayment(item.$selectGroup)" ng-hide="item.$selectGroup.exempt" label="##word.Discount## %" ng-model="item.$selectGroup.discount"> </i-control>
+            <i-control
+              type="number"
+              class="col2"
+              ng-change="calcRequiredPayment(item.$selectGroup)"
+              ng-hide="item.$selectGroup.exempt"
+              label="##word.Discount## %"
+              ng-model="item.$selectGroup.discount"
+            >
+            </i-control>
             <i-button type="save" class="col2" ng-hide="item.$selectGroup.exempt" label="##word.Exempt##" ng-click="exemptPayment(item.$selectGroup,true)"></i-button>
             <i-button type="exit" class="col2" ng-show="item.$selectGroup.exempt" label="##word.Cancel Exempt##" ng-click="exemptPayment(item.$selectGroup,false)"></i-button>
             <i-button type="push" class="col2" label="##word.Add To Groups##" ng-click="addGroup()"> </i-button>
           </div>
-        
+
           <div class="table-responsive">
             <table class="table center hover bold">
               <tr>
@@ -199,12 +207,11 @@
                 <td class="center">{{g.group.paymentMethod.name##session.lang##}}</td>
                 <td class="center">{{g.group.price}} ##word.$##</td>
                 <td class="center">
-                  <p >{{g.discount}} %</p>
+                  <p>{{g.discount}} %</p>
                 </td>
                 <td class="center">
-                  <p ng-hide="g.exempt">{{g.requiredPayment}} ##word.$## </p>
+                  <p ng-hide="g.exempt">{{g.requiredPayment}} ##word.$##</p>
                   <p ng-show="g.exempt">##word.Exempt##</p>
-
                 </td>
                 <td class="center">
                   <i-button type="delete" label="##word.Delete##" ng-click="deleteStudentGroup($index,g)"></i-button>
