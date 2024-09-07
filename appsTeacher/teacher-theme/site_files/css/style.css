@@ -401,6 +401,9 @@ figure {
   text-align: -webkit-right;
 }
 .teacher-main-li {
+  a {
+    text-align-last: center;
+  }
   padding: 10px;
   margin: 10px;
   height: 480px;
@@ -412,8 +415,8 @@ figure {
   background: white;
   border-radius: 15px;
   img {
-    height: 225px;
-    width: 250px !important;
+    max-height: 225px;
+    max-width: 250px !important;
     padding: 5px;
     border-radius: 15px 15px 0px 0px;
   }
