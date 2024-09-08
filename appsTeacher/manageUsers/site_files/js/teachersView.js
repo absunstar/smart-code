@@ -59,6 +59,4 @@ app.controller("teachersView", function ($scope, $http, $timeout) {
 
 
   $scope.getAll();
-  $scope.getEducationalLevelsList();
-  $scope.getSchoolsList();
 });
