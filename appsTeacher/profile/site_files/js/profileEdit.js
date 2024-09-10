@@ -17,6 +17,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
+          $scope.getCentersList();
           document.querySelector(`#profileEdit .tab-link`).click();
         } else {
           $scope.error = response.data.error;
@@ -311,7 +312,42 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
       }
     );
   };
-
+  $scope.getCentersList = function () {
+    if ($scope.user.schoolYear && $scope.user.schoolYear.id && $scope.user.educationalLevel && $scope.user.educationalLevel.id) {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/centers/all",
+        data: {
+          where: {
+            active: true,
+            schoolYearId: $scope.user.schoolYear.id,
+            educationalLevelId: $scope.user.educationalLevel.id,
+          },
+          select: {
+            id: 1,
+            name: 1,
+            host: 1,
+            educationalLevel: 1,
+            schoolYear: 1,
+          },
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.centersList = response.data.list;
+            console.log("Dddddddddddddddddd");
+            
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+    }
+  };
   $scope.getLectures();
   $scope.getPackages();
   $scope.displayUser();

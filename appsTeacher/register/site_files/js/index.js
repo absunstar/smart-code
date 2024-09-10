@@ -1,12 +1,11 @@
 app.controller("register", function ($scope, $http, $timeout) {
   $scope.user = { image: "/images/user_logo.png" };
   $scope.setting = site.showObject(`##data.#setting##`);
-  if(!$scope.setting.showParent) {
-    $scope.user.type = 'student'
+  if (!$scope.setting.showParent) {
+    $scope.user.type = "student";
   }
-  if(!$scope.setting.isOnline) {
-    $scope.user.placeType = 'offline'
-
+  if (!$scope.setting.isOnline) {
+    $scope.user.placeType = "offline";
   }
   $scope.placeTypeSelect = function (type, e) {
     $scope.user.placeType = type;
@@ -38,10 +37,10 @@ app.controller("register", function ($scope, $http, $timeout) {
       return;
     }
     if ($scope.user.placeType == "offline") {
-      if (!user.center || !user.center.id) {
+    /*   if (!user.center || !user.center.id) {
         $scope.error = "##word.Must Enter Center##";
         return;
-      }
+      } */
     } else if ($scope.user.placeType == "online") {
       if (!user.nationalIdImage) {
         $scope.error = "##word.Must Enter NationalIdImage##";
@@ -98,7 +97,7 @@ app.controller("register", function ($scope, $http, $timeout) {
               $scope.busy = false;
             } else if (response.data.user) {
               if (user.placeType == "online") {
-                site.showModal('#alert');
+                site.showModal("#alert");
                 $timeout(() => {
                   window.location.href = "/";
                 }, 5000);
@@ -130,7 +129,6 @@ app.controller("register", function ($scope, $http, $timeout) {
             schoolYearId: $scope.user.schoolYear.id,
             educationalLevelId: $scope.user.educationalLevel.id,
           },
-          view: true,
           select: {
             id: 1,
             name: 1,
@@ -297,7 +295,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       },
     }).then(
       function (response) {
-        $scope.busy = false;
+        $scope.busy = false;        
         if (response.data.done && response.data.list.length > 0) {
           $scope.educationalLevelsList = response.data.list;
         }
@@ -310,33 +308,35 @@ app.controller("register", function ($scope, $http, $timeout) {
   };
 
   $scope.getSchoolYearsList = function (educationalLevel) {
-    $scope.busy = true;
-    $scope.schoolYearsList = [];
-    $http({
-      method: "POST",
-      url: "/api/schoolYears/all",
-      data: {
-        where: {
-          active: true,
-          "educationalLevel.id": educationalLevel.id,
+    if (educationalLevel) {
+      $scope.busy = true;
+      $scope.schoolYearsList = [];
+      $http({
+        method: "POST",
+        url: "/api/schoolYears/all",
+        data: {
+          where: {
+            active: true,
+            "educationalLevel.id": educationalLevel.id,
+          },
+          select: {
+            id: 1,
+            name: 1,
+          },
         },
-        select: {
-          id: 1,
-          name: 1,
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.schoolYearsList = response.data.list;
+          }
         },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.schoolYearsList = response.data.list;
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+      );
+    }
   };
 
   $scope.getGenders = function () {

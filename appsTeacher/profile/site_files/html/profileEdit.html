@@ -152,6 +152,7 @@
                     <div class="col6">
                       <i-control v="r" class="input-style" label="##word.Full Name##" ng-model="user.firstName"> </i-control>
                       <i-date label="##word.Birth Of Date##" ng-model="user.bitrhOfDate"> </i-date>
+                      <i-list ng-show="user.placeType == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name"></i-list>
                       <i-list
                         v="r"
                         class="input-style"

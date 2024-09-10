@@ -323,11 +323,11 @@ module.exports = function init(site) {
     }
 
     if (req.body.user.placeType == "offline") {
-      if (!req.body.user.center || !req.body.user.center.id) {
-        response.error = "Must Enter Center";
-        res.json(response);
-        return;
-      }
+      // if (!req.body.user.center || !req.body.user.center.id) {
+      //   response.error = "Must Enter Center";
+      //   res.json(response);
+      //   return;
+      // }
     } else if (req.body.user.placeType == "online") {
       if (!req.body.user.nationalIdImage) {
         response.error = "Must Enter NationalIdImage";
@@ -413,13 +413,13 @@ module.exports = function init(site) {
       });
     } else {
       if (req.body.user.placeType == "offline") {
-
-
         user.permissions.push({ name: "offline" });
-        user.center = {
-          id: req.body.user.center.id,
-          name: req.body.user.center.name,
-        };
+        if (req.body.user.center) {
+          user.center = {
+            id: req.body.user.center.id,
+            name: req.body.user.center.name,
+          };
+        }
       }
       user.active = true;
       site.security.register(user, function (err, doc) {
