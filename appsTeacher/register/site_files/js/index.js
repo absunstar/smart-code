@@ -37,10 +37,10 @@ app.controller("register", function ($scope, $http, $timeout) {
       return;
     }
     if ($scope.user.placeType == "offline") {
-    /*   if (!user.center || !user.center.id) {
+      if (!user.center || !user.center.id) {
         $scope.error = "##word.Must Enter Center##";
         return;
-      } */
+      }
     } else if ($scope.user.placeType == "online") {
       if (!user.nationalIdImage) {
         $scope.error = "##word.Must Enter NationalIdImage##";
