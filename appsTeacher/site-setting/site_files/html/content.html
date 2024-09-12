@@ -3,7 +3,7 @@
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.Site Settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#printerProgram')" ng-show="siteSetting.isCenter"> ##word.Printers Program## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Theme Setting## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#themePage')"> ##word.Theme Setting## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#blockPrograms')"> ##word.Block Programs## </a>
     </div>
 
@@ -190,7 +190,7 @@
           <i-button type="save" label="##word.Save##" ng-click="saveSetting('#printerProgram')"></i-button>
         </fieldset>
       </div>
-      <div id="mainPage" class="tab-content">
+      <div id="themePage" class="tab-content">
         <div class="article-part">
           <div class="row">
             <div class="row">
@@ -217,6 +217,7 @@
             </div>
           </div>
         </div>
+        <i-button type="save" label="##word.save##" ng-click="saveSetting('#themePage')"> </i-button>
       </div>
 
       <div id="blockPrograms" class="tab-content">
