@@ -322,7 +322,7 @@ module.exports = function init(site) {
         if (where["search"]) {
           where.$or = [];
 
-          where.$or.push({ code: where["search"] }, { "user.firstName": where["search"] }, { "user.lastName": where["search"] }, { "target.name": where["search"] });
+          where.$or.push({ code: where["search"] }, { "user.firstName": site.get_RegExp(where["search"], "i") }, { "user.lastName": site.get_RegExp(where["search"], "i") }, { "target.name": site.get_RegExp(where["search"], "i") });
 
           delete where["search"];
         }
