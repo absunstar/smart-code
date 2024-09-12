@@ -16,14 +16,13 @@
       <div class="row">
         <i-date class="col4" label="##word.From Date##" ng-model="_search.fromDate"> </i-date>
         <i-date class="col4" label="##word.To Date##" ng-model="_search.toDate"> </i-date>
-        <div class="col2">
-          <i-button type="search" label="##word.Search##" ng-click="getAll(_search)"></i-button>
-        </div>
+      
       </div>
     </div>
 
     <div class="row padding">
-      <i-control ng-model="$search" x-permissions="purchaseOrdersSearch || purchaseOrdersManage"></i-control>
+      <i-control ng-model="_search.search" class="col8" label="##word.Search All##" x-permissions="purchaseOrdersSearch || purchaseOrdersManage"></i-control>
+      <i-button type="search" class="col3" label="##word.Search##" ng-click="getAll(_search)"></i-button>
     </div>
     <div class="row margin">
       <div class="col4">
@@ -60,16 +59,16 @@
           <th ng-show="'##query.type##' == 'book'">##word.Status##</th>
         </tr>
         <tr ng-repeat="item in list">
-          <td class="center" ng-click="showView(item)">{{$index + 1}}</td>
-          <td class="center" ng-click="showView(item)">{{item.target.name}}</td>
-          <td class="center" ng-click="showView(item)">{{item.date |date:"dd - MM - yyyy"}}</td>
-          <td class="center" ng-click="showView(item)" ng-show="'##query.type##' != 'book'">
+          <td class="center">{{$index + 1}}</td>
+          <td class="center">{{item.target.name}}</td>
+          <td class="center">{{item.date |date:"dd - MM - yyyy"}}</td>
+          <td class="center userPrint" ng-show="'##query.type##' != 'book'">
             {{item.code}}
             <p ng-show="!item.code">##word.Not Exist##</p>
           </td>
-          <td class="center" ng-click="showView(item)">{{item.user.firstName}}</td>
-          <td class="center" ng-click="showView(item)" ng-show="'##query.type##' == 'book'">{{item.address}}</td>
-          <td class="center" ng-click="showView(item)">{{item.price}} <span class="currency">##word.$##</span></td>
+          <td class="center">{{item.user.firstName}}</td>
+          <td class="center" ng-show="'##query.type##' == 'book'">{{item.address}}</td>
+          <td class="center">{{item.price}} <span class="currency">##word.$##</span></td>
           <td class="center not-print" ng-show="'##query.type##' == 'book'">
             <p>{{item.status.name##session.lang##}}</p>
             <i-button type="save" ng-hide="item.status.name == 'delivered'" label="##word.Delivered##" ng-click="updateBookStatus( item ,'delivered')"></i-button>

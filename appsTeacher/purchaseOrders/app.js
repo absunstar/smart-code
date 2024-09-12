@@ -266,7 +266,7 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "";
-        let limit = req.body.limit || 50;
+        let limit = req.body.limit || 100;
         let select = req.body.select || {
           id: 1,
           type: 1,
@@ -290,17 +290,17 @@ module.exports = function init(site) {
           delete where.toDate;
         }
         if (where["package"]) {
-          where["target.id"] =where["package"].id;
+          where["target.id"] = where["package"].id;
           delete where["package"];
         }
 
         if (where["book"]) {
-          where["target.id"] =where["book"].id;
+          where["target.id"] = where["book"].id;
           delete where["book"];
         }
 
         if (where["lecture"]) {
-          where["target.id"] =where["lecture"].id;
+          where["target.id"] = where["lecture"].id;
           delete where["lecture"];
         }
 
@@ -319,12 +319,17 @@ module.exports = function init(site) {
           delete where["student"];
         }
 
-        if (search) {
+        if (where["search"]) {
           where.$or = [];
 
           where.$or.push({
-            number: search,
+            code: where["search"],
+            "user.firstName": where["search"],
+            "user.lastName": where["search"],
+            "target.name": where["search"],
           });
+
+          delete where["search"];
         }
         if ((teacherId = site.getTeacherSetting(req))) {
           where["teacherId"] = teacherId;
