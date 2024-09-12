@@ -479,6 +479,7 @@ figure {
 } */
 
 button {
+  margin-bottom: 15px;
   text-align: -webkit-center;
   background: transparent;
   color: var(--button-color) !important;
