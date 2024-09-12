@@ -455,8 +455,7 @@ figure {
   font-weight: bold;
   font-size: larger;
 }
-.buy-btn {
-  /*  border: 3px solid linear-gradient(to bottom, #70b8fb 0%, #1475cf 100%); */
+/* .buy-btn {
   margin: 15px -5px 20px 0px;
   text-align-last: center;
   background: var(--button-background);
@@ -477,7 +476,56 @@ figure {
 
 .buy-btn:hover {
   filter: brightness(1.1);
+} */
+
+button {
+  text-align: -webkit-center;
+  background: transparent;
+  color: var(--button-color) !important;
+  font-size: 21px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  padding: 20px 30px;
+  cursor: pointer;
+  perspective: 30rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.308);
 }
+
+button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  background: linear-gradient(
+    320deg,
+    var(--button-background),
+    rgba(31, 31, 31, 0.308)
+  );
+  z-index: 1;
+  transition: background 3s;
+}
+
+button:hover::before {
+  animation: rotate 1s;
+  transition: all 0.5s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
 
 .nft {
   display: inline-block;
