@@ -505,7 +505,7 @@ button::before {
   background: linear-gradient(
     320deg,
     var(--button-background),
-    rgba(31, 31, 31, 0.308)
+    rgba(76, 76, 76, 0.308)
   );
   z-index: 1;
   transition: background 3s;
