@@ -323,6 +323,7 @@ module.exports = function init(site) {
           price: 1,
           expired: 1,
           distribution: 1,
+          teacherId: 1,
         };
         if (search) {
           where.$or = [];
