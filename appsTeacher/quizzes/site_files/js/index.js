@@ -226,7 +226,7 @@ app.controller("quizzes", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/users/all",
+      url: "/api/manageUsers/all",
       data: {
         where: {
           type: 'student',
@@ -237,8 +237,8 @@ app.controller("quizzes", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.users.length > 0) {
-          $scope.usersList = response.data.users;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.usersList = response.data.list;
         }
       },
       function (err) {

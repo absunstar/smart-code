@@ -481,7 +481,8 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-
+        console.log(where);
+        
         app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({
             done: true,
