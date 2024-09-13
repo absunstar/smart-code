@@ -24,7 +24,14 @@
         <div class="row center-content">
           <p class="">##word.Profile Image##</p>
           <i-image class="img256" ng-model="item.image"></i-image>
-          <i-image class="img256" ng-show="item.placeType == 'online'" ng-model="item.nationalIdImage"></i-image>
+        </div>
+        <div class="row center-content" ng-show="item.type == 'teacher' && setting.isShared">
+          <p class="">##word.Code Card##</p>
+          <i-image class="img256"  ng-model="item.codeCard"></i-image>
+        </div>
+        <div class="row center-content" ng-show="item.placeType == 'online'">
+          <p class="">##word.National ID Image##</p>
+          <i-image class="img256" ng-model="item.nationalIdImage"></i-image>
         </div>
       </div>
     </div>

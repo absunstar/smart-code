@@ -1,6 +1,9 @@
 app.controller("codes", function ($scope, $http, $timeout) {
   $scope.setting = site.showObject(`##data.#setting##`);
   $scope.invoiceLogo = document.location.origin + $scope.setting?.codeCard?.url;
+  if($scope.setting.isShared && '##user.codeCard##' && typeof '##user.codeCard.url##') {
+  $scope.invoiceLogo = document.location.origin +'##user.codeCard.url##';
+  }
   $scope.baseURL = "";
   $scope.appName = "codes";
   $scope.modalID = "#codesManageModal";
