@@ -323,11 +323,11 @@ module.exports = function init(site) {
     }
 
     if (req.body.user.placeType == "offline") {
-      if (!req.body.user.center || !req.body.user.center.id) {
-        response.error = "Must Enter Center";
-        res.json(response);
-        return;
-      }
+      // if (!req.body.user.center || !req.body.user.center.id) {
+      //   response.error = "Must Enter Center";
+      //   res.json(response);
+      //   return;
+      // }
     } else if (req.body.user.placeType == "online") {
       if (!req.body.user.nationalIdImage) {
         response.error = "Must Enter NationalIdImage";
