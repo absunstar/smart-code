@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
     <style>
-     
       .buy:hover {
         color: blue !important;
         text-decoration: underline !important;
@@ -81,7 +80,7 @@
       body {
         background-color: #eceff5 !important;
 
-      /*   background-repeat: repeat !important; */
+        /*   background-repeat: repeat !important; */
       }
       * {
         max-width: initial;
@@ -160,9 +159,10 @@
                   <p class="text-comment gray-desc">{{item.description}}</p>
                 </div>
 
-                <div class="row" ng-repeat="file in item.filesList" ng-show="item.$buy || item.type.name == 'public'">
-                  <i-file view ng-model="file.url"></i-file>
-                </div>
+                <fieldset class="border" ng-show="item.$buy || item.type.name == 'public'">
+                  <legend>##word.Download Files##</legend>
+                  <i-file ng-repeat="file in item.filesList" view ng-model="file.url"></i-file>
+                </fieldset>
 
                 <div class="row video-box" ng-repeat="link in item.linksList" ng-show="item.$buy || item.type.name == 'public'">
                   <i-button type="view" label="{{link.name}}" ng-click="openVideo(link)"></i-button>

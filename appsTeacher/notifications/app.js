@@ -167,7 +167,7 @@ module.exports = function init(site) {
           let data = {
             setting: setting,
             guid: "",
-            setting: setting,
+            isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",

@@ -163,9 +163,7 @@
                         display="name"
                         ng-search="user.$countries"
                       ></i-list>
-
                       <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(user.gov)" ng-model="user.gov" display="name" items="govesList" ng-search="user.$gov"></i-list>
-
                       <i-list
                         label="##word.City##"
                         x-data="setting.citiesAndAreasShow"
@@ -176,14 +174,10 @@
                         ng-search="user.$city"
                       >
                       </i-list>
-
                       <i-list label="##word.Area##" x-data="setting.citiesAndAreasShow" ng-model="user.area" items="areasList" display="name" ng-search="user.$area"> </i-list>
-
                       <i-control v="r" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
                       <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
-
                       <i-control v="r" class="pass input-style" label="##word.Password##" type="password" id="pass1" ng-model="user.password"></i-control>
-
                       <i-checkbox class="right display-content" label="##word.Show Password##" ng-change="showPassword()" ng-model="showPassword"> </i-checkbox>
                     </div>
                     <div class="col6 padding">

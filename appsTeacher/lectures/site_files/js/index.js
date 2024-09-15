@@ -325,6 +325,35 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getSubjectsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/subjects/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name: 1 },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.subjectsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.activateQuiz = function () {
     $scope.error = "";
     if ($scope.activateQuiz) {
@@ -398,4 +427,5 @@ app.controller("lectures", function ($scope, $http, $timeout) {
   $scope.getTypesExpiryViewsList();
   $scope.getLecturesTypesList();
   $scope.getQuestionTypesList();
+  $scope.getSubjectsList();
 });

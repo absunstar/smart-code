@@ -179,7 +179,7 @@ module.exports = function init(site) {
           let data = {
             setting: setting,
             guid: "",
-            setting: setting,
+            isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
@@ -470,6 +470,15 @@ module.exports = function init(site) {
           where.$or.push({
             "area.name": site.get_RegExp(search, "i"),
           });
+          where.$or.push({
+            "levelsList.educationalLevel.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "levelsList.schoolYear.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "levelsList.subject.name": site.get_RegExp(search, "i"),
+          });
         }
         if (where["type"] != "teacher") {
           if ((teacherId = site.getTeacherSetting(req)) && !setting.isCenter) {
@@ -481,7 +490,6 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-        console.log(where);
         
         app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({

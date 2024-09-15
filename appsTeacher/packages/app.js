@@ -182,7 +182,7 @@ module.exports = function init(site) {
             notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
             setting: setting,
             guid: "",
-            setting: setting,
+            isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
@@ -228,7 +228,7 @@ module.exports = function init(site) {
             notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
             setting: setting,
             guid: "",
-            setting: setting,
+            isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
@@ -415,6 +415,9 @@ module.exports = function init(site) {
           where.$or.push({
             "schoolYear.name": site.get_RegExp(search, "i"),
           });
+          where.$or.push({
+            "subject.name": site.get_RegExp(search, "i"),
+          });
         }
 
         if (req.body.type == "toStudent") {
@@ -441,6 +444,9 @@ module.exports = function init(site) {
                   },
                   {
                     "schoolYear.name": site.get_RegExp(search, "i"),
+                  },
+                  {
+                    "subject.name": site.get_RegExp(search, "i"),
                   },
                 ],
               },

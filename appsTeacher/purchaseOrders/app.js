@@ -361,6 +361,14 @@ module.exports = function init(site) {
     app.add(_options);
   };
 
+  site.getPurchaseOrder = function (where, callBack) {
+    callBack = callBack || function () {};
+    app.view(where, (err, doc) => {
+      callBack(err, doc);
+    });
+  };
+
+
   app.init();
   site.addApp(app);
 };

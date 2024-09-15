@@ -319,6 +319,35 @@ app.controller("packages", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getSubjectsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/subjects/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name: 1 },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.subjectsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.pricesCount = function () {
     $scope.error = "";
     $scope.item.totalLecturesPrice = 0;
@@ -341,4 +370,5 @@ app.controller("packages", function ($scope, $http, $timeout) {
   $scope.getAll();
   $scope.getLecturesList();
   $scope.getEducationalLevelsList();
+  $scope.getSubjectsList();
 });

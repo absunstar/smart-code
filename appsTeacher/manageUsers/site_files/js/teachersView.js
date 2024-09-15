@@ -57,6 +57,5 @@ app.controller("teachersView", function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.getAll();
 });

@@ -473,40 +473,6 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.getSubjectsList = function ($search) {
-    $scope.error = "";
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $scope.subjectsList = [];
-
-    $http({
-      method: "POST",
-      url: "/api/subjects/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-        search: $search,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.subjectsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
   $scope.getDepartmentsList = function ($search) {
     $scope.error = "";
     if ($search && $search.length < 1) {
@@ -606,7 +572,34 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       }
     );
   };
-
+  $scope.getSubjectsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/subjects/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name: 1 },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.subjectsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
   $scope.getGroupsList = function ($search) {
     $scope.error = "";
     $scope.groupsList = [];
@@ -772,7 +765,20 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       );
     }
   };
+  $scope.addLevelsList = function () {
+    $scope.item.levelsList = $scope.item.levelsList || [];
+    if ($scope.item.$educationalLevel && $scope.item.$educationalLevel.id && $scope.item.$schoolYear && $scope.item.$schoolYear.id && $scope.item.$subject && $scope.item.$subject.id) {
 
+      $scope.item.levelsList.unshift({
+        educationalLevel: $scope.item.$educationalLevel,
+        schoolYear: $scope.item.$schoolYear,
+        subject: $scope.item.$subject,
+      });
+      $scope.item.$educationalLevel = {};
+      $scope.item.$schoolYear = {};
+      $scope.item.$subject = {};
+    }
+  };
   $scope.exemptPayment = function (item, option) {
     if (option == true) {
       item.discount = 100;

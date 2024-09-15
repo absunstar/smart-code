@@ -182,7 +182,7 @@ module.exports = function init(site) {
             notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
             setting: setting,
             guid: "",
-            setting: setting,
+            isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
@@ -221,7 +221,7 @@ module.exports = function init(site) {
           let data = {
             setting: setting,
             guid: "",
-            setting: setting,
+            isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
@@ -271,11 +271,13 @@ module.exports = function init(site) {
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             let setting = site.getSiteSetting(req.host);
+            
             if (setting.isShared) {
               doc.code = (req.session?.user?.prefix || req.session?.user?.id.toString()) + "B" + doc.id.toString();
             } else {
               doc.code = (setting.teacher.prefix || req.session?.user?.id.toString()) + "B" + doc.id.toString();
             }
+
             app.update(doc, (err, result) => {
               if (!err && result) {
                 response.done = true;
@@ -352,17 +354,25 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-        app.view(_data, (err, doc) => {
-          if (!err && doc) {
-            response.done = true;
-            if (req.session.user && req.session.user.booksList && req.session.user.booksList.some((s) => s == doc.id)) {
-              doc.$buy = true;
+        site.getPurchaseOrder({ "status.name": "delivered", type: "book", "user.id": req.session?.user?.id }, (err1, order) => {
+          app.view(_data, (err, doc) => {
+            if (!err && doc) {
+              response.done = true;
+              if (req.session.user && req.session.user.booksList && req.session.user.booksList.some((s) => s == doc.id)) {
+                doc.$buy = true;
+              }
+              if (order) {
+                doc.$delivered = true;
+              } else if (doc.price != 0) {
+                delete doc.linkList;
+                delete doc.fileList;
+              }
+              response.doc = doc;
+            } else {
+              response.error = err?.message || "Not Exists";
             }
-            response.doc = doc;
-          } else {
-            response.error = err?.message || "Not Exists";
-          }
-          res.json(response);
+            res.json(response);
+          });
         });
       });
     }
@@ -398,6 +408,9 @@ module.exports = function init(site) {
           });
           where.$or.push({
             "schoolYear.name": site.get_RegExp(search, "i"),
+          });
+          where.$or.push({
+            "subject.name": site.get_RegExp(search, "i"),
           });
         }
 

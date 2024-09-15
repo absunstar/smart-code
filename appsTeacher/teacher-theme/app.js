@@ -4,9 +4,9 @@ module.exports = function init(site) {
     path: __dirname + "/site_files",
   });
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
+    name: "images",
+    path: __dirname + "/site_files/images/",
+  });
 
   site.get({
     name: ["/css/teacher.css"],
@@ -141,10 +141,15 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    req.session.selectedTeacherId = req.data
-    site.saveSession(req.session);
-    response.done = true;
-    res.json(response);
+    site.security.getUser({id : req.data}, (err, user) => {
+      if (!err && user) {
+        req.session.selectedTeacherId = req.data;
+        req.session.selectedTeacherName = user.firstName.split(" ").slice(0, 2);
+        site.saveSession(req.session);
+        response.done = true;
+        res.json(response);
+      }
+    });
   });
 
   site.post({ name: "/api/exitTeacher" }, (req, res) => {

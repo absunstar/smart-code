@@ -8,18 +8,20 @@
           <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
         </div>
         <div class="row">
-          <i-list label="##word.Type##" ng-model="item.type" class="col4" v="r" display="name##session.lang##" items="lecturesTypesList"></i-list>
+          <i-list label="##word.Type##" ng-model="item.type" class="col3" v="r" display="name##session.lang##" items="lecturesTypesList"></i-list>
           <i-list
             label="##word.Educational Level##"
             ng-change="getSchoolYearsList(item.educationalLevel)"
-            class="col4"
+            class="col3"
             v="r"
             ng-model="item.educationalLevel"
             display="name"
             items="educationalLevelsList"
             ng-search="item.$educationalLevel"
           ></i-list>
-          <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col4" v="r" display="name" items="schoolYearsList"></i-list>
+          <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col3" v="r" display="name" items="schoolYearsList"></i-list>
+
+          <i-list label="##word.Subject##" ng-model="item.subject" class="col3" display="name" items="subjectsList"></i-list>
         </div>
         <div class="row">
           <i-list label="##word.Type Of Expiry View##" ng-model="item.typeExpiryView" class="col6" v="r" display="name##session.lang##" items="typesExpiryViewsList"></i-list>
@@ -43,7 +45,7 @@
           </legend>
           <div class="row" ng-repeat="file in item.filesList">
             <i-file class="col9" ng-model="file.url"></i-file>
-            <i-button class="col2" type="delete " ng-click=" item.filesList.splice($index,1)"> </i-button>
+            <i-button class="col2" type="delete" ng-click=" item.filesList.splice($index,1)"> </i-button>
           </div>
         </fieldset>
         <fieldset ng-show="item.type.name == 'private'">
@@ -99,14 +101,13 @@
       <div class="col1 center">
         <p class="font-20">##word.Code##</p>
         <p class="font-20">({{link.code}})</p>
-
       </div>
       <div class="col1 center">
         <p class="font-20">##word.Views##</p>
         <p class="font-20">({{link.views}})</p>
       </div>
       <div class="col1">
-        <br>
+        <br />
 
         <i-button type="delete " ng-click=" item.linksList.splice($index,1)"> </i-button>
       </div>

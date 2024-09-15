@@ -477,7 +477,17 @@ figure {
 .buy-btn:hover {
   filter: brightness(1.1);
 } */
-
+.links-a {
+  display: block;
+  margin: 10px;
+  background: gainsboro;
+  padding: 10px;
+  max-inline-size: max-content;
+  color: #0000a2 !important;
+  font-weight: bold;
+  font-size: large;
+  border-radius: 10px;
+}
 button {
   margin-bottom: 15px;
   text-align: -webkit-center;

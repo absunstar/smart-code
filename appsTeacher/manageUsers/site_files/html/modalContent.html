@@ -27,7 +27,7 @@
         </div>
         <div class="row center-content" ng-show="item.type == 'teacher' && setting.isShared">
           <p class="">##word.Code Card##</p>
-          <i-image class="img256"  ng-model="item.codeCard"></i-image>
+          <i-image class="img256" ng-model="item.codeCard"></i-image>
         </div>
         <div class="row center-content" ng-show="item.placeType == 'online'">
           <p class="">##word.National ID Image##</p>
@@ -98,7 +98,7 @@
           </div>
         </fieldset>
 
-        <fieldset>
+        <!-- <fieldset>
           <legend>##word.Social Accounts##</legend>
           <div class="row">
             <i-control class="col3" label="##word.Contact Email##" ng-model="item.contactEmail"></i-control>
@@ -106,8 +106,45 @@
             <i-control class="col3" label="##word.Twitter##" ng-model="item.twitter"></i-control>
             <i-control class="col3" label="##word.Instagram##" ng-model="item.instagram"></i-control>
           </div>
-        </fieldset>
+        </fieldset> -->
+        <fieldset class="border">
+          <legend>##word.Educational Level##</legend>
+          <div class="row">
+            <i-list
+              label="##word.Educational Level##"
+              ng-change="getSchoolYearsList(item.educationalLevel)"
+              class="col3"
+              ng-model="item.$educationalLevel"
+              display="name"
+              items="educationalLevelsList"
+              ng-search="item.$educationalLevel"
+            ></i-list>
+            <i-list label="##word.School Year##" ng-model="item.$schoolYear" class="col3" display="name" items="schoolYearsList"></i-list>
+            <i-list label="##word.Subject##" class="col3" ng-model="item.$subject" display="name" items="subjectsList"></i-list>
+            <i-button type="push" label="##word.Add Level##" ng-click="addLevelsList()"></i-button>
 
+            <div class="table-responsive">
+              <table class="table center hover bold">
+                <tr>
+                  <th>##word.Educational Level##</th>
+                  <th>##word.School Year##</th>
+                  <th>##word.Subject##</th>
+                  <th class="not-print">##word.Actions##</th>
+                </tr>
+                <tr ng-repeat="g in item.levelsList">
+                  <td class="center">{{g.educationalLevel.name}}</td>
+                  <td class="center">{{g.schoolYear.name}}</td>
+                  <td class="center">{{g.subject.name}}</td>
+              
+                  <td class="center">
+                    <i-button type="delete" label="##word.Delete##" ng-click="item.levelsList.splice($index,1)"></i-button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+          </div>
+        </fieldset>
         <fieldset>
           <legend>##word.Address##</legend>
           <div class="row">
@@ -135,7 +172,6 @@
             </i-list>
             <i-list class="col3" x-data="setting.citiesAndAreasShow" label="##word.Area##" ng-model="item.area" items="areasList" display="name" ng-search="item.$area"> </i-list>
           </div>
-
           <div class="row">
             <i-control label="##word.Address##" ng-model="item.address"> </i-control>
           </div>

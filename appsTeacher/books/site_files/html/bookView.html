@@ -39,8 +39,6 @@
         align-items: center;
       }
 
-
-
       .content-img {
         width: 90% !important;
         height: auto !important;
@@ -83,8 +81,9 @@
       body {
         background-color: #eceff5 !important;
 
-/*         background-repeat: repeat !important;
- */      }
+        /*         background-repeat: repeat !important;
+ */
+      }
       * {
         max-width: initial;
       }
@@ -103,16 +102,23 @@
               <div class="col7">
                 <div class="row bg-ad padding margin">
                   <p class="price padding margin">##word.Price## <span class=""> {{item.price}} ##word.$## </span></p>
-
                   <p class="price padding margin">##word.Code## #<span class="userPrint gray"> {{item.code}} </span></p>
                 </div>
-
+                <div class="row" ng-show="item.$delivered"></div>
                 <div class="row">
                   <p class="text-comment gray-desc">{{item.description}}</p>
                 </div>
+                <fieldset class="border" ng-show="(item.$delivered || item.price == 0) && item.fileList.length > 0">
+                  <legend>##word.Download Files##</legend>
+                  <i-file view ng-model="file.url" ng-repeat="file in item.fileList"></i-file>
+                </fieldset>
+                <fieldset class="border" ng-show="(item.$delivered || item.price == 0) && item.linkList.length > 0">
+                  <legend>##word.Download Links##</legend>
+                  <a ng-repeat="l in item.linkList" class="links-a" href="{{l.link}}" target="_blank">{{l.title}}</a>
+                </fieldset>
                 <hr />
                 <div class="row">
-                  <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">
+                  <button ng-click="showEnterCode()" ng-hide="item.$buy || item.price == 0 || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">
                     ##word.Buy## <i class="fas fa-shopping-basket"></i>
                   </button>
                 </div>

@@ -17,6 +17,8 @@ app.controller("books", function ($scope, $http, $timeout) {
     $scope.mode = "add";
     $scope.item = {
       ...$scope.structure,
+      linkList : [],
+      fileList : [],
       price: 0,
     };
     site.showModal($scope.modalID);
@@ -254,6 +256,35 @@ app.controller("books", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getSubjectsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/subjects/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name: 1 },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.subjectsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
@@ -267,4 +298,5 @@ app.controller("books", function ($scope, $http, $timeout) {
 
   $scope.getAll();
   $scope.getEducationalLevelsList();
+  $scope.getSubjectsList();
 });

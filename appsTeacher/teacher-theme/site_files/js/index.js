@@ -1,48 +1,28 @@
-var app = app || angular.module('myApp', []);
-app.controller('teacherTheme', function ($scope, $http, $timeout) {
-  $scope.changeLang = function(lang){
+var app = app || angular.module("myApp", []);
+app.controller("teacherTheme", function ($scope, $http, $timeout) {
+  $scope.changeLang = function (lang) {
     $http({
-        method: 'POST',
-        url: '/x-language/change',
-        data:{ name : lang}
+      method: "POST",
+      url: "/x-language/change",
+      data: { name: lang },
     }).then(function (response) {
-        if (response.data.done) {
-          window.location.reload(true);
-        }
+      if (response.data.done) {
+        window.location.reload(true);
+      }
     });
   };
   $scope.selectTeacher = function (id) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/selectTeacher',
+      method: "POST",
+      url: "/api/selectTeacher",
       data: id,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          window.location.href = '/';
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-  $scope.exitTeacher = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/exitTeacher',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          window.location.href = '/';
+          window.location.href = "/";
         }
       },
       function (err) {
@@ -52,31 +32,12 @@ app.controller('teacherTheme', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.logout = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http.post('/api/user/logout').then(
-      function (response) {
-        if (response.data.done) {
-          window.location.href = '/';
-        } else {
-          $scope.error = response.data.error;
-          $scope.busy = false;
-        }
-      },
-      function (error) {
-        $scope.busy = false;
-        $scope.error = error;
-      }
-    );
-  };
   $scope.centersView = function () {
-    $scope.error = '';
-    if('##user.id##' > 0) {
-      window.location.href = '/centersView';
+    $scope.error = "";
+    if ("##user.id##" > 0) {
+      window.location.href = "/centersView";
     } else {
-      window.location.href = '/login';
-
+      window.location.href = "/login";
     }
   };
 });
