@@ -18,9 +18,11 @@ body {
   min-width: min(300px, 80vw);
   min-height: min(300px, 50vh);
   max-width: min(80vw, 100%);
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 10px;
   position: relative;
+  background: var(--background1);
 }
 .free a{
   border: 2px solid var(--background1);
@@ -44,6 +46,7 @@ body {
   margin: 0;
   max-width: 80vw;
   min-width: min(300px, 80vw);
+  width: 100%;
   min-height: 250px;
   background-image: url('/theme1/images/ad.png');
   background-size: contain;
