@@ -552,6 +552,7 @@ site.get(
         options.topNews = site.getTopArticles(options.filter, article.category);
         if (req.session.shortLink) {
           req.session.shortLink.step++;
+
           if (req.session.shortLink.step > req.session.shortLink.maxStep) {
             res.redirect(req.session.shortLink.url);
             req.session.shortLink = null;
