@@ -25,7 +25,7 @@ a {
   text-decoration: none;
   color: var(--color1);
 }
-a {
+a:hover {
   text-decoration: underline;
 }
 p {
