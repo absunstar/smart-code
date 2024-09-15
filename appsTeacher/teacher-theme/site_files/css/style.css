@@ -22,8 +22,8 @@ ul {
 }
 
 a {
-  text-decoration-line: none !important;
-  color: black !important;
+  text-decoration: none;
+  color: black;
 }
 
 p {
