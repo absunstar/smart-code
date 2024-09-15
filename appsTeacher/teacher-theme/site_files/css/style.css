@@ -1,6 +1,20 @@
+:root {
+  --body-margin-top: 0px;
+  --body-margin-bottom: 0px;
+  --zoom: 100%;
+  --fieldset-border: none;
+}
+
+* {
+  max-width: initial;
+}
+
 body {
   background-color: var(--main-background-color1) !important ;
   margin-bottom: 0px !important;
+  background-image: var(--background-image) !important;
+  background-repeat: round;
+  background-size: cover;
 }
 
 ul {
@@ -438,7 +452,6 @@ figure {
 }
 .modal-header {
   background-color: var(--background2) !important;
-
 }
 .price-more-card {
   margin: 10px 0px 0px 0px !important;
@@ -505,7 +518,7 @@ button {
 }
 
 button::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 100%;
@@ -513,11 +526,7 @@ button::before {
   top: 0;
   left: 0;
   border-radius: 10px;
-  background: linear-gradient(
-    320deg,
-    var(--button-background),
-    rgba(76, 76, 76, 0.308)
-  );
+  background: linear-gradient(320deg, var(--button-background), rgba(76, 76, 76, 0.308));
   z-index: 1;
   transition: background 3s;
 }
@@ -536,7 +545,6 @@ button:hover::before {
     transform: rotateY(360deg);
   }
 }
-
 
 .nft {
   display: inline-block;
@@ -561,7 +569,7 @@ button:hover::before {
   }
   h2 {
     text-align: center;
-    font-family: "Font Awesome 5 Free";
+    font-family: 'Font Awesome 5 Free';
     color: white;
     font-size: 2rem;
   }
@@ -619,7 +627,7 @@ button:hover::before {
   }
   ::before {
     position: fixed;
-    content: "";
+    content: '';
     box-shadow: 0 0 100px 40px #ffffff08;
     top: -10%;
     left: -100%;
@@ -759,21 +767,4 @@ fieldset legend {
     left: 0px;
     top: 125px;
   }
-}
-
-:root {
-  --body-margin-top: 0px;
-  --body-margin-bottom: 0px;
-  --zoom: 100%;
-  --fieldset-border: none;
-  /* --fieldset-background: #fff; */
-}
-
-body {
-  background-image: var(--background-image) !important;
-  background: fixed;
-  background-repeat: round;
-}
-* {
-  max-width: initial;
 }
