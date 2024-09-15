@@ -338,18 +338,19 @@ figure {
   .name {
     text-align: center;
     position: absolute;
-    top: 15px;
-    margin: 1px;
-    padding: 5px;
+    top: 0;
+    margin: 0;
+    padding: 10px;
     color: white;
-    font-size: 28px;
+    font-size: 22px;
     height: 45px;
     font-weight: 100;
-    line-height: 1;
-    opacity: 1;
-    transform: scale(1);
-    transition: 0.25s ease;
+    opacity: .8;
     z-index: 999;
+    background: #000000;
+    height: auto;
+    width: 100%;
+    border: 5px solid #000000;
   }
   img {
     height: 100%;
