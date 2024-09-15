@@ -39,7 +39,7 @@ main .mainContent .sidebarContainer .sidebar .lawerJoin a {
 }
 
 main .mainContent .sidebarContainer .sidebar .lawerJoin button {
-background: var(--button-background) !important;
+background: var(--button-background2) !important;
 color: var(--button-color) !important;
 border-bottom: unset !important;
 width: 100%;
