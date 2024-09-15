@@ -22,7 +22,6 @@ body {
   margin: 0 auto;
   margin-bottom: 10px;
   position: relative;
-  background: var(--background1);
 }
 .free a{
   border: 2px solid var(--background1);
