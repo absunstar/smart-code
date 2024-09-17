@@ -52,7 +52,7 @@ body {
   min-width: min(300px, 80vw);
   width: 100%;
   min-height: 250px;
-  /*background-image: url('/theme1/images/ad.png');*/
+  background-image: url('/theme1/images/ad.png');
   background-size: auto;
 }
 .free iframe {
