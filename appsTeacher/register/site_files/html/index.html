@@ -138,8 +138,8 @@
             <div class="row">
               <div class="col6">
                 <i-control v="r" class="input-style" label="##word.Full name##" ng-model="user.firstName"> </i-control>
-                <i-control v="r" class="center input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
-                <i-control ng-show="user.type == 'student'" class="center input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
+                <i-control v="r" class="input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
+                <i-control ng-show="user.type == 'student'" class="input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
                 <i-list
                   label="##word.Educational Level##"
                   ng-change="getSchoolYearsList(user.educationalLevel)"
@@ -150,10 +150,10 @@
                 ></i-list>
                 <i-list label="##word.School Year##" ng-show="user.type== 'student'" ng-model="user.schoolYear" display="name" ng-change="getCentersList()" items="schoolYearsList"></i-list>
                 <i-list ng-show="user.placeType == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name"></i-list>
-                <i-control ng-show="user.placeType == 'online'" class="center input-style" label="##word.Number## ##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
+                <i-control ng-show="user.placeType == 'online'" class="input-style" label="##word.Number## ##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
                 <i-list label="##word.Gender##" v="r" ng-model="user.gender" display="name##session.lang##" items="gendersList"></i-list>
                 <i-date label="##word.Birth Of Date##" ng-model="user.bitrhOfDate"> </i-date>
-                <i-list v="r" class="center input-style" label="##word.Country##" ng-model="user.country" ng-change="getGovesList(user.country)" items="countriesList" display="name"></i-list>
+                <i-list v="r" class="input-style" label="##word.Country##" ng-model="user.country" ng-change="getGovesList(user.country)" items="countriesList" display="name"></i-list>
                 <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(user.gov)" ng-model="user.gov" display="name" items="govesList"></i-list>
                 <i-list x-data="setting.citiesAndAreasShow" label="##word.City##" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name"> </i-list>
                 <i-list x-data="setting.citiesAndAreasShow" label="##word.Area##" ng-model="user.area" items="areasList" display="name"> </i-list>
