@@ -27,14 +27,15 @@
     <div class="row" ng-repeat="l in item.linkList">
       <i-control type="text" class="col5" ng-model="l.title" label="##word.Title##"></i-control>
       <i-control type="text" class="col5" ng-model="l.link" label="##word.Link##"></i-control>
-      <i-button type="delete" class="col2" ng-click=" item.linkList.splice($index,1)"> </i-button>
+      <i-button type="delete" class="col2" ng-click="item.linkList.splice($index,1)"> </i-button>
     </div>
   </fieldset>
   <fieldset>
     <legend>##word.File List## <i-button type="push" ng-click="item.fileList.unshift({})"></i-button></legend>
-    <div class="row" ng-repeat="l in item.fileList">
-      <i-file class="col5" ng-model="l.url" label="##word.File##"></i-file>
-      <i-button type="delete" class="col2" ng-click=" item.fileList.splice($index,1)"> </i-button>
+    <div class="row" ng-repeat="f in item.fileList">
+      <i-control class="col5" ng-model="f.title" label="##word.Title##"></i-control>
+      <i-file class="col5" ng-model="f.file" label="##word.File##"></i-file>
+      <i-button type="delete" class="col1" ng-click="item.fileList.splice($index,1)"> </i-button>
     </div>
   </fieldset>
   <i-textarea ng-model="item.description" label="##word.Description##"> </i-textarea>

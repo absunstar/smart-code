@@ -161,7 +161,7 @@
 
                 <fieldset class="border" ng-show="item.$buy || item.type.name == 'public'">
                   <legend>##word.Download Files##</legend>
-                  <i-file ng-repeat="file in item.filesList" view ng-model="file.url"></i-file>
+                  <a ng-repeat="f in item.filesList" class="links-a" href="{{f.file.url}}" target="_blank">{{f.title}} <i class="fas fa-download"></i></a>
                 </fieldset>
 
                 <div class="row video-box" ng-repeat="link in item.linksList" ng-show="item.$buy || item.type.name == 'public'">

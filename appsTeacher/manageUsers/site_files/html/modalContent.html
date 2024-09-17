@@ -8,7 +8,7 @@
             <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
           </div>
           <i-control type="text" v="r" ng-model="item.firstName" label="##word.Full Name##"></i-control>
-          <i-control v="r" ng-show="item.type == 'teacher'" class="input-style" label="##word.User Name##" ng-model="item.username"> </i-control>
+          <i-control ng-show="item.type == 'teacher'" class="input-style" label="##word.User Name##" ng-model="item.username"> </i-control>
           <i-date label="##word.Birth Of Date##" ng-model="item.bitrhOfDate"> </i-date>
           <i-control ng-show="item.placeType == 'online'" label="##word.National ID##" ng-model="item.nationalId"> </i-control>
           <i-control label="##word.BrowserId##" ng-show="item.type == 'student'" ng-model="item.socialBrowserID"> </i-control>
@@ -107,7 +107,7 @@
             <i-control class="col3" label="##word.Instagram##" ng-model="item.instagram"></i-control>
           </div>
         </fieldset> -->
-        <fieldset class="border">
+        <fieldset class="border" x-data="setting.isEducationalPlatform" ng-show="'##query.type##' == 'teacher'">
           <legend>##word.Educational Level##</legend>
           <div class="row">
             <i-list
@@ -135,14 +135,13 @@
                   <td class="center">{{g.educationalLevel.name}}</td>
                   <td class="center">{{g.schoolYear.name}}</td>
                   <td class="center">{{g.subject.name}}</td>
-              
+
                   <td class="center">
                     <i-button type="delete" label="##word.Delete##" ng-click="item.levelsList.splice($index,1)"></i-button>
                   </td>
                 </tr>
               </table>
             </div>
-
           </div>
         </fieldset>
         <fieldset>

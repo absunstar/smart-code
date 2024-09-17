@@ -43,9 +43,10 @@
             ##word.Files##
             <i-button type="push" ng-click="addFiles()"></i-button>
           </legend>
-          <div class="row" ng-repeat="file in item.filesList">
-            <i-file class="col9" ng-model="file.url"></i-file>
-            <i-button class="col2" type="delete" ng-click=" item.filesList.splice($index,1)"> </i-button>
+          <div class="row" ng-repeat="f in item.filesList">
+            <i-control class="col5" label="##word.Title##" ng-model="f.title"></i-control>
+            <i-file class="col5" ng-model="f.file"></i-file>
+            <i-button class="col1" type="delete" ng-click=" item.filesList.splice($index,1)"> </i-button>
           </div>
         </fieldset>
         <fieldset ng-show="item.type.name == 'private'">

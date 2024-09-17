@@ -13,29 +13,34 @@ module.exports = function init(site) {
     allowRouteView: true,
     allowRouteAll: true,
   };
-  site.lecturesList = site.lecturesList || [];
+  site.lectureList = site.lectureList || [];
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    if (app.allowMemory) {
-      app.$collection.findMany({}, (err, docs) => {
-        if (!err) {
-          if (docs.length == 0) {
-            app.cacheList.forEach((_item, i) => {
-              app.$collection.add(_item, (err, doc) => {
-                if (!err && doc) {
-                  app.memoryList.push(doc);
-                }
-              });
-            });
-          } else {
-            docs.forEach((doc) => {
-              app.memoryList.push(doc);
-            });
-          }
-        }
-      });
-    }
+    app.$collection.findMany({}, (err, docs) => {
+      if (!err) {
+        docs.forEach((doc) => {
+          site.lectureList.push({
+            _id: doc._id,
+            id: doc.id,
+            code: doc.code,
+            name: doc.name,
+            type: doc.type,
+            educationalLevel: doc.educationalLevel,
+            schoolYear: doc.schoolYear,
+            subject: doc.subject,
+            description: doc.description,
+            date: doc.date,
+            host: doc.host,
+            teacherId: doc.teacherId,
+            price: doc.price,
+            image: doc.image,
+            active: doc.active,
+            placeType: doc.placeType,
+          });
+        });
+      }
+    });
   };
   app.add = function (_item, callback) {
     app.$collection.add(_item, (err, doc) => {
@@ -166,15 +171,14 @@ module.exports = function init(site) {
           name: "view-video",
         },
         (req, res) => {
-          
           app.$collection.find({ _id: req.query.id }, (err, lecture) => {
             if (!err && lecture) {
               let video = lecture.linksList.find((itm) => itm.code == req.query.code);
               let videoURL = video.url;
               // handle links
-              if(videoURL.like('*youtu*')){
-                videoURL = 'https://www.youtube.com/embed/' + videoURL.split('=')[1].split('&')[0];
-              }              
+              if (videoURL.like("*youtu*")) {
+                videoURL = "https://www.youtube.com/embed/" + videoURL.split("=")[1].split("&")[0];
+              }
               res.render(
                 app.name + "/view-video.html",
                 {
@@ -311,10 +315,29 @@ module.exports = function init(site) {
             } else {
               doc.code = (setting.teacher.prefix || req.session?.user?.id.toString()) + "L" + doc.id.toString();
             }
+
             app.update(doc, (err, result) => {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
+                site.lectureList.push({
+                  _id: doc._id,
+                  id: doc.id,
+                  code: result.doc.code,
+                  name: doc.name,
+                  type: doc.type,
+                  educationalLevel: doc.educationalLevel,
+                  schoolYear: doc.schoolYear,
+                  subject: doc.subject,
+                  description: doc.description,
+                  date: doc.date,
+                  host: doc.host,
+                  teacherId: doc.teacherId,
+                  price: doc.price,
+                  active: doc.active,
+                  image: doc.image,
+                  placeType: doc.placeType,
+                });
               } else {
                 response.error = err.mesage;
               }
@@ -373,6 +396,27 @@ module.exports = function init(site) {
             if (!err) {
               response.done = true;
               response.result = result;
+              let index = site.lectureList.findIndex((a) => a.id === result?.doc?.id);
+              if (index !== -1) {
+                site.lectureList[index] = {
+                  _id: result.doc._id,
+                  id: result.doc.id,
+                  code: result.doc.code,
+                  name: result.doc.name,
+                  type: result.doc.type,
+                  educationalLevel: result.doc.educationalLevel,
+                  schoolYear: result.doc.schoolYear,
+                  subject: result.doc.subject,
+                  description: result.doc.description,
+                  date: result.doc.date,
+                  host: result.doc.host,
+                  teacherId: result.doc.teacherId,
+                  price: result.doc.price,
+                  active: result.doc.active,
+                  image: result.doc.image,
+                  placeType: result.doc.placeType,
+                };
+              }
             } else {
               response.error = err.message;
             }
@@ -398,6 +442,10 @@ module.exports = function init(site) {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
+              let index = site.lectureList.findIndex((a) => a.id === result?.doc?.id);
+              if (index !== -1) {
+                site.lectureList.splice(index, 1);
+              }
             } else {
               response.error = err?.message || "Deleted Not Exists";
             }
@@ -817,7 +865,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
@@ -927,64 +975,95 @@ module.exports = function init(site) {
     });
   };
 
-  site.getLectures = function (req, callBack) {
-    callBack = callBack || function () {};
-    site.lecturesList = [];
+  // site.getLectures = function (req, callBack) {
+  //   callBack = callBack || function () {};
+  //   site.lectureList = [];
+  //   let setting = site.getSiteSetting(req.host);
+  //   let limit = setting.lecturesLimit || 6;
+  //   let select = req.body.select || {
+  //     id: 1,
+  //     name: 1,
+  //     image: 1,
+  //     description: 1,
+  //     price: 1,
+  //     date: 1,
+  //     code: 1,
+  //   };
+  //   // let lectures = [];
+  //   // if (req.session.user && req.session.user.type == "student") {
+  //   //   lectures = site.lectureList.filter(
+  //   //     (a) =>
+  //   //       a.host == site.getHostFilter(req.host) &&
+  //   //       (a.placeType == req.session.user.placeType || a.placeType == "both") &&
+  //   //       a.schoolYear.id == req.session.user.schoolYear.id &&
+  //   //       a.educationalLevel.id == req.session.user.educationalLevel.id
+  //   //   );
+  //   // } else {
+  //   //   lectures = site.lectureList.filter((a) => a.host == site.getHostFilter(req.host));
+  //   // }
+  //   // if (lectures.length > 0) {
+  //   //   callBack(null, lectures);
+  //   // } else {
+  //   let where = {};
+  //   if (req.session.user && req.session.user.type == "student") {
+  //     where["educationalLevel.id"] = req.session.user.educationalLevel.id;
+  //     where["schoolYear.id"] = req.session.user.schoolYear.id;
+
+  //     where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
+  //   }
+  //   where["active"] = true;
+  //   if ((teacherId = site.getTeacherSetting(req))) {
+  //     where["teacherId"] = teacherId;
+  //   } else {
+  //     where["host"] = site.getHostFilter(req.host);
+  //   }
+
+  //   app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
+  //     if (!err && docs) {
+  //       for (let i = 0; i < docs.length; i++) {
+  //         if (docs[i].price == 0) {
+  //           docs[i].$isFree = true;
+  //         }
+
+  //         if (!site.lectureList.some((k) => k.id === docs[i].id)) {
+  //           docs[i].time = site.xtime(docs[i].date, "Ar");
+  //           site.lectureList.push(docs[i]);
+  //         }
+  //       }
+  //     }
+  //     callBack(err, docs);
+  //   });
+  //   // }
+  // };
+
+  site.getLectures = function (req) {
     let setting = site.getSiteSetting(req.host);
-    let limit = setting.lecturesLimit || 6;
-    let select = req.body.select || {
-      id: 1,
-      name: 1,
-      image: 1,
-      description: 1,
-      price: 1,
-      date: 1,
-      code: 1,
-    };
-    // let lectures = [];
-    // if (req.session.user && req.session.user.type == "student") {
-    //   lectures = site.lecturesList.filter(
-    //     (a) =>
-    //       a.host == site.getHostFilter(req.host) &&
-    //       (a.placeType == req.session.user.placeType || a.placeType == "both") &&
-    //       a.schoolYear.id == req.session.user.schoolYear.id &&
-    //       a.educationalLevel.id == req.session.user.educationalLevel.id
-    //   );
-    // } else {
-    //   lectures = site.lecturesList.filter((a) => a.host == site.getHostFilter(req.host));
-    // }
-    // if (lectures.length > 0) {
-    //   callBack(null, lectures);
-    // } else {
-    let where = {};
-    if (req.session.user && req.session.user.type == "student") {
-      where["educationalLevel.id"] = req.session.user.educationalLevel.id;
-      where["schoolYear.id"] = req.session.user.schoolYear.id;
+    let host = site.getHostFilter(req.host);
+    let teacherId = site.getTeacherSetting(req);
+    let docs = [];
 
-      where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
-    }
-    where["active"] = true;
-    if ((teacherId = site.getTeacherSetting(req))) {
-      where["teacherId"] = teacherId;
-    } else {
-      where["host"] = site.getHostFilter(req.host);
-    }
-
-    app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
-      if (!err && docs) {
-        for (let i = 0; i < docs.length; i++) {
-          if (docs[i].price == 0) {
-            docs[i].$isFree = true;
+    for (let i = 0; i < site.lectureList.length; i++) {
+      let obj = { ...site.lectureList[i] };
+      obj.$time = site.xtime(obj.date, "Ar");
+      if (obj.price == 0) {
+        obj.$isFree = true;
+      }
+      if (((obj.teacherId === teacherId && !setting.isShared) || (obj.host == host && setting.isShared)) && obj.active) {
+        if (req.session.user && req.session.user.type == "student") {
+          if (
+            obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&
+            obj.schoolYear?.id == req.session.user?.schoolYear?.id &&
+            (obj.placeType == req.session.user.placeType || obj.placeType == "both")
+          ) {
+            docs.push(obj);
           }
-
-          if (!site.lecturesList.some((k) => k.id === docs[i].id)) {
-            docs[i].time = site.xtime(docs[i].date, "Ar");
-            site.lecturesList.push(docs[i]);
-          }
+        } else {
+          docs.push(obj);
         }
       }
-      callBack(err, docs);
-    });
+    }
+
+    return docs.slice(0, setting.lecturesLimit || 10000);
     // }
   };
 

@@ -13,30 +13,35 @@ module.exports = function init(site) {
     allowRouteView: true,
     allowRouteAll: true,
   };
-  site.packagesList = site.packagesList || [];
+  site.packageList = site.packageList || [];
 
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    if (app.allowMemory) {
-      app.$collection.findMany({}, (err, docs) => {
-        if (!err) {
-          if (docs.length == 0) {
-            app.cacheList.forEach((_item, i) => {
-              app.$collection.add(_item, (err, doc) => {
-                if (!err && doc) {
-                  app.memoryList.push(doc);
-                }
-              });
-            });
-          } else {
-            docs.forEach((doc) => {
-              app.memoryList.push(doc);
-            });
-          }
-        }
-      });
-    }
+    app.$collection.findMany({}, (err, docs) => {
+      if (!err) {
+        docs.forEach((doc) => {
+          site.packageList.push({
+            _id: doc._id,
+            id: doc.id,
+            code: doc.code,
+            name: doc.name,
+            type: doc.type,
+            educationalLevel: doc.educationalLevel,
+            schoolYear: doc.schoolYear,
+            subject: doc.subject,
+            description: doc.description,
+            date: doc.date,
+            host: doc.host,
+            teacherId: doc.teacherId,
+            price: doc.price,
+            image: doc.image,
+            active: doc.active,
+            placeType: doc.placeType,
+          });
+        });
+      }
+    });
   };
   app.add = function (_item, callback) {
     app.$collection.add(_item, (err, doc) => {
@@ -292,6 +297,23 @@ module.exports = function init(site) {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
+                site.packageList.push({
+                  _id: doc._id,
+                  id: doc.id,
+                  code: result.doc.code,
+                  name: doc.name,
+                  educationalLevel: doc.educationalLevel,
+                  schoolYear: doc.schoolYear,
+                  subject: doc.subject,
+                  description: doc.description,
+                  date: doc.date,
+                  host: doc.host,
+                  teacherId: doc.teacherId,
+                  price: doc.price,
+                  active: doc.active,
+                  image: doc.image,
+                  placeType: doc.placeType,
+                });
               } else {
                 response.error = err.mesage;
               }
@@ -323,6 +345,26 @@ module.exports = function init(site) {
             if (!err) {
               response.done = true;
               response.result = result;
+              let index = site.packageList.findIndex((a) => a.id === result?.doc?.id);
+              if (index !== -1) {
+                site.packageList[index] = {
+                  _id: result.doc._id,
+                  id: result.doc.id,
+                  code: result.doc.code,
+                  name: result.doc.name,
+                  educationalLevel: result.doc.educationalLevel,
+                  schoolYear: result.doc.schoolYear,
+                  subject: result.doc.subject,
+                  description: result.doc.description,
+                  date: result.doc.date,
+                  host: result.doc.host,
+                  teacherId: result.doc.teacherId,
+                  price: result.doc.price,
+                  active: result.doc.active,
+                  image: result.doc.image,
+                  placeType: result.doc.placeType,
+                };
+              }
             } else {
               response.error = err.message;
             }
@@ -348,6 +390,10 @@ module.exports = function init(site) {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
+              let index = site.packageList.findIndex((a) => a.id === result?.doc?.id);
+              if (index !== -1) {
+                site.packageList.splice(index, 1);
+              }
             } else {
               response.error = err?.message || "Deleted Not Exists";
             }
@@ -394,7 +440,6 @@ module.exports = function init(site) {
           date: 1,
           active: 1,
           code: 1,
-      
         };
 
         if (search) {
@@ -546,71 +591,100 @@ module.exports = function init(site) {
     });
   });
 
-  site.getPackages = function (req, callBack) {
-    callBack = callBack || function () {};
-    site.packagesList = [];
+  // site.getPackages = function (req, callBack) {
+  //   callBack = callBack || function () {};
+  //   site.packageList = [];
 
+  //   let setting = site.getSiteSetting(req.host);
+  //   let limit = setting.lecturesLimit || 6;
+  //   let select = req.body.select || {
+  //     id: 1,
+  //     name: 1,
+  //     image: 1,
+  //     description: 1,
+  //     price: 1,
+  //     totalLecturesPrice: 1,
+  //     date: 1,
+  //     code: 1,
+  //   };
+
+  //   // let packages = [];
+  //   // if (req.session.user && req.session.user.type == "student") {
+  //   //   packages = site.packageList.filter(
+  //   //     (a) =>
+  //   //       a.host == site.getHostFilter(req.host) &&
+  //   //       (a.placeType == req.session.user.placeType ||
+  //   //         a.placeType == "both") &&
+  //   //       a.schoolYear.id == req.session.user.schoolYear.id &&
+  //   //       a.educationalLevel.id == req.session.user.educationalLevel.id
+  //   //   );
+  //   // } else {
+  //   //   packages = site.packageList.filter(
+  //   //     (a) => a.host == site.getHostFilter(req.host)
+  //   //   );
+  //   // }
+  //   // if (packages.length > 0) {
+  //   //   callBack(null, packages);
+  //   // } else {
+  //   let where = {};
+  //   if (req.session.user && req.session.user.type == "student") {
+  //     where["educationalLevel.id"] = req.session.user.educationalLevel.id;
+  //     where["schoolYear.id"] = req.session.user.schoolYear.id;
+  //     where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
+  //   }
+
+  //   if ((teacherId = site.getTeacherSetting(req))) {
+  //     where["teacherId"] = teacherId;
+  //   } else {
+  //     where["host"] = site.getHostFilter(req.host);
+  //   }
+
+  //   where["active"] = true;
+  //   app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
+  //     if (!err && docs) {
+  //       for (let i = 0; i < docs.length; i++) {
+  //         let doc = docs[i];
+  //         if (!site.packageList.some((k) => k.id === doc.id)) {
+  //           doc.time = site.xtime(doc.date, "Ar");
+
+  //           // site.packageList.push(doc);
+  //         }
+  //       }
+  //     }
+  //     callBack(err, docs);
+  //   });
+  //   // }
+  // };
+  site.getPackages = function (req) {
     let setting = site.getSiteSetting(req.host);
-    let limit = setting.lecturesLimit || 6;
-    let select = req.body.select || {
-      id: 1,
-      name: 1,
-      image: 1,
-      description: 1,
-      price: 1,
-      totalLecturesPrice: 1,
-      date: 1,
-      code: 1,
-    };
+    let host = site.getHostFilter(req.host);
+    let teacherId = site.getTeacherSetting(req);
+    let docs = [];
 
-    // let packages = [];
-    // if (req.session.user && req.session.user.type == "student") {
-    //   packages = site.packagesList.filter(
-    //     (a) =>
-    //       a.host == site.getHostFilter(req.host) &&
-    //       (a.placeType == req.session.user.placeType ||
-    //         a.placeType == "both") &&
-    //       a.schoolYear.id == req.session.user.schoolYear.id &&
-    //       a.educationalLevel.id == req.session.user.educationalLevel.id
-    //   );
-    // } else {
-    //   packages = site.packagesList.filter(
-    //     (a) => a.host == site.getHostFilter(req.host)
-    //   );
-    // }
-    // if (packages.length > 0) {
-    //   callBack(null, packages);
-    // } else {
-    let where = {};
-    if (req.session.user && req.session.user.type == "student") {
-      where["educationalLevel.id"] = req.session.user.educationalLevel.id;
-      where["schoolYear.id"] = req.session.user.schoolYear.id;
-      where.$or = [{ placeType: req.session.user.placeType }, { placeType: "both" }];
-    }
-
-    if ((teacherId = site.getTeacherSetting(req))) {
-      where["teacherId"] = teacherId;
-    } else {
-      where["host"] = site.getHostFilter(req.host);
-    }
-
-    where["active"] = true;
-    app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
-      if (!err && docs) {
-        for (let i = 0; i < docs.length; i++) {
-          let doc = docs[i];
-          if (!site.packagesList.some((k) => k.id === doc.id)) {
-            doc.time = site.xtime(doc.date, "Ar");
-
-            // site.packagesList.push(doc);
+    for (let i = 0; i < site.packageList.length; i++) {
+      let obj = { ...site.packageList[i] };
+      obj.$time = site.xtime(obj.date, "Ar");
+      if (obj.price == 0) {
+        obj.$isFree = true;
+      }
+      if (((obj.teacherId === teacherId && !setting.isShared) || (obj.host == host && setting.isShared)) && obj.active) {
+        if (req.session.user && req.session.user.type == "student") {
+          if (
+            obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&
+            obj.schoolYear?.id == req.session.user?.schoolYear?.id &&
+            (obj.placeType == req.session.user.placeType || obj.placeType == "both")
+          ) {
+            docs.push(obj);
           }
+        } else {
+          docs.push(obj);
         }
       }
-      callBack(err, docs);
-    });
+    }
+
+    return docs.slice(0, setting.lecturesLimit || 10000);
     // }
   };
-
   app.init();
   site.addApp(app);
 };

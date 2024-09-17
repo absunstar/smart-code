@@ -13,30 +13,33 @@ module.exports = function init(site) {
     allowRouteView: true,
     allowRouteAll: true,
   };
-  site.booksList = site.booksList || [];
+  site.bookList = [];
 
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    if (app.allowMemory) {
-      app.$collection.findMany({}, (err, docs) => {
-        if (!err) {
-          if (docs.length == 0) {
-            app.cacheList.forEach((_item, i) => {
-              app.$collection.add(_item, (err, doc) => {
-                if (!err && doc) {
-                  app.memoryList.push(doc);
-                }
-              });
-            });
-          } else {
-            docs.forEach((doc) => {
-              app.memoryList.push(doc);
-            });
-          }
-        }
-      });
-    }
+    app.$collection.findMany({}, (err, docs) => {
+      if (!err) {
+        docs.forEach((doc) => {
+          site.bookList.push({
+            _id: doc._id,
+            id: doc.id,
+            code: doc.code,
+            name: doc.name,
+            educationalLevel: doc.educationalLevel,
+            schoolYear: doc.schoolYear,
+            subject: doc.subject,
+            description: doc.description,
+            date: doc.date,
+            host: doc.host,
+            teacherId: doc.teacherId,
+            price: doc.price,
+            image: doc.image,
+            active: doc.active,
+          });
+        });
+      }
+    });
   };
   app.add = function (_item, callback) {
     app.$collection.add(_item, (err, doc) => {
@@ -271,7 +274,7 @@ module.exports = function init(site) {
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             let setting = site.getSiteSetting(req.host);
-            
+
             if (setting.isShared) {
               doc.code = (req.session?.user?.prefix || req.session?.user?.id.toString()) + "B" + doc.id.toString();
             } else {
@@ -282,6 +285,22 @@ module.exports = function init(site) {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
+                site.bookList.push({
+                  _id: doc._id,
+                  id: doc.id,
+                  code: result.doc.code,
+                  name: doc.name,
+                  educationalLevel: doc.educationalLevel,
+                  schoolYear: doc.schoolYear,
+                  subject: doc.subject,
+                  description: doc.description,
+                  date: doc.date,
+                  host: doc.host,
+                  teacherId: doc.teacherId,
+                  price: doc.price,
+                  active: doc.active,
+                  image: doc.image,
+                });
               } else {
                 response.error = err.mesage;
               }
@@ -313,6 +332,25 @@ module.exports = function init(site) {
             if (!err) {
               response.done = true;
               response.result = result;
+              let index = site.bookList.findIndex((a) => a.id === result?.doc?.id);
+              if (index !== -1) {
+                site.bookList[index] = {
+                  _id: result.doc._id,
+                  id: result.doc.id,
+                  code: result.doc.code,
+                  name: result.doc.name,
+                  educationalLevel: result.doc.educationalLevel,
+                  schoolYear: result.doc.schoolYear,
+                  subject: result.doc.subject,
+                  description: result.doc.description,
+                  date: result.doc.date,
+                  host: result.doc.host,
+                  teacherId: result.doc.teacherId,
+                  price: result.doc.price,
+                  active: result.doc.active,
+                  image: result.doc.image,
+                };
+              }
             } else {
               response.error = err.message;
             }
@@ -338,6 +376,10 @@ module.exports = function init(site) {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
+              let index = site.bookList.findIndex((a) => a.id === result?.doc?.id);
+              if (index !== -1) {
+                site.bookList.splice(index, 1);
+              }
             } else {
               response.error = err?.message || "Deleted Not Exists";
             }
@@ -495,44 +537,27 @@ module.exports = function init(site) {
     });
   });
 
-  site.getBooks = function (req, callBack) {
-    callBack = callBack || function () {};
+  site.getBooks = function (req) {
     let setting = site.getSiteSetting(req.host);
-    let limit = setting.lecturesLimit || 6;
-    let select = req.body.select || {
-      id: 1,
-      name: 1,
-      image: 1,
-      description: 1,
-      price: 1,
-      code: 1,
-    };
+    let host = site.getHostFilter(req.host);
+    let teacherId = site.getTeacherSetting(req);
+    let docs = [];
 
-    let where = {};
-    if (req.session.user && req.session.user.type == "student") {
-      where["educationalLevel.id"] = req.session.user.educationalLevel.id;
-      where["schoolYear.id"] = req.session.user.schoolYear.id;
-    }
-    where["active"] = true;
-
-    if ((teacherId = site.getTeacherSetting(req))) {
-      where["teacherId"] = teacherId;
-    } else {
-      where["host"] = site.getHostFilter(req.host);
-    }
-    app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
-      if (!err && docs) {
-        for (let i = 0; i < docs.length; i++) {
-          let doc = docs[i];
-          if (!site.booksList.some((k) => k.id === doc.id)) {
-            doc.$time = site.xtime(doc.date, "Ar");
-
-            site.booksList.push(doc);
+    for (let i = 0; i < site.bookList.length; i++) {
+      let obj = { ...site.bookList[i] };
+      obj.$time = site.xtime(obj.date, "Ar");
+      if (((obj.teacherId === teacherId && !setting.isShared) || (obj.host == host && setting.isShared)) && obj.active) {
+        if (req.session.user && req.session.user.type == "student") {
+          if (obj.educationalLevel?.id == req.session.user?.educationalLevel?.id && obj.schoolYear?.id == req.session.user?.schoolYear?.id) {
+            docs.push(obj);
           }
+        } else {
+          docs.push(obj);
         }
       }
-      callBack(err, docs);
-    });
+    }
+
+    return docs.slice(0, setting.lecturesLimit || 10000);
     // }
   };
 

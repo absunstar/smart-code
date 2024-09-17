@@ -261,18 +261,17 @@ module.exports = function init(site) {
         let list = [];
         let teacherId = site.getTeacherSetting(req);
         let host = site.getHostFilter(req.host);
-    let setting = site.getSiteSetting(req.host);
+        let setting = site.getSiteSetting(req.host);
 
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
           if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared) || (doc.host == host && setting.isShared))) {
-            list.push(obj);
-          }
-
-          for (const p in obj) {
-            if (!Object.hasOwnProperty.call(select, p)) {
-              delete obj[p];
+            for (const p in obj) {
+              if (!Object.hasOwnProperty.call(select, p)) {
+                delete obj[p];
+              }
             }
+            list.push(obj);
           }
         });
         res.json({

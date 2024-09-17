@@ -110,11 +110,11 @@
                 </div>
                 <fieldset class="border" ng-show="(item.$delivered || item.price == 0) && item.fileList.length > 0">
                   <legend>##word.Download Files##</legend>
-                  <i-file view ng-model="file.url" ng-repeat="file in item.fileList"></i-file>
+                  <a ng-repeat="f in item.fileList" class="links-a" href="{{f.file.url}}" target="_blank">{{f.title}} <i class="fas fa-download"></i></a>
                 </fieldset>
                 <fieldset class="border" ng-show="(item.$delivered || item.price == 0) && item.linkList.length > 0">
                   <legend>##word.Download Links##</legend>
-                  <a ng-repeat="l in item.linkList" class="links-a" href="{{l.link}}" target="_blank">{{l.title}}</a>
+                  <a ng-repeat="l in item.linkList" class="links-a" href="{{l.link}}" target="_blank">{{l.title}} <i class="fas fa-download"></i></a>
                 </fieldset>
                 <hr />
                 <div class="row">
