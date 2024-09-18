@@ -1048,7 +1048,7 @@ module.exports = function init(site) {
       if (obj.price == 0) {
         obj.$isFree = true;
       }
-      if (((obj.teacherId === teacherId && !setting.isShared) || (obj.host == host && setting.isShared)) && obj.active) {
+      if (obj.active && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
         if (req.session.user && req.session.user.type == "student") {
           if (
             obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&

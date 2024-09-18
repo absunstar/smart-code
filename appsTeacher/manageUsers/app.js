@@ -36,6 +36,7 @@ module.exports = function init(site) {
               title: doc.title,
               host: doc.host,
               active: doc.active,
+              priorityAppearance: doc.priorityAppearance || 0,
             };
             site.teacherList.push({ ...obj });
           } else if (doc.type == "student") {
@@ -275,6 +276,7 @@ module.exports = function init(site) {
               lastName: doc.lastName,
               host: doc.host,
               active: doc.active,
+              priorityAppearance: doc.priorityAppearance,
             };
             if (doc.type == "student") {
               site.studentList.push(obj);
@@ -344,6 +346,7 @@ module.exports = function init(site) {
                   parent: result.doc.parent,
                   host: result.doc.host,
                   active: result.doc.active,
+                  priorityAppearance: result.doc.priorityAppearance || 0,
                 };
               }
             } else {
@@ -676,6 +679,9 @@ module.exports = function init(site) {
         docs.push(obj);
       }
     }
+    docs.sort((a, b) => {
+      return a.priorityAppearance - b.priorityAppearance;
+    });
 
     return docs.slice(0, data.limit || 10000);
   };

@@ -546,7 +546,7 @@ module.exports = function init(site) {
     for (let i = 0; i < site.bookList.length; i++) {
       let obj = { ...site.bookList[i] };
       obj.$time = site.xtime(obj.date, "Ar");
-      if (((obj.teacherId === teacherId && !setting.isShared) || (obj.host == host && setting.isShared)) && obj.active) {
+      if (obj.active && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
         if (req.session.user && req.session.user.type == "student") {
           if (obj.educationalLevel?.id == req.session.user?.educationalLevel?.id && obj.schoolYear?.id == req.session.user?.schoolYear?.id) {
             docs.push(obj);
