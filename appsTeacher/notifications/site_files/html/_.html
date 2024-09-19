@@ -21,7 +21,7 @@
         </tr>
         <tr ng-repeat="item in list | filter:$search">
           <td class="center">{{item.date | date : 'dd- MM -yyyy'}}</td>
-          <td>
+          <td class="center">
             <i-image view class="logo center" ng-model="item.image"></i-image>
           </td>
           <td class="center">{{item.title}}</td>

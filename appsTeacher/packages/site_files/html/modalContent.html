@@ -27,7 +27,7 @@
           <div class="row">
             <i-radio
               ng-model="item.placeType"
-              ng-click="getLecturesList()"
+              ng-change="getLecturesList()"
               label="##word.Online##"
               class="col4"
               ng-value="online"
@@ -36,7 +36,7 @@
             ></i-radio>
             <i-radio
               ng-model="item.placeType"
-              ng-click="getLecturesList()"
+              ng-change="getLecturesList()"
               label="##word.Offline##"
               class="col4"
               ng-value="offline"
@@ -45,7 +45,7 @@
             ></i-radio>
             <i-radio
               ng-model="item.placeType"
-              ng-click="getLecturesList()"
+              ng-change="getLecturesList()"
               label="##word.Both##"
               class="col4"
               ng-value="both"
@@ -76,7 +76,7 @@
         ></i-control>
       </div>
     </div>
-    <div class="col3 center">
+    <div class="col3">
       <i-image class="img128 center" ng-model="item.image"></i-image>
     </div>
   </div>

@@ -53,7 +53,7 @@
         </tr>
         <tr ng-repeat="item in list">
           <td>{{$index + 1}}</td>
-          <td>
+          <td class="center">
             <i-image view class="logo center" ng-model="item.image"></i-image>
           </td>
           <td class="center userPrint" x-data="setting.isCenter" ng-show="'##query.type##' == 'student'">{{item.barcode}}</td>
