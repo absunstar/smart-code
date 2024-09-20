@@ -881,12 +881,13 @@ module.exports = function init(site) {
     }
   }
 
-  site.post({ name: `/api/${app.name}/buyCode`, public: true }, (req, res) => {
+  site.post({ name: `/api/${app.name}/buyCode`, require: { permissions: ["login"] } }, (req, res) => {
     let response = {
       done: false,
     };
 
     let _data = req.data;
+
     app.view({ id: _data.lectureId }, (err, doc) => {
       if (!err && doc) {
         site.validateCode(req, { code: _data.code, price: doc.price }, (errCode, code) => {
