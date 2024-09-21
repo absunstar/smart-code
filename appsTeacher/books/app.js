@@ -18,7 +18,7 @@ module.exports = function init(site) {
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    app.$collection.findMany({}, (err, docs) => {
+    app.$collection.findMany({sort:{id:-1}}, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
           site.bookList.push({
