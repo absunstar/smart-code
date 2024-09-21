@@ -285,7 +285,7 @@ module.exports = function init(site) {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
-                site.bookList.push({
+                site.bookList.unshift({
                   _id: doc._id,
                   id: doc.id,
                   code: result.doc.code,

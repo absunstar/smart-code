@@ -17,7 +17,7 @@
               <img src=" " alt="" srcset="" />
             </div>
 
-            <div class="row" x-data="showTeachers">
+            <div class="row" x-data="showTeachers" x-permissions="student || !login">
               <div class="banner-word">
                 <span> ##word.Teachers## </span>
                 <a class="banner-viewAll" href="/teachersView">##word.View All##</a>

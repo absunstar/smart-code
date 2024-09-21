@@ -320,7 +320,7 @@ module.exports = function init(site) {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
-                site.lectureList.push({
+                site.lectureList.unshift({
                   _id: doc._id,
                   id: doc.id,
                   code: result.doc.code,
