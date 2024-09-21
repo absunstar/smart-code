@@ -1,5 +1,5 @@
 app.controller("register", function ($scope, $http, $timeout) {
-  $scope.user = { image: "/images/user_logo.png" };
+  $scope.user = {};
   $scope.setting = site.showObject(`##data.#setting##`);
   if (!$scope.setting.showParent) {
     $scope.user.type = "student";

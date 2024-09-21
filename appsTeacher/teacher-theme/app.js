@@ -52,12 +52,17 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: ["/", "/t/:id"],
+      name: ["/", "/:username"],
     },
     (req, res) => {
-      let teacherUsername = req.params.id;
-      if (teacherUsername) {
-        // select teacher
+      if (req.params.username && req.params.username.contains("@")) {
+        let teacherUsername = req.params.username.replace(/@/g, '');        
+        let teacher = site.teacherList.find((t) => t.username == teacherUsername);
+        if (teacher) {
+          req.session.selectedTeacherId = teacher.id;
+          req.session.selectedTeacherName = teacher.firstName.split(" ").slice(0, 2);
+          site.saveSession(req.session);
+        }
       }
       let setting = site.getSiteSetting(req.host) || {};
       // if (!setting.host) {

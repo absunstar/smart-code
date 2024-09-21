@@ -4,7 +4,7 @@ if (btn1) {
 }
 
 app.controller('forget_password', function ($scope, $http, $timeout) {
-  $scope.user = { image: '/images/user_logo.png' };
+  $scope.user = { };
   document.getElementById('enter_mobile_or_email').style.display = 'block';
   document.getElementById('code_confirm').style.display = 'none';
   document.getElementById('newPassword').style.display = 'none';

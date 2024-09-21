@@ -197,6 +197,7 @@ app.controller("packages", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
+    
     if ($scope.item.educationalLevel && $scope.item.educationalLevel.id && $scope.item.schoolYear && $scope.item.schoolYear.id && $scope.item.placeType) {
       let where = {
         active: true,
@@ -205,6 +206,9 @@ app.controller("packages", function ($scope, $http, $timeout) {
       };
       if ($scope.item.placeType != "both") {
         where.$or = [{ placeType: $scope.item.placeType }, { placeType: "both" }];
+      } else {
+        where.$or = [{ placeType: 'online' } ,{ placeType: 'offline' }, { placeType: "both" }];
+
       }
       $scope.busy = true;
       $http({

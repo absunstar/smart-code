@@ -881,12 +881,13 @@ module.exports = function init(site) {
     }
   }
 
-  site.post({ name: `/api/${app.name}/buyCode`, public: true }, (req, res) => {
+  site.post({ name: `/api/${app.name}/buyCode`, require: { permissions: ["login"] } }, (req, res) => {
     let response = {
       done: false,
     };
 
     let _data = req.data;
+
     app.view({ id: _data.lectureId }, (err, doc) => {
       if (!err && doc) {
         site.validateCode(req, { code: _data.code, price: doc.price }, (errCode, code) => {
@@ -1048,7 +1049,7 @@ module.exports = function init(site) {
       if (obj.price == 0) {
         obj.$isFree = true;
       }
-      if (((obj.teacherId === teacherId && !setting.isShared) || (obj.host == host && setting.isShared)) && obj.active) {
+      if (obj.active && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
         if (req.session.user && req.session.user.type == "student") {
           if (
             obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&
