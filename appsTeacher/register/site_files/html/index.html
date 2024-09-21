@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="Ar" data-ng-app="myApp">
-  <head x-import="teacher-theme/head.html">
+<html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
+  <head x-import="teacher-theme/head.html"></head>
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
     <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
 
@@ -104,7 +104,7 @@
     </style>
   </head>
 
-  <body class="##session.lang## loaded" ng-controller="register">
+  <body class="##session.language.id## loaded" ng-controller="register">
     <div x-replace="teacher-theme/header.html"></div>
     <div class="row">
       <h1 class="bold text-center color2">##word.Register##</h1>

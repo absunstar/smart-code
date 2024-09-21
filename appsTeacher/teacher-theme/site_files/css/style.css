@@ -592,7 +592,7 @@ button {
   border: none;
   padding: 12px 30px;
   cursor: pointer;
-  perspective: 30rem;
+  perspective: 10rem;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.308);
 }
@@ -618,11 +618,11 @@ button:hover::before {
 
 @keyframes rotate {
   0% {
-    transform: rotateY(180deg);
+    transform: rotateX(180deg);
   }
 
   100% {
-    transform: rotateY(360deg);
+    transform: rotateX(360deg);
   }
 }
 

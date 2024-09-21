@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="En" data-ng-app="myApp">
+<html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
   <head x-import="teacher-theme/head.html">
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
     <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
@@ -127,7 +127,7 @@
     </style>
   </head>
 
-  <body class="##session.lang##" ng-controller="lectureView">
+  <body class="##session.language.id##" ng-controller="lectureView">
     <div x-replace="teacher-theme/header.html"></div>
     <div x-import="lectures/takeQuizModal.html"></div>
 
