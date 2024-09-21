@@ -25,13 +25,14 @@ module.exports = function init(site) {
     app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
-          if (doc.type == "teacher") {
+          if (doc.type == "teacher") {            
             let obj = {
               _id: doc._id,
               id: doc.id,
               image: doc.image,
               firstName: doc.firstName,
               lastName: doc.lastName,
+              username: doc.username,
               bio: doc.bio,
               title: doc.title,
               host: doc.host,
@@ -274,6 +275,7 @@ module.exports = function init(site) {
               parent: doc.parent,
               firstName: doc.firstName,
               lastName: doc.lastName,
+              username: doc.username,
               host: doc.host,
               active: doc.active,
               priorityAppearance: doc.priorityAppearance,
@@ -341,6 +343,7 @@ module.exports = function init(site) {
                   image: result.doc.image,
                   firstName: result.doc.firstName,
                   lastName: result.doc.lastName,
+                  username: result.doc.username,
                   bio: result.doc.bio,
                   title: result.doc.title,
                   parent: result.doc.parent,
