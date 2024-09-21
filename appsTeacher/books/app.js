@@ -488,7 +488,7 @@ module.exports = function init(site) {
     }
   }
 
-  site.post({ name: `/api/${app.name}/buyCode`, public: true }, (req, res) => {
+  site.post({ name: `/api/${app.name}/buyCode`, require: { permissions: ["login"] } }, (req, res) => {
     let response = {
       done: false,
     };
