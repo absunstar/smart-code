@@ -456,6 +456,23 @@ module.exports = function init(site) {
           });
         }
 
+        if (where['educationalLevel']) {
+          where['educationalLevel.id'] = where['educationalLevel'].id;
+          delete where['educationalLevel'];
+        }
+
+        if (where['schoolYear']) {
+          where['schoolYear.id'] = where['schoolYear'].id;
+          delete where['schoolYear'];
+        }
+
+
+        if (where['subject']) {
+          where['subject.id'] = where['subject'].id;
+          delete where['subject'];
+        }
+
+
         if (req.body.type == "toStudent") {
           if (req.session.user && req.session.user.type == "student") {
             where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
@@ -474,7 +491,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {}

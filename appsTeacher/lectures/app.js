@@ -17,7 +17,7 @@ module.exports = function init(site) {
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    app.$collection.findMany({sort:{id:-1}}, (err, docs) => {
+    app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
           site.lectureList.push({
@@ -767,6 +767,21 @@ module.exports = function init(site) {
           });
         }
 
+        if (where["educationalLevel"]) {
+          where["educationalLevel.id"] = where["educationalLevel"].id;
+          delete where["educationalLevel"];
+        }
+
+        if (where["schoolYear"]) {
+          where["schoolYear.id"] = where["schoolYear"].id;
+          delete where["schoolYear"];
+        }
+
+        if (where["subject"]) {
+          where["subject.id"] = where["subject"].id;
+          delete where["subject"];
+        }
+
         if ((teacherId = site.getTeacherSetting(req))) {
           where["teacherId"] = teacherId;
         } else {
@@ -816,6 +831,20 @@ module.exports = function init(site) {
           where.$or.push({
             "subject.name": site.get_RegExp(search, "i"),
           });
+        }
+        if (where["educationalLevel"]) {
+          where["educationalLevel.id"] = where["educationalLevel"].id;
+          delete where["educationalLevel"];
+        }
+
+        if (where["schoolYear"]) {
+          where["schoolYear.id"] = where["schoolYear"].id;
+          delete where["schoolYear"];
+        }
+
+        if (where["subject"]) {
+          where["subject.id"] = where["subject"].id;
+          delete where["subject"];
         }
         if (req.body.type == "toStudent") {
           if (req.session.user && req.session.user.type == "student") {

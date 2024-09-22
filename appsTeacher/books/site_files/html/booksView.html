@@ -11,11 +11,34 @@
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
-        <i-control label="##word.Search##" class="input-style pass" v="r" ng-keydown="getAll($event)" ng-model="$search"></i-control>
+        <div>
+           <h2>##word.Search All##</h2>
+          <div class="row">
+            <i-list
+              x-permissions="!student"
+              class="col3 margin"
+              label="##word.Educational Level##"
+              ng-change="getSchoolYearsList(where.educationalLevel);getAll({ which: 13 })"
+              ng-model="where.educationalLevel"
+              display="name"
+              items="educationalLevelsList"
+              ng-search="where.$educationalLevel"
+            ></i-list>
+            <i-list
+              label="##word.School Year##"
+              ng-change="getAll({ which: 13 })"
+              class="col3 margin"
+              x-permissions="!student"
+              ng-model="where.schoolYear"
+              display="name"
+              items="schoolYearsList"
+            ></i-list>
+            <i-list label="##word.Subject##" ng-change="getAll({ which: 13 })" class="col3 margin" ng-model="where.subject" display="name" items="subjectsList"></i-list>
+          </div>
+          <i-control label="##word.Search##" class="input-style pass" ng-keydown="getAll($event)" ng-model="$search"></i-control>
+        </div>
 
         <div class="row">
-        
-
           <ul class="row ul-list">
             <li ng-repeat="item in list">
               <div class="nft">
@@ -28,7 +51,7 @@
                       <ins>##word.$##</ins>
                       <p>{{item.price}}</p>
                     </div>
-                      <span class="white font-20">##word.More##..</span>
+                    <span class="white font-20">##word.More##..</span>
                   </div>
                 </a>
               </div>
