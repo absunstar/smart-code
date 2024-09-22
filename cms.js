@@ -2,6 +2,7 @@ const site = require('../isite')({
   port: [80, 8080],
   useLocalImages: false,
   lang: 'AR',
+  language: { id: 'AR', dir: 'rtl', text: 'right' },
   version: Date.now(),
   name: 'cms',
   savingTime: 5,
