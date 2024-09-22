@@ -1,6 +1,7 @@
 const site = require('../isite')({
   port: [80, 40017],
   lang: 'ar',
+  language: { id: 'ar', dir: 'rtl', text: 'right' },
   version: Date.now(),
   name: 'souq',
   savingTime: 5,
@@ -38,6 +39,7 @@ site.get(
     name: ['/', '/category/:id'],
   },
   (req, res) => {
+    req.session.language = { id: 'ar', dir: 'rtl', text: 'right' };
     if (site.setting.user_design.id == 1) {
       res.render(
         '0/index.html',
@@ -166,18 +168,18 @@ site.sendMailMessage = function (obj) {
   }
 };
 
-site.get("/x-update", (req, res) => {
-  site.cmd("git pull", (data) => {
+site.get('/x-update', (req, res) => {
+  site.cmd('git pull', (data) => {
     res.end(data);
     console.log(data);
-    site.cmd("pm2 restart 0", (data) => {
+    site.cmd('pm2 restart 0', (data) => {
       console.log(data);
     });
   });
 });
 
-site.get("/x-restart", (req, res) => {
-  site.cmd("pm2 restart 0", (data) => {
+site.get('/x-restart', (req, res) => {
+  site.cmd('pm2 restart 0', (data) => {
     console.log(data);
   });
 });
