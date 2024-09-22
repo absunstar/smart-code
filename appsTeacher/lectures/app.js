@@ -17,7 +17,7 @@ module.exports = function init(site) {
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    app.$collection.findMany({}, (err, docs) => {
+    app.$collection.findMany({sort:{id:-1}}, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
           site.lectureList.push({
@@ -320,7 +320,7 @@ module.exports = function init(site) {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
-                site.lectureList.push({
+                site.lectureList.unshift({
                   _id: doc._id,
                   id: doc.id,
                   code: result.doc.code,

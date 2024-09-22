@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="En" x-permissions="!login" data-ng-app="myApp">
+<html lang="##session.language.id##" x-permissions="!login" class="##session.language.dir##" ng-app="myApp">
+
   <head x-import="teacher-theme/head.html">
     <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
     <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
@@ -20,7 +21,7 @@
     </style>
   </head>
 
-  <body class="##session.lang##" ng-controller="login">
+  <body class="##session.language.id##" ng-controller="login">
     <div x-replace="teacher-theme/header.html"></div>
 
     <div id="main-layout" class="container loaded" id="loginSouqModal">

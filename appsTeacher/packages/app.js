@@ -18,7 +18,7 @@ module.exports = function init(site) {
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    app.$collection.findMany({}, (err, docs) => {
+    app.$collection.findMany({sort:{id:-1}}, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
           site.packageList.push({
@@ -297,7 +297,7 @@ module.exports = function init(site) {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
-                site.packageList.push({
+                site.packageList.unshift({
                   _id: doc._id,
                   id: doc.id,
                   code: result.doc.code,

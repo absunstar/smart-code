@@ -52,18 +52,20 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: ["/", "/:username"],
+      name: ["/", "/@*"],
     },
     (req, res) => {
-      if (req.params.username && req.params.username.contains("@")) {
-        let teacherUsername = req.params.username.replace(/@/g, '');        
-        let teacher = site.teacherList.find((t) => t.username == teacherUsername);
+      let teacherUsername = req.url.split("@")[1];
+      if (teacherUsername) {
+        let teacher = site.teacherList.find((t) => t.username &&  t.username.toLowerCase() == teacherUsername.toLowerCase());
+
         if (teacher) {
           req.session.selectedTeacherId = teacher.id;
           req.session.selectedTeacherName = teacher.firstName.split(" ").slice(0, 2);
           site.saveSession(req.session);
         }
       }
+
       let setting = site.getSiteSetting(req.host) || {};
       // if (!setting.host) {
       //   res.redirect(site.getMainHost(req.host), 301);

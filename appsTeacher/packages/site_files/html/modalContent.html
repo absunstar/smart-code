@@ -12,68 +12,21 @@
           items="educationalLevelsList"
           ng-search="item.$educationalLevel"
         ></i-list>
-        <i-list
-          ng-change="getLecturesList()"
-          v="r"
-          label="##word.School Year##"
-          ng-model="item.schoolYear"
-          display="name"
-          items="schoolYearsList"
-        ></i-list>
+        <i-list ng-change="getLecturesList()" v="r" label="##word.School Year##" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
         <i-list label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList"></i-list>
 
         <fieldset>
           <legend>##word.Place Type##</legend>
           <div class="row">
-            <i-radio
-              ng-model="item.placeType"
-              ng-change="getLecturesList()"
-              label="##word.Online##"
-              class="col4"
-              ng-value="online"
-              group="placeType"
-              type="radio"
-            ></i-radio>
-            <i-radio
-              ng-model="item.placeType"
-              ng-change="getLecturesList()"
-              label="##word.Offline##"
-              class="col4"
-              ng-value="offline"
-              group="placeType"
-              type="radio"
-            ></i-radio>
-            <i-radio
-              ng-model="item.placeType"
-              ng-change="getLecturesList()"
-              label="##word.Both##"
-              class="col4"
-              ng-value="both"
-              group="placeType"
-              type="radio"
-            ></i-radio>
+            <div class="col4"><i-radio ng-model="item.placeType" ng-change="getLecturesList()" label="##word.Online##" ng-value="online" group="placeType" type="radio"></i-radio></div>
+            <div class="col4"><i-radio ng-model="item.placeType" ng-change="getLecturesList()" label="##word.Offline##" ng-value="offline" group="placeType" type="radio"></i-radio></div>
+            <div class="col4"><i-radio ng-model="item.placeType" ng-change="getLecturesList()" label="##word.Both##" ng-value="both" group="placeType" type="radio"></i-radio></div>
           </div>
         </fieldset>
 
-        <i-control
-          type="text"
-          v="r"
-          ng-model="item.name"
-          label="##word.Name##"
-        ></i-control>
-        <i-control
-          type="number"
-          v="r"
-          disabled
-          ng-model="item.totalLecturesPrice"
-          label="##word.Total Lectures Prices##"
-        ></i-control>
-        <i-control
-          type="number"
-          v="r"
-          ng-model="item.price"
-          label="##word.Package Price##"
-        ></i-control>
+        <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
+        <i-control type="number" v="r" disabled ng-model="item.totalLecturesPrice" label="##word.Total Lectures Prices##"></i-control>
+        <i-control type="number" v="r" ng-model="item.price" label="##word.Package Price##"></i-control>
       </div>
     </div>
     <div class="col3">
@@ -83,21 +36,10 @@
   <fieldset>
     <legend>##word.Lectures##</legend>
     <div class="row">
-      <i-list
-        class="col8"
-        label="##word.lecture##"
-        ng-model="item.$lecture"
-        display="name"
-        items="lecturesList"
-        ng-get="getLecturesList($search)"
-      ></i-list>
+      <i-list class="col8" label="##word.lecture##" ng-model="item.$lecture" display="name" items="lecturesList" ng-get="getLecturesList($search)"></i-list>
       <div class="col4">
         <br />
-        <i-button
-          type="push"
-          label="##word.Add To List##"
-          ng-click="addLecture()"
-        ></i-button>
+        <i-button type="push" label="##word.Add To List##" ng-click="addLecture()"></i-button>
       </div>
     </div>
     <p class="error">{{item.$lectureError}}</p>
@@ -110,25 +52,17 @@
       </tr>
       <tr ng-repeat="c in item.lecturesList">
         <td>
-          <i-image
-            view
-            class="logo center"
-            ng-model="c.lecture.image"
-          ></i-image>
+          <i-image view class="logo center" ng-model="c.lecture.image"></i-image>
         </td>
         <td class="center">{{c.lecture.name}}</td>
         <td class="center">{{c.lecture.price}}</td>
         <td class="center">
-          <i-button
-            type="delete"
-            ng-click="item.lecturesList.splice($index,1);pricesCount()"
-          ></i-button>
+          <i-button type="delete" ng-click="item.lecturesList.splice($index,1);pricesCount()"></i-button>
         </td>
       </tr>
     </table>
   </fieldset>
-  <i-textarea ng-model="item.description" label="##word.Description##">
-  </i-textarea>
+  <i-textarea ng-model="item.description" label="##word.Description##"> </i-textarea>
 </div>
 <div ng-show="mode !== 'add' " class="row">
   <table class="table hover border">
