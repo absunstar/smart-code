@@ -37,7 +37,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       return;
     }
     if ($scope.user.placeType == "offline") {
-    /*   if (!user.center || !user.center.id) {
+      /*   if (!user.center || !user.center.id) {
         $scope.error = "##word.Must Enter Center##";
         return;
       } */
@@ -295,7 +295,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       },
     }).then(
       function (response) {
-        $scope.busy = false;        
+        $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.educationalLevelsList = response.data.list;
         }
@@ -308,35 +308,35 @@ app.controller("register", function ($scope, $http, $timeout) {
   };
 
   $scope.getSchoolYearsList = function (educationalLevelId) {
-    if (educationalLevel) {
-      $scope.busy = true;
-      $scope.schoolYearsList = [];
-      $http({
-        method: "POST",
-        url: "/api/schoolYears/all",
-        data: {
-          where: {
-            active: true,
-            "educationalLevel.id": educationalLevelId,
-          },
-          select: {
-            id: 1,
-            name: 1,
-          },
+    $scope.busy = true;
+    $scope.schoolYearsList = [];
+    $http({
+      method: "POST",
+      url: "/api/schoolYears/all",
+      data: {
+        where: {
+          active: true,
+          "educationalLevel.id": educationalLevelId,
         },
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done && response.data.list.length > 0) {
-            $scope.schoolYearsList = response.data.list;
-          }
+        select: {
+          id: 1,
+          name: 1,
         },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        console.log(educationalLevelId, response.data);
+
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.schoolYearsList = response.data.list;
         }
-      );
-    }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.getGenders = function () {
