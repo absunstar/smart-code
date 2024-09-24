@@ -159,7 +159,7 @@
                   <p class="text-comment gray-desc">{{item.description}}</p>
                 </div>
 
-                <fieldset class="border" ng-show="item.$buy || item.type.name == 'public'">
+                <fieldset class="border" ng-show="(item.$buy || item.type.name == 'public') && item.filesList.length > 0">
                   <legend>##word.Download Files##</legend>
                   <a ng-repeat="f in item.filesList" class="links-a" href="{{f.file.url}}" target="_blank">{{f.title}} <i class="fas fa-download"></i></a>
                 </fieldset>
@@ -188,6 +188,8 @@
                   >
                     ##word.Buy## <i class="fas fa-shopping-basket"></i>
                   </button>
+                  <p class="alert-green" ng-show="alert">{{alert}}</p>
+
                   <button ng-click="startQuiz()" x-permission="login" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                     ##word.Take A Quiz##
                     <i class="fas fa-chalkboard-teacher"></i>
@@ -215,15 +217,31 @@
         </div>
         <div class="modal-body">
           <p class="purchase-text">##data.setting.textPurchaseByCode##</p>
-          <fieldset>
-            <legend>##word.Code##</legend>
-            <i-control type="text" v="r" ng-model="code"></i-control>
-          </fieldset>
+          <div class="row">
+            <div class="col3"></div>
+            <div class="col6">
+              <i-list label="##word.Purchase Type##" v="r" ng-model="purchase.purchaseType" display="name##session.lang##" items="purchaseTypeList"></i-list>
+              <p class="purchase-text" ng-show="purchase.purchaseType.accountName">##word.Account Name## : <span class="userPrint black">{{purchase.purchaseType.accountName}}</span></p>
+              <p class="purchase-text" ng-show="purchase.purchaseType.accountNumber">##word.Account Number## : <span class="userPrint black">{{purchase.purchaseType.accountNumber}}</span></p>
+              <fieldset ng-show="purchase.purchaseType.name != 'code'">
+                <legend>##word.Number transferred from##</legend>
+                <i-control type="text" ng-model="purchase.numberTransferFrom"></i-control>
+              </fieldset>
+              <fieldset ng-show="purchase.purchaseType.name != 'code'">
+                <legend>##word.Image Transfer##</legend>
+                <i-image ng-model="purchase.imageTransfer"></i-image>
+              </fieldset>
+              <fieldset ng-show="purchase.purchaseType.name == 'code'">
+                <legend>##word.Code##</legend>
+                <i-control type="text" ng-model="purchase.code"></i-control>
+              </fieldset>
+            </div>
+          </div>
         </div>
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>
           <div class="row">
-            <button ng-click="buyLecture(item)" class="buy-btn">##word.Accept## <i class="fas fa-check-circle"></i></button>
+            <button ng-click="buyLecture(purchase)" class="buy-btn">##word.Accept## <i class="fas fa-check-circle"></i></button>
           </div>
         </div>
       </div>

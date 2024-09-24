@@ -2,14 +2,17 @@
   <div class="lawerJoin">
     <p class="pre-text">##data.setting.textOurPlacesTimes##</p>
     <a ng-click="centersView()">
-
-      <button class="btn">
-        ##word.Appointments and locations##
-      </button>
+      <button class="btn">##word.Appointments and locations##</button>
+    </a>
+    <a href="/profileView?id=##session.selectedTeacherObjectId##" x-data="isTeacher">
+      <button class="btn">##word.Profile## ##session.selectedTeacherName##</button>
+    </a>
+    <a href="/profileView?id=##data.setting.teacher._id##" x-data="isSingleSite">
+      <button class="btn">##word.Profile## ##data.setting.teacher.firstName##</button>
     </a>
   </div>
 
-    <div x-features="ads" class="adsBanner">
-      <img src="https://placehold.co/250x250" alt="" srcset="" />
-    </div>
+  <div x-features="ads" class="adsBanner">
+    <img src="https://placehold.co/250x250" alt="" srcset="" />
   </div>
+</div>

@@ -18,7 +18,7 @@ module.exports = function init(site) {
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    app.$collection.findMany({sort:{id:-1}}, (err, docs) => {
+    app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
           site.packageList.push({
@@ -298,21 +298,21 @@ module.exports = function init(site) {
                 response.done = true;
                 response.doc = result.doc;
                 site.packageList.unshift({
-                  _id: doc._id,
-                  id: doc.id,
+                  _id: result.doc._id,
+                  id: result.doc.id,
                   code: result.doc.code,
-                  name: doc.name,
-                  educationalLevel: doc.educationalLevel,
-                  schoolYear: doc.schoolYear,
-                  subject: doc.subject,
-                  description: doc.description,
-                  date: doc.date,
-                  host: doc.host,
-                  teacherId: doc.teacherId,
-                  price: doc.price,
-                  active: doc.active,
-                  image: doc.image,
-                  placeType: doc.placeType,
+                  name: result.doc.name,
+                  educationalLevel: result.doc.educationalLevel,
+                  schoolYear: result.doc.schoolYear,
+                  subject: result.doc.subject,
+                  description: result.doc.description,
+                  date: result.doc.date,
+                  host: result.doc.host,
+                  teacherId: result.doc.teacherId,
+                  price: result.doc.price,
+                  active: result.doc.active,
+                  image: result.doc.image,
+                  placeType: result.doc.placeType,
                 });
               } else {
                 response.error = err.mesage;
@@ -465,20 +465,19 @@ module.exports = function init(site) {
           });
         }
 
-        if (where['educationalLevel']) {
-          where['educationalLevel.id'] = where['educationalLevel'].id;
-          delete where['educationalLevel'];
+        if (where["educationalLevel"]) {
+          where["educationalLevel.id"] = where["educationalLevel"].id;
+          delete where["educationalLevel"];
         }
 
-        if (where['schoolYear']) {
-          where['schoolYear.id'] = where['schoolYear'].id;
-          delete where['schoolYear'];
+        if (where["schoolYear"]) {
+          where["schoolYear.id"] = where["schoolYear"].id;
+          delete where["schoolYear"];
         }
 
-
-        if (where['subject']) {
-          where['subject.id'] = where['subject'].id;
-          delete where['subject'];
+        if (where["subject"]) {
+          where["subject.id"] = where["subject"].id;
+          delete where["subject"];
         }
 
         if (req.body.type == "toStudent") {
@@ -553,52 +552,86 @@ module.exports = function init(site) {
     let _data = req.data;
     app.view({ id: _data.packageId }, (err, doc) => {
       if (!err && doc) {
-        site.validateCode(req, { code: _data.code, price: doc.price }, (errCode, code) => {
-          if (errCode && doc.price > 0) {
-            response.error = errCode;
+        
+        
+        if (!_data.purchase || !_data.purchase.purchaseType || !_data.purchase.purchaseType.name) {
+          response.error = req.word("Must Select Purchase Type");
+          res.json(response);
+          return;
+        } else if (_data.purchase.purchaseType.name == "code" && !_data.purchase.code) {
+          response.error = req.word("The code must be entered");
+          res.json(response);
+          return;
+        } else if (_data.purchase.purchaseType.name != "code" && !_data.purchase.numberTransferFrom) {
+          response.error = req.word("The account number to be transferred from must be entered");
+          res.json(response);
+          return;
+        }
+        site.getPurchaseOrder({ "target.id": doc.id, type: "lecture", "user.id": req.session?.user?.id }, (err1, order) => {
+          if (order) {
+            response.error = req.word("The lecture has already been purchased");
             res.json(response);
             return;
-          } else {
-            site.security.getUser(
-              {
-                id: req.session.user.id,
-              },
-              (err, user) => {
-                if (!err && user) {
-                  user.packagesList = user.packagesList || [];
-                  user.lecturesList = user.lecturesList || [];
-                  doc.lecturesList.forEach((_l) => {
-                    if (!user.lecturesList.some((l) => _l.lecture && l.lectureId && l.lectureId == _l.lecture.id)) {
-                      user.lecturesList.push({
-                        lectureId: _l.lecture.id,
-                      });
-                    }
-                  });
-
-                  user.packagesList.push(doc.id);
-                  site.addPurchaseOrder({
-                    type: "package",
-                    target: { id: doc.id, name: doc.name },
-                    code: _data.code,
-                    price: doc.price,
-                    date: site.getDate(),
-                    host: site.getHostFilter(req.host),
-                    teacherId: site.getTeacherSetting(req) || doc.teacherId,
-                    user: {
-                      id: user.id,
-                      firstName: user.firstName,
-                    },
-                  });
-                  site.security.updateUser(user);
-                }
-                response.done = true;
-                // doc.$buy = true;
-                // doc.$time = site.xtime(doc.date, req.session.lang || "ar");
-                // response.doc = doc;
-                res.json(response);
-              }
-            );
           }
+          site.validateCode(req, { code: _data.purchase?.code, price: doc.price }, (errCode, code) => {
+            if (errCode && doc.price > 0 && _data.purchase.purchaseType.name == "code") {
+              response.error = req.word(errCode);
+              res.json(response);
+              return;
+            } else {
+              site.security.getUser(
+                {
+                  id: req.session.user.id,
+                },
+                (err, user) => {
+                  if (!err && user) {
+                    user.packagesList = user.packagesList || [];
+                    user.lecturesList = user.lecturesList || [];
+                    let _lecturesList = [];
+                    doc.lecturesList.forEach((_l) => {
+                      _lecturesList.push(_l.lecture.id);
+                      if (!user.lecturesList.some((l) => _l.lecture && l.lectureId && l.lectureId == _l.lecture.id) && _data.purchase.purchaseType.name == "code") {
+                        user.lecturesList.push({
+                          lectureId: _l.lecture.id,
+                        });
+                      }
+                    });
+                    if (_data.purchase.purchaseType.name == "code") {
+                      user.packagesList.push(doc.id);
+                    }
+                    site.addPurchaseOrder({
+                      type: "package",
+                      target: { id: doc.id, name: doc.name },
+                      price: doc.price,
+                      lecturesList: _lecturesList,
+                      purchaseType: {
+                        name: _data.purchase.purchaseType.name,
+                        nameAr: _data.purchase.purchaseType.nameAr,
+                        nameEn: _data.purchase.purchaseType.nameEn,
+                      },
+                      done: _data.purchase?.purchaseType?.name == "code" ? true : false,
+                      code: _data.purchase.code,
+                      numberTransferFrom: _data.purchase.numberTransferFrom,
+                      imageTransfer: _data.purchase.imageTransfer,
+                      date: site.getDate(),
+                      host: site.getHostFilter(req.host),
+                      teacherId: site.getTeacherSetting(req) || doc.teacherId,
+                      user: {
+                        id: user.id,
+                        firstName: user.firstName,
+                      },
+                    });
+                    site.security.updateUser(user);
+                  }
+                  response.done = true;
+                  // doc.$buy = true;
+                  // doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                  // response.doc = doc;
+                  res.json(response);
+                }
+              );
+            }
+          });
         });
       } else {
         response.error = err?.message || "Not Exists";

@@ -5,7 +5,7 @@
         <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
         <i-list
           label="##word.Educational Level##"
-          ng-change="getSchoolYearsList(item.educationalLevel)"
+          ng-change="getSchoolYearsList(item.educationalLevel.id)"
           ng-model="item.educationalLevel"
           v="r"
           display="name"

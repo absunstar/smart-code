@@ -319,7 +319,7 @@ app.controller("notifications", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSchoolYearsList = function (educationalLevel) {
+  $scope.getSchoolYearsList = function (educationalLevelId) {
     $scope.busy = true;
     $scope.schoolYearsList = [];
     $http({
@@ -328,7 +328,7 @@ app.controller("notifications", function ($scope, $http, $timeout) {
       data: {
         where: {
           active: true,
-          "educationalLevel.id": educationalLevel.id,
+          "educationalLevel.id": educationalLevelId,
         },
         select: {
           id: 1,

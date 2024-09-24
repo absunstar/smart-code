@@ -25,7 +25,7 @@ module.exports = function init(site) {
     app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
-          if (doc.type == "teacher") {            
+          if (doc.type == "teacher") {
             let obj = {
               _id: doc._id,
               id: doc.id,
@@ -36,6 +36,13 @@ module.exports = function init(site) {
               bio: doc.bio,
               title: doc.title,
               host: doc.host,
+              levelList: doc.levelList,
+              purchaseTypeList: doc.purchaseTypeList,
+              youtubeAccouunt: doc.youtubeAccouunt,
+              instagramAccouunt: doc.instagramAccouunt,
+              twitterAccouunt: doc.twitterAccouunt,
+              facebookAccount: doc.facebookAccount,
+              linkedinAccouunt: doc.linkedinAccouunt,
               active: doc.active,
               priorityAppearance: doc.priorityAppearance || 0,
             };
@@ -277,6 +284,13 @@ module.exports = function init(site) {
               lastName: doc.lastName,
               username: doc.username,
               host: doc.host,
+              levelList: doc.levelList,
+              purchaseTypeList: doc.purchaseTypeList,
+              youtubeAccouunt: doc.youtubeAccouunt,
+              instagramAccouunt: doc.instagramAccouunt,
+              twitterAccouunt: doc.twitterAccouunt,
+              facebookAccount: doc.facebookAccount,
+              linkedinAccouunt: doc.linkedinAccouunt,
               active: doc.active,
               priorityAppearance: doc.priorityAppearance,
             };
@@ -329,28 +343,37 @@ module.exports = function init(site) {
             if (!err) {
               response.done = true;
               response.result = result;
-              let listName = "studentList";
-              if (result.doc.type == "teacher") {
-                listName = "teacherList";
-              } else if (result.doc.type == "parent") {
-                listName = "parentList";
-              }
-              let index = site[listName].findIndex((a) => a.id === result?.doc?.id);
-              if (index !== -1) {
-                site[listName][index] = {
-                  _id: result.doc._id,
-                  id: result.doc.id,
-                  image: result.doc.image,
-                  firstName: result.doc.firstName,
-                  lastName: result.doc.lastName,
-                  username: result.doc.username,
-                  bio: result.doc.bio,
-                  title: result.doc.title,
-                  parent: result.doc.parent,
-                  host: result.doc.host,
-                  active: result.doc.active,
-                  priorityAppearance: result.doc.priorityAppearance || 0,
-                };
+              if (result.doc) {
+                let listName = "studentList";
+                if (result.doc.type == "teacher") {
+                  listName = "teacherList";
+                } else if (result.doc.type == "parent") {
+                  listName = "parentList";
+                }
+                let index = site[listName].findIndex((a) => a.id === result?.doc?.id);
+                if (index !== -1) {
+                  site[listName][index] = {
+                    _id: result.doc._id,
+                    id: result.doc.id,
+                    image: result.doc.image,
+                    firstName: result.doc.firstName,
+                    lastName: result.doc.lastName,
+                    username: result.doc.username,
+                    bio: result.doc.bio,
+                    title: result.doc.title,
+                    parent: result.doc.parent,
+                    host: result.doc.host,
+                    levelList: result.doc.levelList,
+                    purchaseTypeList: result.doc.purchaseTypeList,
+                    youtubeAccouunt: result.doc.youtubeAccouunt,
+                    instagramAccouunt: result.doc.instagramAccouunt,
+                    twitterAccouunt: result.doc.twitterAccouunt,
+                    facebookAccount: result.doc.facebookAccount,
+                    linkedinAccouunt: result.doc.linkedinAccouunt,
+                    active: result.doc.active,
+                    priorityAppearance: result.doc.priorityAppearance || 0,
+                  };
+                }
               }
             } else {
               response.error = err.message;
@@ -553,13 +576,13 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            "levelsList.educationalLevel.name": site.get_RegExp(search, "i"),
+            "levelList.educationalLevel.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            "levelsList.schoolYear.name": site.get_RegExp(search, "i"),
+            "levelList.schoolYear.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            "levelsList.subject.name": site.get_RegExp(search, "i"),
+            "levelList.subject.name": site.get_RegExp(search, "i"),
           });
         }
         if (where["type"] != "teacher") {
@@ -582,7 +605,7 @@ module.exports = function init(site) {
         });
       });
     }
-    site.post({ name: `/api/${app.name}/toDifferentGroup`, public: true }, (req, res) => {
+    site.post({ name: `/api/${app.name}/toDifferentGroup`, require: { permissions: ["login"] } }, (req, res) => {
       let response = {
         done: false,
       };
@@ -626,6 +649,25 @@ module.exports = function init(site) {
           res.json(response);
         }
       });
+    });
+
+
+    site.post({ name: `/api/${app.name}/purchaseTypeTeacher`, require: { permissions: ["login"] } }, (req, res) => {
+      let response = {
+        done: false,
+      };
+
+      let teacher = site.teacherList.find((t) => t.id == req.data);
+
+      if (teacher) {
+        response.done = true;
+        response.list = teacher.purchaseTypeList;
+      } else {
+        response.error = "Not Exists";
+
+      }
+
+      res.json(response);
     });
   }
 

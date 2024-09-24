@@ -134,7 +134,28 @@ module.exports = function init(site) {
       code: "company",
     },
   ];
-
+  site.purchaseTypeList = [
+    {
+      nameAr: "كود",
+      nameEn: "Code",
+      name: "code",
+    },
+    {
+      nameAr: "إنستا باي",
+      nameEn: "Insta Pay",
+      name: "instaPay",
+    },
+    {
+      nameAr: "محفظة كاش",
+      nameEn: "Cash wallet",
+      name: "cashWallet",
+    },
+    {
+      nameAr: "مجاني",
+      nameEn: "Free",
+      name: "free",
+    },
+  ];
   site.purchaseOrdersTargetList = [
     {
       nameAr: "مجموعة محاضرات",
@@ -645,6 +666,12 @@ module.exports = function init(site) {
     res.json({
       done: true,
       list: site.groupPaymentMethodList,
+    });
+  });
+  site.post("/api/purchaseTypeList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.purchaseTypeList,
     });
   });
 

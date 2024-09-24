@@ -76,7 +76,7 @@ module.exports = function init(site) {
         let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
         notificationsCount = notifications.length;
       }
-
+      
       req.body.teacherLimit = 9;
       setting.description = setting.description || "";
       setting.keyWordsList = setting.keyWordsList || [];
@@ -87,6 +87,7 @@ module.exports = function init(site) {
         teacherList: site.getTeachers({ host: req.host, limit: 9 }),
         childrenList: site.getStudents({ host: req.host, parentId: req.session?.user?.id }),
         isTeacher: req.session.selectedTeacherId ? true : false,
+        isSingleSite: !setting.isShared && !setting.isCenter ? true : false,
         guid: "",
         showTeachers: setting.isShared && !req.session.selectedTeacherId ? true : false,
         setting: setting,
@@ -139,6 +140,7 @@ module.exports = function init(site) {
     };
     site.security.getUser({ id: req.data }, (err, user) => {
       if (!err && user) {
+        req.session.selectedTeacherObjectId = user._id;
         req.session.selectedTeacherId = req.data;
         req.session.selectedTeacherName = user.firstName.split(" ").slice(0, 2);
         site.saveSession(req.session);
@@ -152,7 +154,9 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
+    req.session.selectedTeacherObjectId = null;
     req.session.selectedTeacherId = null;
+    req.session.selectedTeacherName = null;
     site.saveSession(req.session);
     response.done = true;
     res.json(response);

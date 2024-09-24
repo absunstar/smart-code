@@ -473,6 +473,27 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.getPurchaseTypeList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.purchaseTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/purchaseTypeList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.purchaseTypeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
   $scope.getDepartmentsList = function ($search) {
     $scope.error = "";
     if ($search && $search.length < 1) {
@@ -542,9 +563,10 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSchoolYearsList = function (educationalLevel) {
+  $scope.getSchoolYearsList = function (educationalLevelId) {
     $scope.error = "";
     $scope.busy = true;
+
     $scope.schoolYearsList = [];
     $http({
       method: "POST",
@@ -552,7 +574,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       data: {
         where: {
           active: true,
-          "educationalLevel.id": educationalLevel.id,
+          "educationalLevel.id": educationalLevelId,
         },
         select: {
           id: 1,
@@ -562,6 +584,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+
         if (response.data.done && response.data.list.length > 0) {
           $scope.schoolYearsList = response.data.list;
         }
@@ -765,11 +788,29 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       );
     }
   };
+  $scope.setPurchaseTypeDafault = function (index) {
+    for (let i = 0; i < $scope.item.purchaseTypeList.length; i++) {
+      $scope.item.purchaseTypeList[i].default = false;
+    }
+    $scope.item.purchaseTypeList[index].default = true;
+  };
+  $scope.addPurchaseTypeList = function () {
+    $scope.item.purchaseTypeList = $scope.item.purchaseTypeList || [];
+    if ($scope.item.$purchaseType && $scope.item.$purchaseType.name) {
+      $scope.item.purchaseTypeList.unshift({
+        ...$scope.item.$purchaseType,
+        accountNumber: $scope.item.$accountNumber,
+        accountName: $scope.item.$accountName,
+      });
+      $scope.item.$purchaseType = {};
+      $scope.item.$accountNumber = "";
+      $scope.item.$accountName = "";
+    }
+  };
   $scope.addLevelsList = function () {
-    $scope.item.levelsList = $scope.item.levelsList || [];
+    $scope.item.levelList = $scope.item.levelList || [];
     if ($scope.item.$educationalLevel && $scope.item.$educationalLevel.id && $scope.item.$schoolYear && $scope.item.$schoolYear.id && $scope.item.$subject && $scope.item.$subject.id) {
-
-      $scope.item.levelsList.unshift({
+      $scope.item.levelList.unshift({
         educationalLevel: $scope.item.$educationalLevel,
         schoolYear: $scope.item.$schoolYear,
         subject: $scope.item.$subject,
@@ -797,6 +838,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   if ($scope.setting.isCenter && "##query.type##" == "student") {
     $scope.getSchoolsList();
     $scope.getDepartmentsList();
-    $scope.getSubjectsList();
   }
+  $scope.getSubjectsList();
+  $scope.getPurchaseTypeList();
 });

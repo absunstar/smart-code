@@ -43,7 +43,6 @@ main
   .profileNameAndType
   .profileName
   p {
-  color: #1e1e1e;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -58,7 +57,6 @@ main
   .profileNameAndType
   .profileType
   p {
-  color: #1e1e1e;
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
@@ -82,7 +80,13 @@ main .mainContent .content .aboutMeContainer .aboutMeContent p {
   font-weight: 500;
 }
 main .mainContent .content .lawerServicesContanier {
+  display: flex;
+  padding: 8px !important;
   margin-bottom: 36px !important;
+  flex-direction: column;
+  border-radius: 8px;
+  background-color: var(--main-background-color2);
+  gap: 8px;
 }
 .servicePrice {
   background-color: #0fb820;
@@ -127,7 +131,7 @@ main
   .lawerServices
   .lawerService
   p {
-  color: #1e1e1e;
+  /* color: #1e1e1e; */
   font-size: 24px;
   font-style: normal;
   font-weight: 500;

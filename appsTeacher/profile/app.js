@@ -11,46 +11,47 @@ module.exports = function init(site) {
 
   site.get(
     {
-      name: ["/profileView/:id"],
+      name: ["/profileView"],
     },
     (req, res) => {
       let setting = site.getSiteSetting(req.host) || {};
-      site.security.getUser({ id: req.params.id }, (err, user) => {
-        if (user) {
-          let data = {
-            packagesList: packages,
-            lecturesList: lectures,
-            setting: setting,
-            isTeacher: req.session.selectedTeacherId ? true : false,
-            guid: "",
-            setting: setting,
-            filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || "/images/logo.png",
-            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
-            page_image: setting.logo?.url || "/images/logo.png",
-            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
-            user_image: req.session?.user?.image?.url || "/images/logo.png",
-            site_name: setting.siteName,
-            page_lang: setting.id,
-            page_type: "website",
-            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
-            page_description: setting.description.substr(0, 200),
-            page_keywords: setting.keyWordsList.join(","),
-          };
+      let teacher = site.teacherList.find((t) => t._id == req.query.id);
+      
+      if (teacher) {
+        let data = {
+          setting: setting,
+          isTeacher: req.session.selectedTeacherId ? true : false,
+          guid: "",
+          setting: setting,
+          filter: site.getHostFilter(req.host),
+          site_logo: setting.logo?.url || "/images/logo.png",
+          site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+          page_image: setting.logo?.url || "/images/logo.png",
+          powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
+          user_image: req.session?.teacher?.image?.url || "/images/logo.png",
+          site_name: setting.siteName,
+          teacher: teacher,
+          levelList: teacher.levelList,
+          page_lang: setting.id,
+          page_type: "website",
+          page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+          page_description: setting.description.substr(0, 200),
+          page_keywords: setting.keyWordsList.join(","),
+        };
 
-          if (req.hasFeature("host.com")) {
-            data.site_logo = "//" + req.host + data.site_logo;
-            data.site_footer_logo = "//" + req.host + data.site_footer_logo;
-            data.page_image = "//" + req.host + data.page_image;
-            data.user_image = "//" + req.host + data.user_image;
-            data.powerdByLogo = "//" + req.host + data.powerdByLogo;
-          }
-          res.render("profile/profileView.html", data, {
-            parser: "html",
-            compres: true,
-          });
+        if (req.hasFeature("host.com")) {
+          data.site_logo = "//" + req.host + data.site_logo;
+          data.site_footer_logo = "//" + req.host + data.site_footer_logo;
+          data.page_image = "//" + req.host + data.page_image;
+          data.user_image = "//" + req.host + data.user_image;
+          data.powerdByLogo = "//" + req.host + data.powerdByLogo;
         }
-      });
+
+        res.render("profile/profileView.html", data, {
+          parser: "html css js",
+          compres: true,
+        });
+      }
     }
   );
 
@@ -101,7 +102,7 @@ module.exports = function init(site) {
           data.powerdByLogo = "//" + req.host + data.powerdByLogo;
         }
         res.render("profile/profileEdit.html", data, { parser: "html css js", compres: true });
-      }else{
+      } else {
         res.end();
       }
     });

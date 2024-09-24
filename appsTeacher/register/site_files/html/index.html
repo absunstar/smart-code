@@ -142,7 +142,7 @@
                 <i-control ng-show="user.type == 'student'" class="input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
                 <i-list
                   label="##word.Educational Level##"
-                  ng-change="getSchoolYearsList(user.educationalLevel)"
+                  ng-change="getSchoolYearsList(user.educationalLevel.id)"
                   ng-model="user.educationalLevel"
                   display="name"
                   items="educationalLevelsList"

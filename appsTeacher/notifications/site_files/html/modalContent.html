@@ -5,7 +5,7 @@
    
     <i-list ng-show="item.type.name != 'parent'"
       label="##word.Educational Level##"
-      ng-change="getSchoolYearsList(item.educationalLevel)"
+      ng-change="getSchoolYearsList(item.educationalLevel.id)"
       ng-model="item.educationalLevel"
       display="name"
       items="educationalLevelsList"

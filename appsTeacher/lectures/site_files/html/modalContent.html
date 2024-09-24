@@ -11,7 +11,7 @@
           <i-list label="##word.Type##" ng-model="item.type" class="col3" v="r" display="name##session.lang##" items="lecturesTypesList"></i-list>
           <i-list
             label="##word.Educational Level##"
-            ng-change="getSchoolYearsList(item.educationalLevel)"
+            ng-change="getSchoolYearsList(item.educationalLevel.id)"
             class="col3"
             v="r"
             ng-model="item.educationalLevel"
@@ -52,7 +52,7 @@
         <fieldset ng-show="item.type.name == 'private'">
           <legend>
             ##word.Activate Quiz##
-            <i-checkbox ng-model="item.activateQuiz" ng-change="activateQuiz()"></i-checkbox>
+            <i-checkbox ng-model="item.activateQuiz" label="##word.Active##" ng-change="activateQuiz()"></i-checkbox>
           </legend>
           <div class="row" ng-show="item.activateQuiz">
             <div class="row">

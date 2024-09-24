@@ -203,11 +203,43 @@ module.exports = function init(site) {
           let _data = req.data;
           app.view({ id: _data.id }, (err, doc) => {
             doc.editUserInfo = req.getUserFinger();
-            doc.status = site.bookStatusList.find((itm) => itm.name == _data.type);
+            if (_data.type == "done") {
+              doc.done = true;
+            } else {
+              doc.status = site.bookStatusList.find((itm) => itm.name == _data.type);
+            }
             app.update(doc, (err, result) => {
               if (!err) {
                 response.done = true;
                 response.doc = result.doc;
+                site.security.getUser(
+                  {
+                    id: doc.user.id,
+                  },
+                  (err, user) => {
+                    if (!err && user) {
+                      if (doc.purchaseType.name != "code") {
+                        if (doc.type == "lecture") {
+                          if (!user.lecturesList.some((l) => l.lectureId == doc.target.id)) {
+                            user.lecturesList.push({
+                              lectureId: doc.target.id,
+                            });
+                          }
+                        } else if (doc.type == "package") {
+                          doc.lecturesList.forEach((_l) => {
+                            if (!user.lecturesList.some((l) => l.lectureId == _l)) {
+                              user.lecturesList.push({
+                                lectureId: _l,
+                              });
+                            }
+                          });
+                          user.packagesList.push(doc.target.id);
+                        }
+                        site.security.updateUser(user);
+                      }
+                    }
+                  }
+                );
               } else {
                 response.error = err.message;
               }
@@ -277,6 +309,10 @@ module.exports = function init(site) {
           user: 1,
           status: 1,
           date: 1,
+          purchaseType: 1,
+          numberTransferFrom: 1,
+          imageTransfer: 1,
+          done: 1,
         };
         if (where && where.fromDate && where.toDate) {
           let d1 = site.toDate(where.fromDate);
@@ -297,6 +333,11 @@ module.exports = function init(site) {
         if (where["book"]) {
           where["target.id"] = where["book"].id;
           delete where["book"];
+        }
+
+        if (where["purchaseType"]) {
+          where["purchaseType.name"] = where["purchaseType"].name;
+          delete where["purchaseType"];
         }
 
         if (where["lecture"]) {
@@ -322,7 +363,12 @@ module.exports = function init(site) {
         if (where["search"]) {
           where.$or = [];
 
-          where.$or.push({ code: where["search"] }, { "user.firstName": site.get_RegExp(where["search"], "i") }, { "user.lastName": site.get_RegExp(where["search"], "i") }, { "target.name": site.get_RegExp(where["search"], "i") });
+          where.$or.push(
+            { code: where["search"] },
+            { "user.firstName": site.get_RegExp(where["search"], "i") },
+            { "user.lastName": site.get_RegExp(where["search"], "i") },
+            { "target.name": site.get_RegExp(where["search"], "i") }
+          );
 
           delete where["search"];
         }
@@ -331,6 +377,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
+        
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
           // let totalPackages = 0;
           // let totalLectures = 0;
@@ -356,18 +403,45 @@ module.exports = function init(site) {
       });
     }
   }
+  site.post(
+    {
+      name: `/api/${app.name}/handle`,
+      require: { permissions: ["login"] },
+    },
+    (req, res) => {
+      let response = {
+        done: false,
+      };
 
+      let _data = req.data;
+      _data.editUserInfo = req.getUserFinger();
+      app.all({}, (err, docs) => {
+        response.done = true;
+        docs.forEach((_doc) => {
+          _doc.done = true;
+          _doc.purchaseType = {
+            nameAr: "كود",
+            nameEn: "Code",
+            name: "code",
+          };
+          app.$collection.update(_doc, (err, result) => {
+          
+          });
+        });
+        res.json(response);
+      });
+    }
+  );
   site.addPurchaseOrder = function (_options) {
     app.add(_options);
   };
 
   site.getPurchaseOrder = function (where, callBack) {
     callBack = callBack || function () {};
-    app.view(where, (err, doc) => {
+    app.$collection.find(where, (err, doc) => {
       callBack(err, doc);
     });
   };
-
 
   app.init();
   site.addApp(app);

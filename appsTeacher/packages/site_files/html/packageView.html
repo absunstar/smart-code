@@ -89,7 +89,7 @@
       body {
         background-color: #eceff5 !important;
 
-       /*  background-repeat: repeat !important; */
+        /*  background-repeat: repeat !important; */
       }
       * {
         max-width: initial;
@@ -153,6 +153,7 @@
                   <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">
                     ##word.Buy## <i class="fas fa-shopping-basket"></i>
                   </button>
+                  <p class="alert-green" ng-show="alert">{{alert}}</p>
                 </div>
               </div>
 
@@ -177,10 +178,26 @@
         </div>
         <div class="modal-body">
           <p class="purchase-text">##data.setting.textPurchaseByCode##</p>
-          <fieldset>
-            <legend>##word.Code##</legend>
-            <i-control type="text" v="r" ng-model="code"></i-control>
-          </fieldset>
+          <div class="row">
+            <div class="col3"></div>
+            <div class="col6">
+              <i-list label="##word.Purchase Type##" v="r" ng-model="purchase.purchaseType" display="name##session.lang##" items="purchaseTypeList"></i-list>
+              <p class="purchase-text" ng-show="purchase.purchaseType.accountName">##word.Account Name## : <span class="userPrint black">{{purchase.purchaseType.accountName}}</span></p>
+              <p class="purchase-text" ng-show="purchase.purchaseType.accountNumber">##word.Account Number## : <span class="userPrint black">{{purchase.purchaseType.accountNumber}}</span></p>
+              <fieldset ng-show="purchase.purchaseType.name != 'code'">
+                <legend>##word.Number transferred from##</legend>
+                <i-control type="text" ng-model="purchase.numberTransferFrom"></i-control>
+              </fieldset>
+              <fieldset ng-show="purchase.purchaseType.name != 'code'">
+                <legend>##word.Image Transfer##</legend>
+                <i-image ng-model="purchase.imageTransfer"></i-image>
+              </fieldset>
+              <fieldset ng-show="purchase.purchaseType.name == 'code'">
+                <legend>##word.Code##</legend>
+                <i-control type="text" ng-model="purchase.code"></i-control>
+              </fieldset>
+            </div>
+          </div>
         </div>
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>

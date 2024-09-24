@@ -76,7 +76,7 @@
             <i-list
               class="col4"
               label="##word.Educational Level##"
-              ng-change="getSchoolYearsList(item.educationalLevel)"
+              ng-change="getSchoolYearsList(item.educationalLevel.id)"
               ng-model="item.educationalLevel"
               display="name"
               items="educationalLevelsList"
@@ -98,21 +98,73 @@
           </div>
         </fieldset>
 
-        <!-- <fieldset>
+        <fieldset ng-show="item.type == 'teacher'">
           <legend>##word.Social Accounts##</legend>
           <div class="row">
-            <i-control class="col3" label="##word.Contact Email##" ng-model="item.contactEmail"></i-control>
-            <i-control class="col3" label="##word.Facebook##" ng-model="item.facebook"></i-control>
-            <i-control class="col3" label="##word.Twitter##" ng-model="item.twitter"></i-control>
-            <i-control class="col3" label="##word.Instagram##" ng-model="item.instagram"></i-control>
+            <i-control class="col6" label="##word.Facebook Account##" ng-model="item.facebookAccount"> </i-control>
+            <i-control class="col6" label="##word.Instagram Accouunt##" ng-model="item.instagramAccouunt"> </i-control>
           </div>
-        </fieldset> -->
+
+          <div class="row">
+            <i-control class="col6" label="##word.Youtube Accouunt##" ng-model="item.youtubeAccouunt"> </i-control>
+            <i-control class="col6" label="##word.Twitter Accouunt##" ng-model="item.twitterAccouunt"> </i-control>
+          </div>
+
+          <div class="row">
+            <i-control class="col6" label="Snapchat" ng-model="item.snapAccouunt"> </i-control>
+            <i-control class="col6" label="Linkedin" ng-model="item.linkedinAccouunt"> </i-control>
+          </div>
+
+          <div class="row">
+            <i-control class="col6" label="Telegram" ng-model="item.telegramAccouunt"> </i-control>
+            <i-control class="col6" label="Skype" ng-model="item.skypeAccouunt"> </i-control>
+          </div>
+        </fieldset>
+
         <fieldset class="border" x-data="setting.isEducationalPlatform" ng-show="'##query.type##' == 'teacher'">
-          <legend>##word.Educational Level##</legend>
+          <legend>##word.Purchase Types##</legend>
+          <div class="row">
+            <i-list
+              label="##word.Purchase Type##"
+              class="col3"
+              ng-model="item.$purchaseType"
+              display="name##session.lang##"
+              items="purchaseTypeList"
+            ></i-list>
+            <i-control class="col3" label="##word.Account Number##" ng-model="item.$accountNumber"> </i-control>
+            <i-control class="col3" label="##word.Account Name##" ng-model="item.$accountName"> </i-control>
+            <i-button type="push" label="##word.Add Type##" ng-click="addPurchaseTypeList()"></i-button>
+
+            <div class="table-responsive">
+              <table class="table center hover bold">
+                <tr>
+                  <th>##word.Purchase Type##</th>
+                  <th>##word.Account Number##</th>
+                  <th>##word.Account Name##</th>
+                  <th>##word.Default##</th>
+                  <th class="not-print">##word.Actions##</th>
+                </tr>
+                <tr ng-repeat="g in item.purchaseTypeList">
+                  <td class="center">{{g.name##session.lang##}}</td>
+                  <td class="center">{{g.accountNumber}}</td>
+                  <td class="center">{{g.accountName}}</td>
+                  <td class="center"><i-checkbox class="row" ng-change="setPurchaseTypeDafault($index)" ng-model="g.default"></i-checkbox></td>
+
+                  <td class="center">
+                    <i-button type="delete" label="##word.Delete##" ng-click="item.purchaseTypeList.splice($index,1)"></i-button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="border" x-data="setting.isEducationalPlatform" ng-show="'##query.type##' == 'teacher'">
+          <legend>##word.Educational Levels##</legend>
           <div class="row">
             <i-list
               label="##word.Educational Level##"
-              ng-change="getSchoolYearsList(item.educationalLevel)"
+              ng-change="getSchoolYearsList(item.$educationalLevel.id)"
               class="col3"
               ng-model="item.$educationalLevel"
               display="name"
@@ -131,13 +183,13 @@
                   <th>##word.Subject##</th>
                   <th class="not-print">##word.Actions##</th>
                 </tr>
-                <tr ng-repeat="g in item.levelsList">
+                <tr ng-repeat="g in item.levelList">
                   <td class="center">{{g.educationalLevel.name}}</td>
                   <td class="center">{{g.schoolYear.name}}</td>
                   <td class="center">{{g.subject.name}}</td>
 
                   <td class="center">
-                    <i-button type="delete" label="##word.Delete##" ng-click="item.levelsList.splice($index,1)"></i-button>
+                    <i-button type="delete" label="##word.Delete##" ng-click="item.levelList.splice($index,1)"></i-button>
                   </td>
                 </tr>
               </table>

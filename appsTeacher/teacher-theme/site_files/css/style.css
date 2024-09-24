@@ -249,7 +249,16 @@ p {
 .ul-list {
   display: inline-table !important;
 }
-
+.alert-green {
+  border: 1px solid;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  color: white;
+  background: green;
+  border-radius: 10px;
+}
 figure {
   position: relative;
   align-items: center;

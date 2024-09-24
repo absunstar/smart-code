@@ -8,7 +8,7 @@
         <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
         <i-list
           label="##word.Educational Level##"
-          ng-change="getSchoolYearsList(item.educationalLevel)"
+          ng-change="getSchoolYearsList(item.educationalLevel.id)"
           v="r"
           ng-model="item.educationalLevel"
           display="name"

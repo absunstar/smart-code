@@ -9,6 +9,18 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     image: { url: "/theme1/images/setting/purchaseOrders.png" },
     active: true,
   };
+  $scope.paidAcceptList = [
+    {
+      name: "paidAccept",
+      nameAr: "تأكيد الدفع",
+      nameEn: "Paid Accept",
+    },
+    {
+      name: "paidNotAccept",
+      nameAr: "عدم تأكيد الدفع",
+      nameEn: "Paid Not Accept",
+    },
+  ];
   $scope.item = {};
   $scope.list = [];
 
@@ -62,10 +74,12 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-         
           let index = $scope.list.findIndex((itm) => itm.id == response.data.doc.id);
           if (index !== -1) {
             $scope.list[index] = response.data.doc;
+          }
+          if (type == "done") {
+            site.hideModal("#actionModal");
           }
         } else {
           $scope.error = response.data.error;
@@ -109,12 +123,37 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.handle = function (_item) {
+    $scope.busy = true;
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/handle`,
+      data: {
+       
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.showDelete = function (_item) {
     $scope.error = "";
     $scope.mode = "delete";
-    $scope.item = {};
-    $scope.view(_item);
-    site.showModal($scope.modalID);
+    $scope.item = _item;
+    site.showModal("#actionModal");
+  };
+
+  $scope.showPaid = function (_item) {
+    $scope.error = "";
+    $scope.mode = "paid";
+    $scope.item = _item;
+    site.showModal("#actionModal");
   };
 
   $scope.delete = function (_item) {
@@ -131,7 +170,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal($scope.modalID);
+          site.hideModal("#actionModal");
           let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list.splice(index, 1);
@@ -339,6 +378,38 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     );
   };
  */
+
+  $scope.getPurchaseTypeList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.purchaseTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/purchaseTypeList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.purchaseTypeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.selectPaidAccept = function (paidAccept) {
+    $scope.error = "";
+    if (paidAccept.name == "paidAccept") {
+      $scope._search.done = true;
+    } else if (paidAccept.name == "paidNotAccept") {
+      $scope._search.done = false;
+    }
+  };
+
   $scope.showSearch = function () {
     $scope.error = "";
     site.showModal($scope.modalSearchID);
@@ -356,5 +427,6 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
   $scope.getLecturesList();
   $scope.getStudentsList();
   $scope.getBookStatusList();
+  $scope.getPurchaseTypeList();
   /*   $scope.getPurchaseOrdersTargetList(); */
 });

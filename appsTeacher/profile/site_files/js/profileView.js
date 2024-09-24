@@ -6,14 +6,14 @@ app.controller("profileView", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/user/view",
       data: {
-        id: site.toNumber("##params.id##"),
+        _id: "##query.id##",
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.user = response.data.doc;
-          document.getElementById("bio").innerHTML = '##data.bio##';
+          $scope.teacher = response.data.doc;
+          document.getElementById("bio").innerHTML = "##data.teacher.bio##";
         } else {
           $scope.error = response.data.error;
         }
@@ -22,6 +22,15 @@ app.controller("profileView", function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
+  };
+
+  $scope.centersView = function () {
+    $scope.error = "";
+    if ("##user.id##" > 0) {
+      window.location.href = "/centersView";
+    } else {
+      window.location.href = "/login";
+    }
   };
   $scope.displayUser();
 });

@@ -2,7 +2,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
   $scope.item = {};
   $scope.quiz = {};
   $scope.setting = site.showObject(`##data.#setting##`);
-
+  $scope.purchase = {};
   $scope.baseURL = "";
   $scope.view = function () {
     $scope.busy = true;
@@ -19,6 +19,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.item = response.data.doc;
           $scope.quizView();
+          $scope.getPurchaseTypeTeacher($scope.item.teacherId);
         } else {
           $scope.error = response.data.error;
         }
@@ -50,13 +51,12 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         return;
       }
     }
-
     $scope.busy = true;
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/lectures/buyCode`,
       data: {
-        code: $scope.code,
+        purchase: $scope.purchase,
         lectureId: $scope.item.id,
         lecturePrice: $scope.item.price,
       },
@@ -66,7 +66,9 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal("#codeModal");
           site.resetValidated("#codeModal");
-          $scope.code = "";
+          if($scope.purchase.purchaseType && $scope.purchase.purchaseType.name != 'code') {
+            $scope.alert = "##word.Please wait until your payment details are reviewed and your purchase is confirmed##";
+          }
           $scope.view();
         } else {
           $scope.errorCode = response.data.error;
@@ -92,6 +94,28 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.quiz = response.data.doc;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.getPurchaseTypeTeacher = function (teacherId) {
+    $scope.busy = true;
+    $scope.error = "";
+    $scope.purchaseTypeList = [];
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/manageUsers/purchaseTypeTeacher`,
+      data: teacherId,
+    }).then(
+      function (response) {
+        $scope.busy = false;        
+        if (response.data.done) {
+          $scope.purchaseTypeList = response.data.list;
+          $scope.purchase.purchaseType = $scope.purchaseTypeList.find((p) => p.default);
         }
       },
       function (err) {

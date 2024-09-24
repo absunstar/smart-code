@@ -18,14 +18,14 @@
             <div class="profileCover"></div>
             <div class="profileInfo row row-cols-1 row-cols-lg-2">
               <div class="profileImage col-lg-3">
-                <img src="##data.image.url##" alt="" srcset="" />
+                <img src="##data.teacher.image.url##" alt="" srcset="" />
               </div>
               <div class="profileNameAndType col-lg-8">
                 <div class="profileName">
-                  <p>##data.firstName## ##data.lastName##</p>
+                  <p>##data.teacher.firstName## ##data.teacher.lastName##</p>
                 </div>
                 <div class="profileType">
-                  <p > <b  x-list1="specialties"> - ##item1.name##</b> </p>
+                  <p>##data.teacher.title##</p>
                 </div>
               </div>
             </div>
@@ -42,35 +42,22 @@
           </div>
           <div class="lawerServicesContanier">
             <div class="lawerServicesTitle headTitle">
-              <p><b>##word.Services##</b> ##word.Are Offered##</p>
+              <p>##word.Educational Levels##</p>
             </div>
             <div class="lawerServices row row-cols-1 row-cols-md-2">
-              <div
-                class="lawerService tooltipService col"
-                x-list1="servicesList"
-              >
-                <img
-                  width="50px"
-                  height="50px"
-                  class=""
-                  ng-src="##item1.image.url##"
-                  onerror="this.src='/images/user.png'"
-                  alt=""
-                />
-                <p class="">##item1.name##</p>
-                <p class="servicePrice ">##item1.price## ##word.$##</p>
-                <p ng-show="service.notes" class="serviceNotes tooltiptextService">##item1.notes##</p>
+              <div class="lawerService col" x-list1="levelList">
+                <p class="">##item1.educationalLevel.name## - ##item1.schoolYear.name##</p>
+                <p class="servicePrice">##item1.subject.name##</p>
               </div>
-             
             </div>
           </div>
-          <div class="contactUsContainer">
+        <!--   <div class="contactUsContainer">
             <div class="contactUsTitle headTitle">
               <p><b>##word.Contact##</b> ##word.With Me##</p>
             </div>
             <div class="contactUs row row-cols-1 row-cols-lg-2">
               <div class="contactUsDatas">
-                <div class="contactUsData eamil col" x-data="contactEmail" >
+                <div class="contactUsData eamil col" x-data="contactEmail">
                   <i class="fas fa-at"></i>
                   <p class="userSelect">##data.contactEmail##</p>
                 </div>
@@ -96,279 +83,17 @@
                 ></iframe>
               </div>
             </div>
-          </div>
-          <div class="recentlyConsultantsContanier">
-            <div class="recentlyConsultantsTitle headTitle">
-              <p>##word.Recently Answered Consultations##</p>
-            </div>
-            <ul
-              class="recentlyConsultants row row-cols-1 row-cols-xl-3 row-cols-md-2"
-            >
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 مشاهدة</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 أعجاب</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 تأيد</p>
-                  </div>
-                </div>
-              </li>
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 مشاهدة</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 أعجاب</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 تأيد</p>
-                  </div>
-                </div>
-              </li>
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 مشاهدة</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 أعجاب</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 تأيد</p>
-                  </div>
-                </div>
-              </li>
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 مشاهدة</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 أعجاب</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 تأيد</p>
-                  </div>
-                </div>
-              </li>
-              <li class="col recentlyConsultant">
-                <div class="consultantTitle">
-                  <a href="#">
-                    <p>
-                      رفض تنفيذ إلتزام من طرف المحكوم عليهم بإنجاز ملحق إصلاحي
-                    </p>
-                  </a>
-                </div>
-                <div class="consultantInfo">
-                  <div class="questionBy">
-                    <a href="#">
-                      <p>بواسطة محمد علي</p>
-                    </a>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionTime">
-                    <p>تم السؤال منذ يوم</p>
-                  </div>
-                  <div class="dash">
-                    <p>/</p>
-                  </div>
-                  <div class="questionView">
-                    <p>200 مشاهدة</p>
-                  </div>
-                </div>
-                <div class="separative"></div>
-                <div class="answerSection">
-                  <div class="consultantAnswer">
-                    <p>
-                      لقد صدر حكم إبتدائي لصالحي (دعوى مدنية) و أصبح نهائي بعد
-                      رفض طلب النقض من طرف المدعى عليهم من محكمة النقض, وهو
-                      كتالي: الحكم على المدعى عليهم (ورثة) بإبرام ملحق إصلاحي
-                      يتضمن الإسم الكامل و الصحيح
-                    </p>
-                  </div>
-                </div>
-                <div class="likeAndGoodAnswer">
-                  <div class="likeAnswer">
-                    <i class="fas fa-thumbs-up"></i>
-                    <p>200 أعجاب</p>
-                  </div>
-                  <div class="goodAnswer">
-                    <i class="fas fa-check-circle"></i>
-                    <p>25 تأيد</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="cricleConsultantAskConatainer">
-            <div class="cricleConsultantAsk orderButton">
-              <i class="fas fa-bullhorn"></i>
-              <p>##word.Request A Consultation##</p>
-            </div>
-          </div>
+          </div> -->
         </div>
-        <div class="sidebarContainer col-lg-3">
+      <!--   <div class="sidebarContainer col-lg-3">
           <div class="sidebar">
             <div class="varafictionConatainer">
               <div class="varafictionStauts">
                 <div class="varafictionStaut">
-                  <p x-data="trusted" ><b>##word.Status##</b> ##word.Trusted##</p>
+                  <p x-data="trusted"><b>##word.Status##</b> ##word.Trusted##</p>
                   <img src="/assetes/Vector (1).png" alt="" />
                 </div>
-                <p class="varafictionStautsTitle" x-data="trusted" >
-                  ##word.This account has been documented and its data verified##
-                </p>
+                <p class="varafictionStautsTitle" x-data="trusted">##word.This account has been documented and its data verified##</p>
               </div>
             </div>
             <div class="contactTimeContainer">
@@ -380,252 +105,57 @@
                   <p>##word.Available##</p>
                 </div>
                 <div class="contactTimeInfoHoure">
-                  <p> ##data.startCommunicationTime## ##word.AM## - ##data.endCommunicationTime## ##word.PM##</p>
+                  <p>##data.startCommunicationTime## ##word.AM## - ##data.endCommunicationTime## ##word.PM##</p>
                 </div>
               </div>
             </div>
-            <div class="askLawerContainer">
-              <p>##word.If you have any questions, do not hesitate and ask for advice##</p>
-              <p class="lawerName">##data.firstName## ##data.lastName##</p>
-              <button class="btn">
-                <a href="/requestConsultations?teacherId=##data.id##">
-                  <p class="white">##word.Request a consultation now##</p>
+            <div class="sidebar">
+              <div class="lawerJoin">
+                <p class="pre-text">##data.setting.textOurPlacesTimes##</p>
+                <a ng-click="centersView()">
+                  <button class="btn">##word.Appointments and locations##</button>
                 </a>
-              </button>
+              </div>
+
+              <div x-features="ads" class="adsBanner">
+                <img src="https://placehold.co/250x250" alt="" srcset="" />
+              </div>
             </div>
             <div class="followMeContainer">
               <div class="followMeTitle">
-                <p><b>##word.Follow Me On##</b></p>
+                <p>##word.Follow Me On##</p>
               </div>
-              <div class="followMeChannel row row-cols-2 row-cols-lg-4">
-                <div class="followMeChannelIcon col">
-                  <a href="https://facebook.com/##data.faceBook##" target="_blank">
-                    <i class="fab fa-facebook-square"></i>
-                  </a>
-                </div>
-                <div class="followMeChannelIcon col">
-                  <a href="https://instagram.com/##data.instagram##" target="_blank">
-                    <i class="fab fa-instagram-square"></i>
-                  </a>
-                </div>
-                <div class="followMeChannelIcon col">
-                  <a href="https://twitter.com/##data.twitter##" target="_blank">
-                    <i class="fab fa-twitter-square"></i>
-                  </a>
-                </div>
-                <div class="followMeChannelIcon col">
-                  <a href="https://linkedin.com/in/##data.linkedin##" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
-                </div>
+              <div class="social-menu">
+                <ul>
+                  <li x-data="teacher.youtubeAccouunt">
+                    <a target="_blank" class="youtube-icon" href="##data.teacher.youtubeAccouunt##"><i class="fab fa-youtube"></i></a>
+                  </li>
+                  <li x-data="teacher.instagramAccouunt">
+                    <a target="_blank" class="instagram-icon" href="##data.teacher.instagramAccouunt##"><i class="fab fa-instagram"></i></a>
+                  </li>
+
+                  <li x-data="teacher.twitterAccouunt">
+                    <a target="_blank" class="twitter-icon" href="##data.teacher.twitterAccouunt##"><i class="fab fa-twitter"></i></a>
+                  </li>
+
+                  <li x-data="teacher.facebookAccount">
+                    <a target="_blank" class="facebook-icon" href="##data.teacher.facebookAccount##"><i class="fab fa-facebook"></i></a>
+                  </li>
+
+                  <li x-data="teacher.linkedinAccouunt">
+                    <a target="_blank" class="linkedin-icon" href="##data.teacher.linkedinAccouunt##"><i class="fab fa-linkedin-in"></i></a>
+                  </li>
+                </ul>
               </div>
             </div>
             <div class="adsBanner">
               <img src="https://placehold.co/240x240" alt="" srcset="" />
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
-   
-    <div class="payedConsultantConatainer hidden row align-items-center">
-      <div class="payedConsultant row row-cols-1">
-        <div class="closeBtn col">
-          <i class="fas fa-window-close"></i>
-        </div>
-        <div class="payedConsultantTitle col">
-          <p>خدمات المحامي القانونية المدفوعة</p>
-        </div>
-        <div
-          class="payedConsultantTypes col row row-cols-1 row-cols-md-3 row-cols-lg-4 justify-content-center"
-        >
-          <div class="payedConsultantType col">
-            <div class="title">
-              <p>دراسة قضية</p>
-            </div>
-            <div class="description">
-              <p>
-                الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر
-                للحصول على أفضل حل لقضاياهم.
-              </p>
-            </div>
-            <div class="price">
-              <p>2000 جنيه</p>
-            </div>
-            <div class="featuer">
-              <ul class="row row-cols-1">
-                <li class="col"><p>إجابة أولية في غضون 24 ساعة</p></li>
-                <li class="col">
-                  <p>إجابة من 5 خبراء (محامون و قضاة سابقون)</p>
-                </li>
-                <li class="col"><p>تجربة 150 سنة متراكمة</p></li>
-                <li class="col"><p>استشارة صوتية</p></li>
-                <li class="col"><p>تحميل وثائق</p></li>
-                <li class="col"><p>التبادل سري وغير ظاهر للعيان</p></li>
-              </ul>
-            </div>
-            <div class="askButton btn">
-              <p>##word.Request Consultation##</p>
-            </div>
-          </div>
-          <div class="payedConsultantType col">
-            <div class="title">
-              <p>دراسة قضية</p>
-            </div>
-            <div class="description">
-              <p>
-                الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر
-                للحصول على أفضل حل لقضاياهم.
-              </p>
-            </div>
-            <div class="price">
-              <p>2000 جنيه</p>
-            </div>
-            <div class="featuer">
-              <ul class="row row-cols-1">
-                <li class="col"><p>إجابة أولية في غضون 24 ساعة</p></li>
-                <li class="col">
-                  <p>إجابة من 5 خبراء (محامون و قضاة سابقون)</p>
-                </li>
-                <li class="col"><p>تجربة 150 سنة متراكمة</p></li>
-                <li class="col"><p>استشارة صوتية</p></li>
-                <li class="col"><p>تحميل وثائق</p></li>
-                <li class="col"><p>التبادل سري وغير ظاهر للعيان</p></li>
-              </ul>
-            </div>
-            <div class="askButton btn">
-              <p>##word.Request Consultation##</p>
-            </div>
-          </div>
-          <div class="payedConsultantType col">
-            <div class="title">
-              <p>دراسة قضية</p>
-            </div>
-            <div class="description">
-              <p>
-                الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر
-                للحصول على أفضل حل لقضاياهم.
-              </p>
-            </div>
-            <div class="price">
-              <p>2000 جنيه</p>
-            </div>
-            <div class="featuer">
-              <ul class="row row-cols-1">
-                <li class="col"><p>إجابة أولية في غضون 24 ساعة</p></li>
-                <li class="col">
-                  <p>إجابة من 5 خبراء (محامون و قضاة سابقون)</p>
-                </li>
-                <li class="col"><p>تجربة 150 سنة متراكمة</p></li>
-                <li class="col"><p>استشارة صوتية</p></li>
-                <li class="col"><p>تحميل وثائق</p></li>
-                <li class="col"><p>التبادل سري وغير ظاهر للعيان</p></li>
-              </ul>
-            </div>
-            <div class="askButton btn">
-              <p>##word.Request Consultation##</p>
-            </div>
-          </div>
-          <div class="payedConsultantType col">
-            <div class="title">
-              <p>دراسة قضية</p>
-            </div>
-            <div class="description">
-              <p>
-                الحل الأمثل لمن يملك قضية في المحكمة ويحتاج إلى عدة وجهات نظر
-                للحصول على أفضل حل لقضاياهم.
-              </p>
-            </div>
-            <div class="price">
-              <p>2000 جنيه</p>
-            </div>
-            <div class="featuer">
-              <ul class="row row-cols-1">
-                <li class="col"><p>إجابة أولية في غضون 24 ساعة</p></li>
-                <li class="col">
-                  <p>إجابة من 5 خبراء (محامون و قضاة سابقون)</p>
-                </li>
-                <li class="col"><p>تجربة 150 سنة متراكمة</p></li>
-                <li class="col"><p>استشارة صوتية</p></li>
-                <li class="col"><p>تحميل وثائق</p></li>
-                <li class="col"><p>التبادل سري وغير ظاهر للعيان</p></li>
-              </ul>
-            </div>
-            <div class="askButton btn">
-              <p>##word.Request Consultation##</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="orderTextConsultingContainer hidden row justify-content-center align-items-center"
-    >
-      <div class="orderTextConsulting row row-cols-1">
-        <div class="closeBtn col">
-          <i class="fas fa-window-close"></i>
-        </div>
-        <div class="orderTextConsultingTitle col">
-          <p>##word.New Request Consultation##</p>
-        </div>
-        <form class="orderTextConsultingForm col row row-cols-1">
-          <div class="Title mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="consultantTitle"
-              placeholder="##word.Enter The Consultation Title##"
-            />
-          </div>
-          <div class="consultantCategory mb-3">
-            <select
-              id="consultantCategory"
-              class="form-select"
-              aria-label="Default select example"
-            >
-              <option selected>
-                ##word.Choose The Consultation Category##
-              </option>
-              <option value="اسرة">اسرة</option>
-              <option value="تجاري">تجاري</option>
-            </select>
-          </div>
-          <div class="consultantDescreption mb-3">
-            <textarea
-              class="form-control"
-              id="consultantDescreption"
-              rows="3"
-              placeholder="##word.Enter The Consultation Details##"
-            ></textarea>
-          </div>
-          <div class="consultantType mb-3">
-            <select
-              id="consultantType"
-              class="form-select"
-              aria-label="Default select example"
-            >
-              <option selected>اختر نوع الأستشارة</option>
-              <option value="اسرة">استشارة سرية</option>
-              <option value="استشارة مجانية">استشارة مجانية</option>
-            </select>
-          </div>
-          <div class="submitButton">
-            <input
-              class="submit btn"
-              type="submit"
-              value="##word.Request Consultation##"
-            />
-          </div>
-        </form>
-      </div>
-    </div>
-    <!-- <script src="https://egytag.com/x-js/bootstrap-5-support.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/SectionScroll.js"></script>
-    <script src="js/orderConsultant.js"></script>
-    <script src="js/orderTextConsultant.js"></script>
-    <script src="js/storyvideoLower.js"></script>
-    <script src="js/openMobileMenu.js"></script> -->
+
     <div x-replace="teacher-theme/footer.html"></div>
 
     <div x-import="teacher-theme/scripts.html"></div>

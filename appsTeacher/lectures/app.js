@@ -320,23 +320,24 @@ module.exports = function init(site) {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
+
                 site.lectureList.unshift({
-                  _id: doc._id,
-                  id: doc.id,
+                  _id: result.doc._id,
+                  id: result.doc.id,
                   code: result.doc.code,
-                  name: doc.name,
-                  type: doc.type,
-                  educationalLevel: doc.educationalLevel,
-                  schoolYear: doc.schoolYear,
-                  subject: doc.subject,
-                  description: doc.description,
-                  date: doc.date,
-                  host: doc.host,
-                  teacherId: doc.teacherId,
-                  price: doc.price,
-                  active: doc.active,
-                  image: doc.image,
-                  placeType: doc.placeType,
+                  name: result.doc.name,
+                  type: result.doc.type,
+                  educationalLevel: result.doc.educationalLevel,
+                  schoolYear: result.doc.schoolYear,
+                  subject: result.doc.subject,
+                  description: result.doc.description,
+                  date: result.doc.date,
+                  host: result.doc.host,
+                  teacherId: result.doc.teacherId,
+                  price: result.doc.price,
+                  active: result.doc.active,
+                  image: result.doc.image,
+                  placeType: result.doc.placeType,
                 });
               } else {
                 response.error = err.mesage;
@@ -919,47 +920,84 @@ module.exports = function init(site) {
 
     app.view({ id: _data.lectureId }, (err, doc) => {
       if (!err && doc) {
-        site.validateCode(req, { code: _data.code, price: doc.price }, (errCode, code) => {
-          if (errCode && doc.price > 0) {
-            response.error = errCode;
+        if (doc.price == 0) {
+          _data.purchase = {
+            purchaseType: {
+              nameAr: "مجاني",
+              nameEn: "Free",
+              name: "free",
+            },
+          };
+        }
+        if (!_data.purchase || !_data.purchase.purchaseType || !_data.purchase.purchaseType.name) {
+          response.error = req.word("Must Select Purchase Type");
+          res.json(response);
+          return;
+        } else if (_data.purchase.purchaseType.name == "code" && !_data.purchase.code) {
+          response.error = req.word("The code must be entered");
+          res.json(response);
+          return;
+        } else if (_data.purchase.purchaseType.name != "code" && !_data.purchase.numberTransferFrom) {
+          response.error = req.word("The account number to be transferred from must be entered");
+          res.json(response);
+          return;
+        }
+        site.getPurchaseOrder({ "target.id": doc.id, type: "lecture", "user.id": req.session?.user?.id }, (err1, order) => {
+          if (order) {
+            response.error = req.word("The lecture has already been purchased");
             res.json(response);
             return;
-          } else {
-            site.security.getUser(
-              {
-                id: req.session.user.id,
-              },
-              (err, user) => {
-                if (!err && user) {
-                  user.lecturesList = user.lecturesList || [];
-                  if (!user.lecturesList.some((l) => l.lectureId == doc.id)) {
-                    user.lecturesList.push({
-                      lectureId: doc.id,
-                    });
-                  }
-                  site.addPurchaseOrder({
-                    type: "lecture",
-                    target: { id: doc.id, name: doc.name },
-                    price: doc.price,
-                    code: _data.code,
-                    date: site.getDate(),
-                    host: site.getHostFilter(req.host),
-                    teacherId: site.getTeacherSetting(req) || doc.teacherId,
-                    user: {
-                      id: user.id,
-                      firstName: user.firstName,
-                    },
-                  });
-                  site.security.updateUser(user);
-                }
-                response.done = true;
-                // doc.$buy = true;
-                // doc.$time = site.xtime(doc.date, req.session.lang || "ar");
-                // response.doc = doc;
-                res.json(response);
-              }
-            );
           }
+          site.validateCode(req, { code: _data?.purchase?.code, price: doc.price }, (errCode, code) => {
+            if (errCode && doc.price > 0 && _data.purchase.purchaseType.name == "code") {
+              response.error = req.word(errCode);
+              res.json(response);
+              return;
+            } else {
+              site.security.getUser(
+                {
+                  id: req.session.user.id,
+                },
+                (err, user) => {
+                  if (!err && user) {
+                    user.lecturesList = user.lecturesList || [];
+                    if (!user.lecturesList.some((l) => l.lectureId == doc.id) && _data.purchase.purchaseType.name == "code") {
+                      user.lecturesList.push({
+                        lectureId: doc.id,
+                      });
+                    }
+                    site.addPurchaseOrder({
+                      type: "lecture",
+                      target: { id: doc.id, name: doc.name },
+                      price: doc.price,
+                      purchaseType: {
+                        name: _data.purchase.purchaseType.name,
+                        nameAr: _data.purchase.purchaseType.nameAr,
+                        nameEn: _data.purchase.purchaseType.nameEn,
+                      },
+                      done: _data.purchase?.purchaseType?.name == "code" ? true : false,
+                      code: _data.purchase.code,
+                      numberTransferFrom: _data.purchase.numberTransferFrom,
+                      imageTransfer: _data.purchase.imageTransfer,
+                      date: site.getDate(),
+                      host: site.getHostFilter(req.host),
+                      teacherId: site.getTeacherSetting(req) || doc.teacherId,
+                      user: {
+                        id: user.id,
+                        firstName: user.firstName,
+                      },
+                    });
+                    site.security.updateUser(user);
+                  }
+                  response.done = true;
+                  // doc.$buy = true;
+                  // doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                  // response.doc = doc;
+                  res.json(response);
+                }
+              );
+            }
+          });
         });
       } else {
         response.error = err?.message || "Not Exists";
