@@ -16,7 +16,7 @@
 
 .videoStoryContainer .closeBtn {
   position: absolute;
-  z-index: 999;
+  z-index: 990;
   margin-top: -43px;
   background: var(--main-background-color2);
   padding: 8px !important;

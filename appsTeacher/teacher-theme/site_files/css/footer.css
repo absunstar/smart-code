@@ -124,7 +124,7 @@
   width: 350px;
   height: 200px;
   cursor: pointer;
-  z-index: 999;
+  z-index: 990;
   -webkit-backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   -webkit-transition: visibility 0.5s;
