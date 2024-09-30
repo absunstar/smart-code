@@ -188,10 +188,8 @@ app.controller("groups", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getWeekDaysList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
+  $scope.getWeekDaysList = function () {
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -289,7 +287,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
-
+    
     $scope.busy = true;
     $http({
       method: "POST",
@@ -298,6 +296,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         search: $search,
         where: {
           type: "teacher",
+          host : window.location.hostname,
           active: true,
         },
         select: { id: 1, firstName: 1, image: 1, prefix: 1, mobile: 1, subject: 1 },

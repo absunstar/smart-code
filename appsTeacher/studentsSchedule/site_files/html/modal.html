@@ -1,0 +1,27 @@
+<div id="studentScheduleManageModal" class="modal small" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <p class="center">
+        ##word.New Subject##
+        <i class="fa fa-plus"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-control type="text" v="r" ng-model="itemAdd.teacherName" label="##word.Teacher Name##"></i-control>
+        <i-control type="text" v="r" ng-model="itemAdd.subjectName" label="##word.Subject Name##"></i-control>
+        <i-control type="time" v="r" ng-model="itemAdd.time" label="##word.Time##"></i-control>
+        <i-date label="##word.Start Date##" v="r" ng-model="itemAdd.startDate"> </i-date>
+        <i-date label="##word.End Date##" v="r" ng-model="itemAdd.endDate"> </i-date>
+        <i-checklist label="##word.Working Days##" v="r" class="col8" ng-model="itemAdd.days" items="weekDaysList" display="name##session.lang##"> </i-checklist>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <p class="error">{{error}}</p>
+      <i-button type="add" label="##word.Add##" ng-click="add(itemAdd)"></i-button>
+    </div>
+  </div>
+</div>

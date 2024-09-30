@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="##session.language.id##" x-permissions="login" class="##session.language.dir##" ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
+    <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
+
+    <style>
+      i-button {
+        display: inline-block !important;
+      }
+    </style>
+  </head>
+
+  <body class="##session.language.id##" ng-controller="studentsSchedule">
+    <div x-replace="teacher-theme/header.html"></div>
+    <div x-import="studentsSchedule/modal.html"></div>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <div class="top-actions">
+          <i-button type="add" label="##word.Add New Subject##" ng-click="showAdd()"></i-button>
+        </div>
+
+        <fieldset>
+          <legend>##word.Search All##</legend>
+          <div class="row">
+            <i-list class="input-style col6 padding" label="##word.Status##" ng-model="search.status" items="studentsScheduleTypeList" display="name##session.lang##"></i-list>
+          </div>
+          <div class="row">
+            <i-date class="col6 padding" label="##word.From Date##" ng-model="search.startDate"> </i-date>
+            <i-date class="col6 padding" label="##word.To Date##" ng-model="search.endDate"> </i-date>
+          </div>
+          <div class="row">
+            <i-control type="text" ng-model="search.names" class="padding" label="##word.Search by teacher or subject name##"></i-control>
+          </div>
+        </fieldset>
+        <div class="row">
+          <div class="table-responsive">
+            <table class="table hover bold" id="t1">
+              <tr>
+                <th>##word.Teacher##</th>
+                <th>##word.Subject##</th>
+                <th>##word.Date##</th>
+                <th>##word.Status##</th>
+                <th>##word.Actions##</th>
+              </tr>
+              <tr ng-repeat="itm in item.dayList | filter:search.names">
+                <td class="center">{{itm.teacherName}}</td>
+                <td class="center">{{itm.subjectName}}</td>
+
+                <td class="center">
+                  {{itm.date | date : 'dd - MM - yyyy'}}
+                  <p>{{itm.day.name##session.lang##}} {{itm.time | date : 'hh : MM'}}</p>
+                </td>
+                <td class="center">{{itm.status.name##session.lang##}}</td>
+
+                <td class="center">
+                  <i-button label="##word.Preparation##" ng-click="updateStatus(itm,'preparation')"></i-button>
+                  <i-button label="##word.Presence##" ng-click="updateStatus(itm,'presence')"></i-button>
+                  <i-button label="##word.Absence##" ng-click="updateStatus(itm,'absence')"></i-button>
+                  <i-button label="##word.Vacation##" ng-click="updateStatus(itm,'vacation')"></i-button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+
+    <div x-replace="teacher-theme/footer.html"></div>
+    <div x-import="teacher-theme/scripts.html"></div>
+    <script x-import="studentsSchedule/index.js"></script>
+  </body>
+</html>

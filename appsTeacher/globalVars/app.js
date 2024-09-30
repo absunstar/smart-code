@@ -120,6 +120,33 @@ module.exports = function init(site) {
       nameEn: "Number",
     },
   ];
+  site.studentsScheduleTypeList = [
+    {
+      nameAr: "قيد التنفيذ",
+      nameEn: "In Progress",
+      name: "inProgress",
+    },
+    {
+      nameAr: "تم الإستعداد",
+      nameEn: "Done Preparation",
+      name: "preparation",
+    },
+    {
+      nameAr: "حضور",
+      nameEn: "Presence",
+      name: "presence",
+    },
+    {
+      nameAr: "غياب",
+      nameEn: "Absence",
+      name: "absence",
+    },
+    {
+      nameAr: "أجازة",
+      nameEn: "Vacation",
+      name: "vacation",
+    },
+  ];
   site.salesTypesList = [
     {
       id: 1,
@@ -695,7 +722,12 @@ module.exports = function init(site) {
       list: site.purchaseOrdersTargetList,
     });
   });
-
+  site.post("/api/studentsScheduleTypeList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.studentsScheduleTypeList,
+    });
+  });
   site.post("/api/bookStatusList", (req, res) => {
     res.json({
       done: true,

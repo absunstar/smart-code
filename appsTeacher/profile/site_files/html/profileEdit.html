@@ -149,10 +149,35 @@
               <div class="row">
                 <div class="register-content">
                   <div class="row">
-                    <div class="col6">
+                    <p class="right-content label-color">
+                      <span class="red bold"> * </span>
+                      ##word.Profile Image##
+                    </p>
+                    <i-image v="r" class="img256" ng-model="user.image"></i-image>
+                  </div>
+                  <div class="row">
+                    <div class="col6 padding">
                       <i-control v="r" class="input-style" label="##word.Full Name##" ng-model="user.firstName"> </i-control>
                       <i-date label="##word.Birth Of Date##" ng-model="user.bitrhOfDate"> </i-date>
                       <i-list ng-show="user.placeType == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name"></i-list>
+                      <i-control v="r" class="input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
+                      <i-list
+                        label="##word.Parent##"
+                        ng-get="getParentsList($search)"
+                        ng-show="user.type == 'student'"
+                        x-data="setting.showParent"
+                        ng-model="user.parent"
+                        items="parentsList"
+                        display="firstName"
+                        ng-search="user.$parent"
+                      >
+                      </i-list>
+                      <i-control ng-show="user.type == 'student'" class="input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
+                      <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
+                      <i-control v="r" class="pass input-style" label="##word.Password##" type="password" id="pass1" ng-model="user.password"></i-control>
+                      <i-checkbox class="right display-content" label="##word.Show Password##" ng-change="showPassword()" ng-model="showPassword"> </i-checkbox>
+                    </div>
+                    <div class="col6 padding">
                       <i-list
                         v="r"
                         class="input-style"
@@ -176,39 +201,6 @@
                       </i-list>
                       <i-list label="##word.Area##" x-data="setting.citiesAndAreasShow" ng-model="user.area" items="areasList" display="name" ng-search="user.$area"> </i-list>
                       <i-control v="r" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
-                      <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
-                      <i-control v="r" class="pass input-style" label="##word.Password##" type="password" id="pass1" ng-model="user.password"></i-control>
-                      <i-checkbox class="right display-content" label="##word.Show Password##" ng-change="showPassword()" ng-model="showPassword"> </i-checkbox>
-                    </div>
-                    <div class="col6 padding">
-                      <div class="row">
-                        <div class="col3"></div>
-                        <div class="col6">
-                          <div class="row">
-                            <p class="right-content label-color">
-                              <span class="red bold"> * </span>
-                              ##word.Profile Image##
-                            </p>
-                            <i-image v="r" class="img256" ng-model="user.image"></i-image>
-                          </div>
-                        </div>
-                      </div>
-
-                      <br />
-
-                      <i-control v="r" class="input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
-                      <i-list
-                        label="##word.Parent##"
-                        ng-get="getParentsList($search)"
-                        ng-show="user.type == 'student'"
-                        x-data="setting.showParent"
-                        ng-model="user.parent"
-                        items="parentsList"
-                        display="firstName"
-                        ng-search="user.$parent"
-                      >
-                      </i-list>
-                      <i-control ng-show="user.type == 'student'" class="center input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
                       <i-control v="e" class="input-style" label="##word.Contact Email##" ng-model="user.contactEmail"> </i-control>
 
                       <i-control class="input-style" label="##word.Facebook##" ng-model="user.faceBook"> </i-control>

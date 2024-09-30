@@ -552,8 +552,6 @@ module.exports = function init(site) {
     let _data = req.data;
     app.view({ id: _data.packageId }, (err, doc) => {
       if (!err && doc) {
-        
-        
         if (!_data.purchase || !_data.purchase.purchaseType || !_data.purchase.purchaseType.name) {
           response.error = req.word("Must Select Purchase Type");
           res.json(response);

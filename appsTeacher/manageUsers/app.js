@@ -591,11 +591,11 @@ module.exports = function init(site) {
           } else {
             where["host"] = site.getHostFilter(req.host);
           }
-        } else if (setting.isShared) {
+        } else if (setting.isShared || setting.isCenter) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-
+        
         app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({
             done: true,
@@ -651,7 +651,6 @@ module.exports = function init(site) {
       });
     });
 
-
     site.post({ name: `/api/${app.name}/purchaseTypeTeacher`, require: { permissions: ["login"] } }, (req, res) => {
       let response = {
         done: false,
@@ -664,7 +663,6 @@ module.exports = function init(site) {
         response.list = teacher.purchaseTypeList;
       } else {
         response.error = "Not Exists";
-
       }
 
       res.json(response);

@@ -22,7 +22,6 @@ module.exports = function init(site) {
           setting: setting,
           isTeacher: req.session.selectedTeacherId ? true : false,
           guid: "",
-          setting: setting,
           filter: site.getHostFilter(req.host),
           site_logo: setting.logo?.url || "/images/logo.png",
           site_footer_logo: setting.footerLogo?.url || "/images/logo.png",

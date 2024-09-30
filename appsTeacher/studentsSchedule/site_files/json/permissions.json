@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "parentsReports", "name": "parentsReportsImport", "En": "Import", "Ar": "إستيراد" }
+]

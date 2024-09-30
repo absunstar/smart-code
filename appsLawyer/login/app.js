@@ -25,7 +25,6 @@ module.exports = function init(site) {
       let data = {
         setting: setting,
         guid: "",
-        setting: setting,
         filter: site.getHostFilter(req.host),
         site_logo: setting.logo?.url || "/lawyer/images/logo.png",
         page_image: setting.logo?.url || "/lawyer/images/logo.png",
