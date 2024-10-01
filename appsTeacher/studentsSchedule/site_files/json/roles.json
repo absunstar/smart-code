@@ -2,6 +2,6 @@
     "moduleName" : "public" ,
     "name": "parentsReportsAdmin",
     "En": "Parents Reports Admin",
-    "Ar": "إدارة تقارير الأباء",
+    "Ar": "إدارة تقارير أولياء الأمور",
     "permissions": ["parentsReportsManage"]
 }] 
