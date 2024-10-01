@@ -586,7 +586,7 @@ module.exports = function init(site) {
           });
         }
         if (where["type"] != "teacher") {
-          if ((teacherId = site.getTeacherSetting(req)) && !setting.isCenter) {
+          if ((teacherId = site.getTeacherSetting(req)) && !setting.isCenter && !setting.isShared) {
             where["teacherId"] = teacherId;
           } else {
             where["host"] = site.getHostFilter(req.host);
@@ -595,6 +595,7 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
+        console.log(where);
         
         app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({
