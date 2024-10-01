@@ -296,7 +296,6 @@ app.controller("groups", function ($scope, $http, $timeout) {
         search: $search,
         where: {
           type: "teacher",
-          host : window.location.hostname,
           active: true,
         },
         select: { id: 1, firstName: 1, image: 1, prefix: 1, mobile: 1, subject: 1 },
