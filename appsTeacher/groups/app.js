@@ -256,7 +256,6 @@ module.exports = function init(site) {
 
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, require: { permissions: ["login"] } }, (req, res) => {
-
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || "";
@@ -300,7 +299,16 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
+        if (req.body.today) {
+         let date = site.getDate();
+          let d1 = site.toDate(date);
+          let d2 = site.toDate(date);
+          d2.setDate(d2.getDate() + 1);
+          where['dayList.date'] = { $gte: d1, $lt: d2 };
+        }
+
         
+       
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,
@@ -324,9 +332,13 @@ module.exports = function init(site) {
             let date = site.getDate(_data.date);
 
             let index = doc.dayList.findIndex(
-              (itm) => site.getDate(itm.date).getDate() === date.getDate() && site.getDate(itm.date).getMonth() === date.getMonth() && site.getDate(itm.date).getFullYear() === date.getFullYear() && !itm.isBook
+              (itm) =>
+                site.getDate(itm.date).getDate() === date.getDate() &&
+                site.getDate(itm.date).getMonth() === date.getMonth() &&
+                site.getDate(itm.date).getFullYear() === date.getFullYear() &&
+                !itm.isBook
             );
-            
+
             if (index !== -1) {
               if (!doc.dayList[index].isBook) {
                 result.validDay = doc.dayList[index];
@@ -393,10 +405,10 @@ module.exports = function init(site) {
         response.done = true;
         let list = [];
         for (let i = 0; i < docs.length; i++) {
-          let index = docs[i].studentList.findIndex((itm) => itm.student.id === where['studentList.student.id']);
+          let index = docs[i].studentList.findIndex((itm) => itm.student.id === where["studentList.student.id"]);
           if (index !== -1) {
             list.push({
-              group: { id: docs[i].id,name: docs[i].name, teacher: docs[i].teacher, paymentMethod: docs[i].paymentMethod, price: docs[i].price },
+              group: { id: docs[i].id, name: docs[i].name, teacher: docs[i].teacher, paymentMethod: docs[i].paymentMethod, price: docs[i].price },
               discount: docs[i].studentList[index].discount,
               exempt: docs[i].studentList[index].exempt,
               discountValue: docs[i].studentList[index].discountValue,
@@ -404,7 +416,7 @@ module.exports = function init(site) {
             });
           }
         }
-        
+
         response.list = list;
       } else {
         response.error = err?.message || "Not Exists";
@@ -420,16 +432,13 @@ module.exports = function init(site) {
 
     let _data = req.data;
     app.$collection.find({ id: _data.groupId }, (err, doc) => {
-      
       if (!err && doc) {
         response.done = true;
-          doc.studentList = doc.studentList.filter(s => s.student.id !== _data.studentId)        
-          app.update(doc, (err1, result) => {
-            
-            res.json(response);
-          });
-        
-      }else {
+        doc.studentList = doc.studentList.filter((s) => s.student.id !== _data.studentId);
+        app.update(doc, (err1, result) => {
+          res.json(response);
+        });
+      } else {
         response.error = err?.message || "Not Exists";
         res.json(response);
       }
@@ -443,23 +452,20 @@ module.exports = function init(site) {
 
     let _data = req.data;
     app.$collection.find({ id: _data.groupId }, (err, doc) => {
-      
       if (!err && doc) {
         response.done = true;
-          doc.studentList.unshift({
-            student: { id: _data.student.id, firstName: _data.student.firstName, barcode: _data.student.barcode, mobile: _data.student.mobile, parentMobile: _data.student.parentMobile },
-            attend: false,
-            discount: _data.discount,
-            discountValue: _data.discountValue,
-            requiredPayment: _data.requiredPayment,
-            exempt: _data.exempt,
-          })
-          app.update(doc, (err1, result) => {
-            
-            res.json(response);
-          });
-        
-      }else {
+        doc.studentList.unshift({
+          student: { id: _data.student.id, firstName: _data.student.firstName, barcode: _data.student.barcode, mobile: _data.student.mobile, parentMobile: _data.student.parentMobile },
+          attend: false,
+          discount: _data.discount,
+          discountValue: _data.discountValue,
+          requiredPayment: _data.requiredPayment,
+          exempt: _data.exempt,
+        });
+        app.update(doc, (err1, result) => {
+          res.json(response);
+        });
+      } else {
         response.error = err?.message || "Not Exists";
         res.json(response);
       }
@@ -524,7 +530,6 @@ module.exports = function init(site) {
       }
     });
   };
-
 
   app.init();
   site.addApp(app);

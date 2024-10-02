@@ -4,7 +4,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
   $scope.modalID = "#preparingQuizzesManageModal";
   $scope.modalSearchID = "#preparingQuizzesSearchModal";
   $scope.mode = "add";
-  $scope._search = {};
+  $scope.search = {dateFrom : site.getDate()};
   $scope.structure = {
     image: { url: "/theme1/images/setting/preparingQuizzes.png" },
     active: true,
@@ -229,6 +229,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
+        search: $search,
         where: where,
       },
     }).then(

@@ -299,7 +299,19 @@ module.exports = function init(site) {
             "teacher.firstName": site.get_RegExp(search, "i"),
           });
         }
-
+        if (where && where.dateFrom  && where.dateTo) {
+          let d1 = site.toDate(where.dateFrom);
+          let d2 = site.toDate(where.dateTo);
+          d2.setDate(d2.getDate() + 1);
+          where.date = { $gte: d1, $lt: d2 };
+          delete where.dateFrom;
+          delete where.dateTo;
+        } else if (where.dateFrom) {
+          let d1 = site.toDate(where.dateFrom);
+          let d2 = site.toDate(where.dateFrom);
+          d2.setDate(d2.getDate() + 1);
+          where.date = { $gte: d1, $lt: d2 };
+        }
         if ((teacherId = site.getTeacherSetting(req)) && !setting.isCenter) {
           where["teacherId"] = teacherId;
         } else {

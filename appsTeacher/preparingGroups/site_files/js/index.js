@@ -5,7 +5,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   $scope.modalID = "#preparingGroupsManageModal";
   $scope.modalSearchID = "#preparingGroupsSearchModal";
   $scope.mode = "add";
-  $scope._search = {};
+  $scope.search = {dateFrom : site.getDate()};
   $scope.structure = {
     image: { url: "/theme1/images/setting/preparingGroups.png" },
     active: true,
@@ -206,6 +206,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       url: "/api/groups/all",
       data: {
         search: $search,
+        today : true,
         where: {
           active: true,
         },
@@ -279,6 +280,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
+        search : $search,
         where: where,
       },
     }).then(

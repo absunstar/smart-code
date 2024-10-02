@@ -7,9 +7,13 @@
       <i-button type="add" x-permissions="preparingGroupsAdd || preparingGroupsManage" label="##word.New##" ng-click="showAdd()"></i-button>
       <i-upload api="api/preparingGroups/import" label="Import" x-permissions="preparingGroupsImport || preparingGroupsManage"></i-upload>
     </div>
-
+    <div class="row">
+      <i-date class="col6" ng-model="search.dateFrom" label="##word.Date From##"></i-date>
+      <i-date class="col6" ng-model="search.dateTo" label="##word.Date To##"></i-date>
+    </div>
     <div class="row padding">
-      <i-control ng-model="$search" x-permissions="preparingGroupsSearch || preparingGroupsManage"></i-control>
+      <i-control ng-model="$search" label="##word.Search All" class="col9" x-permissions="preparingGroupsSearch || preparingGroupsManage"></i-control>
+      <i-button type="search" label="##word.Search" ng-click="getAll(search)"></i-button>
     </div>
     <div class="table-responsive">
       <table class="table hover bold" id="t1">
@@ -20,7 +24,7 @@
           <th>##word.Status##</th>
           <th class="not-print">##word.Actions##</th>
         </tr>
-        <tr ng-repeat="item in list | filter:$search">
+        <tr ng-repeat="item in list">
           <td class="center">{{item.date | date : 'dd / MM / yyyy'}}</td>
           <td class="center">{{item.group.name}}</td>
           <td class="center">{{item.teacher.firstName}}</td>
