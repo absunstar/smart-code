@@ -486,7 +486,7 @@ module.exports = function init(site) {
                   if (user.socialBrowserID) {
                     if (user.socialBrowserID != _data.socialBrowserID) {
                       response.error = "The video cannot be watched due to a new device. Please contact support";
-                      
+
                       res.json(response);
                       return;
                     }
@@ -501,17 +501,12 @@ module.exports = function init(site) {
                     res.json(response);
                     return;
                   } else if (doc.typeExpiryView.name == "day") {
-
-
-
                     var viewDate = site.getDate(user.viewsList[index].date);
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
                     let newDate = site.getDate();
                     let diffTime = Math.abs(viewDate - newDate);
-                    let  remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                    console.log(remainDay,"bbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+                    let remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
                     if (remainDay < 1) {
-                      
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
@@ -584,10 +579,12 @@ module.exports = function init(site) {
                     res.json(response);
                     return;
                   } else if (doc.typeExpiryView.name == "day") {
-                    let obj = { ...user.viewsList[index] };
-                    var viewDate = site.getDate(obj.date);
+                    var viewDate = site.getDate(user.viewsList[index].date);
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-                    if (site.getDate().getTime() > viewDate.getTime()) {
+                    let newDate = site.getDate();
+                    let diffTime = Math.abs(viewDate - newDate);
+                    let remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    if (remainDay < 1) {
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
