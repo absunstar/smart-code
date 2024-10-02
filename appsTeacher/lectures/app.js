@@ -500,10 +500,15 @@ module.exports = function init(site) {
                     res.json(response);
                     return;
                   } else if (doc.typeExpiryView.name == "day") {
-                    let obj = { ...user.viewsList[index] };
-                    var viewDate = site.getDate(obj.date);
+
+
+
+                    var viewDate = site.getDate(user.viewsList[index].date);
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-                    if (site.getDate().getTime() > viewDate.getTime()) {
+                    let newDate = site.getDate();
+                    let diffTime = Math.abs(viewDate - newDate);
+                    
+                    if (diffTime > 1) {
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
