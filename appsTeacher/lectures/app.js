@@ -486,7 +486,6 @@ module.exports = function init(site) {
                   if (user.socialBrowserID) {
                     if (user.socialBrowserID != _data.socialBrowserID) {
                       response.error = "The video cannot be watched due to a new device. Please contact support";
-                      console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
                       
                       res.json(response);
                       return;
@@ -509,8 +508,10 @@ module.exports = function init(site) {
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
                     let newDate = site.getDate();
                     let diffTime = Math.abs(viewDate - newDate);
-                  let  remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    let  remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    console.log(remainDay,"bbbbbbbbbbbbbbbbbbbbbbbbbbbb");
                     if (remainDay < 1) {
+                      
                       response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
