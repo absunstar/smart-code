@@ -508,8 +508,8 @@ module.exports = function init(site) {
                     let newDate = site.getDate();
                     let diffTime = Math.abs(viewDate - newDate);
                   let  remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                    if (remainDay > 1) {
-                      response.error = remainDay;
+                    if (remainDay < 1) {
+                      response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
                     }
