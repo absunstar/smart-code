@@ -509,7 +509,7 @@ module.exports = function init(site) {
                     let diffTime = Math.abs(viewDate - newDate);
                     
                     if (diffTime > 1) {
-                      response.error = "The time limit for watching this video has been exceeded";
+                      response.error = diffTime;
                       res.json(response);
                       return;
                     }
