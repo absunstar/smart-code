@@ -507,9 +507,9 @@ module.exports = function init(site) {
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
                     let newDate = site.getDate();
                     let diffTime = Math.abs(viewDate - newDate);
-                    
-                    if (diffTime > 1) {
-                      response.error = diffTime;
+                  let  remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    if (remainDay > 1) {
+                      response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
                     }
