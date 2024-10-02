@@ -280,7 +280,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
-        search : $search,
+        search : $scope.$search,
         where: where,
       },
     }).then(
