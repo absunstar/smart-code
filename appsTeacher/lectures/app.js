@@ -486,6 +486,8 @@ module.exports = function init(site) {
                   if (user.socialBrowserID) {
                     if (user.socialBrowserID != _data.socialBrowserID) {
                       response.error = "The video cannot be watched due to a new device. Please contact support";
+                      console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+                      
                       res.json(response);
                       return;
                     }
