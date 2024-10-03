@@ -300,13 +300,9 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         if (req.body.today) {
-          let date = site.getDate();
-          let d1 = site.toDate(date);
-          let d2 = site.toDate(date);
-          d2.setDate(d2.getDate() + 1);
-          where["dayList.date"] = { $gte: d1, $lt: d2 };
+          where["dayList.date"] = site.getDate();
         }
-
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,

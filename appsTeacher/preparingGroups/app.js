@@ -307,16 +307,19 @@ module.exports = function init(site) {
           delete where.dateFrom;
           delete where.dateTo;
         } else if (where.dateFrom) {
-          let d1 = site.toDate(where.dateFrom);
-          let d2 = site.toDate(where.dateFrom);
+          let d1 = site.getDate(where.dateFrom);
+          let d2 = site.getDate(where.dateFrom);
           d2.setDate(d2.getDate() + 1);
           where.date = { $gte: d1, $lt: d2 };
+          delete where.dateFrom;
         }
         if ((teacherId = site.getTeacherSetting(req)) && !setting.isCenter) {
           where["teacherId"] = teacherId;
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
+        console.log(where);
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {          
           res.json({
             done: true,

@@ -57,11 +57,13 @@
       </div>
       <div class="row">
         <div class="col6">
-          <i-button type="search" label="##word.All##" ng-click="$search = ''; $search2 = ''"></i-button>
-          <i-button type="search" label="##word.Attendance##" ng-click="$search2 = 'true'"></i-button>
-          <i-button type="search" label="##word.Absences##" ng-click="$search2 = 'false'"></i-button>
-          <i-button type="search" label="##word.Payment Made##" ng-click="$search2 = 'donePaid'"></i-button>
-          <i-button type="search" label="##word.Payment Not Made##" ng-click="$search2 = 'notPaid'"></i-button>
+          <div class="row">
+            <i-button type="search" label="##word.All##" ng-click="$search = ''; $search2 = ''"></i-button>
+            <i-button type="search" label="##word.Attendance##" ng-click="$search2 = 'true'"></i-button>
+            <i-button type="search" label="##word.Absences##" ng-click="$search2 = 'false'"></i-button>
+            <i-button type="search" label="##word.Payment Made##" ng-click="$search2 = 'donePaid'"></i-button>
+            <i-button type="search" label="##word.Payment Not Made##" ng-click="$search2 = 'notPaid'"></i-button>
+          </div>
         </div>
         <div class="table-responsive col6">
           <table class="table hover bold" id="t-students">

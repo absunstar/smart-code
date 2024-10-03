@@ -227,7 +227,7 @@
             <i-control label="##word.Address##" ng-model="item.address"> </i-control>
           </div>
         </fieldset>
-        <fieldset ng-show="setting.isCenter">
+        <fieldset ng-show="setting.isCenter && '##query.type##' == 'student'">
           <legend>##word.Groups##</legend>
           <div class="row" ng-show="item.$selectGroup.group">
             <div class="person-cart">
