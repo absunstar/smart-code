@@ -673,6 +673,33 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     }, 300);
   };
 
+  $scope.showPaidGroup = function (_item) {
+    $scope.busy = true;
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/groups/getStudentGroupPay`,
+      data: {
+        groupId: _item.group.id,
+        studentId: _item.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.studentGroupItem = _item;
+          $scope.studentItem = response.data.doc;
+          site.showModal('#paymentsModal')
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.calcRequiredPayment = function (item) {
     $scope.error = "";
     if (item.group && item.group.id) {

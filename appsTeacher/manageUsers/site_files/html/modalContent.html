@@ -307,7 +307,8 @@
                   <p ng-show="g.exempt">##word.Exempt##</p>
                 </td>
                 <td class="center">
-                  <i-button type="delete" label="##word.Delete##" ng-click="deleteStudentGroup($index,g)"></i-button>
+<!--                   <i-button type="push" ng-show="g.group.paymentMethod.name == 'monthly'" label="##word.Paid##" ng-click="showPaidGroup(g)"></i-button>
+ -->                  <i-button type="delete" label="##word.Delete##" ng-click="deleteStudentGroup($index,g)"></i-button>
                 </td>
               </tr>
             </table>

@@ -300,15 +300,13 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         if (req.body.today) {
-         let date = site.getDate();
+          let date = site.getDate();
           let d1 = site.toDate(date);
           let d2 = site.toDate(date);
           d2.setDate(d2.getDate() + 1);
-          where['dayList.date'] = { $gte: d1, $lt: d2 };
+          where["dayList.date"] = { $gte: d1, $lt: d2 };
         }
 
-        
-       
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,
@@ -418,6 +416,27 @@ module.exports = function init(site) {
         }
 
         response.list = list;
+      } else {
+        response.error = err?.message || "Not Exists";
+      }
+      res.json(response);
+    });
+  });
+
+  site.post({ name: `/api/${app.name}/getStudentGroupPay`, public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.data;
+    app.view({ id: where.groupId }, (err, doc) => {
+      if (!err && doc) {
+        response.done = true;
+        let index = doc.studentList.findIndex((itm) => itm.student.id === where.studentId);
+        if (index !== -1) {
+          response.doc = doc.studentList[index];
+        }
+
       } else {
         response.error = err?.message || "Not Exists";
       }
