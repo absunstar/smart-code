@@ -201,7 +201,9 @@ module.exports = function init(site) {
           _data.editUserInfo = req.getUserFinger();
           _data.dayList= _data.dayList || []
           _data.dayList.forEach(d=>{
-            d.date = site.getDate(d.date)
+            d.date = site.getDate(d.date);
+            console.log(d.date);
+            
           })
 
           app.update(_data, (err, result) => {
