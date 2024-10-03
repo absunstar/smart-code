@@ -169,7 +169,10 @@ module.exports = function init(site) {
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
         }
-
+        _data.daylist= _data.daylist || []
+        _data.daylist.forEach(d=>{
+          d.date = site.getDate(d.date)
+        })
         _data.host = site.getHostFilter(req.host);
         app.add(_data, (err, doc) => {
           if (!err && doc) {
@@ -196,6 +199,10 @@ module.exports = function init(site) {
 
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
+          _data.daylist= _data.daylist || []
+          _data.daylist.forEach(d=>{
+            d.date = site.getDate(d.date)
+          })
 
           app.update(_data, (err, result) => {
             if (!err) {

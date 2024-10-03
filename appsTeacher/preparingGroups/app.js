@@ -318,7 +318,6 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        console.log(where);
         
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {          
           res.json({
