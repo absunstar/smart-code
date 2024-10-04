@@ -479,8 +479,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.selectTeacher = function () {
     $scope.error = "";
-    $scope.item.subject = { ...$scope.item.teacher.subject };
-    delete $scope.item.teacher.subject;
+    $scope.item.subject = { ...$scope.item.teacher.subject };    
   };
 
   $scope.pushSpceficIndex = function (index) {
@@ -535,6 +534,8 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.showStudentPayments = function (item) {
     $scope.error = "";
+
+    $scope.studentGroupItem = $scope.item;
     $scope.studentItem = item;
     $scope.studentItem.$date = site.getDate();
     let index = $scope.monthList.findIndex((itm) => itm.code == $scope.studentItem.$date.getMonth());

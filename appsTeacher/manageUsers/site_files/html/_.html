@@ -1,6 +1,7 @@
 <div ng-controller="manageUsers" class="loaded">
   <div class="row" x-permissions="manageUsersUi || manageUsersManage || manageStudents || manageTeachers">
     <div x-import="manageUsers/modal.html"></div>
+    <div x-import="groups/paymentsModal.html"></div>
    <!--  <div x-import="groups/paymentsModal.html"></div> -->
 
     <div class="top-actions">
@@ -79,4 +80,6 @@
     <i-button x-permissions="manageUsersExport || manageUsersManage || manageStudents || manageTeachers" type="export" label="##word.Export to excel##" onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')">
     </i-button>
   </div>
+  <div x-import="groups/thermalPrint.html"></div>
+
 </div>

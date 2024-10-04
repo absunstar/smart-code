@@ -124,13 +124,7 @@
         <fieldset class="border" x-data="setting.isEducationalPlatform" ng-show="'##query.type##' == 'teacher'">
           <legend>##word.Purchase Types##</legend>
           <div class="row">
-            <i-list
-              label="##word.Purchase Type##"
-              class="col3"
-              ng-model="item.$purchaseType"
-              display="name##session.lang##"
-              items="purchaseTypeList"
-            ></i-list>
+            <i-list label="##word.Purchase Type##" class="col3" ng-model="item.$purchaseType" display="name##session.lang##" items="purchaseTypeList"></i-list>
             <i-control class="col3" label="##word.Account Number##" ng-model="item.$accountNumber"> </i-control>
             <i-control class="col3" label="##word.Account Name##" ng-model="item.$accountName"> </i-control>
             <i-button type="push" label="##word.Add Type##" ng-click="addPurchaseTypeList()"></i-button>
@@ -272,14 +266,14 @@
             <i-control
               type="number"
               class="col2"
-              ng-change="calcRequiredPayment(item.$selectGroup)"
+              ng-change="calcRequiredPayment1(item.$selectGroup)"
               ng-hide="item.$selectGroup.exempt"
               label="##word.Discount## %"
               ng-model="item.$selectGroup.discount"
             >
             </i-control>
-            <i-button type="save" class="col2" ng-hide="item.$selectGroup.exempt" label="##word.Exempt##" ng-click="exemptPayment(item.$selectGroup,true)"></i-button>
-            <i-button type="exit" class="col2" ng-show="item.$selectGroup.exempt" label="##word.Cancel Exempt##" ng-click="exemptPayment(item.$selectGroup,false)"></i-button>
+            <i-button type="save" class="col2" ng-hide="item.$selectGroup.exempt" label="##word.Exempt##" ng-click="exemptPayment1(item.$selectGroup,true)"></i-button>
+            <i-button type="exit" class="col2" ng-show="item.$selectGroup.exempt" label="##word.Cancel Exempt##" ng-click="exemptPayment1(item.$selectGroup,false)"></i-button>
             <i-button type="push" class="col2" label="##word.Add To Groups##" ng-click="addGroup()"> </i-button>
           </div>
 
@@ -307,8 +301,8 @@
                   <p ng-show="g.exempt">##word.Exempt##</p>
                 </td>
                 <td class="center">
-<!--                   <i-button type="push" ng-show="g.group.paymentMethod.name == 'monthly'" label="##word.Paid##" ng-click="showPaidGroup(g)"></i-button>
- -->                  <i-button type="delete" label="##word.Delete##" ng-click="deleteStudentGroup($index,g)"></i-button>
+                  <i-button type="push" ng-show="g.group.paymentMethod.name == 'monthly'" label="##word.Paid##" ng-click="showPaidGroup(g)"></i-button>
+                  <i-button type="delete" label="##word.Delete##" ng-click="deleteStudentGroup($index,g)"></i-button>
                 </td>
               </tr>
             </table>

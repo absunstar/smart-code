@@ -672,6 +672,24 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       }
     }, 300);
   };
+  $scope.saveStudentPayment = function () {
+    $scope.busy = true;
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/groups/saveStudentPayment`,
+      data: {
+        groupId: $scope.studentGroupItem.id,
+        studentId: $scope.item.id,
+        studentObject: $scope.studentItem,
+      },
+    }).then(function (response) {
+      $scope.busy = false;
+      if (response.data.done) {
+        site.hideModal("#paymentsModal");
+      }
+    });
+  };
 
   $scope.showPaidGroup = function (_item) {
     $scope.busy = true;
@@ -681,15 +699,23 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       url: `${$scope.baseURL}/api/groups/getStudentGroupPay`,
       data: {
         groupId: _item.group.id,
-        studentId: _item.id,
+        studentId: $scope.item.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.studentGroupItem = _item;
+          $scope.studentGroupItem = _item.group;
+          $scope.studentGroupItem.$studentScreen = true;
           $scope.studentItem = response.data.doc;
-          site.showModal('#paymentsModal')
+
+          $scope.studentItem.$date = site.getDate();
+          let index = $scope.monthList.findIndex((itm) => itm.code == $scope.studentItem.$date.getMonth());
+          if (index !== -1) {
+            $scope.studentItem.$month = $scope.monthList[index];
+          }
+          $scope.calcRequiredPayment($scope.studentItem);
+          site.showModal("#paymentsModal");
         } else {
           $scope.error = response.data.error;
         }
@@ -700,7 +726,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.calcRequiredPayment = function (item) {
+  $scope.calcRequiredPayment1 = function (item) {
     $scope.error = "";
     if (item.group && item.group.id) {
       $timeout(() => {
@@ -847,15 +873,180 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       $scope.item.$subject = {};
     }
   };
-  $scope.exemptPayment = function (item, option) {
+  $scope.exemptPayment1 = function (item, option) {
     if (option == true) {
       item.discount = 100;
     } else if (option == false) {
       item.discount = 0;
     }
     item.exempt = option;
-    $scope.calcRequiredPayment(item);
+    $scope.calcRequiredPayment1(item);
   };
+
+  $scope.thermalPrint = function (obj, subObj) {
+    $scope.error = "";
+    if ($scope.busy) return;
+    $scope.busy = true;
+    if ($scope.setting.thermalPrinter) {
+      $("#thermalPrint").removeClass("hidden");
+      $scope.thermal = {
+        printDate: site.getDate(),
+        date: subObj.date,
+        month: obj.month,
+        groupName: $scope.studentGroupItem.name,
+        student: $scope.studentItem.student,
+        price: subObj.price,
+        remain: obj.remain,
+        totalNet: obj.price,
+      };
+
+      let printer = $scope.setting.thermalPrinter;
+      if ("##user.thermalPrinter##" && "##user.thermalPrinter.id##" > 0) {
+        printer = JSON.parse("##user.thermalPrinter##");
+      }
+      $timeout(() => {
+        site.print({
+          selector: "#thermalPrint",
+          ip: printer.ipDevice,
+          port: printer.portDevice,
+          pageSize: "Letter",
+          printer: printer.ip.name.trim(),
+          dpi: { horizontal: 200, vertical: 600 },
+        });
+      }, 500);
+    } else {
+      $scope.error = "##word.Thermal Printer Must Select##";
+    }
+    $scope.busy = false;
+    $timeout(() => {
+      $("#thermalPrint").addClass("hidden");
+    }, 8000);
+  };
+
+  $scope.changePaymentMonth = function (item) {
+    $scope.error = "";
+    item.$date = site.getDate(item.$date);
+    let index = $scope.monthList.findIndex((itm) => itm.code == item.$date.getMonth());
+    if (index !== -1) {
+      item.$month = $scope.monthList[index];
+    }
+  };
+
+  $scope.addStudentPayment = function (item) {
+    $scope.error = "";
+
+    item.paymentList = item.paymentList || [];
+    if (item.$price > $scope.studentItem.requiredPayment) {
+      $scope.error = "##word.The amount paid is greater than what was required to be paid##";
+      return;
+    }
+    if (item.$date && item.$month && item.$month.name && item.$price > 0) {
+      if (item.paymentList.some((p) => p.month.name == item.$month.name)) {
+        $scope.error = "##word.This Month Is Exist##";
+        return;
+      }
+      item.paymentList.unshift({ date: item.$date, price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: site.getDate(), price: item.$price }] });
+      delete item.$price;
+      delete item.$month;
+      delete item.$remain;
+      item.$date = site.getDate();
+      if ($scope.setting.autoPrint) {
+        $scope.thermalPrint(item.paymentList[0], item.paymentList[0].paymentList[0]);
+      }
+    } else {
+      $scope.error = "##word.Data must be correct completed##";
+    }
+  };
+  $scope.addSubPayment = function (item) {
+    if (item.$date && item.$price) {
+      if (item.$price > item.remain) {
+        $scope.error = "##word.The payment cannot be greater than the remaining amount##";
+        return;
+      }
+      item.paymentList.unshift({ date: item.$date, price: item.$price });
+      item.price += item.$price;
+      item.remain = $scope.studentItem.requiredPayment - item.price;
+      if ($scope.setting.autoPrint) {
+        $scope.thermalPrint(item, item.paymentList[0]);
+      }
+      delete item.$price;
+    } else {
+      $scope.error = "##word.Data must be correct completed##";
+    }
+  };
+  $scope.calcPayments = function (item) {
+    $scope.error = "";
+    $timeout(() => {
+      item.paymentList = item.paymentList || [];
+      item.price = 0;
+      item.paymentList.forEach((_item) => {
+        item.price += _item.price;
+      });
+      item.remain = $scope.studentItem.requiredPayment - item.price;
+    }, 300);
+  };
+  $scope.calcRequiredPayment = function (item) {
+    $scope.error = "";
+    $timeout(() => {
+      item.discountValue = ($scope.studentGroupItem.price * item.discount) / 100;
+      item.requiredPayment = $scope.studentGroupItem.price - item.discountValue;
+    }, 300);
+  };
+  $scope.exemptPayment = function (item, option) {
+    if (option == true) {
+      item.requiredPayment = 0;
+      item.discount = 100;
+    } else if (option == false) {
+      item.requiredPayment = $scope.item.price;
+      item.discount = 0;
+    }
+    item.exempt = option;
+  };
+  $scope.calcRemain = function (item) {
+    $scope.error = "";
+    $timeout(() => {
+      if (item.$price > item.requiredPayment) {
+        return;
+      }
+      item.$remain = item.requiredPayment - item.$price;
+    }, 300);
+  };
+
+  $scope.exceptionRemain = function (item, option) {
+    $scope.error = "";
+    if (option == true) {
+      item.remain = 0;
+      item.exception = true;
+    } else if (option == false) {
+      item.remain = $scope.studentItem.requiredPayment - item.price;
+
+      item.exception = false;
+    }
+  };
+  $scope.getMonthList = function () {
+    $scope.busy = true;
+    $scope.monthList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/monthList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.monthList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  if ($scope.setting && $scope.setting.logo) {
+    $scope.invoiceLogo = document.location.origin + $scope.setting.logo.url;
+  }
   $scope.getAll();
   $scope.getNationalities();
   $scope.getCountriesList();
@@ -868,4 +1059,5 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
   }
   $scope.getSubjectsList();
   $scope.getPurchaseTypeList();
+  $scope.getMonthList();
 });

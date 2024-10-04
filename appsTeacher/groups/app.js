@@ -169,10 +169,10 @@ module.exports = function init(site) {
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
         }
-        _data.dayList= _data.dayList || []
-        _data.dayList.forEach(d=>{
-          d.date = site.getDate(d.date)
-        })
+        _data.dayList = _data.dayList || [];
+        _data.dayList.forEach((d) => {
+          d.date = site.getDate(d.date);
+        });
         _data.host = site.getHostFilter(req.host);
         app.add(_data, (err, doc) => {
           if (!err && doc) {
@@ -199,12 +199,10 @@ module.exports = function init(site) {
 
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
-          _data.dayList= _data.dayList || []
-          _data.dayList.forEach(d=>{
+          _data.dayList = _data.dayList || [];
+          _data.dayList.forEach((d) => {
             d.date = site.getDate(d.date);
-            console.log(d.date);
-            
-          })
+          });
 
           app.update(_data, (err, result) => {
             if (!err) {
@@ -311,7 +309,7 @@ module.exports = function init(site) {
         if (req.body.today) {
           where["dayList.date"] = site.getDate();
         }
-        
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,
@@ -411,7 +409,16 @@ module.exports = function init(site) {
           let index = docs[i].studentList.findIndex((itm) => itm.student.id === where["studentList.student.id"]);
           if (index !== -1) {
             list.push({
-              group: { id: docs[i].id, name: docs[i].name, teacher: docs[i].teacher, paymentMethod: docs[i].paymentMethod, price: docs[i].price },
+              group: {
+                id: docs[i].id,
+                name: docs[i].name,
+                teacher: docs[i].teacher,
+                paymentMethod: docs[i].paymentMethod,
+                price: docs[i].price,
+                educationalLevel: docs[i].educationalLevel,
+                schoolYear: docs[i].schoolYear,
+                subject: docs[i].subject,
+              },
               discount: docs[i].studentList[index].discount,
               exempt: docs[i].studentList[index].exempt,
               discountValue: docs[i].studentList[index].discountValue,
@@ -428,6 +435,35 @@ module.exports = function init(site) {
     });
   });
 
+  site.post({ name: `/api/${app.name}/saveStudentPayment`, public: true }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let data = req.data;
+    app.view({ id: data.groupId }, (err, doc) => {
+      if (!err && doc) {
+        let index = doc.studentList.findIndex((itm) => itm.student.id === data.studentId);
+        if (index !== -1) {
+          response.doc = doc.studentList[index];
+          doc.studentList[index] = data.studentObject;
+          app.update(doc, (err, result) => {
+            if (!err) {
+              response.done = true;
+              response.result = result;
+            } else {
+              response.error = err.message;
+            }
+            res.json(response);
+          });
+        }
+      } else {
+        response.error = err?.message || "Not Exists";
+        res.json(response);
+      }
+    });
+  });
+
   site.post({ name: `/api/${app.name}/getStudentGroupPay`, public: true }, (req, res) => {
     let response = {
       done: false,
@@ -437,11 +473,11 @@ module.exports = function init(site) {
     app.view({ id: where.groupId }, (err, doc) => {
       if (!err && doc) {
         response.done = true;
+
         let index = doc.studentList.findIndex((itm) => itm.student.id === where.studentId);
         if (index !== -1) {
           response.doc = doc.studentList[index];
         }
-
       } else {
         response.error = err?.message || "Not Exists";
       }

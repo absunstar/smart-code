@@ -45,36 +45,36 @@
         <div class="person-cart">
           <div class="row">
             <div class="col7">
-              <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{item.name}}</p>
+              <p class="bold"><span class="darkGray">##word.Group Name## : </span> {{studentGroupItem.name}}</p>
             </div>
             <div class="col5">
-              <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.subject.name}}</p>
+              <p class="bold"><span class="darkGray">##word.Subject## : </span> {{studentGroupItem.subject.name}}</p>
             </div>
           </div>
           <div class="row">
             <div class="col7">
-              <p class="bold"><span class="darkGray">##word.Teacher## : </span> {{item.teacher.firstName}}</p>
+              <p class="bold"><span class="darkGray">##word.Teacher## : </span> {{studentGroupItem.teacher.firstName}}</p>
             </div>
             <div class="col5">
-              <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{item.teacher.mobile}}</p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col7">
-              <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.educationalLevel.name}}</p>
-            </div>
-            <div class="col5">
-              <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.schoolYear.name}}</p>
+              <p class="bold"><span class="darkGray">##word.Mobile## : </span> {{studentGroupItem.teacher.mobile}}</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col7">
-              <p class="bold"><span class="darkGray">##word.Payment Method## : </span> {{item.paymentMethod.name##session.lang##}}</p>
+              <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{studentGroupItem.educationalLevel.name}}</p>
             </div>
             <div class="col5">
-              <p class="bold"><span class="darkGray">##word.Price## : </span> {{item.price}} ##word.$##</p>
+              <p class="bold"><span class="darkGray">##word.School Year## : </span> {{studentGroupItem.schoolYear.name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Payment Method## : </span> {{studentGroupItem.paymentMethod.name##session.lang##}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Price## : </span> {{studentGroupItem.price}} ##word.$##</p>
             </div>
           </div>
         </div>
@@ -139,7 +139,9 @@
     </div>
 
     <div class="modal-footer center">
-      <i-button type="save" label="##word.Save##" onclick="site.hideModal( '#paymentsModal')"></i-button>
+      <i-button type="save" ng-hide="studentGroupItem.$studentScreen" label="##word.Save##" onclick="site.hideModal( '#paymentsModal')"></i-button>
+      <i-button type="save" ng-show="studentGroupItem.$studentScreen" label="##word.Save##" ng-click="saveStudentPayment()"></i-button>
+
     </div>
   </div>
 </div>
