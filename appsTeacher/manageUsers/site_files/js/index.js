@@ -120,6 +120,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
           $scope.item = response.data.doc;
           if ($scope.setting.isCenter && "##query.type##" == "student") {
             $scope.getStudentGroupsList();
+            $scope.getGroupsList();
           }
         } else {
           $scope.error = response.data.error;
@@ -630,7 +631,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       return;
     }
     if (!$scope.item.educationalLevel || !$scope.item.educationalLevel.id || !$scope.item.schoolYear || !$scope.item.schoolYear.id) {
-      $scope.error = "##word.Must Select Educational Level And School Year";
+      $scope.error = "##word.Must Select Educational Level And School Year##";
       return;
     }
     $scope.busy = true;

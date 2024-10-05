@@ -278,9 +278,7 @@ module.exports = function init(site) {
         };
         if (search) {
           where.$or = [];
-          where.$or.push({
-            id: site.get_RegExp(search, "i"),
-          });
+        
           where.$or.push({
             name: site.get_RegExp(search, "i"),
           });
@@ -309,7 +307,7 @@ module.exports = function init(site) {
         if (req.body.today) {
           where["dayList.date"] = site.getDate();
         }
-
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,
