@@ -1,0 +1,11 @@
+[
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesManage", "En": "Manage", "Ar": "إدارة" },
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesAdd", "En": "Add", "Ar": "إضافة" },
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesUpdate", "En": "Edit", "Ar": "تعديل" },
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesDelete", "En": "Delete", "Ar": "حذف" },
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesView", "En": "View", "Ar": "عرض" },
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesSearch", "En": "Search", "Ar": "بحث" },
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesExport", "En": "Export", "Ar": "تصدير" },
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesPrint", "En": "Print", "Ar": "طباعة" },
+  { "moduleName": "public", "screenName": "printBarcodes", "name": "printBarcodesUi", "En": "UI", "Ar": "الواجهة الرسومية" }
+]

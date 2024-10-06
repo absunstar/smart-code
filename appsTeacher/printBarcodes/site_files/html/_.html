@@ -1,0 +1,18 @@
+<div ng-controller="printBarcodes" class="loaded">
+  <div class="row" x-permissions="printBarcodesUi || printBarcodesManage">
+
+    <fieldset id="printCodeData">
+      <legend>##word.Print##</legend>
+      <div class="row">
+        <i-control class="col4" v="r" type="number" ng-model="print.from" label="##word.Serial From##"></i-control>
+        <i-control class="col4" v="r" type="number" ng-model="print.to" label="##word.Serial To##"></i-control>
+          <i-button type="add" label="##word.Generate##" ng-click="barCodesGenerate()"></i-button>
+          <i-button type="print" label="##word.Print##" ng-click="barCodesPrint()"></i-button>
+      </div>
+    </fieldset>
+
+    <h2 class="error">{{error}}</h2>
+   
+    <div id="printBarcodes" x-import="printBarcodes/printBarcodesPrint.html"></div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "printBarcodesAdmin",
+    "En": "Print Barcodes Admin",
+    "Ar": "إدارة طباعة باركود",
+    "permissions": ["printBarcodesManage"]
+}]

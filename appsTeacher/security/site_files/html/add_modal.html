@@ -57,11 +57,11 @@
                       <i-control v="r" class="col6" label="##word.last Name##" ng-model="user.lastName"></i-control>
                     </div>
 
-                
                     <div class="row">
-                      <i-control v="r" class="col4" label="##word.Mobile##" ng-model="user.mobile"></i-control>
+                      <i-control v="r" class="col6" label="##word.Mobile##" ng-model="user.mobile"></i-control>
+                      <i-list ng-search="user.$printerPath" class="col6" display="name" ng-model="user.thermalPrinter" label="##word.Thermal printer##" items="printersPathsList"> </i-list>
                     </div>
-                 
+
                     <i-textarea ng-model="user.notes" label="##word.Notes##"></i-textarea>
                   </form>
                 </div>

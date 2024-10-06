@@ -76,6 +76,13 @@
     </a>
   </li>
 
+  <li class="menu-item" x-permissions="printBarcodesUi || printBarcodesManage">
+    <a class="tab-link" href="/printBarcodes" >
+      <i class="fas fa-globe"></i>
+      <span> ##word.Generate Barcodes## </span>
+    </a>
+  </li>
+
   <li class="menu-item" x-data="setting.isEducationalPlatform" ng-show="'##data.setting.showLectures##' == 'true'">
     <a class="tab-link" href="/lectures" x-permissions="lecturesUi || lecturesManage">
       <i class="fas fa-globe"></i>

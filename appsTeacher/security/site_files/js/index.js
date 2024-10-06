@@ -330,7 +330,39 @@ app.controller("security", function ($scope, $http, $interval) {
     );
   };
 
+  $scope.getPrintersPaths = function () {
+    $scope.busy = true;
+    $scope.printersPathsList = [];
+    $http({
+      method: "POST",
+      url: "/api/printersPaths/all",
+      data: {
+        where: { active: true },
+        select: {
+          id: 1,
+          code: 1,
+          ip: 1,
+          name: 1,
+          ipDevice: 1,
+          portDevice: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.printersPathsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.loadAll();
   $scope.loadRoles();
   $scope.loadPermissions();
+  $scope.getPrintersPaths();
 });
