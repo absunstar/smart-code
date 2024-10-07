@@ -68,7 +68,12 @@
       <span> ##word.Printers Paths## </span>
     </a>
   </li>
-
+  <li class="menu-item" x-data="setting.isFaculty">
+    <a class="tab-link" href="/news" x-permissions="newsUi || newsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.News## </span>
+    </a>
+  </li>
   <li class="menu-item" x-data="setting.isEducationalPlatform">
     <a class="tab-link" href="/codes" x-permissions="codesUi || codesManage">
       <i class="fas fa-globe"></i>

@@ -31,6 +31,7 @@
             <i-control class="col3" type="number" label="##word.Packages Limit##" ng-model="siteSetting.packagesLimit"> </i-control>
             <i-control class="col3" type="number" label="##word.Lectures Limit##" ng-model="siteSetting.lecturesLimit"> </i-control>
             <i-control class="col3" type="number" label="##word.Books Limit##" ng-model="siteSetting.booksLimit"> </i-control>
+            <i-control class="col3" ng-show="siteSetting.isFaculty" type="number" label="##word.News Limit##" ng-model="siteSetting.newsLimit"> </i-control>
           </div>
           <fieldset>
             <legend>##word.Social Media Accounts##</legend>
@@ -96,6 +97,7 @@
                 <div class="row">
                   <i-checkbox label="##word.Educational Platform##" x-permissions="admin" ng-model="siteSetting.isEducationalPlatform"> </i-checkbox>
                   <i-checkbox label="##word.Active Center##" x-permissions="admin" ng-model="siteSetting.isCenter"> </i-checkbox>
+                  <i-checkbox label="##word.Faculty Site##" x-permissions="admin" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isFaculty"> </i-checkbox>
                   <i-checkbox label="##word.Shared Site##" x-permissions="admin" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isShared"> </i-checkbox>
                   <i-checkbox label="##word.Online active##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isOnline"> </i-checkbox>
                   <i-checkbox label="##word.Cities And Areas Show##" ng-model="siteSetting.citiesAndAreasShow"> </i-checkbox>
@@ -198,7 +200,6 @@
       <div id="themePage" class="tab-content">
         <div class="article-part">
           <div class="row">
-      
             <div class="row padding margin border">
               <i-control v="r" class="col3" type="color" ng-model="siteSetting.siteBackground1" label="##word.Background## 1"></i-control>
               <i-control class="col3" type="color" ng-model="siteSetting.siteBackground2" label="##word.Background## 2"></i-control>

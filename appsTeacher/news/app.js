@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   let app = {
-    name: "printBarcodes",
+    name: "news",
     allowMemory: false,
     memoryList: [],
-    allowCache: true,
+    allowCache: false,
     cacheList: [],
     allowRoute: true,
     allowRouteGet: true,
@@ -13,29 +13,27 @@ module.exports = function init(site) {
     allowRouteView: true,
     allowRouteAll: true,
   };
-
+  site.newsList = site.newsList || [];
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    if (app.allowMemory) {
-      app.$collection.findMany({}, (err, docs) => {
-        if (!err) {
-          if (docs.length == 0) {
-            app.cacheList.forEach((_item, i) => {
-              app.$collection.add(_item, (err, doc) => {
-                if (!err && doc) {
-                  app.memoryList.push(doc);
-                }
-              });
-            });
-          } else {
-            docs.forEach((doc) => {
-              app.memoryList.push(doc);
-            });
-          }
-        }
-      });
-    }
+    app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
+      if (!err) {
+        docs.forEach((doc) => {
+          site.newsList.push({
+            _id: doc._id,
+            id: doc.id,
+            name: doc.name,
+            active: doc.active,
+            educationalLevel: doc.educationalLevel,
+            schoolYear: doc.schoolYear,
+            forFaculty: doc.forFaculty,
+            forCenter: doc.forCenter,
+            date: doc.date,
+          });
+        });
+      }
+    });
   };
   app.add = function (_item, callback) {
     app.$collection.add(_item, (err, doc) => {
@@ -103,23 +101,18 @@ module.exports = function init(site) {
   app.view = function (_item, callback) {
     if (callback) {
       if (app.allowMemory) {
-        if ((item = app.memoryList.find((itm) => itm.id == _item.id || itm.code == _item.code))) {
+        if ((item = app.memoryList.find((itm) => itm.id == _item.id))) {
           callback(null, item);
           return;
         }
       } else if (app.allowCache) {
-        if ((item = app.cacheList.find((itm) => itm.id == _item.id || itm.code == _item.code))) {
+        if ((item = app.cacheList.find((itm) => itm.id == _item.id))) {
           callback(null, item);
           return;
         }
       }
-      let where = {};
-      if (_item.id) {
-        where = { id: _item.id };
-      } else if (_item.code) {
-        where = { code: _item.code };
-      }
-      app.$collection.find(where, (err, doc) => {
+
+      app.$collection.find({ id: _item.id }, (err, doc) => {
         callback(err, doc);
 
         if (!err && doc) {
@@ -153,7 +146,7 @@ module.exports = function init(site) {
             app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word("Print Barcodes"),
+              appName: req.word("News"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -163,88 +156,47 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["teacher"] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
         let response = {
           done: false,
         };
 
         let _data = req.data;
-        _data.distribution = false;
+
+        _data.addUserInfo = req.getUserFinger();
+        if ((teacherId = site.getTeacherSetting(req))) {
+          _data.teacherId = teacherId;
+        }
+
+        _data.host = site.getHostFilter(req.host);
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
             response.doc = doc;
+            site.newsList.push({
+              _id: doc._id,
+              id: doc.id,
+              name: doc.name,
+              active: doc.active,
+              educationalLevel: doc.educationalLevel,
+              schoolYear: doc.schoolYear,
+              forFaculty: doc.forFaculty,
+              forCenter: doc.forCenter,
+              date: doc.date,
+            });
           } else {
             response.error = err.mesage;
           }
           res.json(response);
         });
       });
-
-      site.post(
-        {
-          name: `/api/${app.name}/addMany`,
-          require: { permissions: ["teacher"] },
-        },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
-
-          let _data = req.data;
-          if (_data.count < 1) {
-            response.error = "Must Enter Count";
-            res.json(response);
-            return;
-          } else if (_data.price < 1) {
-            response.error = "Must Enter Price";
-            res.json(response);
-            return;
-          }
-          let teacherId = site.getTeacherSetting(req);
-          if (teacherId == null) {
-            response.error = "There Is No Teacher";
-            res.json(response);
-            return;
-          }
-
-          let where = {};
-          where["teacherId"] = teacherId;
-          let select = { id: 1 };
-          app.all({ where, select }, (err, docs, count) => {
-            let codesList = [];
-            let host = site.getHostFilter(req.host);
-            for (let i = 0; i < _data.count; i++) {
-              let code = (size) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join("");
-              codesList.push({
-                serial: count + i + 1,
-                code: code(15),
-                expired: false,
-                distribution: false,
-                price: _data.price,
-                teacherId: teacherId,
-                host,
-              });
-            }
-            app.$collection.insertMany(codesList, (err, docs) => {
-              if (!err && docs) {
-                response.done = true;
-                response.list = docs;
-              } else {
-                response.error = err.mesage;
-              }
-              res.json(response);
-            });
-          });
-        }
-      );
     }
 
     if (app.allowRouteUpdate) {
       site.post(
         {
           name: `/api/${app.name}/update`,
-          require: { permissions: ["teacher"] },
+          require: { permissions: ["login"] },
         },
         (req, res) => {
           let response = {
@@ -258,6 +210,20 @@ module.exports = function init(site) {
             if (!err) {
               response.done = true;
               response.result = result;
+              let index = site.newsList.findIndex((a) => a.id === result?.doc?.id);
+              if (index !== -1) {
+                site.newsList[index] = {
+                  _id: result.doc._id,
+                  id: result.doc.id,
+                  name: result.doc.name,
+                  active: result.doc.active,
+                  educationalLevel: result.doc.educationalLevel,
+                  schoolYear: result.doc.schoolYear,
+                  forFaculty: result.doc.forFaculty,
+                  forCenter: result.doc.forCenter,
+                  date: result.doc.date,
+                };
+              }
             } else {
               response.error = err.message;
             }
@@ -271,7 +237,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/delete`,
-          require: { permissions: ["teacher"] },
+          require: { permissions: ["login"] },
         },
         (req, res) => {
           let response = {
@@ -283,6 +249,10 @@ module.exports = function init(site) {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
+              let index = site.newsList.findIndex((a) => a.id === result?.doc?.id);
+              if (index !== -1) {
+                site.newsList.splice(index, 1);
+              }
             } else {
               response.error = err?.message || "Deleted Not Exists";
             }
@@ -293,7 +263,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteView) {
-      site.post({ name: `/api/${app.name}/view`, require: { permissions: ["teacher"] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
         let response = {
           done: false,
         };
@@ -315,15 +285,12 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/all`, require: { permissions: ["teacher"] } }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "";
-        let limit = req.body.limit || 1000;
+        let limit = req.body.limit || 100;
         let select = req.body.select || {
           id: 1,
-          serial: 1,
-          code: 1,
-          price: 1,
-          expired: 1,
-          distribution: 1,
-          teacherId: 1,
+          image: 1,
+          name: 1,
+          active: 1,
         };
         if (search) {
           where.$or = [];
@@ -364,40 +331,29 @@ module.exports = function init(site) {
     }
   }
 
-  site.post(
-    {
-      name: `/api/${app.name}/updateAllDistribution`,
-      require: { permissions: ["teacher"] },
-    },
-    (req, res) => {
-      let response = {
-        done: false,
-      };
+  site.getNews = function (req) {
+    let setting = site.getSiteSetting(req.host);
+    let host = site.getHostFilter(req.host);
+    let teacherId = site.getTeacherSetting(req);
+    let docs = [];
 
-      let _data = req.data;
-      if (!_data.from || !_data.to || _data.from > _data.to) {
-        response.error = "Must Send Correct Data";
-        res.json(response);
-        return;
-      }
-
-      let where = {};
-      where["teacherId"] = site.getTeacherSetting(req);
-      where["serial"] = {
-        $gte: _data.from,
-        $lte: _data.to,
-      };
-      app.$collection.updateAll({ where, set: { distribution: _data.type } }, (err, result) => {
-        if (!err) {
-          response.done = true;
-          response.result = result;
+    for (let i = 0; i < site.newsList.length; i++) {
+      let obj = { ...site.newsList[i] };
+      obj.$time = site.xtime(obj.date, "Ar");
+      if (obj.active && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
+        if (req.session.user && req.session.user.type == "student") {
+          if ((!obj.educationalLevel?.id || obj.educationalLevel?.id == req.session.user?.educationalLevel?.id) && (!obj.schoolYear?.id || obj.schoolYear?.id == req.session.user?.schoolYear?.id)) {
+            docs.push(obj);
+          }
         } else {
-          response.error = err.message;
+          docs.push(obj);
         }
-        res.json(response);
-      });
+      }
     }
-  );
+
+    return docs.slice(0, setting.newsLimit || 10);
+    // }
+  };
 
   app.init();
   site.addApp(app);

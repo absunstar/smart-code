@@ -595,7 +595,7 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-        
+
         app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({
             done: true,
@@ -740,6 +740,26 @@ module.exports = function init(site) {
     }
 
     return docs.slice(0, data.limit || 10000);
+  };
+
+  site.addLecturesToStudents = function (packageId, lectureList) {
+    let where = { packagesList: packageId };
+    let limit = 20000;
+    let select = {
+      id: 1,
+      lecturesList: 1,
+    };
+    app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users) => {
+      if (users) {
+        
+        for (let i = 0; i < users.length; i++) {
+          users[i].lecturesList = users[i].lecturesList.concat(lectureList);
+          console.log(users[i].lecturesList);
+          
+          site.security.updateUser(users[i]);
+        }
+      }
+    });
   };
 
   app.init();

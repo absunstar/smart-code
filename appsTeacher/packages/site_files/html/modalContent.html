@@ -37,10 +37,8 @@
     <legend>##word.Lectures##</legend>
     <div class="row">
       <i-list class="col8" label="##word.lecture##" ng-model="item.$lecture" display="name" items="lecturesList" ng-get="getLecturesList($search)"></i-list>
-      <div class="col4">
-        <br />
-        <i-button type="push" label="##word.Add To List##" ng-click="addLecture()"></i-button>
-      </div>
+      <i-button type="push" label="##word.Add To List##" ng-click="addLecture()"></i-button>
+      
     </div>
     <p class="error">{{item.$lectureError}}</p>
     <table class="table hover bold">
@@ -51,8 +49,8 @@
         <th class="not-print">##word.Actions##</th>
       </tr>
       <tr ng-repeat="c in item.lecturesList">
-        <td>
-          <i-image view class="logo center" ng-model="c.lecture.image"></i-image>
+        <td class="center">
+          <i-image view class="logo" ng-model="c.lecture.image"></i-image>
         </td>
         <td class="center">{{c.lecture.name}}</td>
         <td class="center">{{c.lecture.price}}</td>

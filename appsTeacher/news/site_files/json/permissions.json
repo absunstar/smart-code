@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "news", "name": "newsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "news", "name": "newsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "news", "name": "newsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "news", "name": "newsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "news", "name": "newsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "news", "name": "newsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "news", "name": "newsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "news", "name": "newsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "news", "name": "newsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "news", "name": "newsImport", "En": "Import", "Ar": "إستيراد" }
+]

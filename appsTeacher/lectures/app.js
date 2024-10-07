@@ -647,6 +647,7 @@ module.exports = function init(site) {
       });
 
       site.post({ name: `/api/${app.name}/viewToStudent`, public: true }, (req, res) => {
+
         let response = {
           done: false,
         };
@@ -793,7 +794,9 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
+          
           res.json({
             done: true,
             list: docs,
@@ -953,7 +956,11 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
+          console.log(_data?.purchase?.code);
+          
           site.validateCode(req, { code: _data?.purchase?.code, price: doc.price }, (errCode, code) => {
+            console.log(errCode);
+            
             if (errCode && doc.price > 0 && _data.purchase.purchaseType.name == "code") {
               response.error = req.word(errCode);
               res.json(response);

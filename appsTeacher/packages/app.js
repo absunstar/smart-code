@@ -340,10 +340,16 @@ module.exports = function init(site) {
 
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
-
+          let lectureList = _data.lecturesList.filter((l) => l.$new).map((obj) => ({lectureId : obj.lecture.id}))
+          
+          if(lectureList && lectureList.length > 0) {                
+            site.addLecturesToStudents(_data.id,lectureList)
+          }
+          
           app.update(_data, (err, result) => {
             if (!err) {
               response.done = true;
+              
               response.result = result;
               let index = site.packageList.findIndex((a) => a.id === result?.doc?.id);
               if (index !== -1) {

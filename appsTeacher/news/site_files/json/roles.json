@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "newsAdmin",
+    "En": "News Admin",
+    "Ar": "إدارة الأخبار",
+    "permissions": ["newsManage"]
+}]
