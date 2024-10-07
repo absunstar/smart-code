@@ -364,41 +364,7 @@ module.exports = function init(site) {
     }
   }
 
-  site.post(
-    {
-      name: `/api/${app.name}/updateAllDistribution`,
-      require: { permissions: ["teacher"] },
-    },
-    (req, res) => {
-      let response = {
-        done: false,
-      };
-
-      let _data = req.data;
-      if (!_data.from || !_data.to || _data.from > _data.to) {
-        response.error = "Must Send Correct Data";
-        res.json(response);
-        return;
-      }
-
-      let where = {};
-      where["teacherId"] = site.getTeacherSetting(req);
-      where["serial"] = {
-        $gte: _data.from,
-        $lte: _data.to,
-      };
-      app.$collection.updateAll({ where, set: { distribution: _data.type } }, (err, result) => {
-        if (!err) {
-          response.done = true;
-          response.result = result;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
-      });
-    }
-  );
-
+ 
   app.init();
   site.addApp(app);
 };
