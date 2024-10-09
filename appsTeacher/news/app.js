@@ -24,12 +24,14 @@ module.exports = function init(site) {
             _id: doc._id,
             id: doc.id,
             name: doc.name,
+            image: doc.image,
             active: doc.active,
             educationalLevel: doc.educationalLevel,
             schoolYear: doc.schoolYear,
-            forFaculty: doc.forFaculty,
-            forCenter: doc.forCenter,
+            newsType: doc.newsType,
             date: doc.date,
+            teacherId: doc.teacherId,
+            host: doc.host,
           });
         });
       }
@@ -153,6 +155,97 @@ module.exports = function init(site) {
           );
         }
       );
+      site.get(
+        {
+          name: "newsView",
+        },
+        (req, res) => {
+          let notificationsCount = 0;
+          if (req.session.user && req.session.user.notificationsList) {
+            let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+            notificationsCount = notifications.length;
+          }
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            notificationsCount: notificationsCount,
+            notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
+            setting: setting,
+            guid: "",
+            isTeacher: req.session.selectedTeacherId ? true : false,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/images/logo.png",
+            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "//" + req.host + data.site_logo;
+            data.site_footer_logo = "//" + req.host + data.site_footer_logo;
+            data.page_image = "//" + req.host + data.page_image;
+            data.user_image = "//" + req.host + data.user_image;
+            data.powerdByLogo = "//" + req.host + data.powerdByLogo;
+          }
+          res.render(app.name + "/newsView.html", data, {
+            parser: "html css js",
+            compres: true,
+          });
+        }
+      );
+
+      site.get(
+        {
+          name: "newsListView",
+        },
+        (req, res) => {
+          let notificationsCount = 0;
+          if (req.session.user && req.session.user.notificationsList) {
+            let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
+            notificationsCount = notifications.length;
+          }
+          let setting = site.getSiteSetting(req.host);
+          setting.description = setting.description || "";
+          setting.keyWordsList = setting.keyWordsList || [];
+          let data = {
+            notificationsCount: notificationsCount,
+            notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
+            setting: setting,
+            guid: "",
+            isTeacher: req.session.selectedTeacherId ? true : false,
+            filter: site.getHostFilter(req.host),
+            site_logo: setting.logo?.url || "/images/logo.png",
+            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
+            site_name: setting.siteName,
+            page_lang: setting.id,
+            page_type: "website",
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+            page_description: setting.description.substr(0, 200),
+            page_keywords: setting.keyWordsList.join(","),
+          };
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "//" + req.host + data.site_logo;
+            data.site_footer_logo = "//" + req.host + data.site_footer_logo;
+            data.page_image = "//" + req.host + data.page_image;
+            data.user_image = "//" + req.host + data.user_image;
+            data.powerdByLogo = "//" + req.host + data.powerdByLogo;
+          }
+          res.render(app.name + "/newsListView.html", data, {
+            parser: "html css js",
+            compres: true,
+          });
+        }
+      );
     }
 
     if (app.allowRouteAdd) {
@@ -177,12 +270,14 @@ module.exports = function init(site) {
               _id: doc._id,
               id: doc.id,
               name: doc.name,
+              image: doc.image,
               active: doc.active,
               educationalLevel: doc.educationalLevel,
               schoolYear: doc.schoolYear,
-              forFaculty: doc.forFaculty,
-              forCenter: doc.forCenter,
+              newsType: doc.newsType,
               date: doc.date,
+              teacherId: doc.teacherId,
+              host: doc.host,
             });
           } else {
             response.error = err.mesage;
@@ -216,12 +311,14 @@ module.exports = function init(site) {
                   _id: result.doc._id,
                   id: result.doc.id,
                   name: result.doc.name,
+                  image: result.doc.image,
                   active: result.doc.active,
                   educationalLevel: result.doc.educationalLevel,
                   schoolYear: result.doc.schoolYear,
-                  forFaculty: result.doc.forFaculty,
-                  forCenter: result.doc.forCenter,
+                  newsType: result.doc.newsType,
                   date: result.doc.date,
+                  teacherId: result.doc.teacherId,
+                  host: result.doc.host,
                 };
               }
             } else {
@@ -269,9 +366,12 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-        app.view(_data, (err, doc) => {
+
+        app.$collection.find(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
+            doc.$time = site.xtime(doc.date, req.session.lang || "Ar");
+
             response.doc = doc;
           } else {
             response.error = err?.message || "Not Exists";
@@ -282,30 +382,24 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAll) {
-      site.post({ name: `/api/${app.name}/all`, require: { permissions: ["teacher"] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "";
         let limit = req.body.limit || 100;
         let select = req.body.select || {
           id: 1,
           image: 1,
+          date: 1,
           name: 1,
           active: 1,
         };
         if (search) {
           where.$or = [];
-
           where.$or.push({
-            id: site.toNumber(search),
+            name: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            serial: site.toNumber(search),
-          });
-          where.$or.push({
-            price: site.toNumber(search),
-          });
-          where.$or.push({
-            code: search,
+            description: site.get_RegExp(search, "i"),
           });
         }
         if (where.from && where.to) {
@@ -321,6 +415,39 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
+        if (req.body.type == "toStudent") {
+          if (req.session.user && req.session.user.type == "student") {
+            where.$and = [
+              {
+                $or: [
+                  {
+                    "educationalLevel.id": req.session.user?.educationalLevel?.id,
+                  },
+                  {
+                    "educationalLevel.id": { $exists: false },
+                  },
+                  {
+                    "schoolYear.id": req.session.user?.schoolYear?.id,
+                  },
+                  {
+                    "schoolYear.id": { $exists: false },
+                  },
+                ],
+              },
+              {
+                $or: [
+                  {
+                    name: site.get_RegExp(search, "i"),
+                  },
+                  {
+                    description: site.get_RegExp(search, "i"),
+                  },
+                ],
+              },
+            ];
+          }
+        }
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,

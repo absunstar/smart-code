@@ -2,32 +2,35 @@
   <div class="row padding">
     <div class="col9">
       <div class="row">
-        <fieldset>
-          <i-checkbox ng-model="item.forFaculty" class="col3" label="##word.For Faculty##"></i-checkbox>
-          <i-checkbox ng-model="item.forCenter" class="col3" label="##word.For Center##"></i-checkbox>
-          <div class="col3"></div>
-          <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
-        </fieldset>
-        <i-control type="text" class="row" v="r" ng-model="item.name" label="##word.Title##"></i-control>
+        <i-control type="text" v="r" ng-model="item.name" label="##word.Title##"></i-control>
         <div class="row">
+          <i-list
+            label="##word.News Type##"
+            class="col4"
+            v="r"
+            ng-model="item.newsType"
+            display="name##session.lang##"
+            items="newsTypesList"
+            ng-search="item.$newsType"
+          ></i-list>
           <i-list
             label="##word.Educational Level##"
             ng-change="getSchoolYearsList(item.educationalLevel.id)"
-            class="col6"
+            class="col4"
             ng-model="item.educationalLevel"
             display="name"
             items="educationalLevelsList"
             ng-search="item.$educationalLevel"
           ></i-list>
-          <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col6" display="name" items="schoolYearsList"></i-list>
+          <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col4" display="name" items="schoolYearsList"></i-list>
         </div>
         <div class="row">
           <fieldset>
             <legend>
               ##word.Images List##
               <i-button type="push" label="##word.Add Image##" ng-click="item.imageList.push({})"></i-button>
-              <div class="row" ng-repeat="image in item.imageList">
-                <i-image class="img128 center" ng-model="image"></i-image>
+              <div class="row" ng-repeat="_i in item.imageList">
+                <i-image class="img128 center" ng-model="_i.image"></i-image>
               </div>
             </legend>
           </fieldset>
@@ -35,8 +38,10 @@
       </div>
     </div>
     <div class="col3">
+
       <h3>##word.Main Image## :</h3>
       <i-image class="img128 center" ng-model="item.image"></i-image>
+      <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
     </div>
   </div>
   <fieldset>

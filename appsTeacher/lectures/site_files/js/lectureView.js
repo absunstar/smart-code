@@ -66,7 +66,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal("#codeModal");
           site.resetValidated("#codeModal");
-          if($scope.purchase.purchaseType && $scope.purchase.purchaseType.name != 'code') {
+          if (!response.data.isOpen) {
             $scope.alert = "##word.Please wait until your payment details are reviewed and your purchase is confirmed##";
           }
           $scope.view();
@@ -112,7 +112,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       data: teacherId,
     }).then(
       function (response) {
-        $scope.busy = false;        
+        $scope.busy = false;
         if (response.data.done) {
           $scope.purchaseTypeList = response.data.list;
           $scope.purchase.purchaseType = $scope.purchaseTypeList.find((p) => p.default);

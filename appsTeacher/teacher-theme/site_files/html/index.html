@@ -58,6 +58,27 @@
               <div class="separative"></div>
             </div>
 
+            <div class="row" x-data="setting.showNews">
+              <div class="banner-word">
+                <span> ##word.News## </span>
+                <a class="banner-viewAll" href="/newsListView?type=center">##word.Center News##</a>
+                <a class="banner-viewAll" href="/newsListView?type=faculty">##word.Faculty News##</a>
+              </div>
+
+              <ul class="row ul-list">
+                <li x-list1="newsList">
+                  <a href="/newsView?id=##item1._id##">
+                    <figure class="image-block">
+                      <p class="type">##word.News## ##item1.newsType.nameAr##</p>
+                      <p class="name bottom">##item1.name##</p>
+                      <img src="##item1.image.url##" alt="" />
+                    </figure>
+                  </a>
+                </li>
+              </ul>
+              <div class="separative"></div>
+            </div>
+
             <div class="row" x-data="setting.showPackages">
               <div class="banner-word">
                 <span> ##word.Packages## </span>

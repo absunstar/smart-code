@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
+    <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
+
+    <style></style>
+  </head>
+
+  <body class="##session.language.id##" ng-controller="newsListView">
+    <div x-replace="teacher-theme/header.html"></div>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <div>
+          <h2>##word.Search All##</h2>
+          <!--       <div class="row">
+            <i-list
+              x-permissions="!student"
+              class="col3 margin"
+              label="##word.Educational Level##"
+              ng-change="getSchoolYearsList(where.educationalLevel.id);getAll({ which: 13 })"
+              ng-model="where.educationalLevel"
+              display="name"
+              items="educationalLevelsList"
+              ng-search="where.$educationalLevel"
+            ></i-list>
+            <i-list
+              label="##word.School Year##"
+              ng-change="getAll({ which: 13 })"
+              class="col3 margin"
+              x-permissions="!student"
+              ng-model="where.schoolYear"
+              display="name"
+              items="schoolYearsList"
+            ></i-list>
+            <i-list label="##word.Subject##" ng-change="getAll({ which: 13 })" class="col3 margin" ng-model="where.subject" display="name" items="subjectsList"></i-list>
+          </div> -->
+          <i-control label="##word.Search##" class="input-style pass" ng-keydown="getAll($event)" ng-model="$search"></i-control>
+        </div>
+        <div class="row">
+          <ul class="row ul-list">
+            <li ng-repeat="item in list">
+              <a href="/newsView?id={{item._id}}">
+                <figure class="image-block">
+                  <p class="name bottom">{{item.name}}</p>
+                  <img ng-src="{{item.image.url}}" alt="" />
+                </figure>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+
+    <div x-replace="teacher-theme/footer.html"></div>
+    <div x-import="teacher-theme/scripts.html"></div>
+    <script x-import="news/newsListView.js"></script>
+  </body>
+</html>

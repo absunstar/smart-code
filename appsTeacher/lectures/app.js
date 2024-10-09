@@ -647,7 +647,6 @@ module.exports = function init(site) {
       });
 
       site.post({ name: `/api/${app.name}/viewToStudent`, public: true }, (req, res) => {
-
         let response = {
           done: false,
         };
@@ -794,9 +793,8 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
-          
           res.json({
             done: true,
             list: docs,
@@ -945,7 +943,7 @@ module.exports = function init(site) {
           response.error = req.word("The code must be entered");
           res.json(response);
           return;
-        } else if (_data.purchase.purchaseType.name != "code" && !_data.purchase.numberTransferFrom) {
+        } else if ((_data.purchase.purchaseType.name == "instaPay" || _data.purchase.purchaseType.name == "cashWallet") && !_data.purchase.numberTransferFrom) {
           response.error = req.word("The account number to be transferred from must be entered");
           res.json(response);
           return;
@@ -956,11 +954,8 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-          console.log(_data?.purchase?.code);
-          
+
           site.validateCode(req, { code: _data?.purchase?.code, price: doc.price }, (errCode, code) => {
-            console.log(errCode);
-            
             if (errCode && doc.price > 0 && _data.purchase.purchaseType.name == "code") {
               response.error = req.word(errCode);
               res.json(response);
@@ -973,7 +968,7 @@ module.exports = function init(site) {
                 (err, user) => {
                   if (!err && user) {
                     user.lecturesList = user.lecturesList || [];
-                    if (!user.lecturesList.some((l) => l.lectureId == doc.id) && _data.purchase.purchaseType.name == "code") {
+                    if (!user.lecturesList.some((l) => l.lectureId == doc.id) && (_data.purchase.purchaseType.name == "code" || _data.purchase.purchaseType.name == "free")) {
                       user.lecturesList.push({
                         lectureId: doc.id,
                       });
@@ -987,7 +982,7 @@ module.exports = function init(site) {
                         nameAr: _data.purchase.purchaseType.nameAr,
                         nameEn: _data.purchase.purchaseType.nameEn,
                       },
-                      done: _data.purchase?.purchaseType?.name == "code" ? true : false,
+                      done: _data.purchase?.purchaseType?.name == "code" || _data.purchase?.purchaseType?.name == "free" ? true : false,
                       code: _data.purchase.code,
                       numberTransferFrom: _data.purchase.numberTransferFrom,
                       imageTransfer: _data.purchase.imageTransfer,
@@ -1001,6 +996,8 @@ module.exports = function init(site) {
                     });
                     site.security.updateUser(user);
                   }
+                  response.isOpen = _data.purchase.purchaseType?.name == "instaPay" || _data.purchase.purchaseType?.name == "cashWallet" ? false : true;
+
                   response.done = true;
                   // doc.$buy = true;
                   // doc.$time = site.xtime(doc.date, req.session.lang || "ar");

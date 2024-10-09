@@ -81,6 +81,7 @@ module.exports = function init(site) {
       setting.description = setting.description || "";
       setting.keyWordsList = setting.keyWordsList || [];
       let data = {
+        newsList: site.getNews(req),
         packagesList: site.getPackages(req),
         lecturesList: site.getLectures(req),
         booksList: site.getBooks(req),

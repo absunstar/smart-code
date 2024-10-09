@@ -225,6 +225,7 @@ app.controller('news', function ($scope, $http, $timeout) {
 
   $scope.getSchoolYearsList = function (educationalLevelId) {
     $scope.busy = true;
+    
     $scope.schoolYearsList = [];
     $http({
       method: "POST",
@@ -252,7 +253,26 @@ app.controller('news', function ($scope, $http, $timeout) {
       }
     );
   };
- 
+  $scope.getNewsTypesList = function () {
+    $scope.busy = true;
+    $scope.newsTypesList = [];
+    $http({
+      method: "POST",
+      url: "/api/newsTypesList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.newsTypesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
 
   $scope.showSearch = function () {
     $scope.error = '';
@@ -267,4 +287,5 @@ app.controller('news', function ($scope, $http, $timeout) {
 
   $scope.getAll();
   $scope.getEducationalLevelsList();
+  $scope.getNewsTypesList();
 });

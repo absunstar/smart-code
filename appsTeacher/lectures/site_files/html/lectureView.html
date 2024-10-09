@@ -189,6 +189,7 @@
                     ##word.Buy## <i class="fas fa-shopping-basket"></i>
                   </button>
                   <p class="alert-green" ng-show="alert">{{alert}}</p>
+                  <p class="error">{{errorCode}}</p>
 
                   <button ng-click="startQuiz()" x-permission="login" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                     ##word.Take A Quiz##

@@ -8,7 +8,10 @@
 * {
   max-width: initial;
 }
-
+.bottom {
+  bottom: 0 !important;
+  top: unset !important;
+}
 body {
   background-color: var(--main-background-color1) !important ;
   margin-bottom: 0px !important;
@@ -283,6 +286,22 @@ figure {
     figcaption {
       bottom: 0;
     }
+  }
+  .type {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 10px;
+    color: black;
+    font-size: 22px;
+    font-weight: 100;
+    opacity: 0.8;
+    z-index: 990;
+    background: #c6c6c6;
+    height: auto;
+    width: 100%;
+    border: 5px solid #c5c5c5;
   }
   .name {
     text-align: center;
@@ -676,6 +695,10 @@ fieldset legend {
   margin-top: 10px;
   font-family: sans-serif;
   color: var(--color2) !important;
+  margin: 5px;
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .banner-viewAll:hover {

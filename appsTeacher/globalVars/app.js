@@ -17,6 +17,20 @@ module.exports = function init(site) {
     },
   ];
 
+  site.newsTypesList = [
+    {
+      name: "center",
+      nameAr: "السنتر",
+      nameEn: "Center",
+    },
+    {
+      name: "faculty",
+      nameAr: "الكلية",
+      nameEn: "Faculty",
+    },
+  
+  ];
+
   site.monthList = [
     {
       code : 0,
@@ -807,6 +821,13 @@ module.exports = function init(site) {
     res.json({
       done: true,
       list: site.printersTypes,
+    });
+  });
+
+  site.post("/api/newsTypesList", (req, res) => {
+    res.json({
+      done: true,
+      list: site.newsTypesList,
     });
   });
 
