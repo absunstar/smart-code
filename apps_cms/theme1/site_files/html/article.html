@@ -94,6 +94,16 @@
               </audio>
 
               <div class="mainarticle d-flex flex-row row align-items-start justify-content-center">
+                <div class="col-xs-12 col-sm-12 p-3">
+                  <iframe
+                    x-data="article.$embdedURL"
+                    src="##data.article.$embdedURL##"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                   <div class="center">
                     <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" alt="##data.article.$title##" />
@@ -119,15 +129,6 @@
                       Download <span class="blue">[Quality ##item1.quality##]</span> <span class="black">( ##item1.size## ) Torrent</span>
                     </a>
                   </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 p-3">
-                  <iframe
-                    x-data="article.$embdedURL"
-                    src="##data.article.$embdedURL##"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
                 </div>
 
                 <div x-data="article.$hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.$video.imageURL##')">
