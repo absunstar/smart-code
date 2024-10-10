@@ -805,7 +805,7 @@ module.exports = function init(site) {
       });
 
       if (articlesDoc.yts.date_uploaded) {
-        articlesDoc.publishDate = new Date(articlesDoc.yts.date_uploaded);
+        articlesDoc.publishDate = site.getDateTime(articlesDoc.yts.date_uploaded);
       }
     } else if (articlesDoc.$youtube) {
       articlesDoc = {
@@ -835,7 +835,7 @@ module.exports = function init(site) {
       };
       articlesDoc.translatedList[0].textContent = articlesDoc.youtube.description;
       if (articlesDoc.youtube.date_uploaded) {
-        articlesDoc.publishDate = new Date(articlesDoc.youtube.date);
+        articlesDoc.publishDate =site.getDateTime(articlesDoc.youtube.date);
       } else {
         articlesDoc.publishDate = new Date();
       }
@@ -880,7 +880,7 @@ module.exports = function init(site) {
       };
 
       if (articlesDoc.facebook.date) {
-        articlesDoc.publishDate = new Date(articlesDoc.facebook.date);
+        articlesDoc.publishDate = site.getDateTime(articlesDoc.facebook.date);
       } else {
         articlesDoc.publishDate = new Date();
       }
@@ -1385,7 +1385,7 @@ module.exports = function init(site) {
     let urls = '';
     list.forEach((doc, i) => {
       let url = domain + '/article/' + doc.guid;
-      let date = new Date(doc.publishDate).toISOString();
+      let date = site.getDateTime(doc.publishDate).toISOString();
       let title = site.escapeXML(doc.$title);
       let description = site.escapeXML(doc.$content);
       let hashTag = ' #torrent';
@@ -1493,7 +1493,7 @@ module.exports = function init(site) {
         site.articlesList.push(doc);
         doc.$facebookDate = new Date();
         doc.full_url = domain + '/article/' + doc.guid;
-        doc.$date2 = new Date(doc.publishDate).toISOString();
+        doc.$date2 = site.getDateTime(doc.publishDate).toISOString();
 
         site.facebookPost = doc;
 
@@ -1538,7 +1538,7 @@ module.exports = function init(site) {
         site.articlesList.push(doc);
         doc.$pinDate = new Date();
         doc.full_url = domain + '/article/' + doc.guid;
-        doc.$date2 = new Date(doc.publishDate).toISOString();
+        doc.$date2 = site.getDateTime(doc.publishDate).toISOString();
 
         site.pinPost = doc;
 
@@ -1571,7 +1571,7 @@ module.exports = function init(site) {
     let urls = '';
     list.forEach((doc, i) => {
       $url = domain + '/article/' + doc.guid;
-      $date = new Date(doc.publishDate).toUTCString();
+      $date = site.getDateTime(doc.publishDate).toUTCString();
       urls += `
         <item>
           <guid isPermaLink="false">${doc.guid}</guid>
@@ -1613,7 +1613,7 @@ module.exports = function init(site) {
       .slice(0, 10000)
       .forEach((article, i) => {
         let $url = domain + '/article/' + article.guid;
-        let $date = new Date(article.publishDate).toISOString();
+        let $date = site.getDateTime(article.publishDate).toISOString();
         urls += `
               <url>
                   <loc>${$url}</loc>
