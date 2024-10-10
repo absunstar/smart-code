@@ -276,7 +276,7 @@ module.exports = function init(site) {
       doc.$tagsList.push(k);
     });
 
-    doc.$date = doc.publishDate || new Date();
+    doc.$date = site.getDateTime(doc.publishDate);
     doc.$date1 = doc.$date.getDate() + ' / ' + (site.monthes[doc.$date.getMonth()]?.AR || '-----') + ' / ' + doc.$date.getFullYear();
     doc.$date2 = doc.$date.getDate() + ' \\ ' + (site.monthes[doc.$date.getMonth()]?.EN || '-----') + ' \\ ' + doc.$date.getFullYear();
     doc.$day1 = site.days[doc.$date.getDay()]?.AR || '-----';
@@ -359,7 +359,7 @@ module.exports = function init(site) {
 
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
-    doc.$date = doc.publishDate || new Date();
+    doc.$date = site.getDateTime(doc.publishDate);
     doc.$date1 = doc.$date.getDate() + ' / ' + (site.monthes[doc.$date.getMonth()]?.AR || '-----') + ' / ' + doc.$date.getFullYear();
     doc.$date2 = doc.$date.getDate() + ' \\ ' + (site.monthes[doc.$date.getMonth()]?.EN || '-----') + ' \\ ' + doc.$date.getFullYear();
     doc.$day1 = site.days[doc.$date.getDay()]?.AR || '-----';
