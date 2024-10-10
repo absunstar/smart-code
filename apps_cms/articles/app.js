@@ -233,7 +233,7 @@ module.exports = function init(site) {
       doc.$backgroundURL = doc.$coverURL;
       doc.$content = lang.textContent || lang.htmlContent || '';
     } else if (doc.type.id == 8) {
-      doc.is_youtube = true;
+      doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
       doc.$content = lang.textContent || lang.htmlContent || '';
@@ -347,7 +347,7 @@ module.exports = function init(site) {
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
       doc.$backgroundURL = doc.$coverURL;
     } else if (doc.type.id == 8) {
-      doc.is_youtube = true;
+      doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else if (doc.type.id == 9) {
@@ -808,7 +808,7 @@ module.exports = function init(site) {
       if (articlesDoc.yts.date_uploaded) {
         articlesDoc.publishDate = new Date(articlesDoc.yts.date_uploaded);
       }
-    } else if (articlesDoc.is_youtube) {
+    } else if (articlesDoc.$youtube) {
       articlesDoc = {
         type: site.articleTypes.find((t) => t.id === 8),
         youtube: articlesDoc,

@@ -101,7 +101,7 @@ app.connectScope(
           title: obj.title,
           image: obj.image,
           channel: obj.channel,
-          is_youtube: true,
+          $youtube: true,
         });
       } else if (obj.type == 'generator-facebook-group') {
         $scope.facebookGroupAdd({ ...obj.group });

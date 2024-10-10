@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="##data.language.id##" dir="##data.language.direction##" class="##data.language.direction##" ng-app="myApp">
   <head x-import="theme1/head.html">
-    <script type="application/ld+json">
+    <script x-data="article.$youtube" type="application/ld+json">
       {
         "@context": "https://schema.org/",
         "@type": "VideoObject",
         "name": "##data.article.$title##",
-        "thumbnailUrl": "##data.article.$video.imageURL##",
-        "uploadDate": "##data.article.$date##",
-        "embedUrl": "##data.article.$video.url##"
+        "thumbnailUrl": "##data.page_image##",
+        "uploadDate": "##data.article.publishDate##",
+        "embedUrl": "##data.article.$embdedURL##"
       }
     </script>
   </head>
