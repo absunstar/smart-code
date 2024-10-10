@@ -1612,7 +1612,7 @@ module.exports = function init(site) {
       .filter((a) => a.host.like(filter))
       .slice(0, 10000)
       .forEach((article, i) => {
-        let $url = domain + '/article/' + article.guid+ '/' + doc.$title2;
+        let $url = domain + '/article/' + article.guid+ '/' + article.$title2;
         let $date = site.getDateTime(article.publishDate).toISOString();
         urls += `
               <url>
