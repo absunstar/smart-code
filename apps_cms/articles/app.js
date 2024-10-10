@@ -1570,7 +1570,7 @@ module.exports = function init(site) {
 
     let urls = '';
     list.forEach((doc, i) => {
-      $url = domain + '/article/' + doc.guid;
+      $url = domain + '/article/' + doc.guid + '/' + doc.$title2;
       $date = site.getDateTime(doc.publishDate).toUTCString();
       urls += `
         <item>
@@ -1612,7 +1612,7 @@ module.exports = function init(site) {
       .filter((a) => a.host.like(filter))
       .slice(0, 10000)
       .forEach((article, i) => {
-        let $url = domain + '/article/' + article.guid;
+        let $url = domain + '/article/' + article.guid+ '/' + doc.$title2;
         let $date = site.getDateTime(article.publishDate).toISOString();
         urls += `
               <url>
