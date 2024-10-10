@@ -276,11 +276,11 @@ module.exports = function init(site) {
       doc.$tagsList.push(k);
     });
 
-    doc.$date = site.getDateTime(doc.publishDate);
-    doc.$date1 = doc.$date.getDate() + ' / ' + (site.monthes[doc.$date.getMonth()]?.AR || '-----') + ' / ' + doc.$date.getFullYear();
-    doc.$date2 = doc.$date.getDate() + ' \\ ' + (site.monthes[doc.$date.getMonth()]?.EN || '-----') + ' \\ ' + doc.$date.getFullYear();
-    doc.$day1 = site.days[doc.$date.getDay()]?.AR || '-----';
-    doc.$day2 = site.days[doc.$date.getDay()]?.EN || '-----';
+    doc.publishDate = site.getDateTime(doc.publishDate);
+    doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.AR || '-----') + ' / ' + doc.publishDate.getFullYear();
+    doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.EN || '-----') + ' \\ ' + doc.publishDate.getFullYear();
+    doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
+    doc.$day2 = site.days[doc.publishDate.getDay()]?.EN || '-----';
 
     if (lang.hasAudio) {
       doc.$hasAudio = true;
@@ -359,11 +359,11 @@ module.exports = function init(site) {
 
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
-    doc.$date = site.getDateTime(doc.publishDate);
-    doc.$date1 = doc.$date.getDate() + ' / ' + (site.monthes[doc.$date.getMonth()]?.AR || '-----') + ' / ' + doc.$date.getFullYear();
-    doc.$date2 = doc.$date.getDate() + ' \\ ' + (site.monthes[doc.$date.getMonth()]?.EN || '-----') + ' \\ ' + doc.$date.getFullYear();
-    doc.$day1 = site.days[doc.$date.getDay()]?.AR || '-----';
-    doc.$day2 = site.days[doc.$date.getDay()]?.EN || '-----';
+    doc.publishDate = site.getDateTime(doc.publishDate);
+    doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.AR || '-----') + ' / ' + doc.publishDate.getFullYear();
+    doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.EN || '-----') + ' \\ ' + doc.publishDate.getFullYear();
+    doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
+    doc.$day2 = site.days[doc.publishDate.getDay()]?.EN || '-----';
 
     doc.$hasAudio = false;
     doc.$hasVideo = false;
@@ -412,7 +412,6 @@ module.exports = function init(site) {
     }
     delete doc.translatedList;
     delete doc.yts;
-    delete doc.publishDate;
     delete doc._id;
     delete doc.type;
 
