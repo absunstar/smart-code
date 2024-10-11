@@ -21,6 +21,10 @@
           <i class="fas fa-book"></i>
           ##word.Books##
         </a>
+        <a class="button-screen-a" href="/subscriptionsView" x-data="setting.showSubscriptions">
+          <i class="fas fa-tags"></i>
+          ##word.Subscriptions##
+        </a>
       </div>
     </div>
 
@@ -51,8 +55,12 @@
           <img src="##data.user_image##" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
-            <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##">##word.Manage My Page##</a></li>
+            <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##&type=myProfile">##word.Manage My Page##</a></li>
             <li><a class="dropdown-item" x-permissions="student" href="/studentsSchedule?id=##session.user._id##">##word.Student Schedule##</a></li>
+            <li><a class="dropdown-item" x-permissions="student" href="/subscriptionsView?type=mySubscriptions">##word.My Subscriptions##</a></li>
+            <li><a class="dropdown-item" x-permissions="student" x-data="setting.showPackages" href="/profileEdit?id=##session.user._id##&type=myPackages">##word.My Packages##</a></li>
+            <li><a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures" href="/profileEdit?id=##session.user._id##&type=myLectures">##word.My Lectures##</a></li>
+            <li><a class="dropdown-item" x-permissions="student" x-data="setting.showBooks" href="/profileEdit?id=##session.user._id##&type=myBooks">##word.My Books##</a></li>
             <li><a class="dropdown-item" x-permissions="admin || teacher" href="/manageUsers?type=student">##word.Dashboard##</a></li>
             <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
           </ul>
@@ -128,8 +136,12 @@
               <img src="##data.user_image##" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" alt="" srcset="" />
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
-                <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##">##word.Manage My Page##</a></li>
+                <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##&type=myProfile">##word.Manage My Page##</a></li>
                 <li><a class="dropdown-item" x-permissions="student" href="/studentsSchedule?id=##session.user._id##">##word.Student Schedule##</a></li>
+                <li><a class="dropdown-item" x-permissions="student" href="/subscriptionsView?id=##session.user._id##">##word.My Subscriptions##</a></li>
+                <li><a class="dropdown-item" x-permissions="student" x-data="setting.showPackages" href="/profileEdit?id=##session.user._id##&type=myPackages">##word.My Packages##</a></li>
+                <li><a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures" href="/profileEdit?id=##session.user._id##&type=myLectures">##word.My Lectures##</a></li>
+                <li><a class="dropdown-item" x-permissions="student" x-data="setting.showBooks" href="/profileEdit?id=##session.user._id##&type=myBooks">##word.My Books##</a></li>
                 <li><a class="dropdown-item" x-permissions="admin || teacher" href="/lectures">##word.Dashboard##</a></li>
                 <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
               </ul>
@@ -174,6 +186,10 @@
         <a href="/booksView" x-data="setting.showBooks">
           <i class="fas fa-book"></i>
           ##word.Books##
+        </a>
+        <a href="/subscriptionsView" x-data="setting.showSubscriptions">
+          <i class="fas fa-tags"></i>
+          ##word.Subscriptions##
         </a>
       </div>
     </div>

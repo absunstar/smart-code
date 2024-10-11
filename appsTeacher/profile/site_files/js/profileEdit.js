@@ -1,6 +1,12 @@
-if ((btn = document.querySelector("#" + "##query.btn##"))) {
-  btn.click();
-}
+
+site.onLoad(() => {
+   let id = '#' + '##query.type##'
+    if ((btn = document.querySelector(id))) {
+      btn.click();
+    }
+
+});
+ 
 app.controller("profileEdit", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
   $scope.displayUser = function () {
@@ -18,7 +24,8 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.user = response.data.doc;
           $scope.getCentersList();
-          document.querySelector(`#profileEdit .tab-link`).click();
+        
+        /* document.querySelector(`#profileEdit .tab-link`).click() ; */
         } else {
           $scope.error = response.data.error;
         }
@@ -180,7 +187,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     }, 100);
   };
 
-  
   $scope.getBooks = function () {
     $scope.busy = true;
     $scope.error = "";
@@ -271,7 +277,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.parentsList = response.data.list;
           console.log();
-          
         }
       },
       function (err) {
@@ -312,6 +317,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
       }
     );
   };
+
   $scope.getCentersList = function () {
     if ($scope.user.schoolYear && $scope.user.schoolYear.id && $scope.user.educationalLevel && $scope.user.educationalLevel.id) {
       $scope.busy = true;
@@ -337,8 +343,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
             $scope.centersList = response.data.list;
-            console.log("Dddddddddddddddddd");
-            
           }
         },
         function (err) {

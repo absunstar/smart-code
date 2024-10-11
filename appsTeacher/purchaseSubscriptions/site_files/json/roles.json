@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "purchaseSubscriptionsAdmin",
+    "En": "Purchase Subscriptions Admin",
+    "Ar": "إدارة شراء الإشتراكات",
+    "permissions": ["purchaseSubscriptionsManage"]
+}] 

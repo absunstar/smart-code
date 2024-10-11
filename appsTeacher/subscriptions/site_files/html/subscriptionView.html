@@ -20,7 +20,12 @@
         height: 77px !important;
         font-size: 16px !important;
       }
-      .btn-success {
+      .card {
+        height: 100px !important;
+        width: 45% !important;
+      }
+
+      .btn {
         width: 100%;
       }
       .content-main-img {
@@ -48,6 +53,7 @@
       }
 
       .card-title {
+        font-size: 15px !important;
         width: 80% !important;
       }
       .price {
@@ -69,6 +75,9 @@
         color: #5a6257;
       }
 
+      .card-img {
+      }
+
       :root {
         --body-margin-top: 0px;
         --body-margin-bottom: 0px;
@@ -80,57 +89,29 @@
       body {
         background-color: #eceff5 !important;
 
-        /*   background-repeat: repeat !important; */
+        /*  background-repeat: repeat !important; */
       }
       * {
         max-width: initial;
       }
-      .video-box {
-        background: var(--background4);
-        border-radius: 10px;
-        padding: 10px !important;
-        margin: 5px !important;
-        color: var(--color4);
-      }
-      .bg-red {
-        background-color: red !important;
-      }
-      .bg-green {
-        background-color: green !important;
-      }
-      .quiz-degree {
-        background: #2087e7;
-        color: white;
-        font-size: 20px;
-        padding: 2px 10px 2px 10px;
-        border-radius: 50%;
-      }
-      .remain-video-text {
-        font-size: x-large;
-        position: relative;
-        font-family: ui-monospace !important;
-      }
-      .bottom-15 {
-        bottom: 15px;
-      }
-      .remain-quiz {
-        border: 2px blue solid;
-        padding: 0px 5px 0px 5px;
-        color: white;
-        background: #2087e7;
-      }
-      @media screen and (max-width: 480px) {
-        .remain-video-text {
-          font-size: larger;
+
+      @media only screen and (max-width: 480px) {
+        .card {
+          width: 100% !important;
+          div {
+            width: 60% !important;
+            float: unset !important;
+          }
+        }
+        .card img {
+          width: 30% !important;
         }
       }
     </style>
   </head>
 
-  <body class="##session.language.id##" ng-controller="lectureView">
+  <body class="##session.language.id##" ng-controller="subscriptionView">
     <div x-replace="teacher-theme/header.html"></div>
-    <div x-import="lectures/takeQuizModal.html"></div>
-
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="margin row padding">
@@ -138,21 +119,18 @@
           <div class="col8 bg-white content-ad">
             <div class="row">
               <p class="display-ad-name">{{item.name}}</p>
-              <div class="col7">
+              <div class="">
                 <div class="row bg-ad padding margin">
                   <div class="row">
                     <div class="time-publish font-18 margin padding">
-                      <i class="fas fa-clock"> {{item.$time}} </i>
+                      {{item.educationalLevel.name}} - {{item.schoolYear.name}} - {{item.subject.name}}
                     </div>
                   </div>
 
                   <p class="price padding margin">
-                    ##word.Price##
-                    <span class="" ng-show="item.price > 0"> {{item.price}} ##word.$## </span>
-                    <span class="" ng-show="item.price == 0">##word.Free## </span>
-                    <span class="gray" ng-show="item.subscriptionName">( {{item.subscriptionName}} ) </span>
+                    ##word.Price## <span class=""> {{item.price}} ##word.$## </span>
+                    <s class="red padding">{{item.totalLecturesPrice}}</s>
                   </p>
-
                   <p class="price padding margin">##word.Code## # <span class="userPrint gray"> {{item.code}} </span></p>
                 </div>
 
@@ -160,51 +138,29 @@
                   <p class="text-comment gray-desc">{{item.description}}</p>
                 </div>
 
-                <fieldset class="border" ng-show="(item.$buy || item.type.name == 'public') && item.filesList.length > 0">
-                  <legend>##word.Download Files##</legend>
-                  <a ng-repeat="f in item.filesList" class="links-a" href="{{f.file.url}}" target="_blank">{{f.title}} <i class="fas fa-download"></i></a>
-                </fieldset>
+                <a class="card row" ng-repeat="l in item.lecturesList" href="/lectureView?id={{l.lecture._id}}">
+                  <img class="col4" loading="lazy" ng-src="{{l.lecture.image.url}}" />
+                  <div class="padding col8">
+                    <p class="userPrint card-title bold">{{l.lecture.name}}</p>
+                    <p class="">
+                      <i class="card-number bold"> ##word.$## {{l.lecture.price}} </i>
+                    </p>
+                  </div>
+                </a>
 
-                <div class="row video-box" ng-repeat="link in item.linksList" ng-show="item.$buy || item.type.name == 'public'">
-                  <i-button type="view" label="{{link.name}}" ng-click="openVideo(link)"></i-button>
-                  <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'number' &&link.isValid">##word.Number of views remaining## {{link.remainNumber}}</span>
-                  <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'day'&&link.isValid">##word.Number of remaining viewing days## {{link.remainDay}}</span>
-                  <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'date'&&link.isValid">##word.Views expire on date## {{link.remainDate | date : 'dd- MM -yyyy'}}</span>
-                  <span ng-show="!link.isValid">##word.Can`t Watch The Video##</span>
-                </div>
-                <div class="row video-box padding margin" ng-show="quiz.id" x-permission="login">
-                  <p class="font-20 padding">
-                    ##word.Quiz Degree## :
-                    <span ng-show="50 > quiz.userDegree" class="quiz-degree bg-red">{{quiz.userDegree | xmoney2}}</span>
-                    <span ng-show="quiz.userDegree >= 50" class="quiz-degree bg-green">{{quiz.userDegree | xmoney2}}</span>
-                    %
-                  </p>
-                  <p class="font-20 padding">##word.The number of remaining exam times## : <span class="quiz-degree">{{item.timesEnterQuiz - quiz.timesEnterQuiz}}</span></p>
-                </div>
+                <hr />
                 <div class="row">
-                  <button
-                    ng-click="showEnterCode()"
-                    ng-hide="item.$buy || '##user.placeType##' == 'online'  || item.type.name == 'public' || ('##user.type##' && '##user.type##' != 'student')"
-                    class="buy-btn"
-                  >
+                  <button ng-click="showEnterCode()" ng-hide="item.$buy || ('##user.type##' && '##user.type##' != 'student')" class="buy-btn">
                     ##word.Buy## <i class="fas fa-shopping-basket"></i>
-                  </button>
-                  <p class="error">{{errorCode}}</p>
-
-                  <button ng-click="startQuiz()" x-permission="login" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
-                    ##word.Take A Quiz##
-                    <i class="fas fa-chalkboard-teacher"></i>
                   </button>
                   <p class="alert-green" ng-show="alert">{{alert}}</p>
                 </div>
               </div>
 
-              <div class="col1"></div>
-              <div class="col4 center">
-                <img class="content-main-img" view ng-src="{{item.image.url}}" />
-              </div>
+        
             </div>
           </div>
+          <div class="col1"></div>
         </div>
 
         <div class="row">
@@ -243,30 +199,13 @@
         <div class="modal-footer center">
           <p class="error">{{errorCode}}</p>
           <div class="row">
-            <button ng-click="buyLecture(purchase)" class="buy-btn">##word.Accept## <i class="fas fa-check-circle"></i></button>
+            <button ng-click="buySubscription(item)" class="buy-btn">##word.Accept## <i class="fas fa-check-circle"></i></button>
           </div>
-        </div>
-      </div>
-    </div>
-    <div id="socialBrowserModal" class="modal codeModal small">
-      <div class="modal-content height-auto">
-        <div class="modal-header">
-          <span class="close">&times;</span>
-        </div>
-        <div class="modal-body center">
-          <p class="bold center font-20">##word.Please download a social browser to watch the video through the link below##</p>
-          <i class="fas fa-arrow-down padding margin font-25"></i>
-          <a href="https://social-browser.com/" target="_blank">
-            <p class="center bold blue font-22 padding margin">https://social-browser.com</p>
-          </a>
-        </div>
-        <div class="modal-footer center">
-          <p class="error">{{errorCode}}</p>
         </div>
       </div>
     </div>
     <div x-replace="teacher-theme/footer.html"></div>
     <div x-import="teacher-theme/scripts.html"></div>
-    <script x-import="lectures/lectureView.js"></script>
+    <script x-import="subscriptions/subscriptionView.js"></script>
   </body>
 </html>

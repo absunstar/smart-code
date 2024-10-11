@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   let app = {
-    name: "purchaseOrders",
+    name: "purchaseSubscriptions",
     allowMemory: false,
     memoryList: [],
     allowCache: false,
@@ -143,21 +143,11 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          let appName = req.word("Purchase Orders");
-          if (req.query) {
-            if (req.query.type == "lecture") {
-              appName = req.word("Purchase Lectures");
-            } else if (req.query.type == "package") {
-              appName = req.word("Purchase Packages");
-            } else if (req.query.type == "book") {
-              appName = req.word("Purchase Books");
-            }
-          }
           res.render(
             app.name + "/index.html",
             {
               title: app.name,
-              appName: appName,
+              appName: req.word("Purchases Subscriptions"),
               setting: site.getSiteSetting(req.host),
             },
             { parser: "html", compres: true }
@@ -205,8 +195,6 @@ module.exports = function init(site) {
             doc.editUserInfo = req.getUserFinger();
             if (_data.type == "done") {
               doc.done = true;
-            } else {
-              doc.status = site.bookStatusList.find((itm) => itm.name == _data.type);
             }
             app.update(doc, (err, result) => {
               if (!err) {
@@ -219,22 +207,11 @@ module.exports = function init(site) {
                   (err, user) => {
                     if (!err && user) {
                       if (doc.purchaseType.name != "code") {
-                        if (doc.type == "lecture") {
-                          if (!user.lecturesList.some((l) => l.lectureId == doc.target.id)) {
-                            user.lecturesList.push({
-                              lectureId: doc.target.id,
-                            });
-                          }
-                        } else if (doc.type == "package") {
-                          doc.lecturesList.forEach((_l) => {
-                            if (!user.lecturesList.some((l) => l.lectureId == _l)) {
-                              user.lecturesList.push({
-                                lectureId: _l,
-                              });
-                            }
-                          });
-                          user.packagesList.push(doc.target.id);
+                        user.subscriptionList = user.subscriptionList || [];
+                        if (!user.subscriptionList.some((l) => l == doc.subscriptionId)) {
+                          user.subscriptionList.push(doc.subscriptionId);
                         }
+
                         site.security.updateUser(user);
                       }
                     }
@@ -301,11 +278,9 @@ module.exports = function init(site) {
         let limit = req.body.limit || 10000;
         let select = req.body.select || {
           id: 1,
-          type: 1,
           code: 1,
           price: 1,
-          target: 1,
-          address: 1,
+          subscriptionName: 1,
           user: 1,
           status: 1,
           date: 1,
@@ -345,6 +320,11 @@ module.exports = function init(site) {
           delete where["lecture"];
         }
 
+        if (where["subscription"]) {
+          where["subscriptionId"] = where["subscription"].id;
+          delete where["subscription"];
+        }
+
         if (where["status"]) {
           where["status.name"] = where["status"].name;
           delete where["status"];
@@ -377,66 +357,27 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        
+
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
-          // let totalPackages = 0;
-          // let totalLectures = 0;
-          // let totalBooks = 0;
           let totalPurchases = 0;
           for (let i = 0; i < docs.length; i++) {
             totalPurchases += docs[i].price;
-            // if (docs[i].type == "lecture") {
-            //   totalLectures += docs[i].price;
-            // } else if (docs[i].type == "package") {
-            //   totalPackages += docs[i].price;
-            // } else if (docs[i].type == "book") {
-            //   totalBooks += docs[i].price;
-            // }
           }
           res.json({
             done: true,
             list: docs,
             totalPurchases,
-            // totalLectures, totalBooks, totalPackages
           });
         });
       });
     }
   }
-  site.post(
-    {
-      name: `/api/${app.name}/handle`,
-      require: { permissions: ["login"] },
-    },
-    (req, res) => {
-      let response = {
-        done: false,
-      };
 
-      let _data = req.data;
-      _data.editUserInfo = req.getUserFinger();
-      app.all({}, (err, docs) => {
-        response.done = true;
-        docs.forEach((_doc) => {
-          _doc.done = true;
-          _doc.purchaseType = {
-            nameAr: "كود",
-            nameEn: "Code",
-            name: "code",
-          };
-          app.$collection.update(_doc, (err, result) => {
-          
-          });
-        });
-        res.json(response);
-      });
-    }
-  );
-  site.addPurchaseOrder = function (_options) {
+  site.addPurchaseSubscription = function (_options) {
     app.add(_options);
   };
 
-  site.getPurchaseOrder = function (where, callBack) {
+  site.getPurchaseSubscription = function (where, callBack) {
     callBack = callBack || function () {};
     app.$collection.find(where, (err, doc) => {
       callBack(err, doc);

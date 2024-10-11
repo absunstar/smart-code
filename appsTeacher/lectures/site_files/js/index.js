@@ -1,6 +1,7 @@
 app.controller("lectures", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
   $scope.appName = "lectures";
+  $scope.setting = site.showObject(`##data.#setting##`);
   $scope.modalID = "#lecturesManageModal";
   $scope.modalSearchID = "#lecturesSearchModal";
   $scope.mode = "add";
@@ -261,6 +262,44 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getSubscriptionsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.subscriptionsList = [];
+    if ($scope.item.educationalLevel?.id && $scope.item.schoolYear?.id && $scope.item.subject?.id) {
+      $scope.busy = true;
+
+      $http({
+        method: "POST",
+        url: "/api/subscriptions/all",
+        data: {
+          where: {
+            active: true,
+          },
+          select: {
+            id: 1,
+            name: 1,
+          },
+          search: $search,
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.subscriptionsList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+    } else {
+      $scope.error = "##word.The required data must be completed##";
+    }
+  };
+
   $scope.getEducationalLevelsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -363,6 +402,19 @@ app.controller("lectures", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.activateSubscription = function () {
+    $scope.error = "";
+    $scope.getSubscriptionsList();
+    if ($scope.item.activateSubscription) {
+      $scope.item.subscriptionList = [{ price: 0 }];
+    } else {
+      $scope.item.subscriptionList = [];
+    }
+  };
+  $scope.addSubscription = function () {
+    $scope.error = "";
+    $scope.item.subscriptionList.unshift({ price: 0 });
+  };
   $scope.letterType = function (type, length) {
     let numbering = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     let arabic = ["أ", "ب", "ج", "د", "ه", "و", "ز", "ح", "ط", "ي", "ك", "ل", "م", "ن", "س", "ع", "ف", "ص", "ق", "ر", "ش", "ت"];

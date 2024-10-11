@@ -7,7 +7,6 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.siteSetting = site.showObject("##data.#setting##");
-  console.log($scope.siteSetting.id);
 
   $scope.siteTemplateList = site.showObject("##data.#templateList##");
   $scope.publishingSystemList = site.showObject("##data.#publishingSystem##");
@@ -144,5 +143,46 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     list.splice(toIndex, 0, element);
   };
 
+  $scope.getPurchaseTypeList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.purchaseTypeList = [];
+    $http({
+      method: "POST",
+      url: "/api/purchaseTypeList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.purchaseTypeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  $scope.setPurchaseTypeDafault = function (index) {
+    for (let i = 0; i < $scope.siteSetting.purchaseTypeList.length; i++) {
+      $scope.siteSetting.purchaseTypeList[i].default = false;
+    }
+    $scope.siteSetting.purchaseTypeList[index].default = true;
+  };
+  $scope.addPurchaseTypeList = function () {
+    $scope.siteSetting.purchaseTypeList = $scope.siteSetting.purchaseTypeList || [];
+    if ($scope.siteSetting.$purchaseType && $scope.siteSetting.$purchaseType.name) {
+      $scope.siteSetting.purchaseTypeList.unshift({
+        ...$scope.siteSetting.$purchaseType,
+        accountNumber: $scope.siteSetting.$accountNumber,
+        accountName: $scope.siteSetting.$accountName,
+      });
+      $scope.siteSetting.$purchaseType = {};
+      $scope.siteSetting.$accountNumber = "";
+      $scope.siteSetting.$accountName = "";
+    }
+  };
   $scope.getPrintersPaths();
+  $scope.getPurchaseTypeList();
 });

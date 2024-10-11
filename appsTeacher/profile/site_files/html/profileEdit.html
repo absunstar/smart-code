@@ -135,16 +135,16 @@
     <fieldset id="profileEdit">
       <div class="tabs">
         <div class="tabs-header full">
-          <a class="tab-link" onclick="site.showTabContent(event, '#profile')">
+          <a class="tab-link" onclick="site.showTabContent(event, '#myProfile')" id="myProfile">
             <span>##word.Personal Informatins## </span>
           </a>
           <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myPackages')" id="myPackages"> <span>##word.My Packages## </span></a>
-          <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myLectures')"> <span>##word.My Lectures## </span></a>
-          <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myBooks')"> <span>##word.My Books## </span></a>
+          <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myLectures')" id="myLectures"> <span>##word.My Lectures## </span></a>
+          <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myBooks')" id="myBooks"> <span>##word.My Books## </span></a>
         </div>
 
         <div class="tabs-content">
-          <div id="profile" class="tab-content">
+          <div id="myProfile" class="tab-content">
             <div class="form">
               <div class="row">
                 <div class="register-content">
@@ -242,7 +242,7 @@
                             >##word.$## {{package.price}}
                             <s class="red">{{package.totalLecturesPrice}}</s>
                           </i>
-                          <span class="col-6 more-card"> ##word.More##.. </span>
+                          <span class="col-6 more-card"> ##word.Details##.. </span>
                         </div>
                       </figcaption>
                     </figure>
@@ -265,7 +265,7 @@
                         <div class="row price-more-card">
                           <i class="price col-6" ng-show="lecture.price">##word.$## {{lecture.price}} </i>
                           <i class="price col-6" ng-show="!lecture.price">##word.Free## </i>
-                          <span class="col-6 more-card"> ##word.More##.. </span>
+                          <span class="col-6 more-card"> ##word.Details##.. </span>
                         </div>
                       </figcaption>
                     </figure>
@@ -289,7 +289,7 @@
                           <ins>##word.$##</ins>
                           <p>{{item.price}}</p>
                         </div>
-                        <span class="white font-20">##word.More##..</span>
+                        <span class="white font-20">##word.Details##..</span>
                       </div>
                     </a>
                   </div>

@@ -1,4 +1,4 @@
-app.controller("packageView", function ($scope, $http, $timeout) {
+app.controller("subscriptionView", function ($scope, $http, $timeout) {
   $scope.item = {};
   $scope.baseURL = "";
   $scope.purchase = {};
@@ -7,7 +7,7 @@ app.controller("packageView", function ($scope, $http, $timeout) {
     $scope.error = "";
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/packages/view`,
+      url: `${$scope.baseURL}/api/subscriptions/view`,
       data: {
         _id:"##query.id##",
       },
@@ -21,6 +21,7 @@ app.controller("packageView", function ($scope, $http, $timeout) {
 
             $scope.alert = "##word.Purchased##";
           }
+
         } else {
           $scope.error = response.data.error;
         }
@@ -39,7 +40,7 @@ app.controller("packageView", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.buyPackage = function () {
+  $scope.buySubscription = function () {
     $scope.errorCode = "";
     const v = site.validated("#codeModal");
     if (!v.ok) {
@@ -50,11 +51,11 @@ app.controller("packageView", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/packages/buyCode`,
+      url: `${$scope.baseURL}/api/subscriptions/buyCode`,
       data: {
         purchase: $scope.purchase,
-        packageId: $scope.item.id,
-        packagePrice: $scope.item.price,
+        subscriptionId: $scope.item.id,
+        subscriptionPrice: $scope.item.price,
       },
     }).then(
       function (response) {

@@ -1,67 +1,39 @@
-app.controller('subjects', function ($scope, $http, $timeout) {
-  $scope.baseURL = '';
-  $scope.appName = 'subjects';
-  $scope.modalID = '#subjectsManageModal';
-  $scope.modalSearchID = '#subjectsSearchModal';
-  $scope.mode = 'add';
+app.controller("purchaseSubscriptions", function ($scope, $http, $timeout) {
+  $scope.baseURL = "";
+  $scope.appName = "purchaseSubscriptions";
+  $scope.modalID = "#purchaseSubscriptionsManageModal";
+  $scope.modalSearchID = "#purchaseSubscriptionsSearchModal";
+  $scope.mode = "add";
   $scope._search = {};
   $scope.structure = {
-    image: {url : '/theme1/images/setting/subjects.png'},
+    image: { url: "/theme1/images/setting/purchaseSubscriptions.png" },
     active: true,
   };
+  $scope.paidAcceptList = [
+    {
+      name: "paidAccept",
+      nameAr: "تأكيد الدفع",
+      nameEn: "Paid Accept",
+    },
+    {
+      name: "paidNotAccept",
+      nameAr: "عدم تأكيد الدفع",
+      nameEn: "Paid Not Accept",
+    },
+  ];
   $scope.item = {};
   $scope.list = [];
 
-  $scope.showAdd = function (_item) {
-    $scope.error = '';
-    $scope.mode = 'add';
-    $scope.item = { ...$scope.structure };
-    site.showModal($scope.modalID);
-  };
-
-  $scope.add = function (_item) {
-    $scope.error = '';
-    const v = site.validated($scope.modalID);
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: `${$scope.baseURL}/api/${$scope.appName}/add`,
-      data: $scope.item,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal($scope.modalID);
-          site.resetValidated($scope.modalID);
-          $scope.list.unshift(response.data.doc);
-        } else {
-          $scope.error = response.data.error;
-          if (response.data.error && response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.Must Enter Code##';
-          }
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
   $scope.showUpdate = function (_item) {
-    $scope.error = '';
-    $scope.mode = 'edit';
+    $scope.error = "";
+    $scope.mode = "edit";
     $scope.view(_item);
     $scope.item = {};
     site.showModal($scope.modalID);
   };
 
   $scope.update = function (_item) {
-    $scope.error = '';
+    $scope.error = "";
     const v = site.validated($scope.modalID);
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
@@ -69,7 +41,7 @@ app.controller('subjects', function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: 'POST',
+      method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/update`,
       data: _item,
     }).then(
@@ -91,10 +63,37 @@ app.controller('subjects', function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.updateBookStatus = function (_item, type) {
+    $scope.error = "";
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/updateStatus`,
+      data: { id: _item.id, type },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.doc.id);
+          if (index !== -1) {
+            $scope.list[index] = response.data.doc;
+          }
+          if (type == "done") {
+            site.hideModal("#actionModal");
+          }
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
 
   $scope.showView = function (_item) {
-    $scope.error = '';
-    $scope.mode = 'view';
+    $scope.error = "";
+    $scope.mode = "view";
     $scope.item = {};
     $scope.view(_item);
     site.showModal($scope.modalID);
@@ -102,9 +101,9 @@ app.controller('subjects', function ($scope, $http, $timeout) {
 
   $scope.view = function (_item) {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
     $http({
-      method: 'POST',
+      method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/view`,
       data: {
         id: _item.id,
@@ -124,20 +123,45 @@ app.controller('subjects', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.handle = function (_item) {
+    $scope.busy = true;
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/handle`,
+      data: {
+       
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.showDelete = function (_item) {
-    $scope.error = '';
-    $scope.mode = 'delete';
-    $scope.item = {};
-    $scope.view(_item);
-    site.showModal($scope.modalID);
+    $scope.error = "";
+    $scope.mode = "delete";
+    $scope.item = _item;
+    site.showModal("#actionModal");
+  };
+
+  $scope.showPaid = function (_item) {
+    $scope.error = "";
+    $scope.mode = "paid";
+    $scope.item = _item;
+    site.showModal("#actionModal");
   };
 
   $scope.delete = function (_item) {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
 
     $http({
-      method: 'POST',
+      method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/delete`,
       data: {
         id: $scope.item.id,
@@ -146,7 +170,7 @@ app.controller('subjects', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal($scope.modalID);
+          site.hideModal("#actionModal");
           let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
           if (index !== -1) {
             $scope.list.splice(index, 1);
@@ -165,7 +189,7 @@ app.controller('subjects', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.list = [];
     $http({
-      method: 'POST',
+      method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
         where: where,
@@ -176,6 +200,8 @@ app.controller('subjects', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
+          $scope.totalPurchases = response.data.totalPurchases;
+      
           site.hideModal($scope.modalSearchID);
           $scope.search = {};
         }
@@ -187,16 +213,68 @@ app.controller('subjects', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getEducationalLevelsList = function ($search) {
+  $scope.getStudentsList = function ($search) {
     if ($search && $search.length < 1) {
       return;
     }
     $scope.busy = true;
-    $scope.educationalLevelsList = [];
+    $http({
+      method: "POST",
+      url: "/api/manageUsers/all",
+      data: {
+        where: {
+          type: "student",
+          active: true,
+        },
+        select: { id: 1, firstName: 1 },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.studentsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  /* 
+  $scope.getPurchaseSubscriptionsTargetList = function () {
+    $scope.busy = true;
+    $scope.purchaseSubscriptionsTargetList = [];
+    $http({
+      method: "POST",
+      url: "/api/purchaseSubscriptionsTargetList",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.purchaseSubscriptionsTargetList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+ */
+
+  $scope.getSubscriptionsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.subscriptionsList = [];
 
     $http({
       method: "POST",
-      url: "/api/educationalLevels/all",
+      url: "/api/subscriptions/all",
       data: {
         where: {
           active: true,
@@ -211,7 +289,7 @@ app.controller('subjects', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.educationalLevelsList = response.data.list;
+          $scope.subscriptionsList = response.data.list;
         }
       },
       function (err) {
@@ -221,27 +299,19 @@ app.controller('subjects', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSchoolYearsList = function (educationalLevelId) {
+  $scope.getPurchaseTypeList = function () {
+    $scope.error = "";
     $scope.busy = true;
-    $scope.schoolYearsList = [];
+    $scope.purchaseTypeList = [];
     $http({
       method: "POST",
-      url: "/api/schoolYears/all",
-      data: {
-        where: {
-          active: true,
-          "educationalLevel.id": educationalLevelId,
-        },
-        select: {
-          id: 1,
-          name: 1,
-        },
-      },
+      url: "/api/purchaseTypeList",
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.schoolYearsList = response.data.list;
+          $scope.purchaseTypeList = response.data.list;
         }
       },
       function (err) {
@@ -251,37 +321,17 @@ app.controller('subjects', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSubjectsList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
+  $scope.selectPaidAccept = function (paidAccept) {
+    $scope.error = "";
+    if (paidAccept.name == "paidAccept") {
+      $scope._search.done = true;
+    } else if (paidAccept.name == "paidNotAccept") {
+      $scope._search.done = false;
     }
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/subjects/all",
-      data: {
-        where: {
-          active: true,
-        },
-        select: { id: 1, name: 1 },
-        search: $search,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.subjectsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
   };
 
   $scope.showSearch = function () {
-    $scope.error = '';
+    $scope.error = "";
     site.showModal($scope.modalSearchID);
   };
 
@@ -291,6 +341,9 @@ app.controller('subjects', function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
-  $scope.getAll();
-
+  $scope.getAll({});
+  $scope.getStudentsList();
+  $scope.getPurchaseTypeList();
+  $scope.getSubscriptionsList();
+  /*   $scope.getPurchaseSubscriptionsTargetList(); */
 });

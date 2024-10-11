@@ -6,6 +6,13 @@
 
     <style>
       figure {
+        .name {
+          font-size: 20px !important;
+        }
+        p {
+          max-height: unset !important;
+
+        }
         figcaption {
           .price {
             left: 10px !important;
@@ -15,49 +22,47 @@
     </style>
   </head>
 
-  <body class="##session.language.id##" ng-controller="lecturesView" x-permissions="offline || teacher || admin || !login">
+  <body class="##session.language.id##" ng-controller="subscriptionsView">
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div>
           <h2>##word.Search All##</h2>
-          <div class="row">
-            <i-list
-              x-permissions="!student"
-              class="col3 margin"
-              label="##word.Educational Level##"
-              ng-change="getSchoolYearsList(where.educationalLevel.id);getAll({ which: 13 })"
-              ng-model="where.educationalLevel"
-              display="name"
-              items="educationalLevelsList"
-              ng-search="where.$educationalLevel"
-            ></i-list>
-            <i-list
-              label="##word.School Year##"
-              ng-change="getAll({ which: 13 })"
-              class="col3 margin"
-              x-permissions="!student"
-              ng-model="where.schoolYear"
-              display="name"
-              items="schoolYearsList"
-            ></i-list>
-            <i-list label="##word.Subject##" ng-change="getAll({ which: 13 })" class="col3 margin" ng-model="where.subject" display="name" items="subjectsList"></i-list>
-          </div>
-          <i-control label="##word.Search##" class="input-style pass" ng-keydown="getAll($event)" ng-model="$search"></i-control>
-        </div>
-
+         <div class="row">
+           <i-list
+             class="col3 margin"
+             label="##word.Educational Level##"
+             ng-change="getSchoolYearsList(where.educationalLevel.id);getAll({ which: 13 })"
+             ng-model="where.educationalLevel"
+             display="name"
+             items="educationalLevelsList"
+             ng-search="where.$educationalLevel"
+           ></i-list>
+           <i-list
+             label="##word.School Year##"
+             ng-change="getAll({ which: 13 })"
+             class="col3 margin"
+             ng-model="where.schoolYear"
+             display="name"
+             items="schoolYearsList"
+           ></i-list>
+           <i-list label="##word.Subject##" ng-change="getAll({ which: 13 })" class="col3 margin" ng-model="where.subject" display="name" items="subjectsList"></i-list>
+         </div>
+         <i-control label="##word.Search##" class="input-style pass" ng-keydown="getAll($event)" ng-model="$search"></i-control>
+       </div>
         <div class="row">
           <ul class="row ul-list">
             <li ng-repeat="item in list">
-              <a href="/lectureView?id={{item._id}}">
+              <a href="/subscriptionView?id={{item._id}}">
                 <figure class="image-block">
                   <p class="name">{{item.name}}</p>
                   <img ng-src="{{item.image.url}}" alt="" />
                   <figcaption>
                     <p>{{item.description}}</p>
                     <div class="row price-more-card">
-                      <i class="price col-6" ng-show="item.price">##word.$## {{item.price}} </i>
-                      <i class="price col-6" ng-hide="item.price">##word.Free## </i>
+                      <i class="price col-6"
+                        >##word.$## {{item.price}}
+                      </i>
                       <span class="col-6 more-card"> ##word.Details##.. </span>
                     </div>
                   </figcaption>
@@ -75,6 +80,6 @@
 
     <div x-replace="teacher-theme/footer.html"></div>
     <div x-import="teacher-theme/scripts.html"></div>
-    <script x-import="lectures/lecturesView.js"></script>
+    <script x-import="subscriptions/subscriptionsView.js"></script>
   </body>
 </html>

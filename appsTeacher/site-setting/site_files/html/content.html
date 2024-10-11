@@ -3,6 +3,7 @@
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.Site Settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#printerProgram')" ng-show="siteSetting.isCenter"> ##word.Printers Program## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#payment')"> ##word.Payment Setting## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#themePage')"> ##word.Theme Setting## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#blockPrograms')"> ##word.Block Programs## </a>
     </div>
@@ -108,6 +109,7 @@
                   <i-checkbox label="##word.Lectures Show##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showLectures"> </i-checkbox>
                   <i-checkbox label="##word.Books Show##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showBooks"> </i-checkbox>
                   <i-checkbox label="##word.Show News##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showNews"> </i-checkbox>
+                  <i-checkbox label="##word.Show Subscriptions##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showSubscriptions"> </i-checkbox>
                   <i-checkbox label="##word.Banner Show##" ng-model="siteSetting.showBanner"> </i-checkbox>
                   <i-checkbox label="##word.Auto Student Barcode##" ng-show="siteSetting.isCenter" ng-model="siteSetting.autoStudentBarcode"> </i-checkbox>
                   <i-checkbox label="##word.Allow View Video From Mobile##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.allowVideoMobile"> </i-checkbox>
@@ -196,6 +198,47 @@
             </div>
           </div>
           <i-button type="save" label="##word.Save##" ng-click="saveSetting('#printerProgram')"></i-button>
+        </fieldset>
+      </div>
+      <div id="payment" class="tab-content">
+        <fieldset>
+          <legend>##word.Payment Program##</legend>
+
+          <div class="row">
+            <fieldset class="border">
+              <legend>##word.Purchase Types##</legend>
+              <div class="row">
+                <i-list label="##word.Purchase Type##" class="col3" ng-model="siteSetting.$purchaseType" display="name##session.lang##" items="purchaseTypeList"></i-list>
+                <i-control class="col3" label="##word.Account Number##" ng-model="siteSetting.$accountNumber"> </i-control>
+                <i-control class="col3" label="##word.Account Name##" ng-model="siteSetting.$accountName"> </i-control>
+                <i-button type="push" label="##word.Add Type##" ng-click="addPurchaseTypeList()"></i-button>
+    
+                <div class="table-responsive">
+                  <table class="table center hover bold">
+                    <tr>
+                      <th>##word.Purchase Type##</th>
+                      <th>##word.Account Number##</th>
+                      <th>##word.Account Name##</th>
+                      <th>##word.Default##</th>
+                      <th class="not-print">##word.Actions##</th>
+                    </tr>
+                    <tr ng-repeat="g in siteSetting.purchaseTypeList">
+                      <td class="center">{{g.name##session.lang##}}</td>
+                      <td class="center">{{g.accountNumber}}</td>
+                      <td class="center">{{g.accountName}}</td>
+                      <td class="center"><i-checkbox class="row" ng-change="setPurchaseTypeDafault($index)" ng-model="g.default"></i-checkbox></td>
+    
+                      <td class="center">
+                        <i-button type="delete" label="##word.Delete##" ng-click="siteSetting.purchaseTypeList.splice($index,1)"></i-button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <i-button type="save" label="##word.Save##" ng-click="saveSetting('#payment')"></i-button>
+
         </fieldset>
       </div>
       <div id="themePage" class="tab-content">

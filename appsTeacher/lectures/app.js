@@ -656,6 +656,17 @@ module.exports = function init(site) {
           if (!err && doc) {
             response.done = true;
             let _doc = { ...doc };
+            if (doc.activateSubscription) {
+              doc.subscriptionList = doc.subscriptionList || [];
+              let _subscription = null;
+              for (let i = 0; i < doc.subscriptionList.length; i++) {
+                if (req.session.user?.subscriptionList?.some((s) => s === doc.subscriptionList[i]?.subscription?.id)) {
+                  _subscription = doc.subscriptionList[i];
+                }
+              }
+              _doc.subscriptionName = _subscription.subscription.name
+              _doc.price = _subscription?.price;
+            }
             delete _doc.questionsList;
 
             if (req.session.user) {
@@ -926,14 +937,37 @@ module.exports = function init(site) {
 
     app.view({ id: _data.lectureId }, (err, doc) => {
       if (!err && doc) {
-        if (doc.price == 0) {
-          _data.purchase = {
-            purchaseType: {
-              nameAr: "مجاني",
-              nameEn: "Free",
-              name: "free",
-            },
-          };
+        let price = doc.price;
+        if (doc.activateSubscription) {
+          doc.subscriptionList = doc.subscriptionList || [];
+          let subscription = null;
+          for (let i = 0; i < doc.subscriptionList.length; i++) {
+            if (req.session.user?.subscriptionList?.some((s) => s === doc.subscriptionList[i]?.subscription?.id)) {
+              subscription = doc.subscriptionList[i];
+            }
+          }
+
+          if (subscription?.price == 0) {
+            _data.purchase = {
+              purchaseType: {
+                nameAr: "مجاني",
+                nameEn: "Free",
+                name: "free",
+              },
+            };
+          } else {
+            price = subscription?.price;
+          }
+        } else {
+          if (price == 0) {
+            _data.purchase = {
+              purchaseType: {
+                nameAr: "مجاني",
+                nameEn: "Free",
+                name: "free",
+              },
+            };
+          }
         }
         if (!_data.purchase || !_data.purchase.purchaseType || !_data.purchase.purchaseType.name) {
           response.error = req.word("Must Select Purchase Type");
@@ -955,8 +989,8 @@ module.exports = function init(site) {
             return;
           }
 
-          site.validateCode(req, { code: _data?.purchase?.code, price: doc.price }, (errCode, code) => {
-            if (errCode && doc.price > 0 && _data.purchase.purchaseType.name == "code") {
+          site.validateCode(req, { code: _data?.purchase?.code, price: price }, (errCode, code) => {
+            if (errCode && price > 0 && _data.purchase.purchaseType.name == "code") {
               response.error = req.word(errCode);
               res.json(response);
               return;
@@ -976,7 +1010,7 @@ module.exports = function init(site) {
                     site.addPurchaseOrder({
                       type: "lecture",
                       target: { id: doc.id, name: doc.name },
-                      price: doc.price,
+                      price: price,
                       purchaseType: {
                         name: _data.purchase.purchaseType.name,
                         nameAr: _data.purchase.purchaseType.nameAr,

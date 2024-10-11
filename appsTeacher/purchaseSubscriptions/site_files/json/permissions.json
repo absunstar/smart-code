@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "purchaseSubscriptions", "name": "purchaseSubscriptionsImport", "En": "Import", "Ar": "إستيراد" }
+]

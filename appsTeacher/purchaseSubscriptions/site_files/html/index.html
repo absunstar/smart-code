@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
+  <head x-import="teacher-theme/head-dashboard.html">
+    <style>
+      img {
+        width: 45px;
+        height: 45px;
+      }
+    </style>
+  </head>
+
+  <body class="##session.language.id##">
+    <nav x-import="teacher-theme/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="teacher-theme/sitebottom.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container" x-import="purchaseSubscriptions/_.html" x-permissions="login"></div>
+
+    <div x-import="teacher-theme/scripts-dashboard.html"></div>
+    <script x-import="purchaseSubscriptions/index.js"></script>
+  </body>
+</html>

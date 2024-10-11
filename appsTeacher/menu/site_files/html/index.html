@@ -62,6 +62,13 @@
     </a>
   </li>
 
+  <li class="menu-item" x-data="setting.showSubscriptions" >
+    <a class="tab-link" href="/subscriptions" x-permissions="subscriptionsUi || subscriptionsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Subscriptions## </span>
+    </a>
+  </li>
+
   <li class="menu-item" x-data="setting.isCenter">
     <a class="tab-link" href="/printersPaths" x-permissions="printersPathsUi || printersPathsManage">
       <i class="fas fa-globe"></i>
@@ -108,7 +115,12 @@
       <span> ##word.Quizzes## </span>
     </a>
   </li>
-
+  <li class="menu-item" x-data="setting.showSubscriptions">
+    <a class="tab-link" href="/purchaseSubscriptions" x-permissions="subscriptionsUi || subscriptionsManage">
+      <i class="fas fa-globe"></i>
+      <span> ##word.Purchase Subscriptions## </span>
+    </a>
+  </li>
   <li class="menu-item" x-data="setting.isEducationalPlatform" ng-show="'##data.setting.showLectures##' == 'true'">
     <a class="tab-link" href="/purchaseOrders?type=lecture" x-permissions="purchaseOrdersUi || purchaseOrdersManage">
       <i class="fas fa-globe"></i>

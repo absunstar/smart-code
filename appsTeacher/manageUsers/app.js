@@ -660,7 +660,12 @@ module.exports = function init(site) {
 
       if (teacher) {
         response.done = true;
-        response.list = teacher.purchaseTypeList;
+        if (teacher.purchaseTypeList && teacher.purchaseTypeList.length > 0) {
+          response.list = teacher.purchaseTypeList;
+        } else {
+          let setting = site.getSiteSetting(req.host);
+          response.list = setting.purchaseTypeList;
+        }
       } else {
         response.error = "Not Exists";
       }
@@ -751,11 +756,10 @@ module.exports = function init(site) {
     };
     app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users) => {
       if (users) {
-        
         for (let i = 0; i < users.length; i++) {
           users[i].lecturesList = users[i].lecturesList.concat(lectureList);
           console.log(users[i].lecturesList);
-          
+
           site.security.updateUser(users[i]);
         }
       }

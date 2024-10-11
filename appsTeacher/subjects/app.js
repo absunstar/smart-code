@@ -257,11 +257,11 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let select = req.body.select || { id: 1, name: 1, image: 1, active: 1 };
+        let select = req.body.select || { id: 1, name: 1, image: 1, image: 1, image: 1, image: 1, active: 1 };
         let list = [];
         let teacherId = site.getTeacherSetting(req);
         let host = site.getHostFilter(req.host);
-    let setting = site.getSiteSetting(req.host);
+        let setting = site.getSiteSetting(req.host);
 
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };

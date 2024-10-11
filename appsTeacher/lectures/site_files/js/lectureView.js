@@ -20,6 +20,10 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           $scope.item = response.data.doc;
           $scope.quizView();
           $scope.getPurchaseTypeTeacher($scope.item.teacherId);
+          if($scope.item.$buy){
+
+            $scope.alert = "##word.Purchased##";
+          }
         } else {
           $scope.error = response.data.error;
         }

@@ -114,6 +114,23 @@
       </div>
     </div>
   </fieldset>
+
+  <fieldset ng-show="setting.showSubscriptions">
+    <legend>
+      ##word.Subscriptions##
+      <i-checkbox ng-model="item.activateSubscription" label="##word.Active##" ng-change="activateSubscription()"></i-checkbox>
+
+      <i-button type="push" ng-show="item.activateSubscription" label="##word.Add Subscription##" ng-click="addSubscription()"></i-button>
+    </legend>
+    <div class="row" ng-show="item.activateSubscription" ng-repeat="sub in item.subscriptionList">
+      <i-list label="##word.Subscription##" v="r" class="col5" ng-model="sub.subscription" display="name" items="subscriptionsList"></i-list>
+
+      <i-control class="col2" v="r" label="##word.Price##" type="number" ng-model="sub.price"></i-control>
+      <div class="col1">
+        <i-button type="delete " ng-click=" item.subscriptionList.splice($index,1)"> </i-button>
+      </div>
+    </div>
+  </fieldset>
   <fieldset>
     <legend>##word.Description##</legend>
     <i-textarea ng-model="item.description"> </i-textarea>
