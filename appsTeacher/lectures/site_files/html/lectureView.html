@@ -191,7 +191,7 @@
                   </button>
                   <p class="error">{{errorCode}}</p>
 
-                  <button ng-click="startQuiz()" x-permission="login" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
+                  <button ng-click="startQuiz()" x-permissions="student" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                     ##word.Take A Quiz##
                     <i class="fas fa-chalkboard-teacher"></i>
                   </button>
