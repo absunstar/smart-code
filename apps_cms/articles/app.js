@@ -233,7 +233,7 @@ module.exports = function init(site) {
       doc.$backgroundURL = doc.$coverURL;
       doc.$content = lang.textContent || lang.htmlContent || '';
     } else if (doc.type.id == 8) {
-      doc.is_youtube = true;
+      doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
       doc.$content = lang.textContent || lang.htmlContent || '';
@@ -276,7 +276,7 @@ module.exports = function init(site) {
       doc.$tagsList.push(k);
     });
 
-    doc.publishDate = doc.publishDate || new Date();
+    doc.publishDate = site.getDateTime(doc.publishDate);
     doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.AR || '-----') + ' / ' + doc.publishDate.getFullYear();
     doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.EN || '-----') + ' \\ ' + doc.publishDate.getFullYear();
     doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
@@ -347,7 +347,7 @@ module.exports = function init(site) {
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
       doc.$backgroundURL = doc.$coverURL;
     } else if (doc.type.id == 8) {
-      doc.is_youtube = true;
+      doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
       doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
     } else if (doc.type.id == 9) {
@@ -359,7 +359,7 @@ module.exports = function init(site) {
 
     doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
-    doc.publishDate = doc.publishDate || new Date();
+    doc.publishDate = site.getDateTime(doc.publishDate);
     doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.AR || '-----') + ' / ' + doc.publishDate.getFullYear();
     doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.EN || '-----') + ' \\ ' + doc.publishDate.getFullYear();
     doc.$day1 = site.days[doc.publishDate.getDay()]?.AR || '-----';
@@ -412,7 +412,6 @@ module.exports = function init(site) {
     }
     delete doc.translatedList;
     delete doc.yts;
-    delete doc.publishDate;
     delete doc._id;
     delete doc.type;
 
@@ -806,9 +805,9 @@ module.exports = function init(site) {
       });
 
       if (articlesDoc.yts.date_uploaded) {
-        articlesDoc.publishDate = new Date(articlesDoc.yts.date_uploaded);
+        articlesDoc.publishDate = site.getDateTime(articlesDoc.yts.date_uploaded);
       }
-    } else if (articlesDoc.is_youtube) {
+    } else if (articlesDoc.$youtube) {
       articlesDoc = {
         type: site.articleTypes.find((t) => t.id === 8),
         youtube: articlesDoc,
@@ -836,7 +835,7 @@ module.exports = function init(site) {
       };
       articlesDoc.translatedList[0].textContent = articlesDoc.youtube.description;
       if (articlesDoc.youtube.date_uploaded) {
-        articlesDoc.publishDate = new Date(articlesDoc.youtube.date);
+        articlesDoc.publishDate =site.getDateTime(articlesDoc.youtube.date);
       } else {
         articlesDoc.publishDate = new Date();
       }
@@ -881,7 +880,7 @@ module.exports = function init(site) {
       };
 
       if (articlesDoc.facebook.date) {
-        articlesDoc.publishDate = new Date(articlesDoc.facebook.date);
+        articlesDoc.publishDate = site.getDateTime(articlesDoc.facebook.date);
       } else {
         articlesDoc.publishDate = new Date();
       }
@@ -1386,7 +1385,7 @@ module.exports = function init(site) {
     let urls = '';
     list.forEach((doc, i) => {
       let url = domain + '/article/' + doc.guid;
-      let date = new Date(doc.publishDate).toISOString();
+      let date = site.getDateTime(doc.publishDate).toISOString();
       let title = site.escapeXML(doc.$title);
       let description = site.escapeXML(doc.$content);
       let hashTag = ' #torrent';
@@ -1494,7 +1493,7 @@ module.exports = function init(site) {
         site.articlesList.push(doc);
         doc.$facebookDate = new Date();
         doc.full_url = domain + '/article/' + doc.guid;
-        doc.$date2 = new Date(doc.publishDate).toISOString();
+        doc.$date2 = site.getDateTime(doc.publishDate).toISOString();
 
         site.facebookPost = doc;
 
@@ -1539,7 +1538,7 @@ module.exports = function init(site) {
         site.articlesList.push(doc);
         doc.$pinDate = new Date();
         doc.full_url = domain + '/article/' + doc.guid;
-        doc.$date2 = new Date(doc.publishDate).toISOString();
+        doc.$date2 = site.getDateTime(doc.publishDate).toISOString();
 
         site.pinPost = doc;
 
@@ -1571,8 +1570,8 @@ module.exports = function init(site) {
 
     let urls = '';
     list.forEach((doc, i) => {
-      $url = domain + '/article/' + doc.guid;
-      $date = new Date(doc.publishDate).toUTCString();
+      $url = domain + '/article/' + doc.guid + '/' + doc.$title2;
+      $date = site.getDateTime(doc.publishDate).toUTCString();
       urls += `
         <item>
           <guid isPermaLink="false">${doc.guid}</guid>
@@ -1613,8 +1612,8 @@ module.exports = function init(site) {
       .filter((a) => a.host.like(filter))
       .slice(0, 10000)
       .forEach((article, i) => {
-        let $url = domain + '/article/' + article.guid;
-        let $date = new Date(article.publishDate).toISOString();
+        let $url = domain + '/article/' + article.guid+ '/' + article.$title2;
+        let $date = site.getDateTime(article.publishDate).toISOString();
         urls += `
               <url>
                   <loc>${$url}</loc>
