@@ -1,9 +1,11 @@
 <style>
-  .form-check-input[type="checkbox"] {
+  .form-check-input[type='checkbox'] {
     border-radius: 0.25em;
     width: 30px;
+    min-width: 30px;
     height: 25px;
     border: 2px solid #317cb9;
+    margin-right: 10px;
   }
   .answers {
     margin: 7px;
@@ -14,10 +16,12 @@
   }
 
   @media screen and (max-width: 480px) {
-    .form-check-input[type="checkbox"] {
+    .form-check-input[type='checkbox'] {
       border-radius: 0.25em;
       width: 10%;
+      min-width: 30px;
       height: 22px;
+      margin-right: 10px;
     }
   }
 </style>
@@ -33,15 +37,13 @@
         <fieldset>
           <legend>{{question.numbering}} <b ng-show="question.questionType.name=='text'">- {{question.name}}</b></legend>
           <div class="row" ng-show="question.questionType.name=='photo'">
-            <img  onclick="site.zoomElement(this)" ng-src="{{question.image.url}}" alt="" />
+            <img onclick="site.zoomElement(this)" ng-src="{{question.image.url}}" alt="" />
           </div>
           <div class="row">
             <div class="col4 answers" ng-repeat="answer in question.answersList track by $index">
               <div class="row padding margin">
-                
-                  <span class="padding margin bold">( {{answer.numbering}} )</span>
-                  <i-checkbox class="col" label="{{answer.name}}" ng-change="checkCorrect(question.answersList,$index)" ng-model="answer.userAnswer"> </i-checkbox>
-               
+                <span class="padding margin bold">( {{answer.numbering}} )</span>
+                <i-checkbox class="col" label="{{answer.name}}" ng-change="checkCorrect(question.answersList,$index)" ng-model="answer.userAnswer"> </i-checkbox>
               </div>
             </div>
           </div>
