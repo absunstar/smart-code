@@ -42,7 +42,7 @@
           <div class="row">
             <div class="col4 answers" ng-repeat="answer in question.answersList track by $index">
               <div class="row padding margin">
-                <span class="padding margin bold">( {{answer.numbering}} )</span>
+                <span class="col padding margin bold">( {{answer.numbering}} )</span>
                 <i-checkbox class="col" label="{{answer.name}}" ng-change="checkCorrect(question.answersList,$index)" ng-model="answer.userAnswer"> </i-checkbox>
               </div>
             </div>
