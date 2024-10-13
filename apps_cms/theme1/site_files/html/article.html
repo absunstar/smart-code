@@ -168,6 +168,8 @@
                 </div>
               </div>
 
+              <div x-data="setting.showArticleAd" x-import="theme1/ad-article.html" class="related-ads"></div>
+
               <div class="related-search">
                 <span class="bold"> ##word.related Search##</span>
                 <a x-list1="article.$keyWordsList" rel="nofollow" href="/results?search_query=##item1.##"> <i>##item1.##</i> </a>
@@ -183,7 +185,6 @@
                 <a href="/article/random" class="btn"> Click to Next Step >>>> </a>
               </div>
 
-              <div x-data="setting.showArticleAd" x-import="theme1/ad-article.html" class="related-ads"></div>
               <div x-import="theme1/related.html"></div>
             </div>
           </div>
