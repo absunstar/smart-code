@@ -115,10 +115,7 @@
                   </div>
                 </div>
 
-                <div x-data="article.$content" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
-                  <div class="article-description">##data.article.$content##</div>
-                </div>
-                <div x-data="article.$yts">
+                <div x-data="article.$yts" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
                   <div class="d-flex gap-2 p-2 justify-content-center">
                     <a rel="nofollow" target="_blank" class="btn btn-warning p-2 italic" href="##data.article.yts.$imdbURL##"> read more on IMDB </a>
                     <a rel="nofollow" target="_blank" class="btn btn-danger p-2 italic" href="##data.article.yts.$trailerURL##"> search in Youtube </a>
@@ -129,6 +126,10 @@
                       Download <span class="blue">[Quality ##item1.quality##]</span> <span class="black">( ##item1.size## ) Torrent</span>
                     </a>
                   </div>
+                </div>
+
+                <div x-data="article.$content" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+                  <div class="article-description">##data.article.$content##</div>
                 </div>
 
                 <div x-data="article.$hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.$video.imageURL##')">
