@@ -230,6 +230,9 @@ module.exports = function init(site) {
       doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
       doc.yts.$subtitleURL = 'https://www.opensubtitles.org/en/search2/sublanguageid-all/moviename-' + doc.$title.replace(/\s/g, '+');
+      if (doc.yts.yt_trailer_code) {
+        doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.yts.yt_trailer_code;
+      }
       doc.$backgroundURL = doc.$coverURL;
       doc.$content = lang.textContent || lang.htmlContent || '';
     } else if (doc.type.id == 8) {
@@ -835,7 +838,7 @@ module.exports = function init(site) {
       };
       articlesDoc.translatedList[0].textContent = articlesDoc.youtube.description;
       if (articlesDoc.youtube.date_uploaded) {
-        articlesDoc.publishDate =site.getDateTime(articlesDoc.youtube.date);
+        articlesDoc.publishDate = site.getDateTime(articlesDoc.youtube.date);
       } else {
         articlesDoc.publishDate = new Date();
       }
@@ -1612,7 +1615,7 @@ module.exports = function init(site) {
       .filter((a) => a.host.like(filter))
       .slice(0, 10000)
       .forEach((article, i) => {
-        let $url = domain + '/article/' + article.guid+ '/' + article.$title2;
+        let $url = domain + '/article/' + article.guid + '/' + article.$title2;
         let $date = site.getDateTime(article.publishDate).toISOString();
         urls += `
               <url>
