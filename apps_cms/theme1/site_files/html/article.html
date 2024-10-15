@@ -115,19 +115,21 @@
                   </div>
                 </div>
 
-                <div x-data="article.$content" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
-                  <div class="article-description">##data.article.$content##</div>
-                </div>
-                <div x-data="article.$yts">
-                  <div class="d-flex gap-2 p-2 justify-content-center">
-                    <a rel="nofollow" target="_blank" class="btn btn-warning p-2 italic" href="##data.article.yts.$imdbURL##"> read more on IMDB </a>
-                    <a rel="nofollow" target="_blank" class="btn btn-danger p-2 italic" href="##data.article.yts.$trailerURL##"> show movie Trailer </a>
-                    <a rel="nofollow" target="_blank" class="btn btn-info p-2 italic" href="##data.article.yts.$subtitleURL##"> download Subtitles </a>
-                  </div>
+                <div x-data="article.$yts" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
                   <div class="d-flex gap-2 p-2 justify-content-center">
                     <a rel="nofollow" x-list1="article.yts.torrents" class="green btn btn-primary p-4 bg-white font-22" target="_blank" href="##item1.url##">
                       Download <span class="blue">[Quality ##item1.quality##]</span> <span class="black">( ##item1.size## ) Torrent</span>
                     </a>
+                  </div>
+
+                  <div class="d-flex gap-2 p-2 justify-content-center">
+                    <a rel="nofollow" target="_blank" class="btn btn-warning p-2 italic" href="##data.article.yts.$imdbURL##"> read more on IMDB </a>
+                    <a rel="nofollow" target="_blank" class="btn btn-danger p-2 italic" href="##data.article.yts.$trailerURL##"> search in Youtube </a>
+                    <a rel="nofollow" target="_blank" class="btn btn-info p-2 italic" href="##data.article.yts.$subtitleURL##"> download Subtitles </a>
+                  </div>
+
+                  <div x-data="article.$content" class="d-flex gap-2 p-2 justify-content-center">
+                    <div class="article-description">##data.article.$content##</div>
                   </div>
                 </div>
 
@@ -168,6 +170,8 @@
                 </div>
               </div>
 
+              <div x-data="setting.showArticleAd" x-import="theme1/ad-article.html" class="related-ads"></div>
+
               <div class="related-search">
                 <span class="bold"> ##word.related Search##</span>
                 <a x-list1="article.$keyWordsList" rel="nofollow" href="/results?search_query=##item1.##"> <i>##item1.##</i> </a>
@@ -183,7 +187,6 @@
                 <a href="/article/random" class="btn"> Click to Next Step >>>> </a>
               </div>
 
-              <div x-data="setting.showArticleAd" x-import="theme1/ad-article.html" class="related-ads"></div>
               <div x-import="theme1/related.html"></div>
             </div>
           </div>
@@ -193,6 +196,7 @@
               <img class="d-flex col-sm-3" src="##item1.$imageURL##" alt="" />
               <p class="d-flex col-sm-9">##item1.$title##</p>
             </a>
+            <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
             <div x-data="setting.showSideAd" x-import="theme1/ad-social.html" class="related-tags"></div>
             <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
           </div>

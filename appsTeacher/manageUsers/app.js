@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   let app = {
-    name: "manageUsers",
+    name: 'manageUsers',
     allowMemory: false,
     memoryList: [],
     newList: [],
@@ -19,13 +19,13 @@ module.exports = function init(site) {
   site.studentList = [];
   site.parentList = [];
 
-  app.$collection = site.connectCollection("users_info");
+  app.$collection = site.connectCollection('users_info');
 
   app.init = function () {
     app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
-          if (doc.type == "teacher") {
+          if (doc.type == 'teacher') {
             let obj = {
               _id: doc._id,
               id: doc.id,
@@ -47,7 +47,7 @@ module.exports = function init(site) {
               priorityAppearance: doc.priorityAppearance || 0,
             };
             site.teacherList.push({ ...obj });
-          } else if (doc.type == "student") {
+          } else if (doc.type == 'student') {
             let obj = {
               _id: doc._id,
               id: doc.id,
@@ -59,7 +59,7 @@ module.exports = function init(site) {
               active: doc.active,
             };
             site.studentList.push({ ...obj });
-          } else if (doc.type == "parent") {
+          } else if (doc.type == 'parent') {
             let obj = {
               _id: doc._id,
               id: doc.id,
@@ -182,62 +182,62 @@ module.exports = function init(site) {
           name: app.name,
         },
         (req, res) => {
-          let appName = req.word("Manage Users");
+          let appName = req.word('Manage Users');
           if (req.query) {
-            if (req.query.type == "student") {
-              appName = req.word("Manage Students");
-            } else if (req.query.type == "teacher") {
-              appName = req.word("Manage Teachers");
-            } else if (req.query.type == "parent") {
-              appName = req.word("Manage Parents");
+            if (req.query.type == 'student') {
+              appName = req.word('Manage Students');
+            } else if (req.query.type == 'teacher') {
+              appName = req.word('Manage Teachers');
+            } else if (req.query.type == 'parent') {
+              appName = req.word('Manage Parents');
             }
           }
 
           res.render(
-            app.name + "/index.html",
+            app.name + '/index.html',
             {
               title: app.name,
               appName: appName,
               setting: site.getSiteSetting(req.host),
             },
-            { parser: "html", compres: true }
+            { parser: 'html', compres: true }
           );
         }
       );
       site.get(
         {
-          name: "teachersView",
+          name: 'teachersView',
         },
         (req, res) => {
           let setting = site.getSiteSetting(req.host);
-          setting.description = setting.description || "";
+          setting.description = setting.description || '';
           setting.keyWordsList = setting.keyWordsList || [];
           let data = {
             setting: setting,
-            guid: "",
+            guid: '',
             isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || "/images/logo.png",
-            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
-            page_image: setting.logo?.url || "/images/logo.png",
-            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
-            user_image: req.session?.user?.image?.url || "/images/logo.png",
+            site_logo: setting.logo?.url || '/images/logo.png',
+            site_footer_logo: setting.footerLogo?.url || '/images/logo.png',
+            page_image: setting.logo?.url || '/images/logo.png',
+            powerdByLogo: setting.powerdByLogo?.url || '/images/logo.png',
+            user_image: req.session?.user?.image?.url || '/images/logo.png',
             site_name: setting.siteName,
             page_lang: setting.id,
-            page_type: "website",
-            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+            page_type: 'website',
+            page_title: setting.siteName + ' ' + setting.titleSeparator + ' ' + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
-            page_keywords: setting.keyWordsList.join(","),
+            page_keywords: setting.keyWordsList.join(','),
           };
-          if (req.hasFeature("host.com")) {
-            data.site_logo = "//" + req.host + data.site_logo;
-            data.site_footer_logo = "//" + req.host + data.site_footer_logo;
-            data.page_image = "//" + req.host + data.page_image;
-            data.user_image = "//" + req.host + data.user_image;
-            data.powerdByLogo = "//" + req.host + data.powerdByLogo;
+          if (req.hasFeature('host.com')) {
+            data.site_logo = '//' + req.host + data.site_logo;
+            data.site_footer_logo = '//' + req.host + data.site_footer_logo;
+            data.page_image = '//' + req.host + data.page_image;
+            data.user_image = '//' + req.host + data.user_image;
+            data.powerdByLogo = '//' + req.host + data.powerdByLogo;
           }
-          res.render(app.name + "/teachersView.html", data, {
-            parser: "html",
+          res.render(app.name + '/teachersView.html', data, {
+            parser: 'html',
             compres: true,
           });
         }
@@ -245,19 +245,19 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ['login'] } }, (req, res) => {
         let response = {
           done: false,
         };
 
         let setting = site.getSiteSetting(req.host);
         let _data = req.data;
-        if (_data.type == "teacher") {
-          _data.roles = [{ name: "teacher" }];
-          _data.permissions = [{ name: "teacher" }];
-        } else if (_data.type == "student") {
-          _data.roles = [{ name: "student" }];
-          _data.permissions = [{ name: "student" }];
+        if (_data.type == 'teacher') {
+          _data.roles = [{ name: 'teacher' }];
+          _data.permissions = [{ name: 'teacher' }];
+        } else if (_data.type == 'student') {
+          _data.roles = [{ name: 'student' }];
+          _data.permissions = [{ name: 'student' }];
         }
 
         _data.host = site.getHostFilter(req.host);
@@ -294,15 +294,15 @@ module.exports = function init(site) {
               active: doc.active,
               priorityAppearance: doc.priorityAppearance,
             };
-            if (doc.type == "student") {
+            if (doc.type == 'student') {
               site.studentList.push(obj);
-            } else if (doc.type == "teacher") {
+            } else if (doc.type == 'teacher') {
               site.teacherList.push(obj);
-            } else if (doc.type == "parent") {
+            } else if (doc.type == 'parent') {
               site.parentList.push(obj);
             }
-            if (doc.type == "student" && setting.isCenter && setting.autoStudentBarcode) {
-              doc.barcode = doc.id.toString() + "00" + d + h + m;
+            if (doc.type == 'student' && setting.isCenter && setting.autoStudentBarcode) {
+              doc.barcode = doc.id.toString() + '00' + d + h + m;
               app.update(doc, (err1, result) => {
                 if (!err1 && doc) {
                   response.done = true;
@@ -329,7 +329,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/update`,
-          require: { permissions: ["login"] },
+          require: { permissions: ['login'] },
         },
         (req, res) => {
           let response = {
@@ -344,11 +344,11 @@ module.exports = function init(site) {
               response.done = true;
               response.result = result;
               if (result.doc) {
-                let listName = "studentList";
-                if (result.doc.type == "teacher") {
-                  listName = "teacherList";
-                } else if (result.doc.type == "parent") {
-                  listName = "parentList";
+                let listName = 'studentList';
+                if (result.doc.type == 'teacher') {
+                  listName = 'teacherList';
+                } else if (result.doc.type == 'parent') {
+                  listName = 'parentList';
                 }
                 let index = site[listName].findIndex((a) => a.id === result?.doc?.id);
                 if (index !== -1) {
@@ -386,7 +386,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/updateStudentNotifications`,
-          require: { permissions: ["login"] },
+          require: { permissions: ['login'] },
         },
         (req, res) => {
           let response = {
@@ -399,11 +399,11 @@ module.exports = function init(site) {
               if (user) {
                 user.notificationsList = user.notificationsList || [];
 
-                if (_data.type == "deleteAll") {
+                if (_data.type == 'deleteAll') {
                   user.notificationsList = [];
-                } else if (_data.type == "deleteOne") {
+                } else if (_data.type == 'deleteOne') {
                   user.notificationsList = user.notificationsList.filter((_n) => _n.id != _data.id);
-                } else if (_data.type == "showAll") {
+                } else if (_data.type == 'showAll') {
                   for (let i = 0; i < user.notificationsList.length; i++) {
                     user.notificationsList[i].show = true;
                   }
@@ -436,7 +436,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/delete`,
-          require: { permissions: ["login"] },
+          require: { permissions: ['login'] },
         },
         (req, res) => {
           let response = {
@@ -447,11 +447,11 @@ module.exports = function init(site) {
             if (!err && result.count === 1) {
               response.done = true;
               response.result = result;
-              let listName = "studentList";
-              if (result.doc.type == "teacher") {
-                listName = "teacherList";
-              } else if (result.doc.type == "parent") {
-                listName = "parentList";
+              let listName = 'studentList';
+              if (result.doc.type == 'teacher') {
+                listName = 'teacherList';
+              } else if (result.doc.type == 'parent') {
+                listName = 'parentList';
               }
               let index = site[listName].findIndex((a) => a.id === result.doc.id);
               if (index !== -1) {
@@ -459,7 +459,7 @@ module.exports = function init(site) {
               }
               res.json(response);
             } else {
-              response.error = err?.message || "Deleted Not Exists";
+              response.error = err?.message || 'Deleted Not Exists';
               res.json(response);
             }
           });
@@ -479,7 +479,7 @@ module.exports = function init(site) {
             response.done = true;
             response.doc = doc;
           } else {
-            response.error = err?.message || "Not Exists";
+            response.error = err?.message || 'Not Exists';
           }
           res.json(response);
         });
@@ -490,7 +490,7 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
-        let search = req.body.search || "";
+        let search = req.body.search || '';
         let limit = req.body.limit || 100;
         let select = req.body.select || {
           id: 1,
@@ -507,94 +507,94 @@ module.exports = function init(site) {
           where.$or = [];
 
           where.$or.push({
-            id: site.get_RegExp(search, "i"),
+            id: site.get_RegExp(search, 'i'),
           });
 
           where.$or.push({
-            firstName: site.get_RegExp(search, "i"),
+            firstName: site.get_RegExp(search, 'i'),
           });
 
           where.$or.push({
-            lastName: site.get_RegExp(search, "i"),
+            lastName: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
             barcode: search,
           });
           where.$or.push({
-            idNumber: site.get_RegExp(search, "i"),
+            idNumber: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "educationalLevel.name": site.get_RegExp(search, "i"),
+            'educationalLevel.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "schoolYear.name": site.get_RegExp(search, "i"),
+            'schoolYear.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "school.name": site.get_RegExp(search, "i"),
+            'school.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "subject.name": site.get_RegExp(search, "i"),
+            'subject.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "center.name": site.get_RegExp(search, "i"),
+            'center.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "gender.nameAr": site.get_RegExp(search, "i"),
+            'gender.nameAr': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "gender.nameEn": site.get_RegExp(search, "i"),
+            'gender.nameEn': site.get_RegExp(search, 'i'),
           });
 
           where.$or.push({
-            phone: site.get_RegExp(search, "i"),
+            phone: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            mobile: site.get_RegExp(search, "i"),
+            mobile: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            whatsapp: site.get_RegExp(search, "i"),
+            whatsapp: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            socialEmail: site.get_RegExp(search, "i"),
+            socialEmail: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            bio: site.get_RegExp(search, "i"),
+            bio: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            title: site.get_RegExp(search, "i"),
+            title: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            address: site.get_RegExp(search, "i"),
+            address: site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "gov.name": site.get_RegExp(search, "i"),
+            'gov.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "city.name": site.get_RegExp(search, "i"),
+            'city.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "area.name": site.get_RegExp(search, "i"),
+            'area.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "levelList.educationalLevel.name": site.get_RegExp(search, "i"),
+            'levelList.educationalLevel.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "levelList.schoolYear.name": site.get_RegExp(search, "i"),
+            'levelList.schoolYear.name': site.get_RegExp(search, 'i'),
           });
           where.$or.push({
-            "levelList.subject.name": site.get_RegExp(search, "i"),
+            'levelList.subject.name': site.get_RegExp(search, 'i'),
           });
         }
-        if (where["type"] != "teacher") {
+        if (where['type'] != 'teacher') {
           if ((teacherId = site.getTeacherSetting(req)) && !setting.isCenter && !setting.isShared) {
-            where["teacherId"] = teacherId;
+            where['teacherId'] = teacherId;
           } else {
-            where["host"] = site.getHostFilter(req.host);
+            where['host'] = site.getHostFilter(req.host);
           }
         } else if (setting.isShared || setting.isCenter) {
-          where["host"] = site.getHostFilter(req.host);
+          where['host'] = site.getHostFilter(req.host);
         }
-        where["id"] = { $ne: 1 };
+        where['id'] = { $ne: 1 };
 
         app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({
@@ -605,7 +605,7 @@ module.exports = function init(site) {
         });
       });
     }
-    site.post({ name: `/api/${app.name}/toDifferentGroup`, require: { permissions: ["login"] } }, (req, res) => {
+    site.post({ name: `/api/${app.name}/toDifferentGroup`, require: { permissions: ['login'] } }, (req, res) => {
       let response = {
         done: false,
       };
@@ -617,7 +617,7 @@ module.exports = function init(site) {
           response.done = true;
 
           site.getGroup(
-            { "studentList.student.id": doc.id, "subject.id": req.body.subjectId, "educationalLevel.id": doc.educationalLevel.id, "schoolYear.id": doc.schoolYear.id },
+            { 'studentList.student.id': doc.id, 'subject.id': req.body.subjectId, 'educationalLevel.id': doc.educationalLevel.id, 'schoolYear.id': doc.schoolYear.id },
             (errCode, group) => {
               if (group && group.id) {
                 let studentGroup = group.studentList.find((itm) => itm.student.id == doc.id);
@@ -639,72 +639,67 @@ module.exports = function init(site) {
                   },
                 };
               } else {
-                response.error = "There is no matching group for the student data";
+                response.error = 'There is no matching group for the student data';
               }
               res.json(response);
             }
           );
         } else {
-          response.error = err?.message || "Not Exists";
+          response.error = err?.message || 'Not Exists';
           res.json(response);
         }
       });
     });
 
-    site.post({ name: `/api/${app.name}/purchaseTypeTeacher`, require: { permissions: ["login"] } }, (req, res) => {
+    site.post({ name: `/api/${app.name}/purchaseTypeTeacher`, require: { permissions: ['login'] } }, (req, res) => {
       let response = {
         done: false,
       };
 
       let teacher = site.teacherList.find((t) => t.id == req.data);
 
-      if (teacher) {
-        response.done = true;
-        if (teacher.purchaseTypeList && teacher.purchaseTypeList.length > 0) {
-          response.list = teacher.purchaseTypeList;
-        } else {
-          let setting = site.getSiteSetting(req.host);
-          response.list = setting.purchaseTypeList;
-        }
+      response.done = true;
+      if (teacher && teacher.purchaseTypeList && teacher.purchaseTypeList.length > 0) {
+        response.list = teacher.purchaseTypeList;
       } else {
-        response.error = "Not Exists";
+        let setting = site.getSiteSetting(req.host);
+        response.list = setting.purchaseTypeList;
       }
-
       res.json(response);
     });
   }
 
   site.addNotificationToStudents = function (doc, req) {
     let where = {};
-    if (doc.type.name == "parent") {
-      where["type"] = "parent";
+    if (doc.type.name == 'parent') {
+      where['type'] = 'parent';
     } else {
-      where["type"] = "student";
+      where['type'] = 'student';
 
-      if (doc.type.name == "online") {
-        where["placeType"] = "online";
-      } else if (doc.type.name == "offline") {
-        where["placeType"] = "offline";
+      if (doc.type.name == 'online') {
+        where['placeType'] = 'online';
+      } else if (doc.type.name == 'offline') {
+        where['placeType'] = 'offline';
         if (doc.center.id) {
-          where["center.id"] = doc.center.id;
+          where['center.id'] = doc.center.id;
         }
-      } else if (doc.type.name == "specificStudents") {
+      } else if (doc.type.name == 'specificStudents') {
         let studentsIds = doc.studentsList.map((_s) => _s.id);
-        where["id"] = { $in: studentsIds };
+        where['id'] = { $in: studentsIds };
       }
 
       if (doc.educationalLevel.id) {
-        where["educationalLevel.id"] = doc.educationalLevel.id;
+        where['educationalLevel.id'] = doc.educationalLevel.id;
       }
       if (doc.schoolYear.id) {
-        where["schoolYear.id"] = doc.schoolYear.id;
+        where['schoolYear.id'] = doc.schoolYear.id;
       }
     }
 
     if ((teacherId = site.getTeacherSetting(req))) {
-      where["teacherId"] = teacherId;
+      where['teacherId'] = teacherId;
     } else {
-      where["host"] = site.getHostFilter(req.host);
+      where['host'] = site.getHostFilter(req.host);
     }
 
     site.security.getUsers(where, (err, docs) => {
