@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="row padding">
+    <div class="col9">
+      <div class="row">
+        <div class="row">
+          <i-control type="text" v="r" class="col6" ng-model="item.name" label="##word.Mini Book Name##"></i-control>
+          <i-control type="number" v="r" class="col2" ng-model="item.price" label="##word.Price##"></i-control>
+          <div class="col4">
+            <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
+            <i-checkbox ng-model="item.receiveLibrary" label="##word.Receive from the library##"></i-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <i-list label="##word.Type##" ng-model="item.type" class="col3" v="r" display="name##session.lang##" items="miniBooksTypesList"></i-list>
+          <i-list
+            label="##word.Educational Level##"
+            ng-change="getSchoolYearsList(item.educationalLevel.id)"
+            class="col3"
+            v="r"
+            ng-model="item.educationalLevel"
+            display="name"
+            items="educationalLevelsList"
+            ng-search="item.$educationalLevel"
+          ></i-list>
+          <i-list label="##word.School Year##" ng-model="item.schoolYear" class="col3" v="r" display="name" items="schoolYearsList"></i-list>
+
+          <i-list label="##word.Subject##" ng-model="item.subject" class="col3" display="name" items="subjectsList"></i-list>
+        </div>
+
+        <fieldset x-data="setting.isOnline">
+          <legend>##word.Place Type##</legend>
+          <div class="row">
+            <i-radio ng-model="item.placeType" label="##word.Online##" class="col4" ng-value="online" group="placeType" type="radio"></i-radio>
+            <i-radio ng-model="item.placeType" label="##word.Offline##" class="col4" ng-value="offline" group="placeType" type="radio"></i-radio>
+            <i-radio ng-model="item.placeType" label="##word.Both##" class="col4" ng-value="both" group="placeType" type="radio"></i-radio>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.Link List## <i-button type="push" ng-click="item.linkList.unshift({})"></i-button></legend>
+          <div class="row" ng-repeat="l in item.linkList">
+            <i-control type="text" class="col5" ng-model="l.title" label="##word.Title##"></i-control>
+            <i-control type="text" class="col5" ng-model="l.link" label="##word.Link##"></i-control>
+            <i-button type="delete" class="col1" title="##word.Delete##" ng-click="item.linkList.splice($index,1)"> </i-button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>
+            ##word.Files##
+            <i-button type="push" ng-click="addFiles()"></i-button>
+          </legend>
+          <div class="row" ng-repeat="f in item.fileList">
+            <i-control class="col5" label="##word.Title##" ng-model="f.title"></i-control>
+            <i-file class="col5" ng-model="f.file"></i-file>
+            <i-button class="col1" type="delete" title="##word.Delete##" ng-click=" item.fileList.splice($index,1)"> </i-button>
+          </div>
+        </fieldset>
+     
+      </div>
+    </div>
+    <div class="col3">
+      <i-image class="img128 center" ng-model="item.image"></i-image>
+    </div>
+  </div>
+
+  <fieldset ng-show="setting.showSubscriptions">
+    <legend>
+      ##word.Subscriptions##
+      <i-checkbox ng-model="item.activateSubscription" label="##word.Active##" ng-change="activateSubscription()"></i-checkbox>
+
+      <i-button type="push" ng-show="item.activateSubscription" label="##word.Add Subscription##" ng-click="addSubscription()"></i-button>
+    </legend>
+    <div class="row" ng-show="item.activateSubscription" ng-repeat="sub in item.subscriptionList">
+      <i-list label="##word.Subscription##" v="r" class="col5" ng-model="sub.subscription" display="name" items="subscriptionsList"></i-list>
+
+      <i-control class="col2" v="r" label="##word.Price##" type="number" ng-model="sub.price"></i-control>
+      <div class="col1">
+        <i-button type="delete " ng-click=" item.subscriptionList.splice($index,1)"> </i-button>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>##word.Description##</legend>
+    <i-textarea ng-model="item.description"> </i-textarea>
+  </fieldset>
+</div>
+<div ng-show="mode !== 'add' " class="row">
+  <table class="table hover border">
+    <tr>
+      <th>##word.Add Info##</th>
+      <th>##word.Last Edit Info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue">{{item.addUserInfo.name}}</p>
+        <small class="green"> {{item.addUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.addUserInfo.ip}}</p>
+      </td>
+
+      <td class="center">
+        <p class="blue">{{item.editUserInfo.name}}</p>
+        <small class="green"> {{item.editUserInfo.date |date:"hh:mm"}} </small>
+        <small> {{item.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+        <p class="bold">IP : {{item.editUserInfo.ip}}</p>
+      </td>
+    </tr>
+  </table>
+</div>

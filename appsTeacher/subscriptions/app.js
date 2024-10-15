@@ -379,7 +379,7 @@ module.exports = function init(site) {
         let setting = site.getSiteSetting(req.host);
 
         if(req.body.type == 'toStudent' && !where['mySubscriptions']) {
-          if(!where.educationalLevel){
+          if(!where.educationalLevel) {
             where.educationalLevel = req.session?.user?.educationalLevel
           }
           if(!where.schoolYear){

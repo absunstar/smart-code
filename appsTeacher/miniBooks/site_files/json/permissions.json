@@ -1,0 +1,12 @@
+[
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksManage", "En": "Manage", "Ar": "إدارة" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksAdd", "En": "Add", "Ar": "إضافة" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksUpdate", "En": "Edit", "Ar": "تعديل" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksDelete", "En": "Delete", "Ar": "حذف" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksView", "En": "View", "Ar": "عرض" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksSearch", "En": "Search", "Ar": "بحث" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksExport", "En": "Export", "Ar": "تصدير" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksPrint", "En": "Print", "Ar": "طباعة" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "miniBooks", "name": "miniBooksImport", "En": "Import", "Ar": "إستيراد" }
+]

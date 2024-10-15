@@ -424,6 +424,15 @@ module.exports = function init(site) {
       site.security.register(user, function (err, doc) {
         if (!err) {
           response.user = doc;
+          
+          if (setting.activeStudentBarcode) {
+            let date = site.getDate();
+            let d = date.getDate().toString();
+            let h = date.getHours().toString();
+            let m = date.getMinutes().toString();
+            doc.barcode = doc.id.toString() + "00" + d + h + m;
+            site.security.updateUser(doc, (err1, result) => {});
+          }
           response.done = true;
         } else {
           response.error = err.message;

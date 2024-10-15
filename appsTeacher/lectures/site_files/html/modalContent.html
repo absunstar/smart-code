@@ -5,7 +5,11 @@
         <div class="row">
           <i-control type="text" v="r" class="col6" ng-model="item.name" label="##word.Lecture Name##"></i-control>
           <i-control type="number" v="r" class="col3" ng-model="item.price" label="##word.Price##"></i-control>
-          <i-checkbox ng-model="item.active" class="col3" label="##word.Active##"></i-checkbox>
+          <div class="col3">
+
+            <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
+            <i-checkbox ng-model="item.liveBroadcast" label="##word.Live Broadcast##"></i-checkbox>
+          </div>
         </div>
         <div class="row">
           <i-list label="##word.Type##" ng-model="item.type" class="col3" v="r" display="name##session.lang##" items="lecturesTypesList"></i-list>

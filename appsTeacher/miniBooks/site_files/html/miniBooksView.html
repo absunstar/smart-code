@@ -15,7 +15,7 @@
     </style>
   </head>
 
-  <body class="##session.language.id##" ng-controller="lecturesView" x-permissions="offline || teacher || admin || !login">
+  <body class="##session.language.id##" ng-controller="miniBooksView" x-permissions="offline || teacher || admin || !login">
     <div x-replace="teacher-theme/header.html"></div>
     <main class="container">
       <div id="main-layout" class="content loaded">
@@ -47,7 +47,7 @@
         <div class="row">
           <ul class="row ul-list">
             <li ng-repeat="item in list">
-              <a href="/lectureView?id={{item._id}}">
+              <a href="/miniBookView?id={{item._id}}">
                 <figure class="image-block">
                   <p class="name">{{item.name}}</p>
                   <img ng-src="{{item.image.url}}" alt="" />
@@ -73,6 +73,6 @@
 
     <div x-replace="teacher-theme/footer.html"></div>
     <div x-import="teacher-theme/scripts.html"></div>
-    <script x-import="lectures/lecturesView.js"></script>
+    <script x-import="miniBooks/miniBooksView.js"></script>
   </body>
 </html>

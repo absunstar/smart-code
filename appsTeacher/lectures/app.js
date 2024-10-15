@@ -37,6 +37,7 @@ module.exports = function init(site) {
             image: doc.image,
             active: doc.active,
             placeType: doc.placeType,
+            liveBroadcast: doc.liveBroadcast,
           });
         });
       }
@@ -338,6 +339,7 @@ module.exports = function init(site) {
                   active: result.doc.active,
                   image: result.doc.image,
                   placeType: result.doc.placeType,
+                  liveBroadcast: result.doc.liveBroadcast,
                 });
               } else {
                 response.error = err.mesage;
@@ -416,6 +418,7 @@ module.exports = function init(site) {
                   active: result.doc.active,
                   image: result.doc.image,
                   placeType: result.doc.placeType,
+                  liveBroadcast: result.doc.liveBroadcast,
                 };
               }
             } else {
@@ -664,7 +667,7 @@ module.exports = function init(site) {
                   _subscription = doc.subscriptionList[i];
                 }
               }
-              _doc.subscriptionName = _subscription.subscription.name
+              _doc.subscriptionName = _subscription.subscription.name;
               _doc.price = _subscription?.price;
             }
             delete _doc.questionsList;
@@ -815,7 +818,7 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/allToStudent`, public: true }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "";
-        let limit = req.body.limit || 20;
+        let limit = req.body.limit || 100;
         let select = {
           id: 1,
           name: 1,
@@ -825,9 +828,9 @@ module.exports = function init(site) {
           date: 1,
           code: 1,
         };
+
         if (search) {
           where.$or = [];
-
           where.$or.push({
             id: site.get_RegExp(search, "i"),
           });
@@ -850,6 +853,17 @@ module.exports = function init(site) {
             "subject.name": site.get_RegExp(search, "i"),
           });
         }
+
+        if (req.session?.user?.type == 'student') {
+          if (!where.educationalLevel) {
+            where.educationalLevel = req.session?.user?.educationalLevel;
+          }
+          if (!where.schoolYear) {
+            where.schoolYear = req.session?.user?.schoolYear;
+          }
+         
+        }
+
         if (where["educationalLevel"]) {
           where["educationalLevel.id"] = where["educationalLevel"].id;
           delete where["educationalLevel"];
@@ -866,8 +880,8 @@ module.exports = function init(site) {
         }
         if (req.body.type == "toStudent") {
           if (req.session.user && req.session.user.type == "student") {
-            where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
-            where["schoolYear.id"] = req.session.user?.schoolYear?.id;
+            // where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
+            // where["schoolYear.id"] = req.session.user?.schoolYear?.id;
             where.$and = [
               {
                 $or: [{ placeType: req.session.user.placeType }, { placeType: "both" }],
@@ -896,23 +910,40 @@ module.exports = function init(site) {
               },
             ];
           }
-        } else if (req.body.type == "myStudent") {
-          if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
-            let idList = [];
-            req.session.user.lecturesList.forEach((element) => {
-              idList.push(element.lectureId);
-            });
-            where["id"] = {
-              $in: idList,
-            };
-          }
-        }
+        } 
+        // else if (req.body.type == "myStudent") {
+        //   if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
+        //     let idList = [];
+        //     req.session.user.lecturesList.forEach((element) => {
+        //       idList.push(element.lectureId);
+        //     });
+        //     where["id"] = {
+        //       $in: idList,
+        //     };
+        //   }
+        // }
         if ((teacherId = site.getTeacherSetting(req))) {
           where["teacherId"] = teacherId;
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-
+        if (where["myLectures"]) {
+          where.$or = where.$or || [];
+          if (req.session?.user?.type == "student" && req.session?.user?.lecturesList) {
+            let lectureList = req.session?.user?.lecturesList?.map((_item) => _item.lectureId);
+            where.$or.push({
+              "id": { $in: lectureList },
+            });
+          }
+          if(req.session?.user?.subscriptionList) {
+            
+            where.$or.push({
+              "subscriptionList.subscription.id": { $in: req.session?.user?.subscriptionList },
+            });
+          }
+          delete where["myLectures"];
+        }
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
@@ -1159,7 +1190,7 @@ module.exports = function init(site) {
       if (obj.price == 0) {
         obj.$isFree = true;
       }
-      if (obj.active && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
+      if (obj.active && !obj.liveBroadcast && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
         if (req.session.user && req.session.user.type == "student") {
           if (
             obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&

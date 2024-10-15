@@ -1,0 +1,113 @@
+<div id="studentsModal" class="modal full" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <p class="center">
+        ##word.Students##
+        <i class="fa fa-pencil"></i>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="person-cart">
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Mini Book Name## : </span> {{item.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Subject## : </span> {{item.subject.name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7">
+              <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{item.educationalLevel.name}}</p>
+            </div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.School Year## : </span> {{item.schoolYear.name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col7"></div>
+            <div class="col5">
+              <p class="bold"><span class="darkGray">##word.Price## : </span> <span ng-show="item.price">{{item.price}} ##word.$##</span> <span ng-show="!item.price">##word.Free##</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <i-button type="search" label="##word.All##" ng-click="$search = 'id'"></i-button>
+        <i-button type="search" label="##word.Received##" ng-click="$search = 'doneReceive'"></i-button>
+        <i-button type="search" label="##word.Not Received##" ng-click="$search = 'notReceive'"></i-button>
+        <i-button type="search" label="##word.Not Buy##" ng-click="$search = 'notBuy'"></i-button>
+        <i-button type="search" label="##word.Buy Mini Book##" ng-click="$search = 'miniBookBuy'"></i-button>
+        <i-button type="search" label="##word.Buy Subscription##" ng-click="$search = 'subscriptionBuy'"></i-button>
+      </div>
+      <div class="row">
+        <i-control type="text" class="col9" ng-model="item.$studentSearch" ng-keydown="getStudent($event,item.$studentSearch)" label="##word.Student Search##"></i-control>
+        <i-button type="search" class="col3" label="##word.Search##" ng-click="getStudent({which : 13},item.$studentSearch)"></i-button>
+      </div>
+      <p class="error">{{error}}</p>
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table hover bold" id="t-students">
+            <tr>
+              <th>##word.Full Name##</th>
+              <th>##word.Barcode##</th>
+              <th>##word.Mobile##</th>
+              <!-- <th>##word.Parent Mobile##</th> -->
+              <th class="w150">##word.Buy Type##</th>
+              <th>##word.Receive##</th>
+              <th class="not-print">##word.Actions##</th>
+            </tr>
+            <tr ng-repeat="s in item.studentList | filter:$search">
+              <td
+                class="center"
+                ng-class="{
+                'bg-green' : s.buyType == 'subscriptionBuy',
+                'bg-yellow' : s.buyType == 'miniBookBuy',
+                'bg-red' : s.buyType == 'notBuy',
+            }"
+              >
+                {{s.student.firstName}}
+              </td>
+              <td class="center userPrint">{{s.student.barcode}}</td>
+              <td class="center">
+                <a target="_blank" ng-class="{'change-color-link' : s.clickStudentMoblie}" href="https://wa.me/{{s.student.mobile}}">
+                  <i class="fas fa-mobile-alt"></i>
+                  {{s.student.mobile}}
+                </a>
+              </td>
+              <!--  <td class="center">
+                <a target="_blank" ng-class="{'change-color-link' : s.clickSParentMobile}" href="https://wa.me/{{s.student.parentMobile}}">
+                  <i class="fas fa-mobile-alt"></i>
+                  {{s.student.parentMobile}}
+                </a>
+              </td> -->
+              <td class="center">
+                <p ng-show="s.buyType == 'notBuy'">##word.Not Found##</p>
+                <p ng-show="s.buyType == 'miniBookBuy'">##word.Buy Mini Book##</p>
+                <p ng-show="s.buyType == 'subscriptionBuy'">##word.Buy Subscription##</p>
+              </td>
+              <td class="center">
+                <p ng-show="s.receiveType =='doneReceive'">{{s.receiveDate | date : 'dd/MM/yyyy-hh:mm'}}</p>
+                <p ng-show="s.receiveType =='doneReceive'">{{s.receiveUser.firstName}}</p>
+                <i-button type="save" ng-show="s.receiveType =='notReceive'" label="##word.Receive##" ng-click="receiveMiniBook(s,'doneReceive')"></i-button>
+                <i-button type="exit" ng-show="s.receiveType =='doneReceive'" title="##word.Cancel Receive##" ng-click="receiveMiniBook(s,'notReceive')"></i-button>
+              </td>
+              <td class="center not-print">
+                <i-button type="delete" label="##word.Delete##" ng-click="item.studentList.splice($index,1)"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.Save##" ng-click="update(item,'#studentsModal')"></i-button>
+    </div>
+  </div>
+</div>

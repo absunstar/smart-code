@@ -9,6 +9,7 @@
         <!--         <i-list class="col3" label="##word.Type##" ng-model="_search.targetType" display="name##session.lang##" items="purchaseOrdersTargetList"></i-list>
  -->
         <i-list class="col3" ng-show="'##query.type##' == 'lecture'" label="##word.Lecture##" ng-model="_search.lecture" display="name" items="lecturesList" ng-get="getLecturesList($search)"></i-list>
+        <i-list class="col3" ng-show="'##query.type##' == 'miniBook'" label="##word.Mini Book##" ng-model="_search.miniBook" display="name" items="miniBooksList" ng-get="getMiniBooksList($search)"></i-list>
         <i-list class="col3" label="##word.Package##" ng-show="'##query.type##' == 'package'" ng-model="_search.package" display="name" items="packagesList" ng-get="getPackagesList($search)"></i-list>
         <i-list class="col3" label="##word.Book##" ng-show="'##query.type##' == 'book'" ng-model="_search.book" display="name" items="booksList" ng-get="getBooksList($search)"></i-list>
         <i-list class="col3" label="##word.Status##" ng-show="'##query.type##' == 'book'" ng-model="_search.status" display="name##session.lang##" items="bookStatusList"></i-list>

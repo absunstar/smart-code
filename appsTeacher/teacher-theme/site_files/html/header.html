@@ -59,7 +59,12 @@
             <li><a class="dropdown-item" x-permissions="student" href="/studentsSchedule?id=##session.user._id##">##word.Student Schedule##</a></li>
             <li><a class="dropdown-item" x-permissions="student" href="/subscriptionsView?type=mySubscriptions">##word.My Subscriptions##</a></li>
             <li><a class="dropdown-item" x-permissions="student" x-data="setting.showPackages" href="/profileEdit?id=##session.user._id##&type=myPackages">##word.My Packages##</a></li>
-            <li><a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures" href="/profileEdit?id=##session.user._id##&type=myLectures">##word.My Lectures##</a></li>
+            <li>
+              <a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures"href="/lecturesView?type=myLectures"
+                >##word.My Lectures##</a
+              >
+            </li>
+            <li><a class="dropdown-item" x-permissions="student" x-data="setting.showMiniBooks" href="/miniBooksView?type=myMiniBooks">##word.My Mini Books##</a></li>
             <li><a class="dropdown-item" x-permissions="student" x-data="setting.showBooks" href="/profileEdit?id=##session.user._id##&type=myBooks">##word.My Books##</a></li>
             <li><a class="dropdown-item" x-permissions="admin || teacher" href="/manageUsers?type=student">##word.Dashboard##</a></li>
             <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
@@ -140,9 +145,14 @@
                 <li><a class="dropdown-item" x-permissions="student" href="/studentsSchedule?id=##session.user._id##">##word.Student Schedule##</a></li>
                 <li><a class="dropdown-item" x-permissions="student" href="/subscriptionsView?id=##session.user._id##">##word.My Subscriptions##</a></li>
                 <li><a class="dropdown-item" x-permissions="student" x-data="setting.showPackages" href="/profileEdit?id=##session.user._id##&type=myPackages">##word.My Packages##</a></li>
-                <li><a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures" href="/profileEdit?id=##session.user._id##&type=myLectures">##word.My Lectures##</a></li>
+                <li>
+                  <a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures"href="/lecturesView?type=myLectures"
+                    >##word.My Lectures##</a
+                  >
+                </li>
+                <li><a class="dropdown-item" x-permissions="student" x-data="setting.showMiniBooks" href="/miniBooksView?type=myMiniBooks">##word.My Mini Books##</a></li>
                 <li><a class="dropdown-item" x-permissions="student" x-data="setting.showBooks" href="/profileEdit?id=##session.user._id##&type=myBooks">##word.My Books##</a></li>
-                <li><a class="dropdown-item" x-permissions="admin || teacher" href="/lectures">##word.Dashboard##</a></li>
+                <li><a class="dropdown-item" x-permissions="admin || teacher" href="/manageUsers?type=student">##word.Dashboard##</a></li>
                 <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
               </ul>
             </li>

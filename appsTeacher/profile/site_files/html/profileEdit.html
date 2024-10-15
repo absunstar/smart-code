@@ -139,7 +139,6 @@
             <span>##word.Personal Informatins## </span>
           </a>
           <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myPackages')" id="myPackages"> <span>##word.My Packages## </span></a>
-          <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myLectures')" id="myLectures"> <span>##word.My Lectures## </span></a>
           <a class="tab-link" x-permissions="student" onclick="site.showTabContent(event, '#myBooks')" id="myBooks"> <span>##word.My Books## </span></a>
         </div>
 
@@ -149,11 +148,16 @@
               <div class="row">
                 <div class="register-content">
                   <div class="row">
-                    <p class="right-content label-color">
-                      <span class="red bold"> * </span>
-                      ##word.Profile Image##
-                    </p>
-                    <i-image v="r" class="img256" ng-model="user.image"></i-image>
+                    <div class="col6">
+                      <p class="right-content label-color">
+                        <span class="red bold"> * </span>
+                        ##word.Profile Image##
+                      </p>
+                      <i-image v="r" class="img256" ng-model="user.image"></i-image>
+                    </div>
+                    <div class="col6" ng-show="user.barcode">
+                      <svg style="max-height: 25mm" class="barcode" jsbarcode-format="auto" jsbarcode-value="{{user.barcode}}" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col6 padding">
@@ -252,29 +256,7 @@
             </div>
           </div>
 
-          <div id="myLectures" class="tab-content">
-            <div class="row">
-              <ul class="row ul-list">
-                <li ng-repeat="lecture in lecturesList">
-                  <a href="/lectureView?id={{lecture._id}}">
-                    <figure class="image-block">
-                      <p class="name">{{lecture.name}}</p>
-                      <img ng-src="{{lecture.image.url}}" alt="" />
-                      <figcaption>
-                        <p>{{lecture.description}}</p>
-                        <div class="row price-more-card">
-                          <i class="price col-6" ng-show="lecture.price">##word.$## {{lecture.price}} </i>
-                          <i class="price col-6" ng-show="!lecture.price">##word.Free## </i>
-                          <span class="col-6 more-card"> ##word.Details##.. </span>
-                        </div>
-                      </figcaption>
-                    </figure>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
+        
           <div id="myBooks" class="tab-content">
             <div class="row">
               <ul class="row ul-list">

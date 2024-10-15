@@ -246,6 +246,36 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getMiniBooksList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.miniBooksList = [];
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/miniBooks/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name: 1 },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.miniBooksList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getPackagesList = function ($search) {
     if ($search && $search.length < 1) {
       return;
@@ -425,6 +455,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
   $scope.getBooksList();
   $scope.getPackagesList();
   $scope.getLecturesList();
+  $scope.getMiniBooksList();
   $scope.getStudentsList();
   $scope.getBookStatusList();
   $scope.getPurchaseTypeList();

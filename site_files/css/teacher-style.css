@@ -185,6 +185,12 @@ legend {
 .bg-yellow {
   background: yellow !important;
 }
+.bg-red {
+  background: #ff3131 !important;
+}
+.bg-green {
+  background: #00d300 !important;
+}
 .cart-number {
   color: var(--theme-color);
   font-size: 20px;

@@ -1,9 +1,9 @@
-app.controller("lecturesView", function ($scope, $http, $timeout) {
+app.controller("miniBooksView", function ($scope, $http, $timeout) {
   $scope.list = [];
   $scope.baseURL = "";
   $scope.where = {};
-  if ("##query.type##" == "myLectures") {
-    $scope.where["myLectures"] = true;
+  if ("##query.type##" == "myMiniBooks") {
+    $scope.where["myMiniBooks"] = true;
   }
   $scope.getAll = function (ev) {
     $scope.busy = true;
@@ -11,12 +11,19 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       $http({
         method: "POST",
-        url: `${$scope.baseURL}/api/lectures/allToStudent`,
+        url: `${$scope.baseURL}/api/miniBooks/allToStudent`,
         data: {
           type: "toStudent",
           search: $scope.$search,
           where: $scope.where,
-          
+          select: {
+            _id: 1,
+            id: 1,
+            name: 1,
+            price: 1,
+            code: 1,
+            description: 1,
+          },
         },
       }).then(
         function (response) {

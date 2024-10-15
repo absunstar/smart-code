@@ -48,7 +48,7 @@
         <tr>
           <th class="w100">##word.Number##</th>
           <th class="w150">##word.Logo##</th>
-          <th x-data="setting.isCenter" ng-show="'##query.type##' == 'student'">##word.Barcode##</th>
+          <th x-data="setting.activeStudentBarcode" ng-show="'##query.type##' == 'student'">##word.Barcode##</th>
           <th>##word.Full Name##</th>
           <th>##word.Status##</th>
           <th class="not-print">##word.Actions##</th>
@@ -58,7 +58,7 @@
           <td class="center">
             <i-image view class="logo center" ng-model="item.image"></i-image>
           </td>
-          <td class="center userPrint" x-data="setting.isCenter" ng-show="'##query.type##' == 'student'">{{item.barcode}}</td>
+          <td class="center userPrint" x-data="setting.activeStudentBarcode" ng-show="'##query.type##' == 'student'">{{item.barcode}}</td>
           <td class="center">{{item.firstName}} {{item.lastName}}</td>
 
           <td class="center">

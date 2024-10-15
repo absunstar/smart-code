@@ -151,6 +151,8 @@ module.exports = function init(site) {
               appName = req.word("Purchase Packages");
             } else if (req.query.type == "book") {
               appName = req.word("Purchase Books");
+            } else if (req.query.type == "miniBook") {
+              appName = req.word("Purchase Mini Books");
             }
           }
           res.render(
@@ -223,6 +225,12 @@ module.exports = function init(site) {
                           if (!user.lecturesList.some((l) => l.lectureId == doc.target.id)) {
                             user.lecturesList.push({
                               lectureId: doc.target.id,
+                            });
+                          }
+                        } else if (doc.type == "miniBook") {
+                          if (!user.miniBooksList.some((l) => l.miniBookId == doc.target.id)) {
+                            user.miniBooksList.push({
+                              miniBookId: doc.target.id,
                             });
                           }
                         } else if (doc.type == "package") {
@@ -335,6 +343,11 @@ module.exports = function init(site) {
           delete where["book"];
         }
 
+        if (where["miniBook"]) {
+          where["target.id"] = where["miniBook"].id;
+          delete where["miniBook"];
+        }
+
         if (where["purchaseType"]) {
           where["purchaseType.name"] = where["purchaseType"].name;
           delete where["purchaseType"];
@@ -377,7 +390,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        
+
         app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
           // let totalPackages = 0;
           // let totalLectures = 0;
@@ -424,9 +437,7 @@ module.exports = function init(site) {
             nameEn: "Code",
             name: "code",
           };
-          app.$collection.update(_doc, (err, result) => {
-          
-          });
+          app.$collection.update(_doc, (err, result) => {});
         });
         res.json(response);
       });

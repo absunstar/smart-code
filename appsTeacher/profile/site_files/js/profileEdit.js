@@ -24,7 +24,17 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.user = response.data.doc;
           $scope.getCentersList();
-        
+          if($scope.user.barcode) {
+            JsBarcode('.barcode', $scope.user.barcode, {
+              format: 'CODE128',
+              displayValue: true,
+              textMargin: 0,
+              height: 50,
+              fontSize: 25,
+              fontOptions: 'bold',
+          });
+
+          }
         /* document.querySelector(`#profileEdit .tab-link`).click() ; */
         } else {
           $scope.error = response.data.error;
@@ -286,37 +296,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getLectures = function () {
-    $scope.busy = true;
-    $scope.error = "";
-    $http({
-      method: "POST",
-      url: `${$scope.baseURL}/api/lectures/allToStudent`,
-      data: {
-        type: "myStudent",
-        select: {
-          id: 1,
-          name: 1,
-          image: 1,
-          description: 1,
-          price: 1,
-          date: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.lecturesList = response.data.list;
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
+ 
 
   $scope.getCentersList = function () {
     if ($scope.user.schoolYear && $scope.user.schoolYear.id && $scope.user.educationalLevel && $scope.user.educationalLevel.id) {
@@ -352,7 +332,6 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
       );
     }
   };
-  $scope.getLectures();
   $scope.getPackages();
   $scope.displayUser();
   $scope.getCountriesList();

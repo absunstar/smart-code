@@ -455,7 +455,14 @@ module.exports = function init(site) {
             "subject.name": site.get_RegExp(search, "i"),
           });
         }
-
+        if (req.session?.user?.type == 'student') {
+          if (!where.educationalLevel) {
+            where.educationalLevel = req.session?.user?.educationalLevel;
+          }
+          if (!where.schoolYear) {
+            where.schoolYear = req.session?.user?.schoolYear;
+          }
+        }
         if (where['educationalLevel']) {
           where['educationalLevel.id'] = where['educationalLevel'].id;
           delete where['educationalLevel'];
@@ -472,11 +479,10 @@ module.exports = function init(site) {
           delete where['subject'];
         }
 
-
         if (req.body.type == "toStudent") {
           if (req.session.user && req.session.user.type == "student") {
-            where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
-            where["schoolYear.id"] = req.session.user?.schoolYear?.id;
+            // where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
+            // where["schoolYear.id"] = req.session.user?.schoolYear?.id;
           }
         } else if (req.body.type == "myStudent") {
           if (req.session.user && req.session.user.type == "student") {

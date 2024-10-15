@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
+  <head x-import="teacher-theme/head.html">
+    <link rel="stylesheet" href="/css/teacher-style.css?v=##site.options.version##" />
+    <link rel="stylesheet" href="/css/teacher-mobile.css?v=##site.options.version##" />
+
+    <style>
+      .buy:hover {
+        color: blue !important;
+        text-decoration: underline !important;
+      }
+
+      main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      main .content .recentlyConsultantsContanier .recentlyConsultants .recentlyConsultant .answerSection .numbersOfAnswerAndLawer .numbersOfAnswer {
+        width: 83.855px !important;
+        height: 77px !important;
+        font-size: 16px !important;
+      }
+      .btn-success {
+        width: 100%;
+      }
+      .content-main-img {
+        /* width: 100% !important;
+        height: 360px !important; */
+        border-radius: 0px !important;
+        max-width: 100%;
+        border-radius: 15px !important;
+      }
+
+      .time-publish {
+        display: flex;
+        color: #919191;
+        font-size: 13px;
+        align-items: center;
+      }
+
+      .content-img {
+        width: 90% !important;
+        height: auto !important;
+      }
+      .bg-white {
+        display: flex;
+        width: 140px;
+      }
+
+      .card-title {
+        width: 80% !important;
+      }
+      .price {
+        width: 100% !important;
+        padding: 0;
+        margin-right: 5px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .text-comment {
+        font-size: 24px;
+        padding: 15px;
+        margin-right: 10px;
+        font-family: ui-monospace !important;
+        white-space: pre-wrap;
+      }
+
+      .gray-desc {
+        color: #5a6257;
+      }
+
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+
+      body {
+        background-color: #eceff5 !important;
+
+        /*   background-repeat: repeat !important; */
+      }
+      * {
+        max-width: initial;
+      }
+      .video-box {
+        background: var(--background4);
+        border-radius: 10px;
+        padding: 10px !important;
+        margin: 5px !important;
+        color: var(--color4);
+      }
+      .bg-red {
+        background-color: red !important;
+      }
+      .bg-green {
+        background-color: green !important;
+      }
+
+      .bottom-15 {
+        bottom: 15px;
+      }
+
+      @media screen and (max-width: 480px) {
+        .remain-video-text {
+          font-size: larger;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="##session.language.id##" ng-controller="miniBookReceiveView">
+    <div x-replace="teacher-theme/header.html"></div>
+
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <div class="margin row padding">
+          <div class="col1"></div>
+          <div class="col10 bg-white content-ad">
+            <div class="row" ng-show="student.id">
+              <div class="person-cart">
+                <div class="row">
+                  <div class="col7">
+                    <p class="bold"><span class="darkGray">##word.Student Name## : </span> {{student.firstName}}</p>
+                  </div>
+                  <div class="col5">
+                    <p class="bold"><span class="darkGray">##word.Barcode## : </span> {{student.barcode}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col7">
+                    <p class="bold">
+                      <span class="darkGray">##word.Parent Mobile## : </span>
+                      <a target="_blank" href="https://wa.me/{{student.parentMobile}}">
+                        {{student.parentMobile}}
+                        <i class="fas fa-mobile-alt"></i>
+                      </a>
+                    </p>
+                  </div>
+                  <div class="col5">
+                    <p class="bold">
+                      <span class="darkGray">##word.Mobile## : </span>
+                      <a target="_blank" href="https://wa.me/{{student.mobile}}">
+                        {{student.mobile}}
+                        <i class="fas fa-mobile-alt"></i>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col7">
+                    <p class="bold"><span class="darkGray">##word.Educational Level## : </span> {{student.educationalLevel.name}}</p>
+                  </div>
+                  <div class="col5">
+                    <p class="bold"><span class="darkGray">##word.School Year## : </span> {{student.schoolYear.name}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <i-control type="text" class="col9" ng-model="studentSearch" ng-keydown="getStudent($event,studentSearch)" label="##word.Student Search##"></i-control>
+              <i-button type="search" class="col2" label="##word.Search##" ng-click="getStudent({which : 13},studentSearch)"></i-button>
+            </div>
+
+            <div class="row">
+              <div class="table-responsive">
+                <table class="table hover bold" id="t-students">
+                  <tr>
+                    <th>##word.Mini Book Name##</th>
+                    <th class="w150">##word.Buy Type##</th>
+                    <th>##word.Receive##</th>
+                  </tr>
+                  <tr ng-repeat="s in list">
+                    <td
+                      class="center"
+                      ng-class="{
+                      'bg-green' : s.buyType == 'subscriptionBuy',
+                      'bg-yellow' : s.buyType == 'miniBookBuy',
+                      'bg-red' : s.buyType == 'notBuy',
+                  }"
+                    >
+                      {{s.miniBook.name}}
+                    </td>
+
+                    <td class="center">
+                      <p ng-show="s.buyType == 'notBuy'">##word.Not Found##</p>
+                      <p ng-show="s.buyType == 'miniBookBuy'">##word.Buy Mini Book##</p>
+                      <p ng-show="s.buyType == 'subscriptionBuy'">##word.Buy Subscription##</p>
+                    </td>
+                    <td class="center">
+                      <p ng-show="s.receiveType =='doneReceive'">{{s.receiveDate | date : 'dd/MM/yyyy-hh:mm'}}</p>
+                      <p ng-show="s.receiveType =='doneReceive'">{{s.receiveUser.firstName}}</p>
+                      <i-button type="save" ng-show="s.receiveType =='notReceive'" label="##word.Receive##" ng-click="receiveMiniBook(s,'doneReceive')"></i-button>
+                      <i-button type="exit" ng-show="s.receiveType =='doneReceive'" title="##word.Cancel Receive##" ng-click="receiveMiniBook(s,'notReceive')"></i-button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+
+    <div x-replace="teacher-theme/footer.html"></div>
+    <div x-import="teacher-theme/scripts.html"></div>
+    <script x-import="miniBooks/miniBookReceiveView.js"></script>
+  </body>
+</html>

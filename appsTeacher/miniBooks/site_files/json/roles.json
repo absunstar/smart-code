@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "miniBooksAdmin",
+    "En": "MiniBooks Admin",
+    "Ar": "إدارة المذكرات",
+    "permissions": ["miniBooksManage"]
+}] 

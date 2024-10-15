@@ -135,6 +135,33 @@
               <div class="separative"></div>
             </div>
 
+            <div class="row" x-permissions="student || teacher || admin || !login" x-data="setting.showMiniBooks">
+              <div class="banner-word">
+                <span> ##word.Mini Books## </span>
+                <a class="banner-viewAll" href="/miniBooksView">##word.View All##</a>
+              </div>
+
+              <ul class="row ul-list">
+                <li x-list1="miniBooksList">
+                  <a href="/miniBookView?id=##item1._id##">
+                    <figure class="image-block">
+                      <p class="name">##item1.name##</p>
+                      <img src="##item1.image.url##" alt="" />
+                      <figcaption>
+                        <p>##item1.description##</p>
+                        <div class="row price-more-card">
+                          <i class="price col-6" x-show-item1="price">##word.$## ##item1.price## </i>
+                          <i class="price col-6" x-show-item1="$isFree">##word.Free## </i>
+                          <span class="col-6 more-card"> ##word.Details##.. </span>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+              </ul>
+              <div class="separative"></div>
+            </div>
+
             <div class="row" x-data="setting.showBooks">
               <div class="banner-word">
                 <span> ##word.Books## </span>

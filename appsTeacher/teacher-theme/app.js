@@ -76,7 +76,7 @@ module.exports = function init(site) {
         let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
         notificationsCount = notifications.length;
       }
-      
+
       req.body.teacherLimit = 9;
       setting.description = setting.description || "";
       setting.keyWordsList = setting.keyWordsList || [];
@@ -84,6 +84,7 @@ module.exports = function init(site) {
         newsList: site.getNews(req),
         packagesList: site.getPackages(req),
         lecturesList: site.getLectures(req),
+        miniBooksList: site.getMiniBooks(req),
         booksList: site.getBooks(req),
         teacherList: site.getTeachers({ host: req.host, limit: 9 }),
         childrenList: site.getStudents({ host: req.host, parentId: req.session?.user?.id }),
