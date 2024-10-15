@@ -15,7 +15,7 @@
         <i-list ng-change="getLecturesList()" v="r" label="##word.School Year##" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
         <i-list label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList"></i-list>
 
-        <fieldset>
+        <fieldset x-data="setting.isOnline">
           <legend>##word.Place Type##</legend>
           <div class="row">
             <div class="col4"><i-radio ng-model="item.placeType" ng-change="getLecturesList()" label="##word.Online##" ng-value="online" group="placeType" type="radio"></i-radio></div>

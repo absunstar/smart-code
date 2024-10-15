@@ -29,7 +29,7 @@
           <i-control ng-model="item.daysAvailableViewing" ng-show="item.typeExpiryView.name == 'day'" type="number" class="col6" label="##word.Days Available For Viewing##"></i-control>
           <i-control ng-model="item.numberAvailableViews" type="number" ng-show="item.typeExpiryView.name == 'number'" class="col6" label="##word.Number of views##"></i-control>
         </div>
-        <fieldset>
+        <fieldset x-data="setting.isOnline">
           <legend>##word.Place Type##</legend>
           <div class="row">
             <i-radio ng-model="item.placeType" label="##word.Online##" class="col4" ng-value="online" group="placeType" type="radio"></i-radio>

@@ -1,6 +1,7 @@
 app.controller("packages", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
   $scope.appName = "packages";
+  $scope.setting = site.showObject(`##data.#setting##`);
   $scope.modalID = "#packagesManageModal";
   $scope.modalSearchID = "#packagesSearchModal";
   $scope.mode = "add";
@@ -21,6 +22,9 @@ app.controller("packages", function ($scope, $http, $timeout) {
       totalLecturesPrice: 0,
       lecturesList: [],
     };
+    if(!$scope.setting.isOnline){
+      $scope.item.placeType = 'offline';
+    }
     site.showModal($scope.modalID);
   };
 

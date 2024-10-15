@@ -444,6 +444,7 @@ module.exports = function init(site) {
           educationalLevel: 1,
           schoolYear: 1,
           date: 1,
+          placeType: 1,
           active: 1,
           code: 1,
         };

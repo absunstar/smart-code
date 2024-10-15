@@ -22,6 +22,9 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       linksList: [],
       filesList: [],
     };
+    if(!$scope.setting.isOnline){
+      $scope.item.placeType = 'offline';
+    }
     site.showModal($scope.modalID);
   };
 
