@@ -60,6 +60,8 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
+    req.session.language = {id : req.session.lang};
+
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -167,6 +169,8 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
+    req.session.language = {id : req.session.lang};
+
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -306,6 +310,8 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
+    req.session.language = {id : req.session.lang};
+    
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -479,6 +485,13 @@ site.get(
       return;
     }
 
+    if (req.host.like('*torrent*')) {
+      req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
+    }
+    req.session.language = {id : req.session.lang};
+
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
     if (!language) {
       res.redirect('/404', 404);
@@ -501,6 +514,7 @@ site.get(
       if (!err && article && article.host.like(filter)) {
         if (article.$yts) {
           req.session.lang = 'EN';
+          req.session.language = {id : req.session.lang};
           language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
         }
 
@@ -537,7 +551,7 @@ site.get(
         options.menuList2 = options.menuList.slice(8, 20);
         options.menuList3 = options.menuList.slice(20);
 
-        options.relatedArticleList = site.getRelatedArticles(article);
+        options.relatedArticleList = site.getRelatedArticles(article, options.filter);
         if (req.session.lang == 'AR') {
           options.relatedArticleList.forEach((doc) => {
             doc.$date = doc.$date1;
@@ -549,7 +563,7 @@ site.get(
             doc.$day = doc.$day2;
           });
         }
-        options.latestList = site.getLatestArticles(article);
+        options.latestList = site.getLatestArticles(article , options.filter);
         options.topNews = site.getTopArticles(options.filter, article.category);
         if (req.session.shortLink) {
           req.session.shortLink.step++;
