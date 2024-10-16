@@ -922,7 +922,14 @@ module.exports = function init(site) {
         doc.translatedList[0].host = articlesDoc.translatedList[0].host;
 
         res.json(response);
-        site.$articles.update(doc);
+        site.$articles.update(doc, (err, result) => {
+          if (!err && result.doc) {
+            let index = site.articlesList.findIndex((a) => a.id == result.doc.id);
+            if (index !== -1) {
+              site.articlesList[index] = site.handleArticle({ ...result.doc });
+            }
+          }
+        });
       } else {
         site.$articles.add(articlesDoc, (err, doc) => {
           if (!err && doc) {
