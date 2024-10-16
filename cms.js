@@ -60,7 +60,7 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
-    req.session.language = {id : req.session.lang};
+    req.session.language = { id: req.session.lang };
 
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
@@ -169,7 +169,7 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
-    req.session.language = {id : req.session.lang};
+    req.session.language = { id: req.session.lang };
 
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
@@ -310,8 +310,8 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
-    req.session.language = {id : req.session.lang};
-    
+    req.session.language = { id: req.session.lang };
+
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -490,7 +490,7 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
-    req.session.language = {id : req.session.lang};
+    req.session.language = { id: req.session.lang };
 
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
     if (!language) {
@@ -514,7 +514,7 @@ site.get(
       if (!err && article && article.host.like(filter)) {
         if (article.$yts) {
           req.session.lang = 'EN';
-          req.session.language = {id : req.session.lang};
+          req.session.language = { id: req.session.lang };
           language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
         }
 
@@ -563,7 +563,10 @@ site.get(
             doc.$day = doc.$day2;
           });
         }
-        options.latestList = site.getLatestArticles(article , options.filter);
+        options.relatedArticleList1 = options.relatedArticleList.slice(0, 8);
+        options.relatedArticleList2 = options.relatedArticleList.slice(8, 16);
+
+        options.latestList = site.getLatestArticles(article, options.filter);
         options.topNews = site.getTopArticles(options.filter, article.category);
         if (req.session.shortLink) {
           req.session.shortLink.step++;

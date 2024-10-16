@@ -171,13 +171,22 @@ app.connectScope(
       op.page = op.page || 1;
       op.limit = op.limit || 50;
       $http({
-        url: `https://yts.mx/api/v2/list_movies.json?limit=${op.limit}&page=${op.page}`,
+        url: `https://yts.mx/api/v2/list_movies.json?limit=${op.limit}&page=${op.page}&with_rt_ratings=true`,
         method: 'GET',
       }).then((res) => {
         callback(res.data.data);
       });
     };
-
+    $scope.fetchYTSMovie = function (op, callback) {
+      callback = callback || function () {};
+      op = op || {};
+      $http({
+        url: `https://yts.mx/api/v2/movie_details.json?movie_id=${op.id}&with_cast=true`,
+        method: 'GET',
+      }).then((res) => {
+        callback(res.data.data.movie);
+      });
+    };
     $scope.ytsPage = 0;
     $scope.ytsLimit = 50;
     $scope.ytsGetCount = 0;
@@ -192,16 +201,19 @@ app.connectScope(
         $scope.ytsGetCount += data.movies.length;
         if (data.movies.length > 0) {
           data.movies.forEach((movie) => {
-            $scope.addArticle({
-              ...movie,
-              is_yts: true,
-              category: $scope.category,
-              host: $scope.host,
+            $scope.fetchYTSMovie({ id: movie.id }, (movie2) => {
+              $scope.addArticle({
+                ...movie,
+                ...movie2,
+                is_yts: true,
+                category: $scope.category,
+                host: $scope.host,
+              });
             });
           });
           setTimeout(() => {
             $scope.generateYTS();
-          }, 1000 * 5);
+          }, 1000 * 10);
         }
       });
     };

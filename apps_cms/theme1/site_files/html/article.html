@@ -131,6 +131,13 @@
                   <div x-data="article.$content" class="d-flex gap-2 p-2 justify-content-center">
                     <div class="article-description">##data.article.$content##</div>
                   </div>
+
+                  <div x-data="article.$castList" class="d-flex gap-2 p-2 justify-content-center casts">
+                    <a x-list1="article.$castList" href="##item1.url##">
+                      <img src="##item1.imageURL##" alt="##item1.name##" />
+                      <p>##item1.name##</p>
+                    </a>
+                  </div>
                 </div>
 
                 <div x-data="article.$hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.$video.imageURL##')">
