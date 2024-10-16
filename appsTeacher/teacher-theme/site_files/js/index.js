@@ -47,7 +47,7 @@ app.controller("teacherTheme", function ($scope, $http, $timeout) {
       let code_injected = `/*##lectures/custom-youtube-video.js*/`;
       code_injected += "youtubeRun();";
       SOCIALBROWSER.ipc("[open new popup]", {
-        url: document.location.origin + "/view-life?id=" + lectureId,
+        url: document.location.origin + "/view-live?id=" + lectureId,
         eval: code_injected,
         show: true,
         iframe: true,
