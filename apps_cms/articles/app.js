@@ -582,8 +582,8 @@ module.exports = function init(site) {
       }
     });
   };
-  site.getRelatedArticles = function (a) {
-    let $relatedArticleList = site.articlesList.filter((b) => b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, 12);
+  site.getRelatedArticles = function (a, filter = '*') {
+    let $relatedArticleList = site.articlesList.filter((b) => b.host.like(filter) && b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, 12);
     if ($relatedArticleList.length < 12) {
       $relatedArticleList = [
         ...$relatedArticleList,

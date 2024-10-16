@@ -537,7 +537,7 @@ site.get(
         options.menuList2 = options.menuList.slice(8, 20);
         options.menuList3 = options.menuList.slice(20);
 
-        options.relatedArticleList = site.getRelatedArticles(article);
+        options.relatedArticleList = site.getRelatedArticles(article, options.filter);
         if (req.session.lang == 'AR') {
           options.relatedArticleList.forEach((doc) => {
             doc.$date = doc.$date1;
