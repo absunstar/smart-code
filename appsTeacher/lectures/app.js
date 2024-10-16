@@ -694,7 +694,7 @@ module.exports = function init(site) {
                   _subscription = doc.subscriptionList[i];
                 }
               }
-              _doc.subscriptionName = _subscription.subscription.name;
+              _doc.subscriptionName = _subscription?.subscription?.name;
               _doc.price = _subscription?.price;
             }
             delete _doc.questionsList;
