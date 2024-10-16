@@ -46,14 +46,20 @@
                 <th>##word.Actions##</th>
               </tr>
               <tr ng-repeat="itm in item.dayList | filter:search.names">
-                <td class="center">{{itm.teacherName}}</td>
-                <td class="center">{{itm.subjectName}}</td>
+                <td class="center">
+                  <p>{{itm.teacherName}}</p>
+                </td>
+                <td class="center">
+                  <p>{{itm.subjectName}}</p>
+                </td>
 
                 <td class="center">
-                  {{itm.date | date : 'dd - MM - yyyy'}}
-                  <p>{{itm.day.name##session.lang##}} {{itm.time | date : 'hh : MM'}}</p>
+                  <p>{{itm.date | date : 'dd - MM - yyyy'}}</p>
+                  <p>{{itm.day.name##session.lang##}} {{itm.time.m}} : {{itm.time.h}}</p>
                 </td>
-                <td class="center">{{itm.status.name##session.lang##}}</td>
+                <td class="center">
+                  <p>{{itm.status.name##session.lang##}}</p>
+                </td>
 
                 <td class="center">
                   <i-button label="##word.Preparation##" ng-click="updateStatus(itm,'preparation')"></i-button>

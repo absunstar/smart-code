@@ -100,3 +100,60 @@ main .mainContent .sidebarContainer .sidebar .adsBanner img {
   border-radius: 8px;
   border: 1px solid grey;
 }
+
+
+
+
+.pulse-button {
+  font-family: "Montserrat";
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 15px 15px;
+  border: 0px solid #000;
+  }
+
+/* Initiate Auto-Pulse animations */
+.pulse-button {
+  animation: borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in;
+}
+
+/* Initiate color change for pulse-on-hover */
+
+/* Continue animation and add shine on hover */
+.pulse-button:hover,
+.pulse-button:focus {
+  animation: borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in, hoverShine 200ms;
+}
+
+/* Declate color shifting animation */
+@keyframes colorShift {
+  0%, 100% {
+      background: #0045e6;
+  }
+  33% {
+    background: #fb3e3e;
+  }
+  66%{
+    background: #0dcc00;
+  }
+}
+
+/* Declare border pulse animation */
+@keyframes borderPulse {
+  0% {
+    box-shadow: inset 0px 0px 0px 5px rgba(255, 255, 255,.4), 0px 0px 0px 0px rgba(255,255,255,1);
+  }
+  100% {
+    box-shadow: inset 0px 0px 0px 3px rgba(117, 117, 255,.2), 0px 0px 0px 10px rgba(255,255,255,0);
+  }
+}
+
+.red-dot {
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  border-radius: 50%;
+  display: block;
+}
