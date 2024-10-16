@@ -235,6 +235,12 @@ module.exports = function init(site) {
       }
       doc.$backgroundURL = doc.$coverURL;
       doc.$content = lang.textContent || lang.htmlContent || '';
+      if (Array.isArray(doc.yts.cast)) {
+        doc.$castList = [];
+        doc.yts.cast.forEach((c) => {
+          doc.$castList.push({ ...c, url: 'https://www.imdb.com/name/nm' + c.imdb_code, imageURL: c.url_small_image });
+        });
+      }
     } else if (doc.type.id == 8) {
       doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
