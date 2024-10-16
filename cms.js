@@ -60,6 +60,8 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
+    req.session.language = {id : req.session.lang};
+
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -167,6 +169,8 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
+    req.session.language = {id : req.session.lang};
+
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -306,6 +310,8 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
+    req.session.language = {id : req.session.lang};
+    
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
     if (!language) {
@@ -484,7 +490,8 @@ site.get(
     } else {
       req.session.lang = 'AR';
     }
-    
+    req.session.language = {id : req.session.lang};
+
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
     if (!language) {
       res.redirect('/404', 404);
@@ -507,6 +514,7 @@ site.get(
       if (!err && article && article.host.like(filter)) {
         if (article.$yts) {
           req.session.lang = 'EN';
+          req.session.language = {id : req.session.lang};
           language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
         }
 
