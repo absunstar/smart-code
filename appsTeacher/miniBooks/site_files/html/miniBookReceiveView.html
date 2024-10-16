@@ -185,7 +185,8 @@
                     </td>
 
                     <td class="center">
-                      <p ng-show="s.buyType == 'notBuy'">##word.Not Found##</p>
+                      <p ng-show="s.buyType == 'notBuy' && s.receiveType =='notReceive'">##word.Not Found##</p>
+                      <p ng-show="s.buyType == 'notBuy' && s.receiveType =='doneReceive'">##word.Cash##</p>
                       <p ng-show="s.buyType == 'miniBookBuy'">##word.Buy Mini Book##</p>
                       <p ng-show="s.buyType == 'subscriptionBuy'">##word.Buy Subscription##</p>
                     </td>

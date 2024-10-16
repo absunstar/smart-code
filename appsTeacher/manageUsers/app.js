@@ -249,6 +249,7 @@ module.exports = function init(site) {
         let response = {
           done: false,
         };
+        let _data = req.data;
 
         let setting = site.getSiteSetting(req.host);
         if (_data.type == "student" && setting.activeStudentBarcode && !setting.autoStudentBarcode && !_data.barcode) {
@@ -257,7 +258,6 @@ module.exports = function init(site) {
           return;
         }
 
-        let _data = req.data;
         if (_data.type == "teacher") {
           _data.roles = [{ name: "teacher" }];
           _data.permissions = [{ name: "teacher" }];
@@ -268,10 +268,10 @@ module.exports = function init(site) {
 
         _data.host = site.getHostFilter(req.host);
 
-        let date = site.getDate();
-        let d = date.getDate().toString();
-        let h = date.getHours().toString();
-        let m = date.getMinutes().toString();
+        // let date = site.getDate();
+        // let d = date.getDate().toString();
+        // let h = date.getHours().toString();
+        // let m = date.getMinutes().toString();
         app.add(_data, (err, doc) => {
           if (!err && doc) {
             if (!setting.isShared && !setting.isCenter && doc.type == "teacher") {
@@ -309,7 +309,8 @@ module.exports = function init(site) {
               site.parentList.push(obj);
             }
             if (doc.type == "student" && setting.autoStudentBarcode && setting.activeStudentBarcode) {
-              doc.barcode = doc.id.toString() + "00" + d + h + m;
+              // doc.barcode = doc.id.toString() + "00" + d + h + m;
+              doc.barcode = 1000 + doc.id;
               app.update(doc, (err1, result) => {
                 if (!err1 && doc) {
                   response.done = true;
@@ -768,7 +769,7 @@ module.exports = function init(site) {
           if (user.miniBooksList.some((n) => n.miniBookId == req.body.miniBookId)) {
             buyType = "miniBookBuy";
           }
-        
+
           if (req.body.subscriptionList && req.body.subscriptionList.length > 0) {
             let found = false;
             for (let i = 0; i < req.body.subscriptionList.length; i++) {

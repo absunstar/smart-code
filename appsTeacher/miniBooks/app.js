@@ -483,7 +483,7 @@ module.exports = function init(site) {
                   subscriptionObj = doc.subscriptionList[i];
                 }
               }
-              if(subscriptionObj?.subscription?.id){
+              if (subscriptionObj?.subscription?.id) {
                 _doc.subscriptionName = subscriptionObj.subscription.name;
                 _doc.price = subscriptionObj.price;
               }
@@ -650,14 +650,15 @@ module.exports = function init(site) {
                     }
 
                     if (docs[i].subscriptionList && docs[i].subscriptionList.length > 0) {
-                      let found = false;
-                      for (let i = 0; i < docs[i].subscriptionList.length; i++) {
-                        docs[i].subscriptionList[i];
-                        if (user.subscriptionList.some((s) => s == docs[i].subscriptionList[i]?.subscription?.id)) {
-                          found = true;
+                      let foundSub = false;
+
+                      for (let x of user.subscriptionList) {
+                        if (docs[i].subscriptionList.some((s) => s?.subscription?.id == x)) {
+                          foundSub = true;
                         }
                       }
-                      if (found) {
+
+                      if (foundSub) {
                         _miniBook.buyType = "subscriptionBuy";
                       }
                     }
@@ -861,9 +862,8 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        
+
         if (where["myMiniBooks"]) {
-          
           where.$or = where.$or || [];
           if (req.session?.user?.type == "student" && req.session?.user?.miniBooksList) {
             let miniBookList = req.session?.user?.miniBooksList?.map((_item) => _item.miniBookId);
@@ -878,7 +878,7 @@ module.exports = function init(site) {
           }
           delete where["myMiniBooks"];
         }
-        
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
@@ -939,12 +939,10 @@ module.exports = function init(site) {
           response.error = req.word("Must Select Purchase Type");
           res.json(response);
           return;
-
         } else if (_data.purchase.purchaseType.name == "code" && !_data.purchase.code) {
           response.error = req.word("The code must be entered");
           res.json(response);
           return;
-
         } else if ((_data.purchase.purchaseType.name == "instaPay" || _data.purchase.purchaseType.name == "cashWallet") && !_data.purchase.numberTransferFrom) {
           response.error = req.word("The account number to be transferred from must be entered");
           res.json(response);

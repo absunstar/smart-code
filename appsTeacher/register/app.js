@@ -358,6 +358,7 @@ module.exports = function init(site) {
     //   res.json(response);
     //   return;
     // }
+
     let user = {
       email: req.body.user.email,
       password: req.body.user.password,
@@ -383,6 +384,7 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     };
+
     if (req.body.user.type == "student") {
       user.viewsList = [];
       user.booksList = [];
@@ -394,6 +396,7 @@ module.exports = function init(site) {
       user.schoolYear = req.body.user.schoolYear;
       user.placeType = req.body.user.placeType;
     }
+
     if (req.body.user.placeType == "online") {
       user.nationalIdImage = req.body.user.nationalIdImage;
       user.nationalId = req.body.user.nationalId;
@@ -420,17 +423,19 @@ module.exports = function init(site) {
           };
         }
       }
+
       user.active = true;
       site.security.register(user, function (err, doc) {
         if (!err) {
           response.user = doc;
-          
+
           if (setting.activeStudentBarcode) {
-            let date = site.getDate();
-            let d = date.getDate().toString();
-            let h = date.getHours().toString();
-            let m = date.getMinutes().toString();
-            doc.barcode = doc.id.toString() + "00" + d + h + m;
+            // let date = site.getDate();
+            // let d = date.getDate().toString();
+            // let h = date.getHours().toString();
+            // let m = date.getMinutes().toString();
+            // doc.barcode = doc.id.toString() + "00" + d + h + m;
+            doc.barcode = 1000 + doc.id
             site.security.updateUser(doc, (err1, result) => {});
           }
           response.done = true;

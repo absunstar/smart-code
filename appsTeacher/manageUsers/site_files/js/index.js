@@ -665,6 +665,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     $scope.error = "";
     $timeout(() => {
       if ($scope.item.discount > 100 || $scope.item.discount < 0) {
+        $scope.item.discount = 0;
         $scope.error = "##word.Error entering discount##";
         return;
       } else {
