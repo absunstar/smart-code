@@ -42,6 +42,17 @@
 
 /* end mainImage */
 
+.casts{
+
+}
+.casts a{
+  border-radius: 10px;
+}
+.casts img{
+  width: 64px;
+  height: 64px;
+}
+
 /* start mainSection */
 
 .sideAds {
