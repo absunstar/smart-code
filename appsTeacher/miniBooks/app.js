@@ -910,7 +910,6 @@ module.exports = function init(site) {
               subscription = doc.subscriptionList[i];
             }
           }
-
           if (subscription?.price == 0) {
             _data.purchase = {
               purchaseType: {
@@ -933,19 +932,23 @@ module.exports = function init(site) {
             };
           }
         }
+        
         if (!_data.purchase || !_data.purchase.purchaseType || !_data.purchase.purchaseType.name) {
           response.error = req.word("Must Select Purchase Type");
           res.json(response);
           return;
+
         } else if (_data.purchase.purchaseType.name == "code" && !_data.purchase.code) {
           response.error = req.word("The code must be entered");
           res.json(response);
           return;
+
         } else if ((_data.purchase.purchaseType.name == "instaPay" || _data.purchase.purchaseType.name == "cashWallet") && !_data.purchase.numberTransferFrom) {
           response.error = req.word("The account number to be transferred from must be entered");
           res.json(response);
           return;
         }
+
         site.getPurchaseOrder({ "target.id": doc.id, type: "miniBook", "user.id": req.session?.user?.id }, (err1, order) => {
           if (order) {
             response.error = req.word("The miniBook has already been purchased");

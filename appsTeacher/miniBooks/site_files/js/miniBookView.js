@@ -3,6 +3,7 @@ app.controller("miniBookView", function ($scope, $http, $timeout) {
   $scope.setting = site.showObject(`##data.#setting##`);
   $scope.purchase = {};
   $scope.baseURL = "";
+
   $scope.view = function () {
     $scope.busy = true;
     $scope.error = "";
@@ -18,8 +19,7 @@ app.controller("miniBookView", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.item = response.data.doc;
           $scope.getPurchaseTypeTeacher($scope.item.teacherId);
-          if($scope.item.$buy){
-
+          if ($scope.item.$buy) {
             $scope.alert = "##word.Purchased##";
           }
         } else {
@@ -103,10 +103,6 @@ app.controller("miniBookView", function ($scope, $http, $timeout) {
       }
     );
   };
-
-
-
-
 
   $scope.view();
 });
