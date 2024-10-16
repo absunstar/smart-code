@@ -86,6 +86,7 @@ module.exports = function init(site) {
         lecturesList: site.getLectures(req),
         miniBooksList: site.getMiniBooks(req),
         booksList: site.getBooks(req),
+        liveList: site.getLive(req),
         teacherList: site.getTeachers({ host: req.host, limit: 9 }),
         childrenList: site.getStudents({ host: req.host, parentId: req.session?.user?.id }),
         isTeacher: req.session.selectedTeacherId ? true : false,
@@ -109,7 +110,9 @@ module.exports = function init(site) {
         page_description: setting.description.substr(0, 200),
         page_keywords: setting.keyWordsList.join(","),
       };
-
+      if(data.liveList?.length > 0) {
+        data.isLive = true;
+      }
       if (req.session.user) {
         if (req.session.user.type == "student") {
           data.isStudent = true;

@@ -194,6 +194,33 @@ module.exports = function init(site) {
           });
         }
       );
+
+      site.get(
+        {
+          name: "view-life",
+        },
+        (req, res) => {
+          app.$collection.find({ id: req.query.id }, (err, lecture) => {
+            if (!err && lecture) {
+              let videoURL = lecture?.linksList[0]?.url;
+              if (videoURL.like("*youtu*")) {
+                videoURL = "https://www.youtube.com/embed/" + videoURL.split("=")[1].split("&")[0];
+              }
+              res.render(
+                app.name + "/view-video.html",
+                {
+                  title: app.name,
+                  appName: req.word("Video"),
+                  setting: site.getSiteSetting(req.host),
+                  videoURL: videoURL,
+                },
+                { parser: "html css js", compres: true }
+              );
+            }
+          });
+        }
+      );
+
       site.get(
         {
           name: "lectureView",
@@ -757,6 +784,7 @@ module.exports = function init(site) {
           educationalLevel: 1,
           schoolYear: 1,
           placeType: 1,
+          liveBroadcast: 1,
           date: 1,
           code: 1,
           active: 1,
@@ -854,14 +882,13 @@ module.exports = function init(site) {
           });
         }
 
-        if (req.session?.user?.type == 'student') {
+        if (req.session?.user?.type == "student") {
           if (!where.educationalLevel) {
             where.educationalLevel = req.session?.user?.educationalLevel;
           }
           if (!where.schoolYear) {
             where.schoolYear = req.session?.user?.schoolYear;
           }
-         
         }
 
         if (where["educationalLevel"]) {
@@ -910,7 +937,7 @@ module.exports = function init(site) {
               },
             ];
           }
-        } 
+        }
         // else if (req.body.type == "myStudent") {
         //   if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
         //     let idList = [];
@@ -932,18 +959,17 @@ module.exports = function init(site) {
           if (req.session?.user?.type == "student" && req.session?.user?.lecturesList) {
             let lectureList = req.session?.user?.lecturesList?.map((_item) => _item.lectureId);
             where.$or.push({
-              "id": { $in: lectureList },
+              id: { $in: lectureList },
             });
           }
-          if(req.session?.user?.subscriptionList) {
-            
+          if (req.session?.user?.subscriptionList) {
             where.$or.push({
               "subscriptionList.subscription.id": { $in: req.session?.user?.subscriptionList },
             });
           }
           delete where["myLectures"];
         }
-        
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
@@ -1206,6 +1232,34 @@ module.exports = function init(site) {
     }
 
     return docs.slice(0, setting.lecturesLimit || 10000);
+    // }
+  };
+
+  site.getLive = function (req) {
+    let setting = site.getSiteSetting(req.host);
+    let host = site.getHostFilter(req.host);
+    let teacherId = site.getTeacherSetting(req);
+    let docs = [];
+
+    for (let i = 0; i < site.lectureList.length; i++) {
+      let obj = { ...site.lectureList[i] };
+
+      if (obj.active && obj.liveBroadcast && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
+        if (req.session.user && req.session.user.type == "student") {
+          if (
+            obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&
+            obj.schoolYear?.id == req.session.user?.schoolYear?.id &&
+            (obj.placeType == req.session.user.placeType || obj.placeType == "both")
+          ) {
+            docs.push(obj);
+          }
+        } else {
+          docs.push(obj);
+        }
+      }
+    }
+    
+    return docs.slice(0, setting.lecturesLimit || 10);
     // }
   };
 
