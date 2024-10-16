@@ -5,7 +5,7 @@ app.controller("studentsSchedule", function ($scope, $http, $timeout) {
   $scope.modalID = "#studentScheduleManageModal";
   $scope.showAdd = function (_item) {
     $scope.error = "";
-    $scope.itemAdd = {};
+    $scope.itemAdd = { dayList: [] };
     site.showModal($scope.modalID);
   };
 

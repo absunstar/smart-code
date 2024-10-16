@@ -197,7 +197,7 @@ module.exports = function init(site) {
 
       site.get(
         {
-          name: "view-life",
+          name: "view-live",
         },
         (req, res) => {
           app.$collection.find({ id: req.query.id }, (err, lecture) => {

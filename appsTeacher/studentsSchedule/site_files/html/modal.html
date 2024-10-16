@@ -10,12 +10,32 @@
 
     <div class="modal-body">
       <div class="row">
-        <i-control type="text" v="r" ng-model="itemAdd.teacherName" label="##word.Teacher Name##"></i-control>
-        <i-control type="text" v="r" ng-model="itemAdd.subjectName" label="##word.Subject Name##"></i-control>
-        <i-time  v="r" ng-model="itemAdd.time" label="##word.Time##"></i-time>
-        <i-date label="##word.Start Date##" v="r" ng-model="itemAdd.startDate"> </i-date>
-        <i-date label="##word.End Date##" v="r" ng-model="itemAdd.endDate"> </i-date>
-        <i-checklist label="##word.Working Days##" v="r" class="col8" ng-model="itemAdd.days" items="weekDaysList" display="name##session.lang##"> </i-checklist>
+        <div class="row padding">
+          <div class="col6 padding">
+            <i-control type="text" v="r" ng-model="itemAdd.teacherName" label="##word.Teacher Name##"></i-control>
+          </div>
+          <div class="col6 padding">
+            <i-control type="text" v="r" ng-model="itemAdd.subjectName" label="##word.Subject Name##"></i-control>
+          </div>
+        </div>
+
+        <div class="row padding">
+          <div class="col6 padding">
+            <i-date label="##word.Start Date##" v="r" ng-model="itemAdd.startDate"> </i-date>
+          </div>
+          <div class="col6 padding">
+            <i-date label="##word.End Date##" v="r" ng-model="itemAdd.endDate"> </i-date>
+          </div>
+        </div>
+        <fieldset>
+          <legend>
+            <i-button type="push" label="##word.Add Day##" ng-click="itemAdd.dayList.push({})"></i-button>
+          </legend>
+          <div ng-repeat="day in itemAdd.dayList" class="row">
+            <i-list label="##word.Working Days##" v="r" class="col4 padding" ng-model="day.day" items="weekDaysList" display="name##session.lang##"> </i-list>
+            <i-time v="r" class="col3 padding" ng-model="day.time" label="##word.Time##"></i-time>
+          </div>
+        </fieldset>
       </div>
     </div>
 

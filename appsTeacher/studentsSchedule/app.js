@@ -198,7 +198,20 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
+          if (_data.dayList && _data.dayList.length > 0) {
+           let duplicateList = _data.dayList.filter((item, index, self) => index !== self.findIndex((t) => t.day.code === item.day.code));
 
+          
+            if (duplicateList && duplicateList.length > 0) {
+              response.error = req.word("There is a duplicate day");
+              res.json(response);
+              return;
+            }
+          } else {
+            response.error = req.word("Must Add Days");
+            res.json(response);
+            return;
+          }
           if (_data.startDate > _data.endDate) {
             response.error = req.word("The date is incorrect");
             res.json(response);
@@ -212,15 +225,29 @@ module.exports = function init(site) {
               let end = site.getDate(_data.endDate);
               /* end.setHours(0, 0, 0, 0); */
               dayList = [];
-              let index = _data.days.findIndex((itm) => itm.code === start.getDay());
+              let index = _data.dayList.findIndex((itm) => itm.day.code === start.getDay());
               if (index !== -1) {
-                dayList.push({ date: site.getDate(start), day: _data.days[index], teacherName: _data.teacherName, subjectName: _data.subjectName, time: _data.time, status: status });
+                dayList.push({
+                  date: site.getDate(start),
+                  day: _data.dayList[index].day,
+                  teacherName: _data.teacherName,
+                  subjectName: _data.subjectName,
+                  time: _data.dayList[index].time,
+                  status: status,
+                });
               }
               while (site.getDate(start) <= site.getDate(end)) {
                 start.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
-                let index = _data.days.findIndex((itm) => itm.code === start.getDay());
+                let index = _data.dayList.findIndex((itm) => itm.day.code === start.getDay());
                 if (index !== -1 && site.getDate(start) <= site.getDate(end)) {
-                  dayList.push({ date: site.getDate(start), day: _data.days[index], teacherName: _data.teacherName, subjectName: _data.subjectName, time: _data.time, status: status });
+                  dayList.push({
+                    date: site.getDate(start),
+                    day: _data.dayList[index].day,
+                    teacherName: _data.teacherName,
+                    subjectName: _data.subjectName,
+                    time: _data.dayList[index].time,
+                    status: status,
+                  });
                 }
                 if (site.getDate(start) == site.getDate(end)) {
                   break;
