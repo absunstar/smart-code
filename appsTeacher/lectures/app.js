@@ -688,14 +688,16 @@ module.exports = function init(site) {
             let _doc = { ...doc };
             if (doc.activateSubscription) {
               doc.subscriptionList = doc.subscriptionList || [];
-              let _subscription = null;
+              let subscriptionObj = null;
               for (let i = 0; i < doc.subscriptionList.length; i++) {
                 if (req.session.user?.subscriptionList?.some((s) => s === doc.subscriptionList[i]?.subscription?.id)) {
-                  _subscription = doc.subscriptionList[i];
+                  subscriptionObj = doc.subscriptionList[i];
                 }
               }
-              _doc.subscriptionName = _subscription?.subscription?.name;
-              _doc.price = _subscription?.price;
+              if(subscriptionObj?.subscription?.id){
+                _doc.subscriptionName = subscriptionObj.subscription.name;
+                _doc.price = subscriptionObj.price;
+              }
             }
             delete _doc.questionsList;
 
