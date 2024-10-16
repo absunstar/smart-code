@@ -582,24 +582,24 @@ module.exports = function init(site) {
       }
     });
   };
-  site.getRelatedArticles = function (a, filter = '*') {
-    let $relatedArticleList = site.articlesList.filter((b) => b.host.like(filter) && b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, 12);
-    if ($relatedArticleList.length < 12) {
+  site.getRelatedArticles = function (a, filter = '*', num = 16) {
+    let $relatedArticleList = site.articlesList.filter((b) => b.host.like(filter) && b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, num);
+    if ($relatedArticleList.length < num) {
       $relatedArticleList = [
         ...$relatedArticleList,
-        ...site.articlesList.filter((b) => b.host.like(filter) && b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, 12 - $relatedArticleList.length),
+        ...site.articlesList.filter((b) => b.host.like(filter) && b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, num - $relatedArticleList.length),
       ];
     }
     return $relatedArticleList;
   };
 
-  site.getLatestArticles = function (a, filter = '*') {
-    return site.articlesList.filter((b) => b.host.like(filter) && b.id !== a.id && b.category && a.category && b.category.id == a.category.id).slice(0, 12);
+  site.getLatestArticles = function (a, filter = '*', num = 12) {
+    return site.articlesList.filter((b) => b.host.like(filter) && b.id !== a.id && b.category && a.category && b.category.id == a.category.id).slice(0, num);
   };
-  site.getTopArticles = function (filter = '_', category) {
+  site.getTopArticles = function (filter = '*', category, num = 12) {
     return site.articlesList
       .filter((a) => (!category || !a.category || a.category.id == category.id) && a.showOnTop === true && a.host.like(filter))
-      .slice(0, 12)
+      .slice(0, num)
       .reverse();
   };
 
