@@ -46,9 +46,22 @@
   background: var(--background1);
   color: var(--color1);
   border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: stretch;
+  align-items: center;
+  justify-content: space-evenly;
 }
 .casts a{
   padding: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 .casts img{
   width: 64px !important;
@@ -57,7 +70,7 @@
 }
 .casts p{
   font-size: 12px;
-  color: #fff;
+  color: var(--color1);
 }
 /* start mainSection */
 
