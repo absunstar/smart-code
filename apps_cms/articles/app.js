@@ -593,13 +593,13 @@ module.exports = function init(site) {
     return $relatedArticleList;
   };
 
-  site.getLatestArticles = function (a) {
-    return site.articlesList.filter((b) => b.id !== a.id && b.category && a.category && b.category.id == a.category.id).slice(0, 12);
+  site.getLatestArticles = function (a , filter = '*') {
+    return site.articlesList.filter((b) => b.id !== a.id && b.category && a.category && b.category.id == a.category.id && a.host.like(filter)).slice(0, 12);
   };
   site.getTopArticles = function (filter = '_', category) {
     return site.articlesList
       .filter((a) => (!category || !a.category || a.category.id == category.id) && a.showOnTop === true && a.host.like(filter))
-      .splice(0, 12)
+      .slice(0, 12)
       .reverse();
   };
 

@@ -549,7 +549,7 @@ site.get(
             doc.$day = doc.$day2;
           });
         }
-        options.latestList = site.getLatestArticles(article);
+        options.latestList = site.getLatestArticles(article , options.filter);
         options.topNews = site.getTopArticles(options.filter, article.category);
         if (req.session.shortLink) {
           req.session.shortLink.step++;
