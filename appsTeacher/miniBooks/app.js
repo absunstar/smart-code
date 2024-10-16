@@ -861,7 +861,6 @@ module.exports = function init(site) {
         }
         
         if (where["myMiniBooks"]) {
-          console.log("vvvvvvvvvvvvv");
           
           where.$or = where.$or || [];
           if (req.session?.user?.type == "student" && req.session?.user?.miniBooksList) {
@@ -877,7 +876,6 @@ module.exports = function init(site) {
           }
           delete where["myMiniBooks"];
         }
-        console.log(where);
         
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
