@@ -914,10 +914,10 @@ module.exports = function init(site) {
         response.done = true;
         response.updated = true;
         if (articlesDoc.yts) {
+          doc.yts = articlesDoc.yts;
           doc.translatedList[0].rating = articlesDoc.translatedList[0].rating;
           doc.translatedList[0].title = articlesDoc.translatedList[0].title;
-          doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent;
-          doc.translatedList[0].yts = articlesDoc.translatedList[0].yts;
+          doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent || doc.translatedList[0].textContent;
         }
         doc.translatedList[0].host = articlesDoc.translatedList[0].host;
 
