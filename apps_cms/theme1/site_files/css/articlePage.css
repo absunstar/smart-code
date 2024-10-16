@@ -43,16 +43,22 @@
 /* end mainImage */
 
 .casts{
-
+  background: var(--background1);
+  color: var(--color1);
+  border-radius: 20px;
 }
 .casts a{
-  border-radius: 10px;
+  padding: 5px;
 }
 .casts img{
-  width: 64px;
-  height: 64px;
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 35px;
 }
-
+.casts p{
+  font-size: 12px;
+  color: #fff;
+}
 /* start mainSection */
 
 .sideAds {
