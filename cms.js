@@ -479,6 +479,12 @@ site.get(
       return;
     }
 
+    if (req.host.like('*torrent*')) {
+      req.session.lang = 'EN';
+    } else {
+      req.session.lang = 'AR';
+    }
+    
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
     if (!language) {
       res.redirect('/404', 404);

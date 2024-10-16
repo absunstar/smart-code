@@ -587,7 +587,7 @@ module.exports = function init(site) {
     if ($relatedArticleList.length < 12) {
       $relatedArticleList = [
         ...$relatedArticleList,
-        ...site.articlesList.filter((b) => b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, 12 - $relatedArticleList.length),
+        ...site.articlesList.filter((b) => b.host.like(filter) && b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, 12 - $relatedArticleList.length),
       ];
     }
     return $relatedArticleList;
