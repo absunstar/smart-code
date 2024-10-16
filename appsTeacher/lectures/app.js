@@ -882,7 +882,7 @@ module.exports = function init(site) {
           });
         }
 
-        if (req.session?.user?.type == "student") {
+        if (req.session?.user?.type == "student" && !where["subscriptionList.subscription.id"]) {
           if (!where.educationalLevel) {
             where.educationalLevel = req.session?.user?.educationalLevel;
           }

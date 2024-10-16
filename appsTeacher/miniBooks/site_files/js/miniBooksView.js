@@ -3,8 +3,15 @@ app.controller("miniBooksView", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
   $scope.where = {};
   if ("##query.type##" == "myMiniBooks") {
+    console.log("xxxxxxxxxxxxxxxx");
+    
     $scope.where["myMiniBooks"] = true;
   }
+  
+  if (site.toNumber("##query.subscription##") > 0) {
+    $scope.where["subscriptionList.subscription.id"] = site.toNumber("##query.subscription##");
+  }
+
   $scope.getAll = function (ev) {
     $scope.busy = true;
     $scope.error = "";

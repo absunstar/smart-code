@@ -792,19 +792,19 @@ module.exports = function init(site) {
             "subject.name": site.get_RegExp(search, "i"),
           });
         }
-        if (req.session?.user?.type == "student") {
+        if (req.session?.user?.type == "student" && !where["subscriptionList.subscription.id"]) {
           if (!where.educationalLevel) {
             where.educationalLevel = req.session?.user?.educationalLevel;
           }
           if (!where.schoolYear) {
             where.schoolYear = req.session?.user?.schoolYear;
           }
-          if (req.session?.user?.subscriptionList) {
-            where.$or = where.$or || [];
-            where.$or.push({
-              "subscriptionList.subscription.id": { $in: req.session?.user?.subscriptionList },
-            });
-          }
+          // if (req.session?.user?.subscriptionList) {
+          //   where.$or = where.$or || [];
+          //   where.$or.push({
+          //     "subscriptionList.subscription.id": { $in: req.session?.user?.subscriptionList },
+          //   });
+          // }
         }
         if (where["educationalLevel"]) {
           where["educationalLevel.id"] = where["educationalLevel"].id;
@@ -859,8 +859,10 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-
+        
         if (where["myMiniBooks"]) {
+          console.log("vvvvvvvvvvvvv");
+          
           where.$or = where.$or || [];
           if (req.session?.user?.type == "student" && req.session?.user?.miniBooksList) {
             let miniBookList = req.session?.user?.miniBooksList?.map((_item) => _item.miniBookId);
@@ -875,7 +877,8 @@ module.exports = function init(site) {
           }
           delete where["myMiniBooks"];
         }
-
+        console.log(where);
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {

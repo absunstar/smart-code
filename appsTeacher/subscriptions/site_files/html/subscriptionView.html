@@ -35,7 +35,13 @@
         max-width: 100%;
         border-radius: 15px !important;
       }
-
+      .links {
+        align-items: center;
+        border: 1px solid;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+      }
       .time-publish {
         display: flex;
         color: #919191;
@@ -122,9 +128,7 @@
               <div class="">
                 <div class="row bg-ad padding margin">
                   <div class="row">
-                    <div class="time-publish font-18 margin padding">
-                      {{item.educationalLevel.name}} - {{item.schoolYear.name}} - {{item.subject.name}}
-                    </div>
+                    <div class="time-publish font-18 margin padding">{{item.educationalLevel.name}} - {{item.schoolYear.name}} - {{item.subject.name}}</div>
                   </div>
 
                   <p class="price padding margin">
@@ -135,18 +139,13 @@
                 </div>
 
                 <div class="row">
-                  <p class="text-comment gray-desc">{{item.description}}</p>
+                  <a href="/lecturesView?subscription={{item.id}}" class="links col2">##word.Lectures##</a>
+                  <a href="/miniBooksView?subscription={{item.id}}" class="links col2">##word.Mini Books##</a>
                 </div>
 
-                <a class="card row" ng-repeat="l in item.lecturesList" href="/lectureView?id={{l.lecture._id}}">
-                  <img class="col4" loading="lazy" ng-src="{{l.lecture.image.url}}" />
-                  <div class="padding col8">
-                    <p class="userPrint card-title bold">{{l.lecture.name}}</p>
-                    <p class="">
-                      <i class="card-number bold"> ##word.$## {{l.lecture.price}} </i>
-                    </p>
-                  </div>
-                </a>
+                <div class="row">
+                  <p class="text-comment gray-desc">{{item.description}}</p>
+                </div>
 
                 <hr />
                 <div class="row">
@@ -156,8 +155,6 @@
                   <p class="alert-green" ng-show="alert">{{alert}}</p>
                 </div>
               </div>
-
-        
             </div>
           </div>
           <div class="col1"></div>

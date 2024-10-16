@@ -5,6 +5,9 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
   if ("##query.type##" == "myLectures") {
     $scope.where["myLectures"] = true;
   }
+  if (site.toNumber("##query.subscription##") > 0) {
+    $scope.where["subscriptionList.subscription.id"] = site.toNumber("##query.subscription##");
+  }
   $scope.getAll = function (ev) {
     $scope.busy = true;
     $scope.error = "";
@@ -16,7 +19,6 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
           type: "toStudent",
           search: $scope.$search,
           where: $scope.where,
-          
         },
       }).then(
         function (response) {
