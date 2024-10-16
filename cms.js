@@ -564,7 +564,7 @@ site.get(
           });
         }
         options.relatedArticleList1 = options.relatedArticleList.slice(0, 8);
-        options.relatedArticleList2 = options.relatedArticleList.slice(8, 12);
+        options.relatedArticleList2 = options.relatedArticleList.slice(8, 16);
 
         options.latestList = site.getLatestArticles(article, options.filter);
         options.topNews = site.getTopArticles(options.filter, article.category);
