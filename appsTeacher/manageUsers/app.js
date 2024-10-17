@@ -360,6 +360,7 @@ module.exports = function init(site) {
                 }
                 let index = site[listName].findIndex((a) => a.id === result?.doc?.id);
                 if (index !== -1) {
+                  
                   site[listName][index] = {
                     _id: result.doc._id,
                     id: result.doc.id,

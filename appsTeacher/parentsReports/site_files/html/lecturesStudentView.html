@@ -20,6 +20,9 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div class="row">
+          <a class="btn col2 padding margin" href="/studentsSchedule?id=##query.id##">##word.Student Schedule##</a>
+        </div>
+        <div class="row">
           <div class="table-responsive">
             <table class="table hover bold" id="t1">
               <tr>
@@ -43,7 +46,6 @@
                   <span ng-show="item.quiz.userDegree < 50" class="red">{{item.quiz.userDegree | xmoney2}}</span>
                   <span ng-show="item.quiz.userDegree >= 50" class="green">{{item.quiz.userDegree | xmoney2}}</span>
                   <span ng-show="item.quiz.done">%</span>
-                  
                 </td>
                 <td class="center">{{item.quiz.date | date : 'dd - MM - yyyy'}}</td>
                 <td class="center">{{item.quiz.timesEnterQuiz}}</td>

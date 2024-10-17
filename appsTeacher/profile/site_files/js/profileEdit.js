@@ -171,7 +171,7 @@ app.controller("profileEdit", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/user/update",
+      url: "/api/manageUsers/update",
       data: user,
     }).then(
       function (response) {
