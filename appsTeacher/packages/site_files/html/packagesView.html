@@ -21,28 +21,20 @@
       <div id="main-layout" class="content loaded">
         <div>
           <h2>##word.Search All##</h2>
-         <div class="row">
-           <i-list
-             class="col3 margin"
-             label="##word.Educational Level##"
-             ng-change="getSchoolYearsList(where.educationalLevel.id);getAll({ which: 13 })"
-             ng-model="where.educationalLevel"
-             display="name"
-             items="educationalLevelsList"
-             ng-search="where.$educationalLevel"
-           ></i-list>
-           <i-list
-             label="##word.School Year##"
-             ng-change="getAll({ which: 13 })"
-             class="col3 margin"
-             ng-model="where.schoolYear"
-             display="name"
-             items="schoolYearsList"
-           ></i-list>
-           <i-list label="##word.Subject##" ng-change="getAll({ which: 13 })" class="col3 margin" ng-model="where.subject" display="name" items="subjectsList"></i-list>
-         </div>
-         <i-control label="##word.Search##" class="input-style pass" ng-keydown="getAll($event)" ng-model="$search"></i-control>
-       </div>
+          <div class="row">
+            <i-list
+              class="col2 margin"
+              label="##word.Educational Level##"
+              ng-change="getSchoolYearsList(where.educationalLevel.id);getAll({ which: 13 })"
+              ng-model="where.educationalLevel"
+              display="name"
+              items="educationalLevelsList"
+            ></i-list>
+            <i-list label="##word.School Year##" ng-change="getAll({ which: 13 })" class="col2 margin" ng-model="where.schoolYear" display="name" items="schoolYearsList"></i-list>
+            <i-list label="##word.Subject##" ng-change="getAll({ which: 13 })" class="col2 margin" ng-model="where.subject" display="name" items="subjectsList"></i-list>
+            <i-control label="##word.Search##" class="margin col5" ng-keydown="getAll($event)" ng-model="$search"></i-control>
+          </div>
+        </div>
         <div class="row">
           <ul class="row ul-list">
             <li ng-repeat="item in list">

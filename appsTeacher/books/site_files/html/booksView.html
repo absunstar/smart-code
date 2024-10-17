@@ -12,34 +12,20 @@
     <main class="container">
       <div id="main-layout" class="content loaded">
         <div>
-           <h2>##word.Search All##</h2>
+          <h2>##word.Search All##</h2>
           <div class="row">
-            <div class="col3 margin">
-              <i-list
-              x-permissions="!student"
+            <i-list
+              class="col2 margin"
               label="##word.Educational Level##"
               ng-change="getSchoolYearsList(where.educationalLevel.id);getAll({ which: 13 })"
               ng-model="where.educationalLevel"
               display="name"
               items="educationalLevelsList"
-              ng-search="where.$educationalLevel"
-              ></i-list>
-            </div>
-            <div class="col3 margin">
-              <i-list
-              label="##word.School Year##"
-              ng-change="getAll({ which: 13 })"
-              x-permissions="!student"
-              ng-model="where.schoolYear"
-              display="name"
-              items="schoolYearsList"
             ></i-list>
-            </div>
-            <div class="col3 margin">
-              <i-list label="##word.Subject##" ng-change="getAll({ which: 13 })"  ng-model="where.subject" display="name" items="subjectsList"></i-list>
-            </div>
+            <i-list label="##word.School Year##" ng-change="getAll({ which: 13 })" class="col2 margin" ng-model="where.schoolYear" display="name" items="schoolYearsList"></i-list>
+            <i-list label="##word.Subject##" ng-change="getAll({ which: 13 })" class="col2 margin" ng-model="where.subject" display="name" items="subjectsList"></i-list>
+            <i-control label="##word.Search##" class="margin col5" ng-keydown="getAll($event)" ng-model="$search"></i-control>
           </div>
-          <i-control label="##word.Search##" class="input-style pass" ng-keydown="getAll($event)" ng-model="$search"></i-control>
         </div>
 
         <div class="row">

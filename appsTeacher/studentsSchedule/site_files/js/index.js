@@ -8,14 +8,18 @@ app.controller("studentsSchedule", function ($scope, $http, $timeout) {
     $scope.itemAdd = { dayList: [] };
     site.showModal($scope.modalID);
   };
+  $scope.search = {}
 
-  $scope.view = function () {
+  $scope.view = function (type) {
+    if(type) {
+      $scope.search[type] = true;
+    }
     $scope.busy = true;
     $scope.error = "";
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/studentsSchedule/view`,
-      data: { studentId: "##query.id##" },
+      data: { studentId: "##query.id##",where : $scope.search },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -59,19 +63,27 @@ app.controller("studentsSchedule", function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.updateStatus = function (_item, type) {
+  $scope.updateDay = function (_item,type,index) {
     $scope.error = "";
 
-    _item.status = $scope.studentsScheduleTypeList.find((itm) => itm.name == type);
+    /* _item.status = $scope.studentsScheduleTypeList.find((itm) => itm.name == type); */
     $scope.busy = true;
     $http({
       method: "POST",
-      url: `${$scope.baseURL}/api/${$scope.appName}/update`,
-      data: $scope.item,
+      url: `${$scope.baseURL}/api/${$scope.appName}/updateDay`,
+      data: {
+        studentId :  $scope.item.studentId,
+        item: _item,
+        type : type
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          if(type == 'delete'){
+            $scope.item.dayList.splice(index, 1);
+
+          }
         } else {
           $scope.error = response.data.error;
         }

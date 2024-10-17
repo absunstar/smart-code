@@ -141,11 +141,6 @@ module.exports = function init(site) {
       name: "inProgress",
     },
     {
-      nameAr: "تم الإستعداد",
-      nameEn: "Done Preparation",
-      name: "preparation",
-    },
-    {
       nameAr: "حضور",
       nameEn: "Presence",
       name: "presence",

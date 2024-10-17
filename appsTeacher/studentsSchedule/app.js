@@ -199,9 +199,8 @@ module.exports = function init(site) {
 
           let _data = req.data;
           if (_data.dayList && _data.dayList.length > 0) {
-           let duplicateList = _data.dayList.filter((item, index, self) => index !== self.findIndex((t) => t.day.code === item.day.code));
+            let duplicateList = _data.dayList.filter((item, index, self) => index !== self.findIndex((t) => t.day.code === item.day.code));
 
-          
             if (duplicateList && duplicateList.length > 0) {
               response.error = req.word("There is a duplicate day");
               res.json(response);
@@ -234,6 +233,7 @@ module.exports = function init(site) {
                   subjectName: _data.subjectName,
                   time: _data.dayList[index].time,
                   status: status,
+                  code: _data.dayList[index].day.code.toString() + Math.random().toString(16).slice(6),
                 });
               }
               while (site.getDate(start) <= site.getDate(end)) {
@@ -247,6 +247,7 @@ module.exports = function init(site) {
                     subjectName: _data.subjectName,
                     time: _data.dayList[index].time,
                     status: status,
+                    code: _data.dayList[index].day.code.toString() + Math.random().toString(16).slice(6),
                   });
                 }
                 if (site.getDate(start) == site.getDate(end)) {
@@ -255,7 +256,8 @@ module.exports = function init(site) {
               }
 
               if (doc) {
-                doc.dayList = doc.dayList.concat(dayList);
+                dayList = dayList.concat(doc.dayList);
+                doc.dayList = dayList;
                 app.update(doc, (err, result) => {
                   if (!err && result) {
                     response.done = true;
@@ -313,6 +315,48 @@ module.exports = function init(site) {
           });
         }
       );
+
+      site.post(
+        {
+          name: `/api/${app.name}/updateDay`,
+          require: { permissions: ["login"] },
+        },
+        (req, res) => {
+          let response = {
+            done: false,
+          };
+
+          let studentId = req.data.studentId;
+          let item = req.data.item;
+          let type = req.data.type;
+          app.$collection.find({ studentId }, (err, doc) => {
+            if (doc) {
+              let index = doc.dayList.findIndex((itm) => itm.code === item.code);
+              if (type == "change") {
+                if (index !== -1) {
+                  doc.dayList[index] = item;
+                }
+              } else if (type == "delete") {
+                if (index !== -1) {
+                  doc.dayList.splice(index, 1);
+                }
+              }
+              app.update(doc, (err, result) => {
+                if (!err) {
+                  response.done = true;
+                  // response.result = result;
+                } else {
+                  response.error = err.message;
+                }
+                res.json(response);
+              });
+            } else {
+              response.error = err?.message || "NotFound";
+              res.json(response);
+            }
+          });
+        }
+      );
     }
 
     if (app.allowRouteDelete) {
@@ -346,10 +390,37 @@ module.exports = function init(site) {
           done: false,
         };
 
-        let _data = req.data;
+        let studentId = req.data.studentId;
+        let where = req.data.where || {};
+        let today = site.getDate();
+        let tomorrow = site.getDate();
+        tomorrow.setDate(tomorrow.getDate() + 1);
 
-        app.$collection.find(_data, (err, doc) => {
+        app.$collection.find({ studentId }, (err, doc) => {
           if (!err) {
+            if (doc) {
+              let dayList = [];
+              doc.dayList = doc.dayList.filter((m) => !where.names || (where.names && (m.teacherName.contains(where.names) || m.subjectName.contains(where.names))));
+              for (let i = 0; i < doc.dayList.length; i++) {
+                if (
+                  ((!where.today ||
+                    (where.today &&
+                      site.getDate(doc.dayList[i].date).getDate() == today.getDate() &&
+                      site.getDate(doc.dayList[i].date).getDate() == today.getDate() &&
+                      site.getDate(doc.dayList[i].date).getFullYear() == today.getFullYear())) &&
+                    !where.tomorrow) ||
+                  (where.tomorrow &&
+                    site.getDate(doc.dayList[i].date).getDate() == tomorrow.getDate() &&
+                    site.getDate(doc.dayList[i].date).getDate() == tomorrow.getDate() &&
+                    site.getDate(doc.dayList[i].date).getFullYear() == tomorrow.getFullYear())
+                ) {
+                  dayList.push(doc.dayList[i]);
+                }
+              }
+
+              doc.dayList = dayList;
+            }
+
             response.done = true;
             response.doc = doc || {};
           } else {

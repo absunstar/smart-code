@@ -8,6 +8,9 @@
       i-button {
         display: inline-block !important;
       }
+      .content-center {
+        text-align-last: center;
+      }
     </style>
   </head>
 
@@ -18,22 +21,24 @@
       <div id="main-layout" class="content loaded">
         <div class="top-actions">
           <i-button type="add" label="##word.Add New Subject##" ng-click="showAdd()"></i-button>
-          <i-button type="search" label="##word.Today's appointments##" ng-click=""></i-button>
-          <i-button type="search" label="##word.Tomorrow's appointments##" ng-click=""></i-button>
+          <i-button type="search" label="##word.Today's appointments##" ng-click="view('today')"></i-button>
+          <i-button type="search" label="##word.Tomorrow's appointments##" ng-click="view('tomorrow')"></i-button>
         </div>
 
         <fieldset>
           <legend>##word.Search All##</legend>
-          <div class="row">
+          <!-- <div class="row">
             <i-list class="input-style col6 padding" label="##word.Status##" ng-model="search.status" items="studentsScheduleTypeList" display="name##session.lang##"></i-list>
           </div>
           <div class="row">
             <i-date class="col6 padding" label="##word.From Date##" ng-model="search.startDate"> </i-date>
             <i-date class="col6 padding" label="##word.To Date##" ng-model="search.endDate"> </i-date>
-          </div>
+          </div> -->
           <div class="row">
-            <i-control type="text" ng-model="search.names" class="padding" label="##word.Search by teacher or subject name##"></i-control>
+            <i-control type="text" ng-model="search.names" class="padding col9" label="##word.Search by teacher or subject name##"></i-control>
+            <i-button type="search" class="col2" label="##word.Search All##" ng-click="view()"></i-button>
           </div>
+
         </fieldset>
         <div class="row">
           <div class="table-responsive">
@@ -42,10 +47,10 @@
                 <th>##word.Teacher##</th>
                 <th>##word.Subject##</th>
                 <th>##word.Date##</th>
-                <th>##word.Status##</th>
+                <th class="w300">##word.Status##</th>
                 <th>##word.Actions##</th>
               </tr>
-              <tr ng-repeat="itm in item.dayList | filter:search.names">
+              <tr ng-repeat="itm in item.dayList">
                 <td class="center">
                   <p>{{itm.teacherName}}</p>
                 </td>
@@ -58,14 +63,17 @@
                   <p>{{itm.day.name##session.lang##}} {{itm.time.m}} : {{itm.time.h}}</p>
                 </td>
                 <td class="center">
-                  <p>{{itm.status.name##session.lang##}}</p>
+                  <i-list class="content-center" ng-change="updateDay(itm,'change')" primary="name" ng-model="itm.status" display="name##session.lang##" items="studentsScheduleTypeList"></i-list>
+
                 </td>
 
                 <td class="center">
-                  <i-button label="##word.Preparation##" ng-click="updateStatus(itm,'preparation')"></i-button>
+                  <i-button label="##word.Delete##" ng-click="updateDay(itm,'delete',$index)"></i-button>
+
+                  <!-- <i-button label="##word.Preparation##" ng-click="updateStatus(itm,'preparation')"></i-button>
                   <i-button label="##word.Presence##" ng-click="updateStatus(itm,'presence')"></i-button>
                   <i-button label="##word.Absence##" ng-click="updateStatus(itm,'absence')"></i-button>
-                  <i-button label="##word.Vacation##" ng-click="updateStatus(itm,'vacation')"></i-button>
+                  <i-button label="##word.Vacation##" ng-click="updateStatus(itm,'vacation')"></i-button> -->
                 </td>
               </tr>
             </table>
