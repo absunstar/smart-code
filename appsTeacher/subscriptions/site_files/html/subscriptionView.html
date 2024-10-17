@@ -125,7 +125,7 @@
           <div class="col8 bg-white content-ad">
             <div class="row">
               <p class="display-ad-name">{{item.name}}</p>
-              <div class="">
+              <div class="col7">
                 <div class="row bg-ad padding margin">
                   <div class="row">
                     <div class="time-publish font-18 margin padding">{{item.educationalLevel.name}} - {{item.schoolYear.name}} - {{item.subject.name}}</div>
@@ -154,6 +154,10 @@
                   </button>
                   <p class="alert-green" ng-show="alert">{{alert}}</p>
                 </div>
+              </div>
+              <div class="col1"></div>
+              <div class="col4">
+                <img class="content-main-img" view ng-src="{{item.image.url}}" />
               </div>
             </div>
           </div>

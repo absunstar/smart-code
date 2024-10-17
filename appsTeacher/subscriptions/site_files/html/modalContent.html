@@ -1,23 +1,26 @@
 <div class="row">
   <div class="row padding">
-    <div class="row">
-
-      <i-checkbox ng-model="item.active"  label="##word.Active##"></i-checkbox>
-      <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
-      <i-control type="number" v="r" ng-model="item.price" label="##word.Price##"></i-control>
-      <i-list
-        label="##word.Educational Level##"
-        ng-change="getSchoolYearsList(item.educationalLevel.id)"
-        v="r"
-        ng-model="item.educationalLevel"
-        display="name"
-        items="educationalLevelsList"
-        ng-search="item.$educationalLevel"
-      ></i-list>
-      <i-list label="##word.School Year##" ng-model="item.schoolYear" v="r" display="name" items="schoolYearsList"></i-list>
-      <i-list label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList"></i-list>
+    <div class="col9">
+      <div class="row">
+        <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
+        <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
+        <i-control type="number" v="r" ng-model="item.price" label="##word.Price##"></i-control>
+        <i-list
+          label="##word.Educational Level##"
+          ng-change="getSchoolYearsList(item.educationalLevel.id)"
+          v="r"
+          ng-model="item.educationalLevel"
+          display="name"
+          items="educationalLevelsList"
+          ng-search="item.$educationalLevel"
+        ></i-list>
+        <i-list label="##word.School Year##" ng-model="item.schoolYear" v="r" display="name" items="schoolYearsList"></i-list>
+        <i-list label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList"></i-list>
+      </div>
     </div>
-
+    <div class="col3">
+      <i-image class="img128 center" ng-model="item.image"></i-image>
+    </div>
     <i-textarea type="text" ng-model="item.description" label="##word.Description##"></i-textarea>
   </div>
 </div>

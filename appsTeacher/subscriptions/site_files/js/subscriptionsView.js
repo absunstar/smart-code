@@ -26,6 +26,7 @@ app.controller("subscriptionsView", function ($scope, $http, $timeout) {
             price: 1,
             code: 1,
             description: 1,
+            image: 1,
           },
         },
       }).then(
