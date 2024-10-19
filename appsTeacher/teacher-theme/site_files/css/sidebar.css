@@ -114,20 +114,16 @@ main .mainContent .sidebarContainer .sidebar .adsBanner img {
   border: 0px solid #000;
   }
 
-/* Initiate Auto-Pulse animations */
 .pulse-button {
   animation: borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in;
 }
 
-/* Initiate color change for pulse-on-hover */
 
-/* Continue animation and add shine on hover */
 .pulse-button:hover,
 .pulse-button:focus {
   animation: borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in, hoverShine 200ms;
 }
 
-/* Declate color shifting animation */
 @keyframes colorShift {
   0%, 100% {
       background: #0045e6;

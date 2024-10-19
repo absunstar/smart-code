@@ -3,43 +3,15 @@
     <div x-import="quizzes/modal.html"></div>
 
     <div class="top-actions">
-      <i-list
-        class="col3 margin"
-        label="##word.Lecture##"
-        ng-model="search.lecture"
-        display="name"
-        items="lecturesList"
-        ng-get="getLecturesList($search)"
-      ></i-list>
-      <i-list
-        class="col3 margin"
-        label="##word.Student##"
-        ng-model="search.user"
-        display="firstName"
-        items="usersList"
-        ng-get="getUsersList($search)"
-      ></i-list>
-      <div class="col4">
-        <br>
-        <i-button
-        type="search"
-        label="##word.Search##"
-        ng-click="getAll(search)"
-        ></i-button>
-        <i-button
-        type="search"
-        label="##word.Reset Search##"
-        ng-click="search = {}"
-        ></i-button>
-      </div>
-    
+      <i-list class="col3 margin" label="##word.Lecture##" ng-model="search.lecture" display="name" items="lecturesList" ng-get="getLecturesList($search)"></i-list>
+      <i-list class="col3 margin" label="##word.Student##" ng-model="search.user" display="firstName" items="usersList" ng-get="getStudentsList($search)"></i-list>
+
+      <i-button type="search" label="##word.Search##" ng-click="getAll(search)"></i-button>
+      <i-button type="search" label="##word.Reset Search##" ng-click="search = {}"></i-button>
     </div>
 
     <div class="row padding">
-      <i-control
-        ng-model="$search"
-        x-permissions="quizzesSearch || quizzesManage"
-      ></i-control>
+      <i-control ng-model="$search" x-permissions="quizzesSearch || quizzesManage"></i-control>
     </div>
     <div class="table-responsive">
       <table class="table hover bold" id="t1">
@@ -54,41 +26,16 @@
           <td class="center">{{item.lecture.name}}</td>
           <td class="center">{{item.userDegree | xmoney2}} %</td>
           <td class="center not-print">
-            <i-button
-              type="view"
-              title="##word.View##"
-              ng-click="showView(item)"
-            ></i-button>
+            <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
 
-            <i-button
-              type="edit"
-              x-permissions="quizzesUpdate || quizzesManage"
-              title="##word.Edit##"
-              ng-click="showUpdate(item)"
-            ></i-button>
+            <i-button type="edit" x-permissions="quizzesUpdate || quizzesManage" title="##word.Edit##" ng-click="showUpdate(item)"></i-button>
 
-            <i-button
-              type="delete"
-              x-permissions="quizzesDelete || quizzesManage"
-              title="##word.Delete##"
-              ng-click="showDelete(item)"
-            ></i-button>
+            <i-button type="delete" x-permissions="quizzesDelete || quizzesManage" title="##word.Delete##" ng-click="showDelete(item)"></i-button>
           </td>
         </tr>
       </table>
     </div>
-    <i-button
-      x-permissions="quizzesPrint || quizzesManage"
-      type="print"
-      label="##word.Print##"
-      onclick="site.print('#t1')"
-    ></i-button>
-    <i-button
-      x-permissions="quizzesExport || quizzesManage"
-      type="export"
-      label="##word.Export to excel##"
-      onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"
-    >
-    </i-button>
+    <i-button x-permissions="quizzesPrint || quizzesManage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
+    <i-button x-permissions="quizzesExport || quizzesManage" type="export" label="##word.Export to excel##" onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"> </i-button>
   </div>
 </div>

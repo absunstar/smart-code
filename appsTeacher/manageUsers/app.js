@@ -548,19 +548,19 @@ module.exports = function init(site) {
             "center.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            "gender.nameAr": site.get_RegExp(search, "i"),
+            "gender.nameAr": search,
           });
           where.$or.push({
-            "gender.nameEn": site.get_RegExp(search, "i"),
+            "gender.nameEn": search,
           });
           where.$or.push({
-            phone: site.get_RegExp(search, "i"),
+            phone: search,
           });
           where.$or.push({
-            mobile: site.get_RegExp(search, "i"),
+            mobile: search,
           });
           where.$or.push({
-            whatsapp: site.get_RegExp(search, "i"),
+            whatsapp: search,
           });
           where.$or.push({
             socialEmail: site.get_RegExp(search, "i"),
@@ -603,7 +603,7 @@ module.exports = function init(site) {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
-
+        
         app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
           res.json({
             done: true,
@@ -715,19 +715,19 @@ module.exports = function init(site) {
           "center.name": site.get_RegExp(search, "i"),
         });
         where.$or.push({
-          "gender.nameAr": site.get_RegExp(search, "i"),
+          "gender.nameAr": search,
         });
         where.$or.push({
-          "gender.nameEn": site.get_RegExp(search, "i"),
+          "gender.nameEn": search,
         });
         where.$or.push({
-          phone: site.get_RegExp(search, "i"),
+          phone: search
         });
         where.$or.push({
-          mobile: site.get_RegExp(search, "i"),
+          mobile: search,
         });
         where.$or.push({
-          whatsapp: site.get_RegExp(search, "i"),
+          whatsapp: search,
         });
         where.$or.push({
           socialEmail: site.get_RegExp(search, "i"),
