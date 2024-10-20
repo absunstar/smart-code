@@ -355,6 +355,10 @@ module.exports = function init(site) {
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
       doc.$backgroundURL = doc.$coverURL;
+      doc.yts.torrents = doc.yts.torrents || [];
+      doc.yts.torrents.forEach((torrent, i) => {
+        torrent.$url = '/torrent/' + doc.guid + '/' + i;
+      });
     } else if (doc.type.id == 8) {
       doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
@@ -698,6 +702,16 @@ module.exports = function init(site) {
         }
       } else {
         res.redirect('/images/no.png');
+      }
+    });
+  });
+  site.onGET('/torrent/:guid/:index', (req, res) => {
+    site.getArticle(req.params.guid, (err, article) => {
+      if (article) {
+        let index = parseInt(req.params.index);
+        res.redirect(article.yts.torrents[index].url);
+      } else {
+        res.end(404);
       }
     });
   });
