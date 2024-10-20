@@ -2,6 +2,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
   $scope.setting = site.showObject(`##data.#setting##`);
   $scope.appName = "groups";
+  $scope.isOpen = false;
   $scope.modalID = "#groupsManageModal";
   $scope.modalSearchID = "#groupsSearchModal";
   $scope.mode = "add";
@@ -15,6 +16,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.showAdd = function (_item) {
     $scope.error = "";
+    $scope.isOpen = false;
     $scope.mode = "add";
     $scope.item = { ...$scope.structure, dayList: [], studentList: [] };
     site.showModal($scope.modalID);
@@ -115,6 +117,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
+          $scope.isOpen = false;
         } else {
           $scope.error = response.data.error;
         }
@@ -189,7 +192,6 @@ app.controller("groups", function ($scope, $http, $timeout) {
   };
 
   $scope.getWeekDaysList = function () {
-
     $scope.busy = true;
     $http({
       method: "POST",
@@ -287,7 +289,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     if ($search && $search.length < 1) {
       return;
     }
-    
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -442,6 +444,64 @@ app.controller("groups", function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.autoSave = function () {
+    const startInterval = setInterval(function () {
+      if ($scope.isOpen) {
+        $scope.save();        
+      } else {
+        clearInterval(startInterval);
+      }
+    }, 1000 * 10);
+  };
+  $scope.showStudentsModal = function (_item) {
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/view`,
+      data: {
+        id: _item.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.item = response.data.doc;
+          $scope.isOpen = true;
+          $scope.autoSave();
+          site.showModal("#studentsModal");
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.save = function (type) {
+    $scope.error = "";
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/update`,
+      data: $scope.item,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          if(type == 'close') {
+            site.hideModal('#studentsModal');
+          }
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
 
   $scope.generateAppointments = function (item) {
     $scope.error = "";
@@ -479,7 +539,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.selectTeacher = function () {
     $scope.error = "";
-    $scope.item.subject = { ...$scope.item.teacher.subject };    
+    $scope.item.subject = { ...$scope.item.teacher.subject };
   };
 
   $scope.pushSpceficIndex = function (index) {

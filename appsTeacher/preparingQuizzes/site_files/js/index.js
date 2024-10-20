@@ -3,8 +3,9 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
   $scope.appName = "preparingQuizzes";
   $scope.modalID = "#preparingQuizzesManageModal";
   $scope.modalSearchID = "#preparingQuizzesSearchModal";
+  $scope.isOpen = false;
   $scope.mode = "add";
-  $scope.search = {dateFrom : site.getDate()};
+  $scope.search = { dateFrom: site.getDate() };
   $scope.structure = {
     image: { url: "/theme1/images/setting/preparingQuizzes.png" },
     active: true,
@@ -14,6 +15,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
 
   $scope.showAdd = function (_item) {
     $scope.error = "";
+    $scope.isOpen = false;
     $scope.mode = "add";
     $scope.item = { ...$scope.structure, studentList: [], date: site.getDate() };
     site.showModal($scope.modalID);
@@ -114,6 +116,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.item = response.data.doc;
+          $scope.isOpen = false;
         } else {
           $scope.error = response.data.error;
         }
@@ -229,7 +232,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/all`,
       data: {
-        search : $scope.$search,
+        search: $scope.$search,
         where: where,
       },
     }).then(
@@ -305,6 +308,67 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.autoSave = function () {
+    const startInterval = setInterval(function () {
+      if ($scope.isOpen) {
+        $scope.save();
+        
+      } else {
+        clearInterval(startInterval);
+      }
+    }, 1000 * 10);
+  };
+  $scope.showStudentsModal = function (_item) {
+    $scope.error = "";
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/view`,
+      data: {
+        id: _item.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.item = response.data.doc;
+          $scope.isOpen = true;
+          $scope.numberAbsencesAttendance();
+          $scope.autoSave();
+          site.showModal("#studentsModal");
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.save = function (type) {
+    $scope.error = "";
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/${$scope.appName}/update`,
+      data: $scope.item,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          if (type == "close") {
+            site.hideModal("#studentsModal");
+          }
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.selectGroup = function () {
     $scope.error = "";
 
