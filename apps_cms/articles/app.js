@@ -241,6 +241,10 @@ module.exports = function init(site) {
           doc.$castList.push({ ...c, url: 'https://www.imdb.com/name/nm' + c.imdb_code, imageURL: c.url_small_image });
         });
       }
+      doc.yts.torrents = doc.yts.torrents || [];
+      doc.yts.torrents.forEach((torrent, i) => {
+        torrent.$url = '/torrent-download/' + doc.guid + '/' + i.toString();
+      });
     } else if (doc.type.id == 8) {
       doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
@@ -698,6 +702,16 @@ module.exports = function init(site) {
         }
       } else {
         res.redirect('/images/no.png');
+      }
+    });
+  });
+  site.onGET('/torrent-download/:guid/:index', (req, res) => {
+    site.getArticle(req.params.guid, (err, article) => {
+      if (article) {
+        let index = parseInt(req.params.index);
+        res.redirect(article.yts.torrents[index].url);
+      } else {
+        res.end(404);
       }
     });
   });
