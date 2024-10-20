@@ -243,7 +243,7 @@ module.exports = function init(site) {
       }
       doc.yts.torrents = doc.yts.torrents || [];
       doc.yts.torrents.forEach((torrent, i) => {
-        torrent.$url = '/torrent/' + doc.guid + '/' + i.toString();
+        torrent.$url = '/torrent-download/' + doc.guid + '/' + i.toString();
       });
     } else if (doc.type.id == 8) {
       doc.$youtube = true;
@@ -359,7 +359,6 @@ module.exports = function init(site) {
       doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
       doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
       doc.$backgroundURL = doc.$coverURL;
-     
     } else if (doc.type.id == 8) {
       doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
@@ -706,7 +705,7 @@ module.exports = function init(site) {
       }
     });
   });
-  site.onGET('/torrent/:guid/:index', (req, res) => {
+  site.onGET('/torrent-download/:guid/:index', (req, res) => {
     site.getArticle(req.params.guid, (err, article) => {
       if (article) {
         let index = parseInt(req.params.index);
