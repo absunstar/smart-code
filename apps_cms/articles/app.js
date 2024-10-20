@@ -357,7 +357,7 @@ module.exports = function init(site) {
       doc.$backgroundURL = doc.$coverURL;
       doc.yts.torrents = doc.yts.torrents || [];
       doc.yts.torrents.forEach((torrent, i) => {
-        torrent.$url = '/torrent/' + doc.guid + '/' + i;
+        torrent.url2 = '/torrent/' + doc.guid + '/' + i.toString();
       });
     } else if (doc.type.id == 8) {
       doc.$youtube = true;
