@@ -1,7 +1,7 @@
 <div id="studentsModal" class="modal full" fixed>
   <div class="modal-content">
     <div class="modal-header">
-      <span class="close">&times;</span>
+      <span class="close" ng-click="isOpen = false">&times;</span>
       <p class="center">
         ##word.Students##
         <i class="fa fa-pencil"></i>
@@ -148,7 +148,7 @@
     </div>
 
     <div class="modal-footer center">
-      <i-button type="save" label="##word.Save##" onclick="site.hideModal( '#studentsModal')"></i-button>
+      <i-button type="save" label="##word.Save##" ng-click="save('close');isOpen = false"></i-button>
     </div>
   </div>
 </div>

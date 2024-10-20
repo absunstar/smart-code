@@ -1079,7 +1079,7 @@ module.exports = function init(site) {
       }
     }
 
-    return docs.slice(0, setting.miniBooksLimit || 10000);
+    return docs.slice(0, setting.miniBooksLimit || 100);
     // }
   };
 

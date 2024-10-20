@@ -57,7 +57,7 @@
             <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
             <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##&type=myProfile">##word.Manage My Page##</a></li>
             <li><a class="dropdown-item" x-permissions="student" href="/studentsSchedule?id=##session.user._id##">##word.Student Schedule##</a></li>
-            <li><a class="dropdown-item" x-permissions="student" href="/subscriptionsView?type=mySubscriptions">##word.My Subscriptions##</a></li>
+            <li><a class="dropdown-item" x-permissions="student" x-data="setting.showSubscriptions" href="/subscriptionsView?type=mySubscriptions">##word.My Subscriptions##</a></li>
             <li><a class="dropdown-item" x-permissions="student" x-data="setting.showPackages" href="/profileEdit?id=##session.user._id##&type=myPackages">##word.My Packages##</a></li>
             <li>
               <a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures"href="/lecturesView?type=myLectures"
@@ -143,7 +143,7 @@
                 <!-- <li><a class="dropdown-item" href="/profileView/##user.id##">##word.Personal Page##</a></li> -->
                 <li><a class="dropdown-item" href="/profileEdit?id=##session.user._id##&type=myProfile">##word.Manage My Page##</a></li>
                 <li><a class="dropdown-item" x-permissions="student" href="/studentsSchedule?id=##session.user._id##">##word.Student Schedule##</a></li>
-                <li><a class="dropdown-item" x-permissions="student" href="/subscriptionsView?id=##session.user._id##">##word.My Subscriptions##</a></li>
+                <li><a class="dropdown-item" x-permissions="student" x-data="setting.showSubscriptions" href="/subscriptionsView?id=##session.user._id##">##word.My Subscriptions##</a></li>
                 <li><a class="dropdown-item" x-permissions="student" x-data="setting.showPackages" href="/profileEdit?id=##session.user._id##&type=myPackages">##word.My Packages##</a></li>
                 <li>
                   <a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures"href="/lecturesView?type=myLectures"

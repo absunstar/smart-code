@@ -34,6 +34,11 @@
           </td>
 
           <td class="center not-print">
+            <i-button
+              label="##word.Students##"
+              type="list"
+              ng-click="showStudentsModal(item)"
+            ></i-button>
             <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
 
             <i-button type="edit" x-permissions="preparingGroupsUpdate || preparingGroupsManage" title="##word.Edit##" ng-click="showUpdate(item)"></i-button>
