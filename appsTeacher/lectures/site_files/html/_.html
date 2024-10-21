@@ -24,13 +24,12 @@
         <tr ng-repeat="item in list | filter:$search">
           <td class="center">{{item.name}}</td>
           <td class="center"><span class="userPrint">{{item.code}}</span></td>
-          <td class="center">{{item.educationalLevel.name}} ( {{item.schoolYear.name}} )</td>
+          <td class="center">{{item.educationalLevel.name}} <span ng-show="item.schoolYear.id">( {{item.schoolYear.name}} )</span></td>
           <td class="center" x-data="setting.isOnline">{{item.placeType}}</td>
           <td class="center">
             <span class="text-success" ng-show="item.active">##word.Active##</span>
             <span class="text-danger" ng-show="!item.active">##word.Not Active##</span>
             <p class="text-danger" ng-show="item.liveBroadcast">##word.Live Broadcast##</p>
-            
           </td>
 
           <td class="center not-print">

@@ -15,6 +15,7 @@
         <tr>
           <th class="w150">##word.Logo##</th>
           <th>##word.Name##</th>
+          <th>##word.Level And Year##</th>
           <th>##word.Price##</th>
           <th>##word.Code##</th>
           <th>##word.Status##</th>
@@ -25,6 +26,8 @@
             <i-image view class="logo" ng-model="item.image"></i-image>
           </td>
           <td class="center">{{item.name}}</td>
+          <td class="center">{{item.educationalLevel.name}} <span ng-show="item.schoolYear.id">( {{item.schoolYear.name}} )</span></td>
+
           <td class="center">{{item.price}}</td>
           <td class="center"><span class="userPrint">{{item.code}}</span></td>
           <td class="center">
