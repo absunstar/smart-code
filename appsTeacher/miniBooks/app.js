@@ -815,7 +815,13 @@ module.exports = function init(site) {
         }
 
         if (where["schoolYear"]) {
-          where["schoolYear.id"] = where["schoolYear"].id;
+          where.$or = where.$or || [];
+          where.$or.push({
+            "schoolYear.id": where["schoolYear"].id,
+          });
+          where.$or.push({
+            "schoolYear.id": {$exists:false},
+          });
           delete where["schoolYear"];
         }
 
@@ -1068,7 +1074,7 @@ module.exports = function init(site) {
         if (req.session.user && req.session.user.type == "student") {
           if (
             obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&
-            obj.schoolYear?.id == req.session.user?.schoolYear?.id &&
+            ((!obj.schoolYear && !obj?.schoolYear?.id) || req.session.user?.schoolYear?.id == obj?.schoolYear?.id) &&
             (obj.placeType == req.session.user.placeType || obj.placeType == "both")
           ) {
             docs.push(obj);

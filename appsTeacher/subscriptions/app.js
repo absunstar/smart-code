@@ -395,7 +395,7 @@ module.exports = function init(site) {
             if (
               (!where.mySubscriptions || req.session?.user?.subscriptionList?.some((s) => s == obj.id)) &&
               (!where.educationalLevel?.id || where.educationalLevel?.id == obj.educationalLevel.id) &&
-              (!where.schoolYear?.id || where.schoolYear?.id == obj.schoolYear.id) &&
+              (!where.schoolYear?.id || (!obj.schoolYear && !obj?.schoolYear?.id) || where.schoolYear?.id == obj?.schoolYear?.id) &&
               (!where.subject?.id || where.subject?.id == obj.subject.id)
             ) {
               list.push(obj);

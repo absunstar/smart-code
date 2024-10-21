@@ -18,7 +18,7 @@ module.exports = function init(site) {
   app.$collection = site.connectCollection(app.name);
 
   app.init = function () {
-    app.$collection.findMany({sort:{id:-1}}, (err, docs) => {
+    app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
           site.bookList.push({
@@ -455,7 +455,7 @@ module.exports = function init(site) {
             "subject.name": site.get_RegExp(search, "i"),
           });
         }
-        if (req.session?.user?.type == 'student') {
+        if (req.session?.user?.type == "student") {
           if (!where.educationalLevel) {
             where.educationalLevel = req.session?.user?.educationalLevel;
           }
@@ -463,20 +463,25 @@ module.exports = function init(site) {
             where.schoolYear = req.session?.user?.schoolYear;
           }
         }
-        if (where['educationalLevel']) {
-          where['educationalLevel.id'] = where['educationalLevel'].id;
-          delete where['educationalLevel'];
+        if (where["educationalLevel"]) {
+          where["educationalLevel.id"] = where["educationalLevel"].id;
+          delete where["educationalLevel"];
         }
 
-        if (where['schoolYear']) {
-          where['schoolYear.id'] = where['schoolYear'].id;
-          delete where['schoolYear'];
+        if (where["schoolYear"]) {
+          where.$or = where.$or || [];
+          where.$or.push({
+            "schoolYear.id": where["schoolYear"].id,
+          });
+          where.$or.push({
+            "schoolYear.id": { $exists: false },
+          });
+          delete where["schoolYear"];
         }
 
-
-        if (where['subject']) {
-          where['subject.id'] = where['subject'].id;
-          delete where['subject'];
+        if (where["subject"]) {
+          where["subject.id"] = where["subject"].id;
+          delete where["subject"];
         }
 
         if (req.body.type == "toStudent") {
@@ -497,7 +502,7 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {}
@@ -571,7 +576,7 @@ module.exports = function init(site) {
       obj.$time = site.xtime(obj.date, "Ar");
       if (obj.active && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
         if (req.session.user && req.session.user.type == "student") {
-          if (obj.educationalLevel?.id == req.session.user?.educationalLevel?.id && obj.schoolYear?.id == req.session.user?.schoolYear?.id) {
+          if (obj.educationalLevel?.id == req.session.user?.educationalLevel?.id && ((!obj.schoolYear && !obj?.schoolYear?.id) || req.session.user?.schoolYear?.id == obj?.schoolYear?.id)) {
             docs.push(obj);
           }
         } else {

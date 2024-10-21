@@ -489,9 +489,15 @@ module.exports = function init(site) {
           delete where["schoolYear"];
         }
 
-        if (where["subject"]) {
-          where["subject.id"] = where["subject"].id;
-          delete where["subject"];
+        if (where["schoolYear"]) {
+          where.$or = where.$or || [];
+          where.$or.push({
+            "schoolYear.id": where["schoolYear"].id,
+          });
+          where.$or.push({
+            "schoolYear.id": {$exists:false},
+          });
+          delete where["schoolYear"];
         }
 
         if (req.body.type == "toStudent") {
@@ -732,7 +738,7 @@ module.exports = function init(site) {
         if (req.session.user && req.session.user.type == "student") {
           if (
             obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&
-            obj.schoolYear?.id == req.session.user?.schoolYear?.id &&
+            ((!obj.schoolYear && !obj?.schoolYear?.id) || req.session.user?.schoolYear?.id == obj?.schoolYear?.id) &&
             (obj.placeType == req.session.user.placeType || obj.placeType == "both")
           ) {
             docs.push(obj);

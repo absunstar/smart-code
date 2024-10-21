@@ -270,7 +270,7 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       return;
     }
     $scope.subscriptionsList = [];
-    if ($scope.item.educationalLevel?.id && $scope.item.schoolYear?.id && $scope.item.subject?.id) {
+    if ($scope.item.educationalLevel?.id && $scope.item.subject?.id) {
       $scope.busy = true;
 
       $http({
