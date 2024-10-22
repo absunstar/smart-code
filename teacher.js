@@ -174,6 +174,8 @@ site.sawaBot = site.telegramInit(site.from123('277456752674167328151671277462133
   } else {
   }
 });
+site.sawaGroupID = '-1002449093831';
 
-site.sawaBot.sendMessage('-1002449093831', 'Sawa Website Updated');
+site.sawaBot.sendMessage(site.sawaGroupID, 'Sawa Website Updated https://sawa-edu.online/');
+
 site.run();
