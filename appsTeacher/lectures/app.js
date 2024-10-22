@@ -977,7 +977,7 @@ module.exports = function init(site) {
           }
           delete where["myLectures"];
         }
-
+        
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {

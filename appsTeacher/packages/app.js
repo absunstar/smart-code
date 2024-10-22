@@ -489,6 +489,11 @@ module.exports = function init(site) {
           delete where["schoolYear"];
         }
 
+        if (where["subject"]) {
+          where["subject.id"] = where["subject"].id;
+          delete where["subject"];
+        }
+
         if (where["schoolYear"]) {
           where.$or = where.$or || [];
           where.$or.push({
