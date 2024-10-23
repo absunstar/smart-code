@@ -252,10 +252,10 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/manageUsers/all",
+      url: "/api/manageUsers/byBarcode",
       data: {
-        search: $search,
         where: {
+          barcode: $search,
           type: "student",
           "educationalLevel.id": $scope.item.educationalLevel.id,
           "schoolYear.id": $scope.item.schoolYear.id,
@@ -266,9 +266,9 @@ app.controller("groups", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.list[0].id)) {
-            $scope.item.studentList.unshift({ student: response.data.list[0], attend: false, discount: 0, discountValue: 0, requiredPayment: $scope.item.price });
+        if (response.data.done && response.data.doc) {
+          if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.id)) {
+            $scope.item.studentList.unshift({ student: response.data.doc, attend: false, discount: 0, discountValue: 0, requiredPayment: $scope.item.price });
           } else {
             $scope.error = "##word.Student Exist##";
           }
@@ -467,7 +467,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.item = response.data.doc;
           $scope.isOpen = true;
-          /* $scope.autoSave(); */
+          $scope.autoSave();
           site.showModal("#studentsModal");
         } else {
           $scope.error = response.data.error;

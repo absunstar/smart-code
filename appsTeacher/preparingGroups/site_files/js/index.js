@@ -147,7 +147,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
           $scope.isOpen = true;
           $scope.numberAbsencesAttendance();
           $scope.getStudentPaid();
-          /* $scope.autoSave(); */
+          $scope.autoSave();
           site.showModal("#studentsModal");
         } else {
           $scope.error = response.data.error;
