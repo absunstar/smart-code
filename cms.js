@@ -6,6 +6,7 @@ const site = require('../isite')({
   version: Date.now(),
   name: 'cms',
   savingTime: 5,
+  responseTimeout: 20,
   log: true,
   www: false,
   require: {
