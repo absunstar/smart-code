@@ -270,6 +270,7 @@ module.exports = function init(site) {
           }
         }
         if (req.body.type == "notifications") {
+          doc.notificationsList = doc.notificationsList || [];
           for (let i = 0; i < doc.notificationsList.length; i++) {
             doc.notificationsList[i].$time = site.xtime(doc.notificationsList[i].date, req.session.lang);
           }
