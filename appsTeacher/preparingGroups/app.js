@@ -199,13 +199,15 @@ module.exports = function init(site) {
             done: false,
           };
 
-          let _data = req.data;
+          let _data = req.data.item;
           _data.editUserInfo = req.getUserFinger();
 
           app.update(_data, (err, result) => {
             if (!err) {
               response.done = true;
-              response.result = result;
+              if (!req.data.auto) {
+                response.result = result.doc;
+              }
             } else {
               response.error = err.message;
             }
@@ -299,7 +301,7 @@ module.exports = function init(site) {
             "teacher.firstName": site.get_RegExp(search, "i"),
           });
         }
-        if (where && where.dateFrom  && where.dateTo) {
+        if (where && where.dateFrom && where.dateTo) {
           let d1 = site.toDate(where.dateFrom);
           let d2 = site.toDate(where.dateTo);
           d2.setDate(d2.getDate() + 1);
@@ -318,8 +320,8 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        
-        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {          
+
+        app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,
             list: docs,
@@ -393,7 +395,7 @@ module.exports = function init(site) {
       where["studentList.student.id"] = where.student.id;
       delete where["student"];
     }
-    
+
     app.$collection.findMany({ where, select, sort: { id: -1 } }, (err, docs) => {
       callBack(err, docs);
     });

@@ -74,16 +74,16 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/update`,
-      data: _item,
+      data: {item :_item},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal($scope.modalID);
           site.resetValidated($scope.modalID);
-          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.doc.id);
+          let index = $scope.list.findIndex((itm) => itm.id == response.data.result.id);
           if (index !== -1) {
-            $scope.list[index] = response.data.result.doc;
+            $scope.list[index] = response.data.result;
           }
         } else {
           $scope.error = response.data.error;
@@ -485,7 +485,8 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/update`,
-      data: $scope.item,
+      data: {item :$scope.item,auto : true},
+
     }).then(
       function (response) {
         $scope.busy = false;

@@ -197,7 +197,7 @@ module.exports = function init(site) {
             done: false,
           };
 
-          let _data = req.data;
+          let _data = req.data.item;
           _data.editUserInfo = req.getUserFinger();
           _data.dayList = _data.dayList || [];
           _data.dayList.forEach((d) => {
@@ -207,7 +207,9 @@ module.exports = function init(site) {
           app.update(_data, (err, result) => {
             if (!err) {
               response.done = true;
-              response.result = result;
+              if (!req.data.auto) {
+                response.result = result.doc;
+              }
             } else {
               response.error = err.message;
             }
