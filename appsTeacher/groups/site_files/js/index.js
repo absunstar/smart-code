@@ -467,7 +467,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.item = response.data.doc;
           $scope.isOpen = true;
-          $scope.autoSave();
+          /* $scope.autoSave(); */
           site.showModal("#studentsModal");
         } else {
           $scope.error = response.data.error;
