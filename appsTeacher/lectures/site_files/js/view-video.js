@@ -11,11 +11,11 @@ app.controller("view-video", function ($scope, $http, $timeout) {
     setTimeout(() => {
     
       showme.style.display = "flex";
-    }, 1000 * 57);
+    }, 1000 * 20);
   }
   setInterval(() => {
     hideStudenData();
-  }, 1000 * 60);
+  }, 1000 * 25);
 
   hideStudenData();
 
