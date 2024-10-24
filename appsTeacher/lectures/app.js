@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   let app = {
-    name: 'lectures',
+    name: "lectures",
     allowMemory: false,
     memoryList: [],
     allowCache: false,
@@ -156,39 +156,42 @@ module.exports = function init(site) {
         },
         (req, res) => {
           res.render(
-            app.name + '/index.html',
+            app.name + "/index.html",
             {
               title: app.name,
-              appName: req.word('Lectures'),
+              appName: req.word("Lectures"),
               setting: site.getSiteSetting(req.host),
             },
-            { parser: 'html css js', compres: true }
+            { parser: "html css js", compres: true }
           );
         }
       );
 
       site.get(
         {
-          name: 'view-video',
+          name: "view-video",
+          require: { permissions: ["login"] },
         },
         (req, res) => {
           app.$collection.find({ _id: req.query.id }, (err, lecture) => {
             if (!err && lecture) {
               let video = lecture.linksList.find((itm) => itm.code == req.query.code);
-              let videoURL = video.url;
+              let videoUrl = video.url;
               // handle links
-              if (videoURL.like('*youtu*')) {
-                videoURL = 'https://www.youtube.com/embed/' + videoURL.split('=')[1].split('&')[0];
+              if (videoUrl.like("*youtu*")) {
+                videoUrl = "https://www.youtube.com/embed/" + videoUrl.split("=")[1].split("&")[0];
               }
               res.render(
-                app.name + '/view-video.html',
+                app.name + "/view-video.html",
                 {
                   title: app.name,
-                  appName: req.word('Video'),
+                  appName: req.word("Video"),
                   setting: site.getSiteSetting(req.host),
-                  videoURL: videoURL,
+                  videoUrl: videoUrl,
+                  studentName: req.session.user?.firstName,
+                  studentBarcode: req.session.user?.barcode,
                 },
-                { parser: 'html css js', compres: true }
+                { parser: "html css js", compres: true }
               );
             }
           });
@@ -197,24 +200,25 @@ module.exports = function init(site) {
 
       site.get(
         {
-          name: 'view-live',
+          name: "view-live",
+          require: { permissions: ["login"] },
         },
         (req, res) => {
           app.$collection.find({ id: req.query.id }, (err, lecture) => {
             if (!err && lecture) {
-              let videoURL = lecture?.linksList[0]?.url;
-              if (videoURL.like('*youtu*')) {
-                videoURL = 'https://www.youtube.com/embed/' + videoURL.split('=')[1].split('&')[0];
+              let videoUrl = lecture?.linksList[0]?.url;
+              if (videoUrl.like("*youtu*")) {
+                videoUrl = "https://www.youtube.com/embed/" + videoUrl.split("=")[1].split("&")[0];
               }
               res.render(
-                app.name + '/view-video.html',
+                app.name + "/view-video.html",
                 {
                   title: app.name,
-                  appName: req.word('Video'),
+                  appName: req.word("Video"),
                   setting: site.getSiteSetting(req.host),
-                  videoURL: videoURL,
+                  videoUrl: videoUrl,
                 },
-                { parser: 'html css js', compres: true }
+                { parser: "html css js", compres: true }
               );
             }
           });
@@ -223,7 +227,7 @@ module.exports = function init(site) {
 
       site.get(
         {
-          name: 'lectureView',
+          name: "lectureView",
         },
         (req, res) => {
           let notificationsCount = 0;
@@ -233,36 +237,36 @@ module.exports = function init(site) {
           }
 
           let setting = site.getSiteSetting(req.host);
-          setting.description = setting.description || '';
+          setting.description = setting.description || "";
           setting.keyWordsList = setting.keyWordsList || [];
           let data = {
             notificationsCount: notificationsCount,
             notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
             setting: setting,
-            guid: '',
+            guid: "",
             isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || '/images/logo.png',
-            site_footer_logo: setting.footerLogo?.url || '/images/logo.png',
-            page_image: setting.logo?.url || '/images/logo.png',
-            powerdByLogo: setting.powerdByLogo?.url || '/images/logo.png',
-            user_image: req.session?.user?.image?.url || '/images/logo.png',
+            site_logo: setting.logo?.url || "/images/logo.png",
+            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
-            page_type: 'website',
-            page_title: setting.siteName + ' ' + setting.titleSeparator + ' ' + setting.siteSlogan,
+            page_type: "website",
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
-            page_keywords: setting.keyWordsList.join(','),
+            page_keywords: setting.keyWordsList.join(","),
           };
-          if (req.hasFeature('host.com')) {
-            data.site_logo = '//' + req.host + data.site_logo;
-            data.site_footer_logo = '//' + req.host + data.site_footer_logo;
-            data.page_image = '//' + req.host + data.page_image;
-            data.user_image = '//' + req.host + data.user_image;
-            data.powerdByLogo = '//' + req.host + data.powerdByLogo;
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "//" + req.host + data.site_logo;
+            data.site_footer_logo = "//" + req.host + data.site_footer_logo;
+            data.page_image = "//" + req.host + data.page_image;
+            data.user_image = "//" + req.host + data.user_image;
+            data.powerdByLogo = "//" + req.host + data.powerdByLogo;
           }
-          res.render(app.name + '/lectureView.html', data, {
-            parser: 'html css js',
+          res.render(app.name + "/lectureView.html", data, {
+            parser: "html css js",
             compres: true,
           });
         }
@@ -270,7 +274,7 @@ module.exports = function init(site) {
 
       site.get(
         {
-          name: 'lecturesView',
+          name: "lecturesView",
         },
         (req, res) => {
           let notificationsCount = 0;
@@ -280,36 +284,36 @@ module.exports = function init(site) {
           }
 
           let setting = site.getSiteSetting(req.host);
-          setting.description = setting.description || '';
+          setting.description = setting.description || "";
           setting.keyWordsList = setting.keyWordsList || [];
           let data = {
             notificationsCount: notificationsCount,
             notificationsList: req.session?.user?.notificationsList?.slice(0, 7),
             setting: setting,
-            guid: '',
+            guid: "",
             isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || '/images/logo.png',
-            page_image: setting.logo?.url || '/images/logo.png',
-            site_footer_logo: setting.footerLogo?.url || '/images/logo.png',
-            powerdByLogo: setting.powerdByLogo?.url || '/images/logo.png',
-            user_image: req.session?.user?.image?.url || '/images/logo.png',
+            site_logo: setting.logo?.url || "/images/logo.png",
+            page_image: setting.logo?.url || "/images/logo.png",
+            site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
+            powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
-            page_type: 'website',
-            page_title: setting.siteName + ' ' + setting.titleSeparator + ' ' + setting.siteSlogan,
+            page_type: "website",
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
-            page_keywords: setting.keyWordsList.join(','),
+            page_keywords: setting.keyWordsList.join(","),
           };
-          if (req.hasFeature('host.com')) {
-            data.site_logo = '//' + req.host + data.site_logo;
-            data.site_footer_logo = '//' + req.host + data.site_footer_logo;
-            data.page_image = '//' + req.host + data.page_image;
-            data.user_image = '//' + req.host + data.user_image;
-            data.powerdByLogo = '//' + req.host + data.powerdByLogo;
+          if (req.hasFeature("host.com")) {
+            data.site_logo = "//" + req.host + data.site_logo;
+            data.site_footer_logo = "//" + req.host + data.site_footer_logo;
+            data.page_image = "//" + req.host + data.page_image;
+            data.user_image = "//" + req.host + data.user_image;
+            data.powerdByLogo = "//" + req.host + data.powerdByLogo;
           }
-          res.render(app.name + '/lecturesView.html', data, {
-            parser: 'html css js',
+          res.render(app.name + "/lecturesView.html", data, {
+            parser: "html css js",
             compres: true,
           });
         }
@@ -317,7 +321,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post({ name: `/api/${app.name}/add`, require: { permissions: ['teacher'] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["teacher"] } }, (req, res) => {
         let response = {
           done: false,
         };
@@ -330,7 +334,7 @@ module.exports = function init(site) {
         if ((teacherId = site.getTeacherSetting(req))) {
           _data.teacherId = teacherId;
         } else {
-          response.error = 'There Is No Teacher';
+          response.error = "There Is No Teacher";
           res.json(response);
           return;
         }
@@ -339,13 +343,13 @@ module.exports = function init(site) {
           if (!err && doc) {
             let setting = site.getSiteSetting(req.host);
             if (setting.isShared) {
-              doc.code = (req.session?.user?.prefix || req.session?.user?.id.toString()) + 'L' + doc.id.toString();
+              doc.code = (req.session?.user?.prefix || req.session?.user?.id.toString()) + "L" + doc.id.toString();
             } else {
-              doc.code = (setting.teacher.prefix || req.session?.user?.id.toString()) + 'L' + doc.id.toString();
+              doc.code = (setting.teacher.prefix || req.session?.user?.id.toString()) + "L" + doc.id.toString();
             }
 
-            if (req.host.like('*sawa*')) {
-              site.sawaBot.sendMessage(site.sawaGroupID, 'New Lecture Added ...');
+            if (req.host.like("*sawa*")) {
+              site.sawaBot.sendMessage(site.sawaGroupID, "New Lecture Added ...");
             }
 
             app.update(doc, (err, result) => {
@@ -389,7 +393,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/update`,
-          require: { permissions: ['teacher'] },
+          require: { permissions: ["teacher"] },
         },
         (req, res) => {
           let response = {
@@ -400,7 +404,7 @@ module.exports = function init(site) {
           _data.editUserInfo = req.getUserFinger();
           if (_data.$quiz) {
             if (!_data.questionsList || _data.questionsList.length < 1) {
-              response.error = 'Must Add Questions';
+              response.error = "Must Add Questions";
               res.json(response);
               return;
             } else {
@@ -416,11 +420,11 @@ module.exports = function init(site) {
                 }
               });
               if (errAnswersList.length > 0) {
-                response.error = `At least two answers must be added to the questions ( ${errAnswersList.join(' - ')} )`;
+                response.error = `At least two answers must be added to the questions ( ${errAnswersList.join(" - ")} )`;
                 res.json(response);
                 return;
               } else if (errCorrectAnswersList.length > 0) {
-                response.error = `You must choose a correct answer in the questions ( ${errCorrectAnswersList.join(' - ')} )`;
+                response.error = `You must choose a correct answer in the questions ( ${errCorrectAnswersList.join(" - ")} )`;
                 res.json(response);
                 return;
               }
@@ -465,7 +469,7 @@ module.exports = function init(site) {
       site.post(
         {
           name: `/api/${app.name}/delete`,
-          require: { permissions: ['teacher'] },
+          require: { permissions: ["teacher"] },
         },
         (req, res) => {
           let response = {
@@ -482,7 +486,7 @@ module.exports = function init(site) {
                 site.lectureList.splice(index, 1);
               }
             } else {
-              response.error = err?.message || 'Deleted Not Exists';
+              response.error = err?.message || "Deleted Not Exists";
             }
             res.json(response);
           });
@@ -490,7 +494,7 @@ module.exports = function init(site) {
       );
     }
 
-    site.post({ name: `/api/${app.name}/changeView`, require: { permissions: ['login'] } }, (req, res) => {
+    site.post({ name: `/api/${app.name}/changeView`, require: { permissions: ["login"] } }, (req, res) => {
       let response = {
         done: false,
       };
@@ -505,7 +509,7 @@ module.exports = function init(site) {
           if (index !== -1) {
             doc.linksList[index].views += 1;
           }
-          if (!req.session.user && doc.type.name == 'public') {
+          if (!req.session.user && doc.type.name == "public") {
             response.done = true;
             res.json(response);
             return;
@@ -519,7 +523,7 @@ module.exports = function init(site) {
                 if (_data.socialBrowserID) {
                   if (user.socialBrowserID) {
                     if (user.socialBrowserID != _data.socialBrowserID) {
-                      response.error = 'The video cannot be watched due to a new device. Please contact support';
+                      response.error = "The video cannot be watched due to a new device. Please contact support";
 
                       res.json(response);
                       return;
@@ -530,25 +534,25 @@ module.exports = function init(site) {
                 }
                 let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
                 if (index !== -1) {
-                  if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == 'number') {
-                    response.error = 'The number of views allowed for this video has been exceeded';
+                  if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
+                    response.error = "The number of views allowed for this video has been exceeded";
                     res.json(response);
                     return;
-                  } else if (doc.typeExpiryView.name == 'day') {
+                  } else if (doc.typeExpiryView.name == "day") {
                     var viewDate = site.getDate(user.viewsList[index].date);
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
                     let newDate = site.getDate();
                     let diffTime = Math.abs(viewDate - newDate);
                     let remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
                     if (remainDay < 1) {
-                      response.error = 'The time limit for watching this video has been exceeded';
+                      response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
                     }
-                  } else if (doc.typeExpiryView.name == 'date') {
+                  } else if (doc.typeExpiryView.name == "date") {
                     doc.dateAvailableViews = site.getDate(doc.dateAvailableViews);
                     if (site.getDate().getTime() > doc.dateAvailableViews.getTime()) {
-                      response.error = 'The time limit for watching this video has been exceeded';
+                      response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
                     }
@@ -577,25 +581,26 @@ module.exports = function init(site) {
             }
           );
         } else {
-          response.error = err?.message || 'Not Exists';
+          response.error = err?.message || "Not Exists";
           res.json(response);
         }
       });
     });
 
-    site.post({ name: `/api/${app.name}/changeViewMobile`, require: { permissions: ['login'] } }, (req, res) => {
+    site.post({ name: `/api/${app.name}/changeViewMobile`, require: { permissions: ["login"] } }, (req, res) => {
       let response = {
         done: false,
       };
 
       let _data = req.data;
+
       app.view(_data, (err, doc) => {
         if (!err && doc) {
           let index = doc.linksList.findIndex((itm) => itm.code === _data.code);
           if (index !== -1) {
             doc.linksList[index].views += 1;
           }
-          if (!req.session.user && doc.type.name == 'public') {
+          if (!req.session.user && doc.type.name == "public") {
             response.done = true;
             res.json(response);
             return;
@@ -608,25 +613,25 @@ module.exports = function init(site) {
               if (!err && user) {
                 let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
                 if (index !== -1) {
-                  if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == 'number') {
-                    response.error = 'The number of views allowed for this video has been exceeded';
+                  if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
+                    response.error = "The number of views allowed for this video has been exceeded";
                     res.json(response);
                     return;
-                  } else if (doc.typeExpiryView.name == 'day') {
+                  } else if (doc.typeExpiryView.name == "day") {
                     var viewDate = site.getDate(user.viewsList[index].date);
                     viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
                     let newDate = site.getDate();
                     let diffTime = Math.abs(viewDate - newDate);
                     let remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
                     if (remainDay < 1) {
-                      response.error = 'The time limit for watching this video has been exceeded';
+                      response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
                     }
-                  } else if (doc.typeExpiryView.name == 'date') {
+                  } else if (doc.typeExpiryView.name == "date") {
                     doc.dateAvailableViews = site.getDate(doc.dateAvailableViews);
                     if (site.getDate().getTime() > doc.dateAvailableViews.getTime()) {
-                      response.error = 'The time limit for watching this video has been exceeded';
+                      response.error = "The time limit for watching this video has been exceeded";
                       res.json(response);
                       return;
                     }
@@ -655,14 +660,14 @@ module.exports = function init(site) {
             }
           );
         } else {
-          response.error = err?.message || 'Not Exists';
+          response.error = err?.message || "Not Exists";
           res.json(response);
         }
       });
     });
 
     if (app.allowRouteView) {
-      site.post({ name: `/api/${app.name}/view`, require: { permissions: ['teacher'] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/view`, require: { permissions: ["teacher"] } }, (req, res) => {
         let response = {
           done: false,
         };
@@ -674,7 +679,7 @@ module.exports = function init(site) {
 
             response.doc = doc;
           } else {
-            response.error = err?.message || 'Not Exists';
+            response.error = err?.message || "Not Exists";
           }
           res.json(response);
         });
@@ -715,13 +720,13 @@ module.exports = function init(site) {
                   let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId === _doc.id && itm.code === _video.code);
                   _video.isValid = false;
                   if (index !== -1) {
-                    if (_doc.typeExpiryView.name == 'number') {
+                    if (_doc.typeExpiryView.name == "number") {
                       _video.remainNumber = _doc.numberAvailableViews - req.session.user.viewsList[index].views;
                       if (_video.remainNumber > 1) {
                         _video.isValid = true;
                       }
                       return;
-                    } else if (_doc.typeExpiryView.name == 'day') {
+                    } else if (_doc.typeExpiryView.name == "day") {
                       var viewDate = site.getDate(req.session.user.viewsList[index].date);
                       viewDate.setHours(viewDate.getHours() + _doc.daysAvailableViewing * 24);
                       let newDate = site.getDate();
@@ -731,7 +736,7 @@ module.exports = function init(site) {
                       if (_video.remainDay > 1) {
                         _video.isValid = true;
                       }
-                    } else if (_doc.typeExpiryView.name == 'date') {
+                    } else if (_doc.typeExpiryView.name == "date") {
                       _video.remainDate = _doc.dateAvailableViews;
                       if (site.getDate().getTime() <= _doc.dateAvailableViews.getTime()) {
                         _video.isValid = true;
@@ -740,17 +745,17 @@ module.exports = function init(site) {
                   } else {
                     _video.isValid = true;
 
-                    if (_doc.typeExpiryView.name == 'number') {
+                    if (_doc.typeExpiryView.name == "number") {
                       _video.remainNumber = _doc.numberAvailableViews;
-                    } else if (_doc.typeExpiryView.name == 'day') {
+                    } else if (_doc.typeExpiryView.name == "day") {
                       _video.remainDay = _doc.daysAvailableViewing;
-                    } else if (_doc.typeExpiryView.name == 'date') {
+                    } else if (_doc.typeExpiryView.name == "date") {
                       _video.remainDate = _doc.dateAvailableViews;
                     }
                   }
                 });
               } else {
-                if (_doc.type && _doc.type.name == 'private') {
+                if (_doc.type && _doc.type.name == "private") {
                   delete _doc.filesList;
                 }
                 _doc.linksList.forEach((_video) => {
@@ -758,7 +763,7 @@ module.exports = function init(site) {
                 });
               }
             } else {
-              if (_doc.type && _doc.type.name == 'private') {
+              if (_doc.type && _doc.type.name == "private") {
                 delete _doc.filesList;
               }
               _doc.linksList.forEach((_video) => {
@@ -767,10 +772,10 @@ module.exports = function init(site) {
                 _video.isValid = true;
               });
             }
-            _doc.$time = site.xtime(_doc.date, req.session.lang || 'Ar');
+            _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
             response.doc = _doc;
           } else {
-            response.error = err?.message || 'Not Exists';
+            response.error = err?.message || "Not Exists";
           }
           res.json(response);
         });
@@ -778,9 +783,9 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAll) {
-      site.post({ name: `/api/${app.name}/all`, require: { permissions: ['teacher'] } }, (req, res) => {
+      site.post({ name: `/api/${app.name}/all`, require: { permissions: ["teacher"] } }, (req, res) => {
         let where = req.body.where || {};
-        let search = req.body.search || '';
+        let search = req.body.search || "";
         let limit = req.body.limit || 20;
         let select = req.body.select || {
           id: 1,
@@ -799,47 +804,47 @@ module.exports = function init(site) {
           where.$or = [];
 
           where.$or.push({
-            id: site.get_RegExp(search, 'i'),
+            id: site.get_RegExp(search, "i"),
           });
           where.$or.push({
             code: search,
           });
           where.$or.push({
-            name: site.get_RegExp(search, 'i'),
+            name: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            description: site.get_RegExp(search, 'i'),
+            description: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'educationalLevel.name': site.get_RegExp(search, 'i'),
+            "educationalLevel.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'schoolYear.name': site.get_RegExp(search, 'i'),
+            "schoolYear.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'subject.name': site.get_RegExp(search, 'i'),
+            "subject.name": site.get_RegExp(search, "i"),
           });
         }
 
-        if (where['educationalLevel']) {
-          where['educationalLevel.id'] = where['educationalLevel'].id;
-          delete where['educationalLevel'];
+        if (where["educationalLevel"]) {
+          where["educationalLevel.id"] = where["educationalLevel"].id;
+          delete where["educationalLevel"];
         }
 
-        if (where['schoolYear']) {
-          where['schoolYear.id'] = where['schoolYear'].id;
-          delete where['schoolYear'];
+        if (where["schoolYear"]) {
+          where["schoolYear.id"] = where["schoolYear"].id;
+          delete where["schoolYear"];
         }
 
-        if (where['subject']) {
-          where['subject.id'] = where['subject'].id;
-          delete where['subject'];
+        if (where["subject"]) {
+          where["subject.id"] = where["subject"].id;
+          delete where["subject"];
         }
 
         if ((teacherId = site.getTeacherSetting(req))) {
-          where['teacherId'] = teacherId;
+          where["teacherId"] = teacherId;
         } else {
-          where['host'] = site.getHostFilter(req.host);
+          where["host"] = site.getHostFilter(req.host);
         }
 
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
@@ -851,7 +856,7 @@ module.exports = function init(site) {
       });
       site.post({ name: `/api/${app.name}/allToStudent`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let search = req.body.search || '';
+        let search = req.body.search || "";
         let limit = req.body.limit || 100;
         let select = {
           id: 1,
@@ -862,33 +867,33 @@ module.exports = function init(site) {
           date: 1,
           code: 1,
         };
-
+        where.active = true;
         if (search) {
           where.$or = [];
           where.$or.push({
-            id: site.get_RegExp(search, 'i'),
+            id: site.get_RegExp(search, "i"),
           });
           where.$or.push({
             code: search,
           });
           where.$or.push({
-            name: site.get_RegExp(search, 'i'),
+            name: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            description: site.get_RegExp(search, 'i'),
+            description: site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'educationalLevel.name': site.get_RegExp(search, 'i'),
+            "educationalLevel.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'schoolYear.name': site.get_RegExp(search, 'i'),
+            "schoolYear.name": site.get_RegExp(search, "i"),
           });
           where.$or.push({
-            'subject.name': site.get_RegExp(search, 'i'),
+            "subject.name": site.get_RegExp(search, "i"),
           });
         }
 
-        if (req.session?.user?.type == 'student' && !where['subscriptionList.subscription.id']) {
+        if (req.session?.user?.type == "student" && !where["subscriptionList.subscription.id"]) {
           if (!where.educationalLevel) {
             where.educationalLevel = req.session?.user?.educationalLevel;
           }
@@ -897,55 +902,54 @@ module.exports = function init(site) {
           }
         }
 
-        if (where['educationalLevel']) {
-          where['educationalLevel.id'] = where['educationalLevel'].id;
-          delete where['educationalLevel'];
+        if (where["educationalLevel"]) {
+          where["educationalLevel.id"] = where["educationalLevel"].id;
+          delete where["educationalLevel"];
         }
 
-        if (where['schoolYear']) {
-          where.$or = where.$or || [];
-          where.$or.push({
-            'schoolYear.id': where['schoolYear'].id,
-          });
-          where.$or.push({
-            'schoolYear.id': { $exists: false },
-          });
-          delete where['schoolYear'];
+        if (where["subject"]) {
+          where["subject.id"] = where["subject"].id;
+          delete where["subject"];
         }
-
-        if (where['subject']) {
-          where['subject.id'] = where['subject'].id;
-          delete where['subject'];
-        }
-        if (req.body.type == 'toStudent') {
-          if (req.session.user && req.session.user.type == 'student') {
+        if (req.body.type == "toStudent") {
+          if (req.session.user && req.session.user.type == "student") {
             // where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
             // where["schoolYear.id"] = req.session.user?.schoolYear?.id;
-            where.$and = [
+            let $or = [
               {
-                $or: [{ placeType: req.session.user.placeType }, { placeType: 'both' }],
+                code: search,
               },
               {
-                $or: [
-                  {
-                    code: search,
-                  },
-                  {
-                    name: site.get_RegExp(search, 'i'),
-                  },
-                  {
-                    description: site.get_RegExp(search, 'i'),
-                  },
-                  {
-                    'educationalLevel.name': site.get_RegExp(search, 'i'),
-                  },
-                  {
-                    'schoolYear.name': site.get_RegExp(search, 'i'),
-                  },
-                  {
-                    'subject.name': site.get_RegExp(search, 'i'),
-                  },
-                ],
+                name: site.get_RegExp(search, "i"),
+              },
+              {
+                description: site.get_RegExp(search, "i"),
+              },
+              {
+                "educationalLevel.name": site.get_RegExp(search, "i"),
+              },
+              {
+                "schoolYear.name": site.get_RegExp(search, "i"),
+              },
+              {
+                "subject.name": site.get_RegExp(search, "i"),
+              },
+            ];
+            if (where["schoolYear"]) {
+              $or.push({
+                "schoolYear.id": where["schoolYear"].id,
+              });
+              $or.push({
+                "schoolYear.id": { $exists: false },
+              });
+              delete where["schoolYear"];
+            }
+            where.$and = [
+              {
+                $or: [{ placeType: req.session.user.placeType }, { placeType: "both" }],
+              },
+              {
+                $or: $or,
               },
             ];
           }
@@ -961,14 +965,16 @@ module.exports = function init(site) {
         //     };
         //   }
         // }
+        delete where["schoolYear"];
+
         if ((teacherId = site.getTeacherSetting(req))) {
-          where['teacherId'] = teacherId;
+          where["teacherId"] = teacherId;
         } else {
-          where['host'] = site.getHostFilter(req.host);
+          where["host"] = site.getHostFilter(req.host);
         }
-        if (where['myLectures']) {
+        if (where["myLectures"] && req.session?.user?.type == "student") {
           where.$or = where.$or || [];
-          if (req.session?.user?.type == 'student' && req.session?.user?.lecturesList) {
+          if (req.session?.user?.lecturesList) {
             let lectureList = req.session?.user?.lecturesList?.map((_item) => _item.lectureId);
             where.$or.push({
               id: { $in: lectureList },
@@ -976,16 +982,16 @@ module.exports = function init(site) {
           }
           if (req.session?.user?.subscriptionList) {
             where.$or.push({
-              'subscriptionList.subscription.id': { $in: req.session?.user?.subscriptionList },
+              "subscriptionList.subscription.id": { $in: req.session?.user?.subscriptionList },
             });
           }
-          delete where['myLectures'];
+          delete where["myLectures"];
         }
 
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
-              docs[i].$time = site.xtime(docs[i].date, req.session.lang || 'ar');
+              docs[i].$time = site.xtime(docs[i].date, req.session.lang || "ar");
             }
           }
           res.json({
@@ -997,7 +1003,7 @@ module.exports = function init(site) {
     }
   }
 
-  site.post({ name: `/api/${app.name}/buyCode`, require: { permissions: ['login'] } }, (req, res) => {
+  site.post({ name: `/api/${app.name}/buyCode`, require: { permissions: ["login"] } }, (req, res) => {
     let response = {
       done: false,
     };
@@ -1019,9 +1025,9 @@ module.exports = function init(site) {
           if (subscription?.price == 0) {
             _data.purchase = {
               purchaseType: {
-                nameAr: 'مجاني',
-                nameEn: 'Free',
-                name: 'free',
+                nameAr: "مجاني",
+                nameEn: "Free",
+                name: "free",
               },
             };
           } else {
@@ -1031,35 +1037,35 @@ module.exports = function init(site) {
           if (price == 0) {
             _data.purchase = {
               purchaseType: {
-                nameAr: 'مجاني',
-                nameEn: 'Free',
-                name: 'free',
+                nameAr: "مجاني",
+                nameEn: "Free",
+                name: "free",
               },
             };
           }
         }
         if (!_data.purchase || !_data.purchase.purchaseType || !_data.purchase.purchaseType.name) {
-          response.error = req.word('Must Select Purchase Type');
+          response.error = req.word("Must Select Purchase Type");
           res.json(response);
           return;
-        } else if (_data.purchase.purchaseType.name == 'code' && !_data.purchase.code) {
-          response.error = req.word('The code must be entered');
+        } else if (_data.purchase.purchaseType.name == "code" && !_data.purchase.code) {
+          response.error = req.word("The code must be entered");
           res.json(response);
           return;
-        } else if ((_data.purchase.purchaseType.name == 'instaPay' || _data.purchase.purchaseType.name == 'cashWallet') && !_data.purchase.numberTransferFrom) {
-          response.error = req.word('The account number to be transferred from must be entered');
+        } else if ((_data.purchase.purchaseType.name == "instaPay" || _data.purchase.purchaseType.name == "cashWallet") && !_data.purchase.numberTransferFrom) {
+          response.error = req.word("The account number to be transferred from must be entered");
           res.json(response);
           return;
         }
-        site.getPurchaseOrder({ 'target.id': doc.id, type: 'lecture', 'user.id': req.session?.user?.id }, (err1, order) => {
+        site.getPurchaseOrder({ "target.id": doc.id, type: "lecture", "user.id": req.session?.user?.id }, (err1, order) => {
           if (order) {
-            response.error = req.word('The lecture has already been purchased');
+            response.error = req.word("The lecture has already been purchased");
             res.json(response);
             return;
           }
 
           site.validateCode(req, { code: _data?.purchase?.code, price: price }, (errCode, code) => {
-            if (errCode && price > 0 && _data.purchase.purchaseType.name == 'code') {
+            if (errCode && price > 0 && _data.purchase.purchaseType.name == "code") {
               response.error = req.word(errCode);
               res.json(response);
               return;
@@ -1071,13 +1077,13 @@ module.exports = function init(site) {
                 (err, user) => {
                   if (!err && user) {
                     user.lecturesList = user.lecturesList || [];
-                    if (!user.lecturesList.some((l) => l.lectureId == doc.id) && (_data.purchase.purchaseType.name == 'code' || _data.purchase.purchaseType.name == 'free')) {
+                    if (!user.lecturesList.some((l) => l.lectureId == doc.id) && (_data.purchase.purchaseType.name == "code" || _data.purchase.purchaseType.name == "free")) {
                       user.lecturesList.push({
                         lectureId: doc.id,
                       });
                     }
                     site.addPurchaseOrder({
-                      type: 'lecture',
+                      type: "lecture",
                       target: { id: doc.id, name: doc.name },
                       price: price,
                       purchaseType: {
@@ -1085,7 +1091,7 @@ module.exports = function init(site) {
                         nameAr: _data.purchase.purchaseType.nameAr,
                         nameEn: _data.purchase.purchaseType.nameEn,
                       },
-                      done: _data.purchase?.purchaseType?.name == 'code' || _data.purchase?.purchaseType?.name == 'free' ? true : false,
+                      done: _data.purchase?.purchaseType?.name == "code" || _data.purchase?.purchaseType?.name == "free" ? true : false,
                       code: _data.purchase.code,
                       numberTransferFrom: _data.purchase.numberTransferFrom,
                       imageTransfer: _data.purchase.imageTransfer,
@@ -1099,7 +1105,7 @@ module.exports = function init(site) {
                     });
                     site.security.updateUser(user);
                   }
-                  response.isOpen = _data.purchase.purchaseType?.name == 'instaPay' || _data.purchase.purchaseType?.name == 'cashWallet' ? false : true;
+                  response.isOpen = _data.purchase.purchaseType?.name == "instaPay" || _data.purchase.purchaseType?.name == "cashWallet" ? false : true;
 
                   response.done = true;
                   // doc.$buy = true;
@@ -1112,7 +1118,7 @@ module.exports = function init(site) {
           });
         });
       } else {
-        response.error = err?.message || 'Not Exists';
+        response.error = err?.message || "Not Exists";
         res.json(response);
       }
     });
@@ -1138,7 +1144,7 @@ module.exports = function init(site) {
             idList.push(element.lectureId);
           });
 
-          where['id'] = {
+          where["id"] = {
             $in: idList,
           };
           app.$collection.findMany({ where, select, sort: { id: -1 } }, (err, docs) => {
@@ -1224,16 +1230,16 @@ module.exports = function init(site) {
 
     for (let i = 0; i < site.lectureList.length; i++) {
       let obj = { ...site.lectureList[i] };
-      obj.$time = site.xtime(obj.date, 'Ar');
+      obj.$time = site.xtime(obj.date, "Ar");
       if (obj.price == 0) {
         obj.$isFree = true;
       }
       if (obj.active && !obj.liveBroadcast && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
-        if (req.session.user && req.session.user.type == 'student') {
+        if (req.session.user && req.session.user.type == "student") {
           if (
             obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&
             ((!obj.schoolYear && !obj?.schoolYear?.id) || req.session.user?.schoolYear?.id == obj?.schoolYear?.id) &&
-            (obj.placeType == req.session.user.placeType || obj.placeType == 'both')
+            (obj.placeType == req.session.user.placeType || obj.placeType == "both")
           ) {
             docs.push(obj);
           }
@@ -1257,11 +1263,11 @@ module.exports = function init(site) {
       let obj = { ...site.lectureList[i] };
 
       if (obj.active && obj.liveBroadcast && ((!teacherId && obj.host == host) || (teacherId && teacherId == obj.teacherId))) {
-        if (req.session.user && req.session.user.type == 'student') {
+        if (req.session.user && req.session.user.type == "student") {
           if (
             obj.educationalLevel?.id == req.session.user?.educationalLevel?.id &&
             obj.schoolYear?.id == req.session.user?.schoolYear?.id &&
-            (obj.placeType == req.session.user.placeType || obj.placeType == 'both')
+            (obj.placeType == req.session.user.placeType || obj.placeType == "both")
           ) {
             docs.push(obj);
           }

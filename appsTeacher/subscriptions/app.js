@@ -386,6 +386,7 @@ module.exports = function init(site) {
             where.schoolYear = req.session?.user?.schoolYear
           }
         }
+        
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
 

@@ -99,8 +99,9 @@
                 <div class="row">
                   <i-checkbox label="##word.Educational Platform##" x-permissions="admin" ng-model="siteSetting.isEducationalPlatform"> </i-checkbox>
                   <i-checkbox label="##word.Active Center##" x-permissions="admin" ng-model="siteSetting.isCenter"> </i-checkbox>
-                  <i-checkbox label="##word.Faculty Site##" x-permissions="admin" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isFaculty"> </i-checkbox>
-                  <i-checkbox label="##word.Shared Site##" x-permissions="admin" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isShared"> </i-checkbox>
+                  <i-checkbox label="##word.Faculty Site##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isFaculty"> </i-checkbox>
+                  <i-checkbox label="##word.Show Student Data In Video##" x-permissions="admin" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showStudentInVideo"> </i-checkbox>
+                  <i-checkbox label="##word.Shared Site##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isShared"> </i-checkbox>
                   <i-checkbox label="##word.Online active##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isOnline"> </i-checkbox>
                   <i-checkbox label="##word.Cities And Areas Show##" ng-model="siteSetting.citiesAndAreasShow"> </i-checkbox>
                   <i-checkbox label="##word.Nationalities Show##" ng-model="siteSetting.nationalitiesShow"> </i-checkbox>

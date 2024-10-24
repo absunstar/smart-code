@@ -139,8 +139,8 @@
                 </div>
 
                 <div class="row">
-                  <a href="/lecturesView?subscription={{item.id}}" class="links col2">##word.Lectures##</a>
-                  <a href="/miniBooksView?subscription={{item.id}}" class="links col2">##word.Mini Books##</a>
+                  <a href="/lecturesView?subscription={{item.id}}" ng-show="item.showLectures" class="links col2">##word.Lectures##</a>
+                  <a href="/miniBooksView?subscription={{item.id}}" ng-show="item.showMiniBooks" class="links col2">##word.Mini Books##</a>
                 </div>
 
                 <div class="row">

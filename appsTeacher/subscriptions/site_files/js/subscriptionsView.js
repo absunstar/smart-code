@@ -3,14 +3,14 @@ app.controller("subscriptionsView", function ($scope, $http, $timeout) {
   $scope.baseURL = "";
   $scope.where = {};
 
-    if ("##query.type##" == "mySubscriptions") {
-      $scope.where["mySubscriptions"] = true;
-    }
-  
+  if ("##query.type##" == "mySubscriptions") {
+    $scope.where["mySubscriptions"] = true;
+  }
+
   $scope.getAll = function (ev) {
     $scope.busy = true;
     $scope.error = "";
-  
+    $scope.where.active = true;
     if (ev.which === 13) {
       $http({
         method: "POST",

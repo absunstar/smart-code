@@ -29,6 +29,25 @@
         display: block;
         z-index: 999999;
       }
+      #student-data {
+        display: flex;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: xx-large;
+        background-color: #0000002e;
+        border: none;
+        z-index: 999999;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+      }
       @media screen and (orientation: portrait) {
         #blocker2 {
           position: fixed;
@@ -58,14 +77,18 @@
   <body class="##session.lang##" ng-controller="view-video">
     <div id="blocker"></div>
     <div id="blocker2"></div>
-    <iframe src="##data.videoURL##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div id="student-data">
+      <p>##data.studentName##</p>
+      <p>##data.studentBarcode##</p>
+    </div>
+    <iframe src="##data.videoUrl##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <div x-import="teacher-theme/scripts.html"></div>
     <script x-import="lectures/view-video.js"></script>
     <script>
       if (!window.SOCIALBROWSER) {
         document.querySelector("iframe").removeAttribute("allowfullscreen");
       }
-   /*    switch (screen.orientation.type) {
+      /*    switch (screen.orientation.type) {
         case "landscape-primary":
           document.getElementById("blocker2").style.height = "13%";
           document.getElementById("blocker2").style.width = "15%";

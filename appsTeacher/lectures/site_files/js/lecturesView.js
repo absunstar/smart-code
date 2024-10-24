@@ -8,6 +8,7 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
   if (site.toNumber("##query.subscription##") > 0) {
     $scope.where["subscriptionList.subscription.id"] = site.toNumber("##query.subscription##");
   }
+  $scope.where.liveBroadcast = { $ne: true };
   $scope.getAll = function (ev) {
     $scope.busy = true;
     $scope.error = "";
