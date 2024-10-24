@@ -316,7 +316,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       } else {
         clearInterval(startInterval);
       }
-    }, 1000 * 10);
+    }, 1000 * 20);
   };
   $scope.showStudentsModal = function (_item) {
     $scope.error = "";
