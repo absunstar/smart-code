@@ -27,6 +27,8 @@ const site = require('../isite')({
   },
 });
 
+console.log(site.args);
+
 site.time = new Date().getTime();
 
 site.get({
