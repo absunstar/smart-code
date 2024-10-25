@@ -31,6 +31,7 @@ module.exports = function init(site) {
     parser: 'css',
     public: true,
     compress: !0,
+    shared : true,
     path: [
       __dirname + '/site_files/css/bootstrap.min.css',
       __dirname + '/site_files/css/all.min.css',
@@ -80,6 +81,7 @@ module.exports = function init(site) {
     parser: 'js',
     public: true,
     compress: !0,
+    shared : true,
     path: [
       'client-side/first.js',
       'client-side/base64.min.js',
@@ -102,6 +104,7 @@ module.exports = function init(site) {
     parser: 'js',
     public: true,
     compress: !0,
+    shared : true,
     path: [
       'client-side/ref.min.js',
       __dirname + '/site_files/js/bootstrap.bundle.min.js',

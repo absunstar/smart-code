@@ -146,6 +146,7 @@ site.get(
       res.render('theme1/index.html', options, {
         parser: 'html css js',
         compress: true,
+        shared: true,
       });
     } else {
       res.redirect('/404', 404);
@@ -286,6 +287,7 @@ site.get(
         res.render('theme1/result.html', options, {
           parser: 'html css js',
           compress: true,
+          shared: true,
         });
       });
     } else {
@@ -426,6 +428,7 @@ site.get(
         res.render('theme1/result.html', options, {
           parser: 'html css js',
           compress: true,
+          shared: true,
         });
       });
     } else {
@@ -586,6 +589,7 @@ site.get(
 
         res.render('theme1/article.html', options, {
           parser: 'html css js',
+          shared: true,
         });
       } else {
         res.redirect('/');
