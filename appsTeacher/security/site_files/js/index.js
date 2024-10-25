@@ -208,7 +208,7 @@ app.controller("security", function ($scope, $http, $interval) {
     $scope.imageEditor = false;
     $scope.fileEditor = false;
     $scope.mode = "add";
-    $scope.user = { image: { url: "/images/user.png" }, active: true, files: [], permissions: [], roles: [] };
+    $scope.user = { image: {}, active: true, files: [], permissions: [], roles: [] };
     site.showModal("#addUserModal");
     document.querySelector("#addUserModal .tab-link").click();
   };
@@ -237,7 +237,7 @@ app.controller("security", function ($scope, $http, $interval) {
   $scope.edit = function (user) {
     $scope.view(user);
     $scope.mode = "edit";
-    $scope.user = { image: { url: "/images/user.png" }, files: [], permissions: [], roles: [] };
+    $scope.user = { image: {}, files: [], permissions: [], roles: [] };
     site.showModal("#addUserModal");
     document.querySelector("#addUserModal .tab-link").click();
     /*     document.querySelector('#updateUserModal .tab-link').click();
@@ -267,7 +267,7 @@ app.controller("security", function ($scope, $http, $interval) {
   $scope.remove = function (user) {
     $scope.view(user);
     $scope.mode = "delete";
-    $scope.user = { image: { url: "/images/user.png" }, files: [], permissions: [], newpermissions: [], roles: [] };
+    $scope.user = { image: {}, files: [], permissions: [], newpermissions: [], roles: [] };
     site.showModal("#addUserModal");
     document.querySelector("#addUserModal .tab-link").click();
   };
@@ -306,7 +306,7 @@ app.controller("security", function ($scope, $http, $interval) {
 
   $scope.details = function (user) {
     $scope.view(user);
-    $scope.user = { image: { url: "/images/user.png" }, files: [], permissions: [], roles: [] };
+    $scope.user = { image: {}, files: [], permissions: [], roles: [] };
     site.showModal("#viewUserModal");
   };
 

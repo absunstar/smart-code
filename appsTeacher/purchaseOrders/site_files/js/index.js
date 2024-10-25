@@ -6,7 +6,7 @@ app.controller("purchaseOrders", function ($scope, $http, $timeout) {
   $scope.mode = "add";
   $scope._search = {};
   $scope.structure = {
-    image: { url: "/theme1/images/setting/purchaseOrders.png" },
+    image: {},
     active: true,
   };
   $scope.paidAcceptList = [

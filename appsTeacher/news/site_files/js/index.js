@@ -7,7 +7,7 @@ app.controller('news', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.structure = {
     date : site.getDate(),
-    image: {url : '/theme1/images/setting/news.png'},
+    image: {},
     imageList : [],
     active: true,
   };

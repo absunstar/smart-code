@@ -7,7 +7,7 @@ app.controller('countries', function ($scope, $http, $timeout) {
   $scope.mode = 'add';
   $scope._search = {};
   $scope.structure = {
-    image: { url: '/images/countries.png' },
+    image: { },
     active: true,
   };
   $scope.item = {};

@@ -8,7 +8,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   $scope.isOpen = false;
   $scope.search = { dateFrom: site.getDate() };
   $scope.structure = {
-    image: { url: "/theme1/images/setting/preparingGroups.png" },
+    image: {},
     active: true,
   };
   $scope.item = {};
