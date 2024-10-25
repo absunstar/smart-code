@@ -348,15 +348,10 @@ module.exports = function init(site) {
               doc.code = (setting.teacher.prefix || req.session?.user?.id.toString()) + "L" + doc.id.toString();
             }
 
-            if (req.host.like("*sawa*")) {
-              site.sawaBot.sendMessage(site.sawaGroupID, "New Lecture Added ...");
-            }
-
             app.update(doc, (err, result) => {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
-
                 site.lectureList.unshift({
                   _id: result.doc._id,
                   id: result.doc.id,
@@ -376,6 +371,9 @@ module.exports = function init(site) {
                   placeType: result.doc.placeType,
                   liveBroadcast: result.doc.liveBroadcast,
                 });
+                // if (req.host.like("*sawa*")) {
+                //   site.sawaBot.sendMessage(site.sawaGroupID, "New Lecture Added ...");
+                // }
               } else {
                 response.error = err.mesage;
               }

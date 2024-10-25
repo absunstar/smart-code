@@ -301,7 +301,7 @@ module.exports = function init(site) {
                             let newDoc = {
                                 nameAr: doc.nameAr,
                                 nameEn: doc.nameEn,
-                                image: { url: '/images/nationalities.png' },
+                                image: {},
                                 active: true,
                             };
 

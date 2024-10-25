@@ -7,7 +7,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
   $scope.mode = "add";
   $scope.search = { dateFrom: site.getDate() };
   $scope.structure = {
-    image: { url: "/theme1/images/setting/preparingQuizzes.png" },
+    image: {},
     active: true,
   };
   $scope.item = {};

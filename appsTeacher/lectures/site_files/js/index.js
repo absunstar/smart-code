@@ -7,7 +7,7 @@ app.controller("lectures", function ($scope, $http, $timeout) {
   $scope.mode = "add";
   $scope._search = {};
   $scope.structure = {
-    image: { url: "/theme1/images/setting/lectures.png" },
+    image: {},
     active: true,
   };
   $scope.item = {};
@@ -22,7 +22,7 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       linksList: [],
       filesList: [],
     };
-    if(!$scope.setting.isOnline){
+    if(!$scope.setting.isOnline) {
       $scope.item.placeType = 'offline';
     }
     site.showModal($scope.modalID);

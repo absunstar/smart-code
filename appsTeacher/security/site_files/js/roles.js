@@ -95,7 +95,7 @@ app.controller('security', function ($scope, $http, $interval) {
   };
 
   $scope.user = {
-    image: { url: '/images/user.png' },
+    image: {},
     files: [],
     permissions: [],
     roles: [],
@@ -233,7 +233,7 @@ app.controller('security', function ($scope, $http, $interval) {
   $scope.remove = function (user) {
     $scope.view(user);
     $scope.user = {
-      image: { url: '/images/user.png' },
+      image: { },
 
       files: [],
       permissions: [],
@@ -267,7 +267,7 @@ app.controller('security', function ($scope, $http, $interval) {
   $scope.details = function (user) {
     $scope.view(user);
     $scope.user = {
-      image: { url: '/images/user.png' },
+      image: {},
       files: [],
 
       permissions: [],

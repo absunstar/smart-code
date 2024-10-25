@@ -298,7 +298,7 @@ module.exports = function init(site) {
                                 nameAr: doc.nameAr,
                                 nameEn: doc.nameEn,
                                 callingCode: callingCode == '+' ? doc.callingCode : '+' + doc.callingCode,
-                                image: { url: '/images/countries.png' },
+                                image: { },
                                 active: true,
                             };
 

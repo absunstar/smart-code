@@ -6,7 +6,7 @@ app.controller('educationalLevels', function ($scope, $http, $timeout) {
   $scope.mode = 'add';
   $scope._search = {};
   $scope.structure = {
-    image: {url : '/theme1/images/setting/educationalLevels.png'},
+    image: {},
     active: true,
   };
   $scope.item = {};

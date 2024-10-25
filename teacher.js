@@ -143,7 +143,7 @@ site.xtime = function (_time, lang) {
 
 site.handleNotRoute = function (req, res) {
   let host = req.headers['host'];
-  console.log('handleNotRoute : ' + host + ' : ' + req.url);
+  console.log('handleNotRoute : ' + host + ' : ' + req.url + ' - ' + req.ip);
   res.end();
   return;
   let setting = site.getSiteSetting(host);
