@@ -232,6 +232,10 @@ module.exports = function init(site) {
           name: "lectureView",
         },
         (req, res) => {
+          console.log(req.query.id);
+          let item = site.lectureList.find((itm) => itm._id == req.query.id);
+          console.log(item);
+
           let notificationsCount = 0;
           if (req.session.user && req.session.user.notificationsList) {
             let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
@@ -248,15 +252,15 @@ module.exports = function init(site) {
             guid: "",
             isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || "/images/logo.png",
+            site_logo: item?.image?.url || setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
-            page_image: setting.logo?.url || "/images/logo.png",
+            page_image: item?.image?.url || setting.logo?.url || "/images/logo.png",
             powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
             user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
-            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + (item?.name || setting.siteSlogan),
             page_description: setting.description.substr(0, 200),
             page_keywords: setting.keyWordsList.join(","),
           };
