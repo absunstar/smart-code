@@ -31,14 +31,13 @@ module.exports = function init(site) {
     },
   ];
 
-
   site.defaultSetting = {
     host: "",
     lengthOrder: 0,
     siteTemplate: { id: 1 },
     mainCategoryList: [],
     programming: {},
-   
+
     block: {},
     siteColor1: "#272727",
     siteColor2: "#d7373f",
@@ -88,27 +87,6 @@ module.exports = function init(site) {
         teacherId = req.session.user.id;
       } else if (req.session.selectedTeacherId) {
         teacherId = req.session.selectedTeacherId;
-      }
-    } else {
-      if (setting.teacher && setting.teacher.id) {
-        teacherId = setting.teacher.id;
-      }
-    }
-    return teacherId;
-  };
-
-  site.getTeacherSettingToGet = function (req) {
-    let teacherId = null;
-    let setting = site.settingList.find((s) => s.host.like(req.host)) || {
-      ...site.defaultSetting,
-      ...site.settingList[0],
-      host: "",
-    };
-
-    if (setting.isShared) {
-      if (req.session.user && req.session.user.type == "teacher") {
-        teacherId = req.session.user.id;
-      } else {
       }
     } else {
       if (setting.teacher && setting.teacher.id) {
@@ -177,7 +155,6 @@ module.exports = function init(site) {
   });
 
   site.post("/api/get-site-setting", (req, res) => {
-      
     let response = {
       doc: site.getSiteSetting(req.host),
       done: true,
@@ -195,7 +172,6 @@ module.exports = function init(site) {
     data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
     data.teacherId = data.teacher && data.teacher.id ? data.teacher.id : 0;
     if (index > -1) {
-      
       $siteSetting.edit(data, (err, result) => {
         if (!err && result.doc) {
           response.done = true;

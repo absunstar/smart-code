@@ -357,6 +357,7 @@ module.exports = function init(site) {
                   image: result.doc.image,
                   placeType: result.doc.placeType,
                 });
+                
               } else {
                 response.error = err.mesage;
               }

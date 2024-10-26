@@ -306,6 +306,8 @@ module.exports = function init(site) {
 
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+        console.log(req.host,"Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+        
         let where = req.body.where || {};
         let select = req.body.select || {
           id: 1,

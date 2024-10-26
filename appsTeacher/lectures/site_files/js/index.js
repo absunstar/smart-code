@@ -45,7 +45,7 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal($scope.modalID);
+          /* site.hideModal($scope.modalID); */
           site.resetValidated($scope.modalID);
           $scope.list.unshift(response.data.doc);
         } else {

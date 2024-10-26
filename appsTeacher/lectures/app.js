@@ -63,6 +63,8 @@ module.exports = function init(site) {
       },
       (err, result) => {
         if (callback) {
+          console.log(err);
+
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
@@ -325,7 +327,7 @@ module.exports = function init(site) {
         let response = {
           done: false,
         };
-
+        let setting = site.getSiteSetting(req.host);
         let _data = req.data;
 
         _data.addUserInfo = req.getUserFinger();
@@ -341,7 +343,6 @@ module.exports = function init(site) {
 
         app.add(_data, (err, doc) => {
           if (!err && doc) {
-            let setting = site.getSiteSetting(req.host);
             if (setting.isShared) {
               doc.code = (req.session?.user?.prefix || req.session?.user?.id.toString()) + "L" + doc.id.toString();
             } else {
@@ -371,9 +372,23 @@ module.exports = function init(site) {
                   placeType: result.doc.placeType,
                   liveBroadcast: result.doc.liveBroadcast,
                 });
-                // if (req.host.like("*sawa*")) {
-                //   site.sawaBot.sendMessage(site.sawaGroupID, "New Lecture Added ...");
-                // }
+                let msg = `${req.host}/lectureView/?id=${result.doc._id} \n \n تم إضافة محاضرة جديدة بعنوان \n ( ${result.doc.name} ) \n \n`;
+                if (setting.isShared) {
+                  msg = msg + `\n للأستاذ  :  ${req.session.user.firstName}  \n`;
+                }
+                if (result.doc?.educationalLevel?.name) {
+                  let educationalLevel = setting.isFaculty ? "الفرقة الدراسية" : "المرحلة الدراسية";
+                  msg = msg + `${educationalLevel}  :  ${result.doc?.educationalLevel?.name}  \n`;
+                }
+                if (result.doc?.schoolYear?.name) {
+                  let schoolYear = setting.isFaculty ? "الشعبة الدراسية" : "العام الدراسي";
+                  msg = msg + `${schoolYear}  :  ${result.doc?.schoolYear?.name}  \n`;
+                }
+                if (result.doc?.subject?.name) {
+                  msg = msg + `المادة الدراسية :  ${result.doc?.subject?.name}  \n`;
+                }
+
+                site.sendMessageTelegram(req.host, msg);
               } else {
                 response.error = err.mesage;
               }
