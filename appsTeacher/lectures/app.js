@@ -392,7 +392,7 @@ module.exports = function init(site) {
                   msg = msg + `المادة الدراسية :  ${result.doc?.subject?.name}  \n`;
                 }
 
-                site.sendMessageTelegram(req.host, msg);
+                site.sendMessageTelegram({ host: req.host, msg: msg });
               } else {
                 response.error = err.mesage;
               }

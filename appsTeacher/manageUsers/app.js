@@ -309,9 +309,6 @@ module.exports = function init(site) {
               site.parentList.push(obj);
             }
 
-            if (req.host.like("*sawa*")) {
-              site.sawaBot.sendMessage(site.sawaGroupID, "New " + doc.type + " Registerd ...");
-            }
 
             if (doc.type == "student" && setting.autoStudentBarcode && setting.activeStudentBarcode) {
               // doc.barcode = doc.id.toString() + "00" + d + h + m;
