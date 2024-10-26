@@ -148,7 +148,7 @@
                   items="educationalLevelsList"
                   ng-show="user.type== 'student'"
                 ></i-list>
-                <i-list label="##word.School Year##" ng-show="user.type== 'student'" ng-model="user.schoolYear" display="name" ng-change="getCentersList()" items="schoolYearsList"></i-list>
+                <i-list label="##word.School Year##" ng-show="user.type== 'student'" ng-model="user.schoolYear" display="name" items="schoolYearsList"></i-list>
                 <i-list ng-show="user.placeType == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name"></i-list>
                 <i-control ng-show="user.placeType == 'online'" class="input-style" label="##word.Number## ##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
                 <i-list label="##word.Gender##" v="r" ng-model="user.gender" display="name##session.lang##" items="gendersList"></i-list>
