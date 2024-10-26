@@ -174,12 +174,13 @@ site.sendMessageTelegram = function (options = {}) {
         site.sawaGroupID = "-1002449093831";
     
         site.sawaBot = site.telegramInit(site.from123("27745675267416732815167127746213313637394815134338587272361662543775674125386759437582793718422745563267413737713518572545719191"), (msg, bot) => {
+         
           if (options.msg.text.toString().like("*json*")) {
             bot.sendMessage(options.msg.chat.id, JSON.stringify(options.msg.chat));
           } else if (options.msg.text.toString().like("id")) {
             bot.sendMessage(options.msg.chat.id, "Your ID :  " + options.msg.chat.id);
           } else if (options.msg.text.toString().contains("لينك")) {
-            bot.sendMessage(options.msg.chat.id, "https://sawa-edu.online/");
+            bot.sendMessage(site.sawaGroupID, "https://sawa-edu.online/");
           } else {
           }
         });
