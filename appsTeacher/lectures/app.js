@@ -372,9 +372,9 @@ module.exports = function init(site) {
                   placeType: result.doc.placeType,
                   liveBroadcast: result.doc.liveBroadcast,
                 });
-                let msg = `${req.host}/lectureView/?id=${result.doc._id} \n \n تم إضافة محاضرة جديدة بعنوان \n ( ${result.doc.name} ) \n \n`;
+                let msg = `${req.host}/lectureView?id=${result.doc._id} \n \n تم إضافة محاضرة جديدة بعنوان \n ( ${result.doc.name} ) \n \n`;
                 if (setting.isShared) {
-                  msg = msg + `\n للأستاذ  :  ${req.session.user.firstName}  \n`;
+                  msg = msg + `\n للأستاذ  :  ${req.session.user.firstName}  \n \n`;
                 }
                 if (result.doc?.educationalLevel?.name) {
                   let educationalLevel = setting.isFaculty ? "الفرقة الدراسية" : "المرحلة الدراسية";
