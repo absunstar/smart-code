@@ -147,6 +147,7 @@ module.exports = function init(site) {
       name: "subscriptionView",
     },
     (req, res) => {
+      let item = app.memoryList.find((itm) => itm._id == req.query.id);
       let notificationsCount = 0;
       if (req.session.user && req.session.user.notificationsList) {
         let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
@@ -162,15 +163,15 @@ module.exports = function init(site) {
         guid: "",
         isTeacher: req.session.selectedTeacherId ? true : false,
         filter: site.getHostFilter(req.host),
-        site_logo: setting.logo?.url || "/images/logo.png",
+        site_logo: item?.image?.url || setting.logo?.url || "/images/logo.png",
         site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
-        page_image: setting.logo?.url || "/images/logo.png",
+        page_image: item?.image?.url || setting.logo?.url || "/images/logo.png",
         powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
         user_image: req.session?.user?.image?.url || "/images/logo.png",
         site_name: setting.siteName,
         page_lang: setting.id,
         page_type: "website",
-        page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+        page_title: setting.siteName + " " + setting.titleSeparator + " " + (item?.name || setting.siteSlogan),
         page_description: setting.description.substr(0, 200),
         page_keywords: setting.keyWordsList.join(","),
       };
@@ -281,6 +282,23 @@ module.exports = function init(site) {
               if (!err && result) {
                 response.done = true;
                 response.doc = result.doc;
+                let msg = `${req.host}/subscriptionView?id=${result.doc._id} \n \n تم إضافة إشتراك جديد بعنوان \n ( ${result.doc.name} ) \n \n`;
+                if (setting.isShared) {
+                  msg = msg + `\n للأستاذ  :  ${req.session.user.firstName}  \n \n`;
+                }
+                if (result.doc?.educationalLevel?.name) {
+                  let educationalLevel = setting.isFaculty ? "الفرقة الدراسية" : "المرحلة الدراسية";
+                  msg = msg + `${educationalLevel}  :  ${result.doc?.educationalLevel?.name}  \n`;
+                }
+                if (result.doc?.schoolYear?.name) {
+                  let schoolYear = setting.isFaculty ? "الشعبة الدراسية" : "العام الدراسي";
+                  msg = msg + `${schoolYear}  :  ${result.doc?.schoolYear?.name}  \n`;
+                }
+                if (result.doc?.subject?.name) {
+                  msg = msg + `المادة الدراسية :  ${result.doc?.subject?.name}  \n`;
+                }
+
+                site.sendMessageTelegram({ host: req.host, msg: msg });
               } else {
                 response.error = err.mesage;
               }
@@ -372,26 +390,25 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
         let search = req.body.search || "id";
-        let select = req.body.select || { id: 1, name: 1, code: 1,price: 1, active: 1 , educationalLevel: 1 , schoolYear: 1 , image: 1 };
+        let select = req.body.select || { id: 1, name: 1, code: 1, price: 1, active: 1, educationalLevel: 1, schoolYear: 1, image: 1 };
         let list = [];
         let teacherId = site.getTeacherSetting(req);
         let host = site.getHostFilter(req.host);
         let setting = site.getSiteSetting(req.host);
 
-        if(req.body.type == 'toStudent' && !where['mySubscriptions']) {
-          if(!where.educationalLevel) {
-            where.educationalLevel = req.session?.user?.educationalLevel
+        if (req.body.type == "toStudent" && !where["mySubscriptions"]) {
+          if (!where.educationalLevel) {
+            where.educationalLevel = req.session?.user?.educationalLevel;
           }
-          if(!where.schoolYear){
-            where.schoolYear = req.session?.user?.schoolYear
+          if (!where.schoolYear) {
+            where.schoolYear = req.session?.user?.schoolYear;
           }
         }
-        
+
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
 
           if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared) || (doc.host == host && setting.isShared)) && JSON.stringify(obj).contains(search)) {
-            
             if (
               (!where.mySubscriptions || req.session?.user?.subscriptionList?.some((s) => s == obj.id)) &&
               (!where.educationalLevel?.id || where.educationalLevel?.id == obj.educationalLevel.id) &&
@@ -502,7 +519,6 @@ module.exports = function init(site) {
       }
     });
   });
-
 
   site.getSubscriptions = function (req) {
     let setting = site.getSiteSetting(req.host);

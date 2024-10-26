@@ -174,6 +174,7 @@ module.exports = function init(site) {
           name: "packageView",
         },
         (req, res) => {
+          let item = site.packageList.find((itm) => itm._id == req.query.id);
           let notificationsCount = 0;
           if (req.session.user && req.session.user.notificationsList) {
             let notifications = req.session.user.notificationsList.filter((_n) => !_n.show);
@@ -189,15 +190,15 @@ module.exports = function init(site) {
             guid: "",
             isTeacher: req.session.selectedTeacherId ? true : false,
             filter: site.getHostFilter(req.host),
-            site_logo: setting.logo?.url || "/images/logo.png",
+            site_logo: item?.image?.url || setting.logo?.url || "/images/logo.png",
             site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
-            page_image: setting.logo?.url || "/images/logo.png",
+            page_image: item?.image?.url || setting.logo?.url || "/images/logo.png",
             powerdByLogo: setting.powerdByLogo?.url || "/images/logo.png",
             user_image: req.session?.user?.image?.url || "/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
-            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + (item?.name || setting.siteSlogan),
             page_description: setting.description.substr(0, 200),
             page_keywords: setting.keyWordsList.join(","),
           };
@@ -314,6 +315,24 @@ module.exports = function init(site) {
                   image: result.doc.image,
                   placeType: result.doc.placeType,
                 });
+
+                let msg = `${req.host}/packageView?id=${result.doc._id} \n \n تم إضافة مجموعة محاضرات جديدة بعنوان \n ( ${result.doc.name} ) \n \n`;
+                if (setting.isShared) {
+                  msg = msg + `\n للأستاذ  :  ${req.session.user.firstName}  \n \n`;
+                }
+                if (result.doc?.educationalLevel?.name) {
+                  let educationalLevel = setting.isFaculty ? "الفرقة الدراسية" : "المرحلة الدراسية";
+                  msg = msg + `${educationalLevel}  :  ${result.doc?.educationalLevel?.name}  \n`;
+                }
+                if (result.doc?.schoolYear?.name) {
+                  let schoolYear = setting.isFaculty ? "الشعبة الدراسية" : "العام الدراسي";
+                  msg = msg + `${schoolYear}  :  ${result.doc?.schoolYear?.name}  \n`;
+                }
+                if (result.doc?.subject?.name) {
+                  msg = msg + `المادة الدراسية :  ${result.doc?.subject?.name}  \n`;
+                }
+
+                site.sendMessageTelegram({ host: req.host, msg: msg });
               } else {
                 response.error = err.mesage;
               }

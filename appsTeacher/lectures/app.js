@@ -232,9 +232,7 @@ module.exports = function init(site) {
           name: "lectureView",
         },
         (req, res) => {
-          console.log(req.query.id);
           let item = site.lectureList.find((itm) => itm._id == req.query.id);
-          console.log(item);
 
           let notificationsCount = 0;
           if (req.session.user && req.session.user.notificationsList) {

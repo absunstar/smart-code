@@ -167,7 +167,6 @@ site.get("/x-restart", (req, res) => {
 });
 if (!site.sawaBot) {
   site.sawaGroupID = "-1002449093831";
-
   site.sawaBot = site.telegramInit(site.from123("27745675267416732815167127746213313637394815134338587272361662543775674125386759437582793718422745563267413737713518572545719191"), (msg, bot) => {
     if (msg.text.toString().like("*json*")) {
       bot.sendMessage(msg.chat.id, JSON.stringify(msg.chat));
