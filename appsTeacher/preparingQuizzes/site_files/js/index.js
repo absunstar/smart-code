@@ -312,7 +312,6 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
     const startInterval = setInterval(function () {
       if ($scope.isOpen) {
         $scope.save();
-        
       } else {
         clearInterval(startInterval);
       }
@@ -404,6 +403,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
           $scope.numberAbsencesAttendance();
         }
         $scope.busyAttend = false;
+        $scope.$search = "";
       } else {
         $http({
           method: "POST",

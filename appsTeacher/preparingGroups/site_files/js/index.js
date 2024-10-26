@@ -426,6 +426,8 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
           $scope.numberAbsencesAttendance();
         }
         $scope.busyAttend = false;
+        $scope.$search = "";
+
       } else {
         $http({
           method: "POST",
