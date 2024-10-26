@@ -178,7 +178,7 @@ site.sendMessageTelegram = function (options = {}) {
             bot.sendMessage(options.msg.chat.id, JSON.stringify(options.msg.chat));
           } else if (options.msg.text.toString().like("id")) {
             bot.sendMessage(options.msg.chat.id, "Your ID :  " + options.msg.chat.id);
-          } else if (options.msg.text.toString().like("لينك")) {
+          } else if (options.msg.text.toString().contains("لينك")) {
             bot.sendMessage(options.msg.chat.id, "https://sawa-edu.online/");
           } else {
           }
