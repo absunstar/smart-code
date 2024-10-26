@@ -165,26 +165,23 @@ site.get("/x-update", (req, res) => {
 site.get("/x-restart", (req, res) => {
   site.cmd("pm2 restart 17", (data) => {});
 });
+if (!site.sawaBot) {
+  site.sawaGroupID = "-1002449093831";
 
+  site.sawaBot = site.telegramInit(site.from123("27745675267416732815167127746213313637394815134338587272361662543775674125386759437582793718422745563267413737713518572545719191"), (msg, bot) => {
+    if (options.msg.text.toString().like("*json*")) {
+      bot.sendMessage(options.msg.chat.id, JSON.stringify(options.msg.chat));
+    } else if (options.msg.text.toString().like("id")) {
+      bot.sendMessage(options.msg.chat.id, "Your ID :  " + options.msg.chat.id);
+    } else if (options.msg.text.toString().contains("لينك")) {
+      bot.sendMessage(site.sawaGroupID, "https://sawa-edu.online/");
+    } else {
+    }
+  });
+}
 site.sendMessageTelegram = function (options = {}) {
-  
   if (options.msg) {
     if (options.host.like("*sawa*")) {
-      if (!site.sawaBot) {
-        site.sawaGroupID = "-1002449093831";
-    
-        site.sawaBot = site.telegramInit(site.from123("27745675267416732815167127746213313637394815134338587272361662543775674125386759437582793718422745563267413737713518572545719191"), (msg, bot) => {
-         
-          if (options.msg.text.toString().like("*json*")) {
-            bot.sendMessage(options.msg.chat.id, JSON.stringify(options.msg.chat));
-          } else if (options.msg.text.toString().like("id")) {
-            bot.sendMessage(options.msg.chat.id, "Your ID :  " + options.msg.chat.id);
-          } else if (options.msg.text.toString().contains("لينك")) {
-            bot.sendMessage(site.sawaGroupID, "https://sawa-edu.online/");
-          } else {
-          }
-        });
-      }
       site.sawaBot.sendMessage(site.sawaGroupID, options.msg);
     }
   }
