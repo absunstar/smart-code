@@ -9,14 +9,13 @@
         <i-list
           label="##word.Educational Level##"
           ng-change="getSchoolYearsList(item.educationalLevel.id)"
-          v="r"
           ng-model="item.educationalLevel"
           display="name"
           items="educationalLevelsList"
           ng-search="item.$educationalLevel"
         ></i-list>
-        <i-list label="##word.School Year##" ng-model="item.schoolYear" v="r" display="name" items="schoolYearsList"></i-list>
-        <i-control type="text" v="r" ng-model="item.mobile" label="##word.Mobile No.##"></i-control>
+        <i-list label="##word.School Year##" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
+        <i-control type="text" ng-model="item.mobile" label="##word.Mobile No.##"></i-control>
       </div>
     </div>
     <div class="col3">

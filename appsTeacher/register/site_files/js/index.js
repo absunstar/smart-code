@@ -118,38 +118,36 @@ app.controller("register", function ($scope, $http, $timeout) {
   };
 
   $scope.getCentersList = function () {
-    if ($scope.user.schoolYear && $scope.user.schoolYear.id && $scope.user.educationalLevel && $scope.user.educationalLevel.id) {
-      $scope.busy = true;
-      $http({
-        method: "POST",
-        url: "/api/centers/all",
-        data: {
-          where: {
-            active: true,
-            schoolYearId: $scope.user.schoolYear.id,
-            educationalLevelId: $scope.user.educationalLevel.id,
-          },
-          select: {
-            id: 1,
-            name: 1,
-            host: 1,
-            educationalLevel: 1,
-            schoolYear: 1,
-          },
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/centers/all",
+      data: {
+        where: {
+          active: true,
+          schoolYearId: $scope.user?.schoolYear?.id,
+          educationalLevelId: $scope.user?.educationalLevel?.id,
         },
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done && response.data.list.length > 0) {
-            $scope.centersList = response.data.list;
-          }
+        select: {
+          id: 1,
+          name: 1,
+          host: 1,
+          educationalLevel: 1,
+          schoolYear: 1,
         },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.centersList = response.data.list;
         }
-      );
-    }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.getCountriesList = function (where) {
@@ -383,6 +381,7 @@ app.controller("register", function ($scope, $http, $timeout) {
   $scope.getCountriesList();
   $scope.getEducationalLevelsList();
   $scope.getGenders();
+  $scope.getCentersList();
 });
 
 site.onLoad(() => {
