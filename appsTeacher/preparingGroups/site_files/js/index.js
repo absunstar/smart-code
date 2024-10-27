@@ -56,14 +56,14 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   };
 
   $scope.autoSave = function () {
-    const startInterval = setInterval(function () {
+    setInterval(function () {
       if ($scope.isOpen) {
         $scope.save();
-      } else {
-        clearInterval(startInterval);
       }
-    }, 1000 * 20);
+    }, 1000 * 30);
   };
+
+  $scope.autoSave();
 
   $scope.showUpdate = function (_item) {
     $scope.error = "";
@@ -85,8 +85,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/update`,
       data: _item,
-      data: {item :_item},
-
+      data: { item: _item },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -113,13 +112,13 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/update`,
-      data: {item :$scope.item,auto : true},
+      data: { item: $scope.item, auto: true },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if(type == 'close') {
-            site.hideModal('#studentsModal');
+          if (type == "close") {
+            site.hideModal("#studentsModal");
           }
         } else {
           $scope.error = response.data.error;
@@ -147,7 +146,6 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
           $scope.isOpen = true;
           $scope.numberAbsencesAttendance();
           $scope.getStudentPaid();
-          $scope.autoSave();
           site.showModal("#studentsModal");
         } else {
           $scope.error = response.data.error;
@@ -427,7 +425,6 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
         }
         $scope.busyAttend = false;
         $scope.$search = "";
-
       } else {
         $http({
           method: "POST",

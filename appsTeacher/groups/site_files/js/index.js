@@ -74,7 +74,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/update`,
-      data: {item :_item},
+      data: { item: _item },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -445,14 +445,13 @@ app.controller("groups", function ($scope, $http, $timeout) {
     );
   };
   $scope.autoSave = function () {
-    const startInterval = setInterval(function () {
+    setInterval(function () {
       if ($scope.isOpen) {
-        $scope.save();        
-      } else {
-        clearInterval(startInterval);
+        $scope.save();
       }
-    }, 1000 * 20);
+    }, 1000 * 30);
   };
+  $scope.autoSave();
   $scope.showStudentsModal = function (_item) {
     $scope.error = "";
     $http({
@@ -467,7 +466,6 @@ app.controller("groups", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.item = response.data.doc;
           $scope.isOpen = true;
-          $scope.autoSave();
           site.showModal("#studentsModal");
         } else {
           $scope.error = response.data.error;
@@ -485,14 +483,13 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: `${$scope.baseURL}/api/${$scope.appName}/update`,
-      data: {item :$scope.item,auto : true},
-
+      data: { item: $scope.item, auto: true },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if(type == 'close') {
-            site.hideModal('#studentsModal');
+          if (type == "close") {
+            site.hideModal("#studentsModal");
           }
         } else {
           $scope.error = response.data.error;

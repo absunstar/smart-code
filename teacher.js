@@ -157,8 +157,13 @@ site.handleNotRoute = function (req, res) {
 site.get("/x-update", (req, res) => {
   site.cmd("git pull", (data) => {
     res.end(data || "error");
-    console.log(data);
     site.cmd("pm2 restart 17", (data) => {});
+  });
+});
+
+site.get("/x-log", (req, res) => {
+  site.cmd("pm2 log 17 --lines 100", (data) => {
+    res.end(data || "error");
   });
 });
 

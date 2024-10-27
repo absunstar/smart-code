@@ -309,14 +309,14 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
     );
   };
   $scope.autoSave = function () {
-    const startInterval = setInterval(function () {
+    setInterval(function () {
       if ($scope.isOpen) {
         $scope.save();
-      } else {
-        clearInterval(startInterval);
       }
-    }, 1000 * 20);
+    }, 1000 * 30);
   };
+  $scope.autoSave();
+
   $scope.showStudentsModal = function (_item) {
     $scope.error = "";
     $http({
@@ -332,7 +332,6 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
           $scope.item = response.data.doc;
           $scope.isOpen = true;
           $scope.numberAbsencesAttendance();
-          $scope.autoSave();
           site.showModal("#studentsModal");
         } else {
           $scope.error = response.data.error;
