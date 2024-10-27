@@ -273,7 +273,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       url: "/api/groups/all",
       data: {
         search: $search,
-        today: true,
+        date: siet.getDate(),
         where: {
           active: true,
         },

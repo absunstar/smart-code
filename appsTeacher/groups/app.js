@@ -271,6 +271,7 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
+          host : 1,
           name: 1,
           teacher: 1,
           subject: 1,
@@ -306,8 +307,9 @@ module.exports = function init(site) {
         } else {
           where["host"] = site.getHostFilter(req.host);
         }
-        if (req.body.today) {
-          where["dayList.date"] = site.getDate();
+
+        if (req.body.date) {
+          where["dayList.date"] = site.getDate(req.body.date);
         }
         
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
