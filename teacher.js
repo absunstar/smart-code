@@ -162,7 +162,7 @@ site.get("/x-update", (req, res) => {
 });
 
 site.get("/x-log", (req, res) => {
-  site.cmd("pm2 log 17 --lines 100", (data) => {
+  site.cmd("pm2 log 17", (data) => {
     res.end(data || "error");
   });
 });
