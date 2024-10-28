@@ -384,15 +384,22 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   };
   $scope.setAttendance = function (item, type) {
     $scope.error = "";
+    let date = new Date();
     if (type == "attend") {
-      item.attendDate = new Date();
+      item.attendTime = {
+        hour: date.getHours(),
+        minute: date.getMinutes()
+      };
       item.attend = true;
     } else if (type == "absence") {
       item.attend = false;
-      delete item.attendDate;
-      delete item.departureDate;
+      delete item.attendTime;
+      delete item.departureTime;
     } else if (type == "departure") {
-      item.departureDate = new Date();
+      item.departureTime =  {
+        hour: date.getHours(),
+        minute: date.getMinutes()
+      };
     }
   };
 
@@ -432,7 +439,10 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
       if (index !== -1) {
         if (!$scope.item.studentList[index].attend) {
-          $scope.item.studentList[index].attendDate = new Date();
+          $scope.item.studentList[index].attendTime = {
+            hour: date.getHours(),
+            minute: date.getMinutes()
+          };
           $scope.item.studentList[index].attend = true;
 
           $scope.numberAbsencesAttendance();
@@ -469,7 +479,10 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
                   requiredPayment: response.data.doc.requiredPayment,
                   exempt: response.data.doc.exempt,
                   attend: true,
-                  attendDate: new Date(),
+                  attendTime: {
+                    hour: date.getHours(),
+                    minute: date.getMinutes()
+                  },
                   new: true,
                 };
                 if ($scope.item.group.paymentMethod && $scope.item.group.paymentMethod.name == "lecture") {
@@ -506,7 +519,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     if ($scope.setting.thermalPrinter) {
       $("#thermalPrint").removeClass("hidden");
       $scope.thermal = {
-        printDate: site.getDate(),
+        printDate: new Date(),
         date: $scope.item.date,
         groupName: $scope.item.group.name,
         student: obj.student,

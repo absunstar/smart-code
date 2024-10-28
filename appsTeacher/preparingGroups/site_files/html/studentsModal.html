@@ -108,20 +108,22 @@
               </td>
               <td class="center userPrint">{{s.student.barcode}}</td>
               <td class="center">
-                <a target="_blank" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
+                <a target="_blank" ng-show="s.student.mobile" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
                   {{s.student.mobile}}
                   <i class="fas fa-mobile-alt"></i>
                 </a>
+                <p ng-show="!s.student.mobile">##word.Not Found##</p>
               </td>
               <td class="center">
-                <a target="_blank" ng-class="{'change-color-link' : s.clickSParentMobile}" ng-click="clickMoblie(s,'parentMobile')" href="https://wa.me/{{s.student.parentMobile}}">
+                <a target="_blank" ng-show="s.student.parentMobile" ng-class="{'change-color-link' : s.clickSParentMobile}" ng-click="clickMoblie(s,'parentMobile')" href="https://wa.me/{{s.student.parentMobile}}">
                   {{s.student.parentMobile}}
                   <i class="fas fa-mobile-alt"></i>
                 </a>
+                <p ng-show="!s.student.parentMobile">##word.Not Found##</p>
               </td>
               <td class="center">
-                <p class="green">{{s.attendDate | date : 'mm : hh '}}</p>
-                <p class="red">{{s.departureDate | date : 'mm : hh '}}</p>
+                <p class="green" ng-show="s.attendDate && s.attend">{{s.attendTime.minute}} : {{s.attendTime.hour}}</p>
+                <p class="red" ng-show="s.departureTime && s.attend">{{s.departureTime.minute}} : {{s.departureTime.hour}}</p>
                 <p class="text-danger" ng-show="s.attend == false">##word.Absence##</p>
               </td>
               <td class="center" ng-show="item.group.paymentMethod.name == 'lecture'">
@@ -136,8 +138,8 @@
               </td>
               <td class="center not-print">
                 <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend');numberAbsencesAttendance()"></i-button>
-                <i-button ng-show="s.attend && !s.departureDate" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>
-                <i-button type="close" ng-hide="s.attend == false && s.departureDate" label="##word.Absence##" ng-click="setAttendance(s,'absence');numberAbsencesAttendance()"></i-button>
+                <i-button ng-show="s.attend && !s.departureTime" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>
+                <i-button type="close" ng-hide="s.attend == false && s.departureTime" label="##word.Absence##" ng-click="setAttendance(s,'absence');numberAbsencesAttendance()"></i-button>
                 <i-button type="delete" label="##word.Delete##" ng-show="s.new == true" ng-click="item.studentList.splice($index,1);numberAbsencesAttendance();getStudentPaid()"></i-button>
               </td>
             </tr>
