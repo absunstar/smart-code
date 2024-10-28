@@ -122,7 +122,7 @@
                 <p ng-show="!s.student.parentMobile">##word.Not Found##</p>
               </td>
               <td class="center">
-                <p class="green" ng-show="s.attendDate && s.attend"> <span class="green" ng-show="10 > s.attendTime.minute">0</span>{{s.attendTime.minute}} :  <span class="green" ng-show="10 > s.attendTime.hour">0</span>{{s.attendTime.hour}}</p>
+                <p class="green" ng-show="s.attendTime && s.attend"> <span class="green" ng-show="10 > s.attendTime.minute">0</span>{{s.attendTime.minute}} :  <span class="green" ng-show="10 > s.attendTime.hour">0</span>{{s.attendTime.hour}}</p>
                 <p class="red" ng-show="s.departureTime && s.attend"> <span class="red" ng-show="10 > s.departureTime.minute">0</span>{{s.departureTime.minute}} : <span class="red" ng-show="10 > s.departureTime.hour">0</span>{{s.departureTime.hour}}</p>
                 <p class="text-danger" ng-show="s.attend == false">##word.Absence##</p>
               </td>

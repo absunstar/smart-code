@@ -471,6 +471,8 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
             $scope.busyAttend = false;
             if (response.data.done && response.data.doc) {
               if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {
+                console.log(new Date().getHours());
+                
                 let stu = {
                   student: response.data.doc.student,
                   group: response.data.doc.group,
