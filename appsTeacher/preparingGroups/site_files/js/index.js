@@ -64,7 +64,19 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
   };
 
   $scope.autoSave();
+  $scope.changeIndex = function (list, type, index) {
+    let element = list[index];
+    let toIndex = index;
 
+    if (type == "up") {
+      toIndex = index - 1;
+    } else if (type == "down") {
+      toIndex = index + 1;
+    }
+
+    list.splice(index, 1);
+    list.splice(toIndex, 0, element);
+  };
   $scope.showUpdate = function (_item) {
     $scope.error = "";
     $scope.mode = "edit";
@@ -416,13 +428,18 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
         return;
       }
       $scope.busyAttend = true;
+
       let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
       if (index !== -1) {
         if (!$scope.item.studentList[index].attend) {
           $scope.item.studentList[index].attendDate = site.getDate();
           $scope.item.studentList[index].attend = true;
+
           $scope.numberAbsencesAttendance();
         }
+        let student = { ...$scope.item.studentList[index] };
+        $scope.item.studentList.splice(index, 1);
+        $scope.item.studentList.unshift({ ...student });
         $scope.busyAttend = false;
         $scope.$search = "";
       } else {

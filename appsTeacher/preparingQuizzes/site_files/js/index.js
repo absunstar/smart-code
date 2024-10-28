@@ -401,6 +401,9 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
           $scope.item.studentList[index].attend = true;
           $scope.numberAbsencesAttendance();
         }
+        let student = { ...$scope.item.studentList[index] };
+        $scope.item.studentList.splice(index, 1);
+        $scope.item.studentList.unshift({ ...student });
         $scope.busyAttend = false;
         $scope.$search = "";
       } else {
