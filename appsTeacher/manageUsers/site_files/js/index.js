@@ -910,7 +910,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
           selector: "#thermalPrint",
           ip: printer.ipDevice,
           port: printer.portDevice,
-          pageSize: "Letter",
+          pageSize: "A4",
           printer: printer.ip.name.trim(),
           dpi: { horizontal: $scope.setting.horizontalPrint, vertical: $scope.setting.verticalPrint },
         });
