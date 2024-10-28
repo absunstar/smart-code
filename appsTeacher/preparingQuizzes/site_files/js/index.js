@@ -397,13 +397,13 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
       if (index !== -1) {
         if (!$scope.item.studentList[index].attend) {
-          $scope.item.studentList[index].attendDate = site.getDate();
+          $scope.item.studentList[index].attendDate = new Date();
           $scope.item.studentList[index].attend = true;
           $scope.numberAbsencesAttendance();
+          let student = { ...$scope.item.studentList[index] };
+          $scope.item.studentList.splice(index, 1);
+          $scope.item.studentList.unshift({ ...student });
         }
-        let student = { ...$scope.item.studentList[index] };
-        $scope.item.studentList.splice(index, 1);
-        $scope.item.studentList.unshift({ ...student });
         $scope.busyAttend = false;
         $scope.$search = "";
       } else {
@@ -425,7 +425,7 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
             $scope.busyAttend = false;
             if (response.data.done && response.data.doc) {
               if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {
-                let stu = { student: response.data.doc.student, group: response.data.doc.group, attend: true, attendDate: site.getDate(), new: true };
+                let stu = { student: response.data.doc.student, group: response.data.doc.group, attend: true, attendDate: new Date(), new: true };
                 $scope.item.studentList.unshift(stu);
                 $scope.numberAbsencesAttendance();
               } else {

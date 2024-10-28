@@ -311,7 +311,7 @@ module.exports = function init(site) {
         if (req.body.date) {
           where["dayList.date"] = site.getDate(req.body.date);
         }
-        
+
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           res.json({
             done: true,

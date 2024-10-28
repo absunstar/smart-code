@@ -432,14 +432,14 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
       if (index !== -1) {
         if (!$scope.item.studentList[index].attend) {
-          $scope.item.studentList[index].attendDate = site.getDate();
+          $scope.item.studentList[index].attendDate = new Date();
           $scope.item.studentList[index].attend = true;
 
           $scope.numberAbsencesAttendance();
+          let student = { ...$scope.item.studentList[index] };
+          $scope.item.studentList.splice(index, 1);
+          $scope.item.studentList.unshift({ ...student });
         }
-        let student = { ...$scope.item.studentList[index] };
-        $scope.item.studentList.splice(index, 1);
-        $scope.item.studentList.unshift({ ...student });
         $scope.busyAttend = false;
         $scope.$search = "";
       } else {
@@ -469,7 +469,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
                   requiredPayment: response.data.doc.requiredPayment,
                   exempt: response.data.doc.exempt,
                   attend: true,
-                  attendDate: site.getDate(),
+                  attendDate: new Date(),
                   new: true,
                 };
                 if ($scope.item.group.paymentMethod && $scope.item.group.paymentMethod.name == "lecture") {
