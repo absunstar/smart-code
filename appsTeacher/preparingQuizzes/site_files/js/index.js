@@ -276,15 +276,22 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
 
   $scope.setAttendance = function (item, type) {
     $scope.error = "";
+    let date = new Date();
     if (type == "attend") {
-      item.attendDate = new Date();
+      item.attendTime = {
+        hour: date.getHours(),
+        minute: date.getMinutes()
+      };
       item.attend = true;
     } else if (type == "absence") {
       item.attend = false;
-      delete item.attendDate;
-      delete item.departureDate;
+      delete item.attendTime;
+      delete item.departureTime;
     } else if (type == "departure") {
-      item.departureDate = new Date();
+      item.departureTime = {
+        hour: date.getHours(),
+        minute: date.getMinutes()
+      };
     }
   };
   $scope.clickMoblie = function (item, type) {
@@ -397,7 +404,10 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
       let index = $scope.item.studentList.findIndex((itm) => itm.student.barcode == search);
       if (index !== -1) {
         if (!$scope.item.studentList[index].attend) {
-          $scope.item.studentList[index].attendDate = new Date();
+          $scope.item.studentList[index].attendTime =  {
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes()
+          };
           $scope.item.studentList[index].attend = true;
           $scope.numberAbsencesAttendance();
           let student = { ...$scope.item.studentList[index] };
@@ -425,7 +435,10 @@ app.controller("preparingQuizzes", function ($scope, $http, $timeout) {
             $scope.busyAttend = false;
             if (response.data.done && response.data.doc) {
               if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {
-                let stu = { student: response.data.doc.student, group: response.data.doc.group, attend: true, attendDate: new Date(), new: true };
+                let stu = { student: response.data.doc.student, group: response.data.doc.group, attend: true, attendTime : {
+                  hour: new Date().getHours(),
+                  minute: new Date().getMinutes()
+                }, new: true };
                 $scope.item.studentList.unshift(stu);
                 $scope.numberAbsencesAttendance();
               } else {

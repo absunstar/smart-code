@@ -81,20 +81,22 @@
               </td>
               <td class="center userPrint">{{s.student.barcode}}</td>
               <td class="center">
-                <a target="_blank" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
-                  <i class="fas fa-mobile-alt"></i>
+                <a target="_blank" ng-show="s.student.mobile" ng-class="{'change-color-link' : s.clickStudentMoblie}" ng-click="clickMoblie(s,'studentMobile')" href="https://wa.me/{{s.student.mobile}}">
                   {{s.student.mobile}}
-                </a>
-              </td>
-              <td class="center">
-                <a target="_blank" ng-class="{'change-color-link' : s.clickSParentMobile}" ng-click="clickMoblie(s,'parentMobile')" href="https://wa.me/{{s.student.parentMobile}}">
                   <i class="fas fa-mobile-alt"></i>
-                  {{s.student.parentMobile}}
                 </a>
+                <p ng-show="!s.student.mobile">##word.Not Found##</p>
               </td>
               <td class="center">
-                <p class="green">{{s.attendDate | date : 'mm : hh '}}</p>
-                <p class="red">{{s.departureDate | date : 'mm : hh '}}</p>
+                <a target="_blank" ng-show="s.student.parentMobile" ng-class="{'change-color-link' : s.clickSParentMobile}" ng-click="clickMoblie(s,'parentMobile')" href="https://wa.me/{{s.student.parentMobile}}">
+                  {{s.student.parentMobile}}
+                  <i class="fas fa-mobile-alt"></i>
+                </a>
+                <p ng-show="!s.student.parentMobile">##word.Not Found##</p>
+              </td>
+              <td class="center">
+                <p class="green" ng-show="s.attendDate && s.attend"> <span class="green" ng-show="10 > s.attendTime.minute">0</span>{{s.attendTime.minute}} :  <span class="green" ng-show="10 > s.attendTime.hour">0</span>{{s.attendTime.hour}}</p>
+                <p class="red" ng-show="s.departureTime && s.attend"> <span class="red" ng-show="10 > s.departureTime.minute">0</span>{{s.departureTime.minute}} : <span class="red" ng-show="10 > s.departureTime.hour">0</span>{{s.departureTime.hour}}</p>
                 <p class="text-danger" ng-show="s.attend == false">##word.Absence##</p>
               </td>
               <td class="center">

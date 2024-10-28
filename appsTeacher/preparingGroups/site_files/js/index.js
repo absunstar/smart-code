@@ -440,8 +440,8 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       if (index !== -1) {
         if (!$scope.item.studentList[index].attend) {
           $scope.item.studentList[index].attendTime = {
-            hour: date.getHours(),
-            minute: date.getMinutes()
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes()
           };
           $scope.item.studentList[index].attend = true;
 
@@ -480,8 +480,8 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
                   exempt: response.data.doc.exempt,
                   attend: true,
                   attendTime: {
-                    hour: date.getHours(),
-                    minute: date.getMinutes()
+                    hour: new Date().getHours(),
+                    minute: new Date().getMinutes()
                   },
                   new: true,
                 };
