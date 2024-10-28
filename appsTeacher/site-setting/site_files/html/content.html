@@ -164,8 +164,8 @@
           <legend>##word.Printer Program##</legend>
           <div class="row">
             <i-list ng-search="siteSetting.$printerPath" class="col4" display="name" ng-model="siteSetting.thermalPrinter" label="##word.Thermal printer##" items="printersPathsList"> </i-list>
-            <i-control label="##word.Horizontal##" class="col2" ng-model="siteSetting.horizontalPrint"></i-control>
-            <i-control label="##word.Vertical##" class="col2" ng-model="siteSetting.verticalPrint"></i-control>
+            <i-control label="##word.Horizontal##" class="col2" type="number" ng-model="siteSetting.horizontalPrint"></i-control>
+            <i-control label="##word.Vertical##" class="col2" type="number" ng-model="siteSetting.verticalPrint"></i-control>
             <div class="col1"></div>
             <div class="col2">
               <i-checkbox label="##word.Auto Print##" ng-model="siteSetting.autoPrint"> </i-checkbox>
