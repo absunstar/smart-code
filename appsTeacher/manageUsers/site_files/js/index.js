@@ -912,7 +912,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
           port: printer.portDevice,
           pageSize: "Letter",
           printer: printer.ip.name.trim(),
-          dpi: { horizontal: 200, vertical: 600 },
+          dpi: { horizontal: $scope.setting.horizontalPrint, vertical: $scope.setting.verticalPrint },
         });
       }, 500);
     } else {
