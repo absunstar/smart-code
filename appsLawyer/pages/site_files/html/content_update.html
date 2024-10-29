@@ -1,0 +1,29 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.Basic Information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control type="text" v="r" class="col5" label="##word.Name##" ng-model="pages.title"></i-control>
+
+            <i-control type="text" v="r" class="col5" label="##word.Url##" ng-model="pages.url"></i-control>
+          </div>
+
+          <div class="row">
+            <i-textarea class="col" label="##word.Description##" ng-model="pages.description"> </i-textarea>
+          </div>
+
+          <fieldset>
+            <legend>##word.Content##</legend>
+            <i-content ng-model="pages.content"> </i-content>
+          </fieldset>
+        </div>
+
+        <div class="col3">
+          <i-image  class="img128 center" ng-model="pages.image"></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

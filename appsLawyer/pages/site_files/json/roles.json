@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "pageImplementAdmin",
+    "en": "pages Implement Admin",
+    "ar": "إدارة تنفيذ الصفحات",
+    "permissions": ["pageImplementManage"]
+}]

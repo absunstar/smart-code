@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
+  <head x-import="lawyer-theme/head.html">
+    <link rel="stylesheet" href="/css/lawyer-style.css?v=##site.options.version##" />
+    <link rel="stylesheet" href="/css/lawyer-mobile.css?v=##site.options.version##" />
+
+    <title>##word.brand_title## | ##data.page.title##</title>
+    <link rel="icon" type="image/x-icon" href="##data.page.image##" />
+    <meta name="description" content="##data.page.description##" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        max-width: initial;
+      }
+
+      b {
+        overflow-wrap: anywhere;
+      }
+
+      .line-through {
+        text-decoration: line-through;
+      }
+
+      .userad-logo {
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        margin: -5px 10px -5px 0px !important;
+      }
+
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+
+      body {
+        /* background-color: #bbb !important;
+            background-image: url(/assets/palm.svg) !important; */
+        background-color: #ecf9f6;
+     /*    background-repeat: repeat !important; */
+      }
+    </style>
+    <style x-lang="Ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
+
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+
+      #main-layout {
+        max-width: 95%;
+        margin: 0 auto !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+        padding: 35px !important;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+
+  <body  class="##session.language.id## loaded" >
+    <div x-replace="lawyer-theme/header.html"></div>
+
+    <div id="main-layout" class="container bg-white">##data.page.content##</div>
+
+    <div x-replace="lawyer-theme/footer.html"></div>
+    <div x-import="lawyer-theme/scripts.html"></div>
+  </body>
+</html>

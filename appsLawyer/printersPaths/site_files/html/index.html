@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
+  <head x-import="lawyer-theme/head-dashboard.html"></head>
+
+  <body class="##session.language.id##">
+    <nav x-import="lawyer-theme/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="lawyer-theme/sitebottom.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container" x-import="printersPaths/_.html" x-permissions="login"></div>
+
+    <div x-import="lawyer-theme/scripts-dashboard.html"></div>
+    <script x-import="printersPaths/index.js"></script>
+  </body>
+</html>

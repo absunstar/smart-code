@@ -18,17 +18,17 @@
             <table class="table hover bold" id="t1">
                 <tr>
                     <th class="w150">##word.Logo##</th>
-                    <th>##word.Name##</th>
                     <th>##word.Calling Code##</th>
+                    <th>##word.Name##</th>
                     <th>##word.Status##</th>
                     <th class="not-print">##word.Actions##</th>
                 </tr>
                 <tr ng-repeat="item in list | filter:$search">
-                    <td>
+                    <td class="center">
                         <i-image view class="logo center" ng-model="item.image"></i-image>
                     </td>
-                    <td class="center">{{item.name}}</td>
                     <td class="center blue">{{item.callingCode}}</td>
+                    <td class="center">{{item.name}}</td>
                     <td class="center">
                         <span ng-show="item.active" class="text-success">##word.Active##</span>
                         <span ng-show="!item.active" class="text-danger">##word.Not Active##</span>

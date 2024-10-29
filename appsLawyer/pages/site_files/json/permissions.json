@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementManage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementAdd" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementUpdate" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementDelete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementView" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementSearch" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementExport" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementPrint" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "pages" , "name":"pageImplementUi" , "en":"UI" , "ar":"الواجهة الرسومية"}
+] 

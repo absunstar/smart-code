@@ -3,10 +3,11 @@ app.controller('countries', function ($scope, $http, $timeout) {
   $scope.appName = 'countries';
   $scope.modalID = '#countriesManageModal';
   $scope.modalSearchID = '#countriesSearchModal';
+  $scope.setting = site.showObject(`##data.#setting##`);
   $scope.mode = 'add';
   $scope._search = {};
   $scope.structure = {
-    image: { url: '/images/countries.png' },
+    image: { },
     active: true,
   };
   $scope.item = {};

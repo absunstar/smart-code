@@ -39,12 +39,28 @@ module.exports = function init(site) {
     compress: false,
   });
 
-  site.get({
-    name: "security/users",
-    path: __dirname + "/site_files/html/users.html",
-    parser: "html js",
-    compress: false,
-  });
+  site.get(
+    {
+      name: "security/users",
+    },
+    (req, res) => {
+      res.render(
+        "security" + "/users.html",
+        {
+          title: "security/users",
+          appName: req.word("Users"),
+          setting: site.getSiteSetting(req.host),
+        },
+        { parser: "html", compres: true }
+      );
+    }
+  );
+  // site.get({
+  //   name: "security/users",
+  //   path: __dirname + "/site_files/html/users.html",
+  //   parser: "html js",
+  //   compress: false,
+  // });
 
   site.get({
     name: "security/roles",
@@ -90,6 +106,23 @@ module.exports = function init(site) {
       delete where["search"];
     }
     where["id"] = { $ne: 1 };
+
+    where.$and = [
+      {
+       type :  {$ne: "student"},
+      },
+      {
+        type :  {$ne: "lawyer"},
+      },
+      {
+        type :  {$ne: "parent"},
+      },
+    ];
+    // if ((lawyerId = site.getLawyerSetting(req))) {
+    //   where["lawyerId"] = lawyerId;
+    // } else {
+    //   where["host"] = site.getHostFilter(req.host);
+    // }
 
 
     site.security.getUsers(
@@ -155,7 +188,6 @@ module.exports = function init(site) {
     user.$req = req;
     user.$res = res;
     delete user.$$hashKey;
-
     site.security.updateUser(user, (err) => {
       if (!err) {
         response.done = true;
@@ -216,7 +248,7 @@ module.exports = function init(site) {
       };
     } else if (req.body._id) {
       where = {
-        _id: site.mongodb.ObjectId(req.body._id),
+        _id: req.body._id,
       };
     }
 
@@ -227,9 +259,9 @@ module.exports = function init(site) {
         if (doc.createdDate) {
           doc.$createdDate = site.xtime(doc.createdDate, req.session.lang);
         }
-        let date = new Date(doc.visit_date);
+        let date = site.getDate(doc.visit_date);
         date.setMinutes(date.getMinutes() + 1);
-        if (new Date() < date) {
+        if (site.getDate() < date) {
           doc.$isOnline = true;
         } else {
           doc.$isOnline = false;
@@ -238,6 +270,7 @@ module.exports = function init(site) {
           }
         }
         if (req.body.type == "notifications") {
+          doc.notificationsList = doc.notificationsList || [];
           for (let i = 0; i < doc.notificationsList.length; i++) {
             doc.notificationsList[i].$time = site.xtime(doc.notificationsList[i].date, req.session.lang);
           }
@@ -286,23 +319,23 @@ module.exports = function init(site) {
       }
     );
   });
-  site.post({ name: '/api/user/login', public: true }, function (req, res) {
+  site.post({ name: "/api/user/login", public: true }, function (req, res) {
     let response = {
       accessToken: req.session.accessToken,
     };
 
     if (req.body.$encript) {
-      if (req.body.$encript === '64') {
+      if (req.body.$encript === "64") {
         req.body.email = site.fromBase64(req.body.email);
         req.body.password = site.fromBase64(req.body.password);
-      } else if (req.body.$encript === '123') {
+      } else if (req.body.$encript === "123") {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
       }
     }
 
     if (site.security.isUserLogin(req, res)) {
-      response.error = 'Login Error , You Are Loged';
+      response.error = "Login Error , You Are Loged";
       res.json(response);
       return;
     }
@@ -315,7 +348,7 @@ module.exports = function init(site) {
           let _user = { ...doc };
 
           if (_user.active == false) {
-            response.error = 'The account is inactive';
+            response.error = "The account is inactive";
             res.json(response);
             return;
           }
@@ -346,7 +379,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/user/logout', function (req, res) {
+  site.post("/api/user/logout", function (req, res) {
     let response = {
       done: true,
     };
@@ -357,7 +390,7 @@ module.exports = function init(site) {
         response.done = true;
         res.json(response);
       } else {
-        response.error = 'You Are Not Loged';
+        response.error = "You Are Not Loged";
         response.done = true;
         res.json(response);
       }

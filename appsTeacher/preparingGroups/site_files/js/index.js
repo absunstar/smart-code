@@ -60,7 +60,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       if ($scope.isOpen) {
         $scope.save();
       }
-    }, 1000 * 30);
+    }, 1000 * 40);
   };
 
   $scope.autoSave();
@@ -334,10 +334,22 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        $scope.error = "";
         if (response.data.done && response.data.doc) {
           $scope.item.studentList = response.data.doc.studentList;
           $scope.item.date = response.data.doc.validDay.date;
           $scope.item.day = response.data.doc.validDay.day;
+          $scope.item.subject = { ...$scope.item.group.subject };
+          $scope.item.teacher = { ...$scope.item.group.teacher };
+          $scope.item.educationalLevel = { ...$scope.item.group.educationalLevel };
+          $scope.item.schoolYear = { ...$scope.item.group.schoolYear };
+          $scope.item.group = {
+            _id : $scope.item.group._id,
+            id : $scope.item.group.id,
+            name : $scope.item.group.name,
+            paymentMethod : $scope.item.group.paymentMethod,
+            price : $scope.item.group.price,
+          }
         } else {
           $scope.error = response.data.error;
         }
@@ -470,12 +482,9 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
           function (response) {
             $scope.busyAttend = false;
             if (response.data.done && response.data.doc) {
-              if (!$scope.item.studentList.some((k) => k.student && k.student.id === response.data.doc.student.id)) {
-                console.log(new Date().getHours());
-                
+              if (!$scope.item.studentList.some((k) => k.student && k.student.id == response.data.doc.student.id)) {
                 let stu = {
                   student: response.data.doc.student,
-                  group: response.data.doc.group,
                   discount: response.data.doc.discount,
                   discountValue: response.data.doc.discountValue,
                   requiredPayment: response.data.doc.requiredPayment,
@@ -485,10 +494,13 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
                     hour: new Date().getHours(),
                     minute: new Date().getMinutes()
                   },
-                  new: true,
                 };
                 if ($scope.item.group.paymentMethod && $scope.item.group.paymentMethod.name == "lecture") {
                   stu.paidType = "notPaid";
+                }
+                if(response.data.doc?.group?.id != $scope.item.group.id){
+                  stu.new = true;
+                  stu.group = response.data.doc.group;
                 }
                 $scope.item.studentList.unshift(stu);
                 $scope.numberAbsencesAttendance();

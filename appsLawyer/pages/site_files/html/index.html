@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="##session.language.id##" class="##session.language.dir##" x-permissions="pageImplementUi || pageImplementManage" data-ng-app="myApp">
+  <head x-import="lawyer-theme/head-dashboard.html">
+    <style>
+
+    </style>
+  </head>
+
+  <body class="##session.language.id## loaded" ng-controller="pages">
+    <nav
+    x-import="lawyer-theme/sitebar.html"
+    class="sitebar"
+    data-ng-controller="sitebar"
+  ></nav>
+
+  <nav
+    class="sitebottom"
+    x-import="lawyer-theme/sitebottom.html"
+    ng-controller="sitebottom"
+  ></nav>
+
+    <div id="main-layout" class="container">
+      <div class="row">
+        <div class="row">
+          <div x-permissions="pageImplementAdd || pageImplementManage" x-import="pages/add_modal.html"></div>
+          <div x-permissions="pageImplementUpdate || pageImplementManage" x-import="pages/update_modal.html"></div>
+          <div x-permissions="pageImplementDelete || pageImplementManage" x-import="pages/delete_modal.html"></div>
+          <div x-permissions="pageImplementView || pageImplementManage" x-import="pages/view_modal.html"></div>
+          <div x-permissions="pageImplementSearch || pageImplementManage" x-import="pages/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.Pages##</h1>
+          </div>
+
+          <div class="top-actions">
+            <i-button x-permissions="pageImplementAdd || pageImplementManage" type="add" label="##word.New##" ng-click="displayAddPageImplement()"></i-button>
+
+            <i-button x-permissions="pageImplementsearch || pageImplementManage" type="search" label="##word.Search All##" ng-click="displaySearchModal()"></i-button>
+
+            <h3 class="bold text-center">##word.Count## : {{count}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table hover bold" id="t1">
+            <tr>
+              <th class="not-print">##word.Logo##</th>
+              <th>##word.Name##</th>
+              <th>##word.Url##</th>
+              <th class="not-print">##word.Actions##</th>
+            </tr>
+            <tr ng-repeat="c in list">
+              <td class="center not-print">
+                <i-image view class="logo" ng-model="c.image"></i-image>
+              </td>
+              <td class="center">{{c.title}}</td>
+              <td class="center">{{c.url}}</td>
+
+              <td class="center not-print">
+                <!--     <i-button x-permissions="pageImplementview || pageImplementManage" type="view"
+                label="##word.details##" ng-click="displayDetailsPageImplement(c)"></i-button> -->
+
+                <i-button x-permissions="pageImplementUpdate || pageImplementManage" type="edit" label="##word.Edit##" ng-click="displayUpdatePageImplement(c)"></i-button>
+
+                <i-button x-permissions="pageImplementDelete || pageImplementManage" type="delete" label="##word.Delete##" ng-click="displayDeletePageImplement(c)"></i-button>
+              </td>
+            </tr>
+          </table>
+          <i-button x-permissions="pageImplementPrint || pageImplementManage" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="lawyer-theme/scripts-dashboard.html"></div>
+    <script x-import="pages/index.js"></script>
+  </body>
+</html>

@@ -2,25 +2,19 @@
   <div class="tabs">
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#siteSettings')"> ##word.Site Settings## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#mainPage')"> ##word.Theme Setting## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#emailAndTextMessages')"> ##word.Email And Messages## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.Programming## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#block')"> ##word.Block## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#printerProgram')" ng-show="siteSetting.isCenter"> ##word.Printers Program## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#payment')"> ##word.Payment Setting## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#themePage')"> ##word.Theme Setting## </a>
     </div>
 
     <div class="tabs-content">
       <div id="siteSettings" class="tab-content">
         <div class="article-part">
-          <div class="row padding border margin">
-            <div class="row">
-              <i-control class="col6" label="##word.Ceo Manager##" ng-model="siteSetting.ceoManager"> </i-control>
-              <i-control class="col6" label="##word.Editor Manager##" ng-model="siteSetting.editorManager"> </i-control>
-            </div>
-          </div>
+          <div class="row padding border margin"></div>
 
           <div class="row">
             <i-control class="col6" label="##word.Email##" ng-model="siteSetting.email"> </i-control>
-            <i-control class="col6" label="##word.Sales Email##" ng-model="siteSetting.salesEmail"> </i-control>
+            <i-control class="col6" label="##word.Whatsapp##" ng-model="siteSetting.whatsapp"> </i-control>
           </div>
 
           <div class="row">
@@ -32,23 +26,6 @@
             <i-control class="col6" label="##word.Link## ##word.Google Store##" ng-model="siteSetting.googleStore"> </i-control>
             <i-control class="col6" label="##word.Link## ##word.Apple Store##" ng-model="siteSetting.appleStore"> </i-control>
           </div>
-
-          <fieldset>
-            <div class="row">
-              <div class="col6">
-                <i-checkbox class="" label="##word.Tax Number Show##" ng-model="siteSetting.taxNumberShow"> </i-checkbox>
-
-                <i-control label="##word.Tax Number##" ng-model="siteSetting.taxNumber"> </i-control>
-              </div>
-              <div class="col6">
-                <i-checkbox class="" label="##word.Commercial Registration Dont Show##" ng-model="siteSetting.commercialRegistrationNoShow"> </i-checkbox>
-                <i-control label="##word.Commercial Registration No.##" ng-model="siteSetting.commercialRegistrationNo"> </i-control>
-              </div>
-            </div>
-          </fieldset>
-          <!-- <div class="row">
-            <i-control class="col6" label="##word.link## ##word.huawei_store##" ng-model="siteSetting.huawei_store"> </i-control>
-          </div> -->
 
           <fieldset>
             <legend>##word.Social Media Accounts##</legend>
@@ -74,479 +51,192 @@
           </fieldset>
 
           <fieldset>
-           
-              <div class="row" >
-                <div class="col9">
-                  <div class="row">
-                    <i-control label="##word.Site Name##" class="col6" ng-model="siteSetting.siteName"> </i-control>
-                    <i-control label="##word.Title Separator##" class="col6" ng-model="siteSetting.titleSeparator"> </i-control>
-                  </div>
-                  <div class="row">
-                    <i-control label="##word.Site Slogan##" ng-model="siteSetting.siteSlogan"> </i-control>
-                  </div>
-                  <div class="row">
-                    <i-textarea ng-model="siteSetting.description" label="##word.Site Description##"> </i-textarea>
-                  </div>
-                  <fieldset>
-                    <i-control label="##word.Keywords##" ng-keydown="addKeyWords($event , siteSetting)" ng-model="siteSetting.$keyword"> </i-control>
-                    <div class="row">
-                      <div class="key-words" ng-repeat="k in siteSetting.keyWordsList">
-                        <span>{{k}}</span>
-                        <i class="fas fa-times delete-key" ng-click="siteSetting.keyWordsList.splice($index,1)"></i>
-                      </div>
-                    </div>
-                  </fieldset>
+            <div class="row">
+              <div class="col9">
+                <div class="row">
+                  <i-list
+                    class="col6"
+                    ng-show="!siteSetting.isShared"
+                    label="##word.Lawyer##"
+                    x-permissions="admin"
+                    ng-model="siteSetting.lawyer"
+                    display="firstName"
+                    items="lawyersList"
+                    ng-get="getLawyersList($search)"
+                  ></i-list>
                 </div>
-                <div class="col3">
-                  <i-image label="##word.Logo##" class="img128" ng-model="siteSetting.logo"></i-image>
+                <div class="row">
+                  <i-control label="##word.Site Name##" class="col6" ng-model="siteSetting.siteName"> </i-control>
+                  <i-control label="##word.Title Separator##" class="col6" ng-model="siteSetting.titleSeparator"> </i-control>
+                </div>
+
+                <div class="row">
+                  <i-control label="##word.powerd By Full Link##" ng-model="siteSetting.powerByLink"> </i-control>
+                </div>
+                <div class="row">
+                  <i-control label="##word.Site Slogan##" ng-model="siteSetting.siteSlogan"> </i-control>
+                </div>
+                <div class="row">
+                  <i-control label="##word.Register Alert##" ng-model="siteSetting.registerAlert"> </i-control>
+                </div>
+                <div class="row">
+                  <i-textarea ng-model="siteSetting.description" label="##word.Site Description##"> </i-textarea>
+                  <i-textarea ng-model="siteSetting.textOurPlacesTimes" label="##word.Text our places and times##"> </i-textarea>
                 </div>
               </div>
+
+              <div class="col3">
+                <div class="row">
+                  <i-checkbox label="##word.Shared Site##" ng-model="siteSetting.isShared"> </i-checkbox>
+                  <i-checkbox label="##word.Cities And Areas Show##" ng-model="siteSetting.citiesAndAreasShow"> </i-checkbox>
+                  <i-checkbox label="##word.Nationalities Show##" ng-model="siteSetting.nationalitiesShow"> </i-checkbox>
+                  <i-checkbox label="##word.Name Besid Logo Show##" ng-model="siteSetting.nameBesidLogoShow"> </i-checkbox>
+                  <i-checkbox label="##word.Banner Show##" ng-model="siteSetting.showBanner"> </i-checkbox>
+                </div>
+
+                <div class="row">
+                  <p class="right-content"><span class="red bold"> * </span> ##word.Site Logo##</p>
+                  <i-image label="##word.Logo##" class="img128" ng-model="siteSetting.logo"></i-image>
+                </div>
+
+                <div class="row">
+                  <p class="right-content"><span class="red bold"> * </span> ##word.Site Footer Logo##</p>
+                  <i-image label="##word.Logo##" class="img128" ng-model="siteSetting.footerLogo"></i-image>
+                </div>
+
+                <div class="row">
+                  <p class="right-content"><span class="red bold"> * </span> ##word.Banner##</p>
+                  <i-image label="##word.Logo##" class="img128" ng-model="siteSetting.banner"></i-image>
+                </div>
+
+             
+                <div class="row">
+                  <p class="right-content"><span class="red bold"> * </span> ##word.PowerdBy##</p>
+                  <i-image label="##word.Code Card##" class="img128" ng-model="siteSetting.powerdByLogo"></i-image>
+                </div>
+
+                <div class="row">
+                  <p class="right-content"><span class="red bold"> * </span> ##word.Background Image##</p>
+                  <i-image label="##word.Code Card##" class="img128" ng-model="siteSetting.backgroundImage"></i-image>
+                </div>
+
+              
+              </div>
+            </div>
           </fieldset>
         </div>
-        <i-button type="save" label="##word.Save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#siteSettings')"></i-button>
+        <i-button type="save" label="##word.Save##" ng-click="saveSetting('#siteSettings')"></i-button>
       </div>
-      <div id="mainPage" class="tab-content">
+      <div id="printerProgram" class="tab-content">
+        <fieldset>
+          <legend>##word.Printer Program##</legend>
+          <div class="row">
+            <i-list ng-search="siteSetting.$printerPath" class="col4" display="name" ng-model="siteSetting.thermalPrinter" label="##word.Thermal printer##" items="printersPathsList"> </i-list>
+            <i-control label="##word.Horizontal##" class="col2" type="number" ng-model="siteSetting.horizontalPrint"></i-control>
+            <i-control label="##word.Vertical##" class="col2" type="number" ng-model="siteSetting.verticalPrint"></i-control>
+            <div class="col1"></div>
+            <div class="col2">
+              <i-checkbox label="##word.Auto Print##" ng-model="siteSetting.autoPrint"> </i-checkbox>
+            </div>
+          </div>
+          <div class="row">
+            <fieldset>
+              <legend class="black">
+                ##word.Invoice Header##
+                <i-button type="push" ng-click="addInvoiceHeader()"> </i-button>
+              </legend>
+
+              <div ng-repeat="h in siteSetting.invoiceHeader track by $index" class="row">
+                <i-control class="col8" ng-model="h.name"></i-control>
+                <i-button class="col1" type="up" ng-click="upDownList(siteSetting.invoiceHeader, 'up',$index)" ng-hide="$index == 0"> </i-button>
+                <i-button class="col1" type="down" ng-click="upDownList(siteSetting.invoiceHeader, 'down',$index)" ng-hide="$index == (siteSetting.invoiceHeader.length - 1) "> </i-button>
+                <i-button class="col1" type="delete" ng-click="siteSetting.invoiceHeader.length ==1 || siteSetting.invoiceHeader.splice($index,1)"> </i-button>
+              </div>
+            </fieldset>
+
+            <div class="row">
+              <fieldset>
+                <legend class="black">
+                  ##word.Invoice Footer##
+                  <i-button type="push" ng-click="addInvoiceFooter()"> </i-button>
+                </legend>
+
+                <div ng-repeat="f in siteSetting.invoiceFooter track by $index" class="row">
+                  <i-control class="col8" ng-model="f.name"></i-control>
+                  <i-button class="col1" type="up" ng-click="upDownList(siteSetting.invoiceFooter, 'up',$index)" ng-hide="$index == 0"> </i-button>
+                  <i-button class="col1" type="down" ng-click="upDownList(siteSetting.invoiceFooter, 'down',$index)" ng-hide="$index == (siteSetting.invoiceFooter.length - 1) "> </i-button>
+                  <i-button class="col1" type="delete" ng-click="siteSetting.invoiceFooter.length ==1 || siteSetting.invoiceFooter.splice($index,1)"> </i-button>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <i-button type="save" label="##word.Save##" ng-click="saveSetting('#printerProgram')"></i-button>
+        </fieldset>
+      </div>
+      <div id="payment" class="tab-content">
+        <fieldset>
+          <legend>##word.Payment Program##</legend>
+
+          <div class="row">
+            <fieldset class="border">
+              <legend>##word.Purchase Types##</legend>
+              <div class="row">
+                <i-list label="##word.Purchase Type##" class="col3" ng-model="siteSetting.$purchaseType" display="name##session.lang##" items="purchaseTypeList"></i-list>
+                <i-control class="col3" label="##word.Account Number##" ng-model="siteSetting.$accountNumber"> </i-control>
+                <i-control class="col3" label="##word.Account Name##" ng-model="siteSetting.$accountName"> </i-control>
+                <i-button type="push" label="##word.Add Type##" ng-click="addPurchaseTypeList()"></i-button>
+
+                <div class="table-responsive">
+                  <table class="table center hover bold">
+                    <tr>
+                      <th>##word.Purchase Type##</th>
+                      <th>##word.Account Number##</th>
+                      <th>##word.Account Name##</th>
+                      <th>##word.Default##</th>
+                      <th class="not-print">##word.Actions##</th>
+                    </tr>
+                    <tr ng-repeat="g in siteSetting.purchaseTypeList">
+                      <td class="center">{{g.name##session.lang##}}</td>
+                      <td class="center">{{g.accountNumber}}</td>
+                      <td class="center">{{g.accountName}}</td>
+                      <td class="center"><i-checkbox class="row" ng-change="setPurchaseTypeDafault($index)" ng-model="g.default"></i-checkbox></td>
+
+                      <td class="center">
+                        <i-button type="delete" label="##word.Delete##" ng-click="siteSetting.purchaseTypeList.splice($index,1)"></i-button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <i-button type="save" label="##word.Save##" ng-click="saveSetting('#payment')"></i-button>
+        </fieldset>
+      </div>
+      <div id="themePage" class="tab-content">
         <div class="article-part">
           <div class="row">
-            <div class="row">
-              <i-list class="col4" v="r" ng-model="siteSetting.siteTemplate" items="siteTemplateList" display="name" label="##word.Site Template##"> </i-list>
-            </div>
-
             <div class="row padding margin border">
               <i-control v="r" class="col3" type="color" ng-model="siteSetting.siteBackground1" label="##word.Background## 1"></i-control>
               <i-control class="col3" type="color" ng-model="siteSetting.siteBackground2" label="##word.Background## 2"></i-control>
-              <i-control class="col3" type="color" ng-model="siteSetting.siteBackground3" label="##word.Menu Background##"></i-control>
-              <i-control class="col3" type="color" ng-model="siteSetting.siteBackground4" label="##word.Body Background##"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteBackground3" label="##word.Background## 3"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteBackground4" label="##word.Background## 4"></i-control>
             </div>
             <div class="row padding margin border">
               <i-control class="col3" type="color" ng-model="siteSetting.siteColor1" label="##word.Color## 1"></i-control>
               <i-control class="col3" type="color" ng-model="siteSetting.siteColor2" label="##word.Color## 2"></i-control>
-              <i-control class="col3" type="color" ng-model="siteSetting.siteColor3" label="##word.Menu Color##"></i-control>
-              <i-control class="col3" type="color" ng-model="siteSetting.siteColor4" label="##word.Body Color##"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteColor3" label="##word.Color## 3"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteColor4" label="##word.Color## 4"></i-control>
+            </div>
+
+            <div class="row padding margin border">
+              <i-control class="col3" type="color" ng-model="siteSetting.siteButtonColor" label="##word.Button Color##"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.siteButtonBackground" label="##word.Button Background##"></i-control>
+              <i-control class="col3" type="color" ng-model="siteSetting.labelColor" label="##word.Label Color##"></i-control>
             </div>
           </div>
         </div>
-        <div class="article-part">
-          <div class="row">
-            <fieldset>
-              <legend>##word.View Options##</legend>
-              <div class="row">
-                <div class="col4">
-                  <i-checkbox label="##word.Show Manager##" ng-model="siteSetting.showCEOinformation"> </i-checkbox>
-                  <i-checkbox label="##word.Show Editor Manager Articles##" ng-model="siteSetting.showEditorManagerArticle"></i-checkbox>
-                  <i-checkbox label="##word.Show Editors Articles##" ng-model="siteSetting.showEditorsArticle"></i-checkbox>
-                  <i-checkbox label="##word.Show Editor##" ng-model="siteSetting.showEditor"></i-checkbox>
-                  <i-checkbox label="##word.allow Follow Editor##" ng-model="siteSetting.allowFollowEditor"></i-checkbox>
-                  <i-checkbox label="##word.allow Share Editor##" ng-model="siteSetting.allowShareEditor"></i-checkbox>
-                  <i-checkbox label="##word.Show Image Gallary##" ng-model="siteSetting.showImageGallary"></i-checkbox>
-                  <i-checkbox label="##word.Show Video Gallary##" ng-model="siteSetting.showVideoGallary"></i-checkbox>
-                  <i-checkbox label="##word.Show Poll Questions##" ng-model="siteSetting.showPoll"></i-checkbox>
-                </div>
-                <div class="col4">
-                  <i-checkbox label="##word.Show Main Menu##" ng-model="siteSetting.showMainMenu"></i-checkbox>
-                  <i-checkbox label="##word.Show Footer##" ng-model="siteSetting.showFooter"></i-checkbox>
-                  <i-checkbox label="##word.Show Top News##" ng-model="siteSetting.showTopNews"></i-checkbox>
-                  <i-checkbox label="##word.Show Main Slider##" ng-model="siteSetting.showMainSlider"></i-checkbox>
-                  <i-checkbox label="##word.Show Logo##" ng-model="siteSetting.showLogo"></i-checkbox>
-                  <i-checkbox label="##word.Show Search Bar##" ng-model="siteSetting.showSearchBar"></i-checkbox>
-                  <i-checkbox label="##word.Show Follow Us##" ng-model="siteSetting.showFollowUs"></i-checkbox>
-                  <i-checkbox label="##word.Show Email Service##" ng-model="siteSetting.showEmailService"></i-checkbox>
-                </div>
-                <div class="col4">
-                  <i-checkbox label="##word.Allow Google Analytic##" ng-model="siteSetting.allowGoogleAnalytic"> </i-checkbox>
-                  <i-checkbox label="##word.Allow Google Ads##" ng-model="siteSetting.allowGoogleAds"> </i-checkbox>
-                  <i-checkbox label="##word.Show Top Ad##" ng-model="siteSetting.showTopAd"> </i-checkbox>
-                  <i-checkbox label="##word.Show Side Ad##" ng-model="siteSetting.showSideAd"></i-checkbox>
-                  <i-checkbox label="##word.Show Footer Ad##" ng-model="siteSetting.showFooterAd"></i-checkbox>
-                  <i-checkbox label="##word.Show Article Ad##" ng-model="siteSetting.showArticleAd"></i-checkbox>
-                  <i-checkbox label="##word.Activate Content Protected##" ng-model="siteSetting.contentProtected"></i-checkbox>
-                  <i-checkbox label="##word.Mouse Protected##" ng-model="siteSetting.mouseProtected"></i-checkbox>
-                  <i-checkbox label="##word.Developer Tools Protected##" ng-model="siteSetting.developerProtected"></i-checkbox>
-                </div>
-                <div class="col4"></div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="row">
-                <p class="col3 bold font-18">##word.Home Categories## :</p>
-              </div>
-              <div class="row">
-                <i-list label="##word.Category##" class="col6" ng-model="siteSetting.$category" items="categoryList" display="name" ng-search="siteSetting.article.$categorySearch"> </i-list>
-                <div class="col2">
-                  <br />
-                  <i-button type="push" ng-click="addMainCategory()"></i-button>
-                </div>
-              </div>
-              <table class="table hover bold">
-                <tr>
-                  <th>##word.S/N##</th>
-                  <th>##word.Name##</th>
-                  <th>##word.Template##</th>
-                  <th>##word.Limit##</th>
-                  <th class="not-print">##word.actions##</th>
-                </tr>
-
-                <tr ng-repeat="g in siteSetting.mainCategoryList track by $index">
-                  <td class="center">{{$index + 1 }}</td>
-                  <td class="center">{{g.name}}</td>
-                  <td class="center">
-                    <i-list ng-model="g.template" items="siteSetting.siteTemplate.categoryTemplateList"></i-list>
-                  </td>
-                  <td>
-                    <i-control ng-model="g.limit" type="number"></i-control>
-                  </td>
-                  <td class="center not-print">
-                    <i-button type="up" ng-click="upDownList(siteSetting.mainCategoryList, 'up',$index)" ng-hide="$index == 0"> </i-button>
-                    <i-button type="down" ng-click="upDownList(siteSetting.mainCategoryList, 'down',$index)" ng-hide="$index == (siteSetting.mainCategoryList.length - 1) "></i-button>
-                    <i-button type="delete" ng-click="siteSetting.mainCategoryList.splice($index,1)"> </i-button>
-                  </td>
-                </tr>
-              </table>
-            </fieldset>
-
-            <fieldset>
-              <div class="row">
-                <p class="col2 bold font-18">##word.Temperatures## :</p>
-                <i-checkbox label="##word.Show##" class="col3" ng-model="siteSetting.showTemperatures"></i-checkbox>
-              </div>
-
-              <div class="row" ng-show="siteSetting.showTemperatures">
-                <i-control class="col6" label="##word.Great##" ng-model="siteSetting.temperaturesGreat"> </i-control>
-                <i-control class="col6" label="##word.Minor##" ng-model="siteSetting.temperaturesMinor"> </i-control>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <div class="row">
-                <p class="col2 bold font-18">##word.Prayer Timings## :</p>
-                <i-button type="push" ng-show="siteSetting.showPrayerTimings" class="col1" ng-click="addPrayerTimings()"></i-button>
-                <i-checkbox label="##word.Show##" class="col3" ng-model="siteSetting.showPrayerTimings"></i-checkbox>
-              </div>
-
-              <table class="table hover bold" ng-show="siteSetting.showPrayerTimings">
-                <tr>
-                  <th>##word.Name##</th>
-                  <th>##word.Time##</th>
-                  <th class="not-print">##word.actions##</th>
-                </tr>
-
-                <tr ng-repeat="g in siteSetting.prayerTimingsList track by $index">
-                  <td class="center"><i-control type="text" ng-model="g.name"> </i-control></td>
-                  <td class="center"><i-control type="text" ng-model="g.time"> </i-control></td>
-
-                  <td class="center not-print">
-                    <i-button type="delete" ng-click="siteSetting.prayerTimingsList.splice($index,1)"> </i-button>
-                  </td>
-                </tr>
-              </table>
-            </fieldset>
-
-            <fieldset>
-              <div class="row">
-                <p class="col2 bold font-18">##word.Money Prices## :</p>
-                <i-button type="push" ng-show="siteSetting.showMoneyPrices" class="col1" ng-click="addMoneyPrices()"></i-button>
-                <i-checkbox label="##word.Show##" class="col3" ng-model="siteSetting.showMoneyPrices"></i-checkbox>
-              </div>
-
-              <table class="table hover bold" ng-show="siteSetting.showMoneyPrices">
-                <tr>
-                  <th>##word.Name##</th>
-                  <th>##word.Sell##</th>
-                  <th>##word.Buy##</th>
-                  <th class="not-print">##word.actions##</th>
-                </tr>
-
-                <tr ng-repeat="g in siteSetting.moneyPricesList track by $index">
-                  <td class="center"><i-control type="text" ng-model="g.name"> </i-control></td>
-                  <td class="center"><i-control type="number" ng-model="g.sell"> </i-control></td>
-                  <td class="center"><i-control type="number" ng-model="g.buy"> </i-control></td>
-
-                  <td class="center not-print">
-                    <i-button type="delete" ng-click="siteSetting.moneyPricesList.splice($index,1)"> </i-button>
-                  </td>
-                </tr>
-              </table>
-            </fieldset>
-
-            <fieldset>
-              <div class="row">
-                <p class="col2 bold font-18">##word.Gold Prices## :</p>
-                <i-button type="push" ng-show="siteSetting.showGoldPrices" class="col1" ng-click="addGoldPrices()"></i-button>
-                <i-checkbox label="##word.Show##" class="col3" ng-model="siteSetting.showGoldPrices"></i-checkbox>
-              </div>
-
-              <table class="table hover bold" ng-show="siteSetting.showGoldPrices">
-                <tr>
-                  <th>##word.Name##</th>
-                  <th>##word.Sales Price##</th>
-                  <th>##word.Purchase Price##</th>
-                  <th>##word.Percentage Change##</th>
-                  <th class="not-print">##word.actions##</th>
-                </tr>
-
-                <tr ng-repeat="g in siteSetting.goldPricesList track by $index">
-                  <td class="center"><i-control type="text" ng-model="g.name"> </i-control></td>
-                  <td class="center"><i-control type="number" ng-model="g.salesPrice"> </i-control></td>
-                  <td class="center"><i-control type="number" ng-model="g.purchasePrice"> </i-control></td>
-                  <td class="center">
-                    <br />
-                    <i-control type="number" class="row" ng-model="g.percentageChange"> </i-control>
-                    <div class="row">
-                      <i-radio ng-model="g.type" group="type_{{$index}}" class="col6" ng-value="increase" label="##word.Increase##"> </i-radio>
-                      <i-radio ng-model="g.type" group="type_{{$index}}" class="col6" ng-value="decrease" label="##word.Decrease##"> </i-radio>
-                    </div>
-                  </td>
-
-                  <td class="center not-print">
-                    <i-button type="delete" ng-click="siteSetting.goldPricesList.splice($index,1)"> </i-button>
-                  </td>
-                </tr>
-              </table>
-            </fieldset>
-
-            <fieldset>
-              <div class="row">
-                <p class="col2 bold font-18">##word.Match Schedule## :</p>
-                <i-button type="push" ng-show="siteSetting.showMatchSchedule" class="col1" ng-click="addMatchSchedule()"></i-button>
-                <i-checkbox label="##word.Show##" class="col3" ng-model="siteSetting.showMatchSchedule"></i-checkbox>
-              </div>
-
-              <table class="table hover bold" ng-show="siteSetting.showMatchSchedule">
-                <tr>
-                  <th>##word.logo## ##word.Team## 1</th>
-                  <th>##word.logo## ##word.Team## 2</th>
-                  <th>##word.Name## ##word.Team## 1</th>
-                  <th>##word.Name## ##word.Team## 2</th>
-                  <th>##word.Date##</th>
-                  <th>##word.Time##</th>
-                  <th class="not-print">##word.actions##</th>
-                </tr>
-
-                <tr ng-repeat="g in siteSetting.matchScheduleList track by $index">
-                  <td class="center not-print">
-                    <i-image class="imgsmall" ng-model="g.image1"></i-image>
-                  </td>
-                  <td class="center not-print">
-                    <i-image class="imgsmall" ng-model="g.image2"></i-image>
-                  </td>
-                  <td class="center"><i-control type="text" ng-model="g.name1"> </i-control></td>
-                  <td class="center"><i-control type="text" ng-model="g.name2"> </i-control></td>
-                  <td class="center"><i-control type="text" ng-model="g.date"> </i-control></td>
-                  <td class="center"><i-control type="text" ng-model="g.time"> </i-control></td>
-
-                  <td class="center not-print">
-                    <i-button type="delete" ng-click="siteSetting.matchScheduleList.splice($index,1)"> </i-button>
-                  </td>
-                </tr>
-              </table>
-            </fieldset>
-
-            <i-button type="save" label="##word.save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting()"></i-button>
-          </div>
-        </div>
-      </div>
-
-      <div id="emailAndTextMessages" class="tab-content">
-        <div class="article-part">
-          <fieldset>
-            <legend>##word.Mobile SMS##</legend>
-            <div class="row">
-              <div class="col6">
-                <div class="article-part">
-                  <i-checkbox label="##word.enableSendingMessagesMobile##" ng-model="siteSetting.enableSendingMessagesMobile"> </i-checkbox>
-                </div>
-              </div>
-
-              <i-control class="col6" label="##word.Auth Token Mobile##" ng-model="siteSetting.authTokenMobile"> </i-control>
-            </div>
-            <div class="row">
-              <i-control class="col6" label="##word.Account Id Mobile##" ng-model="siteSetting.accountIdMobile"> </i-control>
-              <i-control class="col6" label="##word.Messaging Services Id Mobile##" ng-model="siteSetting.messagingServicesIdMobile"> </i-control>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>##word.Email Sending Setting##</legend>
-            <div class="row">
-              <div class="col6">
-                <div class="article-part">
-                  <i-checkbox class="" label="##word.Allow Registration Through E-mail##" ng-model="siteSetting.allowRegistrationEmail"> </i-checkbox>
-                  <i-checkbox label="##word.enableSendingMessagesEmail##" ng-model="siteSetting.enableSendingMessagesEmail"> </i-checkbox>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <i-control class="col6" label="##word.Host##" type="text" ng-model="siteSetting.emailSetting.host"></i-control>
-              <i-control class="col6" label="##word.Port##" type="number" ng-model="siteSetting.emailSetting.port"></i-control>
-            </div>
-
-            <div class="row">
-              <i-control class="col6" label="##word.Username##" type="text" ng-model="siteSetting.emailSetting.username"></i-control>
-              <i-control class="col6" label="##word.Password##" type="password" ng-model="siteSetting.emailSetting.password"> </i-control>
-            </div>
-
-            <div class="row">
-              <i-control class="col6" label="##word.Sent From E-mail##" type="text" ng-model="siteSetting.emailSetting.from"> </i-control>
-            </div>
-          </fieldset>
-        </div>
-
-        <i-button type="save" label="##word.Save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#email_and_text_messages')"></i-button>
-      </div>
-
-      <div id="programming" class="tab-content">
-        <div class="article-part">
-          <fieldset>
-            <legend>
-              ##word.Meta Tags##
-              <i-button type="push" ng-click="addMetaTags(siteSetting.programming)"></i-button>
-            </legend>
-            <div class="row" ng-repeat="p in siteSetting.programming.metaTags track by $index">
-              <div class="row">
-                <i-control type="text" class="col9" ng-model="p.name"> </i-control>
-                <i-checkbox class="col2" label="active" ng-model="p.active"> </i-checkbox>
-                <i-button type="delete" label="##word.Delete##" ng-click="siteSetting.programming.metaTags.splice($index,1)"> </i-button>
-              </div>
-              <hr />
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>
-              ##word.Styles##
-              <i-button type="push" ng-click="addStyles(siteSetting.programming)"></i-button>
-            </legend>
-
-            <div class="row" ng-repeat="s in siteSetting.programming.styles track by $index">
-              <div class="row">
-                <i-control class="col9" type="text" ng-model="s.name"> </i-control>
-                <i-checkbox class="col2" label="active" ng-model="s.active"> </i-checkbox>
-                <i-button type="delete" label="##word.Delete##" ng-click="siteSetting.programming.styles.splice($index,1)"> </i-button>
-              </div>
-              <hr />
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>
-              ##word.Scripts##
-              <i-button type="push" ng-click="addScripts(siteSetting.programming)"></i-button>
-            </legend>
-
-            <div class="row" ng-repeat="s in siteSetting.programming.scripts track by $index">
-              <div class="row">
-                <i-control type="text" class="col9" ng-model="s.name"> </i-control>
-                <i-checkbox class="col2" label="active" ng-model="s.active"> </i-checkbox>
-                <i-button type="delete" label="##word.delete##" ng-click="siteSetting.programming.scripts.splice($index,1)"> </i-button>
-              </div>
-              <hr />
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>
-              ##word.Dynamic Route##
-              <i-button type="push" ng-click="showDynamicRoutes()"></i-button>
-            </legend>
-
-            <table class="table hover bold" ng-show="siteSetting.programming.dynamicRoutes.length > 0">
-              <tr>
-                <th>##word.URL##</th>
-                <th>##word.Content Type##</th>
-                <th class="w200">##word.Active##</th>
-                <th class="not-print w150">##word.Actions##</th>
-              </tr>
-
-              <tr ng-repeat="d in siteSetting.programming.dynamicRoutes track by $index">
-                <td class="center title">{{d.url}}</td>
-                <td class="center title">{{d.contentType}}</td>
-                <td class="center title"><i-checkbox label="active" ng-model="d.active"> </i-checkbox></td>
-
-                <td class="center not-print">
-                  <i-button type="delete" label="##word.delete##" ng-click="siteSetting.programming.dynamicRoutes.splice($index,1)"> </i-button>
-                </td>
-              </tr>
-            </table>
-          </fieldset>
-
-          <fieldset>
-            <legend>##word.Custom Style##</legend>
-            <i-textarea ng-model="siteSetting.programming.customStyle"> </i-textarea>
-          </fieldset>
-
-          <fieldset>
-            <legend>##word.Custom Script##</legend>
-            <i-textarea ng-model="siteSetting.programming.customScript"> </i-textarea>
-          </fieldset>
-
-          <fieldset>
-            <legend>##word.Ads.txt</legend>
-            <i-textarea ng-model="siteSetting.adsTxt"> </i-textarea>
-          </fieldset>
-
-          <fieldset>
-            <legend>##word.Ropots.txt</legend>
-            <i-textarea ng-model="siteSetting.robotsTxt"> </i-textarea>
-          </fieldset>
-
-          <div class="row">
-            <div class="col5">
-              <i-checkbox label="##word.Auto generate## sitemap.xml file" ng-model="siteSetting.programming.autoGenerateSitemapXmlFile"> </i-checkbox>
-            </div>
-            <div class="col9">
-              <i-control ng-show="siteSetting.programming.autoGenerateSitemapXmlFile" label="##word.Count##" type="number" ng-model="siteSetting.programming.sitemapXmlCount"> </i-control>
-            </div>
-          </div>
-        </div>
-        <i-button type="save" label="##word.save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#programming')"> </i-button>
-      </div>
-
-      <div id="block" class="tab-content">
-        <div class="article-part">
-          <div class="row">
-            <fieldset>
-              <legend>
-                IP
-                <i-button type="push" ng-click="addBlockIp(siteSetting.block)"></i-button>
-              </legend>
-              <div class="row" ng-repeat="i in siteSetting.block.ipList track by $index">
-                <i-control type="text" class="col9" ng-model="i.name"> </i-control>
-                <div class="col1"></div>
-                <i-button type="delete" label="##word.delete##" ng-click="siteSetting.block.ipList.splice($index,1)"> </i-button>
-              </div>
-            </fieldset>
-          </div>
-
-          <div class="row">
-            <fieldset>
-              <legend>
-                Domains / نطاق
-                <i-button type="push" ng-click="addBlockDomains(siteSetting.block)"></i-button>
-              </legend>
-              <div class="row" ng-repeat="d in siteSetting.block.domainsList track by $index">
-                <i-control type="text" class="col9" ng-model="d.name"> </i-control>
-                <div class="col1"></div>
-                <i-button type="delete" label="##word.delete##" ng-click="siteSetting.block.domainsList.splice($index,1)"> </i-button>
-              </div>
-            </fieldset>
-          </div>
-
-          <div class="row">
-            <fieldset>
-              <legend>
-                UserAgent / أداة المستخدم
-                <i-button type="push" ng-click="addBlockUserAgent(siteSetting.block)"></i-button>
-              </legend>
-              <div class="row" ng-repeat="u in siteSetting.block.userAgentList track by $index">
-                <i-control type="text" class="col9" ng-model="u.name"> </i-control>
-                <div class="col1"></div>
-                <i-button type="delete" label="##word.delete##" ng-click="siteSetting.block.userAgentList.splice($index,1)"> </i-button>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <i-button type="save" label="##word.save##" x-permissions="siteSettingEdit || siteSettingManage" ng-click="saveSetting('#block')"> </i-button>
+        <i-button type="save" label="##word.save##" ng-click="saveSetting('#themePage')"> </i-button>
       </div>
     </div>
   </div>

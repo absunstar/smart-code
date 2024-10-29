@@ -1,0 +1,29 @@
+<div id="pageImplementDeleteModal" class="modal">
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.Page Implement Delete##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+               <div x-import="pages/view.html"></div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="print" label="##word.Print##" onclick="site.print('#v1')"></i-button>
+
+            <i-button type="delete" label="##word.Delete##" ng-click="deletePageImplement(pages)"> </i-button>
+
+            <i-button type="close" label="##word.Close##" onclick="site.hideModal('#pageImplementDeleteModal')"> </i-button>
+
+        </div>
+    </div>
+    
+</div>

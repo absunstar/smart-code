@@ -9,6 +9,7 @@
             <i-button type="search" x-permissions="govesSearch || govesManage" label="##word.Not Active##" ng-click="searchAll(search={active:false})"></i-button>
         </div>
 
+        
         <div class="row padding">
             <i-control ng-model="$search" x-permissions="govesSearch || govesManage"></i-control>
         </div>
@@ -16,14 +17,13 @@
             <table class="table hover bold" id="t1">
                 <tr>
                     <th class="w150">##word.Logo##</th>
-
                     <th>##word.Country##</th>
                     <th>##word.Governorate##</th>
                     <th>##word.Status##</th>
                     <th class="not-print">##word.Actions##</th>
                 </tr>
                 <tr ng-repeat="item in list | filter:$search">
-                    <td>
+                    <td class="center">
                         <i-image view class="logo center" ng-model="item.image"></i-image>
                     </td>
                     <td class="center">{{item.country.name}}</td>

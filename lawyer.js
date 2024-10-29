@@ -1,7 +1,8 @@
 const site = require('../isite')({
   port: [80, 40009],
   lang: 'Ar',
-  version: Date.now(),
+  language: { id: "Ar", dir: "rtl", text: "right" },
+  version: new Date().getTime(),
   name: 'lawyer',
   savingTime: 5,
   log: true,
@@ -60,47 +61,41 @@ site.importApps(__dirname + '/appsLawyer');
 site.importApp(__dirname + '/apps_cms/cms');
 site.addFeature('lawyer');
 
-site.getMainHost = function (host = '') {
-  // if (host == 'localhost' || host == '127.0.0.1') {
-  //   return host;
-  // }
-  // let arr = host.split('.');
-  // if (arr.length > 1) {
-  //   let com = arr.pop();
-  //   let domain = arr.pop();
-  //   return '//' + domain + '.' + com;
-  // }
+site.getMainHost = function (host = "") {
+  if (host.contains("localhost") || host.contains("127.0.0.1")) {
+    return host;
+  }
+  let arr = host.split(".");
+  if (arr.length > 1) {
+    let com = arr.pop();
+    let domain = arr.pop();
+    return "//" + domain + "." + com;
+  }
   return host;
 };
 
-site.handleNotRoute = function (req, res) {
-  let host = req.headers['host'];
-  console.log('handleNotRoute : ', req.url);
-  res.end();
-};
-
 site.xtime = function (_time, lang) {
-  let since_few = ' Since few ';
-  let before = ' Ago ';
-  let second = ' Second ';
-  let minute = ' Minute ';
-  let hour = ' Hour ';
-  let day = ' Day ';
-  let month = ' Month ';
-  let year = ' Year ';
+  let since_few = " Since few ";
+  let before = " Ago ";
+  let second = " Second ";
+  let minute = " Minute ";
+  let hour = " Hour ";
+  let day = " Day ";
+  let month = " Month ";
+  let year = " Year ";
 
-  if (lang == 'Ar') {
-    since_few = ' منذ قليل ';
-    before = ' منذ ';
-    second = ' ثانية ';
-    minute = ' دقيقة ';
-    hour = ' ساعة ';
-    day = ' يوم ';
-    month = ' شهر ';
-    year = ' سنة ';
+  if (lang == "Ar") {
+    since_few = " منذ قليل ";
+    before = " منذ ";
+    second = " ثانية ";
+    minute = " دقيقة ";
+    hour = " ساعة ";
+    day = " يوم ";
+    month = " شهر ";
+    year = " سنة ";
   }
 
-  if (typeof _time == 'undefined' || !_time) {
+  if (typeof _time == "undefined" || !_time) {
     return since_few;
   }
   _time = new Date().getTime() - new Date(_time).getTime();
@@ -111,7 +106,7 @@ site.xtime = function (_time, lang) {
   let _type_2 = null;
 
   let times = [1, 1000, 60, 60, 24, 30, 12];
-  let times_type = ['x', second, minute, hour, day, month, year];
+  let times_type = ["x", second, minute, hour, day, month, year];
 
   let offset = new Date().getTimezoneOffset();
   if (false && offset < 0) {
@@ -139,10 +134,23 @@ site.xtime = function (_time, lang) {
   _time = Math.floor(_time);
   _time_2 = Math.floor(_time_2);
 
-  if (_time_2 == 0 || _type_2 == null || _type_2 == 'x') {
-    return [before, _time, _type].join(' ');
+  if (_time_2 == 0 || _type_2 == null || _type_2 == "x") {
+    return [before, _time, _type].join(" ");
   } else {
-    return [before, _time, _type, _time_2, _type_2].join(' ');
+    return [before, _time, _type, _time_2, _type_2].join(" ");
+  }
+};
+
+site.handleNotRoute = function (req, res) {
+  let host = req.headers["host"];
+  console.log("handleNotRoute : " + host + " : " + req.url + " - " + req.ip);
+  res.end();
+  return;
+  let setting = site.getSiteSetting(host);
+  if (!setting.host) {
+    res.redirect(site.getMainHost(host), 301);
+  } else {
+    res.redirect(setting.host);
   }
 };
 

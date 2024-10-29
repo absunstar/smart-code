@@ -60,18 +60,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -162,28 +158,29 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
+        let _data = req.data;
 
-          _data.addUserInfo = req.getUserFinger();
-
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
+        _data.addUserInfo = req.getUserFinger();
+        if ((lawyerId = site.getLawyerSetting(req))) {
+          _data.lawyerId = lawyerId;
         }
-      );
+
+        _data.host = site.getHostFilter(req.host);
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -260,84 +257,28 @@ module.exports = function init(site) {
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
-        let select = req.body.select || {
-          id: 1,
-          name: 1,
-          image: 1,
-          active: 1,
-        };
+        let select = req.body.select || { id: 1, name: 1, image: 1, image: 1, image: 1, image: 1, active: 1 };
         let list = [];
+        let lawyerId = site.getLawyerSetting(req);
+        let host = site.getHostFilter(req.host);
+        let setting = site.getSiteSetting(req.host);
+
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
+          if ((!where.active || doc.active) && ((doc.lawyerId === lawyerId && !setting.isShared) || (doc.host == host && setting.isShared))) {
+            list.push(obj);
+          }
+
           for (const p in obj) {
             if (!Object.hasOwnProperty.call(select, p)) {
               delete obj[p];
             }
-          }
-          if (!where.active || doc.active) {
-            list.push(obj);
           }
         });
         res.json({
           done: true,
           list: list,
         });
-      });
-
-      site.post(`api/${app.name}/import`, (req, res) => {
-        let response = {
-          done: false,
-          file: req.form.files.fileToUpload,
-        };
-
-        if (site.isFileExistsSync(response.file.filepath)) {
-          let docs = [];
-          if (response.file.originalFilename.like("*.xls*")) {
-            let workbook = site.XLSX.readFile(response.file.filepath);
-            docs = site.XLSX.utils.sheet_to_json(
-              workbook.Sheets[workbook.SheetNames[0]]
-            );
-          } else {
-            docs = site.fromJson(
-              site.readFileSync(response.file.filepath).toString()
-            );
-          }
-
-          if (Array.isArray(docs)) {
-            console.log(`Importing ${app.name} : ${docs.length}`);
-            docs.forEach((doc) => {
-            
-              let newDoc = {
-                name: doc.name ? doc.name.trim() : "",
-                image: { url: "/theme1/images/setting/typesPoa.png" },
-                active: true,
-              };
-
-              newDoc.company = site.getCompany(req);
-              newDoc.branch = site.getBranch(req);
-              newDoc.addUserInfo = req.getUserFinger();
-
-              app.add(newDoc, (err, doc2) => {
-                if (!err && doc2) {
-                  site.dbMessage = `Importing ${app.name} : ${doc2.id}`;
-                  console.log(site.dbMessage);
-                } else {
-                  site.dbMessage = err.message;
-                  console.log(site.dbMessage);
-                }
-              });
-            });
-          } else {
-            site.dbMessage =
-              "can not import unknown type : " + site.typeof(docs);
-            console.log(site.dbMessage);
-          }
-        } else {
-          site.dbMessage = "file not exists : " + response.file.filepath;
-          console.log(site.dbMessage);
-        }
-
-        res.json(response);
       });
     }
   }

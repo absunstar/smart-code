@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "printersPathsAdmin",
+    "En": "Printers Paths Admin",
+    "Ar": "إدارة مسارات الطابعات",
+    "permissions": ["printersPathsManage"]
+}]
