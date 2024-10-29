@@ -294,6 +294,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.groupsList = response.data.list;
+          
         }
       },
       function (err) {
@@ -339,6 +340,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
           $scope.item.studentList = response.data.doc.studentList;
           $scope.item.date = response.data.doc.validDay.date;
           $scope.item.day = response.data.doc.validDay.day;
+          
           $scope.item.subject = { ...$scope.item.group.subject };
           $scope.item.teacher = { ...$scope.item.group.teacher };
           $scope.item.educationalLevel = { ...$scope.item.group.educationalLevel };
@@ -415,17 +417,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.selectGroup = function () {
-    $scope.error = "";
-    $scope.item.subject = { ...$scope.item.group.subject };
-    $scope.item.teacher = { ...$scope.item.group.teacher };
-    $scope.item.educationalLevel = { ...$scope.item.group.educationalLevel };
-    $scope.item.schoolYear = { ...$scope.item.group.schoolYear };
-    delete $scope.item.group.subject;
-    delete $scope.item.group.teacher;
-    delete $scope.item.group.educationalLevel;
-    delete $scope.item.group.schoolYear;
-  };
+
 
   $scope.showSearch = function () {
     $scope.error = "";
