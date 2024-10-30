@@ -233,8 +233,7 @@ app.controller('security', function ($scope, $http, $interval) {
   $scope.remove = function (user) {
     $scope.view(user);
     $scope.user = {
-      image: { },
-
+      image: {},
       files: [],
       permissions: [],
       roles: [],

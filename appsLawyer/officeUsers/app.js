@@ -273,6 +273,7 @@ module.exports = function init(site) {
           type: 1,
           office: 1,
         };
+        
         if (search) {
           where.$or = [];
 
@@ -515,7 +516,7 @@ module.exports = function init(site) {
                 nameEn: doc.nameEn,
                 email: doc.email,
                 mobile: "0" + doc.mobile,
-                image: { url: "/images/officeUsers.png" },
+                image: {},
                 active: true,
               };
 

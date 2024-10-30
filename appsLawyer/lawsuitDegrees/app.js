@@ -276,7 +276,7 @@ module.exports = function init(site) {
                          
                             let newDoc = {
                                 name: doc.name ? doc.name.trim() : '',
-                                image: { url: '/theme1/images/setting/lawsuitDegrees.png' },
+                                image: {},
                                 active: true,
                             };
 

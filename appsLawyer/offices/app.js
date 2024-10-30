@@ -340,7 +340,7 @@ module.exports = function init(site) {
             docs.forEach((doc) => {
               let newDoc = {
                 name: doc.name ? doc.name.trim() : "",
-                image: { url: "/theme1/images/setting/offices.png" },
+                image: {},
                 active: true,
               };
 

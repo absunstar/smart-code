@@ -5,7 +5,7 @@ app.controller("opposingCounsels", function ($scope, $http, $timeout) {
   $scope.modalSearchID = "#opposingCounselsSearchModal";
   $scope.mode = "add";
   $scope.structure = {
-    image: { url: "/images/opposingCounsels.png" },
+    image: {},
     active: true,
   };
   $scope.item = {};

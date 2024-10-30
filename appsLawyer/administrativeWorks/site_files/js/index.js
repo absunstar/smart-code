@@ -5,7 +5,7 @@ app.controller("administrativeWorks", function ($scope, $http, $timeout) {
   $scope.modalSearchID = "#administrativeWorksSearchModal";
   $scope.mode = "add";
   $scope.structure = {
-    image: { url: "/theme1/images/setting/administrativeWorks.png" },
+    image: {},
     active: true,
   };
   $scope.item = {};

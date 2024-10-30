@@ -8,7 +8,7 @@ app.controller(
     $scope.mode = "add";
     $scope._search = {};
     $scope.structure = {
-      image: { url: "/theme1/images/setting/requestConsultations.png" },
+      image: {},
       active: true,
     };
     $scope.item = {};

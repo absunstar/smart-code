@@ -5,7 +5,7 @@ app.controller("sessions", function ($scope, $http, $timeout) {
   $scope.modalSearchID = "#sessionsSearchModal";
   $scope.mode = "add";
   $scope.structure = {
-    image: { url: "/theme1/images/setting/sessions.png" },
+    image: {},
     active: true,
   };
   $scope.userOfficesList = "##session.user.officesList##"

@@ -379,7 +379,7 @@ module.exports = function init(site) {
                 lastName: doc.lastName,
                 email: doc.email,
                 mobile: "0" + doc.mobile,
-                image: { url: "/images/opposingCounsels.png" },
+                image: {},
                 active: true,
               };
 

@@ -302,7 +302,7 @@ module.exports = function init(site) {
                             let newDoc = {
                                 nameAr: doc.nameAr,
                                 nameEn: doc.nameEn,
-                                image: { url: '/images/services.png' },
+                                image: {},
                                 active: true,
                             };
 

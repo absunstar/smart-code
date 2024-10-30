@@ -5,7 +5,7 @@ app.controller("officeUsers", function ($scope, $http, $timeout) {
   $scope.modalSearchID = "#officeUsersSearchModal";
   $scope.mode = "add";
   $scope.structure = {
-    image: { url: "/images/officeUsers.png" },
+    image: {},
     active: true,
   };
   

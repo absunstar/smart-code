@@ -5,7 +5,7 @@ app.controller("powerOfAttorney", function ($scope, $http, $timeout) {
   $scope.modalSearchID = "#powerOfAttorneySearchModal";
   $scope.mode = "add";
   $scope.structure = {
-    image: { url: "/theme1/images/setting/powerOfAttorney.png" },
+    image: {},
     active: true,
   };
   $scope.item = {};

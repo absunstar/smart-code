@@ -2,7 +2,9 @@
   <div class="row padding">
     <div class="col9">
       <div class="row">
+
         <i-checkbox ng-model="item.active" label="##word.Active##"></i-checkbox>
+
         <i-list
           label="##word.Educational Level##"
           ng-change="getSchoolYearsList(item.educationalLevel.id)"
@@ -12,10 +14,15 @@
           items="educationalLevelsList"
           ng-search="item.$educationalLevel"
         ></i-list>
+
         <i-list label="##word.School Year##" v="r" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>
+
         <i-list label="##word.Subject##" ng-model="item.subject" display="name" items="subjectsList"></i-list>
+
         <i-control type="text" v="r" ng-model="item.name" label="##word.Name##"></i-control>
+
         <i-control type="number" v="r" ng-model="item.price" label="##word.Price##"></i-control>
+
       </div>
     </div>
     <div class="col3">

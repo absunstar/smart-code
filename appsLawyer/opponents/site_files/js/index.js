@@ -5,7 +5,7 @@ app.controller("opponents", function ($scope, $http, $timeout) {
   $scope.modalSearchID = "#opponentsSearchModal";
   $scope.mode = "add";
   $scope.structure = {
-    image: { url: "/images/opponents.png" },
+    image: {},
     active: true,
   };
   $scope.item = {};
