@@ -220,7 +220,8 @@ module.exports = function init(site) {
                   },
                   (err, user) => {
                     if (!err && user) {
-                      if (doc.purchaseType.name != "code") {
+                      
+                      if (doc.purchaseType?.name != "code") {
                         if (doc.type == "lecture") {
                           if (!user.lecturesList.some((l) => l.lectureId == doc.target.id)) {
                             user.lecturesList.push({
