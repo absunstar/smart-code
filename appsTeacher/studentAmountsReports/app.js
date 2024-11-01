@@ -135,7 +135,7 @@ module.exports = function init(site) {
             if (groups instanceof Array) {
               let dateFrom = where.dateFrom ? site.getDate(where.dateFrom) : null;
               let dateTo = where.dateTo ? site.getDate(where.dateTo) : null;
-              // dateTo1.setMonth(dateTo1.getMonth() + 1);
+               dateTo.setDate(dateTo.getDate() + 1);
               for (let i = 0; i < groups.length; i++) {
                 let studentObj = groups[i].studentList.find((s) => s.student.id == where.student.id);
                 let dateFrom1 = where.dateFrom ? site.getDate(where.dateFrom) : null;
