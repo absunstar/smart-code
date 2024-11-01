@@ -671,6 +671,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $timeout(() => {
       item.discountValue = ($scope.item.price * item.discount) / 100;
       item.requiredPayment = $scope.item.price - item.discountValue;
+      $scope.calcRemain(item)
     }, 300);
   };
   $scope.exemptPayment = function (item, option) {

@@ -992,6 +992,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
     $timeout(() => {
       item.discountValue = ($scope.studentGroupItem.price * item.discount) / 100;
       item.requiredPayment = $scope.studentGroupItem.price - item.discountValue;
+      $scope.calcRemain(item)
     }, 300);
   };
   $scope.exemptPayment = function (item, option) {
@@ -1011,6 +1012,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
         return;
       }
       item.$remain = item.requiredPayment - item.$price;
+
     }, 300);
   };
 
