@@ -15,7 +15,7 @@
             <i-date v="r" class="col6" ng-model="search.dateTo" label="##word.Date To##"></i-date>
           </div>
           <div class="row">
-            <i-list class="col6" v="r" label="##word.Student##" ng-model="search.student" display="firstName" items="studentsList" ng-get="getStudentsList($search)"></i-list>
+            <i-list class="col6" label="##word.Student##" ng-model="search.student" display="firstName" items="studentsList" ng-get="getStudentsList($search)"></i-list>
             <i-button class="col3" label="##word.Search##" type="search" ng-click="getAll(search)"></i-button>
           </div>
         </div>

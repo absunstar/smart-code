@@ -60,7 +60,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       if ($scope.isOpen) {
         $scope.save();
       }
-    }, 1000 * 40);
+    }, 1000 * 60);
   };
 
   $scope.autoSave();
