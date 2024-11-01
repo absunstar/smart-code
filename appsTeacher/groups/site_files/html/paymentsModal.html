@@ -84,7 +84,7 @@
         <i-list label="##word.Month##" disabled ng-model="studentItem.$month" class="col2" display="name##session.lang##" items="monthList"></i-list>
         <i-control type="number" disabled class="col2" ng-model="studentItem.requiredPayment" label="##word.Required payment## ##word.$##"></i-control>
         <i-control type="number" class="col2" ng-change="calcRemain(studentItem)" ng-model="studentItem.$price" label="##word.Paid## ##word.$##"></i-control>
-        <i-control type="number"  class="col1" ng-model="studentItem.discount" label="##word.Discount## %"></i-control>
+        <i-control type="number"  class="col1" ng-change="calcRequiredPayment(studentItem)" ng-model="studentItem.discount" label="##word.Discount## %"></i-control>
         <i-control type="number" disabled class="col1" ng-model="studentItem.$remain" label="##word.Remain## ##word.$##"></i-control>
         <i-button type="push" class="col1" label="##word.Pay##" ng-click="addStudentPayment(studentItem)"></i-button>
       </div>
