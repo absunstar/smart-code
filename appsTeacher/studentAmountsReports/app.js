@@ -141,6 +141,10 @@ module.exports = function init(site) {
                 let dateFrom1 = where.dateFrom ? site.getDate(where.dateFrom) : null;
                 let dateTo1 = where.dateTo ? site.getDate(where.dateTo) : null;
                 dateTo1.setDate(dateTo1.getDate() + 1);
+                result.date = {
+                  dateFrom1,
+                  dateTo1
+                }
                 let monthList = [];
                 while (dateFrom1 < dateTo1) {
                   monthList.push({ month: dateFrom1.getMonth(), year: dateFrom1.getFullYear(), isFound: false });
