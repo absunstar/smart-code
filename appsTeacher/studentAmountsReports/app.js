@@ -140,6 +140,7 @@ module.exports = function init(site) {
                 let studentObj = groups[i].studentList.find((s) => s.student.id == where.student.id);
                 let dateFrom1 = where.dateFrom ? site.getDate(where.dateFrom) : null;
                 let dateTo1 = where.dateTo ? site.getDate(where.dateTo) : null;
+                dateTo1.setDate(dateTo1.getDate() + 1);
                 let monthList = [];
                 while (dateFrom1 < dateTo1) {
                   monthList.push({ month: dateFrom1.getMonth(), year: dateFrom1.getFullYear(), isFound: false });
