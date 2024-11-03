@@ -101,7 +101,7 @@
               <th>##word.Notes##</th>
               <th class="not-print">##word.Actions##</th>
             </tr>
-            <tr ng-repeat="s in item.studentList | filter:$search | filter:$search2">
+            <tr ng-repeat="s in item.studentList | filter:$search2">
               <td class="center" ng-class="{'bg-yellow' : s.new === true}">
                 {{s.student.firstName}}
                 <p ng-show="s.new">( {{s.group.name}} )</p>
