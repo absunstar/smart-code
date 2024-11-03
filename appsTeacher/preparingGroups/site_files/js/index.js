@@ -294,7 +294,6 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.groupsList = response.data.list;
-          
         }
       },
       function (err) {
@@ -340,18 +339,18 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
           $scope.item.studentList = response.data.doc.studentList;
           $scope.item.date = response.data.doc.validDay.date;
           $scope.item.day = response.data.doc.validDay.day;
-          
+
           $scope.item.subject = { ...$scope.item.group.subject };
           $scope.item.teacher = { ...$scope.item.group.teacher };
           $scope.item.educationalLevel = { ...$scope.item.group.educationalLevel };
           $scope.item.schoolYear = { ...$scope.item.group.schoolYear };
           $scope.item.group = {
-            _id : $scope.item.group._id,
-            id : $scope.item.group.id,
-            name : $scope.item.group.name,
-            paymentMethod : $scope.item.group.paymentMethod,
-            price : $scope.item.group.price,
-          }
+            _id: $scope.item.group._id,
+            id: $scope.item.group.id,
+            name: $scope.item.group.name,
+            paymentMethod: $scope.item.group.paymentMethod,
+            price: $scope.item.group.price,
+          };
         } else {
           $scope.error = response.data.error;
         }
@@ -396,13 +395,21 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       $scope.item.notPaidCount = $scope.item.studentList.filter((s) => s.paidType == "notPaid").length;
     }
   };
+  $scope.removeStudent = function (item) {
+    let index = $scope.item.studentList.findIndex((itm) => itm.student.id == item.student.id);
+    if (index !== -1) {
+      $scope.item.studentList.splice(index, 1);
+      $scope.numberAbsencesAttendance();
+      $scope.getStudentPaid();
+    }
+  };
   $scope.setAttendance = function (item, type) {
     $scope.error = "";
     let date = new Date();
     if (type == "attend") {
       item.attendTime = {
         hour: date.getHours(),
-        minute: date.getMinutes()
+        minute: date.getMinutes(),
       };
       item.attend = true;
     } else if (type == "absence") {
@@ -410,14 +417,12 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
       delete item.attendTime;
       delete item.departureTime;
     } else if (type == "departure") {
-      item.departureTime =  {
+      item.departureTime = {
         hour: date.getHours(),
-        minute: date.getMinutes()
+        minute: date.getMinutes(),
       };
     }
   };
-
-
 
   $scope.showSearch = function () {
     $scope.error = "";
@@ -445,7 +450,7 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
         if (!$scope.item.studentList[index].attend) {
           $scope.item.studentList[index].attendTime = {
             hour: new Date().getHours(),
-            minute: new Date().getMinutes()
+            minute: new Date().getMinutes(),
           };
           $scope.item.studentList[index].attend = true;
 
@@ -484,13 +489,13 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
                   attend: true,
                   attendTime: {
                     hour: new Date().getHours(),
-                    minute: new Date().getMinutes()
+                    minute: new Date().getMinutes(),
                   },
                 };
                 if ($scope.item.group.paymentMethod && $scope.item.group.paymentMethod.name == "lecture") {
                   stu.paidType = "notPaid";
                 }
-                if(response.data.doc?.group?.id != $scope.item.group.id){
+                if (response.data.doc?.group?.id != $scope.item.group.id) {
                   stu.new = true;
                   stu.group = response.data.doc.group;
                 }
