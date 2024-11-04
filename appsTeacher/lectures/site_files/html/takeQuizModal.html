@@ -15,6 +15,10 @@
     padding: 1px;
   }
 
+  i-checkbox label {
+    color: black !important;
+  }
+
   @media screen and (max-width: 480px) {
     .form-check-input[type='checkbox'] {
       border-radius: 0.25em;
@@ -35,7 +39,7 @@
       <br />
       <div class="row padding margin" ng-repeat="question in quiz.questionsList">
         <fieldset>
-          <legend>{{question.numbering}} <b ng-show="question.questionType.name=='text'">- {{question.name}}</b></legend>
+          <legend class="black">{{question.numbering}} <b ng-show="question.questionType.name=='text'">- {{question.name}}</b></legend>
           <div class="row" ng-show="question.questionType.name=='photo'">
             <img onclick="site.zoomElement(this)" ng-src="{{question.image.url}}" alt="" />
           </div>

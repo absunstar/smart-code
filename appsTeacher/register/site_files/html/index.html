@@ -158,13 +158,10 @@
                 <i-list x-data="setting.citiesAndAreasShow" label="##word.City##" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name"> </i-list>
                 <i-list x-data="setting.citiesAndAreasShow" label="##word.Area##" ng-model="user.area" items="areasList" display="name"> </i-list>
                 <i-control v="r" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
-                <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
-                <i-control v="r" class="pass input-style" label="##word.Password##" type="password" ng-model="user.password"> </i-control>
-                <i-control v="r" class="pass input-style" label="##word.Retype Password##" type="password" ng-model="user.rePassword"> </i-control>
-                <i-checkbox class="right" label="##word.Show Password##" ng-change="showPassword()" ng-model="show_password"> </i-checkbox>
+             
               </div>
-              <div class="col2"></div>
-              <div class="col3">
+              <div class="col1"></div>
+              <div class="col5">
                 <div class="row">
                   <p class="right-content label-color"><span class="red bold"> * </span> ##word.Profile Image##</p>
                   <i-image v="r" class="img256" ng-model="user.image"></i-image>
@@ -180,6 +177,11 @@
                   <p class="font-20 text-right label-color">##word.Latitude## :{{user.latitude}}</p>
                   <p class="font-20 text-right label-color">##word.Longitude## : {{user.longitude}}</p>
                 </div>
+
+                <i-control v="r" class="input-style" label="##word.Login E-mail Or Mobile##" ng-model="user.email"> </i-control>
+                <i-control v="r" class="pass input-style" label="##word.Password##" type="password" ng-model="user.password"> </i-control>
+                <i-control v="r" class="pass input-style" label="##word.Retype Password##" type="password" ng-model="user.rePassword"> </i-control>
+                <i-checkbox class="right" label="##word.Show Password##" ng-change="showPassword()" ng-model="show_password"> </i-checkbox>
               </div>
             </div>
 

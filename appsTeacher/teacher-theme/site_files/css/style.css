@@ -688,9 +688,14 @@ fieldset legend {
   text-shadow: 1px 1px 0px #ffffff, 1px 2px 0px #c4c4c4, 1px 3px 0px #cccccc, 1px 4px 0px #bfbfbf, 1px 5px 0px #9a9a9a, 1px 6px 0px #e4e4e4, 1px 10px 5px rgb(199 199 199 / 64%),
     1px 15px 10px rgb(122 122 122 / 40%), 1px 20px 30px rgb(182 182 183 / 30%), 1px 25px 50px rgb(198 198 198 / 20%); */
 }
-
+.modal-footer {
+  flex-wrap: wrap;
+}
+.error {
+  font-size: large;
+}
 .banner-viewAll {
-  float: left;
+  /*   float: left; */
   font-size: large;
   margin-top: 10px;
   font-family: sans-serif;

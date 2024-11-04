@@ -137,12 +137,12 @@
 }
 .cbh-phone p {
   font-weight: bold;
-  font-size: larger;
+  font-size: large;
   position: absolute;
   top: 70px;
   color: white;
   font-family: "Droid Arabic Kufi" !important;
-  left: 145px;
+  left: 135px;
   background: linear-gradient(120deg, rgb(64 245 187) 0%, rgb(46 203 113) 100%);
   padding: 10px;
   border-radius: 20px 20px 20px 0px;
