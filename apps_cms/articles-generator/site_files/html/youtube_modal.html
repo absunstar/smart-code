@@ -19,7 +19,10 @@
             <th>##word.logo##</th>
             <th>##word.title##</th>
             <th>##word.Options##</th>
-            <th>##word.Actions##</th>
+            <th>
+              ##word.Actions##
+              <i-button label="##word.Load All Videos##" type="search" ng-click="getAllYoutubeVideoList()"></i-button>
+            </th>
           </tr>
           <tr ng-repeat="channel in youtubeList">
             <td><img class="logo" ng-src="{{channel.image.url}}" /></td>
@@ -33,6 +36,7 @@
             </td>
             <td>
               <i-button label="##word.Load Videos##" type="search" ng-click="getYoutubeVideoList(channel)"></i-button>
+              <i-button label="##word.Load Videos##" type="open" ng-click="openURL(channel.url)"></i-button>
               <i-button type="save" ng-click="youtubeUpdate(channel)"></i-button>
               <i-button type="delete" ng-click="youtubeDelete(channel)"></i-button>
             </td>
