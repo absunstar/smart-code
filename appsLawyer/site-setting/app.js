@@ -74,28 +74,6 @@ module.exports = function init(site) {
     );
   };
 
-  site.getLawyerSetting = function (req) {
-    let lawyerId = null;
-    let setting = site.settingList.find((s) => s.host.like(req.host)) || {
-      ...site.defaultSetting,
-      ...site.settingList[0],
-      host: "",
-    };
-
-    if (setting.isShared) {
-      if (req.session.user && req.session.user.type == "lawyer") {
-        lawyerId = req.session.user.id;
-      } else if (req.session.selectedLawyerId) {
-        lawyerId = req.session.selectedLawyerId;
-      }
-    } else {
-      if (setting.lawyer && setting.lawyer.id) {
-        lawyerId = setting.lawyer.id;
-      }
-    }
-    return lawyerId;
-  };
-
   $siteSetting.findAll({ sort: { id: 1 } }, (err, docs) => {
     if (!err && docs && docs.length > 0) {
       docs.forEach((doc) => {
@@ -170,7 +148,6 @@ module.exports = function init(site) {
     data.host = data.host || req.host;
     let index = site.settingList.findIndex((s) => s.host == data.host);
     data.nameNotBesidLogoShow = data.nameBesidLogoShow ? false : true;
-    data.lawyerId = data.lawyer && data.lawyer.id ? data.lawyer.id : 0;
     if (index > -1) {
       $siteSetting.edit(data, (err, result) => {
         if (!err && result.doc) {

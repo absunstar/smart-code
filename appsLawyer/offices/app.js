@@ -186,6 +186,7 @@ module.exports = function init(site) {
           let _data = req.data;
 
           _data.addUserInfo = req.getUserFinger();
+          _data.host = site.getHostFilter(req.host);
 
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -273,6 +274,7 @@ module.exports = function init(site) {
 
     if (app.allowRouteAll) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+        let host = site.getHostFilter(req.host);
         let where = req.body.where || {};
         let select = req.body.select || {
           id: 1,
@@ -289,7 +291,7 @@ module.exports = function init(site) {
               delete obj[p];
             }
           }
-          if (!where.active || doc.active) {
+          if (!where.active || doc.active && (doc.host == host)) {
             if (req.session.user) {
               if (req.session.user.type == "lawyer") {
                 if (req.body.type == "owner") {

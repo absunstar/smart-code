@@ -166,9 +166,6 @@ module.exports = function init(site) {
         let _data = req.data;
 
         _data.addUserInfo = req.getUserFinger();
-        if ((lawyerId = site.getLawyerSetting(req))) {
-          _data.lawyerId = lawyerId;
-        }
 
         _data.host = site.getHostFilter(req.host);
         app.add(_data, (err, doc) => {
@@ -258,23 +255,11 @@ module.exports = function init(site) {
       site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
         let where = req.body.where || {};
         let select = req.body.select || { id: 1, name: 1, image: 1, image: 1, image: 1, image: 1, active: 1 };
-        let list = [];
-        let lawyerId = site.getLawyerSetting(req);
-        let host = site.getHostFilter(req.host);
-        let setting = site.getSiteSetting(req.host);
 
-        app.memoryList.forEach((doc) => {
-          let obj = { ...doc };
-          if ((!where.active || doc.active) && ((doc.lawyerId === lawyerId && !setting.isShared) || (doc.host == host && setting.isShared))) {
-            list.push(obj);
-          }
-
-          for (const p in obj) {
-            if (!Object.hasOwnProperty.call(select, p)) {
-              delete obj[p];
-            }
-          }
-        });
+        if (!search) {
+          search = "id";
+        }
+        let list = app.memoryList.filter((g) => (typeof where.active != "boolean" || g.active === where.active) && JSON.stringify(g).contains(search)).slice(0, limit);
         res.json({
           done: true,
           list: list,

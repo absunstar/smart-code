@@ -543,10 +543,14 @@ button:hover::before {
     margin-top: 0;
   }
   h2 {
+    white-space: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 32px;
     text-align: center;
     font-family: "Font Awesome 5 Free";
     color: white;
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   ins {
     text-decoration: none;
@@ -565,7 +569,7 @@ button:hover::before {
       margin: 0.5rem 0;
       color: #e6edff;
       overflow: hidden;
-      height: 123px;
+      height: 130px;
       white-space: inherit;
       text-overflow: ellipsis;
     }

@@ -21,16 +21,9 @@ module.exports = function init(site) {
     callBack = callBack || function () {};
     let Consultations = [];
     if (where["lawyer.id"]) {
-      Consultations = site.consultationsList.filter(
-        (a) =>
-          where["status.name"] == a.status.name &&
-          a.lawyer &&
-          where["lawyer.id"] == a.lawyer.id
-      );
+      Consultations = site.consultationsList.filter((a) => where["status.name"] == a.status.name && a.lawyer && where["lawyer.id"] == a.lawyer.id);
     } else {
-      Consultations = site.consultationsList.filter(
-        (a) => where["status.name"] == a.status.name
-      );
+      Consultations = site.consultationsList.filter((a) => where["status.name"] == a.status.name);
     }
     if (Consultations.length > 0) {
       callBack(null, Consultations);
@@ -98,18 +91,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -195,21 +184,14 @@ module.exports = function init(site) {
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/lawyer/images/logo.png",
             page_image: setting.logo?.url || "/lawyer/images/logo.png",
-            user_image:
-              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/lawyer/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
-            page_title:
-              setting.siteName +
-              " " +
-              setting.titleSeparator +
-              " " +
-              setting.siteSlogan,
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
             page_keywords: setting.keyWordsList.join(","),
-            typesConsultationsList:
-              site.getApp("typesConsultations").memoryList,
+            typesConsultationsList: site.getApp("typesConsultations").memoryList,
             specialtiesList: site.getApp("specialties").memoryList,
             servicesList: site.getApp("services").memoryList,
             newList: site.getApp("manageUsers").newList,
@@ -241,21 +223,14 @@ module.exports = function init(site) {
             filter: site.getHostFilter(req.host),
             site_logo: setting.logo?.url || "/lawyer/images/logo.png",
             page_image: setting.logo?.url || "/lawyer/images/logo.png",
-            user_image:
-              req.session?.user?.image?.url || "/lawyer/images/logo.png",
+            user_image: req.session?.user?.image?.url || "/lawyer/images/logo.png",
             site_name: setting.siteName,
             page_lang: setting.id,
             page_type: "website",
-            page_title:
-              setting.siteName +
-              " " +
-              setting.titleSeparator +
-              " " +
-              setting.siteSlogan,
+            page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
             page_description: setting.description.substr(0, 200),
             page_keywords: setting.keyWordsList.join(","),
-            typesConsultationsList:
-              site.getApp("typesConsultations").memoryList,
+            typesConsultationsList: site.getApp("typesConsultations").memoryList,
             specialtiesList: site.getApp("specialties").memoryList,
             servicesList: site.getApp("services").memoryList,
             newList: site.getApp("manageUsers").newList,
@@ -292,37 +267,35 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
+        let _data = req.data;
 
-          _data.status = site.consultationsStatusList[0];
-          _data.repliesList = [];
-          _data.date = new Date();
-          _data.watchCount = 0;
-          _data.user = {
-            firstName: req.session.user.firstName,
-            lastName: req.session.user.lastName,
-            id: req.session.user.id,
-            image: req.session.user.image,
-          };
+        _data.status = site.consultationsStatusList[0];
+        _data.repliesList = [];
+        _data.date = new Date();
+        _data.watchCount = 0;
+        _data.user = {
+          firstName: req.session.user.firstName,
+          lastName: req.session.user.lastName,
+          id: req.session.user.id,
+          image: req.session.user.image,
+        };
+        _data.host = site.getHostFilter(req.host);
 
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -362,9 +335,7 @@ module.exports = function init(site) {
           };
           let _data = req.data;
           app.view({ id: _data.id }, (err, doc) => {
-            let index = doc.repliesList.findIndex(
-              (itm) => itm.code === _data.code
-            );
+            let index = doc.repliesList.findIndex((itm) => itm.code === _data.code);
             if (_data.type == "addReply") {
               if (!_data.comment) {
                 response.error = "Must Add Comment";
@@ -431,16 +402,10 @@ module.exports = function init(site) {
               });
             } else if (_data.type == "unsupport") {
               doc.repliesList[index].supportCount -= 1;
-              doc.repliesList[index].supportList = doc.repliesList[
-                index
-              ].supportList.filter((person) => person.user.id != _data.userId);
+              doc.repliesList[index].supportList = doc.repliesList[index].supportList.filter((person) => person.user.id != _data.userId);
             } else if (_data.type == "unopposition") {
               doc.repliesList[index].oppositionCount -= 1;
-              doc.repliesList[index].oppositionList = doc.repliesList[
-                index
-              ].oppositionList.filter(
-                (person) => person.user.id != _data.userId
-              );
+              doc.repliesList[index].oppositionList = doc.repliesList[index].oppositionList.filter((person) => person.user.id != _data.userId);
             } else if (_data.type == "approve") {
               doc.repliesList[index].approve = true;
               doc.status = site.consultationsStatusList[2];
@@ -503,21 +468,14 @@ module.exports = function init(site) {
             for (let i = 0; i < doc.repliesList.length; i++) {
               let _doc = doc.repliesList[i];
               if (req.session.user) {
-                _doc.$userSupport = _doc.supportList.some(
-                  (_f) => _f.user.id === req.session.user.id
-                );
-                _doc.$userOpposition = _doc.oppositionList.some(
-                  (_f) => _f.user.id === req.session.user.id
-                );
+                _doc.$userSupport = _doc.supportList.some((_f) => _f.user.id === req.session.user.id);
+                _doc.$userOpposition = _doc.oppositionList.some((_f) => _f.user.id === req.session.user.id);
               }
 
               _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
               if (_doc.repliesList && _doc.repliesList.length > 0) {
                 _doc.repliesList.forEach((_reply) => {
-                  _reply.$time = site.xtime(
-                    _reply.date,
-                    req.session.lang || "Ar"
-                  );
+                  _reply.$time = site.xtime(_reply.date, req.session.lang || "Ar");
                 });
               }
             }
@@ -593,17 +551,15 @@ module.exports = function init(site) {
             description: site.get_RegExp(search, "i"),
           });
         }
-        app.all(
-          { where: where, limit, select, sort: { id: -1 } },
-          (err, docs) => {
-            for (let i = 0; i < docs.length; i++) {
-              let _doc = docs[i];
+        where["host"] = site.getHostFilter(req.host);
+        app.all({ where: where, limit, select, sort: { id: -1 } }, (err, docs) => {
+          for (let i = 0; i < docs.length; i++) {
+            let _doc = docs[i];
 
-              _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
-            }
-            res.json({ done: true, list: docs });
+            _doc.$time = site.xtime(_doc.date, req.session.lang || "Ar");
           }
-        );
+          res.json({ done: true, list: docs });
+        });
       });
     }
   }

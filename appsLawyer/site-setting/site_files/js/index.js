@@ -58,36 +58,6 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getLawyersList = function ($search) {
-    if ($search && $search.length < 1) {
-      return;
-    }
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/manageUsers/all",
-      data: {
-        where: {
-          email: $search,
-          type: "lawyer",
-          active: true,
-        },
-        select: { id: 1, firstName: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.lawyersList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.getPrintersPaths = function () {
     $scope.busy = true;
     $scope.printersPathsList = [];

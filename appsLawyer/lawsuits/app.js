@@ -173,6 +173,7 @@ module.exports = function init(site) {
      
 
           _data.addUserInfo = req.getUserFinger();
+          _data.host = site.getHostFilter(req.host);
 
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -320,6 +321,7 @@ module.exports = function init(site) {
             description: site.get_RegExp(search, "i"),
           });
         }
+        where["host"] = site.getHostFilter(req.host);
         app.all(
           { where: where, limit, select, sort: { id: -1 } },
           (err, docs) => {

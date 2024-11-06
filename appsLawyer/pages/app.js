@@ -27,7 +27,6 @@ module.exports = function init(site) {
     let data = {
       setting: setting,
       guid: "",
-      isLawyer: req.session.selectedLawyerId ? true : false,
       filter: site.getHostFilter(req.host),
       site_logo: setting.logo?.url || "/images/logo.png",
       site_footer_logo: setting.footerLogo?.url || "/images/logo.png",
@@ -48,10 +47,10 @@ module.exports = function init(site) {
       data.user_image = "https://" + req.host + data.user_image;
       data.powerdByLogo = "https://" + req.host + data.powerdByLogo;
     }
-    let page = site.pages_list.find((itm) => itm.url == req.params.url && itm.host == site.getHostFilter(req.host) );
+    let page = site.pages_list.find((itm) => itm.url == req.params.url && itm.host == site.getHostFilter(req.host));
 
     data.page = page;
-    
+
     res.render("pages/page.html", data);
   });
 
@@ -70,9 +69,6 @@ module.exports = function init(site) {
     _data.$res = res;
     _data.host = site.getHostFilter(req.host);
 
-    if ((lawyerId = site.getLawyerSetting(req))) {
-      _data.lawyerId = lawyerId;
-    }
     _data.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
@@ -223,11 +219,9 @@ module.exports = function init(site) {
       });
       delete where["name"];
     }
-    if ((lawyerId = site.getLawyerSetting(req))) {
-      where["lawyerId"] = lawyerId;
-    } else {
-      where["host"] = site.getHostFilter(req.host);
-    }
+
+    where["host"] = site.getHostFilter(req.host);
+
     $pages.findMany(
       {
         select: req.body.select || {},
