@@ -24,7 +24,7 @@ app.controller('login', function ($scope, $http, $timeout) {
           $scope.busy = false;
         }
         if (response.data.done) {
-          window.location.href = '/admin';
+          window.location.href = '/site-setting';
         }
       },
       function (err) {
