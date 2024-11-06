@@ -172,6 +172,7 @@ module.exports = function init(site) {
           let _data = req.data;
 
           _data.addUserInfo = req.getUserFinger();
+          _data.host = site.getHostFilter(req.host);
 
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -327,6 +328,7 @@ module.exports = function init(site) {
             "area.name": site.get_RegExp(search, "i"),
           });
         }
+        where["host"] = site.getHostFilter(req.host);
         if (app.allowMemory) {
           if (!search) {
             search = "id";

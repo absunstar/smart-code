@@ -171,6 +171,7 @@ module.exports = function init(site) {
           };
 
           let _data = req.data;
+          _data.host = site.getHostFilter(req.host);
 
           app.add(_data, (err, doc) => {
             if (!err && doc) {
@@ -335,6 +336,7 @@ module.exports = function init(site) {
           where["office.id"] = { $in: req.session.user.officesList };
         }
         where["type"] = req.body.type;
+        where["host"] = site.getHostFilter(req.host);
         app.all({ where, select, limit }, (err, docs) => {
           if (docs && docs.length > 0) {
             let usersIdList = [];

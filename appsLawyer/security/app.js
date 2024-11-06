@@ -118,11 +118,6 @@ module.exports = function init(site) {
         type :  {$ne: "parent"},
       },
     ];
-    // if ((lawyerId = site.getLawyerSetting(req))) {
-    //   where["lawyerId"] = lawyerId;
-    // } else {
-    //   where["host"] = site.getHostFilter(req.host);
-    // }
 
 
     site.security.getUsers(
