@@ -307,6 +307,14 @@ app.connectScope(
         allowSaveUrls: false,
       });
     };
+    $scope.getAllYoutubeVideoList = function () {
+      $scope.youtubeList.forEach((channel, i) => {
+        $timeout(() => {
+          $scope.getYoutubeVideoList(channel);
+        }, 1000 * 15 * i);
+      });
+    };
+
     $scope.getYoutubeVideoList = function (channel) {
       let code_injected = `SOCIALBROWSER.youtubeItem123 = '${SOCIALBROWSER.to123(channel)}';`;
       code_injected += `/*##articles-generator/get-youtube-video-list.js*/`;
@@ -340,6 +348,20 @@ app.connectScope(
         allowSaveUrls: false,
       });
     };
+
+    $scope.openURL = function (url) {
+      SOCIALBROWSER.ipc('[open new popup]', {
+        show: true,
+        vip: true,
+        url: url,
+        allowAudio: false,
+        allowDownload: false,
+        allowNewWindows: false,
+        allowSaveUserData: false,
+        allowSaveUrls: false,
+      });
+    };
+
     $scope.siteLoadAll();
     $scope.youtubeLoadAll();
     $scope.facebookGroupLoadAll();
