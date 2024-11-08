@@ -352,7 +352,7 @@ module.exports = function init(site) {
             }
 
             app.update(doc, (err, result) => {
-              if (!err && result) {
+              if (!err && result && result.doc) {
                 response.done = true;
                 response.doc = result.doc;
                 site.lectureList.unshift({
