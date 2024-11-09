@@ -332,7 +332,7 @@ module.exports = function init(site) {
               doc.userDegree = (doc.correctAnswers / doc.questionsList.length) * 100;
               doc.timesEnterQuiz = doc.timesEnterQuiz;
               doc.userDegree = site.toNumber(doc.userDegree);
-
+              doc.wrongAnswers  = doc.questionsList.length - doc.correctAnswers;
               app.update(doc, (err, result) => {
                 if (!err) {
                   response.done = true;
@@ -412,20 +412,34 @@ module.exports = function init(site) {
         }
         where["lecture.id"] = where["lecture.id"];
         where["user.id"] = req.session.user.id;
-        
+
         app.$collection.find(where, (err, doc) => {
           if (!err && doc) {
             response.done = true;
             let _doc = { ...doc };
             _doc.questionsList = _doc.questionsList || [];
-            _doc.questionsList.forEach((_q) => {
-              _q.answersList = _q.answersList || [];
-              _q.answersList.forEach((_a) => {
-                delete _a.correct;
-              });
-            });
+            // let correctAnswers = 0;
+            // let wrongAnswers = 0;
+            // _doc.questionsList.forEach((_q) => {
+            //   _q.answersList = _q.answersList || [];
+            //   _q.answersList.forEach((_a) => {
+            //     if (_a.correct) {
+            //       correctAnswers += 1;
+            //     }
+            //     // delete _a.correct;
+            //   });
+            // });
+            // wrongAnswers =  _doc.questionsList.length - correctAnswers;
             _doc.userDegree = site.toNumber(_doc.userDegree);
-            response.doc = _doc;
+            response.doc = {
+              _id: _doc._id,
+              id: _doc.id,
+              name: _doc.name,
+              userDegree: site.toNumber(_doc.userDegree),
+              timesEnterQuiz: _doc.timesEnterQuiz,
+              correctAnswers: _doc.correctAnswers,
+              wrongAnswers: _doc.wrongAnswers,
+            };
           } else {
             response.error = err?.message || "Not Exists";
           }

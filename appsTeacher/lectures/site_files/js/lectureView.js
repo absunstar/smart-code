@@ -96,8 +96,10 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        
         if (response.data.done) {
           $scope.quiz = response.data.doc;
+          console.log($scope.quiz);
         }
       },
       function (err) {

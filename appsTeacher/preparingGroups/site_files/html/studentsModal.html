@@ -85,7 +85,8 @@
       </div>
 
       <div class="row">
-        <i-control type="text" ng-keydown="attendStudent($search,$event)" ng-model="$search" label="##word.Student Search##"></i-control>
+        <i-control type="text" ng-keydown="attendStudent($search,$event)" ng-model="$search" label="##word.Barcode##"></i-control>
+        <i-control type="text" ng-model="$search1" label="##word.Student Search##"></i-control>
       </div>
       <p class="error">{{error}}</p>
       <div class="row">
@@ -101,7 +102,7 @@
               <th>##word.Notes##</th>
               <th class="not-print">##word.Actions##</th>
             </tr>
-            <tr ng-repeat="s in item.studentList | filter:$search2">
+            <tr ng-repeat="s in item.studentList | filter:$search2 | filter:$search1">
               <td class="center" ng-class="{'bg-yellow' : s.new === true}">
                 {{s.student.firstName}}
                 <p ng-show="s.new">( {{s.group.name}} )</p>
