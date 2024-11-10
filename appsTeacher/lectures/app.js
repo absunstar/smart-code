@@ -63,8 +63,6 @@ module.exports = function init(site) {
       },
       (err, result) => {
         if (callback) {
-          console.log(err);
-
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
@@ -352,7 +350,7 @@ module.exports = function init(site) {
             }
 
             app.update(doc, (err, result) => {
-              if (!err && result && result.doc) {
+              if (!err && result && result.doc) {                
                 response.done = true;
                 response.doc = result.doc;
                 site.lectureList.unshift({
@@ -392,12 +390,12 @@ module.exports = function init(site) {
 
                 site.sendMessageTelegram({ host: req.host, msg: msg });
               } else {
-                response.error = err.mesage;
+                response.error = err?.message || "Not Exists";
               }
               res.json(response);
             });
           } else {
-            response.error = err.mesage;
+            response.error = err?.message || "Not Exists";
             res.json(response);
           }
         });
@@ -472,7 +470,7 @@ module.exports = function init(site) {
                 };
               }
             } else {
-              response.error = err.message;
+              response.error = err?.message || "Not Exists";
             }
             res.json(response);
           });
@@ -588,7 +586,7 @@ module.exports = function init(site) {
                   if (!err) {
                     response.done = true;
                   } else {
-                    response.error = err.message;
+                    response.error = err?.message || "Not Exists";
                   }
                   res.json(response);
                 });
