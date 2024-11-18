@@ -47,7 +47,10 @@
         </div>
       </div>
       <div class="row">
-        <i-control type="text" class="col9" ng-model="item.$studentSearch" ng-keydown="getStudent($event,item.$studentSearch)" label="##word.Student Search##"></i-control>
+        <i-control type="text" class="col9" ng-model="$search1" label="##word.Student Search##"></i-control>
+      </div>
+      <div class="row">
+        <i-control type="text" class="col9" ng-model="item.$studentSearch" ng-keydown="getStudent($event,item.$studentSearch)" label="##word.Barcode##"></i-control>
         <i-button type="search" class="col3" label="##word.Search##" ng-click="getStudent({which : 13},item.$studentSearch)"></i-button>
       </div>
       <p class="error">{{error}}</p>
@@ -64,7 +67,7 @@
               <th class="w150">##word.Discount## %</th>
               <th class="not-print">##word.Actions##</th>
             </tr>
-            <tr ng-repeat="s in item.studentList | filter:$search">
+            <tr ng-repeat="s in item.studentList | filter:$search1">
               <td class="center">{{s.student.firstName}}</td>
               <td class="center userPrint">{{s.student.barcode}}</td>
               <td class="center">

@@ -2,7 +2,7 @@
   <div class="row" x-permissions="manageUsersUi || manageUsersManage || manageStudents || manageTeachers">
     <div x-import="manageUsers/modal.html"></div>
     <div x-import="groups/paymentsModal.html"></div>
-   <!--  <div x-import="groups/paymentsModal.html"></div> -->
+    <!--  <div x-import="groups/paymentsModal.html"></div> -->
 
     <div class="top-actions">
       <i-button
@@ -21,7 +21,12 @@
         ng-click="showAdd('teacher')"
       ></i-button>
       <i-button type="search" x-permissions="manageUsersSearch || manageUsersManage || manageStudents || manageTeachers" label="##word.Active##" ng-click="getAll(search={active:true})"></i-button>
-      <i-button type="search" x-permissions="manageUsersSearch || manageUsersManage || manageStudents || manageTeachers" label="##word.Not Active##" ng-click="getAll(search={active:false})"></i-button>
+      <i-button
+        type="search"
+        x-permissions="manageUsersSearch || manageUsersManage || manageStudents || manageTeachers"
+        label="##word.Not Active##"
+        ng-click="getAll(search={active:false})"
+      ></i-button>
       <i-button
         type="search"
         ng-show="'##query.type##' == 'student'"
@@ -38,8 +43,20 @@
       ></i-button>
     </div>
     <div class="row">
-      <i-control ng-model="$search" label="##word.Search All##" ng-keydown="searchGetAll($event,$search)" class="col9"></i-control>
-      <i-button type="search" class="col2" label="##word.Search##" ng-click="getAll({},$search)"></i-button>
+      <i-list
+      label="##word.Educational Level##"
+      ng-change="getSchoolYearsList(search.educationalLevel.id)"
+      ng-model="search.educationalLevel"
+      display="name"
+      class="col4"
+      items="educationalLevelsList"
+      ng-search="search.$educationalLevel"
+    ></i-list>
+    <i-list label="##word.School Year##" class="col4" ng-model="search.schoolYear" display="name" items="schoolYearsList"></i-list>
+    </div>
+    <div class="row">
+      <i-control ng-model="$search" label="##word.Search All##" ng-keydown="searchGetAll($event,$search)" class="col8"></i-control>
+      <i-button type="search" class="col2" label="##word.Search##" ng-click="getAll(search,$search)"></i-button>
     </div>
     <h2 class="center">##word.Count## : {{count}}</h2>
     <p class="error">{{error}}</p>
@@ -77,9 +94,13 @@
       </table>
     </div>
     <i-button x-permissions="manageUsersPrint || manageUsersManage || manageStudents || manageTeachers" type="print" label="##word.Print##" onclick="site.print('#t1')"></i-button>
-    <i-button x-permissions="manageUsersExport || manageUsersManage || manageStudents || manageTeachers" type="export" label="##word.Export to excel##" onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')">
+    <i-button
+      x-permissions="manageUsersExport || manageUsersManage || manageStudents || manageTeachers"
+      type="export"
+      label="##word.Export to excel##"
+      onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"
+    >
     </i-button>
   </div>
   <div x-import="groups/thermalPrint.html"></div>
-
 </div>

@@ -309,7 +309,6 @@ module.exports = function init(site) {
               site.parentList.push(obj);
             }
 
-
             if (doc.type == "student" && setting.autoStudentBarcode && setting.activeStudentBarcode) {
               // doc.barcode = doc.id.toString() + "00" + d + h + m;
               doc.barcode = 1000 + doc.id;
@@ -345,12 +344,19 @@ module.exports = function init(site) {
           let response = {
             done: false,
           };
+          let host = site.getHostFilter(req.host);
 
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
 
           site.security.updateUser(_data, (err, result) => {
             if (!err) {
+              if (result && result.doc.barcode != result?.old_doc?.barcode) {
+                let changeData = { host: host, id: result.doc.id, barcode: result.doc.barcode };
+                site.changeStudentBarcodeForGroups(changeData);
+                site.changeStudentBarcodeForPreparingGroups(changeData);
+                site.changeStudentBarcodeForPreparingQuizzes(changeData);
+              }
               response.done = true;
               response.result = result;
               if (result.doc) {
@@ -594,6 +600,16 @@ module.exports = function init(site) {
             "levelList.subject.name": site.get_RegExp(search, "i"),
           });
         }
+
+        if (where["educationalLevel"]) {
+          where["educationalLevel.id"] = where["educationalLevel"].id;
+          delete where["educationalLevel"];
+        }
+
+        if (where["schoolYear"]) {
+          where["schoolYear.id"] = where["schoolYear"].id;
+          delete where["schoolYear"];
+        }
         if (where["type"] != "teacher") {
           if ((teacherId = site.getTeacherSetting(req)) && !setting.isCenter && !setting.isShared) {
             where["teacherId"] = teacherId;
@@ -642,7 +658,6 @@ module.exports = function init(site) {
       }
 
       app.$collection.find({ where, select }, (err, doc) => {
-        
         if (!err && doc) {
           response.done = true;
 

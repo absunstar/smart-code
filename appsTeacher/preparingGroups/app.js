@@ -401,7 +401,19 @@ module.exports = function init(site) {
     });
     // }
   };
-
+  site.changeStudentBarcodeForPreparingGroups = function (data) {
+    app.$collection.findMany({ host: data.host, "studentList.student.id": data.id }, (err, docs) => {
+      if (!err && docs) {
+        docs.forEach((_doc) => {
+          let index = _doc.studentList.findIndex((itm) => itm.student.id === data.id);
+          if (index !== -1) {
+            _doc.studentList[index].student.barcode = data.barcode;
+            app.update(_doc);
+          }
+        });
+      }
+    });
+  };
   app.init();
   site.addApp(app);
 };

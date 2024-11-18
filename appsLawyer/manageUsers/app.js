@@ -31,7 +31,7 @@ module.exports = function init(site) {
               lastName: doc.lastName,
             };
             app.newList.push({ ...obj });
-            app.activeList.push({ ...obj, specialty: doc.specialties? doc.specialties[0] : {} });
+            app.activeList.push({ ...obj, specialty: doc.specialties ? doc.specialties[0] : {} });
           }
         });
       }
@@ -60,18 +60,14 @@ module.exports = function init(site) {
           callback(err, result);
         }
         if (app.allowMemory && !err && result) {
-          let index = app.memoryList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.memoryList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.memoryList[index] = result.doc;
           } else {
             app.memoryList.push(result.doc);
           }
         } else if (app.allowCache && !err && result) {
-          let index = app.cacheList.findIndex(
-            (itm) => itm.id === result.doc.id
-          );
+          let index = app.cacheList.findIndex((itm) => itm.id === result.doc.id);
           if (index !== -1) {
             app.cacheList[index] = result.doc;
           } else {
@@ -162,26 +158,24 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAdd) {
-      site.post(
-        { name: `/api/${app.name}/add`, require: { permissions: ["login"] } },
-        (req, res) => {
-          let response = {
-            done: false,
-          };
+      site.post({ name: `/api/${app.name}/add`, require: { permissions: ["login"] } }, (req, res) => {
+        let response = {
+          done: false,
+        };
 
-          let _data = req.data;
+        let _data = req.data;
+        _data.host = site.getHostFilter(req.host);
 
-          app.add(_data, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.mesage;
-            }
-            res.json(response);
-          });
-        }
-      );
+        app.add(_data, (err, doc) => {
+          if (!err && doc) {
+            response.done = true;
+            response.doc = doc;
+          } else {
+            response.error = err.mesage;
+          }
+          res.json(response);
+        });
+      });
     }
 
     if (app.allowRouteUpdate) {
@@ -324,6 +318,7 @@ module.exports = function init(site) {
           });
         }
         where["id"] = { $ne: 1 };
+        where["host"] = site.getHostFilter(req.host);
         app.$collectionUser.findMany(where, (err, users) => {
           res.json({
             done: true,
@@ -358,8 +353,7 @@ module.exports = function init(site) {
 
             if (!_data.email) {
               let splitName = _data.fullNameEn.split(" ");
-              let emailAndPass =
-                splitName[0] + Math.floor(Math.random() * 1000 + 1).toString();
+              let emailAndPass = splitName[0] + Math.floor(Math.random() * 1000 + 1).toString();
               _data.email = emailAndPass;
               _data.password = emailAndPass;
             }
@@ -376,17 +370,19 @@ module.exports = function init(site) {
             //   res.json(response);
             //   return;
             // }
-            const office = { ..._data.office };
+            let office = { ..._data.office };
             if (_data.office) {
               _data.officesList = [_data.office.id];
               delete _data.office;
             }
             _data.addUserInfo = req.getUserFinger();
-
+            let host = site.getHostFilter(req.host);
+            _data.host = host;
             app.$collectionUser.add(_data, (err, doc) => {
               if (!err && doc) {
                 let userOffice = {
                   userId: doc.id,
+                  host: host,
                   office,
                   type: _data.$role,
                   addUserInfo: doc.addUserInfo,

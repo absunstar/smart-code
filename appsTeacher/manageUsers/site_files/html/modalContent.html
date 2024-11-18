@@ -16,7 +16,7 @@
           <i-control label="##word.Title##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.title"> </i-control>
           <i-control label="##word.Bio##" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.bio"> </i-control>
           <i-control label="##word.Priority Of Appearance##" type="number" ng-show="item.type == 'teacher' && setting.isShared" ng-model="item.priorityAppearance"> </i-control>
-          <i-control label="##word.Barcode##" ng-show="item.type == 'student' && setting.activeStudentBarcode && !setting.autoStudentBarcode" ng-model="item.barcode"> </i-control>
+          <i-control label="##word.Barcode##" type="text" ng-show="item.type == 'student' && setting.activeStudentBarcode && !setting.autoStudentBarcode" ng-model="item.barcode"> </i-control>
           <i-control label="##word.Discount##" ng-change="changeMainDiscount()" class="col4" ng-show="item.type == 'student' && setting.isCenter" type="number" ng-model="item.discount"> </i-control>
         </div>
       </div>

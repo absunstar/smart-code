@@ -124,7 +124,7 @@
                     <td class="center">{{p.price}} ##word.$##</td>
                     <td class="center">
                       <i-button type="print" label="##word.Print##" ng-click="thermalPrint(s,p)"></i-button>
-                      <i-button type="delete" label="##word.Delete##" ng-click="s.paymentList.splice($index,1);calcPayments(s)"></i-button>
+                      <i-button type="delete" label="##word.Delete##" x-permissions="groupDeletePayment || groupsManage" ng-click="s.paymentList.splice($index,1);calcPayments(s)"></i-button>
                     </td>
                   </tr>
                 </table>

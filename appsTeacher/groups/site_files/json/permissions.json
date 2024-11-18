@@ -8,5 +8,6 @@
     { "moduleName": "public", "screenName": "groups", "name": "groupsExport", "En": "Export", "Ar": "تصدير" },
     { "moduleName": "public", "screenName": "groups", "name": "groupsPrint", "En": "Print", "Ar": "طباعة" },
     { "moduleName": "public", "screenName": "groups", "name": "groupsUi", "En": "UI", "Ar": "الواجهة الرسومية" },
+    { "moduleName": "public", "screenName": "groups", "name": "groupDeletePayment", "En": "Delete Payment", "Ar": "حذف المدفوعات" },
     { "moduleName": "public", "screenName": "groups", "name": "groupsImport", "En": "Import", "Ar": "إستيراد" }
 ]

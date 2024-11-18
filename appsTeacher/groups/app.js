@@ -271,7 +271,7 @@ module.exports = function init(site) {
         let limit = req.body.limit || 50;
         let select = req.body.select || {
           id: 1,
-          host : 1,
+          host: 1,
           name: 1,
           teacher: 1,
           subject: 1,
@@ -281,7 +281,7 @@ module.exports = function init(site) {
         };
         if (search) {
           where.$or = [];
-        
+
           where.$or.push({
             name: site.get_RegExp(search, "i"),
           });
@@ -549,6 +549,24 @@ module.exports = function init(site) {
           doc.dayList[index].isBook = true;
           app.update(doc);
         }
+      }
+    });
+  };
+
+  site.changeStudentBarcodeForGroups = function (data) {
+    console.log(data);
+    
+    app.$collection.findMany({ host: data.host, "studentList.student.id": data.id }, (err, docs) => {
+      console.log(err,docs.length);
+      if (!err && docs) {
+        
+        docs.forEach((_doc) => {
+          let index = _doc.studentList.findIndex((itm) => itm.student.id === data.id);
+          if (index !== -1) {
+            _doc.studentList[index].student.barcode = data.barcode;
+            app.update(_doc);
+          }
+        });
       }
     });
   };

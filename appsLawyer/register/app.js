@@ -29,12 +29,7 @@ module.exports = function init(site) {
         site_name: setting.siteName,
         page_lang: setting.id,
         page_type: "website",
-        page_title:
-          setting.siteName +
-          " " +
-          setting.titleSeparator +
-          " " +
-          setting.siteSlogan,
+        page_title: setting.siteName + " " + setting.titleSeparator + " " + setting.siteSlogan,
         page_description: setting.description.substr(0, 200),
         page_keywords: setting.keyWordsList.join(","),
         typesConsultationsList: site.getApp("typesConsultations").memoryList,
@@ -166,19 +161,14 @@ module.exports = function init(site) {
                       to: result.doc.country.country_code + result.doc.mobile,
                       message: `code : ${result.doc.code}`,
                     });
-                  } else if (
-                    site.setting.enable_sending_messages_mobile_taqnyat
-                  ) {
+                  } else if (site.setting.enable_sending_messages_mobile_taqnyat) {
                     site.sendMobileTaqnyatMessage({
                       to: result.doc.country.country_code + result.doc.mobile,
                       message: `code : ${result.doc.code}`,
                     });
                   }
                   response.done_send_mobile = true;
-                } else if (
-                  result.doc.type == "email" &&
-                  site.setting.enable_sending_messages_email
-                ) {
+                } else if (result.doc.type == "email" && site.setting.enable_sending_messages_email) {
                   site.sendMailMessage({
                     to: result.doc.email,
                     subject: `Rejester Code`,
@@ -225,19 +215,14 @@ module.exports = function init(site) {
                           to: result.country.country_code + result.mobile,
                           message: `code : ${result.code}`,
                         });
-                      } else if (
-                        site.setting.enable_sending_messages_mobile_taqnyat
-                      ) {
+                      } else if (site.setting.enable_sending_messages_mobile_taqnyat) {
                         site.sendMobileTaqnyatMessage({
                           to: result.country.country_code + result.mobile,
                           message: `code : ${result.code}`,
                         });
                       }
                       response.done_send_mobile = true;
-                    } else if (
-                      result.type == "email" &&
-                      site.setting.enable_sending_messages_email
-                    ) {
+                    } else if (result.type == "email" && site.setting.enable_sending_messages_email) {
                       site.sendMailMessage({
                         to: result.email,
                         subject: `Rejester Code`,
@@ -267,11 +252,7 @@ module.exports = function init(site) {
 
     let regex = /^\d*(\.\d+)?$/;
 
-    if (
-      body.country &&
-      body.country.length_mobile &&
-      body.mobile.match(regex)
-    ) {
+    if (body.country && body.country.length_mobile && body.mobile.match(regex)) {
       if (body.mobile.toString().length == body.country.length_mobile) {
         response.done = true;
       } else {
@@ -328,6 +309,7 @@ module.exports = function init(site) {
         req.body.user.password = site.from123(req.body.user.password);
       }
     }
+    let host = site.getHostFilter(req.host);
 
     // let regex = /^\d*(\.\d+)?$/;
 
@@ -357,6 +339,7 @@ module.exports = function init(site) {
       city: req.body.user.city,
       area: req.body.user.area,
       ip: req.ip,
+      host: host,
       officesList: [],
       roles: [{ name: req.body.type }],
       active: true,
@@ -379,6 +362,7 @@ module.exports = function init(site) {
             image: "/images/offices.png",
             name: "مكتب" + " " + doc.firstName + " " + doc.lastName,
             active: true,
+            host: host,
             user: {
               id: doc.id,
               email: doc.email,
