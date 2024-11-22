@@ -141,7 +141,8 @@
                 <i-button ng-show="!s.attend" label="##word.Attended##" ng-click="setAttendance(s,'attend');numberAbsencesAttendance()"></i-button>
                 <i-button ng-show="s.attend && !s.departureTime" label="##word.Departure##" ng-click="setAttendance(s,'departure')"></i-button>
                 <i-button type="close" ng-hide="s.attend == false && s.departureTime" label="##word.Absence##" ng-click="setAttendance(s,'absence');numberAbsencesAttendance()"></i-button>
-                <i-button type="delete" label="##word.Delete##" ng-show="s.new == true" ng-click="removeStudent(s)"></i-button>
+                <i-button type="delete" label="##word.Delete##" ng-click="removeStudent(s)"></i-button>
+                <!-- ng-show="s.new == true"  -->
               </td>
             </tr>
           </table>

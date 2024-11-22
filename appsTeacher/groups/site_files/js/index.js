@@ -501,6 +501,29 @@ app.controller("groups", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.removeStudent = function (item) {
+    $http({
+      method: "POST",
+      url: `${$scope.baseURL}/api/preparingGroups/removeStudentFromPreparingGroups`,
+      data: { studentId: item.student.id, groupId: $scope.item.id },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.item.studentList = $scope.item.studentList.filter(function (itm) {
+            return itm.student.id !== item.student.id;
+          });
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  
+  };
+
   $scope.generateAppointments = function (item) {
     $scope.error = "";
     if (item.startDate && item.endDate) {

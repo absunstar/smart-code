@@ -396,12 +396,11 @@ app.controller("preparingGroups", function ($scope, $http, $timeout) {
     }
   };
   $scope.removeStudent = function (item) {
-    let index = $scope.item.studentList.findIndex((itm) => itm.student.id == item.student.id);
-    if (index !== -1) {
-      $scope.item.studentList.splice(index, 1);
-      $scope.numberAbsencesAttendance();
-      $scope.getStudentPaid();
-    }
+    $scope.item.studentList = $scope.item.studentList.filter(function (itm) {
+      return itm.student.id !== item.student.id;
+    });
+    $scope.numberAbsencesAttendance();
+    $scope.getStudentPaid();
   };
   $scope.setAttendance = function (item, type) {
     $scope.error = "";

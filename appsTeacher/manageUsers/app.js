@@ -674,11 +674,11 @@ module.exports = function init(site) {
       };
 
       let where = req.body.where || {};
-
+      
       app.$collection.find(where, (err, doc) => {
         if (!err && doc) {
           response.done = true;
-
+          
           site.getGroup(
             { "studentList.student.id": doc.id, "subject.id": req.body.subjectId, "educationalLevel.id": doc.educationalLevel.id, "schoolYear.id": doc.schoolYear.id },
             (errCode, group) => {
@@ -960,8 +960,6 @@ module.exports = function init(site) {
       if (users) {
         for (let i = 0; i < users.length; i++) {
           users[i].lecturesList = users[i].lecturesList.concat(lectureList);
-          console.log(users[i].lecturesList);
-
           site.security.updateUser(users[i]);
         }
       }

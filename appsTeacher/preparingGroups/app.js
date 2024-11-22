@@ -243,7 +243,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteView) {
-      site.post({ name: `/api/${app.name}/view`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/view`, require: { permissions: ["login"] } }, (req, res) => {
         let response = {
           done: false,
         };
@@ -262,7 +262,7 @@ module.exports = function init(site) {
     }
 
     if (app.allowRouteAll) {
-      site.post({ name: `/api/${app.name}/all`, public: true }, (req, res) => {
+      site.post({ name: `/api/${app.name}/all`, require: { permissions: ["login"] } }, (req, res) => {
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || "";
@@ -330,7 +330,7 @@ module.exports = function init(site) {
       });
     }
 
-    site.post({ name: `/api/${app.name}/clickMobile`, public: true }, (req, res) => {
+    site.post({ name: `/api/${app.name}/clickMobile`, require: { permissions: ["login"] } }, (req, res) => {
       let response = {
         done: false,
       };
@@ -355,6 +355,30 @@ module.exports = function init(site) {
       });
     });
   }
+
+  site.post({ name: `/api/${app.name}/removeStudentFromPreparingGroups`, require: { permissions: ["login"] } }, (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = { "group.id": req.body.groupId };
+    app.all({ where }, (err, docs) => {
+      if (!err) {
+        response.done = true;
+        if (docs) {
+          for (let i = 0; i < docs.length; i++) {
+            docs[i].studentList = docs[i].studentList.filter(function (itm) {
+              return itm.student.id !== req.body.studentId;
+            });
+            app.update(docs[i]);
+          }
+        }
+      } else {
+        response.error = err?.message || "Not Exists";
+      }
+      res.json(response);
+    });
+  });
 
   site.getPreparingGroups = function (where, callBack) {
     callBack = callBack || function () {};

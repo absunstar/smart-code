@@ -89,7 +89,7 @@
               </td>
               <td class="center not-print">
                 <i-button type="view" label="##word.Payments##" ng-show="item.paymentMethod.name == 'monthly'" ng-click="showStudentPayments(s)"></i-button>
-                <i-button type="delete" label="##word.Delete##" ng-click="item.studentList.splice($index,1)"></i-button>
+                <i-button type="delete" label="##word.Delete##" ng-click="removeStudent(s)"></i-button>
               </td>
             </tr>
           </table>
