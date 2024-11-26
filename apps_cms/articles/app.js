@@ -508,7 +508,7 @@ module.exports = function init(site) {
     console.log('site.prepareArticles()');
     site.$articles.findMany({ sort: { id: -1 }, limit: 2000 }, (err, docs) => {
       if (!err && docs) {
-        console.log('site.prepareArticles() : ' + doc.length);
+        console.log('site.prepareArticles() : ' + docs.length);
         docs.forEach((doc) => {
           if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
             site.articlesList.push(site.handleArticle({ ...doc }));
