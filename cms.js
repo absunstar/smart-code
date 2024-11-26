@@ -658,3 +658,10 @@ site.handleNotRoute = function (req, res) {
 };
 
 site.run();
+
+setInterval(() => {
+  console.log('databaseList : ' + site.databaseList.length);
+  console.log('databaseCollectionList : ' + site.databaseCollectionList.length);
+  console.log('collectionList : ' + site.collectionList.length);
+  console.log('sessions.list : ' + site.sessions.list.length);
+}, 1000 * 3);
