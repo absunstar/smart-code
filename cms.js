@@ -16,7 +16,7 @@ const site = require('../isite')({
   theme: 'theme_paper',
   mongodb: {
     db: 'SMART-CMS',
-    limit: 100000,
+    limit: 100,
     events: true,
     identity: {
       enabled: !0,
@@ -658,3 +658,22 @@ site.handleNotRoute = function (req, res) {
 };
 
 site.run();
+
+if (false) {
+  setInterval(() => {
+    console.log('\n--------------------------------\n');
+    console.log('databaseList : ' + site.databaseList.length);
+    console.log('databaseCollectionList : ' + site.databaseCollectionList.length);
+
+    console.log('collectionList : ' + site.collectionList.length);
+    site.collectionList.forEach((c) => {
+      console.log(c.name + 'taskList : ' + c.taskList.length + ' / ' + c.taskCount);
+    });
+
+    console.log('sessions.list : ' + site.sessions.list.length);
+    console.log('site.articlesList : ' + site.articlesList.length);
+    console.log('site.searchArticleList : ' + site.searchArticleList.length);
+
+    console.log('\n--------------------------------\n');
+  }, 1000 * 3);
+}

@@ -102,13 +102,15 @@
   </div>
 </div>
 <script src="/js/theme1-mini.js?version=##site.time##"></script>
-<script x-features="browser.social">
-  function refreshPage() {
+<script x-features="!login">
+  function refreshArticle() {
     let arr = document.querySelectorAll('.imageNews a[href]');
     let a = arr[Math.floor(Math.random() * (arr.length - 1))];
     document.location.href = a.href;
   }
   setTimeout(() => {
-    refreshPage();
+    if (window.SOCIALBROWSER) {
+      refreshArticle();
+    }
   }, 1000 * 60 * 1);
 </script>
