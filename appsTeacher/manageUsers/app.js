@@ -616,12 +616,12 @@ module.exports = function init(site) {
           } else {
             where["host"] = site.getHostFilter(req.host);
           }
-        } else {
+        } else if (setting.isShared || setting.isCenter) {
           where["host"] = site.getHostFilter(req.host);
         }
-        where["id"] = { $ne: 1 };
-
-        app.$collection.findMany({ where, select, limit, sort: { id: -1 } }, (err, users, count) => {
+        // where["id"] = { $ne: 1 };
+        
+        app.$collection.findMany(where, (err, users, count) => {
           res.json({
             done: true,
             count: count,
