@@ -1,55 +1,9 @@
 module.exports = function init(site) {
   site.$articles = site.connectCollection('articles');
   site.$articlesSearch = site.connectCollection('articlesSearch');
-
-  site.$articles.aggregate(
-    [
-      {
-        $group: {
-          _id: {
-            guid: '$guid',
-          },
-          dups: {
-            $push: '$_id',
-          },
-          count: {
-            $sum: 1,
-          },
-        },
-      },
-      {
-        $match: {
-          count: {
-            $gt: 1,
-          },
-        },
-      },
-    ],
-    function (err, docs) {
-      if (!err && docs) {
-        let arr = [];
-        docs.forEach((doc) => {
-          doc.dups.shift();
-          doc.dups.forEach((dup) => {
-            arr.push(dup);
-          });
-        });
-        site.$articles.deleteAll(
-          {
-            _id: {
-              $in: arr,
-            },
-          },
-          (err, result) => {
-            site.$articles.createUnique({
-              guid: 1,
-            });
-          }
-        );
-      }
-      return;
-    }
-  );
+  site.$articles.createUnique({
+    guid: 1,
+  });
 
   site.articlesList = [];
 
@@ -560,6 +514,8 @@ module.exports = function init(site) {
         });
         site.prepareUrgentArticles();
         site.prepareSliderArticles();
+      } else {
+        console.log(err);
       }
     });
   };
