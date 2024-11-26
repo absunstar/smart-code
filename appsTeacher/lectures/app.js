@@ -704,6 +704,7 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
+        
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
@@ -790,6 +791,7 @@ module.exports = function init(site) {
           } else {
             response.error = err?.message || "Not Exists";
           }
+          response._data = _data
           res.json(response);
         });
       });
