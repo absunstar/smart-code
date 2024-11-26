@@ -660,8 +660,15 @@ site.handleNotRoute = function (req, res) {
 site.run();
 
 setInterval(() => {
+  console.log('\n--------------------------------\n')
   console.log('databaseList : ' + site.databaseList.length);
   console.log('databaseCollectionList : ' + site.databaseCollectionList.length);
+
   console.log('collectionList : ' + site.collectionList.length);
+  site.collectionList.forEach((c) => {
+    console.log(c.name + 'taskList : ' + c.taskList.length);
+  });
+
   console.log('sessions.list : ' + site.sessions.list.length);
+  console.log('\n--------------------------------\n')
 }, 1000 * 3);
