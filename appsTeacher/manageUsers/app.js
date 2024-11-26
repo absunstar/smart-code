@@ -616,7 +616,7 @@ module.exports = function init(site) {
           } else {
             where["host"] = site.getHostFilter(req.host);
           }
-        } else if (setting.isShared || setting.isCenter) {
+        } else {
           where["host"] = site.getHostFilter(req.host);
         }
         where["id"] = { $ne: 1 };
