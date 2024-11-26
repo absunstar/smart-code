@@ -670,5 +670,8 @@ setInterval(() => {
   });
 
   console.log('sessions.list : ' + site.sessions.list.length);
+  console.log('site.articlesList : ' + site.articlesList.length);
+  console.log('site.searchArticleList : ' + site.searchArticleList.length);
+
   console.log('\n--------------------------------\n');
 }, 1000 * 3);
