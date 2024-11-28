@@ -659,9 +659,10 @@ site.handleNotRoute = function (req, res) {
 
 site.run();
 
-if (false) {
+if ((anlytic = true)) {
   setInterval(() => {
     console.log('\n--------------------------------\n');
+
     console.log('databaseList : ' + site.databaseList.length);
     console.log('databaseCollectionList : ' + site.databaseCollectionList.length);
 
@@ -674,6 +675,16 @@ if (false) {
     console.log('site.articlesList : ' + site.articlesList.length);
     console.log('site.searchArticleList : ' + site.searchArticleList.length);
 
+    let million = 1024 * 1024;
+    let cpu = process.cpuUsage();
+    cpu.user = Math.floor(cpu.user / million) + ' %';
+    cpu.system = Math.floor(cpu.system / million) + ' %';
+    console.log(cpu);
+
+    for (const [key, value] of Object.entries(process.memoryUsage())) {
+      console.log(`Memory usage by ${key}, ${Math.floor(value / million)} MB `);
+    }
+
     console.log('\n--------------------------------\n');
-  }, 1000 * 3);
+  }, 1000 * 60);
 }
