@@ -5,7 +5,7 @@ const site = require('../isite')({
   language: { id: 'AR', dir: 'rtl', text: 'right' },
   version: Date.now(),
   name: 'cms',
-  savingTime: 5,
+  savingTime: 30,
   responseTimeout: 60,
   log: true,
   www: false,
@@ -686,5 +686,5 @@ if ((anlytic = true)) {
     }
 
     console.log('\n--------------------------------\n');
-  }, 1000 * 60);
+  }, 1000 * 60 * 5);
 }
