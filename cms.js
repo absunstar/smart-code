@@ -688,3 +688,5 @@ if ((anlytic = true)) {
     console.log('\n--------------------------------\n');
   }, 1000 * 60 * 5);
 }
+
+site.sessions.$collection.deleteAll({ createdTime: { $lt: new Date().getTime() - 1000 * 60 * 60 * 24 } });
