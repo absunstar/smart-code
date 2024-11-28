@@ -668,7 +668,7 @@ if ((anlytic = true)) {
 
     console.log('collectionList : ' + site.collectionList.length);
     site.collectionList.forEach((c) => {
-      console.log(c.name + 'taskList : ' + c.taskList.length + ' / ' + c.taskCount);
+      console.log(c.name + ' taskList : ' + c.taskList.length + ' / ' + c.taskCount);
     });
 
     console.log('sessions.list : ' + site.sessions.list.length);
