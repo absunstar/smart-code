@@ -678,7 +678,7 @@ if ((anlytic = true)) {
     let million = 1024 * 1024;
     let cpu = process.cpuUsage();
     cpu.user = Math.floor(cpu.user / million) + ' MB';
-    cpu.system = Math.floor(cpu.system / million) + ' MD';
+    cpu.system = Math.floor(cpu.system / million) + ' MB';
     console.log(cpu);
 
     for (const [key, value] of Object.entries(process.memoryUsage())) {
