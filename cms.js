@@ -9,6 +9,11 @@ const site = require('../isite')({
   responseTimeout: 60,
   log: true,
   www: false,
+  session: {
+    enabled: !0,
+    timeout: 60 * 24 * 30,
+    memoryTimeout: 60,
+  },
   require: {
     features: [],
     permissions: [],
@@ -688,5 +693,3 @@ if ((anlytic = true)) {
     console.log('\n--------------------------------\n');
   }, 1000 * 60 * 5);
 }
-
-site.sessions.$collection.deleteAll({ createdTime: { $lt: new Date().getTime() - 1000 * 60 * 60 * 24 } });
