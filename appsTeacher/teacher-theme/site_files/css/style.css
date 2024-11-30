@@ -12,6 +12,12 @@
   bottom: 0 !important;
   top: unset !important;
 }
+.mob-login-div {
+  margin-top: 10px !important;
+    background: var(--button-backgroundColor-1) !important;
+    padding: 15px 0px 15px 0px;
+    border-radius: 55px;
+}
 body {
   background-color: var(--main-background-color1) !important ;
   margin-bottom: 0px !important;

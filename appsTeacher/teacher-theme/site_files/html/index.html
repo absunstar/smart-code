@@ -5,6 +5,10 @@
     <div x-replace="teacher-theme/header.html"></div>
 
     <main class="container">
+      <div class="d-lg-none mob-login-div" x-permission="!login">
+        <a class="login-btn" href="/login"> تسجيل الدخول </a>
+        <a class="newRegister" href="/register"> مستخدم جديد </a>
+      </div>
       <div x-data="setting.showBanner">
         <img class="banner-site" ng-src="##data.banner##" alt="" srcset="" />
         <div class="separative"></div>
