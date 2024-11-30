@@ -791,7 +791,6 @@ module.exports = function init(site) {
           } else {
             response.error = err?.message || "Not Exists";
           }
-          response._data = _data
           res.json(response);
         });
       });
