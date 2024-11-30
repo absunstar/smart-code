@@ -5,10 +5,15 @@ const site = require('../isite')({
   language: { id: 'AR', dir: 'rtl', text: 'right' },
   version: Date.now(),
   name: 'cms',
-  savingTime: 5,
+  savingTime: 30,
   responseTimeout: 60,
   log: true,
   www: false,
+  session: {
+    enabled: !0,
+    timeout: 60 * 24 * 30,
+    memoryTimeout: 60,
+  },
   require: {
     features: [],
     permissions: [],
@@ -659,21 +664,32 @@ site.handleNotRoute = function (req, res) {
 
 site.run();
 
-if (false) {
+if ((anlytic = true)) {
   setInterval(() => {
     console.log('\n--------------------------------\n');
+
     console.log('databaseList : ' + site.databaseList.length);
     console.log('databaseCollectionList : ' + site.databaseCollectionList.length);
 
     console.log('collectionList : ' + site.collectionList.length);
     site.collectionList.forEach((c) => {
-      console.log(c.name + 'taskList : ' + c.taskList.length + ' / ' + c.taskCount);
+      console.log(c.name + ' taskList : ' + c.taskList.length + ' / ' + c.taskCount);
     });
 
     console.log('sessions.list : ' + site.sessions.list.length);
     console.log('site.articlesList : ' + site.articlesList.length);
     console.log('site.searchArticleList : ' + site.searchArticleList.length);
 
+    let million = 1024 * 1024;
+    let cpu = process.cpuUsage();
+    cpu.user = Math.floor(cpu.user / million) + ' MB';
+    cpu.system = Math.floor(cpu.system / million) + ' MB';
+    console.log(cpu);
+
+    for (const [key, value] of Object.entries(process.memoryUsage())) {
+      console.log(`Memory usage by ${key}, ${Math.floor(value / million)} MB `);
+    }
+
     console.log('\n--------------------------------\n');
-  }, 1000 * 3);
+  }, 1000 * 60 * 5);
 }
