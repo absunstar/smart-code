@@ -86,7 +86,7 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
-    let search = req.body.search || {};
+    // let search = req.body.search || {};
 
     if (search) {
       where.$or = [];
@@ -107,17 +107,17 @@ module.exports = function init(site) {
     }
     // where["id"] = { $ne: 1 };
 
-    where.$and = [
-      {
-       type :  {$ne: "student"},
-      },
-      {
-        type :  {$ne: "teacher"},
-      },
-      {
-        type :  {$ne: "parent"},
-      },
-    ];
+    // where.$and = [
+    //   {
+    //    type :  {$ne: "student"},
+    //   },
+    //   {
+    //     type :  {$ne: "teacher"},
+    //   },
+    //   {
+    //     type :  {$ne: "parent"},
+    //   },
+    // ];
     // if ((teacherId = site.getTeacherSetting(req))) {
     //   where["teacherId"] = teacherId;
     // } else {
