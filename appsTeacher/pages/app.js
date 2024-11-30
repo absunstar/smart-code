@@ -66,8 +66,7 @@ module.exports = function init(site) {
     }
 
     let _data = req.body;
-    _data.$req = req;
-    _data.$res = res;
+
     _data.host = site.getHostFilter(req.host);
 
     if ((teacherId = site.getTeacherSetting(req))) {
@@ -120,8 +119,7 @@ module.exports = function init(site) {
           id: page_implement_doc.id,
         },
         set: page_implement_doc,
-        $req: req,
-        $res: res,
+ 
       },
       (err, result) => {
         if (!err && result) {
@@ -183,8 +181,7 @@ module.exports = function init(site) {
     $pages.delete(
       {
         id: req.body.id,
-        $req: req,
-        $res: res,
+
       },
       (err, result) => {
         if (!err) {

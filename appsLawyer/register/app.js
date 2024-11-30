@@ -150,8 +150,6 @@ module.exports = function init(site) {
                 id: doc.id,
               },
               set: doc,
-              $req: req,
-              $res: res,
             },
             (err, result) => {
               if (!err) {
