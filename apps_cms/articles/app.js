@@ -958,8 +958,7 @@ module.exports = function init(site) {
           id: articlesDoc.id,
         },
         set: articlesDoc,
-        $req: req,
-        $res: res,
+    
       },
       (err, result) => {
         if (!err && result) {
@@ -1018,8 +1017,7 @@ module.exports = function init(site) {
     site.$articles.delete(
       {
         id: req.body.id,
-        $req: req,
-        $res: res,
+       
       },
       (err, result) => {
         if (!err) {
