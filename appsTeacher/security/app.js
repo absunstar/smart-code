@@ -86,7 +86,7 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
-    // let search = req.body.search || {};
+    let search = req.body.search || '';
 
     if (search) {
       where.$or = [];
