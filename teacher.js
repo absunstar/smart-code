@@ -161,6 +161,13 @@ site.get("/x-update", (req, res) => {
   });
 });
 
+site.get("/x-update-abonaar", (req, res) => {
+  site.cmd("git pull", (data) => {
+    res.end(data || "error");
+    site.cmd("pm2 restart 4", (data) => {});
+  });
+});
+
 site.get("/x-log", (req, res) => {
   site.cmd("pm2 log 17", (data) => {
     res.end(data || "error");
