@@ -96,6 +96,7 @@ app.connectScope(
     SOCIALBROWSER.on('share', (e, obj) => {
       if (obj.type == 'generator-youtube-channel') {
         $scope.youtubeAdd({ ...obj.channel });
+        $scope.youtubeItem = {};
       } else if (obj.type == 'generator-youtube-video') {
         $scope.addArticle({
           url: obj.url,
@@ -338,7 +339,7 @@ app.connectScope(
         allowSaveUserData: false,
         allowSaveUrls: false,
       });
-      $scope.youtubeItem = {};
+      
     };
 
     $scope.getYoutubeVideoInfo = function (url) {
