@@ -7,15 +7,18 @@ SOCIALBROWSER.onLoad(() => {
   let timer = null;
 
   function sendData() {
-    channel.image = { url: document.querySelector('#avatar img').src };
     clearInterval(timer);
+    alert('Youtube Info Done');
+    channel.image = { url: document.querySelector('img.yt-core-image[src]').src };
     SOCIALBROWSER.share({ type: 'generator-youtube-channel', channel: channel });
-    SOCIALBROWSER.currentWindow.close();
+    setTimeout(() => {
+       SOCIALBROWSER.currentWindow.close();
+    }, 1000 * 1);
   }
 
   timer = setInterval(() => {
-    if (document.querySelector('#avatar img') && document.querySelector('#avatar img').src) {
+    if (document.querySelector('img.yt-core-image[src]')) {
       sendData();
     }
-  }, 500);
+  }, 1000);
 });
