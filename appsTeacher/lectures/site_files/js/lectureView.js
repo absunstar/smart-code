@@ -170,7 +170,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
               maximize: true,
               trusted: true,
               allowMenu: true,
-              showDevTools: true,
+              showDevTools: false,
               allowDevTools: false,
               allowDownload: false,
               allowAds: false,
