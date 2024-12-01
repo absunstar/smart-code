@@ -102,7 +102,7 @@ app.connectScope(
           title: obj.title,
           image: obj.image,
           channel: obj.channel,
-          host : obj.channel.host,
+          host: obj.channel.host,
           $youtube: true,
         });
       } else if (obj.type == 'generator-facebook-group') {
@@ -146,7 +146,6 @@ app.connectScope(
       }).then(
         function (response) {
           if (response.data.done) {
-
             if (response.data.updated) {
               $scope.updateCount++;
             } else {
@@ -265,7 +264,6 @@ app.connectScope(
       $scope.facebookPageItem = {};
     };
 
- 
     $scope.getFacebookGroupPostList = function (group) {
       let code_injected = `SOCIALBROWSER.facebookGroupItem123 = '${SOCIALBROWSER.to123(group)}';`;
       code_injected += `/*##articles-generator/get-facebook-group-post-list.js*/`;
@@ -300,6 +298,7 @@ app.connectScope(
         allowSaveUrls: false,
       });
     };
+
     $scope.getAllYoutubeVideoList = function () {
       $scope.youtubeList.forEach((channel, i) => {
         $timeout(() => {
@@ -324,9 +323,9 @@ app.connectScope(
         allowSaveUrls: false,
       });
     };
+
     $scope.addYoutubeChannel = function (youtubeItem) {
-      let code_injected = `/*##articles-generator/get-youtube-channel-info.js*/`;
-      code_injected += 'xxx_run();';
+      let code_injected = SOCIALBROWSER.from123(`/*###articles-generator/get-youtube-channel-info.js*/`);
       SOCIALBROWSER.ipc('[open new popup]', {
         show: false,
         vip: true,
@@ -341,6 +340,7 @@ app.connectScope(
       });
       $scope.youtubeItem = {};
     };
+
     $scope.getYoutubeVideoInfo = function (url) {
       let code_injected = `/*##articles-generator/get-youtube-video-info.js*/`;
       code_injected += 'xxx_run();';

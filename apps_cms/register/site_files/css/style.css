@@ -338,6 +338,7 @@ font-family: var(--font-family);
     }
     p {
         word-break: break-word;
+        word-wrap: break-word;
     }
 
     .center {
@@ -626,6 +627,7 @@ font-family: var(--font-family);
     }
     p {
         word-break: break-word;
+        word-wrap: break-word;
     }
 
     .center {
