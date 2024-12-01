@@ -1,5 +1,6 @@
 <script src="/x-js/bootstrap-5-support.js?v=##site.options.version##"></script>
 <script>
+  site.session = site.showObject('##req.#session##');
   site.features = '##req.features##';
   site.feature = (f) => site.features.indexOf(f) !== -1;
 </script>
@@ -7,7 +8,6 @@
 <script x-import="cms/sitebar.js"></script>
 <script x-import="cms/sitebottom.js"></script>
 <script x-import="cms/footer_cms.js"></script>
-
 
 <script>
   function xtime(_time) {

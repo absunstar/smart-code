@@ -13,6 +13,21 @@
         </div>
         <i-button ng-click="addYoutubeChannel(youtubeItem)" label="##word.Add To Channel List##"></i-button>
       </fieldset>
+      <fieldset>
+        <legend>Status</legend>
+        <div class="row">
+          <div class="col">
+            <p>Add Count : {{addCount}}</p>
+          </div>
+          <div class="col">
+            <p>Update Count : {{updateCount}}</p>
+          </div>
+
+          <div class="col">
+            <p>Fail Count : {{failCount}}</p>
+          </div>
+        </div>
+      </fieldset>
       <div class="row margin padding">
         <table class="table">
           <tr>

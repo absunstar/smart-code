@@ -737,14 +737,16 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    let articlesDoc = req.body;
-    if (articlesDoc.is_yts) {
+    let userData = req.body;
+    let articlesDoc = {};
+
+    if (userData.is_yts) {
       articlesDoc = {
         type: site.articleTypes.find((t) => t.id === 7),
-        category: articlesDoc.category,
-        yts: articlesDoc,
+        category: userData.category,
+        yts: userData,
         translatedList: [{ language: language }],
-        host: articlesDoc.host || 'yts',
+        host: userData.host || 'yts',
       };
 
       articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
@@ -788,35 +790,33 @@ module.exports = function init(site) {
       if (articlesDoc.yts.date_uploaded) {
         articlesDoc.publishDate = site.getDateTime(articlesDoc.yts.date_uploaded);
       }
-    } else if (articlesDoc.$youtube) {
+    } else if (userData.$youtube) {
       articlesDoc = {
         type: site.articleTypes.find((t) => t.id === 8),
-        youtube: articlesDoc,
         translatedList: [{ language: language }],
-        host: 'youtube',
       };
-      if (articlesDoc.youtube.channel) {
-        if (articlesDoc.youtube.channel.category) {
-          articlesDoc.category = articlesDoc.youtube.channel.category;
+      if (userData.channel) {
+        if (userData.channel.category) {
+          articlesDoc.category = userData.channel.category;
         }
-        if (articlesDoc.youtube.channel.host) {
-          articlesDoc.host = articlesDoc.youtube.channel.host;
+        if (userData.channel.host) {
+          articlesDoc.host = userData.channel.host;
         }
       }
 
       articlesDoc.showInMainSlider = true;
       articlesDoc.showOnTop = true;
 
-      articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.youtube.channel.title).split(' '), 'Video', 'Watch'];
-      articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.youtube.title).split(' '), ...site.removeHtml(articlesDoc.youtube.channel.title).split(' ')];
+      articlesDoc.translatedList[0].tagsList = [...site.removeHtml(userData.channel.title).split(' '), 'Video', 'Watch'];
+      articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(userData.title).split(' '), ...site.removeHtml(userData.channel.title).split(' ')];
 
-      articlesDoc.translatedList[0].title = articlesDoc.youtube.title;
+      articlesDoc.translatedList[0].title = userData.title;
       articlesDoc.translatedList[0].image = {
-        url: articlesDoc.youtube.image?.url,
+        url: userData.image?.url,
       };
-      articlesDoc.translatedList[0].textContent = articlesDoc.youtube.description;
-      if (articlesDoc.youtube.date_uploaded) {
-        articlesDoc.publishDate = site.getDateTime(articlesDoc.youtube.date);
+      articlesDoc.translatedList[0].textContent = userData.description;
+      if (userData.date_uploaded) {
+        articlesDoc.publishDate = site.getDateTime(userData.date);
       } else {
         articlesDoc.publishDate = new Date();
       }
@@ -825,7 +825,7 @@ module.exports = function init(site) {
     } else if (articlesDoc.is_facebook) {
       articlesDoc = {
         type: site.articleTypes.find((t) => t.id === 9),
-        facebook: articlesDoc,
+        facebook: userData,
         translatedList: [{ language: language }],
         host: 'facebook',
       };
@@ -867,6 +867,8 @@ module.exports = function init(site) {
       }
 
       articlesDoc.guid = site.md5('Facebook - ' + articlesDoc.facebook.url);
+    } else {
+      articlesDoc = userData;
     }
 
     articlesDoc.addUserInfo = req.getUserFinger();
@@ -883,7 +885,6 @@ module.exports = function init(site) {
 
     site.$articles.find({ guid: articlesDoc.guid }, (err, doc) => {
       if (!err && doc) {
-        response.done = true;
         response.updated = true;
         if (articlesDoc.yts) {
           doc.yts = articlesDoc.yts;
@@ -891,16 +892,21 @@ module.exports = function init(site) {
           doc.translatedList[0].title = articlesDoc.translatedList[0].title;
           doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent || doc.translatedList[0].textContent;
         }
-        doc.translatedList[0].host = articlesDoc.translatedList[0].host;
 
-        res.json(response);
+        doc = { ...doc, ...articlesDoc };
+
         site.$articles.update(doc, (err, result) => {
           if (!err && result.doc) {
+            response.done = true;
+            response.doc = result.doc;
             let index = site.articlesList.findIndex((a) => a.id == result.doc.id);
             if (index !== -1) {
               site.articlesList[index] = site.handleArticle({ ...result.doc });
             }
+          } else {
+            response.error = err?.message;
           }
+          res.json(response);
         });
       } else {
         site.$articles.add(articlesDoc, (err, doc) => {
@@ -958,11 +964,11 @@ module.exports = function init(site) {
           id: articlesDoc.id,
         },
         set: articlesDoc,
-    
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
+
           let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
           if (index > -1) {
             site.articlesList[index] = site.handleArticle({ ...result.doc });
@@ -1017,7 +1023,6 @@ module.exports = function init(site) {
     site.$articles.delete(
       {
         id: req.body.id,
-       
       },
       (err, result) => {
         if (!err) {

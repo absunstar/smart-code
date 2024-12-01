@@ -8,7 +8,6 @@ app.controller('sitebar', ($scope, $http) => {
   };
   $scope.indexLocation = function () {
     window.location.href = '/';
-
   };
 
   $scope.loadMainCategories = function () {
@@ -20,13 +19,15 @@ app.controller('sitebar', ($scope, $http) => {
       url: '/api/categories/all',
       data: {
         where: {
-          status: 'active', 
-          topParentId: { $exists: false }
+          status: 'active',
+          topParentId: { $exists: false },
         },
-        select : {
-          id : 1, name : 1 , image : 1 
+        select: {
+          id: 1,
+          name: 1,
+          image: 1,
         },
-        limit : 8
+        limit: 8,
       },
     }).then(
       function (response) {
@@ -66,7 +67,6 @@ app.controller('sitebar', ($scope, $http) => {
     window.location.href = `/?id=${id}`;
   };
 
-
   $scope.login = function () {
     site.showModal('#loginModal');
   };
@@ -94,20 +94,25 @@ app.controller('sitebar', ($scope, $http) => {
       function (error) {
         $scope.busy = false;
         $scope.error = error;
-      },
+      }
     );
   };
 
-  $scope.changeLang = function (lang) {
+  $scope.changeLang = function (language) {
+    if (typeof language == 'string') {
+      language = { id: language, dir: 'rtl', text: 'right' };
+      if (language.id.like('*en*')) {
+        language.dir = 'ltr';
+        language.text = 'left';
+      }
+    }
     $http({
       method: 'POST',
       url: '/x-language/change',
-      data: {
-        name: lang,
-      },
+      data: language,
     }).then(function (response) {
       if (response.data.done) {
-        window.location.reload(true);
+        window.location.reload(!0);
       }
     });
   };

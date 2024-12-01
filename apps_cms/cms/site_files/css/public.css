@@ -41,7 +41,7 @@ body {
 i-checkbox {
   padding-right: 20px !important;
   padding-left: 20px !important;
-  /* display: block; */
+  display: contents;
 }
 i-radio {
   padding-right: 20px !important;
