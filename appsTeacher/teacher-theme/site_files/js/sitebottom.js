@@ -12,10 +12,6 @@ app.controller('sitebottom' , ($scope , $http)=>{
         site.showModal('#loginModal');
     };
 
-    $scope.logout = function(){
-        site.showModal('#logOutModal');
-    };
-
     $scope.changeLang = function(lang){
         $http({
             method: 'POST',

@@ -20,8 +20,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
           $scope.item = response.data.doc;
           $scope.quizView();
           $scope.getPurchaseTypeTeacher($scope.item.teacherId);
-          if($scope.item.$buy){
-
+          if ($scope.item.$buy) {
             $scope.alert = "##word.Purchased##";
           }
         } else {
@@ -32,6 +31,15 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
+  };
+
+  $scope.showOneVideo = function () {
+    if ($scope._code === "248e6e883689313sawa") {
+      $scope.showLinks = true;
+    } else {
+      $scope.error = "الكود خطأ تواصل مع الدعم";
+    }
+    $scope._code = "";
   };
 
   $scope.showEnterCode = function () {
@@ -96,7 +104,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        
+
         if (response.data.done) {
           $scope.quiz = response.data.doc;
           console.log($scope.quiz);

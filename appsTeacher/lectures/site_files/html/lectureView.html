@@ -159,13 +159,16 @@
                 <div class="row">
                   <p class="text-comment gray-desc">{{item.description}}</p>
                 </div>
-
+                <div class="row">
+                  <i-control class="col6" ng-model="_code" label="أدخل الكود"></i-control>
+                  <i-button ng-click="showOneVideo()" class="col4" label="التأكد من الكود"></i-button>
+                </div>
                 <fieldset class="border" ng-show="(item.$buy || item.type.name == 'public') && item.filesList.length > 0">
                   <legend>##word.Download Files##</legend>
                   <a ng-repeat="f in item.filesList" class="links-a" href="{{f.file.url}}" target="_blank">{{f.title}} <i class="fas fa-download"></i></a>
                 </fieldset>
-
-                <div class="row video-box" ng-repeat="link in item.linksList" ng-show="item.$buy || item.type.name == 'public'">
+                <!-- item.$buy ||  -->
+                <div class="row video-box" ng-repeat="link in item.linksList" ng-show="showLinks ||item.type.name == 'public'">
                   <i-button type="view" label="{{link.name}}" ng-click="openVideo(link)"></i-button>
                   <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'number' &&link.isValid">##word.Number of views remaining## {{link.remainNumber}}</span>
                   <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'day'&&link.isValid">##word.Number of remaining viewing days## {{link.remainDay}}</span>

@@ -170,7 +170,7 @@ module.exports = function init(site) {
       site.get(
         {
           name: "view-video",
-          require: { permissions: ["login"] },
+          // require: { permissions: ["login"] },
         },
         (req, res) => {
           app.$collection.find({ _id: req.query.id }, (err, lecture) => {
@@ -188,8 +188,8 @@ module.exports = function init(site) {
                   appName: req.word("Video"),
                   setting: site.getSiteSetting(req.host),
                   videoUrl: videoUrl,
-                  studentName: req.session.user?.firstName,
-                  studentBarcode: req.session.user?.barcode,
+                  studentName: req.session?.user?.firstName,
+                  studentBarcode: req.session?.user?.barcode,
                 },
                 { parser: "html css js", compres: true }
               );
@@ -728,7 +728,7 @@ module.exports = function init(site) {
               if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId == _doc.id)) {
                 _doc.$buy = true;
                 _doc.linksList.forEach((_video) => {
-                  delete _video.url;
+                  // delete _video.url;
 
                   req.session.user.viewsList = req.session.user.viewsList || [];
                   let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId === _doc.id && itm.code === _video.code);
@@ -773,7 +773,7 @@ module.exports = function init(site) {
                   delete _doc.filesList;
                 }
                 _doc.linksList.forEach((_video) => {
-                  delete _video.url;
+                  // delete _video.url;
                 });
               }
             } else {
@@ -781,7 +781,7 @@ module.exports = function init(site) {
                 delete _doc.filesList;
               }
               _doc.linksList.forEach((_video) => {
-                delete _video.url;
+                // delete _video.url;
 
                 _video.isValid = true;
               });
