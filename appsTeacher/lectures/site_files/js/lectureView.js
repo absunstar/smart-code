@@ -213,9 +213,9 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         },
       }).then(function (response) {
         $scope.busy = false;
-/*         if (response.data.done) {
- */          window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
-      /*   } */
+        if (response.data.done) {
+          window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
+        }
       });
     } else {
       site.showModal("#socialBrowserModal");
