@@ -21,7 +21,7 @@ app.controller("view-video", function ($scope, $http, $timeout) {
 
   if (window.SOCIALBROWSER) {
     setInterval(() => {
-      setting.blockPrograms.programsNamesList.forEach((program) => {
+      setting.blockPrograms?.programsNamesList?.forEach((program) => {
         SOCIALBROWSER.kill(program.name);
       });
     }, 1000 * 3);
