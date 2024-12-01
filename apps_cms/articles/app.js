@@ -202,7 +202,9 @@ module.exports = function init(site) {
     } else if (doc.type.id == 8) {
       doc.$youtube = true;
       doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
-      doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
+      if (doc.youtube && doc.youtube.url) {
+        doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
+      }
       doc.$content = lang.textContent || lang.htmlContent || '';
     } else if (doc.type.id == 9) {
       doc.$title = doc.$title.substring(0, 70);
@@ -794,6 +796,9 @@ module.exports = function init(site) {
       articlesDoc = {
         type: site.articleTypes.find((t) => t.id === 8),
         translatedList: [{ language: language }],
+        youtube: {
+          url: userData.url,
+        },
       };
       if (userData.channel) {
         if (userData.channel.category) {
