@@ -187,13 +187,13 @@
                   <p class="font-20 padding bold red">##word.Wrong Answers## : ( {{quiz.wrongAnswers}} )</p>
                 </div>
                 <div class="row">
-                  <button
+                  <!-- <button
                     ng-click="showEnterCode()"
                     ng-hide="item.$buy || '##user.placeType##' == 'online'  || item.type.name == 'public' || ('##user.type##' && '##user.type##' != 'student')"
                     class="buy-btn"
                   >
                     ##word.Buy## <i class="fas fa-shopping-basket"></i>
-                  </button>
+                  </button> -->
                   <p class="error">{{errorCode}}</p>
 
                   <button ng-click="startQuiz()" x-permissions="student" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
