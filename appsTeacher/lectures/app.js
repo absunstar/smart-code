@@ -170,7 +170,7 @@ module.exports = function init(site) {
       site.get(
         {
           name: "view-video",
-          // require: { permissions: ["login"] },
+          require: { permissions: ["login"] },
         },
         (req, res) => {
           app.$collection.find({ _id: req.query.id }, (err, lecture) => {
@@ -188,8 +188,8 @@ module.exports = function init(site) {
                   appName: req.word("Video"),
                   setting: site.getSiteSetting(req.host),
                   videoUrl: videoUrl,
-                  studentName: req.session?.user?.firstName,
-                  studentBarcode: req.session?.user?.barcode,
+                  studentName: req.session.user?.firstName,
+                  studentBarcode: req.session.user?.barcode,
                 },
                 { parser: "html css js", compres: true }
               );
@@ -507,7 +507,7 @@ module.exports = function init(site) {
       );
     }
 
-    site.post({ name: `/api/${app.name}/changeView`, public: true }, (req, res) => {
+    site.post({ name: `/api/${app.name}/changeView`, require: { permissions: ["login"] } }, (req, res) => {
       let response = {
         done: false,
       };
@@ -527,75 +527,72 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-          // site.security.getUser(
-          //   {
-          //     id: req.session?.user?.id,
-          //   },
-          //   (err, user) => {
-          //     if (!err && user) {
-          //       if (_data.socialBrowserID) {
-          //         if (user.socialBrowserID) {
-          //           if (user.socialBrowserID != _data.socialBrowserID) {
-          //             response.error = "The video cannot be watched due to a new device. Please contact support";
+          site.security.getUser(
+            {
+              id: req.session?.user?.id,
+            },
+            (err, user) => {
+              if (!err && user) {
+                if (_data.socialBrowserID) {
+                  if (user.socialBrowserID) {
+                    if (user.socialBrowserID != _data.socialBrowserID) {
+                      response.error = "The video cannot be watched due to a new device. Please contact support";
 
-          //             res.json(response);
-          //             return;
-          //           }
-          //         } else {
-          //           user.socialBrowserID = _data.socialBrowserID;
-          //         }
-          //       }
-          //       let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
-          //       if (index !== -1) {
-          //         if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
-          //           response.error = "The number of views allowed for this video has been exceeded";
-          //           res.json(response);
-          //           return;
-          //         } else if (doc.typeExpiryView.name == "day") {
-          //           var viewDate = site.getDate(user.viewsList[index].date);
-          //           viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-          //           let newDate = site.getDate();
-          //           let diffTime = Math.abs(viewDate - newDate);
-          //           let remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-          //           if (remainDay < 1) {
-          //             response.error = "The time limit for watching this video has been exceeded";
-          //             res.json(response);
-          //             return;
-          //           }
-          //         } else if (doc.typeExpiryView.name == "date") {
-          //           doc.dateAvailableViews = site.getDate(doc.dateAvailableViews);
-          //           if (site.getDate().getTime() > doc.dateAvailableViews.getTime()) {
-          //             response.error = "The time limit for watching this video has been exceeded";
-          //             res.json(response);
-          //             return;
-          //           }
-          //         }
+                      res.json(response);
+                      return;
+                    }
+                  } else {
+                    user.socialBrowserID = _data.socialBrowserID;
+                  }
+                }
+                let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
+                if (index !== -1) {
+                  if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
+                    response.error = "The number of views allowed for this video has been exceeded";
+                    res.json(response);
+                    return;
+                  } else if (doc.typeExpiryView.name == "day") {
+                    var viewDate = site.getDate(user.viewsList[index].date);
+                    viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
+                    let newDate = site.getDate();
+                    let diffTime = Math.abs(viewDate - newDate);
+                    let remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    if (remainDay < 1) {
+                      response.error = "The time limit for watching this video has been exceeded";
+                      res.json(response);
+                      return;
+                    }
+                  } else if (doc.typeExpiryView.name == "date") {
+                    doc.dateAvailableViews = site.getDate(doc.dateAvailableViews);
+                    if (site.getDate().getTime() > doc.dateAvailableViews.getTime()) {
+                      response.error = "The time limit for watching this video has been exceeded";
+                      res.json(response);
+                      return;
+                    }
+                  }
 
-          //         user.viewsList[index].views += 1;
-          //       } else {
-          //         user.viewsList.push({
-          //           lectureId: doc.id,
-          //           code: _data.code,
-          //           date: site.getDate(),
-          //           views: 1,
-          //         });
-          //       }
-          //       site.security.updateUser(user);
+                  user.viewsList[index].views += 1;
+                } else {
+                  user.viewsList.push({
+                    lectureId: doc.id,
+                    code: _data.code,
+                    date: site.getDate(),
+                    views: 1,
+                  });
+                }
+                site.security.updateUser(user);
 
-          //       app.update(doc, (err, result) => {
-          //         if (!err) {
-          //           response.done = true;
-          //         } else {
-          //           response.error = err?.message || "Not Exists";
-          //         }
-          //         res.json(response);
-          //       });
-          //     }
-          //   }
-          // );
-          response.done = true;
-          res.json(response);
-     
+                app.update(doc, (err, result) => {
+                  if (!err) {
+                    response.done = true;
+                  } else {
+                    response.error = err?.message || "Not Exists";
+                  }
+                  res.json(response);
+                });
+              }
+            }
+          );
         } else {
           response.error = err?.message || "Not Exists";
           res.json(response);
@@ -603,7 +600,7 @@ module.exports = function init(site) {
       });
     });
 
-    site.post({ name: `/api/${app.name}/changeViewMobile`,public: true }, (req, res) => {
+    site.post({ name: `/api/${app.name}/changeViewMobile`, require: { permissions: ["login"] } }, (req, res) => {
       let response = {
         done: false,
       };
@@ -621,63 +618,60 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-          // site.security.getUser(
-          //   {
-          //     id: req.session?.user?.id,
-          //   },
-          //   (err, user) => {
-          //     if (!err && user) {
-          //       let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
-          //       if (index !== -1) {
-          //         if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
-          //           response.error = "The number of views allowed for this video has been exceeded";
-          //           res.json(response);
-          //           return;
-          //         } else if (doc.typeExpiryView.name == "day") {
-          //           var viewDate = site.getDate(user.viewsList[index].date);
-          //           viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
-          //           let newDate = site.getDate();
-          //           let diffTime = Math.abs(viewDate - newDate);
-          //           let remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-          //           if (remainDay < 1) {
-          //             response.error = "The time limit for watching this video has been exceeded";
-          //             res.json(response);
-          //             return;
-          //           }
-          //         } else if (doc.typeExpiryView.name == "date") {
-          //           doc.dateAvailableViews = site.getDate(doc.dateAvailableViews);
-          //           if (site.getDate().getTime() > doc.dateAvailableViews.getTime()) {
-          //             response.error = "The time limit for watching this video has been exceeded";
-          //             res.json(response);
-          //             return;
-          //           }
-          //         }
+          site.security.getUser(
+            {
+              id: req.session?.user?.id,
+            },
+            (err, user) => {
+              if (!err && user) {
+                let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
+                if (index !== -1) {
+                  if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
+                    response.error = "The number of views allowed for this video has been exceeded";
+                    res.json(response);
+                    return;
+                  } else if (doc.typeExpiryView.name == "day") {
+                    var viewDate = site.getDate(user.viewsList[index].date);
+                    viewDate.setHours(viewDate.getHours() + doc.daysAvailableViewing * 24);
+                    let newDate = site.getDate();
+                    let diffTime = Math.abs(viewDate - newDate);
+                    let remainDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    if (remainDay < 1) {
+                      response.error = "The time limit for watching this video has been exceeded";
+                      res.json(response);
+                      return;
+                    }
+                  } else if (doc.typeExpiryView.name == "date") {
+                    doc.dateAvailableViews = site.getDate(doc.dateAvailableViews);
+                    if (site.getDate().getTime() > doc.dateAvailableViews.getTime()) {
+                      response.error = "The time limit for watching this video has been exceeded";
+                      res.json(response);
+                      return;
+                    }
+                  }
 
-          //         user.viewsList[index].views += 1;
-          //       } else {
-          //         user.viewsList.push({
-          //           lectureId: doc.id,
-          //           code: _data.code,
-          //           date: site.getDate(),
-          //           views: 1,
-          //         });
-          //       }
-          //       site.security.updateUser(user);
+                  user.viewsList[index].views += 1;
+                } else {
+                  user.viewsList.push({
+                    lectureId: doc.id,
+                    code: _data.code,
+                    date: site.getDate(),
+                    views: 1,
+                  });
+                }
+                site.security.updateUser(user);
 
-          //       app.update(doc, (err, result) => {
-          //         if (!err) {
-          //           response.done = true;
-          //         } else {
-          //           response.error = err.message;
-          //         }
-          //         res.json(response);
-          //       });
-          //     }
-          //   }
-          // );
-     
-          response.done = true;
-          res.json(response);
+                app.update(doc, (err, result) => {
+                  if (!err) {
+                    response.done = true;
+                  } else {
+                    response.error = err.message;
+                  }
+                  res.json(response);
+                });
+              }
+            }
+          );
         } else {
           response.error = err?.message || "Not Exists";
           res.json(response);
@@ -734,7 +728,7 @@ module.exports = function init(site) {
               if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s.lectureId == _doc.id)) {
                 _doc.$buy = true;
                 _doc.linksList.forEach((_video) => {
-                  // delete _video.url;
+                  delete _video.url;
 
                   req.session.user.viewsList = req.session.user.viewsList || [];
                   let index = req.session.user.viewsList.findIndex((itm) => itm.lectureId === _doc.id && itm.code === _video.code);
@@ -779,7 +773,7 @@ module.exports = function init(site) {
                   delete _doc.filesList;
                 }
                 _doc.linksList.forEach((_video) => {
-                  // delete _video.url;
+                  delete _video.url;
                 });
               }
             } else {
@@ -787,7 +781,7 @@ module.exports = function init(site) {
                 delete _doc.filesList;
               }
               _doc.linksList.forEach((_video) => {
-                // delete _video.url;
+                delete _video.url;
 
                 _video.isValid = true;
               });
