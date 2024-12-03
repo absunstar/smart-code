@@ -975,7 +975,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
           ip: printer.ipDevice,
           port: printer.portDevice,
           pageSize: "Letter",
-          scaleFactor : 100,
+          scaleFactor : $scope.setting.scaleFactor,
           printer: printer.ip.name.trim(),
           dpi: { horizontal: $scope.setting.horizontalPrint, vertical: $scope.setting.verticalPrint },
         });
