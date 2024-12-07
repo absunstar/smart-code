@@ -381,6 +381,7 @@ module.exports = function init(site) {
   });
 
   site.getPreparingGroups = function (where, callBack) {
+    
     callBack = callBack || function () {};
     let select = {
       id: 1,
@@ -419,12 +420,13 @@ module.exports = function init(site) {
       where["studentList.student.id"] = where.student.id;
       delete where["student"];
     }
-
-    app.$collection.findMany({ where, select, sort: { id: -1 } }, (err, docs) => {
+    
+    app.$collection.findMany({ where : {...where}, select : {...select}, sort: { id: -1 } }, (err, docs) => {      
       callBack(err, docs);
     });
     // }
   };
+
   site.changeStudentBarcodeForPreparingGroups = function (data) {
     app.$collection.findMany({ host: data.host, "studentList.student.id": data.id }, (err, docs) => {
       if (!err && docs) {

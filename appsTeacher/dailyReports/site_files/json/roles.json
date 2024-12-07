@@ -1,0 +1,7 @@
+[{
+    "moduleName" : "public" ,
+    "name": "dailyReportsAdmin",
+    "En": "Groups Amounts Reports Admin",
+    "Ar": "إدارة تقارير اليومية ",
+    "permissions": ["dailyReportsManage"]
+}] 

@@ -577,12 +577,14 @@ module.exports = function init(site) {
       callBack(err, doc);
     });
   };
+
   site.getGroups = function (where, callBack) {
     callBack = callBack || function () {};
     app.$collection.findMany(where, (err, docs) => {
       callBack(err, docs);
     });
   };
+
   site.addStudentToGroups = function (student, groupList) {
     let idList = [];
     groupList.forEach((element) => {

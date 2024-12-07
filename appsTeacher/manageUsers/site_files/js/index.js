@@ -1011,7 +1011,7 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
         $scope.error = "##word.This Month Is Exist##";
         return;
       }
-      item.paymentList.unshift({ date: item.$date, price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: site.getDate(), price: item.$price }] });
+      item.paymentList.unshift({ date: item.$date, discount :item.discount , price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: site.getDate(), price: item.$price }] });
       delete item.$price;
       delete item.$month;
       delete item.$remain;

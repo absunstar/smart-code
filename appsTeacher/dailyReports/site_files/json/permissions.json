@@ -1,0 +1,8 @@
+[
+  { "moduleName": "public", "screenName": "dailyReports", "name": "dailyReportsManage", "En": "Manage", "Ar": "إدارة" },
+  { "moduleName": "public", "screenName": "dailyReports", "name": "dailyReportsView", "En": "View", "Ar": "عرض" },
+  { "moduleName": "public", "screenName": "dailyReports", "name": "dailyReportsSearch", "En": "Search", "Ar": "بحث" },
+  { "moduleName": "public", "screenName": "dailyReports", "name": "dailyReportsExport", "En": "Export", "Ar": "تصدير" },
+  { "moduleName": "public", "screenName": "dailyReports", "name": "dailyReportsPrint", "En": "Print", "Ar": "طباعة" },
+  { "moduleName": "public", "screenName": "dailyReports", "name": "dailyReportsUi", "En": "UI", "Ar": "الواجهة الرسومية" }
+]

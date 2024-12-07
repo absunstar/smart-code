@@ -408,7 +408,7 @@ module.exports = function init(site) {
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
 
-          if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared) || (doc.host == host && setting.isShared)) && JSON.stringify(obj).contains(search)) {
+          if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared) || (doc.host == host)) && JSON.stringify(obj).contains(search)) {
             if (
               (!where.mySubscriptions || req.session?.user?.subscriptionList?.some((s) => s == obj.id)) &&
               (!where.educationalLevel?.id || where.educationalLevel?.id == obj.educationalLevel.id) &&

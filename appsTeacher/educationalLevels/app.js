@@ -261,11 +261,12 @@ module.exports = function init(site) {
         let list = [];
         let teacherId = site.getTeacherSetting(req);
         let host = site.getHostFilter(req.host);
-    let setting = site.getSiteSetting(req.host);
-
+        let setting = site.getSiteSetting(req.host);
+        
         app.memoryList.forEach((doc) => {
+
           let obj = { ...doc };
-          if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared) || (doc.host == host && setting.isShared))) {
+          if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared) || (doc.host == host))) {
             list.push(obj);
           }
 

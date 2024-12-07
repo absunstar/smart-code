@@ -266,7 +266,9 @@ module.exports = function init(site) {
           where.$or.push({
             id: site.get_RegExp(search, "i"),
           });
-
+          where.$or.push({
+            email: site.get_RegExp(search, 'i'),
+          });
           where.$or.push({
             firstName: site.get_RegExp(search, "i"),
           });

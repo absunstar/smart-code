@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
+  <head x-import="teacher-theme/head-dashboard.html"></head>
+
+  <body class="##session.language.id##" ng-controller="dailyReports">
+    <div x-import="dailyReports/detailsModal.html"></div>
+    <nav x-import="teacher-theme/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="teacher-theme/sitebottom.html" ng-controller="sitebottom"></nav>
+    <main class="container">
+      <div id="main-layout" class="content loaded">
+        <div id="dailyReportsSearch" class="row">
+          <div class="row">
+            <i-date v="r" class="col4" ng-model="search.dateFrom" label="##word.Date From##"></i-date>
+            <i-date v="r" class="col4" ng-model="search.dateTo" label="##word.Date To##"></i-date>
+            <i-button class="col2" label="##word.Search##" type="search" ng-click="getAll(search)"></i-button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="table-responsive">
+            <table class="table hover bold" id="t1">
+              <tr>
+                <th>##word.Student##</th>
+                <th>##word.Barcode##</th>
+                <!--    <th>##word.Mobile##</th>
+                <th>##word.Parent Mobile##</th> -->
+                <th>##word.Total Paid##</th>
+                <th>##word.Total Remain##</th>
+                <!--                 <th>##word.Details##</th>
+ -->
+              </tr>
+              <tr ng-repeat="item in list | filter:$search">
+                <td class="center">{{item.firstName}}</td>
+                <td class="center">{{item.barcode}}</td>
+                <!--    <td class="center">
+                  <a target="_blank" href="https://wa.me/{{item.mobile}}">
+                    {{item.mobile}}
+                    <i class="fas fa-mobile-alt"></i>
+                  </a>
+                </td>
+                <td class="center">
+                  <a target="_blank" href="https://wa.me/{{item.parentMobile}}">
+                    {{item.parentMobile}}
+                    <i class="fas fa-mobile-alt"></i>
+                  </a>
+                </td> -->
+                <td class="center">{{item.paid}} ##word.$##</td>
+                <td class="center">{{item.remain}} ##word.$##</td>
+                <!-- <td class="center"><i-button type="view" ng-click="displayDetails(item)"></i-button></td> -->
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="row">
+          <h2 class="bold center red">{{error}}</h2>
+        </div>
+      </div>
+    </main>
+
+    <div x-import="teacher-theme/scripts-dashboard.html"></div>
+
+    <script x-import="dailyReports/index.js"></script>
+  </body>
+</html>

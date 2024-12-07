@@ -56,6 +56,7 @@ module.exports = function init(site) {
               firstName: doc.firstName,
               lastName: doc.lastName,
               host: doc.host,
+              barcode: doc.barcode,
               active: doc.active,
             };
             site.studentList.push({ ...obj });
@@ -291,13 +292,9 @@ module.exports = function init(site) {
               lastName: doc.lastName,
               username: doc.username,
               host: doc.host,
+              barcode: doc.barcode,
               levelList: doc.levelList,
               purchaseTypeList: doc.purchaseTypeList,
-              youtubeAccouunt: doc.youtubeAccouunt,
-              instagramAccouunt: doc.instagramAccouunt,
-              twitterAccouunt: doc.twitterAccouunt,
-              facebookAccount: doc.facebookAccount,
-              linkedinAccouunt: doc.linkedinAccouunt,
               active: doc.active,
               priorityAppearance: doc.priorityAppearance,
             };
@@ -379,13 +376,9 @@ module.exports = function init(site) {
                     title: result.doc.title,
                     parent: result.doc.parent,
                     host: result.doc.host,
+                    barcode: result.doc.barcode,
                     levelList: result.doc.levelList,
                     purchaseTypeList: result.doc.purchaseTypeList,
-                    youtubeAccouunt: result.doc.youtubeAccouunt,
-                    instagramAccouunt: result.doc.instagramAccouunt,
-                    twitterAccouunt: result.doc.twitterAccouunt,
-                    facebookAccount: result.doc.facebookAccount,
-                    linkedinAccouunt: result.doc.linkedinAccouunt,
                     active: result.doc.active,
                     priorityAppearance: result.doc.priorityAppearance || 0,
                   };
@@ -525,7 +518,9 @@ module.exports = function init(site) {
           where.$or.push({
             id: site.get_RegExp(search, "i"),
           });
-
+          where.$or.push({
+            email: site.get_RegExp(search, 'i'),
+          });
           where.$or.push({
             firstName: site.get_RegExp(search, "i"),
           });
