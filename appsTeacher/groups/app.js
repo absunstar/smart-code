@@ -585,6 +585,7 @@ module.exports = function init(site) {
     });
   };
 
+  
   site.addStudentToGroups = function (student, groupList) {
     let idList = [];
     groupList.forEach((element) => {
