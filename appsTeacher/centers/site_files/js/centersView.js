@@ -1,12 +1,12 @@
-app.controller("centersView", function ($scope, $http, $timeout) {
+app.controller('centersView', function ($scope, $http, $timeout, $sce) {
   $scope.list = [];
-  $scope.baseURL = "";
+  $scope.baseURL = '';
 
   $scope.getAll = function () {
     $scope.busy = true;
-    $scope.error = "";
+    $scope.error = '';
     $http({
-      method: "POST",
+      method: 'POST',
       url: `${$scope.baseURL}/api/centers/all`,
       data: {
         view: true,
@@ -35,7 +35,7 @@ app.controller("centersView", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           setTimeout(() => {
             $scope.list.forEach((_item) => {
-              _item.locationSrc = `https://maps.google.com/maps?q=${_item.latitude},${_item.longitude}&hl=es;z=14&output=embed`;
+              _item.locationSrc = $sce.trustAsResourceUrl(`https://maps.google.com/maps?q=${_item.latitude},${_item.longitude}&hl=es;z=14&output=embed`);
 
               $scope.$applyAsync();
             });
