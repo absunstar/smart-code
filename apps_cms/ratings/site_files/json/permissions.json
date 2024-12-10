@@ -1,11 +1,11 @@
 [
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_manage" , "EN":"Manage" , "AR":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_add" , "EN":"Add" , "AR":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_update" , "EN":"Edit" , "AR":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_delete" , "EN":"Delete" , "AR":"حذف"},
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_view" , "EN":"View" , "AR":"عرض"},
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_search" , "EN":"Search" , "AR":"بحث"},
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_export" , "EN":"Export" , "AR":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_print" , "EN":"Print" , "AR":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "ratings" , "name":"ratings_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

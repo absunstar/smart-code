@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "menus_admin",
-    "EN": "Menus Admin",
-    "AR": "إدارة القوائم",
+    "En": "Menus Admin",
+    "Ar": "إدارة القوائم",
     "permissions": ["menus_manage"]
 }]

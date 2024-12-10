@@ -592,7 +592,7 @@
         <h2 class="error">{{error}}</h2>
         <i-button ng-show="mode == 'add' " type="add" label="##word.add##" ng-click="addArticles()"></i-button>
         <i-button ng-show="mode == 'edit' " type="edit" label="##word.edit##" ng-click="updateArticles(article)"></i-button>
-        <i-button ng-show="mode == 'delete' " type="delete" label="##word.delete##" ng-click="deleteArticles(article)"> </i-button>
+        <i-button ng-show="mode == 'delete' " type="delete" label="##word.delete##" ng-click="deleteArticles(article.id)"> </i-button>
         <i-button type="close" label="##word.close##" onclick="site.hideModal( '#articleManageModal')"></i-button>
       </div>
     </div>

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "articles_admin",
-    "EN": "Articles Admin",
-    "AR": "إدارة الأخبار",
+    "En": "Articles Admin",
+    "Ar": "إدارة الأخبار",
     "permissions": ["articles_manage"]
 }]

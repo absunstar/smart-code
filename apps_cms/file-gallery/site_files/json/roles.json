@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "file_gallery_admin",
-    "EN": "Files Gallery Admin",
-    "AR": "إدارة معرض ملفات",
+    "En": "Files Gallery Admin",
+    "Ar": "إدارة معرض ملفات",
     "permissions": ["file_gallery_manage"]
 }]

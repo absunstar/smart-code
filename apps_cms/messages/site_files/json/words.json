@@ -1,47 +1,47 @@
 [
     {
         "name": "messages",
-        "EN": "Messages",
-        "AR": "الرسائل"
+        "En": "Messages",
+        "Ar": "الرسائل"
     },
     {
         "name": "message",
-        "EN": "Message",
-        "AR": "رسالة"
+        "En": "Message",
+        "Ar": "رسالة"
     },
     {
         "name": "the_message",
-        "EN": "The Message",
-        "AR": "الرسالة"
+        "En": "The Message",
+        "Ar": "الرسالة"
     },
     {
         "name": "messages_new",
-        "EN": "New Message",
-        "AR": "رسالة جديدة"
+        "En": "New Message",
+        "Ar": "رسالة جديدة"
     },
     {
         "name": "messages_add",
-        "EN": "Add Message",
-        "AR": "إضافة رسالة "
+        "En": "Add Message",
+        "Ar": "إضافة رسالة "
     },
     {
         "name": "messages_edit",
-        "EN": "Edit Message",
-        "AR": "تعديل رسالة "
+        "En": "Edit Message",
+        "Ar": "تعديل رسالة "
     },
     {
         "name": "messages_details",
-        "EN": "Message Details",
-        "AR": "تفاصيل الرسالة "
+        "En": "Message Details",
+        "Ar": "تفاصيل الرسالة "
     },
     {
         "name": "messages_delete",
-        "EN": "Delete Message",
-        "AR": "حذف رسالة "
+        "En": "Delete Message",
+        "Ar": "حذف رسالة "
     },
     {
         "name": "message_name",
-        "EN": "Message Name",
-        "AR": "إسم الرسالة "
+        "En": "Message Name",
+        "Ar": "إسم الرسالة "
     }
 ]

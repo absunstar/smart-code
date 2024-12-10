@@ -1,27 +1,27 @@
 [
     {
         "id" : 1,
-        "EN": "Image",
-        "AR": "صورة"
+        "En": "Image",
+        "Ar": "صورة"
     },
     {
         "id" : 2,
-        "EN": "Small text",
-        "AR": "نص صغير"
+        "En": "Small text",
+        "Ar": "نص صغير"
     },
     {
         "id" : 3,
-        "EN": "Big text",
-        "AR": "نص كبير"
+        "En": "Big text",
+        "Ar": "نص كبير"
     },
     {
         "id" : 4,
-        "EN": "File",
-        "AR": "ملف"
+        "En": "File",
+        "Ar": "ملف"
     },
     {
         "id" : 5,
-        "EN": "Date",
-        "AR": "تاريخ"
+        "En": "Date",
+        "Ar": "تاريخ"
     }
 ]

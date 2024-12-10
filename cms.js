@@ -1,8 +1,8 @@
 const site = require('../isite')({
   port: [80, 8080],
   useLocalImages: false,
-  lang: 'AR',
-  language: { id: 'AR', dir: 'rtl', text: 'right' },
+  lang: 'Ar',
+  language: { id: 'Ar', dir: 'rtl', text: 'right' },
   version: Date.now(),
   name: 'cms',
   savingTime: 30,
@@ -32,7 +32,6 @@ const site = require('../isite')({
   },
 });
 
-console.log(site.args);
 
 site.time = new Date().getTime();
 
@@ -49,10 +48,10 @@ site.get(
   (req, res) => {
     // if host not in hostManager
     let setting = site.getSiteSetting(req.host);
-    if (!setting.host) {
-      res.redirect(site.getMainHost(req.host), 301);
-      return;
-    }
+    // if (!setting.host) {
+    //   res.redirect(site.getMainHost(req.host), 301);
+    //   return;
+    // }
 
     if (!setting.siteTemplate || !setting.languageList) {
       res.redirect('/404', 404);
@@ -64,9 +63,9 @@ site.get(
       return;
     }
     if (req.host.like('*torrent*')) {
-      req.session.lang = 'EN';
+      req.session.lang = 'En';
     } else {
-      req.session.lang = 'AR';
+      req.session.lang = 'Ar';
     }
     req.session.language = { id: req.session.lang };
 
@@ -120,7 +119,7 @@ site.get(
         if ((category = site.categoryList.find((c) => c.id == c0.id && c.host.like(options.filter)))) {
           let c = {};
           c.$list = site.articlesList.filter((a) => a.host.like(options.filter) && a.category && a.category.id == category.id).slice(0, c0.limit);
-          if (req.session.lang == 'AR') {
+          if (req.session.lang == 'Ar') {
             c.$list.forEach((doc) => {
               doc.$date = doc.$date1;
               doc.$day = doc.$day1;
@@ -174,9 +173,9 @@ site.get(
       return;
     }
     if (req.host.like('*torrent*')) {
-      req.session.lang = 'EN';
+      req.session.lang = 'En';
     } else {
-      req.session.lang = 'AR';
+      req.session.lang = 'Ar';
     }
     req.session.language = { id: req.session.lang };
 
@@ -239,7 +238,7 @@ site.get(
         if (!err && result) {
           let list = [...result.list];
 
-          if (req.session.lang == 'AR') {
+          if (req.session.lang == 'Ar') {
             list.forEach((doc) => {
               doc.$date = doc.$date1;
               doc.$day = doc.$day1;
@@ -316,9 +315,9 @@ site.get(
       return;
     }
     if (req.host.like('*torrent*')) {
-      req.session.lang = 'EN';
+      req.session.lang = 'En';
     } else {
-      req.session.lang = 'AR';
+      req.session.lang = 'Ar';
     }
     req.session.language = { id: req.session.lang };
 
@@ -395,7 +394,7 @@ site.get(
         if (!err && result) {
           let list = [...result.list];
 
-          if (req.session.lang == 'AR') {
+          if (req.session.lang == 'Ar') {
             list.forEach((doc) => {
               doc.$date = doc.$date1;
               doc.$day = doc.$day1;
@@ -497,9 +496,9 @@ site.get(
     }
 
     if (req.host.like('*torrent*')) {
-      req.session.lang = 'EN';
+      req.session.lang = 'En';
     } else {
-      req.session.lang = 'AR';
+      req.session.lang = 'Ar';
     }
     req.session.language = { id: req.session.lang };
 
@@ -524,7 +523,7 @@ site.get(
     site.getArticle(req.params.guid, (err, article) => {
       if (!err && article && article.host.like(filter)) {
         if (article.$yts) {
-          req.session.lang = 'EN';
+          req.session.lang = 'En';
           req.session.language = { id: req.session.lang };
           language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
         }
@@ -563,7 +562,7 @@ site.get(
         options.menuList3 = options.menuList.slice(20);
 
         options.relatedArticleList = site.getRelatedArticles(article, options.filter);
-        if (req.session.lang == 'AR') {
+        if (req.session.lang == 'Ar') {
           options.relatedArticleList.forEach((doc) => {
             doc.$date = doc.$date1;
             doc.$day = doc.$day1;

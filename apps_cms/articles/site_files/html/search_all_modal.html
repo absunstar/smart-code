@@ -10,15 +10,31 @@
       <form class="form">
         <fieldset>
           <legend>##word.search_all##</legend>
-       
           <div class="row">
+            <i-control ng-model="search.title" label="##word.article_title##"></i-control>
+          </div>
+          <div class="row">
+            <i-list
+              class="col4"
+              label="##word.Category##"
+              ng-model="search.category"
+              items="categoryList"
+              display="name"
+              ng-search="search.$category1Search"
+            >
+            </i-list>
+            <i-control class="col4" ng-model="search.host" label="##word.Host##"></i-control>
+            <i-control class="col4" type="number" ng-model="limit" label="##word.Limit##"></i-control>
+
+          </div>
+          <!--     <div class="row">
             <i-list class="col3" label="##word.article_template##" ng-model="search.type" items="articleTypesList" display="##session.lang##" ng-search="search.$typeSearch"> </i-list>
             <i-list class="col3" label="##word.writer##" ng-model="search.writer" items="writersList" display="profile.name" ng-search="search.$writerSearch"> </i-list>
             <i-list class="col3" label="##word.editor##" ng-model="search.editor" items="editorsList" display="profile.name" ng-search="search.$editorSearch"> </i-list>
             <i-list class="col3" label="##word.clusters##" ng-model="search.cluster" items="clusterList" display="name" ng-search="search.$clusterSearch"> </i-list>
-          </div>
+          </div> -->
 
-          <div class="row">
+          <!--   <div class="row">
             <i-list
               class="col3"
               label="##word.country##"
@@ -35,9 +51,9 @@
 
             <i-list class="col3" label="##word.area##" ng-model="search.area" items="areaList" display="name" ng-search="_search.$search.$areaSearch"> </i-list>
           </div>
-
+ -->
           <div class="row">
-            <i-list
+            <!--         <i-list
               class="col3"
               label="##word.Category##"
               ng-model="search.category"
@@ -47,8 +63,8 @@
               ng-search="search.$category1Search"
             >
             </i-list>
-
-            <i-list
+ -->
+            <!-- <i-list
               class="col3"
               label="##word.categories## {{search.category.name}}"
               ng-model="search.subCategory1"
@@ -93,9 +109,9 @@
               display="name"
               ng-search="search.$category5Search"
             >
-            </i-list>
+            </i-list> -->
           </div>
-          <div class="row">
+          <!--    <div class="row">
             <i-control class="col4" label="##word.keywords##" ng-model="search.keyword"></i-control>
             <i-control class="col4" label="##word.Tags##" ng-model="search.tags"></i-control>
           </div>
@@ -113,7 +129,7 @@
             <i-checkbox label="##word.Has Reading Time##" ng-model="search.hasReadingTime"> </i-checkbox>
             <i-checkbox label="##word.Has Audio##" ng-model="search.hasAudio"> </i-checkbox>
             <i-checkbox label="##word.Has Video##" ng-model="search.hasVideo"> </i-checkbox>
-          </div>
+          </div> -->
         </fieldset>
       </form>
     </div>

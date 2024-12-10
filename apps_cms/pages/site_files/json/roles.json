@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "page_implement_admin",
-    "EN": "pages Implement Admin",
-    "AR": "إدارة تنفيذ الصفحات",
+    "En": "pages Implement Admin",
+    "Ar": "إدارة تنفيذ الصفحات",
     "permissions": ["page_implement_manage"]
 }]

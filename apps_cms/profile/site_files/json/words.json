@@ -2,57 +2,57 @@
    
     {
         "name": "contents",
-        "EN": "Ads",
-        "AR": "الإعلانات"
+        "En": "Ads",
+        "Ar": "الإعلانات"
     },
     {
         "name": "no_rating",
-        "EN": "No rating",
-        "AR": "لا يوجد تقييم"
+        "En": "No rating",
+        "Ar": "لا يوجد تقييم"
     },
     {
         "name": "rating",
-        "EN": "rating",
-        "AR": "تقييم"
+        "En": "rating",
+        "Ar": "تقييم"
     },
     {
         "name": "last_seen",
-        "EN": "Last seen",
-        "AR": "آخر ظهور"
+        "En": "Last seen",
+        "Ar": "آخر ظهور"
     },
     {
         "name": "contact_number",
-        "EN": "Contact number",
-        "AR": "رقم التواصل"
+        "En": "Contact number",
+        "Ar": "رقم التواصل"
     },
     {
         "name": "please_complete_rating_correctly",
-        "EN": "Please complete the rating correctly",
-        "AR": "الرجاء إكمال التقييم بشكل صحيح"
+        "En": "Please complete the rating correctly",
+        "Ar": "الرجاء إكمال التقييم بشكل صحيح"
     },
     {
         "name": "no_followers",
-        "EN": "No Followers",
-        "AR": "لا يوجد متابعين"
+        "En": "No Followers",
+        "Ar": "لا يوجد متابعين"
     },
     {
         "name": "positive_rating",
-        "EN": "Positive rating",
-        "AR": "تقييم إيجابي"
+        "En": "Positive rating",
+        "Ar": "تقييم إيجابي"
     },
     {
         "name": "negative_rating",
-        "EN": "Negative rating",
-        "AR": "تقييم سلبي"
+        "En": "Negative rating",
+        "Ar": "تقييم سلبي"
     },
     {
         "name": "number_of_ratings",
-        "EN": "Number Of ratings",
-        "AR": "عدد التقييمات"
+        "En": "Number Of ratings",
+        "Ar": "عدد التقييمات"
     },
     {
         "name": "there_no_ratings",
-        "EN": "There are no Ratings",
-        "AR": "لا يوجد تقيييمات"
+        "En": "There are no Ratings",
+        "Ar": "لا يوجد تقيييمات"
     }
 ]

@@ -1,72 +1,72 @@
 [{
         "name": "country",
-        "EN": "Country",
-        "AR": "الدولة"
+        "En": "Country",
+        "Ar": "الدولة"
     },
     {
         "name": "countries",
-        "EN": "Countries",
-        "AR": "الدول"
+        "En": "Countries",
+        "Ar": "الدول"
     },
     {
         "name": "Country Code",
-        "EN": "Country Code",
-        "AR": "كود الدولة"
+        "En": "Country Code",
+        "Ar": "كود الدولة"
     },
     {
         "name": "Mobile Setting",
-        "EN": "Mobile Setting",
-        "AR": "إعدادات الهاتف"
+        "En": "Mobile Setting",
+        "Ar": "إعدادات الهاتف"
     },
     {
         "name": "length_of_mobile_number",
-        "EN": "Length of mobile number",
-        "AR": "طول رقم الجوال"
+        "En": "Length of mobile number",
+        "Ar": "طول رقم الجوال"
     },
     {
         "name": "country_new",
-        "EN": "New Country",
-        "AR": "دولة جديد"
+        "En": "New Country",
+        "Ar": "دولة جديد"
     },
     {
         "name": "country_add",
-        "EN": "Add Country",
-        "AR": "إضافة دولة "
+        "En": "Add Country",
+        "Ar": "إضافة دولة "
     },
     {
         "name": "country_edit",
-        "EN": "Edit Country",
-        "AR": "تعديل دولة "
+        "En": "Edit Country",
+        "Ar": "تعديل دولة "
     },
     {
         "name": "country_details",
-        "EN": "Country Details",
-        "AR": "تفاصيل الدولة "
+        "En": "Country Details",
+        "Ar": "تفاصيل الدولة "
     },
     {
         "name": "country_delete",
-        "EN": "Delete Country",
-        "AR": "حذف دولة "
+        "En": "Delete Country",
+        "Ar": "حذف دولة "
     },
     {
         "name": "country_name_ar",
-        "EN": "Country Name Ar",
-        "AR": "إسم الدولة بالعربي"
+        "En": "Country Name Ar",
+        "Ar": "إسم الدولة بالعربي"
     },
     {
         "name": "country_name_en",
-        "EN": "Country Name En",
-        "AR": "إسم الدولة بالإنجليزي"
+        "En": "Country Name En",
+        "Ar": "إسم الدولة بالإنجليزي"
     },
     {
         "name": "country_name",
-        "EN": "Country Name",
-        "AR": "إسم الدولة"
+        "En": "Country Name",
+        "Ar": "إسم الدولة"
     },
     {
         "name": "country_notes",
-        "EN": "Notes Country",
-        "AR": "ملاحظات الدولة "
+        "En": "Notes Country",
+        "Ar": "ملاحظات الدولة "
     }
 
 

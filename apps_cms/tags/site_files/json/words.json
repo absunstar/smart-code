@@ -1,47 +1,47 @@
 [{
         "name": "tag",
-        "EN": "Tag",
-        "AR": "التاج"
+        "En": "Tag",
+        "Ar": "التاج"
     },
     {
         "name": "tags",
-        "EN": "Tags",
-        "AR": "التاجات"
+        "En": "Tags",
+        "Ar": "التاجات"
     },
     {
         "name": "tag_new",
-        "EN": "New Tag",
-        "AR": "تاج جديد"
+        "En": "New Tag",
+        "Ar": "تاج جديد"
     },
     {
         "name": "tag_add",
-        "EN": "Add Tag",
-        "AR": "إضاف تاج "
+        "En": "Add Tag",
+        "Ar": "إضاف تاج "
     },
     {
         "name": "tag_edit",
-        "EN": "Edit Tag",
-        "AR": "تعديل تاج "
+        "En": "Edit Tag",
+        "Ar": "تعديل تاج "
     },
     {
         "name": "tag_details",
-        "EN": "Tag Details",
-        "AR": "تفاصيل التاج"
+        "En": "Tag Details",
+        "Ar": "تفاصيل التاج"
     },
     {
         "name": "tag_delete",
-        "EN": "Delete Tag",
-        "AR": "حذف تاج "
+        "En": "Delete Tag",
+        "Ar": "حذف تاج "
     },
     {
         "name": "tag_name",
-        "EN": "Tag Name",
-        "AR": "إسم التاج"
+        "En": "Tag Name",
+        "Ar": "إسم التاج"
     },
     {
         "name": "tag_notes",
-        "EN": "Notes Tag",
-        "AR": "ملاحظات التاج "
+        "En": "Notes Tag",
+        "Ar": "ملاحظات التاج "
     }
 
 

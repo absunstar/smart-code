@@ -6,12 +6,12 @@ module.exports = function init(site) {
 
   site.supportedLanguageList = [
     {
-      id: 'AR',
+      id: 'Ar',
       name: 'عربي',
       direction: 'rtl',
     },
     {
-      id: 'EN',
+      id: 'En',
       name: 'English',
       direction: 'ltr',
     },
@@ -30,134 +30,134 @@ module.exports = function init(site) {
   site.articleTypes = [
     {
       id: 1,
-      EN: 'Standred',
-      AR: 'افتراضى',
+      En: 'Standred',
+      Ar: 'افتراضى',
     },
     {
       id: 2,
-      EN: 'advanced',
-      AR: 'متطور',
+      En: 'advanced',
+      Ar: 'متطور',
     },
     {
       id: 3,
-      EN: 'Multi-Paragraph',
-      AR: 'متعدد الفقرات',
+      En: 'Multi-Paragraph',
+      Ar: 'متعدد الفقرات',
     },
     {
       id: 4,
-      EN: 'Multi-Paragraph advanced',
-      AR: 'متعدد الفقرات متطور',
+      En: 'Multi-Paragraph advanced',
+      Ar: 'متعدد الفقرات متطور',
     },
     {
       id: 5,
-      EN: 'Multi-Image',
-      AR: 'متعدد الصور',
+      En: 'Multi-Image',
+      Ar: 'متعدد الصور',
     },
     {
       id: 6,
-      EN: 'google-news',
-      AR: 'أخبار جوجل',
+      En: 'google-news',
+      Ar: 'أخبار جوجل',
     },
     {
       id: 7,
-      EN: 'yts-movie',
-      AR: 'yts-movie',
+      En: 'yts-movie',
+      Ar: 'yts-movie',
     },
     {
       id: 8,
-      EN: 'Youtube Video',
-      AR: 'Youtube Video',
+      En: 'Youtube Video',
+      Ar: 'Youtube Video',
     },
     {
       id: 9,
-      EN: 'Facebook Post',
-      AR: 'Facebook Post',
+      En: 'Facebook Post',
+      Ar: 'Facebook Post',
     },
   ];
   site.publishingSystem = [
     {
       id: 1,
-      EN: 'Immediately',
-      AR: 'فوري',
+      En: 'Immediately',
+      Ar: 'فوري',
     },
     {
       id: 2,
-      EN: 'By User',
-      AR: 'بواسطة المستخدم',
+      En: 'By User',
+      Ar: 'بواسطة المستخدم',
     },
   ];
   site.closingSystem = [
     {
       id: 1,
-      EN: 'After a specified period',
-      AR: 'بعد مدة محددة',
+      En: 'After a specified period',
+      Ar: 'بعد مدة محددة',
     },
     {
       id: 2,
-      EN: 'By User',
-      AR: 'بواسطة المستخدم',
+      En: 'By User',
+      Ar: 'بواسطة المستخدم',
     },
     {
       id: 3,
-      EN: 'For Ever',
-      AR: 'الى الابد',
+      En: 'For Ever',
+      Ar: 'الى الابد',
     },
   ];
 
   site.siteColor = [
     {
       id: '#d7373f',
-      EN: 'Red',
-      AR: 'أحمر',
+      En: 'Red',
+      Ar: 'أحمر',
     },
     {
       id: '#2196f3',
-      EN: 'Blue',
-      AR: 'أزرق',
+      En: 'Blue',
+      Ar: 'أزرق',
     },
     {
       id: '#8bc34a',
-      EN: 'Green',
-      AR: 'أخضر',
+      En: 'Green',
+      Ar: 'أخضر',
     },
     {
       id: '#272727',
-      EN: 'Black',
-      AR: 'أسود',
+      En: 'Black',
+      Ar: 'أسود',
     },
   ];
   site.articleStatus = [
     {
       id: 1,
-      EN: 'Active',
-      AR: 'نشط',
+      En: 'Active',
+      Ar: 'نشط',
     },
     {
       id: 2,
-      EN: 'Under review',
-      AR: 'قيد المراجعة',
+      En: 'Under review',
+      Ar: 'قيد المراجعة',
     },
     {
       id: 3,
-      EN: 'Forbidden',
-      AR: 'محظور',
+      En: 'Forbidden',
+      Ar: 'محظور',
     },
   ];
   site.durationExpiry = [
     {
       id: 1,
-      EN: 'Hour',
-      AR: 'ساعة',
+      En: 'Hour',
+      Ar: 'ساعة',
     },
     {
       id: 2,
-      EN: 'Day',
-      AR: 'يوم',
+      En: 'Day',
+      Ar: 'يوم',
     },
     {
       id: 3,
-      EN: 'Month',
-      AR: 'شهر',
+      En: 'Month',
+      Ar: 'شهر',
     },
   ];
   site.defaultSetting = {

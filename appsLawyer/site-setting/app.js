@@ -11,23 +11,23 @@ module.exports = function init(site) {
   site.siteColor = [
     {
       id: "#d7373f",
-      EN: "Red",
-      AR: "أحمر",
+      En: "Red",
+      Ar: "أحمر",
     },
     {
       id: "#2196f3",
-      EN: "Blue",
-      AR: "أزرق",
+      En: "Blue",
+      Ar: "أزرق",
     },
     {
       id: "#8bc34a",
-      EN: "Green",
-      AR: "أخضر",
+      En: "Green",
+      Ar: "أخضر",
     },
     {
       id: "#272727",
-      EN: "Black",
-      AR: "أسود",
+      En: "Black",
+      Ar: "أسود",
     },
   ];
 

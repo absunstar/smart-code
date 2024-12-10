@@ -1,9 +1,9 @@
 [
-    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_manage" , "EN":"Manage" , "AR":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_update" , "EN":"Edit" , "AR":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_add" , "EN":"add" , "AR":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_delete" , "EN":"Delete" , "AR":"حذف"},
-    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_view" , "EN":"View" , "AR":"عرض"},
-    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_search" , "EN":"Search" , "AR":"بحث"},
-    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_add" , "En":"add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "manage-users" , "name":"manageUsers_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

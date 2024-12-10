@@ -16,7 +16,11 @@
           <i-button x-permissions="articles_add || articles_manage" type="add" label="##word.articles_new##" ng-click="displayAddArticles()"></i-button>
           <i-button ng-hide="hideHandleImages" x-permissions="admin" label="##word.Handle Images##" ng-click="handleImages()"></i-button>
           <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-
+          <i-button type="delete" label="##word.Delete All##" onclick="site.showModal('#confirmdeleteAll')"> </i-button>
+        
+          <div class="col2">
+            <i-checkbox label="##word.Direct Delete##" ng-model="directDelete"> </i-checkbox>
+          </div>
           <div class="row padding">
             <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="articles_search || articles_manage"></i-control>
           </div>
@@ -61,7 +65,27 @@
         <i-button x-permissions="articles_print || articles_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
       </div>
     </div>
+    <div id="confirmdeleteAll" class="modal small">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>##word.Delete All## <i class="fa fa-delete"></i></h2>
+        </div>
+        <div class="modal-body">
+          <form class="form">
+          <h2 class="center">##word.Confirm deletion## ( {{count}} ) ##word.Article##</h2>
+          </form>
+        </div>
 
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+          <i-button type="delete" label="##word.Delete All##" ng-click="deleteAll()"> </i-button>
+          <i-button type="close" label="##word.close##" onclick="site.hideModal('#confirmdeleteAll')"> </i-button>
+        </div>
+      </div>
+    </div>
+    
     <div x-import="cms/scripts.html"></div>
     <script x-import="articles/index.js"></script>
   </body>

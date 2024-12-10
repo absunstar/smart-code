@@ -1,17 +1,17 @@
 [
   {
     "id": 1,
-    "EN": "Main",
-    "AR": "رئيسي (Main)"
+    "En": "Main",
+    "Ar": "رئيسي (Main)"
   },
   {
     "id": 2,
-    "EN": "Gallery",
-    "AR": "معرض (Gallery)"
+    "En": "Gallery",
+    "Ar": "معرض (Gallery)"
   },
   {
     "id": 3,
-    "EN": "Footer",
-    "AR": "تذييل (Footer)"
+    "En": "Footer",
+    "Ar": "تذييل (Footer)"
   }
 ]

@@ -1,7 +1,7 @@
 [
-    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_manage" , "EN":"Manage" , "AR":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_search" , "EN":"Search" , "AR":"بحث"},
-    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_export" , "EN":"Export" , "AR":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_print" , "EN":"Print" , "AR":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "report-communications" , "name":"report_communications_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

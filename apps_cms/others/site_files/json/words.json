@@ -1,92 +1,92 @@
 [
   {
     "name": "members_you_follow",
-    "EN": "Members you follow",
-    "AR": "أعضاء تتابعهم"
+    "En": "Members you follow",
+    "Ar": "أعضاء تتابعهم"
   },
   {
     "name": "products_must_added_basket",
-    "EN": "Products must be added to the basket",
-    "AR": "يجب إضافة منتجات إلى السلة"
+    "En": "Products must be added to the basket",
+    "Ar": "يجب إضافة منتجات إلى السلة"
   },
   {
     "name": "conversation",
-    "EN": "Conversation",
-    "AR": "محادثة"
+    "En": "Conversation",
+    "Ar": "محادثة"
   },
   {
     "name": "no_follow_up",
-    "EN": "No follow up",
-    "AR": "لا يوجد متابعات"
+    "En": "No follow up",
+    "Ar": "لا يوجد متابعات"
   },
   {
     "name": "no_notifications",
-    "EN": "No Notifications",
-    "AR": "لا يوجد إشعارات"
+    "En": "No Notifications",
+    "Ar": "لا يوجد إشعارات"
   },
   {
     "name": "follow_ups",
-    "EN": "Follow-ups",
-    "AR": "المتابعات"
+    "En": "Follow-ups",
+    "Ar": "المتابعات"
   },
   {
     "name": "follower",
-    "EN": "Follower",
-    "AR": "متابع"
+    "En": "Follower",
+    "Ar": "متابع"
   },
   {
     "name": "instant_alerts",
-    "EN": "Instant Alerts",
-    "AR": "التنبيهات الفورية"
+    "En": "Instant Alerts",
+    "Ar": "التنبيهات الفورية"
   },
   {
     "name": "ads_members_follow",
-    "EN": "Ads of members you follow",
-    "AR": "إعلانات أعضاء قمت بمتابعتهم"
+    "En": "Ads of members you follow",
+    "Ar": "إعلانات أعضاء قمت بمتابعتهم"
   },
   {
     "name": "ads_sections_followed",
-    "EN": "Ads for sections I followed",
-    "AR": "إعلانات أقسام قمت بمتابعتها"
+    "En": "Ads for sections I followed",
+    "Ar": "إعلانات أقسام قمت بمتابعتها"
   },
   {
     "name": "ads_searches_followed",
-    "EN": "Ads for searches you followed",
-    "AR": "إعلانات عمليات بحث قمت بمتابعتها"
+    "En": "Ads for searches you followed",
+    "Ar": "إعلانات عمليات بحث قمت بمتابعتها"
   },
   {
     "name": "replies_ads_followed",
-    "EN": "Replies to ads you followed",
-    "AR": "ردود على إعلانات قمت بمتابعتها"
+    "En": "Replies to ads you followed",
+    "Ar": "ردود على إعلانات قمت بمتابعتها"
   },
   {
     "name": "comments_my_ads",
-    "EN": "Comments on my ads",
-    "AR": "تعليقات على إعلاناتي"
+    "En": "Comments on my ads",
+    "Ar": "تعليقات على إعلاناتي"
   },
   {
     "name": "private_message",
-    "EN": "Private message",
-    "AR": "رسالة خاصة"
+    "En": "Private message",
+    "Ar": "رسالة خاصة"
   },
   {
     "name": "private_messages",
-    "EN": "Private messages",
-    "AR": "الرسائل الخاصة"
+    "En": "Private messages",
+    "Ar": "الرسائل الخاصة"
   },
   {
     "name": "haraj_recommendations",
-    "EN": "Harag Recommendations",
-    "AR": "توصيات حراج"
+    "En": "Harag Recommendations",
+    "Ar": "توصيات حراج"
   },
   {
     "name": "notific_setting",
-    "EN": "Notifications Setting",
-    "AR": "إعدادات الإشعارات"
+    "En": "Notifications Setting",
+    "Ar": "إعدادات الإشعارات"
   },
   {
     "name": "delete_notifications",
-    "EN": "Delete notifications",
-    "AR": "حذف الإشعارات"
+    "En": "Delete notifications",
+    "Ar": "حذف الإشعارات"
   }
 ]

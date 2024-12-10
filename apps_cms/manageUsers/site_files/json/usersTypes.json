@@ -1,27 +1,27 @@
 [
   {
     "id": 1,
-    "EN": "Writer",
-    "AR": "كاتب"
+    "En": "Writer",
+    "Ar": "كاتب"
   },
   {
     "id": 2,
-    "EN": "Editor",
-    "AR": "محرر"
+    "En": "Editor",
+    "Ar": "محرر"
   },
   {
     "id": 3,
-    "EN": "Reference",
-    "AR": "مراجع"
+    "En": "Reference",
+    "Ar": "مراجع"
   },
   {
     "id": 4,
-    "EN": "Photo reference",
-    "AR": "مراجع صور"
+    "En": "Photo reference",
+    "Ar": "مراجع صور"
   },
   {
     "id": 5,
-    "EN": "Publisher",
-    "AR": "ناشر"
+    "En": "Publisher",
+    "Ar": "ناشر"
   }
 ]

@@ -1,293 +1,293 @@
 [
   {
     "name": "brand_title",
-    "EN": "Harag Site",
-    "AR": "موقع حـــــراج"
+    "En": "Harag Site",
+    "Ar": "موقع حـــــراج"
   },
   {
     "name": "brand_tag",
-    "EN": "Harag",
-    "AR": "حـــــراج"
+    "En": "Harag",
+    "Ar": "حـــــراج"
   },
   {
     "name": "companies_basic_information",
-    "EN": "Basic Informations",
-    "AR": "البيانات الاساسية"
+    "En": "Basic Informations",
+    "Ar": "البيانات الاساسية"
   },
   {
     "name": "companies_contact_information",
-    "EN": "Contact Informations",
-    "AR": "بيانات الاتصال"
+    "En": "Contact Informations",
+    "Ar": "بيانات الاتصال"
   },
   {
     "name": "companies_phone",
-    "EN": "Phone",
-    "AR": "التليفون"
+    "En": "Phone",
+    "Ar": "التليفون"
   },
   {
     "name": "companies_mobile",
-    "EN": "Mobile",
-    "AR": "الموبايل"
+    "En": "Mobile",
+    "Ar": "الموبايل"
   },
   {
     "name": "companies_activity",
-    "EN": "Activity",
-    "AR": "النشاط"
+    "En": "Activity",
+    "Ar": "النشاط"
   },
   {
     "name": "companies_branches_informations",
-    "EN": "Branches Informations",
-    "AR": "بيانات الفروع"
+    "En": "Branches Informations",
+    "Ar": "بيانات الفروع"
   },
   {
     "name": "companies_branch",
-    "EN": "Branch",
-    "AR": "الفرع"
+    "En": "Branch",
+    "Ar": "الفرع"
   },
   {
     "name": "companies_branch_information",
-    "EN": "Branch Information",
-    "AR": "بيانات الفرع"
+    "En": "Branch Information",
+    "Ar": "بيانات الفرع"
   },
   {
     "name": "companies_contact_charge",
-    "EN": "Charge Information",
-    "AR": "بيانات المسئول"
+    "En": "Charge Information",
+    "Ar": "بيانات المسئول"
   },
   {
     "name": "companies_branch_code",
-    "EN": "Branch Code",
-    "AR": "كود الفرع"
+    "En": "Branch Code",
+    "Ar": "كود الفرع"
   },
   {
     "name": "companies_branch_name",
-    "EN": "Branch Name",
-    "AR": "إسم الفرع"
+    "En": "Branch Name",
+    "Ar": "إسم الفرع"
   },
   {
     "name": "companies_branch_name_ar",
-    "EN": "Branch Name Arabic",
-    "AR": "إسم الفرع بالعربى"
+    "En": "Branch Name Arabic",
+    "Ar": "إسم الفرع بالعربى"
   },
   {
     "name": "companies_branch_name_en",
-    "EN": "Branch Name English",
-    "AR": "إسم الفرع بالانجليزى"
+    "En": "Branch Name English",
+    "Ar": "إسم الفرع بالانجليزى"
   },
   {
     "name": "companies_branch_notes",
-    "EN": "Branch Notes",
-    "AR": "ملاحظات الفرع"
+    "En": "Branch Notes",
+    "Ar": "ملاحظات الفرع"
   },
   {
     "name": "companies_charge_name",
-    "EN": "Charge Name",
-    "AR": "إسم المسئول"
+    "En": "Charge Name",
+    "Ar": "إسم المسئول"
   },
   {
     "name": "companies_charge_job",
-    "EN": "Charge Job",
-    "AR": "الوظيفة"
+    "En": "Charge Job",
+    "Ar": "الوظيفة"
   },
   {
     "name": "companies_internal_number",
-    "EN": "Internal Number",
-    "AR": "الرقم الداخلي"
+    "En": "Internal Number",
+    "Ar": "الرقم الداخلي"
   },
   {
     "name": "companies_banking_informations",
-    "EN": "Banking Informations",
-    "AR": "البنوك"
+    "En": "Banking Informations",
+    "Ar": "البنوك"
   },
   {
     "name": "companies_bank_information",
-    "EN": "Bank Information",
-    "AR": "بيانات البنك"
+    "En": "Bank Information",
+    "Ar": "بيانات البنك"
   },
   {
     "name": "companies_bank_name",
-    "EN": "Bank Name",
-    "AR": "إسم البنك"
+    "En": "Bank Name",
+    "Ar": "إسم البنك"
   },
   {
     "name": "companies_bank_account_number",
-    "EN": "Bank Account Number",
-    "AR": "رقم الحساب"
+    "En": "Bank Account Number",
+    "Ar": "رقم الحساب"
   },
   {
     "name": "companies_filter_with_date",
-    "EN": "Filter With Date",
-    "AR": "تصفية البيانات بالتاريخ"
+    "En": "Filter With Date",
+    "Ar": "تصفية البيانات بالتاريخ"
   },
   {
     "name": "companies_calender_type",
-    "EN": "Calender Type",
-    "AR": "نوع التقويم"
+    "En": "Calender Type",
+    "Ar": "نوع التقويم"
   },
   {
     "name": "companies_gegorian",
-    "EN": "Gregorian",
-    "AR": "ميلادي"
+    "En": "Gregorian",
+    "Ar": "ميلادي"
   },
   {
     "name": "companies_hijri",
-    "EN": "Hijri",
-    "AR": "هجري"
+    "En": "Hijri",
+    "Ar": "هجري"
   },
   {
     "name": "companies_date",
-    "EN": "Date",
-    "AR": "التاريخ"
+    "En": "Date",
+    "Ar": "التاريخ"
   },
 
   {
     "name": "companies_city",
-    "EN": "City",
-    "AR": "المدينة"
+    "En": "City",
+    "Ar": "المدينة"
   },
   {
     "name": "companies_email",
-    "EN": "Email",
-    "AR": "البريد الإلكتروني"
+    "En": "Email",
+    "Ar": "البريد الإلكتروني"
   },
   {
     "name": "companies_fax",
-    "EN": "Fax",
-    "AR": "الفاكس"
+    "En": "Fax",
+    "Ar": "الفاكس"
   },
   {
     "name": "companies_name_ar",
-    "EN": "Point Of Sale Name Arabic",
-    "AR": "إسم نقطة البيع"
+    "En": "Point Of Sale Name Arabic",
+    "Ar": "إسم نقطة البيع"
   },
   {
     "name": "companies_name_en",
-    "EN": "Point Of Sale Name English",
-    "AR": "إسم نقطة البيع بالانجليزية"
+    "En": "Point Of Sale Name English",
+    "Ar": "إسم نقطة البيع بالانجليزية"
   },
   {
     "name": "companies_excahange_price",
-    "EN": "Exchange Price",
-    "AR": "سعر الصرف"
+    "En": "Exchange Price",
+    "Ar": "سعر الصرف"
   },
   {
     "name": "companies_company_swift_code",
-    "EN": "Swift Code",
-    "AR": "رقم السويفت"
+    "En": "Swift Code",
+    "Ar": "رقم السويفت"
   },
   {
     "name": "companies_new",
-    "EN": "New Point Of Sale",
-    "AR": "نقطة بيع جديدة"
+    "En": "New Point Of Sale",
+    "Ar": "نقطة بيع جديدة"
   },
   {
     "name": "companies_country",
-    "EN": "Coutntry",
-    "AR": "الدولة"
+    "En": "Coutntry",
+    "Ar": "الدولة"
   },
   {
     "name": "companies_address",
-    "EN": "Address",
-    "AR": "العنوان"
+    "En": "Address",
+    "Ar": "العنوان"
   },
   {
     "name": "ad_owner",
-    "EN": "Ad owner",
-    "AR": "صاحب الإعلان"
+    "En": "Ad owner",
+    "Ar": "صاحب الإعلان"
   },
   {
     "name": "store_owner",
-    "EN": "Store owner",
-    "AR": "صاحب المتجر"
+    "En": "Store owner",
+    "Ar": "صاحب المتجر"
   },
   {
     "name": "comment_activity",
-    "EN": "Comment Activity",
-    "AR": "نشاط التعليق"
+    "En": "Comment Activity",
+    "Ar": "نشاط التعليق"
   },
   {
     "name": "feedbacks",
-    "EN": "Feedbacks",
-    "AR": "التقييمات"
+    "En": "Feedbacks",
+    "Ar": "التقييمات"
   },
   {
     "name": "feedback",
-    "EN": "Feedback",
-    "AR": "التقييم"
+    "En": "Feedback",
+    "Ar": "التقييم"
   },
   {
     "name": "detailed_address",
-    "EN": "Detailed address",
-    "AR": "العنوان تفصيلي"
+    "En": "Detailed address",
+    "Ar": "العنوان تفصيلي"
   },
   {
     "name": "companies_customer_service",
-    "EN": "Customer Services",
-    "AR": "خدمة العملاء"
+    "En": "Customer Services",
+    "Ar": "خدمة العملاء"
   },
   {
     "name": "content_type",
-    "EN": "Content type",
-    "AR": "نوع المحتوى"
+    "En": "Content type",
+    "Ar": "نوع المحتوى"
   },
   {
     "name": "content_name_ar",
-    "EN": "Content name AR",
-    "AR": "إسم المحتوى عربي"
+    "En": "Content name AR",
+    "Ar": "إسم المحتوى عربي"
   },
   {
     "name": "content_name",
-    "EN": "Content name",
-    "AR": "إسم المحتوى"
+    "En": "Content name",
+    "Ar": "إسم المحتوى"
   },
   {
     "name": "Do_you_want_set_price",
-    "EN": "Do you want to set the price?",
-    "AR": "هل ترغب بتحديد السعر ؟"
+    "En": "Do you want to set the price?",
+    "Ar": "هل ترغب بتحديد السعر ؟"
   },
   {
     "name": "cart",
-    "EN": "Cart",
-    "AR": "العربة"
+    "En": "Cart",
+    "Ar": "العربة"
   },
   {
     "name": "the_report",
-    "EN": "The report",
-    "AR": "البلاغ"
+    "En": "The report",
+    "Ar": "البلاغ"
   },
   {
     "name": "report",
-    "EN": "Report",
-    "AR": "بلاغ"
+    "En": "Report",
+    "Ar": "بلاغ"
   },
   {
     "name": "add_to_cart",
-    "EN": "Add to cart",
-    "AR": "إضافة إلى السلة"
+    "En": "Add to cart",
+    "Ar": "إضافة إلى السلة"
   },
   {
     "name": "add_categories",
-    "EN": "Add Categories",
-    "AR": "إضافة أقسام فرعية"
+    "En": "Add Categories",
+    "Ar": "إضافة أقسام فرعية"
   },
   {
     "name": "name_sub_category_arabic",
-    "EN": "Name Sub Category Arabic",
-    "AR": "إسم القسم الفرعي بالعربي"
+    "En": "Name Sub Category Arabic",
+    "Ar": "إسم القسم الفرعي بالعربي"
   },
   {
     "name": "store_must_specified",
-    "EN": "Store must be specified",
-    "AR": "يجب تحديد المتجر"
+    "En": "Store must be specified",
+    "Ar": "يجب تحديد المتجر"
   },
   {
     "name": "user_must_specified",
-    "EN": "User must be specified",
-    "AR": "يجب تحديد المستخدم"
+    "En": "User must be specified",
+    "Ar": "يجب تحديد المستخدم"
   },
   {
     "name": "user_must_specified_in_feedbacks",
-    "EN": "User must be specified in feedbacks",
-    "AR": "يجب تحديد المستخدم في التقييمات"
+    "En": "User must be specified in feedbacks",
+    "Ar": "يجب تحديد المستخدم في التقييمات"
   }
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "clusters_admin",
-    "EN": "Clusters Admin",
-    "AR": "إدارة العناقيد",
+    "En": "Clusters Admin",
+    "Ar": "إدارة العناقيد",
     "permissions": ["clusters_manage"]
 }]

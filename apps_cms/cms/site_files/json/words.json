@@ -1,232 +1,232 @@
 [
   {
     "name": "near",
-    "EN": "Near",
-    "AR": "القريب"
+    "En": "Near",
+    "Ar": "القريب"
   },
   {
     "name": "lowest_price",
-    "EN": "Lowest price",
-    "AR": "الأقل سعر"
+    "En": "Lowest price",
+    "Ar": "الأقل سعر"
   },
   {
     "name": "highest_price",
-    "EN": "Highest price",
-    "AR": "الأعلى سعر"
+    "En": "Highest price",
+    "Ar": "الأعلى سعر"
   },
   {
     "name": "only_new",
-    "EN": "Only New",
-    "AR": "جديد فقط"
+    "En": "Only New",
+    "Ar": "جديد فقط"
   },
   {
     "name": "nearby_ads",
-    "EN": "Nearby ads",
-    "AR": "إعلانات قريبة"
+    "En": "Nearby ads",
+    "Ar": "إعلانات قريبة"
   },
   {
     "name": "search_here_for_what_you_want",
-    "EN": "Search here for what you want",
-    "AR": "إبحث هنا عن ما تريد"
+    "En": "Search here for what you want",
+    "Ar": "إبحث هنا عن ما تريد"
   },
   {
     "name": "cart",
-    "EN": "Cart",
-    "AR": "السلة"
+    "En": "Cart",
+    "Ar": "السلة"
   },
   {
     "name": "tmor",
-    "EN": "Dates",
-    "AR": "تمور"
+    "En": "Dates",
+    "Ar": "تمور"
   },
   {
     "name": "hide_map",
-    "EN": "Hide Map",
-    "AR": "إخفاء"
+    "En": "Hide Map",
+    "Ar": "إخفاء"
   },
   {
     "name": "map_search",
-    "EN": "Map search",
-    "AR": "البحث بالخريطة"
+    "En": "Map search",
+    "Ar": "البحث بالخريطة"
   },
   {
     "name": "facebook_account",
-    "EN": "Facebook Account",
-    "AR": "حساب الفيس بوك"
+    "En": "Facebook Account",
+    "Ar": "حساب الفيس بوك"
   },
   {
     "name": "instagram_accouunt",
-    "EN": "Instagram Account",
-    "AR": "حساب إنستجرام"
+    "En": "Instagram Account",
+    "Ar": "حساب إنستجرام"
   },
   {
     "name": "you_tube_accouunt",
-    "EN": "You Tube Instagram Account",
-    "AR": "حساب يوتيوب"
+    "En": "You Tube Instagram Account",
+    "Ar": "حساب يوتيوب"
   },
   {
     "name": "twitter_accouunt",
-    "EN": "Twitter Instagram Account",
-    "AR": "حساب تويتر"
+    "En": "Twitter Instagram Account",
+    "Ar": "حساب تويتر"
   },
   {
     "name": "add_your_ad",
-    "EN": "Add your ad",
-    "AR": "أضف إعلانك"
+    "En": "Add your ad",
+    "Ar": "أضف إعلانك"
   },
   {
     "name": "only_with_photos",
-    "EN": "Only with photos",
-    "AR": "الإعلانات المُرفقة بصور فقط"
+    "En": "Only with photos",
+    "Ar": "الإعلانات المُرفقة بصور فقط"
   },
   {
     "name": "no_content_1",
-    "EN": "Sorry... we didn't find anything matching this search",
-    "AR": "عفوًا ... لم نعثر على أي شيء مطابق لهذا البحث"
+    "En": "Sorry... we didn't find anything matching this search",
+    "Ar": "عفوًا ... لم نعثر على أي شيء مطابق لهذا البحث"
   },
   {
     "name": "no_content_2",
-    "EN": "Try looking for something more general, change the filters or check for spelling errors",
-    "AR": "حاول البحث عن شيء أكثر عمومية، قم بتغيير عوامل التصفية أو تحقق من الأخطاء الإملائية"
+    "En": "Try looking for something more general, change the filters or check for spelling errors",
+    "Ar": "حاول البحث عن شيء أكثر عمومية، قم بتغيير عوامل التصفية أو تحقق من الأخطاء الإملائية"
   },
   {
     "name": "more_categories",
-    "EN": "More Categories",
-    "AR": "أقسام أكثر"
+    "En": "More Categories",
+    "Ar": "أقسام أكثر"
   },
   {
     "name": "filtering",
-    "EN": "Filtering",
-    "AR": "تصفية"
+    "En": "Filtering",
+    "Ar": "تصفية"
   },
   {
     "name": "phone_support",
-    "EN": "Phone support",
-    "AR": "الدعم عبر الهاتف"
+    "En": "Phone support",
+    "Ar": "الدعم عبر الهاتف"
   },
   {
     "name": "email_support",
-    "EN": "Email support",
-    "AR": "الدعم عبر البريد الألكتروني"
+    "En": "Email support",
+    "Ar": "الدعم عبر البريد الألكتروني"
   },
   {
     "name": "more",
-    "EN": "More",
-    "AR": "المزيد"
+    "En": "More",
+    "Ar": "المزيد"
   },
   {
     "name": "see_more",
-    "EN": "See More",
-    "AR": "مشاهدة المزيد"
+    "En": "See More",
+    "Ar": "مشاهدة المزيد"
   },
   {
     "name": "quick_navigate",
-    "EN": "Quick Navigate",
-    "AR": "تنقل سريع"
+    "En": "Quick Navigate",
+    "Ar": "تنقل سريع"
   },
   {
     "name": "jordan",
-    "EN": "Jordan",
-    "AR": "الأردن"
+    "En": "Jordan",
+    "Ar": "الأردن"
   },
   {
     "name": "iraq",
-    "EN": "Iraq",
-    "AR": "العراق"
+    "En": "Iraq",
+    "Ar": "العراق"
   },
   {
     "name": "kuwait",
-    "EN": "Kuwait",
-    "AR": "الكويت"
+    "En": "Kuwait",
+    "Ar": "الكويت"
   },
   {
     "name": "bahrain",
-    "EN": "Bahrain",
-    "AR": "البحرين"
+    "En": "Bahrain",
+    "Ar": "البحرين"
   },
   {
     "name": "qatar",
-    "EN": "Qatar",
-    "AR": "قطر"
+    "En": "Qatar",
+    "Ar": "قطر"
   },
   {
     "name": "uae",
-    "EN": "UAE",
-    "AR": "الإمارات"
+    "En": "UAE",
+    "Ar": "الإمارات"
   },
   {
     "name": "oman",
-    "EN": "Oman",
-    "AR": "عمان"
+    "En": "Oman",
+    "Ar": "عمان"
   },
   {
     "name": "yemen",
-    "EN": "Yemen",
-    "AR": "اليمن"
+    "En": "Yemen",
+    "Ar": "اليمن"
   },
   {
     "name": "eastern_province",
-    "EN": "Ehsaa & Eastern province",
-    "AR": "الإحساء و المنطقة الشرقية"
+    "En": "Ehsaa & Eastern province",
+    "Ar": "الإحساء و المنطقة الشرقية"
   },
   {
     "name": "najran",
-    "EN": "Najran",
-    "AR": "نجران"
+    "En": "Najran",
+    "Ar": "نجران"
   },
   {
     "name": "jazan",
-    "EN": "Jazan",
-    "AR": "جازان"
+    "En": "Jazan",
+    "Ar": "جازان"
   },
   {
     "name": "aseer",
-    "EN": "Aseer",
-    "AR": "عسير"
+    "En": "Aseer",
+    "Ar": "عسير"
   },
   {
     "name": "baha",
-    "EN": "Al-Baha",
-    "AR": "الباحة"
+    "En": "Al-Baha",
+    "Ar": "الباحة"
   },
   {
     "name": "makkah",
-    "EN": "Makkah",
-    "AR": "مكة"
+    "En": "Makkah",
+    "Ar": "مكة"
   },
   {
     "name": "medina",
-    "EN": "Al-Medina",
-    "AR": "المدينة"
+    "En": "Al-Medina",
+    "Ar": "المدينة"
   },
   {
     "name": "riyadh",
-    "EN": "Riyadh",
-    "AR": "الرياض"
+    "En": "Riyadh",
+    "Ar": "الرياض"
   },
   {
     "name": "qassim",
-    "EN": "Qassim",
-    "AR": "القصيم"
+    "En": "Qassim",
+    "Ar": "القصيم"
   },
   {
     "name": "hail",
-    "EN": "Al-Hail",
-    "AR": "حائل"
+    "En": "Al-Hail",
+    "Ar": "حائل"
   },
   {
     "name": "northern_borders",
-    "EN": "Northern borders",
-    "AR": "الحدود الشمالية"
+    "En": "Northern borders",
+    "Ar": "الحدود الشمالية"
   },
   {
     "name": "jouf",
-    "EN": "Al-Jouf",
-    "AR": "الجوف"
+    "En": "Al-Jouf",
+    "Ar": "الجوف"
   },
   {
     "name": "tabouk",
-    "EN": "Tabouk",
-    "AR": "تبوك"
+    "En": "Tabouk",
+    "Ar": "تبوك"
   }
 ]

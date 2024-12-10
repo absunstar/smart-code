@@ -1,47 +1,47 @@
 [
   {
     "id": 1,
-    "EN": "Standred",
-    "AR": "افتراضى"
+    "En": "Standred",
+    "Ar": "افتراضى"
   },
   {
     "id": 2,
-    "EN": "advanced",
-    "AR": "متطور"
+    "En": "advanced",
+    "Ar": "متطور"
   },
   {
     "id": 3,
-    "EN": "Multi-Paragraph",
-    "AR": "متعدد الفقرات"
+    "En": "Multi-Paragraph",
+    "Ar": "متعدد الفقرات"
   },
   {
     "id": 4,
-    "EN": "Multi-Paragraph advanced",
-    "AR": "متعدد الفقرات متطور"
+    "En": "Multi-Paragraph advanced",
+    "Ar": "متعدد الفقرات متطور"
   },
   {
     "id": 5,
-    "EN": "Multi-Image",
-    "AR": "متعدد الصور"
+    "En": "Multi-Image",
+    "Ar": "متعدد الصور"
   },
   {
     "id": 6,
-    "EN": "google-news",
-    "AR": "أخبار جوجل"
+    "En": "google-news",
+    "Ar": "أخبار جوجل"
   },
   {
     "id": 7,
-    "EN": "yts-movie",
-    "AR": "yts-movie"
+    "En": "yts-movie",
+    "Ar": "yts-movie"
   },
   {
     "id": 8,
-    "EN": "Youtube Video",
-    "AR": "Youtube Video"
+    "En": "Youtube Video",
+    "Ar": "Youtube Video"
   },
   {
     "id": 9,
-    "EN": "Facebook Post",
-    "AR": "Facebook Post"
+    "En": "Facebook Post",
+    "Ar": "Facebook Post"
   }
 ]

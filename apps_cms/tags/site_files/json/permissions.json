@@ -1,11 +1,11 @@
 [
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_manage" , "EN":"Manage" , "AR":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_add" , "EN":"Add" , "AR":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_update" , "EN":"Edit" , "AR":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_delete" , "EN":"Delete" , "AR":"حذف"},
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_view" , "EN":"View" , "AR":"عرض"},
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_search" , "EN":"Search" , "AR":"بحث"},
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_export" , "EN":"Export" , "AR":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_print" , "EN":"Print" , "AR":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "tags" , "name":"tags_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

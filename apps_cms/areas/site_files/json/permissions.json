@@ -1,11 +1,11 @@
 [
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_manage" , "EN":"Manage" , "AR":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_add" , "EN":"Add" , "AR":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_update" , "EN":"Edit" , "AR":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_delete" , "EN":"Delete" , "AR":"حذف"},
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_view" , "EN":"View" , "AR":"عرض"},
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_search" , "EN":"Search" , "AR":"بحث"},
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_export" , "EN":"Export" , "AR":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_print" , "EN":"Print" , "AR":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "area" , "name":"area_ui" , "EN":"Ui" , "AR":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "area" , "name":"area_ui" , "En":"Ui" , "Ar":"الواجهة الرسومية"}
 ]

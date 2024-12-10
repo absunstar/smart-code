@@ -1,13 +1,13 @@
 [
     {
         "name": "male",
-        "EN": "Male",
-        "AR": "ذكر"
+        "En": "Male",
+        "Ar": "ذكر"
     },
     
     {
         "name": "female",
-        "EN": "Female",
-        "AR": "أنثى"
+        "En": "Female",
+        "Ar": "أنثى"
     }
 ]

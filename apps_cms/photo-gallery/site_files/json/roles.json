@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "photo_gallery_admin",
-    "EN": "Photo Gallery Admin",
-    "AR": "إدارة معرض صور",
+    "En": "Photo Gallery Admin",
+    "Ar": "إدارة معرض صور",
     "permissions": ["photo_gallery_manage"]
 }]

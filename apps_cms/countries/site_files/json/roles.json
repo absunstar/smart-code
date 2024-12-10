@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "countries_admin",
-    "EN": "Countries Admin",
-    "AR": "إدارة الدول",
+    "En": "Countries Admin",
+    "Ar": "إدارة الدول",
     "permissions": ["countries_manage"]
 }]

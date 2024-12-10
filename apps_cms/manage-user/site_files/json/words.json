@@ -1,168 +1,168 @@
 [
     {
         "name": "personal_info",
-        "EN": "Personal Info",
-        "AR": "معلومات شخصية"
+        "En": "Personal Info",
+        "Ar": "معلومات شخصية"
     },
     {
         "name": "currentPassword",
-        "EN": "Current Password",
-        "AR": "كلمة المرور الحالية"
+        "En": "Current Password",
+        "Ar": "كلمة المرور الحالية"
     },
     {
         "name": "current_password_incorrect",
-        "EN": "The current password is incorrect",
-        "AR": "كلمة المرور الحالية غير صحيحة"
+        "En": "The current password is incorrect",
+        "Ar": "كلمة المرور الحالية غير صحيحة"
     },
     {
         "name": "there_no_products_cart",
-        "EN": "There are no products in the cart",
-        "AR": "لا يوجد منتجات في السلة"
+        "En": "There are no products in the cart",
+        "Ar": "لا يوجد منتجات في السلة"
     },
     {
         "name": "there_no_orders",
-        "EN": "There are no Orders",
-        "AR": "لا يوجد طلبات"
+        "En": "There are no Orders",
+        "Ar": "لا يوجد طلبات"
     },
     {
         "name": "there_no_messages",
-        "EN": "There are no Messages",
-        "AR": "لا يوجد رسائل"
+        "En": "There are no Messages",
+        "Ar": "لا يوجد رسائل"
     },
     {
         "name": "there_no_stores",
-        "EN": "There are no Stores",
-        "AR": "لا يوجد متاجر"
+        "En": "There are no Stores",
+        "Ar": "لا يوجد متاجر"
     },
     {
         "name": "there_no_ads",
-        "EN": "There are no Ads",
-        "AR": "لا يوجد إعلانات"
+        "En": "There are no Ads",
+        "Ar": "لا يوجد إعلانات"
     },
     {
         "name": "liked_ads",
-        "EN": "Liked Ads",
-        "AR": "إعلانات معجب بها"
+        "En": "Liked Ads",
+        "Ar": "إعلانات معجب بها"
     },
     {
         "name": "favorite_ads",
-        "EN": "Favorite Ads",
-        "AR": "إعلانات مفضلة"
+        "En": "Favorite Ads",
+        "Ar": "إعلانات مفضلة"
     },
     {
         "name": "liked_stores",
-        "EN": "Liked Stores",
-        "AR": "متاجر معجب بها"
+        "En": "Liked Stores",
+        "Ar": "متاجر معجب بها"
     },
     {
         "name": "favorite_stores",
-        "EN": "Favorite Stores",
-        "AR": "متاجر مفضلة"
+        "En": "Favorite Stores",
+        "Ar": "متاجر مفضلة"
     },
     {
         "name": "my_ads",
-        "EN": "My Ads",
-        "AR": "إعلاناتي"
+        "En": "My Ads",
+        "Ar": "إعلاناتي"
     },
     {
         "name": "my_ads",
-        "EN": "My Ads",
-        "AR": "إعلاناتي"
+        "En": "My Ads",
+        "Ar": "إعلاناتي"
     },
     {
         "name": "other_mobile_numbers",
-        "EN": "Other mobile numbers",
-        "AR": "أرقام موبايلات أخرى"
+        "En": "Other mobile numbers",
+        "Ar": "أرقام موبايلات أخرى"
     },
     {
         "name": "add_new_mobile_number",
-        "EN": "Add new mobile number",
-        "AR": "إضافة رقم موبايل جديد"
+        "En": "Add new mobile number",
+        "Ar": "إضافة رقم موبايل جديد"
     },
     {
         "name": "delete_mobile_number",
-        "EN": "delete mobile number",
-        "AR": "حذف رقم الجوال"
+        "En": "delete mobile number",
+        "Ar": "حذف رقم الجوال"
     },
     {
         "name": "my_stores",
-        "EN": "My Stores",
-        "AR": "متاجري"
+        "En": "My Stores",
+        "Ar": "متاجري"
     },
     {
         "name": "brief_about_me",
-        "EN": "Brief about me",
-        "AR": "نبذة عني"
+        "En": "Brief about me",
+        "Ar": "نبذة عني"
     },
     {
         "name": "newPassword",
-        "EN": "New Password",
-        "AR": "كلمة المرور الجديدة"
+        "En": "New Password",
+        "Ar": "كلمة المرور الجديدة"
     },
     {
         "name": "basic_info",
-        "EN": "Basic Info",
-        "AR": "معلومات أساسية"
+        "En": "Basic Info",
+        "Ar": "معلومات أساسية"
     },
     {
         "name": "companies_branches",
-        "EN": "Companies and Branches",
-        "AR": "الشركات و الفروع"
+        "En": "Companies and Branches",
+        "Ar": "الشركات و الفروع"
     },
     {
         "name": "contact_info",
-        "EN": "Contact Info",
-        "AR": "معلومات الإتصال"
+        "En": "Contact Info",
+        "Ar": "معلومات الإتصال"
     },
     {
         "name": "general_validity",
-        "EN": "General Validity",
-        "AR": "صلاحيات عامة"
+        "En": "General Validity",
+        "Ar": "صلاحيات عامة"
     },
     {
         "name": "validity_ar",
-        "EN": "Ar. Validity",
-        "AR": "الصلاحية بالعربي"
+        "En": "Ar. Validity",
+        "Ar": "الصلاحية بالعربي"
     },
     {
         "name": "validity_en",
-        "EN": "En. Validity",
-        "AR": "الصلاحية بالإنجليزي"
+        "En": "En. Validity",
+        "Ar": "الصلاحية بالإنجليزي"
     },
     {
         "name": "public",
-        "EN": "Public",
-        "AR": "عام"
+        "En": "Public",
+        "Ar": "عام"
     },
     {
         "name": "hr",
-        "EN": "HR",
-        "AR": "شئون موظفين"
+        "En": "HR",
+        "Ar": "شئون موظفين"
     },
     {
         "name": "new_username",
-        "EN": "New UserName",
-        "AR": "إسم المستخدم الجديد"
+        "En": "New UserName",
+        "Ar": "إسم المستخدم الجديد"
     },
     {
         "name": "inventory",
-        "EN": "Inventory",
-        "AR": "مخازن"
+        "En": "Inventory",
+        "Ar": "مخازن"
     },
     {
         "name": "accounting",
-        "EN": "Accounting",
-        "AR": "حسابات"
+        "En": "Accounting",
+        "Ar": "حسابات"
     },
     {
         "name": "reports",
-        "EN": "Reports",
-        "AR": "تقارير"
+        "En": "Reports",
+        "Ar": "تقارير"
     },
    
     {
         "name": "screens_management",
-        "EN": "Screens management",
-        "AR": "إدارة الشاشات"
+        "En": "Screens management",
+        "Ar": "إدارة الشاشات"
     }
 ]

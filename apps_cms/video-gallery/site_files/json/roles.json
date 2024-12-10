@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "video_gallery_admin",
-    "EN": "Video Gallery Admin",
-    "AR": "إدارة معرض صور",
+    "En": "Video Gallery Admin",
+    "Ar": "إدارة معرض صور",
     "permissions": ["video_gallery_manage"]
 }]

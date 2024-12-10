@@ -1,154 +1,154 @@
 [
   {
     "name": "register_with_mobile_number",
-    "EN": "Register with a mobile number",
-    "AR": "التسجيل برقم الجوال"
+    "En": "Register with a mobile number",
+    "Ar": "التسجيل برقم الجوال"
   },
   {
     "name": "register_with_email",
-    "EN": "Register with an Email",
-    "AR": "التسجيل بالبريد الإلكتروني"
+    "En": "Register with an Email",
+    "Ar": "التسجيل بالبريد الإلكتروني"
   },
   {
     "name": "next",
-    "EN": "Next",
-    "AR": "التالي"
+    "En": "Next",
+    "Ar": "التالي"
   },
   {
     "name": "enter",
-    "EN": "Enter",
-    "AR": "دخول"
+    "En": "Enter",
+    "Ar": "دخول"
   },
   {
     "name": "please_wait_to_send_mobile_code_again",
-    "EN": "Please wait less than a minute before resending the code again",
-    "AR": "برجاء الإنتظار أقل من دقيقة قبل إعادة إرسال الرمز مرة أخرى"
+    "En": "Please wait less than a minute before resending the code again",
+    "Ar": "برجاء الإنتظار أقل من دقيقة قبل إعادة إرسال الرمز مرة أخرى"
   },
   {
     "name": "please_wait_to_send_email_code_again",
-    "EN": "Please wait less than a five minutes before resending the code again",
-    "AR": "برجاء الإنتظار أقل من خمس دقائق قبل إعادة إرسال الرمز مرة أخرى"
+    "En": "Please wait less than a five minutes before resending the code again",
+    "Ar": "برجاء الإنتظار أقل من خمس دقائق قبل إعادة إرسال الرمز مرة أخرى"
   },
   {
     "name": "recovery",
-    "EN": "Recovery",
-    "AR": "إستعادة"
+    "En": "Recovery",
+    "Ar": "إستعادة"
   },
   {
     "name": "wrong_mail_or_phone",
-    "EN": "Wrong mail or phone",
-    "AR": "البريد أو الموبايل خاطئ"
+    "En": "Wrong mail or phone",
+    "Ar": "البريد أو الموبايل خاطئ"
   },
   {
     "name": "enter_your_mobile_or_email",
-    "EN": "Enter your mobile phone or email",
-    "AR": "إدخل جوالك أو بريدك"
+    "En": "Enter your mobile phone or email",
+    "Ar": "إدخل جوالك أو بريدك"
   },
   {
     "name": "restore_password",
-    "EN": "Restore password",
-    "AR": "إستعادة كلمة المرور"
+    "En": "Restore password",
+    "Ar": "إستعادة كلمة المرور"
   },
   {
     "name": "the_new_code_has_been_sent_to_your_phone",
-    "EN": "The new code has been sent to your phone",
-    "AR": "تم إرسال الرمز الجديد إلى هاتفك"
+    "En": "The new code has been sent to your phone",
+    "Ar": "تم إرسال الرمز الجديد إلى هاتفك"
   },
   {
     "name": "the_new_code_has_been_sent_to_your_email",
-    "EN": "The new code has been sent to your email",
-    "AR": "تم إرسال الرمز الجديد إلى بريدك الإلكتروني"
+    "En": "The new code has been sent to your email",
+    "Ar": "تم إرسال الرمز الجديد إلى بريدك الإلكتروني"
   },
   {
     "name": "agree",
-    "EN": "Agree",
-    "AR": "أوافق"
+    "En": "Agree",
+    "Ar": "أوافق"
   },
   {
     "name": "disagree",
-    "EN": "Disagree",
-    "AR": "لا أوافق"
+    "En": "Disagree",
+    "Ar": "لا أوافق"
   },
   {
     "name": "mobile_number_already_used",
-    "EN": "The mobile number already used",
-    "AR": "رقم الجوال مستخدم من قبل"
+    "En": "The mobile number already used",
+    "Ar": "رقم الجوال مستخدم من قبل"
   },
   {
     "name": "email_already_used",
-    "EN": "The email already used",
-    "AR": "البريد الإلكتروني مستخدم من قبل"
+    "En": "The email already used",
+    "Ar": "البريد الإلكتروني مستخدم من قبل"
   },
   {
     "name": "continuation",
-    "EN": "Continuation",
-    "AR": "إستمرار"
+    "En": "Continuation",
+    "Ar": "إستمرار"
   },
   {
     "name": "incorrect_code_entered",
-    "EN": "Incorrect secret code entered",
-    "AR": "الرمز السري المدخل خطأ"
+    "En": "Incorrect secret code entered",
+    "Ar": "الرمز السري المدخل خطأ"
   },
   {
     "name": "resend_code",
-    "EN": "Resend Code",
-    "AR": "إعادة إرسال الرمز"
+    "En": "Resend Code",
+    "Ar": "إعادة إرسال الرمز"
   },
   {
     "name": "secret_code_sent_phone",
-    "EN": "Secret code sent to your phone",
-    "AR": "الرمز السري المرسل لهاتفك"
+    "En": "Secret code sent to your phone",
+    "Ar": "الرمز السري المرسل لهاتفك"
   },
   {
     "name": "secret_code_sent_email",
-    "EN": "Secret code sent to your email",
-    "AR": "الرمز السري المرسل لبريدك"
+    "En": "Secret code sent to your email",
+    "Ar": "الرمز السري المرسل لبريدك"
   },
   {
     "name": "next",
-    "EN": "Next",
-    "AR": "التالي"
+    "En": "Next",
+    "Ar": "التالي"
   },
   {
     "name": "please_enter_valid_mobile_number",
-    "EN": "Please enter a valid mobile number",
-    "AR": "برجاء إدخال رقم موبايل صحيح"
+    "En": "Please enter a valid mobile number",
+    "Ar": "برجاء إدخال رقم موبايل صحيح"
   },
   {
     "name": "mobile_phone_number",
-    "EN": "Mobile Number",
-    "AR": "رقم الجوال"
+    "En": "Mobile Number",
+    "Ar": "رقم الجوال"
   },
   {
     "name": "email_or_pass_error",
-    "EN": "Email Or Password Error",
-    "AR": "إسم المستخدم أو كلمة المرور خطأ"
+    "En": "Email Or Password Error",
+    "Ar": "إسم المستخدم أو كلمة المرور خطأ"
   },
   {
     "name": "login_now",
-    "EN": "Login Now",
-    "AR": "تسجيل الدخول الاّن"
+    "En": "Login Now",
+    "Ar": "تسجيل الدخول الاّن"
   },
   {
     "name": "login_via",
-    "EN": "Login Via",
-    "AR": "تسجيل الدخول عبر"
+    "En": "Login Via",
+    "Ar": "تسجيل الدخول عبر"
   },
   {
     "name": "not_registered",
-    "EN": "Not registered?",
-    "AR": "غير مسجل؟"
+    "En": "Not registered?",
+    "Ar": "غير مسجل؟"
   },
-  { "name": "password_err_match", "EN": "password does not match", "AR": "كلمة المرور غير متطابقة" },
-  { "name": "register_now", "EN": "Register Now", "AR": "تسجيل الاّن" },
+  { "name": "password_err_match", "En": "password does not match", "Ar": "كلمة المرور غير متطابقة" },
+  { "name": "register_now", "En": "Register Now", "Ar": "تسجيل الاّن" },
   {
     "name": "create_account",
-    "EN": "Create an account",
-    "AR": "أنشئ حساب"
+    "En": "Create an account",
+    "Ar": "أنشئ حساب"
   },
   {
     "name": "existing_user",
-    "EN": "Existing user?",
-    "AR": "مستخدم موجود؟"
+    "En": "Existing user?",
+    "Ar": "مستخدم موجود؟"
   }
 ]

@@ -1,22 +1,22 @@
 [
     {
         "id" : 1,
-        "EN": "Like",
-        "AR": "إعجاب"
+        "En": "Like",
+        "Ar": "إعجاب"
     },
     {
         "id" : 2,
-        "EN": "Favorite",
-        "AR": "تفضيل"
+        "En": "Favorite",
+        "Ar": "تفضيل"
     },
     {
         "id" : 3,
-        "EN": "Report",
-        "AR": "إبلاغ"
+        "En": "Report",
+        "Ar": "إبلاغ"
     },
     {
         "id" : 4,
-        "EN": "Comment",
-        "AR": "تعليق"
+        "En": "Comment",
+        "Ar": "تعليق"
     }
 ]

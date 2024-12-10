@@ -38,28 +38,28 @@ module.exports = function init(site) {
   app.linkTypeList = [
     {
       id: 1,
-      EN: 'Category',
-      AR: 'قسم',
+      En: 'Category',
+      Ar: 'قسم',
     },
     {
       id: 2,
-      EN: 'Page',
-      AR: 'صفحة',
+      En: 'Page',
+      Ar: 'صفحة',
     },
     {
       id: 3,
-      EN: 'External Link',
-      AR: 'رابط خارجي',
+      En: 'External Link',
+      Ar: 'رابط خارجي',
     },
     {
       id: 4,
-      EN: 'Internal Link',
-      AR: 'رابط داخلي',
+      En: 'Internal Link',
+      Ar: 'رابط داخلي',
     },
     {
       id: 5,
-      EN: 'Main Menu',
-      AR: 'قائمة منسدلة',
+      En: 'Main Menu',
+      Ar: 'قائمة منسدلة',
     },
   ];
   site.onPOST(

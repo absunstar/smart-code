@@ -1,97 +1,97 @@
 [
     {
         "name": "menus",
-        "EN": "Menus",
-        "AR": "القوائم"
+        "En": "Menus",
+        "Ar": "القوائم"
     },
     {
         "name": "menu",
-        "EN": "Menu",
-        "AR": "القائمة"
+        "En": "Menu",
+        "Ar": "القائمة"
     },
     {
         "name": "Open in new tab",
-        "EN": "Open in new tab",
-        "AR": "فتح في علامة تبويب جديدة"
+        "En": "Open in new tab",
+        "Ar": "فتح في علامة تبويب جديدة"
     },
     {
         "name": "menus_new",
-        "EN": "New Menu",
-        "AR": "قائمة جديدة"
+        "En": "New Menu",
+        "Ar": "قائمة جديدة"
     },
     {
         "name": "menus_add",
-        "EN": "Add Menu",
-        "AR": "إضافة قائمة "
+        "En": "Add Menu",
+        "Ar": "إضافة قائمة "
     },
     {
         "name": "menus_edit",
-        "EN": "Edit Menu",
-        "AR": "تعديل قائمة "
+        "En": "Edit Menu",
+        "Ar": "تعديل قائمة "
     },
     {
         "name": "menus_details",
-        "EN": "Menu Details",
-        "AR": "تفاصيل القائمة "
+        "En": "Menu Details",
+        "Ar": "تفاصيل القائمة "
     },
     {
         "name": "menus_delete",
-        "EN": "Delete Menu",
-        "AR": "حذف قائمة "
+        "En": "Delete Menu",
+        "Ar": "حذف قائمة "
     },
     {
         "name": "menu_name",
-        "EN": "Menu Name",
-        "AR": "إسم القائمة "
+        "En": "Menu Name",
+        "Ar": "إسم القائمة "
     },
     {
         "name": "Sub Menus",
-        "EN": "Sub Menus",
-        "AR": "القوائم الفرعية "
+        "En": "Sub Menus",
+        "Ar": "القوائم الفرعية "
     },
     {
         "name": "Sub Menu",
-        "EN": "Sub Menu",
-        "AR": "القائمة الفرعية "
+        "En": "Sub Menu",
+        "Ar": "القائمة الفرعية "
     },
     {
         "name": "sub_menu_name",
-        "EN": "Sub menu Name",
-        "AR": "إسم القائمة الفرعية "
+        "En": "Sub menu Name",
+        "Ar": "إسم القائمة الفرعية "
     },
     {
         "name": "link_type",
-        "EN": "Link Type",
-        "AR": "نوع الربط"
+        "En": "Link Type",
+        "Ar": "نوع الربط"
     },
     {
         "name": "external_link",
-        "EN": "External Link",
-        "AR": "رابط خارجي"
+        "En": "External Link",
+        "Ar": "رابط خارجي"
     },
     {
         "name": "internal_link",
-        "EN": "Internal Link",
-        "AR": "رابط داخلي"
+        "En": "Internal Link",
+        "Ar": "رابط داخلي"
     },
     {
         "name": "category_must_selected",
-        "EN": "Category must be selected",
-        "AR": "يجب إختيار القسم"
+        "En": "Category must be selected",
+        "Ar": "يجب إختيار القسم"
     },
     {
         "name": "page_must_selected",
-        "EN": "Page must be selected",
-        "AR": "يجب إختيار الصفحة"
+        "En": "Page must be selected",
+        "Ar": "يجب إختيار الصفحة"
     },
     {
         "name": "internal_link_must_selected",
-        "EN": "Internal link must be selected",
-        "AR": "يجب إختيار الرابط الداخلي"
+        "En": "Internal link must be selected",
+        "Ar": "يجب إختيار الرابط الداخلي"
     },
     {
         "name": "external_link_must_selected",
-        "EN": "External link must be selected",
-        "AR": "يجب إختيار الرابط الخارجي"
+        "En": "External link must be selected",
+        "Ar": "يجب إختيار الرابط الخارجي"
     }
 ]

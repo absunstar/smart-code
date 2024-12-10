@@ -1,13 +1,13 @@
 [
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_manage" , "EN":"Manage" , "AR":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_add" , "EN":"Add" , "AR":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_edit" , "EN":"Edit" , "AR":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_delete" , "EN":"Delete" , "AR":"حذف"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_view" , "EN":"View" , "AR":"عرض"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_search" , "EN":"Search" , "AR":"بحث"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_export" , "EN":"Export" , "AR":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_print" , "EN":"Print" , "AR":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_done" , "EN":"Done" , "AR":"ترحيل"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_ui" , "EN":"UI" , "AR":"الواجهة الرسومية"},
-    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_unpacking" , "EN":"Unpacking" , "AR":"فك ترحيل"}
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_edit" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_done" , "En":"Done" , "Ar":"ترحيل"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"},
+    { "module_name" : "public" , "screen_name" : "categories" , "name":"categories_unpacking" , "En":"Unpacking" , "Ar":"فك ترحيل"}
 ]

@@ -1,11 +1,14 @@
-app.controller('articles', function ($scope, $http, $timeout) {
+app.controller("articles", function ($scope, $http, $timeout) {
   $scope._search = {};
-  $scope.mode = 'add';
+  $scope.mode = "add";
+  $scope.limit = 50;
   $scope.article = {};
+  $scope.directDelete = false;
   $scope.hideHandleImages = true;
   $scope.siteSettings = site.showObject(`##data.#setting##`);
   if ($scope.siteSettings && $scope.siteSettings.id) {
     $scope.articleTypesList = $scope.siteSettings.article.articleTypes.filter((t) => t.active == true);
+    
     $scope.languageList = [];
     $scope.siteSettings.languageList.forEach((l) => {
       if (l.active == true) {
@@ -18,12 +21,12 @@ app.controller('articles', function ($scope, $http, $timeout) {
   }
 
   $scope.handleImages = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.hideHandleImages = true;
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/article/handle-images',
+      method: "POST",
+      url: "/api/article/handle-images",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -39,8 +42,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.displayAddArticles = function () {
-    $scope.error = '';
-    $scope.mode = 'add';
+    $scope.error = "";
+    $scope.mode = "add";
     $scope.article = {
       active: true,
       date: new Date(),
@@ -78,13 +81,13 @@ app.controller('articles', function ($scope, $http, $timeout) {
         $scope.article.category = $scope.categoryList.find((_c) => _c.id === $scope.siteSettings.article.category.id);
       }
     }
-    site.showModal('#articleManageModal');
+    site.showModal("#articleManageModal");
   };
   $scope.changeDate = function () {
     if ($scope.siteSettings.article && $scope.article.publishingDate) {
       if ($scope.siteSettings.article.closingSystem) {
         if ($scope.siteSettings.article.closingSystem.id == 1) {
-          $scope.article.expiryDate = typeof $scope.article.expiryDate == 'string' ? new Date($scope.article.expiryDate) : new Date();
+          $scope.article.expiryDate = typeof $scope.article.expiryDate == "string" ? new Date($scope.article.expiryDate) : new Date();
           $scope.article.publishingDate = new Date($scope.article.publishingDate);
           $scope.article.expiryDate.setDate($scope.article.publishingDate.getDate() + $scope.siteSettings.article.duration || 7);
         }
@@ -93,8 +96,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.addArticles = function () {
-    $scope.error = '';
-    const v = site.validated('#articleManageModal');
+    $scope.error = "";
+    const v = site.validated("#articleManageModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -105,15 +108,15 @@ app.controller('articles', function ($scope, $http, $timeout) {
 
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/articles/add',
+      method: "POST",
+      url: "/api/articles/add",
       data: $scope.article,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#articleManageModal');
-          site.resetValidated('#articleManageModal');
+          site.hideModal("#articleManageModal");
+          site.resetValidated("#articleManageModal");
           $scope.getArticlesList();
         } else {
           $scope.error = response.data.error;
@@ -126,16 +129,16 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateArticles = function (article) {
-    $scope.error = '';
-    $scope.mode = 'edit';
+    $scope.error = "";
+    $scope.mode = "edit";
     $scope.viewArticles(article);
     $scope.article = {};
-    site.showModal('#articleManageModal');
+    site.showModal("#articleManageModal");
   };
 
   $scope.updateArticles = function () {
-    $scope.error = '';
-    const v = site.validated('#articleManageModal');
+    $scope.error = "";
+    const v = site.validated("#articleManageModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -145,18 +148,18 @@ app.controller('articles', function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/articles/update',
+      method: "POST",
+      url: "/api/articles/update",
       data: $scope.article,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#articleManageModal');
-          site.resetValidated('#articleManageModal');
+          site.hideModal("#articleManageModal");
+          site.resetValidated("#articleManageModal");
           $scope.getArticlesList();
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = "Please Login First";
         }
       },
       function (err) {
@@ -166,20 +169,20 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsArticles = function (article) {
-    $scope.error = '';
-    $scope.mode = 'view';
+    $scope.error = "";
+    $scope.mode = "view";
     $scope.article = {};
     $scope.viewArticles(article);
 
-    site.showModal('#articleManageModal');
+    site.showModal("#articleManageModal");
   };
 
   $scope.viewArticles = function (article) {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
     $http({
-      method: 'POST',
-      url: '/api/articles/view',
+      method: "POST",
+      url: "/api/articles/view",
       data: {
         id: article.id,
       },
@@ -208,29 +211,43 @@ app.controller('articles', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDeleteArticles = function (article) {
+  $scope.deleteAll = function () {
     $scope.error = '';
-    $scope.mode = 'delete';
-    $scope.article = {};
-    $scope.viewArticles(article);
-    site.showModal('#articleManageModal');
+    for (let i = 0; i < $scope.list.length; i++) {
+    $scope.deleteArticles($scope.list[i].id)
+    }
+
+    site.hideModal("#confirmdeleteAll");
+
+  }
+
+  $scope.displayDeleteArticles = function (article) {
+    $scope.error = "";
+    if ($scope.directDelete) {
+      $scope.deleteArticles(article.id);
+    } else {
+      $scope.mode = "delete";
+      $scope.article = {};
+      $scope.viewArticles(article);
+      site.showModal("#articleManageModal");
+    }
   };
 
-  $scope.deleteArticles = function () {
+  $scope.deleteArticles = function (id) {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
 
     $http({
-      method: 'POST',
-      url: '/api/articles/delete',
+      method: "POST",
+      url: "/api/articles/delete",
       data: {
-        id: $scope.article.id,
+        id: id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#articleManageModal');
+          site.hideModal("#articleManageModal");
           $scope.getArticlesList();
         } else {
           $scope.error = response.data.error;
@@ -250,8 +267,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
     }
 
     $http({
-      method: 'POST',
-      url: '/api/articles/all',
+      method: "POST",
+      url: "/api/articles/all",
       data: {
         search: where,
         limit: 50,
@@ -276,11 +293,12 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
     $http({
-      method: 'POST',
-      url: '/api/articles/all',
+      method: "POST",
+      url: "/api/articles/all",
       data: {
         where: where,
         search: $scope.$search,
+        limit: $scope.limit,
       },
     }).then(
       function (response) {
@@ -288,7 +306,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#articleSearchModal');
+          site.hideModal("#articleSearchModal");
           $scope.search = {};
         }
       },
@@ -300,18 +318,18 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.displaySearchModal = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.search = {};
-    site.showModal('#articleSearchModal');
+    site.showModal("#articleSearchModal");
   };
 
   $scope.loadClusters = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.clusterList = [];
     $http({
-      method: 'POST',
-      url: '/api/clusters/all',
+      method: "POST",
+      url: "/api/clusters/all",
       data: {
         where: {
           active: true,
@@ -333,12 +351,12 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.loadCategories = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.categoryList = [];
     $http({
-      method: 'POST',
-      url: '/api/categories/lookup',
+      method: "POST",
+      url: "/api/categories/lookup",
       data: {
         where: {
           active: true,
@@ -360,14 +378,14 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.loadWriters = function (where) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     where = where || {};
-    where['type.id'] = 1;
+    where["type.id"] = 1;
 
     $http({
-      method: 'POST',
-      url: '/api/users/all',
+      method: "POST",
+      url: "/api/users/all",
       data: {
         where: where,
         select: { id: 1, profile: 1, image: 1 },
@@ -392,8 +410,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: 'POST',
-      url: '/api/countries/all',
+      method: "POST",
+      url: "/api/countries/all",
       data: {
         where: {
           active: true,
@@ -421,8 +439,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.citiesList = [];
     $scope.areaList = [];
     $http({
-      method: 'POST',
-      url: '/api/goves/all',
+      method: "POST",
+      url: "/api/goves/all",
       data: {
         where: {
           country: country,
@@ -453,8 +471,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.citiesList = [];
     $scope.areaList = [];
     $http({
-      method: 'POST',
-      url: '/api/cities/all',
+      method: "POST",
+      url: "/api/cities/all",
       data: {
         where: {
           gov: gov,
@@ -480,8 +498,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.areaList = [];
     $http({
-      method: 'POST',
-      url: '/api/areas/all',
+      method: "POST",
+      url: "/api/areas/all",
       data: {
         where: {
           city: city,
@@ -504,14 +522,14 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.loadEditors = function (where) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     where = where || {};
-    where['type.id'] = 2;
+    where["type.id"] = 2;
 
     $http({
-      method: 'POST',
-      url: '/api/users/all',
+      method: "POST",
+      url: "/api/users/all",
       data: {
         where: where,
         select: { id: 1, profile: 1 },
@@ -531,7 +549,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSubCategory1 = function (c) {
-    $scope.error = '';
+    $scope.error = "";
 
     $scope.subcategoryList1 = [];
     $scope.subcategoryList2 = [];
@@ -545,7 +563,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSubCategory2 = function (c) {
-    $scope.error = '';
+    $scope.error = "";
 
     $scope.subcategoryList2 = [];
     $scope.subcategoryList3 = [];
@@ -558,7 +576,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSubCategory3 = function (c) {
-    $scope.error = '';
+    $scope.error = "";
 
     $scope.subcategoryList3 = [];
     $scope.subcategoryList4 = [];
@@ -570,7 +588,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSubCategory4 = function (c) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.subcategoryList4 = [];
     $scope.categoryList.forEach((_c) => {
       if (c && c.id == _c.parentId) {
@@ -580,13 +598,13 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.addTranslation = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.article.translationList = $scope.article.translationList || [];
     $scope.article.translationList.push({});
   };
 
   $scope.addMultiParagraph = function (article) {
-    $scope.error = '';
+    $scope.error = "";
     article.multiParagraphList = article.multiParagraphList || [];
     article.multiParagraphList.push({
       showImage: true,
@@ -594,7 +612,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.addMultiImage = function (article) {
-    $scope.error = '';
+    $scope.error = "";
     article.multiImageList = article.multiImageList || [];
     article.multiImageList.push({
       showImage: true,
@@ -602,7 +620,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.addKeyWords = function (ev, obj) {
-    $scope.error = '';
+    $scope.error = "";
 
     if (ev.which !== 13 || !obj.$keyword) {
       return;
@@ -612,7 +630,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       obj.keyWordsList.push(obj.$keyword);
     }
 
-    obj.$keyword = '';
+    obj.$keyword = "";
   };
 
   $scope.addTags = function (ev, obj) {
@@ -626,26 +644,26 @@ app.controller('articles', function ($scope, $http, $timeout) {
       obj.tagsList.push(obj.$tag);
     }
 
-    obj.$tag = '';
+    obj.$tag = "";
   };
 
   $scope.editTranslateArticle = function (t, type) {
     $scope.translate = t;
     $scope.translate.$type = type;
-    site.showModal('#translateContentModal');
+    site.showModal("#translateContentModal");
   };
 
   $scope.calc = function (type, art) {
     $timeout(() => {
-      if (type == 'views') {
+      if (type == "views") {
         art.apparentViews = art.actualViews + art.dummyViews;
-      } else if (type == 'likes') {
+      } else if (type == "likes") {
         art.apparentLikes = art.actualLikes + art.dummyLikes;
-      } else if (type == 'comments') {
+      } else if (type == "comments") {
         art.apparentComments = art.actualComments + art.dummyComments;
-      } else if (type == 'posts') {
+      } else if (type == "posts") {
         art.apparentPosts = art.actualPosts + art.dummyPosts;
-      } else if (type == 'ratings') {
+      } else if (type == "ratings") {
         art.apparentRatings = art.actualRatings + art.dummyRatings;
       }
     }, 500);
@@ -653,14 +671,14 @@ app.controller('articles', function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope.getArticlesList($scope.search);
-    site.hideModal('#articleSearchModal');
+    site.hideModal("#articleSearchModal");
     $scope.search = {};
   };
 
   $scope.changeLanuage = function (lang) {
     let index = $scope.article.translatedList.findIndex((_c) => _c.language && _c.language.id == lang.id);
     $scope.article.$showCreate = index >= 0 ? false : true;
-    site.showTabContent('#basic');
+    site.showTabContent("#basic");
     console.log($scope.article);
   };
 
@@ -746,7 +764,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
       }
     } else {
       let translate = {
-        image: '/images/article.png',
+        image: "/images/article.png",
         language: lang,
         showImage: true,
         showSocialImage: true,
@@ -779,31 +797,31 @@ app.controller('articles', function ($scope, $http, $timeout) {
   };
 
   $scope.addMetaTags = function (programming) {
-    $scope.error = '';
+    $scope.error = "";
     programming.metaTags = programming.metaTags || [];
     programming.metaTags.push({ active: true });
   };
 
   $scope.addStyles = function (programming) {
-    $scope.error = '';
+    $scope.error = "";
     programming.styles = programming.styles || [];
     programming.styles.push({ active: true });
   };
 
   $scope.addScripts = function (programming) {
-    $scope.error = '';
+    $scope.error = "";
     programming.scripts = programming.scripts || [];
     programming.scripts.push({ active: true });
   };
 
   $scope.showRelatedTopics = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.relatedTopicslist = [];
-    site.showModal('#relatedTopics');
+    site.showModal("#relatedTopics");
   };
 
   $scope.addRelatedArticle = function (relatedArticle) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.article.relatedArticle = $scope.article.relatedArticle || [];
     let foundRelatedArticle = $scope.article.relatedArticle.some((_r) => _r.id === relatedArticle.id);
 
@@ -812,7 +830,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
 
   $scope.calcCount = function (art) {
     $timeout(() => {
-      $scope.error = '';
+      $scope.error = "";
       let titleletters = 0;
       let contentletters = 0;
       let titleWords = 0;

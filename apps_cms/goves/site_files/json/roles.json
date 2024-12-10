@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "goves_admin",
-    "EN": "Goves Admin",
-    "AR": "إدارة المحافظات",
+    "En": "Goves Admin",
+    "Ar": "إدارة المحافظات",
     "permissions": ["goves_manage"]
 }]
