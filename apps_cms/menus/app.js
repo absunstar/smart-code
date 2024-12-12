@@ -416,7 +416,7 @@ module.exports = function init(site) {
             en: 'Category',
             ar: 'قسم',
           },
-          category: { id: topList[i].id, name: topList[i].translatedList.find((t) => t.language.id == req.session.lang || 'ar').name },
+          category: { id: topList[i].id, name: topList[i].translatedList.find((t) => t.language.id == req.session.lang || 'Ar').name },
         };
         topList[i].translatedList.forEach((_t) => {
           obj.translatedList.push({
@@ -437,7 +437,7 @@ module.exports = function init(site) {
                 en: 'Category',
                 ar: 'قسم',
               },
-              category: { id: _subCategory.id, name: _subCategory.translatedList.find((t) => t.language.id == req.session.lang || 'ar').name },
+              category: { id: _subCategory.id, name: _subCategory.translatedList.find((t) => t.language.id == req.session.lang || 'Ar').name },
             };
             _subCategory.translatedList.forEach((_t) => {
               sub.translatedList.push({

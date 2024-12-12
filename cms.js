@@ -32,7 +32,6 @@ const site = require('../isite')({
   },
 });
 
-
 site.time = new Date().getTime();
 
 site.get({
@@ -62,12 +61,14 @@ site.get(
       site.callRoute('/category/:id', req, res);
       return;
     }
+
     if (req.host.like('*torrent*')) {
       req.session.lang = 'En';
+      req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
     } else {
       req.session.lang = 'Ar';
+      req.session.language = { id: 'Ar', dir: 'rtl', text: 'right' };
     }
-    req.session.language = { id: req.session.lang };
 
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
@@ -174,10 +175,11 @@ site.get(
     }
     if (req.host.like('*torrent*')) {
       req.session.lang = 'En';
+      req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
     } else {
       req.session.lang = 'Ar';
+      req.session.language = { id: 'Ar', dir: 'rtl', text: 'right' };
     }
-    req.session.language = { id: req.session.lang };
 
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
@@ -316,10 +318,11 @@ site.get(
     }
     if (req.host.like('*torrent*')) {
       req.session.lang = 'En';
+      req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
     } else {
       req.session.lang = 'Ar';
+      req.session.language = { id: 'Ar', dir: 'rtl', text: 'right' };
     }
-    req.session.language = { id: req.session.lang };
 
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
@@ -497,10 +500,11 @@ site.get(
 
     if (req.host.like('*torrent*')) {
       req.session.lang = 'En';
+      req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
     } else {
       req.session.lang = 'Ar';
+      req.session.language = { id: 'Ar', dir: 'rtl', text: 'right' };
     }
-    req.session.language = { id: req.session.lang };
 
     let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
     if (!language) {
@@ -524,7 +528,8 @@ site.get(
       if (!err && article && article.host.like(filter)) {
         if (article.$yts) {
           req.session.lang = 'En';
-          req.session.language = { id: req.session.lang };
+          req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
+
           language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
         }
 

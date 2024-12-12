@@ -264,7 +264,7 @@ module.exports = function init(site) {
           let list = app.memoryList.filter((g) => (typeof where.active != 'boolean' || g.active === where.active) && JSON.stringify(g).contains(search)).slice(0, limit);
           list.forEach((doc) => {
             if (doc && doc.translatedList) {
-              if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang|| 'ar'))) {
+              if ((langDoc = doc.translatedList.find((t) => t.language.id == req.session.lang|| 'Ar'))) {
                 let obj = {
                   ...doc,
                   ...langDoc,
