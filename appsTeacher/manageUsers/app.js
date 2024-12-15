@@ -22,7 +22,7 @@ module.exports = function init(site) {
   app.$collection = site.connectCollection('users_info');
 
   app.init = function () {
-    app.$collection.findMany({ sort: { id: -1 } }, (err, docs) => {
+    app.$collection.findMany({ where: {}, sort: { id: -1 } }, (err, docs) => {
       if (!err) {
         docs.forEach((doc) => {
           if (doc.type == 'teacher') {
