@@ -68,6 +68,7 @@ i-checklist label {
   flex-shrink: 0;
   position: absolute;
   top: 43px;
+  border-radius: 20px;
 }
 .HeaderContanier .lgScreen .governorat .dropdown .dropdown-menu {
   width: inherit;
