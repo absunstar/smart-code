@@ -11,7 +11,7 @@ const site = require('../isite')({
   www: false,
   session: {
     enabled: !0,
-    timeout: 60 * 24 * 30,
+    timeout: 0,
     memoryTimeout: 60,
   },
   require: {
