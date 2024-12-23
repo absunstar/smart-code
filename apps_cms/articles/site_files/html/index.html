@@ -17,7 +17,7 @@
           <i-button ng-hide="hideHandleImages" x-permissions="admin" label="##word.Handle Images##" ng-click="handleImages()"></i-button>
           <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
           <i-button type="delete" label="##word.Delete All##" onclick="site.showModal('#confirmdeleteAll')"> </i-button>
-        
+
           <div class="col2">
             <i-checkbox label="##word.Direct Delete##" ng-model="directDelete"> </i-checkbox>
           </div>
@@ -32,7 +32,7 @@
             <th>##word.ID##</th>
             <th>##word.logo##</th>
             <th>##word.Category##</th>
-            <th>##word.article_template##</th>
+            <th>##word.Host##</th>
             <th>##word.article_title##</th>
             <th>##word.status##</th>
             <th class="not-print">##word.actions##</th>
@@ -43,7 +43,7 @@
               <i-image view class="logo" ng-model="c.translatedList[0].image"></i-image>
             </td>
             <td class="center">{{c.category.name}}</td>
-            <td class="center title">{{c.type.##session.lang##}}</td>
+            <td class="center title">{{c.host}}</td>
             <td class="center title">
               <a class="link" href="/a/{{c.id}}" target="_blank"> {{c.translatedList[0].title}} </a>
             </td>
@@ -66,14 +66,14 @@
       </div>
     </div>
     <div id="confirmdeleteAll" class="modal small">
-      <div class="modal-content ">
+      <div class="modal-content">
         <div class="modal-header">
           <span class="close">&times;</span>
           <h2>##word.Delete All## <i class="fa fa-delete"></i></h2>
         </div>
         <div class="modal-body">
           <form class="form">
-          <h2 class="center">##word.Confirm deletion## ( {{count}} ) ##word.Article##</h2>
+            <h2 class="center">##word.Confirm deletion## ( {{count}} ) ##word.Article##</h2>
           </form>
         </div>
 
@@ -85,7 +85,7 @@
         </div>
       </div>
     </div>
-    
+
     <div x-import="cms/scripts.html"></div>
     <script x-import="articles/index.js"></script>
   </body>
