@@ -275,55 +275,47 @@ module.exports = function init(site) {
         },
         (err, doc) => {
           if (!err && doc) {
-            response.user = doc;
-            if (doc.is_admin) {
-              response.list = doc.branch_list;
-              response.done = true;
-              response.isAdmin = doc.is_admin;
-              res.json(response);
-            } else {
-              $companies.findMany({}, (err, companiesDoc) => {
-                if (doc.key) {
-                  let branch_list = [];
-                  companiesDoc.forEach((_com) => {
-                    if (doc.branch_list && doc.branch_list.length > 0) {
-                      doc.branch_list.forEach((_b) => {
-                        _com.branch_list.forEach((_br) => {
-                          branch_list.push({
-                            company: _com,
-                            branch: _br,
-                          });
+            $companies.findMany({}, (err, companiesDoc) => {
+              if (doc.key) {
+                let branch_list = [];
+                companiesDoc.forEach((_com) => {
+                  if (doc.branch_list && doc.branch_list.length > 0) {
+                    doc.branch_list.forEach((_b) => {
+                      _com.branch_list.forEach((_br) => {
+                        branch_list.push({
+                          company: _com,
+                          branch: _br,
                         });
                       });
-                    }
-                  });
+                    });
+                  }
+                });
 
-                  response.list = branch_list;
-                } else {
-                  let branch_list = [];
+                response.list = branch_list;
+              } else {
+                let branch_list = [];
 
-                  companiesDoc.forEach((_com) => {
-                    if (doc.branch_list && doc.branch_list.length > 0) {
-                      doc.branch_list.forEach((_b) => {
-                        if (_com.id === _b.company.id) {
-                          _com.branch_list.forEach((_br) => {
-                            if (_br.code == _b.branch.code) {
-                              branch_list.push({
-                                company: _com,
-                                branch: _br,
-                              });
-                            }
-                          });
-                        }
-                      });
-                    }
-                  });
-                  response.list = branch_list || [];
-                }
-                response.done = true;
-                res.json(response);
-              });
-            }
+                companiesDoc.forEach((_com) => {
+                  if (doc.branch_list && doc.branch_list.length > 0) {
+                    doc.branch_list.forEach((_b) => {
+                      if (_com.id === _b.company.id) {
+                        _com.branch_list.forEach((_br) => {
+                          if (_br.code == _b.branch.code) {
+                            branch_list.push({
+                              company: _com,
+                              branch: _br,
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+                response.list = branch_list || [];
+              }
+              response.done = true;
+              res.json(response);
+            });
           } else {
             response.error = err ? err.message : 'No User Exists : ' + req.data.where.email;
             res.json(response);
