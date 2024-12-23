@@ -276,7 +276,7 @@ module.exports = function init(site) {
         (err, doc) => {
           if (!err && doc) {
             $companies.findMany({}, (err, companiesDoc) => {
-              if (doc.key) {
+              if (doc.isAdmin) {
                 let branch_list = [];
                 companiesDoc.forEach((_com) => {
                   if (doc.branch_list && doc.branch_list.length > 0) {
