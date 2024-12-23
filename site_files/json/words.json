@@ -1,2401 +1,2401 @@
 [
   {
     "name": "protouch_title",
-    "en": "Pro Touch",
-    "ar": "بروتتش"
+    "En": "Pro Touch",
+    "Ar": "بروتتش"
   },
   {
     "name": "ttl_title",
-    "en": "TTL",
-    "ar": "TTL"
+    "En": "TTL",
+    "Ar": "TTL"
   }, {
     "name": "businessarea_title",
-    "en": "Business Area",
-    "ar": "Business Area"
+    "En": "Business Area",
+    "Ar": "Business Area"
   },
   {
     "name": "details",
-    "en": "Details",
-    "ar": "التفاصيل"
+    "En": "Details",
+    "Ar": "التفاصيل"
   },
   {
     "name": "payment",
-    "en": "Payment",
-    "ar": "الدفع"
+    "En": "Payment",
+    "Ar": "الدفع"
   },
   {
     "name": "cover_photo",
-    "en": "Cover Photo",
-    "ar": "صورة الغلاف"
+    "En": "Cover Photo",
+    "Ar": "صورة الغلاف"
   },
   {
     "name": "bank_name",
-    "en": "Bank Name",
-    "ar": "إسم البنك"
+    "En": "Bank Name",
+    "Ar": "إسم البنك"
   },
   {
     "name": "account_name",
-    "en": "Account Name",
-    "ar": "إسم الحساب"
+    "En": "Account Name",
+    "Ar": "إسم الحساب"
   },
   {
     "name": "notifications",
-    "en": "Notifications",
-    "ar": "الإشعارات"
+    "En": "Notifications",
+    "Ar": "الإشعارات"
   },
   {
     "name": "publishing",
-    "en": "Publishing",
-    "ar": "نشر"
+    "En": "Publishing",
+    "Ar": "نشر"
   },
   {
     "name": "location",
-    "en": "Location",
-    "ar": "المكان"
+    "En": "Location",
+    "Ar": "المكان"
   },
   {
     "name": "dashboard",
-    "en": "Dashboard",
-    "ar": "لوحة التحكم"
+    "En": "Dashboard",
+    "Ar": "لوحة التحكم"
   },
   {
     "name": "link",
-    "en": "Link",
-    "ar": "رابط"
+    "En": "Link",
+    "Ar": "رابط"
   },
   {
     "name": "favorite",
-    "en": "Favorite",
-    "ar": "مفضلة"
+    "En": "Favorite",
+    "Ar": "مفضلة"
   },
   {
     "name": "follow",
-    "en": "Follow",
-    "ar": "متابعة"
+    "En": "Follow",
+    "Ar": "متابعة"
   },
   {
     "name": "unfollow",
-    "en": "Unfollow",
-    "ar": "إلغاء المتابعة"
+    "En": "Unfollow",
+    "Ar": "إلغاء المتابعة"
   },
   {
     "name": "cancel",
-    "en": "Cancel",
-    "ar": "إلغاء"
+    "En": "Cancel",
+    "Ar": "إلغاء"
   },
   {
     "name": "arabic",
-    "en": "Arabic",
-    "ar": "عربي"
+    "En": "Arabic",
+    "Ar": "عربي"
   },
   {
     "name": "english",
-    "en": "English",
-    "ar": "إنجليزي"
+    "En": "English",
+    "Ar": "إنجليزي"
   },
   {
     "name": "customer",
-    "en": "Customer",
-    "ar": "العميل"
+    "En": "Customer",
+    "Ar": "العميل"
   },
   {
     "name": "customer_register",
-    "en": "New Customer",
-    "ar": "عميل جديد"
+    "En": "New Customer",
+    "Ar": "عميل جديد"
   },
   {
     "name": "total_patient_account",
-    "en": "Total patient account",
-    "ar": "إجمالي حساب المريض"
+    "En": "Total patient account",
+    "Ar": "إجمالي حساب المريض"
   },
   {
     "name": "medical_file",
-    "en": "Medical file",
-    "ar": "الملف الطبي"
+    "En": "Medical file",
+    "Ar": "الملف الطبي"
   },
   {
     "name": "admin",
-    "en": "Admin",
-    "ar": "المسئول"
+    "En": "Admin",
+    "Ar": "المسئول"
   },
   {
     "name": "free",
-    "en": "Free",
-    "ar": "مجاني"
+    "En": "Free",
+    "Ar": "مجاني"
   },
   {
     "name": "old_price",
-    "en": "Old Price",
-    "ar": "السعر القديم"
+    "En": "Old Price",
+    "Ar": "السعر القديم"
   },
   {
     "name": "new_price",
-    "en": "New Price",
-    "ar": "السعر الجديد"
+    "En": "New Price",
+    "Ar": "السعر الجديد"
   },
   {
     "name": "start_date",
-    "en": "Start Date",
-    "ar": "تاريخ البداية"
+    "En": "Start Date",
+    "Ar": "تاريخ البداية"
   },
   {
     "name": "end_date",
-    "en": "End Date",
-    "ar": "تاريخ النهاية"
+    "En": "End Date",
+    "Ar": "تاريخ النهاية"
   },
   {
     "name": "accounting_invoice",
-    "en": "Accounting Invoice",
-    "ar": "فاتورة الحسابات"
+    "En": "Accounting Invoice",
+    "Ar": "فاتورة الحسابات"
   },
   {
     "name": "token",
-    "en": "Token",
-    "ar": "الرمز"
+    "En": "Token",
+    "Ar": "الرمز"
   },
   {
     "name": "image",
-    "en": "Image",
-    "ar": "صورة"
+    "En": "Image",
+    "Ar": "صورة"
   },
   {
     "name": "the_image",
-    "en": "The Image",
-    "ar": "الصورة"
+    "En": "The Image",
+    "Ar": "الصورة"
   },
   {
     "name": "student_details",
-    "en": "Student Details",
-    "ar": "تفاصيل الطالب"
+    "En": "Student Details",
+    "Ar": "تفاصيل الطالب"
   },
   {
     "name": "file",
-    "en": "File",
-    "ar": "ملف"
+    "En": "File",
+    "Ar": "ملف"
   },
   {
     "name": "debtor",
-    "en": "Debtor",
-    "ar": "مدين"
+    "En": "Debtor",
+    "Ar": "مدين"
   },
   {
     "name": "creditor",
-    "en": "Creditor",
-    "ar": "دائن"
+    "En": "Creditor",
+    "Ar": "دائن"
   },
   {
     "name": "the_file",
-    "en": "The File",
-    "ar": "الملف"
+    "En": "The File",
+    "Ar": "الملف"
   },
   {
     "name": "the_file",
-    "en": "The File",
-    "ar": "الملف"
+    "En": "The File",
+    "Ar": "الملف"
   },
   {
     "name": "attach_images",
-    "en": "Attach Images",
-    "ar": "إرفاق صور"
+    "En": "Attach Images",
+    "Ar": "إرفاق صور"
   },
   {
     "name": "attach_files",
-    "en": "Attach Files",
-    "ar": "إرفاق ملفات"
+    "En": "Attach Files",
+    "Ar": "إرفاق ملفات"
   },
   {
     "name": "attach_links",
-    "en": "Attach Links",
-    "ar": "إرفاق روابط"
+    "En": "Attach Links",
+    "Ar": "إرفاق روابط"
   },
   {
     "name": "attached_files",
-    "en": "Attached files",
-    "ar": "ملفات مرفقة"
+    "En": "Attached files",
+    "Ar": "ملفات مرفقة"
   },
   {
     "name": "attached_links",
-    "en": "Attached Links",
-    "ar": "روابط مرفقة"
+    "En": "Attached Links",
+    "Ar": "روابط مرفقة"
   },
   {
     "name": "attached_images",
-    "en": "Attached Images",
-    "ar": "صور مرفقة"
+    "En": "Attached Images",
+    "Ar": "صور مرفقة"
   },
   {
     "name": "hr",
-    "en": "Hr",
-    "ar": "الموارد البشرية"
+    "En": "Hr",
+    "Ar": "الموارد البشرية"
   },
   {
     "name": "hr_management",
-    "en": "Hr Management",
-    "ar": "إدارة الموارد البشرية"
+    "En": "Hr Management",
+    "Ar": "إدارة الموارد البشرية"
   },
   {
     "name": "invoice_not_generated",
-    "en": "An invoice has not been generated",
-    "ar": "لم يتم عمل فاتورة"
+    "En": "An invoice has not been generated",
+    "Ar": "لم يتم عمل فاتورة"
   },
   {
     "name": "user_exists",
-    "en": "Username already exists. Try another name",
-    "ar": "إسم المستخدم موجود بالفعل جرب إسم آخر"
+    "En": "Username already exists. Try another name",
+    "Ar": "إسم المستخدم موجود بالفعل جرب إسم آخر"
   },
   {
     "name": "manage_your_personal_account",
-    "en": "Manage your personal account",
-    "ar": "إدارة حسابك الشخصي"
+    "En": "Manage your personal account",
+    "Ar": "إدارة حسابك الشخصي"
   },
   {
     "name": "change_profile_picture",
-    "en": "Change profile picture",
-    "ar": "تغيير الصورة الشخصية"
+    "En": "Change profile picture",
+    "Ar": "تغيير الصورة الشخصية"
   },
   {
     "name": "profile_photo",
-    "en": "Profile Photo",
-    "ar": "الصورة الشخصية"
+    "En": "Profile Photo",
+    "Ar": "الصورة الشخصية"
   },
   {
     "name": "the_name",
-    "en": "The Name",
-    "ar": "الإسم"
+    "En": "The Name",
+    "Ar": "الإسم"
   },
   {
     "name": "token_en",
-    "en": "En. Token",
-    "ar": "الرمز بالإنجليزي"
+    "En": "En. Token",
+    "Ar": "الرمز بالإنجليزي"
   },
   {
     "name": "display_data",
-    "en": "Display Data",
-    "ar": "عرض البيانات"
+    "En": "Display Data",
+    "Ar": "عرض البيانات"
   },
   {
     "name": "post",
-    "en": "Post",
-    "ar": "مرحل"
+    "En": "Post",
+    "Ar": "مرحل"
   },
   {
     "name": "c_m",
-    "en": "C.M",
-    "ar": "ســـم"
+    "En": "C.M",
+    "Ar": "ســـم"
   },
   {
     "name": "k_g",
-    "en": "K.G",
-    "ar": "ك.ج"
+    "En": "K.G",
+    "Ar": "ك.ج"
   },
   {
     "name": "t_o",
-    "en": "To.",
-    "ar": "إجمالي"
+    "En": "To.",
+    "Ar": "إجمالي"
   },
   {
     "name": "session",
-    "en": "Session",
-    "ar": "جلسة"
+    "En": "Session",
+    "Ar": "جلسة"
   },
   {
     "name": "create_order",
-    "en": "Create order",
-    "ar": "إنشاء طلب"
+    "En": "Create order",
+    "Ar": "إنشاء طلب"
   },
   {
     "name": "total_purchase_price",
-    "en": "Total Purchase Price",
-    "ar": "إجمالي سعر المشتريات"
+    "En": "Total Purchase Price",
+    "Ar": "إجمالي سعر المشتريات"
   },
   {
     "name": "total_purchase_count",
-    "en": "Total Purchase Count",
-    "ar": "إجمالي عدد المشتريات"
+    "En": "Total Purchase Count",
+    "Ar": "إجمالي عدد المشتريات"
   },
   {
     "name": "products_must_added_basket",
-    "en": "Products must be added to the basket",
-    "ar": "يجب إضافة منتجات إلى السلة"
+    "En": "Products must be added to the basket",
+    "Ar": "يجب إضافة منتجات إلى السلة"
   },
   {
     "name": "send",
-    "en": "Send",
-    "ar": "إرسال"
+    "En": "Send",
+    "Ar": "إرسال"
   },
   {
     "name": "must_write_message",
-    "en": "You must write a message",
-    "ar": "يجب كتابة رسالة"
+    "En": "You must write a message",
+    "Ar": "يجب كتابة رسالة"
   },
   {
     "name": "write_your_message_here",
-    "en": "Write your message here",
-    "ar": "أكتب رسالتك هنا"
+    "En": "Write your message here",
+    "Ar": "أكتب رسالتك هنا"
   },
   {
     "name": "quick_message_to",
-    "en": "Quick message to",
-    "ar": "رسالة سريعة إلى"
+    "En": "Quick message to",
+    "Ar": "رسالة سريعة إلى"
   },
   {
     "name": "products",
-    "en": "Products",
-    "ar": "المنتجات"
+    "En": "Products",
+    "Ar": "المنتجات"
   },
   {
     "name": "products_menu",
-    "en": "Products menu",
-    "ar": "قائمة المنتجات"
+    "En": "Products menu",
+    "Ar": "قائمة المنتجات"
   },
   {
     "name": "product_name",
-    "en": "Product Name",
-    "ar": "إسم المنتج"
+    "En": "Product Name",
+    "Ar": "إسم المنتج"
   },
   {
     "name": "product_new",
-    "en": "New Product",
-    "ar": "منتج جديد"
+    "En": "New Product",
+    "Ar": "منتج جديد"
   },
   {
     "name": "product_add",
-    "en": "Add Product",
-    "ar": "إضافة منتج "
+    "En": "Add Product",
+    "Ar": "إضافة منتج "
   },
   {
     "name": "product_edit",
-    "en": "Edit Product",
-    "ar": "تعديل منتج "
+    "En": "Edit Product",
+    "Ar": "تعديل منتج "
   },
   {
     "name": "upon_receipt",
-    "en": "upon receipt",
-    "ar": "عند الإستلام"
+    "En": "upon receipt",
+    "Ar": "عند الإستلام"
   },
   {
     "name": "fee_upon_receipt",
-    "en": "Fee upon receipt",
-    "ar": "رسوم عند الإستلام"
+    "En": "Fee upon receipt",
+    "Ar": "رسوم عند الإستلام"
   },
   {
     "name": "normal_delivery_fee",
-    "en": "Normal delivery fee",
-    "ar": "رسوم توصيل عادي"
+    "En": "Normal delivery fee",
+    "Ar": "رسوم توصيل عادي"
   },
   {
     "name": "fast_delivery_fee",
-    "en": "Fast delivery fee",
-    "ar": "رسوم توصيل سريع"
+    "En": "Fast delivery fee",
+    "Ar": "رسوم توصيل سريع"
   },
   {
     "name": "product_details",
-    "en": "Product Details",
-    "ar": "تفاصيل المنتج "
+    "En": "Product Details",
+    "Ar": "تفاصيل المنتج "
   },
   {
     "name": "product_delete",
-    "en": "Delete Product",
-    "ar": "حذف منتج "
+    "En": "Delete Product",
+    "Ar": "حذف منتج "
   },
   {
     "name": "products_groups",
-    "en": "Products Groups",
-    "ar": "مجموعات المنتجات"
+    "En": "Products Groups",
+    "Ar": "مجموعات المنتجات"
   },
   {
     "name": "products_group",
-    "en": "Products Group",
-    "ar": "مجموعة المنتجات"
+    "En": "Products Group",
+    "Ar": "مجموعة المنتجات"
   },
   {
     "name": "delivery_type",
-    "en": "Delivery Type",
-    "ar": "نوع التوصيل"
+    "En": "Delivery Type",
+    "Ar": "نوع التوصيل"
   },
   {
     "name": "products_basket",
-    "en": "Products basket",
-    "ar": "سلة المنتجات"
+    "En": "Products basket",
+    "Ar": "سلة المنتجات"
   },
   {
     "name": "my_orders",
-    "en": "My Orders",
-    "ar": "طلباتي"
+    "En": "My Orders",
+    "Ar": "طلباتي"
   },
   {
     "name": "create",
-    "en": "Create",
-    "ar": "إنشاء"
+    "En": "Create",
+    "Ar": "إنشاء"
   },
   {
     "name": "vacations",
-    "en": "Vacations",
-    "ar": "الأجازات"
+    "En": "Vacations",
+    "Ar": "الأجازات"
   },
   {
     "name": "vacation",
-    "en": "Vacation",
-    "ar": "أجازة"
+    "En": "Vacation",
+    "Ar": "أجازة"
   },
   {
     "name": "hotline",
-    "en": "Hotline",
-    "ar": "الرقم الساخن"
+    "En": "Hotline",
+    "Ar": "الرقم الساخن"
   },
   {
     "name": "fax",
-    "en": "Fax",
-    "ar": "الفاكس"
+    "En": "Fax",
+    "Ar": "الفاكس"
   },
   {
     "name": "child",
-    "en": "Child",
-    "ar": "طفل"
+    "En": "Child",
+    "Ar": "طفل"
   },
   {
     "name": "communication",
-    "en": "Communication",
-    "ar": "التواصل"
+    "En": "Communication",
+    "Ar": "التواصل"
   },
   {
     "name": "whatsapp",
-    "en": "WhatsApp",
-    "ar": "واتساب"
+    "En": "WhatsApp",
+    "Ar": "واتساب"
   },
   {
     "name": "contact_information",
-    "en": "Contact Information",
-    "ar": "بيانات الاتصال"
+    "En": "Contact Information",
+    "Ar": "بيانات الاتصال"
   },
   {
     "name": "social_information",
-    "en": "Social Information",
-    "ar": "بيانات التواصل الاجتماعي"
+    "En": "Social Information",
+    "Ar": "بيانات التواصل الاجتماعي"
   },
   {
     "name": "delivery_time",
-    "en": "Delivery Time",
-    "ar": "مدة التسليم "
+    "En": "Delivery Time",
+    "Ar": "مدة التسليم "
   },
   {
     "name": "slide_information",
-    "en": "Slide Information",
-    "ar": "بيانات الشريحة"
+    "En": "Slide Information",
+    "Ar": "بيانات الشريحة"
   },
   {
     "name": "vacation_name",
-    "en": "Vacation Name",
-    "ar": "إسم الأجازة"
+    "En": "Vacation Name",
+    "Ar": "إسم الأجازة"
   },
   {
     "name": "address_connect",
-    "en": "Addresses & Connections",
-    "ar": "العناوين و الإتصالات"
+    "En": "Addresses & Connections",
+    "Ar": "العناوين و الإتصالات"
   },
   {
     "name": "times_of_work",
-    "en": "TImes Of Work",
-    "ar": "مواعيد العمل"
+    "En": "TImes Of Work",
+    "Ar": "مواعيد العمل"
   },
   {
     "name": "nathional_id",
-    "en": "Nathional Id",
-    "ar": "الرقم القومي"
+    "En": "Nathional Id",
+    "Ar": "الرقم القومي"
   },
   {
     "name": "translation",
-    "en": "Translation",
-    "ar": "الترجمة"
+    "En": "Translation",
+    "Ar": "الترجمة"
   },
   {
     "name": "language",
-    "en": "Language",
-    "ar": "اللغة"
+    "En": "Language",
+    "Ar": "اللغة"
   },
   {
     "name": "languages",
-    "en": "Languages",
-    "ar": "اللغات"
+    "En": "Languages",
+    "Ar": "اللغات"
   },
   {
     "name": "minutes",
-    "en": "Minutes",
-    "ar": "دقائق"
+    "En": "Minutes",
+    "Ar": "دقائق"
   },
   {
     "name": "minute",
-    "en": "Minute",
-    "ar": "دقيقة"
+    "En": "Minute",
+    "Ar": "دقيقة"
   },
   {
     "name": "un_post",
-    "en": "Un Post",
-    "ar": "غير مرحل"
+    "En": "Un Post",
+    "Ar": "غير مرحل"
   },
   {
     "name": "customer_data",
-    "en": "Customer Data",
-    "ar": "بيانات العميل"
+    "En": "Customer Data",
+    "Ar": "بيانات العميل"
   },
   {
     "name": "name",
-    "en": "Name",
-    "ar": "الإسم"
+    "En": "Name",
+    "Ar": "الإسم"
   },
   {
     "name": "contact_us",
-    "en": "Contact us",
-    "ar": "إتصل بنا"
+    "En": "Contact us",
+    "Ar": "إتصل بنا"
   },
   {
     "name": "selected",
-    "en": "Selected",
-    "ar": "تحديد"
+    "En": "Selected",
+    "Ar": "تحديد"
   },
   {
     "name": "must_enter_code",
-    "en": "Must Enter Code",
-    "ar": "يجب إدخال الكود"
+    "En": "Must Enter Code",
+    "Ar": "يجب إدخال الكود"
   },
   {
     "name": "main",
-    "en": "Main",
-    "ar": "الرئيسية"
+    "En": "Main",
+    "Ar": "الرئيسية"
   },
   {
     "name": "services",
-    "en": "Services",
-    "ar": "الخدمات"
+    "En": "Services",
+    "Ar": "الخدمات"
   },
   {
     "name": "length_level",
-    "en": "Length level",
-    "ar": "طول المستوى"
+    "En": "Length level",
+    "Ar": "طول المستوى"
   },
   {
     "name": "source_name",
-    "en": "Source Name",
-    "ar": "إسم المصدر"
+    "En": "Source Name",
+    "Ar": "إسم المصدر"
   },
   {
     "name": "t_discount",
-    "en": "T.Discount",
-    "ar": "إجمالي خصم"
+    "En": "T.Discount",
+    "Ar": "إجمالي خصم"
   },
   {
     "name": "t_tax",
-    "en": "T.Tax",
-    "ar": "إجمالي ضريبة"
+    "En": "T.Tax",
+    "Ar": "إجمالي ضريبة"
   },
   {
     "name": "t_value",
-    "en": "T.Value",
-    "ar": "إجمالي قيمة"
+    "En": "T.Value",
+    "Ar": "إجمالي قيمة"
   },
   {
     "name": "required",
-    "en": "Required",
-    "ar": "المطلوب"
+    "En": "Required",
+    "Ar": "المطلوب"
   },
   {
     "name": "the_user",
-    "en": "The User",
-    "ar": "المستخدم"
+    "En": "The User",
+    "Ar": "المستخدم"
   },
   {
     "name": "users_search",
-    "en": "Users Search",
-    "ar": "بحث المستخدمين"
+    "En": "Users Search",
+    "Ar": "بحث المستخدمين"
   },
   {
     "name": "requiredy",
-    "en": "Required",
-    "ar": "المطلوبة"
+    "En": "Required",
+    "Ar": "المطلوبة"
   },
   {
     "name": "Save_edit",
-    "en": "Save Edit",
-    "ar": "حفظ التعديل"
+    "En": "Save Edit",
+    "Ar": "حفظ التعديل"
   },
   {
     "name": "the_amount",
-    "en": "The Amount",
-    "ar": "المبلغ"
+    "En": "The Amount",
+    "Ar": "المبلغ"
   },
   {
     "name": "amount",
-    "en": "Amount",
-    "ar": "مبلغ"
+    "En": "Amount",
+    "Ar": "مبلغ"
   },
   {
     "name": "percent",
-    "en": "Percent",
-    "ar": "نسبة"
+    "En": "Percent",
+    "Ar": "نسبة"
   },
   {
     "name": "due_date",
-    "en": "Due Date",
-    "ar": "تاريخ الإستحقاق"
+    "En": "Due Date",
+    "Ar": "تاريخ الإستحقاق"
   },
   {
     "name": "ledger_account",
-    "en": "Ledger Account",
-    "ar": "حساب الأستاذ"
+    "En": "Ledger Account",
+    "Ar": "حساب الأستاذ"
   },
   {
     "name": "source_code",
-    "en": "Source Code",
-    "ar": "كود المصدر"
+    "En": "Source Code",
+    "Ar": "كود المصدر"
   },
   {
     "name": "attend_now",
-    "en": "Attend Now",
-    "ar": "حضور الأن"
+    "En": "Attend Now",
+    "Ar": "حضور الأن"
   },
   {
     "name": "gender",
-    "en": "Gender",
-    "ar": "الجنس"
+    "En": "Gender",
+    "Ar": "الجنس"
   },
   {
     "name": "delegate",
-    "en": "Delegate",
-    "ar": "المندوب"
+    "En": "Delegate",
+    "Ar": "المندوب"
   },
   {
     "name": "employee",
-    "en": "Employee",
-    "ar": "الموظف"
+    "En": "Employee",
+    "Ar": "الموظف"
   },
   {
     "name": "just",
-    "en": "Just",
-    "ar": "فقط"
+    "En": "Just",
+    "Ar": "فقط"
   },
   {
     "name": "yearly",
-    "en": "Yearly",
-    "ar": "سنوي"
+    "En": "Yearly",
+    "Ar": "سنوي"
   },
   {
     "name": "monthly",
-    "en": "Monthly",
-    "ar": "شهري"
+    "En": "Monthly",
+    "Ar": "شهري"
   },
   {
     "name": "Just_no_other",
-    "en": "Just No Other",
-    "ar": "فقط لا غير"
+    "En": "Just No Other",
+    "Ar": "فقط لا غير"
   },
   {
     "name": "date_exceed",
-    "en": "The transaction date cannot exceed todays date",
-    "ar": "تاريخ المعاملة لا يمكن أن يتجاوز تاريخ اليوم"
+    "En": "The transaction date cannot exceed todays date",
+    "Ar": "تاريخ المعاملة لا يمكن أن يتجاوز تاريخ اليوم"
   },
   {
     "name": "overdraft_not_active",
-    "en": "The transaction cannot be completed because the overdraft feature has not been activated",
-    "ar": "لا يمكن إتمام المعاملة لعدم تفعيل خاصية السحب على المكشوف"
+    "En": "The transaction cannot be completed because the overdraft feature has not been activated",
+    "Ar": "لا يمكن إتمام المعاملة لعدم تفعيل خاصية السحب على المكشوف"
   },
   {
     "name": "try_application",
-    "en": "Try Application With All Features Free",
-    "ar": "جرب البرنامج الأن مع جميع الميزات مجاناّ"
+    "En": "Try Application With All Features Free",
+    "Ar": "جرب البرنامج الأن مع جميع الميزات مجاناّ"
   },
   {
     "name": "login",
-    "en": "Login",
-    "ar": "تسجيل دخول"
+    "En": "Login",
+    "Ar": "تسجيل دخول"
   },
   {
     "name": "register",
-    "en": "Register",
-    "ar": "حساب جديد"
+    "En": "Register",
+    "Ar": "حساب جديد"
   },
   {
     "name": "quantity",
-    "en": "Qty.",
-    "ar": "الكمية"
+    "En": "Qty.",
+    "Ar": "الكمية"
   },
   {
     "name": "quantities",
-    "en": "Quantities",
-    "ar": "الكميات"
+    "En": "Quantities",
+    "Ar": "الكميات"
   },
   {
     "name": "unit_price",
-    "en": "Unit Price",
-    "ar": "سعر الوحدة"
+    "En": "Unit Price",
+    "Ar": "سعر الوحدة"
   },
   {
     "name": "total_vat",
-    "en": "Total VAT",
-    "ar": "إجمالي الضريبة"
+    "En": "Total VAT",
+    "Ar": "إجمالي الضريبة"
   },
   {
     "name": "invoice",
-    "en": "Invoice",
-    "ar": "فاتورة"
+    "En": "Invoice",
+    "Ar": "فاتورة"
   },
   {
     "name": "item",
-    "en": "Item",
-    "ar": "الصنف"
+    "En": "Item",
+    "Ar": "الصنف"
   },
   {
     "name": "right_header",
-    "en": "Right header",
-    "ar": "مقدمة اليمين"
+    "En": "Right header",
+    "Ar": "مقدمة اليمين"
   },
   {
     "name": "left_header",
-    "en": "Left header",
-    "ar": "مقدمة اليمين"
+    "En": "Left header",
+    "Ar": "مقدمة اليمين"
   },
   {
     "name": "invoice_thermal",
-    "en": "Invoice thermal",
-    "ar": "فاتورة حرارية"
+    "En": "Invoice thermal",
+    "Ar": "فاتورة حرارية"
   },
   {
     "name": "thermal_print",
-    "en": "Thermal print",
-    "ar": "طباعة حرارية"
+    "En": "Thermal print",
+    "Ar": "طباعة حرارية"
   },
   {
     "name": "value_added_tax",
-    "en": "Value added tax",
-    "ar": "ضريبة القيمة المضافة"
+    "En": "Value added tax",
+    "Ar": "ضريبة القيمة المضافة"
   },
   {
     "name": "invoice_remain",
-    "en": "Invoice Remain",
-    "ar": "باقي الفاتورة"
+    "En": "Invoice Remain",
+    "Ar": "باقي الفاتورة"
   },
   {
     "name": "total_before_tax",
-    "en": "Total Before.VAT",
-    "ar": "إجمالي قبل ضريبة القيمة المضافة"
+    "En": "Total Before.VAT",
+    "Ar": "إجمالي قبل ضريبة القيمة المضافة"
   },
   {
     "name": "total_after_tax",
-    "en": "Total After.VAT",
-    "ar": "إجمالي بعد ضريبة القيمة المضافة"
+    "En": "Total After.VAT",
+    "Ar": "إجمالي بعد ضريبة القيمة المضافة"
   },
   {
     "name": "discount_cash",
-    "en": "Discount cash",
-    "ar": "الخصم النقدي"
+    "En": "Discount cash",
+    "Ar": "الخصم النقدي"
   },
   {
     "name": "net",
-    "en": "Net",
-    "ar": "الصافي"
+    "En": "Net",
+    "Ar": "الصافي"
   },
   {
     "name": "vat",
-    "en": "VAT.",
-    "ar": "القيمة المضافة"
+    "En": "VAT.",
+    "Ar": "القيمة المضافة"
   },
   {
     "name": "absence",
-    "en": "Absence",
-    "ar": "غياب"
+    "En": "Absence",
+    "Ar": "غياب"
   },
   {
     "name": "total_quantity",
-    "en": "Total Quantity",
-    "ar": "إجمالي الكمية"
+    "En": "Total Quantity",
+    "Ar": "إجمالي الكمية"
   },
   {
     "name": "personnel",
-    "en": "Personnel",
-    "ar": "شئون الموظفين"
+    "En": "Personnel",
+    "Ar": "شئون الموظفين"
   },
   {
     "name": "overdraft",
-    "en": "Overdraft",
-    "ar": "السحب على المكشوف"
+    "En": "Overdraft",
+    "Ar": "السحب على المكشوف"
   },
   {
     "name": "indentfy",
-    "en": "Indentfy",
-    "ar": "النوع"
+    "En": "Indentfy",
+    "Ar": "النوع"
   },
   {
     "name": "period",
-    "en": "Period",
-    "ar": "المدة"
+    "En": "Period",
+    "Ar": "المدة"
   },
   {
     "name": "from",
-    "en": "From",
-    "ar": "من"
+    "En": "From",
+    "Ar": "من"
   },
   {
     "name": "to",
-    "en": "To",
-    "ar": "إلى"
+    "En": "To",
+    "Ar": "إلى"
   },
   {
     "name": "employee_salary_screen",
-    "en": "Employee Salary Screen",
-    "ar": "شاشة مرتبات الموظفين"
+    "En": "Employee Salary Screen",
+    "Ar": "شاشة مرتبات الموظفين"
   },
   {
     "name": "vendor",
-    "en": "Vendor",
-    "ar": "المورد"
+    "En": "Vendor",
+    "Ar": "المورد"
   },
   {
     "name": "name_ar",
-    "en": "Name In Ar",
-    "ar": "اللإسم بالعربية"
+    "En": "Name In Ar",
+    "Ar": "اللإسم بالعربية"
   },
   {
     "name": "name_en",
-    "en": "Name In En",
-    "ar": "اللإسم بالإنجليزية"
+    "En": "Name In En",
+    "Ar": "اللإسم بالإنجليزية"
   },
   {
     "name": "size_en",
-    "en": "Size In En",
-    "ar": "المقاس بالإنجليزية"
+    "En": "Size In En",
+    "Ar": "المقاس بالإنجليزية"
   },
   {
     "name": "in",
-    "en": "In",
-    "ar": "في"
+    "En": "In",
+    "Ar": "في"
   },
   {
     "name": "Signature",
-    "en": "Signature",
-    "ar": "التوقيع"
+    "En": "Signature",
+    "Ar": "التوقيع"
   },
   {
     "name": "name_size",
-    "en": "Name / Size",
-    "ar": "إسم / مقاس"
+    "En": "Name / Size",
+    "Ar": "إسم / مقاس"
   },
   {
     "name": "recipient_signature",
-    "en": "The recipients signature",
-    "ar": "توقيع المستلم"
+    "En": "The recipients signature",
+    "Ar": "توقيع المستلم"
   },
   {
     "name": "undefined",
-    "en": "Undefined",
-    "ar": "غير محدد"
+    "En": "Undefined",
+    "Ar": "غير محدد"
   },
   {
     "name": "sender",
-    "en": "Sender",
-    "ar": "المرسل"
+    "En": "Sender",
+    "Ar": "المرسل"
   },
   {
     "name": "receiver",
-    "en": "Receiver",
-    "ar": "المستلم"
+    "En": "Receiver",
+    "Ar": "المستلم"
   },
   {
     "name": "signature",
-    "en": "Signature",
-    "ar": "التوقيع"
+    "En": "Signature",
+    "Ar": "التوقيع"
   },
   {
     "name": "cash",
-    "en": "Cash",
-    "ar": "كاش"
+    "En": "Cash",
+    "Ar": "كاش"
   },
   {
     "name": "bank",
-    "en": "Bank",
-    "ar": "بنك"
+    "En": "Bank",
+    "Ar": "بنك"
   },
   {
     "name": "payment_type",
-    "en": "Payment Type",
-    "ar": "نوع الدفع"
+    "En": "Payment Type",
+    "Ar": "نوع الدفع"
   },
   {
     "name": "post_all",
-    "en": "Post All",
-    "ar": "ترحيل الكل"
+    "En": "Post All",
+    "Ar": "ترحيل الكل"
   },
   {
     "name": "add_currencies",
-    "en": "Add Currencies",
-    "ar": "إضافة عملات"
+    "En": "Add Currencies",
+    "Ar": "إضافة عملات"
   },
   {
     "name": "register",
-    "en": "Register",
-    "ar": "تسجيل"
+    "En": "Register",
+    "Ar": "تسجيل"
   },
   {
     "name": "register_customer",
-    "en": "Register Customer",
-    "ar": "تسجيل عميل"
+    "En": "Register Customer",
+    "Ar": "تسجيل عميل"
   },
   {
     "name": "report_employee_delegate_menus",
-    "en": "Report Commissions Delegate Menu",
-    "ar": "قائمة تقارير عمولات المناديب "
+    "En": "Report Commissions Delegate Menu",
+    "Ar": "قائمة تقارير عمولات المناديب "
   },
   {
     "name": "report_employee_delegate_name",
-    "en": "Report Commissions Delegate",
-    "ar": "تقرير عمولات المناديب "
+    "En": "Report Commissions Delegate",
+    "Ar": "تقرير عمولات المناديب "
   },
   {
     "name": "report_invoices_vendors_menus",
-    "en": "Report Invoices Vendors  Menu",
-    "ar": "قائمة تقارير فواتير الموردين "
+    "En": "Report Invoices Vendors  Menu",
+    "Ar": "قائمة تقارير فواتير الموردين "
   },
   {
     "name": "report_invoices_vendors_name",
-    "en": "Account Statement Vendors",
-    "ar": "كشف حساب الموردين "
+    "En": "Account Statement Vendors",
+    "Ar": "كشف حساب الموردين "
   },
   {
     "name": "order_customer_menus",
-    "en": "Orders Customer Screen",
-    "ar": "شاشة طلبات العملاء"
+    "En": "Orders Customer Screen",
+    "Ar": "شاشة طلبات العملاء"
   },
   {
     "name": "order_customer_management",
-    "en": "Orders Customer Management",
-    "ar": "إدارة طلبات العملاء"
+    "En": "Orders Customer Management",
+    "Ar": "إدارة طلبات العملاء"
   },
   {
     "name": "work_posting",
-    "en": "Work Posting",
-    "ar": "العمل بالترحيل"
+    "En": "Work Posting",
+    "Ar": "العمل بالترحيل"
   },
   {
     "name": "work_unposting",
-    "en": "Work Un Posting",
-    "ar": "العمل بفك الترحيل"
+    "En": "Work Un Posting",
+    "Ar": "العمل بفك الترحيل"
   },
   {
     "name": "basic_information",
-    "en": "Basic Information",
-    "ar": "البيانات الأساسية"
+    "En": "Basic Information",
+    "Ar": "البيانات الأساسية"
   },
   {
     "name": "system_total_transaction_menus",
-    "en": "Total Item Transaction Menu",
-    "ar": "قائمة إجمالي كارتة الصنف"
+    "En": "Total Item Transaction Menu",
+    "Ar": "قائمة إجمالي كارتة الصنف"
   },
   {
     "name": "buy_price",
-    "en": "Buy At Price",
-    "ar": "الشراء بسعر"
+    "En": "Buy At Price",
+    "Ar": "الشراء بسعر"
   },
   {
     "name": "selling_price",
-    "en": "Selling At Price",
-    "ar": "البيع بسعر"
+    "En": "Selling At Price",
+    "Ar": "البيع بسعر"
   },
   {
     "name": "amount_currency",
-    "en": "The Amount In Currency",
-    "ar": "المبلغ بالعملة"
+    "En": "The Amount In Currency",
+    "Ar": "المبلغ بالعملة"
   },
   {
     "name": "qty",
-    "en": "Qty",
-    "ar": "كمية"
+    "En": "Qty",
+    "Ar": "كمية"
   },
   {
     "name": "handle",
-    "en": "Handler",
-    "ar": "تهيئة"
+    "En": "Handler",
+    "Ar": "تهيئة"
   },
   {
     "name": "err_paid_up_payment",
-    "en": "Paid Up Greater Than Required Value",
-    "ar": "المبلغ المسدد أكبر من الباقي"
+    "En": "Paid Up Greater Than Required Value",
+    "Ar": "المبلغ المسدد أكبر من الباقي"
   },
   {
     "name": "paid_up_payment",
-    "en": "Paid Up",
-    "ar": "المبلغ المسدد"
+    "En": "Paid Up",
+    "Ar": "المبلغ المسدد"
   },
   {
     "name": "system_amounts_in_menus",
-    "en": "Amount in Invoice",
-    "ar": "فاتورة الوارد"
+    "En": "Amount in Invoice",
+    "Ar": "فاتورة الوارد"
   },
   {
     "name": "system_amounts_out_menus",
-    "en": "Amount out Invoice",
-    "ar": "فاتورة المنصرف"
+    "En": "Amount out Invoice",
+    "Ar": "فاتورة المنصرف"
   },
   {
     "name": "currency_value",
-    "en": "Currency Amount",
-    "ar": "مبلغ العملة"
+    "En": "Currency Amount",
+    "Ar": "مبلغ العملة"
   },
   {
     "name": "main_currency",
-    "en": "Main Currency",
-    "ar": "العملة الأساسية"
+    "En": "Main Currency",
+    "Ar": "العملة الأساسية"
   },
   {
     "name": "exchange_rate",
-    "en": "Exchange Rate",
-    "ar": "سعر الصرف"
+    "En": "Exchange Rate",
+    "Ar": "سعر الصرف"
   },
   {
     "name": "pay_another_currency",
-    "en": "Pay Another Currency",
-    "ar": "الدفع بعملة أخرى"
+    "En": "Pay Another Currency",
+    "Ar": "الدفع بعملة أخرى"
   },
   {
     "name": "cvt",
-    "en": "Cvt",
-    "ar": "تحويل"
+    "En": "Cvt",
+    "Ar": "تحويل"
   },
   {
     "name": "posting",
-    "en": "Posting",
-    "ar": "ترحيل"
+    "En": "Posting",
+    "Ar": "ترحيل"
   },
   {
     "name": "unposting",
-    "en": "Un Posting",
-    "ar": "فك ترحيل"
+    "En": "Un Posting",
+    "Ar": "فك ترحيل"
   },
   {
     "name": "system_units_menus",
-    "en": "Units Menu",
-    "ar": "قائمة الوحدات"
+    "En": "Units Menu",
+    "Ar": "قائمة الوحدات"
   },
   {
     "name": "system_register_stores_assemble",
-    "en": "Add Assimbling Items",
-    "ar": "إضافة تجميعات الأصناف"
+    "En": "Add Assimbling Items",
+    "Ar": "إضافة تجميعات الأصناف"
   },
   {
     "name": "system_register_stores_dismantle",
-    "en": "Add Dismantle Items",
-    "ar": "إضافة تفكيك الأصناف"
+    "En": "Add Dismantle Items",
+    "Ar": "إضافة تفكيك الأصناف"
   },
   {
     "name": "report_sales_detailed_menus",
-    "en": "Report Sales Detailed Menu",
-    "ar": "قائمة تفصيلية لمبيعات الأصناف "
+    "En": "Report Sales Detailed Menu",
+    "Ar": "قائمة تفصيلية لمبيعات الأصناف "
   },
   {
     "name": "report_sales_total_menus",
-    "en": "Report Sales Total Menu",
-    "ar": "قائمة إجمالي لمبيعات الأصناف "
+    "En": "Report Sales Total Menu",
+    "Ar": "قائمة إجمالي لمبيعات الأصناف "
   },
   {
     "name": "branches",
-    "en": "Branches",
-    "ar": "الفروع"
+    "En": "Branches",
+    "Ar": "الفروع"
   },
   {
     "name": "order_code",
-    "en": "Order Code",
-    "ar": "كود الطلب"
+    "En": "Order Code",
+    "Ar": "كود الطلب"
   },
   {
     "name": "request_code",
-    "en": "Request Code",
-    "ar": "كود الطلب"
+    "En": "Request Code",
+    "Ar": "كود الطلب"
   },
   {
     "name": "requests_count",
-    "en": "Requests Count",
-    "ar": "عدد الطلبات"
+    "En": "Requests Count",
+    "Ar": "عدد الطلبات"
   },
   {
     "name": "invoices_code",
-    "en": "Authorization / Invoices Code",
-    "ar": "كود الإذن / الفاتورة"
+    "En": "Authorization / Invoices Code",
+    "Ar": "كود الإذن / الفاتورة"
   },
   {
     "name": "price",
-    "en": "Price",
-    "ar": "السعر"
+    "En": "Price",
+    "Ar": "السعر"
   },
   {
     "name": "sessions",
-    "en": "Sessions",
-    "ar": "الجلسات"
+    "En": "Sessions",
+    "Ar": "الجلسات"
   },
   {
     "name": "safe",
-    "en": "Safe",
-    "ar": "الخزينة"
+    "En": "Safe",
+    "Ar": "الخزينة"
   },
   {
     "name": "commission",
-    "en": "Commission",
-    "ar": "العمولة"
+    "En": "Commission",
+    "Ar": "العمولة"
   },
   {
     "name": "auto_barcode_generation",
-    "en": "Automatic Barcode Generation",
-    "ar": "توليد اّلي للباركود"
+    "En": "Automatic Barcode Generation",
+    "Ar": "توليد اّلي للباركود"
   },
   {
     "name": "total_value_added",
-    "en": "Total Value Added",
-    "ar": "إجمالي القيمة المضافة"
+    "En": "Total Value Added",
+    "Ar": "إجمالي القيمة المضافة"
   },
   {
     "name": "total_v_a",
-    "en": "Total V . A",
-    "ar": "إجمالي ق . م"
+    "En": "Total V . A",
+    "Ar": "إجمالي ق . م"
   },
   {
     "name": "err_exist_count",
-    "en": "Must Be Item Count",
-    "ar": "يجب وجود عدد للصنف"
+    "En": "Must Be Item Count",
+    "Ar": "يجب وجود عدد للصنف"
   },
   {
     "name": "err_exist_count_invoice",
-    "en": "Must Be Item Count In Invoice",
-    "ar": "يجب وجود عدد للصنف في فاتورة"
+    "En": "Must Be Item Count In Invoice",
+    "Ar": "يجب وجود عدد للصنف في فاتورة"
   },
   {
     "name": "done",
-    "en": "Done",
-    "ar": "تم"
+    "En": "Done",
+    "Ar": "تم"
   },
   {
     "name": "branch",
-    "en": "Branch",
-    "ar": "الفرع"
+    "En": "Branch",
+    "Ar": "الفرع"
   },
   {
     "name": "auto_item_code_generation",
-    "en": "Automatic Item code Generation",
-    "ar": "توليد اّلي لكود الصنف"
+    "En": "Automatic Item code Generation",
+    "Ar": "توليد اّلي لكود الصنف"
   },
   {
     "name": "posting_all",
-    "en": "Posting All",
-    "ar": "ترحيل الكل"
+    "En": "Posting All",
+    "Ar": "ترحيل الكل"
   },
   {
     "name": "auto_unit_barcode_generation",
-    "en": "Automatic Unit Barcode Generation",
-    "ar": "توليد اّلي لباركود الوحدة"
+    "En": "Automatic Unit Barcode Generation",
+    "Ar": "توليد اّلي لباركود الوحدة"
   },
   {
     "name": "item_code",
-    "en": "Item Code",
-    "ar": "كود الصنف"
+    "En": "Item Code",
+    "Ar": "كود الصنف"
   },
   {
     "name": "has_been_delivered",
-    "en": "Has been delivered",
-    "ar": "تم التسليم"
+    "En": "Has been delivered",
+    "Ar": "تم التسليم"
   },
   {
     "name": "delivery_has_not_been_done",
-    "en": "Delivery has not been done",
-    "ar": "لم يتم التسليم"
+    "En": "Delivery has not been done",
+    "Ar": "لم يتم التسليم"
   },
   {
     "name": "delivery_date",
-    "en": "Delivery Date",
-    "ar": "تاريخ التسليم"
+    "En": "Delivery Date",
+    "Ar": "تاريخ التسليم"
   },
   {
     "name": "Sell",
-    "en": "Sell",
-    "ar": "بيع"
+    "En": "Sell",
+    "Ar": "بيع"
   },
   {
     "name": "Buy",
-    "en": "Buy",
-    "ar": "شراء"
+    "En": "Buy",
+    "Ar": "شراء"
   },
   {
     "name": "paid",
-    "en": "Paid",
-    "ar": "المدفوع"
+    "En": "Paid",
+    "Ar": "المدفوع"
   },
   {
     "name": "Screen",
-    "en": "Screen",
-    "ar": "الشاشة"
+    "En": "Screen",
+    "Ar": "الشاشة"
   },
   {
     "name": "Languages",
-    "en": "Languages",
-    "ar": "اللغات"
+    "En": "Languages",
+    "Ar": "اللغات"
   },
   {
     "name": "Background",
-    "en": "Background",
-    "ar": "الخلفية"
+    "En": "Background",
+    "Ar": "الخلفية"
   },
   {
     "name": "Count",
-    "en": "Count",
-    "ar": "العدد"
+    "En": "Count",
+    "Ar": "العدد"
   },
   {
     "name": "Color",
-    "en": "Color",
-    "ar": "اللون"
+    "En": "Color",
+    "Ar": "اللون"
   },
   {
     "name": "Name",
-    "en": "Name",
-    "ar": "الإسم"
+    "En": "Name",
+    "Ar": "الإسم"
   },
   {
     "name": "Show",
-    "en": "Show",
-    "ar": "ظهور"
+    "En": "Show",
+    "Ar": "ظهور"
   },
   {
     "name": "Hide",
-    "en": "Hide",
-    "ar": "إخفاء"
+    "En": "Hide",
+    "Ar": "إخفاء"
   },
   {
     "name": "Temperatures",
-    "en": "Temperatures",
-    "ar": "درجات الحرارة"
+    "En": "Temperatures",
+    "Ar": "درجات الحرارة"
   },
   {
     "name": "Prayer Timings",
-    "en": "Prayer Timings",
-    "ar": "مواقيت الصلاة"
+    "En": "Prayer Timings",
+    "Ar": "مواقيت الصلاة"
   },
   {
     "name": "Great",
-    "en": "Great",
-    "ar": "العظمى"
+    "En": "Great",
+    "Ar": "العظمى"
   },
   {
     "name": "Minor",
-    "en": "Minor",
-    "ar": "الصغرى"
+    "En": "Minor",
+    "Ar": "الصغرى"
   },
   {
     "name": "Date",
-    "en": "Date",
-    "ar": "التاريخ"
+    "En": "Date",
+    "Ar": "التاريخ"
   },
   {
     "name": "Time",
-    "en": "Time",
-    "ar": "الوقت"
+    "En": "Time",
+    "Ar": "الوقت"
   },
   {
     "name": "Percentage Change",
-    "en": "Percentage Change",
-    "ar": "نسبة التغيير"
+    "En": "Percentage Change",
+    "Ar": "نسبة التغيير"
   },
   {
     "name": "Purchase Price",
-    "en": "Purchase Price",
-    "ar": "سعر الشراء"
+    "En": "Purchase Price",
+    "Ar": "سعر الشراء"
   },
   {
     "name": "Sales Price",
-    "en": "Sales Price",
-    "ar": "سعر البيع"
+    "En": "Sales Price",
+    "Ar": "سعر البيع"
   },
   {
     "name": "Increase",
-    "en": "Increase",
-    "ar": "زيادة"
+    "En": "Increase",
+    "Ar": "زيادة"
   },
   {
     "name": "Increase",
-    "en": "Increase",
-    "ar": "زيادة"
+    "En": "Increase",
+    "Ar": "زيادة"
   },
   {
     "name": "Decrease",
-    "en": "Decrease",
-    "ar": "نقص"
+    "En": "Decrease",
+    "Ar": "نقص"
   },
   {
     "name": "remain",
-    "en": "Remain",
-    "ar": "الباقي"
+    "En": "Remain",
+    "Ar": "الباقي"
   },
   {
     "name": "invoice_top_title",
-    "en": "invoice top title",
-    "ar": "عنوان الفاتورة العلوي"
+    "En": "invoice top title",
+    "Ar": "عنوان الفاتورة العلوي"
   },
   {
     "name": "normal_range",
-    "en": "Normal Range",
-    "ar": "المعدل الطبيعي"
+    "En": "Normal Range",
+    "Ar": "المعدل الطبيعي"
   },
   {
     "name": "result",
-    "en": "Result",
-    "ar": "النتيجة"
+    "En": "Result",
+    "Ar": "النتيجة"
   },
   {
     "name": "males",
-    "en": "Males",
-    "ar": "ذكور"
+    "En": "Males",
+    "Ar": "ذكور"
   },
   {
     "name": "females",
-    "en": "Females",
-    "ar": "إناث"
+    "En": "Females",
+    "Ar": "إناث"
   },
   {
     "name": "children",
-    "en": "Children",
-    "ar": "أطفال"
+    "En": "Children",
+    "Ar": "أطفال"
   },
   {
     "name": "medicine",
-    "en": "Medicine",
-    "ar": "الدواء"
+    "En": "Medicine",
+    "Ar": "الدواء"
   },
   {
     "name": "holding",
-    "en": "Holding",
-    "ar": "تعليق"
+    "En": "Holding",
+    "Ar": "تعليق"
   },
   {
     "name": "medicines",
-    "en": "Medicines",
-    "ar": "الأدوية"
+    "En": "Medicines",
+    "Ar": "الأدوية"
   },
   {
     "name": "can_done_home",
-    "en": "Can be done at home",
-    "ar": "إمكانية إجراءه في المنزل"
+    "En": "Can be done at home",
+    "Ar": "إمكانية إجراءه في المنزل"
   },
   {
     "name": "unit_barcode",
-    "en": "Unit Barcode",
-    "ar": "باركود الوحدة"
+    "En": "Unit Barcode",
+    "Ar": "باركود الوحدة"
   },
   {
     "name": "birth_date",
-    "en": "Birth Date",
-    "ar": "تاريخ الميلاد"
+    "En": "Birth Date",
+    "Ar": "تاريخ الميلاد"
   },
   {
     "name": "statistics",
-    "en": "Statistics",
-    "ar": "الإحصائيات"
+    "En": "Statistics",
+    "Ar": "الإحصائيات"
   },
   {
     "name": "longitudes",
-    "en": "Longitudes",
-    "ar": "خطوط الطول"
+    "En": "Longitudes",
+    "Ar": "خطوط الطول"
   },
   {
     "name": "latitudes",
-    "en": "Latitudes",
-    "ar": "دوائر العرض"
+    "En": "Latitudes",
+    "Ar": "دوائر العرض"
   },
   {
     "name": "results_files",
-    "en": "Results files",
-    "ar": "ملفات النتائج"
+    "En": "Results files",
+    "Ar": "ملفات النتائج"
   },
   {
     "name": "visit_date",
-    "en": "Visit date",
-    "ar": "تاريخ الزيارة"
+    "En": "Visit date",
+    "Ar": "تاريخ الزيارة"
   },
   {
     "name": "visit_address",
-    "en": "Visit address",
-    "ar": "عنوان الزيارة"
+    "En": "Visit address",
+    "Ar": "عنوان الزيارة"
   },
   {
     "name": "home_visit_date",
-    "en": "home visit date",
-    "ar": "تاريخ الزيارة المنزلية"
+    "En": "home visit date",
+    "Ar": "تاريخ الزيارة المنزلية"
   },
   {
     "name": "home_visit_address",
-    "en": "home visit address",
-    "ar": "عنوان الزيارة المنزلية"
+    "En": "home visit address",
+    "Ar": "عنوان الزيارة المنزلية"
   },
   {
     "name": "home_visit_details",
-    "en": "home visit date",
-    "ar": "تفاصيل الزيارة المنزلية"
+    "En": "home visit date",
+    "Ar": "تفاصيل الزيارة المنزلية"
   },
   {
     "name": "foods_drinks",
-    "en": "Foods & Drinks",
-    "ar": "الأطعمة و المشروبات"
+    "En": "Foods & Drinks",
+    "Ar": "الأطعمة و المشروبات"
   },
   {
     "name": "paid_require",
-    "en": "Paid Require",
-    "ar": "المطلوب دفعه"
+    "En": "Paid Require",
+    "Ar": "المطلوب دفعه"
   },
   {
     "name": "add_to_orders",
-    "en": "Add to orders",
-    "ar": "إضافة إلى الطلبات"
+    "En": "Add to orders",
+    "Ar": "إضافة إلى الطلبات"
   },
   {
     "name": "default_discount",
-    "en": "Default Discount",
-    "ar": "خصم إفتراضي"
+    "En": "Default Discount",
+    "Ar": "خصم إفتراضي"
   },
   {
     "name": "system_transfer_items_menus",
-    "en": "Transfer Items",
-    "ar": "تحويل أصناف"
+    "En": "Transfer Items",
+    "Ar": "تحويل أصناف"
   },
   {
     "name": "system_register_transfer_items",
-    "en": "Add Transfer Items Branches",
-    "ar": " إضافة تحويل أصناف"
+    "En": "Add Transfer Items Branches",
+    "Ar": " إضافة تحويل أصناف"
   },
   {
     "name": "transaction_type",
-    "en": "Transaction Type",
-    "ar": "نوع المعاملة"
+    "En": "Transaction Type",
+    "Ar": "نوع المعاملة"
   },
   {
     "name": "balance",
-    "en": "Balance",
-    "ar": "الرصيد"
+    "En": "Balance",
+    "Ar": "الرصيد"
   },
   {
     "name": "dont_exceed_maximum_discount_item",
-    "en": "Do not exceed the maximum discount for this items",
-    "ar": "عدم تجاوز الحد الأقصى من الخصم على الصنف"
+    "En": "Do not exceed the maximum discount for this items",
+    "Ar": "عدم تجاوز الحد الأقصى من الخصم على الصنف"
   },
   {
     "name": "create_invoice_auto",
-    "en": "Auto Create Invoice",
-    "ar": "إنشاء اّلي للفاتورة"
+    "En": "Auto Create Invoice",
+    "Ar": "إنشاء اّلي للفاتورة"
   },
   {
     "name": "select_items",
-    "en": "Select Items",
-    "ar": "إختيار الأصناف"
+    "En": "Select Items",
+    "Ar": "إختيار الأصناف"
   },
   {
     "name": "select_all",
-    "en": "Select All",
-    "ar": "تحديد الكل"
+    "En": "Select All",
+    "Ar": "تحديد الكل"
   },
   {
     "name": "invoice_code",
-    "en": "Invoice Code",
-    "ar": "كود الفاتورة"
+    "En": "Invoice Code",
+    "Ar": "كود الفاتورة"
   },
   {
     "name": "remain_amount",
-    "en": "Remain Amount",
-    "ar": "المبلغ المتبقي"
+    "En": "Remain Amount",
+    "Ar": "المبلغ المتبقي"
   },
   {
     "name": "send",
-    "en": "Send",
-    "ar": "إرساال"
+    "En": "Send",
+    "Ar": "إرساال"
   },
   {
     "name": "select",
-    "en": "Select",
-    "ar": "تحديد"
+    "En": "Select",
+    "Ar": "تحديد"
   },
   {
     "name": "commercial_registration_no",
-    "en": "Commercial Registration No.",
-    "ar": "رقم السجل التجاري"
+    "En": "Commercial Registration No.",
+    "Ar": "رقم السجل التجاري"
   },
   {
     "name": "tax_number",
-    "en": "Tax Number",
-    "ar": "الرقم الضريبي"
+    "En": "Tax Number",
+    "Ar": "الرقم الضريبي"
   },
   {
     "name": "total_before_taxes_discounts",
-    "en": "Total before taxes & discounts",
-    "ar": "الإجمالي قبل الخصومات و الضرائب"
+    "En": "Total before taxes & discounts",
+    "Ar": "الإجمالي قبل الخصومات و الضرائب"
   },
   {
     "name": "total_payments",
-    "en": "Total Payments",
-    "ar": "إجمالي المدفوع"
+    "En": "Total Payments",
+    "Ar": "إجمالي المدفوع"
   },
   {
     "name": "delivery_service",
-    "en": "Delivery Service",
-    "ar": "خدمة التوصيل"
+    "En": "Delivery Service",
+    "Ar": "خدمة التوصيل"
   },
   {
     "name": "total_value",
-    "en": "Total Value",
-    "ar": "القيمة الإجمالية"
+    "En": "Total Value",
+    "Ar": "القيمة الإجمالية"
   },
   {
     "name": "the_total",
-    "en": "The Total",
-    "ar": "الإجمالي"
+    "En": "The Total",
+    "Ar": "الإجمالي"
   },
   {
     "name": "invoices",
-    "en": "Invoices",
-    "ar": "فواتير"
+    "En": "Invoices",
+    "Ar": "فواتير"
   },
   {
     "name": "safe_box",
-    "en": "Safe Box",
-    "ar": "خزينة الصندوق"
+    "En": "Safe Box",
+    "Ar": "خزينة الصندوق"
   },
   {
     "name": "safe_bank",
-    "en": "Safe Bank",
-    "ar": "خزينة البنك"
+    "En": "Safe Bank",
+    "Ar": "خزينة البنك"
   },
   {
     "name": "net_value",
-    "en": "Net Value",
-    "ar": "صافي القيمة"
+    "En": "Net Value",
+    "Ar": "صافي القيمة"
   },
   {
     "name": "stores_balances",
-    "en": "Stores Balances",
-    "ar": "أرصدة المخازن"
+    "En": "Stores Balances",
+    "Ar": "أرصدة المخازن"
   },
   {
     "name": "branches_balances",
-    "en": "Branches Balances",
-    "ar": "أرصدة الفروع"
+    "En": "Branches Balances",
+    "Ar": "أرصدة الفروع"
   },
   {
     "name": "default_store",
-    "en": "Default Store",
-    "ar": "مخزن إفتراضي"
+    "En": "Default Store",
+    "Ar": "مخزن إفتراضي"
   },
   {
     "name": "marital_status",
-    "en": "Marital Status",
-    "ar": "الحالة الاجتماعية"
+    "En": "Marital Status",
+    "Ar": "الحالة الاجتماعية"
   },
   {
     "name": "military_status",
-    "en": "Military Status",
-    "ar": "موقف التجنيد"
+    "En": "Military Status",
+    "Ar": "موقف التجنيد"
   },
   {
     "name": "total_tax",
-    "en": "ًTotal Tax",
-    "ar": "إجمالي الضرائب"
+    "En": "ًTotal Tax",
+    "Ar": "إجمالي الضرائب"
   },
   {
     "name": "total_discount",
-    "en": "ًTotal Discount",
-    "ar": "إجمالي الخصم"
+    "En": "ًTotal Discount",
+    "Ar": "إجمالي الخصم"
   },
   {
     "name": "total_items_discount",
-    "en": "ًTotal Items Discount",
-    "ar": "إجمالي خصم الأصناف"
+    "En": "ًTotal Items Discount",
+    "Ar": "إجمالي خصم الأصناف"
   },
   {
     "name": "store_from",
-    "en": "ًStore From",
-    "ar": "من مخزن"
+    "En": "ًStore From",
+    "Ar": "من مخزن"
   },
   {
     "name": "store_to",
-    "en": "ًStore To",
-    "ar": "إلى مخزن"
+    "En": "ًStore To",
+    "Ar": "إلى مخزن"
   },
   {
     "name": "branch_from",
-    "en": "ًBranch From",
-    "ar": "من فرع"
+    "En": "ًBranch From",
+    "Ar": "من فرع"
   },
   {
     "name": "branch_to",
-    "en": "ًBranch To",
-    "ar": "إلى فرع"
+    "En": "ًBranch To",
+    "Ar": "إلى فرع"
   },
   {
     "name": "create_order",
-    "en": "Create order",
-    "ar": "إنشاء طلب"
+    "En": "Create order",
+    "Ar": "إنشاء طلب"
   },
   {
     "name": "payment_currency",
-    "en": "Payment currency",
-    "ar": "عملة الدفع"
+    "En": "Payment currency",
+    "Ar": "عملة الدفع"
   },
   {
     "name": "approve_order",
-    "en": "Approve Order",
-    "ar": "إعتماد الطلب"
+    "En": "Approve Order",
+    "Ar": "إعتماد الطلب"
   },
   {
     "name": "main_address",
-    "en": "Main address",
-    "ar": "العنوان الرئيسي"
+    "En": "Main address",
+    "Ar": "العنوان الرئيسي"
   },
   {
     "name": "other_addresses",
-    "en": "Other addresses",
-    "ar": "عناوين أخرى"
+    "En": "Other addresses",
+    "Ar": "عناوين أخرى"
   },
   {
     "name": "my_addresses",
-    "en": "My addresses",
-    "ar": "عناويني"
+    "En": "My addresses",
+    "Ar": "عناويني"
   },
   {
     "name": "text",
-    "en": "Text",
-    "ar": "نص"
+    "En": "Text",
+    "Ar": "نص"
   },
   {
     "name": "cell_phone_number",
-    "en": "Mobile number",
-    "ar": "رقم الجوال"
+    "En": "Mobile number",
+    "Ar": "رقم الجوال"
   },
   {
     "name": "advanced_search",
-    "en": "Advanced Search",
-    "ar": "بحث متقدم"
+    "En": "Advanced Search",
+    "Ar": "بحث متقدم"
   },
   {
     "name": "description",
-    "en": "Description",
-    "ar": "الوصف"
+    "En": "Description",
+    "Ar": "الوصف"
   },
   {
     "name": "desc",
-    "en": "Description",
-    "ar": "وصف"
+    "En": "Description",
+    "Ar": "وصف"
   },
   {
     "name": "payment_method",
-    "en": "Payment Method",
-    "ar": "طريقة الدفع"
+    "En": "Payment Method",
+    "Ar": "طريقة الدفع"
   },
   {
     "name": "purchases_invoice_type",
-    "en": "Purchases Invoice Type",
-    "ar": "نوع فاتورة المشتريات"
+    "En": "Purchases Invoice Type",
+    "Ar": "نوع فاتورة المشتريات"
   },
   {
     "name": "sales_invoice_type",
-    "en": "Sales Invoice Type",
-    "ar": "نوع فاتورة المبيعات"
+    "En": "Sales Invoice Type",
+    "Ar": "نوع فاتورة المبيعات"
   },
   {
     "name": "discount",
-    "en": "Discount",
-    "ar": "الخصم"
+    "En": "Discount",
+    "Ar": "الخصم"
   },
   {
     "name": "err_stock_item",
-    "en": "The Transaction Cannot Be Performed Because Items Are Under Stocking",
-    "ar": "لا يمكن إجراء المعاملة لوجود أصناف تحت الجرد "
+    "En": "The Transaction Cannot Be Performed Because Items Are Under Stocking",
+    "Ar": "لا يمكن إجراء المعاملة لوجود أصناف تحت الجرد "
   },
   {
     "name": "approve",
-    "en": "Approve",
-    "ar": "إعتماد"
+    "En": "Approve",
+    "Ar": "إعتماد"
   },
   {
     "name": "settings_not_found",
-    "en": "Settings Not Found",
-    "ar": "لا يوجد إعدادات"
+    "En": "Settings Not Found",
+    "Ar": "لا يوجد إعدادات"
   },
   {
     "name": "account_invoices_menu",
-    "en": "Account Invoices Menu",
-    "ar": "قائمة فواتير الحسابات"
+    "En": "Account Invoices Menu",
+    "Ar": "قائمة فواتير الحسابات"
   },
   {
     "name": "account_invoices_management",
-    "en": "Account Invoices Management",
-    "ar": "إدارة فواتير الحسابات"
+    "En": "Account Invoices Management",
+    "Ar": "إدارة فواتير الحسابات"
   },
   {
     "name": "store_stock_menu",
-    "en": "Stores Stocktaking Menu",
-    "ar": "الجرد المخزني"
+    "En": "Stores Stocktaking Menu",
+    "Ar": "الجرد المخزني"
   },
   {
     "name": "store_offer_menu",
-    "en": "Items Offers",
-    "ar": "عروض الأصناف"
+    "En": "Items Offers",
+    "Ar": "عروض الأصناف"
   },
   {
     "name": "store_stock_management",
-    "en": "Stores Stocktaking Management",
-    "ar": "إدارة الجرد المخزني"
+    "En": "Stores Stocktaking Management",
+    "Ar": "إدارة الجرد المخزني"
   },
   {
     "name": "create_invoice_from_order",
-    "en": "Create Invoice From Order",
-    "ar": "إنشاء فاتورة من الطلبات"
+    "En": "Create Invoice From Order",
+    "Ar": "إنشاء فاتورة من الطلبات"
   },
   {
     "name": "attend",
-    "en": "Attend",
-    "ar": "حضور"
+    "En": "Attend",
+    "Ar": "حضور"
   },
   {
     "name": "leave",
-    "en": "Leave",
-    "ar": "مغادرة"
+    "En": "Leave",
+    "Ar": "مغادرة"
   },
   {
     "name": "menu_delegates_tag",
-    "en": "Delegates Add",
-    "ar": "إضافة المناديب"
+    "En": "Delegates Add",
+    "Ar": "إضافة المناديب"
   },
   {
     "name": "invoice_source",
-    "en": "Invoice Source",
-    "ar": "مصدر الفاتورة"
+    "En": "Invoice Source",
+    "Ar": "مصدر الفاتورة"
   },
   {
     "name": "print_invoice",
-    "en": "Print Invoice",
-    "ar": "طباعة فاتورة"
+    "En": "Print Invoice",
+    "Ar": "طباعة فاتورة"
   },
   {
     "name": "source",
-    "en": "Source",
-    "ar": "مصدر"
+    "En": "Source",
+    "Ar": "مصدر"
   },
   {
     "name": "create_an_invoice",
-    "en": "Create An Invoice",
-    "ar": "إنشاء فاتورة"
+    "En": "Create An Invoice",
+    "Ar": "إنشاء فاتورة"
   },
   {
     "name": "startup_date",
-    "en": "StartuP Date",
-    "ar": "تاريخ البداية "
+    "En": "StartuP Date",
+    "Ar": "تاريخ البداية "
   },
   {
     "name": "deadline_date",
-    "en": "Deadline Date",
-    "ar": "تاريخ النهاية "
+    "En": "Deadline Date",
+    "Ar": "تاريخ النهاية "
   },
   {
     "name": "type",
-    "en": "Type",
-    "ar": "النوع"
+    "En": "Type",
+    "Ar": "النوع"
   },
   {
     "name": "not_found",
-    "en": "Not Found",
-    "ar": "غير موجود"
+    "En": "Not Found",
+    "Ar": "غير موجود"
   },
   {
     "name": "deadline_date",
-    "en": "Deadline Date",
-    "ar": "تاريخ النهاية "
+    "En": "Deadline Date",
+    "Ar": "تاريخ النهاية "
   },
   {
     "name": "hour_min",
-    "en": "Hour / Min",
-    "ar": "دقيقة / ساعة"
+    "En": "Hour / Min",
+    "Ar": "دقيقة / ساعة"
   },
   {
     "name": "minute",
-    "en": "Minute",
-    "ar": "دقيقة"
+    "En": "Minute",
+    "Ar": "دقيقة"
   },
   {
     "name": "reason",
-    "en": "Reason",
-    "ar": "السبب"
+    "En": "Reason",
+    "Ar": "السبب"
   },
   {
     "name": "true",
-    "en": "True",
-    "ar": "صح"
+    "En": "True",
+    "Ar": "صح"
   },
   {
     "name": "false",
-    "en": "False",
-    "ar": "خطأ"
+    "En": "False",
+    "Ar": "خطأ"
   },
   {
     "name": "requests",
-    "en": "Requests",
-    "ar": "الطلبات"
+    "En": "Requests",
+    "Ar": "الطلبات"
   },
   {
     "name": "new_address",
-    "en": "New Address",
-    "ar": "عنوان جديد"
+    "En": "New Address",
+    "Ar": "عنوان جديد"
   },
   {
     "name": "circle",
-    "en": "Circle",
-    "ar": "الدائرة"
+    "En": "Circle",
+    "Ar": "الدائرة"
   },
   {
     "name": "empty_search",
-    "en": "Empty Search",
-    "ar": "تفريغ البحث"
+    "En": "Empty Search",
+    "Ar": "تفريغ البحث"
   },
   {
     "name": "invoice_header",
-    "en": "Invoice Header",
-    "ar": "مقدمة الفاتورة"
+    "En": "Invoice Header",
+    "Ar": "مقدمة الفاتورة"
   },
   {
     "name": "invoice_header_right",
-    "en": "Invoice Header right",
-    "ar": "مقدمة الفاتورة يمين"
+    "En": "Invoice Header right",
+    "Ar": "مقدمة الفاتورة يمين"
   },
   {
     "name": "invoice_header_left",
-    "en": "Invoice Header left",
-    "ar": "مقدمة الفاتورة يسار"
+    "En": "Invoice Header left",
+    "Ar": "مقدمة الفاتورة يسار"
   },
   {
     "name": "invoice_footer",
-    "en": "Invoice Footer",
-    "ar": "هامش الفاتورة"
+    "En": "Invoice Footer",
+    "Ar": "هامش الفاتورة"
   },
   {
     "name": "product_name",
-    "en": "Product Name",
-    "ar": "إسم المنتج"
+    "En": "Product Name",
+    "Ar": "إسم المنتج"
   },
   {
     "name": "company_name",
-    "en": "Company Name",
-    "ar": "إسم المؤسسة"
+    "En": "Company Name",
+    "Ar": "إسم المؤسسة"
   },
   {
     "name": "site_name",
-    "en": "Site Name",
-    "ar": "إسم الموقع"
+    "En": "Site Name",
+    "Ar": "إسم الموقع"
   },
   {
     "name": "personal_information",
-    "en": "Personal Information",
-    "ar": "البيانات الشخصية"
+    "En": "Personal Information",
+    "Ar": "البيانات الشخصية"
   },
   {
     "name": "email",
-    "en": "Email",
-    "ar": "البريد الإلكترونى"
+    "En": "Email",
+    "Ar": "البريد الإلكترونى"
   },
   {
     "name": "user_name",
-    "en": "User Name",
-    "ar": "إسم المستخدم"
+    "En": "User Name",
+    "Ar": "إسم المستخدم"
   },
   {
     "name": "useradd_user_info",
-    "en": "User Created",
-    "ar": "معلومات الإضافة"
+    "En": "User Created",
+    "Ar": "معلومات الإضافة"
   },
   {
     "name": "useredit_user_info",
-    "en": "User Updated",
-    "ar": "معلومات التعديل"
+    "En": "User Updated",
+    "Ar": "معلومات التعديل"
   },
   {
     "name": "go_back",
-    "en": "Back",
-    "ar": "الصفحة السابقة"
+    "En": "Back",
+    "Ar": "الصفحة السابقة"
   },
   {
     "name": "go_forward",
-    "en": "Forward",
-    "ar": "الصفحة التالية"
+    "En": "Forward",
+    "Ar": "الصفحة التالية"
   },
   {
     "name": "phone",
-    "en": "Phone Number",
-    "ar": "رقم التليفون"
+    "En": "Phone Number",
+    "Ar": "رقم التليفون"
   },
   {
     "name": "website",
-    "en": "WebSite",
-    "ar": "الموقع الإلكترونى"
+    "En": "WebSite",
+    "Ar": "الموقع الإلكترونى"
   },
   {
     "name": "password",
-    "en": "password",
-    "ar": "كلمة المرور"
+    "En": "password",
+    "Ar": "كلمة المرور"
   },
   {
     "name": "close",
-    "en": "Close",
-    "ar": "إغلاق"
+    "En": "Close",
+    "Ar": "إغلاق"
   },
   {
     "name": "add",
-    "en": "Add",
-    "ar": "أضف"
+    "En": "Add",
+    "Ar": "أضف"
   },
   {
     "name": "up",
-    "en": "Up",
-    "ar": "أعلى"
+    "En": "Up",
+    "Ar": "أعلى"
   },
   {
     "name": "down",
-    "en": "Down",
-    "ar": "أسفل"
+    "En": "Down",
+    "Ar": "أسفل"
   },
   {
     "name": "new",
-    "en": "New",
-    "ar": "جديد"
+    "En": "New",
+    "Ar": "جديد"
   },
   {
     "name": "save",
-    "en": "Save",
-    "ar": "حفظ"
+    "En": "Save",
+    "Ar": "حفظ"
   },
   {
     "name": "edit",
-    "en": "Edit",
-    "ar": "تعديل"
+    "En": "Edit",
+    "Ar": "تعديل"
   },
   {
     "name": "update",
-    "en": "Update",
-    "ar": "تعديل"
+    "En": "Update",
+    "Ar": "تعديل"
   },
   {
     "name": "delete",
-    "en": "Delete",
-    "ar": "حذف"
+    "En": "Delete",
+    "Ar": "حذف"
   },
   {
     "name": "remove",
-    "en": "Remove",
-    "ar": "حذف"
+    "En": "Remove",
+    "Ar": "حذف"
   },
   {
     "name": "details",
-    "en": "Details",
-    "ar": "تفاصيل"
+    "En": "Details",
+    "Ar": "تفاصيل"
   },
   {
     "name": "logo",
-    "en": "Logo",
-    "ar": "الشعار"
+    "En": "Logo",
+    "Ar": "الشعار"
   },
   {
     "name": "actions",
-    "en": "Actions",
-    "ar": "الإجراءات"
+    "En": "Actions",
+    "Ar": "الإجراءات"
   },
   {
     "name": "files",
-    "en": "Files",
-    "ar": "الملفات"
+    "En": "Files",
+    "Ar": "الملفات"
   },
   {
     "name": "export_to_excel",
-    "en": "Export To Excel",
-    "ar": "تصدير الى أكسل"
+    "En": "Export To Excel",
+    "Ar": "تصدير الى أكسل"
   },
   {
     "name": "notes",
-    "en": "Notes",
-    "ar": "ملاحظات"
+    "En": "Notes",
+    "Ar": "ملاحظات"
   },
   {
     "name": "add_to_notes",
-    "en": "Add To Notes",
-    "ar": "أضف الى الملاحظات"
+    "En": "Add To Notes",
+    "Ar": "أضف الى الملاحظات"
   },
   {
     "name": "date",
-    "en": "Date",
-    "ar": "التاريخ"
+    "En": "Date",
+    "Ar": "التاريخ"
   },
   {
     "name": "time",
-    "en": "Time",
-    "ar": "الوقت"
+    "En": "Time",
+    "Ar": "الوقت"
   },
   {
     "name": "invoice_number",
-    "en": "Invoice Number",
-    "ar": "رقم الفاتورة"
+    "En": "Invoice Number",
+    "Ar": "رقم الفاتورة"
   },
   {
     "name": "account_statement",
-    "en": "Account Statement",
-    "ar": "كشف حساب"
+    "En": "Account Statement",
+    "Ar": "كشف حساب"
   },
   {
     "name": "print",
-    "en": "Print",
-    "ar": "طباعة"
+    "En": "Print",
+    "Ar": "طباعة"
   },
   {
     "name": "accept",
-    "en": "Accept",
-    "ar": "تأكيد"
+    "En": "Accept",
+    "Ar": "تأكيد"
 },
   {
     "name": "menus",
-    "en": "System Menus",
-    "ar": "قوائم النظام"
+    "En": "System Menus",
+    "Ar": "قوائم النظام"
   },
   {
     "name": "user_logo",
-    "en": "User Logo",
-    "ar": "صورة المستخدم "
+    "En": "User Logo",
+    "Ar": "صورة المستخدم "
   },
   {
     "name": "new_user",
-    "en": "New User",
-    "ar": "مستخدم جديد"
+    "En": "New User",
+    "Ar": "مستخدم جديد"
   },
   {
     "name": "add_new_user",
-    "en": "Add New User",
-    "ar": "إضافة مستخدم جديد"
+    "En": "Add New User",
+    "Ar": "إضافة مستخدم جديد"
   },
   {
     "name": "user_details",
-    "en": "User Details",
-    "ar": "بيانات المستخدم"
+    "En": "User Details",
+    "Ar": "بيانات المستخدم"
   },
   {
     "name": "permissions",
-    "en": "Permissions",
-    "ar": "الصلاحيات"
+    "En": "Permissions",
+    "Ar": "الصلاحيات"
   },
   {
     "name": "permission",
-    "en": "Permission",
-    "ar": "تصريح"
+    "En": "Permission",
+    "Ar": "تصريح"
   },
   {
     "name": "add_permission",
-    "en": "Add Permission",
-    "ar": "أضف الى الصلاحيات"
+    "En": "Add Permission",
+    "Ar": "أضف الى الصلاحيات"
   },
   {
     "name": "accounts",
-    "en": "Accounts",
-    "ar": "الحسابات"
+    "En": "Accounts",
+    "Ar": "الحسابات"
   },
   {
     "name": "account",
-    "en": "Account",
-    "ar": "الحساب"
+    "En": "Account",
+    "Ar": "الحساب"
   },
   {
     "name": "insurances",
-    "en": "Insurances",
-    "ar": "التامينات"
+    "En": "Insurances",
+    "Ar": "التامينات"
   },
   {
     "name": "address",
-    "en": "Address",
-    "ar": "العنوان"
+    "En": "Address",
+    "Ar": "العنوان"
   },
   {
     "name": "addresses",
-    "en": "Addresses",
-    "ar": "العناوين"
+    "En": "Addresses",
+    "Ar": "العناوين"
   },
   {
     "name": "img",
-    "en": "Image",
-    "ar": "صورة"
+    "En": "Image",
+    "Ar": "صورة"
   },
   {
     "name": "error",
-    "en": "Error While Working",
-    "ar": "حدثت مشكلة اثناء التنفيذ"
+    "En": "Error While Working",
+    "Ar": "حدثت مشكلة اثناء التنفيذ"
   },
   {
     "name": "search",
-    "en": "Search",
-    "ar": "بحـث"
+    "En": "Search",
+    "Ar": "بحـث"
   },
   {
     "name": "search_all",
-    "en": "Search All",
-    "ar": "بحث شامل"
+    "En": "Search All",
+    "Ar": "بحث شامل"
   },
   {
     "name": "clear",
-    "en": "Clear",
-    "ar": "تفريغ الحقول"
+    "En": "Clear",
+    "Ar": "تفريغ الحقول"
   },
   {
     "name": "setting",
-    "en": "Setting",
-    "ar": "الإعدادات"
+    "En": "Setting",
+    "Ar": "الإعدادات"
   },
   {
     "name": "total_prices",
-    "en": "Total prices",
-    "ar": "إجمالي الأسعار"
+    "En": "Total prices",
+    "Ar": "إجمالي الأسعار"
   },
   {
     "name": "price_at_home",
-    "en": "Price at home",
-    "ar": "السعر في المنزل"
+    "En": "Price at home",
+    "Ar": "السعر في المنزل"
   },
   {
     "name": "in_out_name",
-    "en": "In and Out Names",
-    "ar": "مسميات الوارد والمنصرف"
+    "En": "In and Out Names",
+    "Ar": "مسميات الوارد والمنصرف"
   },
   {
     "name": "loading",
-    "en": "Loading",
-    "ar": "جارى التحميل"
+    "En": "Loading",
+    "Ar": "جارى التحميل"
   },
   {
     "name": "download",
-    "en": "Download",
-    "ar": "تحميل"
+    "En": "Download",
+    "Ar": "تحميل"
   },
   {
     "name": "day",
-    "en": "Day",
-    "ar": "يوم"
+    "En": "Day",
+    "Ar": "يوم"
   },
   {
     "name": "the_day",
-    "en": "TheDay",
-    "ar": "اليوم"
+    "En": "TheDay",
+    "Ar": "اليوم"
   },
   {
     "name": "menu_class",
-    "en": "left-fixed-menu",
-    "ar": "right-fixed-menu"
+    "En": "left-fixed-menu",
+    "Ar": "right-fixed-menu"
   },
   {
     "name": "load_more",
-    "en": "Load More",
-    "ar": "عرض المزيـد"
+    "En": "Load More",
+    "Ar": "عرض المزيـد"
   },
   {
     "name": "user",
-    "en": "User",
-    "ar": "مستخدم"
+    "En": "User",
+    "Ar": "مستخدم"
   },
   {
     "name": "the_user",
-    "en": "The User",
-    "ar": "المستخدم"
+    "En": "The User",
+    "Ar": "المستخدم"
   },
   {
     "name": "discountes",
-    "en": "Discountes",
-    "ar": " الخصومات"
+    "En": "Discountes",
+    "Ar": " الخصومات"
   },
   {
     "name": "discount",
-    "en": "Discount",
-    "ar": " الخصم"
+    "En": "Discount",
+    "Ar": " الخصم"
   },
   {
     "name": "delivery",
-    "en": "Delivery",
-    "ar": " التوصيل"
+    "En": "Delivery",
+    "Ar": " التوصيل"
   },
   {
     "name": "discount_name",
-    "en": "Discount Name",
-    "ar": "إسم الخصم"
+    "En": "Discount Name",
+    "Ar": "إسم الخصم"
   },
   {
     "name": "discount_value",
-    "en": "Discount Value",
-    "ar": "قيمة الخصم"
+    "En": "Discount Value",
+    "Ar": "قيمة الخصم"
   },
   {
     "name": "discount_types_number",
-    "en": "Discount Value",
-    "ar": "مبلغ الخصم"
+    "En": "Discount Value",
+    "Ar": "مبلغ الخصم"
   },
   {
     "name": "discount_types_percent",
-    "en": "Discount Value",
-    "ar": "نسبة الخصم"
+    "En": "Discount Value",
+    "Ar": "نسبة الخصم"
   },
   {
     "name": "stores_out_add_discount",
-    "en": "Add Discount",
-    "ar": "أضف الخصم"
+    "En": "Add Discount",
+    "Ar": "أضف الخصم"
   },
   {
     "name": "items_count",
-    "en": "Items Count",
-    "ar": "عدد الأصناف"
+    "En": "Items Count",
+    "Ar": "عدد الأصناف"
   },
   {
     "name": "add_invoice",
-    "en": "Add Invoice",
-    "ar": "إضافة فاتورة"
+    "En": "Add Invoice",
+    "Ar": "إضافة فاتورة"
   },
   {
     "name": "items_price",
-    "en": "Items Price",
-    "ar": "سعر الأصناف"
+    "En": "Items Price",
+    "Ar": "سعر الأصناف"
   },
   {
     "name": "items_price_total",
-    "en": "Items Price Total",
-    "ar": "إجمالي سعر الأصناف"
+    "En": "Items Price Total",
+    "Ar": "إجمالي سعر الأصناف"
   },
   {
     "name": "date_from_subscribe",
-    "en": "Start Date",
-    "ar": "تاريخ بداية الإشتراك"
+    "En": "Start Date",
+    "Ar": "تاريخ بداية الإشتراك"
   },
   {
     "name": "date_from",
-    "en": "From Date",
-    "ar": "من تاريخ"
+    "En": "From Date",
+    "Ar": "من تاريخ"
   },
   {
     "name": "date_to",
-    "en": "To Date",
-    "ar": "إلى تاريخ"
+    "En": "To Date",
+    "Ar": "إلى تاريخ"
   },
   {
     "name": "err_maximum_adds",
-    "en": "The maximum number of adds exceeded",
-    "ar": "تم تجاوز الحد الأقصى لعدد الإضافات"
+    "En": "The maximum number of adds exceeded",
+    "Ar": "تم تجاوز الحد الأقصى لعدد الإضافات"
   },
   {
     "name": "work_time",
-    "en": "Work Time",
-    "ar": "وقت العمل"
+    "En": "Work Time",
+    "Ar": "وقت العمل"
   },
   {
     "name": "total",
-    "en": "Total",
-    "ar": "إجمالي"
+    "En": "Total",
+    "Ar": "إجمالي"
   },
   {
     "name": "err_username_contain",
-    "en": "The username should be typed like ( example@example.com )",
-    "ar": "يجب كتابة إسم المستخدم مثل ( example@example.com )"
+    "En": "The username should be typed like ( example@example.com )",
+    "Ar": "يجب كتابة إسم المستخدم مثل ( example@example.com )"
   },
   {
     "name": "le",
-    "en": "LE",
-    "ar": "جنيه"
+    "En": "LE",
+    "Ar": "جنيه"
   },
   {
     "name": "select_all",
-    "en": "Select All",
-    "ar": "إختيار الكل"
+    "En": "Select All",
+    "Ar": "إختيار الكل"
   },
   {
     "name": "status",
-    "en": "Status",
-    "ar": "الحالة"
+    "En": "Status",
+    "Ar": "الحالة"
   },
   {
     "name": "count",
-    "en": "Count",
-    "ar": "عدد"
+    "En": "Count",
+    "Ar": "عدد"
   },
   {
     "name": "active",
-    "en": "Active",
-    "ar": "نشط"
+    "En": "Active",
+    "Ar": "نشط"
   },
   {
     "name": "not_active",
-    "en": "Not Active",
-    "ar": "غير نشط"
+    "En": "Not Active",
+    "Ar": "غير نشط"
   },
   {
     "name": "code",
-    "en": "code",
-    "ar": "الكود"
+    "En": "code",
+    "Ar": "الكود"
   },
   {
     "name": "yes",
-    "en": "Yes",
-    "ar": "نعم"
+    "En": "Yes",
+    "Ar": "نعم"
   },
   {
     "name": "no",
-    "en": "No",
-    "ar": "ﻻ"
+    "En": "No",
+    "Ar": "ﻻ"
   },
   {
     "name": "and",
-    "en": "&",
-    "ar": "و"
+    "En": "&",
+    "Ar": "و"
   },
   {
     "name": "casher",
-    "en": "Casher",
-    "ar": "كاشير"
+    "En": "Casher",
+    "Ar": "كاشير"
   },
   {
     "name": "code_exisit",
-    "en": "Code Exisit",
-    "ar": "الكود مسجل من قبل"
+    "En": "Code Exisit",
+    "Ar": "الكود مسجل من قبل"
   },
   {
     "name": "user_created",
-    "en": "Created Details",
-    "ar": "تفاصيل الإضافة"
+    "En": "Created Details",
+    "Ar": "تفاصيل الإضافة"
   },
   {
     "name": "user_updated",
-    "en": "Update Details",
-    "ar": "تفاصيل التعديل"
+    "En": "Update Details",
+    "Ar": "تفاصيل التعديل"
   },
   {
     "name": "add_done",
-    "en": "Successfully Added",
-    "ar": "تم الإضافة بنجاح"
+    "En": "Successfully Added",
+    "Ar": "تم الإضافة بنجاح"
   },
   {
     "name": "select",
-    "en": " Select",
-    "ar": "إضافة"
+    "En": " Select",
+    "Ar": "إضافة"
   },
   {
     "name": "login_information",
-    "en": " Login Information",
-    "ar": "بيانات الدخول"
+    "En": " Login Information",
+    "Ar": "بيانات الدخول"
   },
   {
     "name": "download_social_browser",
-    "en": " Download Social Browser to unlock all site features",
-    "ar": "اضغط هنا لتحميل المتصفح الاجتماعى لتفعيل كل مميزات الموقع"
+    "En": " Download Social Browser to unlock all site features",
+    "Ar": "اضغط هنا لتحميل المتصفح الاجتماعى لتفعيل كل مميزات الموقع"
   },
   {
     "name": "best_app_feautres",
-    "en": "Application Features",
-    "ar": "أهم مميزات البرنامج "
+    "En": "Application Features",
+    "Ar": "أهم مميزات البرنامج "
   },
   {
     "name": "see_our_apps",
-    "en": "See More Applications",
-    "ar": "شاهد برامجنا الاخرى "
+    "En": "See More Applications",
+    "Ar": "شاهد برامجنا الاخرى "
   }
 ]

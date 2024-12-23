@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_employee_delegate_admin",
-    "en": "Report Employee Delegate  Admin",
-    "ar": "تقرير المناديب",
+    "En": "Report Employee Delegate  Admin",
+    "Ar": "تقرير المناديب",
     "permissions": ["report_employee_delegate_manage"]
 }]

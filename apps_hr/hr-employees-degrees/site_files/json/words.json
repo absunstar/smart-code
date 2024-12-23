@@ -1,85 +1,85 @@
 [
   {
     "name": "employees_degrees_add",
-    "en": "Add Degree",
-    "ar": "إضافة درجة وظيفية"
+    "En": "Add Degree",
+    "Ar": "إضافة درجة وظيفية"
   },
   {
     "name": "employees_degrees_search",
-    "en": "Search Degree",
-    "ar": "بحث درجة وظيفية"
+    "En": "Search Degree",
+    "Ar": "بحث درجة وظيفية"
   },
   {
     "name": "salary_differance",
-    "en": "Salary Differance",
-    "ar": "فرق المرتب"
+    "En": "Salary Differance",
+    "Ar": "فرق المرتب"
   },
   {
     "name": "net_salary",
-    "en": "Net salary",
-    "ar": "صافي المرتب"
+    "En": "Net salary",
+    "Ar": "صافي المرتب"
   },
   {
     "name": "employees_degrees_new",
-    "en": "New Degree",
-    "ar": "درجة وظيفية جديدة"
+    "En": "New Degree",
+    "Ar": "درجة وظيفية جديدة"
   },
   {
     "name": "employees_degrees_name",
-    "en": "Degree Name",
-    "ar": "إسم الدرجة"
+    "En": "Degree Name",
+    "Ar": "إسم الدرجة"
   },
   {
     "name": "employees_degrees_salary",
-    "en": "Degree Salary",
-    "ar": "راتب الدرجة"
+    "En": "Degree Salary",
+    "Ar": "راتب الدرجة"
   },
 
   {
     "name": "employees_degrees_details",
-    "en": "Degree Details",
-    "ar": "تفاصيل درجة وظيفية"
+    "En": "Degree Details",
+    "Ar": "تفاصيل درجة وظيفية"
   },
   {
     "name": "employees_degrees",
-    "en": "Employees Degrees",
-    "ar": "الدرجات الوظيفية"
+    "En": "Employees Degrees",
+    "Ar": "الدرجات الوظيفية"
   },
   {
     "name": "hr_employees_degrees",
-    "en": "Employees Degrees",
-    "ar": "الدرجات الوظيفية"
+    "En": "Employees Degrees",
+    "Ar": "الدرجات الوظيفية"
   },
   {
     "name": "employee_degree",
-    "en": "Employee Degree",
-    "ar": "درجة وظيفية"
+    "En": "Employee Degree",
+    "Ar": "درجة وظيفية"
   },
   {
     "name": "employees_degrees_edit",
-    "en": "Degree Edit",
-    "ar": "تعديل بيانات درجة وظيفية"
+    "En": "Degree Edit",
+    "Ar": "تعديل بيانات درجة وظيفية"
   },
   {
     "name": "employees_degrees_delete",
-    "en": "Delete Degree ",
-    "ar": "حذف درجة وظيفية"
+    "En": "Delete Degree ",
+    "Ar": "حذف درجة وظيفية"
   },
   {
     "name": "employees_degrees_logo",
-    "en": "Degree Logo",
-    "ar": "شعار الدرجة الوظيفية"
+    "En": "Degree Logo",
+    "Ar": "شعار الدرجة الوظيفية"
   },
 
   {
     "name": "le",
-    "en": "Pound",
-    "ar": "جنيه"
+    "En": "Pound",
+    "Ar": "جنيه"
   },
 
   {
     "name": "employees_degrees_img",
-    "en": "Employees Degrees Image",
-    "ar": "ملفات الدرجة الوظيفية"
+    "En": "Employees Degrees Image",
+    "Ar": "ملفات الدرجة الوظيفية"
   }
 ]

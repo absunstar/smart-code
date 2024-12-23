@@ -1,43 +1,43 @@
 [{
         "name": "buildings",
-        "en": "Buildings",
-        "ar": "المباني"
+        "En": "Buildings",
+        "Ar": "المباني"
     },
     {
         "name": "building",
-        "en": "Building",
-        "ar": "المبنى"
+        "En": "Building",
+        "Ar": "المبنى"
     },
     {
         "name": "buildings_new",
-        "en": "New Building",
-        "ar": "مبنى جديد"
+        "En": "New Building",
+        "Ar": "مبنى جديد"
     },
 
     {
         "name": "buildings_add",
-        "en": "Add Building",
-        "ar": "إضافة مبنى "
+        "En": "Add Building",
+        "Ar": "إضافة مبنى "
     },
     {
         "name": "buildings_edit",
-        "en": "Edit Building",
-        "ar": "تعديل مبنى "
+        "En": "Edit Building",
+        "Ar": "تعديل مبنى "
     },
     {
         "name": "buildings_details",
-        "en": "Building Details",
-        "ar": "تفاصيل المبنى "
+        "En": "Building Details",
+        "Ar": "تفاصيل المبنى "
     },
     {
         "name": "buildings_delete",
-        "en": "Delete Building",
-        "ar": "حذف مبنى "
+        "En": "Delete Building",
+        "Ar": "حذف مبنى "
     },
     {
         "name": "buildings_name",
-        "en": "Building Name",
-        "ar": "إسم المبنى "
+        "En": "Building Name",
+        "Ar": "إسم المبنى "
     }
 
 

@@ -1,82 +1,82 @@
 [
     {
         "name": "printers_path_informations",
-        "en": "Printer Path Informations",
-        "ar": "بيانات مسار الطابعة"
+        "En": "Printer Path Informations",
+        "Ar": "بيانات مسار الطابعة"
     },
     {
         "name": "printers_path_add",
-        "en": "Add printers Path",
-        "ar": "إضافة مسارات الطابعات"
+        "En": "Add printers Path",
+        "Ar": "إضافة مسارات الطابعات"
     },
     {
         "name": "printers_path",
-        "en": "printers Path",
-        "ar": "مسار الطابعات"
+        "En": "printers Path",
+        "Ar": "مسار الطابعات"
     },
     {
         "name": "printers_path_menus",
-        "en": "Printer Path Menu",
-        "ar": "قائمة مسار الطابعة"
+        "En": "Printer Path Menu",
+        "Ar": "قائمة مسار الطابعة"
     },
     {
         "name": "printers_path_code",
-        "en": "Printer Path Code",
-        "ar": "كود مسار الطابعة"
+        "En": "Printer Path Code",
+        "Ar": "كود مسار الطابعة"
     },
     {
         "name": "printers_path_name",
-        "en": "Name",
-        "ar": "الإسم"
+        "En": "Name",
+        "Ar": "الإسم"
     },
     {
         "name": "printers_path_type",
-        "en": "Type",
-        "ar": "النوع"
+        "En": "Type",
+        "Ar": "النوع"
     },
     {
         "name": "printers_path_ip",
-        "en": "Ip",
-        "ar": "أي بي"
+        "En": "Ip",
+        "Ar": "أي بي"
     },
     {
         "name": "print_code",
-        "en": "Print Code",
-        "ar": "كود الطابعة"
+        "En": "Print Code",
+        "Ar": "كود الطابعة"
     },
     {
         "name": "Port_device",
-        "en": "Port Device",
-        "ar": "بورت الجهاز"
+        "En": "Port Device",
+        "Ar": "بورت الجهاز"
     },
     {
         "name": "ip_device",
-        "en": "Ip Device",
-        "ar": "أي بي الجهاز"
+        "En": "Ip Device",
+        "Ar": "أي بي الجهاز"
     },
     {
         "name": "printers_path_new",
-        "en": "New Printer Path",
-        "ar": "مسار الطابعة جديدة"
+        "En": "New Printer Path",
+        "Ar": "مسار الطابعة جديدة"
     },
     {
         "name": "printers_path_details",
-        "en": "Printer Path Details",
-        "ar": "تفاصيل مسار الطابعة"
+        "En": "Printer Path Details",
+        "Ar": "تفاصيل مسار الطابعة"
     },
     {
         "name": "printers_path_update",
-        "en": "Edit Printer Path",
-        "ar": "تعديل مسار الطابعة"
+        "En": "Edit Printer Path",
+        "Ar": "تعديل مسار الطابعة"
     },
     {
         "name": "printers_path_delete",
-        "en": "Delte Printer Path",
-        "ar": "حذف مسار الطابعة"
+        "En": "Delte Printer Path",
+        "Ar": "حذف مسار الطابعة"
     },
     {
         "name": "printers_path_add_name",
-        "en": "Add Printer Path",
-        "ar": "إضافة مسار الطابعة"
+        "En": "Add Printer Path",
+        "Ar": "إضافة مسار الطابعة"
     }
 ]

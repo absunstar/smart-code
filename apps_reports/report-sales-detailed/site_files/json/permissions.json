@@ -1,10 +1,10 @@
 [
-    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_detailed" , "en":"Report Detailed" , "ar":"تقرير إجمالي"},
-    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_total" , "en":"Report Total" , "ar":"تقرير تفصيلي"},
-    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_detailed" , "En":"Report Detailed" , "Ar":"تقرير إجمالي"},
+    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_total" , "En":"Report Total" , "Ar":"تقرير تفصيلي"},
+    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "report" , "screen_name" : "report-sales-detailed" , "name":"report_sales_detailed_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

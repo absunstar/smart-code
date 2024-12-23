@@ -1,52 +1,52 @@
 [{
         "name": "scans",
-        "en": "Scans",
-        "ar": "الأشعة"
+        "En": "Scans",
+        "Ar": "الأشعة"
     },
     {
         "name": "scans_new",
-        "en": "New Scans",
-        "ar": "أشعة جديد"
+        "En": "New Scans",
+        "Ar": "أشعة جديد"
     },
     {
         "name": "scans_add",
-        "en": "Add Scans",
-        "ar": "إضافة أشعة"
+        "En": "Add Scans",
+        "Ar": "إضافة أشعة"
     },
     {
         "name": "scans_edit",
-        "en": "Edit Scans",
-        "ar": "تعديل أشعة "
+        "En": "Edit Scans",
+        "Ar": "تعديل أشعة "
     },
     {
         "name": "scans_details",
-        "en": "Scans Details",
-        "ar": "تفاصيل الأشعة"
+        "En": "Scans Details",
+        "Ar": "تفاصيل الأشعة"
     },
     {
         "name": "scans_delete",
-        "en": "Delete Scans",
-        "ar": "حذف أشعة"
+        "En": "Delete Scans",
+        "Ar": "حذف أشعة"
     },
     {
         "name": "scans_name",
-        "en": "Scan Name",
-        "ar": "إسم الإشاعة"
+        "En": "Scan Name",
+        "Ar": "إسم الإشاعة"
     },
     {
         "name": "scans_price",
-        "en": "Scans Price",
-        "ar": "سعر الإشاعة"
+        "En": "Scans Price",
+        "Ar": "سعر الإشاعة"
     },
     {
         "name": "scan_result",
-        "en": "Scans Result",
-        "ar": "نتيجة الإشاعة"
+        "En": "Scans Result",
+        "Ar": "نتيجة الإشاعة"
     },
     {
         "name": "made_home_scan",
-        "en": "Made the Scan at home",
-        "ar": "إجراء الإشاعة في المنزل"
+        "En": "Made the Scan at home",
+        "Ar": "إجراء الإشاعة في المنزل"
     }
     
 ]

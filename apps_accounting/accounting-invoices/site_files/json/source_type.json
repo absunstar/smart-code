@@ -1,82 +1,82 @@
 [
     {
         "id": 1,
-        "en": "Purchases Store",
-        "ar": "المشتريات المخزنية"
+        "En": "Purchases Store",
+        "Ar": "المشتريات المخزنية"
     },
     {
         "id": 2,
-        "en": "Sales Store",
-        "ar": "المبيعات المخزنية"
+        "En": "Sales Store",
+        "Ar": "المبيعات المخزنية"
     },
     {
         "id": 3,
-        "en": "Orders Screen",
-        "ar": "شاشة الطلبات"
+        "En": "Orders Screen",
+        "Ar": "شاشة الطلبات"
     },
     {
         "id": 4,
-        "en": "Orders Service",
-        "ar": "طلب نشاط"
+        "En": "Orders Service",
+        "Ar": "طلب نشاط"
     },
     {
         "id": 5,
-        "en": "Booking A Hall",
-        "ar": "حجز قاعة"
+        "En": "Booking A Hall",
+        "Ar": "حجز قاعة"
     },
     {
         "id": 6,
-        "en": "Trainer Account",
-        "ar": "حساب مدرب"
+        "En": "Trainer Account",
+        "Ar": "حساب مدرب"
     },
     {
         "id": 7,
-        "en": "Form Course Booking",
-        "ar": "إستمارة حجز كورس"
+        "En": "Form Course Booking",
+        "Ar": "إستمارة حجز كورس"
     },
     {
         "id": 8,
-        "en": "Receipt Voucher",
-        "ar": "سند قبض"
+        "En": "Receipt Voucher",
+        "Ar": "سند قبض"
     },
     {
         "id": 9,
-        "en": "Payment Voucher",
-        "ar": "سند صرف"
+        "En": "Payment Voucher",
+        "Ar": "سند صرف"
     },
     {
         "id": 10,
-        "en": "Customer Advance Payment",
-        "ar": "دفعة عميل مقدمة"
+        "En": "Customer Advance Payment",
+        "Ar": "دفعة عميل مقدمة"
     },
     {
         "id": 11,
-        "en": "Employees Advances",
-        "ar": "سلف الموظفين"
+        "En": "Employees Advances",
+        "Ar": "سلف الموظفين"
     },
     {
         "id": 12,
-        "en": "Payment Employees Advances",
-        "ar": "تسديد سلف الموظفين"
+        "En": "Payment Employees Advances",
+        "Ar": "تسديد سلف الموظفين"
     },
     {
         "id": 13,
-        "en": "School Fees",
-        "ar": "المصاريف الدراسية"
+        "En": "School Fees",
+        "Ar": "المصاريف الدراسية"
     },
     {
         "id": 14,
-        "en": "Transfer of safes balances",
-        "ar": "تحويل أرصدة الخزن"
+        "En": "Transfer of safes balances",
+        "Ar": "تحويل أرصدة الخزن"
     },
     {
         "id": 15,
-        "en": "Patient Ticket",
-        "ar": "تذكرة مريض"
+        "En": "Patient Ticket",
+        "Ar": "تذكرة مريض"
     },
     {
         "id": 16,
-        "en": "Opening Balance",
-        "ar": "رصيد إفتتاحي"
+        "En": "Opening Balance",
+        "Ar": "رصيد إفتتاحي"
     }
 ]

@@ -1,57 +1,57 @@
 [
     {
         "name": "vehicles",
-        "en": "Vehicles/Cars",
-        "ar": "المركبات/السيارات"
+        "En": "Vehicles/Cars",
+        "Ar": "المركبات/السيارات"
     },
     {
         "name": "vehicle",
-        "en": "Vehicle/Car",
-        "ar": "المركبة/السيارة"
+        "En": "Vehicle/Car",
+        "Ar": "المركبة/السيارة"
     },
     {
         "name": "vehicle_name",
-        "en": "Vehicle/Car Name",
-        "ar": "إسم المركبة/السيارة"
+        "En": "Vehicle/Car Name",
+        "Ar": "إسم المركبة/السيارة"
     },
     {
         "name": "vehicles_new",
-        "en": "New Vehicle/Car",
-        "ar": "مركبة/سيارة جديدة"
+        "En": "New Vehicle/Car",
+        "Ar": "مركبة/سيارة جديدة"
     },
     {
         "name": "vehicles_add",
-        "en": "Add Vehicle/Car",
-        "ar": "إضافة مركبة/سيارة"
+        "En": "Add Vehicle/Car",
+        "Ar": "إضافة مركبة/سيارة"
     },
     {
         "name": "vehicles_edit",
-        "en": "Edit Vehicle/Car",
-        "ar": "تعديل مركبة/سيارة"
+        "En": "Edit Vehicle/Car",
+        "Ar": "تعديل مركبة/سيارة"
     },
     {
         "name": "vehicles_details",
-        "en": "Vehicle/Car Details",
-        "ar": "تفاصيل مركبة/سيارة"
+        "En": "Vehicle/Car Details",
+        "Ar": "تفاصيل مركبة/سيارة"
     },
     {
         "name": "vehicles_delete",
-        "en": "Delete Vehicle/Car",
-        "ar": "حذف مركبة/سيارة"
+        "En": "Delete Vehicle/Car",
+        "Ar": "حذف مركبة/سيارة"
     },
     {
         "name": "vehicles_number",
-        "en": "Vehicle/Car Number",
-        "ar": "رقم المركبة/سيارة"
+        "En": "Vehicle/Car Number",
+        "Ar": "رقم المركبة/سيارة"
     },
     {
         "name": "metal_plate_number",
-        "en": "Metal plate number",
-        "ar": "رقم اللوحة المعدنية"
+        "En": "Metal plate number",
+        "Ar": "رقم اللوحة المعدنية"
     },
     {
         "name": "default_driver",
-        "en": "Default Driver",
-        "ar": "سائق إفتراضي"
+        "En": "Default Driver",
+        "Ar": "سائق إفتراضي"
     }
 ]

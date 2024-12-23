@@ -1,12 +1,12 @@
 [
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_edit" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_edit" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "files-types" , "name":"file_type_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 
 ]

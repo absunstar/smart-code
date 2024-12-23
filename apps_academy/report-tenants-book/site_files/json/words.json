@@ -1,24 +1,24 @@
 [
-    { "name": "report_tenants_search","en": "Search", "ar": "بحث"},
-    { "name": "report_tenants_date_from","en": "Date From", "ar": "من تاريخ"},
-    { "name": "report_tenants_date_to","en": "Date To", "ar": "إلى تاريخ"},
-    { "name": "report_tenants_date","en": "Date", "ar": "التاريخ"},
+    { "name": "report_tenants_search","En": "Search", "Ar": "بحث"},
+    { "name": "report_tenants_date_from","En": "Date From", "Ar": "من تاريخ"},
+    { "name": "report_tenants_date_to","En": "Date To", "Ar": "إلى تاريخ"},
+    { "name": "report_tenants_date","En": "Date", "Ar": "التاريخ"},
 
-    { "name": "report_tenants_book","en": "Report tenants ", "ar": "تقرير حجز المستأجرين"},
-    { "name": "report_tenants_start_date","en": "Start Date ", "ar": "تاريخ بداية الحجز"},
-    { "name": "report_tenants_end_dete","en": "End Date ", "ar": "تاريخ نهاية الحجز"},
-    { "name": "report_tenants_book_date","en": "Book Date ", "ar": "تاريخ الحجز"},
+    { "name": "report_tenants_book","En": "Report tenants ", "Ar": "تقرير حجز المستأجرين"},
+    { "name": "report_tenants_start_date","En": "Start Date ", "Ar": "تاريخ بداية الحجز"},
+    { "name": "report_tenants_end_dete","En": "End Date ", "Ar": "تاريخ نهاية الحجز"},
+    { "name": "report_tenants_book_date","En": "Book Date ", "Ar": "تاريخ الحجز"},
 
-    { "name": "report_tenants_hall","en": "Hall Name", "ar": "إسم القاعة"},
-    { "name": "report_tenants_serial","en": "Serial", "ar": "رقم مسلسل"},
-    { "name": "report_tenants_required","en": "Required", "ar": "المطلوب"},
-    { "name": "report_tenants_total_required","en": "Total Required", "ar": "إجمالي المطلوب"},
-    { "name": "report_tenants_paid","en": "paid", "ar": "المدفوع"},
-    { "name": "report_tenants_total","en": "Total Rest", "ar": "إجمالي المدفوع"},
-    { "name": "report_tenants_rest","en": "Rest", "ar": "الباقي"},
-    { "name": "report_tenants_total_rest","en": "Total Rest", "ar": "الباقي إجمالي"},
+    { "name": "report_tenants_hall","En": "Hall Name", "Ar": "إسم القاعة"},
+    { "name": "report_tenants_serial","En": "Serial", "Ar": "رقم مسلسل"},
+    { "name": "report_tenants_required","En": "Required", "Ar": "المطلوب"},
+    { "name": "report_tenants_total_required","En": "Total Required", "Ar": "إجمالي المطلوب"},
+    { "name": "report_tenants_paid","En": "paid", "Ar": "المدفوع"},
+    { "name": "report_tenants_total","En": "Total Rest", "Ar": "إجمالي المدفوع"},
+    { "name": "report_tenants_rest","En": "Rest", "Ar": "الباقي"},
+    { "name": "report_tenants_total_rest","En": "Total Rest", "Ar": "الباقي إجمالي"},
 
 
-    { "name": "report_tenants_date","en": "Offer Date", "ar": "التاريخ"}
+    { "name": "report_tenants_date","En": "Offer Date", "Ar": "التاريخ"}
  
 ]

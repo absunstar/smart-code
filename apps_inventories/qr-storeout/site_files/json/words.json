@@ -2,17 +2,17 @@
    
     {
         "name": "qr_storeout",
-        "en": "Main Ecommerce",
-        "ar": "المتجر الرئيسي"
+        "En": "Main Ecommerce",
+        "Ar": "المتجر الرئيسي"
     },
     {
         "name": "products_must_added",
-        "en": "Products must be added",
-        "ar": "يجب إضافة منتجات"
+        "En": "Products must be added",
+        "Ar": "يجب إضافة منتجات"
     },
     {
         "name": "added_to_orders",
-        "en": "Added to orders",
-        "ar": "تم الإضافة إلى الطلبات"
+        "En": "Added to orders",
+        "Ar": "تم الإضافة إلى الطلبات"
     }
 ]

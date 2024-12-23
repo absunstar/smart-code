@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "oppenents_lawyers_admin",
-    "en": "Oppenents Lawyers Admin",
-    "ar": "إدارة محامين الخصوم",
+    "En": "Oppenents Lawyers Admin",
+    "Ar": "إدارة محامين الخصوم",
     "permissions": ["oppenents_lawyers_manage"]
 }]

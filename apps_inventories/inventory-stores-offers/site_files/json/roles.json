@@ -1,7 +1,7 @@
 [{
     "module_name" : "inventory" ,
     "name": "stores_offer_admin",
-    "en": "Items Offers Admin",
-    "ar": "إدارة عروض الأصناف",
+    "En": "Items Offers Admin",
+    "Ar": "إدارة عروض الأصناف",
     "permissions": ["stores_offer_manage"]
 }]

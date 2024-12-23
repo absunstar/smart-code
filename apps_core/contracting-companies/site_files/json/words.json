@@ -1,38 +1,38 @@
 [{
         "name": "contracting_companies",
-        "en": "contracting companies",
-        "ar": "شركات التعاقد"
+        "En": "contracting companies",
+        "Ar": "شركات التعاقد"
     },
     {
         "name": "contracting_companies_new",
-        "en": "New Contracting Companies",
-        "ar": "شركة تعاقد جديدة"
+        "En": "New Contracting Companies",
+        "Ar": "شركة تعاقد جديدة"
     },
 
     {
         "name": "goves_add",
-        "en": "Add Gov",
-        "ar": "إضافة محافظة "
+        "En": "Add Gov",
+        "Ar": "إضافة محافظة "
     },
     {
         "name": "goves_edit",
-        "en": "Edit Gov",
-        "ar": "تعديل محافظة "
+        "En": "Edit Gov",
+        "Ar": "تعديل محافظة "
     },
     {
         "name": "goves_details",
-        "en": "Gov Details",
-        "ar": "تفاصيل المحافظة "
+        "En": "Gov Details",
+        "Ar": "تفاصيل المحافظة "
     },
     {
         "name": "goves_delete",
-        "en": "Delete Gov",
-        "ar": "حذف محافظة "
+        "En": "Delete Gov",
+        "Ar": "حذف محافظة "
     },
     {
         "name": "goves_name",
-        "en": "Gov Name",
-        "ar": "إسم المحافظة "
+        "En": "Gov Name",
+        "Ar": "إسم المحافظة "
     }
 
 

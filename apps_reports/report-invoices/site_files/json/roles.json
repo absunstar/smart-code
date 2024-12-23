@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_invoices_admin",
-    "en": "Report Invoices  Admin",
-    "ar": "إدارة تقرير الفواتير",
+    "En": "Report Invoices  Admin",
+    "Ar": "إدارة تقرير الفواتير",
     "permissions": ["report_invoices_manage"]
 }]

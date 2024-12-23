@@ -906,7 +906,7 @@ module.exports = function init(site) {
         app.all({ where, select, limit, sort: { id: -1 } }, (err, docs) => {
           if (req.body.type) {
             for (let i = 0; i < docs.length; i++) {
-              docs[i].$time = site.xtime(docs[i].date, req.session.lang || "ar");
+              docs[i].$time = site.xtime(docs[i].date, req.session.lang || "Ar");
             }
           }
           res.json({
@@ -1025,7 +1025,7 @@ module.exports = function init(site) {
 
                   response.done = true;
                   // doc.$buy = true;
-                  // doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                  // doc.$time = site.xtime(doc.date, req.session.lang || "Ar");
                   // response.doc = doc;
                   res.json(response);
                 }

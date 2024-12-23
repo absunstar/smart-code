@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "nursing_admin",
-    "en": "Nursing Admin",
-    "ar": "إدارة التمريض",
+    "En": "Nursing Admin",
+    "Ar": "إدارة التمريض",
     "permissions": ["nursing_manage"]
 }]

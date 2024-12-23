@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "subjects_admin",
-    "en": "Subjects Admin",
-    "ar": "إدارة المواد الدراسية",
+    "En": "Subjects Admin",
+    "Ar": "إدارة المواد الدراسية",
     "permissions": ["subjects_manage"]
 }]

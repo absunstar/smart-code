@@ -1,22 +1,22 @@
 [
     {
         "id": 1,
-        "en": "New Order",
-        "ar": "طلب جديد"
+        "En": "New Order",
+        "Ar": "طلب جديد"
     },
     {
         "id": 2,
-        "en": "Order approved",
-        "ar": "تم إعتماد الطلب"
+        "En": "Order approved",
+        "Ar": "تم إعتماد الطلب"
     },
     {
         "id": 3,
-        "en": "Under Delivery",
-        "ar": "قيد التوصيل"
+        "En": "Under Delivery",
+        "Ar": "قيد التوصيل"
     },
     {
         "id": 4,
-        "en": "Done delivery",
-        "ar": "تم التوصيل"
+        "En": "Done delivery",
+        "Ar": "تم التوصيل"
     }
 ]

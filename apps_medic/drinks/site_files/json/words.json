@@ -1,52 +1,52 @@
 [{
         "name": "drink",
-        "en": "Drink",
-        "ar": "المشروب"
+        "En": "Drink",
+        "Ar": "المشروب"
     },
     {
         "name": "drinks",
-        "en": "Drinks",
-        "ar": "المشروبات"
+        "En": "Drinks",
+        "Ar": "المشروبات"
     },
     {
         "name": "drink_new",
-        "en": "New Drinks",
-        "ar": "مشروب جديد"
+        "En": "New Drinks",
+        "Ar": "مشروب جديد"
     },
     {
         "name": "drink_add",
-        "en": "Add Drinks",
-        "ar": "إضافة مشروب "
+        "En": "Add Drinks",
+        "Ar": "إضافة مشروب "
     },
     {
         "name": "drink_edit",
-        "en": "Edit Drinks",
-        "ar": "تعديل مشروب "
+        "En": "Edit Drinks",
+        "Ar": "تعديل مشروب "
     },
     {
         "name": "drink_details",
-        "en": "Drinks Details",
-        "ar": "تفاصيل المشروب "
+        "En": "Drinks Details",
+        "Ar": "تفاصيل المشروب "
     },
     {
         "name": "drink_delete",
-        "en": "Delete Drinks",
-        "ar": "حذف مشروب "
+        "En": "Delete Drinks",
+        "Ar": "حذف مشروب "
     },
     {
         "name": "drink_name_ar",
-        "en": "Drinks Name Ar",
-        "ar": "إسم المشروب بالعربي"
+        "En": "Drinks Name Ar",
+        "Ar": "إسم المشروب بالعربي"
     },
     {
         "name": "drink_name_en",
-        "en": "Drinks Name En",
-        "ar": "إسم المشروب بالإنجليزي"
+        "En": "Drinks Name En",
+        "Ar": "إسم المشروب بالإنجليزي"
     },
     {
         "name": "drink_notes",
-        "en": "Notes Drinks",
-        "ar": "ملاحظات المشروب "
+        "En": "Notes Drinks",
+        "Ar": "ملاحظات المشروب "
     }
 
 

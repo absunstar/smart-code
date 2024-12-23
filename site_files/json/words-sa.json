@@ -1,167 +1,167 @@
 [
   {
     "name": "le",
-    "en": "Ryal",
-    "ar": "ريال"
+    "En": "Ryal",
+    "Ar": "ريال"
   },
   {
     "name": "register_with_mobile_number",
-    "en": "Register with a mobile number",
-    "ar": "التسجيل برقم الجوال"
+    "En": "Register with a mobile number",
+    "Ar": "التسجيل برقم الجوال"
   },
   {
     "name": "message",
-    "en": "Message",
-    "ar": "مراسلة"
+    "En": "Message",
+    "Ar": "مراسلة"
   },
   {
     "name": "other_mobile_numbers",
-    "en": "Other mobile numbers",
-    "ar": "أرقام جوالات أخرى"
+    "En": "Other mobile numbers",
+    "Ar": "أرقام جوالات أخرى"
   },
   {
     "name": "mobile number associated with your membership",
-    "en": "Mobile number associated with your membership",
-    "ar": "رقم الجوال المرتبط بعضويتك"
+    "En": "Mobile number associated with your membership",
+    "Ar": "رقم الجوال المرتبط بعضويتك"
   },
   {
     "name": "hide_mobile_number",
-    "en": "Hide mobile number",
-    "ar": "إخفاء رقم الجوال"
+    "En": "Hide mobile number",
+    "Ar": "إخفاء رقم الجوال"
   },
   {
     "name": "add_new_mobile_number",
-    "en": "Add new mobile number",
-    "ar": "إضافة رقم جوال جديد"
+    "En": "Add new mobile number",
+    "Ar": "إضافة رقم جوال جديد"
   },
   {
     "name": "delete_mobile_number",
-    "en": "delete mobile number",
-    "ar": "حذف رقم الجوال"
+    "En": "delete mobile number",
+    "Ar": "حذف رقم الجوال"
   },
   {
     "name": "length_of_mobile_number",
-    "en": "length of mobile number",
-    "ar": "طول رقم الجوال"
+    "En": "length of mobile number",
+    "Ar": "طول رقم الجوال"
   },
   {
     "name": "wrong_mail_or_phone",
-    "en": "Wrong mail or phone",
-    "ar": "البريد أو الجوال خاطئ"
+    "En": "Wrong mail or phone",
+    "Ar": "البريد أو الجوال خاطئ"
   },
   {
     "name": "enter_your_mobile_or_email",
-    "en": "Enter your mobile phone or email",
-    "ar": "إدخل جوالك أو بريدك"
+    "En": "Enter your mobile phone or email",
+    "Ar": "إدخل جوالك أو بريدك"
   },
   {
     "name": "please_enter_valid_mobile_number",
-    "en": "Please enter a valid mobile number",
-    "ar": "برجاء إدخال رقم جوال صحيح"
+    "En": "Please enter a valid mobile number",
+    "Ar": "برجاء إدخال رقم جوال صحيح"
   },
   {
     "name": "mobile_phone_number",
-    "en": "Mobile Number",
-    "ar": "رقم الجوال"
+    "En": "Mobile Number",
+    "Ar": "رقم الجوال"
   },
   {
     "name": "code",
-    "en": "code",
-    "ar": "الرمز"
+    "En": "code",
+    "Ar": "الرمز"
   },
   {
     "name": "mobile_number_already_used",
-    "en": "The mobile number already used",
-    "ar": "رقم الجوال مستخدم من قبل"
+    "En": "The mobile number already used",
+    "Ar": "رقم الجوال مستخدم من قبل"
   },
   {
     "name": "enable_sending_messages_mobile",
-    "en": "Enable sending messages to the mobile",
-    "ar": "تفعيل إرسال الرسائل للجوال"
+    "En": "Enable sending messages to the mobile",
+    "Ar": "تفعيل إرسال الرسائل للجوال"
   },
   {
     "name": "mobile",
-    "en": "Mobile",
-    "ar": "رقم الجوال"
+    "En": "Mobile",
+    "Ar": "رقم الجوال"
   },
   {
     "name": "goves",
-    "en": "Areas",
-    "ar": "المناطق"
+    "En": "Areas",
+    "Ar": "المناطق"
   },
   {
     "name": "gov",
-    "en": "Area",
-    "ar": "المنطقة"
+    "En": "Area",
+    "Ar": "المنطقة"
   },
   {
     "name": "goves_new",
-    "en": "New Area",
-    "ar": "منطقة جديدة"
+    "En": "New Area",
+    "Ar": "منطقة جديدة"
   },
   {
     "name": "goves_add",
-    "en": "Add Area",
-    "ar": "إضافة منطقة "
+    "En": "Add Area",
+    "Ar": "إضافة منطقة "
   },
   {
     "name": "goves_edit",
-    "en": "Edit Area",
-    "ar": "تعديل منطقة "
+    "En": "Edit Area",
+    "Ar": "تعديل منطقة "
   },
   {
     "name": "goves_details",
-    "en": "Area Details",
-    "ar": "تفاصيل المنطقة "
+    "En": "Area Details",
+    "Ar": "تفاصيل المنطقة "
   },
   {
     "name": "goves_delete",
-    "en": "Delete Area",
-    "ar": "حذف منطقة "
+    "En": "Delete Area",
+    "Ar": "حذف منطقة "
   },
   {
     "name": "goves_name",
-    "en": "Area Name",
-    "ar": "إسم المنطقة "
+    "En": "Area Name",
+    "Ar": "إسم المنطقة "
   },
   {
     "name": "areas",
-    "en": "Goves",
-    "ar": "المحافظات"
+    "En": "Goves",
+    "Ar": "المحافظات"
   },
   {
     "name": "area_new",
-    "en": "New Gov",
-    "ar": "محافظة جديدة"
+    "En": "New Gov",
+    "Ar": "محافظة جديدة"
   },
   {
     "name": "area",
-    "en": "Gov",
-    "ar": "المحافظة"
+    "En": "Gov",
+    "Ar": "المحافظة"
   },
   {
     "name": "area_add",
-    "en": "Add Gov",
-    "ar": "إضافة محافظة "
+    "En": "Add Gov",
+    "Ar": "إضافة محافظة "
   },
   {
     "name": "area_edit",
-    "en": "Edit Gov",
-    "ar": "تعديل محافظة "
+    "En": "Edit Gov",
+    "Ar": "تعديل محافظة "
   },
   {
     "name": "area_details",
-    "en": "Gov Details",
-    "ar": "تفاصيل المحافظة "
+    "En": "Gov Details",
+    "Ar": "تفاصيل المحافظة "
   },
   {
     "name": "area_delete",
-    "en": "Delete Gov",
-    "ar": "حذف محافظة "
+    "En": "Delete Gov",
+    "Ar": "حذف محافظة "
   },
   {
     "name": "area_name",
-    "en": "Gov Name",
-    "ar": "إسم المحافظة "
+    "En": "Gov Name",
+    "Ar": "إسم المحافظة "
   }
 ]

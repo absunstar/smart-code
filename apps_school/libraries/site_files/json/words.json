@@ -1,108 +1,108 @@
 [
     {
         "name": "libraries",
-        "en": "Libraries",
-        "ar": "المكتبات"
+        "En": "Libraries",
+        "Ar": "المكتبات"
     },
     {
         "name": "library",
-        "en": "Library",
-        "ar": "المكتبة"
+        "En": "Library",
+        "Ar": "المكتبة"
     },
    
     {
         "name": "Package",
-        "en": "Package",
-        "ar": "حزمة"
+        "En": "Package",
+        "Ar": "حزمة"
     },
     {
         "name": "new_Package",
-        "en": "New Package",
-        "ar": "حزمة جديدة"
+        "En": "New Package",
+        "Ar": "حزمة جديدة"
     },
     {
         "name": "description_link",
-        "en": "Description of the Link",
-        "ar": "وصف الرابط"
+        "En": "Description of the Link",
+        "Ar": "وصف الرابط"
     },
     {
         "name": "description_image",
-        "en": "Description of the Image",
-        "ar": "وصف الصورة"
+        "En": "Description of the Image",
+        "Ar": "وصف الصورة"
     },
     {
         "name": "description_file",
-        "en": "Description of the File",
-        "ar": "وصف الملف"
+        "En": "Description of the File",
+        "Ar": "وصف الملف"
     },
     {
         "name": "the_link",
-        "en": "The link",
-        "ar": "الرابط"
+        "En": "The link",
+        "Ar": "الرابط"
     },
     {
         "name": "library_name",
-        "en": "Library Name",
-        "ar": "إسم المكتبة"
+        "En": "Library Name",
+        "Ar": "إسم المكتبة"
     },
     {
         "name": "libraries_new",
-        "en": "New Library",
-        "ar": "مكتبة جديدة"
+        "En": "New Library",
+        "Ar": "مكتبة جديدة"
     },
     {
         "name": "libraries_add",
-        "en": "Add Library",
-        "ar": "إضافة مكتبة"
+        "En": "Add Library",
+        "Ar": "إضافة مكتبة"
     },
     {
         "name": "libraries_edit",
-        "en": "Edit Library",
-        "ar": "تعديل مكتبة"
+        "En": "Edit Library",
+        "Ar": "تعديل مكتبة"
     },
     {
         "name": "libraries_details",
-        "en": "Library Details",
-        "ar": "تفاصيل مكتبة"
+        "En": "Library Details",
+        "Ar": "تفاصيل مكتبة"
     },
     {
         "name": "libraries_delete",
-        "en": "Delete Library",
-        "ar": "حذف مكتبة"
+        "En": "Delete Library",
+        "Ar": "حذف مكتبة"
     },
     {
         "name": "libraries_number",
-        "en": "Library Number",
-        "ar": "رقم المكتبة"
+        "En": "Library Number",
+        "Ar": "رقم المكتبة"
     },
     {
         "name": "backage_add",
-        "en": "Add Backage",
-        "ar": "إضافة حزمة"
+        "En": "Add Backage",
+        "Ar": "إضافة حزمة"
     },
     {
         "name": "backage_edit",
-        "en": "Edit Backage",
-        "ar": "تعديل حزمة"
+        "En": "Edit Backage",
+        "Ar": "تعديل حزمة"
     },
     {
         "name": "backage_details",
-        "en": "Backage Details",
-        "ar": "تفاصيل حزمة"
+        "En": "Backage Details",
+        "Ar": "تفاصيل حزمة"
     },
     {
         "name": "backage_delete",
-        "en": "Delete Backage",
-        "ar": "حذف حزمة"
+        "En": "Delete Backage",
+        "Ar": "حذف حزمة"
     },
     {
         "name": "backage_number",
-        "en": "Backage Number",
-        "ar": "رقم الحزمة"
+        "En": "Backage Number",
+        "Ar": "رقم الحزمة"
     },
     {
         "name": "backage_number",
-        "en": "Backage Number",
-        "ar": "رقم الحزمة"
+        "En": "Backage Number",
+        "Ar": "رقم الحزمة"
     }
 ]

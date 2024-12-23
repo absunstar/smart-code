@@ -1,16 +1,16 @@
 [
-    {"name" : "exam_grades_informations" , "en" : "Putting Exam Grades Informations" , "ar" : "بيانات وضع درجات إمتحان"},
-    {"name" : "exam_grades" , "en" : "Putting Exam Grades" , "ar" : "وضع درجات الإمتحانات"},
-    {"name" : "seating_number" , "en" : "Putting Exam Grade" , "ar" : "وضع درجات الإمتحانات"},
-    {"name" : "exam_grades_menus" , "en" : "Putting Exam Grades Menu" , "ar" : "قائمة وضع درجات إمتحان"},
-    {"name" : "exam_grades_code" , "en" : "Putting Exam Grades Code" , "ar" : "كود وضع درجات إمتحان"},
-    {"name" : "exam_grades_name" , "en" : "Putting Exam Grades Name" , "ar" : "إسم وضع درجات إمتحان"},
-    {"name" : "exam_grades_new" , "en" : "New Putting Exam Grades" , "ar" : " وضع درجات إمتحان جديدة"},
-    {"name" : "exam_grades_details" , "en" : "Putting Exam Grades Details" , "ar" : "تفاصيل وضع درجات إمتحان"},
-    {"name" : "exam_grades_update" , "en" : "Edit Putting Exam Grades" , "ar" : "تعديل وضع درجات إمتحان"},
-    {"name" : "exam_grades_delete" , "en" : "Delte Putting Exam Grades" , "ar" : "حذف وضع درجات إمتحان"},
-    {"name" : "numbers_start_from" , "en" : "The numbers start from" , "ar" : "الأرقام تبدأ من"},
-    {"name" : "student_score" , "en" : "Student score" , "ar" : "درجة الطالب"},
-    {"name" : "exam_grades_add_name" , "en" : "Add Putting Exam Grades" , "ar" : "إضافة وضع درجات إمتحان"}
+    {"name" : "exam_grades_informations" , "En" : "Putting Exam Grades Informations" , "Ar" : "بيانات وضع درجات إمتحان"},
+    {"name" : "exam_grades" , "En" : "Putting Exam Grades" , "Ar" : "وضع درجات الإمتحانات"},
+    {"name" : "seating_number" , "En" : "Putting Exam Grade" , "Ar" : "وضع درجات الإمتحانات"},
+    {"name" : "exam_grades_menus" , "En" : "Putting Exam Grades Menu" , "Ar" : "قائمة وضع درجات إمتحان"},
+    {"name" : "exam_grades_code" , "En" : "Putting Exam Grades Code" , "Ar" : "كود وضع درجات إمتحان"},
+    {"name" : "exam_grades_name" , "En" : "Putting Exam Grades Name" , "Ar" : "إسم وضع درجات إمتحان"},
+    {"name" : "exam_grades_new" , "En" : "New Putting Exam Grades" , "Ar" : " وضع درجات إمتحان جديدة"},
+    {"name" : "exam_grades_details" , "En" : "Putting Exam Grades Details" , "Ar" : "تفاصيل وضع درجات إمتحان"},
+    {"name" : "exam_grades_update" , "En" : "Edit Putting Exam Grades" , "Ar" : "تعديل وضع درجات إمتحان"},
+    {"name" : "exam_grades_delete" , "En" : "Delte Putting Exam Grades" , "Ar" : "حذف وضع درجات إمتحان"},
+    {"name" : "numbers_start_from" , "En" : "The numbers start from" , "Ar" : "الأرقام تبدأ من"},
+    {"name" : "student_score" , "En" : "Student score" , "Ar" : "درجة الطالب"},
+    {"name" : "exam_grades_add_name" , "En" : "Add Putting Exam Grades" , "Ar" : "إضافة وضع درجات إمتحان"}
     
 ]

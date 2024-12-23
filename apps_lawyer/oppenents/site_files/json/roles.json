@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "oppenents_admin",
-    "en": "Oppenents Admin",
-    "ar": "إدارة الخصوم",
+    "En": "Oppenents Admin",
+    "Ar": "إدارة الخصوم",
     "permissions": ["oppenents_manage"]
 }]

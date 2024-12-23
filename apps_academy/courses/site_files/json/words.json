@@ -1,52 +1,52 @@
 [{
         "name": "courses_id",
-        "en": "Courses",
-        "ar": "تعريف الكورسات"
+        "En": "Courses",
+        "Ar": "تعريف الكورسات"
     },
     {
         "name": "courses_new",
-        "en": "New Courses",
-        "ar": "تعريف كورس جديد "
+        "En": "New Courses",
+        "Ar": "تعريف كورس جديد "
     },
     {
         "name": "courses_add",
-        "en": "Add Courses",
-        "ar": "إضافة تعريف كورس"
+        "En": "Add Courses",
+        "Ar": "إضافة تعريف كورس"
     },
     {
         "name": "courses_edit",
-        "en": "Edit Courses",
-        "ar": "تعديل تعريف كورس"
+        "En": "Edit Courses",
+        "Ar": "تعديل تعريف كورس"
     },
     {
         "name": "courses_details",
-        "en": "Courses Details",
-        "ar": "تفاصيل تعريف الكورس"
+        "En": "Courses Details",
+        "Ar": "تفاصيل تعريف الكورس"
     },
     {
         "name": "courses_delete",
-        "en": "Delete Courses",
-        "ar": "حذف تعريف كورس"
+        "En": "Delete Courses",
+        "Ar": "حذف تعريف كورس"
     },
     {
         "name": "courses_name",
-        "en": "Course Name",
-        "ar": "إسم الكورس "
+        "En": "Course Name",
+        "Ar": "إسم الكورس "
     },
     {
         "name": "courses_total",
-        "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "En": "Total Duration",
+        "Ar": "إجمالي المدة "
     },
     {
         "name": "number_lecture_hours",
-        "en": "Number Of Lecture  Hours",
-        "ar": "عدد ساعات المحاضرة"
+        "En": "Number Of Lecture  Hours",
+        "Ar": "عدد ساعات المحاضرة"
     },
     {
         "name": "courses_price",
-        "en": "Course Price",
-        "ar": "سعر الكورس "
+        "En": "Course Price",
+        "Ar": "سعر الكورس "
     }
     
 ]

@@ -1,62 +1,62 @@
 [{
         "name": "country",
-        "en": "Country",
-        "ar": "الدولة"
+        "En": "Country",
+        "Ar": "الدولة"
     },
     {
         "name": "countries",
-        "en": "Countries",
-        "ar": "الدول"
+        "En": "Countries",
+        "Ar": "الدول"
     },
     {
         "name": "length_of_mobile_number",
-        "en": "Length of mobile number",
-        "ar": "طول رقم الجوال"
+        "En": "Length of mobile number",
+        "Ar": "طول رقم الجوال"
     },
     {
         "name": "country_new",
-        "en": "New Country",
-        "ar": "دولة جديد"
+        "En": "New Country",
+        "Ar": "دولة جديد"
     },
     {
         "name": "country_add",
-        "en": "Add Country",
-        "ar": "إضافة دولة "
+        "En": "Add Country",
+        "Ar": "إضافة دولة "
     },
     {
         "name": "country_edit",
-        "en": "Edit Country",
-        "ar": "تعديل دولة "
+        "En": "Edit Country",
+        "Ar": "تعديل دولة "
     },
     {
         "name": "country_details",
-        "en": "Country Details",
-        "ar": "تفاصيل الدولة "
+        "En": "Country Details",
+        "Ar": "تفاصيل الدولة "
     },
     {
         "name": "country_delete",
-        "en": "Delete Country",
-        "ar": "حذف دولة "
+        "En": "Delete Country",
+        "Ar": "حذف دولة "
     },
     {
         "name": "country_name_ar",
-        "en": "Country Name Ar",
-        "ar": "إسم الدولة بالعربي"
+        "En": "Country Name Ar",
+        "Ar": "إسم الدولة بالعربي"
     },
     {
         "name": "country_name_en",
-        "en": "Country Name En",
-        "ar": "إسم الدولة بالإنجليزي"
+        "En": "Country Name En",
+        "Ar": "إسم الدولة بالإنجليزي"
     },
     {
         "name": "country_name",
-        "en": "Country Name",
-        "ar": "إسم الدولة"
+        "En": "Country Name",
+        "Ar": "إسم الدولة"
     },
     {
         "name": "country_notes",
-        "en": "Notes Country",
-        "ar": "ملاحظات الدولة "
+        "En": "Notes Country",
+        "Ar": "ملاحظات الدولة "
     }
 
 

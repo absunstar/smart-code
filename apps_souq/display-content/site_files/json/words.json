@@ -1,103 +1,103 @@
 [
   {
     "name": "display_content",
-    "en": "Display Ad",
-    "ar": "عرض الإعلان" 
+    "En": "Display Ad",
+    "Ar": "عرض الإعلان" 
   },
   {
     "name": "similar_ads",
-    "en": "Similar ads",
-    "ar": "إعلانات مشابهة"
+    "En": "Similar ads",
+    "Ar": "إعلانات مشابهة"
   },
   {
     "name": "add_comment",
-    "en": "Add a comment",
-    "ar": "إضافة تعليق"
+    "En": "Add a comment",
+    "Ar": "إضافة تعليق"
   },
   {
     "name": "follow_comments",
-    "en": "Follow Comments",
-    "ar": "متابعة التعليقات"
+    "En": "Follow Comments",
+    "Ar": "متابعة التعليقات"
   },
   {
     "name": "unfollow_comments",
-    "en": "Unfollow Comments",
-    "ar": "إلغاء متابعة التعليقات"
+    "En": "Unfollow Comments",
+    "Ar": "إلغاء متابعة التعليقات"
   },
   {
     "name": "reply",
-    "en": "Reply",
-    "ar": "الرد"
+    "En": "Reply",
+    "Ar": "الرد"
   },
   {
     "name": "must_select_report_type",
-    "en": "You must elect report type",
-    "ar": "يجب تحديد نوع البلاغ"
+    "En": "You must elect report type",
+    "Ar": "يجب تحديد نوع البلاغ"
   },
   {
     "name": "save_money",
-    "en": "Save",
-    "ar": "وفر"
+    "En": "Save",
+    "Ar": "وفر"
   },
   {
     "name": "there_are_no_related_ads",
-    "en": "There are no related ads",
-    "ar": "لا يوجد إعلانات ذات صلة"
+    "En": "There are no related ads",
+    "Ar": "لا يوجد إعلانات ذات صلة"
   },
   {
     "name": "supports_sending_pictures_and_audio",
-    "en": "Supports sending pictures and audio",
-    "ar": "تدعم إرسال الصور والصوت"
+    "En": "Supports sending pictures and audio",
+    "Ar": "تدعم إرسال الصور والصوت"
   },
   {
     "name": "more_private_and_secure",
-    "en": "More private and secure",
-    "ar": "أكثر خصوصية وأمان"
+    "En": "More private and secure",
+    "Ar": "أكثر خصوصية وأمان"
   },
   {
     "name": "messaging_in",
-    "en": "Messaging in",
-    "ar": "المراسلة في"
+    "En": "Messaging in",
+    "Ar": "المراسلة في"
   },
   {
     "name": "message_via_whatsApp",
-    "en": "Message via WhatsApp",
-    "ar": "مراسلة عبر واتساب"
+    "En": "Message via WhatsApp",
+    "Ar": "مراسلة عبر واتساب"
   },
 
   {
     "name": "submit_report",
-    "en": "Submit a report",
-    "ar": "تقديم بلاغ"
+    "En": "Submit a report",
+    "Ar": "تقديم بلاغ"
   },
   {
     "name": "submit_report",
-    "en": "Submit a report",
-    "ar": "تقديم بلاغ"
+    "En": "Submit a report",
+    "Ar": "تقديم بلاغ"
   },
   {
     "name": "share",
-    "en": "Share",
-    "ar": "مشاركة"
+    "En": "Share",
+    "Ar": "مشاركة"
   },
   {
     "name": "Write_your_question_advertiser_here",
-    "en": "Write your question to the advertiser here",
-    "ar": "أكتب سؤالك للمعلن هنا"
+    "En": "Write your question to the advertiser here",
+    "Ar": "أكتب سؤالك للمعلن هنا"
   },
   {
     "name": "add_report",
-    "en": "Add a report",
-    "ar": "إضافة بلاغ"
+    "En": "Add a report",
+    "Ar": "إضافة بلاغ"
   },
   {
     "name": "related_ads",
-    "en": "Related ads",
-    "ar": "الإعلانات ذات الصلة"
+    "En": "Related ads",
+    "Ar": "الإعلانات ذات الصلة"
   },
   {
     "name": "communicate_with_advertiser",
-    "en": "Communicate with the advertiser",
-    "ar": "التواصل مع المعلن"
+    "En": "Communicate with the advertiser",
+    "Ar": "التواصل مع المعلن"
   }
 ]

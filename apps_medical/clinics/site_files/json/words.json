@@ -1,122 +1,122 @@
 [{
         "name": "basic",
-        "en": "Basic",
-        "ar": "الأساسي"
+        "En": "Basic",
+        "Ar": "الأساسي"
     },
     {
         "name": "shift",
-        "en": "Shift",
-        "ar": "الشيفت"
+        "En": "Shift",
+        "Ar": "الشيفت"
     },
     {
         "name": "fixed",
-        "en": "Fixed",
-        "ar": "ثابت"
+        "En": "Fixed",
+        "Ar": "ثابت"
     },
     {
         "name": "re_detection",
-        "en": "Re-detection",
-        "ar": "إعادة الكشف"
+        "En": "Re-detection",
+        "Ar": "إعادة الكشف"
     },
     {
         "name": "consultation",
-        "en": "Consultation",
-        "ar": "إستشارة"
+        "En": "Consultation",
+        "Ar": "إستشارة"
     },
     {
         "name": "increases",
-        "en": "Increases",
-        "ar": "الزيادات"
+        "En": "Increases",
+        "Ar": "الزيادات"
     },
     {
         "name": "external_visit",
-        "en": "External Examination",
-        "ar": "كشف خارجي"
+        "En": "External Examination",
+        "Ar": "كشف خارجي"
     },
     {
         "name": "urgent_visit",
-        "en": "urgently",
-        "ar": "مستعجل"
+        "En": "urgently",
+        "Ar": "مستعجل"
     },
     {
         "name": "increase_urgent_visit",
-        "en": "Urgent increase",
-        "ar": "الزيادة المستعجلة"
+        "En": "Urgent increase",
+        "Ar": "الزيادة المستعجلة"
     },
     {
         "name": "at_home",
-        "en": "At home",
-        "ar": "في المنزل"
+        "En": "At home",
+        "Ar": "في المنزل"
     },
     {
         "name": "online",
-        "en": "Online",
-        "ar": "أونلاين"
+        "En": "Online",
+        "Ar": "أونلاين"
     },
     {
         "name": "detection_price",
-        "en": "Detection price",
-        "ar": "سعر الكشف"
+        "En": "Detection price",
+        "Ar": "سعر الكشف"
     },
     {
         "name": "detection_Duration",
-        "en": "Detection Duration",
-        "ar": "مدة الكشف"
+        "En": "Detection Duration",
+        "Ar": "مدة الكشف"
     },
     {
         "name": "shifts_information",
-        "en": "Shifts Information",
-        "ar": "مواعيد العمل"
+        "En": "Shifts Information",
+        "Ar": "مواعيد العمل"
     },
     {
         "name": "clinics",
-        "en": "Clinics",
-        "ar": "العيادات"
+        "En": "Clinics",
+        "Ar": "العيادات"
     },
     {
         "name": "clinic",
-        "en": "Clinic",
-        "ar": "العيادة"
+        "En": "Clinic",
+        "Ar": "العيادة"
     },
     {
         "name": "clinics_new",
-        "en": "New Clinic",
-        "ar": "عيادة  جديدة"
+        "En": "New Clinic",
+        "Ar": "عيادة  جديدة"
     },
     {
         "name": "clinics_search",
-        "en": "Clinics Search",
-        "ar": "بحث العيادات "
+        "En": "Clinics Search",
+        "Ar": "بحث العيادات "
     },
     {
         "name": "clinics_add",
-        "en": "Add Clinic",
-        "ar": "إضافة عيادة "
+        "En": "Add Clinic",
+        "Ar": "إضافة عيادة "
     },
     {
         "name": "clinics_edit",
-        "en": "Edit Clinic",
-        "ar": "تعديل عيادة "
+        "En": "Edit Clinic",
+        "Ar": "تعديل عيادة "
     },
     {
         "name": "clinics_details",
-        "en": "Clinic Details",
-        "ar": "تفاصيل العيادة "
+        "En": "Clinic Details",
+        "Ar": "تفاصيل العيادة "
     },
     {
         "name": "clinics_delete",
-        "en": "Delete Clinic",
-        "ar": "حذف عيادة "
+        "En": "Delete Clinic",
+        "Ar": "حذف عيادة "
     },
     {
         "name": "clinics_name",
-        "en": "Clinic Name",
-        "ar": "إسم العيادة "
+        "En": "Clinic Name",
+        "Ar": "إسم العيادة "
     },
     {
         "name": "shift_name",
-        "en": "Shift Name",
-        "ar": "إسم الشيفت "
+        "En": "Shift Name",
+        "Ar": "إسم الشيفت "
     }
 
 

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "operation_admin",
-    "en": "Operation Admin",
-    "ar": "إدارة العمليات",
+    "En": "Operation Admin",
+    "Ar": "إدارة العمليات",
     "permissions": ["operation_manage"]
 }]

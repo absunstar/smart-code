@@ -1,40 +1,40 @@
 [
-    { "name": "employee_offer","en": "Employees Offers", "ar": "مكافاّت الموظفين"}, 
-    { "name": "hr_employee_offer","en": "Employees Offers", "ar": "مكافاّت الموظفين"}, 
-    { "name": "employee_offer_add","en": "Add Offer", "ar": "إضافة مكافأة"},
-    { "name": "employee_offer_new","en": "New Amount", "ar": "تسجيل عرض جديد"},
-    { "name": "employee_offer_details","en": "Amount  Details", "ar": "تفاصيل المكافأة"},
-    { "name": "employee_offer_edit","en": "Edit Amount", "ar": "تعديل وارد"},
-    { "name": "employee_offer_delete","en": "Delete Amount", "ar": "حذف المكافأة"},
-    { "name": "employee_offer_logo","en": "Logo", "ar": "الشعار"},
-    { "name": "employee_offer_value","en": "Value", "ar": "قيمة المكافأة"},
-    { "name": "employee_offer_date","en": "Date", "ar": "التاريخ"},
-    { "name": "employee_offer_from","en": "From", "ar": "من"},
-    { "name": "employee_offer_to","en": "To", "ar": "الي"},
-    { "name": "employee_offer_source","en": "Source", "ar": "نوع الوارد"},
-    { "name": "employee_offer_description","en": "Description", "ar": "التفاصيل "},
-    { "name": "employee_offer_safe","en": "Safe", "ar": "الخزينة"},
-    { "name": "Employee_Offer_new","en": "Register New Offer", "ar": "تسجيل مكافأة جديدة"},
+    { "name": "employee_offer","En": "Employees Offers", "Ar": "مكافاّت الموظفين"}, 
+    { "name": "hr_employee_offer","En": "Employees Offers", "Ar": "مكافاّت الموظفين"}, 
+    { "name": "employee_offer_add","En": "Add Offer", "Ar": "إضافة مكافأة"},
+    { "name": "employee_offer_new","En": "New Amount", "Ar": "تسجيل عرض جديد"},
+    { "name": "employee_offer_details","En": "Amount  Details", "Ar": "تفاصيل المكافأة"},
+    { "name": "employee_offer_edit","En": "Edit Amount", "Ar": "تعديل وارد"},
+    { "name": "employee_offer_delete","En": "Delete Amount", "Ar": "حذف المكافأة"},
+    { "name": "employee_offer_logo","En": "Logo", "Ar": "الشعار"},
+    { "name": "employee_offer_value","En": "Value", "Ar": "قيمة المكافأة"},
+    { "name": "employee_offer_date","En": "Date", "Ar": "التاريخ"},
+    { "name": "employee_offer_from","En": "From", "Ar": "من"},
+    { "name": "employee_offer_to","En": "To", "Ar": "الي"},
+    { "name": "employee_offer_source","En": "Source", "Ar": "نوع الوارد"},
+    { "name": "employee_offer_description","En": "Description", "Ar": "التفاصيل "},
+    { "name": "employee_offer_safe","En": "Safe", "Ar": "الخزينة"},
+    { "name": "Employee_Offer_new","En": "Register New Offer", "Ar": "تسجيل مكافأة جديدة"},
     
     
-    { "name": "employee_offer_Company_name","en": "Company Name", "ar": "إسم الشركة "},
+    { "name": "employee_offer_Company_name","En": "Company Name", "Ar": "إسم الشركة "},
     
-    { "name": "employee_offer_empty_search","en": "Empty Fields", "ar": "تفريغ الحقول "},
+    { "name": "employee_offer_empty_search","En": "Empty Fields", "Ar": "تفريغ الحقول "},
 
-    { "name": "employee_offer_search","en": "Search", "ar": "البحث "},
+    { "name": "employee_offer_search","En": "Search", "Ar": "البحث "},
 
-    { "name": "employee_offer_companies","en": "From Company", "ar": "وارد من شركة"},
+    { "name": "employee_offer_companies","En": "From Company", "Ar": "وارد من شركة"},
 
-    { "name": "employee_offer_date_from","en": "Date From", "ar": "من تاريخ"},
+    { "name": "employee_offer_date_from","En": "Date From", "Ar": "من تاريخ"},
 
-    { "name": "employee_offer_date_to","en": "Date To ", "ar": "إلى تاريخ"},
+    { "name": "employee_offer_date_to","En": "Date To ", "Ar": "إلى تاريخ"},
 
-    { "name": "employee_offer_employees","en": "From Employee", "ar": " إسم الموظف"},
+    { "name": "employee_offer_employees","En": "From Employee", "Ar": " إسم الموظف"},
 
 
     
-    { "name": "employee_offer_img","en": "Image", "ar": "الشعار"},
+    { "name": "employee_offer_img","En": "Image", "Ar": "الشعار"},
 
-    { "name": "employee_offer_customers","en": "Customer Name", "ar": "إسم العميل"}
+    { "name": "employee_offer_customers","En": "Customer Name", "Ar": "إسم العميل"}
    
 ]

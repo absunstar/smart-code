@@ -1,57 +1,57 @@
 [
     {
         "name": "kitchen",
-        "en": "Kitchen",
-        "ar": "المطبخ"
+        "En": "Kitchen",
+        "Ar": "المطبخ"
     },
     {
         "name": "kitchens",
-        "en": "Kitchens",
-        "ar": "المطابخ"
+        "En": "Kitchens",
+        "Ar": "المطابخ"
     },
     {
         "name": "kitchen_name",
-        "en": "Kitchen Name",
-        "ar": "إسم المطبخ"
+        "En": "Kitchen Name",
+        "Ar": "إسم المطبخ"
     },
     {
         "name": "kitchen_new",
-        "en": "New Kitchen",
-        "ar": "مطبخ جديدة"
+        "En": "New Kitchen",
+        "Ar": "مطبخ جديدة"
     },
     {
         "name": "kitchen_add",
-        "en": "Add Kitchen",
-        "ar": "إضافة مطبخ"
+        "En": "Add Kitchen",
+        "Ar": "إضافة مطبخ"
     },
     {
         "name": "kitchen_edit",
-        "en": "Edit Kitchen",
-        "ar": "تعديل مطبخ"
+        "En": "Edit Kitchen",
+        "Ar": "تعديل مطبخ"
     },
     {
         "name": "kitchen_details",
-        "en": "Kitchen Details",
-        "ar": "تفاصيل المطبخ"
+        "En": "Kitchen Details",
+        "Ar": "تفاصيل المطبخ"
     },
     {
         "name": "kitchen_delete",
-        "en": "Delete kitchen",
-        "ar": "حذف مطبخ"
+        "En": "Delete kitchen",
+        "Ar": "حذف مطبخ"
     },
     {
         "name": "kitchen_number",
-        "en": "Kitchen Number",
-        "ar": "رقم المطبخ"
+        "En": "Kitchen Number",
+        "Ar": "رقم المطبخ"
     },
     {
         "name": "kitchen_min",
-        "en": "Minimum persons",
-        "ar": "الحد الأدنى للأشخاص"
+        "En": "Minimum persons",
+        "Ar": "الحد الأدنى للأشخاص"
     },
     {
         "name": "kitchen_max",
-        "en": "Maxmum persons",
-        "ar": "الحد الأقصى للأشخاص"
+        "En": "Maxmum persons",
+        "Ar": "الحد الأقصى للأشخاص"
     }
 ]

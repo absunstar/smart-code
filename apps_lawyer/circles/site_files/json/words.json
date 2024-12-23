@@ -1,38 +1,38 @@
 [{
         "name": "circles",
-        "en": "Circles",
-        "ar": "الدوائر"
+        "En": "Circles",
+        "Ar": "الدوائر"
     },
     {
         "name": "circles_new",
-        "en": "New Circle",
-        "ar": "دائرة جديد"
+        "En": "New Circle",
+        "Ar": "دائرة جديد"
     },
 
     {
         "name": "circles_add",
-        "en": "Add Circle",
-        "ar": "إضافة دائرة "
+        "En": "Add Circle",
+        "Ar": "إضافة دائرة "
     },
     {
         "name": "circles_edit",
-        "en": "Edit Circle",
-        "ar": "تعديل دائرة "
+        "En": "Edit Circle",
+        "Ar": "تعديل دائرة "
     },
     {
         "name": "circles_details",
-        "en": "Circle Details",
-        "ar": "تفاصيل الدائرة "
+        "En": "Circle Details",
+        "Ar": "تفاصيل الدائرة "
     },
     {
         "name": "circles_delete",
-        "en": "Delete Circle",
-        "ar": "حذف دائرة "
+        "En": "Delete Circle",
+        "Ar": "حذف دائرة "
     },
     {
         "name": "circles_name",
-        "en": "Circle Name",
-        "ar": "إسم الدائرة "
+        "En": "Circle Name",
+        "Ar": "إسم الدائرة "
     }
 
 

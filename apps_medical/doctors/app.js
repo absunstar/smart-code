@@ -736,7 +736,7 @@ module.exports = function init(site) {
   //   })
 
   site.post("/api/doctors/searchAll", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+    req.headers.language = req.headers.language || "En";
     let response = {
       done: false,
     };

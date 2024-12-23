@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "doctors_visits_admin",
-    "en": "Examination book Admin",
-    "ar": "إدارة حجز كشف",
+    "En": "Examination book Admin",
+    "Ar": "إدارة حجز كشف",
     "permissions": ["doctors_visits_manage"]
 }]

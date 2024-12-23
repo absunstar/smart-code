@@ -1,11 +1,11 @@
 [
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "hr" , "screen_name" : "attend-employees" , "name":"attend_employees_ui" , "En":"Ui" , "Ar":"الواجهة الرسومية"}
 ]

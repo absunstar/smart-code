@@ -1,21 +1,21 @@
 [
-    {"name" : "order_slides_add" , "en" : "Add Orders Slide" , "ar" : "إضافة شريحة طلبات"},
-    {"name" : "order_slide" , "en" : "Orders Slide" , "ar" : " شريحة الطلبات"},
-    {"name" : "order_slides" , "en" : "Orders Slides" , "ar" : " شرائح الطلبات"},
-    {"name" : "order_slides_img" , "en" : "Orders Slides Image" , "ar" : "ملفات شريحة الطلبات"},
-    {"name" : "order_slides_value" , "en" : "Order Value" , "ar" : "قيمة الطلب"},
-    {"name" : "order_slides_name" , "en" : "Slide Name" , "ar" : "إسم الشريحة"},
-    {"name" : "order_slides_from" , "en" : "Slide From" , "ar" : "بداية الشريحة"},
-    {"name" : "order_slides_to" , "en" : "Slide To" , "ar" : "نهاية الشريحة"},
-    {"name" : "order_slides_salary_calculate" , "en" : "Salary Calculate" , "ar" : "يضاف للراتب"},
-    {"name" : "order_slides_new" , "en" : "New Slide" , "ar" : "شريحة جديدة"},
-    {"name" : "order_slides_logo" , "en" : "Slides Logo" , "ar" : "صورة الشريحة"},
+    {"name" : "order_slides_add" , "En" : "Add Orders Slide" , "Ar" : "إضافة شريحة طلبات"},
+    {"name" : "order_slide" , "En" : "Orders Slide" , "Ar" : " شريحة الطلبات"},
+    {"name" : "order_slides" , "En" : "Orders Slides" , "Ar" : " شرائح الطلبات"},
+    {"name" : "order_slides_img" , "En" : "Orders Slides Image" , "Ar" : "ملفات شريحة الطلبات"},
+    {"name" : "order_slides_value" , "En" : "Order Value" , "Ar" : "قيمة الطلب"},
+    {"name" : "order_slides_name" , "En" : "Slide Name" , "Ar" : "إسم الشريحة"},
+    {"name" : "order_slides_from" , "En" : "Slide From" , "Ar" : "بداية الشريحة"},
+    {"name" : "order_slides_to" , "En" : "Slide To" , "Ar" : "نهاية الشريحة"},
+    {"name" : "order_slides_salary_calculate" , "En" : "Salary Calculate" , "Ar" : "يضاف للراتب"},
+    {"name" : "order_slides_new" , "En" : "New Slide" , "Ar" : "شريحة جديدة"},
+    {"name" : "order_slides_logo" , "En" : "Slides Logo" , "Ar" : "صورة الشريحة"},
 
-    {"name" : "order_slides_edit" , "en" : "Edit Slide" , "ar" : "تعديل بيانات شريحة"},
-    {"name" : "order_slides_details" , "en" : "Slide Details" , "ar" : "تفاصيل شريحة"},
-    {"name" : "order_slides_delete" , "en" : "Delete Slide" , "ar" : "حذف شريحة"},
-    {"name" : "order_slides_salary_yes" , "en" : "Yes" , "ar" : "نعم"},
-    {"name" : "order_slides_salary_no" , "en" : "No" , "ar" : "لا"}
+    {"name" : "order_slides_edit" , "En" : "Edit Slide" , "Ar" : "تعديل بيانات شريحة"},
+    {"name" : "order_slides_details" , "En" : "Slide Details" , "Ar" : "تفاصيل شريحة"},
+    {"name" : "order_slides_delete" , "En" : "Delete Slide" , "Ar" : "حذف شريحة"},
+    {"name" : "order_slides_salary_yes" , "En" : "Yes" , "Ar" : "نعم"},
+    {"name" : "order_slides_salary_no" , "En" : "No" , "Ar" : "لا"}
 
    
     

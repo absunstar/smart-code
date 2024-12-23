@@ -1,22 +1,22 @@
 [
     {
         "id": 3,
-        "en": "Sale Invoice Store",
-        "ar": "فاتورة مبيعات"
+        "En": "Sale Invoice Store",
+        "Ar": "فاتورة مبيعات"
     },
     {
         "id": 4,
-        "en": "Orders Screen Store",
-        "ar": "شاشة الطلبات"
+        "En": "Orders Screen Store",
+        "Ar": "شاشة الطلبات"
     },
     {
         "id": 5,
-        "en": "Damage",
-        "ar": "إتلاف / إهلاك"
+        "En": "Damage",
+        "Ar": "إتلاف / إهلاك"
     },
     {
         "id": 6,
-        "en": "Return Sales Invoice",
-        "ar": "مرتجع فاتورة مبيعات"
+        "En": "Return Sales Invoice",
+        "Ar": "مرتجع فاتورة مبيعات"
     }
 ]

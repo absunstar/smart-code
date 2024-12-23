@@ -1,624 +1,624 @@
 [
     {
         "name": "stores_in_search_all",
-        "en": "Search All",
-        "ar": "بحث شامل"
+        "En": "Search All",
+        "Ar": "بحث شامل"
     },
     {
         "name": "stores_in_search",
-        "en": "Search",
-        "ar": "بحث"
+        "En": "Search",
+        "Ar": "بحث"
     },
     {
         "name": "purchase",
-        "en": "Purchase",
-        "ar": "شراء"
+        "En": "Purchase",
+        "Ar": "شراء"
     },
    
     {
         "name": "must_choose_payment_type",
-        "en": "Must Choose Payment Type",
-        "ar": "يجب إختيار نوع الدفع"
+        "En": "Must Choose Payment Type",
+        "Ar": "يجب إختيار نوع الدفع"
     },
     {
         "name": "debt_store",
-        "en": "Debt Store",
-        "ar": "عهدة مخزنية"
+        "En": "Debt Store",
+        "Ar": "عهدة مخزنية"
     },
     {
         "name": "opening_balance_store",
-        "en": "Opening Balance Store",
-        "ar": "رصيد إفتتاحي مخزني"
+        "En": "Opening Balance Store",
+        "Ar": "رصيد إفتتاحي مخزني"
     },
     {
         "name": "new_opening_balance",
-        "en": "New Opening Balance",
-        "ar": "رصيد إفتتاحي جديد"
+        "En": "New Opening Balance",
+        "Ar": "رصيد إفتتاحي جديد"
     },
     {
         "name": "new_return_purchase",
-        "en": "New Return Purchase",
-        "ar": "مرتجع شراء جديد"
+        "En": "New Return Purchase",
+        "Ar": "مرتجع شراء جديد"
     },
     {
         "name": "new_purchase_invoice",
-        "en": "New Purchase Invoice",
-        "ar": "فاتورة شراء جديدة"
+        "En": "New Purchase Invoice",
+        "Ar": "فاتورة شراء جديدة"
     },
     {
         "name": "new_debt_store",
-        "en": "New Debt Store",
-        "ar": "عهدة مخزنية جديدة"
+        "En": "New Debt Store",
+        "Ar": "عهدة مخزنية جديدة"
     },
     {
         "name": "return_purchase_invoice",
-        "en": "Return Purchase Invoice",
-        "ar": "مرتجع فاتورة شراء"
+        "En": "Return Purchase Invoice",
+        "Ar": "مرتجع فاتورة شراء"
     },
   
     {
         "name": "stores_in_store",
-        "en": "Store",
-        "ar": "المخزن"
+        "En": "Store",
+        "Ar": "المخزن"
     },
     {
         "name": "quantity_return",
-        "en": "Quantity Re",
-        "ar": "ك.المرتجع"
+        "En": "Quantity Re",
+        "Ar": "ك.المرتجع"
     },
     {
         "name": "err_store_select",
-        "en": "Be sure to choose a store",
-        "ar": "يجب التأكد من إختيار المخزن"
+        "En": "Be sure to choose a store",
+        "Ar": "يجب التأكد من إختيار المخزن"
     },
     {
         "name": "stores_in_empty_search",
-        "en": "Empty Search",
-        "ar": "تفريغ الحقول"
+        "En": "Empty Search",
+        "Ar": "تفريغ الحقول"
     },
     {
         "name": "stores_in_add",
-        "en": "Add Purchase Invoice",
-        "ar": "إضافة فاتورة مشتريات"
+        "En": "Add Purchase Invoice",
+        "Ar": "إضافة فاتورة مشتريات"
     },
     {
         "name": "stores_in_new",
-        "en": "New Purchase Invoice",
-        "ar": "فاتورة مشتريات جديدة"
+        "En": "New Purchase Invoice",
+        "Ar": "فاتورة مشتريات جديدة"
     },
     {
         "name": "stores_in_details",
-        "en": "Purchase Invoice Details",
-        "ar": "تفاصيل فاتورة مشتريات"
+        "En": "Purchase Invoice Details",
+        "Ar": "تفاصيل فاتورة مشتريات"
     },
     {
         "name": "stores_in_edit",
-        "en": "Edit Purchase Invoice",
-        "ar": "تعديل فاتورة مشتريات"
+        "En": "Edit Purchase Invoice",
+        "Ar": "تعديل فاتورة مشتريات"
     },
     {
         "name": "stores_in_delete",
-        "en": "Delete Purchase Invoice",
-        "ar": "حذف فاتورة مشتريات"
+        "En": "Delete Purchase Invoice",
+        "Ar": "حذف فاتورة مشتريات"
     },
     {
         "name": "cant_process_found_invoice",
-        "en": "The process cannot be completed due to an account invoice",
-        "ar": "لا يمكن إتمام العملية لوجود فاتورة حساب"
+        "En": "The process cannot be completed due to an account invoice",
+        "Ar": "لا يمكن إتمام العملية لوجود فاتورة حساب"
     },
     {
         "name": "stores_ins",
-        "en": "Purchase Invoices Store",
-        "ar": "فواتير مشتريات مخزنية"
+        "En": "Purchase Invoices Store",
+        "Ar": "فواتير مشتريات مخزنية"
     },
     {
         "name": "stores_in",
-        "en": "Purchase Invoice",
-        "ar": "فاتورة مشتريات"
+        "En": "Purchase Invoice",
+        "Ar": "فاتورة مشتريات"
     },
     {
         "name": "inventory_stores_in",
-        "en": "Stores In",
-        "ar": "فاتورة مشتريات"
+        "En": "Stores In",
+        "Ar": "فاتورة مشتريات"
     },
     {
         "name": "opening_balance_add",
-        "en": "Add Opening Balance",
-        "ar": "إضافة رصيد إفتتاحي"
+        "En": "Add Opening Balance",
+        "Ar": "إضافة رصيد إفتتاحي"
     },
     {
         "name": "opening_balance_new",
-        "en": "New Opening Balance",
-        "ar": "رصيد إفتتاحي جديد"
+        "En": "New Opening Balance",
+        "Ar": "رصيد إفتتاحي جديد"
     },
     {
         "name": "opening_balance_details",
-        "en": "Opening Balance Details",
-        "ar": "تفاصيل رصيد إفتتاحي"
+        "En": "Opening Balance Details",
+        "Ar": "تفاصيل رصيد إفتتاحي"
     },
     {
         "name": "opening_balance_edit",
-        "en": "Edit Opening Balance",
-        "ar": "تعديل رصيد إفتتاحي"
+        "En": "Edit Opening Balance",
+        "Ar": "تعديل رصيد إفتتاحي"
     },
     {
         "name": "opening_balance_delete",
-        "en": "Delete Opening Balance",
-        "ar": "حذف رصيد إفتتاحي"
+        "En": "Delete Opening Balance",
+        "Ar": "حذف رصيد إفتتاحي"
     },
     {
         "name": "opening_balances_store",
-        "en": "Opening Balances Store",
-        "ar": "أرصدة إفتتاحية مخزنية"
+        "En": "Opening Balances Store",
+        "Ar": "أرصدة إفتتاحية مخزنية"
     },
     {
         "name": "opening_balance",
-        "en": "Opening Balance Store",
-        "ar": "رصيد إفتتاحي مخزني"
+        "En": "Opening Balance Store",
+        "Ar": "رصيد إفتتاحي مخزني"
     },
     {
         "name": "inventory_opening_balance",
-        "en": "Opening Balance Store",
-        "ar": "رصيد إفتتاحي مخزني"
+        "En": "Opening Balance Store",
+        "Ar": "رصيد إفتتاحي مخزني"
     },
     {
         "name": "dept_new",
-        "en": "New Dept",
-        "ar": "عهدة مخزنية جديدة"
+        "En": "New Dept",
+        "Ar": "عهدة مخزنية جديدة"
     },
     {
         "name": "dept_add",
-        "en": "Add Dept",
-        "ar": "إضافة عهدة مخزنية"
+        "En": "Add Dept",
+        "Ar": "إضافة عهدة مخزنية"
     },
     {
         "name": "dept_details",
-        "en": "Dept Details",
-        "ar": "تفاصيل عهدة مخزنية"
+        "En": "Dept Details",
+        "Ar": "تفاصيل عهدة مخزنية"
     },
     {
         "name": "dept_edit",
-        "en": "Edit Dept",
-        "ar": "تعديل عهدة مخزنية"
+        "En": "Edit Dept",
+        "Ar": "تعديل عهدة مخزنية"
     },
     {
         "name": "dept_delete",
-        "en": "Delete Dept",
-        "ar": "حذف عهدة مخزنية"
+        "En": "Delete Dept",
+        "Ar": "حذف عهدة مخزنية"
     },
     {
         "name": "depts_store",
-        "en": "Depts Store",
-        "ar": "عهد مخزنية"
+        "En": "Depts Store",
+        "Ar": "عهد مخزنية"
     },
     {
         "name": "dept",
-        "en": "Dept Store",
-        "ar": "عهدة مخزنية مخزني"
+        "En": "Dept Store",
+        "Ar": "عهدة مخزنية مخزني"
     },
     {
         "name": "inventory_dept",
-        "en": "Dept Store",
-        "ar": "عهدة مخزنية مخزني"
+        "En": "Dept Store",
+        "Ar": "عهدة مخزنية مخزني"
     },
     {
         "name": "return_purchase_invoice_add",
-        "en": "Add Return Purchase",
-        "ar": "إضافة مرتجع شراء"
+        "En": "Add Return Purchase",
+        "Ar": "إضافة مرتجع شراء"
     },
     {
         "name": "return_purchase_invoice_new",
-        "en": "New Return Purchase",
-        "ar": "مرتجع شراء جديد"
+        "En": "New Return Purchase",
+        "Ar": "مرتجع شراء جديد"
     },
     {
         "name": "return_purchase_invoice_details",
-        "en": "Return Purchase Details",
-        "ar": "تفاصيل مرتجع شراء"
+        "En": "Return Purchase Details",
+        "Ar": "تفاصيل مرتجع شراء"
     },
     {
         "name": "return_purchase_invoice_edit",
-        "en": "Edit Return Purchase",
-        "ar": "تعديل مرتجع شراء"
+        "En": "Edit Return Purchase",
+        "Ar": "تعديل مرتجع شراء"
     },
     {
         "name": "return_purchase_invoice_delete",
-        "en": "Delete Return Purchase",
-        "ar": "حذف مرتجع شراء"
+        "En": "Delete Return Purchase",
+        "Ar": "حذف مرتجع شراء"
     },
     {
         "name": "returns_purchase_invoices",
-        "en": "Returns Purchases Store",
-        "ar": "مرتجعات فواتير شراء"
+        "En": "Returns Purchases Store",
+        "Ar": "مرتجعات فواتير شراء"
     },
     {
         "name": "return_purchase_invoice",
-        "en": "Return Purchase Store",
-        "ar": "مرتجع فاتورة شراء"
+        "En": "Return Purchase Store",
+        "Ar": "مرتجع فاتورة شراء"
     },
     {
         "name": "inventory_return_purchase_invoice",
-        "en": "Return Purchase Store",
-        "ar": "مرتجع فاتورة شراء"
+        "En": "Return Purchase Store",
+        "Ar": "مرتجع فاتورة شراء"
     },
     {
         "name": "stores_in_name",
-        "en": "Purchase Invoice Name",
-        "ar": "إسم إذن الوارد"
+        "En": "Purchase Invoice Name",
+        "Ar": "إسم إذن الوارد"
     },
     {
         "name": "stores_in_number",
-        "en": "Number",
-        "ar": "رقم الإذن"
+        "En": "Number",
+        "Ar": "رقم الإذن"
     },
     {
         "name": "stores_in_date",
-        "en": "Invoice Date",
-        "ar": "تاربخ الفاتورة"
+        "En": "Invoice Date",
+        "Ar": "تاربخ الفاتورة"
     },
     {
         "name": "stores_in_supply_date",
-        "en": "Supply store Date",
-        "ar": "تاريخ أذن التوريد"
+        "En": "Supply store Date",
+        "Ar": "تاريخ أذن التوريد"
     },
     {
         "name": "stores_in_number",
-        "en": "Store in Number",
-        "ar": "رقم اﻷذن"
+        "En": "Store in Number",
+        "Ar": "رقم اﻷذن"
     },
     {
         "name": "stores_in_supply_number",
-        "en": "Store in supply number",
-        "ar": " رقم أذن التوريد"
+        "En": "Store in supply number",
+        "Ar": " رقم أذن التوريد"
     },
     {
         "name": "stores_in_supply_number_date",
-        "en": "supply number date",
-        "ar": " تاريخ أذن التوريد"
+        "En": "supply number date",
+        "Ar": " تاريخ أذن التوريد"
     },
     {
         "name": "stores_in_store_name",
-        "en": "Purchase Invoice",
-        "ar": "  إسم المخزن "
+        "En": "Purchase Invoice",
+        "Ar": "  إسم المخزن "
     },
     {
         "name": "return_item_err",
-        "en": "Purchase Invoice",
-        "ar": "لا يمكن أن يكون عدد الأصناف أكبر من الموجود في مرتجع المبيعات"
+        "En": "Purchase Invoice",
+        "Ar": "لا يمكن أن يكون عدد الأصناف أكبر من الموجود في مرتجع المبيعات"
     },
     {
         "name": "err_barcode_exist",
-        "en": "The barcode is exist",
-        "ar": "الباركود مسجل من قبل"
+        "En": "The barcode is exist",
+        "Ar": "الباركود مسجل من قبل"
     },
     {
         "name": "edit_purchase_price",
-        "en": "Edit Purchase Price",
-        "ar": "تعديل سعر الشراء"
+        "En": "Edit Purchase Price",
+        "Ar": "تعديل سعر الشراء"
     },
     {
         "name": "permission_detailes",
-        "en": "Permission Detailes",
-        "ar": "تفاصيل الإذن"
+        "En": "Permission Detailes",
+        "Ar": "تفاصيل الإذن"
     },
     {
         "name": "must_enter_quantity",
-        "en": "Must Enter Quantity",
-        "ar": "يجب إدخال الكمية"
+        "En": "Must Enter Quantity",
+        "Ar": "يجب إدخال الكمية"
     },
     {
         "name": "stores_in_safe",
-        "en": "Safe Number",
-        "ar": "  الخزينة "
+        "En": "Safe Number",
+        "Ar": "  الخزينة "
     },
     {
         "name": "stores_in_no_safe",
-        "en": "No Safe",
-        "ar": "  لا يوجد خزينة "
+        "En": "No Safe",
+        "Ar": "  لا يوجد خزينة "
     },
     {
         "name": "nosafe_warning",
-        "en": "You should choose a Safe",
-        "ar": "  يرجى التأكد من اختيار الخزينة"
+        "En": "You should choose a Safe",
+        "Ar": "  يرجى التأكد من اختيار الخزينة"
     },
     {
         "name": "err_transaction_type",
-        "en": "You should select transaction type",
-        "ar": "  يرجى التأكد من اختيار نوع المعاملة"
+        "En": "You should select transaction type",
+        "Ar": "  يرجى التأكد من اختيار نوع المعاملة"
     },
     {
         "name": "add_patch",
-        "en": "Add Patch",
-        "ar": "إضافة تشغيلة"
+        "En": "Add Patch",
+        "Ar": "إضافة تشغيلة"
     },
     {
         "name": "stores_in_categry",
-        "en": "Classfication",
-        "ar": "  التصنيف "
+        "En": "Classfication",
+        "Ar": "  التصنيف "
     },
     {
         "name": "edit_ticket",
-        "en": "Edit ticket",
-        "ar": "تعديل الطلب"
+        "En": "Edit ticket",
+        "Ar": "تعديل الطلب"
     },
     {
         "name": "stores_in_Company_code",
-        "en": "vendor Code",
-        "ar": "كود المورد"
+        "En": "vendor Code",
+        "Ar": "كود المورد"
     },
     {
         "name": "stores_in_Company_name",
-        "en": "vendor Name",
-        "ar": "إسم المورد"
+        "En": "vendor Name",
+        "Ar": "إسم المورد"
     },
     {
         "name": "stores_in_items",
-        "en": "Items",
-        "ar": "الأصناف"
+        "En": "Items",
+        "Ar": "الأصناف"
     },
     {
         "name": "stores_in_item_name",
-        "en": "Item Name",
-        "ar": "إسم الصنف"
+        "En": "Item Name",
+        "Ar": "إسم الصنف"
     },
     {
         "name": "stores_in_item_Company",
-        "en": "Item vendor",
-        "ar": "إسم المصنع"
+        "En": "Item vendor",
+        "Ar": "إسم المصنع"
     },
     {
         "name": "stores_in_item_size",
-        "en": "Item Size",
-        "ar": "المقاس"
+        "En": "Item Size",
+        "Ar": "المقاس"
     },
     {
         "name": "stores_in_item_count",
-        "en": "Count",
-        "ar": "العدد"
+        "En": "Count",
+        "Ar": "العدد"
     },
     {
         "name": "stores_in_item_store_balance",
-        "en": "Store Balance",
-        "ar": "رصيد المخزن"
+        "En": "Store Balance",
+        "Ar": "رصيد المخزن"
     },
     {
         "name": "stores_in_section",
-        "en": "Section",
-        "ar": "القسم"
+        "En": "Section",
+        "Ar": "القسم"
     },
     {
         "name": "stores_in_item_cost",
-        "en": "Price",
-        "ar": "سعر الشراء"
+        "En": "Price",
+        "Ar": "سعر الشراء"
     },
     {
         "name": "stores_in_item_price",
-        "en": "Price",
-        "ar": "سعر البيع"
+        "En": "Price",
+        "Ar": "سعر البيع"
     },
     {
         "name": "stores_in_item_total",
-        "en": "Total",
-        "ar": "الاجمالي"
+        "En": "Total",
+        "Ar": "الاجمالي"
     },
     {
         "name": "stores_in_categories",
-        "en": "Categories",
-        "ar": "مجموعة الصنف"
+        "En": "Categories",
+        "Ar": "مجموعة الصنف"
     },
     {
         "name": "stores_in_add_item",
-        "en": "Add Item",
-        "ar": "إضافة صنف"
+        "En": "Add Item",
+        "Ar": "إضافة صنف"
     },
     {
         "name": "stores_in_item_section",
-        "en": "Section",
-        "ar": "القسم"
+        "En": "Section",
+        "Ar": "القسم"
     },
     {
         "name": "stores_in_item_categories",
-        "en": "Categories",
-        "ar": "مجموعة الصنف"
+        "En": "Categories",
+        "Ar": "مجموعة الصنف"
     },
     {
         "name": "stores_in_add_to_sizes",
-        "en": "Add To Sizes",
-        "ar": "أضف رقم جديد"
+        "En": "Add To Sizes",
+        "Ar": "أضف رقم جديد"
     },
     {
         "name": "stores_in_add_to_items",
-        "en": "Add To Items",
-        "ar": "أضف الى الإذن"
+        "En": "Add To Items",
+        "Ar": "أضف الى الإذن"
     },
     {
         "name": "stores_in_id",
-        "en": "Invoice Id",
-        "ar": "رقم الفاتورة"
+        "En": "Invoice Id",
+        "Ar": "رقم الفاتورة"
     },
     {
         "name": "stores_in_total_value",
-        "en": "Total Value",
-        "ar": "القيمة الاجمالية"
+        "En": "Total Value",
+        "Ar": "القيمة الاجمالية"
     },
     {
         "name": "stores_in_total_tax",
-        "en": "Total Tax",
-        "ar": "اجمالى الضرائب"
+        "En": "Total Tax",
+        "Ar": "اجمالى الضرائب"
     },
     {
         "name": "stores_in_taxes",
-        "en": "Taxes",
-        "ar": " الضرائب"
+        "En": "Taxes",
+        "Ar": " الضرائب"
     },
     {
         "name": "stores_in_tax_name",
-        "en": "Tax Name",
-        "ar": "الإسم"
+        "En": "Tax Name",
+        "Ar": "الإسم"
     },
     {
         "name": "stores_in_tax_value",
-        "en": "Tax Value",
-        "ar": "القيمة"
+        "En": "Tax Value",
+        "Ar": "القيمة"
     },
     {
         "name": "stores_in_total_discount",
-        "en": "Total Discount",
-        "ar": "اجمالى الخصم"
+        "En": "Total Discount",
+        "Ar": "اجمالى الخصم"
     },
     {
         "name": "stores_in_discountes",
-        "en": "Discountes",
-        "ar": " الخصومات"
+        "En": "Discountes",
+        "Ar": " الخصومات"
     },
     {
         "name": "stores_in_discount",
-        "en": "Discount",
-        "ar": " الخصومات"
+        "En": "Discount",
+        "Ar": " الخصومات"
     },
     {
         "name": "stores_in_discount_name",
-        "en": "Discount Name",
-        "ar": "الإسم"
+        "En": "Discount Name",
+        "Ar": "الإسم"
     },
     {
         "name": "stores_in_discount_value",
-        "en": "Discount Value",
-        "ar": "القيمة"
+        "En": "Discount Value",
+        "Ar": "القيمة"
     },
     {
         "name": "discount_types_number",
-        "en": "Discount Value",
-        "ar": "مبلغ"
+        "En": "Discount Value",
+        "Ar": "مبلغ"
     },
     {
         "name": "discount_types_percent",
-        "en": "Discount Value",
-        "ar": "نسبة"
+        "En": "Discount Value",
+        "Ar": "نسبة"
     },
     {
         "name": "stores_in_add_discount",
-        "en": "Discount Value",
-        "ar": "أضف الخصم"
+        "En": "Discount Value",
+        "Ar": "أضف الخصم"
     },
     {
         "name": "stores_in_add_tax",
-        "en": "Discount Value",
-        "ar": "أضف الضريبة"
+        "En": "Discount Value",
+        "Ar": "أضف الضريبة"
     },
     {
         "name": "stores_in_err_count",
-        "en": "Must Enter Correct Counts",
-        "ar": "يجب إدخال الأعداد بشكل صحيح"
+        "En": "Must Enter Correct Counts",
+        "Ar": "يجب إدخال الأعداد بشكل صحيح"
     },
     {
         "name": "stores_in_err_barcode",
-        "en": "Must Enter Barcode",
-        "ar": "يجب إدخال الباركود بشكل صحيح"
+        "En": "Must Enter Barcode",
+        "Ar": "يجب إدخال الباركود بشكل صحيح"
     },
     {
         "name": "stores_in_err_barcode_exist",
-        "en": "Barcode Is Exist",
-        "ar": "الباركود مكرر"
+        "En": "Barcode Is Exist",
+        "Ar": "الباركود مكرر"
     },
     {
         "name": "stores_in_err_item_name",
-        "en": "Must Enter Item Name",
-        "ar": "يجب إدخال  إسم الصنف"
+        "En": "Must Enter Item Name",
+        "Ar": "يجب إدخال  إسم الصنف"
     },
     {
         "name": "stores_in_net_value",
-        "en": "Net Value",
-        "ar": "القيمة المطلوبة"
+        "En": "Net Value",
+        "Ar": "القيمة المطلوبة"
     },
     {
         "name": "stores_in_rate_discount",
-        "en": "Rate Discount",
-        "ar": "نسبة خصم"
+        "En": "Rate Discount",
+        "Ar": "نسبة خصم"
     },
     {
         "name": "stores_in_octazion_discount",
-        "en": "Octazion Discount",
-        "ar": "نسبة اوكازيون"
+        "En": "Octazion Discount",
+        "Ar": "نسبة اوكازيون"
     },
     {
         "name": "stores_in_net_discount",
-        "en": "New Discount",
-        "ar": "نسبة صافي"
+        "En": "New Discount",
+        "Ar": "نسبة صافي"
     },
     {
         "name": "stores_in_notes",
-        "en": "Notes",
-        "ar": "ملاحظات"
+        "En": "Notes",
+        "Ar": "ملاحظات"
     },
     {
         "name": "stores_in_public_count",
-        "en": "Public Count",
-        "ar": "عدد موحد"
+        "En": "Public Count",
+        "Ar": "عدد موحد"
     },
     {
         "name": "stores_in_type",
-        "en": "Type",
-        "ar": "نوع الإذن"
+        "En": "Type",
+        "Ar": "نوع الإذن"
     },
     {
         "name": "serial",
-        "en": "N",
-        "ar": "م / N"
+        "En": "N",
+        "Ar": "م / N"
     },
     {
         "name": "stores_in_total_value_gt",
-        "en": "Total Value Greater Than",
-        "ar": "اجمالي الإذن اكبر من"
+        "En": "Total Value Greater Than",
+        "Ar": "اجمالي الإذن اكبر من"
     },
     {
         "name": "stores_in_total_value_lt",
-        "en": "Total Value Lower Than",
-        "ar": "اجمالي الإذن اقل من"
+        "En": "Total Value Lower Than",
+        "Ar": "اجمالي الإذن اقل من"
     },
     {
         "name": "stores_in_result_count",
-        "en": "Result Count",
-        "ar": "عدد نتائج البحث"
+        "En": "Result Count",
+        "Ar": "عدد نتائج البحث"
     },
     {
         "name": "stores_in_season",
-        "en": "Season",
-        "ar": "الموسم"
+        "En": "Season",
+        "Ar": "الموسم"
     },
     {
         "name": "stores_in_logo",
-        "en": "Logo",
-        "ar": "الشعار"
+        "En": "Logo",
+        "Ar": "الشعار"
     },
     {
         "name": "stores_in_img",
-        "en": "Images",
-        "ar": "الملفات"
+        "En": "Images",
+        "Ar": "الملفات"
     },
     {
         "name": "serial_pre_existing",
-        "en": "Serial Pre Existing",
-        "ar": "السيريال مسجل من قبل"
+        "En": "Serial Pre Existing",
+        "Ar": "السيريال مسجل من قبل"
     },
     {
         "name": "err_patch_count",
-        "en": "The number of Serial is uncontrolled",
-        "ar": "عدد السيريلات غير منضبط"
+        "En": "The number of Serial is uncontrolled",
+        "Ar": "عدد السيريلات غير منضبط"
     },
     {
         "name": "err_patch_count_comp",
-        "en": "The number of Serial is uncontrolled I. Complex",
-        "ar": "عدد السيريلات غير منضبط ص. مجمع"
+        "En": "The number of Serial is uncontrolled I. Complex",
+        "Ar": "عدد السيريلات غير منضبط ص. مجمع"
     },
     {
         "name": "err_patch_date",
-        "en": "Expiry date must be greater than or equal to production date",
-        "ar": "تاريخ الإنتهاء يجب أن يكون أكبر من أو يساوي تاريخ الإنتاج"
+        "En": "Expiry date must be greater than or equal to production date",
+        "Ar": "تاريخ الإنتهاء يجب أن يكون أكبر من أو يساوي تاريخ الإنتاج"
     },
     {
         "name": "patch_number",
-        "en": "Patch Number",
-        "ar": "رقم التشغيلة"
+        "En": "Patch Number",
+        "Ar": "رقم التشغيلة"
     }
 ]

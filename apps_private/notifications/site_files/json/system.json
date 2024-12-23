@@ -1,6 +1,6 @@
 [
-    {"name" : "Users System" , "ar" : "نظام المستخدمين"},
-    {"name" : "Addresses System" , "ar" : "نظام العناوين"},
-    {"name" : "Students System" , "ar" : "نظام الطلاب"}
+    {"name" : "Users System" , "Ar" : "نظام المستخدمين"},
+    {"name" : "Addresses System" , "Ar" : "نظام العناوين"},
+    {"name" : "Students System" , "Ar" : "نظام الطلاب"}
   
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "vendors_admin",
-    "en": "Vendors Admin",
-    "ar": "إدارة الموردين",
+    "En": "Vendors Admin",
+    "Ar": "إدارة الموردين",
     "permissions": ["vendors_manage"]
 }]

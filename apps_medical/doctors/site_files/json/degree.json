@@ -1,40 +1,40 @@
 [{
         "id": 1,
         "name": "intern_ship",
-        "en": "Internship doctor",
-        "ar": "إمتياز"
+        "En": "Internship doctor",
+        "Ar": "إمتياز"
     },
     {
         "id": 2,
         "name": "resident",
-        "en": "Resident doctor",
-        "ar": "طبيب مقيم"
+        "En": "Resident doctor",
+        "Ar": "طبيب مقيم"
     },
     {
         "id": 3,
         "name": "specialist",
-        "en": "Specialist",
-        "ar": "أخصائي"
+        "En": "Specialist",
+        "Ar": "أخصائي"
     }, {
         "id": 4,
         "name": "senior_specialist",
-        "en": "Senior specialist",
-        "ar": "أخصائي أول"
+        "En": "Senior specialist",
+        "Ar": "أخصائي أول"
     }, {
         "id": 5,
         "name": "consultant",
-        "en": "Consultant",
-        "ar": "إستشاري"
+        "En": "Consultant",
+        "Ar": "إستشاري"
     }, {
         "id": 6,
         "name": "senior_consultant",
-        "en": "Senior Consultant",
-        "ar": "إستشاري أول"
+        "En": "Senior Consultant",
+        "Ar": "إستشاري أول"
     },{
         "id": 7,
         "name": "phd_professor",
-        "en": "PhD/Professor",
-        "ar": "دكتوراه / بروفيسور"
+        "En": "PhD/Professor",
+        "Ar": "دكتوراه / بروفيسور"
     }
 ]
 

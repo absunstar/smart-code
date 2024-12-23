@@ -1,12 +1,12 @@
 [
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_edit" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_edit" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public", "screen_name" : "types-expenses" , "name":"types_expenses_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 
 ]

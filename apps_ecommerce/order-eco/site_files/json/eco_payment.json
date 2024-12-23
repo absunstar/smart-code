@@ -1,17 +1,17 @@
 [
     {
         "id": 1,
-        "en": "upon receipt",
-        "ar": "عند الإستلام"
+        "En": "upon receipt",
+        "Ar": "عند الإستلام"
     },
     {
         "id": 2,
-        "en": "Visa",
-        "ar": "فيزا"
+        "En": "Visa",
+        "Ar": "فيزا"
     },
     {
         "id": 3,
-        "en": "Customer Credit",
-        "ar": "رصيد عميل"
+        "En": "Customer Credit",
+        "Ar": "رصيد عميل"
     }
 ]

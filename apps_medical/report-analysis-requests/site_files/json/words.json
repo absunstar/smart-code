@@ -1,12 +1,12 @@
 [
     {
         "name": "report_analysis_requests_name",
-        "en": "Report Analysis Requests",
-        "ar": "تقرير معمل التحاليل"
+        "En": "Report Analysis Requests",
+        "Ar": "تقرير معمل التحاليل"
     },
     {
         "name": "report_analysis_requests",
-        "en": "Report Analysis Requests",
-        "ar": "تقرير معمل التحاليل"
+        "En": "Report Analysis Requests",
+        "Ar": "تقرير معمل التحاليل"
     }
 ]

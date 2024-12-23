@@ -1,16 +1,16 @@
 [
-    { "name": "amounts_report_customers","en": "customers", "ar": "العملاء"},
-    { "name": "amounts_report_employees","en": "ُEmployees", "ar": "الموظفين"},
-    { "name": "amounts_report_companies","en": "companies", "ar": "الشركات"},
-    { "name": "amounts_report_sources","en": "sources", "ar": "الوارد"},
-    { "name": "amounts_report_date_from","en": "Date From", "ar": "من تاريخ"},
-    { "name": "amounts_report_date_to","en": "Date To", "ar": "إلى تاريخ"},
-    { "name": "amounts_report_value","en": "value", "ar": "القيمة"},
-    { "name": "amounts_in_total","en": "amount_in Total", "ar": "اجمالى الوارد"},
-    { "name": "amounts_out_total","en": "amount_out Total", "ar": "اجمالى المنصرف"},
-    { "name": "amounts_report_total","en": "amount_report Total", "ar": "اجمالى الدخل"},
+    { "name": "amounts_report_customers","En": "customers", "Ar": "العملاء"},
+    { "name": "amounts_report_employees","En": "ُEmployees", "Ar": "الموظفين"},
+    { "name": "amounts_report_companies","En": "companies", "Ar": "الشركات"},
+    { "name": "amounts_report_sources","En": "sources", "Ar": "الوارد"},
+    { "name": "amounts_report_date_from","En": "Date From", "Ar": "من تاريخ"},
+    { "name": "amounts_report_date_to","En": "Date To", "Ar": "إلى تاريخ"},
+    { "name": "amounts_report_value","En": "value", "Ar": "القيمة"},
+    { "name": "amounts_in_total","En": "amount_in Total", "Ar": "اجمالى الوارد"},
+    { "name": "amounts_out_total","En": "amount_out Total", "Ar": "اجمالى المنصرف"},
+    { "name": "amounts_report_total","En": "amount_report Total", "Ar": "اجمالى الدخل"},
 
-    { "name": "amounts_report_date","en": "date", "ar": "التاريخ"}
+    { "name": "amounts_report_date","En": "date", "Ar": "التاريخ"}
    
 
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "hosting_admin",
-    "en": "Hosting Admin",
-    "ar": "إدارة الإستضافة",
+    "En": "Hosting Admin",
+    "Ar": "إدارة الإستضافة",
     "permissions": ["hosting_manage"]
 }]

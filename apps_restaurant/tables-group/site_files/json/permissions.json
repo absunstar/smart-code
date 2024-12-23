@@ -1,11 +1,11 @@
 [
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "tables-group" , "name":"tables_group_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

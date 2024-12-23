@@ -1,123 +1,123 @@
 [{
         "name": "account_course",
-        "en": "Account Trainer",
-        "ar": "حساب المدربين"
+        "En": "Account Trainer",
+        "Ar": "حساب المدربين"
     },
     {
         "name": "account_course_new",
-        "en": "New Account Trainer",
-        "ar":  "حساب مدرب جديد"
+        "En": "New Account Trainer",
+        "Ar":  "حساب مدرب جديد"
     },
     {
         "name": "account_course_add",
-        "en": "Account Trainer",
-        "ar": "حساب مدرب"
+        "En": "Account Trainer",
+        "Ar": "حساب مدرب"
     },
     {
         "name": "trainer_err",
-        "en": "Should Add Trainer",
-        "ar": "يجب إضافة مدرب"
+        "En": "Should Add Trainer",
+        "Ar": "يجب إضافة مدرب"
     },
     {
         "name": "account_lectures",
-        "en": "Account Lectures",
-        "ar": "حساب المحاضرة"
+        "En": "Account Lectures",
+        "Ar": "حساب المحاضرة"
     },
     {
         "name": "account_course_edit",
-        "en": "Edit Account Trainer",
-        "ar": "تعديل حساب مدرب"
+        "En": "Edit Account Trainer",
+        "Ar": "تعديل حساب مدرب"
     },
     {
         "name": "account_course_details",
-        "en": "Account Trainer Details",
-        "ar": "تفاصيل حساب مدرب"
+        "En": "Account Trainer Details",
+        "Ar": "تفاصيل حساب مدرب"
     },
     {
         "name": "account_course_delete",
-        "en": "Delete Account Trainer",
-        "ar": "حذف حساب مدرب"
+        "En": "Delete Account Trainer",
+        "Ar": "حذف حساب مدرب"
     },
     {
         "name": "account_course_name",
-        "en": "Course Name",
-        "ar": "إسم الكورس "
+        "En": "Course Name",
+        "Ar": "إسم الكورس "
     },
     {
         "name": "dates",
-        "en": "Dates",
-        "ar": "المواعيد"
+        "En": "Dates",
+        "Ar": "المواعيد"
     },
     {
         "name": "account_course_total",
-        "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "En": "Total Duration",
+        "Ar": "إجمالي المدة "
     },
     {
         "name": "account",
-        "en": "Account",
-        "ar": "حساب"
+        "En": "Account",
+        "Ar": "حساب"
     },
     {
         "name": "attend_absence",
-        "en": "Attend & Absence",
-        "ar": "الحضور و الغياب"
+        "En": "Attend & Absence",
+        "Ar": "الحضور و الغياب"
     },
     {
         "name": "attend_hour",
-        "en": "Attend Hour",
-        "ar": "حضور الساعة"
+        "En": "Attend Hour",
+        "Ar": "حضور الساعة"
     },
     {
         "name": "out_hour",
-        "en": "Out Hour",
-        "ar": "إنصراف الساعة"
+        "En": "Out Hour",
+        "Ar": "إنصراف الساعة"
     },
     {
         "name": "attend_absence_list",
-        "en": "Attend & Absence List",
-        "ar": "بيان الحضور و الغياب"
+        "En": "Attend & Absence List",
+        "Ar": "بيان الحضور و الغياب"
     },
     {
         "name": "paid_payback",
-        "en": "Paid payback",
-        "ar": "تسديد الدفعة"
+        "En": "Paid payback",
+        "Ar": "تسديد الدفعة"
     },
     {
         "name": "payback_paid",
-        "en": "payback Paid",
-        "ar": "الدفعات المسددة"
+        "En": "payback Paid",
+        "Ar": "الدفعات المسددة"
     },
    
     {
         "name": "trainer_account",
-        "en": "Trainer Account",
-        "ar": "حساب المدرب"
+        "En": "Trainer Account",
+        "Ar": "حساب المدرب"
     },
     {
         "name": "number_lecture",
-        "en": "Number from lectures",
-        "ar": "عدد المحاضرات"
+        "En": "Number from lectures",
+        "Ar": "عدد المحاضرات"
     },
     {
         "name": "number_lecture_hours",
-        "en": "Number Of Lecture  Hours",
-        "ar": "عدد ساعات المحاضرة"
+        "En": "Number Of Lecture  Hours",
+        "Ar": "عدد ساعات المحاضرة"
     },
     {
         "name": "date_from",
-        "en": "Start Date Course",
-        "ar": "تاريخ بداية الكورس"
+        "En": "Start Date Course",
+        "Ar": "تاريخ بداية الكورس"
     },
     {
         "name": "date_to",
-        "en": "End Date Course",
-        "ar": "تاريخ نهاية الكورس"
+        "En": "End Date Course",
+        "Ar": "تاريخ نهاية الكورس"
     },
     {
         "name": "account_course_price",
-        "en": "Course Price",
-        "ar": "سعر الكورس "
+        "En": "Course Price",
+        "Ar": "سعر الكورس "
     }
     
 ]

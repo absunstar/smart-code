@@ -353,7 +353,7 @@ module.exports = function init(site) {
 
     site.security.register(user, function (err, doc) {
       if (!err) {
-        let store_name = req.session.lang == "ar" ? "متجر" : "Store";
+        let store_name = req.session.lang == "Ar" ? "متجر" : "Store";
         response.user = doc;
         response.done = true;
         let store = {

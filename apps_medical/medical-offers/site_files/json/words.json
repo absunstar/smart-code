@@ -1,17 +1,17 @@
 [
-    {"name" : "medical_offers_informations" , "en" : "Medical Offers Informations" , "ar" : "بيانات العروض الطبية"},
+    {"name" : "medical_offers_informations" , "En" : "Medical Offers Informations" , "Ar" : "بيانات العروض الطبية"},
 
-    {"name" : "medical_offer" , "en" : "Medical Offer" , "ar" : "العرض الطبي"},
-    {"name" : "medical_offers" , "en" : "Medical Offers" , "ar" : "العروض الطبية"},
-    {"name" : "medical_offers_code" , "en" : "Medical Offers Code" , "ar" : "كود العرض الطبي"},
-    {"name" : "medical_offers_name" , "en" : "Medical Offers Name" , "ar" : "إسم العرض الطبي"},
-    {"name" : "for_your_information" , "en" : "For your information" , "ar" : "لمعلوماتك"},
+    {"name" : "medical_offer" , "En" : "Medical Offer" , "Ar" : "العرض الطبي"},
+    {"name" : "medical_offers" , "En" : "Medical Offers" , "Ar" : "العروض الطبية"},
+    {"name" : "medical_offers_code" , "En" : "Medical Offers Code" , "Ar" : "كود العرض الطبي"},
+    {"name" : "medical_offers_name" , "En" : "Medical Offers Name" , "Ar" : "إسم العرض الطبي"},
+    {"name" : "for_your_information" , "En" : "For your information" , "Ar" : "لمعلوماتك"},
 
-    {"name" : "medical_offers_new" , "en" : "New Medical Offer" , "ar" : "عرض طبي جديد"},
-    {"name" : "medical_offers_details" , "en" : "Medical Offers Details" , "ar" : "تفاصيل العرض الطبي"},
-    {"name" : "medical_offers_update" , "en" : "Edit Medical Offers" , "ar" : "تعديل عرض الطبي"},
-    {"name" : "medical_offers_delete" , "en" : "Delte Medical Offers" , "ar" : "حذف العرض الطبي"},
-    {"name" : "medical_offers_add_name" , "en" : "Add Medical Offers" , "ar" : "إضافة عرض طبي"}
+    {"name" : "medical_offers_new" , "En" : "New Medical Offer" , "Ar" : "عرض طبي جديد"},
+    {"name" : "medical_offers_details" , "En" : "Medical Offers Details" , "Ar" : "تفاصيل العرض الطبي"},
+    {"name" : "medical_offers_update" , "En" : "Edit Medical Offers" , "Ar" : "تعديل عرض الطبي"},
+    {"name" : "medical_offers_delete" , "En" : "Delte Medical Offers" , "Ar" : "حذف العرض الطبي"},
+    {"name" : "medical_offers_add_name" , "En" : "Add Medical Offers" , "Ar" : "إضافة عرض طبي"}
 
 
     

@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "safes_payments_admin",
-    "en": "Safes Payments Admin",
-    "ar": "إدارة معاملات الخزينة",
+    "En": "Safes Payments Admin",
+    "Ar": "إدارة معاملات الخزينة",
     "permissions": ["safes_payments_manage"]
 }]

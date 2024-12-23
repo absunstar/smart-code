@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "contracting_companies_admin",
-    "en": "Contracting Companies Admin",
-    "ar": "إدارة شركات التعاقد",
+    "En": "Contracting Companies Admin",
+    "Ar": "إدارة شركات التعاقد",
     "permissions": ["contracting_companies_manage"]
 }]

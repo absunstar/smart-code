@@ -1,27 +1,27 @@
 [
     {
         "id": 1,
-        "en": "New Session",
-        "ar": "جلسة جديدة"
+        "En": "New Session",
+        "Ar": "جلسة جديدة"
     },
     {
         "id": 2,
-        "en": "Postpone For Session",
-        "ar": "تأجيل لجلسة"
+        "En": "Postpone For Session",
+        "Ar": "تأجيل لجلسة"
     },
     {
         "id": 3,
-        "en": "Postpone For Judgment",
-        "ar": "تأجيل لحكم"
+        "En": "Postpone For Judgment",
+        "Ar": "تأجيل لحكم"
     },
     {
         "id": 4,
-        "en": "Cancellation",
-        "ar": "إلغاء"
+        "En": "Cancellation",
+        "Ar": "إلغاء"
     },
     {
         "id": 5,
-        "en": "Cross Off",
-        "ar": "شطب"
+        "En": "Cross Off",
+        "Ar": "شطب"
     }
 ]

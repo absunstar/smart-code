@@ -1,168 +1,168 @@
 [
-    {"name" : "vendors" , "en" : "Vendors" , "ar" : "الموردين"},
-    {"name" : "vendors_new" , "en" : "New Vendor" , "ar" : "مورد جديد"},   
-    {"name" : "vendors_add" , "en" : "Add Vendor" , "ar" : "إضافة مورد"}, 
-    {"name" : "vendors_edit" , "en" : "Vendor Edit" , "ar" : "تعديل بيانات مورد"},
-    {"name" : "vendors_details" , "en" : "Vendor Details" , "ar" : "تفاصيل مورد"}, 
-    {"name" : "vendors_delete" , "en" : "Delete Vendor" , "ar" : "حذف مورد"},
+    {"name" : "vendors" , "En" : "Vendors" , "Ar" : "الموردين"},
+    {"name" : "vendors_new" , "En" : "New Vendor" , "Ar" : "مورد جديد"},   
+    {"name" : "vendors_add" , "En" : "Add Vendor" , "Ar" : "إضافة مورد"}, 
+    {"name" : "vendors_edit" , "En" : "Vendor Edit" , "Ar" : "تعديل بيانات مورد"},
+    {"name" : "vendors_details" , "En" : "Vendor Details" , "Ar" : "تفاصيل مورد"}, 
+    {"name" : "vendors_delete" , "En" : "Delete Vendor" , "Ar" : "حذف مورد"},
 
 
-    {"name" : "vendors_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
-    {"name" : "vendors_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
-    {"name" : "vendors_code" , "en" : "Vendor Code" , "ar" : "كود المورد"},
-    {"name" : "vendor_name" , "en" : "Vendor Name" , "ar" : "إسم المورد"},
-    {"name" : "vendors_name_ar" , "en" : "Vendor Name Arabic" , "ar" : "إسم المورد بالعربي"},
-    {"name" : "vendors_name_en" , "en" : "Vendor Name English" , "ar" : "إسم المورد بالانجليزية"},
+    {"name" : "vendors_personal_information" , "En" : "Personal Information" , "Ar" : "البيانات الشخصية"},
+    {"name" : "vendors_basic_information" , "En" : "Basic Information" , "Ar" : "البيانات الاساسية"},
+    {"name" : "vendors_code" , "En" : "Vendor Code" , "Ar" : "كود المورد"},
+    {"name" : "vendor_name" , "En" : "Vendor Name" , "Ar" : "إسم المورد"},
+    {"name" : "vendors_name_ar" , "En" : "Vendor Name Arabic" , "Ar" : "إسم المورد بالعربي"},
+    {"name" : "vendors_name_en" , "En" : "Vendor Name English" , "Ar" : "إسم المورد بالانجليزية"},
 
-    {"name" : "vendors_groups" , "en" : "Vendor Group" , "ar" : "مجموعة الموردين"},
-    {"name" : "vendors_id_inforamation" , "en" : "Personal Information" , "ar" : "بيانات الهوية"},
-    {"name" : "vendors_nationality" , "en" : "Nationality" , "ar" : "الجنسية"},
-    {"name" : "vendors_id_number" , "en" : "Id Number" , "ar" : "رقم الهوية"},
-    {"name" : "vendors_id_source" , "en" : "Id Source" , "ar" : "مصدر الهوية"},
+    {"name" : "vendors_groups" , "En" : "Vendor Group" , "Ar" : "مجموعة الموردين"},
+    {"name" : "vendors_id_inforamation" , "En" : "Personal Information" , "Ar" : "بيانات الهوية"},
+    {"name" : "vendors_nationality" , "En" : "Nationality" , "Ar" : "الجنسية"},
+    {"name" : "vendors_id_number" , "En" : "Id Number" , "Ar" : "رقم الهوية"},
+    {"name" : "vendors_id_source" , "En" : "Id Source" , "Ar" : "مصدر الهوية"},
 
-    {"name" : "vendors_id_release_date" , "en" : "Id Release Date" , "ar" : "تاريخ اصدار الهوية"},
-    {"name" : "vendors_id_release_date_gregorian" , "en" : "Id Release Gregorian Date" , "ar" : "تاريخ اصدار الهوية ميلادي"},
-    {"name" : "vendors_id_release_date_hijri" , "en" : "Id Release Hijri Date" , "ar" : "تاريخ اصدار الهوية هجري"},
-
-
-
-    {"name" : "vendors_official_documents" , "en" : "Official Documents" , "ar" : "الوثائق الرسمية"},
-    {"name" : "vendors_tax_informations" , "en" : "Tax Information" , "ar" : "البيانات الضريبية"},
-    {"name" : "vendors_tax_identification_number" , "en" : "Tax Identification Number" , "ar" : "رقم التعريف الضريبي"},
-    {"name" : "vendors_tax_card_number" , "en" : "Tax Card Number" , "ar" : "رقم البطاقة الضريبية"},
-    {"name" : "vendors_tax_office_code" , "en" : "Tax Office Code" , "ar" : "كود المأمورية"},
-    {"name" : "vendors_tax_office_name" , "en" : "Tax Office Name" , "ar" : " إسم المأمورية"},
-    {"name" : "vendors_activity_address" , "en" : "Activity Address" , "ar" : "عنوان النشاط"},
-    {"name" : "vendors_file_number" , "en" : "File Number" , "ar" : "رقم الملف"},
-    {"name" : "vendors_activity_name" , "en" : "Activity Name" , "ar" : "إسم النشاط"},
-    {"name" : "vendors_financier_name" , "en" : "Financier Name" , "ar" : "إسم الممول"},
+    {"name" : "vendors_id_release_date" , "En" : "Id Release Date" , "Ar" : "تاريخ اصدار الهوية"},
+    {"name" : "vendors_id_release_date_gregorian" , "En" : "Id Release Gregorian Date" , "Ar" : "تاريخ اصدار الهوية ميلادي"},
+    {"name" : "vendors_id_release_date_hijri" , "En" : "Id Release Hijri Date" , "Ar" : "تاريخ اصدار الهوية هجري"},
 
 
-    {"name" : "vendors_commercial_register_information" , "en" : "Commercial Register Information" , "ar" : "بيانات السجل التجاري"},
-    {"name" : "vendors_commercial_name" , "en" : "Commercial Name" , "ar" : "الإسم التجاري"},
-    {"name" : "vendors_business_attribute" , "en" : "Busines Attribute" , "ar" : "السمة التجارية"},
-    {"name" : "vendors_used_name_in_trade" , "en" : "Used Name In trade" , "ar" : "الإسم المستخدم في التجارة"},
-    {"name" : "vendors_trader_name" , "en" : "Trader Name" , "ar" : "إسم التاجر"},
-    {"name" : "vendors_commerical_nationality" , "en" : "Nathionality Name" , "ar" : "إسم الجنسية"},
-    {"name" : "vendors_financial_system" , "en" : "Financial System" , "ar" : "النظام المالي"},
-    {"name" : "vendors_commercial_validity" , "en" : "Commercial Validity" , "ar" : "الاهلية التجارية"},
-    {"name" : "vendors_trade_type" , "en" : "Trade Type" , "ar" : "نوع التجارة"},
-    {"name" : "vendors_commercial_start_date_gregorian" , "en" : "Commercial Start Gregorian Date" , "ar" : "تاريج بداية النشاط ميلادي"},
-    {"name" : "vendors_commercial_start_date_hijri" , "en" : "Commercial Start Hijri Date" , "ar" : "تاريج بداية النشاط هجري"},
 
-    {"name" : "vendors_commercial_start_date" , "en" : "Commercial Start Date" , "ar" : "تاريج بداية النشاط"},
+    {"name" : "vendors_official_documents" , "En" : "Official Documents" , "Ar" : "الوثائق الرسمية"},
+    {"name" : "vendors_tax_informations" , "En" : "Tax Information" , "Ar" : "البيانات الضريبية"},
+    {"name" : "vendors_tax_identification_number" , "En" : "Tax Identification Number" , "Ar" : "رقم التعريف الضريبي"},
+    {"name" : "vendors_tax_card_number" , "En" : "Tax Card Number" , "Ar" : "رقم البطاقة الضريبية"},
+    {"name" : "vendors_tax_office_code" , "En" : "Tax Office Code" , "Ar" : "كود المأمورية"},
+    {"name" : "vendors_tax_office_name" , "En" : "Tax Office Name" , "Ar" : " إسم المأمورية"},
+    {"name" : "vendors_activity_address" , "En" : "Activity Address" , "Ar" : "عنوان النشاط"},
+    {"name" : "vendors_file_number" , "En" : "File Number" , "Ar" : "رقم الملف"},
+    {"name" : "vendors_activity_name" , "En" : "Activity Name" , "Ar" : "إسم النشاط"},
+    {"name" : "vendors_financier_name" , "En" : "Financier Name" , "Ar" : "إسم الممول"},
+
+
+    {"name" : "vendors_commercial_register_information" , "En" : "Commercial Register Information" , "Ar" : "بيانات السجل التجاري"},
+    {"name" : "vendors_commercial_name" , "En" : "Commercial Name" , "Ar" : "الإسم التجاري"},
+    {"name" : "vendors_business_attribute" , "En" : "Busines Attribute" , "Ar" : "السمة التجارية"},
+    {"name" : "vendors_used_name_in_trade" , "En" : "Used Name In trade" , "Ar" : "الإسم المستخدم في التجارة"},
+    {"name" : "vendors_trader_name" , "En" : "Trader Name" , "Ar" : "إسم التاجر"},
+    {"name" : "vendors_commerical_nationality" , "En" : "Nathionality Name" , "Ar" : "إسم الجنسية"},
+    {"name" : "vendors_financial_system" , "En" : "Financial System" , "Ar" : "النظام المالي"},
+    {"name" : "vendors_commercial_validity" , "En" : "Commercial Validity" , "Ar" : "الاهلية التجارية"},
+    {"name" : "vendors_trade_type" , "En" : "Trade Type" , "Ar" : "نوع التجارة"},
+    {"name" : "vendors_commercial_start_date_gregorian" , "En" : "Commercial Start Gregorian Date" , "Ar" : "تاريج بداية النشاط ميلادي"},
+    {"name" : "vendors_commercial_start_date_hijri" , "En" : "Commercial Start Hijri Date" , "Ar" : "تاريج بداية النشاط هجري"},
+
+    {"name" : "vendors_commercial_start_date" , "En" : "Commercial Start Date" , "Ar" : "تاريج بداية النشاط"},
     
     
-    {"name" : "vendors_opening_balance" , "en" : "Opening Balance" , "ar" : "الرصيد الافتتاحي"},
-    {"name" : "vendors_opening_balance_informations" , "en" : "Opening Balance Informations" , "ar" : "بيانات الرصيد الافتتاحي"},
-    {"name" : "vendors_initial_balance" , "en" : "Initial Balance " , "ar" : "الرصيد الافتتاحي"},
-    {"name" : "vendors_currency_name" , "en" : "Currency Name" , "ar" : "إسم العملة"},    
-    {"name" : "vendors_balance_type" , "en" : "Balance Type" , "ar" : "نوع الرصيد"},
-    {"name" : "vendors_debit" , "en" : "Debit" , "ar" : "مدين"},
-    {"name" : "vendors_credit" , "en" : "Credit" , "ar" : "دائن"},
+    {"name" : "vendors_opening_balance" , "En" : "Opening Balance" , "Ar" : "الرصيد الافتتاحي"},
+    {"name" : "vendors_opening_balance_informations" , "En" : "Opening Balance Informations" , "Ar" : "بيانات الرصيد الافتتاحي"},
+    {"name" : "vendors_initial_balance" , "En" : "Initial Balance " , "Ar" : "الرصيد الافتتاحي"},
+    {"name" : "vendors_currency_name" , "En" : "Currency Name" , "Ar" : "إسم العملة"},    
+    {"name" : "vendors_balance_type" , "En" : "Balance Type" , "Ar" : "نوع الرصيد"},
+    {"name" : "vendors_debit" , "En" : "Debit" , "Ar" : "مدين"},
+    {"name" : "vendors_credit" , "En" : "Credit" , "Ar" : "دائن"},
 
-    {"name" : "vendors_due_date" , "en" : "Date" , "ar" : "التاريخ"},
+    {"name" : "vendors_due_date" , "En" : "Date" , "Ar" : "التاريخ"},
 
-    {"name" : "vendors_due_date_gregorian" , "en" : "Due Gregorian Date" , "ar" : "تاريج الاستحقاق ميلادي"},
+    {"name" : "vendors_due_date_gregorian" , "En" : "Due Gregorian Date" , "Ar" : "تاريج الاستحقاق ميلادي"},
 
-    {"name" : "vendors_due_date_hijri" , "en" : "Due Hijri Date" , "ar" : "تاريج الاستحقاق هجري"},
+    {"name" : "vendors_due_date_hijri" , "En" : "Due Hijri Date" , "Ar" : "تاريج الاستحقاق هجري"},
 
-    {"name" : "vendors_reference_number" , "en" : "Reference Number" , "ar" : "الرقم المرجعي"},
-    {"name" : "vendors_notes_arabic" , "en" : "Notes Arabic" , "ar" : "ملاحظات بالعربي"},
-    {"name" : "vendors_notes_english" , "en" : "Notes English" , "ar" : "ملاحظات بالانجليزية"},
+    {"name" : "vendors_reference_number" , "En" : "Reference Number" , "Ar" : "الرقم المرجعي"},
+    {"name" : "vendors_notes_arabic" , "En" : "Notes Arabic" , "Ar" : "ملاحظات بالعربي"},
+    {"name" : "vendors_notes_english" , "En" : "Notes English" , "Ar" : "ملاحظات بالانجليزية"},
     
 
 
 
-    {"name" : "vendors_banking_and_acounting" , "en" : "Banking And Accounting" , "ar" : "البنوك والحسابات"},   
-    {"name" : "vendors_accounting_informations" , "en" : "Accounting Informations" , "ar" : "البيانات المحاسبية"},
-    {"name" : "vendors_period_maturity_purchases" , "en" : "Period Of Maturity Of Purchases" , "ar" : "فترة استحقاق المشتريات"},
-    {"name" : "vendors_prof_account" , "en" : "Prof Account" , "ar" : "حساب الاستاذ"},
-    {"name" : "vendors_discount" , "en" : "Discount" , "ar" : "نسبة الخصم"},
-    {"name" : "vendors_credit_limit" , "en" : "Credit Limit" , "ar" : "حد الائتمان"},
-    {"name" : "vendors_delegate_commission" , "en" : "Delegate Commission" , "ar" : "عمولة المندوب"},
+    {"name" : "vendors_banking_and_acounting" , "En" : "Banking And Accounting" , "Ar" : "البنوك والحسابات"},   
+    {"name" : "vendors_accounting_informations" , "En" : "Accounting Informations" , "Ar" : "البيانات المحاسبية"},
+    {"name" : "vendors_period_maturity_purchases" , "En" : "Period Of Maturity Of Purchases" , "Ar" : "فترة استحقاق المشتريات"},
+    {"name" : "vendors_prof_account" , "En" : "Prof Account" , "Ar" : "حساب الاستاذ"},
+    {"name" : "vendors_discount" , "En" : "Discount" , "Ar" : "نسبة الخصم"},
+    {"name" : "vendors_credit_limit" , "En" : "Credit Limit" , "Ar" : "حد الائتمان"},
+    {"name" : "vendors_delegate_commission" , "En" : "Delegate Commission" , "Ar" : "عمولة المندوب"},
 
 
-    {"name" : "vendors_bank_information" , "en" : "Bank Information" , "ar" : "بيانات البنك"},
-    {"name" : "vendors_bank_name" , "en" : "Bank Name" , "ar" : "إسم البنك"},
-    {"name" : "vendors_bank_account_number" , "en" : "Bank Account Number" , "ar" : "رقم حساب البنك"},
-
-
-
-    {"name" : "vendors_contact_and_addresses" , "en" : "Contact and Addresses" , "ar" : "الاتصال والعناوين"},
-    {"name" : "vendors_address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
-    {"name" : "vendors_gov" , "en" : "Gov" , "ar" : "المحافظة"},
-    {"name" : "vendors_city" , "en" : "City" , "ar" : "المدينة"},
-    {"name" : "vendors_address" , "en" : "Address" , "ar" : "العنوان"},
-
-
-    {"name" : "vendors_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
-    {"name" : "vendors_phone" , "en" : "Phone" , "ar" : "التليفون"},
-    {"name" : "vendors_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "vendors_fax" , "en" : "Fax" , "ar" : "الفاكس"},
-
-    {"name" : "vendors_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},
-    {"name" : "vendors_mailbox" , "en" : "Mail Box" , "ar" : "صندوق البريد"},
-    {"name" : "vendors_post_number" , "en" : "Post Number" , "ar" : "الرقم البريدي"},
-
-    {"name" : "vendors_Web_and_social_accounts" , "en" : "Web And Social Accounts" , "ar" : "المواقع والحسابات الاجتماعية"},   
-    {"name" : "vendors_website" , "en" : "Website" , "ar" : "الموقع الإلكتروني"},
-    {"name" : "vendors_social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
-    {"name" : "vendors_social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
-    {"name" : "vendors_social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
+    {"name" : "vendors_bank_information" , "En" : "Bank Information" , "Ar" : "بيانات البنك"},
+    {"name" : "vendors_bank_name" , "En" : "Bank Name" , "Ar" : "إسم البنك"},
+    {"name" : "vendors_bank_account_number" , "En" : "Bank Account Number" , "Ar" : "رقم حساب البنك"},
 
 
 
-
-    {"name" : "vendors_branches" , "en" : "Branches" , "ar" : "فروع المورد"},
-    {"name" : "vendors_branches_informations" , "en" : "Branches Informations" , "ar" : "بيانات الفروع"},   
-    {"name" : "vendors_branch_informations" , "en" : "Branch Informations" , "ar" : "بيانات الفرع"},
-    {"name" : "vendors_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
-    {"name" : "vendors_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
-    {"name" : "vendors_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
-    {"name" : "vendors_branch_gov" , "en" : "Branch Gov" , "ar" : "المحافظة"},
-    {"name" : "vendors_branch_city" , "en" : "Branch  City" , "ar" : "المدينة"},
-    {"name" : "vendors_branch_address" , "en" : "Branch  Address" , "ar" : "العنوان"},
-    {"name" : "vendors_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
-    {"name" : "vendors_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "الموبايل "},
-    {"name" : "vendors_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
-    {"name" : "vendors_branch_email" , "en" : "Branch Email" , "ar" : "البريد الإلكتروني"},
+    {"name" : "vendors_contact_and_addresses" , "En" : "Contact and Addresses" , "Ar" : "الاتصال والعناوين"},
+    {"name" : "vendors_address_informations" , "En" : "Address Informaion" , "Ar" : "بيانات العناوين"},
+    {"name" : "vendors_gov" , "En" : "Gov" , "Ar" : "المحافظة"},
+    {"name" : "vendors_city" , "En" : "City" , "Ar" : "المدينة"},
+    {"name" : "vendors_address" , "En" : "Address" , "Ar" : "العنوان"},
 
 
-    {"name" : "vendors_charge_contact_informations" , "en" : "Charge Informaion" , "ar" : "بيانات مسئول"},
-    {"name" : "vendors_charge_name" , "en" : "Charge Name" , "ar" : "الإسم"},
-    {"name" : "vendors_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},   
-    {"name" : "vendors_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
-    {"name" : "vendors_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "vendors_charge_mobile" , "en" : "Charge Mobile" , "ar" : "الموبايل "},
-    {"name" : "vendors_charge_email" , "en" : "Charge Email" , "ar" : "البريد الإلكتروني"},
+    {"name" : "vendors_contact_informations" , "En" : "Contact Informaion" , "Ar" : "بيانات الاتصال"},
+    {"name" : "vendors_phone" , "En" : "Phone" , "Ar" : "التليفون"},
+    {"name" : "vendors_internal_number" , "En" : "Internal Number" , "Ar" : "الرقم الداخلي"},
+    {"name" : "vendors_fax" , "En" : "Fax" , "Ar" : "الفاكس"},
+
+    {"name" : "vendors_post_informations" , "En" : "Post Informaion" , "Ar" : "بيانات البريد"},
+    {"name" : "vendors_mailbox" , "En" : "Mail Box" , "Ar" : "صندوق البريد"},
+    {"name" : "vendors_post_number" , "En" : "Post Number" , "Ar" : "الرقم البريدي"},
+
+    {"name" : "vendors_Web_and_social_accounts" , "En" : "Web And Social Accounts" , "Ar" : "المواقع والحسابات الاجتماعية"},   
+    {"name" : "vendors_website" , "En" : "Website" , "Ar" : "الموقع الإلكتروني"},
+    {"name" : "vendors_social_facebook_account" , "En" : "FaceBook Account" , "Ar" : "حساب الفيس بوك"},
+    {"name" : "vendors_social_twitter_account" , "En" : "Twitter Account" , "Ar" : "حساب تويتر"},
+    {"name" : "vendors_social_google_account" , "En" : "Google Account" , "Ar" : "حساب جوجل"},
 
 
-    {"name" : "vendors_files" , "en" : "Files" , "ar" : "الملفات"},
 
 
-    {"name" : "vendors_dealing" , "en" : "Vendors Dealing" , "ar" : "تعاملات المورد"},
+    {"name" : "vendors_branches" , "En" : "Branches" , "Ar" : "فروع المورد"},
+    {"name" : "vendors_branches_informations" , "En" : "Branches Informations" , "Ar" : "بيانات الفروع"},   
+    {"name" : "vendors_branch_informations" , "En" : "Branch Informations" , "Ar" : "بيانات الفرع"},
+    {"name" : "vendors_branch_code" , "En" : "Branch Code" , "Ar" : "كود الفرع"},
+    {"name" : "vendors_branch_name" , "En" : "Branch Name" , "Ar" : "إسم الفرع"},
+    {"name" : "vendors_branch_notes" , "En" : "Branch Notes" , "Ar" : "ملاحظات الفرع"},
+    {"name" : "vendors_branch_gov" , "En" : "Branch Gov" , "Ar" : "المحافظة"},
+    {"name" : "vendors_branch_city" , "En" : "Branch  City" , "Ar" : "المدينة"},
+    {"name" : "vendors_branch_address" , "En" : "Branch  Address" , "Ar" : "العنوان"},
+    {"name" : "vendors_branch_phone" , "En" : "Branch Phone" , "Ar" : "التليفون"},
+    {"name" : "vendors_branch_mobile" , "En" : "Branch  Mobile" , "Ar" : "الموبايل "},
+    {"name" : "vendors_branch_fax" , "En" : "Branch Fax" , "Ar" : "الفاكس"},
+    {"name" : "vendors_branch_email" , "En" : "Branch Email" , "Ar" : "البريد الإلكتروني"},
 
-    {"name" : "vendors_dealing_companies_branches" , "en" : "Dealing Companies And Branches" , "ar" : "الشركات والفروع"},
-    {"name" : "vendors_dealing_companies_branches_informatons" , "en" : "Companies And Branches Informations" , "ar" : "بيانات الشركات والفروع"},
-    {"name" : "vendors_company_name" , "en" : "Company Name" , "ar" : "إسم الشركة"},
-    {"name" : "vendors_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+
+    {"name" : "vendors_charge_contact_informations" , "En" : "Charge Informaion" , "Ar" : "بيانات مسئول"},
+    {"name" : "vendors_charge_name" , "En" : "Charge Name" , "Ar" : "الإسم"},
+    {"name" : "vendors_charge_job" , "En" : "Charge Job" , "Ar" : "الوظيفة"},   
+    {"name" : "vendors_charge_phone" , "En" : "Charge Phone" , "Ar" : "التليفون"},
+    {"name" : "vendors_charge_internal_number" , "En" : "Charge Internal Number" , "Ar" : "الرقم الداخلي"},
+    {"name" : "vendors_charge_mobile" , "En" : "Charge Mobile" , "Ar" : "الموبايل "},
+    {"name" : "vendors_charge_email" , "En" : "Charge Email" , "Ar" : "البريد الإلكتروني"},
+
+
+    {"name" : "vendors_files" , "En" : "Files" , "Ar" : "الملفات"},
+
+
+    {"name" : "vendors_dealing" , "En" : "Vendors Dealing" , "Ar" : "تعاملات المورد"},
+
+    {"name" : "vendors_dealing_companies_branches" , "En" : "Dealing Companies And Branches" , "Ar" : "الشركات والفروع"},
+    {"name" : "vendors_dealing_companies_branches_informatons" , "En" : "Companies And Branches Informations" , "Ar" : "بيانات الشركات والفروع"},
+    {"name" : "vendors_company_name" , "En" : "Company Name" , "Ar" : "إسم الشركة"},
+    {"name" : "vendors_branch_name" , "En" : "Branch Name" , "Ar" : "إسم الفرع"},
 
 
           
  
-    {"name" : "vendors_send_email" , "en" : "Send Email" , "ar" : "ارسال بريد الكتروني"},
-    {"name" : "vendors_send_email_to_vendor" , "en" : "Send Email To Vendor" , "ar" : "ارسال بريد الكتروني لمورد"},
-    {"name" : "vendors_create_email" , "en" : "Create Email" , "ar" : "انشاء ايميل"},
-    {"name" : "vendors_mail_from" , "en" : "From" , "ar" : "من"},
-    {"name" : "vendors_mail_to" , "en" : "To" , "ar" : "الي"},
-    {"name" : "vendors_mail_cc" , "en" : "Cc" , "ar" : "نسخة كربونية"},
-    {"name" : "vendors_mail_bcc" , "en" : "Bcc" , "ar" : "نسخة كربونية مخفية"},
-    {"name" : "vendors_mail_subject" , "en" : "Subject" , "ar" : "الموضوع"},
-    {"name" : "vendors_mail_send" , "en" : "Send" , "ar" : "ارسال"},
-    {"name" : "vendors_mail_text" , "en" : "Email Text" , "ar" : "نص الرسالة"},
+    {"name" : "vendors_send_email" , "En" : "Send Email" , "Ar" : "ارسال بريد الكتروني"},
+    {"name" : "vendors_send_email_to_vendor" , "En" : "Send Email To Vendor" , "Ar" : "ارسال بريد الكتروني لمورد"},
+    {"name" : "vendors_create_email" , "En" : "Create Email" , "Ar" : "انشاء ايميل"},
+    {"name" : "vendors_mail_from" , "En" : "From" , "Ar" : "من"},
+    {"name" : "vendors_mail_to" , "En" : "To" , "Ar" : "الي"},
+    {"name" : "vendors_mail_cc" , "En" : "Cc" , "Ar" : "نسخة كربونية"},
+    {"name" : "vendors_mail_bcc" , "En" : "Bcc" , "Ar" : "نسخة كربونية مخفية"},
+    {"name" : "vendors_mail_subject" , "En" : "Subject" , "Ar" : "الموضوع"},
+    {"name" : "vendors_mail_send" , "En" : "Send" , "Ar" : "ارسال"},
+    {"name" : "vendors_mail_text" , "En" : "Email Text" , "Ar" : "نص الرسالة"},
    
-    {"name" : "vendors_send" , "en" : "Send" , "ar" : "ارسال"}
+    {"name" : "vendors_send" , "En" : "Send" , "Ar" : "ارسال"}
 
     
     

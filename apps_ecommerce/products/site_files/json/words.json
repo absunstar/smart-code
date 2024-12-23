@@ -1,72 +1,72 @@
 [{
         "name": "product",
-        "en": "Food",
-        "ar": "المنتج"
+        "En": "Food",
+        "Ar": "المنتج"
     },
     {
         "name": "products",
-        "en": "Foods",
-        "ar": "المنتجات"
+        "En": "Foods",
+        "Ar": "المنتجات"
     },
     {
         "name": "about_this_item",
-        "en": "About This Item",
-        "ar": "حول هذه السلعة"
+        "En": "About This Item",
+        "Ar": "حول هذه السلعة"
     },
     {
         "name": "product_description",
-        "en": "Product Description",
-        "ar": "وصف المنتج"
+        "En": "Product Description",
+        "Ar": "وصف المنتج"
     },
     {
         "name": "main_photo",
-        "en": "Main Photo",
-        "ar": "الصورة الرئيسية"
+        "En": "Main Photo",
+        "Ar": "الصورة الرئيسية"
     },
     {
         "name": "sub_photos",
-        "en": "Sub Photos",
-        "ar": "الصور الفرعية"
+        "En": "Sub Photos",
+        "Ar": "الصور الفرعية"
     },
     {
         "name": "product_new",
-        "en": "New Foods",
-        "ar": "منتج جديد"
+        "En": "New Foods",
+        "Ar": "منتج جديد"
     },
     {
         "name": "product_add",
-        "en": "Add Foods",
-        "ar": "إضافة منتج "
+        "En": "Add Foods",
+        "Ar": "إضافة منتج "
     },
     {
         "name": "product_edit",
-        "en": "Edit Foods",
-        "ar": "تعديل منتج "
+        "En": "Edit Foods",
+        "Ar": "تعديل منتج "
     },
     {
         "name": "product_details",
-        "en": "Foods Details",
-        "ar": "تفاصيل المنتج "
+        "En": "Foods Details",
+        "Ar": "تفاصيل المنتج "
     },
     {
         "name": "product_delete",
-        "en": "Delete Foods",
-        "ar": "حذف منتج "
+        "En": "Delete Foods",
+        "Ar": "حذف منتج "
     },
     {
         "name": "product_name_ar",
-        "en": "Foods Name Ar",
-        "ar": "إسم المنتج بالعربي"
+        "En": "Foods Name Ar",
+        "Ar": "إسم المنتج بالعربي"
     },
     {
         "name": "product_name_en",
-        "en": "Foods Name En",
-        "ar": "إسم المنتج بالإنجليزي"
+        "En": "Foods Name En",
+        "Ar": "إسم المنتج بالإنجليزي"
     },
     {
         "name": "product_notes",
-        "en": "Notes Foods",
-        "ar": "ملاحظات المنتج "
+        "En": "Notes Foods",
+        "Ar": "ملاحظات المنتج "
     }
 
 

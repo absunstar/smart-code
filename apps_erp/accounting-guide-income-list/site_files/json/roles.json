@@ -1,7 +1,7 @@
 [{
     "module_name": "accounting",
     "name": "accounting_guide_income_list_admin",
-    "en": "Guide Income List Admin",
-    "ar": "إدارة دليل تصنيفات قائمة الدخل",
+    "En": "Guide Income List Admin",
+    "Ar": "إدارة دليل تصنيفات قائمة الدخل",
     "permissions": ["accounting_guide_income_list_manage"]
 }]

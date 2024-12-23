@@ -1,17 +1,17 @@
 [
-    {"name" : "tax_types_add" , "en" : "Add Tax Type" , "ar" : "إضافة ضريبة"},
-    {"name" : "tax_types_new" , "en" : "New Tax Type" , "ar" : "ضريبة جديدة"},
-    {"name" : "tax_types" , "en" : "Taxes Type" , "ar" : "الضرائب"},
-    {"name" : "accounting_tax_types" , "en" : "Taxes Type" , "ar" : "الضرائب"},
-    {"name" : "tax_types_details" , "en" : "Tax Type Details" , "ar" : "تفاصيل ضريبة"},
-    {"name" : "tax_types_edit" , "en" : "Edit Tax Type" , "ar" : "تعديل بيانات ضريبة"},
-    {"name" : "tax_types_delete" , "en" : "Delete Tax Type" , "ar" : "حذف ضريبة"},
-    {"name" : "tax_types_name" , "en" : "Tax Type Name" , "ar" : "إسم الضريبة"},
-    {"name" : "tax_types_value" , "en" : "Tax Type Value" , "ar" : "قيمة الضريبة"},
-    {"name" : "tax_types_number" , "en" : "Tax Type Number" , "ar" : "مبلغ"},
-    {"name" : "tax_types_percent" , "en" : "Tax Type Percent" , "ar" : "نسبة"},
-    {"name" : "tax_types_logo" , "en" : "Tax Type Logo" , "ar" : " الشعار"},
-    {"name" : "tax_types_img" , "en" : "Tax Type Image" , "ar" : "الملفات"}
+    {"name" : "tax_types_add" , "En" : "Add Tax Type" , "Ar" : "إضافة ضريبة"},
+    {"name" : "tax_types_new" , "En" : "New Tax Type" , "Ar" : "ضريبة جديدة"},
+    {"name" : "tax_types" , "En" : "Taxes Type" , "Ar" : "الضرائب"},
+    {"name" : "accounting_tax_types" , "En" : "Taxes Type" , "Ar" : "الضرائب"},
+    {"name" : "tax_types_details" , "En" : "Tax Type Details" , "Ar" : "تفاصيل ضريبة"},
+    {"name" : "tax_types_edit" , "En" : "Edit Tax Type" , "Ar" : "تعديل بيانات ضريبة"},
+    {"name" : "tax_types_delete" , "En" : "Delete Tax Type" , "Ar" : "حذف ضريبة"},
+    {"name" : "tax_types_name" , "En" : "Tax Type Name" , "Ar" : "إسم الضريبة"},
+    {"name" : "tax_types_value" , "En" : "Tax Type Value" , "Ar" : "قيمة الضريبة"},
+    {"name" : "tax_types_number" , "En" : "Tax Type Number" , "Ar" : "مبلغ"},
+    {"name" : "tax_types_percent" , "En" : "Tax Type Percent" , "Ar" : "نسبة"},
+    {"name" : "tax_types_logo" , "En" : "Tax Type Logo" , "Ar" : " الشعار"},
+    {"name" : "tax_types_img" , "En" : "Tax Type Image" , "Ar" : "الملفات"}
     
     
 

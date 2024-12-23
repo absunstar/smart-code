@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "lawsuit_add_admin",
-    "en": "Lawsuit Add Admin",
-    "ar": "إدارة إضافة الدعاوى",
+    "En": "Lawsuit Add Admin",
+    "Ar": "إدارة إضافة الدعاوى",
     "permissions": ["lawsuit_add_manage"]
 }]

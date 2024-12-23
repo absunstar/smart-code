@@ -20,7 +20,7 @@ module.exports = function init(site) {
     $stores.add({
       name_ar: "مخزن إفتراضي",
       name_en : "Default Store",
-      type: { "id": 1, "en": "Store Normal", "ar": " مخزن عادى" },
+      type: { "id": 1, "En": "Store Normal", "Ar": " مخزن عادى" },
       code: "1-Test",
       image_url: '/images/store.png',
       company: {

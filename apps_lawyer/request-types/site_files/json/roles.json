@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "request_types_admin",
-    "en": "Request Types Admin",
-    "ar": "إدارة أنواع الطلبات",
+    "En": "Request Types Admin",
+    "Ar": "إدارة أنواع الطلبات",
     "permissions": ["request_types_manage"]
 }]

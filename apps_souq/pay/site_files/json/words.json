@@ -1,82 +1,82 @@
 [
   {
     "name": "pay",
-    "en": "Pay",
-    "ar": "المدفوعات"
+    "En": "Pay",
+    "Ar": "المدفوعات"
   },
   {
     "name": "commission_transfer_forms_report",
-    "en": "Commission transfer forms report",
-    "ar": "تقرير نماذج تحويل العمولة"
+    "En": "Commission transfer forms report",
+    "Ar": "تقرير نماذج تحويل العمولة"
   },
   {
     "name": "commission_transfer_form",
-    "en": "Commission transfer form",
-    "ar": "نموذج تحويل العمولة"
+    "En": "Commission transfer form",
+    "Ar": "نموذج تحويل العمولة"
   },
   {
     "name": "delete_transfer_form",
-    "en": "Delete transfer form",
-    "ar": "حذف نموذج تحويل"
+    "En": "Delete transfer form",
+    "Ar": "حذف نموذج تحويل"
   },
   {
     "name": "commission_report",
-    "en": "Commission Report",
-    "ar": "تقرير العمولة"
+    "En": "Commission Report",
+    "Ar": "تقرير العمولة"
   },
   {
     "name": "transfer_form_submitted_successfully",
-    "en": "Transfer form has been submitted successfully",
-    "ar": "تم إرسال نموذج التحويل بنجاح"
+    "En": "Transfer form has been submitted successfully",
+    "Ar": "تم إرسال نموذج التحويل بنجاح"
   },
   {
     "name": "commission_account",
-    "en": "Commission account",
-    "ar": "حساب العمولة"
+    "En": "Commission account",
+    "Ar": "حساب العمولة"
   },
   {
     "name": "commission_amount",
-    "en": "Commission amount",
-    "ar": "مبلغ العمولة"
+    "En": "Commission amount",
+    "Ar": "مبلغ العمولة"
   },
   {
     "name": "ad_code",
-    "en": "Ad code",
-    "ar": "كود الإعلان"
+    "En": "Ad code",
+    "Ar": "كود الإعلان"
   },
   {
     "name": "transfer_receipt_image",
-    "en": "Transfer receipt image",
-    "ar": "صورة إيصال التحويل"
+    "En": "Transfer receipt image",
+    "Ar": "صورة إيصال التحويل"
   },
   {
     "name": "transfer_date",
-    "en": "Transfer date",
-    "ar": "تاريخ التحويل"
+    "En": "Transfer date",
+    "Ar": "تاريخ التحويل"
   },
   {
     "name": "mobile_associated_membership",
-    "en": "Mobile number associated with your membership",
-    "ar": "رقم الجوال المرتبط بعضويتك"
+    "En": "Mobile number associated with your membership",
+    "Ar": "رقم الجوال المرتبط بعضويتك"
   },
   {
     "name": "adapter_name",
-    "en": "Adapter name",
-    "ar": "إسم المحول"
+    "En": "Adapter name",
+    "Ar": "إسم المحول"
   },
   {
     "name": "enter_selling_price",
-    "en": "Enter the selling price",
-    "ar": "ادخل سعر البيع"
+    "En": "Enter the selling price",
+    "Ar": "ادخل سعر البيع"
   },
   {
     "name": "commission_due",
-    "en": "Commission due",
-    "ar": "العمولة المستحقة"
+    "En": "Commission due",
+    "Ar": "العمولة المستحقة"
   },
   {
     "name": "commission_alert",
-    "en": "After sending the amount, you must write to us via the following form in order to register the commission in the name of your membership and then obtain the site's features for customers",
-    "ar": "بعد إرسال المبلغ،يجب مراسلتنا عبر النموذج التالي لأجل تسجيل العمولة بأسم عضويتك ثم الحصول على مميزات الموقع الخاصة بالعملاء"
+    "En": "After sending the amount, you must write to us via the following form in order to register the commission in the name of your membership and then obtain the site's features for customers",
+    "Ar": "بعد إرسال المبلغ،يجب مراسلتنا عبر النموذج التالي لأجل تسجيل العمولة بأسم عضويتك ثم الحصول على مميزات الموقع الخاصة بالعملاء"
   }
 ]

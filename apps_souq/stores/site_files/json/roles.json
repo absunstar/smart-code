@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "stores_admin",
-    "en": "Stores Admin",
-    "ar": "إدارة المتاجر",
+    "En": "Stores Admin",
+    "Ar": "إدارة المتاجر",
     "permissions": ["stores_manage"]
 }]

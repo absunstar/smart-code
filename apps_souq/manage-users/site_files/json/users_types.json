@@ -1,17 +1,17 @@
 [
   {
     "id": 1,
-    "en": "User",
-    "ar": "مستخدم"
+    "En": "User",
+    "Ar": "مستخدم"
   },
   {
     "id": 2,
-    "en": "Shipping company",
-    "ar": "شركة شحن"
+    "En": "Shipping company",
+    "Ar": "شركة شحن"
   },
   {
     "id": 3,
-    "en": "Delegate",
-    "ar": "مندوب"
+    "En": "Delegate",
+    "Ar": "مندوب"
   }
 ]

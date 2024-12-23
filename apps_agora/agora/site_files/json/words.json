@@ -1,117 +1,117 @@
 [
     {
         "name": "attend_students",
-        "en": "Attend Students",
-        "ar": "حضور الطلاب"
+        "En": "Attend Students",
+        "Ar": "حضور الطلاب"
     },
     {
         "name": "attend_students",
-        "en": "The Attend Students",
-        "ar": "حضور طلاب"
+        "En": "The Attend Students",
+        "Ar": "حضور طلاب"
     },
     {
         "name": "attend_students_new",
-        "en": "New Attend Students",
-        "ar": "حضور طلاب جديدة"
+        "En": "New Attend Students",
+        "Ar": "حضور طلاب جديدة"
     },
     {
         "name": "attend_status",
-        "en": "Attend Status",
-        "ar": "حالة الحضور"
+        "En": "Attend Status",
+        "Ar": "حالة الحضور"
     },
     {
         "name": "search_students",
-        "en": "Search Students",
-        "ar": "بحث الطلاب"
+        "En": "Search Students",
+        "Ar": "بحث الطلاب"
     },
     {
         "name": "student_name",
-        "en": "Student Name",
-        "ar": "إسم الطالب"
+        "En": "Student Name",
+        "Ar": "إسم الطالب"
     },
     {
         "name": "attend_students_attend",
-        "en": "Attend Time",
-        "ar": "وقت الحضور"
+        "En": "Attend Time",
+        "Ar": "وقت الحضور"
     },
     {
         "name": "attend_students_leave",
-        "en": "Leave Time",
-        "ar": "وقت المغادرة"
+        "En": "Leave Time",
+        "Ar": "وقت المغادرة"
     },
     {
         "name": "leave_now",
-        "en": "Leave Now",
-        "ar": "مغادرة الأن"
+        "En": "Leave Now",
+        "Ar": "مغادرة الأن"
     },
     {
         "name": "attend_date",
-        "en": "Attend Date",
-        "ar": "تاريخ الحضور"
+        "En": "Attend Date",
+        "Ar": "تاريخ الحضور"
     },
     {
         "name": "attend_date_from",
-        "en": "Attend Date From",
-        "ar": "تاريخ الحضور من"
+        "En": "Attend Date From",
+        "Ar": "تاريخ الحضور من"
     },
     {
         "name": "attend_date_to",
-        "en": "Attend Date To",
-        "ar": "تاريخ الحضور إلى"
+        "En": "Attend Date To",
+        "Ar": "تاريخ الحضور إلى"
     },
     {
         "name": "leave_date",
-        "en": "Leave Date",
-        "ar": "تاريخ الإنصراف"
+        "En": "Leave Date",
+        "Ar": "تاريخ الإنصراف"
     },
     {
         "name": "leave_date_from",
-        "en": "Leave Date From",
-        "ar": "تاريخ الإنصراف من"
+        "En": "Leave Date From",
+        "Ar": "تاريخ الإنصراف من"
     },
     {
         "name": "leave_date_to",
-        "en": "Leave Date To",
-        "ar": "تاريخ الإنصراف إلى"
+        "En": "Leave Date To",
+        "Ar": "تاريخ الإنصراف إلى"
     },
     {
         "name": "leave_now",
-        "en": "Leave Now",
-        "ar": "مغادرة الأن"
+        "En": "Leave Now",
+        "Ar": "مغادرة الأن"
     },
     {
         "name": "attend_students_add",
-        "en": "Add Attend Students",
-        "ar": "إضافة حضور طلاب"
+        "En": "Add Attend Students",
+        "Ar": "إضافة حضور طلاب"
     },
     {
         "name": "attend_students_edit",
-        "en": "Edit Attend Students",
-        "ar": "تعديل حضور طلاب"
+        "En": "Edit Attend Students",
+        "Ar": "تعديل حضور طلاب"
     },
     {
         "name": "attend_students_details",
-        "en": "Attend Students Details",
-        "ar": "تفاصيل حضور طلاب"
+        "En": "Attend Students Details",
+        "Ar": "تفاصيل حضور طلاب"
     },
     {
         "name": "attend_students_delete",
-        "en": "Delete Attend Students",
-        "ar": "حذف حضور طلاب"
+        "En": "Delete Attend Students",
+        "Ar": "حذف حضور طلاب"
     },
     {
         "name": "attend_students_name",
-        "en": "Course Name",
-        "ar": "إسم الحضور طلاب "
+        "En": "Course Name",
+        "Ar": "إسم الحضور طلاب "
     },
     {
         "name": "attend_students_total",
-        "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "En": "Total Duration",
+        "Ar": "إجمالي المدة "
     },
     {
         "name": "auto_load_attendance",
-        "en": "Auto Load Attendance",
-        "ar": "تحميل تلقائى للبصمة"
+        "En": "Auto Load Attendance",
+        "Ar": "تحميل تلقائى للبصمة"
     }
 ]

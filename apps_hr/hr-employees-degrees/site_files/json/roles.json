@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "employees_degrees_admin",
-    "en": "Employees Degree Admin",
-    "ar": "إدارة الدرجات الوظيفية",
+    "En": "Employees Degree Admin",
+    "Ar": "إدارة الدرجات الوظيفية",
     "permissions": ["employees_degrees_manage"]
 }]

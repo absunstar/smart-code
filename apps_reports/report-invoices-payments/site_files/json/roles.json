@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_invoices_payments_admin",
-    "en": "Report Invoices Payments",
-    "ar": "تقرير دفعات الفواتير",
+    "En": "Report Invoices Payments",
+    "Ar": "تقرير دفعات الفواتير",
     "permissions": ["report_invoices_payments_manage"]
 }]

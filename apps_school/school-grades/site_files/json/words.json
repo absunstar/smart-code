@@ -1,17 +1,17 @@
 [
-    {"name" : "school_grades_informations" , "en" : "School Grades Informations" , "ar" : "بيانات المراحل الدراسية"},
+    {"name" : "school_grades_informations" , "En" : "School Grades Informations" , "Ar" : "بيانات المراحل الدراسية"},
 
-    {"name" : "school_grade" , "en" : "School Grade" , "ar" : "المرحلة الدراسية"},
-    {"name" : "school_grades" , "en" : "School Grades" , "ar" : "المراحل الدراسية"},
-    {"name" : "school_grades_menus" , "en" : "School Grades Menu" , "ar" : "قائمة المراحل الدراسية"},
-    {"name" : "school_grades_code" , "en" : "School Grades Code" , "ar" : "كود المرحلة الدراسية"},
-    {"name" : "school_grades_name" , "en" : "School Grades Name" , "ar" : "إسم المرحلة الدراسية"},
+    {"name" : "school_grade" , "En" : "School Grade" , "Ar" : "المرحلة الدراسية"},
+    {"name" : "school_grades" , "En" : "School Grades" , "Ar" : "المراحل الدراسية"},
+    {"name" : "school_grades_menus" , "En" : "School Grades Menu" , "Ar" : "قائمة المراحل الدراسية"},
+    {"name" : "school_grades_code" , "En" : "School Grades Code" , "Ar" : "كود المرحلة الدراسية"},
+    {"name" : "school_grades_name" , "En" : "School Grades Name" , "Ar" : "إسم المرحلة الدراسية"},
 
-    {"name" : "school_grades_new" , "en" : "New School Grade" , "ar" : "مرحلة دراسية جديدة"},
-    {"name" : "school_grades_details" , "en" : "School Grades Details" , "ar" : "تفاصيل المرحلة الدراسية"},
-    {"name" : "school_grades_update" , "en" : "Edit School Grades" , "ar" : "تعديل المرحلة الدراسية"},
-    {"name" : "school_grades_delete" , "en" : "Delte School Grades" , "ar" : "حذف المرحلة الدراسية"},
-    {"name" : "school_grades_add_name" , "en" : "Add School Grades" , "ar" : "إضافة مرحلة الدراسية"}
+    {"name" : "school_grades_new" , "En" : "New School Grade" , "Ar" : "مرحلة دراسية جديدة"},
+    {"name" : "school_grades_details" , "En" : "School Grades Details" , "Ar" : "تفاصيل المرحلة الدراسية"},
+    {"name" : "school_grades_update" , "En" : "Edit School Grades" , "Ar" : "تعديل المرحلة الدراسية"},
+    {"name" : "school_grades_delete" , "En" : "Delte School Grades" , "Ar" : "حذف المرحلة الدراسية"},
+    {"name" : "school_grades_add_name" , "En" : "Add School Grades" , "Ar" : "إضافة مرحلة الدراسية"}
 
 
     

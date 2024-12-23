@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "doctors_admin",
-    "en": "Doctors Admin",
-    "ar": "إدارة الأطباء",
+    "En": "Doctors Admin",
+    "Ar": "إدارة الأطباء",
     "permissions": ["doctors_manage"]
 }]

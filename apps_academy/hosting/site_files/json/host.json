@@ -1,13 +1,13 @@
 [{
     "id": 1,
     "name": "morning",
-    "en": "Morning",
-    "ar": "صباحي"
+    "En": "Morning",
+    "Ar": "صباحي"
 },
 {
     "id": 2,
     "name": "evening",
-    "en": "Evening",
-    "ar": "مسائي"
+    "En": "Evening",
+    "Ar": "مسائي"
 }
 ]

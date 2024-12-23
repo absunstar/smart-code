@@ -2,25 +2,25 @@
     {
         "id" : 1,
         "name": "parents",
-        "en": "Parents",
-        "ar": "الوالدان"
+        "En": "Parents",
+        "Ar": "الوالدان"
     },
     {
         "id" : 2,
         "name": "father",
-        "en": "Father",
-        "ar": "الأب"
+        "En": "Father",
+        "Ar": "الأب"
     },
     {
         "id" : 3,
         "name": "mother",
-        "en": "Mother",
-        "ar": "الأم"
+        "En": "Mother",
+        "Ar": "الأم"
     },
     {
         "id" : 4,
         "name": "other",
-        "en": "Other",
-        "ar": "أخرى"
+        "En": "Other",
+        "Ar": "أخرى"
     }
 ]

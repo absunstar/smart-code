@@ -1,103 +1,103 @@
 [
     {
         "name": "report_employees_delivery_informations",
-        "en": "Report Employees Delivery Informations",
-        "ar": "بيانات تقرير موظفين التوصيل"
+        "En": "Report Employees Delivery Informations",
+        "Ar": "بيانات تقرير موظفين التوصيل"
     },
     {
         "name": "report_employees_order",
-        "en": "Report Orders Employees",
-        "ar": "تقرير طلبات الموظفين"
+        "En": "Report Orders Employees",
+        "Ar": "تقرير طلبات الموظفين"
     },
     {
         "name": "report_employee_user",
-        "en": "Report Orders Employees",
-        "ar": "تقرير طلبات الموظفين"
+        "En": "Report Orders Employees",
+        "Ar": "تقرير طلبات الموظفين"
     },
     {
         "name": "report_employees_delivery_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "En": "Report Invoices Menu",
+        "Ar": "قائمة تقرير فاتورة"
     },
     {
         "name": "invoices_code",
-        "en": "Report Invoices Code",
-        "ar": "كود الفاتورة"
+        "En": "Report Invoices Code",
+        "Ar": "كود الفاتورة"
     },
     {
         "name": "order_status",
-        "en": "Order Status",
-        "ar": "حالة الطلب"
+        "En": "Order Status",
+        "Ar": "حالة الطلب"
     },
 
     {
         "name": "order_add_count",
-        "en": "Order Add Count",
-        "ar": "عدد الطلبات المضافة"
+        "En": "Order Add Count",
+        "Ar": "عدد الطلبات المضافة"
     },
     {
         "name": "invoice_close_count",
-        "en": "Order Close Count",
-        "ar": "عدد الطلبات المغلقة"
+        "En": "Order Close Count",
+        "Ar": "عدد الطلبات المغلقة"
     },
     {
         "name": "order_add",
-        "en": "Order Add",
-        "ar": "الطلبات المضافة"
+        "En": "Order Add",
+        "Ar": "الطلبات المضافة"
     },
     {
         "name": "invoice_close",
-        "en": "Order Close",
-        "ar": "الطلبات المغلقة"
+        "En": "Order Close",
+        "Ar": "الطلبات المغلقة"
     },
     {
         "name": "total_net_values",
-        "en": "Total Net Values",
-        "ar": "إجمالي القيم المطلوبة"
+        "En": "Total Net Values",
+        "Ar": "إجمالي القيم المطلوبة"
     },
     {
         "name": "total_items_price",
-        "en": "Total Items Price",
-        "ar": "مجموع سعر الأصناف"
+        "En": "Total Items Price",
+        "Ar": "مجموع سعر الأصناف"
     },
     {
         "name": "total_delivery_service_price",
-        "en": "Total Delivery Service Price",
-        "ar": "إجمالي سعر خدمة التوصيل"
+        "En": "Total Delivery Service Price",
+        "Ar": "إجمالي سعر خدمة التوصيل"
     },
     {
         "name": "report_invoices_name",
-        "en": "Report Invoices Name",
-        "ar": "تقرير الفواتير"
+        "En": "Report Invoices Name",
+        "Ar": "تقرير الفواتير"
     },
     {
         "name": "source_type",
-        "en": "Source Type",
-        "ar": "نوع المصدر"
+        "En": "Source Type",
+        "Ar": "نوع المصدر"
     },
     {
         "name": "order_invoices_type",
-        "en": "Order Invoices Type",
-        "ar": "نوع أمر الفاتورة"
+        "En": "Order Invoices Type",
+        "Ar": "نوع أمر الفاتورة"
     },
     {
         "name": "order_sale",
-        "en": "Order Sale",
-        "ar": "أمر بيع"
+        "En": "Order Sale",
+        "Ar": "أمر بيع"
     },
     {
         "name": "invoice_type",
-        "en": "Invoice Type",
-        "ar": "نوع الفاتورة"
+        "En": "Invoice Type",
+        "Ar": "نوع الفاتورة"
     },
     {
         "name": "payment",
-        "en": "Payment",
-        "ar": "تسديد"
+        "En": "Payment",
+        "Ar": "تسديد"
     },
     {
         "name": "report_invoices_add_name",
-        "en": "Add Report Invoices",
-        "ar": "إضافة تقرير فاتورة"
+        "En": "Add Report Invoices",
+        "Ar": "إضافة تقرير فاتورة"
     }
 ]

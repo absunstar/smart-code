@@ -1,24 +1,24 @@
 [
-    {"name" : "file_type_informations" , "en" : "File Type Informations" , "ar" : "بيانات نوع الملف"},
+    {"name" : "file_type_informations" , "En" : "File Type Informations" , "Ar" : "بيانات نوع الملف"},
 
-    {"name" : "files_types" , "en" : "File Type" , "ar" : "أنواع الملفات"},
-    {"name" : "file_type_menus" , "en" : "File Type Menu" , "ar" : "قائمة نوع الملف"},
-    {"name" : "file_type_code" , "en" : "File Type Code" , "ar" : "كود نوع الملف"},
-    {"name" : "file_type_name" , "en" : "File Type Name" , "ar" : "إسم نوع الملف"},
-    {"name" : "file_type_new" , "en" : "New File Type" , "ar" : "نوع ملف جديد"},
+    {"name" : "files_types" , "En" : "File Type" , "Ar" : "أنواع الملفات"},
+    {"name" : "file_type_menus" , "En" : "File Type Menu" , "Ar" : "قائمة نوع الملف"},
+    {"name" : "file_type_code" , "En" : "File Type Code" , "Ar" : "كود نوع الملف"},
+    {"name" : "file_type_name" , "En" : "File Type Name" , "Ar" : "إسم نوع الملف"},
+    {"name" : "file_type_new" , "En" : "New File Type" , "Ar" : "نوع ملف جديد"},
 
-    {"name" : "file" , "en" : "File" , "ar" : "الملف"},
-    {"name" : "file_type" , "en" : "File Type" , "ar" : "نوع الملف"},
-    {"name" : "file_name" , "en" : "File Name" , "ar" : "إسم الملف"},
-    {"name" : "file_date" , "en" : "File Date" , "ar" : "تاريخ الملف"},
-    {"name" : "file_upload_date" , "en" : "File Date Uploaded" , "ar" : "تاريخ رفع الملف"},
-    {"name" : "upload_by" , "en" : "Upload by" , "ar" : "الرفع بواسطة"},
+    {"name" : "file" , "En" : "File" , "Ar" : "الملف"},
+    {"name" : "file_type" , "En" : "File Type" , "Ar" : "نوع الملف"},
+    {"name" : "file_name" , "En" : "File Name" , "Ar" : "إسم الملف"},
+    {"name" : "file_date" , "En" : "File Date" , "Ar" : "تاريخ الملف"},
+    {"name" : "file_upload_date" , "En" : "File Date Uploaded" , "Ar" : "تاريخ رفع الملف"},
+    {"name" : "upload_by" , "En" : "Upload by" , "Ar" : "الرفع بواسطة"},
 
-    {"name" : "file_type_details" , "en" : "File Type Details" , "ar" : "تفاصيل نوع الملف"},
-    {"name" : "file_type_update" , "en" : "Edit File Type" , "ar" : "تعديل نوع الملف"},
-    {"name" : "file_type_delete" , "en" : "Delte File Type" , "ar" : "حذف نوع الملف"},
-    {"name" : "file_type_ar" , "en" : "File Type Ar" , "ar" : "نوع الملف بالعربي"},
-    {"name" : "file_type_en" , "en" : "File Type En" , "ar" : "نوع الملف بالإنجليزي"},
-    {"name" : "file_type_add_name" , "en" : "Add File Type" , "ar" : "إضافة نوع الملف"}
+    {"name" : "file_type_details" , "En" : "File Type Details" , "Ar" : "تفاصيل نوع الملف"},
+    {"name" : "file_type_update" , "En" : "Edit File Type" , "Ar" : "تعديل نوع الملف"},
+    {"name" : "file_type_delete" , "En" : "Delte File Type" , "Ar" : "حذف نوع الملف"},
+    {"name" : "file_type_ar" , "En" : "File Type Ar" , "Ar" : "نوع الملف بالعربي"},
+    {"name" : "file_type_en" , "En" : "File Type En" , "Ar" : "نوع الملف بالإنجليزي"},
+    {"name" : "file_type_add_name" , "En" : "Add File Type" , "Ar" : "إضافة نوع الملف"}
     
 ]

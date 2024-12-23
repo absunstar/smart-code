@@ -1,17 +1,17 @@
 [
     {
         "id": 1,
-        "en": "Collecting",
-        "ar": "تحصيل"
+        "En": "Collecting",
+        "Ar": "تحصيل"
     },
     {
         "id": 2,
-        "en": "Pay",
-        "ar": "دفع"
+        "En": "Pay",
+        "Ar": "دفع"
     },
     {
         "id": 3,
-        "en": "Delivery",
-        "ar": "توصيل"
+        "En": "Delivery",
+        "Ar": "توصيل"
     }
 ]

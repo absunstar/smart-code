@@ -1,88 +1,88 @@
 [
     {
         "name": "report_invoices_add",
-        "en": "Add Customer",
-        "ar": "إضافة عميل"
+        "En": "Add Customer",
+        "Ar": "إضافة عميل"
     },
     {
         "name": "report_invoices_payments_informations",
-        "en": "Report Invoices Vendors Informations",
-        "ar": "بيانات تقرير الموردين"
+        "En": "Report Invoices Vendors Informations",
+        "Ar": "بيانات تقرير الموردين"
     },
     {
         "name": "report_invoices_payments_name",
-        "en": "Report Payments Invoices",
-        "ar": "تقرير دفعات فواتير"
+        "En": "Report Payments Invoices",
+        "Ar": "تقرير دفعات فواتير"
     },
     {
         "name": "report_invoices_payments",
-        "en": "Report Payments Invoices",
-        "ar": "تقرير دفعات فواتير"
+        "En": "Report Payments Invoices",
+        "Ar": "تقرير دفعات فواتير"
     },
     {
         "name": "report_invoices_payments_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "En": "Report Invoices Menu",
+        "Ar": "قائمة تقرير فاتورة"
     },
     {
         "name": "invoices_code",
-        "en": "Report Invoices Code",
-        "ar": "كود الفاتورة"
+        "En": "Report Invoices Code",
+        "Ar": "كود الفاتورة"
     },
     {
         "name": "net_total_return",
-        "en": "Net Total Return",
-        "ar": "صافي إجمالي المرتجعات"
+        "En": "Net Total Return",
+        "Ar": "صافي إجمالي المرتجعات"
     },
     {
         "name": "total_net_values",
-        "en": "Total Net Values",
-        "ar": "إجمالي القيم المطلوبة"
+        "En": "Total Net Values",
+        "Ar": "إجمالي القيم المطلوبة"
     },
     {
         "name": "total_items_price",
-        "en": "Total Items Price",
-        "ar": "مجموع سعر الأصناف"
+        "En": "Total Items Price",
+        "Ar": "مجموع سعر الأصناف"
     },
     {
         "name": "total_vendor_service_price",
-        "en": "Total Delegate Service Price",
-        "ar": "إجمالي سعر خدمة التوصيل"
+        "En": "Total Delegate Service Price",
+        "Ar": "إجمالي سعر خدمة التوصيل"
     },
     {
         "name": "report_invoices_name",
-        "en": "Report Invoices Name",
-        "ar": "تقرير الفواتير"
+        "En": "Report Invoices Name",
+        "Ar": "تقرير الفواتير"
     },
     {
         "name": "source_type",
-        "en": "Source Type",
-        "ar": "نوع المصدر"
+        "En": "Source Type",
+        "Ar": "نوع المصدر"
     },
     {
         "name": "order_invoices_type",
-        "en": "Order Invoices Type",
-        "ar": "نوع أمر الفاتورة"
+        "En": "Order Invoices Type",
+        "Ar": "نوع أمر الفاتورة"
     },
     {
         "name": "order_sale",
-        "en": "Order Sale",
-        "ar": "أمر بيع"
+        "En": "Order Sale",
+        "Ar": "أمر بيع"
     },
     {
         "name": "payable",
-        "en": "Payable",
-        "ar": "مستحق الدفع"
+        "En": "Payable",
+        "Ar": "مستحق الدفع"
     },
     {
         "name": "invoice_type",
-        "en": "Invoice Type",
-        "ar": "نوع الفاتورة"
+        "En": "Invoice Type",
+        "Ar": "نوع الفاتورة"
     },
     {
         "name": "detailes_amounts_paid",
-        "en": "Detailes Amounts Paid",
-        "ar": "تفاصيل المدفوعات"
+        "En": "Detailes Amounts Paid",
+        "Ar": "تفاصيل المدفوعات"
     }
 
 ]

@@ -2,18 +2,18 @@
     {
         "id" : 3,
         "name": "a_f_q",
-        "en": "Answer the following questions",
-        "ar": "أجب عن الأسئلة التالية"
+        "En": "Answer the following questions",
+        "Ar": "أجب عن الأسئلة التالية"
     },
     {
         "id" : 1,
         "name": "c_c_a",
-        "en": "Choose the correct answer",
-        "ar": "إختر الإجابة الصحيحة"
+        "En": "Choose the correct answer",
+        "Ar": "إختر الإجابة الصحيحة"
     },
     {
         "id" : 2,
         "name": "m_t_f",
-        "en": "Mark true or false",
-        "ar": "ضع علامة صح أو خطأ"
+        "En": "Mark true or false",
+        "Ar": "ضع علامة صح أو خطأ"
     }]

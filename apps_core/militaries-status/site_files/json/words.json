@@ -1,14 +1,14 @@
 [
-    {"name" : "military_status_add" , "en" : "Add MilitaryState" , "ar" : "إضافة موقف تجنيد"},
-    {"name" : "military_status_new" , "en" : "New MilitaryState" , "ar" : "موقف تجنيد جديد"},
-    {"name" : "military_status_details" , "en" : "MilitaryState Details" , "ar" : "تفاصيل موقف تجنيد"},
-    {"name" : "military_status_edit" , "en" : "Edit MilitaryState" , "ar" : "نعديل موقف تجنيد"},
-    {"name" : "military_status_delete" , "en" : "Delete MilitaryState" , "ar" : "حذف موقف تجنيد"},
-    {"name" : "military_status_logo" , "en" : "MilitaryState logo" , "ar" : "صورة موقف التجنيد"},
-    {"name" : "military_status_name" , "en" : "MilitaryState Name" , "ar" : "موقف التجنيد"},
-    {"name" : "militaries_status" , "en" : "Military States" , "ar" : "مواقف التجنيد"},
+    {"name" : "military_status_add" , "En" : "Add MilitaryState" , "Ar" : "إضافة موقف تجنيد"},
+    {"name" : "military_status_new" , "En" : "New MilitaryState" , "Ar" : "موقف تجنيد جديد"},
+    {"name" : "military_status_details" , "En" : "MilitaryState Details" , "Ar" : "تفاصيل موقف تجنيد"},
+    {"name" : "military_status_edit" , "En" : "Edit MilitaryState" , "Ar" : "نعديل موقف تجنيد"},
+    {"name" : "military_status_delete" , "En" : "Delete MilitaryState" , "Ar" : "حذف موقف تجنيد"},
+    {"name" : "military_status_logo" , "En" : "MilitaryState logo" , "Ar" : "صورة موقف التجنيد"},
+    {"name" : "military_status_name" , "En" : "MilitaryState Name" , "Ar" : "موقف التجنيد"},
+    {"name" : "militaries_status" , "En" : "Military States" , "Ar" : "مواقف التجنيد"},
 
     
-    {"name" : "military_status_img" , "en" : "Military Status Image" , "ar" : "شعار موقف النجنيد"}
+    {"name" : "military_status_img" , "En" : "Military Status Image" , "Ar" : "شعار موقف النجنيد"}
 
 ]

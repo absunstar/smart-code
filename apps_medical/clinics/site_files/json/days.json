@@ -2,50 +2,50 @@
         "id": 1,
         "code": 6,
         "name": "saturday",
-        "en": "Saturday",
-        "ar": "السبت"
+        "En": "Saturday",
+        "Ar": "السبت"
     },
     {
         "id": 2,
         "code": 0,
         "name": "sunday",
-        "en": "Sunday",
-        "ar": "الاحد"
+        "En": "Sunday",
+        "Ar": "الاحد"
     },
     {
         "id": 3,
         "code": 1,
         "name": "monday",
-        "en": "Monday",
-        "ar": "الاثنين"
+        "En": "Monday",
+        "Ar": "الاثنين"
     },
     {
         "id": 4,
         "code": 2,
         "name": "tuesday",
-        "en": "Tuesday",
-        "ar": "الثلاثاء"
+        "En": "Tuesday",
+        "Ar": "الثلاثاء"
     },
     {
         "id": 5,
         "code": 3,
         "name": "wednesday",
-        "en": "Wednesday",
-        "ar": "الاربعاء"
+        "En": "Wednesday",
+        "Ar": "الاربعاء"
     },
     {
         "id": 6,
         "code": 4,
         "name": "thursday",
-        "en": "Thursday",
-        "ar": "الخميس"
+        "En": "Thursday",
+        "Ar": "الخميس"
     },
     {
         "id": 7,
         "code": 5,
         "name": "friday",
-        "en": "Friday",
-        "ar": "الجمعة"
+        "En": "Friday",
+        "Ar": "الجمعة"
     }
 ]
 

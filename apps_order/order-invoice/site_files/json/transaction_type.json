@@ -1,17 +1,17 @@
 [
     {
         "id": 1,
-        "en": "Tables",
-        "ar": "طاولات"
+        "En": "Tables",
+        "Ar": "طاولات"
     },
     {
         "id": 2,
-        "en": "delivery",
-        "ar": "توصيل"
+        "En": "delivery",
+        "Ar": "توصيل"
     },
     {
         "id": 3,
-        "en": "Take Away",
-        "ar": "تيك أواي - سفري"
+        "En": "Take Away",
+        "Ar": "تيك أواي - سفري"
     }
 ]

@@ -1,12 +1,12 @@
 [
     {
         "name": "patients_files",
-        "en": "Patients Files",
-        "ar": "ملفات المرضى"
+        "En": "Patients Files",
+        "Ar": "ملفات المرضى"
     },
     {
         "name": "patient_file",
-        "en": "Patient File",
-        "ar": "ملف المريض"
+        "En": "Patient File",
+        "Ar": "ملف المريض"
     }
 ]

@@ -1,22 +1,22 @@
 [
   {
     "name": "barcode_printer_informations",
-    "en": "Barcode printer Informations",
-    "ar": "بيانات طباعة الباركود"
+    "En": "Barcode printer Informations",
+    "Ar": "بيانات طباعة الباركود"
   },
   {
     "name": "barcode_printer",
-    "en": "Barcode printer",
-    "ar": "طباعة الباركود"
+    "En": "Barcode printer",
+    "Ar": "طباعة الباركود"
   },
   {
     "name": "printing_language",
-    "en": "Printing language",
-    "ar": "لغة الطباعة"
+    "En": "Printing language",
+    "Ar": "لغة الطباعة"
   },
   {
     "name": "count_prints",
-    "en": "Count of prints",
-    "ar": "عدد المطبوعات"
+    "En": "Count of prints",
+    "Ar": "عدد المطبوعات"
   }
 ]

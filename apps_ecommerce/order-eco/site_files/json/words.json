@@ -1,22 +1,22 @@
 [
   {
     "name": "create_order",
-    "en": "Create order",
-    "ar": "إنشاء طلب"
+    "En": "Create order",
+    "Ar": "إنشاء طلب"
   },
   {
     "name": "products_must_added_basket",
-    "en": "Products must be added to the basket",
-    "ar": "يجب إضافة منتجات إلى السلة"
+    "En": "Products must be added to the basket",
+    "Ar": "يجب إضافة منتجات إلى السلة"
   },
   {
     "name": "products_basket",
-    "en": "Products basket",
-    "ar": "سلة المنتجات"
+    "En": "Products basket",
+    "Ar": "سلة المنتجات"
   },
   {
     "name": "my_orders",
-    "en": "My Orders",
-    "ar": "طلباتي"
+    "En": "My Orders",
+    "Ar": "طلباتي"
   }
 ]

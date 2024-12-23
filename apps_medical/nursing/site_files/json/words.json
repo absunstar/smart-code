@@ -1,47 +1,47 @@
 [{
         "name": "nursing",
-        "en": "Nursing",
-        "ar": "التمريض"
+        "En": "Nursing",
+        "Ar": "التمريض"
     },
     {
         "name": "nursing_new",
-        "en": "New nurse",
-        "ar": "تمريض  جديد"
+        "En": "New nurse",
+        "Ar": "تمريض  جديد"
     },
     {
         "name": "nurses",
-        "en": "Nurses",
-        "ar": "الممرضات"
+        "En": "Nurses",
+        "Ar": "الممرضات"
     },
     {
         "name": "nurse",
-        "en": "Nurse",
-        "ar": "الممرضة"
+        "En": "Nurse",
+        "Ar": "الممرضة"
     },
     {
         "name": "nursing_add",
-        "en": "Add nurse",
-        "ar": "إضافة تمريض "
+        "En": "Add nurse",
+        "Ar": "إضافة تمريض "
     },
     {
         "name": "nursing_edit",
-        "en": "Edit nurse",
-        "ar": "تعديل تمريض "
+        "En": "Edit nurse",
+        "Ar": "تعديل تمريض "
     },
     {
         "name": "nursing_details",
-        "en": "nurse Details",
-        "ar": "تفاصيل التمريض "
+        "En": "nurse Details",
+        "Ar": "تفاصيل التمريض "
     },
     {
         "name": "nursing_delete",
-        "en": "Delete nurse",
-        "ar": "حذف تمريض "
+        "En": "Delete nurse",
+        "Ar": "حذف تمريض "
     },
     {
         "name": "nursing_name",
-        "en": "nurse Name",
-        "ar": "إسم التمريض "
+        "En": "nurse Name",
+        "Ar": "إسم التمريض "
     }
 
 

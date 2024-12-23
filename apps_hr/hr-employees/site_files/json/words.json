@@ -1,149 +1,149 @@
 [
     {
         "name": "employees",
-        "en": "Employees",
-        "ar": "الموظفين"
+        "En": "Employees",
+        "Ar": "الموظفين"
     },
     {
         "name": "hr_employees",
-        "en": "Employees",
-        "ar": "الموظفين"
+        "En": "Employees",
+        "Ar": "الموظفين"
     },
     {
         "name": "employee_new",
-        "en": "New Employee",
-        "ar": "موظف جديد"
+        "En": "New Employee",
+        "Ar": "موظف جديد"
     },
     {
         "name": "advance_account",
-        "en": "Advance Account",
-        "ar": "حساب السلف"
+        "En": "Advance Account",
+        "Ar": "حساب السلف"
     },
     {
         "name": "custody_account",
-        "en": "custody Account",
-        "ar": "حساب العهد"
+        "En": "custody Account",
+        "Ar": "حساب العهد"
     },
     {
         "name": "employee_payable",
-        "en": "Employee Payable",
-        "ar": "مستحقات موظف"
+        "En": "Employee Payable",
+        "Ar": "مستحقات موظف"
     },
     {
         "name": "payable_salaries",
-        "en": "Payable Salaries",
-        "ar": "الرواتب المستحقة"
+        "En": "Payable Salaries",
+        "Ar": "الرواتب المستحقة"
     },
     {
         "name": "vacation_salary_payable",
-        "en": "Vacation Salary Payable",
-        "ar": "راتب أجازة مستحقة"
+        "En": "Vacation Salary Payable",
+        "Ar": "راتب أجازة مستحقة"
     },
     {
         "name": "vacation_travel_payable",
-        "en": "Vacation Travel Payable",
-        "ar": "راتب سفر مستحق"
+        "En": "Vacation Travel Payable",
+        "Ar": "راتب سفر مستحق"
     },
     {
         "name": "vacation_service_payable",
-        "en": "Vacation Service Payable",
-        "ar": "راتب خدمة مستحق"
+        "En": "Vacation Service Payable",
+        "Ar": "راتب خدمة مستحق"
     },
     {
         "name": "employment_date",
-        "en": "Employment Date",
-        "ar": "تاريخ التوظيف"
+        "En": "Employment Date",
+        "Ar": "تاريخ التوظيف"
     },
     {
         "name": "delivery_difference",
-        "en": "Delivery Difference",
-        "ar": "فرق التوصيل"
+        "En": "Delivery Difference",
+        "Ar": "فرق التوصيل"
     },
     {
         "name": "accounting_system",
-        "en": "Accounting System",
-        "ar": "النظام المحاسبي"
+        "En": "Accounting System",
+        "Ar": "النظام المحاسبي"
     },
     {
         "name": "national_id",
-        "en": "National Id",
-        "ar": "الرقم القومي"
+        "En": "National Id",
+        "Ar": "الرقم القومي"
     },
 
     {
         "name": "facebook",
-        "en": "Facebook",
-        "ar": "الفيسبوك"
+        "En": "Facebook",
+        "Ar": "الفيسبوك"
     },
     {
         "name": "twitter",
-        "en": "Twitter",
-        "ar": "تويتر"
+        "En": "Twitter",
+        "Ar": "تويتر"
     },
     {
         "name": "addresses",
-        "en": "Addresses",
-        "ar": "العناوين"
+        "En": "Addresses",
+        "Ar": "العناوين"
     },
     {
         "name": "gov",
-        "en": "Governoment",
-        "ar": "المحافطة"
+        "En": "Governoment",
+        "Ar": "المحافطة"
     },
     {
         "name": "salary",
-        "en": "Salary",
-        "ar": "الراتب"
+        "En": "Salary",
+        "Ar": "الراتب"
     },
     {
         "name": "job",
-        "en": "Job",
-        "ar": "الوظيفة"
+        "En": "Job",
+        "Ar": "الوظيفة"
     },
     {
         "name": "employee_add",
-        "en": "Add Employee",
-        "ar": "إضافة موظف"
+        "En": "Add Employee",
+        "Ar": "إضافة موظف"
     },
     {
         "name": "employees_degrees",
-        "en": "New Degree",
-        "ar": "الدرجة الوظيفية"
+        "En": "New Degree",
+        "Ar": "الدرجة الوظيفية"
     },
     {
         "name": "employee_edit",
-        "en": "Edit Employee",
-        "ar": "تعديل موظف"
+        "En": "Edit Employee",
+        "Ar": "تعديل موظف"
     },
     {
         "name": "employee_details",
-        "en": "Employee Details",
-        "ar": "تفاصيل الموظف"
+        "En": "Employee Details",
+        "Ar": "تفاصيل الموظف"
     },
     {
         "name": "employee_delete",
-        "en": "Delete Employee",
-        "ar": "حذف موظف"
+        "En": "Delete Employee",
+        "Ar": "حذف موظف"
     },
     {
         "name": "employee_name",
-        "en": "Employee Name",
-        "ar": "إسم الموظف"
+        "En": "Employee Name",
+        "Ar": "إسم الموظف"
     },
     {
         "name": "employee_indentfy",
-        "en": "Employee Indentfy",
-        "ar": "نوع الموظف"
+        "En": "Employee Indentfy",
+        "Ar": "نوع الموظف"
     },
 
     {
         "name": "qualification",
-        "en": "Qualification",
-        "ar": "المؤهل"
+        "En": "Qualification",
+        "Ar": "المؤهل"
     },
     {
         "name": "employee_info",
-        "en": "Employee Informations",
-        "ar": "معلومات الموظف"
+        "En": "Employee Informations",
+        "Ar": "معلومات الموظف"
     }
 ]

@@ -11,7 +11,7 @@
 ```json
 [
     {
-        "id":"ab123" , "ar" : "شرح عربى" , "en":"English Description"
+        "id":"ab123" , "Ar" : "شرح عربى" , "En":"English Description"
     }
 ]
 ```

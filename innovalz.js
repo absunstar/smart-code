@@ -1,6 +1,7 @@
 const site = require('../isite')({
     port: [80 , 50001],
-    lang: 'ar',
+    lang: 'Ar',
+    language: { id: 'Ar', dir: 'rtl', text: 'right' },
     version: '2023.03.07.2',
     name: 'innovalz',
     theme: 'theme_paper',

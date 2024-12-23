@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "main_categories_admin",
-    "en": "Cost Centers Notes Admin",
-    "ar": "إدارة الأقسام الرئيسية",
+    "En": "Cost Centers Notes Admin",
+    "Ar": "إدارة الأقسام الرئيسية",
     "permissions": ["main_categories_manage"]
 }]

@@ -1,13 +1,13 @@
 [
-    {"name" : "lawsuit_degrees_informations" , "en" : "Lawsuit Degrees Informations" , "ar" : "بيانات درجة دعوى"},
+    {"name" : "lawsuit_degrees_informations" , "En" : "Lawsuit Degrees Informations" , "Ar" : "بيانات درجة دعوى"},
 
-    {"name" : "lawsuit_degrees" , "en" : "Lawsuit Degrees" , "ar" : "درجات الدعاوى"},
-    {"name" : "lawsuit_degrees_code" , "en" : "Lawsuit Degrees Code" , "ar" : "كود درجة "},
-    {"name" : "lawsuit_degrees_name" , "en" : "Lawsuit Degrees Name" , "ar" : "إسم الدرجة"},
-    {"name" : "lawsuit_degrees_new" , "en" : "New Lawsuit Degrees" , "ar" : "درجة دعوى جديدة"},
-    {"name" : "lawsuit_degrees_details" , "en" : "Lawsuit Degrees Details" , "ar" : "تفاصيل درجة دعوى"},
-    {"name" : "lawsuit_degrees_update" , "en" : "Edit Lawsuit Degrees" , "ar" : "تعديل درجة دعوى"},
-    {"name" : "lawsuit_degrees_delete" , "en" : "Delte Lawsuit Degrees" , "ar" : "حذف درجة دعوى"},
-    {"name" : "lawsuit_degrees_add_name" , "en" : "Add Lawsuit Degrees" , "ar" : "إضافة درجة دعوى"}
+    {"name" : "lawsuit_degrees" , "En" : "Lawsuit Degrees" , "Ar" : "درجات الدعاوى"},
+    {"name" : "lawsuit_degrees_code" , "En" : "Lawsuit Degrees Code" , "Ar" : "كود درجة "},
+    {"name" : "lawsuit_degrees_name" , "En" : "Lawsuit Degrees Name" , "Ar" : "إسم الدرجة"},
+    {"name" : "lawsuit_degrees_new" , "En" : "New Lawsuit Degrees" , "Ar" : "درجة دعوى جديدة"},
+    {"name" : "lawsuit_degrees_details" , "En" : "Lawsuit Degrees Details" , "Ar" : "تفاصيل درجة دعوى"},
+    {"name" : "lawsuit_degrees_update" , "En" : "Edit Lawsuit Degrees" , "Ar" : "تعديل درجة دعوى"},
+    {"name" : "lawsuit_degrees_delete" , "En" : "Delte Lawsuit Degrees" , "Ar" : "حذف درجة دعوى"},
+    {"name" : "lawsuit_degrees_add_name" , "En" : "Add Lawsuit Degrees" , "Ar" : "إضافة درجة دعوى"}
     
 ]

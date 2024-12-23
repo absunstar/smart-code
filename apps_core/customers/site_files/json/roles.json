@@ -1,13 +1,13 @@
 [{
     "module_name" : "public" ,
     "name": "customers_admin",
-    "en": "Customers Admin",
-    "ar": "إدارة العملاء",
+    "En": "Customers Admin",
+    "Ar": "إدارة العملاء",
     "permissions": ["customers_manage"]
 },{
     "module_name" : "public" ,
     "name": "customers_user",
-    "en": "Customers User",
-    "ar": "إدارة العملاء للمستخدم",
+    "En": "Customers User",
+    "Ar": "إدارة العملاء للمستخدم",
     "permissions": ["customers_update","customers_view","customers_ui"]
 }]

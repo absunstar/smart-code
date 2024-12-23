@@ -52,20 +52,20 @@ module.exports = function init(site) {
       analysis_requests_doc.analysis_list.forEach((_a) => {
         if (!_a.made_home_analysis) {
           found = true;
-          if (req.session.lang == "ar") {
+          if (req.session.lang == "Ar") {
             foundList.push(_a.name_ar);
-          } else if (req.session.lang == "en") {
+          } else if (req.session.lang == "En") {
             foundList.push(_a.name_en);
           }
         }
       });
 
       if (found) {
-        if (req.session.lang == "ar") {
+        if (req.session.lang == "Ar") {
           response.error = `يوجد تحاليل لا يمكن إجراءها في المنزل ( ${foundList.join(
             "-"
           )} )`;
-        } else if (req.session.lang == "en") {
+        } else if (req.session.lang == "En") {
           response.error = `There are analysis that cannot be done at home ( ${foundList.join(
             "-"
           )} )`;
@@ -151,20 +151,20 @@ module.exports = function init(site) {
       analysis_requests_doc.analysis_list.forEach((_a) => {
         if (!_a.made_home_analysis) {
           found = true;
-          if (req.session.lang == "ar") {
+          if (req.session.lang == "Ar") {
             foundList.push(_a.name_ar);
-          } else if (req.session.lang == "en") {
+          } else if (req.session.lang == "En") {
             foundList.push(_a.name_en);
           }
         }
       });
 
       if (found) {
-        if (req.session.lang == "ar") {
+        if (req.session.lang == "Ar") {
           response.error = `يوجد تحاليل لا يمكن إجراءها في المنزل ( ${foundList.join(
             "-"
           )} )`;
-        } else if (req.session.lang == "en") {
+        } else if (req.session.lang == "En") {
           response.error = `There are analysis that cannot be done at home ( ${foundList.join(
             "-"
           )} )`;
@@ -539,7 +539,7 @@ module.exports = function init(site) {
 
   // my profile
   site.post("/api/analysis_requests/myProfile", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+    req.headers.language = req.headers.language || "En";
     let response = {};
     if (!req.session.user) {
       response.message = site.word("loginFirst")[req.headers.language];
@@ -591,7 +591,7 @@ module.exports = function init(site) {
 
   // my Completed Analysis
   site.post("/api/analysis_requests/myCompletedAnalysis", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+    req.headers.language = req.headers.language || "En";
     let response = {};
     if (!req.session.user) {
       response.message = site.word("loginFirst")[req.headers.language];
@@ -646,7 +646,7 @@ module.exports = function init(site) {
 
   // my current Analysis
   site.post("/api/analysis_requests/myNotCompletedAnalysis", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+    req.headers.language = req.headers.language || "En";
     let response = {};
     if (!req.session.user) {
       response.message = site.word("loginFirst")[req.headers.language];

@@ -1,72 +1,72 @@
 [{
         "name": "diseases",
-        "en": "diseases",
-        "ar": "الأمراض"
+        "En": "diseases",
+        "Ar": "الأمراض"
     },
     {
         "name": "disease",
-        "en": "disease",
-        "ar": "المرض"
+        "En": "disease",
+        "Ar": "المرض"
     },
     {
         "name": "disease_new",
-        "en": "New Disease",
-        "ar": "مرض جديد"
+        "En": "New Disease",
+        "Ar": "مرض جديد"
     },
     {
         "name": "disease_add",
-        "en": "Add Disease",
-        "ar": "إضافة مرض"
+        "En": "Add Disease",
+        "Ar": "إضافة مرض"
     },
     {
         "name": "disease_edit",
-        "en": "Edit Disease",
-        "ar": "تعديل مرض"
+        "En": "Edit Disease",
+        "Ar": "تعديل مرض"
     },
     {
         "name": "disease_details",
-        "en": "disease Details",
-        "ar": "تفاصيل المرض"
+        "En": "disease Details",
+        "Ar": "تفاصيل المرض"
     },
     {
         "name": "disease_delete",
-        "en": "Delete Disease",
-        "ar": "حذف مرض"
+        "En": "Delete Disease",
+        "Ar": "حذف مرض"
     },
     {
         "name": "disease_name",
-        "en": "disease Name",
-        "ar": "إسم المرض"
+        "En": "disease Name",
+        "Ar": "إسم المرض"
     },
     {
         "name": "disease_treatment",
-        "en": "Disease Treatment",
-        "ar": "علاج المرض"
+        "En": "Disease Treatment",
+        "Ar": "علاج المرض"
     },
     {
         "name": "definition_disease",
-        "en": "Definition of disease",
-        "ar": "تعريف المرض"
+        "En": "Definition of disease",
+        "Ar": "تعريف المرض"
     },
     {
         "name": "symptoms_disease",
-        "en": "Symptoms of the disease",
-        "ar": "أعراض المرض"
+        "En": "Symptoms of the disease",
+        "Ar": "أعراض المرض"
     },
     {
         "name": "causes_disease",
-        "en": "The causes of disease",
-        "ar": "أسباب المرض"
+        "En": "The causes of disease",
+        "Ar": "أسباب المرض"
     },
     {
         "name": "kinds_disease",
-        "en": "Kinds of the disease",
-        "ar": "أنواع المرض"
+        "En": "Kinds of the disease",
+        "Ar": "أنواع المرض"
     },
     {
         "name": "notes_disease",
-        "en": "Disease Notes",
-        "ar": "ملاحظات المرض"
+        "En": "Disease Notes",
+        "Ar": "ملاحظات المرض"
     }
 
 

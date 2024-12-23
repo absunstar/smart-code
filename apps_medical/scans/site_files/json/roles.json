@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "scans_admin",
-    "en": "Scans Admin",
-    "ar": "إدارة الأشعة",
+    "En": "Scans Admin",
+    "Ar": "إدارة الأشعة",
     "permissions": ["scans_manage"]
 }]

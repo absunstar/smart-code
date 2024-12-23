@@ -1,52 +1,52 @@
 [{
         "name": "food",
-        "en": "Food",
-        "ar": "الطعام"
+        "En": "Food",
+        "Ar": "الطعام"
     },
     {
         "name": "foods",
-        "en": "Foods",
-        "ar": "الأطعمة"
+        "En": "Foods",
+        "Ar": "الأطعمة"
     },
     {
         "name": "food_new",
-        "en": "New Foods",
-        "ar": "طعام جديد"
+        "En": "New Foods",
+        "Ar": "طعام جديد"
     },
     {
         "name": "food_add",
-        "en": "Add Foods",
-        "ar": "إضافة طعام "
+        "En": "Add Foods",
+        "Ar": "إضافة طعام "
     },
     {
         "name": "food_edit",
-        "en": "Edit Foods",
-        "ar": "تعديل طعام "
+        "En": "Edit Foods",
+        "Ar": "تعديل طعام "
     },
     {
         "name": "food_details",
-        "en": "Foods Details",
-        "ar": "تفاصيل الطعام "
+        "En": "Foods Details",
+        "Ar": "تفاصيل الطعام "
     },
     {
         "name": "food_delete",
-        "en": "Delete Foods",
-        "ar": "حذف طعام "
+        "En": "Delete Foods",
+        "Ar": "حذف طعام "
     },
     {
         "name": "food_name_ar",
-        "en": "Foods Name Ar",
-        "ar": "إسم الطعام بالعربي"
+        "En": "Foods Name Ar",
+        "Ar": "إسم الطعام بالعربي"
     },
     {
         "name": "food_name_en",
-        "en": "Foods Name En",
-        "ar": "إسم الطعام بالإنجليزي"
+        "En": "Foods Name En",
+        "Ar": "إسم الطعام بالإنجليزي"
     },
     {
         "name": "food_notes",
-        "en": "Notes Foods",
-        "ar": "ملاحظات الطعام "
+        "En": "Notes Foods",
+        "Ar": "ملاحظات الطعام "
     }
 
 

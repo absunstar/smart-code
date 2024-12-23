@@ -2,8 +2,8 @@
     {
         "module_name": "inventory",
         "name": "stores_out_admin",
-        "en": "Stores Out Admin",
-        "ar": "إدارة إذن صرف / فاتورة مبيعات",
+        "En": "Stores Out Admin",
+        "Ar": "إدارة إذن صرف / فاتورة مبيعات",
         "permissions": [
             "stores_out_manage"
         ]
@@ -11,8 +11,8 @@
     {
         "module_name": "inventory",
         "name": "stores_out_user",
-        "en": "Stores Out User",
-        "ar": "فاتورة مبيعات للمستخدم",
+        "En": "Stores Out User",
+        "Ar": "فاتورة مبيعات للمستخدم",
         "permissions": [
             "stores_out_add",
             "stores_out_update",

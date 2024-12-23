@@ -109,8 +109,8 @@ module.exports = function init(site) {
       user.roles.push({
         "module_name": "public",
         "name": "exams_admin",
-        "en": "Exams Admin",
-        "ar": "إدارة الإمتحانات",
+        "En": "Exams Admin",
+        "Ar": "إدارة الإمتحانات",
         "permissions": ["exams_manage"]
       })
     }
@@ -234,8 +234,8 @@ module.exports = function init(site) {
       user.roles.push({
         "module_name": "public",
         "name": "exams_admin",
-        "en": "Exams Admin",
-        "ar": "إدارة الإمتحانات",
+        "En": "Exams Admin",
+        "Ar": "إدارة الإمتحانات",
         "permissions": ["exams_manage"]
       })
     }

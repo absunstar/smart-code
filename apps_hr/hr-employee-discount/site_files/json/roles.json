@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "employee_discount_admin",
-    "en": "Employee Discount Admin",
-    "ar": "إدارة الخصومات",
+    "En": "Employee Discount Admin",
+    "Ar": "إدارة الخصومات",
     "permissions": ["employee_discount_manage"]
 }]

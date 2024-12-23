@@ -1,107 +1,107 @@
 [
     {
         "name": "safes_add",
-        "en": "Add Safe",
-        "ar": "إضافة خزينة"
+        "En": "Add Safe",
+        "Ar": "إضافة خزينة"
     },
     {
         "name": "safes_new",
-        "en": "New Safe",
-        "ar": "خزينة جديدة"
+        "En": "New Safe",
+        "Ar": "خزينة جديدة"
     },
     {
         "name": "safes_details",
-        "en": "Safe Details",
-        "ar": "تفاصيل خزينة"
+        "En": "Safe Details",
+        "Ar": "تفاصيل خزينة"
     },
     {
         "name": "err_delete_safe",
-        "en": "The safe cannot be deleted for other transactions",
-        "ar": "لأ يمكن حذف الخزنة لإستخدامها في معاملات أخرى"
+        "En": "The safe cannot be deleted for other transactions",
+        "Ar": "لأ يمكن حذف الخزنة لإستخدامها في معاملات أخرى"
     },
     {
         "name": "safes_edit",
-        "en": "Edit Safe",
-        "ar": "تعديل بيانات خزينة"
+        "En": "Edit Safe",
+        "Ar": "تعديل بيانات خزينة"
     },
     {
         "name": "safes_delete",
-        "en": "Delete Safe",
-        "ar": "حذف خزينة"
+        "En": "Delete Safe",
+        "Ar": "حذف خزينة"
     },
     {
         "name": "safes_employee",
-        "en": "Safe Employee",
-        "ar": " إسم المسؤول"
+        "En": "Safe Employee",
+        "Ar": " إسم المسؤول"
     },
     {
         "name": "safes_name",
-        "en": "Safe Name",
-        "ar": "إسم الخزينة"
+        "En": "Safe Name",
+        "Ar": "إسم الخزينة"
     },
     {
         "name": "safes_balance",
-        "en": "Safe Balance",
-        "ar": "رصيد الخزينة"
+        "En": "Safe Balance",
+        "Ar": "رصيد الخزينة"
     },
     {
         "name": "safes",
-        "en": "Safes",
-        "ar": "الخزائن"
+        "En": "Safes",
+        "Ar": "الخزائن"
     },
     {
         "name": "cannt_delete_safe",
-        "en": "Unable To Delete To Exist Balance",
-        "ar": "لا يمكن الحذف لوجود رصيد"
+        "En": "Unable To Delete To Exist Balance",
+        "Ar": "لا يمكن الحذف لوجود رصيد"
     },
     {
         "name": "accounting_safes",
-        "en": "Safes",
-        "ar": "الخزائن"
+        "En": "Safes",
+        "Ar": "الخزائن"
     },
     {
         "name": "",
-        "en": "Record Found",
-        "ar": "هذا البيان موجود من قبل"
+        "En": "Record Found",
+        "Ar": "هذا البيان موجود من قبل"
     },
     {
         "name": "safes_employee_name",
-        "en": "Employee Name",
-        "ar": " إسم المسؤول  "
+        "En": "Employee Name",
+        "Ar": " إسم المسؤول  "
     },
     {
         "name": "safes_search",
-        "en": "search",
-        "ar": " بحث"
+        "En": "search",
+        "Ar": " بحث"
     },
     {
         "name": "safe_type",
-        "en": "Safe Type",
-        "ar": " نوع الخزينة"
+        "En": "Safe Type",
+        "Ar": " نوع الخزينة"
     },
     {
         "name": "empty_search",
-        "en": "Reset",
-        "ar": " تفريغ الحقول"
+        "En": "Reset",
+        "Ar": " تفريغ الحقول"
     },
     {
         "name": "safes_description",
-        "en": "Description",
-        "ar": "التفاصيل"
+        "En": "Description",
+        "Ar": "التفاصيل"
     },
     {
         "name": "duplicate_alarm",
-        "en": "Duplicate",
-        "ar": "هذا البيان موجود من قبل"
+        "En": "Duplicate",
+        "Ar": "هذا البيان موجود من قبل"
     },
     {
         "name": "safes_logo",
-        "en": "Safe Logo",
-        "ar": "الشعار"
+        "En": "Safe Logo",
+        "Ar": "الشعار"
     },
     {
         "name": "safes_img",
-        "en": "Safe Images",
-        "ar": "الملفات"
+        "En": "Safe Images",
+        "Ar": "الملفات"
     }
 ]

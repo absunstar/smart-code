@@ -19,19 +19,19 @@ company
 
 ```json
 [
-    {"name" : "company_add" , "en":"Add" , "ar" : "إضافة"},
-    {"name" : "company_edit" , "en":"Edit" , "ar" : "تعديل"},
-    {"name" : "company_delete" , "en":"Delete" , "ar" : "حذف"},
-    {"name" : "company_search" , "en":"Search" , "ar" : "بحث"},
-    {"name" : "company_view" , "en":"View" , "ar" : "عرض"},
-    {"name" : "company_manage" , "en":"Manage" , "ar" : "إدارة"}
+    {"name" : "company_add" , "En":"Add" , "Ar" : "إضافة"},
+    {"name" : "company_edit" , "En":"Edit" , "Ar" : "تعديل"},
+    {"name" : "company_delete" , "En":"Delete" , "Ar" : "حذف"},
+    {"name" : "company_search" , "En":"Search" , "Ar" : "بحث"},
+    {"name" : "company_view" , "En":"View" , "Ar" : "عرض"},
+    {"name" : "company_manage" , "En":"Manage" , "Ar" : "إدارة"}
 ]
 ```
 
 ## roles.json
 ```json
 [
-    {"name" : "company_admin" , "en":"Admin" , "ar" : "مدير" , 
+    {"name" : "company_admin" , "En":"Admin" , "Ar" : "مدير" , 
       "permissions" : [
         {"name" : "company_add"},
         {"name" : "company_edit"},

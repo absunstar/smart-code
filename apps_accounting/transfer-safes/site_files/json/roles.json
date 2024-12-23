@@ -1,7 +1,7 @@
 [{
     "module_name" : "accounting" ,
     "name": "transfer_safes_admin",
-    "en": "Transfer Safes Admin",
-    "ar": "إدارة تحويل الخزن",
+    "En": "Transfer Safes Admin",
+    "Ar": "إدارة تحويل الخزن",
     "permissions": ["transfer_safes_manage"]
 }]

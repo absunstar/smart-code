@@ -1,14 +1,14 @@
 [
-    {"name" : "maritals_status_add" , "en" : "Add Marital State" , "ar" : "إضافة حالة اجتماعية"},
-    {"name" : "maritals_status_new" , "en" : "New Marital State" , "ar" : "حالة اجتماعية جديدة"},
-    {"name" : "maritals_status_details" , "en" : "Marital State Details" , "ar" : "تفاصيل حالة اجتماعية"},
-    {"name" : "maritals_status_edit" , "en" : "Edit Marital State" , "ar" : "تعديل حالة اجتماعية"},
-    {"name" : "maritals_status_delete" , "en" : "Delete Marital State" , "ar" : "حذف حالة اجتماعية"},
-    {"name" : "maritals_status_logo" , "en" : "Marital State logo" , "ar" : "صورة الحالة الاجتماعية"},
-    {"name" : "maritals_status_name" , "en" : "Marital State Name" , "ar" : "الحالة الاجتماعية"},
-    {"name" : "maritals_status" , "en" : "Marital State" , "ar" : "الحالة الاجتماعية"},
+    {"name" : "maritals_status_add" , "En" : "Add Marital State" , "Ar" : "إضافة حالة اجتماعية"},
+    {"name" : "maritals_status_new" , "En" : "New Marital State" , "Ar" : "حالة اجتماعية جديدة"},
+    {"name" : "maritals_status_details" , "En" : "Marital State Details" , "Ar" : "تفاصيل حالة اجتماعية"},
+    {"name" : "maritals_status_edit" , "En" : "Edit Marital State" , "Ar" : "تعديل حالة اجتماعية"},
+    {"name" : "maritals_status_delete" , "En" : "Delete Marital State" , "Ar" : "حذف حالة اجتماعية"},
+    {"name" : "maritals_status_logo" , "En" : "Marital State logo" , "Ar" : "صورة الحالة الاجتماعية"},
+    {"name" : "maritals_status_name" , "En" : "Marital State Name" , "Ar" : "الحالة الاجتماعية"},
+    {"name" : "maritals_status" , "En" : "Marital State" , "Ar" : "الحالة الاجتماعية"},
 
     
-    {"name" : "maritals_status_img" , "en" : "Maritals Status Image" , "ar" : "شعار الحالة الاجتماعية"}
+    {"name" : "maritals_status_img" , "En" : "Maritals Status Image" , "Ar" : "شعار الحالة الاجتماعية"}
 
 ]

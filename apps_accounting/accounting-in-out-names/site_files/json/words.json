@@ -1,22 +1,22 @@
 [
-    { "name": "in_out_name","en": "Names In & Out", "ar": "مسميات الوارد و المنصرف"},
-    { "name": "accounting_in_out_names","en": "Names In & Out", "ar": "مسميات الوارد و المنصرف"},
-    { "name": "in_out_name_add","en": "Add Amount", "ar": "إضافة مسمي"},
-    { "name": "in_out_name_new","en": "New Amount", "ar": "تسجيل مسمي جديد"},
-    { "name": "in_out_name_details","en": "Amount  Details", "ar": "تفاصيل مسمي"},
-    { "name": "in_out_name_edit","en": "Edit Amount", "ar": "تعديل مسمي"},
-    { "name": "in_out_name_delete","en": "Delete Amount", "ar": "حذف مسمي"},
-    { "name": "in_out_name_from","en": "From", "ar": "من"},
-    { "name": "in_out_name_to","en": "To", "ar": "الي"},
-    { "name": "in_out_name_in","en": "In", "ar": "وارد"},
-    { "name": "in_out_name_out","en": "Out", "ar": "منصرف"},
-    { "name": "in_out_name_name","en": "Name", "ar": "المسمي"},
-    { "name": "error_select","en": "Should Select Type", "ar": "يجب إختيار النوع وارد أو منصرف"},
-    { "name": "yes","en": "Yes", "ar": "نعم"},
+    { "name": "in_out_name","En": "Names In & Out", "Ar": "مسميات الوارد و المنصرف"},
+    { "name": "accounting_in_out_names","En": "Names In & Out", "Ar": "مسميات الوارد و المنصرف"},
+    { "name": "in_out_name_add","En": "Add Amount", "Ar": "إضافة مسمي"},
+    { "name": "in_out_name_new","En": "New Amount", "Ar": "تسجيل مسمي جديد"},
+    { "name": "in_out_name_details","En": "Amount  Details", "Ar": "تفاصيل مسمي"},
+    { "name": "in_out_name_edit","En": "Edit Amount", "Ar": "تعديل مسمي"},
+    { "name": "in_out_name_delete","En": "Delete Amount", "Ar": "حذف مسمي"},
+    { "name": "in_out_name_from","En": "From", "Ar": "من"},
+    { "name": "in_out_name_to","En": "To", "Ar": "الي"},
+    { "name": "in_out_name_in","En": "In", "Ar": "وارد"},
+    { "name": "in_out_name_out","En": "Out", "Ar": "منصرف"},
+    { "name": "in_out_name_name","En": "Name", "Ar": "المسمي"},
+    { "name": "error_select","En": "Should Select Type", "Ar": "يجب إختيار النوع وارد أو منصرف"},
+    { "name": "yes","En": "Yes", "Ar": "نعم"},
    
-    { "name": "in_out_name_logo","en": "Logo", "ar": "الشعار"},
+    { "name": "in_out_name_logo","En": "Logo", "Ar": "الشعار"},
 
-    { "name": "in_out_name_img","en": "Image", "ar": "الملفات"}
+    { "name": "in_out_name_img","En": "Image", "Ar": "الملفات"}
 
 
 ]

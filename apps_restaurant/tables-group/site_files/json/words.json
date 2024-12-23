@@ -1,46 +1,46 @@
 [{
         "name": "tables_group",
-        "en": "Tables Group",
-        "ar": "مجموعة الطاولات"
+        "En": "Tables Group",
+        "Ar": "مجموعة الطاولات"
     },
     {
         "name": "tables_group_new",
-        "en": "New Tables Group",
-        "ar": "مجموعة طاولات جديدة"
+        "En": "New Tables Group",
+        "Ar": "مجموعة طاولات جديدة"
     },
     {
         "name": "tables_group_add",
-        "en": "Add Tables Group",
-        "ar": "إضافة مجموعة طاولات"
+        "En": "Add Tables Group",
+        "Ar": "إضافة مجموعة طاولات"
     },
     {
         "name": "tables_group_edit",
-        "en": "Edit Tables Group",
-        "ar": "تعديل مجموعة طاولات"
+        "En": "Edit Tables Group",
+        "Ar": "تعديل مجموعة طاولات"
     },
     {
         "name": "tables_group_details",
-        "en": "Tables Group Details",
-        "ar": "تفاصيل المجموعة طاولات"
+        "En": "Tables Group Details",
+        "Ar": "تفاصيل المجموعة طاولات"
     },
     {
         "name": "tables_group_delete",
-        "en": "Delete tables group",
-        "ar": "حذف مجموعة طاولات"
+        "En": "Delete tables group",
+        "Ar": "حذف مجموعة طاولات"
     },
     {
         "name": "tables_group_person",
-        "en": "Persons",
-        "ar": "أشخاص"
+        "En": "Persons",
+        "Ar": "أشخاص"
     },
     {
         "name": "tables_group_number",
-        "en": "Tables Group Number",
-        "ar": "رقم مجموعة طاولات"
+        "En": "Tables Group Number",
+        "Ar": "رقم مجموعة طاولات"
     },
     {
         "name": "tables_group_name",
-        "en": "Tables Group Name",
-        "ar": "إسم مجموعة طاولات"
+        "En": "Tables Group Name",
+        "Ar": "إسم مجموعة طاولات"
     }
 ]

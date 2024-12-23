@@ -1,258 +1,258 @@
 [
     {
         "name": "exams",
-        "en": "Exams",
-        "ar": "الإمتحانات"
+        "En": "Exams",
+        "Ar": "الإمتحانات"
     },
     {
         "name": "exam",
-        "en": "Exam",
-        "ar": "الإمتحان"
+        "En": "Exam",
+        "Ar": "الإمتحان"
     },
     {
         "name": "exam_name",
-        "en": "Exam Name",
-        "ar": "إسم الإمتحان"
+        "En": "Exam Name",
+        "Ar": "إسم الإمتحان"
     },
    
     {
         "name": "remaining_time",
-        "en": "Remaining time",
-        "ar": "الزمن المتبقي"
+        "En": "Remaining time",
+        "Ar": "الزمن المتبقي"
     },
     {
         "name": "exam_time_expired",
-        "en": "The exam time has expired",
-        "ar": "وقت الإمتحان قد إنتهى"
+        "En": "The exam time has expired",
+        "Ar": "وقت الإمتحان قد إنتهى"
     },
     {
         "name": "exams_new",
-        "en": "New Exam",
-        "ar": "إمتحان جديد"
+        "En": "New Exam",
+        "Ar": "إمتحان جديد"
     },
     {
         "name": "exams_add",
-        "en": "Add Exam",
-        "ar": "إضافة إمتحان"
+        "En": "Add Exam",
+        "Ar": "إضافة إمتحان"
     },
     {
         "name": "exams_edit",
-        "en": "Edit Exam",
-        "ar": "تعديل إمتحان"
+        "En": "Edit Exam",
+        "Ar": "تعديل إمتحان"
     },
     {
         "name": "correct_answer",
-        "en": "The correct answer",
-        "ar": "الإجابة الصحيحة"
+        "En": "The correct answer",
+        "Ar": "الإجابة الصحيحة"
     },
     {
         "name": "student_answer",
-        "en": "Student answer",
-        "ar": "إجابة الطالب"
+        "En": "Student answer",
+        "Ar": "إجابة الطالب"
     },
     {
         "name": "exams_details",
-        "en": "Exam Details",
-        "ar": "تفاصيل الإمتحان"
+        "En": "Exam Details",
+        "Ar": "تفاصيل الإمتحان"
     },
     {
         "name": "exams_delete",
-        "en": "Delete exams",
-        "ar": "حذف إمتحان"
+        "En": "Delete exams",
+        "Ar": "حذف إمتحان"
     },
     {
         "name": "correction_exam",
-        "en": "Correction of the exam",
-        "ar": "تصحيح اللإمتحان"
+        "En": "Correction of the exam",
+        "Ar": "تصحيح اللإمتحان"
     },
     {
         "name": "final_grade",
-        "en": "The Final Grade",
-        "ar": "الدرجة النهائية"
+        "En": "The Final Grade",
+        "Ar": "الدرجة النهائية"
     },
     {
         "name": "no_answer",
-        "en": "There is no answer",
-        "ar": "لا يوجد إجابة"
+        "En": "There is no answer",
+        "Ar": "لا يوجد إجابة"
     },
     {
         "name": "degree_success",
-        "en": "The Degree Of Success",
-        "ar": "درجة النجاح"
+        "En": "The Degree Of Success",
+        "Ar": "درجة النجاح"
     },
     {
         "name": "exams_type",
-        "en": "Exam Type",
-        "ar": "نوع الإمتحان"
+        "En": "Exam Type",
+        "Ar": "نوع الإمتحان"
     },
     {
         "name": "exam_started",
-        "en": "Exam Started",
-        "ar": "بدء الإمتحان"
+        "En": "Exam Started",
+        "Ar": "بدء الإمتحان"
     },
     {
         "name": "with_reason_stated",
-        "en": "With the reason stated",
-        "ar": "مع ذكر السبب"
+        "En": "With the reason stated",
+        "Ar": "مع ذكر السبب"
     },
     {
         "name": "choices",
-        "en": "Choices",
-        "ar": "الإختيارات"
+        "En": "Choices",
+        "Ar": "الإختيارات"
     },
     {
         "name": "availability_exam",
-        "en": "Availability Exam",
-        "ar": "إتاحة الإمتحان"
+        "En": "Availability Exam",
+        "Ar": "إتاحة الإمتحان"
     },
     {
         "name": "choosing_students",
-        "en": "Choosing students",
-        "ar": "إختيار الطلاب"
+        "En": "Choosing students",
+        "Ar": "إختيار الطلاب"
     },
     {
         "name": "title_question",
-        "en": "Title of the question",
-        "ar": "عنوان السؤال"
+        "En": "Title of the question",
+        "Ar": "عنوان السؤال"
     },
     {
         "name": "passing_score_greater_final_grade",
-        "en": "The passing score is greater than the final grade",
-        "ar": "درجة النجاح أكبر من الدرجة النهائية"
+        "En": "The passing score is greater than the final grade",
+        "Ar": "درجة النجاح أكبر من الدرجة النهائية"
     },
     {
         "name": "sum_scores_not_equal_final_score",
-        "en": "The sum of the scores does not equal the final score",
-        "ar": "مجموع الدرجات لا يساوي الدرجة النهائية"
+        "En": "The sum of the scores does not equal the final score",
+        "Ar": "مجموع الدرجات لا يساوي الدرجة النهائية"
     },
     {
         "name": "student_scores_not_equal_final_score",
-        "en": "The student grade are greater than the final grade",
-        "ar": "درجة الطالب أكبر من الدرجة النهائية"
+        "En": "The student grade are greater than the final grade",
+        "Ar": "درجة الطالب أكبر من الدرجة النهائية"
     },
     {
         "name": "student_scores_not_equal_question_score",
-        "en": "The student’s score is greater than the question’s score",
-        "ar": "درجة الطالب أكبر من درجة السؤال"
+        "En": "The student’s score is greater than the question’s score",
+        "Ar": "درجة الطالب أكبر من درجة السؤال"
     },
     {
         "name": "There_are_unanswered_questions",
-        "en": "There are unanswered questions",
-        "ar": "يوجد أسئلة لم يتم الإجابة عليها"
+        "En": "There are unanswered questions",
+        "Ar": "يوجد أسئلة لم يتم الإجابة عليها"
     },
     {
         "name": "question_types",
-        "en": "Question Type",
-        "ar": "نوع السؤال"
+        "En": "Question Type",
+        "Ar": "نوع السؤال"
     },
     {
         "name": "answer",
-        "en": "The Answer",
-        "ar": "الإجابة"
+        "En": "The Answer",
+        "Ar": "الإجابة"
     },
     {
         "name": "add_text",
-        "en": "Add text",
-        "ar": "إضافة نص"
+        "En": "Add text",
+        "Ar": "إضافة نص"
     },
     {
         "name": "total_scores",
-        "en": "Total scores",
-        "ar": "مجموع الدرجات"
+        "En": "Total scores",
+        "Ar": "مجموع الدرجات"
     },
     {
         "name": "additional_degrees",
-        "en": "Additional degrees",
-        "ar": "درجات إضافية"
+        "En": "Additional degrees",
+        "Ar": "درجات إضافية"
     },
     {
         "name": "exam_procedure",
-        "en": "Exam Procedure",
-        "ar": "إجراء الإمتحان"
+        "En": "Exam Procedure",
+        "Ar": "إجراء الإمتحان"
     },
     {
         "name": "exam_was_completed",
-        "en": "The exam was completed",
-        "ar": "تم الإمتحان"
+        "En": "The exam was completed",
+        "Ar": "تم الإمتحان"
     },
     {
         "name": "upload_exam",
-        "en": "Upload exam",
-        "ar": "تحميل إمتحان"
+        "En": "Upload exam",
+        "Ar": "تحميل إمتحان"
     },
     {
         "name": "You_have_already_taken_test",
-        "en": "The test has already been performed",
-        "ar": "تم إجراء الإختبار من قبل"
+        "En": "The test has already been performed",
+        "Ar": "تم إجراء الإختبار من قبل"
     },
     {
         "name": "cant_enter_exam",
-        "en": "You cannot enter because you are not registered for the exam",
-        "ar": "لا يمكنك الدخول لأنك غير مسجل في الإمتحان"
+        "En": "You cannot enter because you are not registered for the exam",
+        "Ar": "لا يمكنك الدخول لأنك غير مسجل في الإمتحان"
     },
     {
         "name": "exam_wasnot_completed",
-        "en": "The exam wasn not completed",
-        "ar": "لم يتم الإمتحان"
+        "En": "The exam wasn not completed",
+        "Ar": "لم يتم الإمتحان"
     },
     {
         "name": "finish_exam",
-        "en": "Finish the exam",
-        "ar": "إنهاء الإمتحان"
+        "En": "Finish the exam",
+        "Ar": "إنهاء الإمتحان"
     },
     {
         "name": "termination_correction",
-        "en": "Termination of correction",
-        "ar": "إنهاء التصحيح"
+        "En": "Termination of correction",
+        "Ar": "إنهاء التصحيح"
     },
     {
         "name": "exam_time",
-        "en": "Exam time",
-        "ar": "زمن الإمتحان"
+        "En": "Exam time",
+        "Ar": "زمن الإمتحان"
     },
     {
         "name": "ex_time",
-        "en": "time",
-        "ar": "الزمن"
+        "En": "time",
+        "Ar": "الزمن"
     },
     {
         "name": "class",
-        "en": "Class",
-        "ar": "الصف"
+        "En": "Class",
+        "Ar": "الصف"
     },
     {
         "name": "degree",
-        "en": "Degree",
-        "ar": "الدرجة"
+        "En": "Degree",
+        "Ar": "الدرجة"
     },
     {
         "name": "student_degree",
-        "en": "Student degree",
-        "ar": "درجة الطالب"
+        "En": "Student degree",
+        "Ar": "درجة الطالب"
     },
     {
         "name": "question",
-        "en": "The question",
-        "ar": "السؤال"
+        "En": "The question",
+        "Ar": "السؤال"
     },
     {
         "name": "exams_number",
-        "en": "Exam Number",
-        "ar": "رقم الإمتحان"
+        "En": "Exam Number",
+        "Ar": "رقم الإمتحان"
     },
     {
         "name": "create_questions",
-        "en": "Create questions",
-        "ar": "إنشاء الأسئلة"
+        "En": "Create questions",
+        "Ar": "إنشاء الأسئلة"
     },
     {
         "name": "exam_questions",
-        "en": "Exam questions",
-        "ar": "أسئلة الإمتحان"
+        "En": "Exam questions",
+        "Ar": "أسئلة الإمتحان"
     },
     {
         "name": "duration_exam",
-        "en": "Duration of the exam",
-        "ar": "مدة الإمتحان"
+        "En": "Duration of the exam",
+        "Ar": "مدة الإمتحان"
     }
 ]

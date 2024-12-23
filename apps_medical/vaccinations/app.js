@@ -317,7 +317,7 @@ module.exports = function init(site) {
 
   // get vaccinations price
   site.post("/api/vaccinations/getvaccinationsPrice", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+    req.headers.language = req.headers.language || "En";
     let response = {};
     let where = req.body.where || {};
     let vaccinations = where["vaccinations"].id;

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "attend_session_admin",
-    "en": "Attend Session Admin",
-    "ar": "إدارة حضور الجلسات",
+    "En": "Attend Session Admin",
+    "Ar": "إدارة حضور الجلسات",
     "permissions": ["attend_session_manage"]
 }]

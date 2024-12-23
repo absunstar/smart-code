@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "seating_numbers_admin",
-    "en": "Distribution of seating numbers Admin",
-    "ar": "إدارة توزيع أرقام الجلوس",
+    "En": "Distribution of seating numbers Admin",
+    "Ar": "إدارة توزيع أرقام الجلوس",
     "permissions": ["seating_numbers_manage"]
 }]

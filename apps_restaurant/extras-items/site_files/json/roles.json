@@ -1,7 +1,7 @@
 [{
     "module_name" : "inventory" ,
     "name": "extras_items_admin",
-    "en": "Extras items Admin",
-    "ar": "إدارة إضافات الأصناف",
+    "En": "Extras items Admin",
+    "Ar": "إدارة إضافات الأصناف",
     "permissions": ["extras_items_manage"]
 }]

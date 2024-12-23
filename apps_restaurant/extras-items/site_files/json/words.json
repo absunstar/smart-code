@@ -1,17 +1,17 @@
 [
-    {"name" : "extras_items_informations" , "en" : "Extras items Informations" , "ar" : "بيانات إضافات الأصناف"},
+    {"name" : "extras_items_informations" , "En" : "Extras items Informations" , "Ar" : "بيانات إضافات الأصناف"},
 
-    {"name" : "extras" , "en" : "Extras" , "ar" : "الإضافات"},
-    {"name" : "extras_menu" , "en" : "Extras menu" , "ar" : "قائمة الإضافات"},
-    {"name" : "extras_items" , "en" : "Extras items" , "ar" : "إضافات الأصناف"},
-    {"name" : "extras_items_menus" , "en" : "Extras items Menu" , "ar" : "قائمة إضافات الأصناف"},
-    {"name" : "extras_items_code" , "en" : "Extras items Code" , "ar" : "كود إضافة الصنف"},
-    {"name" : "extras_items_name" , "en" : "Extras items Name" , "ar" : "إسم إضافة الصنف"},
-    {"name" : "extras_items_new" , "en" : "New Extra" , "ar" : "إضافة جديدة"},
-    {"name" : "extras_items_details" , "en" : "Extras items Details" , "ar" : "تفاصيل إضافة الصنف"},
-    {"name" : "extras_items_update" , "en" : "Edit Extras items" , "ar" : "تعديل إضافة الصنف"},
-    {"name" : "extras_items_delete" , "en" : "Delte Extras items" , "ar" : "حذف إضافة الصنف"},
-    {"name" : "extras_items_add_name" , "en" : "Add Extras items" , "ar" : "إضافات الأصناف"}
+    {"name" : "extras" , "En" : "Extras" , "Ar" : "الإضافات"},
+    {"name" : "extras_menu" , "En" : "Extras menu" , "Ar" : "قائمة الإضافات"},
+    {"name" : "extras_items" , "En" : "Extras items" , "Ar" : "إضافات الأصناف"},
+    {"name" : "extras_items_menus" , "En" : "Extras items Menu" , "Ar" : "قائمة إضافات الأصناف"},
+    {"name" : "extras_items_code" , "En" : "Extras items Code" , "Ar" : "كود إضافة الصنف"},
+    {"name" : "extras_items_name" , "En" : "Extras items Name" , "Ar" : "إسم إضافة الصنف"},
+    {"name" : "extras_items_new" , "En" : "New Extra" , "Ar" : "إضافة جديدة"},
+    {"name" : "extras_items_details" , "En" : "Extras items Details" , "Ar" : "تفاصيل إضافة الصنف"},
+    {"name" : "extras_items_update" , "En" : "Edit Extras items" , "Ar" : "تعديل إضافة الصنف"},
+    {"name" : "extras_items_delete" , "En" : "Delte Extras items" , "Ar" : "حذف إضافة الصنف"},
+    {"name" : "extras_items_add_name" , "En" : "Add Extras items" , "Ar" : "إضافات الأصناف"}
 
 
     

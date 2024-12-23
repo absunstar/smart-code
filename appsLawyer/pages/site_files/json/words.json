@@ -1,62 +1,62 @@
 [
   {
     "name": "pages_implement",
-    "en": "pages Implement",
-    "ar": "تنفيذ الصفحات"
+    "En": "pages Implement",
+    "Ar": "تنفيذ الصفحات"
   },
   {
     "name": "pages",
-    "en": "Pages",
-    "ar": "الصفحات"
+    "En": "Pages",
+    "Ar": "الصفحات"
   },
   {
     "name": "page",
-    "en": "Page",
-    "ar": "صفحة"
+    "En": "Page",
+    "Ar": "صفحة"
   },
   {
     "name": "page_implement_new",
-    "en": "New Page",
-    "ar": "صفحة جديدة"
+    "En": "New Page",
+    "Ar": "صفحة جديدة"
   },
   {
     "name": "page_implement_add",
-    "en": "Add New Page",
-    "ar": "إضافة صفحة جديدة"
+    "En": "Add New Page",
+    "Ar": "إضافة صفحة جديدة"
   },
   {
     "name": "page_implement_edit",
-    "en": "Edit Page",
-    "ar": "تعديل صفحة"
+    "En": "Edit Page",
+    "Ar": "تعديل صفحة"
   },
   {
     "name": "page_implement_details",
-    "en": "Page Details",
-    "ar": "تفاصيل صفحة"
+    "En": "Page Details",
+    "Ar": "تفاصيل صفحة"
   },
   {
     "name": "page_implement_delete",
-    "en": "Delete Page",
-    "ar": "حذف صفحة"
+    "En": "Delete Page",
+    "Ar": "حذف صفحة"
   },
   {
     "name": "page_implement_number",
-    "en": "Page Number",
-    "ar": "رقم صفحة"
+    "En": "Page Number",
+    "Ar": "رقم صفحة"
   },
   {
     "name": "page_implement_name",
-    "en": "Page Name",
-    "ar": "إسم الصفحة"
+    "En": "Page Name",
+    "Ar": "إسم الصفحة"
   },
   {
     "name": "url",
-    "en": "URL",
-    "ar": "عنوان URL"
+    "En": "URL",
+    "Ar": "عنوان URL"
   },
   {
     "name": "content",
-    "en": "Content",
-    "ar": "المحتوى"
+    "En": "Content",
+    "Ar": "المحتوى"
   }
 ]

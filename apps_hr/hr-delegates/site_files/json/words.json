@@ -1,79 +1,79 @@
 [
     {
         "name": "delegates",
-        "en": "Delegates",
-        "ar": "المناديب"
+        "En": "Delegates",
+        "Ar": "المناديب"
     },
     {
         "name": "hr_delegates",
-        "en": "Delegates",
-        "ar": "المناديب"
+        "En": "Delegates",
+        "Ar": "المناديب"
     },
     {
         "name": "delegate_new",
-        "en": "New Delegate",
-        "ar": "مندوب جديد"
+        "En": "New Delegate",
+        "Ar": "مندوب جديد"
     },
     {
         "name": "delegate",
-        "en": "Delegate",
-        "ar": "المندوب"
+        "En": "Delegate",
+        "Ar": "المندوب"
     },
     {
         "name": "delivery_difference",
-        "en": "Delivery Difference",
-        "ar": "فرق التوصيل"
+        "En": "Delivery Difference",
+        "Ar": "فرق التوصيل"
     },
     {
         "name": "accounting_system",
-        "en": "Accounting System",
-        "ar": "النظام المحاسبي"
+        "En": "Accounting System",
+        "Ar": "النظام المحاسبي"
     },
    
     {
         "name": "delegate_add",
-        "en": "Add Delegate",
-        "ar": "إضافة مندوب"
+        "En": "Add Delegate",
+        "Ar": "إضافة مندوب"
     },
     {
         "name": "delegates_degrees",
-        "en": "New Degree",
-        "ar": "الدرجة الوظيفية"
+        "En": "New Degree",
+        "Ar": "الدرجة الوظيفية"
     },
     {
         "name": "delegate_edit",
-        "en": "Edit Delegate",
-        "ar": "تعديل مندوب"
+        "En": "Edit Delegate",
+        "Ar": "تعديل مندوب"
     },
     {
         "name": "delegate_details",
-        "en": "Delegate Details",
-        "ar": "تفاصيل المندوب"
+        "En": "Delegate Details",
+        "Ar": "تفاصيل المندوب"
     },
     {
         "name": "delegate_delete",
-        "en": "Delete Delegate",
-        "ar": "حذف مندوب"
+        "En": "Delete Delegate",
+        "Ar": "حذف مندوب"
     },
     {
         "name": "delegate_name",
-        "en": "Delegate Name",
-        "ar": "إسم المندوب"
+        "En": "Delegate Name",
+        "Ar": "إسم المندوب"
     },
     {
         "name": "delegate_indentfy",
-        "en": "Delegate Indentfy",
-        "ar": "نوع المندوب"
+        "En": "Delegate Indentfy",
+        "Ar": "نوع المندوب"
     },
 
     {
         "name": "qualification",
-        "en": "Qualification",
-        "ar": "المؤهل"
+        "En": "Qualification",
+        "Ar": "المؤهل"
     },
     {
         "name": "delegate_info",
-        "en": "Delegate Informations",
-        "ar": "معلومات المندوب"
+        "En": "Delegate Informations",
+        "Ar": "معلومات المندوب"
     }
 ]

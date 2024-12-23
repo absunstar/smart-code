@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "class_schedule_admin",
-    "en": "School Grade Admin",
-    "ar": "إدارة جداول الحصص",
+    "En": "School Grade Admin",
+    "Ar": "إدارة جداول الحصص",
     "permissions": ["class_schedule_manage"]
 }]

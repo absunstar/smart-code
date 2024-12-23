@@ -1,42 +1,42 @@
 [{
         "name": "courts",
-        "en": "Courts",
-        "ar": "المحاكم"
+        "En": "Courts",
+        "Ar": "المحاكم"
     },
     {
         "name": "court",
-        "en": "Court",
-        "ar": "المحكمة"
+        "En": "Court",
+        "Ar": "المحكمة"
     },
     {
         "name": "courts_new",
-        "en": "New Court",
-        "ar": "محكمة جديدة"
+        "En": "New Court",
+        "Ar": "محكمة جديدة"
     },
     {
         "name": "courts_add",
-        "en": "Add Court",
-        "ar": "إضافة محكمة "
+        "En": "Add Court",
+        "Ar": "إضافة محكمة "
     },
     {
         "name": "courts_edit",
-        "en": "Edit Court",
-        "ar": "تعديل محكمة "
+        "En": "Edit Court",
+        "Ar": "تعديل محكمة "
     },
     {
         "name": "courts_details",
-        "en": "Court Details",
-        "ar": "تفاصيل المحكمة "
+        "En": "Court Details",
+        "Ar": "تفاصيل المحكمة "
     },
     {
         "name": "courts_delete",
-        "en": "Delete Court",
-        "ar": "حذف محكمة "
+        "En": "Delete Court",
+        "Ar": "حذف محكمة "
     },
     {
         "name": "courts_name",
-        "en": "Court Name",
-        "ar": "إسم المحكمة "
+        "En": "Court Name",
+        "Ar": "إسم المحكمة "
     }
 
 

@@ -1,14 +1,14 @@
 [
-    {"name" : "lawsuit_status_informations" , "en" : "Lawsuit Status Informations" , "ar" : "بيانات حالة دعوى"},
+    {"name" : "lawsuit_status_informations" , "En" : "Lawsuit Status Informations" , "Ar" : "بيانات حالة دعوى"},
 
-    {"name" : "lawsuit_status" , "en" : "Lawsuit Status" , "ar" : "حالات الدعاوى"},
-    {"name" : "lawsuit_status_code" , "en" : "Lawsuit Status Code" , "ar" : "كود حالة "},
-    {"name" : "lawsuit_status_name" , "en" : "Lawsuit Status Name" , "ar" : "إسم الحالة"},
+    {"name" : "lawsuit_status" , "En" : "Lawsuit Status" , "Ar" : "حالات الدعاوى"},
+    {"name" : "lawsuit_status_code" , "En" : "Lawsuit Status Code" , "Ar" : "كود حالة "},
+    {"name" : "lawsuit_status_name" , "En" : "Lawsuit Status Name" , "Ar" : "إسم الحالة"},
 
-    {"name" : "lawsuit_status_new" , "en" : "New Lawsuit Status" , "ar" : "حالة دعوى جديدة"},
-    {"name" : "lawsuit_status_details" , "en" : "Lawsuit Status Details" , "ar" : "تفاصيل حالة دعوى"},
-    {"name" : "lawsuit_status_update" , "en" : "Edit Lawsuit Status" , "ar" : "تعديل حالة دعوى"},
-    {"name" : "lawsuit_status_delete" , "en" : "Delte Lawsuit Status" , "ar" : "حذف حالة دعوى"},
-    {"name" : "lawsuit_status_add_name" , "en" : "Add Lawsuit Status" , "ar" : "إضافة حالة دعوى"}
+    {"name" : "lawsuit_status_new" , "En" : "New Lawsuit Status" , "Ar" : "حالة دعوى جديدة"},
+    {"name" : "lawsuit_status_details" , "En" : "Lawsuit Status Details" , "Ar" : "تفاصيل حالة دعوى"},
+    {"name" : "lawsuit_status_update" , "En" : "Edit Lawsuit Status" , "Ar" : "تعديل حالة دعوى"},
+    {"name" : "lawsuit_status_delete" , "En" : "Delte Lawsuit Status" , "Ar" : "حذف حالة دعوى"},
+    {"name" : "lawsuit_status_add_name" , "En" : "Add Lawsuit Status" , "Ar" : "إضافة حالة دعوى"}
     
 ]

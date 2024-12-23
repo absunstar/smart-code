@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "printers_path_admin",
-    "en": "Printers Path Admin",
-    "ar": "إدارة مسار الطابعات",
+    "En": "Printers Path Admin",
+    "Ar": "إدارة مسار الطابعات",
     "permissions": ["printers_path_manage"]
 }]

@@ -1,11 +1,11 @@
 [
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "room" , "name":"room_ui" , "en":"Ui" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "room" , "name":"room_ui" , "En":"Ui" , "Ar":"الواجهة الرسومية"}
 ]

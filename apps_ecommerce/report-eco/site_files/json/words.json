@@ -1,15 +1,15 @@
 [
-    {"name" : "report_eco" , "en" : "Report Ecommerce Order" , "ar" : "تقرير طلب المتجر"},
-    {"name" : "reports_eco" , "en" : "Report Ecommerce Orders" , "ar" : "تقرير طلبات المتجر"},
-    {"name" : "order_approved" , "en" : "Order approved" , "ar" : "تم إعتماد الطلب"},
-    {"name" : "order_approval" , "en" : "Approval of the order" , "ar" : "إعتماد الطلب"},
-    {"name" : "under_delivery" , "en" : "Under delivery" , "ar" : "قيد التوصيل"},
-    {"name" : "done_delivery" , "en" : "Done delivery" , "ar" : "تم التوصيل"},
-    {"name" : "delivery_details" , "en" : "Delivery details" , "ar" : "تفاصيل التوصيل"},
-    {"name" : "delivery_agency" , "en" : "Delivery agency" , "ar" : "الجهة الموصلة"},
-    {"name" : "conductor" , "en" : "Conductor" , "ar" : "الموصل"},
-    {"name" : "delivery_agency_set" , "en" : "Delivery agency set" , "ar" : "تعيين الجهة الموصلة"},
-    {"name" : "report_eco_code" , "en" : "Order Code" , "ar" : "كود الطلب"}
+    {"name" : "report_eco" , "En" : "Report Ecommerce Order" , "Ar" : "تقرير طلب المتجر"},
+    {"name" : "reports_eco" , "En" : "Report Ecommerce Orders" , "Ar" : "تقرير طلبات المتجر"},
+    {"name" : "order_approved" , "En" : "Order approved" , "Ar" : "تم إعتماد الطلب"},
+    {"name" : "order_approval" , "En" : "Approval of the order" , "Ar" : "إعتماد الطلب"},
+    {"name" : "under_delivery" , "En" : "Under delivery" , "Ar" : "قيد التوصيل"},
+    {"name" : "done_delivery" , "En" : "Done delivery" , "Ar" : "تم التوصيل"},
+    {"name" : "delivery_details" , "En" : "Delivery details" , "Ar" : "تفاصيل التوصيل"},
+    {"name" : "delivery_agency" , "En" : "Delivery agency" , "Ar" : "الجهة الموصلة"},
+    {"name" : "conductor" , "En" : "Conductor" , "Ar" : "الموصل"},
+    {"name" : "delivery_agency_set" , "En" : "Delivery agency set" , "Ar" : "تعيين الجهة الموصلة"},
+    {"name" : "report_eco_code" , "En" : "Order Code" , "Ar" : "كود الطلب"}
 
 
 

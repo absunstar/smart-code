@@ -1,7 +1,7 @@
 [{
     "module_name" : "inventory" ,
     "name": "transfer_branch_admin",
-    "en": "Transfer Branch Items Admin",
-    "ar": "إدارة تحويل أصناف للفروع",
+    "En": "Transfer Branch Items Admin",
+    "Ar": "إدارة تحويل أصناف للفروع",
     "permissions": ["transfer_branch_manage"]
 }]

@@ -1,27 +1,27 @@
 [
   {
     "id": 1,
-    "en": "Pending",
-    "ar": "قيد الإنتظار"
+    "En": "Pending",
+    "Ar": "قيد الإنتظار"
   },
   {
     "id": 2,
-    "en": "Waiting in the clinic",
-    "ar": "إنتظار في العيادة"
+    "En": "Waiting in the clinic",
+    "Ar": "إنتظار في العيادة"
   },
   {
     "id": 3,
-    "en": "At the doctor",
-    "ar": "عند الطبيب"
+    "En": "At the doctor",
+    "Ar": "عند الطبيب"
   },
   {
     "id": 4,
-    "en": "Detected",
-    "ar": "تم الكشف"
+    "En": "Detected",
+    "Ar": "تم الكشف"
   },
   {
     "id": 5,
-    "en": "Cancellation Booking",
-    "ar": "إلغاء الحجز"
+    "En": "Cancellation Booking",
+    "Ar": "إلغاء الحجز"
   }
 ]

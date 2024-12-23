@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_stores_balance_admin",
-    "en": "Report Items Balance Admin",
-    "ar": "تقرير أرصدة الأصناف",
+    "En": "Report Items Balance Admin",
+    "Ar": "تقرير أرصدة الأصناف",
     "permissions": ["report_stores_balance_manage"]
 }]

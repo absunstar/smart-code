@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "clinics_admin",
-    "en": "Clinics Admin",
-    "ar": "إدارة العيادات",
+    "En": "Clinics Admin",
+    "Ar": "إدارة العيادات",
     "permissions": ["clinics_manage"]
 }]

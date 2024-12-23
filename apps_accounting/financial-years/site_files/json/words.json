@@ -1,42 +1,42 @@
 [
-    {"name" : "financial_years" , "en" : "Financial Years" , "ar" : "السنوات المالية"},
-    {"name" : "financial_years_add" , "en" : "Add Financial Year" , "ar" : "إضافة سنة مالية"},
-    {"name" : "financial_years_informations" , "en" : "FinancialYear Informations" , "ar" : "بيانات السنة"},
+    {"name" : "financial_years" , "En" : "Financial Years" , "Ar" : "السنوات المالية"},
+    {"name" : "financial_years_add" , "En" : "Add Financial Year" , "Ar" : "إضافة سنة مالية"},
+    {"name" : "financial_years_informations" , "En" : "FinancialYear Informations" , "Ar" : "بيانات السنة"},
 
-    {"name" : "financial_years_basic_informations" , "en" : "Financial Year Basic Information" , "ar":"بيانات السنة المالية"},
+    {"name" : "financial_years_basic_informations" , "En" : "Financial Year Basic Information" , "Ar":"بيانات السنة المالية"},
     
-    {"name" : "financial_years_menus" , "en" : "FinancialYear Menu" , "ar" : "قائمة السنة"},
-    {"name" : "financial_years_code" , "en" : "FinancialYear Code" , "ar" : "كود السنة"},
-    {"name" : "financial_years_name" , "en" : "Financial Year" , "ar" : "إسم السنة"},
-    {"name" : "financial_years_period_count" , "en" : "Financial Period Count" , "ar" : "عدد الفترات"},
-    {"name" : "financia_years_period_start" , "en" : "Period Start" , "ar" : "تاريخ بداية الفترة "},
+    {"name" : "financial_years_menus" , "En" : "FinancialYear Menu" , "Ar" : "قائمة السنة"},
+    {"name" : "financial_years_code" , "En" : "FinancialYear Code" , "Ar" : "كود السنة"},
+    {"name" : "financial_years_name" , "En" : "Financial Year" , "Ar" : "إسم السنة"},
+    {"name" : "financial_years_period_count" , "En" : "Financial Period Count" , "Ar" : "عدد الفترات"},
+    {"name" : "financia_years_period_start" , "En" : "Period Start" , "Ar" : "تاريخ بداية الفترة "},
 
-    {"name" : "financia_years_period_start_gregorian" , "en" : "Period Start Gregorian" , "ar" : "تاريخ بداية الفترة ميلادي"},
-    {"name" : "financia_years_period_start_hijri" , "en" : "Period Start Hijri" , "ar" : "تاريخ بداية الفترة هجري"},
-    {"name" : "financia_years_period_end" , "en" : "Period End" , "ar" : "تاريخ نهاية الفترة "},
+    {"name" : "financia_years_period_start_gregorian" , "En" : "Period Start Gregorian" , "Ar" : "تاريخ بداية الفترة ميلادي"},
+    {"name" : "financia_years_period_start_hijri" , "En" : "Period Start Hijri" , "Ar" : "تاريخ بداية الفترة هجري"},
+    {"name" : "financia_years_period_end" , "En" : "Period End" , "Ar" : "تاريخ نهاية الفترة "},
     {
         "name": "should_open_period",
-        "en": "The transaction cannot be completed before the period is opened",
-        "ar": "لا يمكن إتمام العملية قبل فتح الفترة"
+        "En": "The transaction cannot be completed before the period is opened",
+        "Ar": "لا يمكن إتمام العملية قبل فتح الفترة"
     },
-    {"name" : "financia_years_period_end_gregorian" , "en" : "Period End Gregorian" , "ar" : "تاريخ نهاية الفترة ميلادي"},
-    {"name" : "financia_years_period_end_hijri" , "en" : "Period End Hijri" , "ar" : "تاريخ نهاية الفترة هجري"},
+    {"name" : "financia_years_period_end_gregorian" , "En" : "Period End Gregorian" , "Ar" : "تاريخ نهاية الفترة ميلادي"},
+    {"name" : "financia_years_period_end_hijri" , "En" : "Period End Hijri" , "Ar" : "تاريخ نهاية الفترة هجري"},
   
-    {"name" : "financial_years_create_periods" , "en" : "Auto Create Periods" , "ar" : "إنشاء الفترات اّلي"},
-    {"name" : "financial_years_accounting_period" , "en" : "Accounting Period" , "ar" : "الفترات المحاسبية"},
-    {"name" : "financial_years_status" , "en" : "FinancialYear Status" , "ar" : "حالة السنة المالية"},
-    {"name" : "financial_years_period_status" , "en" : "Financial Period Status" , "ar" : "حالة الفترة "},
+    {"name" : "financial_years_create_periods" , "En" : "Auto Create Periods" , "Ar" : "إنشاء الفترات اّلي"},
+    {"name" : "financial_years_accounting_period" , "En" : "Accounting Period" , "Ar" : "الفترات المحاسبية"},
+    {"name" : "financial_years_status" , "En" : "FinancialYear Status" , "Ar" : "حالة السنة المالية"},
+    {"name" : "financial_years_period_status" , "En" : "Financial Period Status" , "Ar" : "حالة الفترة "},
 
 
-    {"name" : "financial_years_new" , "en" : "New FinancialYear" , "ar" : "إضافة سنة مالية"},
-    {"name" : "financial_years_details" , "en" : "FinancialYear Details" , "ar" : "تفاصيل السنة"},
-    {"name" : "financial_years_update" , "en" : "Edit FinancialYear" , "ar" : "تعديل السنة"},
-    {"name" : "financial_years_delete" , "en" : "Delte FinancialYear" , "ar" : "حذف السنة"},
-    {"name" : "financial_years_add_name" , "en" : "Add FinancialYear" , "ar" : "إضافة السنة"},
+    {"name" : "financial_years_new" , "En" : "New FinancialYear" , "Ar" : "إضافة سنة مالية"},
+    {"name" : "financial_years_details" , "En" : "FinancialYear Details" , "Ar" : "تفاصيل السنة"},
+    {"name" : "financial_years_update" , "En" : "Edit FinancialYear" , "Ar" : "تعديل السنة"},
+    {"name" : "financial_years_delete" , "En" : "Delte FinancialYear" , "Ar" : "حذف السنة"},
+    {"name" : "financial_years_add_name" , "En" : "Add FinancialYear" , "Ar" : "إضافة السنة"},
 
-    {"name" : "financial_years_period_code" , "en" : "Period Code" , "ar" : "كود الفترة"},
-    {"name" : "financial_years_Period_open" , "en" : "Period Open" , "ar" : "فتح الفترة"},
-    {"name" : "financial_years_Period_Close" , "en" : "Period Close" , "ar" : "اغلاق الفترة"}
+    {"name" : "financial_years_period_code" , "En" : "Period Code" , "Ar" : "كود الفترة"},
+    {"name" : "financial_years_Period_open" , "En" : "Period Open" , "Ar" : "فتح الفترة"},
+    {"name" : "financial_years_Period_Close" , "En" : "Period Close" , "Ar" : "اغلاق الفترة"}
 
     
 ]

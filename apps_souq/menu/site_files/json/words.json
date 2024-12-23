@@ -1,1362 +1,1362 @@
 [
   {
     "name": "menu",
-    "en": "Menu",
-    "ar": "القائمة"
+    "En": "Menu",
+    "Ar": "القائمة"
   },
   {
     "name": "main_menu",
-    "en": "Main Menu",
-    "ar": "القائمة الرئيسية"
+    "En": "Main Menu",
+    "Ar": "القائمة الرئيسية"
   },
   {
     "name": "basic_transactions",
-    "en": "Basic Transactions",
-    "ar": "المعاملات الأساسية"
+    "En": "Basic Transactions",
+    "Ar": "المعاملات الأساسية"
   },
   {
     "name": "basic_setting",
-    "en": "Basic Setting",
-    "ar": "الإعدادات الأساسية"
+    "En": "Basic Setting",
+    "Ar": "الإعدادات الأساسية"
   },
   {
     "name": "menu_monitor",
-    "en": "Monitor",
-    "ar": "المراقبة"
+    "En": "Monitor",
+    "Ar": "المراقبة"
   },
   {
     "name": "reset",
-    "en": "Reset",
-    "ar": "تهيئة"
+    "En": "Reset",
+    "Ar": "تهيئة"
   },
   {
     "name": "purchase_invoice",
-    "en": "Purchase Invoice",
-    "ar": "فواتير المشتريات"
+    "En": "Purchase Invoice",
+    "Ar": "فواتير المشتريات"
   },
   {
     "name": "account_settings",
-    "en": "Accounting settings",
-    "ar": "الإعدادات المحاسبية"
+    "En": "Accounting settings",
+    "Ar": "الإعدادات المحاسبية"
   },
   {
     "name": "sales_invoice",
-    "en": "Sales Invoice",
-    "ar": "فواتير المبيعات"
+    "En": "Sales Invoice",
+    "Ar": "فواتير المبيعات"
   },
   {
     "name": "orders_screen_invoice",
-    "en": "Orders Screen Invoice",
-    "ar": "فواتير شاشة الطلبات"
+    "En": "Orders Screen Invoice",
+    "Ar": "فواتير شاشة الطلبات"
   },
   {
     "name": "orders_activity_invoice",
-    "en": "Orders Service Activity Invoices",
-    "ar": "فواتير طلب الخدمة/النشاط"
+    "En": "Orders Service Activity Invoices",
+    "Ar": "فواتير طلب الخدمة/النشاط"
   },
   {
     "name": "booking_hall_invoice",
-    "en": "Booking A Hall Invoice",
-    "ar": "فواتير حجز القاعات"
+    "En": "Booking A Hall Invoice",
+    "Ar": "فواتير حجز القاعات"
   },
   {
     "name": "trainer_account_invoice",
-    "en": "Trainer Account Invoice",
-    "ar": "فواتير حساب المدربين"
+    "En": "Trainer Account Invoice",
+    "Ar": "فواتير حساب المدربين"
   },
   {
     "name": "form_course_booking_invoice",
-    "en": "Form Course Booking Invoice",
-    "ar": "فواتير إستمارة حجز كورس"
+    "En": "Form Course Booking Invoice",
+    "Ar": "فواتير إستمارة حجز كورس"
   },
   {
     "name": "amount_in_invoice",
-    "en": "Amounts In",
-    "ar": "سندات القبض"
+    "En": "Amounts In",
+    "Ar": "سندات القبض"
   },
   {
     "name": "amount_out_invoice",
-    "en": "Amounts Out",
-    "ar": "سندات الصرف"
+    "En": "Amounts Out",
+    "Ar": "سندات الصرف"
   },
   {
     "name": "recharge_customer_balance",
-    "en": "Customer Advance Payment",
-    "ar": "دفعة عميل مقدمة"
+    "En": "Customer Advance Payment",
+    "Ar": "دفعة عميل مقدمة"
   },
   {
     "name": "reward_employees",
-    "en": "Reward Employees",
-    "ar": "مكافاّت الموظفين"
+    "En": "Reward Employees",
+    "Ar": "مكافاّت الموظفين"
   },
   {
     "name": "employee_advance",
-    "en": "Employee Advance",
-    "ar": "سلفة موظف"
+    "En": "Employee Advance",
+    "Ar": "سلفة موظف"
   },
   {
     "name": "payment_employee_advance",
-    "en": "Payment Employee Advance",
-    "ar": "تسديد سلفة موظف"
+    "En": "Payment Employee Advance",
+    "Ar": "تسديد سلفة موظف"
   },
   {
     "name": "security_system",
-    "en": "Security System",
-    "ar": "نظام الحماية"
+    "En": "Security System",
+    "Ar": "نظام الحماية"
   },
   {
     "name": "general_setting",
-    "en": "General Setting",
-    "ar": "إعدادات عامة"
+    "En": "General Setting",
+    "Ar": "إعدادات عامة"
   },
   {
     "name": "inventories",
-    "en": "Inventories",
-    "ar": "المخازن"
+    "En": "Inventories",
+    "Ar": "المخازن"
   },
   {
     "name": "pos_setting",
-    "en": "Point Of Sale Setting",
-    "ar": "إعدادات نقاط البيع"
+    "En": "Point Of Sale Setting",
+    "Ar": "إعدادات نقاط البيع"
   },
   {
     "name": "accounting",
-    "en": "Accounting",
-    "ar": "الحسابات"
+    "En": "Accounting",
+    "Ar": "الحسابات"
   },
   {
     "name": "account_transactions",
-    "en": "Accounting Transactions",
-    "ar": "المعاملات المحسابية"
+    "En": "Accounting Transactions",
+    "Ar": "المعاملات المحسابية"
   },
   {
     "name": "inventory_transactions",
-    "en": "Inventory Transactions",
-    "ar": "المعاملات المخزنية"
+    "En": "Inventory Transactions",
+    "Ar": "المعاملات المخزنية"
   },
   {
     "name": "inventory_setting",
-    "en": "Inventory Setting",
-    "ar": "الإعدادت المخزنية"
+    "En": "Inventory Setting",
+    "Ar": "الإعدادت المخزنية"
   },
   {
     "name": "purchase_store",
-    "en": "Purchase Store",
-    "ar": "المشتريات المخزنية"
+    "En": "Purchase Store",
+    "Ar": "المشتريات المخزنية"
   },
   {
     "name": "sales_store",
-    "en": "Sales Store",
-    "ar": "المبيعات المخزنية"
+    "En": "Sales Store",
+    "Ar": "المبيعات المخزنية"
   },
   {
     "name": "purchase_store",
-    "en": "Purchase Store",
-    "ar": "المشتريات المخزنية"
+    "En": "Purchase Store",
+    "Ar": "المشتريات المخزنية"
   },
   {
     "name": "employees",
-    "en": "Employees",
-    "ar": "الموظفين"
+    "En": "Employees",
+    "Ar": "الموظفين"
   },
   {
     "name": "reports",
-    "en": "Reports",
-    "ar": "التقارير"
+    "En": "Reports",
+    "Ar": "التقارير"
   },
   {
     "name": "safes_payments_menus",
-    "en": "Safes Payments Menu",
-    "ar": "قائمة معاملات الخزينة"
+    "En": "Safes Payments Menu",
+    "Ar": "قائمة معاملات الخزينة"
   },
   {
     "name": "vendors_menu",
-    "en": "Vendors",
-    "ar": "الموردين"
+    "En": "Vendors",
+    "Ar": "الموردين"
   },
   {
     "name": "menu_monitor_tag",
-    "en": "Tracking All Systems",
-    "ar": "متابعة كل الانظمة"
+    "En": "Tracking All Systems",
+    "Ar": "متابعة كل الانظمة"
   },
   {
     "name": "menu_workflow",
-    "en": "Workflow",
-    "ar": "اﻻجراءات"
+    "En": "Workflow",
+    "Ar": "اﻻجراءات"
   },
   {
     "name": "report_trainer_attend",
-    "en": "Report Trainer Attend Course",
-    "ar": "تقرير حضور الكورسات للمدربين"
+    "En": "Report Trainer Attend Course",
+    "Ar": "تقرير حضور الكورسات للمدربين"
   },
   {
     "name": "report_trainer_detailed",
-    "en": "Report Trainer Detailed",
-    "ar": "تقرير تفصيلي للمدربين"
+    "En": "Report Trainer Detailed",
+    "Ar": "تقرير تفصيلي للمدربين"
   },
   {
     "name": "report_student_attend",
-    "en": "Report Students Attend Course",
-    "ar": "تقرير حضور الكورسات للطلاب"
+    "En": "Report Students Attend Course",
+    "Ar": "تقرير حضور الكورسات للطلاب"
   },
   {
     "name": "report_student_detailed",
-    "en": "Report Student Detailed",
-    "ar": "تقرير تفصيلي للطلاب"
+    "En": "Report Student Detailed",
+    "Ar": "تقرير تفصيلي للطلاب"
   },
   {
     "name": "detailed_reports",
-    "en": "Detailed Reports",
-    "ar": "تقارير تفصيلية"
+    "En": "Detailed Reports",
+    "Ar": "تقارير تفصيلية"
   },
   {
     "name": "menu_workflow_tag",
-    "en": "Tracking Workflow",
-    "ar": "تحرير ومتابعة اﻻجراءات"
+    "En": "Tracking Workflow",
+    "Ar": "تحرير ومتابعة اﻻجراءات"
   },
   {
     "name": "menu_settings",
-    "en": "Setting",
-    "ar": "الإعدادت"
+    "En": "Setting",
+    "Ar": "الإعدادت"
   },
   {
     "name": "menu_setting_tag",
-    "en": "System Setting",
-    "ar": "اعدادات النظام"
+    "En": "System Setting",
+    "Ar": "اعدادات النظام"
   },
   {
     "name": "menus_users",
-    "en": "Users",
-    "ar": "المستخدمين"
+    "En": "Users",
+    "Ar": "المستخدمين"
   },
   {
     "name": "menus_users_permissions",
-    "en": "Users Permissions",
-    "ar": "صلاحيات المستخدمين"
+    "En": "Users Permissions",
+    "Ar": "صلاحيات المستخدمين"
   },
   {
     "name": "general_menus",
-    "en": "General Menus",
-    "ar": "قائمة الاعدادات العامة"
+    "En": "General Menus",
+    "Ar": "قائمة الاعدادات العامة"
   },
   {
     "name": "address_menus",
-    "en": "Address Menu",
-    "ar": "قائمة العناوين"
+    "En": "Address Menu",
+    "Ar": "قائمة العناوين"
   },
   {
     "name": "address_menus_manegment",
-    "en": "Address Menu Manegment",
-    "ar": "إدارة العناوين"
+    "En": "Address Menu Manegment",
+    "Ar": "إدارة العناوين"
   },
   {
     "name": "menu_goves",
-    "en": "Goves Menu",
-    "ar": "قائمة المحافظات"
+    "En": "Goves Menu",
+    "Ar": "قائمة المحافظات"
   },
   {
     "name": "menu_goves_tag",
-    "en": " Goves Manegment",
-    "ar": "إدارة المحافظات"
+    "En": " Goves Manegment",
+    "Ar": "إدارة المحافظات"
   },
   {
     "name": "invoices_menus",
-    "en": "invoices Menu",
-    "ar": "قائمة الفواتير"
+    "En": "invoices Menu",
+    "Ar": "قائمة الفواتير"
   },
   {
     "name": "invoices_management",
-    "en": "invoices Management",
-    "ar": "إدارة الفواتير"
+    "En": "invoices Management",
+    "Ar": "إدارة الفواتير"
   },
   {
     "name": "order_kitchen_menus",
-    "en": "Order Kitchen Menu",
-    "ar": "قائمة طلبات المطبخ"
+    "En": "Order Kitchen Menu",
+    "Ar": "قائمة طلبات المطبخ"
   },
   {
     "name": "order_kitchen_management",
-    "en": "Order Kitchen Management",
-    "ar": "طلبات المطبخ"
+    "En": "Order Kitchen Management",
+    "Ar": "طلبات المطبخ"
   },
   {
     "name": "order_distributor_menus",
-    "en": "Order Distributor Menu",
-    "ar": "قائمة الطلبات الموزعة"
+    "En": "Order Distributor Menu",
+    "Ar": "قائمة الطلبات الموزعة"
   },
   {
     "name": "order_distributor_management",
-    "en": "Order Distributor Management",
-    "ar": "إدارة الطلبات الموزعة"
+    "En": "Order Distributor Management",
+    "Ar": "إدارة الطلبات الموزعة"
   },
   {
     "name": "order_slides_menus",
-    "en": "Order Slides Menu",
-    "ar": "حساب شريحة جلسات"
+    "En": "Order Slides Menu",
+    "Ar": "حساب شريحة جلسات"
   },
   {
     "name": "order_slides_management",
-    "en": "Order Slides Management",
-    "ar": "إدارة شرائح الجلسات"
+    "En": "Order Slides Management",
+    "Ar": "إدارة شرائح الجلسات"
   },
   {
     "name": "add_course_tag",
-    "en": "Add Course",
-    "ar": " إضافة تعريف كورس"
+    "En": "Add Course",
+    "Ar": " إضافة تعريف كورس"
   },
   {
     "name": "menu_hosting",
-    "en": "Hosting",
-    "ar": "الإستضافة"
+    "En": "Hosting",
+    "Ar": "الإستضافة"
   },
   {
     "name": "main_manu",
-    "en": "Main Manu",
-    "ar": "القائمة الرئيسية"
+    "En": "Main Manu",
+    "Ar": "القائمة الرئيسية"
   },
   {
     "name": "basic_screens",
-    "en": "Basic Screens",
-    "ar": "الشاشات الأساسية"
+    "En": "Basic Screens",
+    "Ar": "الشاشات الأساسية"
   },
   {
     "name": "main",
-    "en": "Main",
-    "ar": "الرئيسية"
+    "En": "Main",
+    "Ar": "الرئيسية"
   },
   {
     "name": "club_setting",
-    "en": "Club Setting",
-    "ar": "إعدادات النادي"
+    "En": "Club Setting",
+    "Ar": "إعدادات النادي"
   },
   {
     "name": "academy_setting",
-    "en": "Academy Setting",
-    "ar": "إعدادات الأكاديمي"
+    "En": "Academy Setting",
+    "Ar": "إعدادات الأكاديمي"
   },
   {
     "name": "restaurant_setting",
-    "en": "Restaurant Setting",
-    "ar": "إعدادات المطعم"
+    "En": "Restaurant Setting",
+    "Ar": "إعدادات المطعم"
   },
   {
     "name": "lawyer_setting",
-    "en": "Lawyer Office Setting",
-    "ar": "إعدادات مكتب المحاماه"
+    "En": "Lawyer Office Setting",
+    "Ar": "إعدادات مكتب المحاماه"
   },
   {
     "name": "pos_setting",
-    "en": "Pos Setting",
-    "ar": "إعدادات نقطة البيع"
+    "En": "Pos Setting",
+    "Ar": "إعدادات نقطة البيع"
   },
   {
     "name": "add_hosting_tag",
-    "en": "Add Hosting",
-    "ar": " إضافة إستضافة"
+    "En": "Add Hosting",
+    "Ar": " إضافة إستضافة"
   },
   {
     "name": "menu_report_hosting",
-    "en": "Hosting Report",
-    "ar": "تقرير الإستضافة"
+    "En": "Hosting Report",
+    "Ar": "تقرير الإستضافة"
   },
   {
     "name": "report_student_courses",
-    "en": "Report Student Courses",
-    "ar": "تقرير كورسات الطلاب"
+    "En": "Report Student Courses",
+    "Ar": "تقرير كورسات الطلاب"
   },
   {
     "name": "report_trainer_courses",
-    "en": "Report Trainer Courses",
-    "ar": "تقرير كورسات المدربين"
+    "En": "Report Trainer Courses",
+    "Ar": "تقرير كورسات المدربين"
   },
   {
     "name": "report_tenants_book",
-    "en": "Report Tenants Book",
-    "ar": "تقرير حجز القاعات"
+    "En": "Report Tenants Book",
+    "Ar": "تقرير حجز القاعات"
   },
   {
     "name": "add_course_tag",
-    "en": "Add Course",
-    "ar": " إضافة تعريف كورس"
+    "En": "Add Course",
+    "Ar": " إضافة تعريف كورس"
   },
   {
     "name": "menu_facilities",
-    "en": "Facilities",
-    "ar": "تعريف المنشاّت"
+    "En": "Facilities",
+    "Ar": "تعريف المنشاّت"
   },
   {
     "name": "add_facilities_tag",
-    "en": "Add Facilities",
-    "ar": " إضافة تعريف منشأة"
+    "En": "Add Facilities",
+    "Ar": " إضافة تعريف منشأة"
   },
   {
     "name": "menu_total_amount",
-    "en": "Total Amount",
-    "ar": "إجمالي الوارد و المنصرف"
+    "En": "Total Amount",
+    "Ar": "إجمالي الوارد و المنصرف"
   },
   {
     "name": "inventory_reports",
-    "en": "Inventory Reports",
-    "ar": "تقارير المخازن "
+    "En": "Inventory Reports",
+    "Ar": "تقارير المخازن "
   },
   {
     "name": "accounting_reports",
-    "en": "Accounting Reports",
-    "ar": "تقارير الحسابات "
+    "En": "Accounting Reports",
+    "Ar": "تقارير الحسابات "
   },
   {
     "name": "total_amount_tag",
-    "en": "Total Amount Data",
-    "ar": "بيان إجمالي الوارد و المنصرف"
+    "En": "Total Amount Data",
+    "Ar": "بيان إجمالي الوارد و المنصرف"
   },
   {
     "name": "menu_attend_leave",
-    "en": "attend & Leave",
-    "ar": "الحضور و اﻹنصراف"
+    "En": "attend & Leave",
+    "Ar": "الحضور و اﻹنصراف"
   },
   {
     "name": "add_attend_leave_tag",
-    "en": "Add attend & Leave",
-    "ar": " إضافة حضور و إنصراف"
+    "En": "Add attend & Leave",
+    "Ar": " إضافة حضور و إنصراف"
   },
   {
     "name": "menu_book_hall",
-    "en": "Book Hall Menu",
-    "ar": "حجز القاعات"
+    "En": "Book Hall Menu",
+    "Ar": "حجز القاعات"
   },
   {
     "name": "menu_book_hall_tag",
-    "en": " Book Hall Manegment",
-    "ar": "إدارة حجز القاعات"
+    "En": " Book Hall Manegment",
+    "Ar": "إدارة حجز القاعات"
   },
   {
     "name": "menu_city",
-    "en": "City Menu",
-    "ar": "قائمة المدن"
+    "En": "City Menu",
+    "Ar": "قائمة المدن"
   },
   {
     "name": "menu_city_tag",
-    "en": "City Manegment",
-    "ar": "إدارة المدن"
+    "En": "City Manegment",
+    "Ar": "إدارة المدن"
   },
   {
     "name": "menu_area",
-    "en": "Area Menu",
-    "ar": "قائمة المناطق"
+    "En": "Area Menu",
+    "Ar": "قائمة المناطق"
   },
   {
     "name": "menu_area_tag",
-    "en": "Area Manegment",
-    "ar": "إدارة المناطق"
+    "En": "Area Manegment",
+    "Ar": "إدارة المناطق"
   },
   {
     "name": "menu_class_rooms",
-    "en": "Class Rooms",
-    "ar": " القاعات"
+    "En": "Class Rooms",
+    "Ar": " القاعات"
   },
   {
     "name": "menu_class_rooms_tag",
-    "en": "Add Class Rooms Manegment",
-    "ar": "إدارة نظام القاعات"
+    "En": "Add Class Rooms Manegment",
+    "Ar": "إدارة نظام القاعات"
   },
   {
     "name": "menu_courses",
-    "en": "Courses Menu",
-    "ar": "قائمة الكورسات"
+    "En": "Courses Menu",
+    "Ar": "قائمة الكورسات"
   },
   {
     "name": "menu_courses_tag",
-    "en": "Add Courses Manegment",
-    "ar": "إدارة نظام الكورسات"
+    "En": "Add Courses Manegment",
+    "Ar": "إدارة نظام الكورسات"
   },
   {
     "name": "menu_create_course",
-    "en": "Create Course",
-    "ar": "إنشاء الكورسات"
+    "En": "Create Course",
+    "Ar": "إنشاء الكورسات"
   },
   {
     "name": "menu_create_course_tag",
-    "en": "Create Courses Manegment",
-    "ar": "إدارة إنشاء الكورسات"
+    "En": "Create Courses Manegment",
+    "Ar": "إدارة إنشاء الكورسات"
   },
   {
     "name": "menu_account_course",
-    "en": "Account Trainer",
-    "ar": "حساب المدربين"
+    "En": "Account Trainer",
+    "Ar": "حساب المدربين"
   },
   {
     "name": "menu_account_course_tag",
-    "en": "Account Trainers Manegment",
-    "ar": "إدارة حساب المدربين"
+    "En": "Account Trainers Manegment",
+    "Ar": "إدارة حساب المدربين"
   },
   {
     "name": "menu_vendors",
-    "en": "Vendors Menu",
-    "ar": "قائمة الموردين"
+    "En": "Vendors Menu",
+    "Ar": "قائمة الموردين"
   },
   {
     "name": "menu_vendors_tag",
-    "en": "Add Vendors",
-    "ar": "إضافة موردين"
+    "En": "Add Vendors",
+    "Ar": "إضافة موردين"
   },
   {
     "name": "menu_vendors_groups",
-    "en": "Vendors Groups Menu",
-    "ar": "قائمة مجموعة الموردين"
+    "En": "Vendors Groups Menu",
+    "Ar": "قائمة مجموعة الموردين"
   },
   {
     "name": "menu_vendors_groups_tag",
-    "en": "Add Vendors Groups",
-    "ar": "إضافة مجموعة موردين"
+    "En": "Add Vendors Groups",
+    "Ar": "إضافة مجموعة موردين"
   },
   {
     "name": "menu_customers",
-    "en": "Customer Menu",
-    "ar": "قائمة العملاء"
+    "En": "Customer Menu",
+    "Ar": "قائمة العملاء"
   },
   {
     "name": "menu_customers_tag",
-    "en": "Add Customer",
-    "ar": "إضافة عملاء"
+    "En": "Add Customer",
+    "Ar": "إضافة عملاء"
   },
   {
     "name": "menu_customers_groups",
-    "en": "Customer Groups Menu",
-    "ar": "قائمة مجموعة العملاء"
+    "En": "Customer Groups Menu",
+    "Ar": "قائمة مجموعة العملاء"
   },
   {
     "name": "menu_customers_groups_tag",
-    "en": "Add Customer Groups",
-    "ar": "إضافة مجموعة عملاء"
+    "En": "Add Customer Groups",
+    "Ar": "إضافة مجموعة عملاء"
   },
   {
     "name": "menu_book_course",
-    "en": "Book Courses",
-    "ar": "إستمارة حجز الكورسات"
+    "En": "Book Courses",
+    "Ar": "إستمارة حجز الكورسات"
   },
   {
     "name": "menu_book_course_tag",
-    "en": "Book Courses Manegment",
-    "ar": "إدارة إستمارات حجز الكورسات"
+    "En": "Book Courses Manegment",
+    "Ar": "إدارة إستمارات حجز الكورسات"
   },
   {
     "name": "menu_disease",
-    "en": "Diseases",
-    "ar": "الأمراض"
+    "En": "Diseases",
+    "Ar": "الأمراض"
   },
   {
     "name": "menu_disease_tag",
-    "en": "Add Diseases Manegment",
-    "ar": "إدارة نظام الأمراض"
+    "En": "Add Diseases Manegment",
+    "Ar": "إدارة نظام الأمراض"
   },
   {
     "name": "menu_medicine",
-    "en": "Medicines",
-    "ar": "الأدوية"
+    "En": "Medicines",
+    "Ar": "الأدوية"
   },
   {
     "name": "menu_medicine_tag",
-    "en": "Add Medicines Manegment",
-    "ar": "إدارة نظام الأدوية"
+    "En": "Add Medicines Manegment",
+    "Ar": "إدارة نظام الأدوية"
   },
   {
     "name": "menu_tenant",
-    "en": "Tenants",
-    "ar": "المستأجرين"
+    "En": "Tenants",
+    "Ar": "المستأجرين"
   },
   {
     "name": "menu_tenant_tag",
-    "en": "Add Tenants Manegment",
-    "ar": "إدارة نظام المستأجرين"
+    "En": "Add Tenants Manegment",
+    "Ar": "إدارة نظام المستأجرين"
   },
   {
     "name": "menu_booking",
-    "en": "Booking",
-    "ar": "الحجز"
+    "En": "Booking",
+    "Ar": "الحجز"
   },
   {
     "name": "menu_booking_tag",
-    "en": "Add Booking Manegment",
-    "ar": "إدارة نظام الحجز"
+    "En": "Add Booking Manegment",
+    "Ar": "إدارة نظام الحجز"
   },
   {
     "name": "menu_company",
-    "en": "company",
-    "ar": "الشركة"
+    "En": "company",
+    "Ar": "الشركة"
   },
   {
     "name": "menu_company_tag",
-    "en": "Add company Manegment",
-    "ar": "إدارة نظام الشركة"
+    "En": "Add company Manegment",
+    "Ar": "إدارة نظام الشركة"
   },
   {
     "name": "menu_jobs",
-    "en": "Jobs",
-    "ar": "الوظائف"
+    "En": "Jobs",
+    "Ar": "الوظائف"
   },
   {
     "name": "menu_jobs_tag",
-    "en": "Add Jobs Manegment",
-    "ar": "إدارة نظام الوظائف"
+    "En": "Add Jobs Manegment",
+    "Ar": "إدارة نظام الوظائف"
   },
   {
     "name": "stores_menus",
-    "en": "Stores Menu",
-    "ar": " المخازن"
+    "En": "Stores Menu",
+    "Ar": " المخازن"
   },
   {
     "name": "stores_mgmt",
-    "en": "Stores Management",
-    "ar": "إدارة المخازن"
+    "En": "Stores Management",
+    "Ar": "إدارة المخازن"
   },
   {
     "name": "menu_employee",
-    "en": "Employee",
-    "ar": "الموظفين"
+    "En": "Employee",
+    "Ar": "الموظفين"
   },
   {
     "name": "menu_employee_tag",
-    "en": "Employee Manegment",
-    "ar": "إدارة الموظفين"
+    "En": "Employee Manegment",
+    "Ar": "إدارة الموظفين"
   },
   {
     "name": "menu_trainer",
-    "en": "Trainer",
-    "ar": "المدربين"
+    "En": "Trainer",
+    "Ar": "المدربين"
   },
   {
     "name": "menu_trainer_tag",
-    "en": "Trainer Manegment",
-    "ar": "إدارة المدربين"
+    "En": "Trainer Manegment",
+    "Ar": "إدارة المدربين"
   },
   {
     "name": "menu_employee_job_tag",
-    "en": "Employee & Job Manegment",
-    "ar": "إدارة شئون الموظفين"
+    "En": "Employee & Job Manegment",
+    "Ar": "إدارة شئون الموظفين"
   },
   {
     "name": "menu_job_employee_tag",
-    "en": "Add job & Employee Manegment",
-    "ar": "إدارة نظام شئون الموظفين"
+    "En": "Add job & Employee Manegment",
+    "Ar": "إدارة نظام شئون الموظفين"
   },
   {
     "name": "menu_students",
-    "en": "Students",
-    "ar": " الطلاب"
+    "En": "Students",
+    "Ar": " الطلاب"
   },
   {
     "name": "menu_students_tag",
-    "en": "Add Students Manegment",
-    "ar": "إدارة نظام  الطلاب"
+    "En": "Add Students Manegment",
+    "Ar": "إدارة نظام  الطلاب"
   },
   {
     "name": "monitoring_menus",
-    "en": "Monitoring System",
-    "ar": "المراقبة "
+    "En": "Monitoring System",
+    "Ar": "المراقبة "
   },
   {
     "name": "monitoring",
-    "en": "Full Monitoring System",
-    "ar": "مراقبة شاملة لكل الانظمة"
+    "En": "Full Monitoring System",
+    "Ar": "مراقبة شاملة لكل الانظمة"
   },
   {
     "name": "tickets_menus",
-    "en": "Tickets Menu",
-    "ar": " الطلبات"
+    "En": "Tickets Menu",
+    "Ar": " الطلبات"
   },
   {
     "name": "tickets_mgmt",
-    "en": "Tickets Management",
-    "ar": "إدارة الطلبات"
+    "En": "Tickets Management",
+    "Ar": "إدارة الطلبات"
   },
   {
     "name": "customers_menus",
-    "en": "Customers Menu",
-    "ar": " العملاء"
+    "En": "Customers Menu",
+    "Ar": " العملاء"
   },
   {
     "name": "customers_mgmt",
-    "en": "Customers Management",
-    "ar": "إدارة العملاء"
+    "En": "Customers Management",
+    "Ar": "إدارة العملاء"
   },
   {
     "name": "stores_menus",
-    "en": "Stores Menu",
-    "ar": " المخازن"
+    "En": "Stores Menu",
+    "Ar": " المخازن"
   },
   {
     "name": "stores_mgmt",
-    "en": "Stores Management",
-    "ar": "إدارة المخازن"
+    "En": "Stores Management",
+    "Ar": "إدارة المخازن"
   },
   {
     "name": "accounts_menus",
-    "en": "Accounts Menu",
-    "ar": " الحسابات"
+    "En": "Accounts Menu",
+    "Ar": " الحسابات"
   },
   {
     "name": "accounts_mgmt",
-    "en": "Accounts Management",
-    "ar": " إدارة الحسابات"
+    "En": "Accounts Management",
+    "Ar": " إدارة الحسابات"
   },
   {
     "name": "system_menus",
-    "en": "System Menus",
-    "ar": "قوائم النظام"
+    "En": "System Menus",
+    "Ar": "قوائم النظام"
   },
   {
     "name": "system_tickets_add_menus",
-    "en": "Adding Ticket",
-    "ar": "إضافة بلاغ"
+    "En": "Adding Ticket",
+    "Ar": "إضافة بلاغ"
   },
   {
     "name": "system_tickets_customers_companies",
-    "en": "Customers and Companies Tickets",
-    "ar": "بلاغات الشركات والعملاء"
+    "En": "Customers and Companies Tickets",
+    "Ar": "بلاغات الشركات والعملاء"
   },
   {
     "name": "system_tickets_slides_menus",
-    "en": "tickets slides",
-    "ar": "شرائح الطلبات"
+    "En": "tickets slides",
+    "Ar": "شرائح الطلبات"
   },
   {
     "name": "system_tickets_slides_count",
-    "en": "Counting tickets slides",
-    "ar": "حساب شرائح الطلبات"
+    "En": "Counting tickets slides",
+    "Ar": "حساب شرائح الطلبات"
   },
   {
     "name": "system_add_customer_menus",
-    "en": "Add new Customer",
-    "ar": "إضافة عميل جديد"
+    "En": "Add new Customer",
+    "Ar": "إضافة عميل جديد"
   },
   {
     "name": "system_customer_register",
-    "en": "register new customer",
-    "ar": "تسجيل عميل جديد"
+    "En": "register new customer",
+    "Ar": "تسجيل عميل جديد"
   },
   {
     "name": "system_unemployee_menus",
-    "en": "register new unEmployee",
-    "ar": "غير الموظفين"
+    "En": "register new unEmployee",
+    "Ar": "غير الموظفين"
   },
   {
     "name": "system_unemployees",
-    "en": "Un Employees",
-    "ar": "غير الموظفين"
+    "En": "Un Employees",
+    "Ar": "غير الموظفين"
   },
   {
     "name": "system_unemployees_insurance",
-    "en": "UnEmployees Insurance",
-    "ar": "تأمينات غير الموظفين "
+    "En": "UnEmployees Insurance",
+    "Ar": "تأمينات غير الموظفين "
   },
   {
     "name": "system_unemployees_mobiles",
-    "en": "UnEmployees Mobiles",
-    "ar": "شرائح تليفون غير الموظفين "
+    "En": "UnEmployees Mobiles",
+    "Ar": "شرائح تليفون غير الموظفين "
   },
   {
     "name": "system_reports",
-    "en": "Reports",
-    "ar": "عرض التقارير"
+    "En": "Reports",
+    "Ar": "عرض التقارير"
   },
   {
     "name": "distributed_tickets_reports",
-    "en": "Distributed Tickets Reports",
-    "ar": "تقارير الطلبات الموزعة"
+    "En": "Distributed Tickets Reports",
+    "Ar": "تقارير الطلبات الموزعة"
   },
   {
     "name": "system_stores_menus",
-    "en": "Stores",
-    "ar": "المخازن"
+    "En": "Stores",
+    "Ar": "المخازن"
   },
   {
     "name": "system_stores",
-    "en": "Stores Management",
-    "ar": "إدارة المخازن"
+    "En": "Stores Management",
+    "Ar": "إدارة المخازن"
   },
   {
     "name": "system_catagories_items_menus",
-    "en": "Catagories Items",
-    "ar": "قطع الغيار"
+    "En": "Catagories Items",
+    "Ar": "قطع الغيار"
   },
   {
     "name": "system_add_catagories_items",
-    "en": "Counting tickets slides",
-    "ar": "حساب شرائح الطلبات"
+    "En": "Counting tickets slides",
+    "Ar": "حساب شرائح الطلبات"
   },
   {
     "name": "system_stores_in_menus",
-    "en": "Store In / Purchase Invoice",
-    "ar": "إذن وارد / فاتورة شراء"
+    "En": "Store In / Purchase Invoice",
+    "Ar": "إذن وارد / فاتورة شراء"
   },
   {
     "name": "system_register_stores_in",
-    "en": "Register Store in",
-    "ar": "تسجيل إذن وارد / فاتورة شراء"
+    "En": "Register Store in",
+    "Ar": "تسجيل إذن وارد / فاتورة شراء"
   },
   {
     "name": "system_stores_out_menus",
-    "en": "Store Out",
-    "ar": "إذن صرف / فاتورة بيع"
+    "En": "Store Out",
+    "Ar": "إذن صرف / فاتورة بيع"
   },
   {
     "name": "system_register_stores_out",
-    "en": "register Store Out",
-    "ar": "تسجيل إذن صرف / فاتورة بيع"
+    "En": "register Store Out",
+    "Ar": "تسجيل إذن صرف / فاتورة بيع"
   },
   {
     "name": "system_add_tax_menus",
-    "en": "Add New Tax",
-    "ar": "إضافة ضريبة"
+    "En": "Add New Tax",
+    "Ar": "إضافة ضريبة"
   },
   {
     "name": "system_tax_types_out",
-    "en": "Tax Types",
-    "ar": "أنواع الضرائب"
+    "En": "Tax Types",
+    "Ar": "أنواع الضرائب"
   },
   {
     "name": "system_add_discount_menus",
-    "en": "Add New Discount",
-    "ar": "إضافة خصم جديد"
+    "En": "Add New Discount",
+    "Ar": "إضافة خصم جديد"
   },
   {
     "name": "system_discount_types",
-    "en": "Discount Types",
-    "ar": "أنواع الخصومات"
+    "En": "Discount Types",
+    "Ar": "أنواع الخصومات"
   },
   {
     "name": "default_setting_menus",
-    "en": "Settings General Menu",
-    "ar": " قائمة الإعدادات العامة"
+    "En": "Settings General Menu",
+    "Ar": " قائمة الإعدادات العامة"
   },
   {
     "name": "default_setting_management",
-    "en": "Settings Default Management",
-    "ar": "نظام الإعدادات"
+    "En": "Settings Default Management",
+    "Ar": "نظام الإعدادات"
   },
   {
     "name": "system_item_transaction_menus",
-    "en": "Item Transaction",
-    "ar": "كارتة الصنف"
+    "En": "Item Transaction",
+    "Ar": "كارتة الصنف"
   },
   {
     "name": "report_invoices_menus",
-    "en": "Report Invoices Menu",
-    "ar": "قائمة تقارير الفواتير "
+    "En": "Report Invoices Menu",
+    "Ar": "قائمة تقارير الفواتير "
   },
   {
     "name": "report_sales_menus",
-    "en": "Report Sales Menu",
-    "ar": "قائمة تقارير مبيعات الأصناف "
+    "En": "Report Sales Menu",
+    "Ar": "قائمة تقارير مبيعات الأصناف "
   },
   {
     "name": "report_employee_user_menus",
-    "en": "Report Employees Order Menu",
-    "ar": "قائمة تقارير طلبات موظفين "
+    "En": "Report Employees Order Menu",
+    "Ar": "قائمة تقارير طلبات موظفين "
   },
   {
     "name": "report_employee_user_name",
-    "en": "Report Employees Order",
-    "ar": "تقارير طلبات موظفين "
+    "En": "Report Employees Order",
+    "Ar": "تقارير طلبات موظفين "
   },
   {
     "name": "report_full_employees_menus",
-    "en": "Report Full Employees Menu",
-    "ar": "قائمة تقارير شاملة لطلبات الموظفين"
+    "En": "Report Full Employees Menu",
+    "Ar": "قائمة تقارير شاملة لطلبات الموظفين"
   },
   {
     "name": "report_full_employees_name",
-    "en": "Report Full Employees Order",
-    "ar": "تقرير شامل لطلبات الموظفين"
+    "En": "Report Full Employees Order",
+    "Ar": "تقرير شامل لطلبات الموظفين"
   },
   {
     "name": "system_item_details",
-    "en": "Item Details",
-    "ar": "تفاصيل الصنف"
+    "En": "Item Details",
+    "Ar": "تفاصيل الصنف"
   },
   {
     "name": "system_eng_item_list_menus",
-    "en": "Eng Item List",
-    "ar": " عهدة الفنيين"
+    "En": "Eng Item List",
+    "Ar": " عهدة الفنيين"
   },
   {
     "name": "system_exchange_receipt",
-    "en": "Exchange and receipt",
-    "ar": " صرف وإستلام"
+    "En": "Exchange and receipt",
+    "Ar": " صرف وإستلام"
   },
   {
     "name": "system_eng_item_debt_menus",
-    "en": "Eng Item Dept",
-    "ar": " مديونية الفنيين"
+    "En": "Eng Item Dept",
+    "Ar": " مديونية الفنيين"
   },
   {
     "name": "system_safe_menus",
-    "en": "Safe",
-    "ar": "الخزينة"
+    "En": "Safe",
+    "Ar": "الخزينة"
   },
   {
     "name": "system_add_amounts_in",
-    "en": "Add Amount in",
-    "ar": "إضافة بنود الوارد "
+    "En": "Add Amount in",
+    "Ar": "إضافة بنود الوارد "
   },
   {
     "name": "system_add_amounts_out",
-    "en": "Add Amount out",
-    "ar": "إضافة بنود المصاريف"
+    "En": "Add Amount out",
+    "Ar": "إضافة بنود المصاريف"
   },
   {
     "name": "system_in_out_names_menus",
-    "en": "Amounts In & Out Names",
-    "ar": "مسميات الوارد والمنصرف"
+    "En": "Amounts In & Out Names",
+    "Ar": "مسميات الوارد والمنصرف"
   },
   {
     "name": "system_in_out_names",
-    "en": "Add Amounts In & Out Names",
-    "ar": "إضافة مسميات الوارد والمنصرف"
+    "En": "Add Amounts In & Out Names",
+    "Ar": "إضافة مسميات الوارد والمنصرف"
   },
   {
     "name": "system_amounts_report_menus",
-    "en": "Amounts Report",
-    "ar": "كشف حساب"
+    "En": "Amounts Report",
+    "Ar": "كشف حساب"
   },
   {
     "name": "system_amounts_report",
-    "en": "Full Amounts Report",
-    "ar": "تقرير مالي شامل"
+    "En": "Full Amounts Report",
+    "Ar": "تقرير مالي شامل"
   },
   {
     "name": "system_employees_salary_report",
-    "en": "Full Employee Report",
-    "ar": "تقرير مالي للموظفين"
+    "En": "Full Employee Report",
+    "Ar": "تقرير مالي للموظفين"
   },
   {
     "name": "system_employees_discount_menus",
-    "en": "Employee Discount",
-    "ar": " خصومات الموظفين "
+    "En": "Employee Discount",
+    "Ar": " خصومات الموظفين "
   },
   {
     "name": "system_employees_offers_menus",
-    "en": "Employee Offer",
-    "ar": " مكافئات الموظفين "
+    "En": "Employee Offer",
+    "Ar": " مكافئات الموظفين "
   },
   {
     "name": "system_safes_payment_menus",
-    "en": "Safes Payment",
-    "ar": "  معاملات الخزينة "
+    "En": "Safes Payment",
+    "Ar": "  معاملات الخزينة "
   },
   {
     "name": "system_engineers_report_menus",
-    "en": "Engineers Calculation Salary",
-    "ar": "    مرتبات الفنيين  "
+    "En": "Engineers Calculation Salary",
+    "Ar": "    مرتبات الفنيين  "
   },
   {
     "name": "system_engineers_report",
-    "en": "ُEngineers Calculation Salary",
-    "ar": "   تقرير مالي للفنيين "
+    "En": "ُEngineers Calculation Salary",
+    "Ar": "   تقرير مالي للفنيين "
   },
   {
     "name": "system_month_employees_salary_report_menus",
-    "en": "Monthly Employees Report",
-    "ar": "   تقرير تفصيلي للمستخدمين "
+    "En": "Monthly Employees Report",
+    "Ar": "   تقرير تفصيلي للمستخدمين "
   },
   {
     "name": "month_general_employees_salary_reports",
-    "en": "General Monthly Employees Report",
-    "ar": "   تقرير إجمالي للمستخدمين "
+    "En": "General Monthly Employees Report",
+    "Ar": "   تقرير إجمالي للمستخدمين "
   },
   {
     "name": "system_employees_insurance",
-    "en": "Employee Insurance System",
-    "ar": "تأمينات الموظفين"
+    "En": "Employee Insurance System",
+    "Ar": "تأمينات الموظفين"
   },
   {
     "name": "system_facilities",
-    "en": "Facilities Data ",
-    "ar": "بيانات المنشاءات"
+    "En": "Facilities Data ",
+    "Ar": "بيانات المنشاءات"
   },
   {
     "name": "system_facilities_add",
-    "en": "Add Facility ",
-    "ar": " إضافة منشأة في التامينات"
+    "En": "Add Facility ",
+    "Ar": " إضافة منشأة في التامينات"
   },
   {
     "name": "system_insurance_slides",
-    "en": "Insurance Slides ",
-    "ar": "شرائح التأمين "
+    "En": "Insurance Slides ",
+    "Ar": "شرائح التأمين "
   },
   {
     "name": "system_employee_mobiles_slides",
-    "en": "Employee Mobile Slides ",
-    "ar": " شرائح الموبايل للموظفين "
+    "En": "Employee Mobile Slides ",
+    "Ar": " شرائح الموبايل للموظفين "
   },
   {
     "name": "system_mobiles_slides",
-    "en": "Mobile Slides ",
-    "ar": " ارقام التليفونات "
+    "En": "Mobile Slides ",
+    "Ar": " ارقام التليفونات "
   },
   {
     "name": "system_accounting_tree",
-    "en": " Accounting Tree ",
-    "ar": "  شجرة الحسابات "
+    "En": " Accounting Tree ",
+    "Ar": "  شجرة الحسابات "
   },
   {
     "name": "system_employee_advance",
-    "en": " Employees Advance ",
-    "ar": "  سلف الموظفين  "
+    "En": " Employees Advance ",
+    "Ar": "  سلف الموظفين  "
   },
   {
     "name": "system_employee_advance_fin",
-    "en": " Employees Advance End ",
-    "ar": "  سداد سلف الموظفين  "
+    "En": " Employees Advance End ",
+    "Ar": "  سداد سلف الموظفين  "
   },
   {
     "name": "system_employees_dept_menus",
-    "en": " Employees Debt ",
-    "ar": "  مديونية الموظفين  "
+    "En": " Employees Debt ",
+    "Ar": "  مديونية الموظفين  "
   },
   {
     "name": "month_engineers_report_menus",
-    "en": " Details Engineers Report ",
-    "ar": "تقرير شهري للفنيين"
+    "En": " Details Engineers Report ",
+    "Ar": "تقرير شهري للفنيين"
   },
   {
     "name": "system_add_safes",
-    "en": " Add New Safe ",
-    "ar": "إضافة خزينة جديدة"
+    "En": " Add New Safe ",
+    "Ar": "إضافة خزينة جديدة"
   },
   {
     "name": "details_engineers_report_menus",
-    "en": " Engineers Details Report ",
-    "ar": "تقرير تفصيلي للفنيين"
+    "En": " Engineers Details Report ",
+    "Ar": "تقرير تفصيلي للفنيين"
   },
   {
     "name": "menu_users",
-    "en": " Users",
-    "ar": "المستخدمين"
+    "En": " Users",
+    "Ar": "المستخدمين"
   },
   {
     "name": "menu_security_and_permissions",
-    "en": "Users privileges",
-    "ar": "الحماية والصلاحيات"
+    "En": "Users privileges",
+    "Ar": "الحماية والصلاحيات"
   },
   {
     "name": "system_item_details",
-    "en": "Item Details",
-    "ar": "تفاصيل الصنف"
+    "En": "Item Details",
+    "Ar": "تفاصيل الصنف"
   },
   {
     "name": "system_address_menus",
-    "en": " Address Menu",
-    "ar": "قائمة العناوين"
+    "En": " Address Menu",
+    "Ar": "قائمة العناوين"
   },
   {
     "name": "system_address",
-    "en": "Address Management",
-    "ar": "إدارة العناوين "
+    "En": "Address Management",
+    "Ar": "إدارة العناوين "
   },
   {
     "name": "system_governorate_menus",
-    "en": "governorates",
-    "ar": " المحافظات"
+    "En": "governorates",
+    "Ar": " المحافظات"
   },
   {
     "name": "system_governorate",
-    "en": " Add Governorate",
-    "ar": "إضافة محافظة"
+    "En": " Add Governorate",
+    "Ar": "إضافة محافظة"
   },
   {
     "name": "system_lecture_menus",
-    "en": "Lecture",
-    "ar": " المحاضرات"
+    "En": "Lecture",
+    "Ar": " المحاضرات"
   },
   {
     "name": "system_lecture_add",
-    "en": " Add Lecture",
-    "ar": "إضافة محاضرة"
+    "En": " Add Lecture",
+    "Ar": "إضافة محاضرة"
   },
   {
     "name": "system_city_menus",
-    "en": "Cities",
-    "ar": "المدن"
+    "En": "Cities",
+    "Ar": "المدن"
   },
   {
     "name": "system_city",
-    "en": "Add City",
-    "ar": "إضافة مدينة "
+    "En": "Add City",
+    "Ar": "إضافة مدينة "
   },
   {
     "name": "system_village_menus",
-    "en": " Villages",
-    "ar": "القرى"
+    "En": " Villages",
+    "Ar": "القرى"
   },
   {
     "name": "system_village",
-    "en": "Add Village",
-    "ar": " إضافة قرية"
+    "En": "Add Village",
+    "Ar": " إضافة قرية"
   },
   {
     "name": "system_regions_menus",
-    "en": "Regions",
-    "ar": " المناطق"
+    "En": "Regions",
+    "Ar": " المناطق"
   },
   {
     "name": "system_regions",
-    "en": " Add Regions",
-    "ar": "إضافة منطقة"
+    "En": " Add Regions",
+    "Ar": "إضافة منطقة"
   },
   {
     "name": "system_companies_menus",
-    "en": " Companies",
-    "ar": " الشركات"
+    "En": " Companies",
+    "Ar": " الشركات"
   },
   {
     "name": "system_companies",
-    "en": "Companies",
-    "ar": "إدارة الشركات"
+    "En": "Companies",
+    "Ar": "إدارة الشركات"
   },
   {
     "name": "system_companies_contracted",
-    "en": "Company Contracted",
-    "ar": "الشركات المتعاقد معها  "
+    "En": "Company Contracted",
+    "Ar": "الشركات المتعاقد معها  "
   },
   {
     "name": "system_company_employee_menus",
-    "en": "Employee In Contracted Company",
-    "ar": " موظف في شركة"
+    "En": "Employee In Contracted Company",
+    "Ar": " موظف في شركة"
   },
   {
     "name": "system_company_employee",
-    "en": " Add Employee",
-    "ar": "إضافة موظف في شركة"
+    "En": " Add Employee",
+    "Ar": "إضافة موظف في شركة"
   },
   {
     "name": "system_companies_catagories_menus",
-    "en": "Companies Catagories",
-    "ar": "فئات الشركة"
+    "En": "Companies Catagories",
+    "Ar": "فئات الشركة"
   },
   {
     "name": "system_companies_catagories",
-    "en": "Add Company Catagory",
-    "ar": "إضافة فئات الشركة"
+    "En": "Add Company Catagory",
+    "Ar": "إضافة فئات الشركة"
   },
   {
     "name": "system_jobs_and_employees_menus",
-    "en": " Jobs and Employees",
-    "ar": " شئون الموظفين"
+    "En": " Jobs and Employees",
+    "Ar": " شئون الموظفين"
   },
   {
     "name": "system_jobs_and_employees_mgmt",
-    "en": "Jobs And Employees Management",
-    "ar": " إدرارة شئون الموظفين"
+    "En": "Jobs And Employees Management",
+    "Ar": " إدرارة شئون الموظفين"
   },
   {
     "name": "system_employees_menus",
-    "en": "Employee Menu",
-    "ar": " الموظفين"
+    "En": "Employee Menu",
+    "Ar": " الموظفين"
   },
   {
     "name": "tables_menus",
-    "en": "Tables Menu",
-    "ar": "قائمة الطاولات"
+    "En": "Tables Menu",
+    "Ar": "قائمة الطاولات"
   },
   {
     "name": "tables_management",
-    "en": "Tables Management",
-    "ar": "إدارة تعريف الطاولات"
+    "En": "Tables Management",
+    "Ar": "إدارة تعريف الطاولات"
   },
   {
     "name": "tables_group_menus",
-    "en": "Tables Group Menu",
-    "ar": "قائمة مجموعة الطاولات"
+    "En": "Tables Group Menu",
+    "Ar": "قائمة مجموعة الطاولات"
   },
   {
     "name": "tables_group_management",
-    "en": "Tables Group Management",
-    "ar": "إدارة تعريف مجموعة الطاولات"
+    "En": "Tables Group Management",
+    "Ar": "إدارة تعريف مجموعة الطاولات"
   },
   {
     "name": "pos_menus",
-    "en": "Point Of Sale",
-    "ar": "نقاط البيع"
+    "En": "Point Of Sale",
+    "Ar": "نقاط البيع"
   },
   {
     "name": "pos_management",
-    "en": "Point Of Sale System Management",
-    "ar": "إدارة نظام نقاط البيع"
+    "En": "Point Of Sale System Management",
+    "Ar": "إدارة نظام نقاط البيع"
   },
   {
     "name": "order_invoice_management",
-    "en": "Orders Invoice Management",
-    "ar": "طاولات / ديلفيرى / تيك اواى"
+    "En": "Orders Invoice Management",
+    "Ar": "طاولات / ديلفيرى / تيك اواى"
   },
   {
     "name": "order_management",
-    "en": "Orders  Management",
-    "ar": "إدارة الطلبات"
+    "En": "Orders  Management",
+    "Ar": "إدارة الطلبات"
   },
   {
     "name": "order_management_menus",
-    "en": "Orders Management Screen",
-    "ar": "إدارة شاشة الطلبات"
+    "En": "Orders Management Screen",
+    "Ar": "إدارة شاشة الطلبات"
   },
   {
     "name": "service_management",
-    "en": "Activities Management",
-    "ar": "إدارة الأنشطة"
+    "En": "Activities Management",
+    "Ar": "إدارة الأنشطة"
   },
   {
     "name": "service_menus",
-    "en": "Activities Menu",
-    "ar": "قائمة الأنشطة"
+    "En": "Activities Menu",
+    "Ar": "قائمة الأنشطة"
   },
   {
     "name": "request_activity_management",
-    "en": "Request Activities / Subscriptions",
-    "ar": "طلبات الخدمات/الأنشطة"
+    "En": "Request Activities / Subscriptions",
+    "Ar": "طلبات الخدمات/الأنشطة"
   },
   {
     "name": "request_activity_menus",
-    "en": "Request Activities / Subscriptions Menu",
-    "ar": "قائمة طلبات الخدمات/الأنشطة"
+    "En": "Request Activities / Subscriptions Menu",
+    "Ar": "قائمة طلبات الخدمات/الأنشطة"
   },
   {
     "name": "hall_management",
-    "en": "Halls Management",
-    "ar": "إدارة القاعات"
+    "En": "Halls Management",
+    "Ar": "إدارة القاعات"
   },
   {
     "name": "hall_menus",
-    "en": "Halls Menu",
-    "ar": "قائمة القاعات"
+    "En": "Halls Menu",
+    "Ar": "قائمة القاعات"
   },
   {
     "name": "system_employee",
-    "en": "Add Employee",
-    "ar": " إضافة موظفين"
+    "En": "Add Employee",
+    "Ar": " إضافة موظفين"
   },
   {
     "name": "system_employee_department_menus",
-    "en": " Departments",
-    "ar": " الاقسام  "
+    "En": " Departments",
+    "Ar": " الاقسام  "
   },
   {
     "name": "system_employee_department",
-    "en": " Add Employee Department",
-    "ar": " إضافة قسم للموظفين"
+    "En": " Add Employee Department",
+    "Ar": " إضافة قسم للموظفين"
   },
   {
     "name": "system_employee_jobs_menus",
-    "en": "Jobs Menu",
-    "ar": " الوظائف "
+    "En": "Jobs Menu",
+    "Ar": " الوظائف "
   },
   {
     "name": "system_employee_jobs",
-    "en": " Add Employee Job",
-    "ar": " إضافة وظيفة "
+    "En": " Add Employee Job",
+    "Ar": " إضافة وظيفة "
   },
   {
     "name": "system_employee_degrees_menus",
-    "en": "Employee Degree Menu",
-    "ar": " الدرجات الوظيفية "
+    "En": "Employee Degree Menu",
+    "Ar": " الدرجات الوظيفية "
   },
   {
     "name": "system_employee_degrees",
-    "en": " Add Employee Degrees",
-    "ar": "إضافة درجة وظيفية "
+    "En": " Add Employee Degrees",
+    "Ar": "إضافة درجة وظيفية "
   },
   {
     "name": "system_stores_transfer_menu",
-    "en": " Stores Transfer",
-    "ar": "تحويلات المخازن"
+    "En": " Stores Transfer",
+    "Ar": "تحويلات المخازن"
   },
   {
     "name": "system_stores_transfer_management",
-    "en": " Stores Transfer management",
-    "ar": "إدارة تحويلات المخازن "
+    "En": " Stores Transfer management",
+    "Ar": "إدارة تحويلات المخازن "
   },
   {
     "name": "system_social_status_menus",
-    "en": "Social Status Menu",
-    "ar": "  الحالة الاجتماعية "
+    "En": "Social Status Menu",
+    "Ar": "  الحالة الاجتماعية "
   },
   {
     "name": "system_social_status",
-    "en": "Add Social Status",
-    "ar": "  إضافة الحالة الاجتماعية "
+    "En": "Add Social Status",
+    "Ar": "  إضافة الحالة الاجتماعية "
   },
   {
     "name": "system_military_menus",
-    "en": " Military Menu",
-    "ar": " موقف التجنيد "
+    "En": " Military Menu",
+    "Ar": " موقف التجنيد "
   },
   {
     "name": "system_military",
-    "en": " Add Status Of Recruitment",
-    "ar": "الخدمة العسكرية   "
+    "En": " Add Status Of Recruitment",
+    "Ar": "الخدمة العسكرية   "
   },
   {
     "name": "system_general_menus",
-    "en": "general Settings",
-    "ar": " الاعدادات العامة "
+    "En": "general Settings",
+    "Ar": " الاعدادات العامة "
   },
   {
     "name": "system_importAndExport_menus",
-    "en": "import & export DB",
-    "ar": "  استيراد وتصدير قواعد البيانات "
+    "En": "import & export DB",
+    "Ar": "  استيراد وتصدير قواعد البيانات "
   },
   {
     "name": "companies_menus",
-    "en": "Companies Menus",
-    "ar": "قائمة الشركات"
+    "En": "Companies Menus",
+    "Ar": "قائمة الشركات"
   },
   {
     "name": "system_menus",
-    "en": "System Menus",
-    "ar": "قوائم النظام"
+    "En": "System Menus",
+    "Ar": "قوائم النظام"
   },
   {
     "name": "insurance_menus",
-    "en": "Insurance Menus",
-    "ar": "قائمة التامينات"
+    "En": "Insurance Menus",
+    "Ar": "قائمة التامينات"
   },
   {
     "name": "mobile_menus",
-    "en": "Mobile Menus",
-    "ar": "قائمة الموبايل"
+    "En": "Mobile Menus",
+    "Ar": "قائمة الموبايل"
   },
   {
     "name": "delivery_employee_menus",
-    "en": "Delivery Employee Menus",
-    "ar": "قائمة موظفين التوصيل"
+    "En": "Delivery Employee Menus",
+    "Ar": "قائمة موظفين التوصيل"
   },
   {
     "name": "delivery_employee_manage",
-    "en": "Delivery Employee Management",
-    "ar": "إدارة موظفين التوصيل"
+    "En": "Delivery Employee Management",
+    "Ar": "إدارة موظفين التوصيل"
   },
   {
     "name": "general_menus",
-    "en": "General Menus",
-    "ar": "قائمة الاعدادات العامة"
+    "En": "General Menus",
+    "Ar": "قائمة الاعدادات العامة"
   },
   {
     "name": "kitchen_menus",
-    "en": "Kitchen Menu",
-    "ar": "قائمة المطابخ"
+    "En": "Kitchen Menu",
+    "Ar": "قائمة المطابخ"
   },
   {
     "name": "kitchen_management",
-    "en": "Kitchen Management",
-    "ar": "إدارة المطابخ"
+    "En": "Kitchen Management",
+    "Ar": "إدارة المطابخ"
   },
   {
     "name": "menu_shift",
-    "en": "Shifts Menu",
-    "ar": "قائمة الشيفتات"
+    "En": "Shifts Menu",
+    "Ar": "قائمة الشيفتات"
   },
   {
     "name": "menu_shift_tag",
-    "en": "Shifts Manegment",
-    "ar": "إدارة الشيفتات"
+    "En": "Shifts Manegment",
+    "Ar": "إدارة الشيفتات"
   }
 ]

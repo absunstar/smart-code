@@ -2,8 +2,8 @@
     {
         "module_name": "public",
         "name": "default_setting",
-        "en": "Default Setting",
-        "ar": "الإعدادات الافتراصية",
+        "En": "Default Setting",
+        "Ar": "الإعدادات الافتراصية",
         "permissions": [
             "default_setting_manage"
         ]

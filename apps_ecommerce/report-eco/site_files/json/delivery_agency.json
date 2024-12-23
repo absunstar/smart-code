@@ -1,12 +1,12 @@
 [
     {
         "id": 1,
-        "en": "New Shipping",
-        "ar": "شركة شحن"
+        "En": "New Shipping",
+        "Ar": "شركة شحن"
     },
     {
         "id": 2,
-        "en": "Delegate",
-        "ar": "مندوب"
+        "En": "Delegate",
+        "Ar": "مندوب"
     }
 ]

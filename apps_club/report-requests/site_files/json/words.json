@@ -1,155 +1,155 @@
 [
     {
         "name": "report_requests_add",
-        "en": "Add Customer",
-        "ar": "إضافة عميل"
+        "En": "Add Customer",
+        "Ar": "إضافة عميل"
     },
     {
         "name": "report_requests_informations",
-        "en": "Report Invoices Informations",
-        "ar": "بيانات تقرير فاتورة"
+        "En": "Report Invoices Informations",
+        "Ar": "بيانات تقرير فاتورة"
     },
     {
         "name": "report_requests_name",
-        "en": "Report Activities Requests",
-        "ar": "تقرير طلبات الخدمات/ الأنشطة"
+        "En": "Report Activities Requests",
+        "Ar": "تقرير طلبات الخدمات/ الأنشطة"
     },
     {
         "name": "report_requests",
-        "en": "Report Activities Requests",
-        "ar": "تقرير طلبات الخدمات/ الأنشطة"
+        "En": "Report Activities Requests",
+        "Ar": "تقرير طلبات الخدمات/ الأنشطة"
     },
     {
         "name": "report_requests_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "En": "Report Invoices Menu",
+        "Ar": "قائمة تقرير فاتورة"
     },
     {
         "name": "total_items_price",
-        "en": "Total Items Price",
-        "ar": "مجموع سعر الأصناف"
+        "En": "Total Items Price",
+        "Ar": "مجموع سعر الأصناف"
     },
     {
         "name": "source_type",
-        "en": "Source Type",
-        "ar": "نوع المصدر"
+        "En": "Source Type",
+        "Ar": "نوع المصدر"
     },
     {
         "name": "order_requests_type",
-        "en": "Order Invoices Type",
-        "ar": "نوع أمر الفاتورة"
+        "En": "Order Invoices Type",
+        "Ar": "نوع أمر الفاتورة"
     },
     {
         "name": "order_sale",
-        "en": "Order Sale",
-        "ar": "أمر بيع"
+        "En": "Order Sale",
+        "Ar": "أمر بيع"
     },
     {
         "name": "payable",
-        "en": "Payable",
-        "ar": "مستحق الدفع"
+        "En": "Payable",
+        "Ar": "مستحق الدفع"
     },
     {
         "name": "request_type",
-        "en": "Invoice Type",
-        "ar": "نوع الفاتورة"
+        "En": "Invoice Type",
+        "Ar": "نوع الفاتورة"
     },
 
     {
         "name": "payment",
-        "en": "Payment",
-        "ar": "تسديد"
+        "En": "Payment",
+        "Ar": "تسديد"
     },
     {
         "name": "detailes_amounts_paid",
-        "en": "Detailes Amounts Paid",
-        "ar": "تفاصيل المدفوعات"
+        "En": "Detailes Amounts Paid",
+        "Ar": "تفاصيل المدفوعات"
     },
     {
         "name": "requests",
-        "en": "Activities",
-        "ar": "الخدمات"
+        "En": "Activities",
+        "Ar": "الخدمات"
     },
     {
         "name": "date_from",
-        "en": "Date From",
-        "ar": "تاريخ من"
+        "En": "Date From",
+        "Ar": "تاريخ من"
     },
     {
         "name": "date_to",
-        "en": "Date To",
-        "ar": "تاريخ إلى"
+        "En": "Date To",
+        "Ar": "تاريخ إلى"
     },
     {
         "name": "err_paid_up",
-        "en": "Must Enter Paid",
-        "ar": "يجب إدخال مبلغ "
+        "En": "Must Enter Paid",
+        "Ar": "يجب إدخال مبلغ "
     },
    
     {
         "name": "paid_up",
-        "en": "Paid Up",
-        "ar": "المدفوع"
+        "En": "Paid Up",
+        "Ar": "المدفوع"
     },
     {
         "name": "err_total_tax",
-        "en": "Total Taxes Greater Than Required",
-        "ar": "مجموع الضرائب أكبر من المطلوب"
+        "En": "Total Taxes Greater Than Required",
+        "Ar": "مجموع الضرائب أكبر من المطلوب"
     },
     {
         "name": "err_total_discount",
-        "en": "Total Discount Greater Than Required",
-        "ar": "مجموع الخصومات أكبر من المطلوب"
+        "En": "Total Discount Greater Than Required",
+        "Ar": "مجموع الخصومات أكبر من المطلوب"
     },
     {
         "name": "err_request",
-        "en": "Service Greater Than Required",
-        "ar": "مبلغ الخدمة أكبر من المطلوب"
+        "En": "Service Greater Than Required",
+        "Ar": "مبلغ الخدمة أكبر من المطلوب"
     },
     {
         "name": "err_price_delivery_request",
-        "en": "Price Delivery Service Greater Than Required",
-        "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
+        "En": "Price Delivery Service Greater Than Required",
+        "Ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
     },
     {
         "name": "report_requests_new",
-        "en": "New Report Invoices",
-        "ar": "تقرير فاتورة جديدة"
+        "En": "New Report Invoices",
+        "Ar": "تقرير فاتورة جديدة"
     },
     {
         "name": "report_requests_details",
-        "en": "Report Invoices Details",
-        "ar": "تفاصيل تقرير فاتورة"
+        "En": "Report Invoices Details",
+        "Ar": "تفاصيل تقرير فاتورة"
     },
     {
         "name": "report_requests_update",
-        "en": "Edit Report Invoices",
-        "ar": "تعديل تقرير فاتورة"
+        "En": "Edit Report Invoices",
+        "Ar": "تعديل تقرير فاتورة"
     },
     {
         "name": "report_requests_delete",
-        "en": "Delte Report Invoices",
-        "ar": "حذف تقرير فاتورة"
+        "En": "Delte Report Invoices",
+        "Ar": "حذف تقرير فاتورة"
     },
     {
         "name": "report_requests_total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "En": "Total Required",
+        "Ar": "إجمالي المطلوب"
     },
     {
         "name": "total_paid_up",
-        "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "En": "Total Rest",
+        "Ar": "إجمالي المدفوع"
     },
   
     {
         "name": "total_remain",
-        "en": "Total Remain",
-        "ar": "إجمالي الباقي"
+        "En": "Total Remain",
+        "Ar": "إجمالي الباقي"
     },
     {
         "name": "report_requests_add_name",
-        "en": "Add Report Invoices",
-        "ar": "إضافة تقرير فاتورة"
+        "En": "Add Report Invoices",
+        "Ar": "إضافة تقرير فاتورة"
     }
 ]

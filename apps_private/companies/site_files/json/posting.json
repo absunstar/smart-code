@@ -1,11 +1,11 @@
 [{
         "id": 1,
-        "en": "Posting",
-        "ar": "مرحل"
+        "En": "Posting",
+        "Ar": "مرحل"
     },
     {
         "id": 2,
-        "en": "UnPosting",
-        "ar": "غير مرحل"
+        "En": "UnPosting",
+        "Ar": "غير مرحل"
     }
 ]

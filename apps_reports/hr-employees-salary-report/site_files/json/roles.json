@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "employees_salary_report_admin",
-    "en": "Employees Salary Admin",
-    "ar": "إدارة مرتبات الموظفين",
+    "En": "Employees Salary Admin",
+    "Ar": "إدارة مرتبات الموظفين",
     "permissions": ["employees_salary_report_manage"]
 }]

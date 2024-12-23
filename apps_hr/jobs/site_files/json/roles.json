@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "jobs_admin",
-    "en": "Jobs Admin",
-    "ar": "إدارة الوظائف",
+    "En": "Jobs Admin",
+    "Ar": "إدارة الوظائف",
     "permissions": ["jobs_manage"]
 }]

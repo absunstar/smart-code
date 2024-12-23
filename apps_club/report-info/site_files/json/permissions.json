@@ -1,8 +1,8 @@
 [
-    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "report" , "screen_name" : "report-info" , "name":"report_info_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

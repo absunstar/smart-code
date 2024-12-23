@@ -1,15 +1,15 @@
 [
 
-    {"name" : "active_substances_informations" , "en" : "Active Substance Informations" , "ar" : "بيانات مادة فعالة"},
-    {"name" : "active_substances" , "en" : "Active Substances" , "ar" : "المواد الفعالة"},
-    {"name" : "active_substances_menus" , "en" : "Active Substance Menu" , "ar" : "قائمة المادة الفعالة"},
-    {"name" : "active_substances_code" , "en" : "Active Substance Code" , "ar" : "كود المادة الفعالة"},
-    {"name" : "active_substances_name" , "en" : "Active Substance Name" , "ar" : "إسم المادة الفعالة"},
-    {"name" : "active_substance" , "en" : "Active Substance" , "ar" : "المادة الفعالة"},
-    {"name" : "active_substances_new" , "en" : "New Active Substance" , "ar" : "مادة فعالة جديدة"},
-    {"name" : "active_substances_details" , "en" : "Active Substance Details" , "ar" : "تفاصيل مادة فعالة"},
-    {"name" : "active_substances_update" , "en" : "Edit Active Substance" , "ar" : "تعديل مادة فعالة"},
-    {"name" : "active_substances_delete" , "en" : "Delte Active Substance" , "ar" : "حذف مادة فعالة"},
-    {"name" : "active_substances_add_name" , "en" : "Add Active Substance" , "ar" : "إضافة مادة فعالة"}
+    {"name" : "active_substances_informations" , "En" : "Active Substance Informations" , "Ar" : "بيانات مادة فعالة"},
+    {"name" : "active_substances" , "En" : "Active Substances" , "Ar" : "المواد الفعالة"},
+    {"name" : "active_substances_menus" , "En" : "Active Substance Menu" , "Ar" : "قائمة المادة الفعالة"},
+    {"name" : "active_substances_code" , "En" : "Active Substance Code" , "Ar" : "كود المادة الفعالة"},
+    {"name" : "active_substances_name" , "En" : "Active Substance Name" , "Ar" : "إسم المادة الفعالة"},
+    {"name" : "active_substance" , "En" : "Active Substance" , "Ar" : "المادة الفعالة"},
+    {"name" : "active_substances_new" , "En" : "New Active Substance" , "Ar" : "مادة فعالة جديدة"},
+    {"name" : "active_substances_details" , "En" : "Active Substance Details" , "Ar" : "تفاصيل مادة فعالة"},
+    {"name" : "active_substances_update" , "En" : "Edit Active Substance" , "Ar" : "تعديل مادة فعالة"},
+    {"name" : "active_substances_delete" , "En" : "Delte Active Substance" , "Ar" : "حذف مادة فعالة"},
+    {"name" : "active_substances_add_name" , "En" : "Add Active Substance" , "Ar" : "إضافة مادة فعالة"}
 
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "employee_offer_admin",
-    "en": "Employee Offer Admin",
-    "ar": "إدارة المكافآت",
+    "En": "Employee Offer Admin",
+    "Ar": "إدارة المكافآت",
     "permissions": ["employee_offer_manage"]
 }]

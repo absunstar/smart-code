@@ -1,59 +1,59 @@
 [
     {
         "name": "tenant",
-        "en": "Tenant",
-        "ar": "المستأجر"
+        "En": "Tenant",
+        "Ar": "المستأجر"
     },
     {
         "name": "tenants",
-        "en": "Tenants",
-        "ar": "المستأجرين"
+        "En": "Tenants",
+        "Ar": "المستأجرين"
     },
     {
         "name": "tenant_new",
-        "en": "New Tenant",
-        "ar": "مستأجر جديد"
+        "En": "New Tenant",
+        "Ar": "مستأجر جديد"
     },
 
     {
         "name": "tenant_add",
-        "en": "Add Tenant",
-        "ar": "إضافة مستأجر"
+        "En": "Add Tenant",
+        "Ar": "إضافة مستأجر"
     },
     {
         "name": "tenant_edit",
-        "en": "Edit Tenant",
-        "ar": "تعديل مستأجر"
+        "En": "Edit Tenant",
+        "Ar": "تعديل مستأجر"
     },
     {
         "name": "tenant_details",
-        "en": "Tenant Details",
-        "ar": "تفاصيل المستأجر"
+        "En": "Tenant Details",
+        "Ar": "تفاصيل المستأجر"
     },
     {
         "name": "tenant_delete",
-        "en": "Delete Tenant",
-        "ar": "حذف مستأجر"
+        "En": "Delete Tenant",
+        "Ar": "حذف مستأجر"
     },
     {
         "name": "tenant_name",
-        "en": "Tenant Name",
-        "ar": "إسم المستأجر"
+        "En": "Tenant Name",
+        "Ar": "إسم المستأجر"
     },
     {
         "name": "tenant_indentfy",
-        "en": "Tenant Indentfy",
-        "ar": "نوع المستأجر"
+        "En": "Tenant Indentfy",
+        "Ar": "نوع المستأجر"
     },
     {
         "name": "qualification",
-        "en": "Qualification",
-        "ar": "المؤهل"
+        "En": "Qualification",
+        "Ar": "المؤهل"
     },
     {
         "name": "tenant_info",
-        "en": "Tenant Informations",
-        "ar": "معلومات المستأجر"
+        "En": "Tenant Informations",
+        "Ar": "معلومات المستأجر"
     }
 
 ]

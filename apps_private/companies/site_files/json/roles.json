@@ -2,8 +2,8 @@
   {
     "module_name": "public",
     "name": "companies_admin",
-    "en": "Administration Permissions",
-    "ar": "َصلاحيات الإدارة",
+    "En": "Administration Permissions",
+    "Ar": "َصلاحيات الإدارة",
     "permissions": [
       "adjectivesInLawsuitManage",
       "administrativeWorksManage",

@@ -1,13 +1,13 @@
 [
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_post" , "en":"Post" , "ar":"ترحيل"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_unpost" , "en":"UnPost" , "ar":"فك ترحيل"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_post" , "En":"Post" , "Ar":"ترحيل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_unpost" , "En":"UnPost" , "Ar":"فك ترحيل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-assemble" , "name":"stores_assemble_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

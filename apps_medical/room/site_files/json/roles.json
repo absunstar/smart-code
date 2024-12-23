@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "room_admin",
-    "en": "Room Admin",
-    "ar": "إدارة الحجرات",
+    "En": "Room Admin",
+    "Ar": "إدارة الحجرات",
     "permissions": ["room_manage"]
 }]

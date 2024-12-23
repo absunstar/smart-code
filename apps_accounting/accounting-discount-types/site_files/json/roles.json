@@ -1,7 +1,7 @@
 [{
     "module_name" : "accounting" ,
     "name": "discount_types_admin",
-    "en": "Discount Types Admin",
-    "ar": "إدارة الخصومات",
+    "En": "Discount Types Admin",
+    "Ar": "إدارة الخصومات",
     "permissions": ["discount_types_manage"]
 }]

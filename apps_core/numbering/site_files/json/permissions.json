@@ -1,7 +1,7 @@
 [
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

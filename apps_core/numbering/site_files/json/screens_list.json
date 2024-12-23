@@ -3,1050 +3,1050 @@
         "category": "main",
         "feature": "lawyer",
         "name": "rogatory",
-        "en": "Rogatory",
-        "ar": "التوكيلات"
+        "En": "Rogatory",
+        "Ar": "التوكيلات"
     },
     {
         "category": "main",
         "feature": "lawyer",
         "name": "session_add",
-        "en": "Session Add",
-        "ar": "إضافة الجلسات"
+        "En": "Session Add",
+        "Ar": "إضافة الجلسات"
     },
     {
         "category": "main",
         "feature": "lawyer",
         "name": "lawsuit_add",
-        "en": "Lawsuit Add",
-        "ar": "إضافة الدعاوى"
+        "En": "Lawsuit Add",
+        "Ar": "إضافة الدعاوى"
     },
     {
         "category": "main",
         "feature": "public",
         "name": "customers",
-        "en": "Customers",
-        "ar": "العملاء"
+        "En": "Customers",
+        "Ar": "العملاء"
     },
     {
         "category": "main",
         "feature": "ecommerce",
         "name": "order_eco",
-        "en": "Ecommerce Orders",
-        "ar": "طلبات المتجر"
+        "En": "Ecommerce Orders",
+        "Ar": "طلبات المتجر"
     },
     {
         "category": "main",
         "feature": "ecommerce",
         "name": "shipping_company",
-        "en": "Shipping Company",
-        "ar": "شركات الشحن"
+        "En": "Shipping Company",
+        "Ar": "شركات الشحن"
     },
     {
         "category": "main",
         "feature": "public",
         "name": "customers_groups",
-        "en": "Customers Groups",
-        "ar": "مجموعات العملاء"
+        "En": "Customers Groups",
+        "Ar": "مجموعات العملاء"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "clinics",
-        "en": "Clinics",
-        "ar": "العيادات"
+        "En": "Clinics",
+        "Ar": "العيادات"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "doctors_visits",
-        "en": "Examination book",
-        "ar": "حجز كشف"
+        "En": "Examination book",
+        "Ar": "حجز كشف"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "analysis_requests",
-        "en": "Analysis LAB",
-        "ar": "معمل التحاليل"
+        "En": "Analysis LAB",
+        "Ar": "معمل التحاليل"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "scans_requests",
-        "en": "Scans Center",
-        "ar": "مركز الأشعة"
+        "En": "Scans Center",
+        "Ar": "مركز الأشعة"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "patients_tickets",
-        "en": "Patients Tickets",
-        "ar": "تذكرة مريض"
+        "En": "Patients Tickets",
+        "Ar": "تذكرة مريض"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "medical_offers",
-        "en": "Medical Offers",
-        "ar": "العروض الطبية"
+        "En": "Medical Offers",
+        "Ar": "العروض الطبية"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "doctors",
-        "en": "Doctors",
-        "ar": "الأطباء"
+        "En": "Doctors",
+        "Ar": "الأطباء"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "nursing",
-        "en": "Nursing",
-        "ar": "التمريض"
+        "En": "Nursing",
+        "Ar": "التمريض"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "medical_insurance_companies",
-        "en": "Medical Insurance Companies",
-        "ar": "شركات التأمين الطبي"
+        "En": "Medical Insurance Companies",
+        "Ar": "شركات التأمين الطبي"
     },
     {
         "category": "main",
         "feature": "order",
         "name": "o_customer_screen",
-        "en": "Orders Customers Screen",
-        "ar": "شاشة طلبات العملاء"
+        "En": "Orders Customers Screen",
+        "Ar": "شاشة طلبات العملاء"
     },
     {
         "category": "main",
         "feature": "order",
         "name": "itineraries",
-        "en": "Itineraries",
-        "ar": "خطوط السير"
+        "En": "Itineraries",
+        "Ar": "خطوط السير"
     },
     {
         "category": "main",
         "feature": "club",
         "name": "request_activity",
-        "en": "Request Activities",
-        "ar": "طلبات الخدمات/الأنشطة"
+        "En": "Request Activities",
+        "Ar": "طلبات الخدمات/الأنشطة"
     },
     {
         "category": "main",
         "feature": "club",
         "name": "attend_subscribers",
-        "en": "Attend Subscribers To Club",
-        "ar": "حضور المشتركين للنادي"
+        "En": "Attend Subscribers To Club",
+        "Ar": "حضور المشتركين للنادي"
     },
     {
         "category": "main",
         "feature": "club",
         "name": "attend_session",
-        "en": "Attend Subscribers To Session",
-        "ar": "حضور الجلسات للمشتركين"
+        "En": "Attend Subscribers To Session",
+        "Ar": "حضور الجلسات للمشتركين"
     },
     {
         "category": "main",
         "feature": "school",
         "name": "attend_students",
-        "en": "Attend Students",
-        "ar": "حضور الطلاب"
+        "En": "Attend Students",
+        "Ar": "حضور الطلاب"
     },
     {
         "category": "main",
         "feature": "school",
         "name": "exams",
-        "en": "Exams",
-        "ar": "الإمتحانات"
+        "En": "Exams",
+        "Ar": "الإمتحانات"
     },
     {
         "category": "main",
         "feature": "school",
         "name": "exam_grades",
-        "en": "Putting Exam Grades",
-        "ar": "وضع درجات الإمتحانات"
+        "En": "Putting Exam Grades",
+        "Ar": "وضع درجات الإمتحانات"
     },
     {
         "category": "main",
         "feature": "school",
         "name": "year_works",
-        "en": "Putting Year Works",
-        "ar": "وضع درجات أعمال السنة"
+        "En": "Putting Year Works",
+        "Ar": "وضع درجات أعمال السنة"
     },
     {
         "category": "main",
         "feature": "school",
         "name": "exams_results",
-        "en": "Exams Results",
-        "ar": "نتائج الإمتحانات"
+        "En": "Exams Results",
+        "Ar": "نتائج الإمتحانات"
     },
     {
         "category": "main",
         "feature": "school",
         "name": "libraries",
-        "en": "libraries",
-        "ar": "المكتبات"
+        "En": "libraries",
+        "Ar": "المكتبات"
     },
     {
         "category": "main",
         "feature": "academy",
         "name": "create_courses",
-        "en": "Create Courses",
-        "ar": "إنشاء الكورسات"
+        "En": "Create Courses",
+        "Ar": "إنشاء الكورسات"
     },
     {
         "category": "main",
         "feature": "academy",
         "name": "booking_halls",
-        "en": "Booking A Halls",
-        "ar": "حجز قاعات"
+        "En": "Booking A Halls",
+        "Ar": "حجز قاعات"
     },
     {
         "category": "main",
         "feature": "academy",
         "name": "trainers_account",
-        "en": "Trainers Account",
-        "ar": "حساب المدربين"
+        "En": "Trainers Account",
+        "Ar": "حساب المدربين"
     },
     {
         "category": "main",
         "feature": "academy",
         "name": "book_course",
-        "en": "Form Course Booking",
-        "ar": "إستمارات حجز كورس"
+        "En": "Form Course Booking",
+        "Ar": "إستمارات حجز كورس"
     },
     {
         "category": "main",
         "feature": "academy",
         "name": "hosting",
-        "en": "Hosting",
-        "ar": "الإستضافات"
+        "En": "Hosting",
+        "Ar": "الإستضافات"
     },
     {
         "category": "main",
         "feature": "academy",
         "name": "lectures",
-        "en": "Lectures",
-        "ar": "المحاضرات"
+        "En": "Lectures",
+        "Ar": "المحاضرات"
     },
     {
         "category": "inventory",
         "feature": "ecommerce",
         "name": "products",
-        "en": "Products",
-        "ar": "المنتجات"
+        "En": "Products",
+        "Ar": "المنتجات"
     },
     {
         "category": "inventory",
         "feature": "ecommerce",
         "name": "products_groups",
-        "en": "Products Groups",
-        "ar": "مجموعات المنتجات"
+        "En": "Products Groups",
+        "Ar": "مجموعات المنتجات"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "stores",
-        "en": "Stores",
-        "ar": "المخازن"
+        "En": "Stores",
+        "Ar": "المخازن"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "active_substances",
-        "en": "Active Substances",
-        "ar": "المواد الفعالة"
+        "En": "Active Substances",
+        "Ar": "المواد الفعالة"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "units",
-        "en": "Units",
-        "ar": "الوحدات"
+        "En": "Units",
+        "Ar": "الوحدات"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "items_groups",
-        "en": "Items Groups",
-        "ar": "مجموعات الأصناف"
+        "En": "Items Groups",
+        "Ar": "مجموعات الأصناف"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "category_items",
-        "en": "Categories Items",
-        "ar": "الأصناف المخزنية"
+        "En": "Categories Items",
+        "Ar": "الأصناف المخزنية"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "extras_items",
-        "en": "Extras items",
-        "ar": "إضافات الأصناف"
+        "En": "Extras items",
+        "Ar": "إضافات الأصناف"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "items_offers",
-        "en": "Items Offers",
-        "ar": "عروض الأصناف"
+        "En": "Items Offers",
+        "Ar": "عروض الأصناف"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "prices_offers",
-        "en": "Quotations",
-        "ar": "عروض الأسعار"
+        "En": "Quotations",
+        "Ar": "عروض الأسعار"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "purchases_invoices_store",
-        "en": "Purchases Invoices Store",
-        "ar": "فواتير مشتريات مخزنية"
+        "En": "Purchases Invoices Store",
+        "Ar": "فواتير مشتريات مخزنية"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "return_purchases_store",
-        "en": "Returns Purchases Store",
-        "ar": "مرتجعات فواتير شراء"
+        "En": "Returns Purchases Store",
+        "Ar": "مرتجعات فواتير شراء"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "sales_invoices_store",
-        "en": "Sales Invoices Store",
-        "ar": "فواتير مبيعات مخزنية"
+        "En": "Sales Invoices Store",
+        "Ar": "فواتير مبيعات مخزنية"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "return_sales_store",
-        "en": "Returns Sales Store",
-        "ar": "مرتجعات فواتير مبيعات"
+        "En": "Returns Sales Store",
+        "Ar": "مرتجعات فواتير مبيعات"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "o_screen_store",
-        "en": "Orders Screen Store",
-        "ar": "شاشة الطلبات المخزنية"
+        "En": "Orders Screen Store",
+        "Ar": "شاشة الطلبات المخزنية"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "transfer_items",
-        "en": "Transfer Items",
-        "ar": "تحويل أصناف"
+        "En": "Transfer Items",
+        "Ar": "تحويل أصناف"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "damage_store",
-        "en": "Damage Store",
-        "ar": "إتلاف / إهلاك مخزني"
+        "En": "Damage Store",
+        "Ar": "إتلاف / إهلاك مخزني"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "opening_balances_Store",
-        "en": "Opening Balances Store",
-        "ar": "أرصدة إفتتاحية مخزنية"
+        "En": "Opening Balances Store",
+        "Ar": "أرصدة إفتتاحية مخزنية"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "depts_store",
-        "en": "Depts Store",
-        "ar": "عهد مخزنية"
+        "En": "Depts Store",
+        "Ar": "عهد مخزنية"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "assembling_items",
-        "en": "Assembling Items",
-        "ar": "تجميع أصناف"
+        "En": "Assembling Items",
+        "Ar": "تجميع أصناف"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "dismantling_items",
-        "en": "Dismantling Items",
-        "ar": "تفكيك أصناف"
+        "En": "Dismantling Items",
+        "Ar": "تفكيك أصناف"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "units_Switch",
-        "en": "Units Switch",
-        "ar": "تبديل وحدات"
+        "En": "Units Switch",
+        "Ar": "تبديل وحدات"
     },
     {
         "category": "inventory",
         "feature": "pos",
         "name": "stores_Stocktaking",
-        "en": "Stores Stocktaking",
-        "ar": "جرد مخزني"
+        "En": "Stores Stocktaking",
+        "Ar": "جرد مخزني"
     },
     {
         "category": "accounting",
         "feature": "medical",
         "name": "patient_ticket",
-        "en": "Patient Ticket",
-        "ar": "تذكرة مريض"
+        "En": "Patient Ticket",
+        "Ar": "تذكرة مريض"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "purchases_invoices",
-        "en": "Purchases Invoices",
-        "ar": "فواتير المشتريات"
+        "En": "Purchases Invoices",
+        "Ar": "فواتير المشتريات"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "sales_invoices",
-        "en": "Sales Invoices",
-        "ar": "فواتير المبيعات"
+        "En": "Sales Invoices",
+        "Ar": "فواتير المبيعات"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "o_screen_invoices",
-        "en": "Orders Screen Invoices",
-        "ar": "فواتير شاشة الطلبات"
+        "En": "Orders Screen Invoices",
+        "Ar": "فواتير شاشة الطلبات"
     },
     {
         "category": "accounting",
         "feature": "club",
         "name": "request_activity_invoice",
-        "en": "Request Service Activity Invoices",
-        "ar": "فواتير طلب الخدمة/النشاط"
+        "En": "Request Service Activity Invoices",
+        "Ar": "فواتير طلب الخدمة/النشاط"
     },
     {
         "category": "accounting",
         "feature": "academy",
         "name": "booking_hall_i",
-        "en": "Booking A Halls",
-        "ar": "حجز القاعات"
+        "En": "Booking A Halls",
+        "Ar": "حجز القاعات"
     },
     {
         "category": "accounting",
         "feature": "academy",
         "name": "trainers_account_i",
-        "en": "Trainers Account",
-        "ar": "حساب المدربين"
+        "En": "Trainers Account",
+        "Ar": "حساب المدربين"
     },
     {
         "category": "accounting",
         "feature": "academy",
         "name": "book_course_i",
-        "en": "Form Course Booking",
-        "ar": "إستمارات حجز كورس"
+        "En": "Form Course Booking",
+        "Ar": "إستمارات حجز كورس"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "amounts_in",
-        "en": "Amounts In",
-        "ar": "سندات القبض"
+        "En": "Amounts In",
+        "Ar": "سندات القبض"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "amounts_out",
-        "en": "Amounts Out",
-        "ar": "سندات الصرف"
+        "En": "Amounts Out",
+        "Ar": "سندات الصرف"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "transfer_safes",
-        "en": "Transfer of safes balances",
-        "ar": "تحويل أرصدة الخزن"
+        "En": "Transfer of safes balances",
+        "Ar": "تحويل أرصدة الخزن"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "recharge_customer_balance",
-        "en": "Customer Advance Payment",
-        "ar": "دفعة عميل مقدمة"
+        "En": "Customer Advance Payment",
+        "Ar": "دفعة عميل مقدمة"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "employee_advance",
-        "en": "Employee Advance",
-        "ar": "سلفة موظف"
+        "En": "Employee Advance",
+        "Ar": "سلفة موظف"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "payment_employee_advance",
-        "en": "Payment Employee Advance",
-        "ar": "تسديد سلفة موظف"
+        "En": "Payment Employee Advance",
+        "Ar": "تسديد سلفة موظف"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "transfer_safes_balances",
-        "en": "Transfer safes balances",
-        "ar": "تحويل أرصدة الخزن"
+        "En": "Transfer safes balances",
+        "Ar": "تحويل أرصدة الخزن"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "patient_ticket",
-        "en": "Patient ticket",
-        "ar": "تذكرة مريض"
+        "En": "Patient ticket",
+        "Ar": "تذكرة مريض"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "opening_balance",
-        "en": "Opening balances",
-        "ar": "أرصدة إفتتاحية"
+        "En": "Opening balances",
+        "Ar": "أرصدة إفتتاحية"
     },
     {
         "category": "accounting",
         "feature": "school",
         "name": "school_fees",
-        "en": "School Fees",
-        "ar": "المصروفات الدراسية"
+        "En": "School Fees",
+        "Ar": "المصروفات الدراسية"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "safes",
-        "en": "Safes",
-        "ar": "الخزينة"
+        "En": "Safes",
+        "Ar": "الخزينة"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "currencies",
-        "en": "Currencies",
-        "ar": "العملات"
+        "En": "Currencies",
+        "Ar": "العملات"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "amounts_in_out_names",
-        "en": "Amounts In & Out Names",
-        "ar": "مسميات الوارد و المنصرف"
+        "En": "Amounts In & Out Names",
+        "Ar": "مسميات الوارد و المنصرف"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "taxes_type",
-        "en": "Taxes Type",
-        "ar": "الضرائب"
+        "En": "Taxes Type",
+        "Ar": "الضرائب"
     },
     {
         "category": "accounting",
         "feature": "pos",
         "name": "discounts",
-        "en": "Discounts",
-        "ar": "الخصومات"
+        "En": "Discounts",
+        "Ar": "الخصومات"
     },
     {
         "category": "accounting",
         "feature": "erp",
         "name": "journal_entries",
-        "en": "Journal Entries",
-        "ar": "قيود اليومية"
+        "En": "Journal Entries",
+        "Ar": "قيود اليومية"
     },
     {
         "category": "accounting",
         "feature": "erp",
         "name": "guide_budget",
-        "en": "Guide Categories Budget",
-        "ar": "دليل تصنيفات المزانية"
+        "En": "Guide Categories Budget",
+        "Ar": "دليل تصنيفات المزانية"
     },
     {
         "category": "accounting",
         "feature": "erp",
         "name": "guide_income_list",
-        "en": "Guide Categories Income List",
-        "ar": "دليل تصنيفات قائمة الدخل"
+        "En": "Guide Categories Income List",
+        "Ar": "دليل تصنيفات قائمة الدخل"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "employees",
-        "en": "Employees",
-        "ar": "الموظفين"
+        "En": "Employees",
+        "Ar": "الموظفين"
     },
     {
         "category": "hr",
         "feature": "lawyer",
         "name": "office_lawyers",
-        "en": "Office Lawyers",
-        "ar": "محاميين المكتب"
+        "En": "Office Lawyers",
+        "Ar": "محاميين المكتب"
     },
     {
         "category": "hr",
         "feature": "medic",
         "name": "trainer",
-        "en": "Trainer",
-        "ar": "المدربين"
+        "En": "Trainer",
+        "Ar": "المدربين"
     },
     {
         "category": "hr",
         "feature": "order",
         "name": "delegates",
-        "en": "Delegates",
-        "ar": "المناديب"
+        "En": "Delegates",
+        "Ar": "المناديب"
     },
     {
         "category": "hr",
         "feature": "order",
         "name": "delivery_employees",
-        "en": "Drivers",
-        "ar": "السائقين"
+        "En": "Drivers",
+        "Ar": "السائقين"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "jops",
-        "en": "Jops",
-        "ar": "الوظائف"
+        "En": "Jops",
+        "Ar": "الوظائف"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "employees_degrees",
-        "en": "Employees Degrees",
-        "ar": "الدرجات الوظيفية"
+        "En": "Employees Degrees",
+        "Ar": "الدرجات الوظيفية"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "attend_employees",
-        "en": "Attend Employees",
-        "ar": "حضور الموظفين"
+        "En": "Attend Employees",
+        "Ar": "حضور الموظفين"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "employees_offers",
-        "en": "Employees Offers",
-        "ar": "مكافئات الموظفين"
+        "En": "Employees Offers",
+        "Ar": "مكافئات الموظفين"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "employees_discount",
-        "en": "Employees Discount",
-        "ar": "خصومات الموظفين"
+        "En": "Employees Discount",
+        "Ar": "خصومات الموظفين"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "employees_insurance",
-        "en": "Employees Insurance",
-        "ar": "تأمينات الموظفين"
+        "En": "Employees Insurance",
+        "Ar": "تأمينات الموظفين"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "insurance_slides",
-        "en": "Insurance Slides",
-        "ar": "شرائح التأمين"
+        "En": "Insurance Slides",
+        "Ar": "شرائح التأمين"
     },
     {
         "category": "hr",
         "feature": "public",
         "name": "facilities",
-        "en": "Facilities",
-        "ar": "تعريف المنشآت"
+        "En": "Facilities",
+        "Ar": "تعريف المنشآت"
     },
     {
         "category": "general_setting",
         "feature": "academy",
         "name": "courses",
-        "en": "Courses",
-        "ar": "الكورسات"
+        "En": "Courses",
+        "Ar": "الكورسات"
     },
     {
         "category": "general_setting",
         "feature": "academy",
         "name": "tenants",
-        "en": "Tenants",
-        "ar": "المستأجرين"
+        "En": "Tenants",
+        "Ar": "المستأجرين"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "shifts",
-        "en": "Shifts",
-        "ar": "الشيفتات"
+        "En": "Shifts",
+        "Ar": "الشيفتات"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "printers_path",
-        "en": "Printers Path",
-        "ar": "مسار الطابعات"
+        "En": "Printers Path",
+        "Ar": "مسار الطابعات"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "oppenents",
-        "en": "Oppenents",
-        "ar": "الخصوم"
+        "En": "Oppenents",
+        "Ar": "الخصوم"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "oppenents_lawyers",
-        "en": "Oppenents Lawyers",
-        "ar": "محاميين الخصوم"
+        "En": "Oppenents Lawyers",
+        "Ar": "محاميين الخصوم"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "reasons_sessions",
-        "en": "Reasons Sessions",
-        "ar": "أسباب الجلسات"
+        "En": "Reasons Sessions",
+        "Ar": "أسباب الجلسات"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "request_types",
-        "en": "Request Types",
-        "ar": "أنواع الطلبات"
+        "En": "Request Types",
+        "Ar": "أنواع الطلبات"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "rogatory_places",
-        "en": "Rogatory Places",
-        "ar": "أماكن التوكيلات"
+        "En": "Rogatory Places",
+        "Ar": "أماكن التوكيلات"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "rogatory_types",
-        "en": "Rogatory Types",
-        "ar": "أنواع التوكيلات"
+        "En": "Rogatory Types",
+        "Ar": "أنواع التوكيلات"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "adjectives",
-        "en": "Adjectives In Lawsuit",
-        "ar": "الصفات في الدعوى"
+        "En": "Adjectives In Lawsuit",
+        "Ar": "الصفات في الدعوى"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "administrative_business",
-        "en": "Administrative Business",
-        "ar": "الأعمال الإدارية"
+        "En": "Administrative Business",
+        "Ar": "الأعمال الإدارية"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "circles",
-        "en": "Circles",
-        "ar": "الدوائر"
+        "En": "Circles",
+        "Ar": "الدوائر"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "courts",
-        "en": "Courts",
-        "ar": "المحاكم"
+        "En": "Courts",
+        "Ar": "المحاكم"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "lawsuit_degrees",
-        "en": "Lawsuit Degrees",
-        "ar": "درجات الدعاوى"
+        "En": "Lawsuit Degrees",
+        "Ar": "درجات الدعاوى"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "lawsuit_status",
-        "en": "Lawsuit Status",
-        "ar": "حالات الدعاوى"
+        "En": "Lawsuit Status",
+        "Ar": "حالات الدعاوى"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "lawsuit_types",
-        "en": "Lawsuit Types",
-        "ar": "أنواع الدعاوى"
+        "En": "Lawsuit Types",
+        "Ar": "أنواع الدعاوى"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "medical_specialties",
-        "en": "Medical Specialties",
-        "ar": "التخصص الطبي"
+        "En": "Medical Specialties",
+        "Ar": "التخصص الطبي"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "operations",
-        "en": "Operations",
-        "ar": "العمليات"
+        "En": "Operations",
+        "Ar": "العمليات"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "analysis",
-        "en": "Analysis",
-        "ar": "التحاليل"
+        "En": "Analysis",
+        "Ar": "التحاليل"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "scans",
-        "en": "Scans",
-        "ar": "الإشاعات"
+        "En": "Scans",
+        "Ar": "الإشاعات"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "vaccinations",
-        "en": "Vaccinations",
-        "ar": "التطعيمات"
+        "En": "Vaccinations",
+        "Ar": "التطعيمات"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "building",
-        "en": "buildings",
-        "ar": "المباني"
+        "En": "buildings",
+        "Ar": "المباني"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "floor",
-        "en": "Floors",
-        "ar": "الطوابق"
+        "En": "Floors",
+        "Ar": "الطوابق"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "room",
-        "en": "Rooms",
-        "ar": "الحجرات"
+        "En": "Rooms",
+        "Ar": "الحجرات"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "visit_sources",
-        "en": "Visits Sources",
-        "ar": "مصادر الزيارات"
+        "En": "Visits Sources",
+        "Ar": "مصادر الزيارات"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "nationalities",
-        "en": "Nationalities",
-        "ar": "الجنسيات"
+        "En": "Nationalities",
+        "Ar": "الجنسيات"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "gov",
-        "en": "Goves",
-        "ar": "المحافظات"
+        "En": "Goves",
+        "Ar": "المحافظات"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "city",
-        "en": "City",
-        "ar": "المدن"
+        "En": "City",
+        "Ar": "المدن"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "area",
-        "en": "Areas",
-        "ar": "المناطق"
+        "En": "Areas",
+        "Ar": "المناطق"
     },
     {
         "category": "general_setting",
         "feature": "medical",
         "name": "prices_codes",
-        "en": "Prices Codes",
-        "ar": "أكواد الأسعار"
+        "En": "Prices Codes",
+        "Ar": "أكواد الأسعار"
     },
     {
         "category": "general_setting",
         "feature": "order",
         "name": "vehicles_types",
-        "en": "Vehicles/Cars Types",
-        "ar": "أنواع المركبات/السيارات"
+        "En": "Vehicles/Cars Types",
+        "Ar": "أنواع المركبات/السيارات"
     },
     {
         "category": "general_setting",
         "feature": "order",
         "name": "vehicles",
-        "en": "Vehicles/Cars",
-        "ar": "المركبات/السيارات"
+        "En": "Vehicles/Cars",
+        "Ar": "المركبات/السيارات"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "vendors",
-        "en": "Vendors",
-        "ar": "الموردين"
+        "En": "Vendors",
+        "Ar": "الموردين"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "vendors_groups",
-        "en": "Vendors Groups",
-        "ar": "مجموعات الموردين"
+        "En": "Vendors Groups",
+        "Ar": "مجموعات الموردين"
     },
     {
         "category": "general_setting",
         "feature": "school",
         "name": "class_schedules",
-        "en": "Class Schedule",
-        "ar": "جداول الحصص"
+        "En": "Class Schedule",
+        "Ar": "جداول الحصص"
     },
     {
         "category": "general_setting",
         "feature": "school",
         "name": "seating_numbers",
-        "en": "Distribution Seating Numbers",
-        "ar": "توزيع أرقام الجلوس"
+        "En": "Distribution Seating Numbers",
+        "Ar": "توزيع أرقام الجلوس"
     },
     {
         "category": "general_setting",
         "feature": "school",
         "name": "subjects",
-        "en": "Subjects",
-        "ar": "المواد الدراسية"
+        "En": "Subjects",
+        "Ar": "المواد الدراسية"
     },
     {
         "category": "general_setting",
         "feature": "school",
         "name": "school_grades",
-        "en": "School Grade",
-        "ar": "المراحل الدراسية"
+        "En": "School Grade",
+        "Ar": "المراحل الدراسية"
     },
     {
         "category": "general_setting",
         "feature": "school",
         "name": "students_years",
-        "en": "Students Years",
-        "ar": "السنوات الطلابية"
+        "En": "Students Years",
+        "Ar": "السنوات الطلابية"
     },
     {
         "category": "general_setting",
         "feature": "school",
         "name": "school_years",
-        "en": "School Years",
-        "ar": "الأعوام الدراسية"
+        "En": "School Years",
+        "Ar": "الأعوام الدراسية"
     },
     {
         "category": "general_setting",
         "feature": "school",
         "name": "types_expenses",
-        "en": "Types Expenses",
-        "ar": "أنواع المصروفات الدراسية"
+        "En": "Types Expenses",
+        "Ar": "أنواع المصروفات الدراسية"
     },
     {
         "category": "general_setting",
         "feature": "restaurant",
         "name": "kitchens",
-        "en": "Kitchens",
-        "ar": "المطابخ"
+        "En": "Kitchens",
+        "Ar": "المطابخ"
     },
     {
         "category": "general_setting",
         "feature": "restaurant",
         "name": "tables",
-        "en": "Tables",
-        "ar": "الطاولات"
+        "En": "Tables",
+        "Ar": "الطاولات"
     },
     {
         "category": "general_setting",
         "feature": "restaurant",
         "name": "tables_groups",
-        "en": "Tables Groups",
-        "ar": "مجموعة الطاولات"
+        "En": "Tables Groups",
+        "Ar": "مجموعة الطاولات"
     },
     {
         "category": "general_setting",
         "feature": "club",
         "name": "activities",
-        "en": "Services/Activities",
-        "ar": "الخدمات/الأنشطة"
+        "En": "Services/Activities",
+        "Ar": "الخدمات/الأنشطة"
     },
     {
         "category": "general_setting",
         "feature": "medic",
         "name": "halls",
-        "en": "Halls",
-        "ar": "القاعات"
+        "En": "Halls",
+        "Ar": "القاعات"
     },
     {
         "category": "general_setting",
         "feature": "pos",
         "name": "order_slides",
-        "en": "Orders Slides",
-        "ar": "شرائح الطلبات"
+        "En": "Orders Slides",
+        "Ar": "شرائح الطلبات"
     },
     {
         "category": "general_setting",
         "feature": "medic",
         "name": "medicine",
-        "en": "Medicines",
-        "ar": "الأدوية"
+        "En": "Medicines",
+        "Ar": "الأدوية"
     },
     {
         "category": "general_setting",
         "feature": "medic",
         "name": "disease",
-        "en": "Disease",
-        "ar": "الأمراض"
+        "En": "Disease",
+        "Ar": "الأمراض"
     },
     {
         "category": "general_setting",
         "feature": "medic",
         "name": "foods",
-        "en": "Foods",
-        "ar": "الأطعمة"
+        "En": "Foods",
+        "Ar": "الأطعمة"
     },
     {
         "category": "general_setting",
         "feature": "medic",
         "name": "drinks",
-        "en": "Drinks",
-        "ar": "المشروبات"
+        "En": "Drinks",
+        "Ar": "المشروبات"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "file_type",
-        "en": "Files Types",
-        "ar": "أنواع الملفات"
+        "En": "Files Types",
+        "Ar": "أنواع الملفات"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "militaies",
-        "en": "Militaies",
-        "ar": "موقف التجنيد"
+        "En": "Militaies",
+        "Ar": "موقف التجنيد"
     },
     {
         "category": "general_setting",
         "feature": "public",
         "name": "social_status",
-        "en": "Social Status",
-        "ar": "الحالة الإجتماعية"
+        "En": "Social Status",
+        "Ar": "الحالة الإجتماعية"
     }
 ]

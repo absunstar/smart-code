@@ -1,77 +1,77 @@
 [
     {
         "name": "tables",
-        "en": "Table",
-        "ar": "تعريف الطاولات"
+        "En": "Table",
+        "Ar": "تعريف الطاولات"
     },
     {
         "name": "table",
-        "en": "Table",
-        "ar": "الطاولة"
+        "En": "Table",
+        "Ar": "الطاولة"
     },
     {
         "name": "booking",
-        "en": "Booking",
-        "ar": "الحجز"
+        "En": "Booking",
+        "Ar": "الحجز"
     },
     {
         "name": "reserved",
-        "en": "Reserved",
-        "ar": "محجوز"
+        "En": "Reserved",
+        "Ar": "محجوز"
     },
     {
         "name": "available",
-        "en": "Available",
-        "ar": "متاح"
+        "En": "Available",
+        "Ar": "متاح"
     },
     {
         "name": "table_name",
-        "en": "Table Name",
-        "ar": "إسم الطاولة"
+        "En": "Table Name",
+        "Ar": "إسم الطاولة"
     },
     {
         "name": "tables_new",
-        "en": "New Table",
-        "ar": "طاولة جديد"
+        "En": "New Table",
+        "Ar": "طاولة جديد"
     },
     {
         "name": "tables_add",
-        "en": "Add Table",
-        "ar": "إضافة طاولة"
+        "En": "Add Table",
+        "Ar": "إضافة طاولة"
     },
     {
         "name": "tables_edit",
-        "en": "Edit Table",
-        "ar": "تعديل طاولة"
+        "En": "Edit Table",
+        "Ar": "تعديل طاولة"
     },
     {
         "name": "tables_details",
-        "en": "Table Details",
-        "ar": "تفاصيل الطاولة"
+        "En": "Table Details",
+        "Ar": "تفاصيل الطاولة"
     },
     {
         "name": "tables_delete",
-        "en": "Delete tables",
-        "ar": "حذف طاولة"
+        "En": "Delete tables",
+        "Ar": "حذف طاولة"
     },
     {
         "name": "tables_person",
-        "en": "Persons",
-        "ar": "أشخاص"
+        "En": "Persons",
+        "Ar": "أشخاص"
     },
     {
         "name": "tables_number",
-        "en": "Table Number",
-        "ar": "رقم الطاولة"
+        "En": "Table Number",
+        "Ar": "رقم الطاولة"
     },
     {
         "name": "tables_min",
-        "en": "Minimum persons",
-        "ar": "الحد الأدنى للأشخاص"
+        "En": "Minimum persons",
+        "Ar": "الحد الأدنى للأشخاص"
     },
     {
         "name": "tables_max",
-        "en": "Maxmum persons",
-        "ar": "الحد الأقصى للأشخاص"
+        "En": "Maxmum persons",
+        "Ar": "الحد الأقصى للأشخاص"
     }
 ]

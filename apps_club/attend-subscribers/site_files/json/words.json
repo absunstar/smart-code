@@ -1,111 +1,111 @@
 [
     {
         "name": "attend_subscribers",
-        "en": "Attend Subscribers",
-        "ar": "حضور المشتركين للنادي"
+        "En": "Attend Subscribers",
+        "Ar": "حضور المشتركين للنادي"
     },
     {
         "name": "attend_subscribers",
-        "en": "The Attend Subscribers",
-        "ar": "حضور مشترك"
+        "En": "The Attend Subscribers",
+        "Ar": "حضور مشترك"
     },
     {
         "name": "attend_subscribers_new",
-        "en": "New Attend Subscribers",
-        "ar": "حضور مشترك جديدة"
+        "En": "New Attend Subscribers",
+        "Ar": "حضور مشترك جديدة"
     },
     {
         "name": "subscribers_name",
-        "en": "Subscribers Name",
-        "ar": "إسم المشترك"
+        "En": "Subscribers Name",
+        "Ar": "إسم المشترك"
     },
     {
         "name": "attend_subscribers_attend",
-        "en": "Attend Time",
-        "ar": "وقت الحضور"
+        "En": "Attend Time",
+        "Ar": "وقت الحضور"
     },
     {
         "name": "attend_subscribers_leave",
-        "en": "Leave Time",
-        "ar": "وقت المغادرة"
+        "En": "Leave Time",
+        "Ar": "وقت المغادرة"
     },
     {
         "name": "leave_now",
-        "en": "Leave Now",
-        "ar": "مغادرة الأن"
+        "En": "Leave Now",
+        "Ar": "مغادرة الأن"
     },
     {
         "name": "attend_date",
-        "en": "Attend Date",
-        "ar": "تاريخ الحضور"
+        "En": "Attend Date",
+        "Ar": "تاريخ الحضور"
     },
     {
         "name": "attend_date_from",
-        "en": "Attend Date From",
-        "ar": "تاريخ الحضور من"
+        "En": "Attend Date From",
+        "Ar": "تاريخ الحضور من"
     },
     {
         "name": "attend_date_to",
-        "en": "Attend Date To",
-        "ar": "تاريخ الحضور إلى"
+        "En": "Attend Date To",
+        "Ar": "تاريخ الحضور إلى"
     },
 
     {
         "name": "leave_date",
-        "en": "Leave Date",
-        "ar": "تاريخ الإنصراف"
+        "En": "Leave Date",
+        "Ar": "تاريخ الإنصراف"
     },
     {
         "name": "leave_date_from",
-        "en": "Leave Date From",
-        "ar": "تاريخ الإنصراف من"
+        "En": "Leave Date From",
+        "Ar": "تاريخ الإنصراف من"
     },
     {
         "name": "leave_date_to",
-        "en": "Leave Date To",
-        "ar": "تاريخ الإنصراف إلى"
+        "En": "Leave Date To",
+        "Ar": "تاريخ الإنصراف إلى"
     },
     
     {
         "name": "leave_now",
-        "en": "Leave Now",
-        "ar": "مغادرة الأن"
+        "En": "Leave Now",
+        "Ar": "مغادرة الأن"
     },
     
     {
         "name": "attend_subscribers_add",
-        "en": "Add Attend Subscribers",
-        "ar": "إضافة حضور مشترك"
+        "En": "Add Attend Subscribers",
+        "Ar": "إضافة حضور مشترك"
     },
     {
         "name": "attend_subscribers_edit",
-        "en": "Edit Attend Subscribers",
-        "ar": "تعديل حضور مشترك"
+        "En": "Edit Attend Subscribers",
+        "Ar": "تعديل حضور مشترك"
     },
     {
         "name": "attend_subscribers_details",
-        "en": "Attend Subscribers Details",
-        "ar": "تفاصيل حضور مشترك"
+        "En": "Attend Subscribers Details",
+        "Ar": "تفاصيل حضور مشترك"
     },
     {
         "name": "attend_subscribers_delete",
-        "en": "Delete Attend Subscribers",
-        "ar": "حذف حضور مشترك"
+        "En": "Delete Attend Subscribers",
+        "Ar": "حذف حضور مشترك"
     },
     {
         "name": "attend_subscribers_name",
-        "en": "Course Name",
-        "ar": "إسم الحضور مشترك "
+        "En": "Course Name",
+        "Ar": "إسم الحضور مشترك "
     },
     {
         "name": "attend_subscribers_total",
-        "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "En": "Total Duration",
+        "Ar": "إجمالي المدة "
     },
     {
         "name": "auto_load_attendance",
-        "en": "Auto Load Attendance",
-        "ar": "تحميل تلقائى للبصمة"
+        "En": "Auto Load Attendance",
+        "Ar": "تحميل تلقائى للبصمة"
     }
 
 

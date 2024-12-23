@@ -1,47 +1,47 @@
 [
-    {"name" : "journal_entries_informations" , "en" : "Journal Entries Informations" , "ar" : "بيانات قيد يومية"},
+    {"name" : "journal_entries_informations" , "En" : "Journal Entries Informations" , "Ar" : "بيانات قيد يومية"},
 
-    {"name" : "journal_entry" , "en" : "Journal Entries" , "ar" : "قيد اليومية"},
-    {"name" : "journal_entries" , "en" : "Journal Entries" , "ar" : "قيود اليومية"},
-    {"name" : "journal_entries_code" , "en" : "Journal Entry Code" , "ar" : "كود نوع "},
-    {"name" : "journal_entries_name" , "en" : "Journal Entry Name" , "ar" : "إسم النوع"},
-    {"name" : "journal_entries_new" , "en" : "New Journal Entry" , "ar" : "قيد يومية جديد"},
-    {"name" : "journal_entries_details" , "en" : "Journal Entry Details" , "ar" : "تفاصيل قيد يومية"},
-    {"name" : "journal_entries_update" , "en" : "Edit Journal Entry" , "ar" : "تعديل قيد يومية"},
-    {"name" : "journal_entries_delete" , "en" : "Delte Journal Entry" , "ar" : "حذف قيد يومية"},
-    {"name" : "journal_entries_add_name" , "en" : "Add Journal Entry" , "ar" : "إضافة قيد يومية"},
-
-
-    {"name" : "reference_number" , "en" : "Reference Number" , "ar" : "رقم المرجع"},
-    {"name" : "name" , "en" : "Name" , "ar" : "الإسم"},
-    {"name" : "document_type" , "en" : "Document Type" , "ar" : "نوع المستند"},
-    {"name" : "document_number" , "en" : "Document Number" , "ar" : "رقم المستند"},
-    {"name" : "net_amount" , "en" : "Net Amount" , "ar" : "صافي المبلغ"},
-    {"name" : "check_number" , "en" : "Check Number" , "ar" : "رقم الشيك"},
-    {"name" : "number_periodic_document" , "en" : "Number Of The Periodic Document" , "ar" : "رقم المستند الدوري"},
-    {"name" : "entry_notice_number" , "en" : "Entry Notice Number" , "ar" : "رقم الإشعار المدخل"},
-    {"name" : "bank_settlement_number" , "en" : "Bank Settlement Number" , "ar" : "رقم التسوية البنكية"},
+    {"name" : "journal_entry" , "En" : "Journal Entries" , "Ar" : "قيد اليومية"},
+    {"name" : "journal_entries" , "En" : "Journal Entries" , "Ar" : "قيود اليومية"},
+    {"name" : "journal_entries_code" , "En" : "Journal Entry Code" , "Ar" : "كود نوع "},
+    {"name" : "journal_entries_name" , "En" : "Journal Entry Name" , "Ar" : "إسم النوع"},
+    {"name" : "journal_entries_new" , "En" : "New Journal Entry" , "Ar" : "قيد يومية جديد"},
+    {"name" : "journal_entries_details" , "En" : "Journal Entry Details" , "Ar" : "تفاصيل قيد يومية"},
+    {"name" : "journal_entries_update" , "En" : "Edit Journal Entry" , "Ar" : "تعديل قيد يومية"},
+    {"name" : "journal_entries_delete" , "En" : "Delte Journal Entry" , "Ar" : "حذف قيد يومية"},
+    {"name" : "journal_entries_add_name" , "En" : "Add Journal Entry" , "Ar" : "إضافة قيد يومية"},
 
 
-    {"name" : "create_entry_from_notice" , "en" : "Create a Entry from a notice" , "ar" : "إنشاء قيد من إشعار"},
-    {"name" : "create_new_entry_from_bank_reconciliation" , "en" : "Create a new entry from a bank reconciliation" , "ar" : "إنشاء قيد جديد من تسوية بنكية"},
-    {"name" : "create_new_entry_from_previous_periodic_entry" , "en" : "Create a new entry from a previous periodic entry" , "ar" : "إنشاء قيد جديد من قيد دوري سابق"},
+    {"name" : "reference_number" , "En" : "Reference Number" , "Ar" : "رقم المرجع"},
+    {"name" : "name" , "En" : "Name" , "Ar" : "الإسم"},
+    {"name" : "document_type" , "En" : "Document Type" , "Ar" : "نوع المستند"},
+    {"name" : "document_number" , "En" : "Document Number" , "Ar" : "رقم المستند"},
+    {"name" : "net_amount" , "En" : "Net Amount" , "Ar" : "صافي المبلغ"},
+    {"name" : "check_number" , "En" : "Check Number" , "Ar" : "رقم الشيك"},
+    {"name" : "number_periodic_document" , "En" : "Number Of The Periodic Document" , "Ar" : "رقم المستند الدوري"},
+    {"name" : "entry_notice_number" , "En" : "Entry Notice Number" , "Ar" : "رقم الإشعار المدخل"},
+    {"name" : "bank_settlement_number" , "En" : "Bank Settlement Number" , "Ar" : "رقم التسوية البنكية"},
 
 
-    {"name" : "reversing_entry" , "en" : "Reversing Entry" , "ar" : "قيد عكسي"},
-    {"name" : "periodic_entry" , "en" : "Periodic Entry" , "ar" : "قيد دوري"},
-    {"name" : "entry_pending" , "en" : "Entry is pending" , "ar" : "قيد تحت الإنتظار"},
-    {"name" : "currency_differences_entry" , "en" : "Currency Differences Entry" , "ar" : "قيد فروق عملة"},
-
-    {"name" : "statement" , "en" : "Statement" , "ar" : "البيان"},
-    {"name" : "the_difference" , "en" : "The difference" , "ar" : "الفرق"},
-    {"name" : "debtor_creditor_must_equal" , "en" : "The debtor must be equal to the creditor" , "ar" : "يجب أن يتساوى المدين مع الدائن"},
-    {"name" : "ratios_amounts_cost_centers_account" , "en" : "The ratios and amounts of cost centers are greater than those paid in accounts" , "ar" : "نسب و مبالغ مراكز التكلفة أكبر من المدفوع في الحسابات"},
-    {"name" : "sum_debit_credit_equal_amount" , "en" : "The sum of debit and credit must be equal to the amount paid" , "ar" : "يجب أن يكون مجموع المدين و الدائن يساوي المبلغ المدفوع"},
+    {"name" : "create_entry_from_notice" , "En" : "Create a Entry from a notice" , "Ar" : "إنشاء قيد من إشعار"},
+    {"name" : "create_new_entry_from_bank_reconciliation" , "En" : "Create a new entry from a bank reconciliation" , "Ar" : "إنشاء قيد جديد من تسوية بنكية"},
+    {"name" : "create_new_entry_from_previous_periodic_entry" , "En" : "Create a new entry from a previous periodic entry" , "Ar" : "إنشاء قيد جديد من قيد دوري سابق"},
 
 
-    {"name" : "local_creditor" , "en" : "Local Creditor" , "ar" : "دائن محلي"},
-    {"name" : "local_debtor" , "en" : "Local Debtor" , "ar" : "مدين محلي"},
-    {"name" : "currency_symbol" , "en" : "Currency Symbol" , "ar" : "رمز العملة"}
+    {"name" : "reversing_entry" , "En" : "Reversing Entry" , "Ar" : "قيد عكسي"},
+    {"name" : "periodic_entry" , "En" : "Periodic Entry" , "Ar" : "قيد دوري"},
+    {"name" : "entry_pending" , "En" : "Entry is pending" , "Ar" : "قيد تحت الإنتظار"},
+    {"name" : "currency_differences_entry" , "En" : "Currency Differences Entry" , "Ar" : "قيد فروق عملة"},
+
+    {"name" : "statement" , "En" : "Statement" , "Ar" : "البيان"},
+    {"name" : "the_difference" , "En" : "The difference" , "Ar" : "الفرق"},
+    {"name" : "debtor_creditor_must_equal" , "En" : "The debtor must be equal to the creditor" , "Ar" : "يجب أن يتساوى المدين مع الدائن"},
+    {"name" : "ratios_amounts_cost_centers_account" , "En" : "The ratios and amounts of cost centers are greater than those paid in accounts" , "Ar" : "نسب و مبالغ مراكز التكلفة أكبر من المدفوع في الحسابات"},
+    {"name" : "sum_debit_credit_equal_amount" , "En" : "The sum of debit and credit must be equal to the amount paid" , "Ar" : "يجب أن يكون مجموع المدين و الدائن يساوي المبلغ المدفوع"},
+
+
+    {"name" : "local_creditor" , "En" : "Local Creditor" , "Ar" : "دائن محلي"},
+    {"name" : "local_debtor" , "En" : "Local Debtor" , "Ar" : "مدين محلي"},
+    {"name" : "currency_symbol" , "En" : "Currency Symbol" , "Ar" : "رمز العملة"}
 
 ]

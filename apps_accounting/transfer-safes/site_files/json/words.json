@@ -1,65 +1,65 @@
 [
-    {"name" : "transfer_safes_informations" , "en" : "Transfer Safes Informations" , "ar" : "بيانات تحويلات الخزن"},
+    {"name" : "transfer_safes_informations" , "En" : "Transfer Safes Informations" , "Ar" : "بيانات تحويلات الخزن"},
 
-    {"name" : "transfer_safes" , "en" : "Transfer Safes" , "ar" : "تحويلات الخزن"},
-    {"name" : "transfer_safes_menus" , "en" : "Transfer Safes Menu" , "ar" : "قائمة تحويلات الخزن"},
-    {"name" : "transfer_safes_code" , "en" : "Transfer Safes Code" , "ar" : "كود تحويل الخزن"},
-    {"name" : "transfer_safes_name" , "en" : "Transfer Safes Name" , "ar" : "إسم تحويل الخزن"},
+    {"name" : "transfer_safes" , "En" : "Transfer Safes" , "Ar" : "تحويلات الخزن"},
+    {"name" : "transfer_safes_menus" , "En" : "Transfer Safes Menu" , "Ar" : "قائمة تحويلات الخزن"},
+    {"name" : "transfer_safes_code" , "En" : "Transfer Safes Code" , "Ar" : "كود تحويل الخزن"},
+    {"name" : "transfer_safes_name" , "En" : "Transfer Safes Name" , "Ar" : "إسم تحويل الخزن"},
 
-    {"name" : "transfer_safes_new" , "en" : "New Transfer Safes" , "ar" : "تحويل خزن جديد"},
-    {"name" : "transfer_safes_details" , "en" : "Transfer Safes Details" , "ar" : "تفاصيل تحويل الخزن"},
-    {"name" : "transfer_safes_update" , "en" : "Edit Transfer Safes" , "ar" : "تعديل تحويل الخزن"},
-    {"name" : "transfer_safes_delete" , "en" : "Delte Transfer Safes" , "ar" : "حذف تحويل الخزن"},
-    {"name" : "transfer_safes_add_name" , "en" : "Add Transfer Safes" , "ar" : "إضافة تحويل خزن"},
+    {"name" : "transfer_safes_new" , "En" : "New Transfer Safes" , "Ar" : "تحويل خزن جديد"},
+    {"name" : "transfer_safes_details" , "En" : "Transfer Safes Details" , "Ar" : "تفاصيل تحويل الخزن"},
+    {"name" : "transfer_safes_update" , "En" : "Edit Transfer Safes" , "Ar" : "تعديل تحويل الخزن"},
+    {"name" : "transfer_safes_delete" , "En" : "Delte Transfer Safes" , "Ar" : "حذف تحويل الخزن"},
+    {"name" : "transfer_safes_add_name" , "En" : "Add Transfer Safes" , "Ar" : "إضافة تحويل خزن"},
     {
         "name": "data_transmitted_from",
-        "en": "Data transmitted from it",
-        "ar": "بيانات المحول منه"
+        "En": "Data transmitted from it",
+        "Ar": "بيانات المحول منه"
     },
     {
         "name": "Safes_balances_after_transfer",
-        "en": "Safes balances after transfer",
-        "ar": "أرصدة الخزن بعد التحويل"
+        "En": "Safes balances after transfer",
+        "Ar": "أرصدة الخزن بعد التحويل"
     },
     {
         "name": "amount_transferred",
-        "en": "The amount transferred",
-        "ar": "المبلغ المحول"
+        "En": "The amount transferred",
+        "Ar": "المبلغ المحول"
     },
     {
         "name": "transferred_from",
-        "en": "Safe Transferred From",
-        "ar": "الخزنة المحول منها"
+        "En": "Safe Transferred From",
+        "Ar": "الخزنة المحول منها"
     },
     {
         "name": "transferred_to",
-        "en": "Safe Transferred To",
-        "ar": "الخزنة المحول لها"
+        "En": "Safe Transferred To",
+        "Ar": "الخزنة المحول لها"
     },
     {
         "name": "balance_after_transfer",
-        "en": "Balance after transfer",
-        "ar": "الرصيد بعد التحويل"
+        "En": "Balance after transfer",
+        "Ar": "الرصيد بعد التحويل"
     },
     {
         "name": "currency_transferred_to",
-        "en": "Amount in currency transferred to it",
-        "ar": "المبلغ بالعملة المحول لها"
+        "En": "Amount in currency transferred to it",
+        "Ar": "المبلغ بالعملة المحول لها"
     },
     {
         "name": "current_safe_balance",
-        "en": "Current Safe Balance",
-        "ar": "رصيد الخزنة الحالي"
+        "En": "Current Safe Balance",
+        "Ar": "رصيد الخزنة الحالي"
     },
     {
         "name": "data_transmitted_to",
-        "en": "Data transmitted To it",
-        "ar": "بيانات المحول إليه"
+        "En": "Data transmitted To it",
+        "Ar": "بيانات المحول إليه"
     },
     {
         "name": "transfer_safes_balances",
-        "en": "Transfer of safes balances",
-        "ar": "تحويل أرصدة الخزن"
+        "En": "Transfer of safes balances",
+        "Ar": "تحويل أرصدة الخزن"
     }
     
     

@@ -1,14 +1,14 @@
 [
-    {"name" : "insurances_slides" , "en" : "Insurance Slide" , "ar" : "شرائح التأمينات"},
-    {"name" : "hr_insurances_slides" , "en" : "Insurance Slide" , "ar" : "شرائح التأمينات"},
-    {"name" : "insurances_slides_add" , "en" : "Add Insurance Slide" , "ar" : "إضافة شريحة تامينات"},
-    {"name" : "insurances_slides_new" , "en" : "New Insurance Slide" , "ar" : "شريحة تامينات جديدة"},
-    {"name" : "insurances_slides_delete" , "en" : "Delete Insurance Slide" , "ar" : "حذف شريحة تامينات"},
-    {"name" : "insurances_slides_edit" , "en" : "Edit Insurance Slide" , "ar" : "تعديل شريحة تامينات"},
-    {"name" : "insurances_slides_details" , "en" : "Insurance Slide Details" , "ar" : "تفاصيل شريحة تامينات"},
-    {"name" : "insurances_slides_value" , "en" : "Insurance Slide Value" , "ar" : "المبلغ"},
-    {"name" : "insurances_slides_name" , "en" : "Insurance Slide Name" , "ar" : "إسم الشريحة"},
-    {"name" : "insurances_slides_logo" , "en" : "Insurance Slide Logo" , "ar" : "شعار الشريحة"},
+    {"name" : "insurances_slides" , "En" : "Insurance Slide" , "Ar" : "شرائح التأمينات"},
+    {"name" : "hr_insurances_slides" , "En" : "Insurance Slide" , "Ar" : "شرائح التأمينات"},
+    {"name" : "insurances_slides_add" , "En" : "Add Insurance Slide" , "Ar" : "إضافة شريحة تامينات"},
+    {"name" : "insurances_slides_new" , "En" : "New Insurance Slide" , "Ar" : "شريحة تامينات جديدة"},
+    {"name" : "insurances_slides_delete" , "En" : "Delete Insurance Slide" , "Ar" : "حذف شريحة تامينات"},
+    {"name" : "insurances_slides_edit" , "En" : "Edit Insurance Slide" , "Ar" : "تعديل شريحة تامينات"},
+    {"name" : "insurances_slides_details" , "En" : "Insurance Slide Details" , "Ar" : "تفاصيل شريحة تامينات"},
+    {"name" : "insurances_slides_value" , "En" : "Insurance Slide Value" , "Ar" : "المبلغ"},
+    {"name" : "insurances_slides_name" , "En" : "Insurance Slide Name" , "Ar" : "إسم الشريحة"},
+    {"name" : "insurances_slides_logo" , "En" : "Insurance Slide Logo" , "Ar" : "شعار الشريحة"},
 
-    {"name" : "insurances_slides_img" , "en" : "Insurances Slides Image" , "ar" : "ملفات شرائح التامينات"}
+    {"name" : "insurances_slides_img" , "En" : "Insurances Slides Image" , "Ar" : "ملفات شرائح التامينات"}
 ]

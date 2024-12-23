@@ -1,9 +1,9 @@
 [
-    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "ecommerce-setting" , "name":"ecommerce_setting_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 
 ]

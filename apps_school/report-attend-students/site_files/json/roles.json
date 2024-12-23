@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_attend_students_admin",
-    "en": "Attend & Absence Students Admin",
-    "ar": "حضور و غياب الطلاب",
+    "En": "Attend & Absence Students Admin",
+    "Ar": "حضور و غياب الطلاب",
     "permissions": ["report_attend_students_manage"]
 }]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "vaccinations_requests_admin",
-    "en": "Vaccinations Admin",
-    "ar": "إدارة التطعيمات",
+    "En": "Vaccinations Admin",
+    "Ar": "إدارة التطعيمات",
     "permissions": ["vaccinations_requests_manage"]
 }]

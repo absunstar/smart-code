@@ -2,20 +2,20 @@
     {
         "id" : 1,
         "name": "store_item",
-        "en": "Store Item",
-        "ar": "صنف مخزني"
+        "En": "Store Item",
+        "Ar": "صنف مخزني"
     },
     {
         "id" : 2,
         "name": "service_item",
-        "en": "Service Item",
-        "ar": "صنف خدمي"
+        "En": "Service Item",
+        "Ar": "صنف خدمي"
     },
     {
         "id" : 3,
         "name": "medical_cosmetic",
-        "en": "Medical or Cosmetic",
-        "ar": "طبي أو تجميلي"
+        "En": "Medical or Cosmetic",
+        "Ar": "طبي أو تجميلي"
     }
 
 ]

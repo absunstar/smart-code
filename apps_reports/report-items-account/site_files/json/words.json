@@ -1,52 +1,52 @@
 [
     {
         "name": "report_items_account_informations",
-        "en": "Report Items Account Informations",
-        "ar": "بيانات تقرير حساب الأصناف"
+        "En": "Report Items Account Informations",
+        "Ar": "بيانات تقرير حساب الأصناف"
     },
     {
         "name": "report_items_account",
-        "en": "Items Account report",
-        "ar": "تقرير حساب الأصناف"
+        "En": "Items Account report",
+        "Ar": "تقرير حساب الأصناف"
     },
     {
         "name": "supplied_quantity",
-        "en": "Supplied Quantity",
-        "ar": "الكمية الموردة"
+        "En": "Supplied Quantity",
+        "Ar": "الكمية الموردة"
     },
     {
         "name": "total_price",
-        "en": "Total price",
-        "ar": "إجمالي السعر"
+        "En": "Total price",
+        "Ar": "إجمالي السعر"
     },
     {
         "name": "items_supplied",
-        "en": "Items supplied",
-        "ar": "الأصناف الموردة"
+        "En": "Items supplied",
+        "Ar": "الأصناف الموردة"
     },
     {
         "name": "items_sold",
-        "en": "Items sold",
-        "ar": "الأصناف المباعة"
+        "En": "Items sold",
+        "Ar": "الأصناف المباعة"
     },
     {
         "name": "sold_quantity",
-        "en": "Sold Quantity",
-        "ar": "الكمية المباعة"
+        "En": "Sold Quantity",
+        "Ar": "الكمية المباعة"
     },
     {
         "name": "remaining_in_stock",
-        "en": "Remaining in stock",
-        "ar": "المتبقى بالمخازن"
+        "En": "Remaining in stock",
+        "Ar": "المتبقى بالمخازن"
     },
     {
         "name": "total_supplier_account",
-        "en": "Total Supplier Account",
-        "ar": "إجمالي حساب المورد"
+        "En": "Total Supplier Account",
+        "Ar": "إجمالي حساب المورد"
     },
     {
         "name": "total_receivable",
-        "en": "Total receivable",
-        "ar": "إجمالي المستحق"
+        "En": "Total receivable",
+        "Ar": "إجمالي المستحق"
     }
 ]

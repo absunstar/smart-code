@@ -1,87 +1,87 @@
 [
     {
         "name": "itineraries",
-        "en": "Itineraries",
-        "ar": "خطوط السير"
+        "En": "Itineraries",
+        "Ar": "خطوط السير"
     },
     {
         "name": "itineraries_new",
-        "en": "New Itinerary",
-        "ar": "خط سير جديد"
+        "En": "New Itinerary",
+        "Ar": "خط سير جديد"
     },
     {
         "name": "itineraries_add",
-        "en": "Add Itinerary",
-        "ar": "إضافة خط سير "
+        "En": "Add Itinerary",
+        "Ar": "إضافة خط سير "
     },
     {
         "name": "itineraries_edit",
-        "en": "Edit Itinerary",
-        "ar": "تعديل خط سير "
+        "En": "Edit Itinerary",
+        "Ar": "تعديل خط سير "
     },
     {
         "name": "collected_paid",
-        "en": "collected / PaidUp",
-        "ar": "المحصل / المدفوع"
+        "En": "collected / PaidUp",
+        "Ar": "المحصل / المدفوع"
     },
     {
         "name": "mission_type_must_selected",
-        "en": "The Mission Type must be selected",
-        "ar": "يجب إختيار نوع المهمة"
+        "En": "The Mission Type must be selected",
+        "Ar": "يجب إختيار نوع المهمة"
     },
     {
         "name": "reason_cancel",
-        "en": "Reason for cancellation",
-        "ar": "سبب الإلغاء"
+        "En": "Reason for cancellation",
+        "Ar": "سبب الإلغاء"
     },
     {
         "name": "addition_mission",
-        "en": "Addition Mission",
-        "ar": "إضافة مهمة"
+        "En": "Addition Mission",
+        "Ar": "إضافة مهمة"
     },
     {
         "name": "mission_type",
-        "en": "Mission Type",
-        "ar": "نوع المهمة"
+        "En": "Mission Type",
+        "Ar": "نوع المهمة"
     },
     {
         "name": "mission_transfer",
-        "en": "Mission Transfer",
-        "ar": "تحويل مهمة"
+        "En": "Mission Transfer",
+        "Ar": "تحويل مهمة"
     },
     {
         "name": "target_type",
-        "en": "Target Type",
-        "ar": "نوع الهدف"
+        "En": "Target Type",
+        "Ar": "نوع الهدف"
     },
     {
         "name": "target",
-        "en": "Target",
-        "ar": "الهدف"
+        "En": "Target",
+        "Ar": "الهدف"
     },
     {
         "name": "delegate_notes",
-        "en": "Delegate Notes",
-        "ar": "ملاحظات المندوب"
+        "En": "Delegate Notes",
+        "Ar": "ملاحظات المندوب"
     },
     {
         "name": "target_details",
-        "en": "Target Details",
-        "ar": "تفاصيل الهدف"
+        "En": "Target Details",
+        "Ar": "تفاصيل الهدف"
     },
     {
         "name": "itineraries_details",
-        "en": "Itinerary Details",
-        "ar": "تفاصيل خط السير "
+        "En": "Itinerary Details",
+        "Ar": "تفاصيل خط السير "
     },
     {
         "name": "itineraries_delete",
-        "en": "Delete Itinerary",
-        "ar": "حذف خط سير "
+        "En": "Delete Itinerary",
+        "Ar": "حذف خط سير "
     },
     {
         "name": "itineraries_name",
-        "en": "Itinerary Name",
-        "ar": "إسم خط سير "
+        "En": "Itinerary Name",
+        "Ar": "إسم خط سير "
     }
 ]

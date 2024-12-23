@@ -1,362 +1,362 @@
 [
     {
         "name": "item_transaction_date",
-        "en": "Date",
-        "ar": " التاريخ"
+        "En": "Date",
+        "Ar": " التاريخ"
     },
     {
         "name": "item_transaction_add",
-        "en": "Add Item Transaction",
-        "ar": "إضافة صنف"
+        "En": "Add Item Transaction",
+        "Ar": "إضافة صنف"
     },
     {
         "name": "item_transaction_new",
-        "en": "New Item Transaction",
-        "ar": "صنف جديدة"
+        "En": "New Item Transaction",
+        "Ar": "صنف جديدة"
     },
     {
         "name": "transaction_status",
-        "en": "Transaction Status",
-        "ar": "حالة المعاملة"
+        "En": "Transaction Status",
+        "Ar": "حالة المعاملة"
     },
     {
         "name": "transactions_unpost",
-        "en": "Transactions Un Post",
-        "ar": "معاملات فك الترحيل"
+        "En": "Transactions Un Post",
+        "Ar": "معاملات فك الترحيل"
     },
     {
         "name": "transactions_delete",
-        "en": "Transactions Delete",
-        "ar": " المعاملات المحذوفة"
+        "En": "Transactions Delete",
+        "Ar": " المعاملات المحذوفة"
     },
     {
         "name": "r_Assembling",
-        "en": "Un Post Assembling Item",
-        "ar": "فك ترحيل تجميع صنف"
+        "En": "Un Post Assembling Item",
+        "Ar": "فك ترحيل تجميع صنف"
     },
     {
         "name": "d_Assembling",
-        "en": "Delete Assembling Item",
-        "ar": "حذف تجميع صنف"
+        "En": "Delete Assembling Item",
+        "Ar": "حذف تجميع صنف"
     },
     {
         "name": "r_Dismantling",
-        "en": "Un Post Dismantling Item",
-        "ar": "فك ترحيل تفكيك صنف"
+        "En": "Un Post Dismantling Item",
+        "Ar": "فك ترحيل تفكيك صنف"
     },
     {
         "name": "d_Dismantling",
-        "en": "Delete Dismantling Item",
-        "ar": "حذف تفكيك صنف"
+        "En": "Delete Dismantling Item",
+        "Ar": "حذف تفكيك صنف"
     },
     {
         "name": "item_transaction_delete",
-        "en": "Delete Item Transaction",
-        "ar": "حذف صنف"
+        "En": "Delete Item Transaction",
+        "Ar": "حذف صنف"
     },
     {
         "name": "item_transaction_edit",
-        "en": "Edit Item Transaction",
-        "ar": "تعديل صنف"
+        "En": "Edit Item Transaction",
+        "Ar": "تعديل صنف"
     },
     {
         "name": "item_transaction_details",
-        "en": "Item Transaction Details",
-        "ar": "تفاصيل صنف"
+        "En": "Item Transaction Details",
+        "Ar": "تفاصيل صنف"
     },
     {
         "name": "item_transaction_name",
-        "en": "Item Name",
-        "ar": "إسم الصنف"
+        "En": "Item Name",
+        "Ar": "إسم الصنف"
     },
     {
         "name": "item_transaction_img",
-        "en": "Item Transaction Image",
-        "ar": "ملفات الصنف"
+        "En": "Item Transaction Image",
+        "Ar": "ملفات الصنف"
     },
     {
         "name": "item_transaction_factory_code",
-        "en": "Factory Code",
-        "ar": "كود المصنع"
+        "En": "Factory Code",
+        "Ar": "كود المصنع"
     },
     {
         "name": "item_transaction_factory_name",
-        "en": "Factory Name",
-        "ar": "إسم المصنع"
+        "En": "Factory Name",
+        "Ar": "إسم المصنع"
     },
     {
         "name": "item_transaction_vendor_code",
-        "en": "vendor Code",
-        "ar": "كود المورد"
+        "En": "vendor Code",
+        "Ar": "كود المورد"
     },
     {
         "name": "item_transaction_vendor_name",
-        "en": "vendor Name",
-        "ar": "إسم المورد"
+        "En": "vendor Name",
+        "Ar": "إسم المورد"
     },
     {
         "name": "item_transaction_store",
-        "en": "Store",
-        "ar": "المخزن"
+        "En": "Store",
+        "Ar": "المخزن"
     },
     {
         "name": "item_transaction_section",
-        "en": "Section",
-        "ar": "القسم"
+        "En": "Section",
+        "Ar": "القسم"
     },
     {
         "name": "unpost_purchase_invoice",
-        "en": "UnPost Purchase Invoice",
-        "ar": "فك ترحيل إذن وارد"
+        "En": "UnPost Purchase Invoice",
+        "Ar": "فك ترحيل إذن وارد"
     },
     {
         "name": "unpost_sales_invoice",
-        "en": "UnPost Sales Invoice",
-        "ar": "فك ترحيل إذن منصرف"
+        "En": "UnPost Sales Invoice",
+        "Ar": "فك ترحيل إذن منصرف"
     },
     {
         "name": "delete_purchase_invoice",
-        "en": "Delete Purchase Invoice",
-        "ar": "حذف إذن وارد"
+        "En": "Delete Purchase Invoice",
+        "Ar": "حذف إذن وارد"
     },
     {
         "name": "delete_sales_invoice",
-        "en": "Delete Sales Invoice",
-        "ar": "حذف إذن منصرف"
+        "En": "Delete Sales Invoice",
+        "Ar": "حذف إذن منصرف"
     },
     {
         "name": "item_transaction_size",
-        "en": "Size",
-        "ar": "المقاس"
+        "En": "Size",
+        "Ar": "المقاس"
     },
     {
         "name": "item_transaction_sizes",
-        "en": "Sizes",
-        "ar": "ارقام قطع الغيار"
+        "En": "Sizes",
+        "Ar": "ارقام قطع الغيار"
     },
     {
         "name": "item_transaction_add_size",
-        "en": "Add Size",
-        "ar": "إضافة قطعة"
+        "En": "Add Size",
+        "Ar": "إضافة قطعة"
     },
     {
         "name": "item_transaction_cost",
-        "en": "Cost",
-        "ar": "التكلفة"
+        "En": "Cost",
+        "Ar": "التكلفة"
     },
     {
         "name": "item_transaction_price",
-        "en": "Price",
-        "ar": "السعر"
+        "En": "Price",
+        "Ar": "السعر"
     },
     {
         "name": "item_transaction_last_price",
-        "en": "Last Price",
-        "ar": "السعر السابق"
+        "En": "Last Price",
+        "Ar": "السعر السابق"
     },
     {
         "name": "item_transaction_with_discount",
-        "en": "With Discount",
-        "ar": "بخصم"
+        "En": "With Discount",
+        "Ar": "بخصم"
     },
     {
         "name": "item_transaction_category",
-        "en": "Item Transaction",
-        "ar": "مجموعة الصنف"
+        "En": "Item Transaction",
+        "Ar": "مجموعة الصنف"
     },
     {
         "name": "item_transaction_Category_code",
-        "en": "Item Transaction Code",
-        "ar": "كود المجموعة"
+        "En": "Item Transaction Code",
+        "Ar": "كود المجموعة"
     },
     {
         "name": "categories_size",
-        "en": "Sizes",
-        "ar": "المقاس"
+        "En": "Sizes",
+        "Ar": "المقاس"
     },
     {
         "name": "categories_cost",
-        "en": "Cost",
-        "ar": "التكلفة"
+        "En": "Cost",
+        "Ar": "التكلفة"
     },
     {
         "name": "categories_price",
-        "en": "Price",
-        "ar": "السعر"
+        "En": "Price",
+        "Ar": "السعر"
     },
     {
         "name": "no_items",
-        "en": "No Items",
-        "ar": "لاتوجد مقاسات"
+        "En": "No Items",
+        "Ar": "لاتوجد مقاسات"
     },
     {
         "name": "item_transaction",
-        "en": "Items Transaction",
-        "ar": "كارتة الأصناف"
+        "En": "Items Transaction",
+        "Ar": "كارتة الأصناف"
     },
     {
         "name": "inventory_item_transaction",
-        "en": "Items Transaction",
-        "ar": "كارتة الأصناف"
+        "En": "Items Transaction",
+        "Ar": "كارتة الأصناف"
     },
     {
         "name": "item_transaction_with_discount_yes",
-        "en": "Yes",
-        "ar": "نعم"
+        "En": "Yes",
+        "Ar": "نعم"
     },
     {
         "name": "item_transaction_with_discount_no",
-        "en": "No",
-        "ar": "لا"
+        "En": "No",
+        "Ar": "لا"
     },
     {
         "name": "categories_search",
-        "en": "Search",
-        "ar": "بحث"
+        "En": "Search",
+        "Ar": "بحث"
     },
     {
         "name": "categories_empty_search",
-        "en": "Empty Search",
-        "ar": "تفريغ الحقول"
+        "En": "Empty Search",
+        "Ar": "تفريغ الحقول"
     },
     {
         "name": "item_transaction_search_all",
-        "en": "Search All",
-        "ar": "بحث شامل"
+        "En": "Search All",
+        "Ar": "بحث شامل"
     },
     {
         "name": "item_transaction_count",
-        "en": "Result Count",
-        "ar": "العدد"
+        "En": "Result Count",
+        "Ar": "العدد"
     },
     {
         "name": "item_transaction_in",
-        "en": "IN",
-        "ar": "الوارد"
+        "En": "IN",
+        "Ar": "الوارد"
     },
     {
         "name": "item_transaction_out",
-        "en": "OUT",
-        "ar": "المنصرف"
+        "En": "OUT",
+        "Ar": "المنصرف"
     },
     {
         "name": "balance",
-        "en": "Balance",
-        "ar": "الرصيد"
+        "En": "Balance",
+        "Ar": "الرصيد"
     },
     {
         "name": "item_transaction_last_count",
-        "en": "Last Count",
-        "ar": "العدد السابق"
+        "En": "Last Count",
+        "Ar": "العدد السابق"
     },
     {
         "name": "item_transaction_balance_Gt",
-        "en": "Balance Greater Thans",
-        "ar": "الرصيد اكبر من "
+        "En": "Balance Greater Thans",
+        "Ar": "الرصيد اكبر من "
     },
     {
         "name": "item_transaction_balance_Lt",
-        "en": "Balance Lower Thans",
-        "ar": "الرصيد اقل من "
+        "En": "Balance Lower Thans",
+        "Ar": "الرصيد اقل من "
     },
     {
         "name": "item_transaction_current_status_1",
-        "ar": "عهدة مع الفنى",
-        "en": "Debt "
+        "Ar": "عهدة مع الفنى",
+        "En": "Debt "
     },
     {
         "name": "item_transaction_current_status_2",
-        "ar": "مستبدلة",
-        "en": "Replaced "
+        "Ar": "مستبدلة",
+        "En": "Replaced "
     },
     {
         "name": "item_transaction_current_status_3",
-        "ar": "تالف",
-        "en": "Damaged "
+        "Ar": "تالف",
+        "En": "Damaged "
     },
     {
         "name": "item_transaction_current_status_4",
-        "ar": "إذن صرف / مبيعات ",
-        "en": "storeout "
+        "Ar": "إذن صرف / مبيعات ",
+        "En": "storeout "
     },
     {
         "name": "item_transaction_current_status_5",
-        "ar": "محولة ",
-        "en": "transferred "
+        "Ar": "محولة ",
+        "En": "transferred "
     },
     {
         "name": "item_transaction_current_status_6",
-        "ar": "إذن وارد  ",
-        "en": "storein"
+        "Ar": "إذن وارد  ",
+        "En": "storein"
     },
     {
         "name": "item_transaction_current_status_assemble",
-        "ar": "تجميع صنف",
-        "en": "Assimble Item"
+        "Ar": "تجميع صنف",
+        "En": "Assimble Item"
     },
     {
         "name": "item_transaction_current_status_dismantle",
-        "ar": "تفكيك صنف",
-        "en": "Dismantle Item"
+        "Ar": "تفكيك صنف",
+        "En": "Dismantle Item"
     },
     {
         "name": "item_transaction_previous_count",
-        "ar": "رصيد قبل الفاتورة",
-        "en": "Balance B. invoice"
+        "Ar": "رصيد قبل الفاتورة",
+        "En": "Balance B. invoice"
     },
     {
         "name": "item_transaction_status",
-        "ar": "الحالة  ",
-        "en": "status "
+        "Ar": "الحالة  ",
+        "En": "status "
     },
     {
         "name": "order_screen",
-        "ar": "شاشة الطلبات",
-        "en": "Order Screen"
+        "Ar": "شاشة الطلبات",
+        "En": "Order Screen"
     },
     {
         "name": "item_transaction_store_out_number",
-        "ar": "رقم الأذن  ",
-        "en": "store number "
+        "Ar": "رقم الأذن  ",
+        "En": "store number "
     },
     {
         "name": "item_transaction_ticket_code",
-        "ar": "رقم الطلب  ",
-        "en": "ticket number "
+        "Ar": "رقم الطلب  ",
+        "En": "ticket number "
     },
     {
         "name": "item_transaction_type",
-        "en": "transactions Type",
-        "ar": "نوع العمليةٍ"
+        "En": "transactions Type",
+        "Ar": "نوع العمليةٍ"
     },
     {
         "name": "item_transaction_type_in",
-        "en": "Items transactions In",
-        "ar": "إذن إضافة"
+        "En": "Items transactions In",
+        "Ar": "إذن إضافة"
     },
     {
         "name": "item_transaction_type_out",
-        "en": "Items transactions Out",
-        "ar": "إذن صرف / فاتورة بيع"
+        "En": "Items transactions Out",
+        "Ar": "إذن صرف / فاتورة بيع"
     },
     {
         "name": "item_transaction_eng",
-        "en": "Eng ",
-        "ar": "  الفنى "
+        "En": "Eng ",
+        "Ar": "  الفنى "
     },
     {
         "name": "item_transaction_total",
-        "en": "Total",
-        "ar": "الاجمالي"
+        "En": "Total",
+        "Ar": "الاجمالي"
     },
     {
         "name": "item_transaction_logo",
-        "en": "Logo",
-        "ar": "الشعار"
+        "En": "Logo",
+        "Ar": "الشعار"
     },
     {
         "name": "item_transaction_img",
-        "en": "Category Image",
-        "ar": "الملفات"
+        "En": "Category Image",
+        "Ar": "الملفات"
     }
 ]

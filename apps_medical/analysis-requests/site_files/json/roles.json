@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "analysis_requests_admin",
-    "en": "Analysis LAB Admin",
-    "ar": "إدارة معمل التحاليل",
+    "En": "Analysis LAB Admin",
+    "Ar": "إدارة معمل التحاليل",
     "permissions": ["analysis_requests_manage"]
 }]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "hall_admin",
-    "en": "Hall Admin",
-    "ar": "إدارة القاعات",
+    "En": "Hall Admin",
+    "Ar": "إدارة القاعات",
     "permissions": ["hall_manage"]
 }]

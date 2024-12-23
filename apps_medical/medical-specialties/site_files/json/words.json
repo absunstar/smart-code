@@ -1,42 +1,42 @@
 [
     {
         "name": "medical_specialties",
-        "en": "Medical Specialties",
-        "ar": "التخصصات الطبية"
+        "En": "Medical Specialties",
+        "Ar": "التخصصات الطبية"
     },
     {
         "name": "medical_specialties_new",
-        "en": "New Medical Specialty",
-        "ar": "تخصص طبي  جديد"
+        "En": "New Medical Specialty",
+        "Ar": "تخصص طبي  جديد"
     },
     {
         "name": "specialty",
-        "en": "Specialty",
-        "ar": "التخصص"
+        "En": "Specialty",
+        "Ar": "التخصص"
     },
     {
         "name": "medical_specialties_add",
-        "en": "Add Medical Specialty",
-        "ar": "إضافة تخصص طبي "
+        "En": "Add Medical Specialty",
+        "Ar": "إضافة تخصص طبي "
     },
     {
         "name": "medical_specialties_edit",
-        "en": "Edit Medical Specialty",
-        "ar": "تعديل تخصص طبي "
+        "En": "Edit Medical Specialty",
+        "Ar": "تعديل تخصص طبي "
     },
     {
         "name": "medical_specialties_details",
-        "en": "Medical Specialty Details",
-        "ar": "تفاصيل التخصص طبي "
+        "En": "Medical Specialty Details",
+        "Ar": "تفاصيل التخصص طبي "
     },
     {
         "name": "medical_specialties_delete",
-        "en": "Delete Medical Specialty",
-        "ar": "حذف تخصص طبي "
+        "En": "Delete Medical Specialty",
+        "Ar": "حذف تخصص طبي "
     },
     {
         "name": "medical_specialties_name",
-        "en": "Medical Specialty Name",
-        "ar": "إسم التخصص طبي "
+        "En": "Medical Specialty Name",
+        "Ar": "إسم التخصص طبي "
     }
 ]

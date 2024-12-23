@@ -1,17 +1,17 @@
 [
-    {"name" : "seating_numbers_informations" , "en" : "Distribution Seating Number Informations" , "ar" : "بيانات توزيع أرقام الجلوس"},
-    {"name" : "seating_numbers" , "en" : "Distribution Seating Numbers" , "ar" : "توزيع أرقام الجلوس"},
-    {"name" : "seating_number" , "en" : "Distribution Seating Number" , "ar" : "توزيع رقم جلوس"},
-    {"name" : "seating_n" , "en" : "Seating Number" , "ar" : "رقم الجلوس"},
-    {"name" : "seating_numbers_menus" , "en" : "Distribution Seating Number Menu" , "ar" : "قائمة توزيع أرقام الجلوس"},
-    {"name" : "seating_numbers_code" , "en" : "Distribution Seating Number Code" , "ar" : "كود توزيع أرقام الجلوس"},
-    {"name" : "seating_numbers_name" , "en" : "Distribution Seating Number Name" , "ar" : "إسم توزيع أرقام الجلوس"},
-    {"name" : "seating_numbers_new" , "en" : "New Distribution Seating Number" , "ar" : " توزيع أرقام جلوس جديدة"},
-    {"name" : "seating_numbers_details" , "en" : "Distribution Seating Number Details" , "ar" : "تفاصيل توزيع أرقام الجلوس"},
-    {"name" : "seating_numbers_update" , "en" : "Edit Distribution Seating Number" , "ar" : "تعديل توزيع أرقام الجلوس"},
-    {"name" : "seating_numbers_delete" , "en" : "Delte Distribution Seating Number" , "ar" : "حذف توزيع أرقام الجلوس"},
-    {"name" : "numbers_start_from" , "en" : "The numbers start from" , "ar" : "الأرقام تبدأ من"},
-    {"name" : "seating_numbers_add_name" , "en" : "Add Distribution Seating Number" , "ar" : "إضافة توزيع أرقام الجلوس"}
+    {"name" : "seating_numbers_informations" , "En" : "Distribution Seating Number Informations" , "Ar" : "بيانات توزيع أرقام الجلوس"},
+    {"name" : "seating_numbers" , "En" : "Distribution Seating Numbers" , "Ar" : "توزيع أرقام الجلوس"},
+    {"name" : "seating_number" , "En" : "Distribution Seating Number" , "Ar" : "توزيع رقم جلوس"},
+    {"name" : "seating_n" , "En" : "Seating Number" , "Ar" : "رقم الجلوس"},
+    {"name" : "seating_numbers_menus" , "En" : "Distribution Seating Number Menu" , "Ar" : "قائمة توزيع أرقام الجلوس"},
+    {"name" : "seating_numbers_code" , "En" : "Distribution Seating Number Code" , "Ar" : "كود توزيع أرقام الجلوس"},
+    {"name" : "seating_numbers_name" , "En" : "Distribution Seating Number Name" , "Ar" : "إسم توزيع أرقام الجلوس"},
+    {"name" : "seating_numbers_new" , "En" : "New Distribution Seating Number" , "Ar" : " توزيع أرقام جلوس جديدة"},
+    {"name" : "seating_numbers_details" , "En" : "Distribution Seating Number Details" , "Ar" : "تفاصيل توزيع أرقام الجلوس"},
+    {"name" : "seating_numbers_update" , "En" : "Edit Distribution Seating Number" , "Ar" : "تعديل توزيع أرقام الجلوس"},
+    {"name" : "seating_numbers_delete" , "En" : "Delte Distribution Seating Number" , "Ar" : "حذف توزيع أرقام الجلوس"},
+    {"name" : "numbers_start_from" , "En" : "The numbers start from" , "Ar" : "الأرقام تبدأ من"},
+    {"name" : "seating_numbers_add_name" , "En" : "Add Distribution Seating Number" , "Ar" : "إضافة توزيع أرقام الجلوس"}
 
 
     

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "analysis_admin",
-    "en": "Analysis Admin",
-    "ar": "إدارة التحاليل",
+    "En": "Analysis Admin",
+    "Ar": "إدارة التحاليل",
     "permissions": ["analysis_manage"]
 }]

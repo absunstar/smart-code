@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "reset_admin",
-    "en": "Reset Admin",
-    "ar": "إدارة التهيئة",
+    "En": "Reset Admin",
+    "Ar": "إدارة التهيئة",
     "permissions": ["reset_manage"]
 }]

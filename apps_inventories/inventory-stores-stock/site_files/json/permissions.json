@@ -1,13 +1,13 @@
 [
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_add" , "en":"Add" , "ar":"إضافة"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_delete" , "en":"Delete" , "ar":"حذف"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_view" , "en":"View" , "ar":"عرض"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_hold" , "en":"Hold" , "ar":"تعليق"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_settlement" , "en":"Settlement Stock" , "ar":"تسوية الجرد"},
-    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_add" , "En":"Add" , "Ar":"إضافة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_update" , "En":"Edit" , "Ar":"تعديل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_delete" , "En":"Delete" , "Ar":"حذف"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_view" , "En":"View" , "Ar":"عرض"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_hold" , "En":"Hold" , "Ar":"تعليق"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_settlement" , "En":"Settlement Stock" , "Ar":"تسوية الجرد"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-stock" , "name":"stores_stock_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

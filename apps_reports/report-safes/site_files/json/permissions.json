@@ -1,7 +1,7 @@
 [
-    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_search" , "en":"Search" , "ar":"بحث"},
-    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_search" , "En":"Search" , "Ar":"بحث"},
+    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_export" , "En":"Export" , "Ar":"تصدير"},
+    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_print" , "En":"Print" , "Ar":"طباعة"},
+    { "module_name" : "report" , "screen_name" : "report-safes" , "name":"report_safes_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 ]

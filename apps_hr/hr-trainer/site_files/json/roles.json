@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "trainer_admin",
-    "en": "Trainer Admin",
-    "ar": "إدارة المدربين",
+    "En": "Trainer Admin",
+    "Ar": "إدارة المدربين",
     "permissions": ["trainer_manage"]
 }]

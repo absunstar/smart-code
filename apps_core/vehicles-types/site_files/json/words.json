@@ -1,57 +1,57 @@
 [
     {
         "name": "vehicles_types_informations",
-        "en": "Vehicles/Cars Types Informations",
-        "ar": "بيانات أنواع المركبات/السيارات"
+        "En": "Vehicles/Cars Types Informations",
+        "Ar": "بيانات أنواع المركبات/السيارات"
     },
     {
         "name": "vehicle_type",
-        "en": "Vehicle/Car Type",
-        "ar": "نوع المركبة/السيارة"
+        "En": "Vehicle/Car Type",
+        "Ar": "نوع المركبة/السيارة"
     },
     {
         "name": "vehicles_types",
-        "en": "Vehicles/Cars Types",
-        "ar": "أنواع المركبات/السيارات"
+        "En": "Vehicles/Cars Types",
+        "Ar": "أنواع المركبات/السيارات"
     },
     {
         "name": "vehicles_types_menus",
-        "en": "Vehicles/Cars Types Menu",
-        "ar": "قائمة أنواع المركبات/السيارات"
+        "En": "Vehicles/Cars Types Menu",
+        "Ar": "قائمة أنواع المركبات/السيارات"
     },
     {
         "name": "vehicles_types_code",
-        "en": "Vehicle/Car Type Code",
-        "ar": "كود نوع المركبة/السيارة"
+        "En": "Vehicle/Car Type Code",
+        "Ar": "كود نوع المركبة/السيارة"
     },
     {
         "name": "vehicles_types_name",
-        "en": "Vehicle/Car Type Name",
-        "ar": "إسم نوع المركبة/السيارة"
+        "En": "Vehicle/Car Type Name",
+        "Ar": "إسم نوع المركبة/السيارة"
     },
     {
         "name": "vehicles_types_new",
-        "en": "New Vehicle/Car Type",
-        "ar": "نوع مركبة/سيارة جديدة"
+        "En": "New Vehicle/Car Type",
+        "Ar": "نوع مركبة/سيارة جديدة"
     },
     {
         "name": "vehicles_types_details",
-        "en": "Vehicle/Car Type Details",
-        "ar": "تفاصيل نوع المركبة/السيارة"
+        "En": "Vehicle/Car Type Details",
+        "Ar": "تفاصيل نوع المركبة/السيارة"
     },
     {
         "name": "vehicles_types_update",
-        "en": "Edit Vehicle/Car Type",
-        "ar": "تعديل نوع المركبة/السيارة"
+        "En": "Edit Vehicle/Car Type",
+        "Ar": "تعديل نوع المركبة/السيارة"
     },
     {
         "name": "vehicles_types_delete",
-        "en": "Delte Vehicle/Car Type",
-        "ar": "حذف نوع مركبة/سيارة"
+        "En": "Delte Vehicle/Car Type",
+        "Ar": "حذف نوع مركبة/سيارة"
     },
     {
         "name": "vehicles_types_add_name",
-        "en": "Add Vehicle/Car Type",
-        "ar": "إضافة نوع مركبة/سيارة"
+        "En": "Add Vehicle/Car Type",
+        "Ar": "إضافة نوع مركبة/سيارة"
     }
 ]

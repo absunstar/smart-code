@@ -1,17 +1,17 @@
 [
     {
         "id": 1,
-        "en": "Session",
-        "ar": "جلسة"
+        "En": "Session",
+        "Ar": "جلسة"
     },
     {
         "id": 2,
-        "en": "Monthly",
-        "ar": "شهري"
+        "En": "Monthly",
+        "Ar": "شهري"
     },
     {
         "id": 3,
-        "en": "Period",
-        "ar": "مدة"
+        "En": "Period",
+        "Ar": "مدة"
     }
 ]

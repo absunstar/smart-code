@@ -1,14 +1,14 @@
 [
 
-    {"name" : "reasons_sessions_informations" , "en" : "Reason Session Informations" , "ar" : "بيانات سبب جلسة"},
-    {"name" : "reasons_sessions" , "en" : "Reasons Sessions" , "ar" : "أسباب الجلسات"},
-    {"name" : "reasons_sessions_menus" , "en" : "Reason Session Menu" , "ar" : "قائمة سبب الجلسة"},
-    {"name" : "reasons_sessions_code" , "en" : "Reason Session Code" , "ar" : "كود سبب الجلسة"},
-    {"name" : "reasons_sessions_name" , "en" : "Reason Session" , "ar" : "سبب الجلسة"},
-    {"name" : "reasons_sessions_new" , "en" : "New Reason Session" , "ar" : "سبب جلسة جديدة"},
-    {"name" : "reasons_sessions_details" , "en" : "Reason Session Details" , "ar" : "تفاصيل سبب جلسة"},
-    {"name" : "reasons_sessions_update" , "en" : "Edit Reason Session" , "ar" : "تعديل سبب جلسة"},
-    {"name" : "reasons_sessions_delete" , "en" : "Delte Reason Session" , "ar" : "حذف سبب جلسة"},
-    {"name" : "reasons_sessions_add_name" , "en" : "Add Reason Session" , "ar" : "إضافة سبب جلسة"}
+    {"name" : "reasons_sessions_informations" , "En" : "Reason Session Informations" , "Ar" : "بيانات سبب جلسة"},
+    {"name" : "reasons_sessions" , "En" : "Reasons Sessions" , "Ar" : "أسباب الجلسات"},
+    {"name" : "reasons_sessions_menus" , "En" : "Reason Session Menu" , "Ar" : "قائمة سبب الجلسة"},
+    {"name" : "reasons_sessions_code" , "En" : "Reason Session Code" , "Ar" : "كود سبب الجلسة"},
+    {"name" : "reasons_sessions_name" , "En" : "Reason Session" , "Ar" : "سبب الجلسة"},
+    {"name" : "reasons_sessions_new" , "En" : "New Reason Session" , "Ar" : "سبب جلسة جديدة"},
+    {"name" : "reasons_sessions_details" , "En" : "Reason Session Details" , "Ar" : "تفاصيل سبب جلسة"},
+    {"name" : "reasons_sessions_update" , "En" : "Edit Reason Session" , "Ar" : "تعديل سبب جلسة"},
+    {"name" : "reasons_sessions_delete" , "En" : "Delte Reason Session" , "Ar" : "حذف سبب جلسة"},
+    {"name" : "reasons_sessions_add_name" , "En" : "Add Reason Session" , "Ar" : "إضافة سبب جلسة"}
 
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "employee_insurance_admin",
-    "en": "Employee Insurance Admin",
-    "ar": "إدارة التأمينات",
+    "En": "Employee Insurance Admin",
+    "Ar": "إدارة التأمينات",
     "permissions": ["employee_insurance_manage"]
 }]

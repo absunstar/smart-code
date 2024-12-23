@@ -1,87 +1,87 @@
 [{
         "name": "report_trainer_search",
-        "en": "Search",
-        "ar": "بحث"
+        "En": "Search",
+        "Ar": "بحث"
     },
     {
         "name": "report_trainer_date_from",
-        "en": "Date From",
-        "ar": "من تاريخ"
+        "En": "Date From",
+        "Ar": "من تاريخ"
     },
     {
         "name": "report_trainer_date_to",
-        "en": "Date To",
-        "ar": "إلى تاريخ"
+        "En": "Date To",
+        "Ar": "إلى تاريخ"
     },
     {
         "name": "report_trainer_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
     {
         "name": "report_trainer_attend",
-        "en": "Report Trainer Attend Course",
-        "ar": "تقرير حضور الكورسات للمدربين"
+        "En": "Report Trainer Attend Course",
+        "Ar": "تقرير حضور الكورسات للمدربين"
     },
     {
         "name": "report_trainer_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
     {
         "name": "attend_absence_list",
-        "en": "Attend & Absence List",
-        "ar": "بيان الحضور و الغياب"
+        "En": "Attend & Absence List",
+        "Ar": "بيان الحضور و الغياب"
     },
     {
         "name": "attend_hour",
-        "en": "Attend Hour",
-        "ar": "حضور الساعة"
+        "En": "Attend Hour",
+        "Ar": "حضور الساعة"
     },
     {
         "name": "out_hour",
-        "en": "Out Hour",
-        "ar": "إنصراف الساعة"
+        "En": "Out Hour",
+        "Ar": "إنصراف الساعة"
     },
     {
         "name": "report_trainer_serial",
-        "en": "Serial",
-        "ar": "رقم مسلسل"
+        "En": "Serial",
+        "Ar": "رقم مسلسل"
     },
     {
         "name": "report_trainer_required",
-        "en": "Required",
-        "ar": "المطلوب"
+        "En": "Required",
+        "Ar": "المطلوب"
     },
     {
         "name": "report_trainer_total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "En": "Total Required",
+        "Ar": "إجمالي المطلوب"
     },
     {
         "name": "report_trainer_paid",
-        "en": "paid",
-        "ar": "المدفوع"
+        "En": "paid",
+        "Ar": "المدفوع"
     },
     {
         "name": "report_trainer_total",
-        "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "En": "Total Rest",
+        "Ar": "إجمالي المدفوع"
     },
     {
         "name": "report_trainer_rest",
-        "en": "Rest",
-        "ar": "الباقي"
+        "En": "Rest",
+        "Ar": "الباقي"
     },
     {
         "name": "report_trainer_total_rest",
-        "en": "Total Rest",
-        "ar": "الباقي إجمالي"
+        "En": "Total Rest",
+        "Ar": "الباقي إجمالي"
     },
     {
         "name": "report_trainer_date",
-        "en": "Offer Date",
-        "ar": "التاريخ"
+        "En": "Offer Date",
+        "Ar": "التاريخ"
     }
 
 ]

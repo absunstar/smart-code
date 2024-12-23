@@ -2,12 +2,12 @@
     {
         "id" : 1,
         "name": "public",
-        "en": "Public",
-        "ar": "عام"
+        "En": "Public",
+        "Ar": "عام"
     },
     {
         "id" : 2,
         "name": "special",
-        "en": "Special",
-        "ar": "خاص"
+        "En": "Special",
+        "Ar": "خاص"
     }]

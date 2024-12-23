@@ -2,64 +2,64 @@
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_manage",
-    "en": "Manage",
-    "ar": "إدارة"
+    "En": "Manage",
+    "Ar": "إدارة"
 },
 {
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_add",
-    "en": "Add",
-    "ar": "إضافة"
+    "En": "Add",
+    "Ar": "إضافة"
 },
 {
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_edit",
-    "en": "Edit",
-    "ar": "تعديل"
+    "En": "Edit",
+    "Ar": "تعديل"
 },
 {
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_delete",
-    "en": "Delete",
-    "ar": "حذف"
+    "En": "Delete",
+    "Ar": "حذف"
 },
 {
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_view",
-    "en": "View",
-    "ar": "عرض"
+    "En": "View",
+    "Ar": "عرض"
 },
 {
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_search",
-    "en": "Search",
-    "ar": "بحث"
+    "En": "Search",
+    "Ar": "بحث"
 },
 {
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_export",
-    "en": "Export",
-    "ar": "تصدير"
+    "En": "Export",
+    "Ar": "تصدير"
 },
 {
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_print",
-    "en": "Print",
-    "ar": "طباعة"
+    "En": "Print",
+    "Ar": "طباعة"
 },
 {
     "module_name": "public",
     "screen_name": "maritals-status",
     "name": "maritals_status_ui",
-    "en": "UI",
-    "ar": "الواجهة الرسومية"
+    "En": "UI",
+    "Ar": "الواجهة الرسومية"
 }
 
 ]

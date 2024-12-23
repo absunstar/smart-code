@@ -1,67 +1,67 @@
 [{
         "name": "trainers",
-        "en": "Trainers",
-        "ar": "المدربين"
+        "En": "Trainers",
+        "Ar": "المدربين"
     },
     {
         "name": "hr_trainer",
-        "en": "Trainers",
-        "ar": "المدربين"
+        "En": "Trainers",
+        "Ar": "المدربين"
     },
     {
         "name": "trainer",
-        "en": "Trainer",
-        "ar": "المدرب"
+        "En": "Trainer",
+        "Ar": "المدرب"
     },
     {
         "name": "trainer_new",
-        "en": "New Trainer",
-        "ar": "مدرب جديد"
+        "En": "New Trainer",
+        "Ar": "مدرب جديد"
     },
     {
         "name": "handel_trainers",
-        "en": "Handel Trainers",
-        "ar": "هندلة المدربين"
+        "En": "Handel Trainers",
+        "Ar": "هندلة المدربين"
     },
     {
         "name": "trainer_add",
-        "en": "Add Trainer",
-        "ar": "إضافة مدرب"
+        "En": "Add Trainer",
+        "Ar": "إضافة مدرب"
     },
     {
         "name": "trainer_edit",
-        "en": "Edit Trainer",
-        "ar": "تعديل مدرب"
+        "En": "Edit Trainer",
+        "Ar": "تعديل مدرب"
     },
     {
         "name": "trainer_details",
-        "en": "Trainer Details",
-        "ar": "تفاصيل المدرب"
+        "En": "Trainer Details",
+        "Ar": "تفاصيل المدرب"
     },
     {
         "name": "trainer_delete",
-        "en": "Delete Trainer",
-        "ar": "حذف مدرب"
+        "En": "Delete Trainer",
+        "Ar": "حذف مدرب"
     },
     {
         "name": "trainer_name",
-        "en": "Trainer Name",
-        "ar": "إسم المدرب"
+        "En": "Trainer Name",
+        "Ar": "إسم المدرب"
     },
     {
         "name": "trainer_indentfy",
-        "en": "Trainer Indentfy",
-        "ar": "نوع المدرب"
+        "En": "Trainer Indentfy",
+        "Ar": "نوع المدرب"
     },
     {
         "name": "qualification",
-        "en": "Qualification",
-        "ar": "المؤهل"
+        "En": "Qualification",
+        "Ar": "المؤهل"
     },
     {
         "name": "trainer_info",
-        "en": "Trainer Informations",
-        "ar": "معلومات المدرب"
+        "En": "Trainer Informations",
+        "Ar": "معلومات المدرب"
     }
 
 ]

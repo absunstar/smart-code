@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "floor_admin",
-    "en": "Floors Admin",
-    "ar": "إدارة الطوابق",
+    "En": "Floors Admin",
+    "Ar": "إدارة الطوابق",
     "permissions": ["floor_manage"]
 }]

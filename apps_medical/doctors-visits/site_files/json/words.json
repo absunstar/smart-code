@@ -1,387 +1,387 @@
 [
     {
         "name": "doctors_visits",
-        "en": "Examination books",
-        "ar": "حجز كشف"
+        "En": "Examination books",
+        "Ar": "حجز كشف"
     },
     {
         "name": "doctor_visit",
-        "en": "Examination book",
-        "ar": "حجز كشف"
+        "En": "Examination book",
+        "Ar": "حجز كشف"
     },
     {
         "name": "must_pay_full_price_examination",
-        "en": "Must Pay the full price of the Examination",
-        "ar": "يجب دفع سعر الحجز كاملا"
+        "En": "Must Pay the full price of the Examination",
+        "Ar": "يجب دفع سعر الحجز كاملا"
     },
     {
         "name": "place_examination",
-        "en": "Place examination",
-        "ar": "مكان الحجز"
+        "En": "Place examination",
+        "Ar": "مكان الحجز"
     },
     {
         "name": "doctors_visits_new",
-        "en": "New Examination book",
-        "ar": "حجز كشف جديدة"
+        "En": "New Examination book",
+        "Ar": "حجز كشف جديدة"
     },
     {
         "name": "doctor_visit_price",
-        "en": "Visit Price",
-        "ar": "سعر الحجز"
+        "En": "Visit Price",
+        "Ar": "سعر الحجز"
     },
     {
         "name": "doctor_notes",
-        "en": "Doctor Notes",
-        "ar": "ملاحظات الطبيب"
+        "En": "Doctor Notes",
+        "Ar": "ملاحظات الطبيب"
     },
     {
         "name": "visit_type",
-        "en": "Visit Type",
-        "ar": "نوع الحجز"
+        "En": "Visit Type",
+        "Ar": "نوع الحجز"
     },
     {
         "name": "doctor_visit_type",
-        "en": "Examination book Type",
-        "ar": "نوع حجز الكشف"
+        "En": "Examination book Type",
+        "Ar": "نوع حجز الكشف"
     },
     {
         "name": "cannot_booked_holiday_clinic",
-        "en": "Can not be booked on holiday for the clinic",
-        "ar": "لا يمكن الحجز اليوم عطلة للعيادة"
+        "En": "Can not be booked on holiday for the clinic",
+        "Ar": "لا يمكن الحجز اليوم عطلة للعيادة"
     },
     {
         "name": "view_appointments",
-        "en": "View appointments",
-        "ar": "عرض المواعيد"
+        "En": "View appointments",
+        "Ar": "عرض المواعيد"
     },
     {
         "name": "doctors_visits_book",
-        "en": "Doctors Examination booking",
-        "ar": " حجز كشف طبيب"
+        "En": "Doctors Examination booking",
+        "Ar": " حجز كشف طبيب"
     },
     {
         "name": "dont_book",
-        "en": "Do Not Booking",
-        "ar": "لم يتم الحجز"
+        "En": "Do Not Booking",
+        "Ar": "لم يتم الحجز"
     },
     {
         "name": "patient",
-        "en": "Patient Name",
-        "ar": " إسم المريض"
+        "En": "Patient Name",
+        "Ar": " إسم المريض"
     },
     {
         "name": "patient_search",
-        "en": "Patients Search",
-        "ar": "بحث المرضى"
+        "En": "Patients Search",
+        "Ar": "بحث المرضى"
     },
     {
         "name": "address_search",
-        "en": "Address Search",
-        "ar": "بحث العنوان"
+        "En": "Address Search",
+        "Ar": "بحث العنوان"
     },
     {
         "name": "hospital_search",
-        "en": "Hospital Search",
-        "ar": "بحث المستشفى"
+        "En": "Hospital Search",
+        "Ar": "بحث المستشفى"
     },
     {
         "name": "doctor_search",
-        "en": "Doctor Search",
-        "ar": "بحث الطبيب"
+        "En": "Doctor Search",
+        "Ar": "بحث الطبيب"
     },
     {
         "name": "spicialty_search",
-        "en": "Spicialty Search",
-        "ar": "بحث التخصص"
+        "En": "Spicialty Search",
+        "Ar": "بحث التخصص"
     },
     {
         "name": "clinic_search",
-        "en": "Clinic Search",
-        "ar": "بحث العيادة"
+        "En": "Clinic Search",
+        "Ar": "بحث العيادة"
     },
     {
         "name": "doctors_visits_add",
-        "en": "Add Examination book",
-        "ar": "إضافة حجز كشف"
+        "En": "Add Examination book",
+        "Ar": "إضافة حجز كشف"
     },
     {
         "name": "doctors_visits_edit",
-        "en": "Edit Examination book",
-        "ar": "تعديل حجز كشف"
+        "En": "Edit Examination book",
+        "Ar": "تعديل حجز كشف"
     },
     {
         "name": "doctors_visits_details",
-        "en": "Examination Book Details",
-        "ar": "تفاصيل الحجز"
+        "En": "Examination Book Details",
+        "Ar": "تفاصيل الحجز"
     },
     {
         "name": "doctors_visits_delete",
-        "en": "Delete Examination book",
-        "ar": "حذف حجز كشف"
+        "En": "Delete Examination book",
+        "Ar": "حذف حجز كشف"
     },
     {
         "name": "doctors_visits_select",
-        "en": "Select",
-        "ar": "تحديد"
+        "En": "Select",
+        "Ar": "تحديد"
     },
     {
         "name": "view_doctors",
-        "en": "View Doctors",
-        "ar": "عرض الأطباء"
+        "En": "View Doctors",
+        "Ar": "عرض الأطباء"
     },
     {
         "name": "booking_date",
-        "en": "Booking Date",
-        "ar": "تاريخ الحجز"
+        "En": "Booking Date",
+        "Ar": "تاريخ الحجز"
     },
     {
         "name": "visit_date",
-        "en": "Examination Date",
-        "ar": "تاريخ الحجز"
+        "En": "Examination Date",
+        "Ar": "تاريخ الحجز"
     },
     {
         "name": "visit_number",
-        "en": "Visit Number",
-        "ar": "رقم الحجز"
+        "En": "Visit Number",
+        "Ar": "رقم الحجز"
     },
     {
         "name": "visit_code",
-        "en": "Visit Code",
-        "ar": "كود الحجز"
+        "En": "Visit Code",
+        "Ar": "كود الحجز"
     },
     {
         "name": "shift_name",
-        "en": "Shift Name",
-        "ar": "إسم الشيفت "
+        "En": "Shift Name",
+        "Ar": "إسم الشيفت "
     },
     {
         "name": "clinics",
-        "en": "Clinics",
-        "ar": "العيادات"
+        "En": "Clinics",
+        "Ar": "العيادات"
     },
     {
         "name": "searching",
-        "en": "Searching",
-        "ar": "البحـــــــــــث"
+        "En": "Searching",
+        "Ar": "البحـــــــــــث"
     },
     {
         "name": "work_times",
-        "en": "Work Times",
-        "ar": "مواعيد العمل"
+        "En": "Work Times",
+        "Ar": "مواعيد العمل"
     },
     {
         "name": "work_day",
-        "en": "Day ",
-        "ar": "اليوم"
+        "En": "Day ",
+        "Ar": "اليوم"
     },
     {
         "name": "work_from",
-        "en": "From ",
-        "ar": "من"
+        "En": "From ",
+        "Ar": "من"
     },
     {
         "name": "work_to",
-        "en": "Work To",
-        "ar": "إلى"
+        "En": "Work To",
+        "Ar": "إلى"
     },
     {
         "name": "doctor_name",
-        "en": "Doctor Name",
-        "ar": "إسم الطبيب"
+        "En": "Doctor Name",
+        "Ar": "إسم الطبيب"
     },
     {
         "name": "doctor",
-        "en": "Doctor",
-        "ar": "الطبيب"
+        "En": "Doctor",
+        "Ar": "الطبيب"
     },
     {
         "name": "medicine_name",
-        "en": "Medicine name",
-        "ar": "إسم الدواء"
+        "En": "Medicine name",
+        "Ar": "إسم الدواء"
     },
     {
         "name": "doctors_visits_name",
-        "en": "Examination Name",
-        "ar": "إسم الحجز"
+        "En": "Examination Name",
+        "Ar": "إسم الحجز"
     },
     {
         "name": "scan",
-        "en": "Scans",
-        "ar": "الأشعة"
+        "En": "Scans",
+        "Ar": "الأشعة"
     },
     {
         "name": "analysis",
-        "en": "Analysis",
-        "ar": "التحاليل"
+        "En": "Analysis",
+        "Ar": "التحاليل"
     },
     {
         "name": "prescription_treatment",
-        "en": "Prescription treatment",
-        "ar": "الروشتة العلاجية"
+        "En": "Prescription treatment",
+        "Ar": "الروشتة العلاجية"
     },
     {
         "name": "transferred_department",
-        "en": "Transferred Department",
-        "ar": "القسم المحول له"
+        "En": "Transferred Department",
+        "Ar": "القسم المحول له"
     },
     {
         "name": "next_counseling_date",
-        "en": "Next Counseling Date",
-        "ar": "تاريخ الإستشارة القادم"
+        "En": "Next Counseling Date",
+        "Ar": "تاريخ الإستشارة القادم"
     },
     {
         "name": "next_counseling_re_detection",
-        "en": "Next re-detection Date",
-        "ar": "تاريخ إعادة الكشف القادم"
+        "En": "Next re-detection Date",
+        "Ar": "تاريخ إعادة الكشف القادم"
     },
     {
         "name": "must_selected_time",
-        "en": "Must Selected Time",
-        "ar": "يجب إختيار ميعاد"
+        "En": "Must Selected Time",
+        "Ar": "يجب إختيار ميعاد"
     },
     {
         "name": "result_visit",
-        "en": "The result of the Examination",
-        "ar": "نتيجة الكشف"
+        "En": "The result of the Examination",
+        "Ar": "نتيجة الكشف"
     },
     {
         "name": "diagnosis",
-        "en": "Diagnosis",
-        "ar": "التشخيص"
+        "En": "Diagnosis",
+        "Ar": "التشخيص"
     },
     {
         "name": "special_notes",
-        "en": "Special Notes",
-        "ar": "ملاحظات خاصة"
+        "En": "Special Notes",
+        "Ar": "ملاحظات خاصة"
     },
     {
         "name": "diagnosis_after_visit",
-        "en": "Diagnosis After Examination",
-        "ar": "التشخيص بعد الكشف"
+        "En": "Diagnosis After Examination",
+        "Ar": "التشخيص بعد الكشف"
     },
     {
         "name": "status",
-        "en": "Status",
-        "ar": "الحالة"
+        "En": "Status",
+        "Ar": "الحالة"
     },
     {
         "name": "booking",
-        "en": "Booking",
-        "ar": "حجز"
+        "En": "Booking",
+        "Ar": "حجز"
     },
     {
         "name": "notes_before",
-        "en": "Notes Before Detection",
-        "ar": "ملاحظات قبل الكشف"
+        "En": "Notes Before Detection",
+        "Ar": "ملاحظات قبل الكشف"
     },
     {
         "name": "confirm_delete",
-        "en": "Confirm Book Delete !",
-        "ar": "تأكيد حذف الحجز !"
+        "En": "Confirm Book Delete !",
+        "Ar": "تأكيد حذف الحجز !"
     },
     {
         "name": "on_hold",
-        "en": "On hold",
-        "ar": "قيد الإنتظار"
+        "En": "On hold",
+        "Ar": "قيد الإنتظار"
     },
     {
         "name": "just_booking",
-        "en": "Just Booking",
-        "ar": "حجز فقط"
+        "En": "Just Booking",
+        "Ar": "حجز فقط"
     },
     {
         "name": "waiting_in_clinic",
-        "en": "Waiting in the clinic",
-        "ar": "إنتظار في العيادة"
+        "En": "Waiting in the clinic",
+        "Ar": "إنتظار في العيادة"
     },
     {
         "name": "at_the_doctor",
-        "en": "At The Doctor",
-        "ar": "عند الطبيب"
+        "En": "At The Doctor",
+        "Ar": "عند الطبيب"
     },
     {
         "name": "done_detection",
-        "en": "Done Detection",
-        "ar": "تم الكشف"
+        "En": "Done Detection",
+        "Ar": "تم الكشف"
     },
     {
         "name": "blood_pressure",
-        "en": "Blood Pressure",
-        "ar": "ضغط الدم"
+        "En": "Blood Pressure",
+        "Ar": "ضغط الدم"
     },
     {
         "name": "breathing",
-        "en": "Breathing",
-        "ar": "التنفس"
+        "En": "Breathing",
+        "Ar": "التنفس"
     },
     {
         "name": "heart_beats",
-        "en": "Heart Beats",
-        "ar": "نبضات القلب"
+        "En": "Heart Beats",
+        "Ar": "نبضات القلب"
     },
     {
         "name": "body_temperature",
-        "en": "Body temperature",
-        "ar": "حرارة الجسم"
+        "En": "Body temperature",
+        "Ar": "حرارة الجسم"
     },
     {
         "name": "Sugar",
-        "en": "Sugar",
-        "ar": "السكر"
+        "En": "Sugar",
+        "Ar": "السكر"
     },
     {
         "name": "previous_operations",
-        "en": "Previous operations",
-        "ar": "عمليات سابقة"
+        "En": "Previous operations",
+        "Ar": "عمليات سابقة"
     },
     {
         "name": "patient_advice",
-        "en": "Patient Advice",
-        "ar": "نصائح للمريض"
+        "En": "Patient Advice",
+        "Ar": "نصائح للمريض"
     },
     {
         "name": "examination_before_detection",
-        "en": "Examination before detection",
-        "ar": "فحص قبل الكشف"
+        "En": "Examination before detection",
+        "Ar": "فحص قبل الكشف"
     },
     {
         "name": "done_attendance",
-        "en": "Attendance",
-        "ar": "تم الحضور"
+        "En": "Attendance",
+        "Ar": "تم الحضور"
     },
     {
         "name": "done_access_doctor",
-        "en": "Access to the doctor",
-        "ar": "دخول للطبيب"
+        "En": "Access to the doctor",
+        "Ar": "دخول للطبيب"
     },
     {
         "name": "done_detected",
-        "en": "Detected",
-        "ar": "تم الكشف"
+        "En": "Detected",
+        "Ar": "تم الكشف"
     },
     {
         "name": "medicine_unit",
-        "en": "Medicine Unit",
-        "ar": "وحدة الدواء"
+        "En": "Medicine Unit",
+        "Ar": "وحدة الدواء"
     },
     {
         "name": "medicine_search",
-        "en": "Medicines Search",
-        "ar": "بحث الأدوية"
+        "En": "Medicines Search",
+        "Ar": "بحث الأدوية"
     },
     {
         "name": "alternative_medicines",
-        "en": "Alternative Medicines",
-        "ar": "أدوية بديلة"
+        "En": "Alternative Medicines",
+        "Ar": "أدوية بديلة"
     },
     {
         "name": "favorite_foods_drinks",
-        "en": "Favorite foods and drinks",
-        "ar": "الأطعمة و المشروبات المفضلة"
+        "En": "Favorite foods and drinks",
+        "Ar": "الأطعمة و المشروبات المفضلة"
     },
     {
         "name": "forbidden_foods_drinks",
-        "en": "Forbidden foods and drinks",
-        "ar": "الأطعمة و المشروبات الممنوعة"
+        "En": "Forbidden foods and drinks",
+        "Ar": "الأطعمة و المشروبات الممنوعة"
     }
 ]

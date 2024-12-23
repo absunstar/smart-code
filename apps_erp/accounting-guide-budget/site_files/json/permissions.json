@@ -2,78 +2,78 @@
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_manage",
-        "en": "Manage",
-        "ar": "إدارة"
+        "En": "Manage",
+        "Ar": "إدارة"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_add",
-        "en": "Add",
-        "ar": "إضافة"
+        "En": "Add",
+        "Ar": "إضافة"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_edit",
-        "en": "Edit",
-        "ar": "تعديل"
+        "En": "Edit",
+        "Ar": "تعديل"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_delete",
-        "en": "Delete",
-        "ar": "حذف"
+        "En": "Delete",
+        "Ar": "حذف"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_view",
-        "en": "View",
-        "ar": "عرض"
+        "En": "View",
+        "Ar": "عرض"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_search",
-        "en": "Search",
-        "ar": "بحث"
+        "En": "Search",
+        "Ar": "بحث"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_export",
-        "en": "Export",
-        "ar": "تصدير"
+        "En": "Export",
+        "Ar": "تصدير"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_print",
-        "en": "Print",
-        "ar": "طباعة"
+        "En": "Print",
+        "Ar": "طباعة"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_done",
-        "en": "Done",
-        "ar": "ترحيل"
+        "En": "Done",
+        "Ar": "ترحيل"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_ui",
-        "en": "UI",
-        "ar": "الواجهة الرسومية"
+        "En": "UI",
+        "Ar": "الواجهة الرسومية"
     },
     {
         "module_name": "accounting",
         "screen_name": "accounting-guide-budget",
         "name": "accounting_guide_budget_unpacking",
-        "en": "Unpacking",
-        "ar": "فك ترحيل"
+        "En": "Unpacking",
+        "Ar": "فك ترحيل"
     }
 
 ]

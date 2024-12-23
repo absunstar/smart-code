@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "attend_employees_admin",
-    "en": "Attend Employees Admin",
-    "ar": "إدارة حضور الموظفين",
+    "En": "Attend Employees Admin",
+    "Ar": "إدارة حضور الموظفين",
     "permissions": ["attend_employees_manage"]
 }]

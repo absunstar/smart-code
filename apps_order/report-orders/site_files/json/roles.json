@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_orders_admin",
-    "en": "Report Orders Admin",
-    "ar": "تقرير مبيعات الطلبات",
+    "En": "Report Orders Admin",
+    "Ar": "تقرير مبيعات الطلبات",
     "permissions": ["report_orders_manage"]
 }]

@@ -1,11 +1,11 @@
 [
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_manage" , "en":"Manage" , "ar":"إدارة"},
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_add" , "en":"Add" , "ar":"إضافة"},
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_edit" , "en":"Edit" , "ar":"تعديل"},
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_delete" , "en":"Delete" , "ar":"حذف"},
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_view" , "en":"View" , "ar":"عرض"},
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_search" , "en":"Search" , "ar":"بحث"},
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_export" , "en":"Export" , "ar":"تصدير"},
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
-    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_print" , "en":"Print" , "ar":"طباعة"}
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_manage" , "En":"Manage" , "Ar":"إدارة"},
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_add" , "En":"Add" , "Ar":"إضافة"},
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_edit" , "En":"Edit" , "Ar":"تعديل"},
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_delete" , "En":"Delete" , "Ar":"حذف"},
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_view" , "En":"View" , "Ar":"عرض"},
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_search" , "En":"Search" , "Ar":"بحث"},
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_export" , "En":"Export" , "Ar":"تصدير"},
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"},
+    {"module_name":"accounting", "screen_name":"financial-years" ,"name":"financial_years_print" , "En":"Print" , "Ar":"طباعة"}
 ]

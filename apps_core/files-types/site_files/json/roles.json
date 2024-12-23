@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "file_type_admin",
-    "en": "Files Types Admin",
-    "ar": "إدارة أنواع الملفات",
+    "En": "Files Types Admin",
+    "Ar": "إدارة أنواع الملفات",
     "permissions": ["file_type_manage"]
 }]

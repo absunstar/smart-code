@@ -1,14 +1,14 @@
 [
-    {"name" : "types_expenses_informations" , "en" : "Types Expenses Informations" , "ar" : "بيانات أنواع المصروفات"},
-    {"name" : "types_expenses" , "en" : "Types Expenses" , "ar" : "أنواع المصروفات الدراسية"},
-    {"name" : "types_expense" , "en" : "Types Expenses" , "ar" : "نوع المصروفات"},
-    {"name" : "types_expenses_menus" , "en" : "Types Expenses Menu" , "ar" : "قائمة أنواع المصروفات"},
-    {"name" : "types_expenses_code" , "en" : "Types Expenses Code" , "ar" : "كود نوع المصروفات"},
-    {"name" : "types_expenses_name" , "en" : "Types Expenses Name" , "ar" : "إسم نوع المصروفات"},
-    {"name" : "expense_value" , "en" : "Expense Value" , "ar" : "قيمة المصروف"},
-    {"name" : "types_expenses_new" , "en" : "New Types Expenses" , "ar" : " نوع مصروفات جديد"},
-    {"name" : "types_expenses_details" , "en" : "Types Expenses Details" , "ar" : "تفاصيل نوع المصروفات"},
-    {"name" : "types_expenses_update" , "en" : "Edit Types Expenses" , "ar" : "تعديل نوع المصروفات"},
-    {"name" : "types_expenses_delete" , "en" : "Delte Types Expenses" , "ar" : "حذف نوع المصروفات"}
+    {"name" : "types_expenses_informations" , "En" : "Types Expenses Informations" , "Ar" : "بيانات أنواع المصروفات"},
+    {"name" : "types_expenses" , "En" : "Types Expenses" , "Ar" : "أنواع المصروفات الدراسية"},
+    {"name" : "types_expense" , "En" : "Types Expenses" , "Ar" : "نوع المصروفات"},
+    {"name" : "types_expenses_menus" , "En" : "Types Expenses Menu" , "Ar" : "قائمة أنواع المصروفات"},
+    {"name" : "types_expenses_code" , "En" : "Types Expenses Code" , "Ar" : "كود نوع المصروفات"},
+    {"name" : "types_expenses_name" , "En" : "Types Expenses Name" , "Ar" : "إسم نوع المصروفات"},
+    {"name" : "expense_value" , "En" : "Expense Value" , "Ar" : "قيمة المصروف"},
+    {"name" : "types_expenses_new" , "En" : "New Types Expenses" , "Ar" : " نوع مصروفات جديد"},
+    {"name" : "types_expenses_details" , "En" : "Types Expenses Details" , "Ar" : "تفاصيل نوع المصروفات"},
+    {"name" : "types_expenses_update" , "En" : "Edit Types Expenses" , "Ar" : "تعديل نوع المصروفات"},
+    {"name" : "types_expenses_delete" , "En" : "Delte Types Expenses" , "Ar" : "حذف نوع المصروفات"}
 
 ]

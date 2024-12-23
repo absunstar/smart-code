@@ -1,5 +1,5 @@
 [
-    { "module_name" : "public" , "screen_name" : "qr-storeout" , "name":"qr_storeout_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "qr-storeout" , "name":"qr_storeout_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+    { "module_name" : "public" , "screen_name" : "qr-storeout" , "name":"qr_storeout_manage" , "En":"Manage" , "Ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "qr-storeout" , "name":"qr_storeout_ui" , "En":"UI" , "Ar":"الواجهة الرسومية"}
 
 ]

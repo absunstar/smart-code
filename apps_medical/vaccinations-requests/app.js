@@ -53,20 +53,20 @@ module.exports = function init(site) {
       vaccinations_requests_doc.vaccinations_list.forEach((_a) => {
         if (!_a.made_home_vaccination) {
           found = true;
-          if (req.session.lang == "ar") {
+          if (req.session.lang == "Ar") {
             foundList.push(_a.name_ar);
-          } else if (req.session.lang == "en") {
+          } else if (req.session.lang == "En") {
             foundList.push(_a.name_en);
           }
         }
       });
 
       if (found) {
-        if (req.session.lang == "ar") {
+        if (req.session.lang == "Ar") {
           response.error = `يوجد تطعيمات لا يمكن إجراءها في المنزل ( ${foundList.join(
             "-"
           )} )`;
-        } else if (req.session.lang == "en") {
+        } else if (req.session.lang == "En") {
           response.error = `There are Vaccinations that cannot be done at home ( ${foundList.join(
             "-"
           )} )`;
@@ -167,20 +167,20 @@ module.exports = function init(site) {
       vaccinations_requests_doc.vaccinations_list.forEach((_a) => {
         if (!_a.made_home_vaccination) {
           found = true;
-          if (req.session.lang == "ar") {
+          if (req.session.lang == "Ar") {
             foundList.push(_a.name_ar);
-          } else if (req.session.lang == "en") {
+          } else if (req.session.lang == "En") {
             foundList.push(_a.name_en);
           }
         }
       });
 
       if (found) {
-        if (req.session.lang == "ar") {
+        if (req.session.lang == "Ar") {
           response.error = `يوجد تطعيمات لا يمكن إجراءها في المنزل ( ${foundList.join(
             "-"
           )} )`;
-        } else if (req.session.lang == "en") {
+        } else if (req.session.lang == "En") {
           response.error = `There are Vaccinations that cannot be done at home ( ${foundList.join(
             "-"
           )} )`;

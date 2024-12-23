@@ -1,118 +1,118 @@
 [{
         "name": "book_hall",
-        "en": "Book Hall",
-        "ar": "حجز قاعة"
+        "En": "Book Hall",
+        "Ar": "حجز قاعة"
     },
     {
         "name": "book_hall_new",
-        "en": "New Book Hall",
-        "ar":  "حجز قاعة جديد"
+        "En": "New Book Hall",
+        "Ar":  "حجز قاعة جديد"
     },
     {
         "name": "book_hall_add",
-        "en": "Book Hall",
-        "ar": "حجز قاعة"
+        "En": "Book Hall",
+        "Ar": "حجز قاعة"
     },
     {
         "name": "view_attend",
-        "en": "View Attend",
-        "ar": "عرض الحضور"
+        "En": "View Attend",
+        "Ar": "عرض الحضور"
     },
     {
         "name": "err_dates",
-        "en": "Should Add Dates",
-        "ar": "يجب إضافة مواعيد"
+        "En": "Should Add Dates",
+        "Ar": "يجب إضافة مواعيد"
     },
     {
         "name": "book_hall_edit",
-        "en": "Edit Book Hall",
-        "ar": "تعديل حجز قاعة"
+        "En": "Edit Book Hall",
+        "Ar": "تعديل حجز قاعة"
     },
     {
         "name": "book_hall_details",
-        "en": "Book Hall Details",
-        "ar": "تفاصيل حجز قاعة"
+        "En": "Book Hall Details",
+        "Ar": "تفاصيل حجز قاعة"
     },
     {
         "name": "book_hall_delete",
-        "en": "Delete Book Hall",
-        "ar": "حذف حجز قاعة"
+        "En": "Delete Book Hall",
+        "Ar": "حذف حجز قاعة"
     },
     {
         "name": "book_hall_name",
-        "en": "Course Name",
-        "ar": "إسم الكورس "
+        "En": "Course Name",
+        "Ar": "إسم الكورس "
     },
     {
         "name": "dates",
-        "en": "Dates",
-        "ar": "المواعيد"
+        "En": "Dates",
+        "Ar": "المواعيد"
     },
     {
         "name": "tenant",
-        "en": "Tenant",
-        "ar": "المستأجر"
+        "En": "Tenant",
+        "Ar": "المستأجر"
     },
     {
         "name": "search_tenant",
-        "en": "Search Tenant",
-        "ar": "بحث المستأجر"
+        "En": "Search Tenant",
+        "Ar": "بحث المستأجر"
     },
     {
         "name": "book_hall_total",
-        "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "En": "Total Duration",
+        "Ar": "إجمالي المدة "
     },
     
     {
         "name": "create_booking",
-        "en": "Create Booking",
-        "ar": "إنشاء حجز"
+        "En": "Create Booking",
+        "Ar": "إنشاء حجز"
     },
     {
         "name": "total_value",
-        "en": "Total Value Book",
-        "ar": "إجمالي قيمة الحجز"
+        "En": "Total Value Book",
+        "Ar": "إجمالي قيمة الحجز"
     },
     {
         "name": "price_hour",
-        "en": "Price Per Hour",
-        "ar": "سعر الساعة"
+        "En": "Price Per Hour",
+        "Ar": "سعر الساعة"
     },
     {
         "name": "price_day",
-        "en": "Price Day",
-        "ar": "سعر اليوم"
+        "En": "Price Day",
+        "Ar": "سعر اليوم"
     },
     {
         "name": "total_period",
-        "en": "Total Period",
-        "ar": "إجمالي المدة"
+        "En": "Total Period",
+        "Ar": "إجمالي المدة"
     },
     {
         "name": "trainer_account",
-        "en": "Trainer Account",
-        "ar": "حساب المدرب"
+        "En": "Trainer Account",
+        "Ar": "حساب المدرب"
     },
     {
         "name": "number_lecture",
-        "en": "Number from lectures",
-        "ar": "عدد المحاضرات"
+        "En": "Number from lectures",
+        "Ar": "عدد المحاضرات"
     },
     {
         "name": "start_book",
-        "en": "Start Date Book",
-        "ar": "تاريخ بداية الحجز"
+        "En": "Start Date Book",
+        "Ar": "تاريخ بداية الحجز"
     },
     {
         "name": "end_book",
-        "en": "End Date Book",
-        "ar": "تاريخ نهاية الحجز"
+        "En": "End Date Book",
+        "Ar": "تاريخ نهاية الحجز"
     },
     {
         "name": "book_hall_price",
-        "en": "Course Price",
-        "ar": "سعر الكورس "
+        "En": "Course Price",
+        "Ar": "سعر الكورس "
     }
     
 ]

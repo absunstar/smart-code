@@ -505,7 +505,7 @@ module.exports = function init(site) {
                   }
                   response.done = true;
                   // doc.$buy = true;
-                  // doc.$time = site.xtime(doc.date, req.session.lang || "ar");
+                  // doc.$time = site.xtime(doc.date, req.session.lang || "Ar");
                   // response.doc = doc;
                   res.json(response);
                 }

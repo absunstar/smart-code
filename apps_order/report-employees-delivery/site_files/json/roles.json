@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_employee_delivery_admin",
-    "en": "Report Employee Delivery  Admin",
-    "ar": "تقرير سائقين التوصيل",
+    "En": "Report Employee Delivery  Admin",
+    "Ar": "تقرير سائقين التوصيل",
     "permissions": ["report_employee_delivery_manage"]
 }]

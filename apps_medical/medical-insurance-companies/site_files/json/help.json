@@ -1,14 +1,14 @@
 [
     {
-        "id" : "packages_company" ,"en":"Please Select Company", "ar" : "يرجي اختيار الشركة" 
+        "id" : "packages_company" ,"En":"Please Select Company", "Ar" : "يرجي اختيار الشركة" 
     },
     {
-        "id" : "packages_name" ,"en":"Please Enter Package Name", "ar" : "يرجي كتابة إسم الباقة" 
+        "id" : "packages_name" ,"En":"Please Enter Package Name", "Ar" : "يرجي كتابة إسم الباقة" 
     },
     {
-        "id" : "packages_status" ,"en":"Package State", "ar" : "يرجي تحديد حالة الباقة" 
+        "id" : "packages_status" ,"En":"Package State", "Ar" : "يرجي تحديد حالة الباقة" 
     },
     {
-        "id" : "packages_logo" ,"en":"Please Enter Company Logo", "ar" : "يرجي تحديد شعار الشركة" 
+        "id" : "packages_logo" ,"En":"Please Enter Company Logo", "Ar" : "يرجي تحديد شعار الشركة" 
     }
 ]

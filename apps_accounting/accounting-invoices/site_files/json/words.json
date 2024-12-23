@@ -1,283 +1,283 @@
 [
     {
         "name": "account_invoices_add",
-        "en": "Add Customer",
-        "ar": "إضافة عميل"
+        "En": "Add Customer",
+        "Ar": "إضافة عميل"
     },
     {
         "name": "account_invoices_informations",
-        "en": "Account Invoices Informations",
-        "ar": "بيانات فواتير الحسابات"
+        "En": "Account Invoices Informations",
+        "Ar": "بيانات فواتير الحسابات"
     },
     {
         "name": "account_invoices_name",
-        "en": "Account Invoices",
-        "ar": " فواتير الحسابات"
+        "En": "Account Invoices",
+        "Ar": " فواتير الحسابات"
     },
     {
         "name": "amount_paid",
-        "en": "paid",
-        "ar": "المدفوع"
+        "En": "paid",
+        "Ar": "المدفوع"
     },
     {
         "name": "being",
-        "en": "Being",
-        "ar": "و ذلك مقابل"
+        "En": "Being",
+        "Ar": "و ذلك مقابل"
     },
     {
         "name": "amount_paid",
-        "en": "paid",
-        "ar": "المدفوع"
+        "En": "paid",
+        "Ar": "المدفوع"
     },
     {
         "name": "amount_paid",
-        "en": "paid",
-        "ar": "المدفوع"
+        "En": "paid",
+        "Ar": "المدفوع"
     },
     {
         "name": "not_possible_pay_more_than_amount_due",
-        "en": "It is not possible to pay more than the amount due",
-        "ar": "لا يمكن دفع أكثر من الدفعة المستحقة"
+        "En": "It is not possible to pay more than the amount due",
+        "Ar": "لا يمكن دفع أكثر من الدفعة المستحقة"
     },
     {
         "name": "include_payment_due",
-        "en": "Include payment due",
-        "ar": "إدراج دفعة مستحقة"
+        "En": "Include payment due",
+        "Ar": "إدراج دفعة مستحقة"
     },
     {
         "name": "invoice_value",
-        "en": "Invoice value",
-        "ar": "قيمة الفاتورة"
+        "En": "Invoice value",
+        "Ar": "قيمة الفاتورة"
     },
     {
         "name": "reference_code",
-        "en": "Reference Code",
-        "ar": "الكود المرجعي"
+        "En": "Reference Code",
+        "Ar": "الكود المرجعي"
     },
     {
         "name": "opening_balance",
-        "en": "Opening Balance",
-        "ar": " رصيد إفتتاحي"
+        "En": "Opening Balance",
+        "Ar": " رصيد إفتتاحي"
     },
     {
         "name": "target_account",
-        "en": "Target account",
-        "ar": " الحساب المستهدف"
+        "En": "Target account",
+        "Ar": " الحساب المستهدف"
     },
     {
         "name": "payments_payable",
-        "en": "Payments payable",
-        "ar": "المستحقات واجبة الدفع"
+        "En": "Payments payable",
+        "Ar": "المستحقات واجبة الدفع"
     },
     {
         "name": "payment_value",
-        "en": "Payment Value",
-        "ar": "قيمة الدفعة"
+        "En": "Payment Value",
+        "Ar": "قيمة الدفعة"
     },
     {
         "name": "add_payment",
-        "en": "payment Value",
-        "ar": "إضافة دفعات"
+        "En": "payment Value",
+        "Ar": "إضافة دفعات"
     },
     {
         "name": "accounting_invoices",
-        "en": "Accounting Invoices",
-        "ar": " فواتير الحسابات"
+        "En": "Accounting Invoices",
+        "Ar": " فواتير الحسابات"
     },
     {
         "name": "account_invoices_menus",
-        "en": "Account Invoices Menu",
-        "ar": "قائمة فواتير الحسابات"
+        "En": "Account Invoices Menu",
+        "Ar": "قائمة فواتير الحسابات"
     },
     {
         "name": "transmitted_from",
-        "en": "Transmitted from it",
-        "ar": "المحول منه"
+        "En": "Transmitted from it",
+        "Ar": "المحول منه"
     },
     {
         "name": "transferee",
-        "en": "Transferee",
-        "ar": "المحول إليه"
+        "En": "Transferee",
+        "Ar": "المحول إليه"
     },
     {
         "name": "payment_made",
-        "en": "Payment Was Made",
-        "ar": "تم الدفع"
+        "En": "Payment Was Made",
+        "Ar": "تم الدفع"
     },
     {
         "name": "sure_specify_data_transferee",
-        "en": "Be sure to specify the data of the transferee",
-        "ar": "يجب التأكد من تحديد بيانات المحول إليه"
+        "En": "Be sure to specify the data of the transferee",
+        "Ar": "يجب التأكد من تحديد بيانات المحول إليه"
     },
     {
         "name": "must_choose_type_tuition_fees",
-        "en": "You must choose the type of tuition fees",
-        "ar": "يجب إختيار نوع المصروفات الدراسية"
+        "En": "You must choose the type of tuition fees",
+        "Ar": "يجب إختيار نوع المصروفات الدراسية"
     },
     {
         "name": "must_choose",
-        "en": "You must choose",
-        "ar": "يجب إختيار"
+        "En": "You must choose",
+        "Ar": "يجب إختيار"
     },
     {
         "name": "under_payment",
-        "en": "Under Payment",
-        "ar": "تحت الدفع"
+        "En": "Under Payment",
+        "Ar": "تحت الدفع"
     },
     {
         "name": "account_invoices_name",
-        "en": "Account Invoices Name",
-        "ar": "إسم فواتير الحسابات"
+        "En": "Account Invoices Name",
+        "Ar": "إسم فواتير الحسابات"
     },
     {
         "name": "source_type",
-        "en": "Source Type",
-        "ar": "نوع المصدر"
+        "En": "Source Type",
+        "Ar": "نوع المصدر"
     },
     {
         "name": "order_invoices_type",
-        "en": "Order Invoices Type",
-        "ar": "نوع الطلب "
+        "En": "Order Invoices Type",
+        "Ar": "نوع الطلب "
     },
     {
         "name": "err_order_type",
-        "en": "Must Select Order Type",
-        "ar": "يجب إختيار نوع الطلب"
+        "En": "Must Select Order Type",
+        "Ar": "يجب إختيار نوع الطلب"
     },
     {
         "name": "order_sale",
-        "en": "Order Sale",
-        "ar": "أمر بيع"
+        "En": "Order Sale",
+        "Ar": "أمر بيع"
     },
     {
         "name": "order_value",
-        "en": "Order Value",
-        "ar": "القيمة"
+        "En": "Order Value",
+        "Ar": "القيمة"
     },
     {
         "name": "value",
-        "en": "Value",
-        "ar": "القيمة"
+        "En": "Value",
+        "Ar": "القيمة"
     },
     {
         "name": "incoming_name",
-        "en": "Incoming name",
-        "ar": "إسم الوارد"
+        "En": "Incoming name",
+        "Ar": "إسم الوارد"
     },
     {
         "name": "expense_name",
-        "en": "Expense name",
-        "ar": "إسم المصروف"
+        "En": "Expense name",
+        "Ar": "إسم المصروف"
     },
     {
         "name": "target_account_must_selected",
-        "en": "The target account must be selected",
-        "ar": "يجب إختيار الحساب المستهدف"
+        "En": "The target account must be selected",
+        "Ar": "يجب إختيار الحساب المستهدف"
     },
     {
         "name": "target_customer_account_must_selected",
-        "en": "The target customer account must be selected",
-        "ar": "يجب إختيار حساب العميل المستهدف"
+        "En": "The target customer account must be selected",
+        "Ar": "يجب إختيار حساب العميل المستهدف"
     },
     {
         "name": "target_vendor_account_must_selected",
-        "en": "The target vendor account must be selected",
-        "ar": "يجب إختيار حساب المورد المستهدف"
+        "En": "The target vendor account must be selected",
+        "Ar": "يجب إختيار حساب المورد المستهدف"
     },
     {
         "name": "payable",
-        "en": "Payable",
-        "ar": "مستحق الدفع"
+        "En": "Payable",
+        "Ar": "مستحق الدفع"
     },
     {
         "name": "order_type",
-        "en": "Order Type",
-        "ar": "نوع الطلب"
+        "En": "Order Type",
+        "Ar": "نوع الطلب"
     },
     {
         "name": "payments",
-        "en": "Payments",
-        "ar": "الدفعات"
+        "En": "Payments",
+        "Ar": "الدفعات"
     },
     {
         "name": "payment",
-        "en": "Payment",
-        "ar": "تسديد"
+        "En": "Payment",
+        "Ar": "تسديد"
     },
     {
         "name": "remain_amount",
-        "en": "Remain Amount",
-        "ar": "المبلغ المتبقي"
+        "En": "Remain Amount",
+        "Ar": "المبلغ المتبقي"
     },
     {
         "name": "detailes_amounts_paid",
-        "en": "Detailes Amounts Paid",
-        "ar": "تفاصيل المدفوعات"
+        "En": "Detailes Amounts Paid",
+        "Ar": "تفاصيل المدفوعات"
     },
 
     {
         "name": "err_paid_up",
-        "en": "Must Enter Paid",
-        "ar": "يجب إدخال مبلغ "
+        "En": "Must Enter Paid",
+        "Ar": "يجب إدخال مبلغ "
     },
     {
         "name": "paid_up",
-        "en": "Paid Up",
-        "ar": "المدفوع"
+        "En": "Paid Up",
+        "Ar": "المدفوع"
     },
     {
         "name": "err_total_tax",
-        "en": "Total Taxes Greater Than Required",
-        "ar": "مجموع الضرائب أكبر من المطلوب"
+        "En": "Total Taxes Greater Than Required",
+        "Ar": "مجموع الضرائب أكبر من المطلوب"
     },
     {
         "name": "err_total_discount",
-        "en": "Total Discount Greater Than Required",
-        "ar": "مجموع الخصومات أكبر من المطلوب"
+        "En": "Total Discount Greater Than Required",
+        "Ar": "مجموع الخصومات أكبر من المطلوب"
     },
     {
         "name": "err_service",
-        "en": "Service Greater Than Required",
-        "ar": "مبلغ الخدمة أكبر من المطلوب"
+        "En": "Service Greater Than Required",
+        "Ar": "مبلغ الخدمة أكبر من المطلوب"
     },
     {
         "name": "err_net_value",
-        "en": "Paid Up Greater Than Net Value",
-        "ar": " المدفوع أكبر من صافي المبلغ"
+        "En": "Paid Up Greater Than Net Value",
+        "Ar": " المدفوع أكبر من صافي المبلغ"
     },
     {
         "name": "value_batches_greater_remain_invoice",
-        "en": "value of batches is greater than the remain of the invoice",
-        "ar": "قيمة الدفعات أكبر من باقي الفاتورة"
+        "En": "value of batches is greater than the remain of the invoice",
+        "Ar": "قيمة الدفعات أكبر من باقي الفاتورة"
     },
     {
         "name": "err_price_delivery_service",
-        "en": "Price Delivery Service Greater Than Required",
-        "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
+        "En": "Price Delivery Service Greater Than Required",
+        "Ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
     },
     {
         "name": "account_invoices_new",
-        "en": "New Account Invoices",
-        "ar": "فاتورة حسابات جديدة"
+        "En": "New Account Invoices",
+        "Ar": "فاتورة حسابات جديدة"
     },
     {
         "name": "account_invoices_details",
-        "en": "Account Invoices Details",
-        "ar": "تفاصيل فواتير الحسابات"
+        "En": "Account Invoices Details",
+        "Ar": "تفاصيل فواتير الحسابات"
     },
     {
         "name": "account_invoices_update",
-        "en": "EditAccount Invoices",
-        "ar": "تعديل فواتير الحسابات"
+        "En": "EditAccount Invoices",
+        "Ar": "تعديل فواتير الحسابات"
     },
     {
         "name": "account_invoices_delete",
-        "en": "DelteAccount Invoices",
-        "ar": "حذف فواتير الحسابات"
+        "En": "DelteAccount Invoices",
+        "Ar": "حذف فواتير الحسابات"
     },
     {
         "name": "account_invoices_add_name",
-        "en": "AddAccount Invoices",
-        "ar": "إضافة فواتير الحسابات"
+        "En": "AddAccount Invoices",
+        "Ar": "إضافة فواتير الحسابات"
     }
 ]

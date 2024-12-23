@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_stores_movement_admin",
-    "en": "Report Stores Movement Admin",
-    "ar": "تقرير حركة الأصناف",
+    "En": "Report Stores Movement Admin",
+    "Ar": "تقرير حركة الأصناف",
     "permissions": ["report_stores_movement_manage"]
 }]

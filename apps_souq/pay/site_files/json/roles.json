@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "commission_report_admin",
-    "en": "Commission report Admin",
-    "ar": "إدارة تقرير العمولة",
+    "En": "Commission report Admin",
+    "Ar": "إدارة تقرير العمولة",
     "permissions": ["commission_report_manage"]
 }]

@@ -1,698 +1,698 @@
 [
   {
     "name": "powered_by",
-    "en": "Powered by",
-    "ar": "مشغل بواسطة"
+    "En": "Powered by",
+    "Ar": "مشغل بواسطة"
   },
   {
     "name": "show_commission_add_content",
-    "en": "The commission show when you add an ad",
-    "ar": "ظهور العمولة عند إضافة إعلان"
+    "En": "The commission show when you add an ad",
+    "Ar": "ظهور العمولة عند إضافة إعلان"
   },
   {
     "name": "commission_value",
-    "en": "Commission Value",
-    "ar": "قيمة العمولة"
+    "En": "Commission Value",
+    "Ar": "قيمة العمولة"
   },
   {
     "name": "hide_city_area",
-    "en": "Hide City And Area",
-    "ar": "إخفاء المدينة و المنطقة"
+    "En": "Hide City And Area",
+    "Ar": "إخفاء المدينة و المنطقة"
 },
   {
     "name": "pages_show",
-    "en": "Pages Show",
-    "ar": "ظهور الصفحات"
+    "En": "Pages Show",
+    "Ar": "ظهور الصفحات"
   },
   {
     "name": "bank_accounts",
-    "en": "Bank accounts",
-    "ar": "الحسابات البنكية"
+    "En": "Bank accounts",
+    "Ar": "الحسابات البنكية"
   },
   {
     "name": "clock_logo",
-    "en": "Clock Logo",
-    "ar": "شعار الساعة"
+    "En": "Clock Logo",
+    "Ar": "شعار الساعة"
   },
   {
     "name": "account_number",
-    "en": "Account number",
-    "ar": "رقم الحساب"
+    "En": "Account number",
+    "Ar": "رقم الحساب"
   },
   {
     "name": "activate_add_ads",
-    "en": "Activate add ads",
-    "ar": "تفعيل إضافة إعلان"
+    "En": "Activate add ads",
+    "Ar": "تفعيل إضافة إعلان"
   },
   {
     "name": "address_search",
-    "en": "Address Search",
-    "ar": "البحث بالعنوان"
+    "En": "Address Search",
+    "Ar": "البحث بالعنوان"
   },
   {
     "name": "whats_app_number",
-    "en": "What`s App Number",
-    "ar": "رقم الواتس آب"
+    "En": "What`s App Number",
+    "Ar": "رقم الواتس آب"
   },
   {
     "name": "iban",
-    "en": "Iban",
-    "ar": "الآيبان"
+    "En": "Iban",
+    "Ar": "الآيبان"
   },
   {
     "name": "map_display",
-    "en": "Map display",
-    "ar": "ظهور الخريطة"
+    "En": "Map display",
+    "Ar": "ظهور الخريطة"
   },
   {
     "name": "appearance_clock",
-    "en": "The appearance of the clock",
-    "ar": "ظهور الساعة"
+    "En": "The appearance of the clock",
+    "Ar": "ظهور الساعة"
   },
   {
     "name": "main_currency",
-    "en": "Main Currency",
-    "ar": "العملة االرئيسية"
+    "En": "Main Currency",
+    "Ar": "العملة االرئيسية"
   },
   {
     "name": "add_bank_account",
-    "en": "Add bank account",
-    "ar": "إضافة حساب بنكي"
+    "En": "Add bank account",
+    "Ar": "إضافة حساب بنكي"
   },
   {
     "name": "huawei_store",
-    "en": "HUAWEI Store",
-    "ar": "متجر هواوي"
+    "En": "HUAWEI Store",
+    "Ar": "متجر هواوي"
   },
   {
     "name": "apple_store",
-    "en": "APPLE Store",
-    "ar": "متجر أبل"
+    "En": "APPLE Store",
+    "Ar": "متجر أبل"
   },
   {
     "name": "google_store",
-    "en": "GOOGLE Store",
-    "ar": "متجر جوجل"
+    "En": "GOOGLE Store",
+    "Ar": "متجر جوجل"
   },
   {
     "name": "apple_store",
-    "en": "APPLE Store",
-    "ar": "متجر أبل"
+    "En": "APPLE Store",
+    "Ar": "متجر أبل"
   },
   {
     "name": "title",
-    "en": "Title",
-    "ar": "عنوان (Title)"
+    "En": "Title",
+    "Ar": "عنوان (Title)"
   },
   {
     "name": "social_media_accounts",
-    "en": "Social media accounts",
-    "ar": "حسابات التواصل الإجتماعي"
+    "En": "Social media accounts",
+    "Ar": "حسابات التواصل الإجتماعي"
   },
   {
     "name": "email_and_text_messages",
-    "en": "Email and text messages",
-    "ar": "الرسائل الإلكترونية و النصية"
+    "En": "Email and text messages",
+    "Ar": "الرسائل الإلكترونية و النصية"
   },
   {
     "name": "sent_from_mail",
-    "en": "Sent from email",
-    "ar": "البريد الإلكتروني المرسل منه"
+    "En": "Sent from email",
+    "Ar": "البريد الإلكتروني المرسل منه"
   },
   {
     "name": "port",
-    "en": "Port",
-    "ar": "المنفذ (port)"
+    "En": "Port",
+    "Ar": "المنفذ (port)"
   },
   {
     "name": "host",
-    "en": "Host",
-    "ar": "المضيف (host)"
+    "En": "Host",
+    "Ar": "المضيف (host)"
   },
   {
     "name": "email_setting",
-    "en": "Email setting",
-    "ar": "إعداد البريد الإلكتروني"
+    "En": "Email setting",
+    "Ar": "إعداد البريد الإلكتروني"
   },
   {
     "name": "email_sending_setting",
-    "en": "Email sending setting",
-    "ar": "إعداد إرسال البريد الإلكتروني"
+    "En": "Email sending setting",
+    "Ar": "إعداد إرسال البريد الإلكتروني"
   },
   {
     "name": "mobile_sms",
-    "en": "Sms",
-    "ar": "رسائل الجوال"
+    "En": "Sms",
+    "Ar": "رسائل الجوال"
   },
   {
     "name": "mobile_sms_twilio",
-    "en": "Twilio sms",
-    "ar": "(Twilio) رسائل الجوال"
+    "En": "Twilio sms",
+    "Ar": "(Twilio) رسائل الجوال"
   },
   {
     "name": "mobile_sms_taqnyat",
-    "en": "Taqnyat sms",
-    "ar": "(Taqnyat) رسائل الجوال"
+    "En": "Taqnyat sms",
+    "Ar": "(Taqnyat) رسائل الجوال"
   },
   {
     "name": "mobile_sms",
-    "en": "Twilio sms",
-    "ar": "(Twilio) رسائل البريد الإلكتروني"
+    "En": "Twilio sms",
+    "Ar": "(Twilio) رسائل البريد الإلكتروني"
   },
   {
     "name": "auth_token_mobile",
-    "en": "Auth Token for mobile",
-    "ar": "(Auth Token) توكن التفعيل"
+    "En": "Auth Token for mobile",
+    "Ar": "(Auth Token) توكن التفعيل"
   },
   {
     "name": "account_id_mobile",
-    "en": "Account ID for mobile",
-    "ar": "(Account ID) كود الحساب"
+    "En": "Account ID for mobile",
+    "Ar": "(Account ID) كود الحساب"
   },
   {
     "name": "messaging_services_id_mobile",
-    "en": "Messaging Services ID for mobile",
-    "ar": "(Messaging Services ID) كود الخدمة"
+    "En": "Messaging Services ID for mobile",
+    "Ar": "(Messaging Services ID) كود الخدمة"
   },
   {
     "name": "enable_sending_messages_mobile",
-    "en": "Enable sending messages to the mobile",
-    "ar": "تفعيل إرسال الرسائل للموبايل"
+    "En": "Enable sending messages to the mobile",
+    "Ar": "تفعيل إرسال الرسائل للموبايل"
   },
   {
     "name": "enable_sending_messages_email",
-    "en": "Enable sending messages to the email",
-    "ar": "تفعيل إرسال الرسائل للبريد الإلكتروني"
+    "En": "Enable sending messages to the email",
+    "Ar": "تفعيل إرسال الرسائل للبريد الإلكتروني"
   },
   {
     "name": "commercial_registration_no_show",
-    "en": "Commercial Registration No. show",
-    "ar": "إظهار رقم السجل التجاري"
+    "En": "Commercial Registration No. show",
+    "Ar": "إظهار رقم السجل التجاري"
   },
   {
     "name": "tax_number_show",
-    "en": "Tax Number show",
-    "ar": "إظهار الرقم الضريبي"
+    "En": "Tax Number show",
+    "Ar": "إظهار الرقم الضريبي"
   },
 
   {
     "name": "allow_registration_through_email",
-    "en": "Allow registration through email",
-    "ar": "السماح بالتسجيل من خلال البريد الإلكتروني"
+    "En": "Allow registration through email",
+    "Ar": "السماح بالتسجيل من خلال البريد الإلكتروني"
   },
   {
     "name": "warning_message_inside_ad",
-    "en": "Warning message inside the ad",
-    "ar": "رسالة تحذيرية داخل الإعلان"
+    "En": "Warning message inside the ad",
+    "Ar": "رسالة تحذيرية داخل الإعلان"
   },
   {
     "name": "upload_video",
-    "en": "Upload video",
-    "ar": "رفع مقاطع فيديو"
+    "En": "Upload video",
+    "Ar": "رفع مقاطع فيديو"
   },
   {
     "name": "allow_video_more_upload",
-    "en": "Allow uploading more than one video",
-    "ar": "السماح برفع أكثر من فيديو"
+    "En": "Allow uploading more than one video",
+    "Ar": "السماح برفع أكثر من فيديو"
   },
   {
     "name": "default_setting",
-    "en": "General Setting",
-    "ar": "الإعدادات العامة"
+    "En": "General Setting",
+    "Ar": "الإعدادات العامة"
   },
   {
     "name": "order_level_length",
-    "en": "Order level length",
-    "ar": "طول مستوى كود الطلبات"
+    "En": "Order level length",
+    "Ar": "طول مستوى كود الطلبات"
   },
   {
     "name": "categories_level_length",
-    "en": "Categories level length",
-    "ar": "طول مستوى كود الأقسام"
+    "En": "Categories level length",
+    "Ar": "طول مستوى كود الأقسام"
   },
   {
     "name": "auto_generate_categories_code",
-    "en": "Automatic generation of Categories code",
-    "ar": "توليد آلي لكود الأقسام"
+    "En": "Automatic generation of Categories code",
+    "Ar": "توليد آلي لكود الأقسام"
   },
   {
     "name": "auto_generate_orders_code",
-    "en": "Automatic generation of Orders code",
-    "ar": "توليد آلي لكود الطلبات"
+    "En": "Automatic generation of Orders code",
+    "Ar": "توليد آلي لكود الطلبات"
   },
   {
     "name": "user_design",
-    "en": "User Design",
-    "ar": "تصميم المستخدم"
+    "En": "User Design",
+    "Ar": "تصميم المستخدم"
   },
   {
     "name": "site_settings",
-    "en": "Site Settings",
-    "ar": "إعدادات الموقع"
+    "En": "Site Settings",
+    "Ar": "إعدادات الموقع"
   },
   {
     "name": "remove_logo",
-    "en": "Remove Logo",
-    "ar": "حذف اللوجو"
+    "En": "Remove Logo",
+    "Ar": "حذف اللوجو"
   },
   {
     "name": "price_offer_footer",
-    "en": "Price Offer Footer",
-    "ar": "هامش عرض السعر"
+    "En": "Price Offer Footer",
+    "Ar": "هامش عرض السعر"
   },
   {
     "name": "qr_place",
-    "en": "QR Place",
-    "ar": "مكان رمز الإستجابة"
+    "En": "QR Place",
+    "Ar": "مكان رمز الإستجابة"
   },
   {
     "name": "qr_country",
-    "en": "QR Country",
-    "ar": "بلد رمز الإستجابة"
+    "En": "QR Country",
+    "Ar": "بلد رمز الإستجابة"
   },
   {
     "name": "thermal_printing_language",
-    "en": "Thermal printing language",
-    "ar": "لغة الطباعة الحرارية"
+    "En": "Thermal printing language",
+    "Ar": "لغة الطباعة الحرارية"
   },
   {
     "name": "pay_full_price_examination",
-    "en": "Pay the full price of the Examination",
-    "ar": "دفع سعر الحجز كاملا"
+    "En": "Pay the full price of the Examination",
+    "Ar": "دفع سعر الحجز كاملا"
   },
   {
     "name": "number_best_selling",
-    "en": "The number of best-selling items",
-    "ar": "عدد الأصناف الأكثر مبيعا"
+    "En": "The number of best-selling items",
+    "Ar": "عدد الأصناف الأكثر مبيعا"
   },
   {
     "name": "default_setting_tenant_date_from",
-    "en": "Date From",
-    "ar": "من تاريخ"
+    "En": "Date From",
+    "Ar": "من تاريخ"
   },
   {
     "name": "default_setting_tenant_date_to",
-    "en": "Date To",
-    "ar": "إلى تاريخ"
+    "En": "Date To",
+    "Ar": "إلى تاريخ"
   },
   {
     "name": "other_addresses_appear",
-    "en": "Other addresses appear",
-    "ar": "ظهور العناوين الأخرى"
+    "En": "Other addresses appear",
+    "Ar": "ظهور العناوين الأخرى"
   },
   {
     "name": "new_address_appear",
-    "en": "New address appear",
-    "ar": "ظهور عنوان جديد"
+    "En": "New address appear",
+    "Ar": "ظهور عنوان جديد"
   },
   {
     "name": "order_settings",
-    "en": "Order settings",
-    "ar": "إعدادات الطلب"
+    "En": "Order settings",
+    "Ar": "إعدادات الطلب"
   },
   {
     "name": "link_gl_accounts_with_income_statement_and_budget",
-    "en": "Link gl_Accounts With Income Statement And Budget",
-    "ar": "ربط الحسابات بتصنيفات قائمة الدخل والميزانية"
+    "En": "Link gl_Accounts With Income Statement And Budget",
+    "Ar": "ربط الحسابات بتصنيفات قائمة الدخل والميزانية"
   },
   {
     "name": "order_type",
-    "en": "Order Type",
-    "ar": "نوع الطلب"
+    "En": "Order Type",
+    "Ar": "نوع الطلب"
   },
   {
     "name": "printer_program",
-    "en": "Printer Program",
-    "ar": "برنامج الطباعة"
+    "En": "Printer Program",
+    "Ar": "برنامج الطباعة"
   },
   {
     "name": "finger_program",
-    "en": "Finger Print Program",
-    "ar": "برنامج البصمة"
+    "En": "Finger Print Program",
+    "Ar": "برنامج البصمة"
   },
   {
     "name": "settings_saved",
-    "en": "Settings saved",
-    "ar": "تم حفظ الإعدادات"
+    "En": "Settings saved",
+    "Ar": "تم حفظ الإعدادات"
   },
   {
     "name": "finger_code",
-    "en": "Finger Print Code",
-    "ar": "كود البصمة"
+    "En": "Finger Print Code",
+    "Ar": "كود البصمة"
   },
   {
     "name": "basic_printer",
-    "en": "Basic Printer",
-    "ar": "الطابعة الرئيسية"
+    "En": "Basic Printer",
+    "Ar": "الطابعة الرئيسية"
   },
   {
     "name": "place_program",
-    "en": "Place Program",
-    "ar": "مكان البرنامج "
+    "En": "Place Program",
+    "Ar": "مكان البرنامج "
   },
   {
     "name": "program_ip",
-    "en": "Program Ip",
-    "ar": " أي بي البرنامج"
+    "En": "Program Ip",
+    "Ar": " أي بي البرنامج"
   },
   {
     "name": "program_port",
-    "en": "Program Port",
-    "ar": "بورت البرنامج"
+    "En": "Program Port",
+    "Ar": "بورت البرنامج"
   },
   {
     "name": "thermal_print",
-    "en": "Thermal printing",
-    "ar": "الطابعة حرارية"
+    "En": "Thermal printing",
+    "Ar": "الطابعة حرارية"
   },
   {
     "name": "a4_printer",
-    "en": "A4 printer",
-    "ar": "طابعة A4"
+    "En": "A4 printer",
+    "Ar": "طابعة A4"
   },
   {
     "name": "pdf_printer",
-    "en": "PDF printer",
-    "ar": "طابعة PDF"
+    "En": "PDF printer",
+    "Ar": "طابعة PDF"
   },
   {
     "name": "pdf_print",
-    "en": "PDF print",
-    "ar": "طباعة PDF"
+    "En": "PDF print",
+    "Ar": "طباعة PDF"
   },
   {
     "name": "a4_printer_must_select",
-    "en": "You must select the name of the A4 printer from the settings",
-    "ar": "يجد تحديد الطابعة A4 من الإعدادات"
+    "En": "You must select the name of the A4 printer from the settings",
+    "Ar": "يجد تحديد الطابعة A4 من الإعدادات"
   },
   {
     "name": "pdf_printer_must_select",
-    "en": "You must select the name of the PDF printer from the settings",
-    "ar": "يجد تحديد الطابعة PDF من الإعدادات"
+    "En": "You must select the name of the PDF printer from the settings",
+    "Ar": "يجد تحديد الطابعة PDF من الإعدادات"
   },
   {
     "name": "thermal_printer_must_select",
-    "en": "You must select the name of the Thermal printer from the settings",
-    "ar": "يجد تحديد الطابعة الحرارية من الإعدادات"
+    "En": "You must select the name of the Thermal printer from the settings",
+    "Ar": "يجد تحديد الطابعة الحرارية من الإعدادات"
   },
   {
     "name": "barcode_printer_must_select",
-    "en": "You must select the name of the Barcode printer from the settings",
-    "ar": "يجد تحديد طابعة الباركود من الإعدادات"
+    "En": "You must select the name of the Barcode printer from the settings",
+    "Ar": "يجد تحديد طابعة الباركود من الإعدادات"
   },
   {
     "name": "auto_thermal_print",
-    "en": "Automatic thermal printing",
-    "ar": "طباعة حرارية أوتوماتيك"
+    "En": "Automatic thermal printing",
+    "Ar": "طباعة حرارية أوتوماتيك"
   },
   {
     "name": "Print_written_amount",
-    "en": "Print the written amount",
-    "ar": "طباعة المبلغ مكتوب"
+    "En": "Print the written amount",
+    "Ar": "طباعة المبلغ مكتوب"
   },
   {
     "name": "user_appears_in_invoice",
-    "en": "The user appears in the invoice",
-    "ar": "ظهور المستخدم في الفاتورة"
+    "En": "The user appears in the invoice",
+    "Ar": "ظهور المستخدم في الفاتورة"
   },
   {
     "name": "auto_thermal_print_order_screen",
-    "en": "Automatic thermal printing For Order Screen",
-    "ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
+    "En": "Automatic thermal printing For Order Screen",
+    "Ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
   },
   {
     "name": "auto_thermal_print_sales_invo",
-    "en": "Automatic thermal printing For sales invo",
-    "ar": "طباعة حرارية أوتوماتيك لفاتورة المبيعات"
+    "En": "Automatic thermal printing For sales invo",
+    "Ar": "طباعة حرارية أوتوماتيك لفاتورة المبيعات"
   },
   {
     "name": "print_simplified_tax_invoice_sentence",
-    "en": "Print a simplified tax invoice sentence",
-    "ar": "طباعة جملة فاتورة ضريبية مبسطة"
+    "En": "Print a simplified tax invoice sentence",
+    "Ar": "طباعة جملة فاتورة ضريبية مبسطة"
   },
   {
     "name": "print_simplified_invoice_sentence",
-    "en": "Print a simplified invoice sentence",
-    "ar": "طباعة جملة فاتورة مبسطة"
+    "En": "Print a simplified invoice sentence",
+    "Ar": "طباعة جملة فاتورة مبسطة"
   },
   {
     "name": "exam_header",
-    "en": "Header Exam",
-    "ar": "مقدمة الإمتحان"
+    "En": "Header Exam",
+    "Ar": "مقدمة الإمتحان"
   },
   {
     "name": "exam_header2",
-    "en": "Header Exam 2",
-    "ar": "مقدمة الإمتحان 2"
+    "En": "Header Exam 2",
+    "Ar": "مقدمة الإمتحان 2"
   },
   {
     "name": "exam_footer",
-    "en": "Footer Exam",
-    "ar": "هامش الإمتحان"
+    "En": "Footer Exam",
+    "Ar": "هامش الإمتحان"
   },
   {
     "name": "exams_setting",
-    "en": "Exams Setting",
-    "ar": "إعدادات الإمتحانات"
+    "En": "Exams Setting",
+    "Ar": "إعدادات الإمتحانات"
   },
   {
     "name": "auto_generate_account_code_and_cost_center",
-    "en": "Automatic generation of account tree code and cost centers",
-    "ar": "توليد آلي لكود شجرة الحسابات و مراكز التكلفة"
+    "En": "Automatic generation of account tree code and cost centers",
+    "Ar": "توليد آلي لكود شجرة الحسابات و مراكز التكلفة"
   },
   {
     "name": "end_num_to_str",
-    "en": "End Num To Text",
-    "ar": "نهاية التفقيط"
+    "En": "End Num To Text",
+    "Ar": "نهاية التفقيط"
   },
   {
     "name": "end_num_to_str_en",
-    "en": "End Num To Text An Eng",
-    "ar": "نهاية التفقيط بالإنجليزية"
+    "En": "End Num To Text An Eng",
+    "Ar": "نهاية التفقيط بالإنجليزية"
   },
   {
     "name": "default_settings",
-    "en": "General Settings",
-    "ar": "الإعدادت العامة"
+    "En": "General Settings",
+    "Ar": "الإعدادت العامة"
   },
   {
     "name": "discount_method",
-    "en": "Discount Method from Store",
-    "ar": "طريقة الخصم من المخزن"
+    "En": "Discount Method from Store",
+    "Ar": "طريقة الخصم من المخزن"
   },
   {
     "name": "default_setting_tenant_date",
-    "en": "Date",
-    "ar": "التاريخ"
+    "En": "Date",
+    "Ar": "التاريخ"
   },
   {
     "name": "general_Settings",
-    "en": "General Settings",
-    "ar": "إعدادات عامة"
+    "En": "General Settings",
+    "Ar": "إعدادات عامة"
   },
   {
     "name": "inventory_settings",
-    "en": "Inventory",
-    "ar": "المخازن"
+    "En": "Inventory",
+    "Ar": "المخازن"
   },
   {
     "name": "accounting_settings",
-    "en": "Accountinng",
-    "ar": "الحسابات"
+    "En": "Accountinng",
+    "Ar": "الحسابات"
   },
   {
     "name": "default_setting_sales_invoices",
-    "en": "default_setting Sales Invoices",
-    "ar": "تقرير فواتير البيع"
+    "En": "default_setting Sales Invoices",
+    "Ar": "تقرير فواتير البيع"
   },
   {
     "name": "default_setting_tenant_date",
-    "en": "Date",
-    "ar": "التاريخ"
+    "En": "Date",
+    "Ar": "التاريخ"
   },
   {
     "name": "piece_name",
-    "en": "Piece Of Name",
-    "ar": "إسم القطعة"
+    "En": "Piece Of Name",
+    "Ar": "إسم القطعة"
   },
   {
     "name": "attend_absence_list",
-    "en": "Attend & Absence List",
-    "ar": "بيان الحضور و الغياب"
+    "En": "Attend & Absence List",
+    "Ar": "بيان الحضور و الغياب"
   },
   {
     "name": "attend_hour",
-    "en": "Attend Hour",
-    "ar": "حضور الساعة"
+    "En": "Attend Hour",
+    "Ar": "حضور الساعة"
   },
   {
     "name": "out_hour",
-    "en": "Out Hour",
-    "ar": "إنصراف الساعة"
+    "En": "Out Hour",
+    "Ar": "إنصراف الساعة"
   },
   {
     "name": "link_warehouse_account_invoices",
-    "en": "Linking inventory and accounting invoices",
-    "ar": "ربط الفواتير المخزنية و الحسابية"
+    "En": "Linking inventory and accounting invoices",
+    "Ar": "ربط الفواتير المخزنية و الحسابية"
   },
   {
     "name": "default_setting_serial",
-    "en": "Serial",
-    "ar": "رقم مسلسل"
+    "En": "Serial",
+    "Ar": "رقم مسلسل"
   },
   {
     "name": "default_setting_tenant_required",
-    "en": "Required",
-    "ar": "المطلوب"
+    "En": "Required",
+    "Ar": "المطلوب"
   },
   {
     "name": "default_setting_tenant_total_required",
-    "en": "Total Required",
-    "ar": "إجمالي المطلوب"
+    "En": "Total Required",
+    "Ar": "إجمالي المطلوب"
   },
   {
     "name": "default_setting_tenant_total",
-    "en": "Total Rest",
-    "ar": "إجمالي المدفوع"
+    "En": "Total Rest",
+    "Ar": "إجمالي المدفوع"
   },
   {
     "name": "default_setting_tenant_total_rest",
-    "en": "Total Rest",
-    "ar": "إجمالي الباقي"
+    "En": "Total Rest",
+    "Ar": "إجمالي الباقي"
   },
   {
     "name": "default_setting_tenant_rest",
-    "en": "Rest",
-    "ar": "الباقي"
+    "En": "Rest",
+    "Ar": "الباقي"
   },
   {
     "name": "default_setting_tenant_paid",
-    "en": "paid",
-    "ar": "المدفوع"
+    "En": "paid",
+    "Ar": "المدفوع"
   },
   {
     "name": "allowed_number",
-    "en": "Allowed Number",
-    "ar": "العدد المسموح"
+    "En": "Allowed Number",
+    "Ar": "العدد المسموح"
   },
   {
     "name": "default_setting_tenant_date",
-    "en": "Offer Date",
-    "ar": "التاريخ"
+    "En": "Offer Date",
+    "Ar": "التاريخ"
   },
   {
     "name": "ads_settings",
-    "en": "Ads settings",
-    "ar": "إعدادات الإعلانات"
+    "En": "Ads settings",
+    "Ar": "إعدادات الإعلانات"
   },
   {
     "name": "default_image_for_ad",
-    "en": "Default image for ad",
-    "ar": "صورة إفتراضية للإعلان"
+    "En": "Default image for ad",
+    "Ar": "صورة إفتراضية للإعلان"
   },
   {
     "name": "default_image_for_store",
-    "en": "Default image for store",
-    "ar": "صورة إفتراضية للمتجر"
+    "En": "Default image for store",
+    "Ar": "صورة إفتراضية للمتجر"
   },
   {
     "name": "publishing_system",
-    "en": "Publishing system",
-    "ar": "نظام النشر"
+    "En": "Publishing system",
+    "Ar": "نظام النشر"
   },
   {
     "name": "publishing_date",
-    "en": "Publishing date",
-    "ar": "تاريخ النشر"
+    "En": "Publishing date",
+    "Ar": "تاريخ النشر"
   },
   {
     "name": "ad_status",
-    "en": "Ad status",
-    "ar": "حالة الإعلان"
+    "En": "Ad status",
+    "Ar": "حالة الإعلان"
   },
   {
     "name": "store_status",
-    "en": "Store status",
-    "ar": "حالة المتجر"
+    "En": "Store status",
+    "Ar": "حالة المتجر"
   },
   {
     "name": "closing_system",
-    "en": "Closing system",
-    "ar": "نظام الإنتهاء"
+    "En": "Closing system",
+    "Ar": "نظام الإنتهاء"
   },
   {
     "name": "quantities_can_be_used",
-    "en": "Quantities can be used",
-    "ar": "إمكانية إستخدام الكميات"
+    "En": "Quantities can be used",
+    "Ar": "إمكانية إستخدام الكميات"
   },
   {
     "name": "currencies_can_be_used",
-    "en": "Currencies can be used",
-    "ar": "إمكانية إستخدام العملات"
+    "En": "Currencies can be used",
+    "Ar": "إمكانية إستخدام العملات"
   },
   {
     "name": "upload_photos",
-    "en": "Upload photos",
-    "ar": "رفع صور"
+    "En": "Upload photos",
+    "Ar": "رفع صور"
   },
   {
     "name": "maximum_ads",
-    "en": "Maximum ads",
-    "ar": "الحد الأقصى للإعلانات"
+    "En": "Maximum ads",
+    "Ar": "الحد الأقصى للإعلانات"
   },
   {
     "name": "maximum_stores",
-    "en": "Maximum stores",
-    "ar": "الحد الأقصى للمتاجر"
+    "En": "Maximum stores",
+    "Ar": "الحد الأقصى للمتاجر"
   },
   {
     "name": "maximum_ads_for_store",
-    "en": "Maximum ads for store",
-    "ar": "الحد الأقصى لإعلانات المتجر"
+    "En": "Maximum ads for store",
+    "Ar": "الحد الأقصى لإعلانات المتجر"
   },
   {
     "name": "expiry_date",
-    "en": "Expiry date",
-    "ar": "تاريخ الإنتهاء"
+    "En": "Expiry date",
+    "Ar": "تاريخ الإنتهاء"
   },
   {
     "name": "duration_type",
-    "en": "Duration type",
-    "ar": "نوع المدة"
+    "En": "Duration type",
+    "Ar": "نوع المدة"
   },
   {
     "name": "duration",
-    "en": "Duration",
-    "ar": "المدة"
+    "En": "Duration",
+    "Ar": "المدة"
   },
   {
     "name": "stores_settings",
-    "en": "Stores settings",
-    "ar": "إعدادات المتاجر"
+    "En": "Stores settings",
+    "Ar": "إعدادات المتاجر"
   },
   {
     "name": "activate_stores",
-    "en": "Activate the stores system",
-    "ar": "تفعيل نظام المتاجر"
+    "En": "Activate the stores system",
+    "Ar": "تفعيل نظام المتاجر"
   },
   {
     "name": "activate_orders",
-    "en": "Activate the Orders system",
-    "ar": "تفعيل نظام الطلبات"
+    "En": "Activate the Orders system",
+    "Ar": "تفعيل نظام الطلبات"
   },
   {
     "name": "transfer_form_text",
-    "en": "Transfer form text",
-    "ar": "نص نموذج التحويل"
+    "En": "Transfer form text",
+    "Ar": "نص نموذج التحويل"
   },
   {
     "name": "social_title",
-    "en": "Social Title",
-    "ar": "عنوان السوشيال"
+    "En": "Social Title",
+    "Ar": "عنوان السوشيال"
   },
   {
     "name": "main_title",
-    "en": "Mail Title",
-    "ar": "العنوان الرئيسي"
+    "En": "Mail Title",
+    "Ar": "العنوان الرئيسي"
   }
 ]

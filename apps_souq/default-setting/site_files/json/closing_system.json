@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "en": "After a specified period",
-    "ar": "بعد مدة محددة"
+    "En": "After a specified period",
+    "Ar": "بعد مدة محددة"
   },
   {
     "id": 2,
-    "en": "By User",
-    "ar": "بواسطة المستخدم"
+    "En": "By User",
+    "Ar": "بواسطة المستخدم"
   }
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "order_management_admin",
-    "en": "Order Management  Admin",
-    "ar": "إدارة الطلبات",
+    "En": "Order Management  Admin",
+    "Ar": "إدارة الطلبات",
     "permissions": ["order_management_manage"]
 }]

@@ -1,198 +1,198 @@
 [
     {
         "name": "brand_title",
-        "en": "Smart Code",
-        "ar": "سمـارت كـود"
+        "En": "Smart Code",
+        "Ar": "سمـارت كـود"
     },
     {
         "name": "brand_tag",
-        "en": "HR System",
-        "ar": "نظام الموارد البشرية"
+        "En": "HR System",
+        "Ar": "نظام الموارد البشرية"
     },
     {
         "name": "companies_basic_information",
-        "en": "Basic Informations",
-        "ar": "البيانات الاساسية"
+        "En": "Basic Informations",
+        "Ar": "البيانات الاساسية"
     },
     {
         "name": "companies_contact_information",
-        "en": "Contact Informations",
-        "ar": "بيانات الاتصال"
+        "En": "Contact Informations",
+        "Ar": "بيانات الاتصال"
     },
     {
         "name": "companies_phone",
-        "en": "Phone",
-        "ar": "التليفون"
+        "En": "Phone",
+        "Ar": "التليفون"
     },
     {
         "name": "companies_mobile",
-        "en": "Mobile",
-        "ar": "الموبايل"
+        "En": "Mobile",
+        "Ar": "الموبايل"
     },
     {
         "name": "companies_activity",
-        "en": "Activity",
-        "ar": "النشاط"
+        "En": "Activity",
+        "Ar": "النشاط"
     },
     {
         "name": "companies_branches_informations",
-        "en": "Branches Informations",
-        "ar": "بيانات الفروع"
+        "En": "Branches Informations",
+        "Ar": "بيانات الفروع"
     },
     {
         "name": "companies_branch",
-        "en": "Branch",
-        "ar": "الفرع"
+        "En": "Branch",
+        "Ar": "الفرع"
     },
     {
         "name": "companies_branch_information",
-        "en": "Branch Information",
-        "ar": "بيانات الفرع"
+        "En": "Branch Information",
+        "Ar": "بيانات الفرع"
     },
     {
         "name": "companies_contact_charge",
-        "en": "Charge Information",
-        "ar": "بيانات المسئول"
+        "En": "Charge Information",
+        "Ar": "بيانات المسئول"
     },
     {
         "name": "companies_branch_code",
-        "en": "Branch Code",
-        "ar": "كود الفرع"
+        "En": "Branch Code",
+        "Ar": "كود الفرع"
     },
     {
         "name": "companies_branch_name",
-        "en": "Branch Name",
-        "ar": "إسم الفرع"
+        "En": "Branch Name",
+        "Ar": "إسم الفرع"
     },
     {
         "name": "companies_branch_name_ar",
-        "en": "Branch Name Arabic",
-        "ar": "إسم الفرع بالعربى"
+        "En": "Branch Name Arabic",
+        "Ar": "إسم الفرع بالعربى"
     },
     {
         "name": "companies_branch_name_en",
-        "en": "Branch Name English",
-        "ar": "إسم الفرع بالانجليزى"
+        "En": "Branch Name English",
+        "Ar": "إسم الفرع بالانجليزى"
     },
     {
         "name": "companies_branch_notes",
-        "en": "Branch Notes",
-        "ar": "ملاحظات الفرع"
+        "En": "Branch Notes",
+        "Ar": "ملاحظات الفرع"
     },
     {
         "name": "companies_charge_name",
-        "en": "Charge Name",
-        "ar": "إسم المسئول"
+        "En": "Charge Name",
+        "Ar": "إسم المسئول"
     },
     {
         "name": "companies_charge_job",
-        "en": "Charge Job",
-        "ar": "الوظيفة"
+        "En": "Charge Job",
+        "Ar": "الوظيفة"
     },
     {
         "name": "companies_internal_number",
-        "en": "Internal Number",
-        "ar": "الرقم الداخلي"
+        "En": "Internal Number",
+        "Ar": "الرقم الداخلي"
     },
     {
         "name": "companies_banking_informations",
-        "en": "Banking Informations",
-        "ar": "البنوك"
+        "En": "Banking Informations",
+        "Ar": "البنوك"
     },
     {
         "name": "companies_bank_information",
-        "en": "Bank Information",
-        "ar": "بيانات البنك"
+        "En": "Bank Information",
+        "Ar": "بيانات البنك"
     },
     {
         "name": "companies_bank_name",
-        "en": "Bank Name",
-        "ar": "إسم البنك"
+        "En": "Bank Name",
+        "Ar": "إسم البنك"
     },
     {
         "name": "companies_bank_account_number",
-        "en": "Bank Account Number",
-        "ar": "رقم الحساب"
+        "En": "Bank Account Number",
+        "Ar": "رقم الحساب"
     },
     {
         "name": "companies_filter_with_date",
-        "en": "Filter With Date",
-        "ar": "تصفية البيانات بالتاريخ"
+        "En": "Filter With Date",
+        "Ar": "تصفية البيانات بالتاريخ"
     },
     {
         "name": "companies_calender_type",
-        "en": "Calender Type",
-        "ar": "نوع التقويم"
+        "En": "Calender Type",
+        "Ar": "نوع التقويم"
     },
     {
         "name": "companies_gegorian",
-        "en": "Gregorian",
-        "ar": "ميلادي"
+        "En": "Gregorian",
+        "Ar": "ميلادي"
     },
     {
         "name": "companies_hijri",
-        "en": "Hijri",
-        "ar": "هجري"
+        "En": "Hijri",
+        "Ar": "هجري"
     },
     {
         "name": "companies_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
 
     {
         "name": "companies_city",
-        "en": "City",
-        "ar": "المدينة"
+        "En": "City",
+        "Ar": "المدينة"
     },
     {
         "name": "companies_email",
-        "en": "Email",
-        "ar": "البريد الإلكتروني"
+        "En": "Email",
+        "Ar": "البريد الإلكتروني"
     },
     {
         "name": "companies_fax",
-        "en": "Fax",
-        "ar": "الفاكس"
+        "En": "Fax",
+        "Ar": "الفاكس"
     },
     {
         "name": "companies_name_ar",
-        "en": "HR System Name Arabic",
-        "ar": "إسم نظام الموارد البشرية"
+        "En": "HR System Name Arabic",
+        "Ar": "إسم نظام الموارد البشرية"
     },
     {
         "name": "companies_name_en",
-        "en": "HR System Name English",
-        "ar": "إسم نظام الموارد البشرية بالانجليزية"
+        "En": "HR System Name English",
+        "Ar": "إسم نظام الموارد البشرية بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
-        "en": "Exchange Price",
-        "ar": "سعر الصرف"
+        "En": "Exchange Price",
+        "Ar": "سعر الصرف"
     },
     {
         "name": "companies_company_swift_code",
-        "en": "Swift Code",
-        "ar": "رقم السويفت"
+        "En": "Swift Code",
+        "Ar": "رقم السويفت"
     },
     {
         "name": "companies_new",
-        "en": "New HR System",
-        "ar": "نظام موارد بشرية جديد"
+        "En": "New HR System",
+        "Ar": "نظام موارد بشرية جديد"
     },
     {
         "name": "companies_country",
-        "en": "Coutntry",
-        "ar": "الدولة"
+        "En": "Coutntry",
+        "Ar": "الدولة"
     },
     {
         "name": "companies_address",
-        "en": "Address",
-        "ar": "العنوان"
+        "En": "Address",
+        "Ar": "العنوان"
     },
     {
         "name": "companies_customer_service",
-        "en": "Customer Services",
-        "ar": "خدمة العملاء"
+        "En": "Customer Services",
+        "Ar": "خدمة العملاء"
     }
 ]

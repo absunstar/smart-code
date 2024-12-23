@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "students_years_admin",
-    "en": "Students Years Admin",
-    "ar": "إدارة سنوات الطلاب",
+    "En": "Students Years Admin",
+    "Ar": "إدارة سنوات الطلاب",
     "permissions": ["students_years_manage"]
 }]

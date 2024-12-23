@@ -1,15 +1,15 @@
 [
-    {"name" : "rogatory_places_informations" , "en" : "Rogatory Place Informations" , "ar" : "بيانات مكان التوكيل"},
+    {"name" : "rogatory_places_informations" , "En" : "Rogatory Place Informations" , "Ar" : "بيانات مكان التوكيل"},
 
-    {"name" : "rogatory_places" , "en" : "Rogatory Place" , "ar" : "أماكن التوكيلات"},
-    {"name" : "rogatory_places_menus" , "en" : "Rogatory Place Menu" , "ar" : "قائمة مكان التوكيل"},
-    {"name" : "rogatory_places_code" , "en" : "Rogatory Place Code" , "ar" : "كود مكان التوكيل"},
-    {"name" : "rogatory_places_name" , "en" : "Rogatory Place" , "ar" : "مكان التوكيل"},
+    {"name" : "rogatory_places" , "En" : "Rogatory Place" , "Ar" : "أماكن التوكيلات"},
+    {"name" : "rogatory_places_menus" , "En" : "Rogatory Place Menu" , "Ar" : "قائمة مكان التوكيل"},
+    {"name" : "rogatory_places_code" , "En" : "Rogatory Place Code" , "Ar" : "كود مكان التوكيل"},
+    {"name" : "rogatory_places_name" , "En" : "Rogatory Place" , "Ar" : "مكان التوكيل"},
 
-    {"name" : "rogatory_places_new" , "en" : "New Rogatory Place" , "ar" : "مكان التوكيل جديدة"},
-    {"name" : "rogatory_places_details" , "en" : "Rogatory Place Details" , "ar" : "تفاصيل مكان التوكيل"},
-    {"name" : "rogatory_places_update" , "en" : "Edit Rogatory Place" , "ar" : "تعديل مكان التوكيل"},
-    {"name" : "rogatory_places_delete" , "en" : "Delte Rogatory Place" , "ar" : "حذف مكان التوكيل"},
-    {"name" : "rogatory_places_add_name" , "en" : "Add Rogatory Place" , "ar" : "إضافة مكان التوكيل"}
+    {"name" : "rogatory_places_new" , "En" : "New Rogatory Place" , "Ar" : "مكان التوكيل جديدة"},
+    {"name" : "rogatory_places_details" , "En" : "Rogatory Place Details" , "Ar" : "تفاصيل مكان التوكيل"},
+    {"name" : "rogatory_places_update" , "En" : "Edit Rogatory Place" , "Ar" : "تعديل مكان التوكيل"},
+    {"name" : "rogatory_places_delete" , "En" : "Delte Rogatory Place" , "Ar" : "حذف مكان التوكيل"},
+    {"name" : "rogatory_places_add_name" , "En" : "Add Rogatory Place" , "Ar" : "إضافة مكان التوكيل"}
     
 ]

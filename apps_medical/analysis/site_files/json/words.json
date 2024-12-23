@@ -1,57 +1,57 @@
 [
     {
         "name": "analysis",
-        "en": "Types Analysis",
-        "ar": "أنواع التحاليل"
+        "En": "Types Analysis",
+        "Ar": "أنواع التحاليل"
     },
     {
         "name": "analysis_new",
-        "en": "New Analysis",
-        "ar": "تحليل  جديدة"
+        "En": "New Analysis",
+        "Ar": "تحليل  جديدة"
     },
     {
         "name": "immediate",
-        "en": "Immediate",
-        "ar": "فوري"
+        "En": "Immediate",
+        "Ar": "فوري"
     },
     {
         "name": "analysis_add",
-        "en": "Add analysis",
-        "ar": "إضافة تحليل"
+        "En": "Add analysis",
+        "Ar": "إضافة تحليل"
     },
     {
         "name": "analysis_edit",
-        "en": "Edit analysis",
-        "ar": "تعديل تحليل"
+        "En": "Edit analysis",
+        "Ar": "تعديل تحليل"
     },
     {
         "name": "analysis_details",
-        "en": "analysis Details",
-        "ar": "تفاصيل تحليل"
+        "En": "analysis Details",
+        "Ar": "تفاصيل تحليل"
     },
     {
         "name": "analysis_delete",
-        "en": "Delete analysis",
-        "ar": "حذف تحليل"
+        "En": "Delete analysis",
+        "Ar": "حذف تحليل"
     },
     {
         "name": "analysis_name",
-        "en": "analysis Name",
-        "ar": "إسم التحليل"
+        "En": "analysis Name",
+        "Ar": "إسم التحليل"
     },
     {
         "name": "analysis_price",
-        "en": "analysis Price",
-        "ar": "سعر التحليل"
+        "En": "analysis Price",
+        "Ar": "سعر التحليل"
     },
     {
         "name": "analyse_result",
-        "en": "analysis result",
-        "ar": "نتيجة التحليل"
+        "En": "analysis result",
+        "Ar": "نتيجة التحليل"
     },
     {
         "name": "made_home_analysis",
-        "en": "Made the analysis at home",
-        "ar": "إجراء التحليل في المنزل"
+        "En": "Made the analysis at home",
+        "Ar": "إجراء التحليل في المنزل"
     }
 ]

@@ -1,13 +1,13 @@
 [{
     "module_name" : "report" ,
     "name": "report_info_admin",
-    "en": "Subscribe Info Admin",
-    "ar": "إدارة معلومات المشتركين",
+    "En": "Subscribe Info Admin",
+    "Ar": "إدارة معلومات المشتركين",
     "permissions": ["report_info_manage"]
 },{
     "module_name" : "report" ,
     "name": "report_info_user",
-    "en": "Subscribe Info USer",
-    "ar": "معلومات المشتركين للمستخدم",
+    "En": "Subscribe Info USer",
+    "Ar": "معلومات المشتركين للمستخدم",
     "permissions": ["report_info_ui"]
 }]

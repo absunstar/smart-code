@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_doctors_visits_admin",
-    "en": "Report Examination book Admin",
-    "ar": "إدارة تقرير حجز كشف",
+    "En": "Report Examination book Admin",
+    "Ar": "إدارة تقرير حجز كشف",
     "permissions": ["report_doctors_visits_manage"]
 }]

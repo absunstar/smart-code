@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "delivery_employee_admin",
-    "en": "Delivery Employee Admin",
-    "ar": "إدارة موظفين التوصيل",
+    "En": "Delivery Employee Admin",
+    "Ar": "إدارة موظفين التوصيل",
     "permissions": ["delivery_employee_manage"]
 }]

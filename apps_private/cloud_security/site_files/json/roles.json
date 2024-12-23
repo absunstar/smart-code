@@ -3,8 +3,8 @@
     {
         "module_name": "public",
         "name": "user_management",
-        "ar": "إدارة المستخدميين",
-        "en": "User Management",
+        "Ar": "إدارة المستخدميين",
+        "En": "User Management",
         "permissions": [
             "security",
             "security_manage"
@@ -13,16 +13,16 @@
     {
         "module_name": "public",
         "name": "menus",
-        "ar": "مشاهدة القوائم",
-        "en": "Show Menus",
+        "Ar": "مشاهدة القوائم",
+        "En": "Show Menus",
         "permissions": [
             "menus"
         ]
     }, {
         "module_name": "public",
         "name": "print",
-        "ar": "امكانية الطباعة",
-        "en": "Print",
+        "Ar": "امكانية الطباعة",
+        "En": "Print",
         "permissions": [
             "Print"
         ]

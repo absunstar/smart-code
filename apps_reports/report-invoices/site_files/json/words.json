@@ -1,83 +1,83 @@
 [
     {
         "name": "report_invoices_add",
-        "en": "Add Customer",
-        "ar": "إضافة عميل"
+        "En": "Add Customer",
+        "Ar": "إضافة عميل"
     },
     {
         "name": "report_invoices_informations",
-        "en": "Report Invoices Informations",
-        "ar": "بيانات تقرير فاتورة"
+        "En": "Report Invoices Informations",
+        "Ar": "بيانات تقرير فاتورة"
     },
     {
         "name": "report_invoices_name",
-        "en": "Report Invoices",
-        "ar": "تقرير الفواتير"
+        "En": "Report Invoices",
+        "Ar": "تقرير الفواتير"
     },
     {
         "name": "report_invoices",
-        "en": "Report Invoices",
-        "ar": "تقرير الفواتير"
+        "En": "Report Invoices",
+        "Ar": "تقرير الفواتير"
     },
     {
         "name": "total_after_tax",
-        "en": "Total after tax",
-        "ar": "إجمالي بعد الضريبة"
+        "En": "Total after tax",
+        "Ar": "إجمالي بعد الضريبة"
     },
     {
         "name": "report_invoices_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "En": "Report Invoices Menu",
+        "Ar": "قائمة تقرير فاتورة"
     },
     {
         "name": "invoices_code",
-        "en": "Report Invoices Code",
-        "ar": "كود الفاتورة"
+        "En": "Report Invoices Code",
+        "Ar": "كود الفاتورة"
     },
     {
         "name": "total_items_price",
-        "en": "Total Items Price",
-        "ar": "مجموع سعر الأصناف"
+        "En": "Total Items Price",
+        "Ar": "مجموع سعر الأصناف"
     },
     {
         "name": "report_invoices_name",
-        "en": "Report Invoices Name",
-        "ar": "إسم تقرير فاتورة"
+        "En": "Report Invoices Name",
+        "Ar": "إسم تقرير فاتورة"
     },
     {
         "name": "source_type",
-        "en": "Source Type",
-        "ar": "نوع المصدر"
+        "En": "Source Type",
+        "Ar": "نوع المصدر"
     },
     {
         "name": "order_invoices_type",
-        "en": "Order Invoices Type",
-        "ar": "نوع أمر الفاتورة"
+        "En": "Order Invoices Type",
+        "Ar": "نوع أمر الفاتورة"
     },
     {
         "name": "order_sale",
-        "en": "Order Sale",
-        "ar": "أمر بيع"
+        "En": "Order Sale",
+        "Ar": "أمر بيع"
     },
     {
         "name": "payable",
-        "en": "Payable",
-        "ar": "مستحق الدفع"
+        "En": "Payable",
+        "Ar": "مستحق الدفع"
     },
     {
         "name": "invoice_type",
-        "en": "Invoice Type",
-        "ar": "نوع الفاتورة"
+        "En": "Invoice Type",
+        "Ar": "نوع الفاتورة"
     },
     {
         "name": "payment",
-        "en": "Payment",
-        "ar": "تسديد"
+        "En": "Payment",
+        "Ar": "تسديد"
     },
   
     {
         "name": "detailes_amounts_paid",
-        "en": "Detailes Amounts Paid",
-        "ar": "تفاصيل المدفوعات"
+        "En": "Detailes Amounts Paid",
+        "Ar": "تفاصيل المدفوعات"
     }
 ]

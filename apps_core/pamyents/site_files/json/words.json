@@ -1,47 +1,47 @@
 [
     {
         "name": "payments",
-        "en": "payments",
-        "ar": "المدفوعات"
+        "En": "payments",
+        "Ar": "المدفوعات"
     },
     {
         "name": "payment",
-        "en": "payment",
-        "ar": "المادة"
+        "En": "payment",
+        "Ar": "المادة"
     },
     {
         "name": "payment_name",
-        "en": "Payment Name",
-        "ar": "إسم المدفوع"
+        "En": "Payment Name",
+        "Ar": "إسم المدفوع"
     },
     {
         "name": "payments_new",
-        "en": "New payment",
-        "ar": "مدفوع جديدة"
+        "En": "New payment",
+        "Ar": "مدفوع جديدة"
     },
     {
         "name": "payments_add",
-        "en": "Add payment",
-        "ar": "إضافة مدفوع"
+        "En": "Add payment",
+        "Ar": "إضافة مدفوع"
     },
     {
         "name": "payments_edit",
-        "en": "Edit payment",
-        "ar": "تعديل مدفوع"
+        "En": "Edit payment",
+        "Ar": "تعديل مدفوع"
     },
     {
         "name": "payments_details",
-        "en": "payment Details",
-        "ar": "تفاصيل مدفوع"
+        "En": "payment Details",
+        "Ar": "تفاصيل مدفوع"
     },
     {
         "name": "payments_delete",
-        "en": "Delete payment",
-        "ar": "حذف مدفوع"
+        "En": "Delete payment",
+        "Ar": "حذف مدفوع"
     },
     {
         "name": "payments_number",
-        "en": "payment Number",
-        "ar": "رقم المدفوع"
+        "En": "payment Number",
+        "Ar": "رقم المدفوع"
     }
 ]

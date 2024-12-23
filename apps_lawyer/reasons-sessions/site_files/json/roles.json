@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "reasons_sessions_admin",
-    "en": "Reasons Sessions Admin",
-    "ar": "إدارةأسباب الجلسات",
+    "En": "Reasons Sessions Admin",
+    "Ar": "إدارةأسباب الجلسات",
     "permissions": ["reasons_sessions_manage"]
 }]

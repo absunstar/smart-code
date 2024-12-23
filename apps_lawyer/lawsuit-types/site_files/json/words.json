@@ -1,13 +1,13 @@
 [
-    {"name" : "lawsuit_types_informations" , "en" : "Lawsuit Types Informations" , "ar" : "بيانات نوع دعوى"},
+    {"name" : "lawsuit_types_informations" , "En" : "Lawsuit Types Informations" , "Ar" : "بيانات نوع دعوى"},
 
-    {"name" : "lawsuit_types" , "en" : "Lawsuit Types" , "ar" : "أنواع الدعاوى"},
-    {"name" : "lawsuit_types_code" , "en" : "Lawsuit Types Code" , "ar" : "كود نوع "},
-    {"name" : "lawsuit_types_name" , "en" : "Lawsuit Types Name" , "ar" : "إسم النوع"},
-    {"name" : "lawsuit_types_new" , "en" : "New Lawsuit Types" , "ar" : "نوع دعوى جديدة"},
-    {"name" : "lawsuit_types_details" , "en" : "Lawsuit Types Details" , "ar" : "تفاصيل نوع دعوى"},
-    {"name" : "lawsuit_types_update" , "en" : "Edit Lawsuit Types" , "ar" : "تعديل نوع دعوى"},
-    {"name" : "lawsuit_types_delete" , "en" : "Delte Lawsuit Types" , "ar" : "حذف نوع دعوى"},
-    {"name" : "lawsuit_types_add_name" , "en" : "Add Lawsuit Types" , "ar" : "إضافة نوع دعوى"}
+    {"name" : "lawsuit_types" , "En" : "Lawsuit Types" , "Ar" : "أنواع الدعاوى"},
+    {"name" : "lawsuit_types_code" , "En" : "Lawsuit Types Code" , "Ar" : "كود نوع "},
+    {"name" : "lawsuit_types_name" , "En" : "Lawsuit Types Name" , "Ar" : "إسم النوع"},
+    {"name" : "lawsuit_types_new" , "En" : "New Lawsuit Types" , "Ar" : "نوع دعوى جديدة"},
+    {"name" : "lawsuit_types_details" , "En" : "Lawsuit Types Details" , "Ar" : "تفاصيل نوع دعوى"},
+    {"name" : "lawsuit_types_update" , "En" : "Edit Lawsuit Types" , "Ar" : "تعديل نوع دعوى"},
+    {"name" : "lawsuit_types_delete" , "En" : "Delte Lawsuit Types" , "Ar" : "حذف نوع دعوى"},
+    {"name" : "lawsuit_types_add_name" , "En" : "Add Lawsuit Types" , "Ar" : "إضافة نوع دعوى"}
     
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_trainer_attend_admin",
-    "en": "report Trainer Attend Session Admin",
-    "ar": "إدارة تقرير حضور الجلسات للمدربين",
+    "En": "report Trainer Attend Session Admin",
+    "Ar": "إدارة تقرير حضور الجلسات للمدربين",
     "permissions": ["report_trainer_attend_manage"]
 }]

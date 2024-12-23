@@ -1,37 +1,37 @@
 [
     {
         "name": "report_attend_students_informations",
-        "en": "Report Invoices Students Informations",
-        "ar": "بيانات حضور و غياب الطلاب"
+        "En": "Report Invoices Students Informations",
+        "Ar": "بيانات حضور و غياب الطلاب"
     },
     {
         "name": "report_attend_students",
-        "en": "Attend & Absence Students",
-        "ar": "حضور و غياب الطلاب"
+        "En": "Attend & Absence Students",
+        "Ar": "حضور و غياب الطلاب"
     },
     {
         "name": "report_attend_students_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "En": "Report Invoices Menu",
+        "Ar": "قائمة تقرير فاتورة"
     },
     {
         "name": "view_students_attend",
-        "en": "View Students Attend",
-        "ar": "عرض حضور الطلاب"
+        "En": "View Students Attend",
+        "Ar": "عرض حضور الطلاب"
     },
     {
         "name": "report_attend_details",
-        "en": "Students Attend Details",
-        "ar": "تفاصيل حضور الطلاب"
+        "En": "Students Attend Details",
+        "Ar": "تفاصيل حضور الطلاب"
     },
     {
         "name": "attend_count",
-        "en": "Attend Count",
-        "ar": "عدد مرات الحضور"
+        "En": "Attend Count",
+        "Ar": "عدد مرات الحضور"
     },
     {
         "name": "absence_count",
-        "en": "Absence Count",
-        "ar": "عدد مرات الغياب"
+        "En": "Absence Count",
+        "Ar": "عدد مرات الغياب"
     }
 ]

@@ -1,13 +1,13 @@
 [{
     "module_name" : "public" ,
     "name": "patients_files_admin",
-    "en": "Patients Files Admin",
-    "ar": "إدارة ملفات المرضى",
+    "En": "Patients Files Admin",
+    "Ar": "إدارة ملفات المرضى",
     "permissions": ["patients_files_manage"]
 },{
     "module_name" : "public" ,
     "name": "patient_file_user",
-    "en": "Patient file User",
-    "ar": "ملف المريض للمستخدم",
+    "En": "Patient file User",
+    "Ar": "ملف المريض للمستخدم",
     "permissions": ["patients_files_ui","patients_files_view"]
 }]

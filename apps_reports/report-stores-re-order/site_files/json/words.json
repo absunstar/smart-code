@@ -1,165 +1,165 @@
 [
     {
         "name": "report_stores_re_order_name",
-        "en": "Report Items Re Order",
-        "ar": "تقرير إعادة طلب الأصناف"
+        "En": "Report Items Re Order",
+        "Ar": "تقرير إعادة طلب الأصناف"
     },
     {
         "name": "report_stores_re_order",
-        "en": "Report Items Re Order",
-        "ar": "تقرير إعادة طلب الأصناف"
+        "En": "Report Items Re Order",
+        "Ar": "تقرير إعادة طلب الأصناف"
     },
     {
         "name": "stagnant_items",
-        "en": "Stagnant Items",
-        "ar": "الأصناف الراكدة"
+        "En": "Stagnant Items",
+        "Ar": "الأصناف الراكدة"
     },
     {
         "name": "best_seller",
-        "en": "Best Seller",
-        "ar": "الأعلى مبيعا"
+        "En": "Best Seller",
+        "Ar": "الأعلى مبيعا"
     },
     {
         "name": "number_seles",
-        "en": "Number Of Sales",
-        "ar": "عدد المبيعات"
+        "En": "Number Of Sales",
+        "Ar": "عدد المبيعات"
     },
     {
         "name": "report_detailed",
-        "en": "Report Total",
-        "ar": "تقرير إجمالي"
+        "En": "Report Total",
+        "Ar": "تقرير إجمالي"
     },
     {
         "name": "invoices_code",
-        "en": "Report Invoices Code",
-        "ar": "كود الفاتورة"
+        "En": "Report Invoices Code",
+        "Ar": "كود الفاتورة"
     },
     {
         "name": "total_sales",
-        "en": "Total Sales",
-        "ar": "مجموع المبيعات"
+        "En": "Total Sales",
+        "Ar": "مجموع المبيعات"
     },
     {
         "name": "total_net_values",
-        "en": "Total Net Values",
-        "ar": "إجمالي القيم المطلوبة"
+        "En": "Total Net Values",
+        "Ar": "إجمالي القيم المطلوبة"
     },
     {
         "name": "total_items_price",
-        "en": "Total Items Price",
-        "ar": "مجموع سعر الأصناف"
+        "En": "Total Items Price",
+        "Ar": "مجموع سعر الأصناف"
     },
     {
         "name": "total_delivery_service_price",
-        "en": "Total Delivery Service Price",
-        "ar": "إجمالي سعر خدمة التوصيل"
+        "En": "Total Delivery Service Price",
+        "Ar": "إجمالي سعر خدمة التوصيل"
     },
     {
         "name": "report_invoices_name",
-        "en": "Report Invoices Name",
-        "ar": "إسم تقرير فاتورة"
+        "En": "Report Invoices Name",
+        "Ar": "إسم تقرير فاتورة"
     },
     {
         "name": "source_type",
-        "en": "Source Type",
-        "ar": "نوع المصدر"
+        "En": "Source Type",
+        "Ar": "نوع المصدر"
     },
     {
         "name": "order_invoices_type",
-        "en": "Order Invoices Type",
-        "ar": "نوع أمر الفاتورة"
+        "En": "Order Invoices Type",
+        "Ar": "نوع أمر الفاتورة"
     },
     {
         "name": "order_sale",
-        "en": "Order Sale",
-        "ar": "أمر بيع"
+        "En": "Order Sale",
+        "Ar": "أمر بيع"
     },
     {
         "name": "payable",
-        "en": "Payable",
-        "ar": "مستحق الدفع"
+        "En": "Payable",
+        "Ar": "مستحق الدفع"
     },
     {
         "name": "invoice_type",
-        "en": "Invoice Type",
-        "ar": "نوع الفاتورة"
+        "En": "Invoice Type",
+        "Ar": "نوع الفاتورة"
     },
     {
         "name": "payment",
-        "en": "Payment",
-        "ar": "تسديد"
+        "En": "Payment",
+        "Ar": "تسديد"
     },
   
     {
         "name": "detailes_amounts_paid",
-        "en": "Detailes Amounts Paid",
-        "ar": "تفاصيل المدفوعات"
+        "En": "Detailes Amounts Paid",
+        "Ar": "تفاصيل المدفوعات"
     },
     {
         "name": "date_from",
-        "en": "Date From",
-        "ar": "تاريخ من"
+        "En": "Date From",
+        "Ar": "تاريخ من"
     },
     {
         "name": "date_to",
-        "en": "Date To",
-        "ar": "تاريخ إلى"
+        "En": "Date To",
+        "Ar": "تاريخ إلى"
     },
     {
         "name": "err_paid_up",
-        "en": "Must Enter Paid",
-        "ar": "يجب إدخال مبلغ "
+        "En": "Must Enter Paid",
+        "Ar": "يجب إدخال مبلغ "
     },
   
     {
         "name": "paid_up",
-        "en": "Paid Up",
-        "ar": "المدفوع"
+        "En": "Paid Up",
+        "Ar": "المدفوع"
     },
 
     {
         "name": "err_price_delivery_service",
-        "en": "Price Delivery Service Greater Than Required",
-        "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
+        "En": "Price Delivery Service Greater Than Required",
+        "Ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
     },
     {
         "name": "report_invoices_new",
-        "en": "New Report Invoices",
-        "ar": "تقرير فاتورة جديدة"
+        "En": "New Report Invoices",
+        "Ar": "تقرير فاتورة جديدة"
     },
     {
         "name": "report_invoices_details",
-        "en": "Report Invoices Details",
-        "ar": "تفاصيل تقرير فاتورة"
+        "En": "Report Invoices Details",
+        "Ar": "تفاصيل تقرير فاتورة"
     },
     {
         "name": "report_invoices_update",
-        "en": "Edit Report Invoices",
-        "ar": "تعديل تقرير فاتورة"
+        "En": "Edit Report Invoices",
+        "Ar": "تعديل تقرير فاتورة"
     },
     {
         "name": "report_invoices_delete",
-        "en": "Delte Report Invoices",
-        "ar": "حذف تقرير فاتورة"
+        "En": "Delte Report Invoices",
+        "Ar": "حذف تقرير فاتورة"
     },
     {
         "name": "report_invoices_total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "En": "Total Required",
+        "Ar": "إجمالي المطلوب"
     },
     {
         "name": "total_paid_up",
-        "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "En": "Total Rest",
+        "Ar": "إجمالي المدفوع"
     },
     {
         "name": "total_remain",
-        "en": "Total Remain",
-        "ar": "إجمالي الباقي"
+        "En": "Total Remain",
+        "Ar": "إجمالي الباقي"
     },
     {
         "name": "report_invoices_add_name",
-        "en": "Add Report Invoices",
-        "ar": "إضافة تقرير فاتورة"
+        "En": "Add Report Invoices",
+        "Ar": "إضافة تقرير فاتورة"
     }
 ]

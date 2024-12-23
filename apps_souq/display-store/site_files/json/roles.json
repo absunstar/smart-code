@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "display_store_admin",
-    "en": "Display Ad Admin",
-    "ar": "إدارة عرض الإعلان",
+    "En": "Display Ad Admin",
+    "Ar": "إدارة عرض الإعلان",
     "permissions": ["display_store_manage"]
 }]

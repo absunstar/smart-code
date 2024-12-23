@@ -1,7 +1,7 @@
 const site = require('../isite')({
   port: [80, 40017],
-  lang: 'ar',
-  language: { id: 'ar', dir: 'rtl', text: 'right' },
+  lang: 'Ar',
+  language: { id: 'Ar', dir: 'rtl', text: 'right' },
   version: Date.now(),
   name: 'souq',
   savingTime: 5,

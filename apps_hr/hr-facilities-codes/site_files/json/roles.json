@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "facilities_codes_admin",
-    "en": "Facilities Codes Admin",
-    "ar": "إدارة المنشاّت",
+    "En": "Facilities Codes Admin",
+    "Ar": "إدارة المنشاّت",
     "permissions": ["facilities_codes_manage"]
 }]

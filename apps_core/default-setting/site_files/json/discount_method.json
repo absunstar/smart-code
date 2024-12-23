@@ -1,12 +1,12 @@
 [
     {
         "id" : 1,
-        "en": "When Exist Order",
-        "ar": "عند الغلق"
+        "En": "When Exist Order",
+        "Ar": "عند الغلق"
     },
     {
         "id" : 2,
-        "en": "When Posted",
-        "ar": "عند الترحيل"
+        "En": "When Posted",
+        "Ar": "عند الترحيل"
     }
 ]

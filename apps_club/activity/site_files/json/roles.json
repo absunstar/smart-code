@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "activity_admin",
-    "en": "Activity Admin",
-    "ar": "إدارة الأنشطة",
+    "En": "Activity Admin",
+    "Ar": "إدارة الأنشطة",
     "permissions": ["activity_manage"]
 }]

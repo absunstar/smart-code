@@ -1,84 +1,84 @@
 [
     {
         "name": "delivery_employees",
-        "en": "Delivery Employees",
-        "ar": "موظفين التوصيل"
+        "En": "Delivery Employees",
+        "Ar": "موظفين التوصيل"
     },
     {
         "name": "hr_employees_delivery",
-        "en": "Delivery Employees",
-        "ar": "موظفين التوصيل"
+        "En": "Delivery Employees",
+        "Ar": "موظفين التوصيل"
     },
     {
         "name": "delivery_employee",
-        "en": "Delivery Employee",
-        "ar": "موظف التوصيل"
+        "En": "Delivery Employee",
+        "Ar": "موظف التوصيل"
     },
     {
         "name": "delivery_employee_new",
-        "en": "New Delivery Employee",
-        "ar": "موظف توصيل جديد"
+        "En": "New Delivery Employee",
+        "Ar": "موظف توصيل جديد"
     },
     {
         "name": "delivery_difference",
-        "en": "Delivery Difference",
-        "ar": "فرق التوصيل"
+        "En": "Delivery Difference",
+        "Ar": "فرق التوصيل"
     },
    
     {
         "name": "delivery_employee_add",
-        "en": "Add Delivery Employee",
-        "ar": "إضافة موظف توصيل"
+        "En": "Add Delivery Employee",
+        "Ar": "إضافة موظف توصيل"
     },
     {
         "name": "delivery_employees_degrees",
-        "en": "New Degree",
-        "ar": "الدرجة الوظيفية"
+        "En": "New Degree",
+        "Ar": "الدرجة الوظيفية"
     },
     {
         "name": "delivery_employee_edit",
-        "en": "Edit Delivery Employee",
-        "ar": "تعديل موظف توصيل"
+        "En": "Edit Delivery Employee",
+        "Ar": "تعديل موظف توصيل"
     },
     {
         "name": "delivery_employee_details",
-        "en": "Delivery Employee Details",
-        "ar": "تفاصيل الموظف"
+        "En": "Delivery Employee Details",
+        "Ar": "تفاصيل الموظف"
     },
     {
         "name": "delivery_employee_delete",
-        "en": "Delete Delivery Employee",
-        "ar": "حذف موظف توصيل"
+        "En": "Delete Delivery Employee",
+        "Ar": "حذف موظف توصيل"
     },
     {
         "name": "delivery_employee_name",
-        "en": "Delivery Employee Name",
-        "ar": "إسم الموظف"
+        "En": "Delivery Employee Name",
+        "Ar": "إسم الموظف"
     },
     {
         "name": "delivery_employee_indentfy",
-        "en": "Delivery Employee Indentfy",
-        "ar": "نوع الموظف"
+        "En": "Delivery Employee Indentfy",
+        "Ar": "نوع الموظف"
     },
 
     {
         "name": "qualification",
-        "en": "Qualification",
-        "ar": "المؤهل"
+        "En": "Qualification",
+        "Ar": "المؤهل"
     },
     {
         "name": "report_employee_delivery_menus",
-        "en": "Report Employees Delivery Menu",
-        "ar": "قائمة تقارير موظفين التوصيل "
+        "En": "Report Employees Delivery Menu",
+        "Ar": "قائمة تقارير موظفين التوصيل "
     },
     {
         "name": "report_employee_delivery_name",
-        "en": "Report Employees Delivery",
-        "ar": "تقارير موظفين التوصيل "
+        "En": "Report Employees Delivery",
+        "Ar": "تقارير موظفين التوصيل "
     },
     {
         "name": "delivery_employee_info",
-        "en": "Delivery Employee Informations",
-        "ar": "معلومات الموظف"
+        "En": "Delivery Employee Informations",
+        "Ar": "معلومات الموظف"
     }
 ]

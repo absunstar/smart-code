@@ -1,25 +1,25 @@
 [{
         "id": 1,
         "name": "end_visit",
-        "en": "End of visit",
-        "ar": "إنتهاء الكشف"
+        "En": "End of visit",
+        "Ar": "إنتهاء الكشف"
     },
     {
         "id": 2,
         "name": "needs_counseling",
-        "en": "Needs Counseling",
-        "ar": "يحتاج إلى إستشارة"
+        "En": "Needs Counseling",
+        "Ar": "يحتاج إلى إستشارة"
     },
     {
         "id": 3,
         "name": "needs_re_detection",
-        "en": "Needs to be re-detection",
-        "ar": "يحتاج إلى إعادة كشف"
+        "En": "Needs to be re-detection",
+        "Ar": "يحتاج إلى إعادة كشف"
     },
     {
         "id": 4,
         "name": "transfer_another_department",
-        "en": "Transfer to another department",
-        "ar": "تحويل لقسم آخر"
+        "En": "Transfer to another department",
+        "Ar": "تحويل لقسم آخر"
     }
 ]

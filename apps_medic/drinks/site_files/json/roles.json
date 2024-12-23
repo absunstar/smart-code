@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "drinks_admin",
-    "en": "Drinks Admin",
-    "ar": "إدارة المشروبات",
+    "En": "Drinks Admin",
+    "Ar": "إدارة المشروبات",
     "permissions": ["drinks_manage"]
 }]

@@ -1,12 +1,12 @@
 [
     {
         "id" : 1,
-        "en": "Immediately",
-        "ar": "فوري"
+        "En": "Immediately",
+        "Ar": "فوري"
     },
     {
         "id" : 2,
-        "en": "By User",
-        "ar": "بواسطة المستخدم"
+        "En": "By User",
+        "Ar": "بواسطة المستخدم"
     }
 ]

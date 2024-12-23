@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "prices_codes_admin",
-    "en": "Prices Codes Admin",
-    "ar": "إدارة أكواد الأسعار",
+    "En": "Prices Codes Admin",
+    "Ar": "إدارة أكواد الأسعار",
     "permissions": ["prices_codes_manage"]
 }]

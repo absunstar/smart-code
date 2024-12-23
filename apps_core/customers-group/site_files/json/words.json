@@ -1,18 +1,18 @@
 [
-    {"name" : "customers_add" , "en" : "Add Customer" , "ar" : "إضافة عميل"},
-    {"name" : "customers_group_informations" , "en" : "Customers Group Informations" , "ar" : "بيانات مجموعة عملاء"},
+    {"name" : "customers_add" , "En" : "Add Customer" , "Ar" : "إضافة عميل"},
+    {"name" : "customers_group_informations" , "En" : "Customers Group Informations" , "Ar" : "بيانات مجموعة عملاء"},
 
-    {"name" : "customers_groups_name" , "en" : "Customers Groups" , "ar" : "مجموعات العملاء"},
-    {"name" : "customers_group" , "en" : "Customers Groups" , "ar" : "مجموعات العملاء"},
-    {"name" : "customers_group_menus" , "en" : "Customers Group Menu" , "ar" : "قائمة مجموعة العملاء"},
-    {"name" : "customers_group_code" , "en" : "Customers Group Code" , "ar" : "كود مجموعة العملاء"},
-    {"name" : "customers_group_name" , "en" : "Customers Group Name" , "ar" : "إسم مجموعة العملاء"},
+    {"name" : "customers_groups_name" , "En" : "Customers Groups" , "Ar" : "مجموعات العملاء"},
+    {"name" : "customers_group" , "En" : "Customers Groups" , "Ar" : "مجموعات العملاء"},
+    {"name" : "customers_group_menus" , "En" : "Customers Group Menu" , "Ar" : "قائمة مجموعة العملاء"},
+    {"name" : "customers_group_code" , "En" : "Customers Group Code" , "Ar" : "كود مجموعة العملاء"},
+    {"name" : "customers_group_name" , "En" : "Customers Group Name" , "Ar" : "إسم مجموعة العملاء"},
 
-    {"name" : "customers_group_new" , "en" : "New Customers Group" , "ar" : "مجموعة عملاء جديدة"},
-    {"name" : "customers_group_details" , "en" : "Customers Group Details" , "ar" : "تفاصيل مجموعة عملاء"},
-    {"name" : "customers_group_update" , "en" : "Edit Customers Group" , "ar" : "تعديل مجموعة عملاء"},
-    {"name" : "customers_group_delete" , "en" : "Delte Customers Group" , "ar" : "حذف مجموعة عملاء"},
-    {"name" : "customers_group_add_name" , "en" : "Add Customers Group" , "ar" : "إضافة مجموعة عملاء"}
+    {"name" : "customers_group_new" , "En" : "New Customers Group" , "Ar" : "مجموعة عملاء جديدة"},
+    {"name" : "customers_group_details" , "En" : "Customers Group Details" , "Ar" : "تفاصيل مجموعة عملاء"},
+    {"name" : "customers_group_update" , "En" : "Edit Customers Group" , "Ar" : "تعديل مجموعة عملاء"},
+    {"name" : "customers_group_delete" , "En" : "Delte Customers Group" , "Ar" : "حذف مجموعة عملاء"},
+    {"name" : "customers_group_add_name" , "En" : "Add Customers Group" , "Ar" : "إضافة مجموعة عملاء"}
 
 
     

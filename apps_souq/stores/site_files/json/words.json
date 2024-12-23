@@ -1,108 +1,108 @@
 [
   {
     "name": "stores",
-    "en": "Stores",
-    "ar": "المتاجر"
+    "En": "Stores",
+    "Ar": "المتاجر"
   },
   {
     "name": "stores_search",
-    "en": "Stores Search",
-    "ar": "بحث المتاجر"
+    "En": "Stores Search",
+    "Ar": "بحث المتاجر"
   },
   {
     "name": "store",
-    "en": "Store",
-    "ar": "متجر"
+    "En": "Store",
+    "Ar": "متجر"
   },
   {
     "name": "the_store",
-    "en": "The Store",
-    "ar": "المتجر"
+    "En": "The Store",
+    "Ar": "المتجر"
   },
   {
     "name": "stores_new",
-    "en": "New Store",
-    "ar": "متجر جديدة"
+    "En": "New Store",
+    "Ar": "متجر جديدة"
   },
   {
     "name": "stores_add",
-    "en": "Add Store",
-    "ar": "إضافة متجر "
+    "En": "Add Store",
+    "Ar": "إضافة متجر "
   },
   {
     "name": "stores_edit",
-    "en": "Edit Store",
-    "ar": "تعديل متجر "
+    "En": "Edit Store",
+    "Ar": "تعديل متجر "
   },
   {
     "name": "stores_details",
-    "en": "Store Details",
-    "ar": "تفاصيل المتجر "
+    "En": "Store Details",
+    "Ar": "تفاصيل المتجر "
   },
   {
     "name": "stores_delete",
-    "en": "Delete Store",
-    "ar": "حذف متجر "
+    "En": "Delete Store",
+    "Ar": "حذف متجر "
   },
   {
     "name": "store_name",
-    "en": "Store Name",
-    "ar": "إسم المتجر"
+    "En": "Store Name",
+    "Ar": "إسم المتجر"
   },
   {
     "name": "store_name_en",
-    "en": "Store Name En",
-    "ar": "إسم المتجر إنجليزي"
+    "En": "Store Name En",
+    "Ar": "إسم المتجر إنجليزي"
   },
   {
     "name": "store_images",
-    "en": "Store Images",
-    "ar": "صور المتجر"
+    "En": "Store Images",
+    "Ar": "صور المتجر"
   },
   {
     "name": "comments",
-    "en": "Comments",
-    "ar": "التعليقات"
+    "En": "Comments",
+    "Ar": "التعليقات"
   },
   {
     "name": "comment",
-    "en": "Comment",
-    "ar": "التعليق"
+    "En": "Comment",
+    "Ar": "التعليق"
   },
   {
     "name": "maximum_order",
-    "en": "Maximum order",
-    "ar": "أقصى حد للطلب"
+    "En": "Maximum order",
+    "Ar": "أقصى حد للطلب"
   },
   {
     "name": "minimum_order",
-    "en": "Minimum order",
-    "ar": "أقل حد للطلب"
+    "En": "Minimum order",
+    "Ar": "أقل حد للطلب"
   },
   {
     "name": "store_rating",
-    "en": "Store Rating",
-    "ar": "تقييم المتجر"
+    "En": "Store Rating",
+    "Ar": "تقييم المتجر"
   },
 
   {
     "name": "number_views",
-    "en": "Number of Views",
-    "ar": "عدد المشاهدات"
+    "En": "Number of Views",
+    "Ar": "عدد المشاهدات"
   },
   {
     "name": "number_likes",
-    "en": "Number of Likes",
-    "ar": "عدد اللايكات"
+    "En": "Number of Likes",
+    "Ar": "عدد اللايكات"
   },
   {
     "name": "maximum_number_stores_exceeded",
-    "en": "Maximum number of stores exceeded",
-    "ar": "تم تخطي الحد الأقصى من عدد المتاجر"
+    "En": "Maximum number of stores exceeded",
+    "Ar": "تم تخطي الحد الأقصى من عدد المتاجر"
   },
   {
     "name": "quantities",
-    "en": "Quantities",
-    "ar": "الكميات"
+    "En": "Quantities",
+    "Ar": "الكميات"
   }
 ]

@@ -1,52 +1,52 @@
 [{
         "name": "lecture",
-        "en": "Lecture",
-        "ar": "المحاضرة"
+        "En": "Lecture",
+        "Ar": "المحاضرة"
     },
     {
         "name": "lectures",
-        "en": "Lectures",
-        "ar": "المحاضرات"
+        "En": "Lectures",
+        "Ar": "المحاضرات"
     },
     {
         "name": "lecture_new",
-        "en": "New Lecture",
-        "ar": "محاضرة جديد"
+        "En": "New Lecture",
+        "Ar": "محاضرة جديد"
     },
     {
         "name": "lecture_time",
-        "en": "Lecture Time",
-        "ar": "ميعاد المحاضرة "
+        "En": "Lecture Time",
+        "Ar": "ميعاد المحاضرة "
     },
     {
         "name": "lecture_add",
-        "en": "Add Lecture",
-        "ar": "إضافة محاضرة "
+        "En": "Add Lecture",
+        "Ar": "إضافة محاضرة "
     },
     {
         "name": "lecture_edit",
-        "en": "Edit Lecture",
-        "ar": "تعديل محاضرة "
+        "En": "Edit Lecture",
+        "Ar": "تعديل محاضرة "
     },
     {
         "name": "lecture_details",
-        "en": "Lecture Details",
-        "ar": "تفاصيل المحاضرة "
+        "En": "Lecture Details",
+        "Ar": "تفاصيل المحاضرة "
     },
     {
         "name": "lecture_delete",
-        "en": "Delete Lecture",
-        "ar": "حذف محاضرة "
+        "En": "Delete Lecture",
+        "Ar": "حذف محاضرة "
     },
     {
         "name": "lecture_name",
-        "en": "Lecture Name",
-        "ar": "إسم المحاضرة "
+        "En": "Lecture Name",
+        "Ar": "إسم المحاضرة "
     },
     {
         "name": "lecture_price",
-        "en": "Lecture Price",
-        "ar": "سعر المحاضرة "
+        "En": "Lecture Price",
+        "Ar": "سعر المحاضرة "
     }
 
 

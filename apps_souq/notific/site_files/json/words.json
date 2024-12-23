@@ -1,32 +1,32 @@
 [
   {
     "name": "there_new_response_ad", 
-    "en": "There is a new response to the ad",
-    "ar": "يوجد رد جديد على الإعلان"
+    "En": "There is a new response to the ad",
+    "Ar": "يوجد رد جديد على الإعلان"
   },
   {
     "name": "there_new_response_follow_ad",
-    "en": "There is a new reply to an ad you followed",
-    "ar": "يوجد رد جديد على إعلان قمت بمتابعته"
+    "En": "There is a new reply to an ad you followed",
+    "Ar": "يوجد رد جديد على إعلان قمت بمتابعته"
   },
   {
     "name": "new_comment_on",
-    "en": "New comment on",
-    "ar": "تعليق جديد على"
+    "En": "New comment on",
+    "Ar": "تعليق جديد على"
   },
   {
     "name": "there_is_new_ad",
-    "en": "There is a new ad",
-    "ar": "يوجد إعلان جديد"
+    "En": "There is a new ad",
+    "Ar": "يوجد إعلان جديد"
   },
   {
     "name": "there_new_private_message",
-    "en": "There is a new private message",
-    "ar": "يوجد رسالة خاصة جديدة"
+    "En": "There is a new private message",
+    "Ar": "يوجد رسالة خاصة جديدة"
   },
   {
     "name": "new_private_message_from",
-    "en": "New private message from",
-    "ar": "رسالة خاصة جديدة من"
+    "En": "New private message from",
+    "Ar": "رسالة خاصة جديدة من"
   }
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "shifts_admin",
-    "en": "Shifts Admin",
-    "ar": "إدارة الشيفتات",
+    "En": "Shifts Admin",
+    "Ar": "إدارة الشيفتات",
     "permissions": ["shifts_manage"]
 }]

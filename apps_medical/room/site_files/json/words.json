@@ -1,41 +1,41 @@
 [{
         "name": "rooms",
-        "en": "Rooms",
-        "ar": "الحجرات"
+        "En": "Rooms",
+        "Ar": "الحجرات"
     },
     {
         "name": "room_new",
-        "en": "New Room",
-        "ar": "حجرة جديد"
+        "En": "New Room",
+        "Ar": "حجرة جديد"
     },
     {
         "name": "room",
-        "en": "Room",
-        "ar": "الحجرة"
+        "En": "Room",
+        "Ar": "الحجرة"
     },
     {
         "name": "room_add",
-        "en": "Add Room",
-        "ar": "إضافة حجرة "
+        "En": "Add Room",
+        "Ar": "إضافة حجرة "
     },
     {
         "name": "room_edit",
-        "en": "Edit Room",
-        "ar": "تعديل حجرة "
+        "En": "Edit Room",
+        "Ar": "تعديل حجرة "
     },
     {
         "name": "room_details",
-        "en": "Room Details",
-        "ar": "تفاصيل الحجرة "
+        "En": "Room Details",
+        "Ar": "تفاصيل الحجرة "
     },
     {
         "name": "room_delete",
-        "en": "Delete Room",
-        "ar": "حذف حجرة "
+        "En": "Delete Room",
+        "Ar": "حذف حجرة "
     },
     {
         "name": "room_name",
-        "en": "Room Name",
-        "ar": "إسم الحجرة "
+        "En": "Room Name",
+        "Ar": "إسم الحجرة "
     }
 ]

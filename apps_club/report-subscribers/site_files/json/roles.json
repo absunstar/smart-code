@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_subscribers_admin",
-    "en": "Account statement Admin",
-    "ar": "إدارة كشف حساب المشتركين",
+    "En": "Account statement Admin",
+    "Ar": "إدارة كشف حساب المشتركين",
     "permissions": ["report_subscribers_manage"]
 }]

@@ -1,62 +1,62 @@
 [
     {
         "name": "currencies",
-        "en": "Currencies",
-        "ar": "العملات"
+        "En": "Currencies",
+        "Ar": "العملات"
     },
     {
         "name": "currency",
-        "en": "Currency",
-        "ar": "العملة"
+        "En": "Currency",
+        "Ar": "العملة"
     },
     {
         "name": "currency_name",
-        "en": "Currency Name",
-        "ar": "إسم العملة"
+        "En": "Currency Name",
+        "Ar": "إسم العملة"
     },
     {
         "name": "err_delete_currency",
-        "en": "The currency cannot be deleted for other transactions",
-        "ar": "لأ يمكن حذف العملة لإستخدامها في معاملات أخرى"
+        "En": "The currency cannot be deleted for other transactions",
+        "Ar": "لأ يمكن حذف العملة لإستخدامها في معاملات أخرى"
     },
     {
         "name": "minor_currency",
-        "en": "Minor Currency",
-        "ar": "العملة الصغرى"
+        "En": "Minor Currency",
+        "Ar": "العملة الصغرى"
     },
     {
         "name": "minor_currency_en",
-        "en": "En. Minor Currency",
-        "ar": "العملة الصغرى بالإنجليزي"
+        "En": "En. Minor Currency",
+        "Ar": "العملة الصغرى بالإنجليزي"
     },
     {
         "name": "ex_rate",
-        "en": "Exchange rate",
-        "ar": "سعر الصرف"
+        "En": "Exchange rate",
+        "Ar": "سعر الصرف"
     },
     {
         "name": "currency_new",
-        "en": "New Currency",
-        "ar": "عملة  جديد"
+        "En": "New Currency",
+        "Ar": "عملة  جديد"
     },
     {
         "name": "currency_add",
-        "en": "Add Currency",
-        "ar": "إضافة عملة "
+        "En": "Add Currency",
+        "Ar": "إضافة عملة "
     },
     {
         "name": "currency_edit",
-        "en": "Edit Currency",
-        "ar": "تعديل عملة "
+        "En": "Edit Currency",
+        "Ar": "تعديل عملة "
     },
     {
         "name": "currency_details",
-        "en": "Currency Details",
-        "ar": "تفاصيل العملة "
+        "En": "Currency Details",
+        "Ar": "تفاصيل العملة "
     },
     {
         "name": "currency_delete",
-        "en": "Delete Currency",
-        "ar": "حذف عملة "
+        "En": "Delete Currency",
+        "Ar": "حذف عملة "
     }
 ]

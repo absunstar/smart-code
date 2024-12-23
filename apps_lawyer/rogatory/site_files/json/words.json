@@ -1,22 +1,22 @@
 [
-    {"name" : "rogatory_informations" , "en" : "Rogatory Add Informations" , "ar" : "بيانات إضافة التوكيل"},
+    {"name" : "rogatory_informations" , "En" : "Rogatory Add Informations" , "Ar" : "بيانات إضافة التوكيل"},
 
-    {"name" : "rogatories" , "en" : "Rogatories" , "ar" : "التوكيلات"},
-    {"name" : "rogatory" , "en" : "Rogatory" , "ar" : "التوكيل"},
-    {"name" : "rogatory_start_date" , "en" : "Rogatory Start Date" , "ar" : "تاريخ التوكيل"},
-    {"name" : "rogatory_menus" , "en" : "Rogatory Menu" , "ar" : "قائمة التوكيل"},
-    {"name" : "rogatory_code" , "en" : "Rogatory Code" , "ar" : "كود توكيل"},
-    {"name" : "rogatory_name" , "en" : "Rogatory Name" , "ar" : "إسم توكيل"},
-    {"name" : "rogatory_number" , "en" : "Rogatory Number" , "ar" : "رقم توكيل"},
-    {"name" : "rogatory_year" , "en" : "For A Year" , "ar" : "لسنة"},
-    {"name" : "rogatory_character" , "en" : "Rogatory Character" , "ar" : "حرف التوكيل"},
-    {"name" : "rogatory_place" , "en" : "Rogatory Place" , "ar" : "مكان التوكيل"},
-    {"name" : "rogatory_type" , "en" : "Rogatory Type" , "ar" : "نوع التوكيل"},
+    {"name" : "rogatories" , "En" : "Rogatories" , "Ar" : "التوكيلات"},
+    {"name" : "rogatory" , "En" : "Rogatory" , "Ar" : "التوكيل"},
+    {"name" : "rogatory_start_date" , "En" : "Rogatory Start Date" , "Ar" : "تاريخ التوكيل"},
+    {"name" : "rogatory_menus" , "En" : "Rogatory Menu" , "Ar" : "قائمة التوكيل"},
+    {"name" : "rogatory_code" , "En" : "Rogatory Code" , "Ar" : "كود توكيل"},
+    {"name" : "rogatory_name" , "En" : "Rogatory Name" , "Ar" : "إسم توكيل"},
+    {"name" : "rogatory_number" , "En" : "Rogatory Number" , "Ar" : "رقم توكيل"},
+    {"name" : "rogatory_year" , "En" : "For A Year" , "Ar" : "لسنة"},
+    {"name" : "rogatory_character" , "En" : "Rogatory Character" , "Ar" : "حرف التوكيل"},
+    {"name" : "rogatory_place" , "En" : "Rogatory Place" , "Ar" : "مكان التوكيل"},
+    {"name" : "rogatory_type" , "En" : "Rogatory Type" , "Ar" : "نوع التوكيل"},
 
-    {"name" : "rogatory_new" , "en" : "New Rogatory" , "ar" : "توكيل جديد"},
-    {"name" : "rogatory_details" , "en" : "Rogatory Details" , "ar" : "تفاصيل توكيل"},
-    {"name" : "rogatory_update" , "en" : "Edit Rogatory" , "ar" : "تعديل توكيل"},
-    {"name" : "rogatory_delete" , "en" : "Delte Rogatory" , "ar" : "حذف توكيل"},
-    {"name" : "rogatory_add_name" , "en" : "Add Rogatory" , "ar" : "إضافة توكيل"}
+    {"name" : "rogatory_new" , "En" : "New Rogatory" , "Ar" : "توكيل جديد"},
+    {"name" : "rogatory_details" , "En" : "Rogatory Details" , "Ar" : "تفاصيل توكيل"},
+    {"name" : "rogatory_update" , "En" : "Edit Rogatory" , "Ar" : "تعديل توكيل"},
+    {"name" : "rogatory_delete" , "En" : "Delte Rogatory" , "Ar" : "حذف توكيل"},
+    {"name" : "rogatory_add_name" , "En" : "Add Rogatory" , "Ar" : "إضافة توكيل"}
     
 ]

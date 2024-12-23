@@ -1,518 +1,518 @@
 [
     {
         "name": "stores_items_add",
-        "en": "Add Item",
-        "ar": "إضافة صنف"
+        "En": "Add Item",
+        "Ar": "إضافة صنف"
     },
     {
         "name": "kitchen_handel",
-        "en": "Kitchen Handel",
-        "ar": "هندلة المطابخ"
+        "En": "Kitchen Handel",
+        "Ar": "هندلة المطابخ"
     },
     {
         "name": "re_order_limit",
-        "en": "Re-Order Limit",
-        "ar": "حد إعادة الطلب"
+        "En": "Re-Order Limit",
+        "Ar": "حد إعادة الطلب"
     },
     {
         "name": "add_sizes",
-        "en": "Add Sizes",
-        "ar": "إضافة مقاسات"
+        "En": "Add Sizes",
+        "Ar": "إضافة مقاسات"
     },
     {
         "name": "kitchen_set",
-        "en": "kitchen Set",
-        "ar": "تعيين مطبخ"
+        "En": "kitchen Set",
+        "Ar": "تعيين مطبخ"
     },
     {
         "name": "items_search",
-        "en": "Items search",
-        "ar": "بحث الأصناف"
+        "En": "Items search",
+        "Ar": "بحث الأصناف"
     },
     {
         "name": "item_type",
-        "en": "Item Type",
-        "ar": "نوع الصنف"
+        "En": "Item Type",
+        "Ar": "نوع الصنف"
     },
     {
         "name": "work_patch",
-        "en": "Works Patch (Validity)",
-        "ar": "يعمل بالتشغيلة (بالصلاحية)"
+        "En": "Works Patch (Validity)",
+        "Ar": "يعمل بالتشغيلة (بالصلاحية)"
     },
     {
         "name": "work_serial",
-        "en": "Works Serial",
-        "ar": "يعمل بالسيريال"
+        "En": "Works Serial",
+        "Ar": "يعمل بالسيريال"
     },
     {
         "name": "patch",
-        "en": "Patch",
-        "ar": "التشغيلة"
+        "En": "Patch",
+        "Ar": "التشغيلة"
     },
     {
         "name": "indications",
-        "en": "Indications",
-        "ar": "دواعي الإستعمال"
+        "En": "Indications",
+        "Ar": "دواعي الإستعمال"
     },
     {
         "name": "contraindications",
-        "en": "Contraindications",
-        "ar": "موانع الإستعمال"
+        "En": "Contraindications",
+        "Ar": "موانع الإستعمال"
     },
     {
         "name": "how_use",
-        "en": "How To Use",
-        "ar": "طريقة الإستعمال"
+        "En": "How To Use",
+        "Ar": "طريقة الإستعمال"
     },
     {
         "name": "information_instructions",
-        "en": "Information Instructions",
-        "ar": "معلومات إرشادية"
+        "En": "Information Instructions",
+        "Ar": "معلومات إرشادية"
     },
     {
         "name": "service_item",
-        "en": "Service Item",
-        "ar": "صنف خدمي"
+        "En": "Service Item",
+        "Ar": "صنف خدمي"
     },
     {
         "name": "patches_list",
-        "en": "Serials List",
-        "ar": "قائمة السيريالات"
+        "En": "Serials List",
+        "Ar": "قائمة السيريالات"
     },
     {
         "name": "production_date",
-        "en": "Production Date",
-        "ar": "تاريخ الإنتاج"
+        "En": "Production Date",
+        "Ar": "تاريخ الإنتاج"
     },
     {
         "name": "expiry_date",
-        "en": "Expiry date",
-        "ar": "تاريخ الإنتهاء"
+        "En": "Expiry date",
+        "Ar": "تاريخ الإنتهاء"
     },
     {
         "name": "validit",
-        "en": "Days of validity",
-        "ar": "أيام الصلاحية"
+        "En": "Days of validity",
+        "Ar": "أيام الصلاحية"
     },
     {
         "name": "must_expiry",
-        "en": "The validity period must be entered",
-        "ar": "يجب إدخال مدة الصلاحية"
+        "En": "The validity period must be entered",
+        "Ar": "يجب إدخال مدة الصلاحية"
     },
     {
         "name": "stores_items_new",
-        "en": "New Item",
-        "ar": "صنف جديد"
+        "En": "New Item",
+        "Ar": "صنف جديد"
     },
     {
         "name": "under_stock",
-        "en": "Under Stock",
-        "ar": "تحت الجرد"
+        "En": "Under Stock",
+        "Ar": "تحت الجرد"
     },
     {
         "name": "handel_items",
-        "en": "Handel Items",
-        "ar": "هندلة الأصناف"
+        "En": "Handel Items",
+        "Ar": "هندلة الأصناف"
     },
     {
         "name": "value_added",
-        "en": "Value Added",
-        "ar": "القيمة المضافة"
+        "En": "Value Added",
+        "Ar": "القيمة المضافة"
     },
     {
         "name": "not_value_added",
-        "en": "Not subject to value added",
-        "ar": "لا يخضع للقيمة المضافة"
+        "En": "Not subject to value added",
+        "Ar": "لا يخضع للقيمة المضافة"
     },
     {
         "name": "unit_discount_err",
-        "en": "The Discount Is Greater Than The Maximum Discount In Sizes",
-        "ar": "الخصم أكبر من الحد الأقصى للخصم في المقاسات"
+        "En": "The Discount Is Greater Than The Maximum Discount In Sizes",
+        "Ar": "الخصم أكبر من الحد الأقصى للخصم في المقاسات"
     },
     {
         "name": "err_size",
-        "en": "Cant Delete Size Its Exist In Other Transaction",
-        "ar": "لا يمكن حذف المقاس لإستخدامه في معاملات أخرى"
+        "En": "Cant Delete Size Its Exist In Other Transaction",
+        "Ar": "لا يمكن حذف المقاس لإستخدامه في معاملات أخرى"
     },
     {
         "name": "err_item",
-        "en": "Cant Delete Item Its Exist In Other Transaction",
-        "ar": "لا يمكن حذف الصنف لإستخدامه في معاملات أخرى"
+        "En": "Cant Delete Item Its Exist In Other Transaction",
+        "Ar": "لا يمكن حذف الصنف لإستخدامه في معاملات أخرى"
     },
     {
         "name": "err_Item_must_correctly",
-        "en": "Item Must Be Entered Correctly",
-        "ar": "يجب إدخال الكمية و الصنف بشكل صحيح"
+        "En": "Item Must Be Entered Correctly",
+        "Ar": "يجب إدخال الكمية و الصنف بشكل صحيح"
     },
     {
         "name": "stores_items_delete",
-        "en": "Delete Item",
-        "ar": "حذف صنف"
+        "En": "Delete Item",
+        "Ar": "حذف صنف"
     },
     {
         "name": "item_count",
-        "en": "Item count",
-        "ar": "عدد الصنف"
+        "En": "Item count",
+        "Ar": "عدد الصنف"
     },
     {
         "name": "barcode",
-        "en": "Barcode",
-        "ar": "كود / باركود"
+        "En": "Barcode",
+        "Ar": "كود / باركود"
     },
     {
         "name": "main_unit",
-        "en": "Main Unit",
-        "ar": "الوحدة الرئيسية"
+        "En": "Main Unit",
+        "Ar": "الوحدة الرئيسية"
     },
     {
         "name": "add_unit",
-        "en": "Add Unit",
-        "ar": "إضافة وحدة"
+        "En": "Add Unit",
+        "Ar": "إضافة وحدة"
     },
     {
         "name": "units_data",
-        "en": "Units data",
-        "ar": "بيانات الوحدات"
+        "En": "Units data",
+        "Ar": "بيانات الوحدات"
     },
     {
         "name": "unit_convert",
-        "en": "Unit Conversion",
-        "ar": "تحويل الوحدة"
+        "En": "Unit Conversion",
+        "Ar": "تحويل الوحدة"
     },
     {
         "name": "err_barcode",
-        "en": "Must Enter Barcode",
-        "ar": "يجب إدخال كود / باركود"
+        "En": "Must Enter Barcode",
+        "Ar": "يجب إدخال كود / باركود"
     },
     {
         "name": "err_barcode_units",
-        "en": "Must Enter Units Barcode In Sizes",
-        "ar": "يجب إدخال كود / باركود للوحدات في المقاسات"
+        "En": "Must Enter Units Barcode In Sizes",
+        "Ar": "يجب إدخال كود / باركود للوحدات في المقاسات"
     },
     {
         "name": "err_barcode_exist",
-        "en": "Barcode Exists",
-        "ar": "كود / باركود مسجل من قبل"
+        "En": "Barcode Exists",
+        "Ar": "كود / باركود مسجل من قبل"
     },
     {
         "name": "item_name",
-        "en": "Item Name",
-        "ar": "إسم الصنف"
+        "En": "Item Name",
+        "Ar": "إسم الصنف"
     },
     {
         "name": "stores_items_edit",
-        "en": "Edit Item",
-        "ar": "تعديل صنف"
+        "En": "Edit Item",
+        "Ar": "تعديل صنف"
     },
     {
         "name": "stores_items_details",
-        "en": "Item Details",
-        "ar": "تفاصيل صنف"
+        "En": "Item Details",
+        "Ar": "تفاصيل صنف"
     },
     {
         "name": "stores_items_name",
-        "en": "Item Name",
-        "ar": "إسم الصنف"
+        "En": "Item Name",
+        "Ar": "إسم الصنف"
     },
     {
         "name": "add_complex_items",
-        "en": "Add Complex Items",
-        "ar": "إضافة أصناف مجمعة"
+        "En": "Add Complex Items",
+        "Ar": "إضافة أصناف مجمعة"
     },
     {
         "name": "Err_should_select_item",
-        "en": "Should Select Item",
-        "ar": "يجب إختيار صنف"
+        "En": "Should Select Item",
+        "Ar": "يجب إختيار صنف"
     },
     {
         "name": "dublicate_item",
-        "en": "Dublicate Item",
-        "ar": "الصنف مكرر"
+        "En": "Dublicate Item",
+        "Ar": "الصنف مكرر"
     },
     {
         "name": "err_delete_unit",
-        "en": "Cant Delete Because Found Items Related With Unit",
-        "ar": "لا يمكن الحذف لوجود أصناف مرتبطة بالوحدة"
+        "En": "Cant Delete Because Found Items Related With Unit",
+        "Ar": "لا يمكن الحذف لوجود أصناف مرتبطة بالوحدة"
     },
     {
         "name": "maximum_discount",
-        "en": "Maximum Discount",
-        "ar": "أقصى خصم"
+        "En": "Maximum Discount",
+        "Ar": "أقصى خصم"
     },
     {
         "name": "units_price",
-        "en": "Units Price",
-        "ar": "أسعار الوحدات"
+        "En": "Units Price",
+        "Ar": "أسعار الوحدات"
     },
     {
         "name": "complex_items",
-        "en": "Complex Items",
-        "ar": "تفاصيل الأصناف المجمعة"
+        "En": "Complex Items",
+        "Ar": "تفاصيل الأصناف المجمعة"
     },
     {
         "name": "stores_items_img",
-        "en": "Item Image",
-        "ar": "صور الصنف"
+        "En": "Item Image",
+        "Ar": "صور الصنف"
     },
     {
         "name": "stores_items_factory_code",
-        "en": "Factory Code",
-        "ar": "كود المصنع"
+        "En": "Factory Code",
+        "Ar": "كود المصنع"
     },
     {
         "name": "stores_items_factory_name",
-        "en": "Factory Name",
-        "ar": "إسم المصنع"
+        "En": "Factory Name",
+        "Ar": "إسم المصنع"
     },
     {
         "name": "stores_items_Company_code",
-        "en": "vendor Code",
-        "ar": "كود المورد"
+        "En": "vendor Code",
+        "Ar": "كود المورد"
     },
     {
         "name": "stores_items_Company_name",
-        "en": "vendor Name",
-        "ar": "إسم المورد"
+        "En": "vendor Name",
+        "Ar": "إسم المورد"
     },
     {
         "name": "stores_items_season",
-        "en": "Season",
-        "ar": "الموسم"
+        "En": "Season",
+        "Ar": "الموسم"
     },
     {
         "name": "stores_items_section",
-        "en": "Section",
-        "ar": "القسم"
+        "En": "Section",
+        "Ar": "القسم"
     },
     {
         "name": "should_add_items",
-        "en": "Should Add Items",
-        "ar": "يجب إضافة أصناف"
+        "En": "Should Add Items",
+        "Ar": "يجب إضافة أصناف"
     },
     {
         "name": "stores_items_sizes",
-        "en": "Sizes",
-        "ar": "مقاسات الصنف"
+        "En": "Sizes",
+        "Ar": "مقاسات الصنف"
     },
     {
         "name": "add_items_sizes",
-        "en": "Add Sizes",
-        "ar": "إضافة مقاسات للصنف"
+        "En": "Add Sizes",
+        "Ar": "إضافة مقاسات للصنف"
     },
     {
         "name": "stores_items_size",
-        "en": "Sizes",
-        "ar": "حجم / مقاس"
+        "En": "Sizes",
+        "Ar": "حجم / مقاس"
     },
     {
         "name": "stores_items_add_size",
-        "en": "Add Size",
-        "ar": "أضف الى المقاسات والاحجام"
+        "En": "Add Size",
+        "Ar": "أضف الى المقاسات والاحجام"
     },
     {
         "name": "stores_items_cost",
-        "en": "Cost",
-        "ar": "سعر الشراء"
+        "En": "Cost",
+        "Ar": "سعر الشراء"
     },
     {
         "name": "stores_items_price",
-        "en": "Price",
-        "ar": "سعر البيع"
+        "En": "Price",
+        "Ar": "سعر البيع"
     },
 
     {
         "name": "average_cost",
-        "en": "Average Cost",
-        "ar": "متوسط التكلفة"
+        "En": "Average Cost",
+        "Ar": "متوسط التكلفة"
     },
     {
         "name": "total_average_cost",
-        "en": "Total Average Cost",
-        "ar": "إجمالي متوسط التكلفة"
+        "En": "Total Average Cost",
+        "Ar": "إجمالي متوسط التكلفة"
     },
     {
         "name": "total_selling_price",
-        "en": "Total Selling Price",
-        "ar": "إجمالي سعر المبيعات"
+        "En": "Total Selling Price",
+        "Ar": "إجمالي سعر المبيعات"
     },
     {
         "name": "total_selling_count",
-        "en": "Total Selling Count",
-        "ar": "إجمالي عدد المبيعات"
+        "En": "Total Selling Count",
+        "Ar": "إجمالي عدد المبيعات"
     },
     {
         "name": "stores_items_start_count",
-        "en": "Start Count",
-        "ar": "الرصيد الافتتاحى"
+        "En": "Start Count",
+        "Ar": "الرصيد الافتتاحى"
     },
     {
         "name": "stores_items_with_discount",
-        "en": "With Discount",
-        "ar": "بخصم"
+        "En": "With Discount",
+        "Ar": "بخصم"
     },
     {
         "name": "stores_items_صory",
-        "en": "Item Group",
-        "ar": "مجموعة الصنف"
+        "En": "Item Group",
+        "Ar": "مجموعة الصنف"
     },
     {
         "name": "accounting_details",
-        "en": "Accounting Details",
-        "ar": "تفاصيل الحسابات"
+        "En": "Accounting Details",
+        "Ar": "تفاصيل الحسابات"
     },
     {
         "name": "stores_items_complex",
-        "en": "Complex Item",
-        "ar": "صنف مجمع"
+        "En": "Complex Item",
+        "Ar": "صنف مجمع"
     },
     {
         "name": "stores_items_aggregation",
-        "en": "Aggregation Item",
-        "ar": "تجميع الصنف"
+        "En": "Aggregation Item",
+        "Ar": "تجميع الصنف"
     },
     {
         "name": "stores_items_allow_sell",
-        "en": "Allow Sell",
-        "ar": "قابل للبيع"
+        "En": "Allow Sell",
+        "Ar": "قابل للبيع"
     },
     {
         "name": "stores_items_allow_buy",
-        "en": "Allow Buy",
-        "ar": "قابل للشراء"
+        "En": "Allow Buy",
+        "Ar": "قابل للشراء"
     },
     {
         "name": "stores_items_is_pos",
-        "en": "Appear on touch screen",
-        "ar": "ظهور في شاشة التاتش"
+        "En": "Appear on touch screen",
+        "Ar": "ظهور في شاشة التاتش"
     },
     {
         "name": "item_group",
-        "en": " Items Gruop",
-        "ar": "مجموعة الصنف"
+        "En": " Items Gruop",
+        "Ar": "مجموعة الصنف"
     },
     {
         "name": "stores_size",
-        "en": "Sizes",
-        "ar": "المقاس"
+        "En": "Sizes",
+        "Ar": "المقاس"
     },
     {
         "name": "stores_cost",
-        "en": "Cost",
-        "ar": "سعر الشراء"
+        "En": "Cost",
+        "Ar": "سعر الشراء"
     },
     {
         "name": "stores_price",
-        "en": "Price",
-        "ar": "سعر البيع"
+        "En": "Price",
+        "Ar": "سعر البيع"
     },
     {
         "name": "no_items",
-        "en": "No Items",
-        "ar": "لاتوجد مقاسات"
+        "En": "No Items",
+        "Ar": "لاتوجد مقاسات"
     },
     {
         "name": "stores_items",
-        "en": "Stores Items",
-        "ar": "الأصناف المخزنية"
+        "En": "Stores Items",
+        "Ar": "الأصناف المخزنية"
     },
     {
         "name": "inventory_stores_items",
-        "en": "Stores Items",
-        "ar": "الأصناف المخزنية"
+        "En": "Stores Items",
+        "Ar": "الأصناف المخزنية"
     },
     {
         "name": "stores_items_with_discount_yes",
-        "en": "Yes",
-        "ar": "نعم"
+        "En": "Yes",
+        "Ar": "نعم"
     },
     {
         "name": "stores_items_with_discount_no",
-        "en": "No",
-        "ar": "لا"
+        "En": "No",
+        "Ar": "لا"
     },
     {
         "name": "err_discount_value",
-        "en": "The Discount Must Be Less Than maximum Discount",
-        "ar": "يجب أن يكون الخصم أقل من أقصى خصم"
+        "En": "The Discount Must Be Less Than maximum Discount",
+        "Ar": "يجب أن يكون الخصم أقل من أقصى خصم"
     },
     {
         "name": "stores_search",
-        "en": "Search",
-        "ar": "بحث"
+        "En": "Search",
+        "Ar": "بحث"
     },
     {
         "name": "stores_empty_search",
-        "en": "Empty Search",
-        "ar": "تفريغ الحقول"
+        "En": "Empty Search",
+        "Ar": "تفريغ الحقول"
     },
     {
         "name": "stores_items_search_all",
-        "en": "Search All",
-        "ar": "بحث شامل"
+        "En": "Search All",
+        "Ar": "بحث شامل"
     },
     {
         "name": "stores_items_count",
-        "en": "Result Count",
-        "ar": "نتائج البحث"
+        "En": "Result Count",
+        "Ar": "نتائج البحث"
     },
     {
         "name": "stores_items_balance_Gt",
-        "en": "Balance Greater Thans",
-        "ar": "الرصيد اكبر من "
+        "En": "Balance Greater Thans",
+        "Ar": "الرصيد اكبر من "
     },
     {
         "name": "stores_items_balance_Lt",
-        "en": "Balance Lower Thans",
-        "ar": "الرصيد اقل من "
+        "En": "Balance Lower Thans",
+        "Ar": "الرصيد اقل من "
     },
     {
         "name": "warning_message",
-        "en": "Waring ! if you delete that item there will a supply out will be created automatically",
-        "ar": "  تحذير هام ! فى حالة حذف الصنف سوف يتم عمل إذن خروج تلقائيا  "
+        "En": "Waring ! if you delete that item there will a supply out will be created automatically",
+        "Ar": "  تحذير هام ! فى حالة حذف الصنف سوف يتم عمل إذن خروج تلقائيا  "
     },
     {
         "name": "stores_items_store_name",
-        "en": "Store",
-        "ar": "المخزن "
+        "En": "Store",
+        "Ar": "المخزن "
     },
     {
         "name": "stores_items_logo",
-        "en": "Logo",
-        "ar": "الشعار"
+        "En": "Logo",
+        "Ar": "الشعار"
     },
     {
         "name": "stores_start_balance",
-        "en": "Start Balance",
-        "ar": "الرصيد الإفتتاحى"
+        "En": "Start Balance",
+        "Ar": "الرصيد الإفتتاحى"
     },
     {
         "name": "stores_current_balance",
-        "en": "Current Balance",
-        "ar": "الرصيد الحالى "
+        "En": "Current Balance",
+        "Ar": "الرصيد الحالى "
     },
     {
         "name": "no_vendor_error",
-        "en": "please choose vendor",
-        "ar": " يرجى اختيار المورد بشكل صحيح "
+        "En": "please choose vendor",
+        "Ar": " يرجى اختيار المورد بشكل صحيح "
     },
     {
         "name": "no_store_error",
-        "en": "please choose store",
-        "ar": " يرجى اختيار المخزن بشكل صحيح "
+        "En": "please choose store",
+        "Ar": " يرجى اختيار المخزن بشكل صحيح "
     },
     {
         "name": "no_size_error",
-        "en": "Please type the item name correctly",
-        "ar": "يرجى كتابة إسم الصنف بشكل صحيح"
+        "En": "Please type the item name correctly",
+        "Ar": "يرجى كتابة إسم الصنف بشكل صحيح"
     },
     {
         "name": "stores_in_صry",
-        "en": "Classfication",
-        "ar": "  التصنيف "
+        "En": "Classfication",
+        "Ar": "  التصنيف "
     },
     {
         "name": "stores_items_all_details",
-        "en": "Item Details",
-        "ar": "تفاصيل الأصناف"
+        "En": "Item Details",
+        "Ar": "تفاصيل الأصناف"
     }
 ]

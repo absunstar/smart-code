@@ -1,716 +1,716 @@
 [
     {
         "name": "brand_title",
-        "en": "Smart Code",
-        "ar": "سمـارت كـود"
+        "En": "Smart Code",
+        "Ar": "سمـارت كـود"
     },
     {
         "name": "brand_tag",
-        "en": "Enterprise Resources Planing",
-        "ar": "نظام إدارة المدرسة"
+        "En": "Enterprise Resources Planing",
+        "Ar": "نظام إدارة المدرسة"
     },
         {
         "name": "track_opening_closing_shift",
-        "en": "Track opening and closing of the Year School",
-        "ar": "تتبع فتح و غلق العام الدراسي"
+        "En": "Track opening and closing of the Year School",
+        "Ar": "تتبع فتح و غلق العام الدراسي"
     },
     {
         "name": "yes",
-        "en": "Yes",
-        "ar": "نعم"
+        "En": "Yes",
+        "Ar": "نعم"
     },
     {
         "name": "no",
-        "en": "No",
-        "ar": "لا"
+        "En": "No",
+        "Ar": "لا"
     },
     {
         "name": "school_fees",
-        "en": "School Fees",
-        "ar": "المصروفات الدراسية"
+        "En": "School Fees",
+        "Ar": "المصروفات الدراسية"
     },
     {
         "name": "re_open_shift",
-        "en": "Re-Open School Year",
-        "ar": "إعادة فتح العام الدراسي"
+        "En": "Re-Open School Year",
+        "Ar": "إعادة فتح العام الدراسي"
     },
     {
         "name": "customers",
-        "en": "Students",
-        "ar": "الطلاب"
+        "En": "Students",
+        "Ar": "الطلاب"
     },
    
     {
         "name": "customers_new",
-        "en": "New Student",
-        "ar": "طالب جديد"
+        "En": "New Student",
+        "Ar": "طالب جديد"
     },
     {
         "name": "customers_add",
-        "en": "Add Student",
-        "ar": "إضافة طالب"
+        "En": "Add Student",
+        "Ar": "إضافة طالب"
     },
     {
         "name": "customers_edit",
-        "en": "Student Edit",
-        "ar": "تعديل بيانات طالب"
+        "En": "Student Edit",
+        "Ar": "تعديل بيانات طالب"
     },
     {
         "name": "customers_details",
-        "en": "Student Details",
-        "ar": "تفاصيل طالب"
+        "En": "Student Details",
+        "Ar": "تفاصيل طالب"
     },
     {
         "name": "customers_delete",
-        "en": "Delete Student",
-        "ar": "حذف طالب"
+        "En": "Delete Student",
+        "Ar": "حذف طالب"
     },
     {
         "name": "customers_indentfy",
-        "en": "Student indentfy",
-        "ar": "نوع الطالب"
+        "En": "Student indentfy",
+        "Ar": "نوع الطالب"
     },
     {
         "name": "customers_personal_information",
-        "en": "Personal Information",
-        "ar": "البيانات الشخصية"
+        "En": "Personal Information",
+        "Ar": "البيانات الشخصية"
     },
     {
         "name": "customers_basic_information",
-        "en": "Basic Information",
-        "ar": "البيانات الاساسية"
+        "En": "Basic Information",
+        "Ar": "البيانات الاساسية"
     },
     {
         "name": "customers_code",
-        "en": "Student Code",
-        "ar": "كود الطالب"
+        "En": "Student Code",
+        "Ar": "كود الطالب"
     },
     {
         "name": "customers_name_ar",
-        "en": "Student Name Arabic",
-        "ar": "إسم الطالب بالعربي"
+        "En": "Student Name Arabic",
+        "Ar": "إسم الطالب بالعربي"
     },
     {
         "name": "customers_name_en",
-        "en": "Student Name English",
-        "ar": "إسم الطالب بالانجليزية"
+        "En": "Student Name English",
+        "Ar": "إسم الطالب بالانجليزية"
     },
     {
         "name": "customer_name",
-        "en": "Student Name",
-        "ar": "إسم الطالب"
+        "En": "Student Name",
+        "Ar": "إسم الطالب"
     },
     {
         "name": "customer",
-        "en": "Student ",
-        "ar": " الطالب"
+        "En": "Student ",
+        "Ar": " الطالب"
     },
     {
         "name": "order_slides_add",
-        "en": "Add Orders Slide",
-        "ar": "إضافة حساب شريحة جلسات"
+        "En": "Add Orders Slide",
+        "Ar": "إضافة حساب شريحة جلسات"
     },
     {
         "name": "order_slides",
-        "en": "Orders Slide",
-        "ar": "حساب شريحة جلسات"
+        "En": "Orders Slide",
+        "Ar": "حساب شريحة جلسات"
     },
     {
         "name": "menu_company",
-        "en": "Schools",
-        "ar": "المدارس"
+        "En": "Schools",
+        "Ar": "المدارس"
     },
     {
         "name": "order_slides_name",
-        "en": "Slide Name",
-        "ar": "إسم حساب الشريحة"
+        "En": "Slide Name",
+        "Ar": "إسم حساب الشريحة"
     },
     {
         "name": "order_slides_from",
-        "en": "Slide From",
-        "ar": "بداية حساب الشريحة"
+        "En": "Slide From",
+        "Ar": "بداية حساب الشريحة"
     },
     {
         "name": "order_slides_to",
-        "en": "Slide To",
-        "ar": "نهاية حساب شريحة"
+        "En": "Slide To",
+        "Ar": "نهاية حساب شريحة"
     },
     {
         "name": "order_slides_value",
-        "en": "Session Value",
-        "ar": "قيمة الجلسة"
+        "En": "Session Value",
+        "Ar": "قيمة الجلسة"
     },
     {
         "name": "order_slides_new",
-        "en": "New Slide",
-        "ar": "حساب شريحة جلسات جديدة "
+        "En": "New Slide",
+        "Ar": "حساب شريحة جلسات جديدة "
     },
     {
         "name": "order_slides_logo",
-        "en": "Slides Logo",
-        "ar": "صورة شريحة الجلسات"
+        "En": "Slides Logo",
+        "Ar": "صورة شريحة الجلسات"
     },
     {
         "name": "order_slides_edit",
-        "en": "Edit Slide",
-        "ar": "تعديل بيانات شريحة الجلسات"
+        "En": "Edit Slide",
+        "Ar": "تعديل بيانات شريحة الجلسات"
     },
     {
         "name": "order_slides_details",
-        "en": "Slide Details",
-        "ar": " تفاصيل شريحة الجلسات"
+        "En": "Slide Details",
+        "Ar": " تفاصيل شريحة الجلسات"
     },
     {
         "name": "order_slides_delete",
-        "en": "Delete Slide",
-        "ar": "حذف حساب شريحة الجلسات"
+        "En": "Delete Slide",
+        "Ar": "حذف حساب شريحة الجلسات"
     },
     {
         "name": "order_slides_img",
-        "en": "Sessions Slides Image",
-        "ar": "ملفات شريحة الجلسات"
+        "En": "Sessions Slides Image",
+        "Ar": "ملفات شريحة الجلسات"
     },
     {
         "name": "companies",
-        "en": "School",
-        "ar": "المدرسة"
+        "En": "School",
+        "Ar": "المدرسة"
     },
     {
         "name": "companies_add",
-        "en": "Add School",
-        "ar": "إضافة مدرسة"
+        "En": "Add School",
+        "Ar": "إضافة مدرسة"
     },
     {
         "name": "companies_edit",
-        "en": "Edit School",
-        "ar": "تعديل مدرسة"
+        "En": "Edit School",
+        "Ar": "تعديل مدرسة"
     },
     {
         "name": "companies_informations",
-        "en": "School Informations",
-        "ar": "بيانات المدرسة"
+        "En": "School Informations",
+        "Ar": "بيانات المدرسة"
     },
     {
         "name": "companies_basic_information",
-        "en": "Basic Informations",
-        "ar": "البيانات الاساسية"
+        "En": "Basic Informations",
+        "Ar": "البيانات الاساسية"
     },
     {
         "name": "companies_contact_information",
-        "en": "Contact Informations",
-        "ar": "بيانات الاتصال"
+        "En": "Contact Informations",
+        "Ar": "بيانات الاتصال"
     },
     {
         "name": "companies_details",
-        "en": "ِSchool Details",
-        "ar": "تفاصيل المدرسة"
+        "En": "ِSchool Details",
+        "Ar": "تفاصيل المدرسة"
     },
     {
         "name": "companies_delete",
-        "en": "Delete ِSchool",
-        "ar": "حذف مدرسة"
+        "En": "Delete ِSchool",
+        "Ar": "حذف مدرسة"
     },
     {
         "name": "companies_code",
-        "en": "ِSchool Code",
-        "ar": "كود المدرسة"
+        "En": "ِSchool Code",
+        "Ar": "كود المدرسة"
     },
     {
         "name": "companies_phone",
-        "en": "Phone",
-        "ar": "التليفون"
+        "En": "Phone",
+        "Ar": "التليفون"
     },
     {
         "name": "companies_mobile",
-        "en": "Mobile",
-        "ar": "الموبايل"
+        "En": "Mobile",
+        "Ar": "الموبايل"
     },
     {
         "name": "companies_activity",
-        "en": "Activity",
-        "ar": "النشاط"
+        "En": "Activity",
+        "Ar": "النشاط"
     },
     {
         "name": "companies_branches_informations",
-        "en": "Branches Informations",
-        "ar": "بيانات الفروع"
+        "En": "Branches Informations",
+        "Ar": "بيانات الفروع"
     },
     {
         "name": "companies_branch",
-        "en": "Branch",
-        "ar": "الفرع"
+        "En": "Branch",
+        "Ar": "الفرع"
     },
     {
         "name": "companies_branch_information",
-        "en": "Branch Information",
-        "ar": "بيانات الفرع"
+        "En": "Branch Information",
+        "Ar": "بيانات الفرع"
     },
     {
         "name": "companies_contact_charge",
-        "en": "Charge Information",
-        "ar": "بيانات المسئول"
+        "En": "Charge Information",
+        "Ar": "بيانات المسئول"
     },
     {
         "name": "companies_branch_code",
-        "en": "Branch Code",
-        "ar": "كود الفرع"
+        "En": "Branch Code",
+        "Ar": "كود الفرع"
     },
     {
         "name": "companies_branch_name",
-        "en": "Branch Name",
-        "ar": "إسم الفرع"
+        "En": "Branch Name",
+        "Ar": "إسم الفرع"
     },
     {
         "name": "companies_branch_name_ar",
-        "en": "Branch Name Arabic",
-        "ar": "إسم الفرع بالعربى"
+        "En": "Branch Name Arabic",
+        "Ar": "إسم الفرع بالعربى"
     },
     {
         "name": "companies_branch_name_en",
-        "en": "Branch Name English",
-        "ar": "إسم الفرع بالانجليزى"
+        "En": "Branch Name English",
+        "Ar": "إسم الفرع بالانجليزى"
     },
     {
         "name": "companies_branch_notes",
-        "en": "Branch Notes",
-        "ar": "ملاحظات الفرع"
+        "En": "Branch Notes",
+        "Ar": "ملاحظات الفرع"
     },
     {
         "name": "companies_charge_name",
-        "en": "Charge Name",
-        "ar": "إسم المسئول"
+        "En": "Charge Name",
+        "Ar": "إسم المسئول"
     },
     {
         "name": "companies_charge_job",
-        "en": "Charge Job",
-        "ar": "الوظيفة"
+        "En": "Charge Job",
+        "Ar": "الوظيفة"
     },
     {
         "name": "companies_internal_number",
-        "en": "Internal Number",
-        "ar": "الرقم الداخلي"
+        "En": "Internal Number",
+        "Ar": "الرقم الداخلي"
     },
     {
         "name": "companies_banking_informations",
-        "en": "Banking Informations",
-        "ar": "البنوك"
+        "En": "Banking Informations",
+        "Ar": "البنوك"
     },
     {
         "name": "companies_bank_information",
-        "en": "Bank Information",
-        "ar": "بيانات البنك"
+        "En": "Bank Information",
+        "Ar": "بيانات البنك"
     },
 
     {
         "name": "companies_bank_account_number",
-        "en": "Bank Account Number",
-        "ar": "رقم الحساب"
+        "En": "Bank Account Number",
+        "Ar": "رقم الحساب"
     },
     {
         "name": "companies_filter_with_date",
-        "en": "Filter With Date",
-        "ar": "تصفية البيانات بالتاريخ"
+        "En": "Filter With Date",
+        "Ar": "تصفية البيانات بالتاريخ"
     },
     {
         "name": "companies_calender_type",
-        "en": "Calender Type",
-        "ar": "نوع التقويم"
+        "En": "Calender Type",
+        "Ar": "نوع التقويم"
     },
     {
         "name": "companies_gegorian",
-        "en": "Gregorian",
-        "ar": "ميلادي"
+        "En": "Gregorian",
+        "Ar": "ميلادي"
     },
     {
         "name": "companies_hijri",
-        "en": "Hijri",
-        "ar": "هجري"
+        "En": "Hijri",
+        "Ar": "هجري"
     },
     {
         "name": "companies_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
     {
         "name": "companies_city",
-        "en": "City",
-        "ar": "المدينة"
+        "En": "City",
+        "Ar": "المدينة"
     },
     {
         "name": "companies_email",
-        "en": "Email",
-        "ar": "البريد الإلكتروني"
+        "En": "Email",
+        "Ar": "البريد الإلكتروني"
     },
     {
         "name": "companies_fax",
-        "en": "Fax",
-        "ar": "الفاكس"
+        "En": "Fax",
+        "Ar": "الفاكس"
     },
     {
         "name": "companies_name_ar",
-        "en": "ِSchool Name Arabic",
-        "ar": "إسم المدرسة"
+        "En": "ِSchool Name Arabic",
+        "Ar": "إسم المدرسة"
     },
     {
         "name": "companies_name_en",
-        "en": "ِSchool Name English",
-        "ar": "إسم المدرسة بالانجليزية"
+        "En": "ِSchool Name English",
+        "Ar": "إسم المدرسة بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
-        "en": "Exchange Price",
-        "ar": "سعر الصرف"
+        "En": "Exchange Price",
+        "Ar": "سعر الصرف"
     },
     {
         "name": "companies_ِSchool_swift_code",
-        "en": "Swift Code",
-        "ar": "رقم السويفت"
+        "En": "Swift Code",
+        "Ar": "رقم السويفت"
     },
     {
         "name": "companies_new",
-        "en": "New School",
-        "ar": "مدرسة جديدة"
+        "En": "New School",
+        "Ar": "مدرسة جديدة"
     },
     {
         "name": "companies_country",
-        "en": "Coutntry",
-        "ar": "الدولة"
+        "En": "Coutntry",
+        "Ar": "الدولة"
     },
     {
         "name": "companies_address",
-        "en": "Address",
-        "ar": "العنوان"
+        "En": "Address",
+        "Ar": "العنوان"
     },
     {
         "name": "companies_customer_service",
-        "en": "Student Services",
-        "ar": "خدمة الطلاب"
+        "En": "Student Services",
+        "Ar": "خدمة الطلاب"
     },
     {
         "name": "customers_group_informations",
-        "en": "Students Group Informations",
-        "ar": "بيانات مجموعة طلاب"
+        "En": "Students Group Informations",
+        "Ar": "بيانات مجموعة طلاب"
     },
     {
         "name": "customers_groups",
-        "en": "Students Group",
-        "ar": "مجموعة طلاب"
+        "En": "Students Group",
+        "Ar": "مجموعة طلاب"
     },
     {
         "name": "customers_groups_name",
-        "en": "Students Groups",
-        "ar": "مجموعات الطلاب"
+        "En": "Students Groups",
+        "Ar": "مجموعات الطلاب"
     },
     {
         "name": "customers_group_menus",
-        "en": "Students Group Menu",
-        "ar": "قائمة مجموعة الطلاب"
+        "En": "Students Group Menu",
+        "Ar": "قائمة مجموعة الطلاب"
     },
     {
         "name": "customers_group_code",
-        "en": "Students Group Code",
-        "ar": "كود مجموعة الطلاب"
+        "En": "Students Group Code",
+        "Ar": "كود مجموعة الطلاب"
     },
     {
         "name": "customers_group_name",
-        "en": "Students Group Name",
-        "ar": "إسم مجموعة الطلاب"
+        "En": "Students Group Name",
+        "Ar": "إسم مجموعة الطلاب"
     },
     {
         "name": "customers_group_new",
-        "en": "New Students Group",
-        "ar": "مجموعة طلاب جديدة"
+        "En": "New Students Group",
+        "Ar": "مجموعة طلاب جديدة"
     },
     {
         "name": "customers_group_details",
-        "en": "Students Group Details",
-        "ar": "تفاصيل مجموعة طلاب"
+        "En": "Students Group Details",
+        "Ar": "تفاصيل مجموعة طلاب"
     },
     {
         "name": "customers_group_update",
-        "en": "Edit Students Group",
-        "ar": "تعديل مجموعة طلاب"
+        "En": "Edit Students Group",
+        "Ar": "تعديل مجموعة طلاب"
     },
     {
         "name": "customers_group_delete",
-        "en": "Delte Students Group",
-        "ar": "حذف مجموعة طلاب"
+        "En": "Delte Students Group",
+        "Ar": "حذف مجموعة طلاب"
     },
     {
         "name": "customers_group_add_name",
-        "en": "Add Students Group",
-        "ar": "إضافة مجموعة طلاب"
+        "En": "Add Students Group",
+        "Ar": "إضافة مجموعة طلاب"
     },
     {
         "name": "halls",
-        "en": "The classrooms",
-        "ar": "الفصول الدراسية"
+        "En": "The classrooms",
+        "Ar": "الفصول الدراسية"
     },
     {
         "name": "hall",
-        "en": "The classroom",
-        "ar": "الفصل الدراسي"
+        "En": "The classroom",
+        "Ar": "الفصل الدراسي"
     },
     {
         "name": "hall_new",
-        "en": "New classroom",
-        "ar": "فصل دراسي جديد"
+        "En": "New classroom",
+        "Ar": "فصل دراسي جديد"
     },
     {
         "name": "hall_add",
-        "en": "Add classroom",
-        "ar": "إضافة فصل دراسي"
+        "En": "Add classroom",
+        "Ar": "إضافة فصل دراسي"
     },
     {
         "name": "hall_edit",
-        "en": "Edit classroom",
-        "ar": "تعديل فصل دراسي"
+        "En": "Edit classroom",
+        "Ar": "تعديل فصل دراسي"
     },
     {
         "name": "hall_details",
-        "en": "classroom Details",
-        "ar": "تفاصيل الفصل الدراسي"
+        "En": "classroom Details",
+        "Ar": "تفاصيل الفصل الدراسي"
     },
     {
         "name": "hall_delete",
-        "en": "Delete classroom",
-        "ar": "حذف فصل دراسي"
+        "En": "Delete classroom",
+        "Ar": "حذف فصل دراسي"
     },
     {
         "name": "hall_name",
-        "en": "classroom Name",
-        "ar": "إسم الفصل الدراسي"
+        "En": "classroom Name",
+        "Ar": "إسم الفصل الدراسي"
     },
     {
         "name": "hall_total",
-        "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "En": "Total Duration",
+        "Ar": "إجمالي المدة "
     },
     {
         "name": "hall_capaneighborhood",
-        "en": "classroom Capaneighborhood",
-        "ar": "سعة الفصل الدراسي "
+        "En": "classroom Capaneighborhood",
+        "Ar": "سعة الفصل الدراسي "
     },
     {
         "name": "trainer",
-        "en": "Teachers",
-        "ar": "المدرسين"
+        "En": "Teachers",
+        "Ar": "المدرسين"
     },
     {
         "name": "trainer_new",
-        "en": "New Teacher",
-        "ar": "مدرس جديد"
+        "En": "New Teacher",
+        "Ar": "مدرس جديد"
     },
     {
         "name": "handel_trainers",
-        "en": "Handel Teachers",
-        "ar": "هندلة المدرسين"
+        "En": "Handel Teachers",
+        "Ar": "هندلة المدرسين"
     },
     {
         "name": "trainer_add",
-        "en": "Add Teacher",
-        "ar": "إضافة مدرس"
+        "En": "Add Teacher",
+        "Ar": "إضافة مدرس"
     },
     {
         "name": "trainer_edit",
-        "en": "Edit Teacher",
-        "ar": "تعديل مدرس"
+        "En": "Edit Teacher",
+        "Ar": "تعديل مدرس"
     },
     {
         "name": "trainer_details",
-        "en": "Teacher Details",
-        "ar": "تفاصيل المدرس"
+        "En": "Teacher Details",
+        "Ar": "تفاصيل المدرس"
     },
     {
         "name": "trainer_delete",
-        "en": "Delete Teacher",
-        "ar": "حذف مدرس"
+        "En": "Delete Teacher",
+        "Ar": "حذف مدرس"
     },
     {
         "name": "trainer_name",
-        "en": "Teacher Name",
-        "ar": "إسم المدرس"
+        "En": "Teacher Name",
+        "Ar": "إسم المدرس"
     },
     {
         "name": "trainer_indentfy",
-        "en": "Teacher Indentfy",
-        "ar": "نوع المدرس"
+        "En": "Teacher Indentfy",
+        "Ar": "نوع المدرس"
     },
     {
         "name": "trainer_info",
-        "en": "Teacher Informations",
-        "ar": "معلومات المدرس"
+        "En": "Teacher Informations",
+        "Ar": "معلومات المدرس"
     },
     {
         "name": "customers",
-        "en": "Students",
-        "ar": "الطلاب"
+        "En": "Students",
+        "Ar": "الطلاب"
     },
     {
         "name": "customers_new",
-        "en": "New Student",
-        "ar": "طالب جديد"
+        "En": "New Student",
+        "Ar": "طالب جديد"
     },
     {
         "name": "customers_add",
-        "en": "Add Student",
-        "ar": "إضافة طالب"
+        "En": "Add Student",
+        "Ar": "إضافة طالب"
     },
     {
         "name": "customers_edit",
-        "en": "Student Edit",
-        "ar": "تعديل بيانات طالب"
+        "En": "Student Edit",
+        "Ar": "تعديل بيانات طالب"
     },
     {
         "name": "customers_details",
-        "en": "Student Details",
-        "ar": "تفاصيل طالب"
+        "En": "Student Details",
+        "Ar": "تفاصيل طالب"
     },
     {
         "name": "customers_view",
-        "en": "Students View",
-        "ar": "عرض الطلاب"
+        "En": "Students View",
+        "Ar": "عرض الطلاب"
     },
     {
         "name": "customers_delete",
-        "en": "Delete Student",
-        "ar": "حذف طالب"
+        "En": "Delete Student",
+        "Ar": "حذف طالب"
     },
     {
         "name": "customers_indentfy",
-        "en": "Student indentfy",
-        "ar": "نوع الطالب"
+        "En": "Student indentfy",
+        "Ar": "نوع الطالب"
     },
     {
         "name": "customers_code",
-        "en": "Student Code",
-        "ar": "كود الطالب"
+        "En": "Student Code",
+        "Ar": "كود الطالب"
     },
     {
         "name": "customers_name_ar",
-        "en": "Student Name Arabic",
-        "ar": "إسم الطالب بالعربي"
+        "En": "Student Name Arabic",
+        "Ar": "إسم الطالب بالعربي"
     },
     {
         "name": "customers_name_en",
-        "en": "Student Name English",
-        "ar": "إسم الطالب بالانجليزية"
+        "En": "Student Name English",
+        "Ar": "إسم الطالب بالانجليزية"
     },
     {
         "name": "customer_name",
-        "en": "Student Name",
-        "ar": "إسم الطالب"
+        "En": "Student Name",
+        "Ar": "إسم الطالب"
     },
     {
         "name": "customer",
-        "en": "Student ",
-        "ar": " الطالب"
+        "En": "Student ",
+        "Ar": " الطالب"
     },
     {
         "name": "order_slides_add",
-        "en": "Add Sessions Slide",
-        "ar": "إضافة شريحة جلسات"
+        "En": "Add Sessions Slide",
+        "Ar": "إضافة شريحة جلسات"
     },
     {
         "name": "order_slide",
-        "en": "Sessions Slide",
-        "ar": " شريحة الجلسات"
+        "En": "Sessions Slide",
+        "Ar": " شريحة الجلسات"
     },
     {
         "name": "order_slides",
-        "en": "Sessions Slides",
-        "ar": " شرائح الجلسات"
+        "En": "Sessions Slides",
+        "Ar": " شرائح الجلسات"
     },
     {
         "name": "order_slides_img",
-        "en": "Sessions Slides Image",
-        "ar": "ملفات شريحة الجلسات"
+        "En": "Sessions Slides Image",
+        "Ar": "ملفات شريحة الجلسات"
     },
     {
         "name": "order_slides_value",
-        "en": "Session Value",
-        "ar": "قيمة الجلسة"
+        "En": "Session Value",
+        "Ar": "قيمة الجلسة"
     },{
         "name": "shifts",
-        "en": "School Years",
-        "ar": "الأعوام الدراسية"
+        "En": "School Years",
+        "Ar": "الأعوام الدراسية"
     },
     {
         "name": "shift",
-        "en": "School Year",
-        "ar": "العام دراسي"
+        "En": "School Year",
+        "Ar": "العام دراسي"
     },
     {
         "name": "open_shift",
-        "en": "Open New School Year",
-        "ar": " فتح عام دراسي جديد "
+        "En": "Open New School Year",
+        "Ar": " فتح عام دراسي جديد "
     },{
         "name": "close_shift",
-        "en": "Close School Year",
-        "ar": "غلق العام دراسي"
+        "En": "Close School Year",
+        "Ar": "غلق العام دراسي"
     },
     {
         "name": "open_shift_not_found",
-        "en": "Not Found Open School Year",
-        "ar": "لا يوجد عام دراسي مفتوح"
+        "En": "Not Found Open School Year",
+        "Ar": "لا يوجد عام دراسي مفتوح"
     },
     {
         "name": "must_close_shift",
-        "en": "All School Years Must Be Closed Before Opening A New School Year",
-        "ar": "يجب غلق جميع العام دراسيات قبل فتح عام دراسي جديد"
+        "En": "All School Years Must Be Closed Before Opening A New School Year",
+        "Ar": "يجب غلق جميع العام دراسيات قبل فتح عام دراسي جديد"
     },
     {
         "name": "shift_start",
-        "en": "Add Start",
-        "ar": "بدء العام دراسي"
+        "En": "Add Start",
+        "Ar": "بدء العام دراسي"
     },
     {
         "name": "shift_period",
-        "en": "Add Period",
-        "ar": "مدة العام دراسي"
+        "En": "Add Period",
+        "Ar": "مدة العام دراسي"
     },
     {
         "name": "shifts_add",
-        "en": "Add School Year",
-        "ar": "إضافة عام دراسي "
+        "En": "Add School Year",
+        "Ar": "إضافة عام دراسي "
     },
     {
         "name": "shifts_edit",
-        "en": "Edit School Year",
-        "ar": "تعديل عام دراسي "
+        "En": "Edit School Year",
+        "Ar": "تعديل عام دراسي "
     },
     {
         "name": "shifts_details",
-        "en": "School Year Details",
-        "ar": "تفاصيل العام دراسي "
+        "En": "School Year Details",
+        "Ar": "تفاصيل العام دراسي "
     },
     {
         "name": "shifts_delete",
-        "en": "Delete School Year",
-        "ar": "حذف عام دراسي "
+        "En": "Delete School Year",
+        "Ar": "حذف عام دراسي "
     },
     {
         "name": "shifts_name",
-        "en": "School Year Name",
-        "ar": "إسم العام دراسي "
+        "En": "School Year Name",
+        "Ar": "إسم العام دراسي "
     },{
         "name": "menu_shift",
-        "en": "School Years Menu",
-        "ar": "قائمة الأعوام الدراسية"
+        "En": "School Years Menu",
+        "Ar": "قائمة الأعوام الدراسية"
     },
     {
         "name": "menu_shift_tag",
-        "en": "School Years Manegment",
-        "ar": "إدارة الأعوام الدراسية"
+        "En": "School Years Manegment",
+        "Ar": "إدارة الأعوام الدراسية"
     },
     {
         "name": "report_shift_name",
-        "en": "Report School Years",
-        "ar": "تقرير الأعوام الدراسية"
+        "En": "Report School Years",
+        "Ar": "تقرير الأعوام الدراسية"
     },
     {
         "name": "report_shift_menus",
-        "en": "Report School Years Menu",
-        "ar": "قائمة تقرير الأعوام الدراسية"
+        "En": "Report School Years Menu",
+        "Ar": "قائمة تقرير الأعوام الدراسية"
     }
 ]

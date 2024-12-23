@@ -1,27 +1,27 @@
 [
     {
         "id": 1,
-        "en": "Monetary",
-        "ar": "نقدي"
+        "En": "Monetary",
+        "Ar": "نقدي"
     },
     {
         "id": 2,
-        "en": "Check",
-        "ar": "شيك"
+        "En": "Check",
+        "Ar": "شيك"
     },
     {
         "id": 3,
-        "en": "Credit Card - Mada",
-        "ar": "بطاقة إئتمان - مدى"
+        "En": "Credit Card - Mada",
+        "Ar": "بطاقة إئتمان - مدى"
     },
     {
         "id": 4,
-        "en": "Master Card",
-        "ar": "ماستر كارت"
+        "En": "Master Card",
+        "Ar": "ماستر كارت"
     },
     {
         "id": 5,
-        "en": "Client balance",
-        "ar": "رصيد عميل"
+        "En": "Client balance",
+        "Ar": "رصيد عميل"
     }
 ]

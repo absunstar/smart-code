@@ -1,32 +1,32 @@
 [
-    {"name" : "accounting_guide_income_list_informations" , "en" : "Guide Income List" , "ar" : "بيانات قائمة الدخل"},
-    {"name" : "accounting_guide_income_list_delete" , "en" : "Delete Guide Income List" , "ar" : "حذف قائمة الدخل"},
-    {"name" : "accounting_guide_income_list_edit" , "en" : "Edit Guide Income List" , "ar" : "تعديل قائمة الدخل"},
-    {"name" : "accounting_guide_income_list_details" , "en" : "Guide Income List Deteails" , "ar" : "تفاصيل قائمة الدخل"},
-    {"name" : "accounting_guide_income_list_delete" , "en" : "Delete Guide Income List" , "ar" : "حذف قائمة الدخل"},
-    {"name" : "accounting_guide_income_list_new" , "en" : "New Guide Income List" , "ar" : "تصنيف جديد"},
-    {"name" : "guide_categories_accounting_guide_income_list" , "en" : "Guide Categories Income List" , "ar" : "دليل تصنيفات قائمة الدخل"},
+    {"name" : "accounting_guide_income_list_informations" , "En" : "Guide Income List" , "Ar" : "بيانات قائمة الدخل"},
+    {"name" : "accounting_guide_income_list_delete" , "En" : "Delete Guide Income List" , "Ar" : "حذف قائمة الدخل"},
+    {"name" : "accounting_guide_income_list_edit" , "En" : "Edit Guide Income List" , "Ar" : "تعديل قائمة الدخل"},
+    {"name" : "accounting_guide_income_list_details" , "En" : "Guide Income List Deteails" , "Ar" : "تفاصيل قائمة الدخل"},
+    {"name" : "accounting_guide_income_list_delete" , "En" : "Delete Guide Income List" , "Ar" : "حذف قائمة الدخل"},
+    {"name" : "accounting_guide_income_list_new" , "En" : "New Guide Income List" , "Ar" : "تصنيف جديد"},
+    {"name" : "guide_categories_accounting_guide_income_list" , "En" : "Guide Categories Income List" , "Ar" : "دليل تصنيفات قائمة الدخل"},
    
-    {"name" : "accounting_guide_income_list_confirm_delete" , "en" : "Confirm Delete Category" , "ar" : "تأكيد حذف التصنيف !"},
-    {"name" : "accounting_guide_income_list_delete_side" , "en" : "Delete Category" , "ar" : "حذف تصنيف"},
+    {"name" : "accounting_guide_income_list_confirm_delete" , "En" : "Confirm Delete Category" , "Ar" : "تأكيد حذف التصنيف !"},
+    {"name" : "accounting_guide_income_list_delete_side" , "En" : "Delete Category" , "Ar" : "حذف تصنيف"},
 
 
-    {"name" : "accounting_guide_income_list_side" , "en" : "Category Side" , "ar" : "جانب التصنيف"},
-    {"name" : "accounting_guide_income_list_debtor" , "en" : "Debtor" , "ar" : "مدين"},
-    {"name" : "accounting_guide_income_list_creditor" , "en" : "Creditor" , "ar" : "دائن"},
+    {"name" : "accounting_guide_income_list_side" , "En" : "Category Side" , "Ar" : "جانب التصنيف"},
+    {"name" : "accounting_guide_income_list_debtor" , "En" : "Debtor" , "Ar" : "مدين"},
+    {"name" : "accounting_guide_income_list_creditor" , "En" : "Creditor" , "Ar" : "دائن"},
 
-    {"name" : "accounting_guide_income_list_type" , "en" : "Category Type" , "ar" : "نوع التصنيف"},
-    {"name" : "accounting_guide_income_list_detailed" , "en" : "Detailed" , "ar" : "تفصيلي"},
-    {"name" : "accounting_guide_income_list_result" , "en" : "Result" , "ar" : "نتيجة"},
-    {"name" : "accounting_guide_income_list_address" , "en" : "Address" , "ar" : "عنوان"},
-    {"name" : "accounting_guide_income_list_resulting" , "en" : "Resulting" , "ar" : "الناتج"},
+    {"name" : "accounting_guide_income_list_type" , "En" : "Category Type" , "Ar" : "نوع التصنيف"},
+    {"name" : "accounting_guide_income_list_detailed" , "En" : "Detailed" , "Ar" : "تفصيلي"},
+    {"name" : "accounting_guide_income_list_result" , "En" : "Result" , "Ar" : "نتيجة"},
+    {"name" : "accounting_guide_income_list_address" , "En" : "Address" , "Ar" : "عنوان"},
+    {"name" : "accounting_guide_income_list_resulting" , "En" : "Resulting" , "Ar" : "الناتج"},
   
-    {"name" : "accounting_guide_income_list_the_code" , "en" : "The Code" , "ar" : "الكود"},
-    {"name" : "accounting_guide_income_list_code" , "en" : "Category Code" , "ar" : "كود التصنيف"},
+    {"name" : "accounting_guide_income_list_the_code" , "En" : "The Code" , "Ar" : "الكود"},
+    {"name" : "accounting_guide_income_list_code" , "En" : "Category Code" , "Ar" : "كود التصنيف"},
 
     
-    {"name" : "accounting_guide_income_list_code" , "en" : "Category Code" , "ar" : "كود التصنيف"},
-    {"name" : "accounting_guide_income_list_name" , "en" : "Category Name" , "ar" : "إسم التصنيف"}
+    {"name" : "accounting_guide_income_list_code" , "En" : "Category Code" , "Ar" : "كود التصنيف"},
+    {"name" : "accounting_guide_income_list_name" , "En" : "Category Name" , "Ar" : "إسم التصنيف"}
  
     
 ]

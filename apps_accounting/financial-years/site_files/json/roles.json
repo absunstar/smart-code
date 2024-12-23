@@ -1,8 +1,8 @@
 [{
     "module_name":"accounting",
     "name": "financial_years_admin",
-    "en": "Financial Years Add Admin",
-    "ar": "إدارة السنوات المالية",
+    "En": "Financial Years Add Admin",
+    "Ar": "إدارة السنوات المالية",
     "permissions": [
         "financial_years_manage"
     ]

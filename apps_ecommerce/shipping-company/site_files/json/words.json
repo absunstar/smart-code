@@ -1,47 +1,47 @@
 [
   {
     "name": "shipping_company",
-    "en": "Shipping Company",
-    "ar": "شركة الشحن"
+    "En": "Shipping Company",
+    "Ar": "شركة الشحن"
   },
   {
     "name": "shipping_companies",
-    "en": "Shipping Companies",
-    "ar": "شركات الشحن"
+    "En": "Shipping Companies",
+    "Ar": "شركات الشحن"
   },
   {
     "name": "shipping_company_new",
-    "en": "New Shipping Company",
-    "ar": "شركة شحن جديد"
+    "En": "New Shipping Company",
+    "Ar": "شركة شحن جديد"
   },
   {
     "name": "shipping_company_add",
-    "en": "Add Shipping Company",
-    "ar": "إضافة شركة شحن"
+    "En": "Add Shipping Company",
+    "Ar": "إضافة شركة شحن"
   },
   {
     "name": "shipping_company_edit",
-    "en": "Edit Shipping Company",
-    "ar": "تعديل شركة شحن"
+    "En": "Edit Shipping Company",
+    "Ar": "تعديل شركة شحن"
   },
   {
     "name": "shipping_company_details",
-    "en": "Shipping Company Details",
-    "ar": "تفاصيل الشركة شحن"
+    "En": "Shipping Company Details",
+    "Ar": "تفاصيل الشركة شحن"
   },
   {
     "name": "shipping_company_delete",
-    "en": "Delete Shipping Company",
-    "ar": "حذف شركة شحن"
+    "En": "Delete Shipping Company",
+    "Ar": "حذف شركة شحن"
   },
   {
     "name": "shipping_company_number",
-    "en": "Shipping Company Number",
-    "ar": "رقم شركة شحن"
+    "En": "Shipping Company Number",
+    "Ar": "رقم شركة شحن"
   },
   {
     "name": "shipping_company_name",
-    "en": "Shipping Company Name",
-    "ar": "إسم شركة شحن"
+    "En": "Shipping Company Name",
+    "Ar": "إسم شركة شحن"
   }
 ]

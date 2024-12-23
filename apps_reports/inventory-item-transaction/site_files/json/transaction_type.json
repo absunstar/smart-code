@@ -1,32 +1,32 @@
 [
     {
         "id": 1,
-        "en": "Stores In / Purchase Invoice",
-        "ar": "إذن وارد / فاتورة شراء"
+        "En": "Stores In / Purchase Invoice",
+        "Ar": "إذن وارد / فاتورة شراء"
     },
     {
         "id": 2,
-        "en": "Stores Out / Sales Invoice",
-        "ar": "إذن صرف / فاتورة بيع"
+        "En": "Stores Out / Sales Invoice",
+        "Ar": "إذن صرف / فاتورة بيع"
     },
     {
         "id": 3,
-        "en": "Assembling Items",
-        "ar": "تجميع الأصناف"
+        "En": "Assembling Items",
+        "Ar": "تجميع الأصناف"
     },
     {
         "id": 4,
-        "en": "Assembling Items",
-        "ar": "تفكيك الأصناف"
+        "En": "Assembling Items",
+        "Ar": "تفكيك الأصناف"
     },
     {
         "id": 5,
-        "en": "Transfer Items",
-        "ar": "تحويل أصناف"
+        "En": "Transfer Items",
+        "Ar": "تحويل أصناف"
     },
     {
         "id": 6,
-        "en": "Stock Items",
-        "ar": "الجرد المخزني"
+        "En": "Stock Items",
+        "Ar": "الجرد المخزني"
     }
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_employee_user_admin",
-    "en": "Report Employee Order Admin",
-    "ar": "تقرير طلبات الموظفين",
+    "En": "Report Employee Order Admin",
+    "Ar": "تقرير طلبات الموظفين",
     "permissions": ["report_employee_user_manage"]
 }]

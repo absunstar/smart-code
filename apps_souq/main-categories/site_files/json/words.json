@@ -1,59 +1,59 @@
 [
-  { "name": "main_categories_informations", "en": "Main Category Info", "ar": "بيانات قسم رئيسي" },
-  { "name": "main_categories_delete", "en": "Delete Main Category", "ar": "حذف قسم رئيسي" },
-  { "name": "main_categories_edit", "en": "Edit Main Category", "ar": "تعديل قسم رئيسي" },
-  { "name": "main_categories_details", "en": "Main Category Deteails", "ar": "تفاصيل قسم رئيسي" },
-  { "name": "main_categories_delete", "en": "Delete Main Category", "ar": "حذف قسم رئيسي" },
-  { "name": "main_categories_new", "en": "New Main Category", "ar": "قسم رئيسي جديد" },
-  { "name": "main_categories", "en": "Main Categories", "ar": "الأقسام الرئيسية" },
-  { "name": "categories", "en": "Categories", "ar": "أقسام" },
-  { "name": "main_category", "en": "Main Category", "ar": "القسم الرئيسي" },
-  { "name": "Category", "en": "Category", "ar": "القسم" },
-  { "name": "main_categories_code_err", "en": "Code Exist", "ar": "الكود مكرر" },
-  { "name": "detailed_err", "en": "Can nott Change", "ar": "لا يمكن تحويله يحتوي على قسم فرعي" },
-  { "name": "cant_delete", "en": "Can not Delete", "ar": "لا يمكن حذفه يحتوي على قسم فرعي" },
+  { "name": "main_categories_informations", "En": "Main Category Info", "Ar": "بيانات قسم رئيسي" },
+  { "name": "main_categories_delete", "En": "Delete Main Category", "Ar": "حذف قسم رئيسي" },
+  { "name": "main_categories_edit", "En": "Edit Main Category", "Ar": "تعديل قسم رئيسي" },
+  { "name": "main_categories_details", "En": "Main Category Deteails", "Ar": "تفاصيل قسم رئيسي" },
+  { "name": "main_categories_delete", "En": "Delete Main Category", "Ar": "حذف قسم رئيسي" },
+  { "name": "main_categories_new", "En": "New Main Category", "Ar": "قسم رئيسي جديد" },
+  { "name": "main_categories", "En": "Main Categories", "Ar": "الأقسام الرئيسية" },
+  { "name": "categories", "En": "Categories", "Ar": "أقسام" },
+  { "name": "main_category", "En": "Main Category", "Ar": "القسم الرئيسي" },
+  { "name": "Category", "En": "Category", "Ar": "القسم" },
+  { "name": "main_categories_code_err", "En": "Code Exist", "Ar": "الكود مكرر" },
+  { "name": "detailed_err", "En": "Can nott Change", "Ar": "لا يمكن تحويله يحتوي على قسم فرعي" },
+  { "name": "cant_delete", "En": "Can not Delete", "Ar": "لا يمكن حذفه يحتوي على قسم فرعي" },
 
-  { "name": "main_categories_confirm_delete", "en": "Confirm Delete Category", "ar": "تأكيد حذف التصنيف !" },
-  { "name": "main_categories_delete_side", "en": "Delete Category", "ar": "حذف تصنيف" },
+  { "name": "main_categories_confirm_delete", "En": "Confirm Delete Category", "Ar": "تأكيد حذف التصنيف !" },
+  { "name": "main_categories_delete_side", "En": "Delete Category", "Ar": "حذف تصنيف" },
 
-  { "name": "main_categories_type", "en": "Main Categories Type", "ar": "نوع القسم" },
-  { "name": "cost_center", "en": "Main Category", "ar": "القسم" },
-  { "name": "main_categories_primary", "en": "primary", "ar": "رئيسي" },
-  { "name": "main_categories_final", "en": "Final", "ar": "نهائي" },
+  { "name": "main_categories_type", "En": "Main Categories Type", "Ar": "نوع القسم" },
+  { "name": "cost_center", "En": "Main Category", "Ar": "القسم" },
+  { "name": "main_categories_primary", "En": "primary", "Ar": "رئيسي" },
+  { "name": "main_categories_final", "En": "Final", "Ar": "نهائي" },
 
-  { "name": "main_categories_status", "en": "Category status", "ar": "حالة القسم" },
-  { "name": "main_categories_active", "en": "Active", "ar": "نشط" },
-  { "name": "main_categories_disactive", "en": "Dis Active", "ar": "معطل" },
+  { "name": "main_categories_status", "En": "Category status", "Ar": "حالة القسم" },
+  { "name": "main_categories_active", "En": "Active", "Ar": "نشط" },
+  { "name": "main_categories_disactive", "En": "Dis Active", "Ar": "معطل" },
 
-  { "name": "main_categories_the_code", "en": "The Code", "ar": "الكود" },
-  { "name": "main_categories_code", "en": "Centers Code", "ar": "كود المركز" },
+  { "name": "main_categories_the_code", "En": "The Code", "Ar": "الكود" },
+  { "name": "main_categories_code", "En": "Centers Code", "Ar": "كود المركز" },
   {
     "name": "content_types",
-    "en": "Content Types",
-    "ar": "أنواع المحتوى"
+    "En": "Content Types",
+    "Ar": "أنواع المحتوى"
   },
   {
     "name": "content_name",
-    "en": "Content Name",
-    "ar": "إسم المحتوى"
+    "En": "Content Name",
+    "Ar": "إسم المحتوى"
   },
   {
     "name": "types_category_require",
-    "en": "Types Requirement",
-    "ar": "أنواع المتطلبات"
+    "En": "Types Requirement",
+    "Ar": "أنواع المتطلبات"
   },
   {
     "name": "category_require",
-    "en": "Category Requirement",
-    "ar": "متطلبات القسم"
+    "En": "Category Requirement",
+    "Ar": "متطلبات القسم"
   },
   {
     "name": "ad_require",
-    "en": "Ad Requirement",
-    "ar": "متطلبات الإعلان"
+    "En": "Ad Requirement",
+    "Ar": "متطلبات الإعلان"
   },
-  { "name": "main_categories_code", "en": "Category Code", "ar": "كود التصنيف" },
-  { "name": "main_categories_name_ar", "en": "Category Name Arabic", "ar": "إسم القسم عربي" },
+  { "name": "main_categories_code", "En": "Category Code", "Ar": "كود التصنيف" },
+  { "name": "main_categories_name_ar", "En": "Category Name Arabic", "Ar": "إسم القسم عربي" },
   
-  { "name": "main_categories_name_en", "en": "Category Name English", "ar": "إسم القسم إنجليزي" }
+  { "name": "main_categories_name_en", "En": "Category Name English", "Ar": "إسم القسم إنجليزي" }
 ]

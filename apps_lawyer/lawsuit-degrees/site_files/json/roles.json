@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "lawsuit_degrees_admin",
-    "en": "Lawsuit Degrees Admin",
-    "ar": "إدارة درجات الدعوى",
+    "En": "Lawsuit Degrees Admin",
+    "Ar": "إدارة درجات الدعوى",
     "permissions": ["lawsuit_degrees_manage"]
 }]

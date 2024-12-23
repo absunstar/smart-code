@@ -1,176 +1,176 @@
 [
     {
         "name": "report_invoices_add",
-        "en": "Add Customer",
-        "ar": "إضافة عميل"
+        "En": "Add Customer",
+        "Ar": "إضافة عميل"
     },
     {
         "name": "handel_orders",
-        "en": "Handel Orders",
-        "ar": "هندلة الطلبات"
+        "En": "Handel Orders",
+        "Ar": "هندلة الطلبات"
     },
     {
         "name": "order_status",
-        "en": "Order Status",
-        "ar": "حالة الطلب"
+        "En": "Order Status",
+        "Ar": "حالة الطلب"
     },
     {
         "name": "store_posting",
-        "en": "Store posting",
-        "ar": "ترحيل مخزني"
+        "En": "Store posting",
+        "Ar": "ترحيل مخزني"
     },
     {
         "name": "return_to_kitchen",
-        "en": "Return To Kitchen",
-        "ar": "إعادة إلى المطبخ"
+        "En": "Return To Kitchen",
+        "Ar": "إعادة إلى المطبخ"
     },
     {
         "name": "in_kitchen",
-        "en": "In Kitchen",
-        "ar": "في المطبخ"
+        "En": "In Kitchen",
+        "Ar": "في المطبخ"
     },
     {
         "name": "report_invoices_informations",
-        "en": "Report Invoices Informations",
-        "ar": "بيانات تقرير فاتورة"
+        "En": "Report Invoices Informations",
+        "Ar": "بيانات تقرير فاتورة"
     },
     {
         "name": "report_invoices_name",
-        "en": "Report Invoices",
-        "ar": "تقرير الفواتير"
+        "En": "Report Invoices",
+        "Ar": "تقرير الفواتير"
     },
     {
         "name": "order_management",
-        "en": "Order Management",
-        "ar": "إدارة الطلبات"
+        "En": "Order Management",
+        "Ar": "إدارة الطلبات"
     },
     {
         "name": "return_to_order",
-        "en": "Return To Order",
-        "ar": "إعادة إلى الطلبات"
+        "En": "Return To Order",
+        "Ar": "إعادة إلى الطلبات"
     },
     {
         "name": "report_invoices_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "En": "Report Invoices Menu",
+        "Ar": "قائمة تقرير فاتورة"
     },
     {
         "name": "set_employee_delivery",
-        "en": "Set Employee Delivery",
-        "ar": "تعيين موظف توصيل"
+        "En": "Set Employee Delivery",
+        "Ar": "تعيين موظف توصيل"
     },
   
     {
         "name": "total_items_price",
-        "en": "Total Items Price",
-        "ar": "مجموع سعر الأصناف"
+        "En": "Total Items Price",
+        "Ar": "مجموع سعر الأصناف"
     },
     {
         "name": "report_invoices_name",
-        "en": "Report Invoices Name",
-        "ar": "تقرير الفواتير"
+        "En": "Report Invoices Name",
+        "Ar": "تقرير الفواتير"
     },
     {
         "name": "source_type",
-        "en": "Source Type",
-        "ar": "نوع المصدر"
+        "En": "Source Type",
+        "Ar": "نوع المصدر"
     },
     {
         "name": "order_invoices_type",
-        "en": "Order Invoices Type",
-        "ar": "نوع أمر الفاتورة"
+        "En": "Order Invoices Type",
+        "Ar": "نوع أمر الفاتورة"
     },
     {
         "name": "order_sale",
-        "en": "Order Sale",
-        "ar": "أمر بيع"
+        "En": "Order Sale",
+        "Ar": "أمر بيع"
     },
     {
         "name": "payable",
-        "en": "Payable",
-        "ar": "مستحق الدفع"
+        "En": "Payable",
+        "Ar": "مستحق الدفع"
     },
     {
         "name": "invoice_type",
-        "en": "Invoice Type",
-        "ar": "نوع الفاتورة"
+        "En": "Invoice Type",
+        "Ar": "نوع الفاتورة"
     },
     {
         "name": "payment",
-        "en": "Payment",
-        "ar": "تسديد"
+        "En": "Payment",
+        "Ar": "تسديد"
     },
  
     {
         "name": "detailes_amounts_paid",
-        "en": "Detailes Amounts Paid",
-        "ar": "تفاصيل المدفوعات"
+        "En": "Detailes Amounts Paid",
+        "Ar": "تفاصيل المدفوعات"
     },
     {
         "name": "services",
-        "en": "Services",
-        "ar": "الخدمات"
+        "En": "Services",
+        "Ar": "الخدمات"
     },
     {
         "name": "date_from",
-        "en": "Date From",
-        "ar": "تاريخ من"
+        "En": "Date From",
+        "Ar": "تاريخ من"
     },
     {
         "name": "date_to",
-        "en": "Date To",
-        "ar": "تاريخ إلى"
+        "En": "Date To",
+        "Ar": "تاريخ إلى"
     },
     {
         "name": "err_paid_up",
-        "en": "Must Enter Paid",
-        "ar": "يجب إدخال مبلغ "
+        "En": "Must Enter Paid",
+        "Ar": "يجب إدخال مبلغ "
     },
    
     {
         "name": "paid_up",
-        "en": "Paid Up",
-        "ar": "المدفوع"
+        "En": "Paid Up",
+        "Ar": "المدفوع"
     },
 
     {
         "name": "report_invoices_new",
-        "en": "New Report Invoices",
-        "ar": "تقرير فاتورة جديدة"
+        "En": "New Report Invoices",
+        "Ar": "تقرير فاتورة جديدة"
     },
     {
         "name": "report_invoices_details",
-        "en": "Report Invoices Details",
-        "ar": "تفاصيل تقرير فاتورة"
+        "En": "Report Invoices Details",
+        "Ar": "تفاصيل تقرير فاتورة"
     },
     {
         "name": "report_invoices_update",
-        "en": "Edit Report Invoices",
-        "ar": "تعديل تقرير فاتورة"
+        "En": "Edit Report Invoices",
+        "Ar": "تعديل تقرير فاتورة"
     },
     {
         "name": "report_invoices_delete",
-        "en": "Delte Report Invoices",
-        "ar": "حذف تقرير فاتورة"
+        "En": "Delte Report Invoices",
+        "Ar": "حذف تقرير فاتورة"
     },
     {
         "name": "report_invoices_total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "En": "Total Required",
+        "Ar": "إجمالي المطلوب"
     },
     {
         "name": "total_paid_up",
-        "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "En": "Total Rest",
+        "Ar": "إجمالي المدفوع"
     },
     {
         "name": "total_remain",
-        "en": "Total Remain",
-        "ar": "إجمالي الباقي"
+        "En": "Total Remain",
+        "Ar": "إجمالي الباقي"
     },
     {
         "name": "report_invoices_add_name",
-        "en": "Add Report Invoices",
-        "ar": "إضافة تقرير فاتورة"
+        "En": "Add Report Invoices",
+        "Ar": "إضافة تقرير فاتورة"
     }
 ]

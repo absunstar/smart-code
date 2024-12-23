@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "buildings_admin",
-    "en": "Buildings Admin",
-    "ar": "إدارة المباني",
+    "En": "Buildings Admin",
+    "Ar": "إدارة المباني",
     "permissions": ["buildings_manage"]
 }]

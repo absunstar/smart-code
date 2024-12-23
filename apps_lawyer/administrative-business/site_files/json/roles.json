@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "administrative_business_admin",
-    "en": "Administrative Business Admin",
-    "ar": "إدارة الأعمال الإدارية",
+    "En": "Administrative Business Admin",
+    "Ar": "إدارة الأعمال الإدارية",
     "permissions": ["administrative_business_manage"]
 }]

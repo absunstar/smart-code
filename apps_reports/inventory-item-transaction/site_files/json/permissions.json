@@ -3,70 +3,70 @@
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_manage",
-        "en": "Manage",
-        "ar": "إدارة"
+        "En": "Manage",
+        "Ar": "إدارة"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_add",
-        "en": "Add",
-        "ar": "إضافة"
+        "En": "Add",
+        "Ar": "إضافة"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_edit",
-        "en": "Edit",
-        "ar": "تعديل"
+        "En": "Edit",
+        "Ar": "تعديل"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_delete",
-        "en": "Delete",
-        "ar": "حذف"
+        "En": "Delete",
+        "Ar": "حذف"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_view",
-        "en": "View",
-        "ar": "عرض"
+        "En": "View",
+        "Ar": "عرض"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_search",
-        "en": "Search",
-        "ar": "بحث"
+        "En": "Search",
+        "Ar": "بحث"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_export",
-        "en": "Export",
-        "ar": "تصدير"
+        "En": "Export",
+        "Ar": "تصدير"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_print",
-        "en": "Print",
-        "ar": "طباعة"
+        "En": "Print",
+        "Ar": "طباعة"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_ui",
-        "en": "UI",
-        "ar": "الواجهة الرسومية"
+        "En": "UI",
+        "Ar": "الواجهة الرسومية"
     },
     {
         "module_name": "report",
         "screen_name": "inventory-item-transaction",
         "name": "item_transaction_handler",
-        "en": "Handler",
-        "ar": "تهيئة"
+        "En": "Handler",
+        "Ar": "تهيئة"
     }
 ]

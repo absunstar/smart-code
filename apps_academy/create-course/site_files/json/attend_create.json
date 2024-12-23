@@ -1,13 +1,13 @@
 [{
     "id": 1,
     "name": "attended",
-    "en": "attended",
-    "ar": "تم الحضور"
+    "En": "attended",
+    "Ar": "تم الحضور"
 },
 {
     "id": 2,
     "name": "absence",
-    "en": "Absence",
-    "ar": "غياب"
+    "En": "Absence",
+    "Ar": "غياب"
 }
 ]

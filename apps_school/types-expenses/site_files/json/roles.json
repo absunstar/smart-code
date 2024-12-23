@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "types_expenses_admin",
-    "en": "Types Expenses Admin",
-    "ar": "إدارة أنواع المصروفات الدراسية",
+    "En": "Types Expenses Admin",
+    "Ar": "إدارة أنواع المصروفات الدراسية",
     "permissions": ["types_expenses_manage"]
 }]

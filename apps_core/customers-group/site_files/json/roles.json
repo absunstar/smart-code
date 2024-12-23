@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "customers_group_admin",
-    "en": "Customers Group  Admin",
-    "ar": "إدارة مجموعة العملاء",
+    "En": "Customers Group  Admin",
+    "Ar": "إدارة مجموعة العملاء",
     "permissions": ["customers_group_manage"]
 }]

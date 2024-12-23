@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_payable_customers_admin",
-    "en": "Payments Payable Customers Admin",
-    "ar": "الدفعات المستحقة للعملاء",
+    "En": "Payments Payable Customers Admin",
+    "Ar": "الدفعات المستحقة للعملاء",
     "permissions": ["report_payable_customers_manage"]
 }]

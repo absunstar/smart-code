@@ -1,108 +1,108 @@
 [
     {
         "name": "reset_stores_items",
-        "en": "Reset Stores Items",
-        "ar": "تهيئة الأصناف المخزنية"
+        "En": "Reset Stores Items",
+        "Ar": "تهيئة الأصناف المخزنية"
     },
     {
         "name": "Genera_company_in_items",
-        "en": "Generalization of the company in items",
-        "ar": "تعميم الشركة في الأصناف"
+        "En": "Generalization of the company in items",
+        "Ar": "تعميم الشركة في الأصناف"
     },
     {
         "name": "Genera_company_in_units",
-        "en": "Generalization of the company in units",
-        "ar": "تعميم الشركة في الوحدات"
+        "En": "Generalization of the company in units",
+        "Ar": "تعميم الشركة في الوحدات"
     },
     {
         "name": "Genera_company_in_itemsGroups",
-        "en": "Generalization of the company in itemsGroups",
-        "ar": "تعميم الشركة في مجموعات الأصناف"
+        "En": "Generalization of the company in itemsGroups",
+        "Ar": "تعميم الشركة في مجموعات الأصناف"
     },
     {
         "name": "reset_i_transactions",
-        "en": "Delete Item Transactions",
-        "ar": "حذف معاملات كارتة الصنف"
+        "En": "Delete Item Transactions",
+        "Ar": "حذف معاملات كارتة الصنف"
     },
     {
         "name": "reset_safes_payments",
-        "en": "Delete Safes Payments",
-        "ar": "حذف معاملات الخزينة"
+        "En": "Delete Safes Payments",
+        "Ar": "حذف معاملات الخزينة"
     },
     {
         "name": "reset_numbering",
-        "en": "Reset Numbering Screen",
-        "ar": "تهيئة شاشة الترقيم"
+        "En": "Reset Numbering Screen",
+        "Ar": "تهيئة شاشة الترقيم"
     },
     {
         "name": "reset_orders_screen",
-        "en": "Delete Orders Screen",
-        "ar": "حذف معاملات شاشة الطلبات"
+        "En": "Delete Orders Screen",
+        "Ar": "حذف معاملات شاشة الطلبات"
     },
     {
         "name": "reset_unpost_store_in",
-        "en": "Un Post Store Purchase",
-        "ar": "فك ترحيل المشتريات"
+        "En": "Un Post Store Purchase",
+        "Ar": "فك ترحيل المشتريات"
     }, 
     {
         "name": "reset_account_invoice_store_out",
-        "en": "Handel Sales Account Invoice",
-        "ar": "هندلة فواتير المبيعات الحسابية"
+        "En": "Handel Sales Account Invoice",
+        "Ar": "هندلة فواتير المبيعات الحسابية"
     },
     {
         "name": "reset_account_invoice_store_in",
-        "en": "Handel Purchase Account Invoice",
-        "ar": "هندلة فواتير المشتريات الحسابية"
+        "En": "Handel Purchase Account Invoice",
+        "Ar": "هندلة فواتير المشتريات الحسابية"
     },
     {
         "name": "reset_safes",
-        "en": "Reset Safes",
-        "ar": "تصفير الخزن"
+        "En": "Reset Safes",
+        "Ar": "تصفير الخزن"
     }, 
     {
         "name": "reset_unpost_store_out",
-        "en": "Un Post Store Sales",
-        "ar": "فك ترحيل المبيعات"
+        "En": "Un Post Store Sales",
+        "Ar": "فك ترحيل المبيعات"
     },
     {
         "name": "reset_post_stores_out",
-        "en": "Post Stores Sales",
-        "ar": "ترحيل المبيعات"
+        "En": "Post Stores Sales",
+        "Ar": "ترحيل المبيعات"
     },
     {
         "name": "reset_post_stores_in",
-        "en": "Post Stores Purchase",
-        "ar": "ترحيل المشتريات"
+        "En": "Post Stores Purchase",
+        "Ar": "ترحيل المشتريات"
     }, 
     {
         "name": "reset_post_account_invoice",
-        "en": "Post Account Invoice",
-        "ar": "ترحيل فواتير الحسابات"
+        "En": "Post Account Invoice",
+        "Ar": "ترحيل فواتير الحسابات"
     }, 
     {
         "name": "reset_post_stores_transfer",
-        "en": "Confirm Stores Transfer",
-        "ar": "إعتماد التحويلات المخزنية"
+        "En": "Confirm Stores Transfer",
+        "Ar": "إعتماد التحويلات المخزنية"
     }, 
     {
         "name": "reset_unpost_assemble",
-        "en": "Un Post Assemble",
-        "ar": "فك ترحيل التجميع"
+        "En": "Un Post Assemble",
+        "Ar": "فك ترحيل التجميع"
     },
     {
         "name": "reset_stores_stock",
-        "en": "Un Confirm Stock",
-        "ar": "فك إعتماد الجرد"
+        "En": "Un Confirm Stock",
+        "Ar": "فك إعتماد الجرد"
     }, 
     {
         "name": "reset_unpost_store_transfer",
-        "en": "Un Confirm Stores Transfer",
-        "ar": "فك إعتماد التحويلات المخزنية"
+        "En": "Un Confirm Stores Transfer",
+        "Ar": "فك إعتماد التحويلات المخزنية"
     }, 
     {
         "name": "reset_unpost_acc_invoice",
-        "en": "Un Post Account Invoice",
-        "ar": "فك ترحيل فواتير الحسابات"
+        "En": "Un Post Account Invoice",
+        "Ar": "فك ترحيل فواتير الحسابات"
     }
     
 ]

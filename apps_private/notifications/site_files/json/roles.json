@@ -1,8 +1,8 @@
 [
     {
         "name": "showNotifications",
-        "en": "showNotifications",
-        "ar": "اظهار المراقبة",
+        "En": "showNotifications",
+        "Ar": "اظهار المراقبة",
         "permissions": [
             "showNotifications"
         ]

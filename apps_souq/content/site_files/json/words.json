@@ -1,219 +1,219 @@
 [
   {
     "name": "ads",
-    "en": "Ads",
-    "ar": "الإعلانات"
+    "En": "Ads",
+    "Ar": "الإعلانات"
   },
   {
     "name": "ad",
-    "en": "Ad",
-    "ar": "الإعلان"
+    "En": "Ad",
+    "Ar": "الإعلان"
   },
   {
     "name": "today_date_greater_than_date_publication",
-    "en": "Today date is greater than the date of publication",
-    "ar": "تاريخ اليوم أكبر من تاريخ النشر"
+    "En": "Today date is greater than the date of publication",
+    "Ar": "تاريخ اليوم أكبر من تاريخ النشر"
   },
   {
     "name": "selection_categories",
-    "en": "Selection Categories",
-    "ar": "إختيار الأقسام"
+    "En": "Selection Categories",
+    "Ar": "إختيار الأقسام"
   },
   {
     "name": "ads_new",
-    "en": "New Ad",
-    "ar": "إعلان جديد"
+    "En": "New Ad",
+    "Ar": "إعلان جديد"
   },
   {
     "name": "ads_add",
-    "en": "Add Ad",
-    "ar": "إضافة إعلان "
+    "En": "Add Ad",
+    "Ar": "إضافة إعلان "
   },
   {
     "name": "ads_edit",
-    "en": "Edit Ad",
-    "ar": "تعديل الإعلان "
+    "En": "Edit Ad",
+    "Ar": "تعديل الإعلان "
   },
   {
     "name": "ads_details",
-    "en": "Ad Details",
-    "ar": "تفاصيل الإعلان "
+    "En": "Ad Details",
+    "Ar": "تفاصيل الإعلان "
   },
   {
     "name": "ads_delete",
-    "en": "Delete Ad",
-    "ar": "حذف الإعلان "
+    "En": "Delete Ad",
+    "Ar": "حذف الإعلان "
   },
   {
     "name": "ad_name",
-    "en": "Ad Name",
-    "ar": "إسم الإعلان"
+    "En": "Ad Name",
+    "Ar": "إسم الإعلان"
   },
   {
     "name": "ad_name_en",
-    "en": "Ad Name En",
-    "ar": "إسم الإعلان إنجليزي"
+    "En": "Ad Name En",
+    "Ar": "إسم الإعلان إنجليزي"
   },
   {
     "name": "ad_images",
-    "en": "Ad Images",
-    "ar": "صور الإعلان"
+    "En": "Ad Images",
+    "Ar": "صور الإعلان"
   },
   {
     "name": "ad_videos",
-    "en": "Ad Videos",
-    "ar": "مقاطع فيديو الإعلان"
+    "En": "Ad Videos",
+    "Ar": "مقاطع فيديو الإعلان"
   },
   {
     "name": "please_put_link_video_from_youtube",
-    "en": "Please put a link to the video from YouTube",
-    "ar": "يرجى وضع لينك الفيديو من موقع يوتيوب"
+    "En": "Please put a link to the video from YouTube",
+    "Ar": "يرجى وضع لينك الفيديو من موقع يوتيوب"
   },
   {
     "name": "available_quantity",
-    "en": "Available Qty.",
-    "ar": "الكمية المتاحة"
+    "En": "Available Qty.",
+    "Ar": "الكمية المتاحة"
   },
   {
     "name": "comments",
-    "en": "Comments",
-    "ar": "التعليقات"
+    "En": "Comments",
+    "Ar": "التعليقات"
   },
   {
     "name": "comment",
-    "en": "Comment",
-    "ar": "تعليق"
+    "En": "Comment",
+    "Ar": "تعليق"
   },
   {
     "name": "the_comment",
-    "en": "The Comment",
-    "ar": "التعليق"
+    "En": "The Comment",
+    "Ar": "التعليق"
   },
   {
     "name": "maximum_order",
-    "en": "Maximum order",
-    "ar": "أقصى حد للطلب"
+    "En": "Maximum order",
+    "Ar": "أقصى حد للطلب"
   },
   {
     "name": "minimum_order",
-    "en": "Minimum order",
-    "ar": "أقل حد للطلب"
+    "En": "Minimum order",
+    "Ar": "أقل حد للطلب"
   },
   {
     "name": "ad_rating",
-    "en": "Ad Rating",
-    "ar": "تقييم الإعلان"
+    "En": "Ad Rating",
+    "Ar": "تقييم الإعلان"
   },
 
   {
     "name": "number_views",
-    "en": "Number of Views",
-    "ar": "عدد المشاهدات"
+    "En": "Number of Views",
+    "Ar": "عدد المشاهدات"
   },
   {
     "name": "number_likes",
-    "en": "Number of Likes",
-    "ar": "عدد اللايكات"
+    "En": "Number of Likes",
+    "Ar": "عدد اللايكات"
   },
   {
     "name": "number_comments",
-    "en": "Number of Comments",
-    "ar": "عدد التعليقات"
+    "En": "Number of Comments",
+    "Ar": "عدد التعليقات"
   },
   {
     "name": "number_favorites",
-    "en": "Number of FavoriteS",
-    "ar": "عدد التفضيلات"
+    "En": "Number of FavoriteS",
+    "Ar": "عدد التفضيلات"
   },
   {
     "name": "favorites",
-    "en": "FavoriteS",
-    "ar": "التفضيلات"
+    "En": "FavoriteS",
+    "Ar": "التفضيلات"
   },
   {
     "name": "replies",
-    "en": "Replies",
-    "ar": "الردود"
+    "En": "Replies",
+    "Ar": "الردود"
   },
   {
     "name": "priority_level",
-    "en": "Priority Level",
-    "ar": "درجة الأهمية"
+    "En": "Priority Level",
+    "Ar": "درجة الأهمية"
   },
   {
     "name": "number_reports",
-    "en": "Number of Reports",
-    "ar": "عدد البلاغات"
+    "En": "Number of Reports",
+    "Ar": "عدد البلاغات"
   },
   {
     "name": "ad_reports",
-    "en": "Ad report",
-    "ar": "بلاغات الإعلان"
+    "En": "Ad report",
+    "Ar": "بلاغات الإعلان"
   },
   {
     "name": "the_reports",
-    "en": "The report",
-    "ar": "البلاغات"
+    "En": "The report",
+    "Ar": "البلاغات"
   },
   {
     "name": "quantities",
-    "en": "Quantities",
-    "ar": "الكميات"
+    "En": "Quantities",
+    "Ar": "الكميات"
   },
   {
     "name": "liked",
-    "en": "Liked",
-    "ar": "تم الإعجاب"
+    "En": "Liked",
+    "Ar": "تم الإعجاب"
   },
   {
     "name": "commented",
-    "en": "Commented",
-    "ar": "تم التعليق"
+    "En": "Commented",
+    "Ar": "تم التعليق"
   },
 
   {
     "name": "like",
-    "en": "Like",
-    "ar": "إعجاب"
+    "En": "Like",
+    "Ar": "إعجاب"
   },
   {
     "name": "comment",
-    "en": "Comment",
-    "ar": "تعليق"
+    "En": "Comment",
+    "Ar": "تعليق"
   },
   {
     "name": "favorite",
-    "en": "Favorite",
-    "ar": "تفضيل"
+    "En": "Favorite",
+    "Ar": "تفضيل"
   },
   {
     "name": "reported",
-    "en": "Report",
-    "ar": "إبلاغ"
+    "En": "Report",
+    "Ar": "إبلاغ"
   },
   {
     "name": "rate",
-    "en": "Rate",
-    "ar": "تقييم"
+    "En": "Rate",
+    "Ar": "تقييم"
   },
   {
     "name": "hide_mobile_number",
-    "en": "Hide mobile number",
-    "ar": "إخفاء رقم الجوال"
+    "En": "Hide mobile number",
+    "Ar": "إخفاء رقم الجوال"
   },
   {
     "name": "mobile_number_or_contact_method",
-    "en": "Mobile number or contact method",
-    "ar": "رقم الجوال او وسيلة التواصل"
+    "En": "Mobile number or contact method",
+    "Ar": "رقم الجوال او وسيلة التواصل"
   },
   {
     "name": "comment_on_report",
-    "en": "Comment on the report",
-    "ar": "التعليق على البلاغ"
+    "En": "Comment on the report",
+    "Ar": "التعليق على البلاغ"
   },
   {
     "name": "ad_requirement",
-    "en": "Content View",
-    "ar": "التعليق على البلاغ"
+    "En": "Content View",
+    "Ar": "التعليق على البلاغ"
   }
 ]

@@ -2,8 +2,8 @@
     {
         "module_name": "public",
         "name": "itineraries_admin",
-        "en": "Itineraries Admin",
-        "ar": "إدارة خطوط السير",
+        "En": "Itineraries Admin",
+        "Ar": "إدارة خطوط السير",
         "permissions": [
             "itineraries_manage"
         ]
@@ -11,8 +11,8 @@
     {
         "module_name": "public",
         "name": "itineraries_user",
-        "en": "Itineraries User",
-        "ar": "إدارة خطوط السير للمستخدم",
+        "En": "Itineraries User",
+        "Ar": "إدارة خطوط السير للمستخدم",
         "permissions": [
             "itineraries_view",
             "itineraries_search",

@@ -1,47 +1,47 @@
 [{
         "name": "doctors",
-        "en": "Doctors",
-        "ar": "الأطباء"
+        "En": "Doctors",
+        "Ar": "الأطباء"
     },
     {
         "name": "doctors_new",
-        "en": "New Doctor",
-        "ar": "طبيب  جديد"
+        "En": "New Doctor",
+        "Ar": "طبيب  جديد"
     },
     {
         "name": "doctors_add",
-        "en": "Add Doctor",
-        "ar": "إضافة طبيب "
+        "En": "Add Doctor",
+        "Ar": "إضافة طبيب "
     },
     {
         "name": "doctors_edit",
-        "en": "Edit Doctor",
-        "ar": "تعديل طبيب "
+        "En": "Edit Doctor",
+        "Ar": "تعديل طبيب "
     },
     {
         "name": "degree",
-        "en": "Degree",
-        "ar": "الدرجة العلمية"
+        "En": "Degree",
+        "Ar": "الدرجة العلمية"
     },
     {
         "name": "doctors_details",
-        "en": "Doctor Details",
-        "ar": "تفاصيل الطبيب "
+        "En": "Doctor Details",
+        "Ar": "تفاصيل الطبيب "
     },
     {
         "name": "doctors_delete",
-        "en": "Delete Doctor",
-        "ar": "حذف طبيب "
+        "En": "Delete Doctor",
+        "Ar": "حذف طبيب "
     },
     {
         "name": "doctors_name",
-        "en": "Doctor Name",
-        "ar": "إسم الطبيب "
+        "En": "Doctor Name",
+        "Ar": "إسم الطبيب "
     },
     {
         "name":"loginFirst",
-        "en":"please login first",
-        "ar":"برجاء تسجيل الدخول اولا"
+        "En":"please login first",
+        "Ar":"برجاء تسجيل الدخول اولا"
     }
 
 

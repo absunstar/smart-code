@@ -1,237 +1,237 @@
 [
   {
     "name": "near",
-    "en": "Near",
-    "ar": "القريب"
+    "En": "Near",
+    "Ar": "القريب"
   },
   {
     "name": "lowest_price",
-    "en": "Lowest price",
-    "ar": "الأقل سعر"
+    "En": "Lowest price",
+    "Ar": "الأقل سعر"
   },
   {
     "name": "highest_price",
-    "en": "Highest price",
-    "ar": "الأعلى سعر"
+    "En": "Highest price",
+    "Ar": "الأعلى سعر"
   },
   {
     "name": "only_new",
-    "en": "Only New",
-    "ar": "جديد فقط"
+    "En": "Only New",
+    "Ar": "جديد فقط"
   },
   {
     "name": "nearby_ads",
-    "en": "Nearby ads",
-    "ar": "إعلانات قريبة"
+    "En": "Nearby ads",
+    "Ar": "إعلانات قريبة"
   },
   {
     "name": "search_here_for_what_you_want",
-    "en": "Search here for what you want",
-    "ar": "إبحث هنا عن ما تريد"
+    "En": "Search here for what you want",
+    "Ar": "إبحث هنا عن ما تريد"
   },
   {
     "name": "search_here",
-    "en": "Search here",
-    "ar": "إبحث هنا"
+    "En": "Search here",
+    "Ar": "إبحث هنا"
   },
   {
     "name": "cart",
-    "en": "Cart",
-    "ar": "السلة"
+    "En": "Cart",
+    "Ar": "السلة"
   },
   {
     "name": "tmor",
-    "en": "Dates",
-    "ar": "تمور"
+    "En": "Dates",
+    "Ar": "تمور"
   },
   {
     "name": "hide_map",
-    "en": "Hide Map",
-    "ar": "إخفاء"
+    "En": "Hide Map",
+    "Ar": "إخفاء"
   },
   {
     "name": "map_search",
-    "en": "Map search",
-    "ar": "البحث بالخريطة"
+    "En": "Map search",
+    "Ar": "البحث بالخريطة"
   },
   {
     "name": "facebook_account",
-    "en": "Facebook Account",
-    "ar": "حساب الفيس بوك"
+    "En": "Facebook Account",
+    "Ar": "حساب الفيس بوك"
   },
   {
     "name": "instagram_accouunt",
-    "en": "Instagram Account",
-    "ar": "حساب إنستجرام"
+    "En": "Instagram Account",
+    "Ar": "حساب إنستجرام"
   },
   {
     "name": "you_tube_accouunt",
-    "en": "You Tube Instagram Account",
-    "ar": "حساب يوتيوب"
+    "En": "You Tube Instagram Account",
+    "Ar": "حساب يوتيوب"
   },
   {
     "name": "twitter_accouunt",
-    "en": "Twitter Instagram Account",
-    "ar": "حساب تويتر"
+    "En": "Twitter Instagram Account",
+    "Ar": "حساب تويتر"
   },
   {
     "name": "add_your_ad",
-    "en": "Add your ad",
-    "ar": "أضف إعلانك"
+    "En": "Add your ad",
+    "Ar": "أضف إعلانك"
   },
   {
     "name": "only_with_photos",
-    "en": "Only with photos",
-    "ar": "الإعلانات المُرفقة بصور فقط"
+    "En": "Only with photos",
+    "Ar": "الإعلانات المُرفقة بصور فقط"
   },
   {
     "name": "no_content_1",
-    "en": "Sorry... we didn't find anything matching this search",
-    "ar": "عفوًا ... لم نعثر على أي شيء مطابق لهذا البحث"
+    "En": "Sorry... we didn't find anything matching this search",
+    "Ar": "عفوًا ... لم نعثر على أي شيء مطابق لهذا البحث"
   },
   {
     "name": "no_content_2",
-    "en": "Try looking for something more general, change the filters or check for spelling errors",
-    "ar": "حاول البحث عن شيء أكثر عمومية، قم بتغيير عوامل التصفية أو تحقق من الأخطاء الإملائية"
+    "En": "Try looking for something more general, change the filters or check for spelling errors",
+    "Ar": "حاول البحث عن شيء أكثر عمومية، قم بتغيير عوامل التصفية أو تحقق من الأخطاء الإملائية"
   },
   {
     "name": "more_categories",
-    "en": "More Categories",
-    "ar": "أقسام أكثر"
+    "En": "More Categories",
+    "Ar": "أقسام أكثر"
   },
   {
     "name": "filtering",
-    "en": "Filtering",
-    "ar": "تصفية"
+    "En": "Filtering",
+    "Ar": "تصفية"
   },
   {
     "name": "phone_support",
-    "en": "Phone support",
-    "ar": "الدعم عبر الهاتف"
+    "En": "Phone support",
+    "Ar": "الدعم عبر الهاتف"
   },
   {
     "name": "email_support",
-    "en": "Email support",
-    "ar": "الدعم عبر البريد الألكتروني"
+    "En": "Email support",
+    "Ar": "الدعم عبر البريد الألكتروني"
   },
   {
     "name": "more",
-    "en": "More",
-    "ar": "المزيد"
+    "En": "More",
+    "Ar": "المزيد"
   },
   {
     "name": "see_more",
-    "en": "See More",
-    "ar": "مشاهدة المزيد"
+    "En": "See More",
+    "Ar": "مشاهدة المزيد"
   },
   {
     "name": "quick_navigate",
-    "en": "Quick Navigate",
-    "ar": "تنقل سريع"
+    "En": "Quick Navigate",
+    "Ar": "تنقل سريع"
   },
   {
     "name": "jordan",
-    "en": "Jordan",
-    "ar": "الأردن"
+    "En": "Jordan",
+    "Ar": "الأردن"
   },
   {
     "name": "iraq",
-    "en": "Iraq",
-    "ar": "العراق"
+    "En": "Iraq",
+    "Ar": "العراق"
   },
   {
     "name": "kuwait",
-    "en": "Kuwait",
-    "ar": "الكويت"
+    "En": "Kuwait",
+    "Ar": "الكويت"
   },
   {
     "name": "bahrain",
-    "en": "Bahrain",
-    "ar": "البحرين"
+    "En": "Bahrain",
+    "Ar": "البحرين"
   },
   {
     "name": "qatar",
-    "en": "Qatar",
-    "ar": "قطر"
+    "En": "Qatar",
+    "Ar": "قطر"
   },
   {
     "name": "uae",
-    "en": "UAE",
-    "ar": "الإمارات"
+    "En": "UAE",
+    "Ar": "الإمارات"
   },
   {
     "name": "oman",
-    "en": "Oman",
-    "ar": "عمان"
+    "En": "Oman",
+    "Ar": "عمان"
   },
   {
     "name": "yemen",
-    "en": "Yemen",
-    "ar": "اليمن"
+    "En": "Yemen",
+    "Ar": "اليمن"
   },
   {
     "name": "eastern_province",
-    "en": "Ehsaa & Eastern province",
-    "ar": "الإحساء و المنطقة الشرقية"
+    "En": "Ehsaa & Eastern province",
+    "Ar": "الإحساء و المنطقة الشرقية"
   },
   {
     "name": "najran",
-    "en": "Najran",
-    "ar": "نجران"
+    "En": "Najran",
+    "Ar": "نجران"
   },
   {
     "name": "jazan",
-    "en": "Jazan",
-    "ar": "جازان"
+    "En": "Jazan",
+    "Ar": "جازان"
   },
   {
     "name": "aseer",
-    "en": "Aseer",
-    "ar": "عسير"
+    "En": "Aseer",
+    "Ar": "عسير"
   },
   {
     "name": "baha",
-    "en": "Al-Baha",
-    "ar": "الباحة"
+    "En": "Al-Baha",
+    "Ar": "الباحة"
   },
   {
     "name": "makkah",
-    "en": "Makkah",
-    "ar": "مكة"
+    "En": "Makkah",
+    "Ar": "مكة"
   },
   {
     "name": "medina",
-    "en": "Al-Medina",
-    "ar": "المدينة"
+    "En": "Al-Medina",
+    "Ar": "المدينة"
   },
   {
     "name": "riyadh",
-    "en": "Riyadh",
-    "ar": "الرياض"
+    "En": "Riyadh",
+    "Ar": "الرياض"
   },
   {
     "name": "qassim",
-    "en": "Qassim",
-    "ar": "القصيم"
+    "En": "Qassim",
+    "Ar": "القصيم"
   },
   {
     "name": "hail",
-    "en": "Al-Hail",
-    "ar": "حائل"
+    "En": "Al-Hail",
+    "Ar": "حائل"
   },
   {
     "name": "northern_borders",
-    "en": "Northern borders",
-    "ar": "الحدود الشمالية"
+    "En": "Northern borders",
+    "Ar": "الحدود الشمالية"
   },
   {
     "name": "jouf",
-    "en": "Al-Jouf",
-    "ar": "الجوف"
+    "En": "Al-Jouf",
+    "Ar": "الجوف"
   },
   {
     "name": "tabouk",
-    "en": "Tabouk",
-    "ar": "تبوك"
+    "En": "Tabouk",
+    "Ar": "تبوك"
   }
 ]

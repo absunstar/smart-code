@@ -1,132 +1,132 @@
 [
   {
     "name": "manage_users",
-    "en": "Manage Users",
-    "ar": "إدارة المستخدمين"
+    "En": "Manage Users",
+    "Ar": "إدارة المستخدمين"
   },
   {
     "name": "manage_users_new",
-    "en": "New User",
-    "ar": "مستخدم جديد"
+    "En": "New User",
+    "Ar": "مستخدم جديد"
   },
   {
     "name": "user_type",
-    "en": "User Type",
-    "ar": "نوع المستخدم "
+    "En": "User Type",
+    "Ar": "نوع المستخدم "
   },
   {
     "name": "manage_users_add",
-    "en": "Add User",
-    "ar": "إضافة مستخدم "
+    "En": "Add User",
+    "Ar": "إضافة مستخدم "
   },
   {
     "name": "manage_users_edit",
-    "en": "Edit User",
-    "ar": "تعديل مستخدم "
+    "En": "Edit User",
+    "Ar": "تعديل مستخدم "
   },
   {
     "name": "manage_users_details",
-    "en": "User Details",
-    "ar": "تفاصيل المستخدم "
+    "En": "User Details",
+    "Ar": "تفاصيل المستخدم "
   },
   {
     "name": "manage_users_delete",
-    "en": "Delete User",
-    "ar": "حذف مستخدم "
+    "En": "Delete User",
+    "Ar": "حذف مستخدم "
   },
   {
     "name": "manage_users_name",
-    "en": "User Name",
-    "ar": "إسم المستخدم "
+    "En": "User Name",
+    "Ar": "إسم المستخدم "
   },
   {
     "name": "personal_info",
-    "en": "Personal Info",
-    "ar": "معلومات شخصية"
+    "En": "Personal Info",
+    "Ar": "معلومات شخصية"
   },
   {
     "name": "current_password",
-    "en": "Current Password",
-    "ar": "كلمة المرور الحالية"
+    "En": "Current Password",
+    "Ar": "كلمة المرور الحالية"
   },
   {
     "name": "current_password_incorrect",
-    "en": "The current password is incorrect",
-    "ar": "كلمة المرور الحالية غير صحيحة"
+    "En": "The current password is incorrect",
+    "Ar": "كلمة المرور الحالية غير صحيحة"
   },
   {
     "name": "there_no_products_cart",
-    "en": "There are no products in the cart",
-    "ar": "لا يوجد منتجات في السلة"
+    "En": "There are no products in the cart",
+    "Ar": "لا يوجد منتجات في السلة"
   },
   {
     "name": "new_password",
-    "en": "New Password",
-    "ar": "كلمة المرور الجديدة"
+    "En": "New Password",
+    "Ar": "كلمة المرور الجديدة"
   },
   {
     "name": "basic_info",
-    "en": "Basic Info",
-    "ar": "معلومات أساسية"
+    "En": "Basic Info",
+    "Ar": "معلومات أساسية"
   },
   {
     "name": "companies_branches",
-    "en": "Companies and Branches",
-    "ar": "الشركات و الفروع"
+    "En": "Companies and Branches",
+    "Ar": "الشركات و الفروع"
   },
   {
     "name": "contact_info",
-    "en": "Contact Info",
-    "ar": "معلومات الإتصال"
+    "En": "Contact Info",
+    "Ar": "معلومات الإتصال"
   },
   {
     "name": "general_validity",
-    "en": "General Validity",
-    "ar": "صلاحيات عامة"
+    "En": "General Validity",
+    "Ar": "صلاحيات عامة"
   },
   {
     "name": "validity_ar",
-    "en": "Ar. Validity",
-    "ar": "الصلاحية بالعربي"
+    "En": "Ar. Validity",
+    "Ar": "الصلاحية بالعربي"
   },
   {
     "name": "validity_en",
-    "en": "En. Validity",
-    "ar": "الصلاحية بالإنجليزي"
+    "En": "En. Validity",
+    "Ar": "الصلاحية بالإنجليزي"
   },
   {
     "name": "public",
-    "en": "Public",
-    "ar": "عام"
+    "En": "Public",
+    "Ar": "عام"
   },
   {
     "name": "hr",
-    "en": "HR",
-    "ar": "شئون موظفين"
+    "En": "HR",
+    "Ar": "شئون موظفين"
   },
   {
     "name": "new_username",
-    "en": "New UserName",
-    "ar": "إسم المستخدم الجديد"
+    "En": "New UserName",
+    "Ar": "إسم المستخدم الجديد"
   },
   {
     "name": "inventory",
-    "en": "Inventory",
-    "ar": "مخازن"
+    "En": "Inventory",
+    "Ar": "مخازن"
   },
   {
     "name": "accounting",
-    "en": "Accounting",
-    "ar": "حسابات"
+    "En": "Accounting",
+    "Ar": "حسابات"
   },
   {
     "name": "reports",
-    "en": "Reports",
-    "ar": "تقارير"
+    "En": "Reports",
+    "Ar": "تقارير"
   },
   {
     "name": "screens_management",
-    "en": "Screens management",
-    "ar": "إدارة الشاشات"
+    "En": "Screens management",
+    "Ar": "إدارة الشاشات"
   }
 ]

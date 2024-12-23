@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "insurance_slide_admin",
-    "en": "Insurance Slide Admin",
-    "ar": "إدارة شرائح التأمينات",
+    "En": "Insurance Slide Admin",
+    "Ar": "إدارة شرائح التأمينات",
     "permissions": ["insurance_slide_manage"]
 }]

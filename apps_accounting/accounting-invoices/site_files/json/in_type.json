@@ -1,27 +1,27 @@
 [
     {
         "id": 1,
-        "en": "Incoming source",
-        "ar": "مصدر وارد"
+        "En": "Incoming source",
+        "Ar": "مصدر وارد"
     },
     {
         "id": 2,
-        "en": "Orders Screen",
-        "ar": "شاشة الطلبات"
+        "En": "Orders Screen",
+        "Ar": "شاشة الطلبات"
     },
     {
         "id": 3,
-        "en": "sales invoice",
-        "ar": "فاتورة مبيعات"
+        "En": "sales invoice",
+        "Ar": "فاتورة مبيعات"
     },
     {
         "id": 4,
-        "en": "Return purchase invoice",
-        "ar": "مرتجع فاتورة مشتريات"
+        "En": "Return purchase invoice",
+        "Ar": "مرتجع فاتورة مشتريات"
     },
     {
         "id": 5,
-        "en": "Customer",
-        "ar": "عميل"
+        "En": "Customer",
+        "Ar": "عميل"
     }
 ]

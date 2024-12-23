@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "circles_admin",
-    "en": "Circle Admin",
-    "ar": "إدارة الدوائر",
+    "En": "Circle Admin",
+    "Ar": "إدارة الدوائر",
     "permissions": ["circles_manage"]
 }]

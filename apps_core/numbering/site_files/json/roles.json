@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "numbering_admin",
-    "en": "Numbering Admin",
-    "ar": "إدارة الترقيم",
+    "En": "Numbering Admin",
+    "Ar": "إدارة الترقيم",
     "permissions": ["numbering_manage"]
 }]

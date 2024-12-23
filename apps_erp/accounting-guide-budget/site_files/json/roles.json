@@ -1,7 +1,7 @@
 [{
     "module_name": "accounting",
     "name": "accounting_guide_budget_admin",
-    "en": "Guide Budget Admin",
-    "ar": "إدارة دليل تصنيفات المزانية",
+    "En": "Guide Budget Admin",
+    "Ar": "إدارة دليل تصنيفات المزانية",
     "permissions": ["accounting_guide_budget_manage"]
 }]

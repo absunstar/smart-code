@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "rogatory_places_admin",
-    "en": "Rogatory Places Admin",
-    "ar": "إدارة أماكن التوكيلات",
+    "En": "Rogatory Places Admin",
+    "Ar": "إدارة أماكن التوكيلات",
     "permissions": ["rogatory_places_manage"]
 }]

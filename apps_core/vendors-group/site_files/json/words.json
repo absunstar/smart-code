@@ -1,18 +1,18 @@
 [
-    {"name" : "vendors_add" , "en" : "Add Vendor" , "ar" : "إضافة مورد"},
-    {"name" : "vendors_group_informations" , "en" : "Vendors Group Informations" , "ar" : "بيانات مجموعة موردين"},
-    {"name" : "vendors_groups_name" , "en" : "Vendors Groups" , "ar" : "مجموعات الموردين"},
+    {"name" : "vendors_add" , "En" : "Add Vendor" , "Ar" : "إضافة مورد"},
+    {"name" : "vendors_group_informations" , "En" : "Vendors Group Informations" , "Ar" : "بيانات مجموعة موردين"},
+    {"name" : "vendors_groups_name" , "En" : "Vendors Groups" , "Ar" : "مجموعات الموردين"},
 
-    {"name" : "vendors_group" , "en" : "Vendors Groups" , "ar" : "مجموعات الموردين"},
-    {"name" : "vendors_group_menus" , "en" : "Vendors Group Menu" , "ar" : "قائمة مجموعة الموردين"},
-    {"name" : "vendors_group_code" , "en" : "Vendors Group Code" , "ar" : "كود مجموعة الموردين"},
-    {"name" : "vendors_group_name" , "en" : "Vendors Group Name" , "ar" : "إسم مجموعة الموردين"},
+    {"name" : "vendors_group" , "En" : "Vendors Groups" , "Ar" : "مجموعات الموردين"},
+    {"name" : "vendors_group_menus" , "En" : "Vendors Group Menu" , "Ar" : "قائمة مجموعة الموردين"},
+    {"name" : "vendors_group_code" , "En" : "Vendors Group Code" , "Ar" : "كود مجموعة الموردين"},
+    {"name" : "vendors_group_name" , "En" : "Vendors Group Name" , "Ar" : "إسم مجموعة الموردين"},
 
-    {"name" : "vendors_group_new" , "en" : "New Vendors Group" , "ar" : "مجموعة موردين جديدة"},
-    {"name" : "vendors_group_details" , "en" : "Vendors Group Details" , "ar" : "تفاصيل مجموعة موردين"},
-    {"name" : "vendors_group_update" , "en" : "Edit Vendors Group" , "ar" : "تعديل مجموعة موردين"},
-    {"name" : "vendors_group_delete" , "en" : "Delte Vendors Group" , "ar" : "حذف مجموعة موردين"},
-    {"name" : "vendors_group_add_name" , "en" : "Add Vendors Group" , "ar" : "إضافة مجموعة موردين"}
+    {"name" : "vendors_group_new" , "En" : "New Vendors Group" , "Ar" : "مجموعة موردين جديدة"},
+    {"name" : "vendors_group_details" , "En" : "Vendors Group Details" , "Ar" : "تفاصيل مجموعة موردين"},
+    {"name" : "vendors_group_update" , "En" : "Edit Vendors Group" , "Ar" : "تعديل مجموعة موردين"},
+    {"name" : "vendors_group_delete" , "En" : "Delte Vendors Group" , "Ar" : "حذف مجموعة موردين"},
+    {"name" : "vendors_group_add_name" , "En" : "Add Vendors Group" , "Ar" : "إضافة مجموعة موردين"}
 
 
     

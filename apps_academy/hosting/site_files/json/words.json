@@ -1,67 +1,67 @@
 [{
         "name": "hosting",
-        "en": "Hosting",
-        "ar": "الإستضافة"
+        "En": "Hosting",
+        "Ar": "الإستضافة"
     },
     {
         "name": "hosting_new",
-        "en": "New Hosting",
-        "ar": "إستضافة جديد"
+        "En": "New Hosting",
+        "Ar": "إستضافة جديد"
     },
     {
         "name": "hosting_time",
-        "en": "Hosting Time",
-        "ar": "ميعاد الإستضافة "
+        "En": "Hosting Time",
+        "Ar": "ميعاد الإستضافة "
     },
     {
         "name": "hosting_add",
-        "en": "Add Hosting",
-        "ar": "إضافة إستضافة "
+        "En": "Add Hosting",
+        "Ar": "إضافة إستضافة "
     },
     {
         "name": "students_menu",
-        "en": "Students Menu",
-        "ar": "قائمة الطلاب"
+        "En": "Students Menu",
+        "Ar": "قائمة الطلاب"
     },
     {
         "name": "hosting_edit",
-        "en": "Edit Hosting",
-        "ar": "تعديل إستضافة "
+        "En": "Edit Hosting",
+        "Ar": "تعديل إستضافة "
     },
     {
         "name": "hosting_details",
-        "en": "Hosting Details",
-        "ar": "تفاصيل الإستضافة "
+        "En": "Hosting Details",
+        "Ar": "تفاصيل الإستضافة "
     },
     {
         "name": "hosting_delete",
-        "en": "Delete Hosting",
-        "ar": "حذف إستضافة "
+        "En": "Delete Hosting",
+        "Ar": "حذف إستضافة "
     },
     {
         "name": "hosting_name",
-        "en": "Hosting Name",
-        "ar": "إسم الإستضافة "
+        "En": "Hosting Name",
+        "Ar": "إسم الإستضافة "
     },
     {
         "name": "hosting_type",
-        "en": "Hosting Type",
-        "ar": "نوع الإستضافة "
+        "En": "Hosting Type",
+        "Ar": "نوع الإستضافة "
     },
     {
         "name": "total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "En": "Total Required",
+        "Ar": "إجمالي المطلوب"
     },
     {
         "name": "hosting_name",
-        "en": "Hosting Name",
-        "ar": "إسم الإستضافة "
+        "En": "Hosting Name",
+        "Ar": "إسم الإستضافة "
     },
     {
         "name": "hosting_price",
-        "en": "Hosting Price",
-        "ar": "سعر الإستضافة "
+        "En": "Hosting Price",
+        "Ar": "سعر الإستضافة "
     }
 
 

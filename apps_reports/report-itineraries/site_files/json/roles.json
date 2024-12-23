@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_itineraries_admin",
-    "en": "Report Itineraries Admin",
-    "ar": "تقرير خطوط السير",
+    "En": "Report Itineraries Admin",
+    "Ar": "تقرير خطوط السير",
     "permissions": ["report_itineraries_manage"]
 }]

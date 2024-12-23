@@ -1,169 +1,169 @@
 [
     {
         "name": "report_safes_add",
-        "en": "Add Customer",
-        "ar": "إضافة عميل"
+        "En": "Add Customer",
+        "Ar": "إضافة عميل"
     },
     {
         "name": "report_safes_informations",
-        "en": "Report Safes Informations",
-        "ar": "بيانات تقرير فاتورة"
+        "En": "Report Safes Informations",
+        "Ar": "بيانات تقرير فاتورة"
     },
     {
         "name": "report_safes_name",
-        "en": "Report Safes",
-        "ar": "تقرير الخزينة"
+        "En": "Report Safes",
+        "Ar": "تقرير الخزينة"
     },
     {
         "name": "report_safes",
-        "en": "Report Safes",
-        "ar": "تقرير الخزينة"
+        "En": "Report Safes",
+        "Ar": "تقرير الخزينة"
     },
     {
         "name": "report_safes_menus",
-        "en": "Report Safes Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "En": "Report Safes Menu",
+        "Ar": "قائمة تقرير فاتورة"
     },
     {
         "name": "invoices_code",
-        "en": "Report Safes Code",
-        "ar": "كود الفاتورة"
+        "En": "Report Safes Code",
+        "Ar": "كود الفاتورة"
     },
     {
         "name": "total_items_price",
-        "en": "Total Items Price",
-        "ar": "مجموع سعر الأصناف"
+        "En": "Total Items Price",
+        "Ar": "مجموع سعر الأصناف"
     },
     {
         "name": "source_type",
-        "en": "Source Type",
-        "ar": "نوع المصدر"
+        "En": "Source Type",
+        "Ar": "نوع المصدر"
     },
     {
         "name": "order_invoices_type",
-        "en": "Order Safes Type",
-        "ar": "نوع أمر الفاتورة"
+        "En": "Order Safes Type",
+        "Ar": "نوع أمر الفاتورة"
     },
     {
         "name": "order_sale",
-        "en": "Order Sale",
-        "ar": "أمر بيع"
+        "En": "Order Sale",
+        "Ar": "أمر بيع"
     },
     {
         "name": "payable",
-        "en": "Payable",
-        "ar": "مستحق الدفع"
+        "En": "Payable",
+        "Ar": "مستحق الدفع"
     },
     {
         "name": "invoice_type",
-        "en": "Invoice Type",
-        "ar": "نوع الفاتورة"
+        "En": "Invoice Type",
+        "Ar": "نوع الفاتورة"
     },
     {
         "name": "payment",
-        "en": "Payment",
-        "ar": "تسديد"
+        "En": "Payment",
+        "Ar": "تسديد"
     },
   
     {
         "name": "detailes_amounts_paid",
-        "en": "Detailes Amounts Paid",
-        "ar": "تفاصيل المدفوعات"
+        "En": "Detailes Amounts Paid",
+        "Ar": "تفاصيل المدفوعات"
     },
     {
         "name": "date_from",
-        "en": "Date From",
-        "ar": "تاريخ من"
+        "En": "Date From",
+        "Ar": "تاريخ من"
     },
     {
         "name": "date_to",
-        "en": "Date To",
-        "ar": "تاريخ إلى"
+        "En": "Date To",
+        "Ar": "تاريخ إلى"
     },
     {
         "name": "err_paid_up",
-        "en": "Must Enter Paid",
-        "ar": "يجب إدخال مبلغ "
+        "En": "Must Enter Paid",
+        "Ar": "يجب إدخال مبلغ "
     },
     {
         "name": "paid_up",
-        "en": "Paid Up",
-        "ar": "المدفوع"
+        "En": "Paid Up",
+        "Ar": "المدفوع"
     },
     {
         "name": "err_total_tax",
-        "en": "Total Taxes Greater Than Required",
-        "ar": "مجموع الضرائب أكبر من المطلوب"
+        "En": "Total Taxes Greater Than Required",
+        "Ar": "مجموع الضرائب أكبر من المطلوب"
     },
     {
         "name": "err_total_discount",
-        "en": "Total Discount Greater Than Required",
-        "ar": "مجموع الخصومات أكبر من المطلوب"
+        "En": "Total Discount Greater Than Required",
+        "Ar": "مجموع الخصومات أكبر من المطلوب"
     },
     {
         "name": "err_service",
-        "en": "Service Greater Than Required",
-        "ar": "مبلغ الخدمة أكبر من المطلوب"
+        "En": "Service Greater Than Required",
+        "Ar": "مبلغ الخدمة أكبر من المطلوب"
     },
   
     {
         "name": "err_price_delivery_service",
-        "en": "Price Delivery Service Greater Than Required",
-        "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
+        "En": "Price Delivery Service Greater Than Required",
+        "Ar": "مبلغ خدمة التوصيل أكبر من المطلوب"
     },
     {
         "name": "report_safes_new",
-        "en": "New Report Safes",
-        "ar": "تقرير فاتورة جديدة"
+        "En": "New Report Safes",
+        "Ar": "تقرير فاتورة جديدة"
     },
     {
         "name": "report_safes_details",
-        "en": "Report Safes Details",
-        "ar": "تفاصيل تقرير فاتورة"
+        "En": "Report Safes Details",
+        "Ar": "تفاصيل تقرير فاتورة"
     },
     {
         "name": "report_safes_update",
-        "en": "Edit Report Safes",
-        "ar": "تعديل تقرير فاتورة"
+        "En": "Edit Report Safes",
+        "Ar": "تعديل تقرير فاتورة"
     },
     {
         "name": "report_safes_delete",
-        "en": "Delte Report Safes",
-        "ar": "حذف تقرير فاتورة"
+        "En": "Delte Report Safes",
+        "Ar": "حذف تقرير فاتورة"
     },
     {
         "name": "report_safes_total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "En": "Total Required",
+        "Ar": "إجمالي المطلوب"
     },
     {
         "name": "total_outgoing",
-        "en": "Total Paid Outgoing",
-        "ar": "إجمالي الصرف "
+        "En": "Total Paid Outgoing",
+        "Ar": "إجمالي الصرف "
     },
     {
         "name": "total_incoming",
-        "en": "Total Paid Incoming",
-        "ar": "إجمالي القبض "
+        "En": "Total Paid Incoming",
+        "Ar": "إجمالي القبض "
     },
     {
         "name": "total_outgoing_comm",
-        "en": "Total commission Outgoing",
-        "ar": "إجمالي عمولة الصرف "
+        "En": "Total commission Outgoing",
+        "Ar": "إجمالي عمولة الصرف "
     },
     {
         "name": "total_incoming_comm",
-        "en": "Total commission Incoming",
-        "ar": "إجمالي عمولة القبض "
+        "En": "Total commission Incoming",
+        "Ar": "إجمالي عمولة القبض "
     },
     {
         "name": "total_remain",
-        "en": "Total Remain",
-        "ar": "إجمالي الباقي"
+        "En": "Total Remain",
+        "Ar": "إجمالي الباقي"
     },
     {
         "name": "report_safes_add_name",
-        "en": "Add Report Safes",
-        "ar": "إضافة تقرير فاتورة"
+        "En": "Add Report Safes",
+        "Ar": "إضافة تقرير فاتورة"
     }
 ]

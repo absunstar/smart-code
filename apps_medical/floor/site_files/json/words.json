@@ -1,48 +1,48 @@
 [{
         "name": "floor",
-        "en": "Floors",
-        "ar": "الطابق"
+        "En": "Floors",
+        "Ar": "الطابق"
     },
     {
         "name": "floors",
-        "en": "Floors",
-        "ar": "الطوابق"
+        "En": "Floors",
+        "Ar": "الطوابق"
     },
     {
         "name": "floor_new",
-        "en": "New Floors",
-        "ar": "طابق  جديدة"
+        "En": "New Floors",
+        "Ar": "طابق  جديدة"
     },
 
     {
         "name": "floor_add",
-        "en": "Add Floors",
-        "ar": "إضافة طابق "
+        "En": "Add Floors",
+        "Ar": "إضافة طابق "
     },
     {
         "name": "floor_edit",
-        "en": "Edit Floors",
-        "ar": "تعديل طابق "
+        "En": "Edit Floors",
+        "Ar": "تعديل طابق "
     },
     {
         "name": "floor_details",
-        "en": "Floors Details",
-        "ar": "تفاصيل الطابق "
+        "En": "Floors Details",
+        "Ar": "تفاصيل الطابق "
     },
     {
         "name": "floor_delete",
-        "en": "Delete Floors",
-        "ar": "حذف طابق "
+        "En": "Delete Floors",
+        "Ar": "حذف طابق "
     },
     {
         "name": "floor_name",
-        "en": "Floors Name",
-        "ar": "إسم الطابق "
+        "En": "Floors Name",
+        "Ar": "إسم الطابق "
     },
     {
         "name": "loginFirst",
-        "en": "please login first",
-        "ar": "برجاء تسجيل الدخول"
+        "En": "please login first",
+        "Ar": "برجاء تسجيل الدخول"
     }
 
 

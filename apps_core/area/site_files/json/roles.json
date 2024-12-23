@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "area_admin",
-    "en": "Area Admin",
-    "ar": "إدارة المناطق",
+    "En": "Area Admin",
+    "Ar": "إدارة المناطق",
     "permissions": ["area_manage"]
 }]

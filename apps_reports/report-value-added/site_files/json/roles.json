@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_value_added_admin",
-    "en": "Report Value Added Admin",
-    "ar": "إدارة تقرير القيمة المضافة",
+    "En": "Report Value Added Admin",
+    "Ar": "إدارة تقرير القيمة المضافة",
     "permissions": ["report_value_added_manage"]
 }]

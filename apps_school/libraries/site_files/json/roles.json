@@ -1,15 +1,15 @@
 [{
     "module_name" : "public" ,
     "name": "libraries_admin",
-    "en": "Libraries Admin",
-    "ar": "إدارة المكتبات",
+    "En": "Libraries Admin",
+    "Ar": "إدارة المكتبات",
     "permissions": ["libraries_manage"]
 },
 {
     "module_name": "public",
     "name": "libraries_student",
-    "en": "Libraries Student",
-    "ar": "مكتبة الطلاب",
+    "En": "Libraries Student",
+    "Ar": "مكتبة الطلاب",
     "permissions": [
         "libraries_ui",
         "libraries_view"

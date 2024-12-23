@@ -1,37 +1,37 @@
 [
     {
         "name": "adjectives_in_lawsuit",
-        "en":  "Adjectives In Lawsuit",
-        "ar": "الصفات في الدعوى"
+        "En":  "Adjectives In Lawsuit",
+        "Ar": "الصفات في الدعوى"
     },
     {
         "name": "adjectives_new",
-        "en": "New djectives",
-        "ar": "صفة جديد"
+        "En": "New djectives",
+        "Ar": "صفة جديد"
     },
     {
         "name": "adjectives_add",
-        "en": "Add djectives",
-        "ar": "إضافة صفة "
+        "En": "Add djectives",
+        "Ar": "إضافة صفة "
     },
     {
         "name": "adjectives_edit",
-        "en": "Edit djectives",
-        "ar": "تعديل صفة "
+        "En": "Edit djectives",
+        "Ar": "تعديل صفة "
     },
     {
         "name": "adjectives_details",
-        "en":  "Djectives Details",
-        "ar": "تفاصيل الصفة "
+        "En":  "Djectives Details",
+        "Ar": "تفاصيل الصفة "
     },
     {
         "name": "adjectives_delete",
-        "en": "Deleted djectives",
-        "ar": "حذف صفة "
+        "En": "Deleted djectives",
+        "Ar": "حذف صفة "
     },
     {
         "name": "adjectives_name",
-        "en":  "Djectives Name",
-        "ar": "إسم الصفة"
+        "En":  "Djectives Name",
+        "Ar": "إسم الصفة"
     }
 ]

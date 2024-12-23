@@ -1,409 +1,409 @@
 [
     {
         "name": "brand_title",
-        "en": "Smart Code",
-        "ar": "سمـارت كـود"
+        "En": "Smart Code",
+        "Ar": "سمـارت كـود"
     },
     {
         "name": "brand_tag",
-        "en": "Enterprise Resources Planing",
-        "ar": "نظام إدارة النادي"
+        "En": "Enterprise Resources Planing",
+        "Ar": "نظام إدارة النادي"
     },
     {
         "name": "menu_customers",
-        "en": "Subscribers Menu",
-        "ar": "قائمة المشتركين"
+        "En": "Subscribers Menu",
+        "Ar": "قائمة المشتركين"
     },
     {
         "name": "menu_customers_tag",
-        "en": "Add Subscribers",
-        "ar": "إضافة مشتركين"
+        "En": "Add Subscribers",
+        "Ar": "إضافة مشتركين"
     },
     {
         "name": "customers_groups",
-        "en": "Subscribers Group",
-        "ar": "مجموعة المشتركين"
+        "En": "Subscribers Group",
+        "Ar": "مجموعة المشتركين"
     },
     {
         "name": "yes",
-        "en": "Yes",
-        "ar": "نعم"
+        "En": "Yes",
+        "Ar": "نعم"
     },
     {
         "name": "no",
-        "en": "No",
-        "ar": "لا"
+        "En": "No",
+        "Ar": "لا"
     },
     {
         "name": "customers_indentfy",
-        "en": "Subscriber indentfy",
-        "ar": "نوع المشترك"
+        "En": "Subscriber indentfy",
+        "Ar": "نوع المشترك"
     },
    
     {
         "name": "customers",
-        "en": "Subscribers",
-        "ar": "المشتركين"
+        "En": "Subscribers",
+        "Ar": "المشتركين"
     },
     {
         "name": "customers_data",
-        "en": "Customers Data",
-        "ar": "بيانات العميل"
+        "En": "Customers Data",
+        "Ar": "بيانات العميل"
     },
     {
         "name": "customers_new",
-        "en": "New Subscriber",
-        "ar": "مشترك جديد"
+        "En": "New Subscriber",
+        "Ar": "مشترك جديد"
     },
     {
         "name": "customers_add",
-        "en": "Add Subscriber",
-        "ar": "إضافة مشترك"
+        "En": "Add Subscriber",
+        "Ar": "إضافة مشترك"
     },
     {
         "name": "customers_edit",
-        "en": "Subscriber Edit",
-        "ar": "تعديل بيانات مشترك"
+        "En": "Subscriber Edit",
+        "Ar": "تعديل بيانات مشترك"
     },
     {
         "name": "customers_details",
-        "en": "Subscriber Details",
-        "ar": "تفاصيل مشترك"
+        "En": "Subscriber Details",
+        "Ar": "تفاصيل مشترك"
     },
     {
         "name": "customers_delete",
-        "en": "Delete Subscriber",
-        "ar": "حذف مشترك"
+        "En": "Delete Subscriber",
+        "Ar": "حذف مشترك"
     },
     {
         "name": "customers_code",
-        "en": "Subscriber Code",
-        "ar": "كود المشترك"
+        "En": "Subscriber Code",
+        "Ar": "كود المشترك"
     },
     {
         "name": "customers_name_ar",
-        "en": "Subscriber Name Arabic",
-        "ar": "إسم المشترك بالعربي"
+        "En": "Subscriber Name Arabic",
+        "Ar": "إسم المشترك بالعربي"
     },
     {
         "name": "customers_name_en",
-        "en": "Subscriber Name English",
-        "ar": "إسم المشترك بالانجليزية"
+        "En": "Subscriber Name English",
+        "Ar": "إسم المشترك بالانجليزية"
     },
     {
         "name": "customer_name",
-        "en": "Subscriber Name",
-        "ar": "إسم المشترك"
+        "En": "Subscriber Name",
+        "Ar": "إسم المشترك"
     },
     {
         "name": "customer",
-        "en": "Subscriber ",
-        "ar": " المشترك"
+        "En": "Subscriber ",
+        "Ar": " المشترك"
     },
     {
         "name": "order_slides_add",
-        "en": "Add Orders Slide",
-        "ar": "إضافة حساب شريحة جلسات"
+        "En": "Add Orders Slide",
+        "Ar": "إضافة حساب شريحة جلسات"
     },
     {
         "name": "order_slides",
-        "en": "Orders Slide",
-        "ar": "حساب شريحة جلسات"
+        "En": "Orders Slide",
+        "Ar": "حساب شريحة جلسات"
     },
     {
         "name": "order_slides_name",
-        "en": "Slide Name",
-        "ar": "إسم حساب الشريحة"
+        "En": "Slide Name",
+        "Ar": "إسم حساب الشريحة"
     },
     {
         "name": "order_slides_from",
-        "en": "Slide From",
-        "ar": "بداية حساب الشريحة"
+        "En": "Slide From",
+        "Ar": "بداية حساب الشريحة"
     },
     {
         "name": "order_slides_to",
-        "en": "Slide To",
-        "ar": "نهاية حساب شريحة"
+        "En": "Slide To",
+        "Ar": "نهاية حساب شريحة"
     },
     {
         "name": "order_slides_value",
-        "en": "Session Value",
-        "ar": "قيمة الجلسة"
+        "En": "Session Value",
+        "Ar": "قيمة الجلسة"
     },
     {
         "name": "order_slides_new",
-        "en": "New Slide",
-        "ar": "حساب شريحة جلسات جديدة "
+        "En": "New Slide",
+        "Ar": "حساب شريحة جلسات جديدة "
     },
     {
         "name": "order_slides_logo",
-        "en": "Slides Logo",
-        "ar": "صورة شريحة الجلسات"
+        "En": "Slides Logo",
+        "Ar": "صورة شريحة الجلسات"
     },
     {
         "name": "order_slides_edit",
-        "en": "Edit Slide",
-        "ar": "تعديل بيانات شريحة الجلسات"
+        "En": "Edit Slide",
+        "Ar": "تعديل بيانات شريحة الجلسات"
     },
     {
         "name": "order_slides_details",
-        "en": "Slide Details",
-        "ar": " تفاصيل شريحة الجلسات"
+        "En": "Slide Details",
+        "Ar": " تفاصيل شريحة الجلسات"
     },
     {
         "name": "order_slides_delete",
-        "en": "Delete Slide",
-        "ar": "حذف حساب شريحة الجلسات"
+        "En": "Delete Slide",
+        "Ar": "حذف حساب شريحة الجلسات"
     },
     {
         "name": "order_slides_img",
-        "en": "Sessions Slides Image",
-        "ar": "ملفات شريحة الجلسات"
+        "En": "Sessions Slides Image",
+        "Ar": "ملفات شريحة الجلسات"
     },
     {
         "name": "companies",
-        "en": "Clubs",
-        "ar": "النادي"
+        "En": "Clubs",
+        "Ar": "النادي"
     },
     {
         "name": "companies_add",
-        "en": "Add club",
-        "ar": "إضافة نادي"
+        "En": "Add club",
+        "Ar": "إضافة نادي"
     },
     {
         "name": "companies_edit",
-        "en": "Edit club",
-        "ar": "تعديل نادي"
+        "En": "Edit club",
+        "Ar": "تعديل نادي"
     },
     {
         "name": "companies_informations",
-        "en": "club Informations",
-        "ar": "بيانات النادي"
+        "En": "club Informations",
+        "Ar": "بيانات النادي"
     },
     {
         "name": "companies_basic_information",
-        "en": "Basic Informations",
-        "ar": "البيانات الاساسية"
+        "En": "Basic Informations",
+        "Ar": "البيانات الاساسية"
     },
     {
         "name": "companies_contact_information",
-        "en": "Contact Informations",
-        "ar": "بيانات الاتصال"
+        "En": "Contact Informations",
+        "Ar": "بيانات الاتصال"
     },
     {
         "name": "companies_details",
-        "en": "club Details",
-        "ar": "تفاصيل النادي"
+        "En": "club Details",
+        "Ar": "تفاصيل النادي"
     },
     {
         "name": "companies_delete",
-        "en": "Delete club",
-        "ar": "حذف نادي"
+        "En": "Delete club",
+        "Ar": "حذف نادي"
     },
     {
         "name": "companies_code",
-        "en": "club Code",
-        "ar": "كود النادي"
+        "En": "club Code",
+        "Ar": "كود النادي"
     },
     {
         "name": "companies_phone",
-        "en": "Phone",
-        "ar": "التليفون"
+        "En": "Phone",
+        "Ar": "التليفون"
     },
     {
         "name": "companies_mobile",
-        "en": "Mobile",
-        "ar": "الموبايل"
+        "En": "Mobile",
+        "Ar": "الموبايل"
     },
     {
         "name": "companies_activity",
-        "en": "Activity",
-        "ar": "النشاط"
+        "En": "Activity",
+        "Ar": "النشاط"
     },
     {
         "name": "companies_branches_informations",
-        "en": "Branches Informations",
-        "ar": "بيانات الفروع"
+        "En": "Branches Informations",
+        "Ar": "بيانات الفروع"
     },
     {
         "name": "companies_branch",
-        "en": "Branch",
-        "ar": "الفرع"
+        "En": "Branch",
+        "Ar": "الفرع"
     },
     {
         "name": "companies_branch_information",
-        "en": "Branch Information",
-        "ar": "بيانات الفرع"
+        "En": "Branch Information",
+        "Ar": "بيانات الفرع"
     },
     {
         "name": "companies_contact_charge",
-        "en": "Charge Information",
-        "ar": "بيانات المسئول"
+        "En": "Charge Information",
+        "Ar": "بيانات المسئول"
     },
     {
         "name": "companies_branch_code",
-        "en": "Branch Code",
-        "ar": "كود الفرع"
+        "En": "Branch Code",
+        "Ar": "كود الفرع"
     },
     {
         "name": "companies_branch_name",
-        "en": "Branch Name",
-        "ar": "إسم الفرع"
+        "En": "Branch Name",
+        "Ar": "إسم الفرع"
     },
     {
         "name": "companies_branch_name_ar",
-        "en": "Branch Name Arabic",
-        "ar": "إسم الفرع بالعربى"
+        "En": "Branch Name Arabic",
+        "Ar": "إسم الفرع بالعربى"
     },
     {
         "name": "companies_branch_name_en",
-        "en": "Branch Name English",
-        "ar": "إسم الفرع بالانجليزى"
+        "En": "Branch Name English",
+        "Ar": "إسم الفرع بالانجليزى"
     },
     {
         "name": "companies_branch_notes",
-        "en": "Branch Notes",
-        "ar": "ملاحظات الفرع"
+        "En": "Branch Notes",
+        "Ar": "ملاحظات الفرع"
     },
     {
         "name": "companies_charge_name",
-        "en": "Charge Name",
-        "ar": "إسم المسئول"
+        "En": "Charge Name",
+        "Ar": "إسم المسئول"
     },
     {
         "name": "companies_charge_job",
-        "en": "Charge Job",
-        "ar": "الوظيفة"
+        "En": "Charge Job",
+        "Ar": "الوظيفة"
     },
     {
         "name": "companies_internal_number",
-        "en": "Internal Number",
-        "ar": "الرقم الداخلي"
+        "En": "Internal Number",
+        "Ar": "الرقم الداخلي"
     },
     {
         "name": "companies_banking_informations",
-        "en": "Banking Informations",
-        "ar": "البنوك"
+        "En": "Banking Informations",
+        "Ar": "البنوك"
     },
     {
         "name": "companies_bank_information",
-        "en": "Bank Information",
-        "ar": "بيانات البنك"
+        "En": "Bank Information",
+        "Ar": "بيانات البنك"
     },
     {
         "name": "companies_bank_name",
-        "en": "Bank Name",
-        "ar": "إسم البنك"
+        "En": "Bank Name",
+        "Ar": "إسم البنك"
     },
     {
         "name": "companies_bank_account_number",
-        "en": "Bank Account Number",
-        "ar": "رقم الحساب"
+        "En": "Bank Account Number",
+        "Ar": "رقم الحساب"
     },
     {
         "name": "companies_filter_with_date",
-        "en": "Filter With Date",
-        "ar": "تصفية البيانات بالتاريخ"
+        "En": "Filter With Date",
+        "Ar": "تصفية البيانات بالتاريخ"
     },
     {
         "name": "companies_calender_type",
-        "en": "Calender Type",
-        "ar": "نوع التقويم"
+        "En": "Calender Type",
+        "Ar": "نوع التقويم"
     },
     {
         "name": "companies_gegorian",
-        "en": "Gregorian",
-        "ar": "ميلادي"
+        "En": "Gregorian",
+        "Ar": "ميلادي"
     },
     {
         "name": "companies_hijri",
-        "en": "Hijri",
-        "ar": "هجري"
+        "En": "Hijri",
+        "Ar": "هجري"
     },
     {
         "name": "companies_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
 
     {
         "name": "companies_city",
-        "en": "City",
-        "ar": "المدينة"
+        "En": "City",
+        "Ar": "المدينة"
     },
     {
         "name": "companies_email",
-        "en": "Email",
-        "ar": "البريد الإلكتروني"
+        "En": "Email",
+        "Ar": "البريد الإلكتروني"
     },
     {
         "name": "companies_fax",
-        "en": "Fax",
-        "ar": "الفاكس"
+        "En": "Fax",
+        "Ar": "الفاكس"
     },
     {
         "name": "companies_name_ar",
-        "en": "club Name Arabic",
-        "ar": "إسم النادي"
+        "En": "club Name Arabic",
+        "Ar": "إسم النادي"
     },
     {
         "name": "companies_name_en",
-        "en": "club Name English",
-        "ar": "إسم النادي بالانجليزية"
+        "En": "club Name English",
+        "Ar": "إسم النادي بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
-        "en": "Exchange Price",
-        "ar": "سعر الصرف"
+        "En": "Exchange Price",
+        "Ar": "سعر الصرف"
     },
     {
         "name": "companies_club_swift_code",
-        "en": "Swift Code",
-        "ar": "رقم السويفت"
+        "En": "Swift Code",
+        "Ar": "رقم السويفت"
     },
     {
         "name": "companies_new",
-        "en": "New club",
-        "ar": "نادي جديد"
+        "En": "New club",
+        "Ar": "نادي جديد"
     },
     {
         "name": "companies_country",
-        "en": "Coutntry",
-        "ar": "الدولة"
+        "En": "Coutntry",
+        "Ar": "الدولة"
     },
     {
         "name": "companies_address",
-        "en": "Address",
-        "ar": "العنوان"
+        "En": "Address",
+        "Ar": "العنوان"
     },
     {
         "name": "companies_customer_service",
-        "en": "Customer Services",
-        "ar": "خدمة العملاء"
+        "En": "Customer Services",
+        "Ar": "خدمة العملاء"
     },
     {
         "name": "order_slides_add",
-        "en": "Add Sessions Slide",
-        "ar": "إضافة شريحة جلسات"
+        "En": "Add Sessions Slide",
+        "Ar": "إضافة شريحة جلسات"
     },
     {
         "name": "order_slide",
-        "en": "Sessions Slide",
-        "ar": " شريحة الجلسات"
+        "En": "Sessions Slide",
+        "Ar": " شريحة الجلسات"
     },
     {
         "name": "order_slides",
-        "en": "Sessions Slides",
-        "ar": " شرائح الجلسات"
+        "En": "Sessions Slides",
+        "Ar": " شرائح الجلسات"
     },
     {
         "name": "order_slides_img",
-        "en": "Sessions Slides Image",
-        "ar": "ملفات شريحة الجلسات"
+        "En": "Sessions Slides Image",
+        "Ar": "ملفات شريحة الجلسات"
     },
     {
         "name": "order_slides_value",
-        "en": "Session Value",
-        "ar": "قيمة الجلسة"
+        "En": "Session Value",
+        "Ar": "قيمة الجلسة"
     }
 ]

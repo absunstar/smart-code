@@ -1,7 +1,7 @@
 [{
     "module_name" : "hr" ,
     "name": "employee_admin",
-    "en": "Employee Admin",
-    "ar": "إدارة الموظفين",
+    "En": "Employee Admin",
+    "Ar": "إدارة الموظفين",
     "permissions": ["employee_manage"]
 }]

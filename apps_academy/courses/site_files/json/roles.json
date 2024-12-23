@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "courses_admin",
-    "en": "Courses Admin",
-    "ar": "إدارة الكورسات",
+    "En": "Courses Admin",
+    "Ar": "إدارة الكورسات",
     "permissions": ["courses_manage"]
 }]

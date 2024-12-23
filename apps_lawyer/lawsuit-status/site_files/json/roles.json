@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "lawsuit_status_admin",
-    "en": "Lawsuit Status Admin",
-    "ar": "إدارة حالة الدعوى",
+    "En": "Lawsuit Status Admin",
+    "Ar": "إدارة حالة الدعوى",
     "permissions": ["lawsuit_status_manage"]
 }]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_daily_admin",
-    "en": "Report Invoices  Admin",
-    "ar": "إدارة تقرير اليومية",
+    "En": "Report Invoices  Admin",
+    "Ar": "إدارة تقرير اليومية",
     "permissions": ["report_daily_manage"]
 }]

@@ -1,297 +1,297 @@
 [
     {
         "name": "default_setting_tenant_search",
-        "en": "Search",
-        "ar": "بحث"
+        "En": "Search",
+        "Ar": "بحث"
     },
     {
         "name": "default_setting",
-        "en": "General Setting",
-        "ar": "الإعدادات العامة"
+        "En": "General Setting",
+        "Ar": "الإعدادات العامة"
     },
     {
         "name": "remove_logo",
-        "en": "Remove Logo",
-        "ar": "حذف اللوجو"
+        "En": "Remove Logo",
+        "Ar": "حذف اللوجو"
     },
     {
         "name": "price_offer_footer",
-        "en": "Price Offer Footer",
-        "ar": "هامش عرض السعر"
+        "En": "Price Offer Footer",
+        "Ar": "هامش عرض السعر"
     },
     {
         "name": "qr_place",
-        "en": "QR Place",
-        "ar": "مكان رمز الإستجابة"
+        "En": "QR Place",
+        "Ar": "مكان رمز الإستجابة"
     },
     {
         "name": "qr_country",
-        "en": "QR Country",
-        "ar": "بلد رمز الإستجابة"
+        "En": "QR Country",
+        "Ar": "بلد رمز الإستجابة"
     },
     {
         "name": "thermal_printing_language",
-        "en": "Thermal printing language",
-        "ar": "لغة الطباعة الحرارية"
+        "En": "Thermal printing language",
+        "Ar": "لغة الطباعة الحرارية"
     },
     {
         "name": "pay_full_price_examination",
-        "en": "Pay the full price of the Examination",
-        "ar": "دفع سعر الحجز كاملا"
+        "En": "Pay the full price of the Examination",
+        "Ar": "دفع سعر الحجز كاملا"
     },
     {
         "name": "number_best_selling",
-        "en": "The number of best-selling items",
-        "ar": "عدد الأصناف الأكثر مبيعا"
+        "En": "The number of best-selling items",
+        "Ar": "عدد الأصناف الأكثر مبيعا"
     },
     {
         "name": "default_setting_tenant_date_from",
-        "en": "Date From",
-        "ar": "من تاريخ"
+        "En": "Date From",
+        "Ar": "من تاريخ"
     },
     {
         "name": "default_setting_tenant_date_to",
-        "en": "Date To",
-        "ar": "إلى تاريخ"
+        "En": "Date To",
+        "Ar": "إلى تاريخ"
     },
     {
         "name": "link_gl_accounts_with_income_statement_and_budget",
-        "en": "Link gl_Accounts With Income Statement And Budget",
-        "ar": "ربط الحسابات بتصنيفات قائمة الدخل والميزانية"
+        "En": "Link gl_Accounts With Income Statement And Budget",
+        "Ar": "ربط الحسابات بتصنيفات قائمة الدخل والميزانية"
     },
     {
         "name": "order_type",
-        "en": "Order Type",
-        "ar": "نوع الطلب"
+        "En": "Order Type",
+        "Ar": "نوع الطلب"
     },
     {
         "name": "printer_program",
-        "en": "Printer Program",
-        "ar": "برنامج الطباعة"
+        "En": "Printer Program",
+        "Ar": "برنامج الطباعة"
     },
     {
         "name": "finger_program",
-        "en": "Finger Print Program",
-        "ar": "برنامج البصمة"
+        "En": "Finger Print Program",
+        "Ar": "برنامج البصمة"
     },
     {
         "name": "settings_saved",
-        "en": "Settings saved",
-        "ar": "تم حفظ الإعدادات"
+        "En": "Settings saved",
+        "Ar": "تم حفظ الإعدادات"
     },
     {
         "name": "finger_code",
-        "en": "Finger Print Code",
-        "ar": "كود البصمة"
+        "En": "Finger Print Code",
+        "Ar": "كود البصمة"
     },
     {
         "name": "basic_printer",
-        "en": "Basic Printer",
-        "ar": "الطابعة الرئيسية"
+        "En": "Basic Printer",
+        "Ar": "الطابعة الرئيسية"
     },
     {
         "name": "place_program",
-        "en": "Place Program",
-        "ar": "مكان البرنامج "
+        "En": "Place Program",
+        "Ar": "مكان البرنامج "
     },
     {
         "name": "program_ip",
-        "en": "Program Ip",
-        "ar": " أي بي البرنامج"
+        "En": "Program Ip",
+        "Ar": " أي بي البرنامج"
     },
     {
         "name": "program_port",
-        "en": "Program Port",
-        "ar": "بورت البرنامج"
+        "En": "Program Port",
+        "Ar": "بورت البرنامج"
     },
     {
         "name": "thermal_print",
-        "en": "Thermal printing",
-        "ar": "الطابعة حرارية"
+        "En": "Thermal printing",
+        "Ar": "الطابعة حرارية"
     },
     {
         "name": "a4_printer",
-        "en": "A4 printer",
-        "ar": "طابعة A4"
+        "En": "A4 printer",
+        "Ar": "طابعة A4"
     },
     {
         "name": "pdf_printer",
-        "en": "PDF printer",
-        "ar": "طابعة PDF"
+        "En": "PDF printer",
+        "Ar": "طابعة PDF"
     },
     {
         "name": "pdf_print",
-        "en": "PDF print",
-        "ar": "طباعة PDF"
+        "En": "PDF print",
+        "Ar": "طباعة PDF"
     },
     {
         "name": "a4_printer_must_select",
-        "en": "You must select the name of the A4 printer from the settings",
-        "ar": "يجد تحديد الطابعة A4 من الإعدادات"
+        "En": "You must select the name of the A4 printer from the settings",
+        "Ar": "يجد تحديد الطابعة A4 من الإعدادات"
     },
     {
         "name": "pdf_printer_must_select",
-        "en": "You must select the name of the PDF printer from the settings",
-        "ar": "يجد تحديد الطابعة PDF من الإعدادات"
+        "En": "You must select the name of the PDF printer from the settings",
+        "Ar": "يجد تحديد الطابعة PDF من الإعدادات"
     },
     {
         "name": "thermal_printer_must_select",
-        "en": "You must select the name of the Thermal printer from the settings",
-        "ar": "يجد تحديد الطابعة الحرارية من الإعدادات"
+        "En": "You must select the name of the Thermal printer from the settings",
+        "Ar": "يجد تحديد الطابعة الحرارية من الإعدادات"
     },
     {
         "name": "barcode_printer_must_select",
-        "en": "You must select the name of the Barcode printer from the settings",
-        "ar": "يجد تحديد طابعة الباركود من الإعدادات"
+        "En": "You must select the name of the Barcode printer from the settings",
+        "Ar": "يجد تحديد طابعة الباركود من الإعدادات"
     },
     {
         "name": "auto_thermal_print",
-        "en": "Automatic thermal printing",
-        "ar": "طباعة حرارية أوتوماتيك"
+        "En": "Automatic thermal printing",
+        "Ar": "طباعة حرارية أوتوماتيك"
     },
     {
         "name": "Print_written_amount",
-        "en": "Print the written amount",
-        "ar": "طباعة المبلغ مكتوب"
+        "En": "Print the written amount",
+        "Ar": "طباعة المبلغ مكتوب"
     },
     {
         "name": "user_appears_in_invoice",
-        "en": "The user appears in the invoice",
-        "ar": "ظهور المستخدم في الفاتورة"
+        "En": "The user appears in the invoice",
+        "Ar": "ظهور المستخدم في الفاتورة"
     },
     {
         "name": "auto_thermal_print_order_screen",
-        "en": "Automatic thermal printing For Order Screen",
-        "ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
+        "En": "Automatic thermal printing For Order Screen",
+        "Ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
     },
     {
         "name": "auto_thermal_print_sales_invo",
-        "en": "Automatic thermal printing For sales invo",
-        "ar": "طباعة حرارية أوتوماتيك لفاتورة المبيعات"
+        "En": "Automatic thermal printing For sales invo",
+        "Ar": "طباعة حرارية أوتوماتيك لفاتورة المبيعات"
     },
     {
         "name": "print_simplified_tax_invoice_sentence",
-        "en": "Print a simplified tax invoice sentence",
-        "ar": "طباعة جملة فاتورة ضريبية مبسطة"
+        "En": "Print a simplified tax invoice sentence",
+        "Ar": "طباعة جملة فاتورة ضريبية مبسطة"
     },
     {
         "name": "print_simplified_invoice_sentence",
-        "en": "Print a simplified invoice sentence",
-        "ar": "طباعة جملة فاتورة مبسطة"
+        "En": "Print a simplified invoice sentence",
+        "Ar": "طباعة جملة فاتورة مبسطة"
     },
     {
         "name": "exam_header",
-        "en": "Header Exam",
-        "ar": "مقدمة الإمتحان"
+        "En": "Header Exam",
+        "Ar": "مقدمة الإمتحان"
     },
     {
         "name": "exam_header2",
-        "en": "Header Exam 2",
-        "ar": "مقدمة الإمتحان 2"
+        "En": "Header Exam 2",
+        "Ar": "مقدمة الإمتحان 2"
     },
     {
         "name": "exam_footer",
-        "en": "Footer Exam",
-        "ar": "هامش الإمتحان"
+        "En": "Footer Exam",
+        "Ar": "هامش الإمتحان"
     },
     {
         "name": "exams_setting",
-        "en": "Exams Setting",
-        "ar": "إعدادات الإمتحانات"
+        "En": "Exams Setting",
+        "Ar": "إعدادات الإمتحانات"
     },
     {
         "name": "auto_generate_account_code_and_cost_center",
-        "en": "Automatic generation of account tree code and cost centers",
-        "ar": "توليد آلي لكود شجرة الحسابات و مراكز التكلفة"
+        "En": "Automatic generation of account tree code and cost centers",
+        "Ar": "توليد آلي لكود شجرة الحسابات و مراكز التكلفة"
     },
     {
         "name": "end_num_to_str",
-        "en": "End Num To Text",
-        "ar": "نهاية التفقيط"
+        "En": "End Num To Text",
+        "Ar": "نهاية التفقيط"
     },
     {
         "name": "end_num_to_str_en",
-        "en": "End Num To Text An Eng",
-        "ar": "نهاية التفقيط بالإنجليزية"
+        "En": "End Num To Text An Eng",
+        "Ar": "نهاية التفقيط بالإنجليزية"
     },
     {
         "name": "default_settings",
-        "en": "General Settings",
-        "ar": "الإعدادت العامة"
+        "En": "General Settings",
+        "Ar": "الإعدادت العامة"
     },
     {
         "name": "discount_method",
-        "en": "Discount Method from Store",
-        "ar": "طريقة الخصم من المخزن"
+        "En": "Discount Method from Store",
+        "Ar": "طريقة الخصم من المخزن"
     },
     {
         "name": "default_setting_tenant_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
     {
         "name": "general_Settings",
-        "en": "General Settings",
-        "ar": "إعدادات عامة"
+        "En": "General Settings",
+        "Ar": "إعدادات عامة"
     },
     {
         "name": "inventoryContent",
-        "en": "Inventory",
-        "ar": "المخازن"
+        "En": "Inventory",
+        "Ar": "المخازن"
     },
     {
         "name": "accountingContent",
-        "en": "Accountinng",
-        "ar": "الحسابات"
+        "En": "Accountinng",
+        "Ar": "الحسابات"
     },
     {
         "name": "default_setting_sales_invoices",
-        "en": "default_setting Sales Invoices",
-        "ar": "تقرير فواتير البيع"
+        "En": "default_setting Sales Invoices",
+        "Ar": "تقرير فواتير البيع"
     },
     {
         "name": "default_setting_tenant_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
     {
         "name": "piece_name",
-        "en": "Piece Of Name",
-        "ar": "إسم القطعة"
+        "En": "Piece Of Name",
+        "Ar": "إسم القطعة"
     },
     {
         "name": "store_name",
-        "en": "Piece Of Name",
-        "ar": "إسم القطعة"
+        "En": "Piece Of Name",
+        "Ar": "إسم القطعة"
     },
     {
         "name": "attend_absence_list",
-        "en": "Attend & Absence List",
-        "ar": "بيان الحضور و الغياب"
+        "En": "Attend & Absence List",
+        "Ar": "بيان الحضور و الغياب"
     },
     {
         "name": "attend_hour",
-        "en": "Attend Hour",
-        "ar": "حضور الساعة"
+        "En": "Attend Hour",
+        "Ar": "حضور الساعة"
     },
     {
         "name": "out_hour",
-        "en": "Out Hour",
-        "ar": "إنصراف الساعة"
+        "En": "Out Hour",
+        "Ar": "إنصراف الساعة"
     },
     {
         "name": "link_warehouse_account_invoices",
-        "en": "Linking inventory and accounting invoices",
-        "ar": "ربط الفواتير المخزنية و الحسابية"
+        "En": "Linking inventory and accounting invoices",
+        "Ar": "ربط الفواتير المخزنية و الحسابية"
     },
     {
         "name": "automatic_item_assembly_upon_sale",
-        "en": "Automatic item assembly upon sale",
-        "ar": "تجميع تلقائي للصنف عند البيع"
+        "En": "Automatic item assembly upon sale",
+        "Ar": "تجميع تلقائي للصنف عند البيع"
     },
     {
         "name": "default_setting_tenant_date",
-        "en": "Offer Date",
-        "ar": "التاريخ"
+        "En": "Offer Date",
+        "Ar": "التاريخ"
     }
 ]

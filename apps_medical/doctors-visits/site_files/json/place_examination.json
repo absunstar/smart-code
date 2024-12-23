@@ -1,17 +1,17 @@
 [{
         "id": 1,
-        "en": "Clinic",
-        "ar": "العيادة"
+        "En": "Clinic",
+        "Ar": "العيادة"
     },
     {
         "id": 2,
-        "en": "Home Visit",
-        "ar": "زيارة منزلية"
+        "En": "Home Visit",
+        "Ar": "زيارة منزلية"
     },
     {
         "id": 3,
         "name": "online",
-        "en": "Online",
-        "ar": "أونلاين"
+        "En": "Online",
+        "Ar": "أونلاين"
     }
 ]

@@ -1,127 +1,127 @@
 [
   {
     "name": "create_content",
-    "en": "Create Ad",
-    "ar": "إضافة إعلان"
+    "En": "Create Ad",
+    "Ar": "إضافة إعلان"
   },
   {
     "name": "add_photo",
-    "en": "Add photo",
-    "ar": "إضافة الصورة"
+    "En": "Add photo",
+    "Ar": "إضافة الصورة"
   },
   {
     "name": "add_another_photo",
-    "en": "Add Another photo",
-    "ar": "إضافة صورة اخرى"
+    "En": "Add Another photo",
+    "Ar": "إضافة صورة اخرى"
   },
   {
     "name": "photo_description",
-    "en": "Photo description",
-    "ar": "وصف الصورة"
+    "En": "Photo description",
+    "Ar": "وصف الصورة"
   },
   {
     "name": "video_description",
-    "en": "Video description",
-    "ar": "وصف الفيديو"
+    "En": "Video description",
+    "Ar": "وصف الفيديو"
   },
   {
     "name": "additional_photos_ad",
-    "en": "Additional photos for ad",
-    "ar": "صور إضافية للإعلان"
+    "En": "Additional photos for ad",
+    "Ar": "صور إضافية للإعلان"
   },
   {
     "name": "delete_photo",
-    "en": "Delete photo",
-    "ar": "حذف الصور"
+    "En": "Delete photo",
+    "Ar": "حذف الصور"
   },
   {
     "name": "delete_video",
-    "en": "Delete video",
-    "ar": "حذف الفيديو"
+    "En": "Delete video",
+    "Ar": "حذف الفيديو"
   },
   {
     "name": "please_put_link_from_youtube",
-    "en": "Please put the link from YouTube",
-    "ar": "برجاء وضع اللينك من موقع يوتيوب"
+    "En": "Please put the link from YouTube",
+    "Ar": "برجاء وضع اللينك من موقع يوتيوب"
   },
   {
     "name": "ok",
-    "en": "Ok",
-    "ar": "موافق"
+    "En": "Ok",
+    "Ar": "موافق"
   },
   {
     "name": "add_to_photos",
-    "en": "Add To Photos",
-    "ar": "إضافة إلى الصورة"
+    "En": "Add To Photos",
+    "Ar": "إضافة إلى الصورة"
   },
   {
     "name": "add_to_videos",
-    "en": "Add To videos",
-    "ar": "إضافة إلى الفيديوهات"
+    "En": "Add To videos",
+    "Ar": "إضافة إلى الفيديوهات"
   },
   {
     "name": "disable_replies_feature",
-    "en": "Disable the replies feature",
-    "ar": "تعطيل ميزة الردود"
+    "En": "Disable the replies feature",
+    "Ar": "تعطيل ميزة الردود"
   },
   {
     "name": "advertiser_disabled_replies_feature",
-    "en": "The advertiser has disabled the replies feature.",
-    "ar": "قام المعلن بتعطيل ميزة الردود."
+    "En": "The advertiser has disabled the replies feature.",
+    "Ar": "قام المعلن بتعطيل ميزة الردود."
   },
   {
     "name": "main_ad_image",
-    "en": "Main ad image",
-    "ar": "صورةالإعلان الرئيسية"
+    "En": "Main ad image",
+    "Ar": "صورةالإعلان الرئيسية"
   },
   {
     "name": "add_video",
-    "en": "Add Video",
-    "ar": "إضافة الفيديو"
+    "En": "Add Video",
+    "Ar": "إضافة الفيديو"
   },
   {
     "name": "ad_description",
-    "en": "Ad description",
-    "ar": "وصف الإعلان"
+    "En": "Ad description",
+    "Ar": "وصف الإعلان"
   },
   {
     "name": "ad_title",
-    "en": "Ad Title",
-    "ar": "عنوان الإعلان"
+    "En": "Ad Title",
+    "Ar": "عنوان الإعلان"
   },
   {
     "name": "ad_location",
-    "en": "Ad location",
-    "ar": "موقع الإعلان"
+    "En": "Ad location",
+    "Ar": "موقع الإعلان"
   },
   {
     "name": "change_ad_location",
-    "en": "Change Ad location",
-    "ar": "تغيير موقع الإعلان"
+    "En": "Change Ad location",
+    "Ar": "تغيير موقع الإعلان"
   },
   {
     "name": "my_current_address",
-    "en": "My current address",
-    "ar": "عنواني الحالي"
+    "En": "My current address",
+    "Ar": "عنواني الحالي"
   },
   {
     "name": "my_main_address",
-    "en": "My main address",
-    "ar": "عنواني الرئيسي"
+    "En": "My main address",
+    "Ar": "عنواني الرئيسي"
   },
   {
     "name": "my_other_addresses",
-    "en": "My other addresses",
-    "ar": "عناواني الأخرى"
+    "En": "My other addresses",
+    "Ar": "عناواني الأخرى"
   },
   {
     "name": "choose_address_ad",
-    "en": "Choose the address ad",
-    "ar": "إختر عنوان الإعلان"
+    "En": "Choose the address ad",
+    "Ar": "إختر عنوان الإعلان"
   },
   {
     "name": "ad_added_successfully",
-    "en": "Ad Added Successfully",
-    "ar": "تم إضافة الإعلان بنجاح"
+    "En": "Ad Added Successfully",
+    "Ar": "تم إضافة الإعلان بنجاح"
   }
 ]

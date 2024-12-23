@@ -1,16 +1,16 @@
 [
-    {"name" : "facilities_codes" , "en" : "Facility" , "ar" : "تعريف المنشاّت"},
-    {"name" : "accounting_facilities_codes" , "en" : "Facility" , "ar" : "تعريف المنشاّت"},
-    {"name" : "hr_facilities_codes" , "en" : "Facility" , "ar" : "تعريف المنشاّت"},
-    {"name" : "facilities_codes_add" , "en" : "Add Facility" , "ar" : "إضافة منشأة"},
-    {"name" : "facilities_codes_name" , "en" : "Facility Name" , "ar" : "إسم المنشأة"},
-    {"name" : "facilities_codes_code" , "en" : "Facility Code" , "ar" : "كود المنشأة"},
-    {"name" : "facilities_codes_owner" , "en" : "Facility Owner" , "ar" : "صاحب المنشأة"},
-    {"name" : "facilities_codes_logo" , "en" : "Facility Logo" , "ar" : "شعار المنشأة"},
-    {"name" : "facilities_codes_new" , "en" : "New Facility" , "ar" : "منشاة جديدة"},
-    {"name" : "facilities_codes_delete" , "en" : "Delete Facility" , "ar" : "حذف منشأة"},
-    {"name" : "facilities_codes_details" , "en" : "Facility Details" , "ar" : "تفاصيل منشأة"},
-    {"name" : "facilities_codes_edit" , "en" : "Edit Facility" , "ar" : "تعديل بيانات منشأة"},
+    {"name" : "facilities_codes" , "En" : "Facility" , "Ar" : "تعريف المنشاّت"},
+    {"name" : "accounting_facilities_codes" , "En" : "Facility" , "Ar" : "تعريف المنشاّت"},
+    {"name" : "hr_facilities_codes" , "En" : "Facility" , "Ar" : "تعريف المنشاّت"},
+    {"name" : "facilities_codes_add" , "En" : "Add Facility" , "Ar" : "إضافة منشأة"},
+    {"name" : "facilities_codes_name" , "En" : "Facility Name" , "Ar" : "إسم المنشأة"},
+    {"name" : "facilities_codes_code" , "En" : "Facility Code" , "Ar" : "كود المنشأة"},
+    {"name" : "facilities_codes_owner" , "En" : "Facility Owner" , "Ar" : "صاحب المنشأة"},
+    {"name" : "facilities_codes_logo" , "En" : "Facility Logo" , "Ar" : "شعار المنشأة"},
+    {"name" : "facilities_codes_new" , "En" : "New Facility" , "Ar" : "منشاة جديدة"},
+    {"name" : "facilities_codes_delete" , "En" : "Delete Facility" , "Ar" : "حذف منشأة"},
+    {"name" : "facilities_codes_details" , "En" : "Facility Details" , "Ar" : "تفاصيل منشأة"},
+    {"name" : "facilities_codes_edit" , "En" : "Edit Facility" , "Ar" : "تعديل بيانات منشأة"},
 
-    {"name" : "facilities_codes_img" , "en" : "Facility Images" , "ar" : "ملفات المنشأة"}
+    {"name" : "facilities_codes_img" , "En" : "Facility Images" , "Ar" : "ملفات المنشأة"}
 ]

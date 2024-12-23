@@ -1,17 +1,17 @@
 [
     {
         "id" : 1,
-        "en": "Monetary",
-        "ar": "نقدي"
+        "En": "Monetary",
+        "Ar": "نقدي"
     },
     {
         "id" : 2,
-        "en": "Bank",
-        "ar": "بنك"
+        "En": "Bank",
+        "Ar": "بنك"
     },
     {
         "id" : 3,
-        "en": "Bank Account",
-        "ar": "حساب بنكي"
+        "En": "Bank Account",
+        "Ar": "حساب بنكي"
     }
 ]

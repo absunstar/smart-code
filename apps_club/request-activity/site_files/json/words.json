@@ -1,143 +1,143 @@
 [{
         "name": "request_activity",
-        "en": "The request Activity / Subscriptions",
-        "ar": "طلبات الخدمات/الأنشطة"
+        "En": "The request Activity / Subscriptions",
+        "Ar": "طلبات الخدمات/الأنشطة"
     },
     {
         "name": "request_activity_new",
-        "en": "New request Activity",
-        "ar": "طلب نشاط جديدة"
+        "En": "New request Activity",
+        "Ar": "طلب نشاط جديدة"
     },
     {
         "name": "request_activity_add",
-        "en": "Add request Activity",
-        "ar": "إضافة طلب نشاط"
+        "En": "Add request Activity",
+        "Ar": "إضافة طلب نشاط"
     },
     {
         "name": "total_discount",
-        "en": "Total DiscountS",
-        "ar": "إجمالي الخصومات"
+        "En": "Total DiscountS",
+        "Ar": "إجمالي الخصومات"
     },
 
     {
         "name": "attend_activities_",
-        "en": "Attend Activities",
-        "ar": "حضور الأنشطة"
+        "En": "Attend Activities",
+        "Ar": "حضور الأنشطة"
     },
     {
         "name": "leave",
-        "en": "Leave",
-        "ar": "إنصراف"
+        "En": "Leave",
+        "Ar": "إنصراف"
     },
     {
         "name": "attend_date",
-        "en": "Attend Date",
-        "ar": "تاريخ الحضور"
+        "En": "Attend Date",
+        "Ar": "تاريخ الحضور"
     },
     {
         "name": "leave_date",
-        "en": "Leave Date",
-        "ar": "تاريخ الإنصراف"
+        "En": "Leave Date",
+        "Ar": "تاريخ الإنصراف"
     },
     {
         "name": "activity_name",
-        "en": "Activity Name",
-        "ar": "إسم النشاط"
+        "En": "Activity Name",
+        "Ar": "إسم النشاط"
     },
     {
         "name": "current_attendance",
-        "en": "Current Attendance",
-        "ar": "الحضور الحالي"
+        "En": "Current Attendance",
+        "Ar": "الحضور الحالي"
     },
     {
         "name": "remain_attendance",
-        "en": "Remain Attendance",
-        "ar": "الحضور المتبقي"
+        "En": "Remain Attendance",
+        "Ar": "الحضور المتبقي"
     },
     {
         "name": "beginning_of_day",
-        "en": "The beginning from the day",
-        "ar": " بداية الإشتراك اليوم"
+        "En": "The beginning from the day",
+        "Ar": " بداية الإشتراك اليوم"
     },
     {
         "name": "date_from",
-        "en": "Start Date",
-        "ar": "تاريخ بداية الإشتراك"
+        "En": "Start Date",
+        "Ar": "تاريخ بداية الإشتراك"
     },
     {
         "name": "start_date_from",
-        "en": "Start Date From",
-        "ar": "تاريخ بداية الإشتراك من"
+        "En": "Start Date From",
+        "Ar": "تاريخ بداية الإشتراك من"
     },
     {
         "name": "start_date_to",
-        "en": "Start Date To",
-        "ar": "تاريخ بداية الإشتراك إلى"
+        "En": "Start Date To",
+        "Ar": "تاريخ بداية الإشتراك إلى"
     },
     {
         "name": "expired_date",
-        "en": "Expired Date",
-        "ar": "تاريخ إنتهاء الإشتراك"
+        "En": "Expired Date",
+        "Ar": "تاريخ إنتهاء الإشتراك"
     },
     {
         "name": "expired_date_from",
-        "en": "Expired Date From",
-        "ar": "تاريخ إنتهاء الإشتراك من"
+        "En": "Expired Date From",
+        "Ar": "تاريخ إنتهاء الإشتراك من"
     },
     {
         "name": "expired_date_to",
-        "en": "Expired Date To",
-        "ar": "تاريخ إنتهاء الإشتراك إلى"
+        "En": "Expired Date To",
+        "Ar": "تاريخ إنتهاء الإشتراك إلى"
     },
     {
         "name": "trainer",
-        "en": "Trainer",
-        "ar": "المدرب"
+        "En": "Trainer",
+        "Ar": "المدرب"
     },
     {
         "name": "trainers",
-        "en": "Trainers",
-        "ar": "المدربين"
+        "En": "Trainers",
+        "Ar": "المدربين"
     },
     {
         "name": "request_activity_edit",
-        "en": "Edit request Activity",
-        "ar": "تعديل طلب نشاط"
+        "En": "Edit request Activity",
+        "Ar": "تعديل طلب نشاط"
     },
     {
         "name": "request_activity_details",
-        "en": "request Activity Details",
-        "ar": "تفاصيل طلب النشاط"
+        "En": "request Activity Details",
+        "Ar": "تفاصيل طلب النشاط"
     },
     {
         "name": "request_activity_delete",
-        "en": "Delete request Activity",
-        "ar": "حذف طلب نشاط"
+        "En": "Delete request Activity",
+        "Ar": "حذف طلب نشاط"
     },
     {
         "name": "request_activity_name",
-        "en": "Course Name",
-        "ar": "إسم طلب النشاط "
+        "En": "Course Name",
+        "Ar": "إسم طلب النشاط "
     },
     {
         "name": "request_activity_price",
-        "en": "Course Price",
-        "ar": "سعر طلب النشاط "
+        "En": "Course Price",
+        "Ar": "سعر طلب النشاط "
     },
     {
         "name": "request_activity_total",
-        "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "En": "Total Duration",
+        "Ar": "إجمالي المدة "
     },
     {
         "name": "request_activity_capaneighborhood",
-        "en": "Class Capaneighborhood",
-        "ar": "سعة طلب النشاط "
+        "En": "Class Capaneighborhood",
+        "Ar": "سعة طلب النشاط "
     },
     {
         "name": "request_activity_current",
-        "en": "Number Of Current Students",
-        "ar": "عدد الطلاب الحاليين"
+        "En": "Number Of Current Students",
+        "Ar": "عدد الطلاب الحاليين"
     }
     
 ]

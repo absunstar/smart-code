@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_items_account_admin",
-    "en": "Items Account Admin",
-    "ar": "حساب الأصناف",
+    "En": "Items Account Admin",
+    "Ar": "حساب الأصناف",
     "permissions": ["report_items_account_manage"]
 }]

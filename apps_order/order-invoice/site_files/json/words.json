@@ -1,252 +1,252 @@
 [
     {
         "name": "order_invoice",
-        "en": "Orders Screen",
-        "ar": "شاشة الطلبات"
+        "En": "Orders Screen",
+        "Ar": "شاشة الطلبات"
     },
     {
         "name": "order_invoice_new",
-        "en": "New Items Group",
-        "ar": "قائمة أصناف جديد"
+        "En": "New Items Group",
+        "Ar": "قائمة أصناف جديد"
     },
     {
         "name": "order_invoice_menus",
-        "en": "Orders Invoice Screen",
-        "ar": "شاشة الطلبات"
+        "En": "Orders Invoice Screen",
+        "Ar": "شاشة الطلبات"
     },
     {
         "name": "items_not_found",
-        "en": "Items not foun",
-        "ar": "لا يوجد أصناف"
+        "En": "Items not foun",
+        "Ar": "لا يوجد أصناف"
     },
     {
         "name": "no_invoices_display",
-        "en": "There are no invoices to display",
-        "ar": "لا يوجد فواتير لعرضها"
+        "En": "There are no invoices to display",
+        "Ar": "لا يوجد فواتير لعرضها"
     },
     {
         "name": "item_not_found",
-        "en": "Item Not Fouuund",
-        "ar": "هذا الصنف غير موجود"
+        "En": "Item Not Fouuund",
+        "Ar": "هذا الصنف غير موجود"
     },
     {
         "name": "print_invoices",
-        "en": "Print Invoices",
-        "ar": "طباعة الفواتير"
+        "En": "Print Invoices",
+        "Ar": "طباعة الفواتير"
     },
     {
         "name": "select_table",
-        "en": "Select Table",
-        "ar": "إختيار الطاولة"
+        "En": "Select Table",
+        "Ar": "إختيار الطاولة"
     },
     {
         "name": "order_hold",
-        "en": "Order Hold",
-        "ar": "تعليق طلب"
+        "En": "Order Hold",
+        "Ar": "تعليق طلب"
     },
     {
         "name": "order_unhold",
-        "en": "Order UnHold",
-        "ar": "فك تعليق طلب"
+        "En": "Order UnHold",
+        "Ar": "فك تعليق طلب"
     },
     {
         "name": "count_person",
-        "en": "Count Person",
-        "ar": "عدد الأفراد"
+        "En": "Count Person",
+        "Ar": "عدد الأفراد"
     },
     {
         "name": "total_tax",
-        "en": "Total Tax",
-        "ar": "اجمالى الضرائب"
+        "En": "Total Tax",
+        "Ar": "اجمالى الضرائب"
     },
     {
         "name": "total_discount",
-        "en": "Total Discount",
-        "ar": "اجمالى الخصم"
+        "En": "Total Discount",
+        "Ar": "اجمالى الخصم"
     },
     {
         "name": "merge_table",
-        "en": "Merge Tables",
-        "ar": "دمج الطاولات"
+        "En": "Merge Tables",
+        "Ar": "دمج الطاولات"
     },
     {
         "name": "transaction_type",
-        "en": "Transaction Type",
-        "ar": "نوع المعاملة"
+        "En": "Transaction Type",
+        "Ar": "نوع المعاملة"
     },
     {
         "name": "err_items",
-        "en": "Must Add Items",
-        "ar": "يجب إضافة أصناف"
+        "En": "Must Add Items",
+        "Ar": "يجب إضافة أصناف"
     },
     {
         "name": "err_transaction_type",
-        "en": "Must Select Transaction Type",
-        "ar": "يجب إدخال نوع المعاملة"
+        "En": "Must Select Transaction Type",
+        "Ar": "يجب إدخال نوع المعاملة"
     },
     {
         "name": "order_invoice_code",
-        "en": "Items Group Code",
-        "ar": "كود القائمة"
+        "En": "Items Group Code",
+        "Ar": "كود القائمة"
     },
     {
         "name": "order_invoice_add",
-        "en": "Add Items Group",
-        "ar": "إضافة قائمة أصناف"
+        "En": "Add Items Group",
+        "Ar": "إضافة قائمة أصناف"
     },
     {
         "name": "order_invoice_open",
-        "en": "Order Invoice Open",
-        "ar": "قائمة أوامر البيع المفتوحة"
+        "En": "Order Invoice Open",
+        "Ar": "قائمة أوامر البيع المفتوحة"
     },
     {
         "name": "order_invoice_edit",
-        "en": "Edit Items Group",
-        "ar": "تعديل قائمة أصناف"
+        "En": "Edit Items Group",
+        "Ar": "تعديل قائمة أصناف"
     },
     {
         "name": "order_invoice_details",
-        "en": "Items Group Details",
-        "ar": "تفاصيل قائمة أصناف"
+        "En": "Items Group Details",
+        "Ar": "تفاصيل قائمة أصناف"
     },
     {
         "name": "order_invoice_delete",
-        "en": "Delete Items Group",
-        "ar": "حذف قائمة أصناف"
+        "En": "Delete Items Group",
+        "Ar": "حذف قائمة أصناف"
     },
     {
         "name": "order_invoice_name",
-        "en": "Items Group Name",
-        "ar": "إسم القائمة"
+        "En": "Items Group Name",
+        "Ar": "إسم القائمة"
     },
     {
         "name": "error_discount",
-        "en": "Should Write Discount Value",
-        "ar": "يجب تحديد قيمة للخصم"
+        "En": "Should Write Discount Value",
+        "Ar": "يجب تحديد قيمة للخصم"
     },
     {
         "name": "error_tax",
-        "en": "Should Write Tax Value",
-        "ar": "يجب تحديد قيمة للضريبة"
+        "En": "Should Write Tax Value",
+        "Ar": "يجب تحديد قيمة للضريبة"
     },
     {
         "name": "err_customer",
-        "en": "Must Select Customer",
-        "ar": "يجب إدخال العميل"
+        "En": "Must Select Customer",
+        "Ar": "يجب إدخال العميل"
     },
     {
         "name": "err_table",
-        "en": "Must Select Table",
-        "ar": "يجب إدخال طاوله"
+        "En": "Must Select Table",
+        "Ar": "يجب إدخال طاوله"
     },
     {
         "name": "safe",
-        "en": "Safe",
-        "ar": "الخزينة"
+        "En": "Safe",
+        "Ar": "الخزينة"
     },
     {
         "name": "items_group",
-        "en": "Items Group",
-        "ar": "مجموعة الأصناف"
+        "En": "Items Group",
+        "Ar": "مجموعة الأصناف"
     },
     {
         "name": "items_types",
-        "en": "Items Types",
-        "ar": "أنواع الأصناف"
+        "En": "Items Types",
+        "Ar": "أنواع الأصناف"
     },
     {
         "name": "items",
-        "en": "Items",
-        "ar": "الأصناف"
+        "En": "Items",
+        "Ar": "الأصناف"
     },
     {
         "name": "close_order",
-        "en": "Close Order",
-        "ar": "غلق طلب"
+        "En": "Close Order",
+        "Ar": "غلق طلب"
     },
     {
         "name": "cancel_order",
-        "en": "Cancel Order",
-        "ar": "إلغاء طلب"
+        "En": "Cancel Order",
+        "Ar": "إلغاء طلب"
     },
     {
         "name": "should_select_safe",
-        "en": "Should Select Safe",
-        "ar": "يجب إختيار خزينة"
+        "En": "Should Select Safe",
+        "Ar": "يجب إختيار خزينة"
     },
     {
         "name": "should_select_delivery_employee",
-        "en": "Should Select Delivery Employee",
-        "ar": "يجب إختيار موظف التوصيل"
+        "En": "Should Select Delivery Employee",
+        "Ar": "يجب إختيار موظف التوصيل"
     },
     {
         "name": "should_enter_value",
-        "en": "Should Enter Value",
-        "ar": "يجب إدخال القيم"
+        "En": "Should Enter Value",
+        "Ar": "يجب إدخال القيم"
     },
     {
         "name": "price_delivery_service",
-        "en": "Price For Delivery",
-        "ar": "ثمن التوصيل"
+        "En": "Price For Delivery",
+        "Ar": "ثمن التوصيل"
     },
     {
         "name": "paid_up",
-        "en": "Paid Up",
-        "ar": "المدفوع"
+        "En": "Paid Up",
+        "Ar": "المدفوع"
     },
     {
         "name": "service",
-        "en": "Service",
-        "ar": "خدمة"
+        "En": "Service",
+        "Ar": "خدمة"
     },
     {
         "name": "err_waiting_list_empty",
-        "en": "Do Not Have Any Waiting List Under Delivery",
-        "ar": "لا يوجد قائمة إنتظار تحت التسليم"
+        "En": "Do Not Have Any Waiting List Under Delivery",
+        "Ar": "لا يوجد قائمة إنتظار تحت التسليم"
     },
     {
         "name": "items_total",
-        "en": "Total Value",
-        "ar": "إجمالي القيمة"
+        "En": "Total Value",
+        "Ar": "إجمالي القيمة"
     },
     {
         "name": "change_item_count",
-        "en": "Change Item Count",
-        "ar": "تغيير عدد الصنف"
+        "En": "Change Item Count",
+        "Ar": "تغيير عدد الصنف"
     },
     {
         "name": "item_count",
-        "en": "Item Count",
-        "ar": "عدد الصنف"
+        "En": "Item Count",
+        "Ar": "عدد الصنف"
     },
     {
         "name": "delivery_service",
-        "en": "Delivery Service",
-        "ar": "خدمة التوصيل"
+        "En": "Delivery Service",
+        "Ar": "خدمة التوصيل"
     },
     {
         "name": "under_delivery",
-        "en": "Under Delivery",
-        "ar": "تحت التوصيل"
+        "En": "Under Delivery",
+        "Ar": "تحت التوصيل"
     },
     {
         "name": "open_orders",
-        "en": "Open Orders",
-        "ar": "طلبات مفتوحة"
+        "En": "Open Orders",
+        "Ar": "طلبات مفتوحة"
     },
     {
         "name": "new_order",
-        "en": "New Order",
-        "ar": "طلب جديد"
+        "En": "New Order",
+        "Ar": "طلب جديد"
     },
     {
         "name": "order_invoice_price",
-        "en": "Items Group Price",
-        "ar": "سعر القائمة أصناف"
+        "En": "Items Group Price",
+        "Ar": "سعر القائمة أصناف"
     },
     {
         "name": "table_busy",
-        "en": "Table Busy",
-        "ar": "الطاولة مشغولة"
+        "En": "Table Busy",
+        "Ar": "الطاولة مشغولة"
     }
 ]

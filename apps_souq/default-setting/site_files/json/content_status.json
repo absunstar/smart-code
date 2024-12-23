@@ -1,17 +1,17 @@
 [
     {
         "id" : 1,
-        "en": "Active",
-        "ar": "نشط"
+        "En": "Active",
+        "Ar": "نشط"
     },
     {
         "id" : 2,
-        "en": "Under review",
-        "ar": "قيد المراجعة"
+        "En": "Under review",
+        "Ar": "قيد المراجعة"
     },
     {
         "id" : 3,
-        "en": "Forbidden",
-        "ar": "محظور"
+        "En": "Forbidden",
+        "Ar": "محظور"
     }
 ]

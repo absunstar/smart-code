@@ -1,118 +1,118 @@
 [{
         "name": "medical_insurance_companies",
-        "en": "Medical Insurance Companies",
-        "ar": "شركات التامين الطبي"
+        "En": "Medical Insurance Companies",
+        "Ar": "شركات التامين الطبي"
     },
     {
         "name": "medical_insurance_company",
-        "en": "Medical Insurance Company",
-        "ar": "شركة التامين الطبي"
+        "En": "Medical Insurance Company",
+        "Ar": "شركة التامين الطبي"
     },
     {
         "name": "medical_insurance_companies_informations",
-        "en": "Medical Insurance Company Information",
-        "ar": "بيانات شركة تامين طبي"
+        "En": "Medical Insurance Company Information",
+        "Ar": "بيانات شركة تامين طبي"
     },
     {
         "name": "medical_insurance_companies_add",
-        "en": "Add Medical Insurance Company",
-        "ar": "إضافة شركة تامين طبي"
+        "En": "Add Medical Insurance Company",
+        "Ar": "إضافة شركة تامين طبي"
     },
     {
         "name": "medical_insurance_companies_delete",
-        "en": "Delete Gov",
-        "ar": "حذف شركة تامين طبي"
+        "En": "Delete Gov",
+        "Ar": "حذف شركة تامين طبي"
     },
     {
         "name": "medical_insurance_companies_edit",
-        "en": "Edit Medical Insurance Company",
-        "ar": "تعديل شركة تامين طبي"
+        "En": "Edit Medical Insurance Company",
+        "Ar": "تعديل شركة تامين طبي"
     },
     {
         "name": "medical_insurance_companies_details",
-        "en": "Medical Insurance Company Deteails",
-        "ar": "تفاصيل شركة تامين طبي"
+        "En": "Medical Insurance Company Deteails",
+        "Ar": "تفاصيل شركة تامين طبي"
     },
     {
         "name": "medical_insurance_companies_delete",
-        "en": "Delete Medical Insurance Company",
-        "ar": "حذف شركة تامين طبي"
+        "En": "Delete Medical Insurance Company",
+        "Ar": "حذف شركة تامين طبي"
     },
     {
         "name": "medical_insurance_companies_new",
-        "en": "New Medical Insurance Company",
-        "ar": "شركة تامين طبي جديدة"
+        "En": "New Medical Insurance Company",
+        "Ar": "شركة تامين طبي جديدة"
     },
     {
         "name": "medical_insurance_companies_name",
-        "en": "Medical Insurance Company Name",
-        "ar": "إسم شركة تامين طبي"
+        "En": "Medical Insurance Company Name",
+        "Ar": "إسم شركة تامين طبي"
     },
     {
         "name": "medical_insurance_companies_insurance_slides",
-        "en": "Insurance Slides",
-        "ar": "شرائح التامينات"
+        "En": "Insurance Slides",
+        "Ar": "شرائح التامينات"
     },
 
     {
         "name": "medical_insurance_companies_slide_value",
-        "en": "Slide Max Limit",
-        "ar": "الحد الأقصى للشريحة"
+        "En": "Slide Max Limit",
+        "Ar": "الحد الأقصى للشريحة"
     },
     {
         "name": "medical_insurance_companies_facebook",
-        "en": "FaceBook Account",
-        "ar": "حساب الفيسبوك"
+        "En": "FaceBook Account",
+        "Ar": "حساب الفيسبوك"
     },
     {
         "name": "medical_insurance_companies_twitter",
-        "en": "Twitter Account",
-        "ar": "حساب تويتر"
+        "En": "Twitter Account",
+        "Ar": "حساب تويتر"
     },
     {
         "name": "medical_insurance_companies_customer_will_pay",
-        "en": "Customer Bearing ratio",
-        "ar": "نسبة تحمل العميل"
+        "En": "Customer Bearing ratio",
+        "Ar": "نسبة تحمل العميل"
     },
     {
         "name": "medical_insurance_companies_blacklist",
-        "en": "Black List",
-        "ar": "خارج شريحة التأمين"
+        "En": "Black List",
+        "Ar": "خارج شريحة التأمين"
     },
     {
         "name": "medical_insurance_companies_per_year",
-        "en": "Per Year",
-        "ar": "سنوي"
+        "En": "Per Year",
+        "Ar": "سنوي"
     },
     {
         "name": "medical_insurance_companies_need_approved",
-        "en": "Need Approved",
-        "ar": "تحتاج موافقة"
+        "En": "Need Approved",
+        "Ar": "تحتاج موافقة"
     },
     {
         "name": "analysis",
-        "en": "Types Analysis",
-        "ar": "أنواع التحاليل"
+        "En": "Types Analysis",
+        "Ar": "أنواع التحاليل"
     },
     {
         "name": "medicines",
-        "en": "Drugs",
-        "ar": "الأدوية"
+        "En": "Drugs",
+        "Ar": "الأدوية"
     },
     {
         "name": "scans",
-        "en": "Types Scans",
-        "ar": "أنواع الأشعة"
+        "En": "Types Scans",
+        "Ar": "أنواع الأشعة"
     },
     {
         "name": "operation",
-        "en": "Types Operations",
-        "ar": "أنواع العمليات"
+        "En": "Types Operations",
+        "Ar": "أنواع العمليات"
     },
     {
         "name": "medical_insurance_companies_img",
-        "en": "Currency Images",
-        "ar": "الملفات"
+        "En": "Currency Images",
+        "Ar": "الملفات"
     }
 
 

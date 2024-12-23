@@ -1,42 +1,42 @@
 [
     {
         "name": "units",
-        "en": "Units",
-        "ar": "الوحدات"
+        "En": "Units",
+        "Ar": "الوحدات"
     },
     {
         "name": "unit",
-        "en": "Unit",
-        "ar": "الوحدة"
+        "En": "Unit",
+        "Ar": "الوحدة"
     },
     {
         "name": "units_new",
-        "en": "New Unit",
-        "ar": "وحدة جديدة"
+        "En": "New Unit",
+        "Ar": "وحدة جديدة"
     },
     {
         "name": "units_add",
-        "en": "Add Unit",
-        "ar": "إضافة وحدة "
+        "En": "Add Unit",
+        "Ar": "إضافة وحدة "
     },
     {
         "name": "units_edit",
-        "en": "Edit Unit",
-        "ar": "تعديل وحدة "
+        "En": "Edit Unit",
+        "Ar": "تعديل وحدة "
     },
     {
         "name": "units_details",
-        "en": "Unit Details",
-        "ar": "تفاصيل الوحدة "
+        "En": "Unit Details",
+        "Ar": "تفاصيل الوحدة "
     },
     {
         "name": "units_delete",
-        "en": "Delete Unit",
-        "ar": "حذف وحدة "
+        "En": "Delete Unit",
+        "Ar": "حذف وحدة "
     },
     {
         "name": "unit_name",
-        "en": "Unit Name",
-        "ar": "إسم الوحدة "
+        "En": "Unit Name",
+        "Ar": "إسم الوحدة "
     }
 ]

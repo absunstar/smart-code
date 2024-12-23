@@ -1,94 +1,94 @@
 [
   {
     "name": "ecommerce_setting",
-    "en": "Ecommerce Setting",
-    "ar": "إعدادات المتجر"
+    "En": "Ecommerce Setting",
+    "Ar": "إعدادات المتجر"
   },
   {
     "name": "medical_cosmetic_product",
-    "en": "Medical or cosmetic product",
-    "ar": "منتج طبي أو تجميلي"
+    "En": "Medical or cosmetic product",
+    "Ar": "منتج طبي أو تجميلي"
   },
   {
     "name": "link_items",
-    "en": "Link to items",
-    "ar": "ربط بالأصناف"
+    "En": "Link to items",
+    "Ar": "ربط بالأصناف"
   },
   {
     "name": "link_item_groups",
-    "en": "Link to item groups",
-    "ar": "ربط بمجموعات الأصناف"
+    "En": "Link to item groups",
+    "Ar": "ربط بمجموعات الأصناف"
   },
 
   {
     "name": "products_group_name",
-    "en": "Products Group Name",
-    "ar": "إسم مجموعة المنتجات"
+    "En": "Products Group Name",
+    "Ar": "إسم مجموعة المنتجات"
   },
   {
     "name": "products_group_new",
-    "en": "New Products Group",
-    "ar": "مجموعة منتجات جديدة"
+    "En": "New Products Group",
+    "Ar": "مجموعة منتجات جديدة"
   },
   {
     "name": "products_group_add",
-    "en": "Add Products Group",
-    "ar": "إضافة مجموعة منتجات "
+    "En": "Add Products Group",
+    "Ar": "إضافة مجموعة منتجات "
   },
   {
     "name": "products_group_edit",
-    "en": "Edit Products Group",
-    "ar": "تعديل مجموعة منتجات "
+    "En": "Edit Products Group",
+    "Ar": "تعديل مجموعة منتجات "
   },
   {
     "name": "products_group_details",
-    "en": "Products Group Details",
-    "ar": "تفاصيل المجموعة منتجات"
+    "En": "Products Group Details",
+    "Ar": "تفاصيل المجموعة منتجات"
   },
   {
     "name": "products_group_delete",
-    "en": "Delete Products Group",
-    "ar": "حذف مجموعة منتجات "
+    "En": "Delete Products Group",
+    "Ar": "حذف مجموعة منتجات "
   },
   {
     "name": "shipping_companies",
-    "en": "Shipping companys",
-    "ar": "شركات الشحن"
+    "En": "Shipping companys",
+    "Ar": "شركات الشحن"
   },
   {
     "name": "shipping_company",
-    "en": "Shipping company",
-    "ar": "شركة الشحن"
+    "En": "Shipping company",
+    "Ar": "شركة الشحن"
   },
   {
     "name": "shipping_company_name",
-    "en": "Shipping company Name",
-    "ar": "إسم شركة الشحن"
+    "En": "Shipping company Name",
+    "Ar": "إسم شركة الشحن"
   },
   {
     "name": "shipping_company_new",
-    "en": "New Shipping company",
-    "ar": "شركة شحن جديدة"
+    "En": "New Shipping company",
+    "Ar": "شركة شحن جديدة"
   },
   {
     "name": "shipping_company_add",
-    "en": "Add Shipping company",
-    "ar": "إضافة شركة شحن "
+    "En": "Add Shipping company",
+    "Ar": "إضافة شركة شحن "
   },
   {
     "name": "shipping_company_edit",
-    "en": "Edit Shipping company",
-    "ar": "تعديل شركة شحن "
+    "En": "Edit Shipping company",
+    "Ar": "تعديل شركة شحن "
   },
   {
     "name": "shipping_company_details",
-    "en": "Shipping company Details",
-    "ar": "تفاصيل الشركة شحن"
+    "En": "Shipping company Details",
+    "Ar": "تفاصيل الشركة شحن"
   },
   {
     "name": "shipping_company_delete",
-    "en": "Delete Shipping company",
-    "ar": "حذف شركة شحن "
+    "En": "Delete Shipping company",
+    "Ar": "حذف شركة شحن "
   }
  
 ]

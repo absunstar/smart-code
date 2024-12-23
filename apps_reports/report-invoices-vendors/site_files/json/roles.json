@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_invoices_vendors_admin",
-    "en": "Account Statement Vendors  Admin",
-    "ar": "كشف حساب الموردين",
+    "En": "Account Statement Vendors  Admin",
+    "Ar": "كشف حساب الموردين",
     "permissions": ["report_invoices_vendors_manage"]
 }]

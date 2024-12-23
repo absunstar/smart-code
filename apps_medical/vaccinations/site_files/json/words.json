@@ -1,67 +1,67 @@
 [{
         "name": "vaccinations",
-        "en": "Vaccinations",
-        "ar": "التطعيمات"
+        "En": "Vaccinations",
+        "Ar": "التطعيمات"
     },
     {
         "name": "vaccinations_new",
-        "en": "New Vaccinations",
-        "ar": "تطعيم جديد"
+        "En": "New Vaccinations",
+        "Ar": "تطعيم جديد"
     },
     {
         "name": "from_age",
-        "en": "From age",
-        "ar": "من سن"
+        "En": "From age",
+        "Ar": "من سن"
     },
     {
         "name": "to_age",
-        "en": "To age",
-        "ar": "إلى سن"
+        "En": "To age",
+        "Ar": "إلى سن"
     },
     {
         "name": "permissible_age_vaccinated",
-        "en": "The permissible age to be vaccinated",
-        "ar": "السن المسموح به للتطعيم"
+        "En": "The permissible age to be vaccinated",
+        "Ar": "السن المسموح به للتطعيم"
     },
     {
         "name": "vaccinations_add",
-        "en": "Add Vaccinations",
-        "ar": "إضافة تطعيم"
+        "En": "Add Vaccinations",
+        "Ar": "إضافة تطعيم"
     },
     {
         "name": "vaccinations_edit",
-        "en": "Edit Vaccinations",
-        "ar": "تعديل تطعيم "
+        "En": "Edit Vaccinations",
+        "Ar": "تعديل تطعيم "
     },
     {
         "name": "vaccinations_details",
-        "en": "Vaccinations Details",
-        "ar": "تفاصيل التطعيم"
+        "En": "Vaccinations Details",
+        "Ar": "تفاصيل التطعيم"
     },
     {
         "name": "vaccinations_delete",
-        "en": "Delete Vaccinations",
-        "ar": "حذف تطعيم"
+        "En": "Delete Vaccinations",
+        "Ar": "حذف تطعيم"
     },
     {
         "name": "vaccinations_name",
-        "en": "Vaccination Name",
-        "ar": "إسم التطعيم"
+        "En": "Vaccination Name",
+        "Ar": "إسم التطعيم"
     },
     {
         "name": "vaccinations_price",
-        "en": "Vaccinations Price",
-        "ar": "سعر التطعيم"
+        "En": "Vaccinations Price",
+        "Ar": "سعر التطعيم"
     },
     {
         "name": "vaccination_result",
-        "en": "Vaccinations Result",
-        "ar": "نتيجة التطعيم"
+        "En": "Vaccinations Result",
+        "Ar": "نتيجة التطعيم"
     },
     {
         "name": "made_home_vaccination",
-        "en": "Made the Vaccination at home",
-        "ar": "إجراء التطعيم في المنزل"
+        "En": "Made the Vaccination at home",
+        "Ar": "إجراء التطعيم في المنزل"
     }
     
 ]

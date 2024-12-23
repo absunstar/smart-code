@@ -1,283 +1,283 @@
 [
     {
         "name": "brand_title",
-        "en": "Smart Code",
-        "ar": "سمـارت كـود"
+        "En": "Smart Code",
+        "Ar": "سمـارت كـود"
     },
     {
         "name": "brand_tag",
-        "en": "Enterprise Resources Planing",
-        "ar": "نظام إدارة مكاتب المحاماه"
+        "En": "Enterprise Resources Planing",
+        "Ar": "نظام إدارة مكاتب المحاماه"
     },
     {
         "name": "companies",
-        "en": "Lawyers Office",
-        "ar": "مكاتب المحاماه"
+        "En": "Lawyers Office",
+        "Ar": "مكاتب المحاماه"
     },
     {
         "name": "companies_add",
-        "en": "Add LAwyers Office",
-        "ar": "إضافة مكتب المحاماه"
+        "En": "Add LAwyers Office",
+        "Ar": "إضافة مكتب المحاماه"
     },
     {
         "name": "companies_edit",
-        "en": "Edit LAwyers Office",
-        "ar": "تعديل مكتب المحاماه"
+        "En": "Edit LAwyers Office",
+        "Ar": "تعديل مكتب المحاماه"
     },
     {
         "name": "companies_informations",
-        "en": "LAwyers Office Informations",
-        "ar": "بيانات مكتب المحاماه"
+        "En": "LAwyers Office Informations",
+        "Ar": "بيانات مكتب المحاماه"
     },
     {
         "name": "companies_basic_information",
-        "en": "Basic Informations",
-        "ar": "البيانات الاساسية"
+        "En": "Basic Informations",
+        "Ar": "البيانات الاساسية"
     },
     {
         "name": "companies_contact_information",
-        "en": "Contact Informations",
-        "ar": "بيانات الاتصال"
+        "En": "Contact Informations",
+        "Ar": "بيانات الاتصال"
     },
     {
         "name": "companies_details",
-        "en": "LAwyers Office Details",
-        "ar": "تفاصيل مكتب المحاماه"
+        "En": "LAwyers Office Details",
+        "Ar": "تفاصيل مكتب المحاماه"
     },
     {
         "name": "companies_delete",
-        "en": "Delete LAwyers Office",
-        "ar": "حذف مكتب المحاماه"
+        "En": "Delete LAwyers Office",
+        "Ar": "حذف مكتب المحاماه"
     },
     {
         "name": "companies_code",
-        "en": "LAwyers Office Code",
-        "ar": "كود مكتب المحاماه"
+        "En": "LAwyers Office Code",
+        "Ar": "كود مكتب المحاماه"
     },
     {
         "name": "companies_phone",
-        "en": "Phone",
-        "ar": "التليفون"
+        "En": "Phone",
+        "Ar": "التليفون"
     },
     {
         "name": "companies_mobile",
-        "en": "Mobile",
-        "ar": "الموبايل"
+        "En": "Mobile",
+        "Ar": "الموبايل"
     },
     {
         "name": "companies_activity",
-        "en": "Activity",
-        "ar": "النشاط"
+        "En": "Activity",
+        "Ar": "النشاط"
     },
     {
         "name": "companies_branches_informations",
-        "en": "Branches Informations",
-        "ar": "بيانات الفروع"
+        "En": "Branches Informations",
+        "Ar": "بيانات الفروع"
     },
     {
         "name": "companies_branch",
-        "en": "Branch",
-        "ar": "الفرع"
+        "En": "Branch",
+        "Ar": "الفرع"
     },
     {
         "name": "companies_branch_information",
-        "en": "Branch Information",
-        "ar": "بيانات الفرع"
+        "En": "Branch Information",
+        "Ar": "بيانات الفرع"
     },
     {
         "name": "companies_contact_charge",
-        "en": "Charge Information",
-        "ar": "بيانات المسئول"
+        "En": "Charge Information",
+        "Ar": "بيانات المسئول"
     },
     {
         "name": "companies_branch_code",
-        "en": "Branch Code",
-        "ar": "كود الفرع"
+        "En": "Branch Code",
+        "Ar": "كود الفرع"
     },
     {
         "name": "companies_branch_name",
-        "en": "Branch Name",
-        "ar": "إسم الفرع"
+        "En": "Branch Name",
+        "Ar": "إسم الفرع"
     },
     {
         "name": "companies_branch_name_ar",
-        "en": "Branch Name Arabic",
-        "ar": "إسم الفرع بالعربى"
+        "En": "Branch Name Arabic",
+        "Ar": "إسم الفرع بالعربى"
     },
     {
         "name": "companies_branch_name_en",
-        "en": "Branch Name English",
-        "ar": "إسم الفرع بالانجليزى"
+        "En": "Branch Name English",
+        "Ar": "إسم الفرع بالانجليزى"
     },
     {
         "name": "companies_branch_notes",
-        "en": "Branch Notes",
-        "ar": "ملاحظات الفرع"
+        "En": "Branch Notes",
+        "Ar": "ملاحظات الفرع"
     },
     {
         "name": "companies_charge_name",
-        "en": "Charge Name",
-        "ar": "إسم المسئول"
+        "En": "Charge Name",
+        "Ar": "إسم المسئول"
     },
     {
         "name": "companies_charge_job",
-        "en": "Charge Job",
-        "ar": "الوظيفة"
+        "En": "Charge Job",
+        "Ar": "الوظيفة"
     },
     {
         "name": "companies_internal_number",
-        "en": "Internal Number",
-        "ar": "الرقم الداخلي"
+        "En": "Internal Number",
+        "Ar": "الرقم الداخلي"
     },
     {
         "name": "companies_banking_informations",
-        "en": "Banking Informations",
-        "ar": "البنوك"
+        "En": "Banking Informations",
+        "Ar": "البنوك"
     },
     {
         "name": "companies_bank_information",
-        "en": "Bank Information",
-        "ar": "بيانات البنك"
+        "En": "Bank Information",
+        "Ar": "بيانات البنك"
     },
     {
         "name": "companies_bank_name",
-        "en": "Bank Name",
-        "ar": "إسم البنك"
+        "En": "Bank Name",
+        "Ar": "إسم البنك"
     },
     {
         "name": "companies_bank_account_number",
-        "en": "Bank Account Number",
-        "ar": "رقم الحساب"
+        "En": "Bank Account Number",
+        "Ar": "رقم الحساب"
     },
     {
         "name": "companies_filter_with_date",
-        "en": "Filter With Date",
-        "ar": "تصفية البيانات بالتاريخ"
+        "En": "Filter With Date",
+        "Ar": "تصفية البيانات بالتاريخ"
     },
     {
         "name": "companies_calender_type",
-        "en": "Calender Type",
-        "ar": "نوع التقويم"
+        "En": "Calender Type",
+        "Ar": "نوع التقويم"
     },
     {
         "name": "companies_gegorian",
-        "en": "Gregorian",
-        "ar": "ميلادي"
+        "En": "Gregorian",
+        "Ar": "ميلادي"
     },
     {
         "name": "companies_hijri",
-        "en": "Hijri",
-        "ar": "هجري"
+        "En": "Hijri",
+        "Ar": "هجري"
     },
     {
         "name": "companies_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
 
     {
         "name": "companies_city",
-        "en": "City",
-        "ar": "المدينة"
+        "En": "City",
+        "Ar": "المدينة"
     },
     {
         "name": "companies_email",
-        "en": "Email",
-        "ar": "البريد الإلكتروني"
+        "En": "Email",
+        "Ar": "البريد الإلكتروني"
     },
     {
         "name": "companies_fax",
-        "en": "Fax",
-        "ar": "الفاكس"
+        "En": "Fax",
+        "Ar": "الفاكس"
     },
     {
         "name": "companies_name_ar",
-        "en": "LAwyers Office Name Arabic",
-        "ar": "إسم مكتب المحاماه"
+        "En": "LAwyers Office Name Arabic",
+        "Ar": "إسم مكتب المحاماه"
     },
     {
         "name": "companies_name_en",
-        "en": "LAwyers Office Name English",
-        "ar": "إسم مكتب المحاماه بالانجليزية"
+        "En": "LAwyers Office Name English",
+        "Ar": "إسم مكتب المحاماه بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
-        "en": "Exchange Price",
-        "ar": "سعر الصرف"
+        "En": "Exchange Price",
+        "Ar": "سعر الصرف"
     },
     {
         "name": "companies_company_swift_code",
-        "en": "Swift Code",
-        "ar": "رقم السويفت"
+        "En": "Swift Code",
+        "Ar": "رقم السويفت"
     },
     {
         "name": "companies_new",
-        "en": "New LAwyers Office",
-        "ar": "مكتب محاماه جديد"
+        "En": "New LAwyers Office",
+        "Ar": "مكتب محاماه جديد"
     },
     {
         "name": "companies_country",
-        "en": "Coutntry",
-        "ar": "الدولة"
+        "En": "Coutntry",
+        "Ar": "الدولة"
     },
     {
         "name": "companies_address",
-        "en": "Address",
-        "ar": "العنوان"
+        "En": "Address",
+        "Ar": "العنوان"
     },
     
-    {"name" : "customers" , "en" : "Clients" , "ar" : "الموكلين"},
-    {"name" : "customers_new" , "en" : "New Client" , "ar" : "موكل جديد"},   
-    {"name" : "customers_add" , "en" : "Add Client" , "ar" : "إضافة موكل"}, 
-    {"name" : "customers_edit" , "en" : "Client Edit" , "ar" : "تعديل بيانات موكل"},
-    {"name" : "customers_details" , "en" : "Client Details" , "ar" : "تفاصيل موكل"}, 
-    {"name" : "customers_delete" , "en" : "Delete Client" , "ar" : "حذف موكل"},
-    {"name" : "customers_indentfy" , "en" : "Client indentfy" , "ar" : "نوع الموكل"},
+    {"name" : "customers" , "En" : "Clients" , "Ar" : "الموكلين"},
+    {"name" : "customers_new" , "En" : "New Client" , "Ar" : "موكل جديد"},   
+    {"name" : "customers_add" , "En" : "Add Client" , "Ar" : "إضافة موكل"}, 
+    {"name" : "customers_edit" , "En" : "Client Edit" , "Ar" : "تعديل بيانات موكل"},
+    {"name" : "customers_details" , "En" : "Client Details" , "Ar" : "تفاصيل موكل"}, 
+    {"name" : "customers_delete" , "En" : "Delete Client" , "Ar" : "حذف موكل"},
+    {"name" : "customers_indentfy" , "En" : "Client indentfy" , "Ar" : "نوع الموكل"},
 
-    {"name" : "customers_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
-    {"name" : "customers_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
-    {"name" : "customers_code" , "en" : "Client Code" , "ar" : "كود الموكل"},
-    {"name" : "customers_name_ar" , "en" : "Client Name Arabic" , "ar" : "إسم الموكل بالعربي"},
-    {"name" : "customers_name_en" , "en" : "Client Name English" , "ar" : "إسم الموكل بالانجليزية"},
-    {"name" : "customer_name" , "en" : "Client Name" , "ar" : "إسم الموكل"},
-    {"name" : "customer" , "en" : "Client" , "ar" : " الموكل"},
-    {"name" : "customers_groups" , "en" : "Clients Group" , "ar" : "مجموعة الموكلين"},
+    {"name" : "customers_personal_information" , "En" : "Personal Information" , "Ar" : "البيانات الشخصية"},
+    {"name" : "customers_basic_information" , "En" : "Basic Information" , "Ar" : "البيانات الاساسية"},
+    {"name" : "customers_code" , "En" : "Client Code" , "Ar" : "كود الموكل"},
+    {"name" : "customers_name_ar" , "En" : "Client Name Arabic" , "Ar" : "إسم الموكل بالعربي"},
+    {"name" : "customers_name_en" , "En" : "Client Name English" , "Ar" : "إسم الموكل بالانجليزية"},
+    {"name" : "customer_name" , "En" : "Client Name" , "Ar" : "إسم الموكل"},
+    {"name" : "customer" , "En" : "Client" , "Ar" : " الموكل"},
+    {"name" : "customers_groups" , "En" : "Clients Group" , "Ar" : "مجموعة الموكلين"},
     {
         "name": "menu_customers_groups",
-        "en": "Clients Groups Menu",
-        "ar": "قائمة مجموعة الموكلين"
+        "En": "Clients Groups Menu",
+        "Ar": "قائمة مجموعة الموكلين"
     },
     {
         "name": "menu_customers_groups_tag",
-        "en": "Add Clients Groups",
-        "ar": "إضافة مجموعة موكلين"
+        "En": "Add Clients Groups",
+        "Ar": "إضافة مجموعة موكلين"
     },
     {
         "name": "menu_customers",
-        "en": "Client Menu",
-        "ar": "قائمة الموكلين"
+        "En": "Client Menu",
+        "Ar": "قائمة الموكلين"
     },
     {
         "name": "menu_customers_tag",
-        "en": "Add Client",
-        "ar": "إضافة موكلين"
+        "En": "Add Client",
+        "Ar": "إضافة موكلين"
     },
     {
         "name": "companies_customer_service",
-        "en": "Customer Services",
-        "ar": "خدمة العملاء"
+        "En": "Customer Services",
+        "Ar": "خدمة العملاء"
     },
-    {"name" : "customers_group_informations" , "en" : "Clients Group Informations" , "ar" : "بيانات مجموعة موكلين"},
+    {"name" : "customers_group_informations" , "En" : "Clients Group Informations" , "Ar" : "بيانات مجموعة موكلين"},
 
-    {"name" : "customers_groups_name" , "en" : "Clients Groups" , "ar" : "مجموعات الموكلين"},
-    {"name" : "customers_group_menus" , "en" : "Clients Group Menu" , "ar" : "قائمة مجموعة الموكلين"},
-    {"name" : "customers_group_code" , "en" : "Clients Group Code" , "ar" : "كود مجموعة الموكلين"},
-    {"name" : "customers_group_name" , "en" : "Clients Group Name" , "ar" : "إسم مجموعة الموكلين"},
+    {"name" : "customers_groups_name" , "En" : "Clients Groups" , "Ar" : "مجموعات الموكلين"},
+    {"name" : "customers_group_menus" , "En" : "Clients Group Menu" , "Ar" : "قائمة مجموعة الموكلين"},
+    {"name" : "customers_group_code" , "En" : "Clients Group Code" , "Ar" : "كود مجموعة الموكلين"},
+    {"name" : "customers_group_name" , "En" : "Clients Group Name" , "Ar" : "إسم مجموعة الموكلين"},
 
-    {"name" : "customers_group_new" , "en" : "New Clients Group" , "ar" : "مجموعة موكلين جديدة"},
-    {"name" : "customers_group_details" , "en" : "Clients Group Details" , "ar" : "تفاصيل مجموعة موكلين"},
-    {"name" : "customers_group_update" , "en" : "Edit Clients Group" , "ar" : "تعديل مجموعة موكلين"},
-    {"name" : "customers_group_delete" , "en" : "Delte Clients Group" , "ar" : "حذف مجموعة موكلين"},
-    {"name" : "customers_group_add_name" , "en" : "Add Clients Group" , "ar" : "إضافة مجموعة موكلين"}
+    {"name" : "customers_group_new" , "En" : "New Clients Group" , "Ar" : "مجموعة موكلين جديدة"},
+    {"name" : "customers_group_details" , "En" : "Clients Group Details" , "Ar" : "تفاصيل مجموعة موكلين"},
+    {"name" : "customers_group_update" , "En" : "Edit Clients Group" , "Ar" : "تعديل مجموعة موكلين"},
+    {"name" : "customers_group_delete" , "En" : "Delte Clients Group" , "Ar" : "حذف مجموعة موكلين"},
+    {"name" : "customers_group_add_name" , "En" : "Add Clients Group" , "Ar" : "إضافة مجموعة موكلين"}
 
 ]

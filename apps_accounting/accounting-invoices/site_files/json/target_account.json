@@ -1,12 +1,12 @@
 [
     {
         "id": 1,
-        "en": "Customer",
-        "ar": "عميل"
+        "En": "Customer",
+        "Ar": "عميل"
     },
     {
         "id": 2,
-        "en": "Vendor",
-        "ar": "مورد"
+        "En": "Vendor",
+        "Ar": "مورد"
     }
 ]

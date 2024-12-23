@@ -1,17 +1,17 @@
 [
-    {"name" : "school_years_informations" , "en" : "School Years Informations" , "ar" : "بيانات الأعوام الدراسية"},
+    {"name" : "school_years_informations" , "En" : "School Years Informations" , "Ar" : "بيانات الأعوام الدراسية"},
 
-    {"name" : "school_year" , "en" : "School Year" , "ar" : "العام الدراسي"},
-    {"name" : "school_years" , "en" : "School Years" , "ar" : "الأعوام الدراسية"},
-    {"name" : "school_years_menus" , "en" : "School Years Menu" , "ar" : "قائمة الأعوام الدراسية"},
-    {"name" : "school_years_code" , "en" : "School Years Code" , "ar" : "كود العام الدراسي"},
-    {"name" : "school_years_name" , "en" : "School Years Name" , "ar" : "إسم العام الدراس"},
+    {"name" : "school_year" , "En" : "School Year" , "Ar" : "العام الدراسي"},
+    {"name" : "school_years" , "En" : "School Years" , "Ar" : "الأعوام الدراسية"},
+    {"name" : "school_years_menus" , "En" : "School Years Menu" , "Ar" : "قائمة الأعوام الدراسية"},
+    {"name" : "school_years_code" , "En" : "School Years Code" , "Ar" : "كود العام الدراسي"},
+    {"name" : "school_years_name" , "En" : "School Years Name" , "Ar" : "إسم العام الدراس"},
 
-    {"name" : "school_years_new" , "en" : "New School Year" , "ar" : "عام دراسي جديد"},
-    {"name" : "school_years_details" , "en" : "School Years Details" , "ar" : "تفاصيل العام الدراسي"},
-    {"name" : "school_years_update" , "en" : "Edit School Years" , "ar" : "تعديل العام الدراسي"},
-    {"name" : "school_years_delete" , "en" : "Delte School Years" , "ar" : "حذف العام الدراسي"},
-    {"name" : "school_years_add_name" , "en" : "Add School Years" , "ar" : "إضافة عام دراسي"}
+    {"name" : "school_years_new" , "En" : "New School Year" , "Ar" : "عام دراسي جديد"},
+    {"name" : "school_years_details" , "En" : "School Years Details" , "Ar" : "تفاصيل العام الدراسي"},
+    {"name" : "school_years_update" , "En" : "Edit School Years" , "Ar" : "تعديل العام الدراسي"},
+    {"name" : "school_years_delete" , "En" : "Delte School Years" , "Ar" : "حذف العام الدراسي"},
+    {"name" : "school_years_add_name" , "En" : "Add School Years" , "Ar" : "إضافة عام دراسي"}
 
 
     

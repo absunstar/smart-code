@@ -1,7 +1,7 @@
 [{
     "module_name" : "accounting" ,
     "name": "journal_entries_admin",
-    "en": "Journal Entries Admin",
-    "ar": "إدارة قيود اليومية",
+    "En": "Journal Entries Admin",
+    "Ar": "إدارة قيود اليومية",
     "permissions": ["journal_entries_manage"]
 }]

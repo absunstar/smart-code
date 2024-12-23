@@ -1,22 +1,22 @@
 [
     {
         "id": 1,
-        "en": "Exchange source",
-        "ar": "مصدر مصروفات"
+        "En": "Exchange source",
+        "Ar": "مصدر مصروفات"
     },
     {
         "id": 2,
-        "en": "purchase invoice",
-        "ar": "فاتورة مشتريات"
+        "En": "purchase invoice",
+        "Ar": "فاتورة مشتريات"
     },
     {
         "id": 3,
-        "en": "Return sales invoice",
-        "ar": "مرتجع فاتورة مبيعات"
+        "En": "Return sales invoice",
+        "Ar": "مرتجع فاتورة مبيعات"
     },
     {
         "id": 4,
-        "en": "Vendor",
-        "ar": "مورد"
+        "En": "Vendor",
+        "Ar": "مورد"
     }
 ]

@@ -1,7 +1,7 @@
 [{
     "module_name" : "inventory" ,
     "name": "stores_assemble_admin",
-    "en": "Stores Assemble Admin",
-    "ar": "إدارة تجميع الأصناف",
+    "En": "Stores Assemble Admin",
+    "Ar": "إدارة تجميع الأصناف",
     "permissions": ["stores_assemble_manage"]
 }]

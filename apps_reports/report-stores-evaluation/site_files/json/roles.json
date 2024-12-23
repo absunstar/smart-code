@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "report_stores_evaluation_admin",
-    "en": "Report Inventory Evaluation Admin",
-    "ar": "تقرير تقييم المخزون",
+    "En": "Report Inventory Evaluation Admin",
+    "Ar": "تقرير تقييم المخزون",
     "permissions": ["report_stores_evaluation_manage"]
 }]

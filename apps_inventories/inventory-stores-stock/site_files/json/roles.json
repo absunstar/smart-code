@@ -1,7 +1,7 @@
 [{
     "module_name" : "inventory" ,
     "name": "stores_stock_admin",
-    "en": "Stores Stock Admin",
-    "ar": "إدارة جرد الأصناف",
+    "En": "Stores Stock Admin",
+    "Ar": "إدارة جرد الأصناف",
     "permissions": ["stores_stock_manage"]
 }]

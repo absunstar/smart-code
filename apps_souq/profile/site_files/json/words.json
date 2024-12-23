@@ -2,67 +2,67 @@
    
     {
         "name": "contents",
-        "en": "Ads",
-        "ar": "الإعلانات"
+        "En": "Ads",
+        "Ar": "الإعلانات"
     },
     {
         "name": "no_rating",
-        "en": "No rating",
-        "ar": "لا يوجد تقييم"
+        "En": "No rating",
+        "Ar": "لا يوجد تقييم"
     },
     {
         "name": "rating",
-        "en": "rating",
-        "ar": "تقييم"
+        "En": "rating",
+        "Ar": "تقييم"
     },
     {
         "name": "online",
-        "en": "Online",
-        "ar": "متصل"
+        "En": "Online",
+        "Ar": "متصل"
     },
     {
         "name": "commission_payment",
-        "en": "Commission payment",
-        "ar": "دفع العمولة"
+        "En": "Commission payment",
+        "Ar": "دفع العمولة"
     },
     {
         "name": "last_seen",
-        "en": "Last seen",
-        "ar": "آخر ظهور"
+        "En": "Last seen",
+        "Ar": "آخر ظهور"
     },
     {
         "name": "contact_number",
-        "en": "Contact number",
-        "ar": "رقم التواصل"
+        "En": "Contact number",
+        "Ar": "رقم التواصل"
     },
     {
         "name": "please_complete_rating_correctly",
-        "en": "Please complete the rating correctly",
-        "ar": "الرجاء إكمال التقييم بشكل صحيح"
+        "En": "Please complete the rating correctly",
+        "Ar": "الرجاء إكمال التقييم بشكل صحيح"
     },
     {
         "name": "no_followers",
-        "en": "No Followers",
-        "ar": "لا يوجد متابعين"
+        "En": "No Followers",
+        "Ar": "لا يوجد متابعين"
     },
     {
         "name": "positive_rating",
-        "en": "Positive rating",
-        "ar": "تقييم إيجابي"
+        "En": "Positive rating",
+        "Ar": "تقييم إيجابي"
     },
     {
         "name": "negative_rating",
-        "en": "Negative rating",
-        "ar": "تقييم سلبي"
+        "En": "Negative rating",
+        "Ar": "تقييم سلبي"
     },
     {
         "name": "number_of_ratings",
-        "en": "Number of ratings",
-        "ar": "عدد التقييمات"
+        "En": "Number of ratings",
+        "Ar": "عدد التقييمات"
     },
     {
         "name": "there_no_ratings",
-        "en": "There are no Ratings",
-        "ar": "لا يوجد تقيييمات"
+        "En": "There are no Ratings",
+        "Ar": "لا يوجد تقيييمات"
     }
 ]

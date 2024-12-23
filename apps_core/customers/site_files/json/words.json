@@ -1,373 +1,373 @@
 [
-    {"name" : "customers" , "en" : "Customers" , "ar" : "العملاء"},
-    {"name" : "customers_new" , "en" : "New Customer" , "ar" : "عميل جديد"},   
-    {"name" : "customers_add" , "en" : "Add Customer" , "ar" : "إضافة عميل"}, 
-    {"name" : "customers_edit" , "en" : "Customer Edit" , "ar" : "تعديل بيانات عميل"},
-    {"name" : "customers_details" , "en" : "Customer Details" , "ar" : "تفاصيل العميل"}, 
-    {"name" : "customers_delete" , "en" : "Delete Customer" , "ar" : "حذف عميل"},
-    {"name" : "customers_indentfy" , "en" : "Customer indentfy" , "ar" : "نوع العميل"},
-    {"name" : "customer_vat_registration_number" , "en" : "Customer VAT Registration Number" , "ar" : "رقم تسجيل ضريبة القيمة للعميل"},
+    {"name" : "customers" , "En" : "Customers" , "Ar" : "العملاء"},
+    {"name" : "customers_new" , "En" : "New Customer" , "Ar" : "عميل جديد"},   
+    {"name" : "customers_add" , "En" : "Add Customer" , "Ar" : "إضافة عميل"}, 
+    {"name" : "customers_edit" , "En" : "Customer Edit" , "Ar" : "تعديل بيانات عميل"},
+    {"name" : "customers_details" , "En" : "Customer Details" , "Ar" : "تفاصيل العميل"}, 
+    {"name" : "customers_delete" , "En" : "Delete Customer" , "Ar" : "حذف عميل"},
+    {"name" : "customers_indentfy" , "En" : "Customer indentfy" , "Ar" : "نوع العميل"},
+    {"name" : "customer_vat_registration_number" , "En" : "Customer VAT Registration Number" , "Ar" : "رقم تسجيل ضريبة القيمة للعميل"},
 
-    {"name" : "customers_personal_information" , "en" : "Personal Information" , "ar" : "البيانات الشخصية"},
-    {"name" : "customers_basic_information" , "en" : "Basic Information" , "ar" : "البيانات الاساسية"},
-    {"name" : "customers_code" , "en" : "Customer Code" , "ar" : "كود العميل"},
-    {"name" : "customers_name_ar" , "en" : "Customer Name Arabic" , "ar" : "إسم العميل بالعربي"},
-    {"name" : "customers_name_en" , "en" : "Customer Name English" , "ar" : "إسم العميل بالانجليزية"},
-    {"name" : "customer_name" , "en" : "Customer Name" , "ar" : "إسم العميل"},
-    {"name" : "customer" , "en" : "Customer " , "ar" : " العميل"},
-    {"name" : "balance_creditor" , "en" : "Balance Creditor " , "ar" : "رصيد دائن"},
-    {"name" : "balance_debtor" , "en" : "Balance Debtor " , "ar" : "رصيد مدين"},
+    {"name" : "customers_personal_information" , "En" : "Personal Information" , "Ar" : "البيانات الشخصية"},
+    {"name" : "customers_basic_information" , "En" : "Basic Information" , "Ar" : "البيانات الاساسية"},
+    {"name" : "customers_code" , "En" : "Customer Code" , "Ar" : "كود العميل"},
+    {"name" : "customers_name_ar" , "En" : "Customer Name Arabic" , "Ar" : "إسم العميل بالعربي"},
+    {"name" : "customers_name_en" , "En" : "Customer Name English" , "Ar" : "إسم العميل بالانجليزية"},
+    {"name" : "customer_name" , "En" : "Customer Name" , "Ar" : "إسم العميل"},
+    {"name" : "customer" , "En" : "Customer " , "Ar" : " العميل"},
+    {"name" : "balance_creditor" , "En" : "Balance Creditor " , "Ar" : "رصيد دائن"},
+    {"name" : "balance_debtor" , "En" : "Balance Debtor " , "Ar" : "رصيد مدين"},
     {
         "name": "beginning_dosage",
-        "en": "Beginning Of Dosage",
-        "ar": "بداية الجرعة"
+        "En": "Beginning Of Dosage",
+        "Ar": "بداية الجرعة"
     },
     {
         "name": "timing_dosage",
-        "en": "Timing Of Dosage",
-        "ar": "توقيت الجرعة"
+        "En": "Timing Of Dosage",
+        "Ar": "توقيت الجرعة"
     },
     {
         "name": "other_fee",
-        "en": "Other Fee",
-        "ar": "رسوم أخرى"
+        "En": "Other Fee",
+        "Ar": "رسوم أخرى"
     },
     {
         "name": "count_dosage",
-        "en": "Count Of Dosage",
-        "ar": "عدد الجرعات"
+        "En": "Count Of Dosage",
+        "Ar": "عدد الجرعات"
     },
     {
         "name": "count_hours_dosage",
-        "en": "Count Hours Of Dosage",
-        "ar": " عدد الساعات بين الجرعات "
+        "En": "Count Hours Of Dosage",
+        "Ar": " عدد الساعات بين الجرعات "
     },
     {
         "name": "medical_condition",
-        "en": "Medical Condition",
-        "ar": "الحالة الطبية"
+        "En": "Medical Condition",
+        "Ar": "الحالة الطبية"
     },
     {
         "name": "weight",
-        "en": "Weight",
-        "ar": "الوزن"
+        "En": "Weight",
+        "Ar": "الوزن"
     },
     {
         "name": "tall",
-        "en": "Tall",
-        "ar": "الطول"
+        "En": "Tall",
+        "Ar": "الطول"
     },
     {
         "name": "dad_job",
-        "en": "Dad Job",
-        "ar": "وظيفة الأب"
+        "En": "Dad Job",
+        "Ar": "وظيفة الأب"
     },
     {
         "name": "dad_name",
-        "en": "Full Name Dad",
-        "ar": "إسم الأب بالكامل"
+        "En": "Full Name Dad",
+        "Ar": "إسم الأب بالكامل"
     },
     {
         "name": "dad_mobile",
-        "en": "Dad Mobile",
-        "ar": "موبايل الأب"
+        "En": "Dad Mobile",
+        "Ar": "موبايل الأب"
     },
     {
         "name": "dad_job_address",
-        "en": "Dad job Address",
-        "ar": "عنوان عمل الأب"
+        "En": "Dad job Address",
+        "Ar": "عنوان عمل الأب"
     },
     {
         "name": "dad_job_phone",
-        "en": "Dad job Phone",
-        "ar": "هاتف عمل الأب"
+        "En": "Dad job Phone",
+        "Ar": "هاتف عمل الأب"
     },
     {
         "name": "dad_data",
-        "en": "Dad Data",
-        "ar": "بيانات الأب"
+        "En": "Dad Data",
+        "Ar": "بيانات الأب"
     },
     {
         "name": "mom_job",
-        "en": "Mom Job",
-        "ar": "وظيفة الأم"
+        "En": "Mom Job",
+        "Ar": "وظيفة الأم"
     },
     {
         "name": "mom_name",
-        "en": "Full Name Mom",
-        "ar": "إسم الأم بالكامل"
+        "En": "Full Name Mom",
+        "Ar": "إسم الأم بالكامل"
     },
     {
         "name": "mom_mobile",
-        "en": "Mom Mobile",
-        "ar": "موبايل الأم"
+        "En": "Mom Mobile",
+        "Ar": "موبايل الأم"
     },
     {
         "name": "mom_job_address",
-        "en": "Mom job Address",
-        "ar": "عنوان عمل الأم"
+        "En": "Mom job Address",
+        "Ar": "عنوان عمل الأم"
     },
     {
         "name": "mom_job_phone",
-        "en": "Mom job Phone",
-        "ar": "هاتف عمل الأم"
+        "En": "Mom job Phone",
+        "Ar": "هاتف عمل الأم"
     },
     {
         "name": "mom_data",
-        "en": "Mom Data",
-        "ar": "بيانات الأم"
+        "En": "Mom Data",
+        "Ar": "بيانات الأم"
     },
     {
         "name": "host_job",
-        "en": "Guardian Job",
-        "ar": "وظيفة ولي الأمؤ"
+        "En": "Guardian Job",
+        "Ar": "وظيفة ولي الأمؤ"
     },
     {
         "name": "host_name",
-        "en": "Full Name Guardian",
-        "ar": "إسم ولي الأمر بالكامل"
+        "En": "Full Name Guardian",
+        "Ar": "إسم ولي الأمر بالكامل"
     },
     {
         "name": "host_mobile",
-        "en": "Guardian Mobile",
-        "ar": "موبايل ولي الأمر"
+        "En": "Guardian Mobile",
+        "Ar": "موبايل ولي الأمر"
     },
     {
         "name": "host_job_address",
-        "en": "Guardian job Address",
-        "ar": "عنوان عمل ولي الأمر"
+        "En": "Guardian job Address",
+        "Ar": "عنوان عمل ولي الأمر"
     },
     {
         "name": "host_job_phone",
-        "en": "Guardian job Phone",
-        "ar": "هاتف عمل ولي الأمر"
+        "En": "Guardian job Phone",
+        "Ar": "هاتف عمل ولي الأمر"
     },
     {
         "name": "host_data",
-        "en": "Guardian Data",
-        "ar": "بيانات ولي الأمر"
+        "En": "Guardian Data",
+        "Ar": "بيانات ولي الأمر"
     },
     {
         "name": "host",
-        "en": "Guardian",
-        "ar": " ولي الأمر"
+        "En": "Guardian",
+        "Ar": " ولي الأمر"
     },
     {
         "name": "relation_parents",
-        "en": "Relation Of Parents Degree",
-        "ar": "درجة الصلة بالأهل"
+        "En": "Relation Of Parents Degree",
+        "Ar": "درجة الصلة بالأهل"
     },
     {
         "name": "hall",
-        "en": "Class Room",
-        "ar": "الفصل الدراسي"
+        "En": "Class Room",
+        "Ar": "الفصل الدراسي"
     },
     {
         "name": "file_open_fee",
-        "en": "File Opening Fee",
-        "ar": "رسوم فتح ملف"
+        "En": "File Opening Fee",
+        "Ar": "رسوم فتح ملف"
     },
     {
         "name": "disease_name",
-        "en": "Disease Name",
-        "ar": "إسم المرض"
+        "En": "Disease Name",
+        "Ar": "إسم المرض"
     },
     {
         "name": "blood_type",
-        "en": "Blood Type",
-        "ar": "فصيلة الدم"
+        "En": "Blood Type",
+        "Ar": "فصيلة الدم"
     },
     {
         "name": "family_info",
-        "en": "Guardian Informations",
-        "ar": "معلومات ولي الأمر"
+        "En": "Guardian Informations",
+        "Ar": "معلومات ولي الأمر"
     },
     {
         "name": "medical_info",
-        "en": "Medical Information",
-        "ar": "معلومــــــات طبيـــــة"
+        "En": "Medical Information",
+        "Ar": "معلومــــــات طبيـــــة"
     },
     {
         "name": "allergic_food",
-        "en": "Allergic Food",
-        "ar": "حساسية الأطعمة"
+        "En": "Allergic Food",
+        "Ar": "حساسية الأطعمة"
     },
     {
         "name": "allergic_drink",
-        "en": "Allergic Drink",
-        "ar": "حساسية المشروبات"
+        "En": "Allergic Drink",
+        "Ar": "حساسية المشروبات"
     },
     {
         "name": "allergic",
-        "en": "Allergic",
-        "ar": "الحســــــــاسيـــــة "
+        "En": "Allergic",
+        "Ar": "الحســــــــاسيـــــة "
     },
     {
         "name": "medicines",
-        "en": "Medicines",
-        "ar": "الأدويـــــــة "
+        "En": "Medicines",
+        "Ar": "الأدويـــــــة "
     },
     {
         "name": "diseases",
-        "en": "Diseases",
-        "ar": "الأمـــــراض"
+        "En": "Diseases",
+        "Ar": "الأمـــــراض"
     },
     {
         "name": "medicine_notes",
-        "en": "Medicine Notes",
-        "ar": "ملاحظات طبية"
+        "En": "Medicine Notes",
+        "Ar": "ملاحظات طبية"
     },
     {
         "name": "medicine",
-        "en": "Medicine Name",
-        "ar": "إسم الدواء "
+        "En": "Medicine Name",
+        "Ar": "إسم الدواء "
     },
 
-    {"name" : "customers_groups" , "en" : "Customer Group" , "ar" : "مجموعة العملاء"},
+    {"name" : "customers_groups" , "En" : "Customer Group" , "Ar" : "مجموعة العملاء"},
 
-    {"name" : "customers_id_inforamation" , "en" : "Personal Information" , "ar" : "بيانات الهوية"},
-    {"name" : "customers_nationality" , "en" : "Nationality" , "ar" : "الجنسية"},
-    {"name" : "customers_id_number" , "en" : "Id Number" , "ar" : "رقم الهوية"},
-    {"name" : "customers_id_source" , "en" : "Id Source" , "ar" : "مصدر الهوية"},
+    {"name" : "customers_id_inforamation" , "En" : "Personal Information" , "Ar" : "بيانات الهوية"},
+    {"name" : "customers_nationality" , "En" : "Nationality" , "Ar" : "الجنسية"},
+    {"name" : "customers_id_number" , "En" : "Id Number" , "Ar" : "رقم الهوية"},
+    {"name" : "customers_id_source" , "En" : "Id Source" , "Ar" : "مصدر الهوية"},
 
-    {"name" : "customers_id_release_date" , "en" : "Id Release Date" , "ar" : "تاريخ اصدار الهوية"},
-    {"name" : "customers_id_release_date_gregorian" , "en" : "Id Release Gregorian Date" , "ar" : "تاريخ اصدار الهوية ميلادي"},
-    {"name" : "customers_id_release_date_hijri" , "en" : "Id Release Hijri Date" , "ar" : "تاريخ اصدار الهوية هجري"},
+    {"name" : "customers_id_release_date" , "En" : "Id Release Date" , "Ar" : "تاريخ اصدار الهوية"},
+    {"name" : "customers_id_release_date_gregorian" , "En" : "Id Release Gregorian Date" , "Ar" : "تاريخ اصدار الهوية ميلادي"},
+    {"name" : "customers_id_release_date_hijri" , "En" : "Id Release Hijri Date" , "Ar" : "تاريخ اصدار الهوية هجري"},
 
-    {"name" : "customers_official_documents" , "en" : "Official Documents" , "ar" : "الوثائق الرسمية"},
-    {"name" : "customers_tax_informations" , "en" : "Tax Information" , "ar" : "البيانات الضريبية"},
-    {"name" : "customers_tax_regstration_number" , "en" : "Tax Registration Number" , "ar" : "رقم التسجيل الضريبي"},
-    {"name" : "customers_tax_card_number" , "en" : "Tax Card Number" , "ar" : "رقم البطاقة الضريبية"},
-    {"name" : "customers_tax_office_code" , "en" : "Tax Office Code" , "ar" : "كود المأمورية"},
-    {"name" : "customers_tax_office_name" , "en" : "Tax Office Name" , "ar" : " إسم المأمورية"},
-    {"name" : "customers_activity_address" , "en" : "Activity Address" , "ar" : "عنوان النشاط"},
-    {"name" : "customers_file_number" , "en" : "File Number" , "ar" : "رقم الملف"},
-    {"name" : "customers_activity_name" , "en" : "Activity Name" , "ar" : "إسم النشاط"},
-    {"name" : "customers_financier_name" , "en" : "Financier Name" , "ar" : "إسم الممول"},
+    {"name" : "customers_official_documents" , "En" : "Official Documents" , "Ar" : "الوثائق الرسمية"},
+    {"name" : "customers_tax_informations" , "En" : "Tax Information" , "Ar" : "البيانات الضريبية"},
+    {"name" : "customers_tax_regstration_number" , "En" : "Tax Registration Number" , "Ar" : "رقم التسجيل الضريبي"},
+    {"name" : "customers_tax_card_number" , "En" : "Tax Card Number" , "Ar" : "رقم البطاقة الضريبية"},
+    {"name" : "customers_tax_office_code" , "En" : "Tax Office Code" , "Ar" : "كود المأمورية"},
+    {"name" : "customers_tax_office_name" , "En" : "Tax Office Name" , "Ar" : " إسم المأمورية"},
+    {"name" : "customers_activity_address" , "En" : "Activity Address" , "Ar" : "عنوان النشاط"},
+    {"name" : "customers_file_number" , "En" : "File Number" , "Ar" : "رقم الملف"},
+    {"name" : "customers_activity_name" , "En" : "Activity Name" , "Ar" : "إسم النشاط"},
+    {"name" : "customers_financier_name" , "En" : "Financier Name" , "Ar" : "إسم الممول"},
 
-    {"name" : "customers_commercial_register_information" , "en" : "Commercial Register Information" , "ar" : "بيانات السجل التجاري"},
-    {"name" : "customers_commercial_name" , "en" : "Commercial Name" , "ar" : "الإسم التجاري"},
-    {"name" : "customers_business_attribute" , "en" : "Busines Attribute" , "ar" : "السمة التجارية"},
-    {"name" : "customers_used_name_in_trade" , "en" : "Used Name In trade" , "ar" : "الإسم المستخدم في التجارة"},
-    {"name" : "customers_trader_name" , "en" : "Trader Name" , "ar" : "إسم التاجر"},
-    {"name" : "customers_commerical_nationality" , "en" : "Nathionality Name" , "ar" : "إسم الجنسية"},
-    {"name" : "customers_financial_system" , "en" : "Financial System" , "ar" : "النظام المالي"},
-    {"name" : "customers_commercial_validity" , "en" : "Commercial Validity" , "ar" : "الاهلية التجارية"},
-    {"name" : "customers_trade_type" , "en" : "Trade Type" , "ar" : "نوع التجارة"},
-    {"name" : "customers_commercial_start_date_gregorian" , "en" : "Commercial Start Gregorian Date" , "ar" : "تاريج بداية النشاط ميلادي"},
-    {"name" : "customers_commercial_start_date_hijri" , "en" : "Commercial Start Hijri Date" , "ar" : "تاريج بداية النشاط هجري"},
+    {"name" : "customers_commercial_register_information" , "En" : "Commercial Register Information" , "Ar" : "بيانات السجل التجاري"},
+    {"name" : "customers_commercial_name" , "En" : "Commercial Name" , "Ar" : "الإسم التجاري"},
+    {"name" : "customers_business_attribute" , "En" : "Busines Attribute" , "Ar" : "السمة التجارية"},
+    {"name" : "customers_used_name_in_trade" , "En" : "Used Name In trade" , "Ar" : "الإسم المستخدم في التجارة"},
+    {"name" : "customers_trader_name" , "En" : "Trader Name" , "Ar" : "إسم التاجر"},
+    {"name" : "customers_commerical_nationality" , "En" : "Nathionality Name" , "Ar" : "إسم الجنسية"},
+    {"name" : "customers_financial_system" , "En" : "Financial System" , "Ar" : "النظام المالي"},
+    {"name" : "customers_commercial_validity" , "En" : "Commercial Validity" , "Ar" : "الاهلية التجارية"},
+    {"name" : "customers_trade_type" , "En" : "Trade Type" , "Ar" : "نوع التجارة"},
+    {"name" : "customers_commercial_start_date_gregorian" , "En" : "Commercial Start Gregorian Date" , "Ar" : "تاريج بداية النشاط ميلادي"},
+    {"name" : "customers_commercial_start_date_hijri" , "En" : "Commercial Start Hijri Date" , "Ar" : "تاريج بداية النشاط هجري"},
 
-    {"name" : "customers_commercial_start_date" , "en" : "Commercial Start Date" , "ar" : "تاريج بداية النشاط"},
+    {"name" : "customers_commercial_start_date" , "En" : "Commercial Start Date" , "Ar" : "تاريج بداية النشاط"},
     
-    {"name" : "customers_opening_balance" , "en" : "Opening Balance" , "ar" : "الرصيد الافتتاحي"},
-    {"name" : "customers_opening_balance_informations" , "en" : "Opening Balance Informations" , "ar" : "بيانات الرصيد الافتتاحي"},
-    {"name" : "customers_initial_balance" , "en" : "Initial Balance " , "ar" : "الرصيد الافتتاحي"},
-    {"name" : "customers_currency_name" , "en" : "Currency Name" , "ar" : "إسم العملة"},    
-    {"name" : "customers_balance_type" , "en" : "Balance Type" , "ar" : "نوع الرصيد"},
-    {"name" : "customers_debit" , "en" : "Debit" , "ar" : "مدين"},
-    {"name" : "customers_credit" , "en" : "Credit" , "ar" : "دائن"},
+    {"name" : "customers_opening_balance" , "En" : "Opening Balance" , "Ar" : "الرصيد الافتتاحي"},
+    {"name" : "customers_opening_balance_informations" , "En" : "Opening Balance Informations" , "Ar" : "بيانات الرصيد الافتتاحي"},
+    {"name" : "customers_initial_balance" , "En" : "Initial Balance " , "Ar" : "الرصيد الافتتاحي"},
+    {"name" : "customers_currency_name" , "En" : "Currency Name" , "Ar" : "إسم العملة"},    
+    {"name" : "customers_balance_type" , "En" : "Balance Type" , "Ar" : "نوع الرصيد"},
+    {"name" : "customers_debit" , "En" : "Debit" , "Ar" : "مدين"},
+    {"name" : "customers_credit" , "En" : "Credit" , "Ar" : "دائن"},
 
-    {"name" : "customers_due_date" , "en" : "Date" , "ar" : "التاريخ"},
-    {"name" : "customers_due_date_gregorian" , "en" : "Due Gregorian Date" , "ar" : "تاريج الاستحقاق ميلادي"},
-    {"name" : "customers_due_date_hijri" , "en" : "Due Hijri Date" , "ar" : "تاريج الاستحقاق هجري"},
+    {"name" : "customers_due_date" , "En" : "Date" , "Ar" : "التاريخ"},
+    {"name" : "customers_due_date_gregorian" , "En" : "Due Gregorian Date" , "Ar" : "تاريج الاستحقاق ميلادي"},
+    {"name" : "customers_due_date_hijri" , "En" : "Due Hijri Date" , "Ar" : "تاريج الاستحقاق هجري"},
 
-    {"name" : "customers_reference_number" , "en" : "Reference Number" , "ar" : "الرقم المرجعي"},
-    {"name" : "customers_notes_arabic" , "en" : "Notes Arabic" , "ar" : "ملاحظات بالعربي"},
-    {"name" : "customers_notes_english" , "en" : "Notes English" , "ar" : "ملاحظات بالانجليزية"},
+    {"name" : "customers_reference_number" , "En" : "Reference Number" , "Ar" : "الرقم المرجعي"},
+    {"name" : "customers_notes_arabic" , "En" : "Notes Arabic" , "Ar" : "ملاحظات بالعربي"},
+    {"name" : "customers_notes_english" , "En" : "Notes English" , "Ar" : "ملاحظات بالانجليزية"},
 
-    {"name" : "customers_banking_and_acounting" , "en" : "Banking And Accounting" , "ar" : "البنوك والحسابات"},   
-    {"name" : "customers_accounting_informations" , "en" : "Accounting Informations" , "ar" : "البيانات المحاسبية"},
-    {"name" : "customers_period_maturity_purchases" , "en" : "Period Of Maturity Of Purchases" , "ar" : "فترة استحقاق المشتريات"},
-    {"name" : "customers_prof_account" , "en" : "Prof Account" , "ar" : "حساب الاستاذ"},
-    {"name" : "customers_discount" , "en" : "Discount" , "ar" : "نسبة الخصم"},
-    {"name" : "customers_credit_limit" , "en" : "Credit Limit" , "ar" : "حد الائتمان"},
-    {"name" : "customers_delegate_commission" , "en" : "Delegate Commission" , "ar" : "عمولة المندوب"},
+    {"name" : "customers_banking_and_acounting" , "En" : "Banking And Accounting" , "Ar" : "البنوك والحسابات"},   
+    {"name" : "customers_accounting_informations" , "En" : "Accounting Informations" , "Ar" : "البيانات المحاسبية"},
+    {"name" : "customers_period_maturity_purchases" , "En" : "Period Of Maturity Of Purchases" , "Ar" : "فترة استحقاق المشتريات"},
+    {"name" : "customers_prof_account" , "En" : "Prof Account" , "Ar" : "حساب الاستاذ"},
+    {"name" : "customers_discount" , "En" : "Discount" , "Ar" : "نسبة الخصم"},
+    {"name" : "customers_credit_limit" , "En" : "Credit Limit" , "Ar" : "حد الائتمان"},
+    {"name" : "customers_delegate_commission" , "En" : "Delegate Commission" , "Ar" : "عمولة المندوب"},
 
-    {"name" : "customers_bank_information" , "en" : "Bank Information" , "ar" : "بيانات البنك"},
-    {"name" : "customers_bank_name" , "en" : "Bank Name" , "ar" : "إسم البنك"},
-    {"name" : "customers_bank_account_number" , "en" : "Bank Account Number" , "ar" : "رقم حساب البنك"},
+    {"name" : "customers_bank_information" , "En" : "Bank Information" , "Ar" : "بيانات البنك"},
+    {"name" : "customers_bank_name" , "En" : "Bank Name" , "Ar" : "إسم البنك"},
+    {"name" : "customers_bank_account_number" , "En" : "Bank Account Number" , "Ar" : "رقم حساب البنك"},
 
-    {"name" : "customers_contact_and_addresses" , "en" : "Contact and Addresses" , "ar" : "الاتصال والعناوين"},
-    {"name" : "customers_address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
-    {"name" : "customers_city" , "en" : "City" , "ar" : "المدينة"},
-    {"name" : "customers_address" , "en" : "Address" , "ar" : "العنوان"},
+    {"name" : "customers_contact_and_addresses" , "En" : "Contact and Addresses" , "Ar" : "الاتصال والعناوين"},
+    {"name" : "customers_address_informations" , "En" : "Address Informaion" , "Ar" : "بيانات العناوين"},
+    {"name" : "customers_city" , "En" : "City" , "Ar" : "المدينة"},
+    {"name" : "customers_address" , "En" : "Address" , "Ar" : "العنوان"},
     {
         "name": "mobile",
-        "en": "Mobile",
-        "ar": "رقم الموبيل"
+        "En": "Mobile",
+        "Ar": "رقم الموبيل"
       },
-    {"name" : "customers_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
-    {"name" : "customers_phone" , "en" : "Phone" , "ar" : "التليفون"},
-    {"name" : "customers_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "customers_fax" , "en" : "Fax" , "ar" : "الفاكس"},
+    {"name" : "customers_contact_informations" , "En" : "Contact Informaion" , "Ar" : "بيانات الاتصال"},
+    {"name" : "customers_phone" , "En" : "Phone" , "Ar" : "التليفون"},
+    {"name" : "customers_internal_number" , "En" : "Internal Number" , "Ar" : "الرقم الداخلي"},
+    {"name" : "customers_fax" , "En" : "Fax" , "Ar" : "الفاكس"},
 
-    {"name" : "customers_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},
-    {"name" : "customers_mailbox" , "en" : "Mail Box" , "ar" : "صندوق البريد"},
-    {"name" : "customers_post_number" , "en" : "Post Number" , "ar" : "الرقم البريدي"},
+    {"name" : "customers_post_informations" , "En" : "Post Informaion" , "Ar" : "بيانات البريد"},
+    {"name" : "customers_mailbox" , "En" : "Mail Box" , "Ar" : "صندوق البريد"},
+    {"name" : "customers_post_number" , "En" : "Post Number" , "Ar" : "الرقم البريدي"},
 
-    {"name" : "customers_web_and_social_accounts" , "en" : "Web And Social Accounts" , "ar" : "المواقع والحسابات الاجتماعية"},   
-    {"name" : "customers_website" , "en" : "Website" , "ar" : "الموقع الإلكتروني"},
-    {"name" : "customers_social_snap" , "en" : "Snap Account" , "ar" : "حساب السناب"},
-    {"name" : "customers_social_instagram" , "en" : "Instagram Account" , "ar" : "حساب إنستجرام"},
-    {"name" : "customers_social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
-    {"name" : "customers_social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
-    {"name" : "customers_social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
+    {"name" : "customers_web_and_social_accounts" , "En" : "Web And Social Accounts" , "Ar" : "المواقع والحسابات الاجتماعية"},   
+    {"name" : "customers_website" , "En" : "Website" , "Ar" : "الموقع الإلكتروني"},
+    {"name" : "customers_social_snap" , "En" : "Snap Account" , "Ar" : "حساب السناب"},
+    {"name" : "customers_social_instagram" , "En" : "Instagram Account" , "Ar" : "حساب إنستجرام"},
+    {"name" : "customers_social_facebook_account" , "En" : "FaceBook Account" , "Ar" : "حساب الفيس بوك"},
+    {"name" : "customers_social_twitter_account" , "En" : "Twitter Account" , "Ar" : "حساب تويتر"},
+    {"name" : "customers_social_google_account" , "En" : "Google Account" , "Ar" : "حساب جوجل"},
 
-    {"name" : "customers_branches" , "en" : "Branches" , "ar" : "فروع العميل"},
-    {"name" : "customers_branches_informations" , "en" : "Branches Informations" , "ar" : "بيانات الفروع"},   
-    {"name" : "customers_branch_informations" , "en" : "Branch Informations" , "ar" : "بيانات الفرع"},
-    {"name" : "customers_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
-    {"name" : "customers_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
-    {"name" : "customers_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
-    {"name" : "customers_branch_city" , "en" : "Branch  City" , "ar" : "المدينة"},
-    {"name" : "customers_branch_address" , "en" : "Branch  Address" , "ar" : "العنوان"},
-    {"name" : "customers_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
-    {"name" : "customers_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "الموبايل "},
-    {"name" : "customers_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
-    {"name" : "customers_branch_email" , "en" : "Branch Email" , "ar" : "البريد الإلكتروني"},
+    {"name" : "customers_branches" , "En" : "Branches" , "Ar" : "فروع العميل"},
+    {"name" : "customers_branches_informations" , "En" : "Branches Informations" , "Ar" : "بيانات الفروع"},   
+    {"name" : "customers_branch_informations" , "En" : "Branch Informations" , "Ar" : "بيانات الفرع"},
+    {"name" : "customers_branch_code" , "En" : "Branch Code" , "Ar" : "كود الفرع"},
+    {"name" : "customers_branch_name" , "En" : "Branch Name" , "Ar" : "إسم الفرع"},
+    {"name" : "customers_branch_notes" , "En" : "Branch Notes" , "Ar" : "ملاحظات الفرع"},
+    {"name" : "customers_branch_city" , "En" : "Branch  City" , "Ar" : "المدينة"},
+    {"name" : "customers_branch_address" , "En" : "Branch  Address" , "Ar" : "العنوان"},
+    {"name" : "customers_branch_phone" , "En" : "Branch Phone" , "Ar" : "التليفون"},
+    {"name" : "customers_branch_mobile" , "En" : "Branch  Mobile" , "Ar" : "الموبايل "},
+    {"name" : "customers_branch_fax" , "En" : "Branch Fax" , "Ar" : "الفاكس"},
+    {"name" : "customers_branch_email" , "En" : "Branch Email" , "Ar" : "البريد الإلكتروني"},
 
-    {"name" : "customers_charge_contact_informations" , "en" : "Charge Informaion" , "ar" : "بيانات مسئول"},
-    {"name" : "customers_charge_name" , "en" : "Charge Name" , "ar" : "الإسم"},
-    {"name" : "customers_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},   
-    {"name" : "customers_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
-    {"name" : "customers_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "customers_charge_mobile" , "en" : "Charge Mobile" , "ar" : "الموبايل "},
-    {"name" : "customers_charge_email" , "en" : "Charge Email" , "ar" : "البريد الإلكتروني"},
-    {"name" : "customers_files" , "en" : "Files" , "ar" : "الملفات"},
+    {"name" : "customers_charge_contact_informations" , "En" : "Charge Informaion" , "Ar" : "بيانات مسئول"},
+    {"name" : "customers_charge_name" , "En" : "Charge Name" , "Ar" : "الإسم"},
+    {"name" : "customers_charge_job" , "En" : "Charge Job" , "Ar" : "الوظيفة"},   
+    {"name" : "customers_charge_phone" , "En" : "Charge Phone" , "Ar" : "التليفون"},
+    {"name" : "customers_charge_internal_number" , "En" : "Charge Internal Number" , "Ar" : "الرقم الداخلي"},
+    {"name" : "customers_charge_mobile" , "En" : "Charge Mobile" , "Ar" : "الموبايل "},
+    {"name" : "customers_charge_email" , "En" : "Charge Email" , "Ar" : "البريد الإلكتروني"},
+    {"name" : "customers_files" , "En" : "Files" , "Ar" : "الملفات"},
 
 
-    {"name" : "customers_dealing" , "en" : "Customers Dealing" , "ar" : "تعاملات العميل"},
+    {"name" : "customers_dealing" , "En" : "Customers Dealing" , "Ar" : "تعاملات العميل"},
 
-    {"name" : "customers_dealing_companies_branches" , "en" : "Dealing Companies And Branches" , "ar" : "الشركات والفروع"},
-    {"name" : "customers_dealing_companies_branches_informatons" , "en" : "Companies And Branches Informations" , "ar" : "بيانات الشركات والفروع"},
-    {"name" : "customers_company_name" , "en" : "Company Name" , "ar" : "إسم الشركة"},
-    {"name" : "customers_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
+    {"name" : "customers_dealing_companies_branches" , "En" : "Dealing Companies And Branches" , "Ar" : "الشركات والفروع"},
+    {"name" : "customers_dealing_companies_branches_informatons" , "En" : "Companies And Branches Informations" , "Ar" : "بيانات الشركات والفروع"},
+    {"name" : "customers_company_name" , "En" : "Company Name" , "Ar" : "إسم الشركة"},
+    {"name" : "customers_branch_name" , "En" : "Branch Name" , "Ar" : "إسم الفرع"},
 
 
           
  
-    {"name" : "customers_send_email" , "en" : "Send Email" , "ar" : "ارسال بريد الكتروني"},
-    {"name" : "customers_send_email_to_customer" , "en" : "Send Email To Customer" , "ar" : "ارسال بريد الكتروني لعميل"},
-    {"name" : "customers_create_email" , "en" : "Create Email" , "ar" : "انشاء ايميل"},
-    {"name" : "customers_mail_from" , "en" : "From" , "ar" : "من"},
-    {"name" : "customers_mail_to" , "en" : "To" , "ar" : "الي"},
-    {"name" : "customers_mail_cc" , "en" : "Cc" , "ar" : "نسخة كربونية"},
-    {"name" : "customers_mail_bcc" , "en" : "Bcc" , "ar" : "نسخة كربونية مخفية"},
-    {"name" : "customers_mail_subject" , "en" : "Subject" , "ar" : "الموضوع"},
-    {"name" : "customers_mail_send" , "en" : "Send" , "ar" : "ارسال"},
-    {"name" : "customers_mail_text" , "en" : "Email Text" , "ar" : "نص الرسالة"},
+    {"name" : "customers_send_email" , "En" : "Send Email" , "Ar" : "ارسال بريد الكتروني"},
+    {"name" : "customers_send_email_to_customer" , "En" : "Send Email To Customer" , "Ar" : "ارسال بريد الكتروني لعميل"},
+    {"name" : "customers_create_email" , "En" : "Create Email" , "Ar" : "انشاء ايميل"},
+    {"name" : "customers_mail_from" , "En" : "From" , "Ar" : "من"},
+    {"name" : "customers_mail_to" , "En" : "To" , "Ar" : "الي"},
+    {"name" : "customers_mail_cc" , "En" : "Cc" , "Ar" : "نسخة كربونية"},
+    {"name" : "customers_mail_bcc" , "En" : "Bcc" , "Ar" : "نسخة كربونية مخفية"},
+    {"name" : "customers_mail_subject" , "En" : "Subject" , "Ar" : "الموضوع"},
+    {"name" : "customers_mail_send" , "En" : "Send" , "Ar" : "ارسال"},
+    {"name" : "customers_mail_text" , "En" : "Email Text" , "Ar" : "نص الرسالة"},
    
-    {"name" : "customers_send" , "en" : "Send" , "ar" : "ارسال"},
-    {"name" : "streetName" , "en" : "street Name" , "ar" : "اسم الشارع"},
-    {"name" : "buildingNumber" , "en" : "building Number" , "ar" : "رقم البناء"},
-    {"name" : "role" , "en" : "role" , "ar" : "الدور"},
-    {"name" : "apartmentNumber" , "en" : "apartment Number" , "ar" : "رقم الشقة"},
-    {"name" : "specialMark" , "en" : "special Mark" , "ar" : "علامة مميزة"},
-    {"name" : "contracting_company" , "en" : "contracting company" , "ar" : "شركة التعاقد"},
-    {"name" : "hasContractingCompany" , "en" : "has Contracting Company" , "ar" : "له شركة تعاقد"},
-    {"name" : "workPlace" , "en" : "work Place" , "ar" : "مكان العمل"},
-    {"name" : "contractingNumber" , "en" : "contractingNumber" , "ar" : "رقم التعاقد"},
-    {"name" : "contractingImg" , "en" : "contracting Image" , "ar" : "صورة كارت التعاقد"}
+    {"name" : "customers_send" , "En" : "Send" , "Ar" : "ارسال"},
+    {"name" : "streetName" , "En" : "street Name" , "Ar" : "اسم الشارع"},
+    {"name" : "buildingNumber" , "En" : "building Number" , "Ar" : "رقم البناء"},
+    {"name" : "role" , "En" : "role" , "Ar" : "الدور"},
+    {"name" : "apartmentNumber" , "En" : "apartment Number" , "Ar" : "رقم الشقة"},
+    {"name" : "specialMark" , "En" : "special Mark" , "Ar" : "علامة مميزة"},
+    {"name" : "contracting_company" , "En" : "contracting company" , "Ar" : "شركة التعاقد"},
+    {"name" : "hasContractingCompany" , "En" : "has Contracting Company" , "Ar" : "له شركة تعاقد"},
+    {"name" : "workPlace" , "En" : "work Place" , "Ar" : "مكان العمل"},
+    {"name" : "contractingNumber" , "En" : "contractingNumber" , "Ar" : "رقم التعاقد"},
+    {"name" : "contractingImg" , "En" : "contracting Image" , "Ar" : "صورة كارت التعاقد"}
     
     
     

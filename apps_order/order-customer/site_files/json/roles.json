@@ -2,8 +2,8 @@
     {
         "module_name": "public",
         "name": "order_customer_admin",
-        "en": "Order Customers Admin",
-        "ar": "إدارة شاشة طلبات العملاء",
+        "En": "Order Customers Admin",
+        "Ar": "إدارة شاشة طلبات العملاء",
         "permissions": [
             "order_customer_manage"
         ]
@@ -11,8 +11,8 @@
     {
         "module_name": "public",
         "name": "order_customer_user",
-        "en": "Order Customers User",
-        "ar": "طلبات العملاء للمستخدمين",
+        "En": "Order Customers User",
+        "Ar": "طلبات العملاء للمستخدمين",
         "permissions": [
             "order_customer_ui",
             "order_customer_delete_items"

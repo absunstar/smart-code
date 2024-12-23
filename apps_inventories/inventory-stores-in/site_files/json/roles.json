@@ -1,7 +1,7 @@
 [{
     "module_name" : "inventory" ,
     "name": "stores_in_admin",
-    "en": "Stores In Admin",
-    "ar": "إدارة إذن وارد / فاتورة مشتريات",
+    "En": "Stores In Admin",
+    "Ar": "إدارة إذن وارد / فاتورة مشتريات",
     "permissions": ["stores_in_manage"]
 }]

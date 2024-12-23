@@ -1,22 +1,22 @@
 [
-    {"name" : "accounting_discount_types" , "en" : "Discounts" , "ar" : "الخصومات"},
-    {"name" : "discount_types" , "en" : "Discounts" , "ar" : "الخصومات"},
-    {"name" : "inventory_discount_types" , "en" : "Discounts" , "ar" : "الخصومات"},
-    {"name" : "discount_types_add" , "en" : "Add Discount Type" , "ar" : "إضافة خصم"},
-    {"name" : "discount_types_new" , "en" : "New Discount Type" , "ar" : "خصم جديدة"},
-    {"name" : "discount_types_details" , "en" : "Discount Type Details" , "ar" : "تفاصيل خصم"},
-    {"name" : "discount_types_edit" , "en" : "Edit Discount Type" , "ar" : "تعديل بيانات خصم"},
-    {"name" : "discount_types_delete" , "en" : "Delete Discount Type" , "ar" : "حذف خصم"},
-    {"name" : "discount_types_name" , "en" : "Discount Type Name" , "ar" : "إسم الخصم"},
-    {"name" : "discount_types_value" , "en" : "Discount Type Value" , "ar" : "قيمة الخصم"},
-    {"name" : "discount_types_number" , "en" : "Discount Type Number" , "ar" : "مبلغ الخصم"},
-    {"name" : "discount_types_percent" , "en" : "Discount Type Percent" , "ar" : "نسبة الخصم"},
+    {"name" : "accounting_discount_types" , "En" : "Discounts" , "Ar" : "الخصومات"},
+    {"name" : "discount_types" , "En" : "Discounts" , "Ar" : "الخصومات"},
+    {"name" : "inventory_discount_types" , "En" : "Discounts" , "Ar" : "الخصومات"},
+    {"name" : "discount_types_add" , "En" : "Add Discount Type" , "Ar" : "إضافة خصم"},
+    {"name" : "discount_types_new" , "En" : "New Discount Type" , "Ar" : "خصم جديدة"},
+    {"name" : "discount_types_details" , "En" : "Discount Type Details" , "Ar" : "تفاصيل خصم"},
+    {"name" : "discount_types_edit" , "En" : "Edit Discount Type" , "Ar" : "تعديل بيانات خصم"},
+    {"name" : "discount_types_delete" , "En" : "Delete Discount Type" , "Ar" : "حذف خصم"},
+    {"name" : "discount_types_name" , "En" : "Discount Type Name" , "Ar" : "إسم الخصم"},
+    {"name" : "discount_types_value" , "En" : "Discount Type Value" , "Ar" : "قيمة الخصم"},
+    {"name" : "discount_types_number" , "En" : "Discount Type Number" , "Ar" : "مبلغ الخصم"},
+    {"name" : "discount_types_percent" , "En" : "Discount Type Percent" , "Ar" : "نسبة الخصم"},
 
-    {"name" : "discount_types_type" , "en" : "Discount Type " , "ar" : "نوع الخصم"},
+    {"name" : "discount_types_type" , "En" : "Discount Type " , "Ar" : "نوع الخصم"},
 
-    {"name" : "discount_types_error" , "en" : "Should Select Discount Type " , "ar" : "يجب إختيار نوع الخصم"},
+    {"name" : "discount_types_error" , "En" : "Should Select Discount Type " , "Ar" : "يجب إختيار نوع الخصم"},
 
-    {"name" : "discount_types_logo" , "en" : "Discount Type Logo" , "ar" : " الشعار"},
-    {"name" : "discount_types_img" , "en" : "Discount Type Image" , "ar" : "الملفات"}
+    {"name" : "discount_types_logo" , "En" : "Discount Type Logo" , "Ar" : " الشعار"},
+    {"name" : "discount_types_img" , "En" : "Discount Type Image" , "Ar" : "الملفات"}
 
 ]

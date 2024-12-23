@@ -1,25 +1,25 @@
 [{
         "id": 1,
         "name": "detection",
-        "en": "Detection",
-        "ar": "كشف"
+        "En": "Detection",
+        "Ar": "كشف"
     },
     {
         "id": 2,
         "name": "re_detection",
-        "en": "Re-Detection",
-        "ar": "إعادة كشف"
+        "En": "Re-Detection",
+        "Ar": "إعادة كشف"
     },
     {
         "id": 3,
         "name": "consultation",
-        "en": "Consultation",
-        "ar": "إستشارة"
+        "En": "Consultation",
+        "Ar": "إستشارة"
     },
     {
         "id": 4,
         "name": "session",
-        "en": "Session",
-        "ar": "جلسة"
+        "En": "Session",
+        "Ar": "جلسة"
     }
 ]

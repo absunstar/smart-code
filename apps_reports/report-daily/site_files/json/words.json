@@ -1,17 +1,17 @@
 [
     {
         "name": "report_daily_informations",
-        "en": "Report Daily Informations",
-        "ar": "بيانات تقرير فاتورة"
+        "En": "Report Daily Informations",
+        "Ar": "بيانات تقرير فاتورة"
     },
     {
         "name": "report_daily_name",
-        "en": "Report Daily",
-        "ar": "تقرير اليومية"
+        "En": "Report Daily",
+        "Ar": "تقرير اليومية"
     },
     {
         "name": "report_daily",
-        "en": "Report Daily",
-        "ar": "تقرير اليومية"
+        "En": "Report Daily",
+        "Ar": "تقرير اليومية"
     }
 ]

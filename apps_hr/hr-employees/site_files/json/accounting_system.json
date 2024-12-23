@@ -1,13 +1,13 @@
 [
     {
         "name": "session",
-        "en": "Session",
-        "ar": "جلسة"
+        "En": "Session",
+        "Ar": "جلسة"
     },
     
     {
         "name": "monthly",
-        "en": "Monthly",
-        "ar": "شهري"
+        "En": "Monthly",
+        "Ar": "شهري"
     }
 ]

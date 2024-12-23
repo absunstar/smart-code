@@ -349,7 +349,7 @@ module.exports = function init(site) {
 
   // get analysis price
   site.post("/api/analysis/getAnalysisPrice", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+    req.headers.language = req.headers.language || "En";
     let response = {};
     let where = req.body.where || {};
     let analysis = where["analysis"].id;

@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "scans_requests_admin",
-    "en": "Scans Center Admin",
-    "ar": "إدارة مركز الأشعة",
+    "En": "Scans Center Admin",
+    "Ar": "إدارة مركز الأشعة",
     "permissions": ["scans_requests_manage"]
 }]

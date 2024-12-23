@@ -1,7 +1,7 @@
 [{
     "module_name" : "report" ,
     "name": "item_transaction_admin",
-    "en": "item_transaction",
-    "ar": "إدارة كارتة الصنف",
+    "En": "item_transaction",
+    "Ar": "إدارة كارتة الصنف",
     "permissions": ["item_transaction_manage"]
 }]

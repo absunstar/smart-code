@@ -1,7 +1,7 @@
 [{
     "module_name" : "inventory" ,
     "name": "stores_dismantle_admin",
-    "en": "Stores Dismantle Admin",
-    "ar": "إدارة تفكيك الأصناف",
+    "En": "Stores Dismantle Admin",
+    "Ar": "إدارة تفكيك الأصناف",
     "permissions": ["stores_dismantle_manage"]
 }]

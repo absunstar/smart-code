@@ -1,7 +1,7 @@
 [
-    {"id" : 1 ,  "en" : "Store Normal" , "ar" : "مخزن عادى" },
-    {"id" : 2 ,  "en" : "Damage" , "ar" : " توالف" },
-    {"id" : 3 ,  "en" : "Wholesale" , "ar" : " جملة" },
-    {"id" : 4 ,  "en" : " Retail" , "ar" : " قطاعى" },
-    {"id" : 5 ,  "en" : "Adding" , "ar" : " إضافى" }
+    {"id" : 1 ,  "En" : "Store Normal" , "Ar" : "مخزن عادى" },
+    {"id" : 2 ,  "En" : "Damage" , "Ar" : " توالف" },
+    {"id" : 3 ,  "En" : "Wholesale" , "Ar" : " جملة" },
+    {"id" : 4 ,  "En" : " Retail" , "Ar" : " قطاعى" },
+    {"id" : 5 ,  "En" : "Adding" , "Ar" : " إضافى" }
 ]

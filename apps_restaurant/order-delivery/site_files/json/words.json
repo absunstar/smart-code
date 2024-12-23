@@ -1,147 +1,147 @@
 [
     {
         "name": "order_delivery",
-        "en": "Delivery Order",
-        "ar": "تسليم الطلبات"
+        "En": "Delivery Order",
+        "Ar": "تسليم الطلبات"
     },
     {
         "name": "order_delivery_tenant_date_from",
-        "en": "Date From",
-        "ar": "من تاريخ"
+        "En": "Date From",
+        "Ar": "من تاريخ"
     },
     {
         "name": "order_delivery_tenant_date_to",
-        "en": "Date To",
-        "ar": "إلى تاريخ"
+        "En": "Date To",
+        "Ar": "إلى تاريخ"
     },
     {
         "name": "order_type",
-        "en": "Order Type",
-        "ar": "نوع الطلب"
+        "En": "Order Type",
+        "Ar": "نوع الطلب"
     },
     {
         "name": "items_menu",
-        "en": "Items menu",
-        "ar": "قائمة الأصناف"
+        "En": "Items menu",
+        "Ar": "قائمة الأصناف"
     },
     {
         "name": "under_preparing",
-        "en": "under preparinge",
-        "ar": "تحت التحضير"
+        "En": "under preparinge",
+        "Ar": "تحت التحضير"
     },
     {
         "name": "preparation_status",
-        "en": "Preparation status",
-        "ar": "حالة التحضير"
+        "En": "Preparation status",
+        "Ar": "حالة التحضير"
     },
     {
         "name": "prepared",
-        "en": "Prepared",
-        "ar": "تم التحضير"
+        "En": "Prepared",
+        "Ar": "تم التحضير"
     },
     {
         "name": "order_delivery_tenant_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
     {
         "name": "done_deliver",
-        "en": "Done Deliver",
-        "ar": "تم التسليم"
+        "En": "Done Deliver",
+        "Ar": "تم التسليم"
     },
     {
         "name": "general_Settings",
-        "en": "General Settings",
-        "ar": "إعدادات عامة"
+        "En": "General Settings",
+        "Ar": "إعدادات عامة"
     },
     {
         "name": "inventory_settings",
-        "en": "Inventory",
-        "ar": "المخازن"
+        "En": "Inventory",
+        "Ar": "المخازن"
     },
     {
         "name": "accounting_settings",
-        "en": "Accountinng",
-        "ar": "الحسابات"
+        "En": "Accountinng",
+        "Ar": "الحسابات"
     },
     {
         "name": "order_delivery_sales_invoices",
-        "en": "order_delivery Sales Invoices",
-        "ar": "تقرير فواتير البيع"
+        "En": "order_delivery Sales Invoices",
+        "Ar": "تقرير فواتير البيع"
     },
     {
         "name": "order_delivery_tenant_date",
-        "en": "Date",
-        "ar": "التاريخ"
+        "En": "Date",
+        "Ar": "التاريخ"
     },
     {
         "name": "piece_name",
-        "en": "Piece Of Name",
-        "ar": "إسم القطعة"
+        "En": "Piece Of Name",
+        "Ar": "إسم القطعة"
     },
     {
         "name": "store_name",
-        "en": "Piece Of Name",
-        "ar": "إسم القطعة"
+        "En": "Piece Of Name",
+        "Ar": "إسم القطعة"
     },
     {
         "name": "attend_absence_list",
-        "en": "Attend & Absence List",
-        "ar": "بيان الحضور و الغياب"
+        "En": "Attend & Absence List",
+        "Ar": "بيان الحضور و الغياب"
     },
     {
         "name": "attend_hour",
-        "en": "Attend Hour",
-        "ar": "حضور الساعة"
+        "En": "Attend Hour",
+        "Ar": "حضور الساعة"
     },
     {
         "name": "out_hour",
-        "en": "Out Hour",
-        "ar": "إنصراف الساعة"
+        "En": "Out Hour",
+        "Ar": "إنصراف الساعة"
     },
     {
         "name": "order_delivery_serial",
-        "en": "Serial",
-        "ar": "رقم مسلسل"
+        "En": "Serial",
+        "Ar": "رقم مسلسل"
     },
     {
         "name": "order_delivery_tenant_required",
-        "en": "Required",
-        "ar": "المطلوب"
+        "En": "Required",
+        "Ar": "المطلوب"
     },
     {
         "name": "order_delivery_tenant_total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "En": "Total Required",
+        "Ar": "إجمالي المطلوب"
     },
     {
         "name": "order_delivery_tenant_total",
-        "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "En": "Total Rest",
+        "Ar": "إجمالي المدفوع"
     },
     {
         "name": "order_delivery_tenant_total_rest",
-        "en": "Total Rest",
-        "ar": "إجمالي الباقي"
+        "En": "Total Rest",
+        "Ar": "إجمالي الباقي"
     },
     {
         "name": "order_delivery_tenant_rest",
-        "en": "Rest",
-        "ar": "الباقي"
+        "En": "Rest",
+        "Ar": "الباقي"
     },
     {
         "name": "order_delivery_tenant_paid",
-        "en": "paid",
-        "ar": "المدفوع"
+        "En": "paid",
+        "Ar": "المدفوع"
     },
     {
         "name": "order_delivery_tenant_date",
-        "en": "Offer Date",
-        "ar": "التاريخ"
+        "En": "Offer Date",
+        "Ar": "التاريخ"
     },
     {
         "name": "items_notes",
-        "en": "Notes",
-        "ar": "ملاحظات"
+        "En": "Notes",
+        "Ar": "ملاحظات"
     }
 ]

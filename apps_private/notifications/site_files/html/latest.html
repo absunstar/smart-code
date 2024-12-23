@@ -40,14 +40,14 @@
         color:#ff5722;
     }
 </style>
-<style x-lang="ar">
+<style x-lang="Ar">
     .notifications li {
         text-align: right;
     }
 </style>
 <ul class="notifications" ng-controller="notifications">
     <li ng-repeat="n in latestList"> 
-        <p x-lang="en"> <img ng-src="{{n.icon}}"> <b>{{n.source}}</b> <span class="op-{{n.action}}">{{n.message}}</span> <small>{{n.value}}</small></p>
-        <p x-lang="ar"> <img ng-src="{{n.icon}}"> <b>{{n.source_##session.lang##}}</b> <span class="op-{{n.action}}">{{n.message_##session.lang##}}</span> <small>{{n.value_##session.lang##}}</small> </p>
+        <p x-lang="En"> <img ng-src="{{n.icon}}"> <b>{{n.source}}</b> <span class="op-{{n.action}}">{{n.message}}</span> <small>{{n.value}}</small></p>
+        <p x-lang="Ar"> <img ng-src="{{n.icon}}"> <b>{{n.source_##session.lang##}}</b> <span class="op-{{n.action}}">{{n.message_##session.lang##}}</span> <small>{{n.value_##session.lang##}}</small> </p>
     </li>
 </ul>

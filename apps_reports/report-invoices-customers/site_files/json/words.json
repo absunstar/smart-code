@@ -1,47 +1,47 @@
 [
     {
         "name": "report_invoices_add",
-        "en": "Add Customer",
-        "ar": "إضافة عميل"
+        "En": "Add Customer",
+        "Ar": "إضافة عميل"
     },
     {
         "name": "report_invoices_customers_informations",
-        "en": "Report Invoices Customers Informations",
-        "ar": "بيانات تقرير العملاء"
+        "En": "Report Invoices Customers Informations",
+        "Ar": "بيانات تقرير العملاء"
     },
     {
         "name": "report_invoices_customers_name",
-        "en": "Account Statement Customers",
-        "ar": "كشف حساب العملاء"
+        "En": "Account Statement Customers",
+        "Ar": "كشف حساب العملاء"
     },
     {
         "name": "report_invoices_customers",
-        "en": "Account Statement Customers",
-        "ar": "كشف حساب العملاء"
+        "En": "Account Statement Customers",
+        "Ar": "كشف حساب العملاء"
     },
     {
         "name": "report_invoices_customers_menus",
-        "en": "Report Invoices Menu",
-        "ar": "قائمة تقرير فاتورة"
+        "En": "Report Invoices Menu",
+        "Ar": "قائمة تقرير فاتورة"
     },
     {
         "name": "invoices_code",
-        "en": "Report Invoices Code",
-        "ar": "كود الفاتورة"
+        "En": "Report Invoices Code",
+        "Ar": "كود الفاتورة"
     },
     {
         "name": "net_total_return",
-        "en": "Net Total Return",
-        "ar": "صافي إجمالي المرتجعات"
+        "En": "Net Total Return",
+        "Ar": "صافي إجمالي المرتجعات"
     },
     {
         "name": "total_net_values",
-        "en": "Total Net Values",
-        "ar": "إجمالي القيم المطلوبة"
+        "En": "Total Net Values",
+        "Ar": "إجمالي القيم المطلوبة"
     },
     {
         "name": "total_items_price",
-        "en": "Total Items Price",
-        "ar": "مجموع سعر الأصناف"
+        "En": "Total Items Price",
+        "Ar": "مجموع سعر الأصناف"
     }
 ]

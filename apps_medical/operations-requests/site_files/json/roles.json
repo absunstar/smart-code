@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
     "name": "operations_requests_admin",
-    "en": "Operations Requests Admin",
-    "ar": "إدارة طلبات العمليات",
+    "En": "Operations Requests Admin",
+    "Ar": "إدارة طلبات العمليات",
     "permissions": ["operations_requests_manage"]
 }]
