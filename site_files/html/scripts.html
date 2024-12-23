@@ -1,13 +1,9 @@
 <script src="/x-js/all.js?v=##site.options.version##"></script>
 <script>
   site.features = '##req.features##';
+  site.session = '##req.session##';
   site.feature = (f) => site.features.indexOf(f) !== -1;
 
-  setTimeout(() => {
-    document.querySelectorAll('.loaded').forEach((el) => {
-      el.style.visibility = 'visible';
-    });
-  }, 1000);
 </script>
 
 <script>
