@@ -421,13 +421,12 @@ hr.dot {
 }
 
 .social-menu ul {
-  position: absolute;
   right: 0%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(0%, -50%);
   padding: 0;
   margin: 0;
-  display: flex;
+  display: inline-flex;
 }
 .social-menu ul li {
   list-style: none;
