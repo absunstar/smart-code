@@ -4,18 +4,18 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
     $jobs.add({
       code: "1-Test",
-      name_ar: "وظيفة إفتراضي",
-      name_en : "Default job",
+      name_Ar: "وظيفة إفتراضي",
+      name_En : "Default job",
       image_url: '/images/jobs.png',
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc) => { })
@@ -65,9 +65,9 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name_ar': jobs_doc.name_ar
+          'name_Ar': jobs_doc.name_Ar
         },{
-          'name_en': jobs_doc.name_en
+          'name_En': jobs_doc.name_En
         }]
       
       }

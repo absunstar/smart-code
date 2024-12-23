@@ -45,7 +45,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
 
     const v = site.validated('#mainCategoriesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -101,7 +101,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
 
     const v = site.validated('#mainCategoriesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       $scope.busy = false;
       return;
     }
@@ -225,7 +225,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           response.data.list.forEach((n) => {
             
-            n.name2 ='##session.lang##' == 'Ar' ? n.name_ar : n.name_en ;
+            n.name2 ='##session.lang##' == 'Ar' ? n.name_Ar : n.name_En ;
           });
           $scope.count = response.data.count;
         }

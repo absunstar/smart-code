@@ -132,7 +132,7 @@ app.controller("report_attend_students", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         },
         where: {

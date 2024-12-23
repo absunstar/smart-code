@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'printers_path'
 
   let source = {
-    en: 'Printer Path System',
-    ar: ' نظام مسار الطابعات'
+    En: 'Printer Path System',
+    Ar: ' نظام مسار الطابعات'
   }
 
   let image_url = '/images/vendor_group.png'
   let add_message = {
-    en: 'New Printer Path Added',
-    ar: 'تم إضافة مسار طابعة جديدة'
+    En: 'New Printer Path Added',
+    Ar: 'تم إضافة مسار طابعة جديدة'
   }
   let update_message = {
-    en: ' Printer Path Updated',
-    ar: 'تم تعديل مسار طابعة'
+    En: ' Printer Path Updated',
+    Ar: 'تم تعديل مسار طابعة'
   }
   let delete_message = {
-    en: ' Printer Path Deleted',
-    ar: 'تم حذف مسار طابعة '
+    En: ' Printer Path Deleted',
+    Ar: 'تم حذف مسار طابعة '
   }
 
 
@@ -31,8 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -51,8 +51,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -72,8 +72,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

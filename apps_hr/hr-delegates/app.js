@@ -10,20 +10,20 @@ module.exports = function init(site) {
     ) {
       $delegate_list.add(
         {
-          name_ar: "مندوب إفتراضي",
-          name_en: "Default Delegate",
+          name_Ar: "مندوب إفتراضي",
+          name_En: "Default Delegate",
           image_url: "/images/delegate.png",
           code: "1-Test",
           delegate: true,
           company: {
             id: doc.id,
-            name_ar: doc.name_ar,
-            name_en: doc.name_en,
+            name_Ar: doc.name_Ar,
+            name_En: doc.name_En,
           },
           branch: {
             code: doc.branch_list[0].code,
-            name_ar: doc.branch_list[0].name_ar,
-            name_en: doc.branch_list[0].name_en,
+            name_Ar: doc.branch_list[0].name_Ar,
+            name_En: doc.branch_list[0].name_En,
           },
           active: true,
         },
@@ -80,8 +80,8 @@ module.exports = function init(site) {
       {
         module_name: "inventory",
         name: "stores_out_user",
-        en: "Stores Out User",
-        ar: "فاتورة مبيعات للمستخدم",
+        En: "Stores Out User",
+        Ar: "فاتورة مبيعات للمستخدم",
         permissions: [
           "stores_out_add",
           "stores_out_update",
@@ -96,8 +96,8 @@ module.exports = function init(site) {
       {
         module_name: "accounting",
         name: "amounts_in_user",
-        en: "Amounts In User",
-        ar: "إدارة الوارد للمستخدم",
+        En: "Amounts In User",
+        Ar: "إدارة الوارد للمستخدم",
         permissions: [
           "amounts_in_add",
           "amounts_in_update",
@@ -111,8 +111,8 @@ module.exports = function init(site) {
       {
         module_name: "public",
         name: "itineraries_user",
-        en: "Itineraries User",
-        ar: "إدارة خطوط السير للمستخدم",
+        En: "Itineraries User",
+        Ar: "إدارة خطوط السير للمستخدم",
         permissions: [
           "itineraries_view",
           "itineraries_search",
@@ -125,8 +125,8 @@ module.exports = function init(site) {
     ];
 
     user.profile = {
-      name_ar: delegate_doc.name_ar,
-      name_en: delegate_doc.name_en,
+      name_Ar: delegate_doc.name_Ar,
+      name_En: delegate_doc.name_En,
       mobile: delegate_doc.mobile,
       password: delegate_doc.password,
       image_url: delegate_doc.image_url,
@@ -268,8 +268,8 @@ module.exports = function init(site) {
       {
         module_name: "inventory",
         name: "stores_out_user",
-        en: "Stores Out User",
-        ar: "فاتورة مبيعات للمستخدم",
+        En: "Stores Out User",
+        Ar: "فاتورة مبيعات للمستخدم",
         permissions: [
           "stores_out_add",
           "stores_out_update",
@@ -284,8 +284,8 @@ module.exports = function init(site) {
       {
         module_name: "accounting",
         name: "amounts_in_user",
-        en: "Amounts In User",
-        ar: "إدارة الوارد للمستخدم",
+        En: "Amounts In User",
+        Ar: "إدارة الوارد للمستخدم",
         permissions: [
           "amounts_in_add",
           "amounts_in_update",
@@ -299,8 +299,8 @@ module.exports = function init(site) {
       {
         module_name: "public",
         name: "itineraries_user",
-        en: "Itineraries User",
-        ar: "إدارة خطوط السير للمستخدم",
+        En: "Itineraries User",
+        Ar: "إدارة خطوط السير للمستخدم",
         permissions: [
           "itineraries_view",
           "itineraries_search",
@@ -313,8 +313,8 @@ module.exports = function init(site) {
     ];
 
     user.profile = {
-      name_ar: delegate_doc.name_ar,
-      name_en: delegate_doc.name_en,
+      name_Ar: delegate_doc.name_Ar,
+      name_En: delegate_doc.name_En,
       mobile: delegate_doc.mobile,
       email: delegate_doc.username,
       password: delegate_doc.password,
@@ -511,11 +511,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, "i"),
+        name_Ar: site.get_RegExp(search, "i"),
       });
 
       where.$or.push({
-        name_en: site.get_RegExp(search, "i"),
+        name_En: site.get_RegExp(search, "i"),
       });
 
       where.$or.push({
@@ -614,8 +614,8 @@ module.exports = function init(site) {
   site.getEmployeeAttend = function (data, callback) {
     let select = {
       id: 1,
-      name_ar: 1,
-      name_en: 1,
+      name_Ar: 1,
+      name_En: 1,
       active: 1,
       finger_code: 1,
       gender: 1,

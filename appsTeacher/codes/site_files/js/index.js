@@ -36,7 +36,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated($scope.modalID);
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -101,7 +101,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated($scope.modalID);
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -263,7 +263,7 @@ app.controller("codes", function ($scope, $http, $timeout) {
     $scope.busy = true;
     const v = site.validated("#printCodeData");
     /*  if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       console.log( v.messages,"ddddddddddddddddddddd");
       return;
     } */

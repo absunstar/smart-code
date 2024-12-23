@@ -6,20 +6,20 @@ module.exports = function init(site) {
     if (site.feature('club') || site.feature('academy') || site.feature('school')) {
 
       $trainer.add({
-        name_ar: (site.feature('school') || site.feature('academy')) ? "مدرس إفتراضي" : "مدرب إفتراضي",
-        name_en: (site.feature('school') || site.feature('academy')) ? "Default Teacher" : "Default trainer",
+        name_Ar: (site.feature('school') || site.feature('academy')) ? "مدرس إفتراضي" : "مدرب إفتراضي",
+        name_En: (site.feature('school') || site.feature('academy')) ? "Default Teacher" : "Default trainer",
         image_url: '/images/trainer.png',
         code: "1-Test",
         trainer: true,
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true
       }, (err, doc) => { })
@@ -84,8 +84,8 @@ module.exports = function init(site) {
     let user = {};
 
     user = {
-      name_ar: trainer_doc.name_ar,
-      name_en: trainer_doc.name_en,
+      name_Ar: trainer_doc.name_Ar,
+      name_En: trainer_doc.name_En,
       mobile: trainer_doc.mobile,
       username: trainer_doc.username,
       email: trainer_doc.username,
@@ -101,8 +101,8 @@ module.exports = function init(site) {
     user.roles = [{
       module_name: "public",
       name: "trainer_admin",
-      en: "Employee Admin",
-      ar: "إدارة الموظفين",
+      En: "Employee Admin",
+      Ar: "إدارة الموظفين",
       permissions: ["trainer_manage"]
     }]
     if (site.feature('school')) {
@@ -115,8 +115,8 @@ module.exports = function init(site) {
       })
     }
     user.profile = {
-      name_ar: user.name_ar,
-      name_en: user.name_en,
+      name_Ar: user.name_Ar,
+      name_En: user.name_En,
       mobile: user.mobile,
       image_url: user.image_url
     }
@@ -207,8 +207,8 @@ module.exports = function init(site) {
     let user = {}
 
     user = {
-      name_ar: trainer_doc.name_ar,
-      name_en: trainer_doc.name_en,
+      name_Ar: trainer_doc.name_Ar,
+      name_En: trainer_doc.name_En,
       mobile: trainer_doc.mobile,
       username: trainer_doc.username,
       email: trainer_doc.username,
@@ -225,8 +225,8 @@ module.exports = function init(site) {
     user.roles = [{
       module_name: "public",
       name: "trainer_admin",
-      en: "Employee Admin",
-      ar: "إدارة الموظفين",
+      En: "Employee Admin",
+      Ar: "إدارة الموظفين",
       permissions: ["trainer_manage"]
     }]
 
@@ -240,8 +240,8 @@ module.exports = function init(site) {
       })
     }
     user.profile = {
-      name_ar: user.name_ar,
-      name_en: user.name_en,
+      name_Ar: user.name_Ar,
+      name_En: user.name_En,
       mobile: user.mobile,
       image_url: user.image_url
     }
@@ -400,11 +400,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name_ar': site.get_RegExp(search, "i")
+        'name_Ar': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'name_en': site.get_RegExp(search, "i")
+        'name_En': site.get_RegExp(search, "i")
       })
 
       where.$or.push({

@@ -15,8 +15,8 @@ module.exports = function init(site) {
     $medical_insurance_companies.add(
       {
         code: "1-Test",
-        name_ar: "شركة تأمين إفتراضية",
-        name_en: "Default Insurance Company",
+        name_Ar: "شركة تأمين إفتراضية",
+        name_En: "Default Insurance Company",
         image_url: "/images/medical_insurance_companies.png",
         insurance_slides_list: [{}],
         black_analyse_list: [{}],
@@ -29,13 +29,13 @@ module.exports = function init(site) {
         approve_operation_list: [{}],
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         active: true,
       },
@@ -105,10 +105,10 @@ module.exports = function init(site) {
           "branch.code": site.get_branch(req).code,
           $or: [
             {
-              name_ar: medical_insurance_companies_doc.name_ar,
+              name_Ar: medical_insurance_companies_doc.name_Ar,
             },
             {
-              name_en: medical_insurance_companies_doc.name_en,
+              name_En: medical_insurance_companies_doc.name_En,
             },
             {
               phone: medical_insurance_companies_doc.phone,
@@ -357,11 +357,11 @@ module.exports = function init(site) {
     if (where["code"]) {
       where["code"] = new RegExp(where["code"], "i");
     }
-    if (where["name_ar"]) {
-      where["name_ar"] = new RegExp(where["name_ar"], "i");
+    if (where["name_Ar"]) {
+      where["name_Ar"] = new RegExp(where["name_Ar"], "i");
     }
-    if (where["name_en"]) {
-      where["name_en"] = new RegExp(where["name_en"], "i");
+    if (where["name_En"]) {
+      where["name_En"] = new RegExp(where["name_En"], "i");
     }
     if (where["address"]) {
       where["address"] = new RegExp(where["address"], "i");

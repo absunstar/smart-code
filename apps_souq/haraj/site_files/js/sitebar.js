@@ -33,7 +33,7 @@ app.controller('sitebar', ($scope, $http) => {
           top_parent_id: { $exists: false }
         },
         select : {
-          id : 1, name_ar : 1 , name_en : 1 , image_url : 1 
+          id : 1, name_Ar : 1 , name_En : 1 , image_url : 1 
         },
         limit : 8
       },

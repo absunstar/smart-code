@@ -17,19 +17,19 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $vendors_group.add({
-      name_ar: "مجموعة موردين إفتراضية",
-      name_en : "Default Vendors Group",
+      name_Ar: "مجموعة موردين إفتراضية",
+      name_En : "Default Vendors Group",
       code: "1-Test",
       image_url: '/images/customer_groups.png',
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc) => {

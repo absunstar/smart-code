@@ -24,27 +24,27 @@ module.exports = function init(site) {
     $courses.add(
       {
         code: "1-Test",
-        name_ar: 'كورس إفتراضي',
-        name_en: "Default Course",
+        name_Ar: 'كورس إفتراضي',
+        name_En: "Default Course",
         image_url: '/images/courses.png',
         price: 1,
         courses_total: 1,
         period: {
           id: 1,
           name: "1",
-          en: "Day",
-          ar: "يوم"
+          En: "Day",
+          Ar: "يوم"
         },
         number_lecture: 1,
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true,
       },
@@ -85,9 +85,9 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name_ar': courses_doc.name_ar
+          'name_Ar': courses_doc.name_Ar
         }, {
-          'name_en': courses_doc.name_en
+          'name_En': courses_doc.name_En
         }]
       }
     }, (err, doc) => {

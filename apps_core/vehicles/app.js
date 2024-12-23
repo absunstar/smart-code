@@ -15,21 +15,21 @@ module.exports = function init(site) {
   site.on('[register][vehicle_type][add]', obj => {
 
     $vehicles.add({
-      name_ar: "مركبة/سيارة إفتراضية",
-      name_en: "Default Vehicle/Car",
+      name_Ar: "مركبة/سيارة إفتراضية",
+      name_En: "Default Vehicle/Car",
       image_url: '/images/vehicles.png',
       code: "1-Test",
       default_driver : obj.delivery_employee,
       vehicle_type : obj.vehicles_types,
       company: {
         id: obj.vehicles_types.company.id,
-        name_ar: obj.vehicles_types.company.name_ar,
-        name_en: obj.vehicles_types.company.name_en
+        name_Ar: obj.vehicles_types.company.name_Ar,
+        name_En: obj.vehicles_types.company.name_En
       },
       branch: {
         code: obj.vehicles_types.branch.code,
-        name_ar: obj.vehicles_types.branch.name_ar,
-        name_en: obj.vehicles_types.branch.name_en
+        name_Ar: obj.vehicles_types.branch.name_Ar,
+        name_En: obj.vehicles_types.branch.name_En
       },
       active: true
     }, (err, doc1) => {
@@ -72,9 +72,9 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name_ar': vehicles_doc.name_ar
+          'name_Ar': vehicles_doc.name_Ar
         }, {
-          'name_en': vehicles_doc.name_en
+          'name_En': vehicles_doc.name_En
         }]
 
       }
@@ -226,12 +226,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], "i");
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], "i");
     }
 
     where['company.id'] = site.get_company(req).id

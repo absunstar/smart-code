@@ -6,60 +6,60 @@ module.exports = function init(site) {
     let doc2 = { ...doc };
     $safes.insertMany([
       {
-        name_ar: 'خزينة بنك',
-        name_en: 'Bank Safe',
+        name_Ar: 'خزينة بنك',
+        name_En: 'Bank Safe',
         code: '2-Test',
         balance: 0,
         type: {
           id: 2,
-          en: 'Bank',
-          ar: 'بنك',
+          En: 'Bank',
+          Ar: 'بنك',
         },
         image_url: '/images/safe.png',
         currency: {
           id: doc1.id,
-          name_ar: doc1.name_ar,
-          name_en: doc1.name_en,
+          name_Ar: doc1.name_Ar,
+          name_En: doc1.name_En,
           ex_rate: doc1.ex_rate,
         },
         company: {
           id: doc1.company.id,
-          name_ar: doc1.company.name_ar,
-          name_en: doc1.company.name_en,
+          name_Ar: doc1.company.name_Ar,
+          name_En: doc1.company.name_En,
         },
         branch: {
           code: doc1.branch.code,
-          name_ar: doc1.branch.name_ar,
-          name_en: doc1.branch.name_en,
+          name_Ar: doc1.branch.name_Ar,
+          name_En: doc1.branch.name_En,
         },
         active: true,
       },
       {
-        name_ar: 'خزينة نقدي',
-        name_en: 'Cash Safe',
+        name_Ar: 'خزينة نقدي',
+        name_En: 'Cash Safe',
         code: '1-Test',
         balance: 0,
         type: {
           id: 1,
-          en: 'Cash',
-          ar: 'نقدي',
+          En: 'Cash',
+          Ar: 'نقدي',
         },
         image_url: '/images/safe.png',
         currency: {
           id: doc2.id,
-          name_ar: doc2.name_ar,
-          name_en: doc2.name_en,
+          name_Ar: doc2.name_Ar,
+          name_En: doc2.name_En,
           ex_rate: doc2.ex_rate,
         },
         company: {
           id: doc2.company.id,
-          name_ar: doc2.company.name_ar,
-          name_en: doc2.company.name_en,
+          name_Ar: doc2.company.name_Ar,
+          name_En: doc2.company.name_En,
         },
         branch: {
           code: doc2.branch.code,
-          name_ar: doc2.branch.name_ar,
-          name_en: doc2.branch.name_en,
+          name_Ar: doc2.branch.name_Ar,
+          name_En: doc2.branch.name_En,
         },
         active: true,
       },
@@ -104,11 +104,11 @@ module.exports = function init(site) {
   });
 
   // $safes.deleteDuplicate({
-  //   name_ar: 1, name_en: 1,
+  //   name_Ar: 1, name_En: 1,
   //   'company.id': 1
   // }, (err, result) => {
   //   $safes.createUnique({
-  //     name_ar: 1, name_en: 1,
+  //     name_Ar: 1, name_En: 1,
   //     'company.id': 1
 
   //   }, (err, result) => {
@@ -188,7 +188,7 @@ module.exports = function init(site) {
       if (!err) {
         let obj = {
           image_url: doc.image_url,
-          operation: { ar: 'خزينة جديدة', en: 'New Safe' },
+          operation: { Ar: 'خزينة جديدة', En: 'New Safe' },
           pre_balance: 0,
           balance: doc.balance,
           currency: doc.currency,
@@ -196,8 +196,8 @@ module.exports = function init(site) {
           branch: doc.branch,
           value: doc.balance,
           safe: {
-            name_ar: doc.name_ar,
-            name_en: doc.name_en,
+            name_Ar: doc.name_Ar,
+            name_En: doc.name_En,
             id: doc.id,
           },
           date: new Date(),
@@ -205,8 +205,8 @@ module.exports = function init(site) {
           shift: {
             id: doc.shift.id,
             code: doc.shift.code,
-            name_ar: doc.shift.name_ar,
-            name_en: doc.shift.name_en,
+            name_Ar: doc.shift.name_Ar,
+            name_En: doc.shift.name_En,
           },
         };
         if (doc.balance) site.quee('[safes][safes_payments][+]', obj);

@@ -11,8 +11,8 @@
     {"name" : "vendors_basic_information" , "En" : "Basic Information" , "Ar" : "البيانات الاساسية"},
     {"name" : "vendors_code" , "En" : "Vendor Code" , "Ar" : "كود المورد"},
     {"name" : "vendor_name" , "En" : "Vendor Name" , "Ar" : "إسم المورد"},
-    {"name" : "vendors_name_ar" , "En" : "Vendor Name Arabic" , "Ar" : "إسم المورد بالعربي"},
-    {"name" : "vendors_name_en" , "En" : "Vendor Name English" , "Ar" : "إسم المورد بالانجليزية"},
+    {"name" : "vendors_name_Ar" , "En" : "Vendor Name Arabic" , "Ar" : "إسم المورد بالعربي"},
+    {"name" : "vendors_name_En" , "En" : "Vendor Name English" , "Ar" : "إسم المورد بالانجليزية"},
 
     {"name" : "vendors_groups" , "En" : "Vendor Group" , "Ar" : "مجموعة الموردين"},
     {"name" : "vendors_id_inforamation" , "En" : "Personal Information" , "Ar" : "بيانات الهوية"},

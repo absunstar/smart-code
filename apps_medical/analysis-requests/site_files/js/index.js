@@ -7,14 +7,14 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     {
       id: 1,
       name: "patient_himself",
-      ar: "المريض نفسه",
-      en: "The patient himself",
+      Ar: "المريض نفسه",
+      En: "The patient himself",
     },
     {
       id: 2,
       name: "another_person",
-      ar: "شخص أخر",
-      en: "Another Person",
+      Ar: "شخص أخر",
+      En: "Another Person",
     },
   ];
 
@@ -39,7 +39,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
     const v = site.validated("#analysisRequestsAddModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -95,7 +95,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
     const v = site.validated("#analysisRequestsUpdateModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -350,7 +350,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
     const v = site.validated("#customerAddModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -398,8 +398,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
           type: 1,
         },
@@ -430,8 +430,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           price: 1,
           delivery_time: 1,
           period: 1,
@@ -500,8 +500,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       $scope.analysis_requests.discountes =
         $scope.analysis_requests.discountes || [];
       $scope.analysis_requests.discountes.unshift({
-        name_ar: $scope.discount.name_ar,
-        name_en: $scope.discount.name_en,
+        name_Ar: $scope.discount.name_Ar,
+        name_En: $scope.discount.name_En,
         value: $scope.discount.value,
         type: $scope.discount.type,
       });
@@ -574,8 +574,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
   $scope.changeAnalysisList = function (analys) {
     let obj = {
       id: analys.id,
-      name_ar: analys.name_ar,
-      name_en: analys.name_en,
+      name_Ar: analys.name_Ar,
+      name_En: analys.name_En,
       code: analys.code,
       immediate: analys.immediate,
       delivery_time: analys.delivery_time,
@@ -660,7 +660,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -686,7 +686,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
           "gov.id": gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {

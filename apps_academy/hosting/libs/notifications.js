@@ -3,25 +3,25 @@ module.exports = function init(site) {
   let collection_name = 'hosting'
 
   let source = {
-    en: 'Hosting System',
-    ar: 'نظام الإستضافة'
+    En: 'Hosting System',
+    Ar: 'نظام الإستضافة'
   }
   
  
   let image_url = '/images/hosting.png'
   let add_message = {
-    en: 'New Hosting Added',
-    ar: 'تم إضافة إستضافة جديدة'
+    En: 'New Hosting Added',
+    Ar: 'تم إضافة إستضافة جديدة'
   }
 
   let update_message = {
-    en: ' Hosting Updated',
-    ar: 'تم تعديل إستضافة'
+    En: ' Hosting Updated',
+    Ar: 'تم تعديل إستضافة'
   }
 
   let delete_message = {
-    en: ' Hosting Deleted',
-    ar: 'تم حذف إستضافة '
+    En: ' Hosting Deleted',
+    Ar: 'تم حذف إستضافة '
   }
 
   site.on('mongodb after insert', function (result) {
@@ -34,8 +34,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
              code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -55,8 +55,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -77,8 +77,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
              code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

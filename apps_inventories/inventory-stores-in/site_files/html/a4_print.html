@@ -14,10 +14,10 @@
       <div class="col-5 center">
         <br />
         <div class="row">
-          <h2 class="center bold">##session.company.name_ar##</h2>
+          <h2 class="center bold">##session.company.name_Ar##</h2>
         </div>
         <div class="row">
-          <h3 class="center bold">##session.branch.name_ar##</h3>
+          <h3 class="center bold">##session.branch.name_Ar##</h3>
         </div>
         <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header">
           <p class="font-12 bold black center">{{i.name}}</p>
@@ -32,10 +32,10 @@
       <div class="col-5 center">
         <br />
         <div class="row">
-          <h2 class="center bold">##session.company.name_en##</h2>
+          <h2 class="center bold">##session.company.name_En##</h2>
         </div>
         <div class="row">
-          <h3 class="center bold">##session.branch.name_en##</h3>
+          <h3 class="center bold">##session.branch.name_En##</h3>
         </div>
         <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
           <p class="font-12 bold black center">{{i.name}}</p>
@@ -220,15 +220,15 @@
           <td class="center width-30-mm font-12">{{itm.barcode}}</td>
 
           <td class="center width-60-mm">
-            <p class="font-12" ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
+            <p class="font-12" ng-show="itm.add_sizes">{{itm.name_Ar}} {{itm.size_ar}}</p>
             <p class="font-12" ng-hide="itm.add_sizes">{{itm.size_ar}}</p>
-            <p class="font-12" ng-show="itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
+            <p class="font-12" ng-show="itm.add_sizes">{{itm.name_En}} {{itm.size_en}}</p>
             <p class="font-12" ng-hide="itm.add_sizes">{{itm.size_en}}</p>
           </td>
 
           <td class="center width-15-mm font-12">
-            <p>{{itm.unit.name_ar}}</p>
-            <p>{{itm.unit.name_en}}</p>
+            <p>{{itm.unit.name_Ar}}</p>
+            <p>{{itm.unit.name_En}}</p>
           </td>
           <td class="center width-15-mm font-12">{{itm.count}}</td>
 
@@ -294,7 +294,7 @@
           <div class="row" ng-show="defaultSettings.printer_program.Print_written_amount">
             <div class="col-1"></div>
             <p ng-show="'##session.lang##' == 'Ar'" class="num_str bold center black">{{st_i.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
-            <p ng-show="'##session.lang##' == 'En'" class="num_str bold center black">{{st_i.net_txt}} {{defaultSettings.accounting.end_num_to_str_en || ''}}</p>
+            <p ng-show="'##session.lang##' == 'En'" class="num_str bold center black">{{st_i.net_txt}} {{defaultSettings.accounting.end_num_to_str_En|| ''}}</p>
           </div>
         </div>
         <div class="col-4 center">

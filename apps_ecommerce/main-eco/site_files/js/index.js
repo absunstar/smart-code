@@ -13,8 +13,8 @@ app.controller("main_eco", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           image_url: 1,
           color: 1,
           code: 1,
@@ -30,8 +30,8 @@ app.controller("main_eco", function ($scope, $http, $timeout) {
           $scope.productGroupList = response.data.list;
           /*   $scope.productGroupList.unshift({
             id: 0,
-            name_ar: "الأكثر مبيعا",
-            name_en: "Best seller",
+            name_Ar: "الأكثر مبيعا",
+            name_En: "Best seller",
             color: "#F0F8FF",
             type: "all",
           }); */
@@ -86,8 +86,8 @@ app.controller("main_eco", function ($scope, $http, $timeout) {
         id: product.id,
         code: product.code,
         image_url: product.image_url,
-        name_ar: product.name_ar,
-        name_en: product.name_en,
+        name_Ar: product.name_Ar,
+        name_En: product.name_En,
         product_group: product.product_group,
         price: product.price,
         count: 1,

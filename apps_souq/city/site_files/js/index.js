@@ -16,7 +16,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#cityAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -52,7 +52,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#cityUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -177,8 +177,8 @@ app.controller('city', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
         },
       },
     }).then(
@@ -206,8 +206,8 @@ app.controller('city', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           country_code: 1,
           },

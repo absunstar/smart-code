@@ -24,7 +24,7 @@ app.controller("rogatory", function ($scope, $http, $timeout) {
 
     const v = site.validated('#rogatoryAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -73,7 +73,7 @@ app.controller("rogatory", function ($scope, $http, $timeout) {
 
     const v = site.validated('#rogatoryUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -245,7 +245,7 @@ app.controller("rogatory", function ($scope, $http, $timeout) {
         url: "/api/office_lawyers/all",
         data: {
           search: $scope.search_office_lawyers,
-          select: { name_ar: 1, name_en: 1, id: 1, code: 1 }
+          select: { name_Ar: 1, name_En: 1, id: 1, code: 1 }
 
         }
       }).then(
@@ -269,7 +269,7 @@ app.controller("rogatory", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/adjectives/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -325,7 +325,7 @@ app.controller("rogatory", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/rogatory_places/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -347,7 +347,7 @@ app.controller("rogatory", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/rogatory_types/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {

@@ -11,13 +11,13 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
   $scope.priceMethod = [
     {
       id: 1,
-      ar: "الفرع",
-      en: "Branch",
+      Ar: "الفرع",
+      En: "Branch",
     },
     {
       id: 2,
-      ar: "المخزن",
-      en: "Store",
+      Ar: "المخزن",
+      En: "Store",
     },
   ];
 
@@ -63,8 +63,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
 
           /*  select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
           } */
         },
       }).then(
@@ -135,7 +135,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } },
+      data: { select: { id: 1, name_Ar: 1, name_En: 1, type: 1, code: 1 } },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -158,9 +158,9 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -200,8 +200,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           commission: 1,
           currency: 1,
           type: 1,
@@ -238,8 +238,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           commission: 1,
           currency: 1,
           type: 1,
@@ -427,8 +427,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -563,8 +563,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           barcode: 1,
           code: 1,
         },
@@ -592,8 +592,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           printer_path: 1,
           code: 1,
         },
@@ -660,7 +660,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
         /*  select: {
            id: 1,
            hospital: 1,
-           name_ar: 1, name_en: 1,
+           name_Ar: 1, name_En: 1,
            doctor_list: 1,
            specialty: 1
          } */
@@ -721,8 +721,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
         },
       },
     }).then(
@@ -746,8 +746,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -770,8 +770,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,
@@ -803,8 +803,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },

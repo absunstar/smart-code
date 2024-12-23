@@ -19,7 +19,7 @@ app.controller("medical_specialties", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#medicalSpecialtyAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -54,7 +54,7 @@ app.controller("medical_specialties", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#medicalSpecialtyUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

@@ -106,7 +106,7 @@ app.controller("report_student_hosting", function ($scope, $http) {
             rest = price - payment;
 
             $scope.report.student_list.push({
-              type: b.type.ar,
+              type: b.type.Ar,
               date: b.date,
               employee : b.employee.name,
               classroom: b.classroom.name,

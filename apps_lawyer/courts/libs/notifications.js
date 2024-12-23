@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'courts'
 
   let source = {
-    en: 'Courts System',
-    ar: 'نظام المحاكم'
+    En: 'Courts System',
+    Ar: 'نظام المحاكم'
   }
 
   let image_url = '/images/court.png'
   let add_message = {
-    en: 'New Court Added',
-    ar: 'تم إضافة محكمة جديدة'
+    En: 'New Court Added',
+    Ar: 'تم إضافة محكمة جديدة'
   }
   let update_message = {
-    en: ' Court Updated',
-    ar: 'تم تعديل محكمة'
+    En: ' Court Updated',
+    Ar: 'تم تعديل محكمة'
   }
   let delete_message = {
-    en: ' Court Deleted',
-    ar: 'تم حذف محكمة '
+    En: ' Court Deleted',
+    Ar: 'تم حذف محكمة '
   }
 
 
@@ -31,8 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
              code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -51,8 +51,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -72,8 +72,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
              code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

@@ -307,11 +307,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        'customer.name_ar': site.get_RegExp(search, 'i'),
+        'customer.name_Ar': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        'customer.name_en': site.get_RegExp(search, 'i'),
+        'customer.name_En': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
@@ -393,9 +393,9 @@ module.exports = function init(site) {
       delete where['size_ar'];
     }
 
-    if (where['size_en']) {
-      where['items.size_en'] = site.get_RegExp(where['size_en'], 'i');
-      delete where['size_en'];
+    if (where['size_En']) {
+      where['items.size_En'] = site.get_RegExp(where['size_En'], 'i');
+      delete where['size_En'];
     }
 
     if (where['barcode']) {

@@ -10,8 +10,8 @@
     {"name" : "office_lawyers_personal_information" , "En" : "Personal Information" , "Ar" : "البيانات الشخصية"},
     {"name" : "office_lawyers_basic_information" , "En" : "Basic Information" , "Ar" : "البيانات الاساسية"},
     {"name" : "office_lawyers_code" , "En" : "Oppenent Lawyer Code" , "Ar" : "كود محامي المكتب"},
-    {"name" : "office_lawyers_name_ar" , "En" : "Oppenent Lawyer Name Arabic" , "Ar" : "إسم محامي المكتب بالعربي"},
-    {"name" : "office_lawyers_name_en" , "En" : "Oppenent Lawyer Name English" , "Ar" : "إسم محامي المكتب بالانجليزية"},
+    {"name" : "office_lawyers_name_Ar" , "En" : "Oppenent Lawyer Name Arabic" , "Ar" : "إسم محامي المكتب بالعربي"},
+    {"name" : "office_lawyers_name_En" , "En" : "Oppenent Lawyer Name English" , "Ar" : "إسم محامي المكتب بالانجليزية"},
     {"name" : "oppenent_name" , "En" : "Oppenent Lawyer Name" , "Ar" : "إسم محامي المكتب"},
     {"name" : "oppenent" , "En" : "Oppenent Lawyer " , "Ar" : " محامي المكتب"},
 

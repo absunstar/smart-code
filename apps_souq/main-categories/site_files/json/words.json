@@ -53,7 +53,7 @@
     "Ar": "متطلبات الإعلان"
   },
   { "name": "main_categories_code", "En": "Category Code", "Ar": "كود التصنيف" },
-  { "name": "main_categories_name_ar", "En": "Category Name Arabic", "Ar": "إسم القسم عربي" },
+  { "name": "main_categories_name_Ar", "En": "Category Name Arabic", "Ar": "إسم القسم عربي" },
   
-  { "name": "main_categories_name_en", "En": "Category Name English", "Ar": "إسم القسم إنجليزي" }
+  { "name": "main_categories_name_En", "En": "Category Name English", "Ar": "إسم القسم إنجليزي" }
 ]

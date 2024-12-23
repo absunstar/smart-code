@@ -97,7 +97,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
             { id: { $in: main_category.parent_list_id } },
           ],
         },
-        select: { id: 1, name_ar: 1, name_en: 1, image_url: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, image_url: 1 },
       },
     }).then(
       function (response) {
@@ -157,7 +157,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
   $scope.sendMessage = function () {
     const v = site.validated("#messageModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     let data = {
@@ -242,7 +242,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
       let v = site.validated(`#reply_${comment.code}`);
 
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         $scope.$busy = false;
         return;
       }
@@ -253,7 +253,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
       let v = site.validated("#reportModal");
 
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         $scope.$busy = false;
         return;
       }
@@ -266,7 +266,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
       let v = site.validated("#reportCommentModal");
 
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         $scope.$busy = false;
         return;
       }
@@ -279,7 +279,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
       let v = site.validated("#reportReplyModal");
 
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         $scope.$busy = false;
         return;
       }
@@ -464,8 +464,8 @@ app.controller("display_content", function ($scope, $http, $timeout) {
         id: ad.id,
         code: ad.code,
         image_url: ad.image_url,
-        name_ar: ad.name_ar,
-        name_en: ad.name_en,
+        name_Ar: ad.name_Ar,
+        name_En: ad.name_En,
         unit: ad.unit,
         select_quantity: ad.quantity_list[i],
         count: 1,
@@ -506,7 +506,7 @@ app.controller("display_content", function ($scope, $http, $timeout) {
       data: {
         where: { active: true },
         post: true,
-        select: { id: 1, name_ar: 1, name_en: 1, report_comments: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, report_comments: 1 },
       },
     }).then(
       function (response) {

@@ -69,7 +69,7 @@ module.exports = function init(site) {
                 if (new Date(_request_activity.date_to) >= new Date()) {
                   request_activities_list.push({
                     customer: _request_activity.customer,
-                    activity_name_ar: _request_activity.activity_name_ar,
+                    activity_name_Ar: _request_activity.activity_name_Ar,
                     activity_name_en: _request_activity.activity_name_en,
                     complex_activity: _request_activity.complex_activities_list,
                     date_from: _request_activity.date_from,

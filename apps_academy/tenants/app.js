@@ -7,17 +7,17 @@ module.exports = function init(site) {
         {
           active: true,
           code: '1-Test',
-          name_ar: 'مستأجر إفتراضي',
-          name_en: 'Default Tenant',
+          name_Ar: 'مستأجر إفتراضي',
+          name_En: 'Default Tenant',
           company: {
             id: doc.id,
-            name_ar: doc.name_ar,
-            name_en: doc.name_en,
+            name_Ar: doc.name_Ar,
+            name_En: doc.name_En,
           },
           branch: {
             code: doc.branch_list[0].code,
-            name_ar: doc.branch_list[0].name_ar,
-            name_en: doc.branch_list[0].name_en,
+            name_Ar: doc.branch_list[0].name_Ar,
+            name_En: doc.branch_list[0].name_En,
           },
           active: true,
           image_url: doc.image_url,
@@ -87,10 +87,10 @@ module.exports = function init(site) {
 
           $or: [
             {
-              name_ar: tenant_doc.name_ar,
+              name_Ar: tenant_doc.name_Ar,
             },
             {
-              name_en: tenant_doc.name_en,
+              name_En: tenant_doc.name_En,
             },
             {
               phone: tenant_doc.phone,
@@ -123,7 +123,7 @@ module.exports = function init(site) {
                 branch_list: [{}],
                 is_tenant: true,
                 profile: {
-                  name: doc.name_ar,
+                  name: doc.name_Ar,
                   mobile: doc.mobile,
                   image_url: tenant_doc.image_url,
                 },
@@ -280,11 +280,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, 'i'),
+        name_Ar: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        name_en: site.get_RegExp(search, 'i'),
+        name_En: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({

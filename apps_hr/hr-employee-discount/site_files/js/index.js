@@ -39,7 +39,7 @@ app.controller("employee_discount", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           commission: 1,
           type: 1
         }
@@ -128,7 +128,7 @@ app.controller("employee_discount", function ($scope, $http) {
     let v = site.validated('#addEmployeeDiscountModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -174,7 +174,7 @@ app.controller("employee_discount", function ($scope, $http) {
     $scope.error = '';
     const v = site.validated('#updateEmployeeDiscountModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -269,8 +269,8 @@ app.controller("employee_discount", function ($scope, $http) {
 
           /*  select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
           } */
         }
       }).then(
@@ -300,7 +300,7 @@ app.controller("employee_discount", function ($scope, $http) {
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,
@@ -334,8 +334,8 @@ app.controller("employee_discount", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_Ar: 1, name_En: 1,
+          minor_currency_Ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code : 1
         },

@@ -28,10 +28,10 @@ module.exports = function init(site) {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectStock.sizes_list) objectStock.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
-              _items.size_ar = _size.size_ar
-              _items.size_en = _size.size_en
-              _items.name_ar = _size.name_ar
-              _items.name_en = _size.name_en
+              _items.size_Ar = _size.size_ar
+              _items.size_En= _size.size_en
+              _items.name_Ar = _size.name_Ar
+              _items.name_En = _size.name_En
             }
           })
         });
@@ -282,11 +282,11 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'store.payment_method.ar': site.get_RegExp(search, "i")
+        'store.payment_method.Ar': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.payment_method.en': site.get_RegExp(search, "i")
+        'store.payment_method.En': site.get_RegExp(search, "i")
       })
 
     }

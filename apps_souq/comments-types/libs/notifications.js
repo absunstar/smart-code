@@ -2,22 +2,22 @@ module.exports = function init(site) {
   let collection_name = "comments_types";
 
   let source = {
-    en: "Comments types System",
-    ar: "نظام أنواع التعليقات",
+    En: "Comments types System",
+    Ar: "نظام أنواع التعليقات",
   };
 
   let image_url = "/images/comments_types.png";
   let add_message = {
-    en: "New Comment type Added",
-    ar: "تم إضافة نوع تعليق جديد",
+    En: "New Comment type Added",
+    Ar: "تم إضافة نوع تعليق جديد",
   };
   let update_message = {
-    en: " Comment type Updated",
-    ar: "تم تعديل نوع تعليق",
+    En: " Comment type Updated",
+    Ar: "تم تعديل نوع تعليق",
   };
   let delete_message = {
-    en: " Comment type Deleted",
-    ar: "تم حذف نوع تعليق ",
+    En: " Comment type Deleted",
+    Ar: "تم حذف نوع تعليق ",
   };
 
   site.on("mongodb after insert", function (result) {
@@ -29,8 +29,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -49,8 +49,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -69,8 +69,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

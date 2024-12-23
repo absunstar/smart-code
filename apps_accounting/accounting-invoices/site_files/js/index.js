@@ -85,7 +85,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $scope.detailsCustomer((customer) => {
       const v = site.validated('#accountInvoicesAddModal');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       } else if (site.toNumber('##query.type##') === 16) {
         if (!$scope.account_invoices.target_account || ($scope.account_invoices.target_account && !$scope.account_invoices.target_account.id)) {
@@ -316,7 +316,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $scope.detailsCustomer((customer) => {
       const v = site.validated('#accountInvoicesAddModal');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       } else if (site.toNumber('##query.type##') === 16) {
         if (!$scope.account_invoices.target_account || ($scope.account_invoices.target_account && !$scope.account_invoices.target_account.id)) {
@@ -439,12 +439,12 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
           $scope.account_invoices = response.data.doc;
           if ($scope.account_invoices.currency) {
             site.strings['currency'] = {
-              ar: ' ' + $scope.account_invoices.currency.name_ar + ' ',
-              en: ' ' + $scope.account_invoices.currency.name_en + ' ',
+              Ar: ' ' + $scope.account_invoices.currency.name_Ar + ' ',
+              En: ' ' + $scope.account_invoices.currency.name_En + ' ',
             };
             site.strings['from100'] = {
-              ar: ' ' + $scope.account_invoices.currency.minor_currency_ar + ' ',
-              en: ' ' + $scope.account_invoices.currency.minor_currency_en + ' ',
+              Ar: ' ' + $scope.account_invoices.currency.minor_currency_Ar + ' ',
+              En: ' ' + $scope.account_invoices.currency.minor_currency_En+ ' ',
             };
 
             $scope.account_invoices.net_txt = site.stringfiy($scope.account_invoices.net_value,'##session.lang##');
@@ -775,9 +775,9 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -837,8 +837,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -875,8 +875,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           commission: 1,
           currency: 1,
           type: 1,
@@ -908,8 +908,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $scope.account_invoices.delivery_employee = item.delivery_employee;
     $scope.account_invoices.table = item.table;
     $scope.account_invoices.services_price = item.services_price;
-    $scope.account_invoices.activity_name_ar = item.activity_name_ar;
-    $scope.account_invoices.activity_name_en = item.activity_name_en;
+    $scope.account_invoices.activity_name_Ar = item.activity_name_Ar;
+    $scope.account_invoices.activity_name_En= item.activity_name_En;
     $scope.account_invoices.date_from = item.date_from;
     $scope.account_invoices.date_to = item.date_to;
     $scope.account_invoices.service = item.service;
@@ -1172,8 +1172,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
 
-    let name_lang = 'name_ar';
-    if ('##session.lang##' === 'En') name_lang = 'name_en';
+    let name_lang = 'name_Ar';
+    if ('##session.lang##' === 'En') name_lang = 'name_En';
 
     let ip = '127.0.0.1';
     let port = '60080';
@@ -1272,10 +1272,10 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         value: 'Vendor',
       });
 
-    if (account_invoices.activity_name_ar)
+    if (account_invoices.activity_name_Ar)
       obj_print.data.push({
         type: 'text2',
-        value2: account_invoices.activity_name_ar,
+        value2: account_invoices.activity_name_Ar,
         value: 'Service',
       });
 
@@ -1288,7 +1288,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
 
     if (account_invoices.items && account_invoices.items.length > 0) {
       let size_lang = 'size_ar';
-      if ('##session.lang##' === 'En') size_lang = 'size_en';
+      if ('##session.lang##' === 'En') size_lang = 'size_En';
 
       obj_print.data.push(
         {
@@ -1488,12 +1488,12 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $('#thermalPrint').removeClass('hidden');
     if ($scope.thermal.currency) {
       site.strings['currency'] = {
-        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-        en: ' ' + $scope.thermal.currency.name_en + ' ',
+        Ar: ' ' + $scope.thermal.currency.name_Ar + ' ',
+        En: ' ' + $scope.thermal.currency.name_En + ' ',
       };
       site.strings['from100'] = {
-        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
+        Ar: ' ' + $scope.thermal.currency.minor_currency_Ar + ' ',
+        En: ' ' + $scope.thermal.currency.minor_currency_En+ ' ',
       };
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
     }
@@ -1501,7 +1501,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     document.querySelector('#qrcode').innerHTML = '';
     let datetime = new Date($scope.thermal.date);
     let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-    let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+    let qrString = `[${'##session.company.name_Ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
       $scope.thermal.code
     }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
 
@@ -1556,12 +1556,12 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
 
       if ($scope.account_invoices.currency) {
         site.strings['currency'] = {
-          ar: ' ' + $scope.account_invoices.currency.name_ar + ' ',
-          en: ' ' + $scope.account_invoices.currency.name_en + ' ',
+          Ar: ' ' + $scope.account_invoices.currency.name_Ar + ' ',
+          En: ' ' + $scope.account_invoices.currency.name_En + ' ',
         };
         site.strings['from100'] = {
-          ar: ' ' + $scope.account_invoices.currency.minor_currency_ar + ' ',
-          en: ' ' + $scope.account_invoices.currency.minor_currency_en + ' ',
+          Ar: ' ' + $scope.account_invoices.currency.minor_currency_Ar + ' ',
+          En: ' ' + $scope.account_invoices.currency.minor_currency_En+ ' ',
         };
         $scope.account_invoices.net_txt = site.stringfiy($scope.account_invoices.total_paid_up);
       }
@@ -1642,8 +1642,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
           where: where,
           /*  select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
           } */
         },
       }).then(
@@ -1790,7 +1790,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
       url: '/api/in_out_names/all',
       data: {
         where: { in: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -1812,7 +1812,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
       url: '/api/in_out_names/all',
       data: {
         where: { out: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -1901,8 +1901,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1924,8 +1924,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           types_expenses_list: 1,
           code: 1,
         },
@@ -2006,8 +2006,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         },
         /*  select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
         } */
       },
     }).then(
@@ -2031,7 +2031,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
       url: '/api/shifts/get_open_shift',
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
       },
     }).then(
       function (response) {

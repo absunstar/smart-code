@@ -85,8 +85,8 @@ app.controller('order_management', function ($scope, $http, $timeout) {
                   net_value: order_invoice.net_value,
                   type: {
                     id: 4,
-                    en: 'Orders Screen',
-                    ar: 'شاشة الطلبات',
+                    En: 'Orders Screen',
+                    Ar: 'شاشة الطلبات',
                   },
                   active: true,
                 };
@@ -113,8 +113,8 @@ app.controller('order_management', function ($scope, $http, $timeout) {
 
               order_invoice.status = {
                 id: 1,
-                en: 'Opened',
-                ar: 'مفتوحة',
+                En: 'Opened',
+                Ar: 'مفتوحة',
               };
             }
           },
@@ -150,13 +150,13 @@ app.controller('order_management', function ($scope, $http, $timeout) {
       items: order_invoice.under_paid.items,
       source_type: {
         id: 3,
-        en: 'Orders Screen',
-        ar: 'شاشة الطلبات',
+        En: 'Orders Screen',
+        Ar: 'شاشة الطلبات',
       },
       invoice_type: {
         id: 4,
-        en: 'Orders Screen Store',
-        ar: 'شاشة الطلبات',
+        En: 'Orders Screen Store',
+        Ar: 'شاشة الطلبات',
       },
       active: true,
     };
@@ -205,13 +205,13 @@ app.controller('order_management', function ($scope, $http, $timeout) {
               if (account_invoices.source_type.id == 3 && account_invoices.paid_up > 0) {
                 acc_invo.in_type = {
                   id: 2,
-                  en: 'Orders Screen',
-                  ar: 'شاشة الطلبات',
+                  En: 'Orders Screen',
+                  Ar: 'شاشة الطلبات',
                 };
                 acc_invo.source_type = {
                   id: 8,
-                  en: 'Amount In',
-                  ar: 'سند قبض',
+                  En: 'Amount In',
+                  Ar: 'سند قبض',
                 };
                 acc_invo.ref_invoice_id = response.data.doc.id;
                 $http({
@@ -278,9 +278,9 @@ app.controller('order_management', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -319,8 +319,8 @@ app.controller('order_management', function ($scope, $http, $timeout) {
     } else if (type == 'return') {
       order.status = {
         id: 1,
-        en: 'Opened',
-        ar: 'مفتوحة',
+        En: 'Opened',
+        Ar: 'مفتوحة',
       };
     }
     $http({
@@ -407,8 +407,8 @@ app.controller('order_management', function ($scope, $http, $timeout) {
           items: order_invoice.under_paid.items,
           source_type: {
             id: 3,
-            en: 'Orders Screen',
-            ar: 'شاشة الطلبات',
+            En: 'Orders Screen',
+            Ar: 'شاشة الطلبات',
           },
           active: true,
         };
@@ -460,8 +460,8 @@ app.controller('order_management', function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
 
-    let name_lang = 'name_ar';
-    if ('##session.lang##' === 'En') name_lang = 'name_en';
+    let name_lang = 'name_Ar';
+    if ('##session.lang##' === 'En') name_lang = 'name_En';
 
     if (obj.invoice_id) {
       obj.total_remain = $scope.amount_currency - obj.paid_up;
@@ -557,7 +557,7 @@ app.controller('order_management', function ($scope, $http, $timeout) {
 
     if (obj.items && obj.items.length > 0) {
       let size_lang = 'size_ar';
-      if ('##session.lang##' === 'En') size_lang = 'size_en';
+      if ('##session.lang##' === 'En') size_lang = 'size_En';
 
       obj_print.data.push(
         {
@@ -757,8 +757,8 @@ app.controller('order_management', function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -871,7 +871,7 @@ app.controller('order_management', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/tables_group/all',
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
         where: where,
       },
     }).then(
@@ -896,7 +896,7 @@ app.controller('order_management', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/tables/all',
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, active: 1, busy: 1, tables_group: 1, image_url: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, active: 1, busy: 1, tables_group: 1, image_url: 1 },
 
         where: {
           'tables_group.id': tables_group.id,
@@ -1066,8 +1066,8 @@ app.controller('order_management', function ($scope, $http, $timeout) {
       if (shift) {
         order.status = {
           id: 1,
-          en: 'Opened',
-          ar: 'مفتوحة',
+          En: 'Opened',
+          Ar: 'مفتوحة',
         };
 
         $http({
@@ -1137,7 +1137,7 @@ app.controller('order_management', function ($scope, $http, $timeout) {
       url: '/api/shifts/get_open_shift',
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
       },
     }).then(
       function (response) {

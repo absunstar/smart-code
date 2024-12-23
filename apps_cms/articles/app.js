@@ -1056,10 +1056,10 @@ module.exports = function init(site) {
       where.$or = [];
       where.$or.push(
         {
-          "type.ar": site.get_RegExp(req.body.search, "i"),
+          "type.Ar": site.get_RegExp(req.body.search, "i"),
         },
         {
-          "type.en": site.get_RegExp(req.body.search, "i"),
+          "type.En": site.get_RegExp(req.body.search, "i"),
         },
         {
           "clusters.name": site.get_RegExp(req.body.search, "i"),

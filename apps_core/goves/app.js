@@ -17,18 +17,18 @@ module.exports = function init(site) {
     $goves.add(
       {
         code: "1-Test",
-        name_ar: 'محافظة إفتراضية',
-        name_en: "Default Gov",
+        name_Ar: 'محافظة إفتراضية',
+        name_En: "Default Gov",
         image_url: '/images/gov.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true,
       },
@@ -71,9 +71,9 @@ module.exports = function init(site) {
           'company.id': site.get_company(req).id,
           'branch.code': site.get_branch(req).code,
           $or: [{
-            'name_ar': goves_doc.name_ar
+            'name_Ar': goves_doc.name_Ar
           },{
-            'name_en': goves_doc.name_en
+            'name_En': goves_doc.name_En
           }]
        
         },

@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'create_course'
 
   let source = {
-    en: 'Create Course System',
-    ar: 'نظام إنشاء الكورسات'
+    En: 'Create Course System',
+    Ar: 'نظام إنشاء الكورسات'
   }
 
   let image_url = '/images/create_course.png'
   let add_message = {
-    en: 'New Create Course Added',
-    ar: 'تم إضافة إنشاء كورس جديدة'
+    En: 'New Create Course Added',
+    Ar: 'تم إضافة إنشاء كورس جديدة'
   }
   let update_message = {
-    en: ' Create Course Updated',
-    ar: 'تم تعديل إنشاء كورس'
+    En: ' Create Course Updated',
+    Ar: 'تم تعديل إنشاء كورس'
   }
   let delete_message = {
-    en: ' Create Course Deleted',
-    ar: 'تم حذف إنشاء كورس '
+    En: ' Create Course Deleted',
+    Ar: 'تم حذف إنشاء كورس '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

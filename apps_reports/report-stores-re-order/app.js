@@ -65,7 +65,7 @@ module.exports = function init(site) {
                     i_store_list.push({
                       name: _doc.name,
                       item_group: _doc.item_group,
-                      size_ar: _sizes.size_ar,
+                      size_Ar: _sizes.size_Ar,
                       size_en: _sizes.size_en,
                       barcode: _sizes.barcode,
                       re_order_limit: count,

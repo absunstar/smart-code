@@ -48,10 +48,10 @@ module.exports = function init(site) {
           'branch.code': site.get_branch(req).code,
           $or: [
             {
-              name_ar: payments_doc.name_ar,
+              name_Ar: payments_doc.name_Ar,
             },
             {
-              name_en: payments_doc.name_en,
+              name_En: payments_doc.name_En,
             },
           ],
         },
@@ -210,12 +210,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i');
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i');
     }
 
     where['company.id'] = site.get_company(req).id;

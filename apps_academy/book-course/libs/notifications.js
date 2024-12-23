@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'book_course'
 
   let source = {
-    en: 'Book Course System',
-    ar: 'نظام حجز الكورسات'
+    En: 'Book Course System',
+    Ar: 'نظام حجز الكورسات'
   }
 
   let image_url = '/images/book_course.png'
   let add_message = {
-    en: 'New Book Course Added',
-    ar: 'تم إضافة حجز كورس جديد'
+    En: 'New Book Course Added',
+    Ar: 'تم إضافة حجز كورس جديد'
   }
   let update_message = {
-    en: ' Book Course Updated',
-    ar: 'تم تعديل حجز كورس'
+    En: ' Book Course Updated',
+    Ar: 'تم تعديل حجز كورس'
   }
   let delete_message = {
-    en: ' Book Course Deleted',
-    ar: 'تم حذف حجز كورس '
+    En: ' Book Course Deleted',
+    Ar: 'تم حذف حجز كورس '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

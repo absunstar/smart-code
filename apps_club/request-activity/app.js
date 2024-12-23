@@ -46,8 +46,8 @@ module.exports = function init(site) {
         }
         doc.attend_activity_list = doc.attend_activity_list || []
         doc.attend_activity_list.unshift({
-          name_ar: obj.activity.name_ar,
-          name_en: obj.activity.name_en,
+          name_Ar: obj.activity.name_Ar,
+          name_En: obj.activity.name_En,
           trainer_attend: obj.trainer,
           attend_date: obj.attend_date,
           attend_time: obj.attend_time,
@@ -262,21 +262,21 @@ module.exports = function init(site) {
 
     if (search) {
       where.$or.push({
-        'activity.name_ar': site.get_RegExp(search, "i")
+        'activity.name_Ar': site.get_RegExp(search, "i")
       }, {
-        'activity.name_en': site.get_RegExp(search, "i")
+        'activity.name_En': site.get_RegExp(search, "i")
       }, {
-        'customer.name_ar': site.get_RegExp(search, "i")
+        'customer.name_Ar': site.get_RegExp(search, "i")
       }, {
-        'customer.name_en': site.get_RegExp(search, "i")
+        'customer.name_En': site.get_RegExp(search, "i")
       }, {
-        'trainer.name_ar': site.get_RegExp(search, "i")
+        'trainer.name_Ar': site.get_RegExp(search, "i")
       }, {
-        'trainer.name_en': site.get_RegExp(search, "i")
+        'trainer.name_En': site.get_RegExp(search, "i")
       }, {
-        'hall.name_ar': site.get_RegExp(search, "i")
+        'hall.name_Ar': site.get_RegExp(search, "i")
       }, {
-        'hall.name_en': site.get_RegExp(search, "i")
+        'hall.name_En': site.get_RegExp(search, "i")
       })
 
     }
@@ -338,22 +338,22 @@ module.exports = function init(site) {
 
     if (where['activity_name']) {
       where.$or.push({
-        'activity_name_ar': site.get_RegExp(where['activity_name'], 'i'),
-        'activity_name_en': site.get_RegExp(where['activity_name'], 'i')
+        'activity_name_Ar': site.get_RegExp(where['activity_name'], 'i'),
+        'activity_name_En': site.get_RegExp(where['activity_name'], 'i')
       })
     }
 
     if (where['customer']) {
       where.$or.push({
-        'customer.name_ar': site.get_RegExp(where['customer'], 'i'),
-        'customer.name_en': site.get_RegExp(where['customer'], 'i')
+        'customer.name_Ar': site.get_RegExp(where['customer'], 'i'),
+        'customer.name_En': site.get_RegExp(where['customer'], 'i')
       })
     }
 
     if (where['trainer']) {
       where.$or.push({
-        'trainer.name_ar': site.get_RegExp(where['trainer'], 'i'),
-        'trainer.name_en': site.get_RegExp(where['trainer'], 'i')
+        'trainer.name_Ar': site.get_RegExp(where['trainer'], 'i'),
+        'trainer.name_En': site.get_RegExp(where['trainer'], 'i')
       })
     }
 
@@ -415,9 +415,9 @@ module.exports = function init(site) {
                 if (selectedActivities.remain) {
                   activities_list.push({
                     id: request_activity.id,
-                    name_ar: selectedActivities.name_ar,
-                    name_en: selectedActivities.name_en,
-                    general_activity_ar: request_activity.activity_name_ar,
+                    name_Ar: selectedActivities.name_Ar,
+                    name_En: selectedActivities.name_En,
+                    general_activity_Ar: request_activity.activity_name_Ar,
                     general_activity_en: request_activity.activity_name_en,
                     activity_id: selectedActivities.id
                   })
@@ -427,8 +427,8 @@ module.exports = function init(site) {
               if (request_activity.remain) {
                 activities_list.push({
                   id: request_activity.id,
-                  name_ar: request_activity.activity_name_ar,
-                  name_en: request_activity.activity_name_en,
+                  name_Ar: request_activity.activity_name_Ar,
+                  name_En: request_activity.activity_name_en,
                   activity_id: request_activity.activity_id
                 })
               }

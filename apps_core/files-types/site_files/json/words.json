@@ -17,8 +17,8 @@
     {"name" : "file_type_details" , "En" : "File Type Details" , "Ar" : "تفاصيل نوع الملف"},
     {"name" : "file_type_update" , "En" : "Edit File Type" , "Ar" : "تعديل نوع الملف"},
     {"name" : "file_type_delete" , "En" : "Delte File Type" , "Ar" : "حذف نوع الملف"},
-    {"name" : "file_type_ar" , "En" : "File Type Ar" , "Ar" : "نوع الملف بالعربي"},
-    {"name" : "file_type_en" , "En" : "File Type En" , "Ar" : "نوع الملف بالإنجليزي"},
+    {"name" : "file_type_Ar" , "En" : "File Type Ar" , "Ar" : "نوع الملف بالعربي"},
+    {"name" : "file_type_En" , "En" : "File Type En" , "Ar" : "نوع الملف بالإنجليزي"},
     {"name" : "file_type_add_name" , "En" : "Add File Type" , "Ar" : "إضافة نوع الملف"}
     
 ]

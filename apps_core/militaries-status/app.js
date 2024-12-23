@@ -11,36 +11,36 @@ module.exports = function init(site) {
   site.on("[company][created]", (doc) => {
     $militaries_status.insertMany([
       {
-        name_ar: "معفى من الخدمة",
-        name_en: "Exempt from service",
+        name_Ar: "معفى من الخدمة",
+        name_En: "Exempt from service",
         code: "1-Test",
         image_url: "/images/military.png",
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         active: true,
       },
       {
-        name_ar: "أدى الخدمة",
-        name_en: "performed the service",
+        name_Ar: "أدى الخدمة",
+        name_En: "performed the service",
         code: "2-Test",
         image_url: "/images/military.png",
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         active: true,
       },

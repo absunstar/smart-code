@@ -10,7 +10,7 @@ module.exports = function init(site) {
             headers: {
                 accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                 'accept-encoding': 'gzip, deflate, br',
-                'accept-language': 'en-US,en;q=0.9,ar;q=0.8',
+                'accept-language': 'en-US,.En;q=0.9,Ar;q=0.8',
                 'cache-control': 'max-age=0',
                 dnt: 1,
                 'sec-ch-ua': '"Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"',
@@ -73,7 +73,7 @@ module.exports = function init(site) {
             headers: {
                 accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                 'accept-encoding': 'gzip, deflate, br',
-                'accept-language': 'en-US,en;q=0.9,ar;q=0.8',
+                'accept-language': 'en-US,.En;q=0.9,Ar;q=0.8',
                 'cache-control': 'max-age=0',
                 dnt: 1,
                 'sec-ch-ua': '"Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"',

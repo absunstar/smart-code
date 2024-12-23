@@ -38,7 +38,7 @@ app.controller("employees_degrees", function ($scope, $http) {
     $scope.error = '';
     const v = site.validated('#addEmployeeDegreeModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -157,7 +157,7 @@ app.controller("employees_degrees", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           balance: 1,
           code : 1
         }

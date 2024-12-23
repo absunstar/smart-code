@@ -65,12 +65,12 @@
         "Ar": "إسم الفرع"
     },
     {
-        "name": "companies_branch_name_ar",
+        "name": "companies_branch_name_Ar",
         "En": "Branch Name Arabic",
         "Ar": "إسم الفرع بالعربى"
     },
     {
-        "name": "companies_branch_name_en",
+        "name": "companies_branch_name_En",
         "En": "Branch Name English",
         "Ar": "إسم الفرع بالانجليزى"
     },
@@ -155,12 +155,12 @@
         "Ar": "الفاكس"
     },
     {
-        "name": "companies_name_ar",
+        "name": "companies_name_Ar",
         "En": "Academy Name Arabic",
         "Ar": "إسم نظام الأكاديمية"
     },
     {
-        "name": "companies_name_en",
+        "name": "companies_name_En",
         "En": "Academy Name English",
         "Ar": "إسم نظام الأكاديمية بالانجليزية"
     },
@@ -237,12 +237,12 @@
         "Ar": "كود الطالب"
     },
     {
-        "name": "customers_name_ar",
+        "name": "customers_name_Ar",
         "En": "Student Name Arabic",
         "Ar": "إسم الطالب بالعربي"
     },
     {
-        "name": "customers_name_en",
+        "name": "customers_name_En",
         "En": "Student Name English",
         "Ar": "إسم الطالب بالانجليزية"
     },

@@ -29,7 +29,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#menuManageModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -75,7 +75,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#menuManageModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -375,7 +375,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#subMenuModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.menu.subList[$scope.menu.$subIndex] = $scope.subMenu;
@@ -411,7 +411,7 @@ app.controller('menus', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#subMenuModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.menu.subList = $scope.menu.subList || [];

@@ -21,7 +21,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
 
     const v = site.validated('#activeSubstancesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -68,7 +68,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
 
     const v = site.validated('#activeSubstancesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

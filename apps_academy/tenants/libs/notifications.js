@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'tenant'
 
   let source = {
-    en: 'Tenants System',
-    ar: 'نظام المستأجرين'
+    En: 'Tenants System',
+    Ar: 'نظام المستأجرين'
   }
 
   let image_url = '/images/Tenant.png'
   let add_message = {
-    en: 'New Tenant Added',
-    ar: 'تم إضافة مستأجر جديد'
+    En: 'New Tenant Added',
+    Ar: 'تم إضافة مستأجر جديد'
   }
   let update_message = {
-    en: ' Tenant Updated',
-    ar: 'تم تعديل مستأجر'
+    En: ' Tenant Updated',
+    Ar: 'تم تعديل مستأجر'
   }
   let delete_message = {
-    en: ' Tenant Deleted',
-    ar: 'تم حذف مستأجر '
+    En: ' Tenant Deleted',
+    Ar: 'تم حذف مستأجر '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
               code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
               code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

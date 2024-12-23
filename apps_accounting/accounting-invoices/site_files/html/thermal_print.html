@@ -7,17 +7,17 @@
     <div class="row">
       <div class="center">
         <div class="row">
-          <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center bold">##session.company.name_ar##</h2>
-          <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">##session.company.name_en##</h2>
-          <h2 ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">##session.company.name_ar##</h2>
-          <h2 ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">##session.company.name_en##</h2>
+          <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center bold">##session.company.name_Ar##</h2>
+          <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">##session.company.name_En##</h2>
+          <h2 ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">##session.company.name_Ar##</h2>
+          <h2 ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">##session.company.name_En##</h2>
         </div>
 
         <div class="row">
-          <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center bold">##session.branch.name_ar##</h3>
-          <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">##session.branch.name_en##</h3>
-          <h3 ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">##session.branch.name_ar##</h3>
-          <h3 ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">##session.branch.name_en##</h3>
+          <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center bold">##session.branch.name_Ar##</h3>
+          <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">##session.branch.name_En##</h3>
+          <h3 ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">##session.branch.name_Ar##</h3>
+          <h3 ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">##session.branch.name_En##</h3>
         </div>
         <br />
         <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
@@ -105,13 +105,13 @@
         class="black bold center border_black col-8"
         ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'"
       >
-        {{thermal.customer.name_ar}}
+        {{thermal.customer.name_Ar}}
       </h3>
       <h3
         class="black bold center border_black col-8"
         ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'"
       >
-        {{thermal.customer.name_en}}
+        {{thermal.customer.name_En}}
       </h3>
     </div>
 

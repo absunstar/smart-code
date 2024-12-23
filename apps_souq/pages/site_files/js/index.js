@@ -19,7 +19,7 @@ app.controller("pages", function ($scope, $http, $timeout) {
     const v = site.validated('#pageImplementAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     if(window.addEditor){
@@ -58,7 +58,7 @@ app.controller("pages", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#pageImplementUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.pages.content =  window.editEditor.getContents();

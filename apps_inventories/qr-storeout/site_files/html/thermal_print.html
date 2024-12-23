@@ -11,13 +11,13 @@
       <div class="row">
         <div class="center">
           <div class="row">
-            <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">{{store_out.company.name_ar}}</h2>
-            <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">{{store_out.company.name_en}}</h2>
+            <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">{{store_out.company.name_Ar}}</h2>
+            <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">{{store_out.company.name_En}}</h2>
           </div>
     
           <div class="row">
-            <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">{{store_out.branch.name_ar}}</h3>
-            <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">{{store_out.branch.name_en}}</h3>
+            <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">{{store_out.branch.name_Ar}}</h3>
+            <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">{{store_out.branch.name_En}}</h3>
           </div>
           <br />
           <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
@@ -94,10 +94,10 @@
         <h3 class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Customer :</h3>
         <h3 class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.customer## :</h3>
         <h3 class="black bold center border_black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3">
-          {{store_out.customer.name_ar}}
+          {{store_out.customer.name_Ar}}
         </h3>
         <h3 class="black bold center border_black" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3">
-          {{store_out.customer.name_en}}
+          {{store_out.customer.name_En}}
         </h3>
       </div>
       <br />
@@ -131,11 +131,11 @@
       <div class="row bold" ng-repeat="itm in store_out.items">
         <div class="row">
           <div class="col4" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3">
-            <h3 class="black bold" ng-show=" itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</h3>
+            <h3 class="black bold" ng-show=" itm.add_sizes">{{itm.name_Ar}} {{itm.size_ar}}</h3>
             <h3 class="black bold" ng-hide=" itm.add_sizes">{{itm.size_ar}}</h3>
           </div>
           <div class="col4" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">
-            <h3 class="black bold" ng-show=" itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</h3>
+            <h3 class="black bold" ng-show=" itm.add_sizes">{{itm.name_En}} {{itm.size_en}}</h3>
             <h3 class="black bold" ng-hide=" itm.add_sizes">{{itm.size_en}}</h3>
           </div>
 

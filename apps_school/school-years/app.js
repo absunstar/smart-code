@@ -27,19 +27,19 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $school_years.add({
-      name_ar: "عام دراسي إفتراضي",
-      name_en: "Default School Year",
+      name_Ar: "عام دراسي إفتراضي",
+      name_En: "Default School Year",
       image_url: '/images/school_years.png',
       code: "1-Test",
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc) => {})
@@ -210,12 +210,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i')
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i')
     }
 
     // if (where['active'] !== 'all') {

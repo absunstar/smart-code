@@ -17,11 +17,11 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category.png',
           source: "Categories System",
-          source_ar: "نظام مجموعات الأصناف",
+          source_Ar: "نظام مجموعات الأصناف",
           message: "New Category Added",
-          message_ar: "تم إضافة مجموعة صنف جديدة",
+          message_Ar: "تم إضافة مجموعة صنف جديدة",
           value: result.doc.name,
-          value_ar: result.doc.name,
+          value_Ar: result.doc.name,
           add: result.doc,
           action: 'add'
         }, result : result })
@@ -33,11 +33,11 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category.png',
           source: "Categories System",
-          source_ar: "نظام مجموعات الأصناف",
+          source_Ar: "نظام مجموعات الأصناف",
           message: "New Category Updated",
-          message_ar: "تم تعديل مجموعة صنف ",
+          message_Ar: "تم تعديل مجموعة صنف ",
           value: result.doc.name,
-          value_ar: result.doc.name,
+          value_Ar: result.doc.name,
           update: site.objectDiff(result.update.$set, result.doc),
           action: 'update'
         }, result : result })
@@ -50,11 +50,11 @@ module.exports = function init(site) {
         site.call('please monitor action' , { obj : {
           icon: '/images/category.png',
           source: "Categories System",
-          source_ar: "نظام مجموعات الأصناف",
+          source_Ar: "نظام مجموعات الأصناف",
           message: " Category Deleted",
-          message_ar: "تم حذف مجموعة صنف ",
+          message_Ar: "تم حذف مجموعة صنف ",
           value: result.doc.name,
-          value_ar: result.doc.name,
+          value_Ar: result.doc.name,
           delete: result.doc,
           action: 'delete'
         }, result : result })

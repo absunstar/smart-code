@@ -8,7 +8,7 @@ app.controller("militaries_status", function ($scope, $http) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1 ,code:1}
+        select: { id: 1, name_Ar: 1, name_En: 1 ,code:1}
       }
     }).then(
       function (response) {
@@ -59,7 +59,7 @@ app.controller("militaries_status", function ($scope, $http) {
     $scope.error = '';
     const v = site.validated('#addMilitaryStateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 

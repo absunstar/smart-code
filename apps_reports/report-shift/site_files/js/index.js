@@ -103,7 +103,7 @@ app.controller("report_shift", function ($scope, $http, $timeout) {
       obj_print.data.push(
         {
           type: 'text3',
-          value: _item.size_ar,
+          value: _item.size_Ar,
           value2: _item.total,
           value3: _item.count
         }, { type: 'line' });
@@ -145,7 +145,7 @@ app.controller("report_shift", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -195,7 +195,7 @@ app.controller("report_shift", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -222,7 +222,7 @@ app.controller("report_shift", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }

@@ -55,7 +55,7 @@ module.exports = function init(site) {
               request_activity_doc.forEach(_request_activity => {
                 if (new Date(_request_activity.date_to) >= new Date()) {
                   request_activities_list.push({
-                    activity_name_ar: _request_activity.activity_name_ar,
+                    activity_name_Ar: _request_activity.activity_name_Ar,
                     activity_name_en: _request_activity.activity_name_en,
                     complex_activity: _request_activity.selected_activities_list,
                     date_from: _request_activity.date_from,
@@ -180,7 +180,7 @@ module.exports = function init(site) {
 
           if (new Date(_request_activity.date_to) >= new Date()) {
             request_activities_list.unshift({
-              activity_name_ar: _request_activity.activity_name_ar,
+              activity_name_Ar: _request_activity.activity_name_Ar,
               activity_name_en: _request_activity.activity_name_en,
               complex_activity: _request_activity.selected_activities_list,
               date_from: _request_activity.date_from,
@@ -355,8 +355,8 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name_ar']) {
-      where['customer.name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['customer.name_Ar'] = site.get_RegExp(where['name_Ar'], "i");
     }
 
     if (where.attend_date_to && where.attend_date_from) {

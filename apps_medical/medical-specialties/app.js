@@ -17,18 +17,18 @@ module.exports = function init(site) {
     $medical_specialties.add(
       {
         code: "1-Test",
-        name_ar: 'تخصص إفتراضي',
-        name_en: "Default Specialty",
+        name_Ar: 'تخصص إفتراضي',
+        name_En: "Default Specialty",
         image_url: '/images/medical_specialty.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true,
       },
@@ -72,9 +72,9 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name_ar': medical_specialties_doc.name_ar
+          'name_Ar': medical_specialties_doc.name_Ar
         },{
-          'name_en': medical_specialties_doc.name_en
+          'name_En': medical_specialties_doc.name_En
         }]
       }
     }, (err, doc) => {
@@ -222,12 +222,12 @@ module.exports = function init(site) {
       where['code'] = new RegExp(where['code'], "i");
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = new RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = new RegExp(where['name_Ar'], "i");
     }
 
-    if (where['name_en']) {
-      where['name_en'] = new RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = new RegExp(where['name_En'], "i");
     }
 
     where['company.id'] = site.get_company(req).id

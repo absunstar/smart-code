@@ -64,7 +64,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
           if (type == 'comment') {
             $scope.store.feedback_list.push({
               user: { profile: { name: '##user.profile.name##' } },
-              type: { id: 4, en: 'Comment', ar: 'تعليق' },
+              type: { id: 4, En: 'Comment', Ar: 'تعليق' },
               comment_type: $scope.activity.comment_type,
               comment: $scope.activity.comment,
               date: new Date(),
@@ -190,8 +190,8 @@ app.controller('display_store', function ($scope, $http, $timeout) {
       let obj = {
         id: ad.id,
         image_url: ad.image_url,
-        name_ar: ad.name_ar,
-        name_en: ad.name_en,
+        name_Ar: ad.name_Ar,
+        name_En: ad.name_En,
         select_quantity: ad.quantity_list[i],
         count: 1,
       };

@@ -51,7 +51,7 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
     if (type != "free") {
       const v = site.validated("#codeModal");
       if (!v.ok) {
-        $scope.errorCode = v.messages[0].ar;
+        $scope.errorCode = v.messages[0].Ar;
         return;
       }
     }

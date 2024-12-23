@@ -5,18 +5,18 @@ module.exports = function init(site) {
     if (site.feature('club') || site.feature('academy') || site.feature('school') || site.feature('medical'))
       $foods.add({
         code: "1-Test",
-        name_ar: "طعام إفتراضي",
-        name_en: "Default Food",
+        name_Ar: "طعام إفتراضي",
+        name_En: "Default Food",
         image_url: '/images/foods.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true
       }, (err, doc) => { })
@@ -68,9 +68,9 @@ module.exports = function init(site) {
         /*         'branch.code': site.get_branch(req).code,
          */
         $or: [{
-          'name_ar': foods_doc.name_ar
+          'name_Ar': foods_doc.name_Ar
         },{
-          'name_en': foods_doc.name_en
+          'name_En': foods_doc.name_En
         }]
    
       }

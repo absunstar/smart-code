@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'medical_specialties'
 
   let source = {
-    en: 'Specialties System',
-    ar: 'نظام التخصصات'
+    En: 'Specialties System',
+    Ar: 'نظام التخصصات'
   }
 
   let image_url = '/images/medical_specialty.png'
   let add_message = {
-    en: 'New Specialties Added',
-    ar: 'تم إضافة تخصص طبي جديد'
+    En: 'New Specialties Added',
+    Ar: 'تم إضافة تخصص طبي جديد'
   }
   let update_message = {
-    en: ' Specialties Updated',
-    ar: 'تم تعديل تخصص طبي'
+    En: ' Specialties Updated',
+    Ar: 'تم تعديل تخصص طبي'
   }
   let delete_message = {
-    en: ' Specialties Deleted',
-    ar: 'تم حذف تخصص طبي '
+    En: ' Specialties Deleted',
+    Ar: 'تم حذف تخصص طبي '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -54,8 +54,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -76,8 +76,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

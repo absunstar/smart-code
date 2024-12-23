@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'transfer_safes'
 
   let source = {
-    en: 'Transfer Safes System',
-    ar: ' نظام تحويل الخزن'
+    En: 'Transfer Safes System',
+    Ar: ' نظام تحويل الخزن'
   }
 
   let image_url = '/images/transfer_safes.png'
   let add_message = {
-    en: 'New Transfer Safes Added',
-    ar: 'تم إضافة تحويل خزن جديدة'
+    En: 'New Transfer Safes Added',
+    Ar: 'تم إضافة تحويل خزن جديدة'
   }
   let update_message = {
-    en: ' Transfer Safes Updated',
-    ar: 'تم تعديل تحويل خزن'
+    En: ' Transfer Safes Updated',
+    Ar: 'تم تعديل تحويل خزن'
   }
   let delete_message = {
-    en: ' Transfer Safes Deleted',
-    ar: 'تم حذف تحويل خزن '
+    En: ' Transfer Safes Deleted',
+    Ar: 'تم حذف تحويل خزن '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
              code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
              code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

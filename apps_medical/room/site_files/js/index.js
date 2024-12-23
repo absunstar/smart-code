@@ -18,7 +18,7 @@ app.controller("room", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#roomAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -56,7 +56,7 @@ app.controller("room", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#roomUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -179,7 +179,7 @@ app.controller("room", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -207,7 +207,7 @@ app.controller("room", function ($scope, $http, $timeout) {
           'building.id': building.id,
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {

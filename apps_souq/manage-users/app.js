@@ -55,8 +55,8 @@ module.exports = function init(site) {
           {
             module_name: 'public',
             name: 'shipping_order_admin',
-            en: 'Shipping Order Admin',
-            ar: 'شحن الطلبات',
+            En: 'Shipping Order Admin',
+            Ar: 'شحن الطلبات',
           },
         ];
       }

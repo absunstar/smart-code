@@ -4,11 +4,11 @@ module.exports = function init(site) {
         site.notifications.add({
           icon: '/images/users.png',
           source: "Security System",
-          source_ar: "نظام الحماية",
+          source_Ar: "نظام الحماية",
           message: "New user Register",
-          message_ar: "تم أشتراك مستخدم جديد",
+          message_Ar: "تم أشتراك مستخدم جديد",
           value: result.doc.email,
-          value_ar: result.doc.email,
+          value_Ar: result.doc.email,
           add: result.doc,
           action: 'add'
         }, result)
@@ -19,11 +19,11 @@ module.exports = function init(site) {
         site.notifications.add({
           icon: '/images/users.png',
           source: "Security System",
-          source_ar: "نظام الحماية",
+          source_Ar: "نظام الحماية",
           message: "user Login",
-          message_ar: "مستخدم سجل دخول",
+          message_Ar: "مستخدم سجل دخول",
           value: result.doc.email,
-          value_ar: result.doc.email,
+          value_Ar: result.doc.email,
           action: 'info'
         }, result)
     
@@ -34,11 +34,11 @@ module.exports = function init(site) {
         site.notifications.add({
           icon: '/images/users.png',
           source: "Security System",
-          source_ar: "نظام الحماية",
+          source_Ar: "نظام الحماية",
           message: "user Logout",
-          message_ar: "مستخدم سجل خروج",
+          message_Ar: "مستخدم سجل خروج",
           value: result.doc.email,
-          value_ar: result.doc.email,
+          value_Ar: result.doc.email,
           action: 'info'
         }, result)
     
@@ -48,11 +48,11 @@ module.exports = function init(site) {
         site.notifications.add({
           icon: '/images/users.png',
           source: "Security System",
-          source_ar: "نظام الحماية",
+          source_Ar: "نظام الحماية",
           message: "New user Added",
-          message_ar: "تم إضافة مستخدم جديد",
+          message_Ar: "تم إضافة مستخدم جديد",
           value: result.doc.email,
-          value_ar: result.doc.email,
+          value_Ar: result.doc.email,
           add: result.doc,
           action: 'add'
         }, result)
@@ -63,11 +63,11 @@ module.exports = function init(site) {
         site.notifications.add({
           icon: '/images/users.png',
           source: "Security System",
-          source_ar: "نظام الحماية",
+          source_Ar: "نظام الحماية",
           message: "user Updated",
-          message_ar: "تم تعديل مستخدم",
+          message_Ar: "تم تعديل مستخدم",
           value: result.doc.email,
-          value_ar: result.doc.email,
+          value_Ar: result.doc.email,
           update: site.objectDiff(result.update.$set, result.doc),
           action: 'update'
         }, result)
@@ -77,11 +77,11 @@ module.exports = function init(site) {
         site.notifications.add({
           icon: '/images/users.png',
           source: "Security System",
-          source_ar: "نظام الحماية",
+          source_Ar: "نظام الحماية",
           message: "user Deleted",
-          message_ar: "تم حذف مستخدم ",
+          message_Ar: "تم حذف مستخدم ",
           value: result.doc.email,
-          value_ar: result.doc.email,
+          value_Ar: result.doc.email,
           delete: result.doc,
           action: 'delete'
         }, result)

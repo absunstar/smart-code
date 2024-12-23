@@ -4,33 +4,33 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     if (site.feature('club') || site.feature('academy') || site.feature('school')) {
-      let name_ar = ''
-      let name_en = ''
+      let name_Ar = ''
+      let name_En = ''
 
       if (site.feature('school')) {
-        name_ar = "فصل دراسي إفتراضي"
-        name_en = "Default Class Room"
+        name_Ar = "فصل دراسي إفتراضي"
+        name_En = "Default Class Room"
       } else if (site.feature('club') || site.feature('academy')) {
-        name_ar = "قاعة إفتراضية"
-        name_en = "Default Hall"
+        name_Ar = "قاعة إفتراضية"
+        name_En = "Default Hall"
       }
 
 
       $hall.add({
         code: "1-Test",
-        name_ar: name_ar,
-        name_en: name_en,
+        name_Ar: name_Ar,
+        name_En: name_En,
         capaneighborhood: 1,
         image_url: '/images/hall.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true
       }, (err, doc) => { })
@@ -83,9 +83,9 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name_ar': hall_doc.name_ar
+          'name_Ar': hall_doc.name_Ar
         },{
-          'name_en': hall_doc.name_en
+          'name_En': hall_doc.name_En
         }]
      
       }

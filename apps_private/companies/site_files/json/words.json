@@ -25,8 +25,8 @@
 
     {"name" : "companies_branch_code" , "En" : "Branch Code" , "Ar" : "كود الفرع"},
     {"name" : "companies_branch_name" , "En" : "Branch Name" , "Ar" : "إسم الفرع"},
-    {"name" : "companies_branch_name_ar" , "En" : "Branch Name Arabic" , "Ar" : "إسم الفرع بالعربى"},
-    {"name" : "companies_branch_name_en" , "En" : "Branch Name English" , "Ar" : "إسم الفرع بالانجليزى"},
+    {"name" : "companies_branch_name_Ar" , "En" : "Branch Name Arabic" , "Ar" : "إسم الفرع بالعربى"},
+    {"name" : "companies_branch_name_En" , "En" : "Branch Name English" , "Ar" : "إسم الفرع بالانجليزى"},
     {"name" : "companies_branch_notes" , "En" : "Branch Notes" , "Ar" : "ملاحظات الفرع"},
 
     {"name" : "companies_charge_name" , "En" : "Charge Name" , "Ar" : "إسم المسئول"},
@@ -51,8 +51,8 @@
     {"name" : "companies_city" , "En" : "City" , "Ar" : "المدينة"},
     {"name" : "companies_email" , "En" : "Email" , "Ar" : "البريد الإلكتروني"},
     {"name" : "companies_fax" , "En" : "Fax" , "Ar" : "الفاكس"},
-    {"name" : "companies_name_ar" , "En" : "company Name Arabic" , "Ar" : "إسم الشركة"},
-    {"name" : "companies_name_en" , "En" : "company Name English" , "Ar" : "إسم الشركة بالانجليزية"},
+    {"name" : "companies_name_Ar" , "En" : "company Name Arabic" , "Ar" : "إسم الشركة"},
+    {"name" : "companies_name_En" , "En" : "company Name English" , "Ar" : "إسم الشركة بالانجليزية"},
     {"name" : "companies_excahange_price" , "En" : "Exchange Price" , "Ar" : "سعر الصرف"},
     {"name" : "companies_company_swift_code" , "En" : "Swift Code" , "Ar" : "رقم السويفت"},
     {"name" : "companies_new" , "En" : "New company" , "Ar" : "شركة جديد"},

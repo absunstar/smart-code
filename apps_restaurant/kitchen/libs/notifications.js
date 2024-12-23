@@ -3,21 +3,21 @@ module.exports = function init(site) {
 
   let source = {
     ثى: "Kitchen System",
-    ar: "نظام المطابخ",
+    Ar: "نظام المطابخ",
   };
 
   let image_url = "/images/kitchen.png";
   let add_message = {
     ثى: "New Kitchen Added",
-    ar: "تم إضافة مطبخ جديد",
+    Ar: "تم إضافة مطبخ جديد",
   };
   let update_message = {
     ثى: " Kitchen Updated",
-    ar: "تم تعديل مطبخ",
+    Ar: "تم تعديل مطبخ",
   };
   let delete_message = {
     ثى: " Kitchen Deleted",
-    ar: "تم حذف مطبخ ",
+    Ar: "تم حذف مطبخ ",
   };
 
   site.on("mongodb after insert", function (result) {
@@ -29,8 +29,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -49,8 +49,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -69,8 +69,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

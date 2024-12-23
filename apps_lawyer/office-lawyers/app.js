@@ -18,19 +18,19 @@ module.exports = function init(site) {
 
     $office_lawyers.add({
       code: "1-Test",
-      name_ar: "محامي مكتب إفتراضي",
-      name_en: "Default Office Lawyers",
+      name_Ar: "محامي مكتب إفتراضي",
+      name_En: "Default Office Lawyers",
       image_url: '/images/office_lawyers.png',
       lawyer : true,
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc1) => { })
@@ -197,10 +197,10 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name_ar': site.get_RegExp(search, "i")
+        'name_Ar': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'name_en': site.get_RegExp(search, "i")
+        'name_En': site.get_RegExp(search, "i")
       })
       where.$or.push({
         'mobile': site.get_RegExp(search, "i")
@@ -220,12 +220,12 @@ module.exports = function init(site) {
 
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i')
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i')
     }
     if (where['active'] !== 'all') {
       where['active'] = true

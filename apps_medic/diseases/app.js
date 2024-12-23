@@ -6,18 +6,18 @@ module.exports = function init(site) {
     if (site.feature('club') || site.feature('academy') || site.feature('school') || site.feature('medical'))
       $disease.add({
         code: "1-Test",
-        name_ar: "مرض إفتراضي",
-        name_en: "Default disease",
+        name_Ar: "مرض إفتراضي",
+        name_En: "Default disease",
         image_url: '/images/disease.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true
       }, (err, doc) => { })
@@ -66,9 +66,9 @@ module.exports = function init(site) {
     $disease.find({
       'company.id': site.get_company(req).id,
       $or: [{
-        'name_ar': disease_doc.name_ar
+        'name_Ar': disease_doc.name_Ar
       },{
-        'name_en': disease_doc.name_en
+        'name_En': disease_doc.name_En
       }]
     
     }, (err, doc) => {

@@ -9,8 +9,8 @@ module.exports = function init(site) {
       create_course_id: doc.create_course_id,
       course: {
         id: doc.course.id,
-        name_ar: doc.course.name_ar,
-        name_en: doc.course.name_en,
+        name_Ar: doc.course.name_Ar,
+        name_En: doc.course.name_En,
       },
       image_url: '/images/account_course.png',
       period: doc.course.period,
@@ -154,18 +154,18 @@ module.exports = function init(site) {
 
             let paid_value = {
               value: response.doc.baid_go,
-              source_name_ar: response.doc.trainer_paid.name_ar,
-              source_name_en: response.doc.trainer_paid.name_en,
+              source_name_Ar: response.doc.trainer_paid.name_Ar,
+              source_name_en: response.doc.trainer_paid.name_En,
               company: response.doc.company,
               branch: response.doc.branch,
               date: response.doc.date_paid,
               shift: {
                 id: result.doc.shift.id,
                 code: result.doc.shift.code,
-                name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
+                name_Ar: result.doc.shift.name_Ar, name_En: result.doc.shift.name_En
               },
               transition_type: 'out',
-              operation: { ar: 'دفعة حساب مدرب', en: 'Pay Trainer Account' },
+              operation: { Ar: 'دفعة حساب مدرب', En: 'Pay Trainer Account' },
               safe: response.doc.safe
             }
             site.quee('[amounts][safes][+]', paid_value)

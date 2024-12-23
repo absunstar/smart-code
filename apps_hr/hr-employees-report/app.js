@@ -39,9 +39,9 @@ module.exports = function init(site) {
           date: doc.date,
           company: doc.company,
           branch: doc.branch,
-          source_name_ar: doc.name_ar,
-          source_name_en: doc.name_en,
-          operation: {ar: 'مرتب موظف', en: 'Employee salary'},
+          source_name_Ar: doc.name_Ar,
+          source_name_en: doc.name_En,
+          operation: {Ar: 'مرتب موظف', En: 'Employee salary'},
           transition_type: 'out',
           description: doc.description
         }

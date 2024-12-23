@@ -42,7 +42,7 @@ app.controller("in_out_names", function ($scope, $http) {
     let v = site.validated('#addInOutNameModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 

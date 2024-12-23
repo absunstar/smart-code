@@ -17,7 +17,7 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#patientsTicketsAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -56,26 +56,26 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
     if (!status) {
       const v = site.validated('#patientsTicketsUpdateModal');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     } else if (status === 'close') {
       patients_tickets.status = {
         id: 3,
-        ar: 'مغلقة',
-        en: 'closing',
+        Ar: 'مغلقة',
+        En: 'closing',
       };
     } else if (status === 'hold') {
       patients_tickets.status = {
         id: 2,
-        ar: 'معلقة',
-        en: 'holding',
+        Ar: 'معلقة',
+        En: 'holding',
       };
     } else if (status === 'open') {
       patients_tickets.status = {
         id: 1,
-        ar: 'مفتوحة',
-        en: 'Opening',
+        Ar: 'مفتوحة',
+        En: 'Opening',
       };
     }
 
@@ -265,7 +265,7 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
 
     const v = site.validated('#customerAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -309,7 +309,7 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -335,7 +335,7 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -475,8 +475,8 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
           total_discount: patients_tickets.total_discount,
           source_type: {
             id: 15,
-            en: 'Patient Ticket',
-            ar: 'تذكرة مريض',
+            En: 'Patient Ticket',
+            Ar: 'تذكرة مريض',
           },
           active: true,
         };
@@ -551,8 +551,8 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -581,9 +581,9 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -679,8 +679,8 @@ app.controller('patients_tickets', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

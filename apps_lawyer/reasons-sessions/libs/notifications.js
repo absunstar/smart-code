@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'reasons_sessions'
 
   let source = {
-    en: 'Reasons Sessions System',
-    ar: ' نظام أسباب الجلسات'
+    En: 'Reasons Sessions System',
+    Ar: ' نظام أسباب الجلسات'
   }
 
   let image_url = '/images/reasons_sessions.png'
   let add_message = {
-    en: 'New Reasons Sessions Added',
-    ar: 'تم إضافة سبب جلسة جديد'
+    En: 'New Reasons Sessions Added',
+    Ar: 'تم إضافة سبب جلسة جديد'
   }
   let update_message = {
-    en: ' Reasons Sessions Updated',
-    ar: 'تم تعديل سبب جلسة'
+    En: ' Reasons Sessions Updated',
+    Ar: 'تم تعديل سبب جلسة'
   }
   let delete_message = {
-    en: ' Reasons Sessions Deleted',
-    ar: 'تم حذف سبب جلسة '
+    En: ' Reasons Sessions Deleted',
+    Ar: 'تم حذف سبب جلسة '
   }
 
 
@@ -31,8 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -51,8 +51,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -72,8 +72,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

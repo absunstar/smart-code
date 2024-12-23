@@ -19,8 +19,8 @@ module.exports = function init(site) {
         doc.closing_date = "";
         doc.status = {
           id: 1,
-          ar: "مفتوحة",
-          en: "Opening",
+          Ar: "مفتوحة",
+          En: "Opening",
         };
         $patients_tickets.update(doc);
       }
@@ -51,8 +51,8 @@ module.exports = function init(site) {
 
     patients_tickets_doc.status = {
       id: 1,
-      ar: "مفتوحة",
-      en: "Opening",
+      Ar: "مفتوحة",
+      En: "Opening",
     };
 
     let num_obj = {
@@ -554,8 +554,8 @@ module.exports = function init(site) {
         code: cbCode.code,
         status: {
           id: 1,
-          ar: "مفتوحة",
-          en: "Opening",
+          Ar: "مفتوحة",
+          En: "Opening",
         },
         opening_date: new Date(),
         add_user_info: doctors_visits.add_user_info,

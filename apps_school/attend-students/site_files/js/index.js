@@ -24,7 +24,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     const v = site.validated('#attendStudentsAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -67,7 +67,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
     $scope.error = '';
     const v = site.validated('#attendStudentsUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -216,7 +216,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {
@@ -315,8 +315,8 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
 
           c.status = {
             name: 'attend',
-            ar: 'حضور',
-            en: 'Attend'
+            Ar: 'حضور',
+            En: 'Attend'
           };
           c.attend_time = {
             hour: new Date().getHours(),
@@ -331,7 +331,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
           };
 
         } else if (action == 'absence') {
-          c.status = { name: 'absence', ar: 'غياب', en: 'Absence' };
+          c.status = { name: 'absence', Ar: 'غياب', En: 'Absence' };
 
         }
 
@@ -408,7 +408,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -430,7 +430,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         },
         where: {
@@ -456,7 +456,7 @@ app.controller("attend_students", function ($scope, $http, $timeout, $interval) 
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         },
         where: {

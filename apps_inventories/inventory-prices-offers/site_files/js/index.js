@@ -29,8 +29,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     $scope.prices_offers.taxes = $scope.prices_offers.taxes || [];
     $scope.prices_offers.taxes.push({
-      name_ar: $scope.tax.name_ar,
-      name_en: $scope.tax.name_en,
+      name_Ar: $scope.tax.name_Ar,
+      name_En: $scope.tax.name_En,
       value: $scope.tax.value,
     });
     $scope.tax = {};
@@ -41,7 +41,7 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     for (let i = 0; i < $scope.prices_offers.taxes.length; i++) {
       let tx = $scope.prices_offers.taxes[i];
-      if (tx.name_ar == _tx.name_ar && tx.value == _tx.value) $scope.prices_offers.taxes.splice(i, 1);
+      if (tx.name_Ar == _tx.name_Ar && tx.value == _tx.value) $scope.prices_offers.taxes.splice(i, 1);
     }
     $scope.calc($scope.prices_offers);
   };
@@ -56,8 +56,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
       $scope.prices_offers.discountes = $scope.prices_offers.discountes || [];
 
       $scope.prices_offers.discountes.push({
-        name_ar: $scope.discount.name_ar,
-        name_en: $scope.discount.name_en,
+        name_Ar: $scope.discount.name_Ar,
+        name_En: $scope.discount.name_En,
         value: $scope.discount.value,
         type: $scope.discount.type,
       });
@@ -74,7 +74,7 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     for (let i = 0; i < $scope.prices_offers.discountes.length; i++) {
       let ds = $scope.prices_offers.discountes[i];
-      if (ds.name_ar == _ds.name_ar && ds.value == _ds.value && ds.type == _ds.type) $scope.prices_offers.discountes.splice(i, 1);
+      if (ds.name_Ar == _ds.name_Ar && ds.value == _ds.value && ds.type == _ds.type) $scope.prices_offers.discountes.splice(i, 1);
     }
     $scope.calc($scope.prices_offers);
   };
@@ -182,8 +182,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
   $scope.newPricesOffers = function () {
     $scope.error = '';
     $scope.discount = {
-      name_ar: 'خصم',
-      name_en: 'Discount',
+      name_Ar: 'خصم',
+      name_En: 'Discount',
       type: 'number',
     };
 
@@ -241,17 +241,17 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
             $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
           }
           /* $scope.thermal_lang = 'Ar';
-          $scope.thermal_lang_name = 'name_ar';
+          $scope.thermal_lang_name = 'name_Ar';
           if ($scope.defaultSettings.printer_program.thermal_lang) {
             if ($scope.defaultSettings.printer_program.thermal_lang.id == 2) {
               $scope.thermal_lang = 'En';
-              $scope.thermal_lang_name = 'name_en';
+              $scope.thermal_lang_name = 'name_En';
             } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 3) {
               $scope.thermal_lang = '##session.lang##';
               if ('##session.lang##' == 'Ar') {
-                $scope.thermal_lang_name = 'name_ar';
+                $scope.thermal_lang_name = 'name_Ar';
               } else if ('##session.lang##' == 'En') {
-                $scope.thermal_lang_name = 'name_en';
+                $scope.thermal_lang_name = 'name_En';
               }
             }
           } */
@@ -304,7 +304,7 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     const v = site.validated('#addPricesOffersModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -455,21 +455,21 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
 
           if ($scope.prices_offers.currency) {
             site.strings['currency'] = {
-              ar: ' ' + $scope.prices_offers.currency.name_ar + ' ',
-              en: ' ' + $scope.prices_offers.currency.name_en + ' ',
+              Ar: ' ' + $scope.prices_offers.currency.name_Ar + ' ',
+              En: ' ' + $scope.prices_offers.currency.name_En + ' ',
             };
             site.strings['from100'] = {
-              ar: ' ' + $scope.prices_offers.currency.minor_currency_ar + ' ',
-              en: ' ' + $scope.prices_offers.currency.minor_currency_en + ' ',
+              Ar: ' ' + $scope.prices_offers.currency.minor_currency_Ar + ' ',
+              En: ' ' + $scope.prices_offers.currency.minor_currency_En+ ' ',
             };
           } else if ($scope.currencySetting) {
             site.strings['currency'] = {
-              ar: ' ' + $scope.currencySetting.name_ar + ' ',
-              en: ' ' + $scope.currencySetting.name_en + ' ',
+              Ar: ' ' + $scope.currencySetting.name_Ar + ' ',
+              En: ' ' + $scope.currencySetting.name_En + ' ',
             };
             site.strings['from100'] = {
-              ar: ' ' + $scope.currencySetting.minor_currency_ar + ' ',
-              en: ' ' + $scope.currencySetting.minor_currency_en + ' ',
+              Ar: ' ' + $scope.currencySetting.minor_currency_Ar + ' ',
+              En: ' ' + $scope.currencySetting.minor_currency_En+ ' ',
             };
           }
           $scope.prices_offers.net_txt = site.stringfiy($scope.prices_offers.net_value);
@@ -586,9 +586,9 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
           }
           let itmObj = {
             image_url: $scope.item.image_url,
-            name_ar: _size.name_ar,
-            name_en: _size.name_en,
-            size_ar: _size.size_ar,
+            name_Ar: _size.name_Ar,
+            name_En: _size.name_En,
+            size_Ar: _size.size_Ar,
             value_added: _size.value_added,
             total_v_a: _size.total_v_a,
             item_group: _size.item_group,
@@ -665,8 +665,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
                       });
 
                     if (_size.barcode === $scope.item.search_item_name || _size.size_units_list[indxUnit].barcode === $scope.item.search_item_name) {
-                      _size.name_ar = _item.name_ar;
-                      _size.name_en = _item.name_en;
+                      _size.name_Ar = _item.name_Ar;
+                      _size.name_En = _item.name_En;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.prices_offers.store;
                       _size.unit = _size.size_units_list[indxUnit];
@@ -798,8 +798,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
       $scope.item.itm.sizes.forEach((_item) => {
         let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
-        _item.name_ar = $scope.item.itm.name_ar;
-        _item.name_en = $scope.item.itm.name_en;
+        _item.name_Ar = $scope.item.itm.name_Ar;
+        _item.name_En = $scope.item.itm.name_En;
         _item.item_group = $scope.item.itm.item_group;
         _item.store = $scope.prices_offers.store;
         _item.count = 1;
@@ -917,8 +917,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
                     });
 
                   if (_size.barcode === $scope.search_barcode || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-                    _size.name_ar = response.data.list[0].name_ar;
-                    _size.name_en = response.data.list[0].name_en;
+                    _size.name_Ar = response.data.list[0].name_Ar;
+                    _size.name_En = response.data.list[0].name_En;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.prices_offers.store;
                     _size.unit = _size.size_units_list[indxUnit];
@@ -1110,8 +1110,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           type: 1,
           code: 1,
         },
@@ -1136,9 +1136,9 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -1198,8 +1198,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
         data: {
           select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -1234,8 +1234,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1261,8 +1261,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
         },
       },
@@ -1288,8 +1288,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
           type: 1,
         },
@@ -1445,8 +1445,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1524,8 +1524,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
         },
         /*  select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
         } */
       },
     }).then(
@@ -1595,7 +1595,7 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
     }
     const v = site.validated('#customerAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -1662,8 +1662,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
           },
           /*  select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
           } */
         },
       }).then(
@@ -1692,8 +1692,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1723,8 +1723,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1975,8 +1975,8 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

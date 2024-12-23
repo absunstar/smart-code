@@ -87,7 +87,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     const v = site.validated('#mobile_mailer');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -122,7 +122,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     const v = site.validated('#email_mailer');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     site.showModal('#dealModal');
@@ -135,13 +135,13 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     if ($scope.type == 'mobile') {
       const v = site.validated('#mobile_confirm');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     } else if ($scope.type == 'email') {
       const v = site.validated('#email_confirm');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     }
@@ -187,14 +187,14 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     if ($scope.type == 'mobile') {
       let v = site.validated('#mobile_mailer');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
       mailer.type = 'mobile';
     } else if ($scope.type == 'email') {
       let v = site.validated('#email_mailer');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
       mailer.type = 'email';
@@ -254,7 +254,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
       const v = site.validated('#mobile_data');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     } else if ($scope.type == 'email') {
@@ -264,7 +264,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
       const v = site.validated('#email_data');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     }
@@ -316,7 +316,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
       }
       const v = site.validated('#mobile_data');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     } else if ($scope.type == 'email') {
@@ -326,7 +326,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
       const v = site.validated('#email_data');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     }

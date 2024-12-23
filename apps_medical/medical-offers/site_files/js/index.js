@@ -24,7 +24,7 @@ app.controller("medical_offers", function ($scope, $http, $timeout) {
 
     const v = site.validated('#medicalOffersAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -74,7 +74,7 @@ app.controller("medical_offers", function ($scope, $http, $timeout) {
 
     const v = site.validated('#medicalOffersUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
  
@@ -213,7 +213,7 @@ app.controller("medical_offers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         },
         where: {

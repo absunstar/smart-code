@@ -81,8 +81,8 @@ module.exports = function init(site) {
           _docs.students_list.forEach(_stu => {
             let obj = {
               image_url: _stu.exam.image_url,
-              name_ar: _stu.name_ar,
-              name_en: _stu.name_en,
+              name_Ar: _stu.name_Ar,
+              name_En: _stu.name_En,
               name: _docs.name,
               exams_type: _docs.exams_type,
               code: _stu.code,

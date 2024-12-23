@@ -2,22 +2,22 @@ module.exports = function init(site) {
   let collection_name = "accounting_guide_income_list";
 
   let source = {
-    en: "Guide Income List System",
-    ar: "نظام دليل تصنيفات قائمة الدخل ",
+    En: "Guide Income List System",
+    Ar: "نظام دليل تصنيفات قائمة الدخل ",
   };
 
   let image_url = "/images/accounting_guide_income_list.png";
   let add_message = {
-    en: "New Guide Income List Added",
-    ar: "تم إضافة دليل تصنيفات قائمة الدخل جديدة",
+    En: "New Guide Income List Added",
+    Ar: "تم إضافة دليل تصنيفات قائمة الدخل جديدة",
   };
   let update_message = {
-    en: " Guide Income List Updated",
-    ar: "تم تعديل دليل تصنيفات قائمة الدخل",
+    En: " Guide Income List Updated",
+    Ar: "تم تعديل دليل تصنيفات قائمة الدخل",
   };
   let delete_message = {
-    en: " Guide Income List Deleted",
-    ar: "تم حذف دليل تصنيفات قائمة الدخل ",
+    En: " Guide Income List Deleted",
+    Ar: "تم حذف دليل تصنيفات قائمة الدخل ",
   };
 
   site.on("mongodb after insert", function (result) {
@@ -29,8 +29,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -49,8 +49,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -69,8 +69,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

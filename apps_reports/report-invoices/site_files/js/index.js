@@ -305,8 +305,8 @@ app.controller('report_invoices', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           types_expenses_list: 1,
         },

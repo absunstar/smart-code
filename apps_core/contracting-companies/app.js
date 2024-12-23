@@ -17,18 +17,18 @@ module.exports = function init(site) {
     $contracting_companies.add(
       {
         code: "1-Test",
-        name_ar: 'شركة تعاقد إفتراضية',
-        name_en: "Default Contracting Company",
+        name_Ar: 'شركة تعاقد إفتراضية',
+        name_En: "Default Contracting Company",
         image_url: '/images/contracting_company.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true,
       },
@@ -69,9 +69,9 @@ module.exports = function init(site) {
           'company.id': site.get_company(req).id,
           'branch.code': site.get_branch(req).code,
           $or: [{
-            'name_ar': contracting_companies_doc.name_ar
+            'name_Ar': contracting_companies_doc.name_Ar
           },{
-            'name_en': contracting_companies_doc.name_en
+            'name_En': contracting_companies_doc.name_En
           }]
        
         },

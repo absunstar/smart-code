@@ -39,15 +39,15 @@ module.exports = function init(site) {
     if (req.session.user) {
       company = {
         id: site.get_company(req).id,
-        name_ar: site.get_company(req).name_ar,
-        name_en: site.get_company(req).name_en
+        name_Ar: site.get_company(req).name_Ar,
+        name_En: site.get_company(req).name_En
       }
 
     } else {
       company = {
         id: req.body.doc.id,
-        name_ar: req.body.doc.name_ar,
-        name_en: req.body.doc.name_en
+        name_Ar: req.body.doc.name_Ar,
+        name_En: req.body.doc.name_En
       }
 
     }
@@ -67,8 +67,8 @@ module.exports = function init(site) {
         moduleListCore.forEach((_ml) => {
           _ml.type_numbering = {
             id: 3,
-            en: 'Connected',
-            ar: 'متصل',
+            En: 'Connected',
+            Ar: 'متصل',
           }
 
           _ml.first_value = 1
@@ -99,19 +99,19 @@ module.exports = function init(site) {
 
           moduleListCore.forEach(_mc => {
             if (_mc.name == 'order_slides') {
-              _mc.en = 'Sessions Slides'
-              _mc.ar = 'شرائح الجلسات'
+              _mc.En = 'Sessions Slides'
+              _mc.Ar = 'شرائح الجلسات'
             }
           });
           screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
           moduleListCore.forEach(_mc => {
             if (_mc.name == 'customers') {
-              _mc.en = 'Subscribers'
-              _mc.ar = 'المشتركين'
+              _mc.En = 'Subscribers'
+              _mc.Ar = 'المشتركين'
             } else if (_mc.name == 'customers_groups') {
-              _mc.en = 'Subscribers Group'
-              _mc.ar = 'مجموعة المشتركين'
+              _mc.En = 'Subscribers Group'
+              _mc.Ar = 'مجموعة المشتركين'
             }
           });
 
@@ -124,14 +124,14 @@ module.exports = function init(site) {
 
           moduleListCore.forEach(_mc => {
             if (_mc.name == 'customers') {
-              _mc.en = 'Students'
-              _mc.ar = 'الطلاب'
+              _mc.En = 'Students'
+              _mc.Ar = 'الطلاب'
             } else if (_mc.name == 'customers_groups') {
-              _mc.en = 'Students Group'
-              _mc.ar = 'مجموعة الطلاب'
+              _mc.En = 'Students Group'
+              _mc.Ar = 'مجموعة الطلاب'
             } else if (_mc.name == 'order_slides') {
-              _mc.en = 'Sessions Slides'
-              _mc.ar = 'شرائح الجلسات'
+              _mc.En = 'Sessions Slides'
+              _mc.Ar = 'شرائح الجلسات'
             }
           });
           
@@ -145,23 +145,23 @@ module.exports = function init(site) {
         } else if (site.features.like('*school*')) {
           moduleListCore.forEach(_mc => {
             if (_mc.name == 'customers') {
-              _mc.en = 'Students'
-              _mc.ar = 'الطلاب'
+              _mc.En = 'Students'
+              _mc.Ar = 'الطلاب'
             } else if (_mc.name == 'customers_groups') {
-              _mc.en = 'Students Group'
-              _mc.ar = 'مجموعة الطلاب'
+              _mc.En = 'Students Group'
+              _mc.Ar = 'مجموعة الطلاب'
             } else if (_mc.name == 'trainer') {
-              _mc.en = 'Teachers'
-              _mc.ar = 'المدرسين'
+              _mc.En = 'Teachers'
+              _mc.Ar = 'المدرسين'
             } else if (_mc.name == 'halls') {
-              _mc.en = 'classrooms'
-              _mc.ar = 'الفصول الدراسية'
+              _mc.En = 'classrooms'
+              _mc.Ar = 'الفصول الدراسية'
             } else if (_mc.name == 'order_slides') {
-              _mc.en = 'Sessions Slides'
-              _mc.ar = 'شرائح الجلسات'
+              _mc.En = 'Sessions Slides'
+              _mc.Ar = 'شرائح الجلسات'
             } else if (_mc.name == 'shifts') {
-              _mc.en = 'School Years'
-              _mc.ar = 'الأعوام الدراسية'
+              _mc.En = 'School Years'
+              _mc.Ar = 'الأعوام الدراسية'
             }
           });
           screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'medical' && i.feature !== 'lawyer');
@@ -187,14 +187,14 @@ module.exports = function init(site) {
         } else if (site.features.like('*medical*')) {
           moduleListCore.forEach(_mc => {
             if (_mc.name == 'customers') {
-              _mc.en = 'patients'
-              _mc.ar = 'المرضى'
+              _mc.En = 'patients'
+              _mc.Ar = 'المرضى'
             } else if (_mc.name == 'customers_groups') {
-              _mc.en = 'patients Group'
-              _mc.ar = 'مجموعة المرضى'
+              _mc.En = 'patients Group'
+              _mc.Ar = 'مجموعة المرضى'
             } else if (_mc.name == 'order_slides') {
-              _mc.en = 'Detection Slides'
-              _mc.ar = 'شرائح الكشوفات'
+              _mc.En = 'Detection Slides'
+              _mc.Ar = 'شرائح الكشوفات'
             }
           });
 

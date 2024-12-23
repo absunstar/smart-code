@@ -26,19 +26,19 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $active_substances.add({
-      name_ar: "مادة فعالة إفتراضية",
-      name_en: "Default Active Substances",
+      name_Ar: "مادة فعالة إفتراضية",
+      name_En: "Default Active Substances",
       code: "1-Test",
       image_url: '/images/active_substances.png',
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc) => {})

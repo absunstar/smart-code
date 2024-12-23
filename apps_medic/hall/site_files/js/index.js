@@ -17,7 +17,7 @@ app.controller("hall", function ($scope, $http, $timeout) {
     const v = site.validated('#hallAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -56,7 +56,7 @@ app.controller("hall", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#hallUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

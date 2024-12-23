@@ -21,8 +21,8 @@ module.exports = function init(site) {
   site.on("[company][created]", (doc) => {
     $analysis.add({
         code: "1-Test",
-        name_ar: "تحليل إفتراضي",
-        name_en: "Default Analysis",
+        name_Ar: "تحليل إفتراضي",
+        name_En: "Default Analysis",
         price: 1,
         price_at_home: 1,
         immediate: true,
@@ -41,13 +41,13 @@ module.exports = function init(site) {
         image_url: "/images/analysis.png",
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         active: true,
       },
@@ -85,10 +85,10 @@ module.exports = function init(site) {
         where: {
           "company.id": site.get_company(req).id,
           $or: [{
-              name_ar: analysis_doc.name_ar,
+              name_Ar: analysis_doc.name_Ar,
             },
             {
-              name_en: analysis_doc.name_en,
+              name_En: analysis_doc.name_En,
             },
           ],
         },
@@ -243,12 +243,12 @@ module.exports = function init(site) {
     where["company.id"] = site.get_company(req).id;
     // where['branch.code'] = site.get_branch(req).code
 
-    if (where["name_ar"]) {
-      where["name_ar"] = new RegExp(where["name_ar"], "i");
+    if (where["name_Ar"]) {
+      where["name_Ar"] = new RegExp(where["name_Ar"], "i");
     }
 
-    if (where["name_en"]) {
-      where["name_en"] = new RegExp(where["name_en"], "i");
+    if (where["name_En"]) {
+      where["name_En"] = new RegExp(where["name_En"], "i");
     }
 
     $analysis.findMany({
@@ -290,28 +290,28 @@ module.exports = function init(site) {
     if (where['name']) {
       where.$or = []
       where.$or.push({
-        'name_ar': site.get_RegExp(where['name'], 'i')
+        'name_Ar': site.get_RegExp(where['name'], 'i')
       },{
-        'name_en': site.get_RegExp(where['name'], 'i')
+        'name_En': site.get_RegExp(where['name'], 'i')
       }
       )
       delete where['name']
     }
     
 
-    // if (where["name_ar"]) {
-    //   where["name_ar"] = new RegExp(where["name_ar"], "i");
+    // if (where["name_Ar"]) {
+    //   where["name_Ar"] = new RegExp(where["name_Ar"], "i");
     // }
 
-    // if (where["name_ar"] == undefined ||where["name_ar"] == ""  ) {
-    // delete where["name_ar"]
+    // if (where["name_Ar"] == undefined ||where["name_Ar"] == ""  ) {
+    // delete where["name_Ar"]
     // }
 
-    // if (where["name_en"]) {
-    //   where["name_en"] = new RegExp(where["name_en"], "i");
+    // if (where["name_En"]) {
+    //   where["name_En"] = new RegExp(where["name_En"], "i");
     // }
-    // if (where["name_en"] == undefined ||where["name_en"] == ""  ) {
-    //   delete where["name_en"]
+    // if (where["name_En"] == undefined ||where["name_En"] == ""  ) {
+    //   delete where["name_En"]
     //   }
     let limit = 10;
     let skip;

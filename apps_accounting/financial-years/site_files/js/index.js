@@ -52,7 +52,7 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
     }
     const v = site.validated('#financialYearAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -117,7 +117,7 @@ app.controller("financial_years", function ($scope, $http, $timeout) {
     }
     const v = site.validated('#financialYearUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

@@ -98,8 +98,8 @@ module.exports = function init(site) {
     order_doc.status = {
       id: 1,
       name: 'new',
-      ar: 'طلب جديد',
-      en: 'New Order',
+      Ar: 'طلب جديد',
+      En: 'New Order',
     };
 
     let lastOrder = site.order_list[site.order_list.length - 1] || 0;

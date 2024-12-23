@@ -13,7 +13,7 @@
     border-radius: 0px 0px 0px 0px;
     transition: all 0.5s ease;
   }
-  .en .main-menu {
+  .En .main-menu {
     left: 0px;
     right: auto;
   }
@@ -50,7 +50,7 @@
     display: none;
     box-shadow: 1px 1px 8px 0px #000;
   }
-  .en .user-menu {
+  .En .user-menu {
     right: 50px;
     left: auto;
   }

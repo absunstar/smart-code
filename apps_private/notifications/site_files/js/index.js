@@ -79,7 +79,7 @@ app.controller("notifications", function ($scope, $http, $interval) {
     let where = {};
 
     if ($scope.search.source) {
-      where["source.ar"] = $scope.search.source.ar;
+      where["source.Ar"] = $scope.search.source.Ar;
     }
 
     if ($scope.search.user && $scope.search.user.id) {
@@ -87,11 +87,11 @@ app.controller("notifications", function ($scope, $http, $interval) {
     }
 
     if ($scope.search.message) {
-      where["message.ar"] = $scope.search.message;
+      where["message.Ar"] = $scope.search.message;
     }
 
     if ($scope.search.value) {
-      where["value.ar"] = $scope.search.value;
+      where["value.Ar"] = $scope.search.value;
     }
 
     if ($scope.search.fromDate) {

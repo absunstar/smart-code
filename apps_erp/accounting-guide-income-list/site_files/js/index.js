@@ -24,7 +24,7 @@ app.controller("accounting_guide_income_list", function ($scope, $http, $timeout
 
     const v = site.validated('#guideIncomeListAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -84,7 +84,7 @@ app.controller("accounting_guide_income_list", function ($scope, $http, $timeout
 
     const v = site.validated('#guideIncomeListUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 

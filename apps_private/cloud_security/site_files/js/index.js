@@ -97,8 +97,8 @@ app.controller("security", function ($scope, $http, $interval) {
                 $scope.screens.forEach(s => {
                   let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
-                    s.name_ar = newname.ar;
-                    s.name_en = newname.en;
+                    s.name_Ar = newname.Ar;
+                    s.name_En = newname..En;
                   }
 
                 })
@@ -201,8 +201,8 @@ app.controller("security", function ($scope, $http, $interval) {
     }
     $scope.user.roles.push({
       name: role.name,
-      en: role.en,
-      ar: role.ar
+      En: role.En,
+      Ar: role.Ar
     });
     $scope.role = {};
   };
@@ -389,7 +389,7 @@ app.controller("security", function ($scope, $http, $interval) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_Ar: 1, name_En: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -412,8 +412,8 @@ app.controller("security", function ($scope, $http, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,

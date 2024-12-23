@@ -4,47 +4,47 @@ module.exports = function init(site) {
 
 
   let source = {
-    en: 'Shifts System',
-    ar: 'نظام الشيفتات'
+    En: 'Shifts System',
+    Ar: 'نظام الشيفتات'
   }
 
   let image_url = '/images/shift.png'
   let add_message = {
-    en: 'New Shift Added',
-    ar: 'تم إضافة شيفت جديدة'
+    En: 'New Shift Added',
+    Ar: 'تم إضافة شيفت جديدة'
   }
 
   let update_message = {
-    en: 'Shift Updated',
-    ar: 'تم تعديل شيفت'
+    En: 'Shift Updated',
+    Ar: 'تم تعديل شيفت'
   }
 
   let delete_message = {
-    en: ' Shift Deleted',
-    ar: 'تم حذف شيفت '
+    En: ' Shift Deleted',
+    Ar: 'تم حذف شيفت '
   }
 
 
   if (site.feature('school')) {
 
     source = {
-      en: 'School Years System',
-      ar: 'نظام الأعوام الدراسية'
+      En: 'School Years System',
+      Ar: 'نظام الأعوام الدراسية'
     }
 
     add_message = {
-      en: 'New School Year Added',
-      ar: 'تم إضافة عام دراسي جديدة'
+      En: 'New School Year Added',
+      Ar: 'تم إضافة عام دراسي جديدة'
     }
 
     update_message = {
-      en: 'School Year Updated',
-      ar: 'تم تعديل عام دراسي'
+      En: 'School Year Updated',
+      Ar: 'تم تعديل عام دراسي'
     }
 
     delete_message = {
-      en: ' School Year Deleted',
-      ar: 'تم حذف عام دراسي '
+      En: ' School Year Deleted',
+      Ar: 'تم حذف عام دراسي '
     }
   }
 
@@ -58,8 +58,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -78,8 +78,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -99,8 +99,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

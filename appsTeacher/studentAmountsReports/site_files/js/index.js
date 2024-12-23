@@ -5,7 +5,7 @@ app.controller("studentAmountsReports", function ($scope, $http, $timeout) {
   $scope.getAll = function (search) {
     const v = site.validated("#studentAmountsReportsSearch");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

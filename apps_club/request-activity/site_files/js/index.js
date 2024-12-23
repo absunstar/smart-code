@@ -90,7 +90,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     }
     const v = site.validated('#customerAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -152,7 +152,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     const v = site.validated('#requestActivityAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -193,7 +193,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
               payable_list: response.data.doc.payable_list,
               hall: request_doc.hall,
               shift: request_doc.shift,
-              activity_name_ar: request_doc.activity_name_ar,
+              activity_name_Ar: request_doc.activity_name_Ar,
               activity_name_en: request_doc.activity_name_en,
               currency: request_doc.currency,
               payment_method: request_doc.payment_method,
@@ -206,8 +206,8 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
               total_discount: request_doc.total_discount,
               source_type: {
                 id: 4,
-                en: "Orders Activity",
-                ar: "طلب نشاط"
+                En: "Orders Activity",
+                Ar: "طلب نشاط"
               },
               active: true
             };
@@ -240,7 +240,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
           trainer: request_activity.trainer,
           hall: request_activity.hall,
           shift: shift,
-          activity_name_ar: request_activity.activity_name_ar,
+          activity_name_Ar: request_activity.activity_name_Ar,
           activity_name_en: request_activity.activity_name_en,
           date_from: request_activity.date_from,
           date_to: request_activity.date_to,
@@ -250,8 +250,8 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
           total_discount: request_activity.total_discount,
           source_type: {
             id: 4,
-            en: "Orders Activity",
-            ar: "طلب نشاط"
+            En: "Orders Activity",
+            Ar: "طلب نشاط"
           },
           active: true
         };
@@ -321,8 +321,8 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
 
-    let name_lang = 'name_ar';
-    if ('##session.lang##' === 'En') name_lang = 'name_en';
+    let name_lang = 'name_Ar';
+    if ('##session.lang##' === 'En') name_lang = 'name_En';
 
     let ip = '127.0.0.1';
     let port = '60080';
@@ -377,10 +377,10 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
         value: '##word.customer##'
       });
 
-    if ($scope.account_invoices.activity_name_ar)
+    if ($scope.account_invoices.activity_name_Ar)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.activity_name_ar,
+        value2: $scope.account_invoices.activity_name_Ar,
         value: 'Activity'
       });
 
@@ -487,7 +487,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#requestActivityUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -630,8 +630,8 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_Ar: 1, name_En: 1,
+          minor_currency_Ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -685,7 +685,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1, name_en: 1,
+            name_Ar: 1, name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -770,7 +770,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
         url: "/api/activity/all",
         data: {
           where: { name: $scope.search_activity },
-          select: { id: 1, name_ar: 1, name_en: 1, code: 1, activities_price: 1, complex_activities_list: 1, attend_count: 1, available_period: 1, complex_activity: 1 }
+          select: { id: 1, name_Ar: 1, name_En: 1, code: 1, activities_price: 1, complex_activities_list: 1, attend_count: 1, available_period: 1, complex_activity: 1 }
         }
       }).then(
         function (response) {
@@ -794,7 +794,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/hall/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, capaneighborhood: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, capaneighborhood: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -844,7 +844,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           value: 1,
           type: 1
         }
@@ -889,8 +889,8 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
 
   $scope.changeActivity = function (request_activity) {
     request_activity.activity_id = $scope.activity.id;
-    request_activity.activity_name_ar = $scope.activity.name_ar;
-    request_activity.activity_name_en = $scope.activity.name_en;
+    request_activity.activity_name_Ar = $scope.activity.name_Ar;
+    request_activity.activity_name_En= $scope.activity.name_En;
     request_activity.complex_activities_list = $scope.activity.complex_activities_list;
     request_activity.attend_count = $scope.activity.attend_count || null;
     request_activity.available_period = $scope.activity.available_period || 0;
@@ -925,8 +925,8 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     $scope.attend_activity.attend_activity_list.unshift({
       id: s.activity_id || s.id,
       trainer_attend: s.trainer_attend,
-      name_ar: s.name_ar || s.activity_name_ar,
-      name_en: s.name_en || s.activity_name_en,
+      name_Ar: s.name_Ar || s.activity_name_Ar,
+      name_En: s.name_En || s.activity_name_en,
       attend_date: new Date(),
       attend_time: {
         hour: new Date().getHours(),
@@ -1007,7 +1007,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     } else {
       $scope.request_activity.discountes = $scope.request_activity.discountes || [];
       $scope.request_activity.discountes.push({
-        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
+        name_Ar: $scope.discount.name_Ar, name_En: $scope.discount.name_En,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
@@ -1081,7 +1081,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -1167,7 +1167,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

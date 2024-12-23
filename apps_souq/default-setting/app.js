@@ -11,8 +11,8 @@ module.exports = function init(site) {
       warning_message_ad_list: [],
       status: {
         id: 1,
-        en: 'Active',
-        ar: 'نشط',
+        En: 'Active',
+        Ar: 'نشط',
       },
     },
     stores_settings: {},

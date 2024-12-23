@@ -3,14 +3,14 @@ module.exports = function init(site) {
   let collection_name = 'hr_employee_offer'
 
   let source = {
-    en : 'Jobs And Employees System' ,
-    ar : 'نظام الوظائف والموظفين'
+    En : 'Jobs And Employees System' ,
+    Ar : 'نظام الوظائف والموظفين'
   }
 
   let image_url = '/images/pic_offer.jpg'
-  let add_message = {en : 'New Employee Offer Added' , ar : ' تم إضافة مكافئة جديد'}
-  let update_message =  {en : 'Employee Offer updated' , ar : 'تم تعديل المكافئة'}
-  let delete_message =  {en : 'Employee Offer deleted' , ar : 'تم حذف المكافئة '}
+  let add_message = {En : 'New Employee Offer Added' , Ar : ' تم إضافة مكافئة جديد'}
+  let update_message =  {En : 'Employee Offer updated' , Ar : 'تم تعديل المكافئة'}
+  let delete_message =  {En : 'Employee Offer deleted' , Ar : 'تم حذف المكافئة '}
 
 
   site.on('mongodb after insert', function (result) {
@@ -21,8 +21,8 @@ module.exports = function init(site) {
           message: add_message ,
           value: { 
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar},
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar},
           add: result.doc,
           action: 'add'
         }, result : result })
@@ -37,8 +37,8 @@ module.exports = function init(site) {
           message: update_message ,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar},
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar},
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
         }, result : result })
@@ -54,8 +54,8 @@ module.exports = function init(site) {
           message: delete_message ,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

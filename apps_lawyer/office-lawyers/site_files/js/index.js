@@ -23,7 +23,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
 
     const v = site.validated('#officeLawyersAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -91,7 +91,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
 
     const v = site.validated('#officeLawyersUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -232,7 +232,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -260,7 +260,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -302,7 +302,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -324,7 +324,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -347,7 +347,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       url: "/api/jobs/all",
       data: {
         select: {
-          id: 1, active: 1, trainer: 1, name_ar: 1, name_en: 1, code: 1
+          id: 1, active: 1, trainer: 1, name_Ar: 1, name_En: 1, code: 1
         },
         where: {
           active: true
@@ -421,8 +421,8 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1
         }
       }

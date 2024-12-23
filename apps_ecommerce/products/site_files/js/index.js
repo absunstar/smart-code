@@ -22,7 +22,7 @@ app.controller('products', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#productsAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -60,7 +60,7 @@ app.controller('products', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#productsUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

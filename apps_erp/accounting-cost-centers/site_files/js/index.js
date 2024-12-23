@@ -52,7 +52,7 @@ app.controller("accounting_cost_centers", function ($scope, $http, $timeout) {
 
     const v = site.validated('#costCentersAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -110,7 +110,7 @@ app.controller("accounting_cost_centers", function ($scope, $http, $timeout) {
 
     const v = site.validated('#costCentersUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       $scope.busy = false;
       return;
     }
@@ -244,7 +244,7 @@ app.controller("accounting_cost_centers", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           response.data.list.forEach(n => {
-            n.name2 = n.code + '-' + n.name_ar;
+            n.name2 = n.code + '-' + n.name_Ar;
           });
           $scope.count = response.data.count;
         }

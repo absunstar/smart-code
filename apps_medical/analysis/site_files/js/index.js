@@ -21,7 +21,7 @@ app.controller("analysis", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated("#analysisAddModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -56,7 +56,7 @@ app.controller("analysis", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated("#analysisUpdateModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

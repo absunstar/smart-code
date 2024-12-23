@@ -52,8 +52,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
                   if (_s.name) {
                     let newname = data.find((el) => el.name == _s.name.replace(/-/g, '_'));
                     if (newname) {
-                      _s.name_ar = newname.ar;
-                      _s.name_en = newname.en;
+                      _s.name_Ar = newname.Ar;
+                      _s.name_En = newname..En;
                     }
                   }
                 });
@@ -77,7 +77,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
 
     const v = site.validated('#viewManageUserModal');
     if (!v.ok && type == 'password') {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -355,8 +355,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       } else {
         $scope.store.store_status = {
           id: 2,
-          en: 'Under review',
-          ar: 'قيد المراجعة',
+          En: 'Under review',
+          Ar: 'قيد المراجعة',
         };
       }
     }
@@ -367,7 +367,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#storeAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -428,7 +428,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#storeUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -450,8 +450,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     } else {
       $scope.store.store_status = {
         id: 2,
-        en: 'Under review',
-        ar: 'قيد المراجعة',
+        En: 'Under review',
+        Ar: 'قيد المراجعة',
       };
     }
     $scope.busy = true;
@@ -807,8 +807,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.error = '';
     manage_order.status = {
       id: 6,
-      en: 'was canceled',
-      ar: 'تم الإلغاء',
+      En: 'was canceled',
+      Ar: 'تم الإلغاء',
     };
 
     $scope.busy = true;

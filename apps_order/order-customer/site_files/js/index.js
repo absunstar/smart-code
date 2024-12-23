@@ -45,8 +45,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           details: [],
           status: {
             id: 1,
-            en: "Opened",
-            ar: "مفتوحة"
+            En: "Opened",
+            Ar: "مفتوحة"
           }
         };
 
@@ -75,13 +75,13 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
       const v = site.validated('#OrderCustomerAddModal');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         $scope.order_customer.posting = false;
 
         $scope.order_customer.status = {
           id: 1,
-          en: "Opened",
-          ar: "مفتوحة"
+          En: "Opened",
+          Ar: "مفتوحة"
         }
         return;
       };
@@ -93,8 +93,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
         $scope.order_customer.status = {
           id: 1,
-          en: "Opened",
-          ar: "مفتوحة"
+          En: "Opened",
+          Ar: "مفتوحة"
         }
         return;
 
@@ -114,8 +114,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
           $scope.order_customer.status = {
             id: 1,
-            en: "Opened",
-            ar: "مفتوحة"
+            En: "Opened",
+            Ar: "مفتوحة"
           }
           return;
         }
@@ -145,8 +145,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
               $scope.order_customer.status = {
                 id: 1,
-                en: "Opened",
-                ar: "مفتوحة"
+                En: "Opened",
+                Ar: "مفتوحة"
               }
             }
           }
@@ -212,7 +212,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
       _kitchen.data.push({
         type: 'text2b',
-        value2: _kitchen.name_ar,
+        value2: _kitchen.name_Ar,
         value: 'Kitchen'
       });
 
@@ -230,7 +230,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       if (_order_customer.customer)
         _kitchen.data.push({
           type: 'text2',
-          value2: _order_customer.customer.name_ar,
+          value2: _order_customer.customer.name_Ar,
           value: 'Customer'
         });
 
@@ -263,7 +263,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           _kitchen.has_items = true;
           _kitchen.data.push({
             type: 'text3',
-            value: item_book.size_ar,
+            value: item_book.size_Ar,
             value2: item_book.count,
             value3: item_book.notes || ' ... '
           });
@@ -423,7 +423,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.customer)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.customer.name_ar,
+        value2: $scope.account_invoices.customer.name_Ar,
         value: '##word.cutomer##'
       });
 
@@ -457,7 +457,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         obj_print.data.push({
           type: 'item',
           value: _items.count,
-          value2: _items.size_ar,
+          value2: _items.size_Ar,
           value3: _items.total
         })
       });
@@ -570,7 +570,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#OrderCustomerUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -613,8 +613,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           items: order_customer.under_paid.items,
           source_type: {
             id: 5,
-            en: "Orders Customers",
-            ar: "طلبات العملاء"
+            En: "Orders Customers",
+            Ar: "طلبات العملاء"
           },
           active: true
         };
@@ -751,7 +751,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           image_url: 1,
           code: 1
         }
@@ -779,8 +779,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_Ar: 1, name_En: 1,
+          minor_currency_Ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -839,7 +839,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1, name_en: 1,
+            name_Ar: 1, name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -869,7 +869,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,
@@ -900,7 +900,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           printer_path: 1,
           code: 1
         }
@@ -928,7 +928,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           value: 1
         }
       }
@@ -955,7 +955,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           value: 1,
           type: 1
         }
@@ -1019,7 +1019,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {
@@ -1048,7 +1048,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -1076,7 +1076,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -1196,8 +1196,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
         $scope.order_customer.status = {
           id: 2,
-          en: "Closed Of Orders Screen",
-          ar: "مغلق من شاشة الأوردرات"
+          En: "Closed Of Orders Screen",
+          Ar: "مغلق من شاشة الأوردرات"
         };
 
         $scope.order_customer.under_paid = {
@@ -1291,8 +1291,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           }
         });
         _size.item_id = $scope.items.id;
-        _size.name_ar = $scope.items.name_ar;
-        _size.name_en = $scope.items.name_en;
+        _size.name_Ar = $scope.items.name_Ar;
+        _size.name_En = $scope.items.name_En;
       });
     }
     site.showModal('#sizesModal');
@@ -1324,7 +1324,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     }
 
     $scope.order_customer.items.forEach(el => {
-      if (item.size_ar == el.size_ar && item.barcode == el.barcode && !el.printed) {
+      if (item.size_Ar == el.size_Ar && item.barcode == el.barcode && !el.printed) {
         exist = true;
         el.total += (item.price - item.discount.value);
         el.count += 1;
@@ -1343,11 +1343,11 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         $scope.order_customer.items.push({
           item_id: item.item_id,
           kitchen: kitchenBranch,
-          name_ar: item.name_ar,
-          name_en: item.name_en,
+          name_Ar: item.name_Ar,
+          name_En: item.name_En,
           store: item.store,
           barcode: item.barcode,
-          size_ar: item.size_ar,
+          size_Ar: item.size_Ar,
           size_en: item.size_en,
           item_group: item.item_group,
           unit: item.unit,
@@ -1384,8 +1384,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       $scope.order_customer.taxes = $scope.order_customer.taxes || [];
       if ($scope.tax.value) {
         $scope.order_customer.taxes.push({
-          name_ar: $scope.tax.name_ar,
-          name_en: $scope.tax.name_en,
+          name_Ar: $scope.tax.name_Ar,
+          name_En: $scope.tax.name_En,
           value: $scope.tax.value
         });
       };
@@ -1396,7 +1396,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   $scope.deleteTax = function (_tx) {
     for (let i = 0; i < $scope.order_customer.taxes.length; i++) {
       let tx = $scope.order_customer.taxes[i];
-      if (tx.name_ar == _tx.name_ar && tx.value == _tx.value) {
+      if (tx.name_Ar == _tx.name_Ar && tx.value == _tx.value) {
         $scope.order_customer.taxes.splice(i, 1);
       };
     };
@@ -1412,7 +1412,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     } else {
       $scope.order_customer.discountes = $scope.order_customer.discountes || [];
       $scope.order_customer.discountes.push({
-        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
+        name_Ar: $scope.discount.name_Ar, name_En: $scope.discount.name_En,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
@@ -1422,7 +1422,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   $scope.deleteDiscount = function (_ds) {
     for (let i = 0; i < $scope.order_customer.discountes.length; i++) {
       let ds = $scope.order_customer.discountes[i];
-      if (ds.name_ar == _ds.name_ar && ds.value == _ds.value && ds.type == _ds.type) {
+      if (ds.name_Ar == _ds.name_Ar && ds.value == _ds.value && ds.type == _ds.type) {
         $scope.order_customer.discountes.splice(i, 1);
       };
     };
@@ -1522,7 +1522,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_Ar: 1, name_En: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1568,7 +1568,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

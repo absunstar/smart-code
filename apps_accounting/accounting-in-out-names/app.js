@@ -3,10 +3,10 @@ module.exports = function init(site) {
   const $in_out_names = site.connectCollection("in_out_names")
 
   // $in_out_names.deleteDuplicate({
-  //   name_ar: 1, name_en: 1
+  //   name_Ar: 1, name_En: 1
   // }, (err, result) => {
   //   $in_out_names.createUnique({
-  //     name_ar: 1, name_en: 1
+  //     name_Ar: 1, name_En: 1
   //   }, (err, result) => {
 
   //   })
@@ -21,39 +21,39 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
     $in_out_names.add({
-      name_ar: "مسمى وارد إفتراضي",
-      name_en: "Default InComing",
+      name_Ar: "مسمى وارد إفتراضي",
+      name_En: "Default InComing",
       image_url: '/images/in_out_name.png',
       in: true,
       code: "1-Test",
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, in_out_doc) => {
     
       $in_out_names.add({
-        name_ar: "مسمى منصرف إفتراضي",
-        name_en: "Default OutComing",
+        name_Ar: "مسمى منصرف إفتراضي",
+        name_En: "Default OutComing",
         code: "2-Test",
         image_url: '/images/in_out_name.png',
         out: true,
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true
       }, (errOut, outDoc) => { 

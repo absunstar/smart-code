@@ -58,7 +58,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
 
     const v = site.validated('#guideAccountsAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -143,7 +143,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
 
     const v = site.validated('#guideAccountsUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -280,7 +280,7 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           response.data.list.forEach(n => {
-            n.name2 = n.code + '-' + n.name_ar;
+            n.name2 = n.code + '-' + n.name_Ar;
           });
 
           $scope.list = response.data.list;
@@ -395,12 +395,12 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
   $scope.pushCostCenters = function () {
     $scope.accounting_guide_accounts = $scope.accounting_guide_accounts || [];
     $scope.accounting_guide_accounts.cost_list = $scope.accounting_guide_accounts.cost_list || [];
-    if ($scope.accounting_guide_accounts.cost_center.name_ar) {
+    if ($scope.accounting_guide_accounts.cost_center.name_Ar) {
 
       $scope.accounting_guide_accounts.cost_list.unshift({
         code: $scope.accounting_guide_accounts.cost_center.code,
-        name_ar: $scope.accounting_guide_accounts.cost_center.name_ar,
-        name_en: $scope.accounting_guide_accounts.cost_center.name_en
+        name_Ar: $scope.accounting_guide_accounts.cost_center.name_Ar,
+        name_En: $scope.accounting_guide_accounts.cost_center.name_En
       });
     };
   };

@@ -19,7 +19,7 @@ app.controller("vehicles", function ($scope, $http, $timeout) {
     const v = site.validated('#vehiclesAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -59,7 +59,7 @@ app.controller("vehicles", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#vehiclesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -154,7 +154,7 @@ app.controller("vehicles", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/vehicles_group/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
         where: where
       }
     }).then(
@@ -255,7 +255,7 @@ app.controller("vehicles", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1 }
       }
     }).then(
       function (response) {

@@ -3,14 +3,14 @@ module.exports = function init(site) {
   let collection_name = 'stores_stock'
 
  let source = {
-    en : 'Stores System' ,
-    ar : 'نظام المخازن'
+    En : 'Stores System' ,
+    Ar : 'نظام المخازن'
   }
 
   let image_url = '/images/store_stock.png'
-  let add_message = {en : 'New Store Offer Added' , ar : 'تم إضافة عرض جديد'}
-  let update_message =  {en : ' Store Offer updated' , ar : 'تم تعديل عرض'}
-  let delete_message =  {en : ' Store Offer dleteted' , ar : 'تم حذف عرض '}
+  let add_message = {En : 'New Store Offer Added' , Ar : 'تم إضافة عرض جديد'}
+  let update_message =  {En : ' Store Offer updated' , Ar : 'تم تعديل عرض'}
+  let delete_message =  {En : ' Store Offer dleteted' , Ar : 'تم حذف عرض '}
 
 
   site.on('mongodb after insert', function (result) {
@@ -23,8 +23,8 @@ module.exports = function init(site) {
           message: add_message ,
           value: { 
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -42,8 +42,8 @@ module.exports = function init(site) {
           message: update_message ,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -63,8 +63,8 @@ module.exports = function init(site) {
           message: delete_message ,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

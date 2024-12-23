@@ -18,7 +18,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#deliveryEmployeeAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -57,7 +57,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#deliveryEmployeeUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -185,7 +185,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
       url: "/api/jobs/all",
       data: {
         select: {
-          id: 1, active: 1, trainer: 1, name_ar: 1, name_en: 1, code: 1
+          id: 1, active: 1, trainer: 1, name_Ar: 1, name_En: 1, code: 1
         },
         where: {
           active: true
@@ -236,7 +236,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -344,7 +344,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -366,7 +366,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {

@@ -28,8 +28,8 @@ module.exports = function init(site) {
     if (where) {
       let store_id = 0;
 
-      let size_ar = where.size_ar || '';
-      let size_en = where.size_en || '';
+      let size_Ar = where.size_Ar || '';
+      let size_En= where.size_En|| '';
       let barcode = where.barcode || '';
 
       if (where.store) store_id = where.store.id
@@ -50,9 +50,9 @@ module.exports = function init(site) {
         delete where['size_ar']
       }
 
-      if (where && where['size_en']) {
-        where['sizes.size_en'] = site.get_RegExp(where['size_en'], 'i')
-        delete where['size_en']
+      if (where && where['size_En']) {
+        where['sizes.size_En'] = site.get_RegExp(where['size_En'], 'i')
+        delete where['size_En']
       }
 
       if (where && where['barcode']) {
@@ -89,7 +89,7 @@ module.exports = function init(site) {
           docs.forEach(_doc => {
             if (_doc.sizes && _doc.sizes.length > 0)
               _doc.sizes.forEach(_sizes => {
-                if (_sizes && (((_sizes.size_ar && _sizes.size_ar.contains(size_ar)) || (_sizes.size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode === barcode)) || (!size_ar && !size_en && !barcode))) {
+                if (_sizes && (((_sizes.size_Ar && _sizes.size_ar.contains(size_Ar)) || (_sizes.size_En&& _sizes.size_en.contains(size_en)) || (_sizes.barcode && _sizes.barcode === barcode)) || (!size_Ar && !size_En&& !barcode))) {
 
                   if (_sizes.branches_list && _sizes.branches_list.length > 0)
                     _sizes.branches_list.forEach(_branch => {
@@ -99,7 +99,7 @@ module.exports = function init(site) {
                           i_store_list.push({
                             name: _doc.name,
                             item_group: _doc.item_group,
-                            size_ar: _sizes.size_ar,
+                            size_Ar: _sizes.size_Ar,
                             barcode: _sizes.barcode,
                             size_en: _sizes.size_en,
                             average_cost: _sizes.average_cost,

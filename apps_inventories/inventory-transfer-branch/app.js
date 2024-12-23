@@ -11,10 +11,10 @@ module.exports = function init(site) {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectStoreOut.sizes_list) objectStoreOut.sizes_list.forEach(_size => {
             if (_items.barcode === _size.barcode) {
-              _items.size_ar = _size.size_ar
-              _items.size_en = _size.size_en
-              _items.name_ar = _size.name_ar
-              _items.name_en = _size.name_en
+              _items.size_Ar = _size.size_ar
+              _items.size_En= _size.size_en
+              _items.name_Ar = _size.name_Ar
+              _items.name_En = _size.name_En
             }
           })
         });
@@ -312,7 +312,7 @@ module.exports = function init(site) {
 
                     let delObj = {
                       name: itm.name,
-                      size_ar: itm.size_ar,
+                      size_Ar: itm.size_Ar,
                       store: result.doc.store,
                       vendor: result.doc.vendor,
                       item: itm
@@ -446,9 +446,9 @@ module.exports = function init(site) {
       delete where['size_ar']
     }
 
-    if (where['size_en']) {
-      where['items.size_en'] = site.get_RegExp(where['size_en'], 'i')
-      delete where['size_en']
+    if (where['size_En']) {
+      where['items.size_En'] = site.get_RegExp(where['size_En'], 'i')
+      delete where['size_En']
     }
 
     if (where['barcode']) {
@@ -541,7 +541,7 @@ module.exports = function init(site) {
               _doc.items.forEach(_item => {
                 _item.unit = {
                   id: unit.id,
-                  name_ar: unit.name_ar, name_en: unit.name_en,
+                  name_Ar: unit.name_Ar, name_En: unit.name_En,
                   convert: 1
                 }
               });

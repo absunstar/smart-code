@@ -19,7 +19,7 @@ app.controller("comments_types", function ($scope, $http, $timeout) {
     const v = site.validated('#commentsTypesAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -56,7 +56,7 @@ app.controller("comments_types", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#commentsTypesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

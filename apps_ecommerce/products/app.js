@@ -7,23 +7,23 @@ module.exports = function init(site) {
         product_group: {
           id: doc.id,
           code: doc.code,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
-        name_ar: "منتج إفتراضي",
-        name_en: "Default Product",
+        name_Ar: "منتج إفتراضي",
+        name_En: "Default Product",
         code: "1-Test",
         price: 1,
         image_url: "/images/product.png",
         company: {
           id: doc.company.id,
-          name_ar: doc.company.name_ar,
-          name_en: doc.company.name_en,
+          name_Ar: doc.company.name_Ar,
+          name_En: doc.company.name_En,
         },
         branch: {
           code: doc.branch.code,
-          name_ar: doc.branch.name_ar,
-          name_en: doc.branch.name_en,
+          name_Ar: doc.branch.name_Ar,
+          name_En: doc.branch.name_En,
         },
         active: true,
       },
@@ -78,9 +78,9 @@ module.exports = function init(site) {
         /*         'branch.code': site.get_branch(req).code,
          */
         $or: [{
-          'name_ar': products_doc.name_ar
+          'name_Ar': products_doc.name_Ar
         },{
-          'name_en': products_doc.name_en
+          'name_En': products_doc.name_En
         }]
    
       }

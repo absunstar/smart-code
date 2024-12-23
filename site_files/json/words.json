@@ -264,7 +264,7 @@
     "Ar": "الإسم"
   },
   {
-    "name": "token_en",
+    "name": "token_En",
     "En": "En. Token",
     "Ar": "الرمز بالإنجليزي"
   },
@@ -849,17 +849,17 @@
     "Ar": "المورد"
   },
   {
-    "name": "name_ar",
+    "name": "name_Ar",
     "En": "Name In Ar",
     "Ar": "اللإسم بالعربية"
   },
   {
-    "name": "name_en",
+    "name": "name_En",
     "En": "Name In En",
     "Ar": "اللإسم بالإنجليزية"
   },
   {
-    "name": "size_en",
+    "name": "size_En",
     "En": "Size In En",
     "Ar": "المقاس بالإنجليزية"
   },

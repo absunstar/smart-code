@@ -46,25 +46,25 @@ module.exports = function init(site) {
     $tables.add({
       tables_group: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       code: "1-Test",
-      name_ar: "طاولة إفتراضية",
-      name_en: "Default Table",
+      name_Ar: "طاولة إفتراضية",
+      name_En: "Default Table",
       busy: false,
       minimum: 1,
       maxmum: 5,
       image_url: '/images/tables.png',
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en
+        name_Ar: doc.company.name_Ar,
+        name_En: doc.company.name_En
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en
+        name_Ar: doc.branch.name_Ar,
+        name_En: doc.branch.name_En
       },
       active: true
     }, (err, doc) => { })
@@ -100,8 +100,8 @@ module.exports = function init(site) {
       {
         module_name: "public",
         name: "order_invoice_tables",
-        en: "Order Invoice Tables",
-        ar: "طلبات الطاولات",
+        En: "Order Invoice Tables",
+        Ar: "طلبات الطاولات",
         permissions: ["order_invoice_ui"]
       }
     ]
@@ -182,9 +182,9 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name_ar': tables_doc.name_ar
+          'name_Ar': tables_doc.name_Ar
         },{
-          'name_en': tables_doc.name_en
+          'name_En': tables_doc.name_En
         }]
      
       }
@@ -258,7 +258,7 @@ module.exports = function init(site) {
 
 
   let  user = {
-      name: tables_doc.name_ar,
+      name: tables_doc.name_Ar,
       mobile: tables_doc.mobile,
       username: tables_doc.username,
       email: tables_doc.username,
@@ -271,8 +271,8 @@ module.exports = function init(site) {
       {
         module_name: "public",
         name: "order_invoice_tables",
-        en: "Order Invoice Tables",
-        ar: "طلبات الطاولات",
+        En: "Order Invoice Tables",
+        Ar: "طلبات الطاولات",
         permissions: ["order_invoice_ui"]
       }
     ]
@@ -453,12 +453,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], "i");
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], "i");
     }
 
 

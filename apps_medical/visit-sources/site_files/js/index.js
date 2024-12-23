@@ -21,7 +21,7 @@ app.controller("visit_sources", function ($scope, $http, $timeout) {
 
     const v = site.validated('#visitSourcesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -68,7 +68,7 @@ app.controller("visit_sources", function ($scope, $http, $timeout) {
 
     const v = site.validated('#visitSourcesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

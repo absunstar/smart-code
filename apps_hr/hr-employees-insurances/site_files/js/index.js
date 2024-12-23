@@ -58,7 +58,7 @@ app.controller("employees_insurances", function ($scope, $http) {
       method: "POST",
       url: "/api/insurances_slides/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, value: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, value: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -80,7 +80,7 @@ app.controller("employees_insurances", function ($scope, $http) {
       method: "POST",
       url: "/api/facilities_codes/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -133,7 +133,7 @@ app.controller("employees_insurances", function ($scope, $http) {
     let v = site.validated('#addEmployeeInsuranceModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.error = '';

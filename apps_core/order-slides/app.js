@@ -165,12 +165,12 @@ module.exports = function init(site) {
       return
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = new RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = new RegExp(where['name_Ar'], "i");
     }
 
-    if (where['name_en']) {
-      where['name_en'] = new RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = new RegExp(where['name_En'], "i");
     }
     
     $order_slides.findMany({

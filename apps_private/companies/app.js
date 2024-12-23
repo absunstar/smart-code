@@ -2,8 +2,8 @@ module.exports = function init(site) {
   const $companies = site.connectCollection('companies');
 
   site.default_company = {
-    name_ar: 'الشركة الرئيسية',
-    name_en: 'Main Company',
+    name_Ar: 'الشركة الرئيسية',
+    name_En: 'Main Company',
     host: 'company.com',
     username: 'admin@company.com',
     password: 'admin',
@@ -12,8 +12,8 @@ module.exports = function init(site) {
     branch_list: [
       {
         code: 1,
-        name_ar: 'الفرع الرئيسى',
-        name_en: 'Main Branch',
+        name_Ar: 'الفرع الرئيسى',
+        name_En: 'Main Branch',
         charge: [{}],
       },
     ],
@@ -53,8 +53,8 @@ module.exports = function init(site) {
               },
             ],
             profile: {
-              name_ar: doc.name_ar,
-              name_en: doc.name_en,
+              name_Ar: doc.name_Ar,
+              name_En: doc.name_En,
               image_url: doc.image_url,
             },
           });
@@ -66,10 +66,10 @@ module.exports = function init(site) {
   // site.on('[register][company][add]', doc => {
 
   //   $companies.add({
-  //     name_ar: doc.name,
+  //     name_Ar: doc.name,
   //     branch_list: [{
   //       code: 1,
-  //       name_ar: "فرع" + " " + doc.name
+  //       name_Ar: "فرع" + " " + doc.name
   //     }],
   //     active: true,
   //     username: doc.username,
@@ -92,7 +92,7 @@ module.exports = function init(site) {
   //         }],
   //         company_id: doc.id,
   //         profile: {
-  //           name: doc.name_ar,
+  //           name: doc.name_Ar,
   //           image_url: doc.image_url
   //         }
   //       })
@@ -156,7 +156,7 @@ module.exports = function init(site) {
     companies_doc.company = site.get_company(req);
     companies_doc.branch = site.get_branch(req);
 
-    if (!companies_doc.code) companies_doc.code = companies_doc.name_en + '-' + '1';
+    if (!companies_doc.code) companies_doc.code = companies_doc.name_En + '-' + '1';
 
     if (companies_doc.branch_list.length > companies_doc.branch_count) {
       response.error = 'You have exceeded the maximum number of Branches';
@@ -233,23 +233,23 @@ module.exports = function init(site) {
             where: {
               feature: companies_doc.feature,
 
-              $or: [{ name_ar: companies_doc.name_ar }, { name_en: companies_doc.name_en }, { host: companies_doc.host }, { username: companies_doc.username }],
+              $or: [{ name_Ar: companies_doc.name_Ar }, { name_En: companies_doc.name_En }, { host: companies_doc.host }, { username: companies_doc.username }],
             },
           },
           (err, docs) => {
             if (!err && docs && docs.length > 0) {
-              let exist_name_ar = false;
-              let exist_name_en = false;
+              let exist_name_Ar = false;
+              let exist_name_En= false;
               let exist_host = false;
               let exist_username = false;
               docs.forEach((_docs) => {
-                if (_docs.name_ar == companies_doc.name_ar) exist_name_ar = true;
-                else if (_docs.name_en == companies_doc.name_en) exist_name_en = true;
+                if (_docs.name_Ar == companies_doc.name_Ar) exist_name_Ar = true;
+                else if (_docs.name_En == companies_doc.name_En) exist_name_En= true;
                 else if (_docs.host == companies_doc.host) exist_host = true;
                 else if (_docs.username == companies_doc.username) exist_username = true;
               });
 
-              if (exist_name_ar) {
+              if (exist_name_Ar) {
                 response.error = 'Arabic Name Is Exists';
                 res.json(response);
                 return;
@@ -289,8 +289,8 @@ module.exports = function init(site) {
                       },
                     ],
                     profile: {
-                      name_ar: doc.name_ar,
-                      name_en: doc.name_en,
+                      name_Ar: doc.name_Ar,
+                      name_En: doc.name_En,
                       mobile: doc.mobile,
                       image_url: companies_doc.image_url,
                     },
@@ -335,8 +335,8 @@ module.exports = function init(site) {
                   //       },
                   //     ],
                   //     profile: {
-                  //       name_ar: doc.name_ar,
-                  //       name_en: doc.name_en,
+                  //       name_Ar: doc.name_Ar,
+                  //       name_En: doc.name_En,
                   //       mobile: doc.mobile,
                   //       image_url: companies_doc.image_url,
                   //     },
@@ -464,8 +464,8 @@ module.exports = function init(site) {
                       is_company: true,
                       branch_list: branch_list,
                       profile: {
-                        name_ar: companies_doc.name_ar,
-                        name_en: companies_doc.name_en,
+                        name_Ar: companies_doc.name_Ar,
+                        name_En: companies_doc.name_En,
                         mobile: companies_doc.mobile,
                         image_url: companies_doc.image_url,
                       },
@@ -488,8 +488,8 @@ module.exports = function init(site) {
                       ],
                       branch_list: branch_list,
                       profile: {
-                        name_ar: companies_doc.name_ar,
-                        name_en: companies_doc.name_en,
+                        name_Ar: companies_doc.name_Ar,
+                        name_En: companies_doc.name_En,
                         mobile: companies_doc.mobile,
                         image_url: companies_doc.image_url,
                       },

@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'city'
 
   let source = {
-    en: 'Addresses System',
-    ar: 'نظام العناوين'
+    En: 'Addresses System',
+    Ar: 'نظام العناوين'
   }
 
   let image_url = '/images/city.png'
   let add_message = {
-    en: 'New City Added',
-    ar: 'تم إضافة مدينة جديدة'
+    En: 'New City Added',
+    Ar: 'تم إضافة مدينة جديدة'
   }
   let update_message = {
-    en: ' City Updated',
-    ar: 'تم تعديل مدينة'
+    En: ' City Updated',
+    Ar: 'تم تعديل مدينة'
   }
   let delete_message = {
-    en: ' City Deleted',
-    ar: 'تم حذف مدينة '
+    En: ' City Deleted',
+    Ar: 'تم حذف مدينة '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

@@ -430,8 +430,8 @@ module.exports = function init(site) {
                         status: {
                           id: 5,
                           name: 'dont_book',
-                          name_en: 'Do Not Booking',
-                          ar: 'لم يتم الحجز',
+                          name_En: 'Do Not Booking',
+                          Ar: 'لم يتم الحجز',
                         },
                       },
                       (err, doc) => {
@@ -593,8 +593,8 @@ module.exports = function init(site) {
                     status: {
                       id: 5,
                       name: 'dont_book',
-                      name_en: 'Do Not Booking',
-                      ar: 'لم يتم الحجز',
+                      name_En: 'Do Not Booking',
+                      Ar: 'لم يتم الحجز',
                     },
                   },
                   (err, doc) => {
@@ -759,10 +759,10 @@ module.exports = function init(site) {
       where.$or = [];
       where.$or.push(
         {
-          'customer.name_ar': site.get_RegExp(where.search, 'i'),
+          'customer.name_Ar': site.get_RegExp(where.search, 'i'),
         },
         {
-          'customer.name_en': site.get_RegExp(where.search, 'i'),
+          'customer.name_En': site.get_RegExp(where.search, 'i'),
         }
       );
       delete where.search;
@@ -887,8 +887,8 @@ module.exports = function init(site) {
         onlineStatus: 'end',
         status: {
           id: 4,
-          en: 'Done Detected',
-          ar: 'تم الكشف',
+          En: 'Done Detected',
+          Ar: 'تم الكشف',
         },
       },
     });
@@ -972,8 +972,8 @@ module.exports = function init(site) {
         },
         {
           $project: {
-            'selected_doctor.name_ar': 1.0,
-            'selected_doctor.name_en': 1.0,
+            'selected_doctor.name_Ar': 1.0,
+            'selected_doctor.name_En': 1.0,
             'selected_doctor.image_url': 1.0,
             date: 1.0,
             id: 1.0,

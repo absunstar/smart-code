@@ -20,42 +20,42 @@
         "Ar": "الحد الاقصي لطول الكود 8 حروف او ارقام"
     },
     {
-        "id": "customers_name_ar",
+        "id": "customers_name_Ar",
         "En": "Write customer Name In Arabic ",
         "Ar": "يكتب هنا إسم العميل بالعربية"
     },
     {
-        "id": "customers_name_ar",
+        "id": "customers_name_Ar",
         "En": "Couldn't be leave blank ",
         "Ar": "لايمكن ان يترك فارغا"
     },
     {
-        "id": "customers_name_ar",
+        "id": "customers_name_Ar",
         "En": "Name must be in arabic only ",
         "Ar": "يكتب إسم العميل بالعربية فقط"
     },
     {
-        "id": "customers_name_ar",
+        "id": "customers_name_Ar",
         "En": "Max length is 60 digit ",
         "Ar": "الحد الاقصي لطول الإسم 60 حرف"
     },
     {
-        "id": "customers_name_en",
+        "id": "customers_name_En",
         "En": "Write customer Name In English ",
         "Ar": "يكتب هنا إسم العميل بالانجليزية"
     },
     {
-        "id": "customers_name_en",
+        "id": "customers_name_En",
         "En": "Could be leave blank ",
         "Ar": "يمكن ان يترك فارغا"
     },
     {
-        "id": "customers_name_en",
+        "id": "customers_name_En",
         "En": "Name must be in English only ",
         "Ar": "يكتب إسم العميل بالانجليزية فقط"
     },
     {
-        "id": "customers_name_en",
+        "id": "customers_name_En",
         "En": "Max length is 60 digit ",
         "Ar": "الحد الاقصي لطول الإسم 60 حرف"
     },

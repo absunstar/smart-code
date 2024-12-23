@@ -11,10 +11,10 @@ module.exports = function init(site) {
             if (objectAssemble.sizes_list)
               objectAssemble.sizes_list.forEach((_size) => {
                 if (_items.barcode == _size.barcode) {
-                  _items.size_ar = _size.size_ar;
-                  _items.size_en = _size.size_en;
-                  _items.name_ar = _size.name_ar;
-                  _items.name_en = _size.name_en;
+                  _items.size_Ar = _size.size_Ar;
+                  _items.size_En= _size.size_En;
+                  _items.name_Ar = _size.name_Ar;
+                  _items.name_En = _size.name_En;
                 }
               });
           });
@@ -130,8 +130,8 @@ module.exports = function init(site) {
                         _itm.shift = {
                           id: doc.shift.id,
                           code: doc.shift.code,
-                          name_ar: doc.shift.name_ar,
-                          name_en: doc.shift.name_en,
+                          name_Ar: doc.shift.name_Ar,
+                          name_En: doc.shift.name_En,
                         };
 
                         if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -148,8 +148,8 @@ module.exports = function init(site) {
                             _complex.shift = {
                               id: doc.shift.id,
                               code: doc.shift.code,
-                              name_ar: doc.shift.name_ar,
-                              name_en: doc.shift.name_en,
+                              name_Ar: doc.shift.name_Ar,
+                              name_En: doc.shift.name_En,
                             };
                             complex_list.push(_complex);
                           });
@@ -348,8 +348,8 @@ module.exports = function init(site) {
                           _itm.shift = {
                             id: result.doc.shift.id,
                             code: result.doc.shift.code,
-                            name_ar: result.doc.shift.name_ar,
-                            name_en: result.doc.shift.name_en,
+                            name_Ar: result.doc.shift.name_Ar,
+                            name_En: result.doc.shift.name_En,
                           };
 
                           if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -372,8 +372,8 @@ module.exports = function init(site) {
                               _complex.shift = {
                                 id: result.doc.shift.id,
                                 code: result.doc.shift.code,
-                                name_ar: result.doc.shift.name_ar,
-                                name_en: result.doc.shift.name_en,
+                                name_Ar: result.doc.shift.name_Ar,
+                                name_En: result.doc.shift.name_En,
                               };
                               complex_list.push(_complex);
                             });
@@ -463,8 +463,8 @@ module.exports = function init(site) {
                             _itm.shift = {
                               id: result.doc.shift.id,
                               code: result.doc.shift.code,
-                              name_ar: result.doc.shift.name_ar,
-                              name_en: result.doc.shift.name_en,
+                              name_Ar: result.doc.shift.name_Ar,
+                              name_En: result.doc.shift.name_En,
                             };
 
                             if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -482,8 +482,8 @@ module.exports = function init(site) {
                                 _complex.shift = {
                                   id: result.doc.shift.id,
                                   code: result.doc.shift.code,
-                                  name_ar: result.doc.shift.name_ar,
-                                  name_en: result.doc.shift.name_en,
+                                  name_Ar: result.doc.shift.name_Ar,
+                                  name_En: result.doc.shift.name_En,
                                 };
                                 complex_list.push(Object.assign({}, _complex));
                               });
@@ -591,11 +591,11 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        'store.payment_method.ar': site.get_RegExp(search, 'i'),
+        'store.payment_method.Ar': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        'store.payment_method.en': site.get_RegExp(search, 'i'),
+        'store.payment_method.En': site.get_RegExp(search, 'i'),
       });
     }
 
@@ -871,8 +871,8 @@ module.exports = function init(site) {
                             _itm.shift = {
                               id: doc.shift.id,
                               code: doc.shift.code,
-                              name_ar: doc.shift.name_ar,
-                              name_en: doc.shift.name_en,
+                              name_Ar: doc.shift.name_Ar,
+                              name_En: doc.shift.name_En,
                             };
 
                             if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -888,8 +888,8 @@ module.exports = function init(site) {
                                 _complex.shift = {
                                   id: doc.shift.id,
                                   code: doc.shift.code,
-                                  name_ar: doc.shift.name_ar,
-                                  name_en: doc.shift.name_en,
+                                  name_Ar: doc.shift.name_Ar,
+                                  name_En: doc.shift.name_En,
                                 };
                                 
                                 complex_list.push(_complex);

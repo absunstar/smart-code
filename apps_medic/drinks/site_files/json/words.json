@@ -34,12 +34,12 @@
         "Ar": "حذف مشروب "
     },
     {
-        "name": "drink_name_ar",
+        "name": "drink_name_Ar",
         "En": "Drinks Name Ar",
         "Ar": "إسم المشروب بالعربي"
     },
     {
-        "name": "drink_name_en",
+        "name": "drink_name_En",
         "En": "Drinks Name En",
         "Ar": "إسم المشروب بالإنجليزي"
     },

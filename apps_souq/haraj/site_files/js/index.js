@@ -16,9 +16,9 @@ app.controller('haraj', function ($scope, $http, $timeout) {
 
       where['ad_status.id'] = 1;
       if (where['category_id']) {
-        window.history.pushState(null, null, '/category/' + where['category_id'] + '/' + where['category_name_en'] + '-' + where['category_name_ar']);
-        delete where['category_name_ar'];
-        delete where['category_name_en'];
+        window.history.pushState(null, null, '/category/' + where['category_id'] + '/' + where['category_name_En'] + '-' + where['category_name_Ar']);
+        delete where['category_name_Ar'];
+        delete where['category_name_En'];
       }
 
       if (where['country_code'] || where['gov_code']) {
@@ -114,8 +114,8 @@ app.controller('haraj', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           country_code: 1,
         },
@@ -149,8 +149,8 @@ app.controller('haraj', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -180,7 +180,7 @@ app.controller('haraj', function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1 },
       },
     }).then(
       function (response) {
@@ -207,7 +207,7 @@ app.controller('haraj', function ($scope, $http, $timeout) {
           'city.id': city.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1 },
       },
     }).then(
       function (response) {
@@ -421,8 +421,8 @@ app.controller('haraj', function ($scope, $http, $timeout) {
 
       $scope.error = '';
       $scope.search.category_id = c.id;
-      $scope.search.category_name_ar = c.name_ar;
-      $scope.search.category_name_en = c.name_en;
+      $scope.search.category_name_Ar = c.name_Ar;
+      $scope.search.category_name_En= c.name_En;
       $scope.searchAll($scope.search);
       $scope.subCategoriesList = [];
       $scope.subCategoriesList2 = [];
@@ -448,8 +448,8 @@ app.controller('haraj', function ($scope, $http, $timeout) {
   $scope.loadSubCategory2 = function (c) {
     $scope.error = '';
     $scope.search.category_id = c.id;
-    $scope.search.category_name_ar = c.name_ar;
-    $scope.search.category_name_en = c.name_en;
+    $scope.search.category_name_Ar = c.name_Ar;
+    $scope.search.category_name_En= c.name_En;
     $scope.searchAll($scope.search);
     $scope.subCategoriesList2 = [];
     $scope.subCategoriesList3 = [];

@@ -21,7 +21,7 @@ app.controller("customers_group", function ($scope, $http, $timeout) {
 
     const v = site.validated('#customerGroupAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -70,7 +70,7 @@ app.controller("customers_group", function ($scope, $http, $timeout) {
 
     const v = site.validated('#customerGroupUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

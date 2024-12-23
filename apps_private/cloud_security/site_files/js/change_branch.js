@@ -15,8 +15,8 @@ app.controller('changeBranch', function ($scope, $http) {
         $encript: '123',
         company: site.to123({
           id: $scope.user.company.id,
-          name_ar: $scope.user.company.name_ar,
-          name_en: $scope.user.company.name_en,
+          name_Ar: $scope.user.company.name_Ar,
+          name_En: $scope.user.company.name_En,
           item: $scope.user.company.item,
           store: $scope.user.company.store,
           unit: $scope.user.company.unit,
@@ -29,8 +29,8 @@ app.controller('changeBranch', function ($scope, $http) {
         }),
         branch: site.to123({
           code: $scope.user.branch.code,
-          name_ar: $scope.user.branch.name_ar,
-          name_en: $scope.user.branch.name_en,
+          name_Ar: $scope.user.branch.name_Ar,
+          name_En: $scope.user.branch.name_En,
         }),
       },
     }).then(

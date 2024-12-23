@@ -20,22 +20,22 @@ module.exports = function init(site) {
       gov: {
         id: doc.id,
         code: doc.code,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
-      name_ar: "طابق إفتراضي",
-      name_en: "Default Floor",
+      name_Ar: "طابق إفتراضي",
+      name_En: "Default Floor",
       code : '1-Test',
       image_url: '/images/floor.png',
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en
+        name_Ar: doc.company.name_Ar,
+        name_En: doc.company.name_En
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en
+        name_Ar: doc.branch.name_Ar,
+        name_En: doc.branch.name_En
       },
       active: true
     }, (err, doc1) => {

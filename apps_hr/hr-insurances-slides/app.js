@@ -12,20 +12,20 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $insurances_slides.add({
-      name_ar: "شريحة تأمين إفتراضية",
-      name_en : "Default Insurances Slides",
+      name_Ar: "شريحة تأمين إفتراضية",
+      name_En : "Default Insurances Slides",
       image_url: '/images/insurance_slides.png',
       value: 1,
       code: "1-Test",
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, in_out_doc) => { })

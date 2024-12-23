@@ -102,12 +102,12 @@ module.exports = function init(site) {
     let customer = {
       group: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en,
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En,
       },
       code: '1-Test',
-      name_ar: 'عميل إفتراضي',
-      name_en: 'Default Customer',
+      name_Ar: 'عميل إفتراضي',
+      name_En: 'Default Customer',
       branch_list: [
         {
           charge: [{}],
@@ -130,13 +130,13 @@ module.exports = function init(site) {
       image_url: '/images/customer.png',
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en,
+        name_Ar: doc.company.name_Ar,
+        name_En: doc.company.name_En,
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_ar: doc.branch.name_ar,
+        name_Ar: doc.branch.name_Ar,
+        name_Ar: doc.branch.name_Ar,
       },
       active: true,
     };
@@ -149,15 +149,15 @@ module.exports = function init(site) {
     }
 
     if (site.feature('club')) {
-      customer.name_ar = 'مشترك إفتراضي';
-      customer.name_en = 'Default Subscriber';
+      customer.name_Ar = 'مشترك إفتراضي';
+      customer.name_En = 'Default Subscriber';
     } else if (site.feature('school') || site.feature('academy')) {
-      customer.name_ar = 'طالب إفتراضي';
-      customer.name_en = 'Default Student';
+      customer.name_Ar = 'طالب إفتراضي';
+      customer.name_En = 'Default Student';
       customer.image_url = '/images/student.png';
     } else if (site.feature('medical')) {
-      customer.name_ar = 'مريض إفتراضي';
-      customer.name_en = 'Default Patient';
+      customer.name_Ar = 'مريض إفتراضي';
+      customer.name_En = 'Default Patient';
       customer.image_url = '/images/patients.png';
     }
 
@@ -187,8 +187,8 @@ module.exports = function init(site) {
       {
         module_name: 'public',
         name: 'customers_user',
-        en: 'Customers User',
-        ar: 'إدارة العملاء للمستخدم',
+        En: 'Customers User',
+        Ar: 'إدارة العملاء للمستخدم',
         permissions: ['customers_update', 'customers_view', 'customers_ui'],
       },
     ];
@@ -197,8 +197,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'public',
         name: 'order_customer_user',
-        en: 'Order Customers User',
-        ar: 'طلبات العملاء للمستخدمين',
+        En: 'Order Customers User',
+        Ar: 'طلبات العملاء للمستخدمين',
         permissions: ['order_customer_ui', 'order_customer_delete_items'],
       });
     }
@@ -207,8 +207,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'report',
         name: 'report_info_user',
-        en: 'Subscribe Info USer',
-        ar: 'معلومات المشتركين للمستخدم',
+        En: 'Subscribe Info USer',
+        Ar: 'معلومات المشتركين للمستخدم',
         permissions: ['report_info_ui'],
       });
     }
@@ -217,8 +217,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'public',
         name: 'patient_file_user',
-        en: 'Patient file User',
-        ar: 'ملف المريض للمستخدم',
+        En: 'Patient file User',
+        Ar: 'ملف المريض للمستخدم',
         permissions: ['patients_files_ui', 'patients_files_view'],
       });
     }
@@ -231,15 +231,15 @@ module.exports = function init(site) {
         {
           module_name: 'public',
           name: 'exams_customer',
-          en: 'Exams Students',
-          ar: 'إمتحانات الطلاب',
+          En: 'Exams Students',
+          Ar: 'إمتحانات الطلاب',
           permissions: ['exams_ui', 'exams_view'],
         },
         {
           module_name: 'public',
           name: 'libraries_student',
-          en: 'Libraries Student',
-          ar: 'مكتبة الطلاب',
+          En: 'Libraries Student',
+          Ar: 'مكتبة الطلاب',
           permissions: ['libraries_ui', 'libraries_view'],
         }
       );
@@ -248,8 +248,8 @@ module.exports = function init(site) {
     user.permissions = [];
 
     user.profile = {
-      name_ar: customers_doc.name_ar,
-      name_en: customers_doc.name_en,
+      name_Ar: customers_doc.name_Ar,
+      name_En: customers_doc.name_En,
       mobile: customers_doc.mobile,
       image_url: customers_doc.image_url,
       gender: customers_doc.gender,
@@ -280,14 +280,14 @@ module.exports = function init(site) {
 
     customers_doc.company = {
       id: company.id,
-      name_ar: company.name_ar,
-      name_en: company.name_en,
+      name_Ar: company.name_Ar,
+      name_En: company.name_En,
     };
 
     customers_doc.branch = {
       code: branch.code,
-      name_ar: branch.name_ar,
-      name_en: branch.name_en,
+      name_Ar: branch.name_Ar,
+      name_En: branch.name_En,
     };
 
     user.company = customers_doc.company;
@@ -419,8 +419,8 @@ module.exports = function init(site) {
       {
         module_name: 'public',
         name: 'customers_user',
-        en: 'Customers User',
-        ar: 'إدارة العملاء للمستخدم',
+        En: 'Customers User',
+        Ar: 'إدارة العملاء للمستخدم',
         permissions: ['customers_update', 'customers_view', 'customers_ui'],
       },
     ];
@@ -429,8 +429,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'public',
         name: 'order_customer_user',
-        en: 'Order Customers User',
-        ar: 'طلبات العملاء للمستخدمين',
+        En: 'Order Customers User',
+        Ar: 'طلبات العملاء للمستخدمين',
         permissions: ['order_customer_ui', 'order_customer_delete_items'],
       });
     }
@@ -439,8 +439,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'report',
         name: 'report_info_user',
-        en: 'Subscribe Info USer',
-        ar: 'معلومات المشتركين للمستخدم',
+        En: 'Subscribe Info USer',
+        Ar: 'معلومات المشتركين للمستخدم',
         permissions: ['report_info_ui'],
       });
     }
@@ -449,8 +449,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'public',
         name: 'patient_file_user',
-        en: 'Patient file User',
-        ar: 'ملف المريض للمستخدم',
+        En: 'Patient file User',
+        Ar: 'ملف المريض للمستخدم',
         permissions: ['patients_files_ui', 'patients_files_view'],
       });
     }
@@ -463,15 +463,15 @@ module.exports = function init(site) {
         {
           module_name: 'public',
           name: 'exams_customer',
-          en: 'Exams Students',
-          ar: 'إمتحانات الطلاب',
+          En: 'Exams Students',
+          Ar: 'إمتحانات الطلاب',
           permissions: ['exams_ui', 'exams_view'],
         },
         {
           module_name: 'public',
           name: 'libraries_student',
-          en: 'Libraries Student',
-          ar: 'مكتبة الطلاب',
+          En: 'Libraries Student',
+          Ar: 'مكتبة الطلاب',
           permissions: ['libraries_ui', 'libraries_view'],
         }
       );
@@ -498,8 +498,8 @@ module.exports = function init(site) {
 
     user.permissions = [];
     user.profile = {
-      name_ar: customers_doc.name_ar,
-      name_en: customers_doc.name_ar,
+      name_Ar: customers_doc.name_Ar,
+      name_En: customers_doc.name_Ar,
       mobile: customers_doc.mobile,
       image_url: customers_doc.image_url,
       gender: customers_doc.gender,
@@ -680,10 +680,10 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, 'i'),
+        name_Ar: site.get_RegExp(search, 'i'),
       });
       where.$or.push({
-        name_en: site.get_RegExp(search, 'i'),
+        name_En: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
@@ -694,12 +694,12 @@ module.exports = function init(site) {
       });
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i');
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i');
     }
 
     if (where.code) {
@@ -766,7 +766,7 @@ module.exports = function init(site) {
   site.getCustomerAttend = function (data, callback) {
     let select = {
       id: 1,
-      name_ar: 1,
+      name_Ar: 1,
       active: 1,
       finger_code: 1,
       busy: 1,
@@ -807,7 +807,7 @@ module.exports = function init(site) {
   site.getCustomer = function (_where, callback) {
     let select = {
       //   id: 1,
-      //   name_ar: 1,
+      //   name_Ar: 1,
       //   active: 1,
       //   finger_code: 1,
       //   busy: 1,
@@ -838,10 +838,10 @@ module.exports = function init(site) {
       where.$or = [];
       where.$or.push(
         {
-          name_ar: site.get_RegExp(where.search, 'i'),
+          name_Ar: site.get_RegExp(where.search, 'i'),
         },
         {
-          name_en: site.get_RegExp(where.search, 'i'),
+          name_En: site.get_RegExp(where.search, 'i'),
         }
       );
       delete where.search;
@@ -868,10 +868,10 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, 'i'),
+        name_Ar: site.get_RegExp(search, 'i'),
       });
       where.$or.push({
-        name_en: site.get_RegExp(search, 'i'),
+        name_En: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
@@ -882,12 +882,12 @@ module.exports = function init(site) {
       });
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i');
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i');
     }
 
     if (where.code) {
@@ -987,8 +987,8 @@ module.exports = function init(site) {
       {
         module_name: 'public',
         name: 'customers_user',
-        en: 'Customers User',
-        ar: 'إدارة العملاء للمستخدم',
+        En: 'Customers User',
+        Ar: 'إدارة العملاء للمستخدم',
         permissions: ['customers_update', 'customers_view', 'customers_ui'],
       },
     ];
@@ -997,8 +997,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'public',
         name: 'order_customer_user',
-        en: 'Order Customers User',
-        ar: 'طلبات العملاء للمستخدمين',
+        En: 'Order Customers User',
+        Ar: 'طلبات العملاء للمستخدمين',
         permissions: ['order_customer_ui', 'order_customer_delete_items'],
       });
     }
@@ -1007,8 +1007,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'report',
         name: 'report_info_user',
-        en: 'Subscribe Info USer',
-        ar: 'معلومات المشتركين للمستخدم',
+        En: 'Subscribe Info USer',
+        Ar: 'معلومات المشتركين للمستخدم',
         permissions: ['report_info_ui'],
       });
     }
@@ -1017,8 +1017,8 @@ module.exports = function init(site) {
       user.roles.push({
         module_name: 'public',
         name: 'patient_file_user',
-        en: 'Patient file User',
-        ar: 'ملف المريض للمستخدم',
+        En: 'Patient file User',
+        Ar: 'ملف المريض للمستخدم',
         permissions: ['patients_files_ui', 'patients_files_view'],
       });
     }
@@ -1031,15 +1031,15 @@ module.exports = function init(site) {
         {
           module_name: 'public',
           name: 'exams_customer',
-          en: 'Exams Students',
-          ar: 'إمتحانات الطلاب',
+          En: 'Exams Students',
+          Ar: 'إمتحانات الطلاب',
           permissions: ['exams_ui', 'exams_view'],
         },
         {
           module_name: 'public',
           name: 'libraries_student',
-          en: 'Libraries Student',
-          ar: 'مكتبة الطلاب',
+          En: 'Libraries Student',
+          Ar: 'مكتبة الطلاب',
           permissions: ['libraries_ui', 'libraries_view'],
         }
       );
@@ -1048,12 +1048,12 @@ module.exports = function init(site) {
     user.permissions = [];
     let defaultDender = {
       name: 'male',
-      en: 'Male',
-      ar: 'ذكر',
+      En: 'Male',
+      Ar: 'ذكر',
     };
     user.profile = {
-      name_ar: customers_doc.username,
-      name_en: customers_doc.username,
+      name_Ar: customers_doc.username,
+      name_En: customers_doc.username,
       mobile: customers_doc.mobile,
       image_url: customers_doc.image_url,
       gender: customers_doc.gender || defaultDender,
@@ -1079,14 +1079,14 @@ module.exports = function init(site) {
 
     customers_doc.company = {
       id: company.id,
-      name_ar: company.name_ar,
-      name_en: company.name_en,
+      name_Ar: company.name_Ar,
+      name_En: company.name_En,
     };
 
     customers_doc.branch = {
       code: branch.code,
-      name_ar: branch.name_ar,
-      name_en: branch.name_en,
+      name_Ar: branch.name_Ar,
+      name_En: branch.name_En,
     };
 
     user.company = customers_doc.company;
@@ -1140,7 +1140,7 @@ module.exports = function init(site) {
               res.json(response);
               return;
             }
-            customers_doc.name_ar = customers_doc.username;
+            customers_doc.name_Ar = customers_doc.username;
             $customers.add(customers_doc, (err, doc) => {
               if (!err) {
                 response.done = true;
@@ -1211,14 +1211,14 @@ module.exports = function init(site) {
 
     // customers_doc.company = {
     //   id: company.id,
-    //   name_ar: company.name_ar,
-    //   name_en: company.name_en,
+    //   name_Ar: company.name_Ar,
+    //   name_En: company.name_En,
     // };
 
     // customers_doc.branch = {
     //   code: branch.code,
-    //   name_ar: branch.name_ar,
-    //   name_en: branch.name_en,
+    //   name_Ar: branch.name_Ar,
+    //   name_En: branch.name_En,
     // };
 
     // user.company = customers_doc.company;
@@ -1512,8 +1512,8 @@ module.exports = function init(site) {
         },
         {
           $project: {
-            name_ar: 1.0,
-            name_en: 1.0,
+            name_Ar: 1.0,
+            name_En: 1.0,
             gender: 1.0,
             weight: 1.0,
             tall: 1.0,

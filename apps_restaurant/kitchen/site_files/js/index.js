@@ -17,7 +17,7 @@ app.controller("kitchen", function ($scope, $http, $timeout) {
     const v = site.validated('#kitchenAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -56,7 +56,7 @@ app.controller("kitchen", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#kitchenUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -202,7 +202,7 @@ app.controller("kitchen", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,

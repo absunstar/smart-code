@@ -29,8 +29,8 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       shift_list: [
         {
           id: 1,
-          name_ar: "الأساسي",
-          name_en: "Basic",
+          name_Ar: "الأساسي",
+          name_En: "Basic",
           times_list: [{}],
         },
       ],
@@ -47,7 +47,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated("#clinicAddModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -85,7 +85,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated("#clinicUpdateModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -152,7 +152,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -264,8 +264,8 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
         },
       },
     }).then(

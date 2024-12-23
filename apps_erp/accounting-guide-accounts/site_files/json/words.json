@@ -60,6 +60,6 @@
     {"name" : "accounting_guide_accounts_code" , "En" : "Account Code" , "Ar" : "كود الحساب"},
 
     {"name" : "accounting_guide_accounts_code" , "En" : "Category Code" , "Ar" : "كود التصنيف"},
-    {"name" : "accounting_guide_accounts_name_ar" , "En" : "ِAccount Name Arabic" , "Ar" : "إسم الحساب عربي"}, 
-    {"name" : "accounting_guide_accounts_name_en" , "En" : "ِAccount Name English" , "Ar" : "إسم الحساب إنجليزي"}   
+    {"name" : "accounting_guide_accounts_name_Ar" , "En" : "ِAccount Name Arabic" , "Ar" : "إسم الحساب عربي"}, 
+    {"name" : "accounting_guide_accounts_name_En" , "En" : "ِAccount Name English" , "Ar" : "إسم الحساب إنجليزي"}   
 ]

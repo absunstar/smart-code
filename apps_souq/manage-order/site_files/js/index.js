@@ -34,7 +34,7 @@ app.controller('manage_order', function ($scope, $http, $timeout) {
 
     /*     const v = site.validated('#deliveryOrderModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     } */
 
@@ -72,7 +72,7 @@ app.controller('manage_order', function ($scope, $http, $timeout) {
     if (id == 3) {
       const v = site.validated('#deliveryOrderModal');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     }

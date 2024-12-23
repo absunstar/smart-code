@@ -198,18 +198,18 @@ module.exports = function init(site) {
 
           let paid_value = {
             value: response.doc.baid_go,
-            source_name_ar: response.doc.tenant.name_ar,
-            source_name_en: response.doc.tenant.name_en,
+            source_name_Ar: response.doc.tenant.name_Ar,
+            source_name_en: response.doc.tenant.name_En,
             company: response.doc.company,
             branch: response.doc.branch,
             date: response.doc.date_paid,
             shift: {
               id: result.doc.shift.id,
               code: result.doc.shift.code,
-              name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
+              name_Ar: result.doc.shift.name_Ar, name_En: result.doc.shift.name_En
             },
             transition_type: 'in',
-            operation: {ar: 'دفعة حجز قاعة', en: 'Pay Booking Hall'},
+            operation: {Ar: 'دفعة حجز قاعة', En: 'Pay Booking Hall'},
             safe: response.doc.safe
           }
           site.quee('[amounts][safes][+]', paid_value)

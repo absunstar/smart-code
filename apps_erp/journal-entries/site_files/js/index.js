@@ -25,7 +25,7 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
 
     const v = site.validated('#journalEntriesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -81,7 +81,7 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
 
     const v = site.validated('#journalEntriesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -233,7 +233,7 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
           type: 'detailed',
           status: 'active'
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, type: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, type: 1 }
       }
     }).then(
       function (response) {
@@ -285,8 +285,8 @@ app.controller("journal_entries", function ($scope, $http, $timeout) {
   $scope.selectGuideAccount = function (account) {
     $scope.error = '';
     let current_account = {
-      name_ar: account.name_ar,
-      name_en: account.name_en,
+      name_Ar: account.name_Ar,
+      name_En: account.name_En,
       code: account.code,
       currency: account.currency,
       side: account.side,

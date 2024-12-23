@@ -72,7 +72,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
 
     const v = site.validated('#viewManageUserModal');
     if (!v.ok && type == 'password') {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -254,7 +254,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#adAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -295,7 +295,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#adUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     if ($scope.ad.store) {
@@ -307,8 +307,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     } else {
       $scope.ad.adStatus = {
         id: 2,
-        en: 'Under review',
-        ar: 'قيد المراجعة',
+        En: 'Under review',
+        Ar: 'قيد المراجعة',
       };
     }
 

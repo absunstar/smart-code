@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'adjectives'
 
   let source = {
-    en: 'Adjectives System',
-    ar: 'نظام الصفات'
+    En: 'Adjectives System',
+    Ar: 'نظام الصفات'
   }
 
   let image_url = '/images/adjectives.png'
   let add_message = {
-    en: 'New Adjectives Added',
-    ar: 'تم إضافة صفة جديدة'
+    En: 'New Adjectives Added',
+    Ar: 'تم إضافة صفة جديدة'
   }
   let update_message = {
-    en: ' Adjectives Updated',
-    ar: 'تم تعديل صفة'
+    En: ' Adjectives Updated',
+    Ar: 'تم تعديل صفة'
   }
   let delete_message = {
-    en: ' Adjectives Deleted',
-    ar: 'تم حذف صفة '
+    En: ' Adjectives Deleted',
+    Ar: 'تم حذف صفة '
   }
 
   site.on('mongodb after insert', function (result) {
@@ -30,8 +30,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -50,8 +50,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -71,8 +71,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

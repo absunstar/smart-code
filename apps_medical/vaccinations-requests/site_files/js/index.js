@@ -7,14 +7,14 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
     {
       id: 1,
       name: "patient_himself",
-      ar: "المريض نفسه",
-      en: "The patient himself",
+      Ar: "المريض نفسه",
+      En: "The patient himself",
     },
     {
       id: 2,
       name: "another_person",
-      ar: "شخص أخر",
-      en: "Another Person",
+      Ar: "شخص أخر",
+      En: "Another Person",
     },
   ];
 
@@ -39,7 +39,7 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
 
     const v = site.validated("#vaccinationsRequestsAddModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -88,7 +88,7 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
 
     const v = site.validated("#vaccinationsRequestsUpdateModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -342,7 +342,7 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
 
     const v = site.validated("#customerAddModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -390,8 +390,8 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
           type: 1,
         },
@@ -422,8 +422,8 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           price: 1,
           made_home_vaccination: 1,
           price_at_home: 1,
@@ -488,8 +488,8 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
       $scope.vaccinations_requests.discountes =
         $scope.vaccinations_requests.discountes || [];
       $scope.vaccinations_requests.discountes.unshift({
-        name_ar: $scope.discount.name_ar,
-        name_en: $scope.discount.name_en,
+        name_Ar: $scope.discount.name_Ar,
+        name_En: $scope.discount.name_En,
         value: $scope.discount.value,
         type: $scope.discount.type,
       });
@@ -567,8 +567,8 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
   $scope.changeVaccinationsList = function (vaccinations) {
     let obj = {
       id: vaccinations.id,
-      name_ar: vaccinations.name_ar,
-      name_en: vaccinations.name_en,
+      name_Ar: vaccinations.name_Ar,
+      name_En: vaccinations.name_En,
       code: vaccinations.code,
       immediate: vaccinations.immediate,
       delivery_time: vaccinations.delivery_time,
@@ -636,7 +636,7 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -662,7 +662,7 @@ app.controller("vaccinations_requests", function ($scope, $http, $timeout) {
           "gov.id": gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {

@@ -88,7 +88,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
     const v = site.validated('#addStoreDismantleModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -257,10 +257,10 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         if (_size.count > 0 && !foundSize) {
           $scope.store_dismantle.items.unshift({
             image_url: $scope.item.image_url,
-            name_ar: _size.name_ar,
-            name_en: _size.name_en,
+            name_Ar: _size.name_Ar,
+            name_En: _size.name_En,
             item_group: _size.item_group,
-            size_ar: _size.size_ar,
+            size_Ar: _size.size_Ar,
             size_en: _size.size_en,
             barcode: _size.barcode,
             size_units_list: _size.size_units_list,
@@ -334,8 +334,8 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                       });
 
                     if ((_size.barcode === $scope.item.search_item_name) || (_size.size_units_list[indxUnit].barcode === $scope.item.search_item_name)) {
-                      _size.name_ar = _item.name_ar;
-                      _size.name_en = _item.name_en;
+                      _size.name_Ar = _item.name_Ar;
+                      _size.name_En = _item.name_En;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_dismantle.store;
                       _size.unit = _size.size_units_list[indxUnit];
@@ -411,8 +411,8 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
-        _item.name_ar = $scope.item.itm.name_ar;
-        _item.name_en = $scope.item.itm.name_en;
+        _item.name_Ar = $scope.item.itm.name_Ar;
+        _item.name_En = $scope.item.itm.name_En;
         _item.item_group = $scope.item.itm.item_group;
         _item.store = $scope.store_dismantle.store;
         let indxUnit = 0;
@@ -503,8 +503,8 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                   }
 
                   if ((_size.barcode === $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-                    _size.name_ar = response.data.list[0].name_ar;
-                    _size.name_en = response.data.list[0].name_en;
+                    _size.name_Ar = response.data.list[0].name_Ar;
+                    _size.name_En = response.data.list[0].name_En;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_dismantle.store;
                     _size.unit = _size.size_units_list[indxUnit];
@@ -787,7 +787,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_Ar: 1, name_En: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -811,7 +811,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -1096,7 +1096,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

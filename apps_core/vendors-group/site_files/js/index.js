@@ -19,7 +19,7 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
     }
     const v = site.validated('#vendorGroupAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -63,7 +63,7 @@ app.controller("vendors_group", function ($scope, $http, $timeout) {
 
     const v = site.validated('#vendorGroupUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

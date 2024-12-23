@@ -2,22 +2,22 @@ module.exports = function init(site) {
   let collection_name = "rogatory";
 
   let source = {
-    en: "Rogatory Add System",
-    ar: " نظام إضافة التوكيلات",
+    En: "Rogatory Add System",
+    Ar: " نظام إضافة التوكيلات",
   };
 
   let image_url = "/images/rogatory.png";
   let add_message = {
-    en: "New Rogatory Add Added",
-    ar: "تم إضافة توكيل جديد",
+    En: "New Rogatory Add Added",
+    Ar: "تم إضافة توكيل جديد",
   };
   let update_message = {
-    en: " Rogatory Add Updated",
-    ar: "تم تعديل إضافة توكيل",
+    En: " Rogatory Add Updated",
+    Ar: "تم تعديل إضافة توكيل",
   };
   let delete_message = {
-    en: " Rogatory Add Deleted",
-    ar: "تم حذف إضافة توكيل ",
+    En: " Rogatory Add Deleted",
+    Ar: "تم حذف إضافة توكيل ",
   };
 
   site.on("mongodb after insert", function (result) {
@@ -29,8 +29,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -49,8 +49,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -69,8 +69,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

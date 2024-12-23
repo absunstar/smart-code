@@ -54,12 +54,12 @@
         "Ar": "حذف منتج "
     },
     {
-        "name": "product_name_ar",
+        "name": "product_name_Ar",
         "En": "Foods Name Ar",
         "Ar": "إسم المنتج بالعربي"
     },
     {
-        "name": "product_name_en",
+        "name": "product_name_En",
         "En": "Foods Name En",
         "Ar": "إسم المنتج بالإنجليزي"
     },

@@ -2,14 +2,14 @@ module.exports = function init(site) {
   let collection_name = "prices_offers";
 
   let source = {
-    en: "Prices Offers System",
-    ar: "نظام عروض الأسعار",
+    En: "Prices Offers System",
+    Ar: "نظام عروض الأسعار",
   };
 
   let image_url = "/images/prices_offers.png";
-  let add_message = { en: "New Prices Offers Added", ar: "تم إضافة عرض سعر جديد" };
-  let update_message = { en: "Prices Offers updated", ar: "تم تعديل عرض سعر" };
-  let delete_message = { en: "Prices Offers dleteted", ar: "تم حذف عرض سعر" };
+  let add_message = { En: "New Prices Offers Added", Ar: "تم إضافة عرض سعر جديد" };
+  let update_message = { En: "Prices Offers updated", Ar: "تم تعديل عرض سعر" };
+  let delete_message = { En: "Prices Offers dleteted", Ar: "تم حذف عرض سعر" };
 
   site.on("mongodb after insert", function (result) {
     if (result.collection === collection_name) {
@@ -22,8 +22,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -44,8 +44,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -66,8 +66,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

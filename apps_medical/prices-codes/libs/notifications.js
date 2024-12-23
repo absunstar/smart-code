@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'prices_codes'
 
   let source = {
-    en: 'Prices Codes System',
-    ar: ' نظام أكواد الأسعار'
+    En: 'Prices Codes System',
+    Ar: ' نظام أكواد الأسعار'
   }
 
   let image_url = '/images/prices_codes.png'
   let add_message = {
-    en: 'New Price Code Added',
-    ar: 'تم إضافة كود سعر جديد'
+    En: 'New Price Code Added',
+    Ar: 'تم إضافة كود سعر جديد'
   }
   let update_message = {
-    en: ' Price Code Updated',
-    ar: 'تم تعديل كود سعر'
+    En: ' Price Code Updated',
+    Ar: 'تم تعديل كود سعر'
   }
   let delete_message = {
-    en: ' Price Code Deleted',
-    ar: 'تم حذف كود سعر '
+    En: ' Price Code Deleted',
+    Ar: 'تم حذف كود سعر '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

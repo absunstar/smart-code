@@ -24,7 +24,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
 
     const v = site.validated('#lawsuitAddAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -72,7 +72,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
 
     const v = site.validated('#lawsuitAddUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -211,7 +211,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/courts/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -262,7 +262,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/lawsuit_status/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -285,7 +285,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/adjectives/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -307,7 +307,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/lawsuit_degrees/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -329,7 +329,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/lawsuit_types/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -351,7 +351,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/circles/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -440,7 +440,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
         url: "/api/office_lawyers/all",
         data: {
           search: $scope.search_office_lawyers,
-          select: { name_ar: 1, name_en: 1, id: 1, code: 1 }
+          select: { name_Ar: 1, name_En: 1, id: 1, code: 1 }
 
         }
       }).then(
@@ -468,7 +468,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
         url: "/api/oppenents/all",
         data: {
           search: $scope.search_oppenents,
-          select: { name_ar: 1, name_en: 1, id: 1, code: 1 }
+          select: { name_Ar: 1, name_En: 1, id: 1, code: 1 }
 
         }
       }).then(
@@ -495,7 +495,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
         url: "/api/oppenents_lawyers/all",
         data: {
           search: $scope.search_oppenents_lawyers,
-          select: { name_ar: 1, name_en: 1, id: 1, code: 1 }
+          select: { name_Ar: 1, name_En: 1, id: 1, code: 1 }
 
         }
       }).then(

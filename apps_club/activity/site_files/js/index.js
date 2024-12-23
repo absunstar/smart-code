@@ -21,7 +21,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
     const v = site.validated('#activityAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -69,7 +69,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#activityUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -211,7 +211,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
         url: "/api/activity/all",
         data: {
           where: { name: $scope.search_activity, complex_activity: { $ne: true } },
-          select: { id: 1, name_ar: 1, name_en: 1, code: 1, activities_price: 1, complex_activities_list: 1, attend_count: 1 }
+          select: { id: 1, name_Ar: 1, name_En: 1, code: 1, activities_price: 1, complex_activities_list: 1, attend_count: 1 }
         }
       }).then(
         function (response) {

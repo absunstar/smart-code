@@ -2,25 +2,25 @@ module.exports = function init(site) {
   let collection_name = "subjects";
 
   let source = {
-    en: "Subjects System",
-    ar: "نظام المواد الدراسية",
+    En: "Subjects System",
+    Ar: "نظام المواد الدراسية",
   };
 
   let image_url = "/images/subjects.png";
 
   let add_message = {
-    en: "New Subject Added",
-    ar: "تم إضافة مادة دراسية جديدة",
+    En: "New Subject Added",
+    Ar: "تم إضافة مادة دراسية جديدة",
   };
 
   let update_message = {
-    en: " Subject Updated",
-    ar: "تم تعديل مادة دراسية",
+    En: " Subject Updated",
+    Ar: "تم تعديل مادة دراسية",
   };
 
   let delete_message = {
-    en: " Subject Deleted",
-    ar: "تم حذف مادة دراسية ",
+    En: " Subject Deleted",
+    Ar: "تم حذف مادة دراسية ",
   };
 
   site.on("mongodb after insert", function (result) {
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -52,8 +52,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -72,8 +72,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

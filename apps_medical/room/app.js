@@ -20,28 +20,28 @@ module.exports = function init(site) {
   //     building: {
   //       id: doc.building.id,
   //       code: doc.building.code,
-  //       name_ar: doc.building.name_ar,
-  //       name_en: doc.building.name_en
+  //       name_Ar: doc.building.name_Ar,
+  //       name_En: doc.building.name_En
   //     },
   //     floor: {
   //       id: doc.id,
   //       code: doc.code,
-  //       name_ar: doc.name_ar,
-  //       name_en: doc.name_en,
+  //       name_Ar: doc.name_Ar,
+  //       name_En: doc.name_En,
   //     },
-  //     name_ar: "حجرة إفتراضية",
-  //     name_en: "Default Room",
+  //     name_Ar: "حجرة إفتراضية",
+  //     name_En: "Default Room",
   //     code : '1-Test',
   //     image_url: '/images/room.png',
   //     company: {
   //       id: doc.company.id,
-  //       name_ar: doc.company.name_ar,
-  //       name_en: doc.company.name_en,
+  //       name_Ar: doc.company.name_Ar,
+  //       name_En: doc.company.name_En,
   //     },
   //     branch: {
   //       code: doc.branch.code,
-  //       name_ar: doc.branch.name_ar,
-  //       name_en: doc.branch.name_en,
+  //       name_Ar: doc.branch.name_Ar,
+  //       name_En: doc.branch.name_En,
   //     },
   //     active: true
   //   }, (err, doc) => { })

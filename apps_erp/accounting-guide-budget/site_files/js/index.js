@@ -25,7 +25,7 @@ app.controller("accounting_guide_budget", function ($scope, $http, $timeout) {
 
     const v = site.validated('#guideBudgetAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -86,7 +86,7 @@ app.controller("accounting_guide_budget", function ($scope, $http, $timeout) {
 
     const v = site.validated('#guideBudgetUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 

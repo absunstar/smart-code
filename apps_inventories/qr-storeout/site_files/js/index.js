@@ -68,12 +68,12 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
 
           if ($scope.store_out.currency) {
             site.strings['currency'] = {
-              ar: ' ' + $scope.store_out.currency.name_ar + ' ',
-              en: ' ' + $scope.store_out.currency.name_en + ' ',
+              Ar: ' ' + $scope.store_out.currency.name_Ar + ' ',
+              En: ' ' + $scope.store_out.currency.name_En + ' ',
             };
             site.strings['from100'] = {
-              ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
-              en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
+              Ar: ' ' + $scope.store_out.currency.minor_currency_Ar + ' ',
+              En: ' ' + $scope.store_out.currency.minor_currency_En+ ' ',
             };
             $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
           }
@@ -107,12 +107,12 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
 
           if ($scope.store_out.currency) {
             site.strings['currency'] = {
-              ar: ' ' + $scope.store_out.currency.name_ar + ' ',
-              en: ' ' + $scope.store_out.currency.name_en + ' ',
+              Ar: ' ' + $scope.store_out.currency.name_Ar + ' ',
+              En: ' ' + $scope.store_out.currency.name_En + ' ',
             };
             site.strings['from100'] = {
-              ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
-              en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
+              Ar: ' ' + $scope.store_out.currency.minor_currency_Ar + ' ',
+              En: ' ' + $scope.store_out.currency.minor_currency_En+ ' ',
             };
             $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
           }

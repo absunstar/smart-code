@@ -29,7 +29,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
       return;
     }
 
-    if (!$scope.item.size_ar) {
+    if (!$scope.item.size_Ar) {
       $scope.error = '##word.no_size_error##';
       return;
     }
@@ -54,8 +54,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     $scope.category_item.units_list.forEach((_size_unit) => {
       $scope.item.size_units_list.push({
         id: _size_unit.id,
-        name_ar: _size_unit.name_ar,
-        name_en: _size_unit.name_en,
+        name_Ar: _size_unit.name_Ar,
+        name_En: _size_unit.name_En,
         convert: _size_unit.convert,
         price: $scope.item.price * _size_unit.convert,
         cost: $scope.item.cost * _size_unit.convert,
@@ -128,18 +128,18 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          if (where && (where.barcode || where.size_ar || where.size_en)) {
+          if (where && (where.barcode || where.size_Ar || where.size_en)) {
             $scope.hideObj = {
               barcode: where.barcode,
-              size_ar: where.size_ar,
+              size_Ar: where.size_Ar,
               size_en: where.size_en,
             };
             $scope.list.forEach((_item) => {
               _item.sizes.forEach((_sizes) => {
                 if (
                   _sizes &&
-                  ((_sizes.size_ar && _sizes.size_ar.contains($scope.hideObj.size_ar)) ||
-                    (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) ||
+                  ((_sizes.size_Ar && _sizes.size_ar.contains($scope.hideObj.size_Ar)) ||
+                    (_sizes.size_En&& _sizes.size_en.contains($scope.hideObj.size_en)) ||
                     (_sizes.barcode && _sizes.barcode === $scope.hideObj.barcode))
                 ) {
                   _sizes.$hide = false;
@@ -201,8 +201,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
           $scope.category_item.units_list = [
             {
               id: $scope.category_item.main_unit.id,
-              name_ar: $scope.category_item.main_unit.name_ar,
-              name_en: $scope.category_item.main_unit.name_en,
+              name_Ar: $scope.category_item.main_unit.name_Ar,
+              name_En: $scope.category_item.main_unit.name_En,
               convert: 1,
               start_count: 0,
               cost: 0,
@@ -226,7 +226,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     const v = site.validated('#addCategoryItemModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -301,7 +301,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     const v = site.validated('#updateCategoryItemModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     if (($scope.category_item.sizes && $scope.category_item.sizes.length > 0) || !$scope.category_item.add_sizes) {
@@ -380,8 +380,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
             if ($scope.hideObj) {
               if (
                 _sizes &&
-                ((_sizes.size_ar && _sizes.size_ar.contains($scope.hideObj.size_ar)) ||
-                  (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) ||
+                ((_sizes.size_Ar && _sizes.size_ar.contains($scope.hideObj.size_Ar)) ||
+                  (_sizes.size_En&& _sizes.size_en.contains($scope.hideObj.size_en)) ||
                   (_sizes.barcode && _sizes.barcode === $scope.hideObj.barcode))
               ) {
                 _sizes.$hide = false;
@@ -466,8 +466,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -494,8 +494,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -540,8 +540,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     $scope.size_balance.kitchen_branch_list = [];
     $scope.branch_list.forEach((_b) => {
       $scope.size_balance.kitchen_branch_list.push({
-        name_ar: _b.branch.name_ar,
-        name_en: _b.branch.name_en,
+        name_Ar: _b.branch.name_Ar,
+        name_En: _b.branch.name_En,
         code: _b.branch.code,
       });
     });
@@ -558,8 +558,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -586,8 +586,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -676,8 +676,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           type: 1,
           code: 1,
         },
@@ -805,12 +805,12 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
 
     foundSize = item.complex_items.some((_itemSize) => _itemSize.barcode === $scope.items_size.barcode);
 
-    if ($scope.items_size && $scope.items_size.size_ar) {
+    if ($scope.items_size && $scope.items_size.size_Ar) {
       if (!foundSize) {
         item.complex_items.unshift({
-          name_ar: $scope.items_size.name_ar,
-          name_en: $scope.items_size.name_en,
-          size_ar: $scope.items_size.size_ar,
+          name_Ar: $scope.items_size.name_Ar,
+          name_En: $scope.items_size.name_En,
+          size_Ar: $scope.items_size.size_Ar,
           size_en: $scope.items_size.size_en,
           item_group: $scope.items_size.item_group,
           barcode: $scope.items_size.barcode,
@@ -865,8 +865,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
             if (response.data.list.length > 0) {
               response.data.list.forEach((_item) => {
                 _item.sizes.forEach((_size) => {
-                  _size.name_ar = _item.name_ar;
-                  _size.name_en = _item.name_en;
+                  _size.name_Ar = _item.name_Ar;
+                  _size.name_En = _item.name_En;
                   _size.item_group = _item.item_group;
                   _size.item_id = _item.id;
                   let indxUnit = 0;
@@ -900,8 +900,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
 
     if (!found1 && u.id) {
       let objUnit = {
-        name_ar: u.name_ar,
-        name_en: u.name_en,
+        name_Ar: u.name_Ar,
+        name_En: u.name_En,
         id: u.id,
         convert: 1,
       };
@@ -928,8 +928,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
 
       if (!found) {
         _size.size_units_list.push({
-          name_ar: u.name_ar,
-          name_en: u.name_en,
+          name_Ar: u.name_Ar,
+          name_En: u.name_En,
           id: u.id,
           current_count: 0,
           start_count: 0,
@@ -974,8 +974,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
       let found = category_item.units_list.some((_unit) => _unit.id == category_item.main_unit.id);
       if (!found) {
         let objUnit = {
-          name_ar: category_item.main_unit.name_ar,
-          name_en: category_item.main_unit.name_en,
+          name_Ar: category_item.main_unit.name_Ar,
+          name_En: category_item.main_unit.name_En,
           id: category_item.main_unit.id,
           convert: 1,
         };
@@ -1002,8 +1002,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
 
         if (!found)
           _size.size_units_list.unshift({
-            name_ar: category_item.main_unit.name_ar,
-            name_en: category_item.main_unit.name_en,
+            name_Ar: category_item.main_unit.name_Ar,
+            name_En: category_item.main_unit.name_En,
             id: category_item.main_unit.id,
             current_count: 0,
             start_count: 0,
@@ -1100,8 +1100,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
                         if (_unit.id == response.data.list[0].main_unit.id) indxUnit = i;
                       });
                     if (_size.barcode === c.barcode || foundUnit) {
-                      _size.name_ar = response.data.list[0].name_ar;
-                      _size.name_en = response.data.list[0].name_en;
+                      _size.name_Ar = response.data.list[0].name_Ar;
+                      _size.name_En = response.data.list[0].name_En;
                       _size.item_group = response.data.list[0].item_group;
                       _size.store = $scope.units_switch.store;
                       _size.unit = _size.size_units_list[indxUnit];
@@ -1166,7 +1166,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
 
     const v = site.validated('#addUnitsSwitchModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -1652,8 +1652,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
         where: { active: true },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

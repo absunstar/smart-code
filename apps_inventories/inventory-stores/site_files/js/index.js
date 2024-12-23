@@ -100,7 +100,7 @@ app.controller("stores", function ($scope, $http) {
     $scope.error = '';
     const v = site.validated('#addStoreModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -142,7 +142,7 @@ app.controller("stores", function ($scope, $http) {
     $scope.error = '';
     const v = site.validated('#updateStoreModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

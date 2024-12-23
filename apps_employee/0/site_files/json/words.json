@@ -65,12 +65,12 @@
         "Ar": "إسم الفرع"
     },
     {
-        "name": "companies_branch_name_ar",
+        "name": "companies_branch_name_Ar",
         "En": "Branch Name Arabic",
         "Ar": "إسم الفرع بالعربى"
     },
     {
-        "name": "companies_branch_name_en",
+        "name": "companies_branch_name_En",
         "En": "Branch Name English",
         "Ar": "إسم الفرع بالانجليزى"
     },
@@ -156,12 +156,12 @@
         "Ar": "الفاكس"
     },
     {
-        "name": "companies_name_ar",
+        "name": "companies_name_Ar",
         "En": "HR System Name Arabic",
         "Ar": "إسم نظام الموارد البشرية"
     },
     {
-        "name": "companies_name_en",
+        "name": "companies_name_En",
         "En": "HR System Name English",
         "Ar": "إسم نظام الموارد البشرية بالانجليزية"
     },

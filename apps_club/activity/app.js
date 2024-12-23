@@ -5,21 +5,21 @@ module.exports = function init(site) {
 
     $activity.add({
       code: "1-Test",
-      name_ar: "خدمة/نشاط إفتراضي",
-      name_en : "Default Service/Activity",
+      name_Ar: "خدمة/نشاط إفتراضي",
+      name_En : "Default Service/Activity",
       image_url: '/images/activity.png',
       activities_price: 1,
       attend_count : 1,
       available_period : 1,
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc) => { })
@@ -83,9 +83,9 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name_ar': activity_doc.name_ar
+          'name_Ar': activity_doc.name_Ar
         },{
-          'name_en': activity_doc.name_en
+          'name_En': activity_doc.name_En
         }]
       
       }
@@ -251,9 +251,9 @@ module.exports = function init(site) {
 
     if (where['name']) {
       where.$or.push({
-        'name_ar': site.get_RegExp(search, "i")
+        'name_Ar': site.get_RegExp(search, "i")
       },{
-        'name_en': site.get_RegExp(search, "i")
+        'name_En': site.get_RegExp(search, "i")
       })
     }
 

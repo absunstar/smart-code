@@ -3,23 +3,23 @@ module.exports = function init(site) {
   let collection_name = 'order_customer'
 
   let source = {
-    en: 'Order Customer System',
-    ar: 'نظام شاشة طلبات العملاء'
+    En: 'Order Customer System',
+    Ar: 'نظام شاشة طلبات العملاء'
   }
 
   let image_url = '/images/order_customer.png'
   let add_message = {
-    en: 'New Order Customer Added',
-    ar: 'تم إضافة طلب عميل جديد'
+    En: 'New Order Customer Added',
+    Ar: 'تم إضافة طلب عميل جديد'
   }
   let update_message = {
-    en: ' Order Customer Updated',
-    ar: 'تم تعديل طلب عميل'
+    En: ' Order Customer Updated',
+    Ar: 'تم تعديل طلب عميل'
   }
 
   let delete_message = {
-    en: ' Order Customer Deleted',
-    ar: 'تم حذف طلب عميل '
+    En: ' Order Customer Deleted',
+    Ar: 'تم حذف طلب عميل '
   }
 
   site.on('mongodb after insert', function (result) {
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.code,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
   //         value: {
   //           name: result.old_doc.code,
   //           code: result.old_doc.code,
-   //          en: result.old_doc.name_en,
-   //          ar: result.old_doc.name_ar
+   //          En: result.old_doc.name_En,
+   //          Ar: result.old_doc.name_Ar
   //         },
   //         update: site.objectDiff(result.update.$set, result.old_doc),
   //         action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.code,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

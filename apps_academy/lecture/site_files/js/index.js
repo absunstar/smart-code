@@ -16,7 +16,7 @@ app.controller("lecture", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#lectureAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -54,7 +54,7 @@ app.controller("lecture", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#lectureUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

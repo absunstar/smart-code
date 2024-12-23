@@ -21,18 +21,18 @@ module.exports = function init(site) {
     $shipping_company.add(
       {
         code: "1-Test",
-        name_ar: "شركة شحن إفتراضية",
-        name_en: "Default Shipping company",
+        name_Ar: "شركة شحن إفتراضية",
+        name_En: "Default Shipping company",
         image_url: "/images/shipping_company.png",
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         active: true,
       },
@@ -44,18 +44,18 @@ module.exports = function init(site) {
     $product_group.add(
       {
         code: "1-Test",
-        name_ar: "مجموعة منتجات إفتراضية",
-        name_en: "Default Products Group",
+        name_Ar: "مجموعة منتجات إفتراضية",
+        name_En: "Default Products Group",
         image_url: "/images/product_group.png",
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         active: true,
       },
@@ -71,23 +71,23 @@ module.exports = function init(site) {
         product_group: {
           id: doc.id,
           code: doc.code,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
-        name_ar: "منتج إفتراضي",
-        name_en: "Default Product",
+        name_Ar: "منتج إفتراضي",
+        name_En: "Default Product",
         code: "1-Test",
         price: 1,
         image_url: "/images/product.png",
         company: {
           id: doc.company.id,
-          name_ar: doc.company.name_ar,
-          name_en: doc.company.name_en,
+          name_Ar: doc.company.name_Ar,
+          name_En: doc.company.name_En,
         },
         branch: {
           code: doc.branch.code,
-          name_ar: doc.branch.name_ar,
-          name_en: doc.branch.name_en,
+          name_Ar: doc.branch.name_Ar,
+          name_En: doc.branch.name_En,
         },
         active: true,
       },
@@ -129,10 +129,10 @@ module.exports = function init(site) {
           "branch.code": site.get_branch(req).code,
           $or: [
             {
-              name_ar: product_doc.name_ar,
+              name_Ar: product_doc.name_Ar,
             },
             {
-              name_en: product_doc.name_en,
+              name_En: product_doc.name_En,
             },
           ],
         },
@@ -293,8 +293,8 @@ module.exports = function init(site) {
 
     if (where["name"]) {
       where["$or"] = [
-        { name_ar: site.get_RegExp(where["name"], "i") },
-        { name_en: site.get_RegExp(where["name"], "i") },
+        { name_Ar: site.get_RegExp(where["name"], "i") },
+        { name_En: site.get_RegExp(where["name"], "i") },
       ];
       delete where["name"];
     }
@@ -360,10 +360,10 @@ module.exports = function init(site) {
           "branch.code": site.get_branch(req).code,
           $or: [
             {
-              name_ar: product_group_doc.name_ar,
+              name_Ar: product_group_doc.name_Ar,
             },
             {
-              name_en: product_group_doc.name_en,
+              name_En: product_group_doc.name_En,
             },
           ],
         },
@@ -530,8 +530,8 @@ module.exports = function init(site) {
 
     if (where["name"]) {
       where["$or"] = [
-        { name_ar: site.get_RegExp(where["name"], "i") },
-        { name_en: site.get_RegExp(where["name"], "i") },
+        { name_Ar: site.get_RegExp(where["name"], "i") },
+        { name_En: site.get_RegExp(where["name"], "i") },
       ];
       delete where["name"];
     }
@@ -592,10 +592,10 @@ module.exports = function init(site) {
           "branch.code": site.get_branch(req).code,
           $or: [
             {
-              name_ar: shipping_company_doc.name_ar,
+              name_Ar: shipping_company_doc.name_Ar,
             },
             {
-              name_en: shipping_company_doc.name_en,
+              name_En: shipping_company_doc.name_En,
             },
           ],
         },
@@ -762,8 +762,8 @@ module.exports = function init(site) {
 
     if (where["name"]) {
       where["$or"] = [
-        { name_ar: site.get_RegExp(where["name"], "i") },
-        { name_en: site.get_RegExp(where["name"], "i") },
+        { name_Ar: site.get_RegExp(where["name"], "i") },
+        { name_En: site.get_RegExp(where["name"], "i") },
       ];
       delete where["name"];
     }

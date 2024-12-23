@@ -36,7 +36,7 @@ module.exports = function init(site) {
         stores_item_doc.sizes.forEach((_size) => {
           _size.opening_palnce_list = _size.opening_palnce_list || [];
           _size.opening_palnce_list.forEach((_opBalance) => {
-            let found = opBalanceList.some((_ar) => _ar.store.id === _opBalance.store.id);
+            let found = opBalanceList.some((_Ar) => _ar.store.id === _opBalance.store.id);
 
             let cb = site.getNumbering({ company: stores_item_doc.company, date: new Date(), screen: 'opening_balances_Store' });
 
@@ -52,9 +52,9 @@ module.exports = function init(site) {
             }
 
             let item = {
-              name_ar: stores_item_doc.name_ar,
-              name_en: stores_item_doc.name_en,
-              size_ar: _size.size_ar,
+              name_Ar: stores_item_doc.name_Ar,
+              name_En: stores_item_doc.name_En,
+              size_Ar: _size.size_Ar,
               size_en: _size.size_en,
               value_added: 0,
               total_v_a: 0,
@@ -83,8 +83,8 @@ module.exports = function init(site) {
               invoice: false,
               type: {
                 id: 3,
-                en: 'Opening Balance Store',
-                ar: 'رصيد إفتتاحي مخزني',
+                En: 'Opening Balance Store',
+                Ar: 'رصيد إفتتاحي مخزني',
               },
               items: [item],
               vendor: _opBalance.vendor,
@@ -151,8 +151,8 @@ module.exports = function init(site) {
                   _itm.shift = {
                     id: doc.shift.id,
                     code: doc.shift.code,
-                    name_ar: doc.shift.name_ar,
-                    name_en: doc.shift.name_en,
+                    name_Ar: doc.shift.name_Ar,
+                    name_En: doc.shift.name_En,
                   };
 
                   if (doc.type.id == 1) _itm.set_average = 'sum_average';
@@ -190,10 +190,10 @@ module.exports = function init(site) {
             if (objectStoreIn.sizes_list)
               objectStoreIn.sizes_list.forEach((_size) => {
                 if (_items.barcode == _size.barcode) {
-                  _items.size_ar = _size.size_ar;
-                  _items.size_en = _size.size_en;
-                  _items.name_ar = _size.name_ar;
-                  _items.name_en = _size.name_en;
+                  _items.size_Ar = _size.size_Ar;
+                  _items.size_En= _size.size_En;
+                  _items.name_Ar = _size.name_Ar;
+                  _items.name_En = _size.name_En;
                 }
               });
           });
@@ -311,8 +311,8 @@ module.exports = function init(site) {
                         _itm.shift = {
                           id: doc.shift.id,
                           code: doc.shift.code,
-                          name_ar: doc.shift.name_ar,
-                          name_en: doc.shift.name_en,
+                          name_Ar: doc.shift.name_Ar,
+                          name_En: doc.shift.name_En,
                         };
 
                         if (doc.type.id == 4) {
@@ -498,8 +498,8 @@ module.exports = function init(site) {
                                 _itm.shift = {
                                   id: result.doc.shift.id,
                                   code: result.doc.shift.code,
-                                  name_ar: result.doc.shift.name_ar,
-                                  name_en: result.doc.shift.name_en,
+                                  name_Ar: result.doc.shift.name_Ar,
+                                  name_En: result.doc.shift.name_En,
                                 };
 
                                 if (result.doc.posting) {
@@ -618,8 +618,8 @@ module.exports = function init(site) {
                                 _itm.shift = {
                                   id: stores_in_doc.shift.id,
                                   code: stores_in_doc.shift.code,
-                                  name_ar: stores_in_doc.shift.name_ar,
-                                  name_en: stores_in_doc.shift.name_en,
+                                  name_Ar: stores_in_doc.shift.name_Ar,
+                                  name_En: stores_in_doc.shift.name_En,
                                 };
                                 if (result.doc.type.id == 4) {
                                   _itm.set_average = 'sum_average';
@@ -735,11 +735,11 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        'store.payment_method.ar': site.get_RegExp(search, 'i'),
+        'store.payment_method.Ar': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        'store.payment_method.en': site.get_RegExp(search, 'i'),
+        'store.payment_method.En': site.get_RegExp(search, 'i'),
       });
     }
 
@@ -797,9 +797,9 @@ module.exports = function init(site) {
       delete where['size_ar'];
     }
 
-    if (where['size_en']) {
-      where['items.size_en'] = site.get_RegExp(where['size_en'], 'i');
-      delete where['size_en'];
+    if (where['size_En']) {
+      where['items.size_En'] = site.get_RegExp(where['size_En'], 'i');
+      delete where['size_En'];
     }
 
     if (where['barcode']) {
@@ -929,8 +929,8 @@ module.exports = function init(site) {
                   if (_item.unit == null || undefined)
                     _item.unit = {
                       id: unit.id,
-                      name_ar: unit.name_ar,
-                      name_en: unit.name_en,
+                      name_Ar: unit.name_Ar,
+                      name_En: unit.name_En,
                       convert: 1,
                     };
                 });
@@ -962,7 +962,7 @@ module.exports = function init(site) {
       if (doc && doc.return_paid) {
         obj.items.forEach((_itemsObj) => {
           doc.return_paid.items.forEach((_itemsDoc) => {
-            if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size_ar == _itemsDoc.size_ar) {
+            if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size_Ar == _itemsDoc.size_Ar) {
               if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0 && _itemsDoc.patch_list && _itemsDoc.patch_list.length > 0) {
                 let foundPatshList = [];
 
@@ -1126,8 +1126,8 @@ module.exports = function init(site) {
                     _itm.shift = {
                       id: doc.shift.id,
                       code: doc.shift.code,
-                      name_ar: doc.shift.name_ar,
-                      name_en: doc.shift.name_en,
+                      name_Ar: doc.shift.name_Ar,
+                      name_En: doc.shift.name_En,
                     };
 
                     if (doc.type.id == 4) {
@@ -1203,8 +1203,8 @@ module.exports = function init(site) {
                       _itm.shift = {
                         id: result.doc.shift.id,
                         code: result.doc.shift.code,
-                        name_ar: result.doc.shift.name_ar,
-                        name_en: result.doc.shift.name_en,
+                        name_Ar: result.doc.shift.name_Ar,
+                        name_En: result.doc.shift.name_En,
                       };
 
                       _itm.current_status = 'storein';

@@ -16,8 +16,8 @@ app.controller('company_register', function ($scope, $http) {
     users_count: 20,
     branch_list: [{
       code: 1,
-      name_ar: 'الفرع الرئيسى',
-      name_en: 'Main Branch',
+      name_Ar: 'الفرع الرئيسى',
+      name_En: 'Main Branch',
       charge: [{}]
     }],
     bank_list: [{}]
@@ -33,7 +33,7 @@ app.controller('company_register', function ($scope, $http) {
     $scope.error = '';
     const v = site.validated('#companyRegisterModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     /*   let user_name = company.username
@@ -63,8 +63,8 @@ app.controller('company_register', function ($scope, $http) {
               password: site.to123(company.password),
               company: site.to123({
                 id: response.data.doc.id,
-                name_ar: company.name_ar,
-                name_en: company.name_en,
+                name_Ar: company.name_Ar,
+                name_En: company.name_En,
                 item: company.item,
                 store: company.store,
                 unit: company.unit,
@@ -77,8 +77,8 @@ app.controller('company_register', function ($scope, $http) {
               }),
               branch: site.to123({
                 code: company.branch_list[0].code,
-                name_ar: company.branch_list[0].name_ar,
-                name_en: company.branch_list[0].name_en
+                name_Ar: company.branch_list[0].name_Ar,
+                name_En: company.branch_list[0].name_En
               }),
             }
           }).then(function (response) {

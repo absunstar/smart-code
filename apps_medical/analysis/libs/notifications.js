@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'analysis'
 
   let source = {
-    en: 'Analysis System',
-    ar: 'نظام التحاليل'
+    En: 'Analysis System',
+    Ar: 'نظام التحاليل'
   }
 
   let image_url = '/images/analysis.png'
   let add_message = {
-    en: 'New Analysis Added',
-    ar: 'تم إضافة تحاليل جديدة'
+    En: 'New Analysis Added',
+    Ar: 'تم إضافة تحاليل جديدة'
   }
   let update_message = {
-    en: ' Analysis Updated',
-    ar: 'تم تعديل تحاليل'
+    En: ' Analysis Updated',
+    Ar: 'تم تعديل تحاليل'
   }
   let delete_message = {
-    en: ' Analysis Deleted',
-    ar: 'تم حذف تحاليل '
+    En: ' Analysis Deleted',
+    Ar: 'تم حذف تحاليل '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

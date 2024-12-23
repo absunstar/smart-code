@@ -18,19 +18,19 @@ module.exports = function init(site) {
   site.on('[register][delivery_employee][add]', doc => {
 
     $vehicles_types.add({
-      name_ar: "نوع مركبة/سيارة إفتراضي",
-      name_en: "Default Vehicle/Car Type",
+      name_Ar: "نوع مركبة/سيارة إفتراضي",
+      name_En: "Default Vehicle/Car Type",
       image_url: '/images/vehicles_types.png',
       code: "1-Test",
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en
+        name_Ar: doc.company.name_Ar,
+        name_En: doc.company.name_En
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en
+        name_Ar: doc.branch.name_Ar,
+        name_En: doc.branch.name_En
       },
       active: true
     }, (err, doc1) => {
@@ -211,12 +211,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i')
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i')
     }
 
     // if (where['active'] !== 'all') {

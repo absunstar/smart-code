@@ -280,11 +280,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name_ar': site.get_RegExp(search, "i")
+        'name_Ar': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'name_en': site.get_RegExp(search, "i")
+        'name_En': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -294,12 +294,12 @@ module.exports = function init(site) {
     }
 
 
-    if (where['name_ar']) {
-      where['name_ar'] = new RegExp(where['name_ar'], 'i')
+    if (where['name_Ar']) {
+      where['name_Ar'] = new RegExp(where['name_Ar'], 'i')
     }
 
-    if (where['name_en']) {
-      where['name_en'] = new RegExp(where['name_en'], 'i')
+    if (where['name_En']) {
+      where['name_En'] = new RegExp(where['name_En'], 'i')
     }
 
     if (where['address']) {

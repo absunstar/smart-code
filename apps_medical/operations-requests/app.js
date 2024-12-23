@@ -285,10 +285,10 @@ module.exports = function init(site) {
       where.$or = [];
       where.$or.push(
         {
-          "customer.name_ar": site.get_RegExp(where.search, "i"),
+          "customer.name_Ar": site.get_RegExp(where.search, "i"),
         },
         {
-          "customer.name_en": site.get_RegExp(where.search, "i"),
+          "customer.name_En": site.get_RegExp(where.search, "i"),
         }
       );
       delete where.search;

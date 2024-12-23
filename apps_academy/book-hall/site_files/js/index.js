@@ -51,7 +51,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     const v = site.validated('#bookHallAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -111,8 +111,8 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
               invoice_code: request_doc.code,
               source_type: {
                 id: 5,
-                en: "Booking A Hall",
-                ar: "حجز قاعة"
+                En: "Booking A Hall",
+                Ar: "حجز قاعة"
               },
               active: true
             };
@@ -151,7 +151,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#bookHallUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -538,7 +538,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {
@@ -568,7 +568,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           value: 1,
           type: 1
         }
@@ -595,7 +595,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     } else {
       $scope.book_hall.discountes = $scope.book_hall.discountes || [];
       $scope.book_hall.discountes.push({
-        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
+        name_Ar: $scope.discount.name_Ar, name_En: $scope.discount.name_En,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
@@ -682,8 +682,8 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
           invoice_code: book_hall.code,
           source_type: {
             id: 5,
-            en: "Booking A Hall",
-            ar: "حجز قاعة"
+            En: "Booking A Hall",
+            Ar: "حجز قاعة"
           },
           active: true
         };
@@ -800,14 +800,14 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.tenant)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.tenant.name_ar,
+        value2: $scope.account_invoices.tenant.name_Ar,
         value: '##word.customer##'
       });
 
     if ($scope.account_invoices.hall)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.hall.name_ar,
+        value2: $scope.account_invoices.hall.name_Ar,
         value: 'Service'
       });
 
@@ -918,7 +918,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1, name_en: 1,
+            name_Ar: 1, name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -948,8 +948,8 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_Ar: 1, name_En: 1,
+          minor_currency_Ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },

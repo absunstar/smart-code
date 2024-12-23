@@ -319,8 +319,8 @@ module.exports = function init(site) {
       active: true,
       type: {
         id: 1,
-        en: "User",
-        ar: "مستخدم",
+        En: "User",
+        Ar: "مستخدم",
       },
       notific_setting: {
         instant_alerts: true,
@@ -378,8 +378,8 @@ module.exports = function init(site) {
           },
           store_status: {
             id: 1,
-            en: "Active",
-            ar: "نشط",
+            En: "Active",
+            Ar: "نشط",
           },
           name: store_name + doc.profile.name,
         };

@@ -48,8 +48,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
                   if (_s.name) {
                     let newname = data.find((el) => el.name == _s.name.replace(/-/g, '_'));
                     if (newname) {
-                      _s.name_ar = newname.ar;
-                      _s.name_en = newname.en;
+                      _s.name_Ar = newname.Ar;
+                      _s.name_En = newname..En;
                     }
                   }
                 });
@@ -73,7 +73,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
 
     const v = site.validated('#viewManageUserModal');
     if (!v.ok && type == 'password') {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -128,8 +128,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         password: site.to123(u.password),
         company: site.to123({
           id: u.company.id,
-          name_ar: u.company.name_ar,
-          name_en: u.company.name_en,
+          name_Ar: u.company.name_Ar,
+          name_En: u.company.name_En,
           item: u.company.item,
           store: u.company.store,
           unit: u.company.unit,
@@ -142,8 +142,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         }),
         branch: site.to123({
           code: u.branch.code,
-          name_ar: u.branch.name_ar,
-          name_en: u.branch.name_en,
+          name_Ar: u.branch.name_Ar,
+          name_En: u.branch.name_En,
         }),
       },
     }).then(

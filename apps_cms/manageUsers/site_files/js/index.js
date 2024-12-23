@@ -48,7 +48,7 @@ app.controller('manageUsers', function ($scope, $http, $timeout) {
 
     const v = site.validated('#manageUsersManageModal');
     if (!v.ok && type == 'password') {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -136,7 +136,7 @@ app.controller('manageUsers', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#manageUsersManageModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -263,7 +263,7 @@ app.controller('manageUsers', function ($scope, $http, $timeout) {
                 $scope.screens.forEach((s) => {
                   let newname = data.find((el) => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
-                    s.name = newname.ar;
+                    s.name = newname.Ar;
                   }
                 });
               }

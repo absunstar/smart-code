@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'types_expenses'
 
   let source = {
-    en: 'Types Expenses System',
-    ar: ' نظام أنواع المصروفات الدراسية'
+    En: 'Types Expenses System',
+    Ar: ' نظام أنواع المصروفات الدراسية'
   }
 
   let image_url = '/images/types_expenses.png'
   let add_message = {
-    en: 'New Types Expenses Added',
-    ar: 'تم إضافة نوع مصروفات دراسية جديدة'
+    En: 'New Types Expenses Added',
+    Ar: 'تم إضافة نوع مصروفات دراسية جديدة'
   }
   let update_message = {
-    en: 'Types Expenses Updated',
-    ar: 'تم تعديل نوع مصروفات دراسية'
+    En: 'Types Expenses Updated',
+    Ar: 'تم تعديل نوع مصروفات دراسية'
   }
   let delete_message = {
-    en: 'Types Expenses Deleted',
-    ar: 'تم حذف نوع مصروفات دراسية '
+    En: 'Types Expenses Deleted',
+    Ar: 'تم حذف نوع مصروفات دراسية '
   }
 
 
@@ -31,8 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -51,8 +51,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -72,8 +72,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

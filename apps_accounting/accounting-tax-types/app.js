@@ -4,12 +4,12 @@ module.exports = function init(site) {
   // site.words.addList(__dirname + '/site_files/json/words.json')
 
   // $tax_types.deleteDuplicate({
-  //   name_ar: 1, name_en: 1,
+  //   name_Ar: 1, name_En: 1,
   //   value: 1,
   //   type: 1
   // }, (err, result) => {
   //   $tax_types.createUnique({
-  //     name_ar: 1, name_en: 1,
+  //     name_Ar: 1, name_En: 1,
   //     value: 1,
   //     type: 1
   //   }, (err, result) => {
@@ -29,20 +29,20 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $tax_types.add({
-      name_ar: "ضريبة إفتراضية",
-      name_en: "Default Tax",
+      name_Ar: "ضريبة إفتراضية",
+      name_En: "Default Tax",
       value : 1,
       code: "1-Test",
       image_url: '/images/tax_type.png',
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc) => {})

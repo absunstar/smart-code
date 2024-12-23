@@ -22,7 +22,7 @@ app.controller("prices_codes", function ($scope, $http, $timeout) {
 
     const v = site.validated("#pricesCodesAddModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -69,7 +69,7 @@ app.controller("prices_codes", function ($scope, $http, $timeout) {
 
     const v = site.validated("#pricesCodesUpdateModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

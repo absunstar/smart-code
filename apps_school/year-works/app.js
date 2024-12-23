@@ -188,12 +188,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i')
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i')
     }
 
     // if (where['active'] !== 'all') {

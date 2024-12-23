@@ -113,8 +113,8 @@ module.exports = function init(site) {
         let list = [{
           source_type: {
             id: 1,
-            en: "Store In / Purchase Invoice",
-            ar: "إذن وارد / فاتورة شراء"
+            En: "Store In / Purchase Invoice",
+            Ar: "إذن وارد / فاتورة شراء"
           },
           paid_up: 0,
           invoices_list: []
@@ -122,8 +122,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 2,
-            en: "Store In / Sales Invoice",
-            ar: "إذن صرف / فاتورة مبيعات"
+            En: "Store In / Sales Invoice",
+            Ar: "إذن صرف / فاتورة مبيعات"
           },
           paid_up: 0,
           invoices_list: []
@@ -131,8 +131,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 3,
-            en: "Orders Screen",
-            ar: "شاشة الطلبات"
+            En: "Orders Screen",
+            Ar: "شاشة الطلبات"
           },
           paid_up: 0,
           invoices_list: []
@@ -140,8 +140,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 4,
-            en: "Orders Service",
-            ar: "طلب نشاط"
+            En: "Orders Service",
+            Ar: "طلب نشاط"
           },
           paid_up: 0,
           invoices_list: []
@@ -149,8 +149,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 5,
-            en: "Booking A Hall",
-            ar: "حجز قاعة"
+            En: "Booking A Hall",
+            Ar: "حجز قاعة"
           },
           paid_up: 0,
           invoices_list: []
@@ -158,8 +158,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 6,
-            en: "Trainer Account",
-            ar: "حساب مدرب"
+            En: "Trainer Account",
+            Ar: "حساب مدرب"
           },
           paid_up: 0,
           invoices_list: []
@@ -167,8 +167,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 7,
-            en: "Form Course Booking",
-            ar: "إستمارة حجز كورس"
+            En: "Form Course Booking",
+            Ar: "إستمارة حجز كورس"
           },
           paid_up: 0,
           invoices_list: []
@@ -176,8 +176,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 8,
-            en: "Amount In",
-            ar: "سند قبض"
+            En: "Amount In",
+            Ar: "سند قبض"
           },
           paid_up: 0,
           invoices_list: []
@@ -185,8 +185,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 9,
-            en: "Amount Out",
-            ar: "سند صرف"
+            En: "Amount Out",
+            Ar: "سند صرف"
           },
           paid_up: 0,
           invoices_list: []
@@ -194,8 +194,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 10,
-            en: "Customer Advance Payment",
-            ar: "دفعة عميل مقدمة"
+            En: "Customer Advance Payment",
+            Ar: "دفعة عميل مقدمة"
           },
           paid_up: 0,
           invoices_list: []
@@ -203,8 +203,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 11,
-            en: "Employee Advance",
-            ar: "سلفة موظف"
+            En: "Employee Advance",
+            Ar: "سلفة موظف"
           },
           paid_up: 0,
           invoices_list: []
@@ -212,8 +212,8 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 12,
-            en: "Payment Employee Advance",
-            ar: "تسديد سلفة موظف"
+            En: "Payment Employee Advance",
+            Ar: "تسديد سلفة موظف"
           },
           paid_up: 0,
           invoices_list: []
@@ -221,32 +221,32 @@ module.exports = function init(site) {
         {
           source_type: {
             id: 13,
-            en: "Monetary In",
-            ar: "نقدي وارد"
+            En: "Monetary In",
+            Ar: "نقدي وارد"
           },
           paid_up: 0,
         },
         {
           source_type: {
             id: 14,
-            en: "Monetary Out",
-            ar: "نقدي منصرف"
+            En: "Monetary Out",
+            Ar: "نقدي منصرف"
           },
           paid_up: 0,
         },
         {
           source_type: {
             id: 15,
-            en: "Bank In",
-            ar: "بنك وارد"
+            En: "Bank In",
+            Ar: "بنك وارد"
           },
           paid_up: 0,
         },
         {
           source_type: {
             id: 16,
-            en: "Bank Out",
-            ar: "بنك منصرف"
+            En: "Bank Out",
+            Ar: "بنك منصرف"
           },
           paid_up: 0,
         }]
@@ -393,50 +393,50 @@ module.exports = function init(site) {
                     list: storeInList,
                     source_type: {
                       id: 1,
-                      en: "Stores In / Purchase Invoice",
-                      ar: "إذن وارد / فاتورة شراء"
+                      En: "Stores In / Purchase Invoice",
+                      Ar: "إذن وارد / فاتورة شراء"
                     }
                   }, {
                     list: storeOutList,
                     source_type: {
                       id: 2,
-                      en: "Stores Out / Sales Invoice",
-                      ar: "إذن صرف / فاتورة بيع"
+                      En: "Stores Out / Sales Invoice",
+                      Ar: "إذن صرف / فاتورة بيع"
                     }
                   }, {
                     list: transBranchList,
                     source_type: {
                       id: 3,
-                      en: "Stores Transfer",
-                      ar: "التحويلات المخزنية"
+                      En: "Stores Transfer",
+                      Ar: "التحويلات المخزنية"
                     }
                   }, {
                     list: storesAssembleList,
                     source_type: {
                       id: 4,
-                      en: "Items Assemble",
-                      ar: "تجميع الأصناف"
+                      En: "Items Assemble",
+                      Ar: "تجميع الأصناف"
                     }
                   }, {
                     list: storesDismantleList,
                     source_type: {
                       id: 5,
-                      en: "Items Dismantle",
-                      ar: "تفكيك الأصناف"
+                      En: "Items Dismantle",
+                      Ar: "تفكيك الأصناف"
                     }
                   }, {
                     list: unitSwitchList,
                     source_type: {
                       id: 6,
-                      en: "UnitS Switch",
-                      ar: "تحويل الوحدات"
+                      En: "UnitS Switch",
+                      Ar: "تحويل الوحدات"
                     }
                   }, {
                     list: storeStockList,
                     source_type: {
                       id: 7,
-                      en: "Stores Stock",
-                      ar: "الجرد المخزني"
+                      En: "Stores Stock",
+                      Ar: "الجرد المخزني"
                     }
                   }]
 
@@ -495,24 +495,24 @@ module.exports = function init(site) {
             paid_up: empOfferPay,
             source_type: {
               id: 1,
-              en: "Employees Offers",
-              ar: "مكافاّت الموظفين"
+              En: "Employees Offers",
+              Ar: "مكافاّت الموظفين"
             }
           }, {
             list: employeesDiscountsList,
             paid_up: empDisPay,
             source_type: {
               id: 2,
-              en: "Employees Discounts",
-              ar: "خصومات الموظفين"
+              En: "Employees Discounts",
+              Ar: "خصومات الموظفين"
             }
           }, {
 
             list: attendLeaveList,
             source_type: {
               id: 3,
-              en: "Attend & Leave",
-              ar: "حضور و إنصراف"
+              En: "Attend & Leave",
+              Ar: "حضور و إنصراف"
             }
           }]
 

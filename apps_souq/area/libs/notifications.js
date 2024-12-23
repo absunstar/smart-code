@@ -3,25 +3,25 @@ module.exports = function init(site) {
   let collection_name = 'area'
 
   let source = {
-    en: 'Addresses System',
-    ar: 'نظام العناوين'
+    En: 'Addresses System',
+    Ar: 'نظام العناوين'
   }
 
   let image_url = '/images/area.png'
 
   let add_message = {
-    en: 'New area Added',
-    ar: 'تم إضافة منطقة جديدة'
+    En: 'New area Added',
+    Ar: 'تم إضافة منطقة جديدة'
   }
 
   let update_message = {
-    en: ' area Updated',
-    ar: 'تم تعديل منطقة'
+    En: ' area Updated',
+    Ar: 'تم تعديل منطقة'
   }
 
   let delete_message = {
-    en: ' area Deleted',
-    ar: 'تم حذف منطقة '
+    En: ' area Deleted',
+    Ar: 'تم حذف منطقة '
   }
 
   site.on('mongodb after insert', function (result) {
@@ -34,8 +34,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -55,8 +55,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -77,8 +77,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

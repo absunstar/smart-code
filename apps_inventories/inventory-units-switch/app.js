@@ -12,10 +12,10 @@ module.exports = function init(site) {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectAssemble.sizes_list) objectAssemble.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
-              _items.size_ar = _size.size_ar
-              _items.size_en = _size.size_en
-              _items.name_ar = _size.name_ar
-              _items.name_en = _size.name_en
+              _items.size_Ar = _size.size_ar
+              _items.size_En= _size.size_en
+              _items.name_Ar = _size.name_Ar
+              _items.name_En = _size.name_En
             }
           })
         });
@@ -132,7 +132,7 @@ module.exports = function init(site) {
                         _isDoc.shift = {
                           id: units_switch_doc.shift.id,
                           code: units_switch_doc.shift.code,
-                          name_ar: units_switch_doc.shift.name_ar, name_en: units_switch_doc.shift.name_en
+                          name_Ar: units_switch_doc.shift.name_Ar, name_En: units_switch_doc.shift.name_En
                         }
 
                         site.quee('item_transaction + items', Object.assign({}, _isDoc))
@@ -154,7 +154,7 @@ module.exports = function init(site) {
                         _isDoc2.shift = {
                           id: doc.shift.id,
                           code: doc.shift.code,
-                          name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
+                          name_Ar: doc.shift.name_Ar, name_En: doc.shift.name_En
                         }
 
                         site.quee('item_transaction - items', Object.assign({}, _isDoc2))
@@ -320,7 +320,7 @@ module.exports = function init(site) {
                         _isDoc.shift = {
                           id: units_switch_doc.shift.id,
                           code: units_switch_doc.shift.code,
-                          name_ar: units_switch_doc.shift.name_ar, name_en: units_switch_doc.shift.name_en
+                          name_Ar: units_switch_doc.shift.name_Ar, name_En: units_switch_doc.shift.name_En
                         }
                         site.quee('item_transaction + items', Object.assign({}, _isDoc))
 
@@ -358,7 +358,7 @@ module.exports = function init(site) {
                         _isDoc2.shift = {
                           id: result.doc.shift.id,
                           code: result.doc.shift.code,
-                          name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
+                          name_Ar: result.doc.shift.name_Ar, name_En: result.doc.shift.name_En
                         }
 
                         site.quee('item_transaction - items', Object.assign({}, _isDoc2))
@@ -452,7 +452,7 @@ module.exports = function init(site) {
                           _isDoc.shift = {
                             id: units_switch_doc.shift.id,
                             code: units_switch_doc.shift.code,
-                            name_ar: units_switch_doc.shift.name_ar, name_en: units_switch_doc.shift.name_en
+                            name_Ar: units_switch_doc.shift.name_Ar, name_En: units_switch_doc.shift.name_En
                           }
                           site.quee('item_transaction - items', Object.assign({}, _isDoc))
 
@@ -474,7 +474,7 @@ module.exports = function init(site) {
                           _isDoc2.shift = {
                             id: result.doc.shift.id,
                             code: result.doc.shift.code,
-                            name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
+                            name_Ar: result.doc.shift.name_Ar, name_En: result.doc.shift.name_En
                           }
 
                           site.quee('item_transaction + items', Object.assign({}, _isDoc2))
@@ -558,11 +558,11 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'store.payment_method.ar': site.get_RegExp(search, "i")
+        'store.payment_method.Ar': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'store.payment_method.en': site.get_RegExp(search, "i")
+        'store.payment_method.En': site.get_RegExp(search, "i")
       })
 
     }

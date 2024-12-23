@@ -40,8 +40,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
           items: store_in.items,
           source_type: {
             id: 1,
-            en: 'Purchases Store',
-            ar: 'المشتريات المخزنية',
+            En: 'Purchases Store',
+            Ar: 'المشتريات المخزنية',
           },
           active: true,
         };
@@ -105,26 +105,26 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
             if (account_invoices.invoice_type.id == 1) {
               account_invoices.out_type = {
                 id: 2,
-                en: 'purchase invoice',
-                ar: 'فاتورة مشتريات',
+                En: 'purchase invoice',
+                Ar: 'فاتورة مشتريات',
               };
               account_invoices.source_type = {
                 id: 9,
-                en: 'Amount Out',
-                ar: 'سند صرف',
+                En: 'Amount Out',
+                Ar: 'سند صرف',
               };
 
               $scope.addAccountInvoice(account_invoices);
             } else if (account_invoices.invoice_type.id == 4) {
               account_invoices.out_type = {
                 id: 3,
-                en: 'Return sales invoice',
-                ar: 'مرتجع فاتورة مبيعات',
+                En: 'Return sales invoice',
+                Ar: 'مرتجع فاتورة مبيعات',
               };
               account_invoices.source_type = {
                 id: 8,
-                en: 'Amount In',
-                ar: 'سند قبض',
+                En: 'Amount In',
+                Ar: 'سند قبض',
               };
               $scope.addAccountInvoice(account_invoices);
             }
@@ -155,12 +155,12 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
     $('#thermalPrint').removeClass('hidden');
     if ($scope.thermal.currency) {
       site.strings['currency'] = {
-        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-        en: ' ' + $scope.thermal.currency.name_en + ' ',
+        Ar: ' ' + $scope.thermal.currency.name_Ar + ' ',
+        En: ' ' + $scope.thermal.currency.name_En + ' ',
       };
       site.strings['from100'] = {
-        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
+        Ar: ' ' + $scope.thermal.currency.minor_currency_Ar + ' ',
+        En: ' ' + $scope.thermal.currency.minor_currency_En+ ' ',
       };
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
     }
@@ -168,7 +168,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
     document.querySelector('#qrcode').innerHTML = '';
     let datetime = new Date($scope.thermal.date);
     let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-    let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+    let qrString = `[${'##session.company.name_Ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
       $scope.thermal.code
     }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
 
@@ -270,11 +270,11 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
               vat_total: $scope.store_in.total_value_added,
             };
             if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
-              qrString.name = '##session.company.name_ar##';
+              qrString.name = '##session.company.name_Ar##';
             } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
-              qrString.name = '##session.company.name_en##';
+              qrString.name = '##session.company.name_En##';
             }
-            qrString.name = '##session.company.name_en##';
+            qrString.name = '##session.company.name_En##';
             site.zakat2(
               {
                 name: qrString.name,
@@ -291,7 +291,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
             let datetime = new Date($scope.store_in.date);
             let formatted_date =
               datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-            let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+            let qrString = `[${'##session.company.name_Ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
               $scope.store_in.code
             }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_in.total_value_added}]\nالصافي : [${$scope.store_in.net_value}]`;
 
@@ -364,11 +364,11 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                 vat_total: $scope.thermal.total_value_added,
               };
               if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
-                qrString.name = '##session.company.name_ar##';
+                qrString.name = '##session.company.name_Ar##';
               } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
-                qrString.name = '##session.company.name_en##';
+                qrString.name = '##session.company.name_En##';
               }
-              qrString.name = '##session.company.name_en##';
+              qrString.name = '##session.company.name_En##';
               site.zakat2(
                 {
                   name: qrString.name,
@@ -385,7 +385,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
               let datetime = new Date($scope.thermal.date);
               let formatted_date =
                 datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+              let qrString = `[${'##session.company.name_Ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
                 $scope.thermal.code
               }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
               site.qrcode({ width: 140, height: 140, selector: document.querySelector('.qrcode'), text: qrString });
@@ -421,8 +421,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.store_in.taxes = $scope.store_in.taxes || [];
     $scope.store_in.taxes.unshift({
-      name_ar: $scope.tax.name_ar,
-      name_en: $scope.tax.name_en,
+      name_Ar: $scope.tax.name_Ar,
+      name_En: $scope.tax.name_En,
       value: $scope.tax.value,
     });
     $scope.tax = {};
@@ -433,7 +433,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_in.taxes.length; i++) {
       let tx = $scope.store_in.taxes[i];
-      if (tx.name_ar == _tx.name_ar && tx.value == _tx.value) $scope.store_in.taxes.splice(i, 1);
+      if (tx.name_Ar == _tx.name_Ar && tx.value == _tx.value) $scope.store_in.taxes.splice(i, 1);
     }
     $scope.calc($scope.store_in);
   };
@@ -448,8 +448,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       $scope.store_in.discountes = $scope.store_in.discountes || [];
 
       $scope.store_in.discountes.unshift({
-        name_ar: $scope.discount.name_ar,
-        name_en: $scope.discount.name_en,
+        name_Ar: $scope.discount.name_Ar,
+        name_En: $scope.discount.name_En,
         value: $scope.discount.value,
         type: $scope.discount.type,
       });
@@ -461,7 +461,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_in.discountes.length; i++) {
       let ds = $scope.store_in.discountes[i];
-      if (ds.name_ar == _ds.name_ar && ds.value == _ds.value && ds.type == _ds.type) $scope.store_in.discountes.splice(i, 1);
+      if (ds.name_Ar == _ds.name_Ar && ds.value == _ds.value && ds.type == _ds.type) $scope.store_in.discountes.splice(i, 1);
     }
     $scope.calc($scope.store_in);
   };
@@ -767,7 +767,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
 
     const v = site.validated('#addStoreInModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -915,8 +915,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                       items: response.data.doc.items,
                       source_type: {
                         id: 1,
-                        en: 'Purchases Store',
-                        ar: 'المشتريات المخزنية',
+                        En: 'Purchases Store',
+                        Ar: 'المشتريات المخزنية',
                       },
                       active: true,
                     };
@@ -980,12 +980,12 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
           $scope.store_in = response.data.doc;
           if ($scope.store_in.currency) {
             site.strings['currency'] = {
-              ar: ' ' + $scope.store_in.currency.name_ar + ' ',
-              en: ' ' + $scope.store_in.currency.name_en + ' ',
+              Ar: ' ' + $scope.store_in.currency.name_Ar + ' ',
+              En: ' ' + $scope.store_in.currency.name_En + ' ',
             };
             site.strings['from100'] = {
-              ar: ' ' + $scope.store_in.currency.minor_currency_ar + ' ',
-              en: ' ' + $scope.store_in.currency.minor_currency_en + ' ',
+              Ar: ' ' + $scope.store_in.currency.minor_currency_Ar + ' ',
+              En: ' ' + $scope.store_in.currency.minor_currency_En+ ' ',
             };
             $scope.store_in.net_txt = site.stringfiy($scope.store_in.net_value);
           }
@@ -1028,9 +1028,9 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
 
             let itmObj = {
               image_url: $scope.item.image_url,
-              name_ar: _size.name_ar,
-              name_en: _size.name_en,
-              size_ar: _size.size_ar,
+              name_Ar: _size.name_Ar,
+              name_En: _size.name_En,
+              size_Ar: _size.size_Ar,
               value_added: _size.value_added,
               total_v_a: _size.total_v_a,
               item_group: _size.item_group,
@@ -1195,8 +1195,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                       });
 
                     if (_size.barcode === $scope.item.search_item_name || _size.size_units_list[indxUnit].barcode === $scope.item.search_item_name) {
-                      _size.name_ar = _item.name_ar;
-                      _size.name_en = _item.name_en;
+                      _size.name_Ar = _item.name_Ar;
+                      _size.name_En = _item.name_En;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_in.store;
                       _size.count = 1;
@@ -1268,8 +1268,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       $scope.item.itm.sizes.forEach((_item) => {
         let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
-        _item.name_ar = $scope.item.itm.name_ar;
-        _item.name_en = $scope.item.itm.name_en;
+        _item.name_Ar = $scope.item.itm.name_Ar;
+        _item.name_En = $scope.item.itm.name_En;
         _item.item_group = $scope.item.itm.item_group;
         _item.store = $scope.store_in.store;
         _item.count = 1;
@@ -1356,8 +1356,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                         });
                     });
 
-                  _size.name_ar = _l.name_ar;
-                  _size.name_en = _l.name_en;
+                  _size.name_Ar = _l.name_Ar;
+                  _size.name_En = _l.name_En;
                   _size.item_group = _l.item_group;
                   _size.store = $scope.store_in.store;
                   _size.count = 1;
@@ -1431,8 +1431,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                     });
 
                   if (_size.barcode === $scope.search_barcode || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-                    _size.name_ar = response.data.list[0].name_ar;
-                    _size.name_en = response.data.list[0].name_en;
+                    _size.name_Ar = response.data.list[0].name_Ar;
+                    _size.name_En = response.data.list[0].name_En;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_in.store;
                     _size.count = 1;
@@ -1808,8 +1808,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                         items: response.data.doc.items,
                         source_type: {
                           id: 1,
-                          en: 'Purchases Store',
-                          ar: 'المشتريات المخزنية',
+                          En: 'Purchases Store',
+                          Ar: 'المشتريات المخزنية',
                         },
                         active: true,
                       };
@@ -1920,8 +1920,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                                 items: response.data.doc.items,
                                 source_type: {
                                   id: 1,
-                                  en: 'Purchases Store',
-                                  ar: 'المشتريات المخزنية',
+                                  En: 'Purchases Store',
+                                  Ar: 'المشتريات المخزنية',
                                 },
                                 active: true,
                               };
@@ -1994,8 +1994,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           type: 1,
           code: 1,
         },
@@ -2020,9 +2020,9 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -2078,8 +2078,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -2153,8 +2153,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -2179,8 +2179,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
           code: 1,
         },
@@ -2228,8 +2228,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
           type: 1,
         },
@@ -2636,8 +2636,8 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

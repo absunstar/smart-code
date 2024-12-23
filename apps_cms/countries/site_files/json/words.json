@@ -49,12 +49,12 @@
         "Ar": "حذف دولة "
     },
     {
-        "name": "country_name_ar",
+        "name": "country_name_Ar",
         "En": "Country Name Ar",
         "Ar": "إسم الدولة بالعربي"
     },
     {
-        "name": "country_name_en",
+        "name": "country_name_En",
         "En": "Country Name En",
         "Ar": "إسم الدولة بالإنجليزي"
     },

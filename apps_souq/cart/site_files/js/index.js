@@ -10,7 +10,7 @@ app.controller('cart', function ($scope, $http, $timeout) {
 
     const v = site.validated('#orderCart');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 

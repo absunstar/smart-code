@@ -31,7 +31,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
 
     const v = site.validated('#vendorAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -102,7 +102,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
 
     const v = site.validated('#vendorUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -248,7 +248,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -273,7 +273,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1 }
       }
     }).then(
       function (response) {
@@ -301,7 +301,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1 }
       }
     }).then(
       function (response) {
@@ -385,8 +385,8 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_Ar: 1, name_En: 1,
+          minor_currency_Ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -415,8 +415,8 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1
         }
       }

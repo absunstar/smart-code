@@ -59,8 +59,8 @@ module.exports = function init(site) {
       where['items.size_ar'] = site.get_RegExp(where['size_ar'], 'i')
     }
 
-    if (where['size_en']) {
-      where['items.size_en'] = site.get_RegExp(where['size_en'], 'i')
+    if (where['size_En']) {
+      where['items.size_En'] = site.get_RegExp(where['size_En'], 'i')
     }
 
 

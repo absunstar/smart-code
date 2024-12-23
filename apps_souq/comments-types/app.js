@@ -178,10 +178,10 @@ module.exports = function init(site) {
     if (where['name']) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
+        name_Ar: site.get_RegExp(where['name'], 'i'),
       });
       where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
+        name_En: site.get_RegExp(where['name'], 'i'),
       });
       delete where['name'];
     }

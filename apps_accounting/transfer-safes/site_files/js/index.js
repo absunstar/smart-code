@@ -32,7 +32,7 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
 
     const v = site.validated('#transferSafesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -82,8 +82,8 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
     let obj = {
       source_type: {
         id: 14,
-        en: 'Transfer of safes balances',
-        ar: 'تحويل أرصدة الخزن',
+        En: 'Transfer of safes balances',
+        Ar: 'تحويل أرصدة الخزن',
       },
       type: 'from',
       date: transfer_safes.date,
@@ -134,8 +134,8 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
     let obj = {
       source_type: {
         id: 14,
-        en: 'Transfer of safes balances',
-        ar: 'تحويل أرصدة الخزن',
+        En: 'Transfer of safes balances',
+        Ar: 'تحويل أرصدة الخزن',
       },
       type: 'to',
       code: transfer_safes.code,
@@ -200,7 +200,7 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
     if (!posting) {
       const v = site.validated('#transferSafesUpdateModal');
       if (!v.ok) {
-        $scope.error = v.messages[0].ar;
+        $scope.error = v.messages[0].Ar;
         return;
       }
     }
@@ -455,9 +455,9 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -502,8 +502,8 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
             commission: 1,
             currency: 1,
             balance: 1,
@@ -592,7 +592,7 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
       url: '/api/shifts/get_open_shift',
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
       },
     }).then(
       function (response) {

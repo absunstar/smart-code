@@ -28,8 +28,8 @@ module.exports = function init(site) {
 
     if (where) {
 
-      let size_ar = where.size_ar || '';
-      let size_en = where.size_en || '';
+      let size_Ar = where.size_Ar || '';
+      let size_En= where.size_En|| '';
       let barcode = where.barcode || '';
 
       where['company.id'] = site.get_company(req).id
@@ -43,9 +43,9 @@ module.exports = function init(site) {
         delete where['size_ar']
       }
 
-      if (where && where['size_en']) {
-        where['sizes.size_en'] = site.get_RegExp(where['size_en'], 'i')
-        delete where['size_en']
+      if (where && where['size_En']) {
+        where['sizes.size_En'] = site.get_RegExp(where['size_En'], 'i')
+        delete where['size_En']
       }
 
       if (where && where['barcode']) {
@@ -66,7 +66,7 @@ module.exports = function init(site) {
           docs.forEach(_doc => {
             _doc.sizes.forEach(_sizes => {
               if (_sizes.branches_list && _sizes.branches_list.length > 0) {
-                if (_sizes && (size_ar || size_en || barcode) && ((_sizes.size_ar && size_ar && _sizes.size_ar.contains(size_ar)) || (_sizes.size_en && size_en && _sizes.size_en.contains(size_en)) || (_sizes.barcode && barcode && _sizes.barcode===barcode))) {
+                if (_sizes && (size_Ar || size_En|| barcode) && ((_sizes.size_Ar && size_Ar && _sizes.size_ar.contains(size_Ar)) || (_sizes.size_En&& size_En&& _sizes.size_en.contains(size_en)) || (_sizes.barcode && barcode && _sizes.barcode===barcode))) {
 
                   _sizes.name = _doc.name
                   _sizes.item_group = _doc.item_group

@@ -4,19 +4,19 @@ module.exports = function init(site) {
   site.on('[company][created]', (doc) => {
     $employee_list.add(
       {
-        name_ar: 'موظف إفتراضي',
-        name_en: 'Default Employee',
+        name_Ar: 'موظف إفتراضي',
+        name_En: 'Default Employee',
         image_url: '/images/employee_list.png',
         code: '1-Test',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         active: true,
       },
@@ -83,8 +83,8 @@ module.exports = function init(site) {
       {
         module_name: 'public',
         name: 'employee_admin',
-        en: 'Employee Admin',
-        ar: 'إدارة الموظفين',
+        En: 'Employee Admin',
+        Ar: 'إدارة الموظفين',
         permissions: ['employee_manage'],
       },
     ];
@@ -92,8 +92,8 @@ module.exports = function init(site) {
     user.permissions = [];
 
     user.profile = {
-      name_ar: employee_doc.name_ar,
-      name_en: employee_doc.name_en,
+      name_Ar: employee_doc.name_Ar,
+      name_En: employee_doc.name_En,
       mobile: employee_doc.mobile,
       image_url: employee_doc.image_url,
       gender: employee_doc.gender,
@@ -124,14 +124,14 @@ module.exports = function init(site) {
 
     employee_doc.company = {
       id: company.id,
-      name_ar: company.name_ar,
-      name_en: company.name_en,
+      name_Ar: company.name_Ar,
+      name_En: company.name_En,
     };
 
     employee_doc.branch = {
       code: branch.code,
-      name_ar: branch.name_ar,
-      name_en: branch.name_en,
+      name_Ar: branch.name_Ar,
+      name_En: branch.name_En,
     };
 
     user.company = employee_doc.company;
@@ -272,8 +272,8 @@ module.exports = function init(site) {
       {
         module_name: 'public',
         name: 'employee_admin',
-        en: 'Employee Admin',
-        ar: 'إدارة الموظفين',
+        En: 'Employee Admin',
+        Ar: 'إدارة الموظفين',
         permissions: ['employee_manage'],
       },
     ];
@@ -310,8 +310,8 @@ module.exports = function init(site) {
 
     user.permissions = [];
     user.profile = {
-      name_ar: employee_doc.name_ar,
-      name_en: employee_doc.name_ar,
+      name_Ar: employee_doc.name_Ar,
+      name_En: employee_doc.name_Ar,
       mobile: employee_doc.mobile,
       image_url: employee_doc.image_url,
       gender: employee_doc.gender,
@@ -488,11 +488,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, 'i'),
+        name_Ar: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        name_en: site.get_RegExp(search, 'i'),
+        name_En: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
@@ -604,11 +604,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, 'i'),
+        name_Ar: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        name_en: site.get_RegExp(search, 'i'),
+        name_En: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
@@ -619,12 +619,12 @@ module.exports = function init(site) {
       });
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i');
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i');
     }
 
     if (where.code) {
@@ -658,8 +658,8 @@ module.exports = function init(site) {
   site.getEmployeeAttend = function (data, callback) {
     let select = {
       id: 1,
-      name_ar: 1,
-      name_en: 1,
+      name_Ar: 1,
+      name_En: 1,
       active: 1,
       finger_code: 1,
       gender: 1,

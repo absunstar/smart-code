@@ -17,19 +17,19 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
     let y = new Date().getFullYear().toString()
     $units.add({
-      name_ar: "وحدة إفتراضية",
-      name_en : "Default Unit",
+      name_Ar: "وحدة إفتراضية",
+      name_En : "Default Unit",
       image_url: '/images/unit.png',
       code: "1-Test",
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc) => { })

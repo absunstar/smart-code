@@ -166,7 +166,7 @@ module.exports = function init(site) {
         site.security.updateUser(req.session.user, (err, user_doc) => {});
         store.feedback_list.push({
           user: user,
-          type: { id: 2, en: 'Favorite', ar: 'تفضيل' },
+          type: { id: 2, En: 'Favorite', Ar: 'تفضيل' },
           date: new Date(),
         });
       } else {
@@ -185,7 +185,7 @@ module.exports = function init(site) {
       store.number_reports = store.number_reports + 1;
       store.feedback_list.push({
         user: user,
-        type: { id: 3, en: 'Report', ar: 'إبلاغ' },
+        type: { id: 3, En: 'Report', Ar: 'إبلاغ' },
         report_type: user_store.feedback.report_type,
         comment_report: user_store.feedback.comment_report,
         date: new Date(),
@@ -194,7 +194,7 @@ module.exports = function init(site) {
       store.number_comments = store.number_comments + 1;
       store.feedback_list.push({
         user: user,
-        type: { id: 4, en: 'Comment', ar: 'تعليق' },
+        type: { id: 4, En: 'Comment', Ar: 'تعليق' },
         comment_type: user_store.feedback.comment_type,
         comment: user_store.feedback.comment,
         date: new Date(),
@@ -278,21 +278,21 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i');
     }
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i');
     }
     if (where['search']) {
       where.$or = [];
 
       where.$or.push({
-        name_ar: site.get_RegExp(where['search'], 'i'),
+        name_Ar: site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({
-        name_en: site.get_RegExp(where['search'], 'i'),
+        name_En: site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({

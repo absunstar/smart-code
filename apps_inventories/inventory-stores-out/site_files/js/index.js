@@ -29,8 +29,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     $scope.store_out.taxes = $scope.store_out.taxes || [];
     $scope.store_out.taxes.push({
-      name_ar: $scope.tax.name_ar,
-      name_en: $scope.tax.name_en,
+      name_Ar: $scope.tax.name_Ar,
+      name_En: $scope.tax.name_En,
       value: $scope.tax.value,
     });
     $scope.tax = {};
@@ -41,7 +41,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_out.taxes.length; i++) {
       let tx = $scope.store_out.taxes[i];
-      if (tx.name_ar == _tx.name_ar && tx.value == _tx.value) $scope.store_out.taxes.splice(i, 1);
+      if (tx.name_Ar == _tx.name_Ar && tx.value == _tx.value) $scope.store_out.taxes.splice(i, 1);
     }
     $scope.calc($scope.store_out);
   };
@@ -56,8 +56,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       $scope.store_out.discountes = $scope.store_out.discountes || [];
 
       $scope.store_out.discountes.push({
-        name_ar: $scope.discount.name_ar,
-        name_en: $scope.discount.name_en,
+        name_Ar: $scope.discount.name_Ar,
+        name_En: $scope.discount.name_En,
         value: $scope.discount.value,
         type: $scope.discount.type,
       });
@@ -74,7 +74,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_out.discountes.length; i++) {
       let ds = $scope.store_out.discountes[i];
-      if (ds.name_ar == _ds.name_ar && ds.value == _ds.value && ds.type == _ds.type) $scope.store_out.discountes.splice(i, 1);
+      if (ds.name_Ar == _ds.name_Ar && ds.value == _ds.value && ds.type == _ds.type) $scope.store_out.discountes.splice(i, 1);
     }
     $scope.calc($scope.store_out);
   };
@@ -205,8 +205,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
   $scope.newStoreOut = function () {
     $scope.error = '';
     $scope.discount = {
-      name_ar: 'خصم',
-      name_en: 'Discount',
+      name_Ar: 'خصم',
+      name_En: 'Discount',
       type: 'number',
     };
 
@@ -296,17 +296,17 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
           }
           /* $scope.thermal_lang = 'Ar';
-          $scope.thermal_lang_name = 'name_ar';
+          $scope.thermal_lang_name = 'name_Ar';
           if ($scope.defaultSettings.printer_program.thermal_lang) {
             if ($scope.defaultSettings.printer_program.thermal_lang.id == 2) {
               $scope.thermal_lang = 'En';
-              $scope.thermal_lang_name = 'name_en';
+              $scope.thermal_lang_name = 'name_En';
             } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 3) {
               $scope.thermal_lang = '##session.lang##';
               if ('##session.lang##' == 'Ar') {
-                $scope.thermal_lang_name = 'name_ar';
+                $scope.thermal_lang_name = 'name_Ar';
               } else if ('##session.lang##' == 'En') {
-                $scope.thermal_lang_name = 'name_en';
+                $scope.thermal_lang_name = 'name_En';
               }
             }
           } */
@@ -359,7 +359,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     const v = site.validated('#addStoreOutModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -597,21 +597,21 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
 
           if ($scope.store_out.currency) {
             site.strings['currency'] = {
-              ar: ' ' + $scope.store_out.currency.name_ar + ' ',
-              en: ' ' + $scope.store_out.currency.name_en + ' ',
+              Ar: ' ' + $scope.store_out.currency.name_Ar + ' ',
+              En: ' ' + $scope.store_out.currency.name_En + ' ',
             };
             site.strings['from100'] = {
-              ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
-              en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
+              Ar: ' ' + $scope.store_out.currency.minor_currency_Ar + ' ',
+              En: ' ' + $scope.store_out.currency.minor_currency_En+ ' ',
             };
           } else if ($scope.currencySetting) {
             site.strings['currency'] = {
-              ar: ' ' + $scope.currencySetting.name_ar + ' ',
-              en: ' ' + $scope.currencySetting.name_en + ' ',
+              Ar: ' ' + $scope.currencySetting.name_Ar + ' ',
+              En: ' ' + $scope.currencySetting.name_En + ' ',
             };
             site.strings['from100'] = {
-              ar: ' ' + $scope.currencySetting.minor_currency_ar + ' ',
-              en: ' ' + $scope.currencySetting.minor_currency_en + ' ',
+              Ar: ' ' + $scope.currencySetting.minor_currency_Ar + ' ',
+              En: ' ' + $scope.currencySetting.minor_currency_En+ ' ',
             };
           }
           $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
@@ -914,9 +914,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             }
             let itmObj = {
               image_url: $scope.item.image_url,
-              name_ar: _size.name_ar,
-              name_en: _size.name_en,
-              size_ar: _size.size_ar,
+              name_Ar: _size.name_Ar,
+              name_En: _size.name_En,
+              size_Ar: _size.size_Ar,
               size_en: _size.size_en,
               value_added: _size.value_added,
               total_v_a: _size.total_v_a,
@@ -997,8 +997,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                       });
 
                     if (_size.barcode === $scope.item.search_item_name || _size.size_units_list[indxUnit].barcode === $scope.item.search_item_name) {
-                      _size.name_ar = _item.name_ar;
-                      _size.name_en = _item.name_en;
+                      _size.name_Ar = _item.name_Ar;
+                      _size.name_En = _item.name_En;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_out.store;
                       _size.unit = _size.size_units_list[indxUnit];
@@ -1068,8 +1068,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                       if ($scope.item.vendor) {
                         _size.vendor = {
                           id: $scope.item.vendor.id,
-                          name_ar: $scope.item.vendor.name_ar,
-                          name_en: $scope.item.vendor.name_en,
+                          name_Ar: $scope.item.vendor.name_Ar,
+                          name_En: $scope.item.vendor.name_En,
                         };
                       }
 
@@ -1140,8 +1140,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       $scope.item.itm.sizes.forEach((_item) => {
         let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
-        _item.name_ar = $scope.item.itm.name_ar;
-        _item.name_en = $scope.item.itm.name_en;
+        _item.name_Ar = $scope.item.itm.name_Ar;
+        _item.name_En = $scope.item.itm.name_En;
         _item.item_group = $scope.item.itm.item_group;
         _item.store = $scope.store_out.store;
         _item.count = 1;
@@ -1219,8 +1219,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           if ($scope.item.itm.vendor) {
             _item.vendor = {
               id: $scope.item.itm.vendor.id,
-              name_ar: $scope.item.itm.vendor.name_ar,
-              name_en: $scope.item.itm.vendor.name_en,
+              name_Ar: $scope.item.itm.vendor.name_Ar,
+              name_En: $scope.item.itm.vendor.name_En,
             };
           }
           $scope.item.sizes.push(_item);
@@ -1276,8 +1276,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                     });
 
                   if (_size.barcode === $scope.search_barcode || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-                    _size.name_ar = response.data.list[0].name_ar;
-                    _size.name_en = response.data.list[0].name_en;
+                    _size.name_Ar = response.data.list[0].name_Ar;
+                    _size.name_En = response.data.list[0].name_En;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_out.store;
                     _size.unit = _size.size_units_list[indxUnit];
@@ -1317,8 +1317,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                     if (response.data.list[0].vendor) {
                       _size.vendor = {
                         id: response.data.list[0].vendor.id,
-                        name_ar: response.data.list[0].vendor.name_ar,
-                        name_en: response.data.list[0].vendor.name_en,
+                        name_Ar: response.data.list[0].vendor.name_Ar,
+                        name_En: response.data.list[0].vendor.name_En,
                       };
                     }
                     if (!foundSize && !foundHold) $scope.store_out.items.unshift(_size);
@@ -1524,8 +1524,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           type: 1,
           code: 1,
         },
@@ -1550,9 +1550,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -1612,8 +1612,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         data: {
           select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -1651,8 +1651,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         $scope.storesOutTypes = response.data;
         $scope.storesOutType = {
           id: 3,
-          en: 'Sale Invoice Store',
-          ar: 'فاتورة مبيعات',
+          En: 'Sale Invoice Store',
+          Ar: 'فاتورة مبيعات',
         };
         $scope.storesOutTypes.forEach((_t) => {
           if (_t.id == site.toNumber('##query.type##')) $scope.source_type = _t;
@@ -1675,8 +1675,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1702,8 +1702,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
         },
       },
@@ -1729,8 +1729,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
           type: 1,
         },
@@ -1811,8 +1811,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           items: store_out.items,
           source_type: {
             id: 2,
-            en: 'Sales Store',
-            ar: 'إذن صرف / فاتورة مبيعات',
+            En: 'Sales Store',
+            Ar: 'إذن صرف / فاتورة مبيعات',
           },
           active: true,
         };
@@ -1870,8 +1870,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       items: order_invoice.items,
       source_type: {
         id: 2,
-        en: 'Sales Store',
-        ar: 'إذن صرف / فاتورة مبيعات',
+        En: 'Sales Store',
+        Ar: 'إذن صرف / فاتورة مبيعات',
       },
       active: true,
     };
@@ -1920,32 +1920,32 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 if (account_invoices.invoice_type.id == 3) {
                   acc_invo.in_type = {
                     id: 3,
-                    en: 'sales invoice',
-                    ar: 'فاتورة مبيعات',
+                    En: 'sales invoice',
+                    Ar: 'فاتورة مبيعات',
                   };
                 } else if (account_invoices.invoice_type.id == 4) {
                   acc_invo.in_type = {
                     id: 2,
-                    en: 'Orders Screen',
-                    ar: 'شاشة الطلبات',
+                    En: 'Orders Screen',
+                    Ar: 'شاشة الطلبات',
                   };
                 }
 
                 acc_invo.source_type = {
                   id: 8,
-                  en: 'Amount In',
-                  ar: 'سند قبض',
+                  En: 'Amount In',
+                  Ar: 'سند قبض',
                 };
               } else if (account_invoices.invoice_type.id == 6) {
                 acc_invo.in_type = {
                   id: 4,
-                  en: 'Return purchase invoice',
-                  ar: 'مرتجع فاتورة مشتريات',
+                  En: 'Return purchase invoice',
+                  Ar: 'مرتجع فاتورة مشتريات',
                 };
                 acc_invo.source_type = {
                   id: 9,
-                  en: 'Amount Out',
-                  ar: 'سند صرف',
+                  En: 'Amount Out',
+                  Ar: 'سند صرف',
                 };
               }
 
@@ -1958,13 +1958,13 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               /*   if (account_invoices.source_type.id == 3 && account_invoices.paid_up > 0) {
                 acc_invo.in_type = {
                   id: 2,
-                  en: 'Orders Screen',
-                  ar: 'شاشة الطلبات',
+                  En: 'Orders Screen',
+                  Ar: 'شاشة الطلبات',
                 };
                 acc_invo.source_type = {
                   id: 8,
-                  en: 'Amount In',
-                  ar: 'سند قبض',
+                  En: 'Amount In',
+                  Ar: 'سند قبض',
                 };
                 acc_invo.ref_invoice_id = response.data.doc.id;
 
@@ -2043,32 +2043,32 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 if (account_invoices.invoice_type.id == 3) {
                   account_invoices.in_type = {
                     id: 3,
-                    en: 'sales invoice',
-                    ar: 'فاتورة مبيعات',
+                    En: 'sales invoice',
+                    Ar: 'فاتورة مبيعات',
                   };
                 } else if (account_invoices.invoice_type.id == 4) {
                   account_invoices.in_type = {
                     id: 2,
-                    en: 'Orders Screen',
-                    ar: 'شاشة الطلبات',
+                    En: 'Orders Screen',
+                    Ar: 'شاشة الطلبات',
                   };
                 }
 
                 account_invoices.source_type = {
                   id: 8,
-                  en: 'Amount In',
-                  ar: 'سند قبض',
+                  En: 'Amount In',
+                  Ar: 'سند قبض',
                 };
               } else if (account_invoices.invoice_type.id == 6) {
                 account_invoices.in_type = {
                   id: 4,
-                  en: 'Return purchase invoice',
-                  ar: 'مرتجع فاتورة مشتريات',
+                  En: 'Return purchase invoice',
+                  Ar: 'مرتجع فاتورة مشتريات',
                 };
                 account_invoices.source_type = {
                   id: 9,
-                  en: 'Amount Out',
-                  ar: 'سند صرف',
+                  En: 'Amount Out',
+                  Ar: 'سند صرف',
                 };
                 $scope.addAccountInvoice(account_invoices);
               }
@@ -2115,11 +2115,11 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 vat_total: $scope.thermal.total_value_added,
               };
               if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
-                qrString.name = '##session.company.name_ar##';
+                qrString.name = '##session.company.name_Ar##';
               } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
-                qrString.name = '##session.company.name_en##';
+                qrString.name = '##session.company.name_En##';
               }
-              qrString.name = '##session.company.name_en##';
+              qrString.name = '##session.company.name_En##';
               site.zakat2(
                 {
                   name: qrString.name,
@@ -2135,7 +2135,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             } else {
               let datetime = new Date($scope.thermal.date);
               let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.thermal.code}]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
+              let qrString = `[${'##session.company.name_Ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.thermal.code}]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
               site.qrcode({ width: 140, height: 140, selector: document.querySelector('.qrcode'), text: qrString });
             }
           }
@@ -2227,11 +2227,11 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               vat_total: $scope.store_out.total_value_added,
             };
             if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
-              qrString.name = '##session.company.name_ar##';
+              qrString.name = '##session.company.name_Ar##';
             } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
-              qrString.name = '##session.company.name_en##';
+              qrString.name = '##session.company.name_En##';
             }
-            qrString.name = '##session.company.name_en##';
+            qrString.name = '##session.company.name_En##';
             site.zakat2(
               {
                 name: qrString.name,
@@ -2247,7 +2247,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           } else {
             let datetime = new Date($scope.store_out.date);
             let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-            let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.store_out.code}]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_out.total_value_added}]\nالصافي : [${$scope.store_out.net_value}]`;
+            let qrString = `[${'##session.company.name_Ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.store_out.code}]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_out.total_value_added}]\nالصافي : [${$scope.store_out.net_value}]`;
 
             site.qrcode({ width: 150, height: 150, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
           }
@@ -2299,8 +2299,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -2378,8 +2378,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         },
         /*  select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
         } */
       },
     }).then(
@@ -2449,7 +2449,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     }
     const v = site.validated('#customerAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -2516,8 +2516,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           },
           /*  select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
           } */
         },
       }).then(
@@ -2546,8 +2546,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -2577,8 +2577,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -2818,8 +2818,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                                 items: response.data.doc.items,
                                 source_type: {
                                   id: 2,
-                                  en: 'Sales Store',
-                                  ar: 'إذن صرف / فاتورة مبيعات',
+                                  En: 'Sales Store',
+                                  Ar: 'إذن صرف / فاتورة مبيعات',
                                 },
                                 active: true,
                               };
@@ -3199,8 +3199,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

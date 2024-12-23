@@ -14,31 +14,31 @@ module.exports = function init(site) {
   });
 
   site.on('[company][created]', (doc) => {
-    let name_ar = 'شيفت' + ' ' + doc.name_ar;
-    let name_en = doc.name_en + ' ' + 'Shift';
+    let name_Ar = 'شيفت' + ' ' + doc.name_Ar;
+    let name_En = doc.name_En + ' ' + 'Shift';
     let image = '/images/shift.png';
 
     if (site.feature('school')) {
-      name_ar = 'عام دراسي إفتراضي';
-      name_en = 'Default Dchool Year';
+      name_Ar = 'عام دراسي إفتراضي';
+      name_En = 'Default Dchool Year';
       image = '/images/school_years.png';
     }
 
     $shifts.add(
       {
-        name_ar: name_ar,
-        name_en: name_en,
+        name_Ar: name_Ar,
+        name_En: name_En,
         image_url: image,
         code: '1-Test',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         from_date: new Date(),
         from_time: {
@@ -48,7 +48,7 @@ module.exports = function init(site) {
         open_close_list: [
           {
             active: true,
-            user: { name: doc.name_ar },
+            user: { name: doc.name_Ar },
             date: new Date(),
           },
         ],
@@ -351,8 +351,8 @@ module.exports = function init(site) {
       {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,
@@ -366,8 +366,8 @@ module.exports = function init(site) {
           response.done = true;
           let obj = {
             id: doc.id,
-            name_ar: doc.name_ar,
-            name_en: doc.name_en,
+            name_Ar: doc.name_Ar,
+            name_En: doc.name_En,
             code: doc.code,
             from_date: doc.from_date,
             from_time: doc.from_time,
@@ -439,8 +439,8 @@ module.exports = function init(site) {
       {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,
@@ -453,8 +453,8 @@ module.exports = function init(site) {
         if (!err && doc) {
           let obj = {
             id: doc.id,
-            name_ar: doc.name_ar,
-            name_en: doc.name_en,
+            name_Ar: doc.name_Ar,
+            name_En: doc.name_En,
             code: doc.code,
             from_date: doc.from_date,
             from_time: doc.from_time,

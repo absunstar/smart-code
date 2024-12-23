@@ -121,14 +121,14 @@ module.exports = function init(site) {
             shift: {
               id: result.doc.shift.id,
               code: result.doc.shift.code,
-              name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
+              name_Ar: result.doc.shift.name_Ar, name_En: result.doc.shift.name_En
             },
             date: result.doc.date,
             transition_type: 'out',
-            operation: { ar: 'حذف خصم موظف', en: 'Delete Employee Discount' },
+            operation: { Ar: 'حذف خصم موظف', En: 'Delete Employee Discount' },
 
-            source_name_ar: result.doc.employee.name_ar,
-            source_name_en: result.doc.employee.name_en
+            source_name_Ar: result.doc.employee.name_Ar,
+            source_name_en: result.doc.employee.name_En
           }
           if (Obj.value && Obj.safe && Obj.date) {
             site.quee('[amounts][safes][+]', Obj)

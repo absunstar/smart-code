@@ -59,7 +59,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
 
     const v = site.validated('#categoriesManageModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -110,7 +110,7 @@ app.controller('categories', function ($scope, $http, $timeout) {
 
     const v = site.validated('#categoriesManageModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       $scope.busy = false;
       return;
     }

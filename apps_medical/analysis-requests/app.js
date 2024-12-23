@@ -53,9 +53,9 @@ module.exports = function init(site) {
         if (!_a.made_home_analysis) {
           found = true;
           if (req.session.lang == "Ar") {
-            foundList.push(_a.name_ar);
+            foundList.push(_a.name_Ar);
           } else if (req.session.lang == "En") {
-            foundList.push(_a.name_en);
+            foundList.push(_a.name_En);
           }
         }
       });
@@ -152,9 +152,9 @@ module.exports = function init(site) {
         if (!_a.made_home_analysis) {
           found = true;
           if (req.session.lang == "Ar") {
-            foundList.push(_a.name_ar);
+            foundList.push(_a.name_Ar);
           } else if (req.session.lang == "En") {
-            foundList.push(_a.name_en);
+            foundList.push(_a.name_En);
           }
         }
       });
@@ -371,10 +371,10 @@ module.exports = function init(site) {
       where.$or = [];
       where.$or.push(
         {
-          "customer.name_ar": site.get_RegExp(where.search, "i"),
+          "customer.name_Ar": site.get_RegExp(where.search, "i"),
         },
         {
-          "customer.name_en": site.get_RegExp(where.search, "i"),
+          "customer.name_En": site.get_RegExp(where.search, "i"),
         }
       );
       delete where.search;

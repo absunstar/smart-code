@@ -2,22 +2,22 @@ module.exports = function init(site) {
   let collection_name = "session_add";
 
   let source = {
-    en: "Session Add System",
-    ar: " نظام إضافة الجلسات",
+    En: "Session Add System",
+    Ar: " نظام إضافة الجلسات",
   };
 
   let image_url = "/images/session_add.png";
   let add_message = {
-    en: "New Session Add Added",
-    ar: "تم إضافة جلسة جديد",
+    En: "New Session Add Added",
+    Ar: "تم إضافة جلسة جديد",
   };
   let update_message = {
-    en: " Session Add Updated",
-    ar: "تم تعديل إضافة جلسة",
+    En: " Session Add Updated",
+    Ar: "تم تعديل إضافة جلسة",
   };
   let delete_message = {
-    en: " Session Add Deleted",
-    ar: "تم حذف إضافة جلسة ",
+    En: " Session Add Deleted",
+    Ar: "تم حذف إضافة جلسة ",
   };
 
   site.on("mongodb after insert", function (result) {
@@ -29,8 +29,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -49,8 +49,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -69,8 +69,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

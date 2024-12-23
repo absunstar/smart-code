@@ -13,10 +13,10 @@ module.exports = function init(site) {
               if (objectStock.sizes_list)
                 objectStock.sizes_list.forEach((_size) => {
                   if (_items.barcode == _size.barcode) {
-                    _items.size_ar = _size.size_ar;
-                    _items.size_en = _size.size_en;
-                    _items.name_ar = _size.name_ar;
-                    _items.name_en = _size.name_en;
+                    _items.size_Ar = _size.size_Ar;
+                    _items.size_En= _size.size_En;
+                    _items.name_Ar = _size.name_Ar;
+                    _items.name_En = _size.name_En;
                   }
                 });
             });
@@ -333,11 +333,11 @@ module.exports = function init(site) {
                           _itm.size_units_list.forEach((_unit, i) => {
                             _unit.transaction_obj = { ...transaction_obj };
                             _unit.barcode = _itm.barcode;
-                            _unit.name_ar = _itm.name_ar;
-                            _unit.name_en = _itm.name_en;
+                            _unit.name_Ar = _itm.name_Ar;
+                            _unit.name_En = _itm.name_En;
                             _unit.item_group = _itm.item_group;
-                            _unit.size_ar = _itm.size_ar;
-                            _unit.size_en = _itm.size_en;
+                            _unit.size_Ar = _itm.size_Ar;
+                            _unit.size_En= _itm.size_En;
                             _unit.store = result.doc.store;
                             _unit.company = result.doc.company;
                             _unit.branch = result.doc.branch;
@@ -347,16 +347,16 @@ module.exports = function init(site) {
                             _unit.stock = true;
                             _unit.unit = {
                               id: _unit.id,
-                              name_ar: _unit.name_ar,
-                              name_en: _unit.name_en,
+                              name_Ar: _unit.name_Ar,
+                              name_En: _unit.name_En,
                               barcode: _unit.barcode,
                               convert: _unit.convert,
                             };
                             _unit.shift = {
                               id: result.doc.shift.id,
                               code: result.doc.shift.code,
-                              name_ar: result.doc.shift.name_ar,
-                              name_en: result.doc.shift.name_en,
+                              name_Ar: result.doc.shift.name_Ar,
+                              name_En: result.doc.shift.name_En,
                             };
                             if (_unit.store_count > _unit.stock_count) {
                               _unit.count =
@@ -559,11 +559,11 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        "store.payment_method.ar": site.get_RegExp(search, "i"),
+        "store.payment_method.Ar": site.get_RegExp(search, "i"),
       });
 
       where.$or.push({
-        "store.payment_method.en": site.get_RegExp(search, "i"),
+        "store.payment_method.En": site.get_RegExp(search, "i"),
       });
     }
 

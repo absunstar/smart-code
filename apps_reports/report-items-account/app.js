@@ -105,9 +105,9 @@ module.exports = function init(site) {
               if (!found) {
                 let obj = {
                   barcode: _doc.barcode,
-                  name_ar: _doc.name_ar,
-                  name_en: _doc.name_en,
-                  size_ar: _doc.size_ar,
+                  name_Ar: _doc.name_Ar,
+                  name_En: _doc.name_En,
+                  size_Ar: _doc.size_Ar,
                   size_en: _doc.size_en,
                   unit: _doc.unit,
                   price: _doc.price,

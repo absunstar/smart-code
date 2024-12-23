@@ -34,12 +34,12 @@
         "Ar": "حذف طعام "
     },
     {
-        "name": "food_name_ar",
+        "name": "food_name_Ar",
         "En": "Foods Name Ar",
         "Ar": "إسم الطعام بالعربي"
     },
     {
-        "name": "food_name_en",
+        "name": "food_name_En",
         "En": "Foods Name En",
         "Ar": "إسم الطعام بالإنجليزي"
     },

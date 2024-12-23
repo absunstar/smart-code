@@ -33,7 +33,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated("#medicalInsuranceCompanyAddModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -74,7 +74,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated("#medicalInsuranceCompanyUpdateModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -204,7 +204,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -230,7 +230,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
           "gov.id": gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -283,8 +283,8 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           price: 1,
           delivery_time: 1,
           period: 1,
@@ -349,8 +349,8 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
                       _size.size_units_list[indxUnit].barcode ===
                         $scope.item.search_item_name
                     ) {
-                      _size.name_ar = _item.name_ar;
-                      _size.name_en = _item.name_en;
+                      _size.name_Ar = _item.name_Ar;
+                      _size.name_En = _item.name_En;
                       _size.item_group = _item.item_group;
                       _size.count = 1;
                       _size.unit = _size.size_units_list[indxUnit];
@@ -443,8 +443,8 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
     )
       $scope.item.itm.sizes.forEach((_item) => {
         _item.add_sizes = $scope.item.itm.add_sizes;
-        _item.name_ar = $scope.item.itm.name_ar;
-        _item.name_en = $scope.item.itm.name_en;
+        _item.name_Ar = $scope.item.itm.name_Ar;
+        _item.name_En = $scope.item.itm.name_En;
         _item.item_group = $scope.item.itm.item_group;
         _item.count = 1;
         let indxUnit = 0;
@@ -520,7 +520,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1,price : 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1,price : 1 },
       },
     }).then(
       function (response) {
@@ -548,8 +548,8 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           price: 1,
           delivery_time: 1,
           period: 1,

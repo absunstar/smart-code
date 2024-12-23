@@ -36,13 +36,13 @@ site.get({
 site.words.add(
   {
     name: 'le',
-    en: 'Ryal',
-    ar: 'ريال',
+    En: 'Ryal',
+    Ar: 'ريال',
   },
   {
     name: 'le',
-    en: 'Ryal',
-    ar: 'ريال',
+    En: 'Ryal',
+    Ar: 'ريال',
   }
 );
 

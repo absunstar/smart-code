@@ -51,9 +51,9 @@ module.exports = function init(site) {
       where['items.size_ar'] = where['size_ar']
       delete where['size_ar']
     }
-    if (where['size_en']) {
-      where['items.size_en'] = where['size_en']
-      delete where['size_en']
+    if (where['size_En']) {
+      where['items.size_En'] = where['size_En']
+      delete where['size_En']
     }
     if (where['barcode']) {
       where['items.barcode'] = where['barcode']
@@ -97,7 +97,7 @@ module.exports = function init(site) {
             if (!exist) {
               if (where2['size_ar'] || where2['barcode'] || where2['name']) {
 
-                if (where2['size_ar'] == itm.size_ar || where2['name'] == itm.name || where2['barcode'] == itm.barcode)
+                if (where2['size_ar'] == itm.size_Ar || where2['name'] == itm.name || where2['barcode'] == itm.barcode)
                   sizes_list.push(itm);
 
               } else sizes_list.push(itm);

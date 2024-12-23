@@ -19,8 +19,8 @@ app.controller("companies", function ($scope, $http, $timeout) {
       employees_count: 20,
       branch_list: [{
         code: 1,
-        name_ar: 'الفرع الرئيسى',
-        name_en: 'Main Branch',
+        name_Ar: 'الفرع الرئيسى',
+        name_En: 'Main Branch',
         charge: [{}]
       }],
       bank_list: [{}]
@@ -37,7 +37,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#companyAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -110,7 +110,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#companyUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -227,7 +227,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -252,7 +252,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -305,7 +305,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         },
         where: {
@@ -335,7 +335,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }

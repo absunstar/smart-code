@@ -17,19 +17,19 @@ module.exports = function init(site) {
     $operation.add(
       {
         code: "1-Test",
-        name_ar: 'عملية إفتراضية',
-        name_en: "Default Operation",
+        name_Ar: 'عملية إفتراضية',
+        name_En: "Default Operation",
         price: 1,
         image_url: '/images/medical_specialty.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true,
       },
@@ -70,9 +70,9 @@ module.exports = function init(site) {
   
         'company.id': site.get_company(req).id,
         $or: [{
-          'name_ar': operation_doc.name_ar
+          'name_Ar': operation_doc.name_Ar
         },{
-          'name_en': operation_doc.name_en
+          'name_En': operation_doc.name_En
         }]
       }
     }, (err, doc) => {
@@ -215,12 +215,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name_ar']) {
-      where['name_ar'] = new RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = new RegExp(where['name_Ar'], "i");
     }
 
-    if (where['name_en']) {
-      where['name_en'] = new RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = new RegExp(where['name_En'], "i");
     }
 
     where['company.id'] = site.get_company(req).id

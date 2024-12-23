@@ -30,7 +30,7 @@ app.controller('printers_path', function ($scope, $http, $timeout) {
     }
     const v = site.validated('#printerPathAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -74,7 +74,7 @@ app.controller('printers_path', function ($scope, $http, $timeout) {
 
     const v = site.validated('#printerPathUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

@@ -77,7 +77,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
     const v = site.validated('#addStoreStockModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -226,9 +226,9 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         if (!foundSize) {
           $scope.store_stock.items.unshift({
             image_url: $scope.item.image_url,
-            name_ar: _size.name_ar,
-            name_en: _size.name_en,
-            size_ar: _size.size_ar,
+            name_Ar: _size.name_Ar,
+            name_En: _size.name_En,
+            size_Ar: _size.size_Ar,
             item_group: _size.item_group,
             work_patch: _size.work_patch,
             work_serial: _size.work_serial,
@@ -316,8 +316,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                         }
                       });
                     if ((_size.barcode === $scope.item.search_item_name) || foundUnit) {
-                      _size.name_ar = _item.name_ar;
-                      _size.name_en = _item.name_en;
+                      _size.name_Ar = _item.name_Ar;
+                      _size.name_En = _item.name_En;
                       _size.item_group = _item.item_group;
 
                       foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _size.barcode);
@@ -351,8 +351,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
-        _item.name_ar = $scope.item.itm.name_ar;
-        _item.name_en = $scope.item.itm.name_en;
+        _item.name_Ar = $scope.item.itm.name_Ar;
+        _item.name_En = $scope.item.itm.name_En;
         _item.item_group = $scope.item.itm.item_group;
 
         if (_item.size_units_list && _item.size_units_list.length > 0)
@@ -466,8 +466,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                       }
                     });
 
-                  _size.name_ar = _list.name_ar;
-                  _size.name_en = _list.name_en;
+                  _size.name_Ar = _list.name_Ar;
+                  _size.name_En = _list.name_En;
                   _size.item_group = _list.item_group;
                   foundSize = $scope.store_stock.items.some(_itemSize => _itemSize.barcode === _size.barcode);
                   if (!foundSize && !foundHold) $scope.store_stock.items.unshift(_size);
@@ -552,8 +552,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                       }
                     });
 
-                  _size.name_ar = _list.name_ar;
-                  _size.name_en = _list.name_en;
+                  _size.name_Ar = _list.name_Ar;
+                  _size.name_En = _list.name_En;
                   _size.item_group = _list.item_group;
                   foundSize = $scope.store_stock.items.some(_itemSize => _itemSize.barcode === _size.barcode);
                   if (!foundSize && !foundHold) $scope.store_stock.items.unshift(_size);
@@ -644,8 +644,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
 
                   if ((_size.barcode === $scope.search_barcode) || foundUnit) {
 
-                    _size.name_ar = response.data.list[0].name_ar;
-                    _size.name_en = response.data.list[0].name_en;
+                    _size.name_Ar = response.data.list[0].name_Ar;
+                    _size.name_En = response.data.list[0].name_En;
                     _size.item_group = response.data.list[0].item_group;
 
                     foundSize = $scope.store_stock.items.some(_itemSize => _itemSize.barcode === _size.barcode);
@@ -949,7 +949,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_Ar: 1, name_En: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -973,7 +973,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -1220,7 +1220,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

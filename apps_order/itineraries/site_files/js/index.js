@@ -20,7 +20,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#itineraryAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -64,7 +64,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#itineraryUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -433,16 +433,16 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
         account_invoices.source_type = {
           id: 8,
-          en: "Amount in",
-          ar: "سند قبض"
+          En: "Amount in",
+          Ar: "سند قبض"
         }
 
       } else if (account_invoices.mission_type && account_invoices.mission_type.id === 2) {
 
         account_invoices.source_type = {
           id: 9,
-          en: "Amount Out",
-          ar: "سند صرف"
+          En: "Amount Out",
+          Ar: "سند صرف"
         }
       }
 
@@ -495,7 +495,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1, name_en: 1,
+            name_Ar: 1, name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -529,7 +529,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,
@@ -563,8 +563,8 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_Ar: 1, name_En: 1,
+          minor_currency_Ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },

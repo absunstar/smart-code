@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'hr_employee_list'
 
   let source = {
-    en : 'Jobs And Employees System' ,
-    ar : 'نظام الوظائف والموظفين'
+    En : 'Jobs And Employees System' ,
+    Ar : 'نظام الوظائف والموظفين'
   }
 
   let image_url = '/images/delivery_employee_list.png'
   let add_message = {
-    en: 'New Trainer Added',
-    ar: 'تم إضافة موظف توصيل جديد'
+    En: 'New Trainer Added',
+    Ar: 'تم إضافة موظف توصيل جديد'
   }
   let update_message = {
-    en: ' Trainer Updated',
-    ar: 'تم تعديل موظف توصيل'
+    En: ' Trainer Updated',
+    Ar: 'تم تعديل موظف توصيل'
   }
   let delete_message = {
-    en: ' Trainer Deleted',
-    ar: 'تم حذف موظف توصيل '
+    En: ' Trainer Deleted',
+    Ar: 'تم حذف موظف توصيل '
   }
 
   
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -74,8 +74,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

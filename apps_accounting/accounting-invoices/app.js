@@ -43,10 +43,10 @@ module.exports = function init(site) {
             _doc.items.forEach((_items) => {
               objectInvoice.sizes_list.forEach((_size) => {
                 if (_items.barcode === _size.barcode) {
-                  _items.size_ar = _size.size_ar;
-                  _items.size_en = _size.size_en;
-                  _items.name_ar = _size.name_ar;
-                  _items.name_en = _size.name_en;
+                  _items.size_Ar = _size.size_Ar;
+                  _items.size_En= _size.size_En;
+                  _items.name_Ar = _size.name_Ar;
+                  _items.name_En = _size.name_En;
                 }
               });
             });
@@ -263,14 +263,14 @@ module.exports = function init(site) {
               if (account_invoices_doc.paid_up < amount_currency) {
                 account_invoices_doc.payment_type = {
                   id: 2,
-                  en: 'Futures',
-                  ar: 'آجل',
+                  En: 'Futures',
+                  Ar: 'آجل',
                 };
               } else {
                 account_invoices_doc.payment_type = {
                   id: 1,
-                  en: 'Cash',
-                  ar: 'كاش',
+                  En: 'Cash',
+                  Ar: 'كاش',
                 };
               }
             }
@@ -298,8 +298,8 @@ module.exports = function init(site) {
                     shift: {
                       id: doc.shift.id,
                       code: doc.shift.code,
-                      name_ar: doc.shift.name_ar,
-                      name_en: doc.shift.name_en,
+                      name_Ar: doc.shift.name_Ar,
+                      name_En: doc.shift.name_En,
                     },
                   };
 
@@ -368,7 +368,7 @@ module.exports = function init(site) {
                       site.quee('[customer][account_invoice][balance]', customerObj);
                     }
                   } else if (doc.source_type.id == 4) {
-                    paid_value.operation = { ar: 'فاتورة طلب نشاط', en: 'Request Service Invoice', name: 'request_service' };
+                    paid_value.operation = { Ar: 'فاتورة طلب نشاط', En: 'Request Service Invoice', name: 'request_service' };
                     paid_value.transition_type = 'in';
 
                     if (doc.customer && doc.customer.id) {
@@ -392,11 +392,11 @@ module.exports = function init(site) {
 
                     site.call('[account_invoices][request_activity][+]', doc.invoice_id);
                   } else if (doc.source_type.id == 5) {
-                    paid_value.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice', name: 'book_hall' };
+                    paid_value.operation = { Ar: 'فاتورة حجز قاعة', En: 'Book Hall Invoice', name: 'book_hall' };
                     paid_value.transition_type = 'in';
                     site.call('[account_invoices][book_hall][+]', doc.invoice_id);
                   } else if (doc.source_type.id == 8) {
-                    paid_value.operation = { ar: 'سند قبض', en: 'Amount In', name: 'amount_in' };
+                    paid_value.operation = { Ar: 'سند قبض', En: 'Amount In', name: 'amount_in' };
                     paid_value.transition_type = 'in';
                     paid_value.operation_type = doc.in_type;
 
@@ -443,7 +443,7 @@ module.exports = function init(site) {
                       site.quee('[account_invoice][in_out_type]', doc);
                     }
                   } else if (doc.source_type.id == 9) {
-                    paid_value.operation = { ar: 'سند صرف', en: 'Amount Out', name: 'amount_out' };
+                    paid_value.operation = { Ar: 'سند صرف', En: 'Amount Out', name: 'amount_out' };
                     paid_value.transition_type = 'out';
 
                     if (doc.out_type) {
@@ -478,7 +478,7 @@ module.exports = function init(site) {
                       site.quee('[account_invoice][in_out_type]', doc);
                     }
                   } else if (doc.source_type.id == 10) {
-                    paid_value.operation = { ar: 'دفعة عميل مقدمة', en: 'Customer Advance Payment', name: 'customer_advance' };
+                    paid_value.operation = { Ar: 'دفعة عميل مقدمة', En: 'Customer Advance Payment', name: 'customer_advance' };
                     paid_value.transition_type = 'in';
                     if (doc.customer && doc.customer.id) {
                       let customerBalance = {
@@ -489,14 +489,14 @@ module.exports = function init(site) {
                       site.quee('[customer][account_invoice][balance]', customerBalance);
                     }
                   } else if (doc.source_type.id == 11) {
-                    paid_value.operation = { ar: 'سلفة موظف', en: 'Employee Advance', name: 'employee_advance' };
+                    paid_value.operation = { Ar: 'سلفة موظف', En: 'Employee Advance', name: 'employee_advance' };
                     paid_value.transition_type = 'out';
                   } else if (doc.source_type.id == 12) {
-                    paid_value.operation = { ar: 'تسديد سلفة موظف', en: 'Payment Employee Advance', name: 'pay_employee_advance' };
+                    paid_value.operation = { Ar: 'تسديد سلفة موظف', En: 'Payment Employee Advance', name: 'pay_employee_advance' };
                     paid_value.transition_type = 'in';
                     site.accountInvoiceAccept(doc.invoice_id);
                   } else if (doc.source_type.id == 13) {
-                    paid_value.operation = { ar: 'مصروفات دراسية', en: 'School Fees', name: 'school_fees' };
+                    paid_value.operation = { Ar: 'مصروفات دراسية', En: 'School Fees', name: 'school_fees' };
                     paid_value.transition_type = 'in';
 
                     if (doc.customer && doc.customer.id) {
@@ -520,24 +520,24 @@ module.exports = function init(site) {
                   }
 
                   if (doc.employee && doc.employee.id) {
-                    paid_value.source_name_ar = doc.employee.name_ar;
-                    paid_value.source_name_en = doc.employee.name_en;
+                    paid_value.source_name_Ar = doc.employee.name_Ar;
+                    paid_value.source_name_En= doc.employee.name_En;
                   }
 
                   if (doc.delegate && doc.delegate.id) {
-                    paid_value.source_name_ar = doc.delegate.name_ar;
-                    paid_value.source_name_en = doc.delegate.name_en;
+                    paid_value.source_name_Ar = doc.delegate.name_Ar;
+                    paid_value.source_name_En= doc.delegate.name_En;
                   }
 
                   if (doc.source_type.id === 14) {
-                    paid_value.operation = { en: 'Transfer of safes balances', ar: 'تحويل أرصدة الخزن', name: 'transfer_safes' };
+                    paid_value.operation = { En: 'Transfer of safes balances', Ar: 'تحويل أرصدة الخزن', name: 'transfer_safes' };
                     if (doc.type == 'from') {
                       paid_value.transition_type = 'out';
                     } else if (doc.type == 'to') {
                       paid_value.transition_type = 'in';
                     }
                   } else if (doc.source_type.id == 15) {
-                    paid_value.operation = { ar: 'تذكرة مريض', en: 'Patient Ticket', name: 'patient_ticket' };
+                    paid_value.operation = { Ar: 'تذكرة مريض', En: 'Patient Ticket', name: 'patient_ticket' };
                     paid_value.transition_type = 'in';
 
                     if (doc.customer && doc.customer.id) {
@@ -649,14 +649,14 @@ module.exports = function init(site) {
                   shift: {
                     id: account_invoices_doc.shift.id,
                     code: account_invoices_doc.shift.code,
-                    name_ar: account_invoices_doc.shift.name_ar,
-                    name_en: account_invoices_doc.shift.name_en,
+                    name_Ar: account_invoices_doc.shift.name_Ar,
+                    name_En: account_invoices_doc.shift.name_En,
                   },
                 };
 
                 if (account_invoices_doc.source_type.id == 1) {
                   if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
-                    paid_value.operation = { ar: 'دفعة مرتجع فاتورة مشتريات', en: 'Pay Return Purchase Invoice' };
+                    paid_value.operation = { Ar: 'دفعة مرتجع فاتورة مشتريات', En: 'Pay Return Purchase Invoice' };
                     paid_value.value = -Math.abs(paid_value.value);
 
                     if (account_invoices_doc.vendor && account_invoices_doc.vendor.id && account_invoices_doc.payment_type && account_invoices_doc.payment_type.id === 2) {
@@ -668,7 +668,7 @@ module.exports = function init(site) {
                       site.quee('[vendor][account_invoice][balance]', vendorObj);
                     }
                   } else {
-                    paid_value.operation = { ar: 'دفعة فاتورة مشتريات', en: 'Pay Purchase Invoice' };
+                    paid_value.operation = { Ar: 'دفعة فاتورة مشتريات', En: 'Pay Purchase Invoice' };
 
                     if (account_invoices_doc.vendor && account_invoices_doc.vendor.id && account_invoices_doc.payment_type && account_invoices_doc.payment_type.id === 2) {
                       let vendorObj = { id: account_invoices_doc.vendor.id };
@@ -683,7 +683,7 @@ module.exports = function init(site) {
                   paid_value.transition_type = 'out';
                 } else if (account_invoices_doc.source_type.id == 2) {
                   if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
-                    paid_value.operation = { ar: 'دفعة مرتجع فاتورة مبيعات', en: 'Pay Return Sales Invoice' };
+                    paid_value.operation = { Ar: 'دفعة مرتجع فاتورة مبيعات', En: 'Pay Return Sales Invoice' };
                     paid_value.value = -Math.abs(paid_value.value);
 
                     if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
@@ -705,7 +705,7 @@ module.exports = function init(site) {
                       if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj);
                     }
                   } else {
-                    paid_value.operation = { ar: 'دفعة فاتورة مبيعات', en: 'Pay Sales Invoice' };
+                    paid_value.operation = { Ar: 'دفعة فاتورة مبيعات', En: 'Pay Sales Invoice' };
 
                     if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
                       let customerObj = { id: account_invoices_doc.customer.id };
@@ -729,7 +729,7 @@ module.exports = function init(site) {
 
                   paid_value.transition_type = 'in';
                 } else if (account_invoices_doc.source_type.id == 3) {
-                  paid_value.operation = { ar: ' دفعة فاتورة شاشة الطلبات', en: 'Pay Orders Return Screen Invoice' };
+                  paid_value.operation = { Ar: ' دفعة فاتورة شاشة الطلبات', En: 'Pay Orders Return Screen Invoice' };
                   paid_value.transition_type = 'in';
 
                   if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
@@ -751,7 +751,7 @@ module.exports = function init(site) {
                     if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj);
                   }
                 } else if (account_invoices_doc.source_type.id == 4) {
-                  paid_value.operation = { ar: 'دفعة فاتورة طلب نشاط', en: 'Pay Request Service' };
+                  paid_value.operation = { Ar: 'دفعة فاتورة طلب نشاط', En: 'Pay Request Service' };
                   paid_value.transition_type = 'in';
 
                   if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
@@ -773,10 +773,10 @@ module.exports = function init(site) {
                     if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj);
                   }
                 } else if (account_invoices_doc.source_type.id == 5) {
-                  paid_value.operation = { ar: 'دفعة فاتورة حجز قاعة', en: 'Pay Book Hall' };
+                  paid_value.operation = { Ar: 'دفعة فاتورة حجز قاعة', En: 'Pay Book Hall' };
                   paid_value.transition_type = 'in';
                 } else if (account_invoices_doc.source_type.id == 8) {
-                  paid_value.operation = { ar: 'دفعة سند قبض', en: 'Pay Amount In' };
+                  paid_value.operation = { Ar: 'دفعة سند قبض', En: 'Pay Amount In' };
                   paid_value.transition_type = 'in';
 
                   // if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
@@ -801,10 +801,10 @@ module.exports = function init(site) {
                   //   if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
                   // }
                 } else if (account_invoices_doc.source_type.id == 9) {
-                  paid_value.operation = { ar: 'دفعة سند صرف', en: 'Pay Amount Out' };
+                  paid_value.operation = { Ar: 'دفعة سند صرف', En: 'Pay Amount Out' };
                   paid_value.transition_type = 'out';
                 } else if (account_invoices_doc.source_type.id == 13) {
-                  paid_value.operation = { ar: 'دفعة مصروفات دراسية', en: 'Pay School Fees' };
+                  paid_value.operation = { Ar: 'دفعة مصروفات دراسية', En: 'Pay School Fees' };
                   paid_value.transition_type = 'in';
 
                   if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
@@ -826,7 +826,7 @@ module.exports = function init(site) {
                     if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj);
                   }
                 } else if (account_invoices_doc.source_type.id == 15) {
-                  paid_value.operation = { ar: 'دفعة تذكرة مريض', en: 'Pay Patient Ticket' };
+                  paid_value.operation = { Ar: 'دفعة تذكرة مريض', En: 'Pay Patient Ticket' };
                   paid_value.transition_type = 'in';
 
                   if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
@@ -850,13 +850,13 @@ module.exports = function init(site) {
                 }
 
                 if (account_invoices_doc.employee && account_invoices_doc.employee.id) {
-                  paid_value.source_name_ar = account_invoices_doc.employee.name_ar;
-                  paid_value.source_name_en = account_invoices_doc.employee.name_en;
+                  paid_value.source_name_Ar = account_invoices_doc.employee.name_Ar;
+                  paid_value.source_name_En= account_invoices_doc.employee.name_En;
                 }
 
                 if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) {
-                  paid_value.source_name_ar = account_invoices_doc.delegate.name_ar;
-                  paid_value.source_name_en = account_invoices_doc.delegate.name_en;
+                  paid_value.source_name_Ar = account_invoices_doc.delegate.name_Ar;
+                  paid_value.source_name_En= account_invoices_doc.delegate.name_En;
                 }
 
                 if (account_invoices_doc.source_type.id != 16) {
@@ -963,8 +963,8 @@ module.exports = function init(site) {
                   shift: {
                     id: account_invoices_doc.shift.id,
                     code: account_invoices_doc.shift.code,
-                    name_ar: account_invoices_doc.shift.name_ar,
-                    name_en: account_invoices_doc.shift.name_en,
+                    name_Ar: account_invoices_doc.shift.name_Ar,
+                    name_En: account_invoices_doc.shift.name_En,
                   },
                 };
 
@@ -973,40 +973,40 @@ module.exports = function init(site) {
 
                   if (account_invoices_doc.source_type.id == 1) {
                     if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
-                      obj.operation = { ar: 'مرتجع فاتورة مشتريات', en: 'Return Purchase Invoice' };
+                      obj.operation = { Ar: 'مرتجع فاتورة مشتريات', En: 'Return Purchase Invoice' };
                       obj.value = -Math.abs(obj.value);
                     } else {
-                      obj.operation = { ar: 'فاتورة مشتريات', en: 'Purchase Invoice' };
+                      obj.operation = { Ar: 'فاتورة مشتريات', En: 'Purchase Invoice' };
                     }
 
                     obj.transition_type = 'out';
                   } else if (account_invoices_doc.source_type.id == 2) {
                     if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
                       obj.value = -Math.abs(obj.value);
-                      obj.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' };
+                      obj.operation = { Ar: 'مرتجع فاتورة مبيعات', En: 'Return Sales Invoice' };
                     } else {
-                      obj.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' };
+                      obj.operation = { Ar: 'فاتورة مبيعات', En: 'Sales Invoice' };
                     }
 
                     obj.transition_type = 'in';
                   } else if (account_invoices_doc.source_type.id == 3) {
-                    obj.operation = { ar: 'فاتورة شاشة الطلبات', en: 'Orders Screen Invoice' };
+                    obj.operation = { Ar: 'فاتورة شاشة الطلبات', En: 'Orders Screen Invoice' };
                     obj.transition_type = 'in';
                   } else if (account_invoices_doc.source_type.id == 4) {
-                    obj.operation = { ar: 'فاتورة طلب نشاط', en: 'Request Service Invoice' };
+                    obj.operation = { Ar: 'فاتورة طلب نشاط', En: 'Request Service Invoice' };
                     obj.transition_type = 'in';
                   } else if (account_invoices_doc.source_type.id == 5) {
-                    obj.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' };
+                    obj.operation = { Ar: 'فاتورة حجز قاعة', En: 'Book Hall Invoice' };
                     obj.transition_type = 'in';
                     site.call('[account_invoices][book_hall][+]', account_invoices_doc.invoice_id);
                   } else if (account_invoices_doc.source_type.id == 8) {
-                    obj.operation = { ar: 'سند قبض', en: 'Amount In' };
+                    obj.operation = { Ar: 'سند قبض', En: 'Amount In' };
                     obj.transition_type = 'in';
                   } else if (account_invoices_doc.source_type.id == 9) {
-                    obj.operation = { ar: 'سند صرف', en: 'Amount Out' };
+                    obj.operation = { Ar: 'سند صرف', En: 'Amount Out' };
                     obj.transition_type = 'out';
                   } else if (account_invoices_doc.source_type.id == 10 && account_invoices_doc.customer) {
-                    obj.operation = { ar: 'دفعة عميل مقدمة', en: 'Customer Advance Payment' };
+                    obj.operation = { Ar: 'دفعة عميل مقدمة', En: 'Customer Advance Payment' };
                     obj.transition_type = 'in';
                     let customerBalance = {
                       id: account_invoices_doc.customer.id,
@@ -1015,17 +1015,17 @@ module.exports = function init(site) {
                     };
                     site.quee('[customer][account_invoice][balance]', customerBalance);
                   } else if (account_invoices_doc.source_type.id == 11) {
-                    obj.operation = { ar: 'سلفة موظف', en: 'Employee Advance' };
+                    obj.operation = { Ar: 'سلفة موظف', En: 'Employee Advance' };
                     obj.transition_type = 'out';
                   } else if (account_invoices_doc.source_type.id == 12) {
-                    obj.operation = { ar: 'تسديد سلفة موظف', en: 'Payment Employee Advance' };
+                    obj.operation = { Ar: 'تسديد سلفة موظف', En: 'Payment Employee Advance' };
                     obj.transition_type = 'in';
                     site.accountInvoiceAccept(account_invoices_doc.invoice_id);
                   } else if (account_invoices_doc.source_type.id == 13) {
-                    obj.operation = { ar: 'مصروفات دراسية', en: 'School Fees' };
+                    obj.operation = { Ar: 'مصروفات دراسية', En: 'School Fees' };
                     obj.transition_type = 'in';
                   } else if (account_invoices_doc.source_type.id == 15) {
-                    obj.operation = { ar: 'تذكرة مريض', en: 'Patient Ticket' };
+                    obj.operation = { Ar: 'تذكرة مريض', En: 'Patient Ticket' };
                     obj.transition_type = 'in';
                   }
                 } else {
@@ -1033,44 +1033,44 @@ module.exports = function init(site) {
 
                   if (account_invoices_doc.source_type.id == 1) {
                     if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
-                      obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مشتريات', en: 'Un Post Return Purchase Invoice' };
+                      obj.operation = { Ar: 'فك ترحيل مرتجع فاتورة مشتريات', En: 'Un Post Return Purchase Invoice' };
                     } else {
                       obj.value = -Math.abs(obj.value);
-                      obj.operation = { ar: 'فك ترحيل فاتورة مشتريات', en: 'Un Post Purchase Invoice' };
+                      obj.operation = { Ar: 'فك ترحيل فاتورة مشتريات', En: 'Un Post Purchase Invoice' };
                     }
 
                     obj.transition_type = 'out';
                   } else if (account_invoices_doc.source_type.id == 2) {
                     if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 6) {
-                      obj.operation = { ar: 'فك ترحيل مرتجع فاتورة مبيعات', en: 'Un Post Return Sales Invoice' };
+                      obj.operation = { Ar: 'فك ترحيل مرتجع فاتورة مبيعات', En: 'Un Post Return Sales Invoice' };
                     } else {
                       obj.value = -Math.abs(obj.value);
-                      obj.operation = { ar: 'فك ترحيل فاتورة مبيعات', en: 'Un Post Sales Invoice' };
+                      obj.operation = { Ar: 'فك ترحيل فاتورة مبيعات', En: 'Un Post Sales Invoice' };
                     }
 
                     obj.transition_type = 'in';
                   } else if (account_invoices_doc.source_type.id == 3) {
                     obj.transition_type = 'in';
                     obj.value = -Math.abs(obj.value);
-                    obj.operation = { ar: 'فك ترحيل فاتورة شاشة الطلبات', en: 'Un Post Orders Screen Invoice' };
+                    obj.operation = { Ar: 'فك ترحيل فاتورة شاشة الطلبات', En: 'Un Post Orders Screen Invoice' };
                   } else if (account_invoices_doc.source_type.id == 4) {
                     obj.transition_type = 'in';
                     obj.value = -Math.abs(obj.value);
-                    obj.operation = { ar: 'فك ترحيل فاتورة طلب نشاط', en: 'Un Post Request Service Invoice' };
+                    obj.operation = { Ar: 'فك ترحيل فاتورة طلب نشاط', En: 'Un Post Request Service Invoice' };
                   } else if (account_invoices_doc.source_type.id == 5) {
-                    obj.operation = { ar: 'فك ترحيل فاتورة حجز قاعة', en: 'Un Post Book Hall Invoice' };
+                    obj.operation = { Ar: 'فك ترحيل فاتورة حجز قاعة', En: 'Un Post Book Hall Invoice' };
                     obj.transition_type = 'in';
                     obj.value = -Math.abs(obj.value);
                   } else if (account_invoices_doc.source_type.id == 8) {
-                    obj.operation = { ar: 'فك ترحيل سند قبض', en: 'Un Post Amount In' };
+                    obj.operation = { Ar: 'فك ترحيل سند قبض', En: 'Un Post Amount In' };
                     obj.transition_type = 'in';
                     obj.value = -Math.abs(obj.value);
                   } else if (account_invoices_doc.source_type.id == 9) {
-                    obj.operation = { ar: 'فك ترحيل سند صرف', en: 'Un Post Amount Out' };
+                    obj.operation = { Ar: 'فك ترحيل سند صرف', En: 'Un Post Amount Out' };
                     obj.transition_type = 'out';
                     obj.value = -Math.abs(obj.value);
                   } else if (account_invoices_doc.source_type.id == 10 && account_invoices_doc.customer) {
-                    obj.operation = { ar: 'فك ترحيل دفعة عميل مقدمة', en: 'Un Post Customer Advance Payment' };
+                    obj.operation = { Ar: 'فك ترحيل دفعة عميل مقدمة', En: 'Un Post Customer Advance Payment' };
                     obj.transition_type = 'in';
                     obj.value = -Math.abs(obj.value);
                     let customerBalance = {
@@ -1081,38 +1081,38 @@ module.exports = function init(site) {
 
                     site.quee('[customer][account_invoice][balance]', customerBalance);
                   } else if (account_invoices_doc.source_type.id == 11) {
-                    obj.operation = { ar: 'فك ترحيل سلفة موظف', en: 'Un Post Employee Advance' };
+                    obj.operation = { Ar: 'فك ترحيل سلفة موظف', En: 'Un Post Employee Advance' };
                     obj.transition_type = 'in';
                   } else if (account_invoices_doc.source_type.id == 12) {
-                    obj.operation = { ar: 'فك ترحيل تسديد سلفة موظف', en: 'Un Post Payment Employee Advance' };
+                    obj.operation = { Ar: 'فك ترحيل تسديد سلفة موظف', En: 'Un Post Payment Employee Advance' };
                     obj.transition_type = 'out';
                   } else if (account_invoices_doc.source_type.id == 13) {
-                    obj.operation = { ar: 'فك ترحيل مصروفات دراسية', en: 'Un Post School Fees' };
+                    obj.operation = { Ar: 'فك ترحيل مصروفات دراسية', En: 'Un Post School Fees' };
                     obj.transition_type = 'out';
                   } else if (account_invoices_doc.source_type.id == 15) {
-                    obj.operation = { ar: 'فك ترحيل تذكرة مريض', en: 'Un Post Patient Ticket' };
+                    obj.operation = { Ar: 'فك ترحيل تذكرة مريض', En: 'Un Post Patient Ticket' };
                     obj.transition_type = 'out';
                   }
                 }
 
                 if (account_invoices_doc.employee && account_invoices_doc.employee.id) {
-                  obj.source_name_ar = account_invoices_doc.employee.name_ar;
-                  obj.source_name_en = account_invoices_doc.employee.name_en;
+                  obj.source_name_Ar = account_invoices_doc.employee.name_Ar;
+                  obj.source_name_En= account_invoices_doc.employee.name_En;
                 }
 
                 if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) {
-                  obj.source_name_ar = account_invoices_doc.delegate.name_ar;
-                  obj.source_name_en = account_invoices_doc.delegate.name_en;
+                  obj.source_name_Ar = account_invoices_doc.delegate.name_Ar;
+                  obj.source_name_En= account_invoices_doc.delegate.name_En;
                 }
 
                 if (account_invoices_doc.source_type.id === 14) {
                   let paid_to = Object.assign({}, obj);
                   if (account_invoices_doc.posting) {
                     obj.transition_type = 'out';
-                    obj.operation = { en: 'Transfer of safes balances', ar: 'تحويل أرصدة الخزن' };
+                    obj.operation = { En: 'Transfer of safes balances', Ar: 'تحويل أرصدة الخزن' };
                   } else {
                     obj.transition_type = 'in';
-                    obj.operation = { en: 'Un Post Transfer of safes balances', ar: 'فك ترحيل تحويل أرصدة الخزن' };
+                    obj.operation = { En: 'Un Post Transfer of safes balances', Ar: 'فك ترحيل تحويل أرصدة الخزن' };
                   }
 
                   paid_to.payment_method = account_invoices_doc.payment_method_to;
@@ -1380,24 +1380,24 @@ module.exports = function init(site) {
                           shift: {
                             id: result.doc.shift.id,
                             code: result.doc.shift.code,
-                            name_ar: result.doc.shift.name_ar,
-                            name_en: result.doc.shift.name_en,
+                            name_Ar: result.doc.shift.name_Ar,
+                            name_En: result.doc.shift.name_En,
                           },
                         };
                         if (result.doc.source_type.id == 1) {
                           if (result.doc.invoice_type && result.doc.invoice_type.id == 4) {
-                            obj.operation = { ar: 'حذف مرتجع فاتورة مشتريات', en: 'Delete Return Purchase Invoice' };
+                            obj.operation = { Ar: 'حذف مرتجع فاتورة مشتريات', En: 'Delete Return Purchase Invoice' };
                           } else {
                             obj.value = -Math.abs(obj.value);
-                            obj.operation = { ar: 'حذف فاتورة مشتريات', en: 'Delete Purchase Invoice' };
+                            obj.operation = { Ar: 'حذف فاتورة مشتريات', En: 'Delete Purchase Invoice' };
                           }
 
                           obj.transition_type = 'out';
                         } else if (result.doc.source_type.id == 2) {
                           if (result.doc.invoice_type && result.doc.invoice_type.id == 6) {
-                            obj.operation = { ar: 'حذف مرتجع فاتورة مبيعات', en: 'Delete Return Sales Invoice' };
+                            obj.operation = { Ar: 'حذف مرتجع فاتورة مبيعات', En: 'Delete Return Sales Invoice' };
                           } else {
-                            obj.operation = { ar: 'حذف فاتورة مبيعات', en: 'Delete Sales Invoice' };
+                            obj.operation = { Ar: 'حذف فاتورة مبيعات', En: 'Delete Sales Invoice' };
                             obj.value = -Math.abs(obj.value);
                           }
 
@@ -1405,25 +1405,25 @@ module.exports = function init(site) {
                         } else if (result.doc.source_type.id == 3) {
                           obj.transition_type = 'in';
                           obj.value = -Math.abs(obj.value);
-                          obj.operation = { ar: 'حذف فاتورة شاشة الطلبات', en: 'Delete Orders Screen Invoice' };
+                          obj.operation = { Ar: 'حذف فاتورة شاشة الطلبات', En: 'Delete Orders Screen Invoice' };
                         } else if (result.doc.source_type.id == 4) {
                           obj.transition_type = 'in';
                           obj.value = -Math.abs(obj.value);
-                          obj.operation = { ar: 'حذف فاتورة طلب نشاط', en: 'Delete Request Service Invoice' };
+                          obj.operation = { Ar: 'حذف فاتورة طلب نشاط', En: 'Delete Request Service Invoice' };
                         } else if (response.doc.source_type.id == 5) {
-                          obj.operation = { ar: 'حذف فاتورة حجز قاعة', en: 'Delete Book Hall Invoice' };
+                          obj.operation = { Ar: 'حذف فاتورة حجز قاعة', En: 'Delete Book Hall Invoice' };
                           obj.transition_type = 'in';
                           obj.value = -Math.abs(obj.value);
                         } else if (response.doc.source_type.id == 8) {
-                          obj.operation = { ar: 'حذف سند قبض', en: 'Delete Amount In' };
+                          obj.operation = { Ar: 'حذف سند قبض', En: 'Delete Amount In' };
                           obj.transition_type = 'in';
                           obj.value = -Math.abs(obj.value);
                         } else if (response.doc.source_type.id == 9) {
-                          obj.operation = { ar: 'حذف سند صرف', en: 'Delete Amount Out' };
+                          obj.operation = { Ar: 'حذف سند صرف', En: 'Delete Amount Out' };
                           obj.transition_type = 'out';
                           obj.value = -Math.abs(obj.value);
                         } else if (response.doc.source_type.id == 10 && response.doc.customer) {
-                          obj.operation = { ar: 'حذف دفعة عميل مقدمة', en: 'Delete Customer Advance Payment' };
+                          obj.operation = { Ar: 'حذف دفعة عميل مقدمة', En: 'Delete Customer Advance Payment' };
                           obj.transition_type = 'in';
                           obj.value = -Math.abs(obj.value);
                           let customerBalance = {
@@ -1433,31 +1433,31 @@ module.exports = function init(site) {
                           };
                           site.quee('[customer][account_invoice][balance]', customerBalance);
                         } else if (response.doc.source_type.id == 11) {
-                          obj.operation = { ar: 'حذف سلفة موظف', en: 'Delete Employee Advance' };
+                          obj.operation = { Ar: 'حذف سلفة موظف', En: 'Delete Employee Advance' };
                           obj.transition_type = 'in';
                         } else if (response.doc.source_type.id == 12) {
-                          obj.operation = { ar: 'حذف تسديد سلفة موظف', en: 'Delete Payment Employee Advance' };
+                          obj.operation = { Ar: 'حذف تسديد سلفة موظف', En: 'Delete Payment Employee Advance' };
                           obj.transition_type = 'out';
                         } else if (response.doc.source_type.id == 13) {
-                          obj.operation = { ar: 'حذف مصروفات دراسية', en: 'Delete School Fees' };
+                          obj.operation = { Ar: 'حذف مصروفات دراسية', En: 'Delete School Fees' };
                           obj.transition_type = 'out';
                         } else if (response.doc.source_type.id == 15) {
-                          obj.operation = { ar: 'حذف تذكرة مريض', en: 'Delete Patient Ticket' };
+                          obj.operation = { Ar: 'حذف تذكرة مريض', En: 'Delete Patient Ticket' };
                           obj.transition_type = 'out';
                           site.call('delete Patient Ticket', response.doc.invoice_id);
                         }
 
                         if (response.doc.employee && response.doc.employee.id) {
-                          obj.source_name_ar = response.doc.employee.name_ar;
-                          obj.source_name_en = response.doc.employee.name_en;
+                          obj.source_name_Ar = response.doc.employee.name_Ar;
+                          obj.source_name_En= response.doc.employee.name_En;
                         }
                         if (response.doc.delegate && response.doc.delegate.id) {
-                          obj.source_name_ar = response.doc.delegate.name_ar;
-                          obj.source_name_en = response.doc.delegate.name_en;
+                          obj.source_name_Ar = response.doc.delegate.name_Ar;
+                          obj.source_name_En= response.doc.delegate.name_En;
                         }
 
                         if (result.doc.source_type.id === 14) {
-                          obj.operation = { en: 'Delete Transfer of safes balances', ar: 'حذف تحويل أرصدة الخزن' };
+                          obj.operation = { En: 'Delete Transfer of safes balances', Ar: 'حذف تحويل أرصدة الخزن' };
 
                           if (result.doc.type == 'from') {
                             obj.transition_type = 'in';
@@ -1820,9 +1820,9 @@ module.exports = function init(site) {
       delete where['shift_code'];
     }
 
-    if (where['name_ar']) where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
+    if (where['name_Ar']) where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i');
 
-    if (where['name_en']) where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+    if (where['name_En']) where['name_En'] = site.get_RegExp(where['name_En'], 'i');
 
     if (where['source_type']) {
       where['source_type.id'] = where['source_type'].id;

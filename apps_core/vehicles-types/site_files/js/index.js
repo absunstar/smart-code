@@ -22,7 +22,7 @@ app.controller("vehicles_types", function ($scope, $http, $timeout) {
 
     const v = site.validated('#vehiclesTypesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -76,7 +76,7 @@ app.controller("vehicles_types", function ($scope, $http, $timeout) {
 
     const v = site.validated('#vehiclesTypesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     if ($scope.vehicles_types.subjects_list.length < 1) {
@@ -218,7 +218,7 @@ app.controller("vehicles_types", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         },
         where: {

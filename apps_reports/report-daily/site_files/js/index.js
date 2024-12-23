@@ -223,7 +223,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: _l.paid_up,
-        value: '##session.lang##' == 'Ar' ? _l.source_type.ar : _l.source_type.en
+        value: '##session.lang##' == 'Ar' ? _l.source_type.Ar : _l.source_type.En
       });
     });
 
@@ -284,8 +284,8 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_Ar: 1, name_En: 1,
+          minor_currency_Ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code : 1
         },

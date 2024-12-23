@@ -129,7 +129,7 @@ app.controller("report_doctors_visits", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1
+          name_Ar: 1, name_En: 1
         }
       }
     }).then(
@@ -160,7 +160,7 @@ app.controller("report_doctors_visits", function ($scope, $http, $timeout) {
         where: where,
         /*  select: {
            id: 1,
-           name_ar: 1, name_en: 1,
+           name_Ar: 1, name_En: 1,
            doctor_list: 1,
            specialty: 1
          } */

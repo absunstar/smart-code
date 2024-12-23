@@ -26,14 +26,14 @@ module.exports = function init(site) {
   site.on('[request_types][administrative_business][add]', doc => {
 
     $administrative_business.add({
-      name_ar: "عمل إداري إفتراضي",
-      name_en: "Default Administrative Business",
+      name_Ar: "عمل إداري إفتراضي",
+      name_En: "Default Administrative Business",
       code: "1-Test",
       image_url: '/images/administrative_business.png',
       date : new Date(),
       request_type : {
-        name_ar : doc.name_ar,
-        name_en : doc.name_en,
+        name_Ar : doc.name_Ar,
+        name_En : doc.name_En,
         id : doc.id
       },
       company: doc.company,
@@ -207,12 +207,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i')
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], 'i')
     }
 
     if (where['request_type']) {

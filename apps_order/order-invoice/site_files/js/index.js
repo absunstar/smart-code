@@ -31,8 +31,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.bookingTable = function (tableId) {
     $scope.order_invoice.transaction_type = {
       id: 1,
-      ar: 'طاولات',
-      en: 'Tables',
+      Ar: 'طاولات',
+      En: 'Tables',
     };
 
     $http({
@@ -41,8 +41,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           active: 1,
           busy: 1,
@@ -70,8 +70,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               data: {
                 select: {
                   id: 1,
-                  name_ar: 1,
-                  name_en: 1,
+                  name_Ar: 1,
+                  name_En: 1,
                   code: 1,
                   active: 1,
                   busy: 1,
@@ -122,7 +122,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     $http({
       method: 'POST',
       url: '/api/stores/all',
-      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } },
+      data: { select: { id: 1, name_Ar: 1, name_En: 1, type: 1, code: 1 } },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -148,8 +148,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           details: [],
           status: {
             id: 1,
-            en: 'Opened',
-            ar: 'مفتوحة',
+            En: 'Opened',
+            Ar: 'مفتوحة',
           },
           total_discount: 0,
           total_tax: 0,
@@ -257,8 +257,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
     $scope.order_invoice.status = {
       id: 2,
-      en: 'Closed Of Orders Screen',
-      ar: 'مغلق من شاشة الأوردرات',
+      En: 'Closed Of Orders Screen',
+      Ar: 'مغلق من شاشة الأوردرات',
     };
     $scope.order_invoice.currency = $scope.order_invoice.invoices_list[0].currency;
     $scope.order_invoice.payment_method = $scope.order_invoice.invoices_list[0].payment_method;
@@ -303,8 +303,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         net_value: $scope.order_invoice.net_value,
         type: {
           id: 4,
-          en: 'Orders Screen',
-          ar: 'شاشة الطلبات',
+          En: 'Orders Screen',
+          Ar: 'شاشة الطلبات',
         },
         active: true,
       };
@@ -324,13 +324,13 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       if (($scope.order_invoice.items && $scope.order_invoice.items.length > 0) || type === 'table') {
         const v = site.validated('#OrderInvoiceAddModal');
         if (!v.ok) {
-          $scope.error = v.messages[0].ar;
+          $scope.error = v.messages[0].Ar;
           $scope.order_invoice.posting = false;
 
           $scope.order_invoice.status = {
             id: 1,
-            en: 'Opened',
-            ar: 'مفتوحة',
+            En: 'Opened',
+            Ar: 'مفتوحة',
           };
           return;
         }
@@ -341,8 +341,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
           $scope.order_invoice.status = {
             id: 1,
-            en: 'Opened',
-            ar: 'مفتوحة',
+            En: 'Opened',
+            Ar: 'مفتوحة',
           };
           return;
         }
@@ -353,8 +353,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
           $scope.order_invoice.status = {
             id: 1,
-            en: 'Opened',
-            ar: 'مفتوحة',
+            En: 'Opened',
+            Ar: 'مفتوحة',
           };
           return;
         }
@@ -364,8 +364,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
           $scope.order_invoice.status = {
             id: 1,
-            en: 'Opened',
-            ar: 'مفتوحة',
+            En: 'Opened',
+            Ar: 'مفتوحة',
           };
           return;
         }
@@ -383,8 +383,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
             $scope.order_invoice.status = {
               id: 1,
-              en: 'Opened',
-              ar: 'مفتوحة',
+              En: 'Opened',
+              Ar: 'مفتوحة',
             };
             return;
           }
@@ -396,8 +396,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
           $scope.order_invoice.status = {
             id: 1,
-            en: 'Opened',
-            ar: 'مفتوحة',
+            En: 'Opened',
+            Ar: 'مفتوحة',
           };
           return;
         }
@@ -474,8 +474,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
                 $scope.order_invoice.status = {
                   id: 1,
-                  en: 'Opened',
-                  ar: 'مفتوحة',
+                  En: 'Opened',
+                  Ar: 'مفتوحة',
                 };
               }
 
@@ -595,13 +595,13 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       items: order_invoice.under_paid.items,
       source_type: {
         id: 3,
-        en: 'Orders Screen',
-        ar: 'شاشة الطلبات',
+        En: 'Orders Screen',
+        Ar: 'شاشة الطلبات',
       },
       invoice_type: {
         id: 4,
-        en: 'Orders Screen Store',
-        ar: 'شاشة الطلبات',
+        En: 'Orders Screen Store',
+        Ar: 'شاشة الطلبات',
       },
       active: true,
     };
@@ -652,13 +652,13 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               if (account_invoices.source_type.id == 3 && account_invoices.paid_up > 0) {
                 acc_invo.in_type = {
                   id: 2,
-                  en: 'Orders Screen',
-                  ar: 'شاشة الطلبات',
+                  En: 'Orders Screen',
+                  Ar: 'شاشة الطلبات',
                 };
                 acc_invo.source_type = {
                   id: 8,
-                  en: 'Amount In',
-                  ar: 'سند قبض',
+                  En: 'Amount In',
+                  Ar: 'سند قبض',
                 };
                 acc_invo.ref_invoice_id = response.data.doc.id;
 
@@ -745,8 +745,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                       });
 
                     if (_size.barcode === $scope.search_barcode || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-                      _size.name_ar = response.data.list[0].name_ar;
-                      _size.name_en = response.data.list[0].name_en;
+                      _size.name_Ar = response.data.list[0].name_Ar;
+                      _size.name_En = response.data.list[0].name_En;
                       _size.item_group = response.data.list[0].item_group;
                       _size.store = $scope.order_invoice.store;
                       _size.count = 1;
@@ -847,7 +847,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     const v = site.validated('#OrderInvoiceUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     if (type == 'unhold') {
@@ -1044,8 +1044,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           image_url: 1,
           color: 1,
           code: 1,
@@ -1062,8 +1062,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           $scope.itemsGroupList = response.data.list;
           $scope.itemsGroupList.unshift({
             id: 0,
-            name_ar: 'الأكثر مبيعا',
-            name_en: 'Best seller',
+            name_Ar: 'الأكثر مبيعا',
+            name_En: 'Best seller',
             color: '#F0F8FF',
             type: 'all',
           });
@@ -1087,8 +1087,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          ar: 1,
-          en: 1,
+          Ar: 1,
+          En: 1,
           price: 1,
           code: 1,
         },
@@ -1119,9 +1119,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
-          minor_currency_ar: 1,
+          name_Ar: 1,
+          name_En: 1,
+          minor_currency_Ar: 1,
           minor_currency_en: 1,
           ex_rate: 1,
           code: 1,
@@ -1177,8 +1177,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         data: {
           select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -1208,8 +1208,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,
@@ -1241,8 +1241,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           printer_path: 1,
           code: 1,
         },
@@ -1271,8 +1271,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
           code: 1,
         },
@@ -1301,8 +1301,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           value: 1,
           type: 1,
           code: 1,
@@ -1365,7 +1365,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
     const v = site.validated('#customerAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -1414,8 +1414,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           },
           /*  select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
           } */
         },
       }).then(
@@ -1464,8 +1464,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1491,8 +1491,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           from_date: 1,
           from_time: 1,
@@ -1529,8 +1529,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1560,8 +1560,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1673,8 +1673,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
       },
@@ -1709,8 +1709,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           active: 1,
           busy: 1,
@@ -1802,7 +1802,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
     order.items.forEach((item) => {
       $scope.order_invoice.items.forEach((el) => {
-        if (item.size_ar == el.size_ar && item.barcode == el.barcode) {
+        if (item.size_Ar == el.size_Ar && item.barcode == el.barcode) {
           exist = true;
 
           el.count = el.count + item.count;
@@ -1929,8 +1929,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           }
         });
         _size.item_id = $scope.items.id;
-        _size.name_ar = $scope.items.name_ar;
-        _size.name_en = $scope.items.name_en;
+        _size.name_Ar = $scope.items.name_Ar;
+        _size.name_En = $scope.items.name_En;
         _size.add_sizes = $scope.items.add_sizes;
       });
     }
@@ -2002,12 +2002,12 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         let obj = {
           item_id: item.item_id,
           kitchen: kitchenBranch,
-          name_ar: item.name_ar,
-          name_en: item.name_en,
+          name_Ar: item.name_Ar,
+          name_En: item.name_En,
           store: item.store,
           value_added: item.value_added,
           barcode: item.barcode,
-          size_ar: item.size_ar,
+          size_Ar: item.size_Ar,
           size_en: item.size_en,
           item_group: item.item_group,
           item_complex: item.item_complex,
@@ -2130,8 +2130,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       $scope.order_invoice.taxes = $scope.order_invoice.taxes || [];
       if ($scope.tax.value) {
         $scope.order_invoice.taxes.unshift({
-          name_ar: $scope.tax.name_ar || 'ضريبة إفتراضية',
-          name_en: $scope.tax.name_en || 'Default Tax',
+          name_Ar: $scope.tax.name_Ar || 'ضريبة إفتراضية',
+          name_En: $scope.tax.name_En || 'Default Tax',
           value: $scope.tax.value,
         });
       }
@@ -2157,8 +2157,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     } else {
       $scope.order_invoice.discountes = $scope.order_invoice.discountes || [];
       $scope.order_invoice.discountes.unshift({
-        name_ar: $scope.discount.name_ar || 'خصم إفتراضي',
-        name_en: $scope.discount.name_en || 'Default Discount',
+        name_Ar: $scope.discount.name_Ar || 'خصم إفتراضي',
+        name_En: $scope.discount.name_En || 'Default Discount',
         value: $scope.discount.value,
         type: $scope.discount.type,
       });
@@ -2307,12 +2307,12 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
       if (order.currency) {
         site.strings['currency'] = {
-          ar: ' ' + order.currency.name_ar + ' ',
-          en: ' ' + order.currency.name_en + ' ',
+          Ar: ' ' + order.currency.name_Ar + ' ',
+          En: ' ' + order.currency.name_En + ' ',
         };
         site.strings['from100'] = {
-          ar: ' ' + order.currency.minor_currency_ar + ' ',
-          en: ' ' + order.currency.minor_currency_en + ' ',
+          Ar: ' ' + order.currency.minor_currency_Ar + ' ',
+          En: ' ' + order.currency.minor_currency_En+ ' ',
         };
         order.net_txt = site.stringfiy(order.net_value);
       }
@@ -2374,11 +2374,11 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 vat_total: order.total_value_added,
               };
               if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
-                qrString.name = '##session.company.name_ar##';
+                qrString.name = '##session.company.name_Ar##';
               } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
-                qrString.name = '##session.company.name_en##';
+                qrString.name = '##session.company.name_En##';
               }
-              qrString.name = '##session.company.name_en##';
+              qrString.name = '##session.company.name_En##';
               site.zakat2(
                 {
                   name: qrString.name,
@@ -2395,7 +2395,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               let datetime = new Date(order.date);
               let formatted_date =
                 datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+              let qrString = `[${'##session.company.name_Ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
                 order.code
               }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${order.total_value_added}]\nالصافي : [${order.net_value}]`;
 
@@ -2439,12 +2439,12 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       $scope.thermal = { ...obj };
       if ($scope.thermal.currency) {
         site.strings['currency'] = {
-          ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-          en: ' ' + $scope.thermal.currency.name_en + ' ',
+          Ar: ' ' + $scope.thermal.currency.name_Ar + ' ',
+          En: ' ' + $scope.thermal.currency.name_En + ' ',
         };
         site.strings['from100'] = {
-          ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-          en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
+          Ar: ' ' + $scope.thermal.currency.minor_currency_Ar + ' ',
+          En: ' ' + $scope.thermal.currency.minor_currency_En+ ' ',
         };
         $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
       }
@@ -2467,11 +2467,11 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 vat_total: $scope.thermal.total_value_added,
               };
               if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
-                qrString.name = '##session.company.name_ar##';
+                qrString.name = '##session.company.name_Ar##';
               } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
-                qrString.name = '##session.company.name_en##';
+                qrString.name = '##session.company.name_En##';
               }
-              qrString.name = '##session.company.name_en##';
+              qrString.name = '##session.company.name_En##';
               site.zakat2(
                 {
                   name: qrString.name,
@@ -2488,7 +2488,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               let datetime = new Date($scope.thermal.date);
               let formatted_date =
                 datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+              let qrString = `[${'##session.company.name_Ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
                 $scope.thermal.code
               }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
               site.qrcode({ width: 140, height: 140, selector: document.querySelector('.qrcode'), text: qrString });

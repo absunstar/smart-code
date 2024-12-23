@@ -95,12 +95,12 @@
         "Ar": "صلاحيات عامة"
     },
     {
-        "name": "validity_ar",
+        "name": "validity_Ar",
         "En": "Ar. Validity",
         "Ar": "الصلاحية بالعربي"
     },
     {
-        "name": "validity_en",
+        "name": "validity_En",
         "En": "En. Validity",
         "Ar": "الصلاحية بالإنجليزي"
     },

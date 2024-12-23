@@ -21,7 +21,7 @@ app.controller("reasons_sessions", function ($scope, $http, $timeout) {
 
     const v = site.validated('#reasonsSessionsAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -68,7 +68,7 @@ app.controller("reasons_sessions", function ($scope, $http, $timeout) {
 
     const v = site.validated('#reasonsSessionsUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

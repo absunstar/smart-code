@@ -50,7 +50,7 @@
           </div>
 
           <div class="row category">
-            <a ng-repeat="c in category_list" href="/category/{{c.id}}/{{c.name_en}} - {{c.name_ar}}"
+            <a ng-repeat="c in category_list" href="/category/{{c.id}}/{{c.name_En}} - {{c.name_Ar}}"
               ng-click="selectCategoryHeader(c.id)" class="center bold pointer statistics">
               <img class="center userad-logo" ng-src="{{c.image_url}}" onerror="this.src='/images/user.png'" alt="" />
               {{c.name_##session.lang##}}

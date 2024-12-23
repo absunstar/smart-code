@@ -28,16 +28,16 @@ module.exports = function init(site) {
     $notifications.add(Object.assign({
       source: {
         name: '',
-        ar: ''
+        Ar: ''
       },
       message: {
         name: '',
-        ar: ''
+        Ar: ''
       },
 
       value: {
         name: '',
-        ar: ''
+        Ar: ''
       },
       user: user,
       link: link,
@@ -78,11 +78,11 @@ module.exports = function init(site) {
 
     $notifications.add(Object.assign({
       source: '',
-      source_ar: '',
+      source_Ar: '',
       message: '',
-      message_ar: '',
+      message_Ar: '',
       value: '',
-      value_ar: '',
+      value_Ar: '',
       user: user,
       date: new Date()
     }, obj), (err, doc) => {
@@ -149,12 +149,12 @@ module.exports = function init(site) {
     }
 
 
-    if (where['message.ar']) {
-      where['message.ar'] = site.get_RegExp(where['message.ar'], 'i')
+    if (where['message.Ar']) {
+      where['message.Ar'] = site.get_RegExp(where['message.Ar'], 'i')
     }
 
-    if (where['value.ar']) {
-      where['value.ar'] = site.get_RegExp(where['value.ar'], 'i')
+    if (where['value.Ar']) {
+      where['value.Ar'] = site.get_RegExp(where['value.Ar'], 'i')
     }
 
     where['company.id'] = site.get_company(req).id;

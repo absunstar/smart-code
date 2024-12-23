@@ -9,7 +9,7 @@ app.controller("insurances_slides", function ($scope, $http) {
       method: "POST",
       url: "/api/insurances_slides/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -78,7 +78,7 @@ app.controller("insurances_slides", function ($scope, $http) {
     $scope.error = "";
     const v = site.validated("#addInsuranceSlideModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -115,7 +115,7 @@ app.controller("insurances_slides", function ($scope, $http) {
     $scope.error = "";
     const v = site.validated("#updateInsuranceSlideModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

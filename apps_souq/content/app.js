@@ -621,10 +621,10 @@ module.exports = function init(site) {
         description: site.get_RegExp(where['text_search'], 'i'),
       });
       where.$or.push({
-        'main_category.name_ar': site.get_RegExp(where['text_search'], 'i'),
+        'main_category.name_Ar': site.get_RegExp(where['text_search'], 'i'),
       });
       where.$or.push({
-        'main_category.name_en': site.get_RegExp(where['text_search'], 'i'),
+        'main_category.name_En': site.get_RegExp(where['text_search'], 'i'),
       });
 
       where.$or.push({
@@ -632,31 +632,31 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        'address.country.name_ar': site.get_RegExp(where['text_search'], 'i'),
+        'address.country.name_Ar': site.get_RegExp(where['text_search'], 'i'),
       });
       where.$or.push({
-        'address.country.name_en': site.get_RegExp(where['text_search'], 'i'),
-      });
-
-      where.$or.push({
-        'address.gov.name_ar': site.get_RegExp(where['text_search'], 'i'),
-      });
-      where.$or.push({
-        'address.gov.name_en': site.get_RegExp(where['text_search'], 'i'),
+        'address.country.name_En': site.get_RegExp(where['text_search'], 'i'),
       });
 
       where.$or.push({
-        'address.city.name_ar': site.get_RegExp(where['text_search'], 'i'),
+        'address.gov.name_Ar': site.get_RegExp(where['text_search'], 'i'),
       });
       where.$or.push({
-        'address.city.name_en': site.get_RegExp(where['text_search'], 'i'),
+        'address.gov.name_En': site.get_RegExp(where['text_search'], 'i'),
       });
 
       where.$or.push({
-        'address.area.name_ar': site.get_RegExp(where['text_search'], 'i'),
+        'address.city.name_Ar': site.get_RegExp(where['text_search'], 'i'),
       });
       where.$or.push({
-        'address.area.name_en': site.get_RegExp(where['text_search'], 'i'),
+        'address.city.name_En': site.get_RegExp(where['text_search'], 'i'),
+      });
+
+      where.$or.push({
+        'address.area.name_Ar': site.get_RegExp(where['text_search'], 'i'),
+      });
+      where.$or.push({
+        'address.area.name_En': site.get_RegExp(where['text_search'], 'i'),
       });
     }
 
@@ -749,9 +749,9 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err && docs) {
           if (req.body.post) {
-            let lang = 'name_ar';
+            let lang = 'name_Ar';
             if (req.session.lang == 'En') {
-              lang = 'name_en';
+              lang = 'name_En';
             }
             docs.forEach((_a) => {
               if (_a.address) {

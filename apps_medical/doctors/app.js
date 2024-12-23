@@ -5,25 +5,25 @@ module.exports = function init(site) {
   site.on("[register][doctor][add]", (doc) => {
     $doctors.add({
         code: "1-Test",
-        name_ar: "طبيب إفتراضي",
-        name_en: "Default Doctor",
+        name_Ar: "طبيب إفتراضي",
+        name_En: "Default Doctor",
         image_url: "/images/doctors.png",
         specialty: {
           id: doc.id,
           code: doc.code,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         doctor: true,
         company: {
           id: doc.company.id,
-          name_ar: doc.company.name_ar,
-          name_en: doc.company.name_en,
+          name_Ar: doc.company.name_Ar,
+          name_En: doc.company.name_En,
         },
         branch: {
           code: doc.branch.code,
-          name_ar: doc.branch.name_ar,
-          name_en: doc.branch.name_en,
+          name_Ar: doc.branch.name_Ar,
+          name_En: doc.branch.name_En,
         },
         active: true,
       },
@@ -81,10 +81,10 @@ module.exports = function init(site) {
           "branch.code": site.get_branch(req).code,
 
           $or: [{
-              name_ar: doctor_doc.name_ar,
+              name_Ar: doctor_doc.name_Ar,
             },
             {
-              name_en: doctor_doc.name_en,
+              name_En: doctor_doc.name_En,
             },
           ],
         },
@@ -118,14 +118,14 @@ module.exports = function init(site) {
           user.roles = [{
             module_name: "public",
             name: "doctor_admin",
-            en: "Employee Admin",
-            ar: "إدارة الموظفين",
+            En: "Employee Admin",
+            Ar: "إدارة الموظفين",
             permissions: ["doctor_manage"],
           }, ];
 
           user.profile = {
-            name_ar: user.name_ar,
-            name_en: user.name_en,
+            name_Ar: user.name_Ar,
+            name_En: user.name_En,
             mobile: user.mobile,
             gender: doctor_doc.gender,
             image_url: user.image_url,
@@ -239,8 +239,8 @@ module.exports = function init(site) {
     let user = {};
 
     user = {
-      name_ar: doctor_doc.name_ar,
-      name_en: doctor_doc.name_en,
+      name_Ar: doctor_doc.name_Ar,
+      name_En: doctor_doc.name_En,
       mobile: doctor_doc.mobile,
       username: doctor_doc.username,
       email: doctor_doc.username,
@@ -253,14 +253,14 @@ module.exports = function init(site) {
     user.roles = [{
       module_name: "public",
       name: "doctor_admin",
-      en: "Employee Admin",
-      ar: "إدارة الموظفين",
+      En: "Employee Admin",
+      Ar: "إدارة الموظفين",
       permissions: ["doctor_manage"],
     }, ];
 
     user.profile = {
-      name_ar: user.name_ar,
-      name_en: user.name_en,
+      name_Ar: user.name_Ar,
+      name_En: user.name_En,
       mobile: user.mobile,
       image_url: user.image_url,
     };
@@ -428,11 +428,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, "i"),
+        name_Ar: site.get_RegExp(search, "i"),
       });
 
       where.$or.push({
-        name_en: site.get_RegExp(search, "i"),
+        name_En: site.get_RegExp(search, "i"),
       });
 
       where.$or.push({
@@ -475,12 +475,12 @@ module.exports = function init(site) {
       delete where.active;
     }
 
-    if (where["name_ar"]) {
-      where["name_ar"] = site.get_RegExp(where["name_ar"], "i");
+    if (where["name_Ar"]) {
+      where["name_Ar"] = site.get_RegExp(where["name_Ar"], "i");
     }
 
-    if (where["name_en"]) {
-      where["name_en"] = site.get_RegExp(where["name_en"], "i");
+    if (where["name_En"]) {
+      where["name_En"] = site.get_RegExp(where["name_En"], "i");
     }
 
     if (where["address"]) {
@@ -556,23 +556,23 @@ module.exports = function init(site) {
   //     if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
   //       skip = (parseInt(req.body.page) - 1) * 10
   //     }
-  //     let name_ar
-  //     let name_en
+  //     let name_Ar
+  //     let name_En
 
-  //     if (where['name_ar'] != "" ) {
+  //     if (where['name_Ar'] != "" ) {
 
-  //        name_ar =  where['name_ar']
+  //        name_Ar =  where['name_Ar']
   //     }
-  //     if (where['name_ar'] == "" ) {
+  //     if (where['name_Ar'] == "" ) {
 
-  //       name_ar =  ""
+  //       name_Ar =  ""
   //    }
-  //     if (where['name_ar'] == undefined) {
+  //     if (where['name_Ar'] == undefined) {
 
-  //       name_ar = ""
+  //       name_Ar = ""
   //    }
 
-  // // let name_en = req.body.where.name_en || ""
+  // // let name_En = req.body.where.name_En || ""
   //     if (!req.session.user) {
   //       response.error = 'Please Login First'
   //       res.json(response)
@@ -607,7 +607,7 @@ module.exports = function init(site) {
   //         },
   //         {
   //           "$match": {
-  //             "doctor.name_ar":{$regex: name_ar ,$options:"i"}
+  //             "doctor.name_Ar":{$regex: name_Ar ,$options:"i"}
 
   //           }
   //         },
@@ -770,9 +770,9 @@ module.exports = function init(site) {
     if (where['name'] != "") {
       where.$or = []
       where.$or.push({
-        'doctor.name_ar': site.get_RegExp(where['name'], 'i')
+        'doctor.name_Ar': site.get_RegExp(where['name'], 'i')
       }, {
-        'doctor.name_en': site.get_RegExp(where['name'], 'i')
+        'doctor.name_En': site.get_RegExp(where['name'], 'i')
       })
       delete where['name']
     }
@@ -811,8 +811,8 @@ module.exports = function init(site) {
           "$project": {
             "doctor_list": 1.0,
             "id": 1.0,
-            "name_ar": 1.0,
-            "name_en": 1.0,
+            "name_Ar": 1.0,
+            "name_En": 1.0,
             "detection_price": 1.0,
             "customerContractingCompany": 1.0,
             "contracting_company_list": {
@@ -845,8 +845,8 @@ module.exports = function init(site) {
                 "shift": "$doctor_list.shift",
                 "clinicId": {
                   id: "$id",
-                  name_ar: "$name_ar",
-                  name_en: "$name_en"
+                  name_Ar: "$name_Ar",
+                  name_En: "$name_En"
                 },
                 "detection_price": "$doctor_list.detection_price"
               }
@@ -1394,8 +1394,8 @@ module.exports = function init(site) {
     let user = {};
 
     user = {
-      name_ar: doctor_doc.name_ar,
-      name_en: doctor_doc.name_en,
+      name_Ar: doctor_doc.name_Ar,
+      name_En: doctor_doc.name_En,
       mobile: doctor_doc.mobile,
       username: doctor_doc.username,
       email: doctor_doc.username,
@@ -1408,14 +1408,14 @@ module.exports = function init(site) {
     user.roles = [{
       module_name: "public",
       name: "doctor_admin",
-      en: "Employee Admin",
-      ar: "إدارة الموظفين",
+      En: "Employee Admin",
+      Ar: "إدارة الموظفين",
       permissions: ["doctor_manage"],
     }, ];
 
     user.profile = {
-      name_ar: user.name_ar,
-      name_en: user.name_en,
+      name_Ar: user.name_Ar,
+      name_En: user.name_En,
       mobile: user.mobile,
       image_url: user.image_url,
     };

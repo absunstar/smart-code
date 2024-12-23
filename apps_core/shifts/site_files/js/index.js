@@ -7,7 +7,7 @@ app.controller('shifts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#closeDeliverModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -19,8 +19,8 @@ app.controller('shifts', function ($scope, $http, $timeout) {
         minute: new Date().getMinutes(),
       },
       last_safes_list: s.safes_list,
-      name_ar: newShift.name_ar,
-      name_en: newShift.name_en,
+      name_Ar: newShift.name_Ar,
+      name_En: newShift.name_En,
       active: true,
     };
 
@@ -80,7 +80,7 @@ app.controller('shifts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#shiftAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -136,7 +136,7 @@ app.controller('shifts', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#shiftUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -388,8 +388,8 @@ app.controller('shifts', function ($scope, $http, $timeout) {
 
     $scope.thermal = { ...obj };
     $scope.thermal.code = shift.code;
-    $scope.thermal.name_ar = shift.name_ar;
-    $scope.thermal.name_en = shift.name_en;
+    $scope.thermal.name_Ar = shift.name_Ar;
+    $scope.thermal.name_En = shift.name_En;
     $scope.thermal.active = obj.active;
     $('#thermalPrint').removeClass('hidden');
 

@@ -26,19 +26,19 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $file_type.add({
-      name_ar: "نوع ملف إفتراضي",
-      name_en: "Default File Types",
+      name_Ar: "نوع ملف إفتراضي",
+      name_En: "Default File Types",
       code: "1-Test",
       image_url: '/images/file_type.png',
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, requestTypeDoc) => {

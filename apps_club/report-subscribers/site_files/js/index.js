@@ -94,8 +94,8 @@ app.controller("report_subscribers", function ($scope, $http, $timeout) {
           }
           /*  select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
           } */
         }
       }).then(

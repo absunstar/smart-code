@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'medical_insurance_companies'
 
   let source = {
-    en: 'Insurance Companies System',
-    ar: 'نظام شركات التأمين'
+    En: 'Insurance Companies System',
+    Ar: 'نظام شركات التأمين'
   }
 
   let image_url = '/images/medical_insurance_companies.png'
   let add_message = {
-    en: 'New Insurance Companies Added',
-    ar: 'تم إضافة شركة تأمين جديدة'
+    En: 'New Insurance Companies Added',
+    Ar: 'تم إضافة شركة تأمين جديدة'
   }
   let update_message = {
-    en: ' Insurance Companies Updated',
-    ar: 'تم تعديل شركة تأمين'
+    En: ' Insurance Companies Updated',
+    Ar: 'تم تعديل شركة تأمين'
   }
   let delete_message = {
-    en: ' Insurance Companies Deleted',
-    ar: 'تم حذف شركة تأمين '
+    En: ' Insurance Companies Deleted',
+    Ar: 'تم حذف شركة تأمين '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

@@ -46,7 +46,7 @@ app.controller("register", function ($scope, $http) {
 
     const v = site.validated("#customerRegisterModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       $scope.busy = false;
       return;
     }
@@ -92,8 +92,8 @@ app.controller("register", function ($scope, $http) {
               password: site.to123(response.data.doc.password),
               company: site.to123({
                 id: response.data.doc.company.id,
-                name_ar: response.data.doc.company.name_ar,
-                name_en: response.data.doc.company.name_en,
+                name_Ar: response.data.doc.company.name_Ar,
+                name_En: response.data.doc.company.name_En,
                 item: response.data.doc.company.item,
                 store: response.data.doc.company.store,
                 unit: response.data.doc.company.unit,
@@ -106,8 +106,8 @@ app.controller("register", function ($scope, $http) {
               }),
               branch: site.to123({
                 code: response.data.doc.branch.code,
-                name_ar: response.data.doc.branch.name_ar,
-                name_en: response.data.doc.branch.name_en,
+                name_Ar: response.data.doc.branch.name_Ar,
+                name_En: response.data.doc.branch.name_En,
               }),
             },
           }).then(
@@ -176,7 +176,7 @@ app.controller("register", function ($scope, $http) {
           active: true,
           "company.id": companyId,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -200,7 +200,7 @@ app.controller("register", function ($scope, $http) {
           "gov.id": gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {

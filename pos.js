@@ -12,7 +12,7 @@ const site = require('../isite')({
   },
   theme: 'theme_paper',
   mongodb: {
-    db: 'smart_code_pos',
+    db: 'SMART_CODE_POS',
     limit: 100000,
     events: true,
     identity: {

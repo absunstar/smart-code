@@ -82,7 +82,7 @@ app.controller("employees_report", function ($scope, $http) {
     const v = site.validated('#searchModal');
    
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     } else {
       let where = {};
@@ -233,7 +233,7 @@ app.controller("employees_report", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           commission: 1,
           type: 1,
           code : 1

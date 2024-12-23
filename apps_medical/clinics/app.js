@@ -94,10 +94,10 @@ module.exports = function init(site) {
         "company.id": site.get_company(req).id,
         "branch.code": site.get_branch(req).code,
         $or: [{
-          name_ar: clinics_doc.name_ar,
+          name_Ar: clinics_doc.name_Ar,
         },
         {
-          name_en: clinics_doc.name_en,
+          name_En: clinics_doc.name_En,
         }
         ],
       },
@@ -123,8 +123,8 @@ module.exports = function init(site) {
           }
 
           let user = {
-            name_ar: clinics_doc.name_ar,
-            name_en: clinics_doc.name_en,
+            name_Ar: clinics_doc.name_Ar,
+            name_En: clinics_doc.name_En,
             mobile: clinics_doc.mobile,
             username: clinics_doc.username,
             email: clinics_doc.username,
@@ -138,8 +138,8 @@ module.exports = function init(site) {
           },];
 
           user.profile = {
-            name_ar: user.name_ar,
-            name_en: user.name_en,
+            name_Ar: user.name_Ar,
+            name_En: user.name_En,
             mobile: user.mobile,
             image_url: user.image_url,
           };
@@ -192,8 +192,8 @@ module.exports = function init(site) {
 
     let clinics_doc = req.body;
     user = {
-      name_ar: clinics_doc.name_ar,
-      name_en: clinics_doc.name_en,
+      name_Ar: clinics_doc.name_Ar,
+      name_En: clinics_doc.name_En,
       mobile: clinics_doc.mobile,
       username: clinics_doc.username,
       email: clinics_doc.username,
@@ -207,8 +207,8 @@ module.exports = function init(site) {
     },];
 
     user.profile = {
-      name_ar: user.name_ar,
-      name_en: user.name_en,
+      name_Ar: user.name_Ar,
+      name_En: user.name_En,
       mobile: user.mobile,
       image_url: user.image_url,
     };
@@ -342,11 +342,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: new RegExp(search, "i"),
+        name_Ar: new RegExp(search, "i"),
       });
 
       where.$or.push({
-        name_en: new RegExp(search, "i"),
+        name_En: new RegExp(search, "i"),
       });
     }
 
@@ -565,8 +565,8 @@ module.exports = function init(site) {
         },
         {
           "$project": {
-            name_ar: 1.0,
-            name_en: 1.0,
+            name_Ar: 1.0,
+            name_En: 1.0,
 
             "doctor_list": 1.0
           }
@@ -582,18 +582,18 @@ module.exports = function init(site) {
           "$addFields": {
             "shifts": "$doctor_list.shift",
             "appointmentsList": "$doctor_list.shift.times_list",
-            "doctor.name_ar": "$doctor_list.doctor.name_ar",
-            "doctor.name_en": "$doctor_list.doctor.name_en",
+            "doctor.name_Ar": "$doctor_list.doctor.name_Ar",
+            "doctor.name_En": "$doctor_list.doctor.name_En",
             "doctor.image_url": "$doctor_list.doctor.image_url",
 
           }
         },
         {
           "$project": {
-            name_ar: 1.0,
-            name_en: 1.0,
-            'doctor.name_ar': 1,
-            'doctor.name_en': 1,
+            name_Ar: 1.0,
+            name_En: 1.0,
+            'doctor.name_Ar': 1,
+            'doctor.name_En': 1,
             'doctor.image_url': 1,
             "appointmentsList": 1.0,
             "shifts": 1.0
@@ -615,11 +615,11 @@ module.exports = function init(site) {
             
         
             arr.push({
-              name_ar: docs[0].name_ar,
-              name_en: docs[0].name_en,
+              name_Ar: docs[0].name_Ar,
+              name_En: docs[0].name_En,
                   doctor: {
-                  'name_ar': docs[0].doctor.name_ar,
-                  'name_en': docs[0].doctor.name_en,
+                  'name_Ar': docs[0].doctor.name_Ar,
+                  'name_En': docs[0].doctor.name_En,
                   "image_url": docs[0].doctor.image_url,
                 },
               appointmentsList :unique 
@@ -670,8 +670,8 @@ module.exports = function init(site) {
         },
         {
           "$project": {
-            name_ar: 1.0,
-            name_en: 1.0,
+            name_Ar: 1.0,
+            name_En: 1.0,
 
             "doctor_list": 1.0
           }
@@ -685,8 +685,8 @@ module.exports = function init(site) {
         },
         {
           "$project": {
-            name_ar: 1.0,
-            name_en: 1.0,
+            name_Ar: 1.0,
+            name_En: 1.0,
             'doctor_list.doctor': 1,
             "doctor_list.detection_price": 1.0
           }

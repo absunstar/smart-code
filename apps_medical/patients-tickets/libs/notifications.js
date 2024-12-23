@@ -3,24 +3,24 @@ module.exports = function init(site) {
   let collection_name = 'patients_tickets'
 
   let source = {
-    en: 'Patients Tickets System',
-    ar: 'نظام تذاكر المرضى'
+    En: 'Patients Tickets System',
+    Ar: 'نظام تذاكر المرضى'
   }
 
   let image_url = '/images/patients_tickets.png'
   let add_message = {
-    en: 'New Patient Ticket Center Added',
-    ar: 'تم إضافة تذكرة مريض جديد'
+    En: 'New Patient Ticket Center Added',
+    Ar: 'تم إضافة تذكرة مريض جديد'
   }
 
   let update_message = {
-    en: ' Patient Ticket Center Updated',
-    ar: 'تم تعديل تذكرة مريض'
+    En: ' Patient Ticket Center Updated',
+    Ar: 'تم تعديل تذكرة مريض'
   }
 
   let delete_message = {
-    en: ' Patient Ticket Center Deleted',
-    ar: 'تم حذف تذكرة مريض '
+    En: ' Patient Ticket Center Deleted',
+    Ar: 'تم حذف تذكرة مريض '
   }
 
 
@@ -34,8 +34,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -55,8 +55,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -77,8 +77,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

@@ -8,25 +8,25 @@ module.exports = function init(site) {
     $nursing.add({
 
       code: "1-Test",
-      name_ar: "ممرضة إفتراضية",
-      name_en: "Default Nurse",
+      name_Ar: "ممرضة إفتراضية",
+      name_En: "Default Nurse",
       image_url: '/images/nurse.png',
       specialty: {
         id: doc.id,
         code: doc.code,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       nurse: true,
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en
+        name_Ar: doc.company.name_Ar,
+        name_En: doc.company.name_En
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en
+        name_Ar: doc.branch.name_Ar,
+        name_En: doc.branch.name_En
       },
       active: true
     }, (err, doc1) => { })
@@ -82,9 +82,9 @@ module.exports = function init(site) {
         'branch.code': site.get_branch(req).code,
 
         $or: [{
-          'name_ar': nursing_doc.name_ar
+          'name_Ar': nursing_doc.name_Ar
         }, {
-          'name_en': nursing_doc.name_en
+          'name_En': nursing_doc.name_En
         }]
       }
     }, (err, doc) => {
@@ -112,8 +112,8 @@ module.exports = function init(site) {
         let user = {};
 
         user = {
-          name_ar: nursing_doc.name_ar,
-          name_en: nursing_doc.name_en,
+          name_Ar: nursing_doc.name_Ar,
+          name_En: nursing_doc.name_En,
           mobile: nursing_doc.mobile,
           username: nursing_doc.username,
           email: nursing_doc.username,
@@ -126,15 +126,15 @@ module.exports = function init(site) {
         user.roles = [{
           module_name: "public",
           name: "nursing_admin",
-          en: "Employee Admin",
-          ar: "إدارة الموظفين",
+          En: "Employee Admin",
+          Ar: "إدارة الموظفين",
           permissions: ["nursing_manage"]
         }]
 
 
         user.profile = {
-          name_ar: user.name_ar,
-          name_en: user.name_en,
+          name_Ar: user.name_Ar,
+          name_En: user.name_En,
           mobile: user.mobile,
           image_url: user.image_url
         }
@@ -194,8 +194,8 @@ module.exports = function init(site) {
     let user = {}
 
     user = {
-      name_ar: nursing_doc.name_ar,
-      name_en: nursing_doc.name_en,
+      name_Ar: nursing_doc.name_Ar,
+      name_En: nursing_doc.name_En,
       mobile: nursing_doc.mobile,
       username: nursing_doc.username,
       email: nursing_doc.username,
@@ -209,14 +209,14 @@ module.exports = function init(site) {
     user.roles = [{
       module_name: "public",
       name: "nursing_admin",
-      en: "Employee Admin",
-      ar: "إدارة الموظفين",
+      En: "Employee Admin",
+      Ar: "إدارة الموظفين",
       permissions: ["nursing_manage"]
     }]
 
     user.profile = {
-      name_ar: user.name_ar,
-      name_en: user.name_en,
+      name_Ar: user.name_Ar,
+      name_En: user.name_En,
       mobile: user.mobile,
       image_url: user.image_url
     }
@@ -375,11 +375,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name_ar': site.get_RegExp(search, "i")
+        'name_Ar': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'name_en': site.get_RegExp(search, "i")
+        'name_En': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -423,11 +423,11 @@ module.exports = function init(site) {
       delete where.active
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], "i");
     }
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], "i");
     }
     if (where['address']) {
       where['address'] = site.get_RegExp(where['address'], "i");

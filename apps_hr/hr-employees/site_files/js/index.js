@@ -19,7 +19,7 @@ app.controller('employee_list', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#employeeAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -60,7 +60,7 @@ app.controller('employee_list', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#employeeUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -236,7 +236,7 @@ app.controller('employee_list', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/maritals_status/all',
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -258,7 +258,7 @@ app.controller('employee_list', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/militaries_status/all',
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {
@@ -284,8 +284,8 @@ app.controller('employee_list', function ($scope, $http, $timeout) {
           id: 1,
           active: 1,
           trainer: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
         },
         where: {
@@ -373,7 +373,7 @@ app.controller('employee_list', function ($scope, $http, $timeout) {
         where: {
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1 },
       },
     }).then(
       function (response) {

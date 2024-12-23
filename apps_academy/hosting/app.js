@@ -164,18 +164,18 @@ module.exports = function init(site) {
 
             let paid_value = {
               value: response.doc.baid_go,
-              source_name_ar: response.doc.student_paid.name_ar,
-              source_name_en: response.doc.student_paid.name_en,
+              source_name_Ar: response.doc.student_paid.name_Ar,
+              source_name_en: response.doc.student_paid.name_En,
               company: response.doc.company,
               branch: response.doc.branch,
               date: response.doc.date_paid,
               shift: {
                 id: result.doc.shift.id,
                 code: result.doc.shift.code,
-                name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
+                name_Ar: result.doc.shift.name_Ar, name_En: result.doc.shift.name_En
               },
               transition_type: 'in',
-              operation: { ar: 'دفعة إستضافة', en: 'Pay Hosting' },
+              operation: { Ar: 'دفعة إستضافة', En: 'Pay Hosting' },
 
               safe: response.doc.safe
             }

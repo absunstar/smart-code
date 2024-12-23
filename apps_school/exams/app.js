@@ -59,9 +59,9 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name_ar': exams_doc.name_ar
+          'name_Ar': exams_doc.name_Ar
         },{
-          'name_en': exams_doc.name_en
+          'name_En': exams_doc.name_En
         }]
    
       }
@@ -520,12 +520,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], "i");
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], "i");
     }
 
     if (req.session.user.type == 'trainer') {

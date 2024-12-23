@@ -100,12 +100,12 @@
         "Ar": "إسم الفرع"
     },
     {
-        "name": "companies_branch_name_ar",
+        "name": "companies_branch_name_Ar",
         "En": "Branch Name Arabic",
         "Ar": "إسم الفرع بالعربى"
     },
     {
-        "name": "companies_branch_name_en",
+        "name": "companies_branch_name_En",
         "En": "Branch Name English",
         "Ar": "إسم الفرع بالانجليزى"
     },
@@ -191,12 +191,12 @@
         "Ar": "الفاكس"
     },
     {
-        "name": "companies_name_ar",
+        "name": "companies_name_Ar",
         "En": "LAwyers Office Name Arabic",
         "Ar": "إسم مكتب المحاماه"
     },
     {
-        "name": "companies_name_en",
+        "name": "companies_name_En",
         "En": "LAwyers Office Name English",
         "Ar": "إسم مكتب المحاماه بالانجليزية"
     },
@@ -237,8 +237,8 @@
     {"name" : "customers_personal_information" , "En" : "Personal Information" , "Ar" : "البيانات الشخصية"},
     {"name" : "customers_basic_information" , "En" : "Basic Information" , "Ar" : "البيانات الاساسية"},
     {"name" : "customers_code" , "En" : "Client Code" , "Ar" : "كود الموكل"},
-    {"name" : "customers_name_ar" , "En" : "Client Name Arabic" , "Ar" : "إسم الموكل بالعربي"},
-    {"name" : "customers_name_en" , "En" : "Client Name English" , "Ar" : "إسم الموكل بالانجليزية"},
+    {"name" : "customers_name_Ar" , "En" : "Client Name Arabic" , "Ar" : "إسم الموكل بالعربي"},
+    {"name" : "customers_name_En" , "En" : "Client Name English" , "Ar" : "إسم الموكل بالانجليزية"},
     {"name" : "customer_name" , "En" : "Client Name" , "Ar" : "إسم الموكل"},
     {"name" : "customer" , "En" : "Client" , "Ar" : " الموكل"},
     {"name" : "customers_groups" , "En" : "Clients Group" , "Ar" : "مجموعة الموكلين"},

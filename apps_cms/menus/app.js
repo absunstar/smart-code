@@ -413,8 +413,8 @@ module.exports = function init(site) {
           subList: [],
           type: {
             id: 1,
-            en: 'Category',
-            ar: 'قسم',
+            En: 'Category',
+            Ar: 'قسم',
           },
           category: { id: topList[i].id, name: topList[i].translatedList.find((t) => t.language.id == req.session.lang || 'Ar').name },
         };
@@ -434,8 +434,8 @@ module.exports = function init(site) {
               subList: [],
               type: {
                 id: 1,
-                en: 'Category',
-                ar: 'قسم',
+                En: 'Category',
+                Ar: 'قسم',
               },
               category: { id: _subCategory.id, name: _subCategory.translatedList.find((t) => t.language.id == req.session.lang || 'Ar').name },
             };

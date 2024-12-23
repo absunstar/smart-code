@@ -22,7 +22,7 @@ app.controller("school_years", function ($scope, $http, $timeout) {
 
     const v = site.validated('#schoolYearsAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -76,7 +76,7 @@ app.controller("school_years", function ($scope, $http, $timeout) {
 
     const v = site.validated('#schoolYearsUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     if ($scope.school_years.subjects_list.length < 1) {
@@ -218,7 +218,7 @@ app.controller("school_years", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         },
         where: {

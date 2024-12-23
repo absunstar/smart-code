@@ -19,7 +19,7 @@ app.controller("tables_group", function ($scope, $http, $timeout) {
     const v = site.validated('#tablesGroupAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -58,7 +58,7 @@ app.controller("tables_group", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#tablesGroupUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

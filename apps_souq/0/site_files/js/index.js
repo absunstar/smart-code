@@ -82,8 +82,8 @@ app.controller('haraj', function ($scope, $http, $timeout) {
         id: ad.id,
         code: ad.code,
         image_url: ad.image_url,
-        name_ar: ad.name_ar,
-        name_en: ad.name_en,
+        name_Ar: ad.name_Ar,
+        name_En: ad.name_En,
         select_quantity: ad.quantity_list[i],
         count: 1,
       };
@@ -155,7 +155,7 @@ app.controller('haraj', function ($scope, $http, $timeout) {
           $scope.category_list.forEach((l) => {
             $scope.mainCategories.push({
               id: l.id,
-              name_ar: l.name_ar,
+              name_Ar: l.name_Ar,
               idname_en: l.idname_en,
             });
           });

@@ -18,7 +18,7 @@ app.controller("buildings", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#buildingAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     
@@ -57,7 +57,7 @@ app.controller("buildings", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#buildingUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

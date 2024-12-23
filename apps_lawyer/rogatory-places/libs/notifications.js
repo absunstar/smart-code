@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'rogatory_places'
 
   let source = {
-    en: 'Rogatory Places System',
-    ar: ' نظام أماكن التوكيلات'
+    En: 'Rogatory Places System',
+    Ar: ' نظام أماكن التوكيلات'
   }
 
   let image_url = '/images/rogatory_places.png'
   let add_message = {
-    en: 'New Rogatory Places Added',
-    ar: 'تم إضافة مكان توكيل جديد'
+    En: 'New Rogatory Places Added',
+    Ar: 'تم إضافة مكان توكيل جديد'
   }
   let update_message = {
-    en: ' Rogatory Places Updated',
-    ar: 'تم تعديل مكان توكيل'
+    En: ' Rogatory Places Updated',
+    Ar: 'تم تعديل مكان توكيل'
   }
   let delete_message = {
-    en: ' Rogatory Places Deleted',
-    ar: 'تم حذف مكان توكيل '
+    En: ' Rogatory Places Deleted',
+    Ar: 'تم حذف مكان توكيل '
   }
 
 
@@ -31,8 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -51,8 +51,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -72,8 +72,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

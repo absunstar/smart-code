@@ -39,15 +39,15 @@ module.exports = function init(site) {
           value: doc.total_salary || 0,
           safe: doc.safe,
           date: doc.date,
-          source_name_ar: doc.employee.name_ar,
-          source_name_en: doc.employee.name_en,
+          source_name_Ar: doc.employee.name_Ar,
+          source_name_en: doc.employee.name_En,
           description: doc.description,
           shift: {
             id: doc.shift.id,
             code: doc.shift.code,
-            name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
+            name_Ar: doc.shift.name_Ar, name_En: doc.shift.name_En
           },
-          operation: {ar: 'مرتب موظف', en: 'Employee salary'},
+          operation: {Ar: 'مرتب موظف', En: 'Employee salary'},
           transition_type: 'out',
           company: doc.company,
           branch: doc.branch

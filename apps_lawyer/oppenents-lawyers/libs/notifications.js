@@ -2,22 +2,22 @@ module.exports = function init(site) {
   let collection_name = "oppenents_lawyers";
 
   let source = {
-    en: "Oppenents Lawyers System",
-    ar: " نظام  محامين الخصوم",
+    En: "Oppenents Lawyers System",
+    Ar: " نظام  محامين الخصوم",
   };
 
   let image_url = "/images/vendor.png";
   let add_message = {
-    en: "New Oppenents Lawyer Added",
-    ar: "تم إضافة محامي خصم جديدة",
+    En: "New Oppenents Lawyer Added",
+    Ar: "تم إضافة محامي خصم جديدة",
   };
   let update_message = {
-    en: " Oppenents Lawyer Updated",
-    ar: "تم تعديل محامي خصم",
+    En: " Oppenents Lawyer Updated",
+    Ar: "تم تعديل محامي خصم",
   };
   let delete_message = {
-    en: " Oppenents Lawyer Deleted",
-    ar: "تم حذف محامي خصم ",
+    En: " Oppenents Lawyer Deleted",
+    Ar: "تم حذف محامي خصم ",
   };
 
   site.on("mongodb after insert", function (result) {
@@ -29,8 +29,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -49,8 +49,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -69,8 +69,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

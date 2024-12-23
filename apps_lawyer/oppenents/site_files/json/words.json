@@ -10,8 +10,8 @@
     {"name" : "oppenents_personal_information" , "En" : "Personal Information" , "Ar" : "البيانات الشخصية"},
     {"name" : "oppenents_basic_information" , "En" : "Basic Information" , "Ar" : "البيانات الاساسية"},
     {"name" : "oppenents_code" , "En" : "Oppenent Code" , "Ar" : "كود الخصم"},
-    {"name" : "oppenents_name_ar" , "En" : "Oppenent Name Arabic" , "Ar" : "إسم الخصم بالعربي"},
-    {"name" : "oppenents_name_en" , "En" : "Oppenent Name English" , "Ar" : "إسم الخصم بالانجليزية"},
+    {"name" : "oppenents_name_Ar" , "En" : "Oppenent Name Arabic" , "Ar" : "إسم الخصم بالعربي"},
+    {"name" : "oppenents_name_En" , "En" : "Oppenent Name English" , "Ar" : "إسم الخصم بالانجليزية"},
     {"name" : "oppenent_name" , "En" : "Oppenent Name" , "Ar" : "إسم الخصم"},
     {"name" : "oppenent" , "En" : "Oppenent " , "Ar" : " الخصم"},
 

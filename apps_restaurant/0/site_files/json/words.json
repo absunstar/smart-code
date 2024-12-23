@@ -100,12 +100,12 @@
         "Ar": "إسم الفرع"
     },
     {
-        "name": "companies_branch_name_ar",
+        "name": "companies_branch_name_Ar",
         "En": "Branch Name Arabic",
         "Ar": "إسم الفرع بالعربى"
     },
     {
-        "name": "companies_branch_name_en",
+        "name": "companies_branch_name_En",
         "En": "Branch Name English",
         "Ar": "إسم الفرع بالانجليزى"
     },
@@ -191,12 +191,12 @@
         "Ar": "الفاكس"
     },
     {
-        "name": "companies_name_ar",
+        "name": "companies_name_Ar",
         "En": "Restaurant Name Arabic",
         "Ar": "إسم المطعم"
     },
     {
-        "name": "companies_name_en",
+        "name": "companies_name_En",
         "En": "Restaurant Name English",
         "Ar": "إسم المطعم بالانجليزية"
     },

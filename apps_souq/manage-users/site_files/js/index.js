@@ -99,7 +99,7 @@ app.controller('manage_users', function ($scope, $http) {
 
     const v = site.validated('#viewManageUserModal');
     if (!v.ok && type == 'password') {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -152,7 +152,7 @@ app.controller('manage_users', function ($scope, $http) {
     $scope.error = '';
     const v = site.validated('#manageUsersUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -219,8 +219,8 @@ app.controller('manage_users', function ($scope, $http) {
                   if (_s.name) {
                     let newname = data.find((el) => el.name == _s.name.replace(/-/g, '_'));
                     if (newname) {
-                      _s.name_ar = newname.ar;
-                      _s.name_en = newname.en;
+                      _s.name_Ar = newname.Ar;
+                      _s.name_En = newname..En;
                     }
                   }
                 });
@@ -279,8 +279,8 @@ app.controller('manage_users', function ($scope, $http) {
                 $scope.screens.forEach((s) => {
                   let newname = data.find((el) => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
-                    s.name_ar = newname.ar;
-                    s.name_en = newname.en;
+                    s.name_Ar = newname.Ar;
+                    s.name_En = newname..En;
                   }
                 });
               }
@@ -470,8 +470,8 @@ app.controller('manage_users', function ($scope, $http) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name_Ar: 1,
+          name_En: 1,
           code: 1,
           image_url: 1,
           country_code: 1,

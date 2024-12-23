@@ -38,7 +38,7 @@ app.controller("bookView", function ($scope, $http, $timeout) {
     $scope.errorCode = "";
     const v = site.validated("#codeModal");
     if (!v.ok) {
-      $scope.errorCode = v.messages[0].ar;
+      $scope.errorCode = v.messages[0].Ar;
       return;
     }
 

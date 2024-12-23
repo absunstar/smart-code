@@ -16,7 +16,7 @@ app.controller('forget_password', function ($scope, $http, $timeout) {
     const v = site.validated('#enter_mobile_or_email');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -92,7 +92,7 @@ app.controller('forget_password', function ($scope, $http, $timeout) {
     const v = site.validated('#code_confirm');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -128,7 +128,7 @@ app.controller('forget_password', function ($scope, $http, $timeout) {
     const v = site.validated('#newPassword');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 

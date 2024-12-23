@@ -21,7 +21,7 @@ app.controller("rogatory_types", function ($scope, $http, $timeout) {
 
     const v = site.validated('#rogatoryTypesAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -68,7 +68,7 @@ app.controller("rogatory_types", function ($scope, $http, $timeout) {
 
     const v = site.validated('#rogatoryTypesUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

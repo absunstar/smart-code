@@ -30,7 +30,7 @@ app.controller('area', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#areaManageModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -66,7 +66,7 @@ app.controller('area', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#areaManageModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

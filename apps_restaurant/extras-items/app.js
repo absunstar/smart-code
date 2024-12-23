@@ -26,20 +26,20 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $extras_items.add({
-      ar: "إضافة إفتراضية",
-      en: "Default extra",
+      Ar: "إضافة إفتراضية",
+      En: "Default extra",
       image_url: '/images/extras_items.png',
       code: "1-Test",
       price : 0,
       company: {
         id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+        name_Ar: doc.name_Ar,
+        name_En: doc.name_En
       },
       branch: {
         code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
+        name_Ar: doc.branch_list[0].name_Ar,
+        name_En: doc.branch_list[0].name_En
       },
       active: true
     }, (err, doc) => { })

@@ -42,13 +42,13 @@ site.get({
 site.words.add(
   {
     name: 'le',
-    en: 'Ryal',
-    ar: 'ريال',
+    En: 'Ryal',
+    Ar: 'ريال',
   },
   {
     name: 'pound',
-    en: 'Ryal',
-    ar: 'ريال',
+    En: 'Ryal',
+    Ar: 'ريال',
   }
 );
 

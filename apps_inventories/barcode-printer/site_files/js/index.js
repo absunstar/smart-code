@@ -4,13 +4,13 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
         $scope.printingLanguageList = [
             {
                 id: 1,
-                ar: 'عربي',
-                en: 'Arabic',
+                Ar: 'عربي',
+                En: 'Arabic',
             },
             {
                 id: 2,
-                ar: 'إنجليزي',
-                en: 'English',
+                Ar: 'إنجليزي',
+                En: 'English',
             },
         ];
         $scope.barcode_printer = {
@@ -20,10 +20,10 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
         };
 
         if ('##session.lang##' == 'Ar') {
-            $scope.barcode_printer.company_name = '##session.company.name_ar##';
+            $scope.barcode_printer.company_name = '##session.company.name_Ar##';
             $scope.barcode_printer.print_lang = $scope.printingLanguageList[0];
         } else if ('##session.lang##' == 'En') {
-            $scope.barcode_printer.company_name = '##session.company.name_en##';
+            $scope.barcode_printer.company_name = '##session.company.name_En##';
             $scope.barcode_printer.print_lang = $scope.printingLanguageList[1];
         }
     };
@@ -50,19 +50,19 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
                                             $scope.item.size = { ..._size };
                                             if ($scope.barcode_printer.print_lang.id) {
                                                 if ($scope.barcode_printer.print_lang.id == 1) {
-                                                    $scope.barcode_printer.company_name = '##session.company.name_ar##';
+                                                    $scope.barcode_printer.company_name = '##session.company.name_Ar##';
 
                                                     if ($scope.item.size.add_sizes) {
-                                                        $scope.barcode_printer.item_name = _item.name_ar + '-' + $scope.item.size.size_ar;
+                                                        $scope.barcode_printer.item_name = _item.name_Ar + '-' + $scope.item.size.size_Ar;
                                                     } else {
-                                                        $scope.barcode_printer.item_name = $scope.item.size.size_ar;
+                                                        $scope.barcode_printer.item_name = $scope.item.size.size_Ar;
                                                     }
                                                 } else if ($scope.barcode_printer.print_lang.id == 2) {
-                                                    $scope.barcode_printer.company_name = '##session.company.name_en##';
+                                                    $scope.barcode_printer.company_name = '##session.company.name_En##';
                                                     if ($scope.item.size.add_sizes) {
-                                                        $scope.barcode_printer.item_name = _item.name_en + '-' + $scope.item.size.size_en;
+                                                        $scope.barcode_printer.item_name = _item.name_En + '-' + $scope.item.size.size_En;
                                                     } else {
-                                                        $scope.barcode_printer.item_name = $scope.item.size.size_en;
+                                                        $scope.barcode_printer.item_name = $scope.item.size.size_En;
                                                     }
                                                 }
                                             }
@@ -138,19 +138,19 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
     $scope.changePrinterLang = function () {
         if ($scope.barcode_printer.print_lang.id) {
             if ($scope.barcode_printer.print_lang.id == 1) {
-                $scope.barcode_printer.company_name = '##session.company.name_ar##';
+                $scope.barcode_printer.company_name = '##session.company.name_Ar##';
 
                 if ($scope.item.size.add_sizes) {
-                    $scope.barcode_printer.item_name = _item.name_ar + '-' + $scope.item.size.size_ar;
+                    $scope.barcode_printer.item_name = _item.name_Ar + '-' + $scope.item.size.size_Ar;
                 } else {
-                    $scope.barcode_printer.item_name = $scope.item.size.size_ar;
+                    $scope.barcode_printer.item_name = $scope.item.size.size_Ar;
                 }
             } else if ($scope.barcode_printer.print_lang.id == 2) {
-                $scope.barcode_printer.company_name = '##session.company.name_en##';
+                $scope.barcode_printer.company_name = '##session.company.name_En##';
                 if ($scope.item.size.add_sizes) {
-                    $scope.barcode_printer.item_name = _item.name_en + '-' + $scope.item.size.size_en;
+                    $scope.barcode_printer.item_name = _item.name_En + '-' + $scope.item.size.size_En;
                 } else {
-                    $scope.barcode_printer.item_name = $scope.item.size.size_en;
+                    $scope.barcode_printer.item_name = $scope.item.size.size_En;
                 }
             }
         }

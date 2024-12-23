@@ -33,8 +33,8 @@
                         <span>##word.notification_name##</span>
                     </label>
                     <select ng-show="search.bySystem" ng-model="search.system">
-                        <option x-lang="En" ng-repeat="s in systemList" ng-value="s.en">{{s.en}}</option>
-                        <option x-lang="Ar" ng-repeat="s in systemList" ng-value="s.en">{{s.##session.lang##}}</option>
+                        <option x-lang="En" ng-repeat="s in systemList" ng-value="s.En">{{s.En}}</option>
+                        <option x-lang="Ar" ng-repeat="s in systemList" ng-value="s.En">{{s.##session.lang##}}</option>
                     </select>
                 </div>
                 <div class="control">
@@ -82,13 +82,13 @@
                     <div class="row10 ">
                         <div class="col5">
                             <select ng-show="search.bySort" ng-model="search.sort">
-                                <option x-lang="En" ng-repeat="s in sortList" ng-value="s.value">{{s.en}}</option>
+                                <option x-lang="En" ng-repeat="s in sortList" ng-value="s.value">{{s.En}}</option>
                                 <option x-lang="Ar" ng-repeat="s in sortList" ng-value="s.value">{{s.##session.lang##}}</option>
                             </select>
                         </div>
                         <div class="col5">
                             <select ng-show="search.bySort" ng-model="search.sortType">
-                                <option x-lang="En" ng-repeat="s in sortTypeList" ng-value="s.value">{{s.en}}</option>
+                                <option x-lang="En" ng-repeat="s in sortTypeList" ng-value="s.value">{{s.En}}</option>
                                 <option x-lang="Ar" ng-repeat="s in sortTypeList" ng-value="s.value">{{s.##session.lang##}}</option>
                             </select>
                         </div>

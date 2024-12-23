@@ -17,20 +17,20 @@ module.exports = function init(site) {
     $items_group.add(
       {
         code: "1-Test",
-        name_ar: "مجموعة أصناف إفتراضية",
-        name_en: "Default Items Group",
+        name_Ar: "مجموعة أصناف إفتراضية",
+        name_En: "Default Items Group",
         image_url: "/images/items_group.png",
         color: "#000000",
         is_pos: true,
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En,
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en,
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En,
         },
         active: true,
       },
@@ -70,10 +70,10 @@ module.exports = function init(site) {
           "company.id": site.get_company(req).id,
           $or: [
             {
-              name_ar: items_group_doc.name_ar,
+              name_Ar: items_group_doc.name_Ar,
             },
             {
-              name_en: items_group_doc.name_en,
+              name_En: items_group_doc.name_En,
             },
           ],
         },
@@ -309,8 +309,8 @@ module.exports = function init(site) {
     $items_group.add(
       {
         code: cb.code,
-        name_ar: group.name_ar,
-        name_en: group.name_en,
+        name_Ar: group.name_Ar,
+        name_En: group.name_En,
         image_url: group.image_url,
         color: "#000000",
         group_id: group.id,

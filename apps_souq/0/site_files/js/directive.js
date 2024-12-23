@@ -228,7 +228,7 @@ app.directive('iFeedback', [
             data: {
               where: { active: true },
               post: true,
-              select: { id: 1, name_ar: 1, name_en: 1 },
+              select: { id: 1, name_Ar: 1, name_En: 1 },
             },
           }).then(
             function (response) {
@@ -306,8 +306,8 @@ app.directive('iAddress', [
               },
               select: {
                 id: 1,
-                name_ar: 1,
-                name_en: 1,
+                name_Ar: 1,
+                name_En: 1,
                 code: 1,
                 country_code: 1,
               },
@@ -341,8 +341,8 @@ app.directive('iAddress', [
               },
               select: {
                 id: 1,
-                name_ar: 1,
-                name_en: 1,
+                name_Ar: 1,
+                name_En: 1,
                 code: 1,
               },
             },
@@ -372,7 +372,7 @@ app.directive('iAddress', [
                 'gov.id': gov.id,
                 active: true,
               },
-              select: { id: 1, name_ar: 1, name_en: 1 },
+              select: { id: 1, name_Ar: 1, name_En: 1 },
             },
           }).then(
             function (response) {
@@ -399,7 +399,7 @@ app.directive('iAddress', [
                 'city.id': city.id,
                 active: true,
               },
-              select: { id: 1, name_ar: 1, name_en: 1 },
+              select: { id: 1, name_Ar: 1, name_En: 1 },
             },
           }).then(
             function (response) {

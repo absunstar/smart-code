@@ -57,7 +57,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#adAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -140,7 +140,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#adUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -307,7 +307,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
-        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1,category_require_list : 1, top_parent_id: 1, parent_id: 1 },
+        select: { id: 1, name_Ar: 1, name_En: 1, parent_list_id: 1,category_require_list : 1, top_parent_id: 1, parent_id: 1 },
       },
     }).then(
       function (response) {

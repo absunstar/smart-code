@@ -83,7 +83,7 @@ module.exports = function init(site) {
               invoice_footer: [{ name: '' }],
               thermal_header: [{ name: '' }],
               thermal_footer: [{ name: '' }],
-              price_offer_ar: 'نتمنى أن يحوز عرضنا قبول سيادتكم  , و نرحب بأي إستفسارات من سيادتكم و تفضلوا بقبول فائق الإحترام.',
+              price_offer_Ar: 'نتمنى أن يحوز عرضنا قبول سيادتكم  , و نرحب بأي إستفسارات من سيادتكم و تفضلوا بقبول فائق الإحترام.',
               price_offer_en: 'We hope that our offer will be accepted by you, we welcome any inquiries from you and kindly accept with the utmost respect.',
             },
             accounting: {},
@@ -169,12 +169,12 @@ module.exports = function init(site) {
 
       if (!data.printer_program.thermal_footer) data.printer_program.thermal_footer = [{ name: '' }];
 
-      if (!data.printer_program.price_offer_ar) {
-        data.printer_program.price_offer_ar = 'نتمنى أن يحوز عرضنا قبول سيادتكم  , و نرحب بأي إستفسارات من سيادتكم و تفضلوا بقبول فائق الإحترام.';
+      if (!data.printer_program.price_offer_Ar) {
+        data.printer_program.price_offer_Ar = 'نتمنى أن يحوز عرضنا قبول سيادتكم  , و نرحب بأي إستفسارات من سيادتكم و تفضلوا بقبول فائق الإحترام.';
       }
 
       if (!data.printer_program.price_offer_en) {
-        data.printer_program.price_offer_en = 'We hope that our offer will be accepted by you, we welcome any inquiries from you and kindly accept with the utmost respect.';
+        data.printer_program.price_offer_En= 'We hope that our offer will be accepted by you, we welcome any inquiries from you and kindly accept with the utmost respect.';
       }
     } else {
       data.printer_program = {

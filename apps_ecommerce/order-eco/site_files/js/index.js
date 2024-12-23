@@ -10,7 +10,7 @@ app.controller("order_eco", function ($scope, $http, $timeout) {
 
     const v = site.validated("#orderEco");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 

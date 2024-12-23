@@ -32,7 +32,7 @@ app.controller("order_slides", function ($scope, $http) {
     $scope.error = '';
     const v = site.validated('#addOrderSlidesModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 

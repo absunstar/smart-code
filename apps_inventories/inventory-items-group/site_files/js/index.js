@@ -19,7 +19,7 @@ app.controller("items_group", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#itemsGroupAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -58,7 +58,7 @@ app.controller("items_group", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#itemsGroupUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

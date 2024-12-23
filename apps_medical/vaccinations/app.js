@@ -23,21 +23,21 @@ module.exports = function init(site) {
     $vaccinations.add(
       {
         code: "1-Test",
-        name_ar: 'تطعيم إفتراضي',
-        name_en: "Default Scan",
+        name_Ar: 'تطعيم إفتراضي',
+        name_En: "Default Scan",
         price: 1,
         price_at_home: 1,
         immediate: true,
         image_url: '/images/vaccinations.png',
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true,
       },
@@ -94,9 +94,9 @@ module.exports = function init(site) {
       where: {
      
         $or: [{
-          'name_ar': vaccinations_doc.name_ar
+          'name_Ar': vaccinations_doc.name_Ar
         },{
-          'name_en': vaccinations_doc.name_en
+          'name_En': vaccinations_doc.name_En
         }],
         'company.id': site.get_company(req).id,
       }
@@ -227,12 +227,12 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     // where['branch.code'] = site.get_branch(req).code
 
-    if (where['name_ar']) {
-      where['name_ar'] = new RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = new RegExp(where['name_Ar'], "i");
     }
 
-    if (where['name_en']) {
-      where['name_en'] = new RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = new RegExp(where['name_En'], "i");
     }
 
 
@@ -276,9 +276,9 @@ module.exports = function init(site) {
     if (where['name']) {
       where.$or = []
       where.$or.push({
-        'name_ar': site.get_RegExp(where['name'], 'i')
+        'name_Ar': site.get_RegExp(where['name'], 'i')
       },{
-        'name_en': site.get_RegExp(where['name'], 'i')
+        'name_En': site.get_RegExp(where['name'], 'i')
       }
       )
       delete where['name']

@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'contracting_companies'
 
   let source = {
-    en: 'Addresses System',
-    ar: 'نظام العناوين'
+    En: 'Addresses System',
+    Ar: 'نظام العناوين'
   }
 
   let image_url = '/images/contracting_companies.png'
   let add_message = {
-    en: 'New contracting_companies Added',
-    ar: 'تم إضافة شركة جديدة'
+    En: 'New contracting_companies Added',
+    Ar: 'تم إضافة شركة جديدة'
   }
   let update_message = {
-    en: ' contracting_companies Updated',
-    ar: 'تم تعديل شركة'
+    En: ' contracting_companies Updated',
+    Ar: 'تم تعديل شركة'
   }
   let delete_message = {
-    en: ' contracting_companies Deleted',
-    ar: 'تم حذف شركة '
+    En: ' contracting_companies Deleted',
+    Ar: 'تم حذف شركة '
   }
 
 
@@ -31,8 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -51,8 +51,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -72,8 +72,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

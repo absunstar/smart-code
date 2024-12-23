@@ -44,7 +44,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
 
     const v = site.validated('#classScheduleAddModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
     $scope.busy = true;
@@ -98,7 +98,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
 
     const v = site.validated('#classScheduleUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;
@@ -266,13 +266,13 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
 
     $scope.class_schedule.schedules_list = [];
 
-    if ($scope.class_schedule.saturday) $scope.class_schedule.schedules_list.push({ day: { name: 'saturday', ar: 'السبت', en: 'Saturday' }, schedules_count_list: [] });
-    if ($scope.class_schedule.sunday) $scope.class_schedule.schedules_list.push({ day: { name: 'sunday', ar: 'الأحد', en: 'Sunday' }, schedules_count_list: [] });
-    if ($scope.class_schedule.monday) $scope.class_schedule.schedules_list.push({ day: { name: 'monday', ar: 'الإثنين', en: 'Monday' }, schedules_count_list: [] });
-    if ($scope.class_schedule.tuesday) $scope.class_schedule.schedules_list.push({ day: { name: 'tuesday', ar: 'الثلاثاء', en: 'Tuesday' }, schedules_count_list: [] });
-    if ($scope.class_schedule.wednesday) $scope.class_schedule.schedules_list.push({ day: { name: 'wednesday', ar: 'الأربعاء', en: 'Wednesday' }, schedules_count_list: [] });
-    if ($scope.class_schedule.thursday) $scope.class_schedule.schedules_list.push({ day: { name: 'thursday', ar: 'الخميس', en: 'Thursday' }, schedules_count_list: [] });
-    if ($scope.class_schedule.friday) $scope.class_schedule.schedules_list.push({ day: { name: 'friday', ar: 'الجمعة', en: 'Friday' }, schedules_count_list: [] });
+    if ($scope.class_schedule.saturday) $scope.class_schedule.schedules_list.push({ day: { name: 'saturday', Ar: 'السبت', En: 'Saturday' }, schedules_count_list: [] });
+    if ($scope.class_schedule.sunday) $scope.class_schedule.schedules_list.push({ day: { name: 'sunday', Ar: 'الأحد', En: 'Sunday' }, schedules_count_list: [] });
+    if ($scope.class_schedule.monday) $scope.class_schedule.schedules_list.push({ day: { name: 'monday', Ar: 'الإثنين', En: 'Monday' }, schedules_count_list: [] });
+    if ($scope.class_schedule.tuesday) $scope.class_schedule.schedules_list.push({ day: { name: 'tuesday', Ar: 'الثلاثاء', En: 'Tuesday' }, schedules_count_list: [] });
+    if ($scope.class_schedule.wednesday) $scope.class_schedule.schedules_list.push({ day: { name: 'wednesday', Ar: 'الأربعاء', En: 'Wednesday' }, schedules_count_list: [] });
+    if ($scope.class_schedule.thursday) $scope.class_schedule.schedules_list.push({ day: { name: 'thursday', Ar: 'الخميس', En: 'Thursday' }, schedules_count_list: [] });
+    if ($scope.class_schedule.friday) $scope.class_schedule.schedules_list.push({ day: { name: 'friday', Ar: 'الجمعة', En: 'Friday' }, schedules_count_list: [] });
 
     $scope.class_schedule.schedules_list.forEach(_sl => {
       _sl.count_school_class = $scope.class_schedule.max_school_class;
@@ -328,7 +328,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         }
       }
@@ -350,7 +350,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_Ar: 1, name_En: 1,
           code: 1
         },
         where: {
@@ -425,7 +425,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_Ar: 1, name_En: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

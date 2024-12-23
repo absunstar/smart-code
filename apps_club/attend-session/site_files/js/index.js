@@ -25,7 +25,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
     const v = site.validated('#attendSessionAddModal');
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     };
 
@@ -65,7 +65,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
     $scope.error = '';
     const v = site.validated('#attendSessionUpdateModal');
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -198,8 +198,8 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
           
           /*  select: {
             id: 1,
-            name_ar: 1,
-            name_en: 1,
+            name_Ar: 1,
+            name_En: 1,
           } */
         }
       }).then(
@@ -276,7 +276,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
       url: "/api/hall/all",
       data: {
         select: {
-          id: 1, capaneighborhood: 1, active: 1, name_ar: 1, name_en: 1 , code : 1
+          id: 1, capaneighborhood: 1, active: 1, name_Ar: 1, name_En: 1 , code : 1
         }
       }
     }).then(

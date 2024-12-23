@@ -12,10 +12,10 @@ module.exports = function init(site) {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectOrder.sizes_list) objectOrder.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
-              _items.size_ar = _size.size_ar
-              _items.size_en = _size.size_en
-              _items.name_ar = _size.name_ar
-              _items.name_en = _size.name_en
+              _items.size_Ar = _size.size_ar
+              _items.size_En= _size.size_en
+              _items.name_Ar = _size.name_Ar
+              _items.name_En = _size.name_En
             }
           })
         });
@@ -67,11 +67,11 @@ module.exports = function init(site) {
   //         doc.under_paid.service = doc.under_paid.service - obj.service;
   //       }
 
-  //       if (doc.under_paid.net_value <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
+  //       if (doc.under_paid.net_value <= 0) doc.status = { id: 5, En: "Closed & paid", Ar: "مغلق و تم الدفع" }
 
-  //       else if (obj.return && doc.under_paid.net_value == doc.net_value) doc.status = { id: 2, en: "Closed Of Orders Screen", ar: "مغلق من شاشة الأوردرات" }
+  //       else if (obj.return && doc.under_paid.net_value == doc.net_value) doc.status = { id: 2, En: "Closed Of Orders Screen", Ar: "مغلق من شاشة الأوردرات" }
 
-  //       else doc.status = { id: 4, en: "Closed & Invoiced", ar: "مغلق و تم عمل فواتير" }
+  //       else doc.status = { id: 4, En: "Closed & Invoiced", Ar: "مغلق و تم عمل فواتير" }
 
   //       doc.under_paid.items.forEach(items_basic => {
   //         obj.items.forEach(items_cb => {
@@ -122,7 +122,7 @@ module.exports = function init(site) {
   //   }
 
   //   $order_customer.findOne({ id: obj }, (err, doc) => {
-  //     if (doc.under_paid.net_value <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
+  //     if (doc.under_paid.net_value <= 0) doc.status = { id: 5, En: "Closed & paid", Ar: "مغلق و تم الدفع" }
   //     $order_customer.update(doc, () => {
   //       order_done_handle(null)
   //     });
@@ -180,14 +180,14 @@ module.exports = function init(site) {
     if (!order_customer_doc.status)
       order_customer_doc.status = {
         id: 1,
-        en: "Opened",
-        ar: "مفتوحة"
+        En: "Opened",
+        Ar: "مفتوحة"
       }
 
       order_customer_doc.status_delivery = {
         id: 1,
-        en: "Under Delivery",
-        ar: "تحت التوصيل"
+        En: "Under Delivery",
+        Ar: "تحت التوصيل"
       };
 
     order_customer_doc.total_items = 0
@@ -485,19 +485,19 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'table.name_ar': site.get_RegExp(search, "i")
+        'table.name_Ar': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'table.name_en': site.get_RegExp(search, "i")
+        'table.name_En': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'customer.name_ar': site.get_RegExp(search, "i")
+        'customer.name_Ar': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'tables_group.name_en': site.get_RegExp(search, "i")
+        'tables_group.name_En': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'tables_group.name_en': site.get_RegExp(search, "i")
+        'tables_group.name_En': site.get_RegExp(search, "i")
       })
     }
 

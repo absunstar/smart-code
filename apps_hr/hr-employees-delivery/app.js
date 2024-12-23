@@ -6,20 +6,20 @@ module.exports = function init(site) {
     if (site.feature('restaurant') || site.feature('pos') || site.feature('ecommerce') || site.feature('erp') || site.feature('school')) {
 
       $delivery_employee_list.add({
-        name_ar: "سائق إفتراضي",
-        name_en: "Default Driver",
+        name_Ar: "سائق إفتراضي",
+        name_En: "Default Driver",
         image_url: '/images/delivery_employee_list.png',
         code: "1-Test",
         delivery: true,
         company: {
           id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
+          name_Ar: doc.name_Ar,
+          name_En: doc.name_En
         },
         branch: {
           code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
+          name_Ar: doc.branch_list[0].name_Ar,
+          name_En: doc.branch_list[0].name_En
         },
         active: true
       }, (err, doc1) => { 
@@ -78,9 +78,9 @@ module.exports = function init(site) {
         'branch.code': site.get_branch(req).code,
 
         $or: [{
-          'name_ar': delivery_employee_doc.name_ar
+          'name_Ar': delivery_employee_doc.name_Ar
         }, {
-          'name_en': delivery_employee_doc.name_en
+          'name_En': delivery_employee_doc.name_En
         }, {
           'phone': delivery_employee_doc.phone
         }, {
@@ -96,8 +96,8 @@ module.exports = function init(site) {
         let user = {};
 
         user = {
-          name_ar: delivery_employee_doc.name_ar,
-          name_en: delivery_employee_doc.name_en,
+          name_Ar: delivery_employee_doc.name_Ar,
+          name_En: delivery_employee_doc.name_En,
           mobile: delivery_employee_doc.mobile,
           username: delivery_employee_doc.username,
           email: delivery_employee_doc.username,
@@ -115,14 +115,14 @@ module.exports = function init(site) {
         user.roles = [{
           module_name: "public",
           name: "delivery_employee_admin",
-          en: "Delivery Employee Admin",
-          ar: "إدارة موظفين التوصيل",
+          En: "Delivery Employee Admin",
+          Ar: "إدارة موظفين التوصيل",
           permissions: ["delivery_employee_manage"]
         }]
 
         user.profile = {
-          name_ar: user.name_ar,
-          name_en: user.name_en,
+          name_Ar: user.name_Ar,
+          name_En: user.name_En,
           mobile: user.mobile,
           image_url: user.image_url
         }
@@ -198,8 +198,8 @@ module.exports = function init(site) {
 
 
     user = {
-      name_ar: delivery_employee_doc.name_ar,
-      name_en: delivery_employee_doc.name_en,
+      name_Ar: delivery_employee_doc.name_Ar,
+      name_En: delivery_employee_doc.name_En,
       mobile: delivery_employee_doc.mobile,
       username: delivery_employee_doc.username,
       email: delivery_employee_doc.username,
@@ -219,15 +219,15 @@ module.exports = function init(site) {
       user.roles = [{
         module_name: "public",
         name: "delivery_employee_admin",
-        en: "Delivery Employee Admin",
-        ar: "إدارة موظفين التوصيل",
+        En: "Delivery Employee Admin",
+        Ar: "إدارة موظفين التوصيل",
         permissions: ["delivery_employee_manage"]
       }]
     }
 
     user.profile = {
-      name_ar: user.name_ar,
-      name_en: user.name_en,
+      name_Ar: user.name_Ar,
+      name_En: user.name_En,
       mobile: user.mobile,
       image_url: user.image_url
     }
@@ -362,11 +362,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name_ar': site.get_RegExp(search, "i")
+        'name_Ar': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
-        'name_en': site.get_RegExp(search, "i")
+        'name_En': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -410,12 +410,12 @@ module.exports = function init(site) {
       delete where.active
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    if (where['name_Ar']) {
+      where['name_Ar'] = site.get_RegExp(where['name_Ar'], "i");
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], "i");
+    if (where['name_En']) {
+      where['name_En'] = site.get_RegExp(where['name_En'], "i");
     }
 
     if (where['address']) {

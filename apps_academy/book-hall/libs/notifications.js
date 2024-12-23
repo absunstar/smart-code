@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'book_hall'
 
   let source = {
-    en: 'Book Hall System',
-    ar: 'نظام حجز القاعات'
+    En: 'Book Hall System',
+    Ar: 'نظام حجز القاعات'
   }
 
   let image_url = '/images/book_hall.png'
   let add_message = {
-    en: 'New Book Hall Added',
-    ar: 'تم إضافة حجز قاعة جديدة'
+    En: 'New Book Hall Added',
+    Ar: 'تم إضافة حجز قاعة جديدة'
   }
   let update_message = {
-    en: ' Book Hall Updated',
-    ar: 'تم تعديل حجز قاعة'
+    En: ' Book Hall Updated',
+    Ar: 'تم تعديل حجز قاعة'
   }
   let delete_message = {
-    en: ' Book Hall Deleted',
-    ar: 'تم حذف حجز قاعة '
+    En: ' Book Hall Deleted',
+    Ar: 'تم حذف حجز قاعة '
   }
 
   site.on('mongodb after insert', function (result) {
@@ -31,8 +31,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -52,8 +52,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -73,8 +73,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

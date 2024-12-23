@@ -23,10 +23,10 @@ module.exports = function init(site) {
             if (objectStoreOut.sizes_list)
               objectStoreOut.sizes_list.forEach((_size) => {
                 if (_items.barcode === _size.barcode) {
-                  _items.size_ar = _size.size_ar;
-                  _items.size_en = _size.size_en;
-                  _items.name_ar = _size.name_ar;
-                  _items.name_en = _size.name_en;
+                  _items.size_Ar = _size.size_Ar;
+                  _items.size_En= _size.size_En;
+                  _items.name_Ar = _size.name_Ar;
+                  _items.name_En = _size.name_En;
                 }
               });
           });
@@ -244,8 +244,8 @@ module.exports = function init(site) {
                               _itm.shift = {
                                 id: doc.shift.id,
                                 code: doc.shift.code,
-                                name_ar: doc.shift.name_ar,
-                                name_en: doc.shift.name_en,
+                                name_Ar: doc.shift.name_Ar,
+                                name_En: doc.shift.name_En,
                               };
                               if (doc.type.id == 6) {
                                 _itm.returnSell = true;
@@ -457,8 +457,8 @@ module.exports = function init(site) {
                                   _itm.shift = {
                                     id: result.doc.shift.id,
                                     code: result.doc.shift.code,
-                                    name_ar: result.doc.shift.name_ar,
-                                    name_en: result.doc.shift.name_en,
+                                    name_Ar: result.doc.shift.name_Ar,
+                                    name_En: result.doc.shift.name_En,
                                   };
                                   if (result.doc.posting) {
                                     _itm.current_status = 'sold';
@@ -586,8 +586,8 @@ module.exports = function init(site) {
                                   _itm.shift = {
                                     id: stores_out_doc.shift.id,
                                     code: stores_out_doc.shift.code,
-                                    name_ar: stores_out_doc.shift.name_ar,
-                                    name_en: stores_out_doc.shift.name_en,
+                                    name_Ar: stores_out_doc.shift.name_Ar,
+                                    name_En: stores_out_doc.shift.name_En,
                                   };
                                   if (result.doc.type.id == 6) {
                                     _itm.type = 'minus';
@@ -688,11 +688,11 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        'customer.name_ar': site.get_RegExp(search, 'i'),
+        'customer.name_Ar': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        'customer.name_en': site.get_RegExp(search, 'i'),
+        'customer.name_En': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
@@ -716,19 +716,19 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        'store.type.ar': site.get_RegExp(search, 'i'),
+        'store.type.Ar': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        'store.type.en': site.get_RegExp(search, 'i'),
+        'store.type.En': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        'store.payment_method.ar': site.get_RegExp(search, 'i'),
+        'store.payment_method.Ar': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        'store.payment_method.en': site.get_RegExp(search, 'i'),
+        'store.payment_method.En': site.get_RegExp(search, 'i'),
       });
     }
 
@@ -786,9 +786,9 @@ module.exports = function init(site) {
       delete where['size_ar'];
     }
 
-    if (where['size_en']) {
-      where['items.size_en'] = site.get_RegExp(where['size_en'], 'i');
-      delete where['size_en'];
+    if (where['size_En']) {
+      where['items.size_En'] = site.get_RegExp(where['size_En'], 'i');
+      delete where['size_En'];
     }
 
     if (where['barcode']) {
@@ -940,8 +940,8 @@ module.exports = function init(site) {
                   if (_item.unit == null || undefined)
                     _item.unit = {
                       id: unit.id,
-                      name_ar: unit.name_ar,
-                      name_en: unit.name_en,
+                      name_Ar: unit.name_Ar,
+                      name_En: unit.name_En,
                       convert: 1,
                     };
                 });
@@ -972,7 +972,7 @@ module.exports = function init(site) {
       if (doc && doc.return_paid) {
         obj.items.forEach((_itemsObj) => {
           doc.return_paid.items.forEach((_itemsDoc) => {
-            if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size_ar === _itemsDoc.size_ar) {
+            if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size_Ar === _itemsDoc.size_Ar) {
               if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0) {
                 if (_itemsDoc.patch_list && _itemsDoc.patch_list.length > 0) {
                   let foundPatshList = [];
@@ -1124,8 +1124,8 @@ module.exports = function init(site) {
                           _itm.shift = {
                             id: result.doc.shift.id,
                             code: result.doc.shift.code,
-                            name_ar: result.doc.shift.name_ar,
-                            name_en: result.doc.shift.name_en,
+                            name_Ar: result.doc.shift.name_Ar,
+                            name_En: result.doc.shift.name_En,
                           };
                           _itm.current_status = 'sold';
                           if (result.doc.type.id == 6) {

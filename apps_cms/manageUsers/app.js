@@ -244,19 +244,19 @@ module.exports = function init(site) {
       where.$or = [];
 
       where.$or.push({
-        'gender.ar': site.get_RegExp(where['search'], 'i'),
+        'gender.Ar': site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({
-        'gender.en': site.get_RegExp(where['search'], 'i'),
+        'gender.En': site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({
-        'type.ar': site.get_RegExp(where['search'], 'i'),
+        'type.Ar': site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({
-        'type.en': site.get_RegExp(where['search'], 'i'),
+        'type.En': site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({

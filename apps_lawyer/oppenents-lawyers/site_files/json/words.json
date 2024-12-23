@@ -10,8 +10,8 @@
     {"name" : "oppenents_lawyers_personal_information" , "En" : "Personal Information" , "Ar" : "البيانات الشخصية"},
     {"name" : "oppenents_lawyers_basic_information" , "En" : "Basic Information" , "Ar" : "البيانات الاساسية"},
     {"name" : "oppenents_lawyers_code" , "En" : "Oppenent Lawyer Code" , "Ar" : "كود محامي الخصم"},
-    {"name" : "oppenents_lawyers_name_ar" , "En" : "Oppenent Lawyer Name Arabic" , "Ar" : "إسم محامي الخصم بالعربي"},
-    {"name" : "oppenents_lawyers_name_en" , "En" : "Oppenent Lawyer Name English" , "Ar" : "إسم محامي الخصم بالانجليزية"},
+    {"name" : "oppenents_lawyers_name_Ar" , "En" : "Oppenent Lawyer Name Arabic" , "Ar" : "إسم محامي الخصم بالعربي"},
+    {"name" : "oppenents_lawyers_name_En" , "En" : "Oppenent Lawyer Name English" , "Ar" : "إسم محامي الخصم بالانجليزية"},
     {"name" : "oppenent_name" , "En" : "Oppenent Lawyer Name" , "Ar" : "إسم محامي الخصم"},
     {"name" : "oppenent" , "En" : "Oppenent Lawyer " , "Ar" : " محامي الخصم"},
 

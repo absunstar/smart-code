@@ -41,7 +41,7 @@
             </tr>
             <tr ng-repeat="role in user.roles">
                 <td x-lang="Ar">{{role.##session.lang##}}</td>
-                <td x-lang="En">{{role.en}}</td>
+                <td x-lang="En">{{role.En}}</td>
             </tr>
         </table>
 
@@ -54,7 +54,7 @@
             <tr ng-repeat=" p in userPermission ">
                 <td x-lang="Ar"><span class="title">{{get_trans(p).##session.lang##}}</span><span ng-repeat="value in onepermission[p]"> -- {{value.##session.lang##}}
                     </span> </td>
-                <td x-lang="En"><span class="title">{{get_trans(p).en}}</span><span ng-repeat="value in onepermission[p]"> -- {{value.en}}
+                <td x-lang="En"><span class="title">{{get_trans(p).En}}</span><span ng-repeat="value in onepermission[p]"> -- {{value.En}}
                     </span> </td>
             </tr>
 

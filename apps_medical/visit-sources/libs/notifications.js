@@ -2,22 +2,22 @@ module.exports = function init(site) {
   let collection_name = "visit_sources";
 
   let source = {
-    en: "Request Types System",
-    ar: " نظام مصادر الزيارات",
+    En: "Request Types System",
+    Ar: " نظام مصادر الزيارات",
   };
 
   let image_url = "/images/visit_sources.png";
   let add_message = {
-    en: "New Request Types Added",
-    ar: "تم إضافة مصدر زيارة جديد",
+    En: "New Request Types Added",
+    Ar: "تم إضافة مصدر زيارة جديد",
   };
   let update_message = {
-    en: " Request Types Updated",
-    ar: "تم تعديل مصدر زيارة",
+    En: " Request Types Updated",
+    Ar: "تم تعديل مصدر زيارة",
   };
   let delete_message = {
-    en: " Request Types Deleted",
-    ar: "تم حذف مصدر زيارة ",
+    En: " Request Types Deleted",
+    Ar: "تم حذف مصدر زيارة ",
   };
 
   site.on("mongodb after insert", function (result) {
@@ -29,8 +29,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           add: result.doc,
           action: "add",
@@ -49,8 +49,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar,
+            name_En: result.old_doc.name_En,
+            name_Ar: result.old_doc.name_Ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: "update",
@@ -69,8 +69,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar,
+            name_En: result.doc.name_En,
+            name_Ar: result.doc.name_Ar,
           },
           delete: result.doc,
           action: "delete",

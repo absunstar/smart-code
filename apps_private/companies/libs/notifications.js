@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'companies'
 
   let source = {
-    en: 'company System',
-    ar: ' نظام الشركات'
+    En: 'company System',
+    Ar: ' نظام الشركات'
   }
 
   let image_url = '/images/company.png'
   let add_message = {
-    en: 'New company Added',
-    ar: 'تم إضافة شركة جديدة'
+    En: 'New company Added',
+    Ar: 'تم إضافة شركة جديدة'
   }
   let update_message = {
-    en: ' company Updated',
-    ar: 'تم تعديل شركة'
+    En: ' company Updated',
+    Ar: 'تم تعديل شركة'
   }
   let delete_message = {
-    en: ' company Deleted',
-    ar: 'تم حذف شركة '
+    En: ' company Deleted',
+    Ar: 'تم حذف شركة '
   }
 
 
@@ -30,10 +30,10 @@ module.exports = function init(site) {
           source: source,
           message: add_message,
           value: {
-            name: result.doc.name_ar,
+            name: result.doc.name_Ar,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -73,10 +73,10 @@ module.exports = function init(site) {
           source: source,
           message: delete_message,
           value: {
-            name: result.doc.name_ar,
+            name: result.doc.name_Ar,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'

@@ -25,8 +25,8 @@ module.exports = function init(site) {
       let totalCost = obj.cost * site.toNumber(obj.count);
 
       let obj_branch = {
-        name_ar: obj.branch.name_ar,
-        name_en: obj.branch.name_en,
+        name_Ar: obj.branch.name_Ar,
+        name_En: obj.branch.name_En,
         code: obj.branch.code,
         start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(total_unit) : 0,
         current_count: obj.type == 'sum' ? site.toNumber(total_unit) : -Math.abs(total_unit),
@@ -41,8 +41,8 @@ module.exports = function init(site) {
         size_units_list: [
           {
             id: obj.unit.id,
-            name_ar: obj.unit.name_ar,
-            name_en: obj.unit.name_en,
+            name_Ar: obj.unit.name_Ar,
+            name_En: obj.unit.name_En,
             barcode: obj.unit.barcode,
             current_count: obj.type == 'sum' ? obj.count : -Math.abs(obj.count),
             start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
@@ -73,8 +73,8 @@ module.exports = function init(site) {
               {
                 patch_list: obj.patch_list,
                 id: obj.unit.id,
-                name_ar: obj.unit.name_ar,
-                name_en: obj.unit.name_en,
+                name_Ar: obj.unit.name_Ar,
+                name_En: obj.unit.name_En,
                 barcode: obj.unit.barcode,
                 start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
                 current_count: obj.type == 'sum' ? obj.count : -Math.abs(obj.count),
@@ -108,8 +108,8 @@ module.exports = function init(site) {
           {
             patch_list: obj.patch_list,
             id: obj.unit.id,
-            name_ar: obj.unit.name_ar,
-            name_en: obj.unit.name_en,
+            name_Ar: obj.unit.name_Ar,
+            name_En: obj.unit.name_En,
             barcode: obj.unit.barcode,
             start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
             current_count: obj.type == 'sum' ? obj.count : -Math.abs(obj.count),
@@ -297,8 +297,8 @@ module.exports = function init(site) {
                     if (!unit_branch) {
                       _size.branches_list[indxBranch].size_units_list.push({
                         id: obj.unit.id,
-                        name_ar: obj.unit.name_ar,
-                        name_en: obj.unit.name_en,
+                        name_Ar: obj.unit.name_Ar,
+                        name_En: obj.unit.name_En,
                         barcode: obj.unit.barcode,
                         start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
                         current_count: obj.type == 'sum' ? obj.count : -Math.abs(obj.count),
@@ -430,8 +430,8 @@ module.exports = function init(site) {
                           _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.push({
                             patch_list: obj.patch_list,
                             id: obj.unit.id,
-                            name_ar: obj.unit.name_ar,
-                            name_en: obj.unit.name_en,
+                            name_Ar: obj.unit.name_Ar,
+                            name_En: obj.unit.name_En,
                             barcode: obj.unit.barcode,
                             start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
                             current_count: obj.type == 'sum' ? obj.count : -Math.abs(obj.count),
@@ -597,8 +597,8 @@ module.exports = function init(site) {
     site.getBarcodesList(req, (cbBarcodesList) => {
       site.getDefaultSetting(req, (settingCallback) => {
         if (!stores_items_doc.add_sizes) {
-          item_doc.size_ar = stores_items_doc.name_ar;
-          item_doc.size_en = stores_items_doc.name_en;
+          item_doc.size_Ar = stores_items_doc.name_Ar;
+          item_doc.size_En= stores_items_doc.name_En;
           item_doc.start_count = 0;
           item_doc.current_count = 0;
           item_doc.total_sell_price = 0;
@@ -609,8 +609,8 @@ module.exports = function init(site) {
           stores_items_doc.units_list.forEach((_size_unit) => {
             item_doc.size_units_list.push({
               id: _size_unit.id,
-              name_ar: _size_unit.name_ar,
-              name_en: _size_unit.name_en,
+              name_Ar: _size_unit.name_Ar,
+              name_En: _size_unit.name_En,
               convert: _size_unit.convert,
               barcode: _size_unit.barcode,
               price: _size_unit.price,
@@ -689,8 +689,8 @@ module.exports = function init(site) {
             _size.kitchen_branch_list.forEach((_kB) => {
               let obj = {
                 code: _kB.code,
-                name_ar: _kB.name_ar,
-                name_en: _kB.name_en,
+                name_Ar: _kB.name_Ar,
+                name_En: _kB.name_En,
                 kitchen: _kB.kitchen,
                 start_count: 0,
                 current_count: 0,
@@ -705,8 +705,8 @@ module.exports = function init(site) {
               _size.size_units_list.forEach((_u) => {
                 obj.size_units_list.push({
                   id: _u.id,
-                  name_ar: _u.name_ar,
-                  name_en: _u.name_en,
+                  name_Ar: _u.name_Ar,
+                  name_En: _u.name_En,
                   barcode: _u.barcode,
                   start_count: 0,
                   total_buy_cost: 0,
@@ -800,8 +800,8 @@ module.exports = function init(site) {
                     image_url: doc.image_url,
                     company: doc.company,
                     branch: doc.branch,
-                    name_ar: doc.name_ar,
-                    name_en: doc.name_en,
+                    name_Ar: doc.name_Ar,
+                    name_En: doc.name_En,
                     add_user_info: doc.add_user_info,
                     item_group: doc.item_group,
                     sizes: doc.sizes,
@@ -858,8 +858,8 @@ module.exports = function init(site) {
     site.getBarcodesList(req, (cbBarcodesList) => {
       site.getDefaultSetting(req, (settingCallback) => {
         if (!stores_items_doc.add_sizes && stores_items_doc.sizes[0]) {
-          stores_items_doc.sizes[0].size_ar = stores_items_doc.name_ar;
-          stores_items_doc.sizes[0].size_en = stores_items_doc.name_en;
+          stores_items_doc.sizes[0].size_Ar = stores_items_doc.name_Ar;
+          stores_items_doc.sizes[0].size_En= stores_items_doc.name_En;
         }
 
         if (stores_items_doc.sizes && stores_items_doc.sizes.length < 1 && stores_items_doc.add_sizes) {
@@ -998,8 +998,8 @@ module.exports = function init(site) {
             image_url: stores_items_doc.image_url,
             company: stores_items_doc.company,
             branch: stores_items_doc.branch,
-            name_ar: stores_items_doc.name_ar,
-            name_en: stores_items_doc.name_en,
+            name_Ar: stores_items_doc.name_Ar,
+            name_En: stores_items_doc.name_En,
             add_user_info: stores_items_doc.add_user_info,
             item_group: stores_items_doc.item_group,
             sizes: stores_items_doc.sizes,
@@ -1027,24 +1027,24 @@ module.exports = function init(site) {
 
                 obj.company = item_doc.doc.company;
 
-                if (item_doc.doc.name_ar === item_doc.old_doc.name_ar) foundNameAr = true;
-                if (item_doc.doc.name_en === item_doc.old_doc.name_en) foundNameEn = true;
+                if (item_doc.doc.name_Ar === item_doc.old_doc.name_Ar) foundNameAr = true;
+                if (item_doc.doc.name_En === item_doc.old_doc.name_En) foundNameEn = true;
 
                 item_doc.doc.sizes.forEach((_size) => {
                   let foundSize = false;
                   let foundNameEn = false;
                   item_doc.old_doc.sizes.map((old_size) => {
-                    if (_size.size_ar === old_size.size_ar) foundSize = true;
-                    if (_size.size_en === old_size.size_en) foundNameEn = true;
+                    if (_size.size_Ar === old_size.size_Ar) foundSize = true;
+                    if (_size.size_En=== old_size.size_en) foundNameEn = true;
                   });
 
                   if (!foundSize || !foundNameEn || !foundNameAr || !foundNameEn) {
                     obj.sizes_list.push({
-                      size_ar: _size.size_ar,
+                      size_Ar: _size.size_Ar,
                       barcode: _size.barcode,
                       size_en: _size.size_en,
-                      name_ar: item_doc.doc.name_ar,
-                      name_en: item_doc.doc.name_en,
+                      name_Ar: item_doc.doc.name_Ar,
+                      name_En: item_doc.doc.name_En,
                     });
                     exist = true;
                   }
@@ -1172,7 +1172,7 @@ module.exports = function init(site) {
         });
 
         where.$or.push({
-          'sizes.size_en': site.get_RegExp(search, 'i'),
+          'sizes.size_En': site.get_RegExp(search, 'i'),
         });
 
         where.$or.push({
@@ -1180,11 +1180,11 @@ module.exports = function init(site) {
         });
 
         where.$or.push({
-          'sizes.active_substance.name_ar': search,
+          'sizes.active_substance.name_Ar': search,
         });
 
         where.$or.push({
-          'sizes.active_substance.name_en': search,
+          'sizes.active_substance.name_En': search,
         });
 
         where.$or.push({
@@ -1192,29 +1192,29 @@ module.exports = function init(site) {
         });
 
         where.$or.push({
-          name_ar: site.get_RegExp(search, 'i'),
+          name_Ar: site.get_RegExp(search, 'i'),
         });
 
         where.$or.push({
-          name_en: site.get_RegExp(search, 'i'),
+          name_En: site.get_RegExp(search, 'i'),
         });
 
         where.$or.push({
-          'item_group.name_ar': search,
+          'item_group.name_Ar': search,
         });
 
         where.$or.push({
-          'item_group.name_en': search,
+          'item_group.name_En': search,
         });
       }
 
       where['company.id'] = site.get_company(req).id;
 
-      if (where['name_ar']) {
-        where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
+      if (where['name_Ar']) {
+        where['name_Ar'] = site.get_RegExp(where['name_Ar'], 'i');
       }
-      if (where['name_en']) {
-        where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+      if (where['name_En']) {
+        where['name_En'] = site.get_RegExp(where['name_En'], 'i');
       }
 
       if (where['size_ar']) {
@@ -1222,9 +1222,9 @@ module.exports = function init(site) {
         delete where['size_ar'];
       }
 
-      if (where['size_en']) {
-        where['sizes.size_en'] = site.get_RegExp(where['size_en'], 'i');
-        delete where['size_en'];
+      if (where['size_En']) {
+        where['sizes.size_En'] = site.get_RegExp(where['size_En'], 'i');
+        delete where['size_En'];
       }
 
       if (where['barcode']) {
@@ -1421,22 +1421,22 @@ module.exports = function init(site) {
         });
 
         oldDocs.forEach((_oldDoc) => {
-          let unitExists = unitsList.some((u) => u.name_ar === _oldDoc.unit);
+          let unitExists = unitsList.some((u) => u.name_Ar === _oldDoc.unit);
           if (!unitExists) {
-            unitsList.push({ name_en: _oldDoc.unit, name_ar: _oldDoc.unit });
+            unitsList.push({ name_En: _oldDoc.unit, name_Ar: _oldDoc.unit });
           }
 
-          let groupExists = itemsGroupList.some((g) => g.name_ar === _oldDoc.category_name_ar);
+          let groupExists = itemsGroupList.some((g) => g.name_Ar === _oldDoc.category_name_Ar);
           if (!groupExists) {
-            itemsGroupList.push({ name_en: _oldDoc.category_name_en, name_ar: _oldDoc.category_name_ar });
+            itemsGroupList.push({ name_En: _oldDoc.category_name_en, name_Ar: _oldDoc.category_name_Ar });
           }
         });
 
         unitsList.forEach((u, i) => {
           $units.add(
             {
-              name_en: u.name_en,
-              name_ar: u.name_ar,
+              name_En: u.name_En,
+              name_Ar: u.name_Ar,
               company: site.get_company(req),
               branch: site.get_branch(req),
               code: i + 1,
@@ -1454,8 +1454,8 @@ module.exports = function init(site) {
         itemsGroupList.forEach((g, i) => {
           $items_group.add(
             {
-              name_en: g.name_en,
-              name_ar: g.name_ar,
+              name_En: g.name_En,
+              name_Ar: g.name_Ar,
               company: site.get_company(req),
               branch: site.get_branch(req),
               image_url: '/images/product_group.png',
@@ -1473,10 +1473,10 @@ module.exports = function init(site) {
         setTimeout(() => {
           oldDocs.forEach((_oldDoc, i) => {
             let itemGroup = itemsGroupList.find((g) => {
-              return g.name_ar === _oldDoc.category_name_ar;
+              return g.name_Ar === _oldDoc.category_name_Ar;
             });
             let itemUnit = unitsList.find((u) => {
-              return u.name_ar === _oldDoc.unit;
+              return u.name_Ar === _oldDoc.unit;
             });
 
             $stores_items.add(
@@ -1489,18 +1489,18 @@ module.exports = function init(site) {
                 item_type: {
                   id: 1,
                   name: 'store_item',
-                  en: 'Store Item',
-                  ar: 'صنف مخزني',
+                  En: 'Store Item',
+                  Ar: 'صنف مخزني',
                 },
                 main_unit: itemUnit,
-                name_en: _oldDoc.name_en,
-                name_ar: _oldDoc.name_ar,
+                name_En: _oldDoc.name_En,
+                name_Ar: _oldDoc.name_Ar,
                 item_group: itemGroup,
                 units_list: [
                   {
                     id: itemUnit.id,
-                    name_ar: itemUnit.name_ar,
-                    name_en: itemUnit.name_en,
+                    name_Ar: itemUnit.name_Ar,
+                    name_En: itemUnit.name_En,
                     convert: 1,
                     start_count: 0,
                     current_count: 0,
@@ -1526,8 +1526,8 @@ module.exports = function init(site) {
                     },
                     image_url: '/images/item_sizes.png',
                     barcode: _oldDoc.barcode,
-                    size_ar: _oldDoc.name_ar,
-                    size_en: _oldDoc.name_en,
+                    size_Ar: _oldDoc.name_Ar,
+                    size_en: _oldDoc.name_En,
                     start_count: 0,
                     current_count: 0,
                     total_sell_price: 0,
@@ -1537,8 +1537,8 @@ module.exports = function init(site) {
                     size_units_list: [
                       {
                         id: itemUnit.id,
-                        name_ar: itemUnit.name_ar,
-                        name_en: itemUnit.name_en,
+                        name_Ar: itemUnit.name_Ar,
+                        name_En: itemUnit.name_En,
                         convert: 1,
                         start_count: 0,
                         current_count: 0,
@@ -1556,8 +1556,8 @@ module.exports = function init(site) {
                     item_type: {
                       id: 1,
                       name: 'store_item',
-                      en: 'Store Item',
-                      ar: 'صنف مخزني',
+                      En: 'Store Item',
+                      Ar: 'صنف مخزني',
                     },
                   },
                 ],
@@ -1719,8 +1719,8 @@ module.exports = function init(site) {
               _doc.units_list = [
                 {
                   id: unit.id,
-                  name_ar: unit.name_ar,
-                  name_en: unit.name_en,
+                  name_Ar: unit.name_Ar,
+                  name_En: unit.name_En,
                   convert: 1,
                 },
               ];
@@ -1738,8 +1738,8 @@ module.exports = function init(site) {
                     _sizes.size_units_list = [
                       {
                         id: unit.id,
-                        name_ar: unit.name_ar,
-                        name_en: unit.name_en,
+                        name_Ar: unit.name_Ar,
+                        name_En: unit.name_En,
                         barcode: _barcode,
                         current_count: _sizes.current_count,
                         start_count: _sizes.start_count,
@@ -1760,8 +1760,8 @@ module.exports = function init(site) {
                         _branch.size_units_list = [
                           {
                             id: unit.id,
-                            name_ar: unit.name_ar,
-                            name_en: unit.name_en,
+                            name_Ar: unit.name_Ar,
+                            name_En: unit.name_En,
                             barcode: _barcodeUnit,
                             current_count: _branch.current_count,
                             start_count: _branch.start_count,
@@ -1778,8 +1778,8 @@ module.exports = function init(site) {
                             _store.size_units_list = [
                               {
                                 id: unit.id,
-                                name_ar: unit.name_ar,
-                                name_en: unit.name_en,
+                                name_Ar: unit.name_Ar,
+                                name_En: unit.name_En,
                                 barcode: _barcodeUnit,
                                 current_count: _store.current_count,
                                 start_count: _store.start_count,
@@ -1803,7 +1803,7 @@ module.exports = function init(site) {
                   //   let totalCost = site.toNumber(_sizes.cost) * site.toNumber(_sizes.current_count);
 
                   //   let obj_branch = {
-                  //     name_ar: _docs.branch.name_ar,
+                  //     name_Ar: _docs.branch.name_Ar,
                   //     code: _docs.branch.code,
                   //     start_count: 0,
                   //     current_count: site.toNumber(_sizes.current_count),
@@ -1893,7 +1893,7 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        'sizes.size_en': site.get_RegExp(search, 'i'),
+        'sizes.size_En': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
@@ -1901,11 +1901,11 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        'sizes.active_substance.name_ar': search,
+        'sizes.active_substance.name_Ar': search,
       });
 
       where.$or.push({
-        'sizes.active_substance.name_en': search,
+        'sizes.active_substance.name_En': search,
       });
 
       where.$or.push({
@@ -1913,19 +1913,19 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        name_ar: site.get_RegExp(search, 'i'),
+        name_Ar: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        name_en: site.get_RegExp(search, 'i'),
+        name_En: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
-        'item_group.name_ar': search,
+        'item_group.name_Ar': search,
       });
 
       where.$or.push({
-        'item_group.name_en': search,
+        'item_group.name_En': search,
       });
     }
 
@@ -1954,11 +1954,11 @@ module.exports = function init(site) {
                     return _unit.id === _item.main_unit.id;
                   });
                   _size.information_instructions = _item.information_instructions;
-                  _size.name_ar = _item.name_ar;
-                  _size.name_en = _item.name_en;
+                  _size.name_Ar = _item.name_Ar;
+                  _size.name_En = _item.name_En;
                   _size.itm_id = _item.id;
-                  _size.stores_item_name_ar = _item.name_ar;
-                  _size.stores_item_name_en = _item.name_en;
+                  _size.stores_item_name_Ar = _item.name_Ar;
+                  _size.stores_item_name_En= _item.name_En;
                   if (req.body.barcode != _size.barcode) arr_sizes.unshift(_size);
                 });
               }
@@ -2006,7 +2006,7 @@ module.exports = function init(site) {
             docs.forEach((item) => {
               if (item.sizes && item.sizes.length > 0)
                 item.sizes.forEach((_size) => {
-                  if (typeof _size.size_ar != 'string') {
+                  if (typeof _size.size_Ar != 'string') {
                     list_err.push({ barcode: _size.barcode });
                   }
                 });
@@ -2197,8 +2197,8 @@ module.exports = function init(site) {
               if (item.sizes && item.sizes.length > 0)
                 item.sizes.forEach((_size) => {
                   _size.itm_id = item.id;
-                  _size.stores_item_name_ar = item.name_ar;
-                  _size.stores_item_name_en = item.name_en;
+                  _size.stores_item_name_Ar = item.name_Ar;
+                  _size.stores_item_name_En= item.name_En;
                   arr_sizes.unshift(_size);
                 });
             });
@@ -2284,8 +2284,8 @@ module.exports = function init(site) {
               _doc.units_list = [
                 {
                   id: unit.id,
-                  name_ar: unit.name_ar,
-                  name_en: unit.name_en,
+                  name_Ar: unit.name_Ar,
+                  name_En: unit.name_En,
                   convert: 1,
                 },
               ];
@@ -2309,8 +2309,8 @@ module.exports = function init(site) {
                     _sizes.size_units_list = [
                       {
                         id: unit.id,
-                        name_ar: unit.name_ar,
-                        name_en: unit.name_en,
+                        name_Ar: unit.name_Ar,
+                        name_En: unit.name_En,
                         barcode: _barcodeUnit,
                         current_count: 0,
                         start_count: 0,
@@ -2385,7 +2385,7 @@ module.exports = function init(site) {
                 if (_item.sizes && _item.sizes.length > 0) {
                   _item.sizes.forEach((currentSize) => {
                     itemsCb.forEach((cbSize) => {
-                      if (currentSize.barcode === cbSize.barcode && currentSize.size_ar === cbSize.size_ar) {
+                      if (currentSize.barcode === cbSize.barcode && currentSize.size_Ar === cbSize.size_Ar) {
                         let foundUnit = false;
                         let foundStores = false;
                         let foundBranch = false;

@@ -21,7 +21,7 @@ app.controller("vaccinations", function ($scope, $http, $timeout) {
     const v = site.validated("#vaccinationsAddModal");
 
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
 
@@ -57,7 +57,7 @@ app.controller("vaccinations", function ($scope, $http, $timeout) {
     $scope.error = "";
     const v = site.validated("#vaccinationsUpdateModal");
     if (!v.ok) {
-      $scope.error = v.messages[0].ar;
+      $scope.error = v.messages[0].Ar;
       return;
     }
     $scope.busy = true;

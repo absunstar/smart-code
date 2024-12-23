@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'currency'
 
   let source = {
-    en: 'Disease System',
-    ar: 'نظام العملات'
+    En: 'Disease System',
+    Ar: 'نظام العملات'
   }
 
   let image_url = '/images/currency.png'
   let add_message = {
-    en: 'New Disease Added',
-    ar: 'تم إضافة عملة جديد'
+    En: 'New Disease Added',
+    Ar: 'تم إضافة عملة جديد'
   }
   let update_message = {
-    en: ' Disease Updated',
-    ar: 'تم تعديل عملة'
+    En: ' Disease Updated',
+    Ar: 'تم تعديل عملة'
   }
   let delete_message = {
-    en: ' Disease Deleted',
-    ar: 'تم حذف عملة '
+    En: ' Disease Deleted',
+    Ar: 'تم حذف عملة '
   }
 
 
@@ -32,8 +32,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           add: result.doc,
           action: 'add'
@@ -53,8 +53,8 @@ module.exports = function init(site) {
           value: {
             name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            En: result.old_doc.name_En,
+            Ar: result.old_doc.name_Ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -75,8 +75,8 @@ module.exports = function init(site) {
           value: {
             name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            En: result.doc.name_En,
+            Ar: result.doc.name_Ar
           },
           delete: result.doc,
           action: 'delete'
