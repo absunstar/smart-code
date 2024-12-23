@@ -282,7 +282,7 @@ module.exports = function init(site) {
                   _com.branch_list.forEach((_br) => {
                     branch_list.push({
                       company: _com,
-                      branch: _br,
+                      branch: {..._br},
                     });
                   });
                 });
@@ -299,7 +299,7 @@ module.exports = function init(site) {
                           if (_br.code == _b.branch.code) {
                             branch_list.push({
                               company: _com,
-                              branch: _br,
+                              branch: {..._br},
                             });
                           }
                         });
