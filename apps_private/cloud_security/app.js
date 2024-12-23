@@ -278,6 +278,7 @@ module.exports = function init(site) {
             if (doc.is_admin) {
               response.list = doc.branch_list;
               response.done = true;
+              response.isAdmin = doc.is_admin;
               res.json(response);
             } else {
               $companies.findMany({}, (err, companiesDoc) => {
