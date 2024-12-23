@@ -269,9 +269,9 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
               total: $scope.store_in.net_value,
               vat_total: $scope.store_in.total_value_added,
             };
-            if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+            if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
               qrString.name = '##session.company.name_ar##';
-            } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
+            } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
               qrString.name = '##session.company.name_en##';
             }
             qrString.name = '##session.company.name_en##';
@@ -363,9 +363,9 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                 total: $scope.thermal.net_value,
                 vat_total: $scope.thermal.total_value_added,
               };
-              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
                 qrString.name = '##session.company.name_ar##';
-              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
+              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
                 qrString.name = '##session.company.name_en##';
               }
               qrString.name = '##session.company.name_en##';

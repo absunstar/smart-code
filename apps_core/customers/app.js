@@ -1227,7 +1227,7 @@ module.exports = function init(site) {
 
   // update location
   site.post('/api/customers/updateLocations', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1445,7 +1445,7 @@ module.exports = function init(site) {
 
   // my addresses
   site.post('/api/customers/myAddresses', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1489,7 +1489,7 @@ module.exports = function init(site) {
 
   // my profile
   site.post('/api/customers/myProfile', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];

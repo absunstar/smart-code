@@ -69,9 +69,9 @@ module.exports = function init(site) {
 
         if (rate > 100 || amount > total_account_dibt_credit) {
           found = true
-          if (req.session.lang == 'ar') {
+          if (req.session.lang == 'Ar') {
             accounts_arr.push(_accList.name_ar)
-          } else if (req.session.lang == 'en') {
+          } else if (req.session.lang == 'En') {
             accounts_arr.push(_accList.name_en)
           }
         }
@@ -173,7 +173,7 @@ module.exports = function init(site) {
 
         if (rate > 100 || amount > total_account_dibt_credit) {
           found = true
-      if (req.session.lang == 'ar') {
+      if (req.session.lang == 'Ar') {
             accounts_arr.push(_accList.name_ar)
           } else {
             accounts_arr.push(_accList.name_en)

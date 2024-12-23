@@ -295,17 +295,17 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           if ($scope.defaultSettings.printer_program.invoice_logo) {
             $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
           }
-          /* $scope.thermal_lang = 'ar';
+          /* $scope.thermal_lang = 'Ar';
           $scope.thermal_lang_name = 'name_ar';
           if ($scope.defaultSettings.printer_program.thermal_lang) {
             if ($scope.defaultSettings.printer_program.thermal_lang.id == 2) {
-              $scope.thermal_lang = 'en';
+              $scope.thermal_lang = 'En';
               $scope.thermal_lang_name = 'name_en';
             } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 3) {
               $scope.thermal_lang = '##session.lang##';
-              if ('##session.lang##' == 'ar') {
+              if ('##session.lang##' == 'Ar') {
                 $scope.thermal_lang_name = 'name_ar';
-              } else if ('##session.lang##' == 'en') {
+              } else if ('##session.lang##' == 'En') {
                 $scope.thermal_lang_name = 'name_en';
               }
             }
@@ -2114,9 +2114,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 total: $scope.thermal.net_value,
                 vat_total: $scope.thermal.total_value_added,
               };
-              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
                 qrString.name = '##session.company.name_ar##';
-              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
+              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
                 qrString.name = '##session.company.name_en##';
               }
               qrString.name = '##session.company.name_en##';
@@ -2226,9 +2226,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               total: $scope.store_out.net_value,
               vat_total: $scope.store_out.total_value_added,
             };
-            if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+            if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
               qrString.name = '##session.company.name_ar##';
-            } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
+            } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
               qrString.name = '##session.company.name_en##';
             }
             qrString.name = '##session.company.name_en##';

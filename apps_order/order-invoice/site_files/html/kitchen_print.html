@@ -62,23 +62,23 @@
       <div class="row">
         <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-20 bold">##session.company.name_ar##</p>
         <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-20 bold">##session.company.name_en##</p>
-        <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_ar##</p>
-        <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_en##</p>
+        <p ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_ar##</p>
+        <p ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_en##</p>
       </div>
 
       <div class="row">
         <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-18 bold">##session.branch.name_ar##</p>
         <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-18 bold">##session.branch.name_en##</p>
-        <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_ar##</p>
-        <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_en##</p>
+        <p ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_ar##</p>
+        <p ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_en##</p>
       </div>
       <br />
 
       <div class="row">
         <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-18 bold">مطبخ : {{kitchen_print.kitchen.name_ar}}</p>
         <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-18 bold">Kitchen : {{kitchen_print.kitchen.name_en}}</p>
-        <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">مطبخ : {{kitchen_print.kitchen.name_ar}}</p>
-        <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">Kitchen : {{kitchen_print.kitchen.name_en}}</p>
+        <p ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">مطبخ : {{kitchen_print.kitchen.name_ar}}</p>
+        <p ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">Kitchen : {{kitchen_print.kitchen.name_en}}</p>
       </div>
 
       <div class="row">
@@ -99,10 +99,10 @@
           <b class="black font-11">{{kitchen_print.date |date:"dd - MM - yyyy" }}</b>
         </div>
         <div class="col-5 center">
-          <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
+          <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'"
             >الوقت : {{kitchen_print.date |date:"mm : hh" }}</b
           >
-          <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
+          <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'"
             >Time : {{kitchen_print.date |date:"hh : mm" }}</b
           >
         </div>

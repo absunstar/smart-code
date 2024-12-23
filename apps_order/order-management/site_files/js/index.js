@@ -461,7 +461,7 @@ app.controller('order_management', function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     let name_lang = 'name_ar';
-    if ('##session.lang##' === 'en') name_lang = 'name_en';
+    if ('##session.lang##' === 'En') name_lang = 'name_en';
 
     if (obj.invoice_id) {
       obj.total_remain = $scope.amount_currency - obj.paid_up;
@@ -557,7 +557,7 @@ app.controller('order_management', function ($scope, $http, $timeout) {
 
     if (obj.items && obj.items.length > 0) {
       let size_lang = 'size_ar';
-      if ('##session.lang##' === 'en') size_lang = 'size_en';
+      if ('##session.lang##' === 'En') size_lang = 'size_en';
 
       obj_print.data.push(
         {

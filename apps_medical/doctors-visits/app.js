@@ -792,7 +792,7 @@ module.exports = function init(site) {
 
   site.post('/api/dates/day', (req, res) => {
     let response = {};
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
@@ -897,7 +897,7 @@ module.exports = function init(site) {
 
   // my profile
   site.post('/api/doctors_visits/myProfile', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
 
     if (!req.session.user) {
@@ -947,7 +947,7 @@ module.exports = function init(site) {
 
   // get visit data
   site.post('/api/doctors_visits/getVisitData', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
 
     if (!req.session.user) {
@@ -1000,7 +1000,7 @@ module.exports = function init(site) {
 
   // my complete visits
   site.post('/api/doctors_visits/getCompletedVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1053,7 +1053,7 @@ module.exports = function init(site) {
 
   //my not complete visits
   site.post('/api/doctors_visits/getNotCompletedVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1108,7 +1108,7 @@ module.exports = function init(site) {
 
   //get doctor complete visits
   site.post('/api/doctors_visits/getDoctorCompleteVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1164,7 +1164,7 @@ module.exports = function init(site) {
 
   //get patient complete clinic visits
   site.post('/api/doctors_visits/getPatientCompleteClinicVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1217,7 +1217,7 @@ module.exports = function init(site) {
 
   //get patient complete Home visits
   site.post('/api/doctors_visits/getPatientCompleteHomeVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1270,7 +1270,7 @@ module.exports = function init(site) {
 
   //get patient complete Online visits
   site.post('/api/doctors_visits/getPatientCompleteOnlineVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1323,7 +1323,7 @@ module.exports = function init(site) {
 
   //get patient not complete clinic visits
   site.post('/api/doctors_visits/getPatientNotCompleteClinicVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1377,7 +1377,7 @@ module.exports = function init(site) {
 
   //get patient not complete Home visits
   site.post('/api/doctors_visits/getPatientNotCompleteHomeVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1432,7 +1432,7 @@ module.exports = function init(site) {
 
   //get patient not complete Online visits
   site.post('/api/doctors_visits/getPatientNotCompleteOnlineVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1487,7 +1487,7 @@ module.exports = function init(site) {
 
   //get doctor complete clinic visits
   site.post('/api/doctors_visits/getDoctorCompleteClinicVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1544,7 +1544,7 @@ module.exports = function init(site) {
 
   //get doctor complete home visits
   site.post('/api/doctors_visits/getDoctorCompleteHomeVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1601,7 +1601,7 @@ module.exports = function init(site) {
 
   //get doctor complete online visits
   site.post('/api/doctors_visits/getDoctorCompleteOnlineVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1658,7 +1658,7 @@ module.exports = function init(site) {
 
   //get doctor not complete clinic visits
   site.post('/api/doctors_visits/getDoctorNotCompleteClinicVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1717,7 +1717,7 @@ module.exports = function init(site) {
 
   //get doctor not complete home visits
   site.post('/api/doctors_visits/getDoctorNotCompleteHomeVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1776,7 +1776,7 @@ module.exports = function init(site) {
 
   //get doctor not complete online visits
   site.post('/api/doctors_visits/getDoctorNotCompleteOnlineVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -1835,7 +1835,7 @@ module.exports = function init(site) {
 
   //get doctor not complete visits
   site.post('/api/doctors_visits/getDoctorNotCompleteVisits', (req, res) => {
-    req.headers.language = req.headers.language || 'en';
+    req.headers.language = req.headers.language || 'En';
     let response = {};
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];

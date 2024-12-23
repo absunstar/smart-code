@@ -225,7 +225,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           response.data.list.forEach((n) => {
             
-            n.name2 ='##session.lang##' == 'ar' ? n.name_ar : n.name_en ;
+            n.name2 ='##session.lang##' == 'Ar' ? n.name_ar : n.name_en ;
           });
           $scope.count = response.data.count;
         }

@@ -223,7 +223,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: _l.paid_up,
-        value: '##session.lang##' == 'ar' ? _l.source_type.ar : _l.source_type.en
+        value: '##session.lang##' == 'Ar' ? _l.source_type.ar : _l.source_type.en
       });
     });
 

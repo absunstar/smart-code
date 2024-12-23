@@ -506,7 +506,7 @@ module.exports = function init(site) {
         if (req.body.display) {
           a.$update = true;
           a.number_views += 1;
-          a.$time = site.xtime(a.date, req.session.lang|| 'ar');
+          a.$time = site.xtime(a.date, req.session.lang|| 'Ar');
           if (a.videos_list && a.videos_list.length > 0) {
             a.videos_list.forEach((v) => {
               v.$link = v.link;
@@ -530,10 +530,10 @@ module.exports = function init(site) {
           }
           a.comment_list = a.comment_list || [];
           a.comment_list.forEach((_c) => {
-            _c.$time = site.xtime(_c.date, req.session.lang|| 'ar');
+            _c.$time = site.xtime(_c.date, req.session.lang|| 'Ar');
             if (_c.reply_list && _c.reply_list.length > 0) {
               _c.reply_list.forEach((_r) => {
-                _r.$time = site.xtime(_r.date, req.session.lang|| 'ar');
+                _r.$time = site.xtime(_r.date, req.session.lang|| 'Ar');
               });
             }
           });
@@ -750,7 +750,7 @@ module.exports = function init(site) {
         if (!err && docs) {
           if (req.body.post) {
             let lang = 'name_ar';
-            if (req.session.lang == 'en') {
+            if (req.session.lang == 'En') {
               lang = 'name_en';
             }
             docs.forEach((_a) => {
@@ -781,7 +781,7 @@ module.exports = function init(site) {
                   });
                 }
               }
-              _a.$time = site.xtime(_a.date, req.session.lang || 'ar');
+              _a.$time = site.xtime(_a.date, req.session.lang || 'Ar');
             });
           }
           response.done = true;
@@ -806,7 +806,7 @@ module.exports = function init(site) {
     let month = ' Month ';
     let year = ' Year ';
 
-    if (lang == 'ar') {
+    if (lang == 'Ar') {
       since_few = ' منذ قليل ';
       before = ' منذ ';
       second = ' ثانية ';

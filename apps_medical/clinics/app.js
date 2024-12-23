@@ -484,7 +484,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    req.headers.language = req.headers.language || 'en'
+    req.headers.language = req.headers.language || 'En'
     if (!req.session.user) {
       response.error = site.word('loginFirst')[req.headers.language];
       res.json(response);
@@ -544,7 +544,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    req.headers.language = req.headers.language || 'en'
+    req.headers.language = req.headers.language || 'En'
     if (!req.session.user) {
       response.error = site.word('loginFirst')[req.headers.language];
       res.json(response);
@@ -648,7 +648,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    req.headers.language = req.headers.language || 'en'
+    req.headers.language = req.headers.language || 'En'
 
     if (!req.session.user) {
       response.error = site.word('loginFirst')[req.headers.language];

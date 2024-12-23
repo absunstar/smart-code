@@ -210,12 +210,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['ar']) {
-      where['ar'] = site.get_RegExp(where['ar'], 'i')
+    if (where['Ar']) {
+      where['Ar'] = site.get_RegExp(where['Ar'], 'i')
     }
 
-    if (where['en']) {
-      where['en'] = site.get_RegExp(where['en'], 'i')
+    if (where['En']) {
+      where['En'] = site.get_RegExp(where['En'], 'i')
     }
 
     // if (where['active'] !== 'all') {

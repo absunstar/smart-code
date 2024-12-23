@@ -42,15 +42,15 @@
         <div class="row">
           <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-20 bold">##session.company.name_ar##</p>
           <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-20 bold">##session.company.name_en##</p>
-          <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_ar##</p>
-          <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_en##</p>
+          <p ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_ar##</p>
+          <p ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_en##</p>
         </div>
 
         <div class="row">
           <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-18 bold">##session.branch.name_ar##</p>
           <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-18 bold">##session.branch.name_en##</p>
-          <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_ar##</p>
-          <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_en##</p>
+          <p ng-show="'##session.lang##' == 'Ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_ar##</p>
+          <p ng-show="'##session.lang##' == 'En' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_en##</p>
         </div>
         <br ng-show="defaultSettings.printer_program.thermal_header.length > 0" />
         <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
@@ -65,28 +65,28 @@
     </div>
 
     <div class="row center" ng-show="thermal.type.id != 6 && defaultSettings.printer_program.print_simplified_tax_invoice_sentence">
-      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'">
         فاتورة ضريبية مبسطة
       </p>
-      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'">
         Simplified Tax Invoice
       </p>
     </div>
 
     <div class="row center" ng-show="thermal.type.id != 6 && defaultSettings.printer_program.print_simplified_invoice_sentence">
-      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'">
         فاتورة مبسطة
       </p>
-      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'">
         Simplified Invoice
       </p>
     </div>
 
     <div class="row center" ng-show="thermal.type.id == 6">
-      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'">
         إشعار مرتجع
       </p>
-      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'">
         BACK NOTICE
       </p>
     </div>
@@ -110,10 +110,10 @@
         <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">العميل :</b>
         <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Customer :</b>
         <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.customer## :</b>
-        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'">
           {{thermal.customer.name_ar}}
         </b>
-        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'">
           {{thermal.customer.name_en}}
         </b>
       </div>
@@ -130,10 +130,10 @@
         <b class="black font-11">{{thermal.date |date:"dd - MM - yyyy" }}</b>
       </div>
       <div class="col-5 center">
-        <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
+        <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'"
           >الوقت : {{thermal.date |date:"mm : hh" }}</b
         >
-        <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
+        <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'"
           >Time : {{thermal.date |date:"hh : mm" }}</b
         >
       </div>
@@ -314,8 +314,8 @@
  -->
     <div class="row" ng-show="defaultSettings.printer_program.Print_written_amount">
       <div class="col-1"></div>
-      <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'" class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
-      <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'" class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str_en || ''}}</p>
+      <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'" class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+      <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'" class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str_en || ''}}</p>
     </div>
 
  <!--   <hr />

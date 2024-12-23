@@ -322,7 +322,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     let name_lang = 'name_ar';
-    if ('##session.lang##' === 'en') name_lang = 'name_en';
+    if ('##session.lang##' === 'En') name_lang = 'name_en';
 
     let ip = '127.0.0.1';
     let port = '60080';

@@ -1173,7 +1173,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     let name_lang = 'name_ar';
-    if ('##session.lang##' === 'en') name_lang = 'name_en';
+    if ('##session.lang##' === 'En') name_lang = 'name_en';
 
     let ip = '127.0.0.1';
     let port = '60080';
@@ -1288,7 +1288,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
 
     if (account_invoices.items && account_invoices.items.length > 0) {
       let size_lang = 'size_ar';
-      if ('##session.lang##' === 'en') size_lang = 'size_en';
+      if ('##session.lang##' === 'En') size_lang = 'size_en';
 
       obj_print.data.push(
         {

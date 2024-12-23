@@ -39,13 +39,13 @@
   <div class="row">
     <div class="center">
       <div class="row">
-        <h1 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.company.name_ar##</h1>
-        <h1 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.company.name_en##</h1>
+        <h1 ng-show="'##session.lang##' == 'Ar'" class="black center bold">##session.company.name_ar##</h1>
+        <h1 ng-show="'##session.lang##' == 'En'" class="black center bold">##session.company.name_en##</h1>
       </div>
 
       <div class="row">
-        <h2 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.branch.name_ar##</h2>
-        <h2 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.branch.name_en##</h2>
+        <h2 ng-show="'##session.lang##' == 'Ar'" class="black center bold">##session.branch.name_ar##</h2>
+        <h2 ng-show="'##session.lang##' == 'En'" class="black center bold">##session.branch.name_en##</h2>
       </div>
     </div>
   </div>
@@ -80,10 +80,10 @@
       <b class="black font-17">{{thermal.date |date:"dd - MM - yyyy" }}</b>
     </div>
     <div class="col-5 center">
-      <b class="black font-17 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
+      <b class="black font-17 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar'"
         >الوقت : {{thermal.date |date:"mm : hh" }}</b
       >
-      <b class="black font-17 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
+      <b class="black font-17 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En'"
         >Time : {{thermal.date |date:"hh : mm" }}</b
       >
     </div>

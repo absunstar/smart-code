@@ -240,17 +240,17 @@ app.controller('prices_offers', function ($scope, $http, $timeout, $interval) {
           if ($scope.defaultSettings.printer_program.invoice_logo) {
             $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
           }
-          /* $scope.thermal_lang = 'ar';
+          /* $scope.thermal_lang = 'Ar';
           $scope.thermal_lang_name = 'name_ar';
           if ($scope.defaultSettings.printer_program.thermal_lang) {
             if ($scope.defaultSettings.printer_program.thermal_lang.id == 2) {
-              $scope.thermal_lang = 'en';
+              $scope.thermal_lang = 'En';
               $scope.thermal_lang_name = 'name_en';
             } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 3) {
               $scope.thermal_lang = '##session.lang##';
-              if ('##session.lang##' == 'ar') {
+              if ('##session.lang##' == 'Ar') {
                 $scope.thermal_lang_name = 'name_ar';
-              } else if ('##session.lang##' == 'en') {
+              } else if ('##session.lang##' == 'En') {
                 $scope.thermal_lang_name = 'name_en';
               }
             }

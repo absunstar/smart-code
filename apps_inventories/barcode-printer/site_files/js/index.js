@@ -19,10 +19,10 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
             price: 0,
         };
 
-        if ('##session.lang##' == 'ar') {
+        if ('##session.lang##' == 'Ar') {
             $scope.barcode_printer.company_name = '##session.company.name_ar##';
             $scope.barcode_printer.print_lang = $scope.printingLanguageList[0];
-        } else if ('##session.lang##' == 'en') {
+        } else if ('##session.lang##' == 'En') {
             $scope.barcode_printer.company_name = '##session.company.name_en##';
             $scope.barcode_printer.print_lang = $scope.printingLanguageList[1];
         }

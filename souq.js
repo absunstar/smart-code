@@ -39,7 +39,7 @@ site.get(
     name: ['/', '/category/:id'],
   },
   (req, res) => {
-    req.session.language = { id: 'ar', dir: 'rtl', text: 'right' };
+    req.session.language = { id: 'Ar', dir: 'rtl', text: 'right' };
     if (site.setting.user_design.id == 1) {
       res.render(
         '0/index.html',

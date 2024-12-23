@@ -383,11 +383,11 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
       if (boolean) {
         obj.answer.boolean = 'true';
-        obj.answer.name = '##session.lang##' == 'ar' ? 'صح' : 'True';
+        obj.answer.name = '##session.lang##' == 'Ar' ? 'صح' : 'True';
 
       } else {
         obj.answer.boolean = 'false';
-        obj.answer.name = '##session.lang##' == 'ar' ? 'خطأ' : 'False';
+        obj.answer.name = '##session.lang##' == 'Ar' ? 'خطأ' : 'False';
       }
 
     } else if (option == 'answer') {
@@ -396,10 +396,10 @@ app.controller("exams", function ($scope, $http, $timeout) {
 
       if (boolean) {
         obj.answer_stu.boolean = 'true';
-        obj.answer_stu.name = '##session.lang##' == 'ar' ? 'صح' : 'True';
+        obj.answer_stu.name = '##session.lang##' == 'Ar' ? 'صح' : 'True';
       } else {
         obj.answer_stu.boolean = 'false';
-        obj.answer_stu.name = '##session.lang##' == 'ar' ? 'خطأ' : 'False';
+        obj.answer_stu.name = '##session.lang##' == 'Ar' ? 'خطأ' : 'False';
       }
 
     }

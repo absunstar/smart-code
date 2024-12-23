@@ -21,14 +21,14 @@ module.exports = function init(site) {
                 }
               });
             }
-            doc.$created_date = site.xtime(doc.created_date, req.session.lang || 'ar');
+            doc.$created_date = site.xtime(doc.created_date, req.session.lang || 'Ar');
             let date = new Date(doc.visit_date);
             date.setMinutes(date.getMinutes() + 1);
             if (new Date() < date) {
               doc.$isOnline = true;
             } else {
               doc.$isOnline = false;
-              doc.$last_seen = site.xtime(doc.visit_date, req.session.lang || 'ar');
+              doc.$last_seen = site.xtime(doc.visit_date, req.session.lang || 'Ar');
             }
           }
           doc.title = site.setting.title + ' | ' + doc.profile.name;

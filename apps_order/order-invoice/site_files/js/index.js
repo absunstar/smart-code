@@ -2373,9 +2373,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 total: order.net_value,
                 vat_total: order.total_value_added,
               };
-              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
                 qrString.name = '##session.company.name_ar##';
-              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
+              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
                 qrString.name = '##session.company.name_en##';
               }
               qrString.name = '##session.company.name_en##';
@@ -2466,9 +2466,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 total: $scope.thermal.net_value,
                 vat_total: $scope.thermal.total_value_added,
               };
-              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'Ar')) {
                 qrString.name = '##session.company.name_ar##';
-              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
+              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'En')) {
                 qrString.name = '##session.company.name_en##';
               }
               qrString.name = '##session.company.name_en##';
@@ -2523,8 +2523,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.kitchenPrint = function (obj) {
     $scope.error = '';
 
-    let name_lang = 'ar';
-    if ('##session.lang##' === 'en') name_lang = 'en';
+    let name_lang = 'Ar';
+    if ('##session.lang##' === 'En') name_lang = 'En';
 
     $('#kitchenPrint').removeClass('hidden');
     $scope.kitchen_print_list = [];

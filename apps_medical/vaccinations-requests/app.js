@@ -530,7 +530,7 @@ module.exports = function init(site) {
 
   // my profile
   site.post('/api/vaccinations_requests/myProfile', (req, res) => {
-    req.headers.language = req.headers.language || 'en'
+    req.headers.language = req.headers.language || 'En'
     let response = {}
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -586,7 +586,7 @@ module.exports = function init(site) {
 
   // my current user vaccinition
   site.post('/api/vaccinations_requests/getCurrentVaccination', (req, res) => {
-    req.headers.language = req.headers.language || 'en'
+    req.headers.language = req.headers.language || 'En'
     let response = {}
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -642,7 +642,7 @@ module.exports = function init(site) {
 
   // my  vaccinition
   site.post('/api/vaccinations_requests/myProfile', (req, res) => {
-    req.headers.language = req.headers.language || 'en'
+    req.headers.language = req.headers.language || 'En'
     let response = {}
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
@@ -696,7 +696,7 @@ module.exports = function init(site) {
 
   // my delivered user vaccinition
   site.post('/api/vaccinations_requests/getDeliveredVaccination', (req, res) => {
-    req.headers.language = req.headers.language || 'en'
+    req.headers.language = req.headers.language || 'En'
     let response = {}
     if (!req.session.user) {
       response.message = site.word('loginFirst')[req.headers.language];
