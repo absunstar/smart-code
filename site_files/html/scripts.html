@@ -1,7 +1,7 @@
 <script src="/x-js/all.js?v=##site.options.version##"></script>
 <script>
   site.features = '##req.features##';
-  site.session = '##req.session##';
+  site.session = site.show('##req.#session##');
   site.feature = (f) => site.features.indexOf(f) !== -1;
 
 </script>
