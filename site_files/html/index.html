@@ -526,7 +526,7 @@
                 if (res[i].feature == 'public') {
                   post = res[i];
 
-                  if (res[i].title_en === 'Work shifts' && site.features.like('*school*')) {
+                  if (res[i].title_En === 'Work shifts' && site.features.like('*school*')) {
                   } else rendered += Mustache.render(post_template, post);
                 } else if (res[i].feature == 'club' && site.features.like('*club*')) {
                   post = res[i];

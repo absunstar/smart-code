@@ -2,82 +2,82 @@
     {
         "feature": "erp",
         "link": "https://www.erp.egytag.com",
-        "title_ar": "تخطيط موارد المؤسسات",
-        "title_en": "ERP System",
+        "title_Ar": "تخطيط موارد المؤسسات",
+        "title_En": "ERP System",
         "image_url": "/images/pro_erp.png",
-        "description_ar": "إدارة تخطيط موارد المؤسسات ( شجرة حسابات - مراكز تكلفة - ميزانية - قيود - سنوات مالية )",
-        "description_en": "ERP Department (Account Tree - Cost Centers - Budget - Constraints - Fiscal Years)"
+        "description_Ar": "إدارة تخطيط موارد المؤسسات ( شجرة حسابات - مراكز تكلفة - ميزانية - قيود - سنوات مالية )",
+        "description_En": "ERP Department (Account Tree - Cost Centers - Budget - Constraints - Fiscal Years)"
     },
     {
         "feature": "pos",
         "link": "https://www.pos.egytag.com",
-        "title_ar": "نقاط البيع",
-        "title_en": "POS",
+        "title_Ar": "نقاط البيع",
+        "title_En": "POS",
         "image_url": "/images/pro_pos.png",
-        "description_ar": "إدارة نقاط البيع ( مخازن - حسابات - موظفين - مبيعات - مشتريات )",
-        "description_en": "Point of sale management (stores - accounts - employees - sales - purchases)"
+        "description_Ar": "إدارة نقاط البيع ( مخازن - حسابات - موظفين - مبيعات - مشتريات )",
+        "description_En": "Point of sale management (stores - accounts - employees - sales - purchases)"
     },
     {
         "feature": "restaurant",
         "link": "https://www.restaurant.egytag.com",
-        "title_ar": "المطاعم و الكافيهات",
-        "title_en": "Restaurants and cafes",
+        "title_Ar": "المطاعم و الكافيهات",
+        "title_En": "Restaurants and cafes",
         "image_url": "/images/pro_restaurant.png",
-        "description_ar": "إدارة المطاعم و الكافيهات ( إدارة الطلبات - توصيل - طاولات - طلبات العملاء)",
-        "description_en": "Management of restaurants and cafes (order management - delivery - tables - customer requests)"
+        "description_Ar": "إدارة المطاعم و الكافيهات ( إدارة الطلبات - توصيل - طاولات - طلبات العملاء)",
+        "description_En": "Management of restaurants and cafes (order management - delivery - tables - customer requests)"
     },
     {
         "feature": "medical",
         "link": "https://www.medical.egytag.com",
-        "title_ar": "العيادات الطبية",
-        "title_en": "Medical clinics",
+        "title_Ar": "العيادات الطبية",
+        "title_En": "Medical clinics",
         "image_url": "/images/pro_medical.png",
-        "description_ar": "إدارة العيادات و المراكز الطبية و معامل التحاليل و مراكز الأشعة ( أطباء - عيادات - كشوفات - أشعة - تحاليل )",
-        "description_en": "Management of clinics, medical centers, laboratories and radiology centers (doctors - clinics - statements - x-rays - analyzes)"
+        "description_Ar": "إدارة العيادات و المراكز الطبية و معامل التحاليل و مراكز الأشعة ( أطباء - عيادات - كشوفات - أشعة - تحاليل )",
+        "description_En": "Management of clinics, medical centers, laboratories and radiology centers (doctors - clinics - statements - x-rays - analyzes)"
     },
     {
         "feature": "club",
         "link": "https://www.club.egytag.com",
-        "title_ar": "النوادي الصحية و التجميلية",
-        "title_en": "Health and beauty clubs",
+        "title_Ar": "النوادي الصحية و التجميلية",
+        "title_En": "Health and beauty clubs",
         "image_url": "/images/pro_club.png",
-        "description_ar": "إدارة النوادي الصحية و التجميلية ( مشتركين - حضور و إنصراف - جلسات - إشتراكات )",
-        "description_en": "Management of health and beauty clubs (subscribers - attendance and departure - sessions - subscriptions)"
+        "description_Ar": "إدارة النوادي الصحية و التجميلية ( مشتركين - حضور و إنصراف - جلسات - إشتراكات )",
+        "description_En": "Management of health and beauty clubs (subscribers - attendance and departure - sessions - subscriptions)"
     },
     {
         "feature": "school",
         "link": "https://www.school.egytag.com",
-        "title_ar": "المدارس",
-        "title_en": "Schools",
+        "title_Ar": "المدارس",
+        "title_En": "Schools",
         "image_url": "/images/pro_school.png",
-        "description_ar": "إدارة المدارس و الدروس الخصوصية ( طلاب - مدرسين - جداول حصص - إمتحانات )",
-        "description_en": "Schools management and private lessons (students - teachers - class schedules - exams)"
+        "description_Ar": "إدارة المدارس و الدروس الخصوصية ( طلاب - مدرسين - جداول حصص - إمتحانات )",
+        "description_En": "Schools management and private lessons (students - teachers - class schedules - exams)"
     },
     {
         "feature": "academy",
         "link": "https://www.academy.egytag.com",
-        "title_ar": "الأكاديمي",
-        "title_en": "Academy",
+        "title_Ar": "الأكاديمي",
+        "title_En": "Academy",
         "image_url": "/images/pro_academy.png",
-        "description_ar": "إدارة الأكاديميات و السناتر التعليمية ( طلاب - مدربين - قاعات - كورسات )",
-        "description_en": "Management of academies and educational centers (students - trainers - halls - courses)"
+        "description_Ar": "إدارة الأكاديميات و السناتر التعليمية ( طلاب - مدربين - قاعات - كورسات )",
+        "description_En": "Management of academies and educational centers (students - trainers - halls - courses)"
     },
     {
         "feature": "lawyer",
         "link": "https://www.lawyer.egytag.com",
-        "title_ar": "مكاتب المحاماه",
-        "title_en": "LAwyers Office",
+        "title_Ar": "مكاتب المحاماه",
+        "title_En": "LAwyers Office",
         "image_url": "/images/pro_lawyer.png",
-        "description_ar": "إدارة مكاتب المحاماه ( موكلين - خصوم - دعاوى - جلسات - أعمال إدارية )",
-        "description_en": "Management of law offices (clients - litigants - lawsuits - sessions - administrative work)"
+        "description_Ar": "إدارة مكاتب المحاماه ( موكلين - خصوم - دعاوى - جلسات - أعمال إدارية )",
+        "description_En": "Management of law offices (clients - litigants - lawsuits - sessions - administrative work)"
     },
     {
         "feature": "employees",
         "link": "https://www.employees.egytag.com",
-        "title_ar": "شئون الموظفين",
-        "title_en": "H-R",
+        "title_Ar": "شئون الموظفين",
+        "title_En": "H-R",
         "image_url": "/images/pro_employee.png",
-        "description_ar": "إدارة شئون الموظفين ( مرتبات - حضورو إنصراف - السلف - المكافئات - الخصومات)",
-        "description_en": "Personnel management (salaries - attendance - advances - bonuses - discounts)"
+        "description_Ar": "إدارة شئون الموظفين ( مرتبات - حضورو إنصراف - السلف - المكافئات - الخصومات)",
+        "description_En": "Personnel management (salaries - attendance - advances - bonuses - discounts)"
     }
 ]
