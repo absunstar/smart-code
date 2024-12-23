@@ -279,16 +279,12 @@ module.exports = function init(site) {
               if (doc.isAdmin) {
                 let branch_list = [];
                 companiesDoc.forEach((_com) => {
-                  if (doc.branch_list && doc.branch_list.length > 0) {
-                    doc.branch_list.forEach((_b) => {
-                      _com.branch_list.forEach((_br) => {
-                        branch_list.push({
-                          company: _com,
-                          branch: _br,
-                        });
-                      });
+                  _com.branch_list.forEach((_br) => {
+                    branch_list.push({
+                      company: _com,
+                      branch: _br,
                     });
-                  }
+                  });
                 });
 
                 response.list = branch_list;
