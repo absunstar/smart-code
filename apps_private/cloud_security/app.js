@@ -282,7 +282,7 @@ module.exports = function init(site) {
                   _com.branch_list.forEach((_br) => {
                     branch_list.push({
                       company: _com,
-                      branch: {..._br},
+                      branch: { ..._br },
                     });
                   });
                 });
@@ -299,7 +299,7 @@ module.exports = function init(site) {
                           if (_br.code == _b.branch.code) {
                             branch_list.push({
                               company: _com,
-                              branch: {..._br},
+                              branch: { ..._br },
                             });
                           }
                         });
@@ -460,10 +460,11 @@ module.exports = function init(site) {
 
     site.security.login(obj_where, function (err, user) {
       if (!err) {
+        req.session.user_id = user.id;
         req.session.user = user;
         req.session.company = req.body.company;
         req.session.branch = req.body.branch;
-        site.saveSession(req.session);
+        req.session.$save();
 
         // console.log(req.session)
         //   site.call('[session][update]', {
