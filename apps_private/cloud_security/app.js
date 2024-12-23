@@ -275,6 +275,7 @@ module.exports = function init(site) {
         },
         (err, doc) => {
           if (!err && doc) {
+            response.user = doc;
             if (doc.is_admin) {
               response.list = doc.branch_list;
               response.done = true;
