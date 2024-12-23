@@ -290,14 +290,12 @@ nav .links ul li a {
 
 nav .info {
   font-weight: bold;
-  display: inline-block;
   font-size: 14px;
   color: #ffffff;
   margin-left: 20px !important;
   margin-right: 20px !important;
-  float: left;
 }
-.En nav .info {
+.ltr nav .info {
   float: right;
 }
 nav .info .user-name {
