@@ -220,7 +220,7 @@ app.controller('manage_users', function ($scope, $http) {
                     let newname = data.find((el) => el.name == _s.name.replace(/-/g, '_'));
                     if (newname) {
                       _s.name_Ar = newname.Ar;
-                      _s.name_En = newname..En;
+                      _s.name_En = newname.En;
                     }
                   }
                 });
@@ -280,7 +280,7 @@ app.controller('manage_users', function ($scope, $http) {
                   let newname = data.find((el) => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
                     s.name_Ar = newname.Ar;
-                    s.name_En = newname..En;
+                    s.name_En = newname.En;
                   }
                 });
               }

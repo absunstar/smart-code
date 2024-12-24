@@ -49,7 +49,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
                     let newname = data.find((el) => el.name == _s.name.replace(/-/g, '_'));
                     if (newname) {
                       _s.name_Ar = newname.Ar;
-                      _s.name_En = newname..En;
+                      _s.name_En = newname.En;
                     }
                   }
                 });

@@ -98,7 +98,7 @@ app.controller("security", function ($scope, $http, $interval) {
                   let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
                     s.name_Ar = newname.Ar;
-                    s.name_En = newname..En;
+                    s.name_En = newname.En;
                   }
 
                 })
