@@ -40,6 +40,7 @@ body {
   width: 90%;
   height: auto;
   background: #fff;
+  border-radius: 10px;
 }
 .free p {
   text-align: center;
