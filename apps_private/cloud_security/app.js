@@ -275,6 +275,7 @@ module.exports = function init(site) {
         },
         (err, doc) => {
           if (!err && doc) {
+            response.user = doc;
             $companies.findMany({}, (err, companiesDoc) => {
               if (doc.isAdmin) {
                 let branch_list = [];
@@ -296,12 +297,10 @@ module.exports = function init(site) {
                     doc.branch_list.forEach((_b) => {
                       if (_com.id === _b.company.id) {
                         _com.branch_list.forEach((_br) => {
-                          if (_br.code == _b.branch.code) {
-                            branch_list.push({
-                              company: _com,
-                              branch: { ..._br },
-                            });
-                          }
+                          branch_list.push({
+                            company: _com,
+                            branch: { ..._br },
+                          });
                         });
                       }
                     });
