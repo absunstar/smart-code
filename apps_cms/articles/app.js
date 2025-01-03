@@ -1611,7 +1611,7 @@ module.exports = function init(site) {
     let filter = site.getHostFilter(req.host);
     let urls = '';
     let page = parseInt(req.query.page || 0);
-    let limit = 5000;
+    let limit = 1000;
     let where = {};
     if (filter !== '*') {
       where = { host: site.getRegExp(filter) };
