@@ -1617,7 +1617,7 @@ module.exports = function init(site) {
     where = { host: site.getRegExp(filter) };
 
     site.$articles.findMany(
-      { sort: { id: -1 }, skip: limit * page, limit: limit, where: where, select: { id: 1, guid: 1, publishDate: 1 } },
+      { sort: { id: 1 }, skip: limit * page, limit: limit, where: where, select: { id: 1, guid: 1, publishDate: 1 } },
       (err, docs) => {
         if (!err && docs) {
           limit = docs.length;
