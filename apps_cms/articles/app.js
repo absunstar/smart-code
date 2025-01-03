@@ -1614,7 +1614,7 @@ module.exports = function init(site) {
     let limit = 10000;
 
     site.$articles.findMany(
-      { sort: { id: -1 }, skip: limit * page, limit: limit, where: { host: filter }, select: { id: 1, guid: 1, publishDate: 1 } },
+      { sort: { id: -1 }, skip: limit * page, limit: limit, where: { host: site.getRegExp(filter) }, select: { id: 1, guid: 1, publishDate: 1 } },
       (err, docs) => {
         if (!err && docs) {
           docs.forEach((article) => {
