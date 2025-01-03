@@ -1614,7 +1614,7 @@ module.exports = function init(site) {
     let where = {};
     let filter = site.getHostFilter(req.host);
 
-    where = { host: site.getRegExp(filter, 'i') };
+    where = { host: site.getRegExp(filter) };
 
     site.$articles.findMany(
       { sort: { id: -1 }, skip: limit * page, limit: limit, where: where, select: { id: 1, guid: 1, publishDate: 1 } },
@@ -1633,6 +1633,8 @@ module.exports = function init(site) {
               </url>
               `;
           });
+        } else {
+          console.log(where);
         }
         let xml = `<?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
