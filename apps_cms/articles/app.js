@@ -1611,7 +1611,7 @@ module.exports = function init(site) {
     let filter = site.getHostFilter(req.host);
     let urls = '';
     let page = parseInt(req.query.page || 0);
-    let limit = 10000;
+    let limit = 1000;
 
     site.$articles.findMany(
       { sort: { id: -1 }, skip: limit * page, limit: limit, where: { host: site.getRegExp(filter) }, select: { id: 1, guid: 1, publishDate: 1 } },
