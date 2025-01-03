@@ -1629,7 +1629,8 @@ module.exports = function init(site) {
               </url>
               `;
           });
-          let xml = `<?xml version="1.0" encoding="UTF-8"?>
+        }
+        let xml = `<?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
           <url>
             <loc>${domain}</loc>
@@ -1640,9 +1641,8 @@ module.exports = function init(site) {
            ${urls}
         </urlset> 
         `;
-          res.set('Content-Type', 'application/xml');
-          res.end(xml);
-        }
+        res.set('Content-Type', 'application/xml');
+        res.end(xml);
       },
       true
     );
