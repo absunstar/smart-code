@@ -1611,13 +1611,17 @@ module.exports = function init(site) {
     let filter = site.getHostFilter(req.host);
     let urls = '';
     let page = parseInt(req.query.page || 0);
-    let limit = 1000;
+    let limit = 5000;
+    let where = {};
+    if (filter !== '*') {
+      where = { host: site.getRegExp(filter) };
+    }
 
     site.$articles.findMany(
-      { sort: { id: -1 }, skip: limit * page, limit: limit, where: { host: site.getRegExp(filter) }, select: { id: 1, guid: 1, publishDate: 1 } },
+      { sort: { id: -1 }, skip: limit * page, limit: limit, where: where, select: { id: 1, guid: 1, publishDate: 1 } },
       (err, docs) => {
         if (!err && docs) {
-          docs.forEach((article) => {
+          docs.forEach((article, i) => {
             let $url = domain + '/article/' + article.guid;
             let $date = site.getDateTime(article.publishDate).toISOString();
             urls += `
