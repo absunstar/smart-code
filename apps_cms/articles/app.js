@@ -1621,6 +1621,7 @@ module.exports = function init(site) {
       { sort: { id: -1 }, skip: limit * page, limit: limit, where: where, select: { id: 1, guid: 1, publishDate: 1 } },
       (err, docs) => {
         if (!err && docs) {
+          limit = docs.length;
           docs.forEach((article, i) => {
             let $url = domain + '/article/' + article.guid;
             let $date = site.getDateTime(article.publishDate).toISOString();
@@ -1637,7 +1638,7 @@ module.exports = function init(site) {
         let xml = `<?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
           <url>
-            <loc>${domain}</loc>
+            <loc>${domain} - ${limit}</loc>
             <lastmod>${new Date().toISOString()}</lastmod>
             <changefreq>always</changefreq>
             <priority>1</priority>
