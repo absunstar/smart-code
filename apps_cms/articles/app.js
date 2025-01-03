@@ -1608,14 +1608,13 @@ module.exports = function init(site) {
   });
   site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
     let domain = 'https://' + req.host;
-    let filter = site.getHostFilter(req.host);
     let urls = '';
     let page = parseInt(req.query.page || 0);
     let limit = 1000;
     let where = {};
-    if (filter !== '*') {
-      where = { host: site.getRegExp(filter) };
-    }
+    let filter = site.getHostFilter(req.host);
+
+    where = { host: site.getRegExp(filter, 'i') };
 
     site.$articles.findMany(
       { sort: { id: -1 }, skip: limit * page, limit: limit, where: where, select: { id: 1, guid: 1, publishDate: 1 } },
