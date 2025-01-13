@@ -162,8 +162,8 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
               maximize: true,
               trusted: true,
               allowMenu: true,
-              showDevTools: true,
-              allowDevTools: true,
+              showDevTools: false,
+              allowDevTools: false,
               allowDownload: false,
               allowAds: false,
               allowNewWindows: false,
@@ -206,7 +206,6 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       }).then(function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          console.log(link.code,"=========================================================");
           
           window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
         }
