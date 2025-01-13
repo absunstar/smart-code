@@ -309,6 +309,26 @@
             </table>
           </div>
         </fieldset>
+
+        <fieldset ng-show="item.type == 'student'" x-data="setting.isEducationalPlatform">
+          <legend>##Video Watching</legend>
+          <table class="table center hover bold">
+            <tr>
+              <th>##word.Video Code##</th>
+              <th>##word.Views Count##</th>
+            </tr>
+            <tr ng-repeat="w in item.viewsList">
+          
+              <td class="center">{{w.code}}</td>
+    
+           
+              <td class="center">
+                <i-control type="number" ng-model="w.views"> </i-control>
+         
+              </td>
+            </tr>
+          </table>
+        </fieldset>
         <fieldset>
           <div class="row">
             <i-control class="col6" label="##word.Login E-mail##" ng-model="item.email"> </i-control>

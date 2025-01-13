@@ -164,7 +164,7 @@ site.get("/x-update", (req, res) => {
 site.get("/x-update-abonaar", (req, res) => {
   site.cmd("git pull", (data) => {
     res.end(data || "error");
-    site.cmd("pm2 restart 4", (data) => {});
+    site.cmd("pm2 restart 3", (data) => {});
   });
 });
 
