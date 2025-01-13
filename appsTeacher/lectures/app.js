@@ -533,18 +533,18 @@ module.exports = function init(site) {
             },
             (err, user) => {
               if (!err && user) {
-                if (_data.socialBrowserID) {
-                  if (user.socialBrowserID) {
-                    if (user.socialBrowserID != _data.socialBrowserID) {
-                      response.error = "The video cannot be watched due to a new device. Please contact support";
+                // if (_data.socialBrowserID) {
+                //   if (user.socialBrowserID) {
+                //     if (user.socialBrowserID != _data.socialBrowserID) {
+                //       response.error = "The video cannot be watched due to a new device. Please contact support";
 
-                      res.json(response);
-                      return;
-                    }
-                  } else {
-                    user.socialBrowserID = _data.socialBrowserID;
-                  }
-                }
+                //       res.json(response);
+                //       return;
+                //     }
+                //   } else {
+                //     user.socialBrowserID = _data.socialBrowserID;
+                //   }
+                // }
                 let index = user.viewsList.findIndex((itm) => itm.lectureId === doc.id && itm.code === _data.code);
                 if (index !== -1) {
                   if (user.viewsList[index].views >= doc.numberAvailableViews && doc.typeExpiryView.name == "number") {
