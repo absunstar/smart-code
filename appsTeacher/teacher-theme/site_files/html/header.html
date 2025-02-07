@@ -60,13 +60,13 @@
             <li><a class="dropdown-item" x-permissions="student" x-data="setting.showSubscriptions" href="/subscriptionsView?type=mySubscriptions">##word.My Subscriptions##</a></li>
             <li><a class="dropdown-item" x-permissions="student" x-data="setting.showPackages" href="/profileEdit?id=##session.user._id##&type=myPackages">##word.My Packages##</a></li>
             <li>
-              <a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures"href="/lecturesView?type=myLectures"
-                >##word.My Lectures##</a
-              >
+              <a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures" href="/lecturesView?type=myLectures">##word.My Lectures##</a>
             </li>
             <li><a class="dropdown-item" x-permissions="student" x-data="setting.showMiniBooks" href="/miniBooksView?type=myMiniBooks">##word.My Mini Books##</a></li>
             <li><a class="dropdown-item" x-permissions="student" x-data="setting.showBooks" href="/profileEdit?id=##session.user._id##&type=myBooks">##word.My Books##</a></li>
             <li><a class="dropdown-item" x-permissions="admin || teacher" href="/manageUsers?type=student">##word.Dashboard##</a></li>
+            <li><a class="dropdown-item" x-permissions="login" x-lang="Ar" ng-click="changeLang('En')">##word.English##</a></li>
+            <li><a class="dropdown-item" x-permissions="login" x-lang="En" ng-click="changeLang('Ar')">##word.Arabic##</a></li>
             <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
           </ul>
         </li>
@@ -146,13 +146,15 @@
                 <li><a class="dropdown-item" x-permissions="student" x-data="setting.showSubscriptions" href="/subscriptionsView?id=##session.user._id##">##word.My Subscriptions##</a></li>
                 <li><a class="dropdown-item" x-permissions="student" x-data="setting.showPackages" href="/profileEdit?id=##session.user._id##&type=myPackages">##word.My Packages##</a></li>
                 <li>
-                  <a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures"href="/lecturesView?type=myLectures"
+                  <a class="dropdown-item" x-permissions="student" ng-hide="'##user.placeType##' == 'online'" x-data="setting.showLectures" href="/lecturesView?type=myLectures"
                     >##word.My Lectures##</a
                   >
                 </li>
                 <li><a class="dropdown-item" x-permissions="student" x-data="setting.showMiniBooks" href="/miniBooksView?type=myMiniBooks">##word.My Mini Books##</a></li>
                 <li><a class="dropdown-item" x-permissions="student" x-data="setting.showBooks" href="/profileEdit?id=##session.user._id##&type=myBooks">##word.My Books##</a></li>
                 <li><a class="dropdown-item" x-permissions="admin || teacher" href="/manageUsers?type=student">##word.Dashboard##</a></li>
+                <li><a class="dropdown-item" x-permissions="login" x-lang="Ar" ng-click="changeLang('En')">##word.English##</a></li>
+                <li><a class="dropdown-item" x-permissions="login" x-lang="En" ng-click="changeLang('Ar')">##word.Arabic##</a></li>
                 <li><a class="dropdown-item" x-permissions="login" ng-click="logout()">##word.Logout##</a></li>
               </ul>
             </li>
