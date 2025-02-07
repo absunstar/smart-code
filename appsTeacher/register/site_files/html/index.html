@@ -149,15 +149,15 @@
                   ng-show="user.type== 'student'"
                 ></i-list>
                 <i-list label="##word.School Year##" ng-show="user.type== 'student'" ng-model="user.schoolYear" display="name" items="schoolYearsList"></i-list>
-                <i-list ng-show="user.placeType == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name"></i-list>
+                <!-- <i-list ng-show="user.placeType == 'offline'" class="input-style" label="##word.Center Name##" ng-model="user.center" items="centersList" display="name"></i-list> -->
                 <i-control ng-show="user.placeType == 'online'" class="input-style" label="##word.Number## ##word.National ID##" type="tel" ng-model="user.nationalId"> </i-control>
-                <i-list label="##word.Gender##" v="r" ng-model="user.gender" display="name##session.lang##" items="gendersList"></i-list>
-                <i-date label="##word.Birth Of Date##" ng-model="user.bitrhOfDate"> </i-date>
-                <i-list v="r" class="input-style" label="##word.Country##" ng-model="user.country" ng-change="getGovesList(user.country)" items="countriesList" display="name"></i-list>
-                <i-list v="r" label="##word.Governorate##" ng-change="getCitiesList(user.gov)" ng-model="user.gov" display="name" items="govesList"></i-list>
-                <i-list x-data="setting.citiesAndAreasShow" label="##word.City##" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name"> </i-list>
-                <i-list x-data="setting.citiesAndAreasShow" label="##word.Area##" ng-model="user.area" items="areasList" display="name"> </i-list>
-                <i-control v="r" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
+                <i-list label="##word.Gender##" ng-hide="setting.easyRegister" ng-model="user.gender" display="name##session.lang##" items="gendersList"></i-list>
+                <i-date ng-hide="setting.easyRegister" label="##word.Birth Of Date##" ng-model="user.bitrhOfDate"> </i-date>
+                <i-list class="input-style" ng-hide="setting.easyRegister" label="##word.Country##" ng-model="user.country" ng-change="getGovesList(user.country)" items="countriesList" display="name"></i-list>
+                <i-list label="##word.Governorate##" ng-hide="setting.easyRegister" ng-change="getCitiesList(user.gov)" ng-model="user.gov" display="name" items="govesList"></i-list>
+                <i-list x-data="setting.citiesAndAreasShow" ng-hide="setting.easyRegister" label="##word.City##" ng-model="user.city" ng-change="getAreasList(user.city)" items="citiesList" display="name"> </i-list>
+                <i-list x-data="setting.citiesAndAreasShow" ng-hide="setting.easyRegister" label="##word.Area##" ng-model="user.area" items="areasList" display="name"> </i-list>
+                <i-control ng-hide="setting.easyRegister" class="input-style" label="##word.Address##" ng-model="user.address"> </i-control>
              
               </div>
               <div class="col1"></div>
