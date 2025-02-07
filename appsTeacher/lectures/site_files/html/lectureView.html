@@ -147,7 +147,7 @@
                   </div>
 
                   <p class="price padding margin">
-                    ##word.Price##
+                    <span x-data="showPrice">##word.Price##</span>
                     <span class="" x-data="showPrice" ng-show="item.price > 0"> {{item.price}} ##word.$## </span>
                     <span class="" ng-show="item.price == 0">##word.Free## </span>
                     <span class="gray" ng-show="item.subscriptionName">( {{item.subscriptionName}} ) </span>
