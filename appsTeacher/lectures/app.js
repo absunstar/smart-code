@@ -175,24 +175,26 @@ module.exports = function init(site) {
         (req, res) => {
           app.$collection.find({ _id: req.query.id }, (err, lecture) => {
             if (!err && lecture) {
-              let video = lecture.linksList.find((itm) => itm.code == req.query.code);
-              let videoUrl = video.url;
-              // handle links
-              if (videoUrl.like("*youtu*")) {
-                videoUrl = "https://www.youtube.com/embed/" + videoUrl.split("=")[1].split("&")[0];
+              if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s?.lectureId?.toString() == lecture.id.toString())) {
+                let video = lecture.linksList.find((itm) => itm.code == req.query.code);
+                let videoUrl = video.url;
+                // handle links
+                if (videoUrl.like("*youtu*")) {
+                  videoUrl = "https://www.youtube.com/embed/" + videoUrl.split("=")[1].split("&")[0];
+                }
+                res.render(
+                  app.name + "/view-video.html",
+                  {
+                    title: app.name,
+                    appName: req.word("Video"),
+                    setting: site.getSiteSetting(req.host),
+                    videoUrl: videoUrl,
+                    studentName: req.session.user?.firstName,
+                    studentBarcode: req.session.user?.barcode,
+                  },
+                  { parser: "html css js", compres: true }
+                );
               }
-              res.render(
-                app.name + "/view-video.html",
-                {
-                  title: app.name,
-                  appName: req.word("Video"),
-                  setting: site.getSiteSetting(req.host),
-                  videoUrl: videoUrl,
-                  studentName: req.session.user?.firstName,
-                  studentBarcode: req.session.user?.barcode,
-                },
-                { parser: "html css js", compres: true }
-              );
             }
           });
         }
@@ -350,7 +352,7 @@ module.exports = function init(site) {
             }
 
             app.update(doc, (err, result) => {
-              if (!err && result && result.doc) {                
+              if (!err && result && result.doc) {
                 response.done = true;
                 response.doc = result.doc;
                 site.lectureList.unshift({
@@ -704,7 +706,7 @@ module.exports = function init(site) {
         };
 
         let _data = req.data;
-        
+
         app.view(_data, (err, doc) => {
           if (!err && doc) {
             response.done = true;
