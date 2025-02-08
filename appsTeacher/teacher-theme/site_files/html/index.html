@@ -45,7 +45,9 @@
             </div>
 
             <div class="row" x-data="setting.educationalLevel.id">
-
+              <div class="banner-word">
+                <span> ##word.School Years## </span>
+              </div>
               <ul class="schoolYear-buttons">
                 <li ng-repeat="schoolYear in schoolYearsList">
                   <a href="/?school_year={{schoolYear.id}}">
