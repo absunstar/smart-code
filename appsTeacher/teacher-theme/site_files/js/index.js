@@ -40,6 +40,37 @@ app.controller("teacherTheme", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getSchoolYearsList = function (educationalLevelId) {
+    $scope.busy = true;
+    $scope.schoolYearsList = [];
+    $http({
+      method: "POST",
+      url: "/api/schoolYears/all",
+      data: {
+        where: {
+          active: true,
+          "educationalLevel.id": educationalLevelId,
+        },
+        select: {
+          id: 1,
+          name: 1,
+          image: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.schoolYearsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
 
   $scope.openLive = function (lectureId) {
     if (!window.SOCIALBROWSER && !$scope.setting.allowVideoMobile) {
@@ -97,4 +128,9 @@ app.controller("teacherTheme", function ($scope, $http, $timeout) {
       window.location.href = "/login";
     }
   };
+
+  if($scope.setting?.educationalLevel?.id){
+
+    $scope.getSchoolYearsList($scope.setting.educationalLevel.id)
+  }
 });

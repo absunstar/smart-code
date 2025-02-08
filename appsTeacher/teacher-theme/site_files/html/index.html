@@ -44,6 +44,20 @@
               <div class="separative"></div>
             </div>
 
+            <div class="row" x-data="setting.educationalLevel.id">
+
+              <ul class="schoolYear-buttons">
+                <li ng-repeat="schoolYear in schoolYearsList">
+                  <a href="/?school_year={{schoolYear.id}}">
+                    <div>
+                      <img ng-src="{{schoolYear.image.url}}" alt="" />
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <div class="separative"></div>
+            </div>
+
             <div class="row" x-data="isParent">
               <div class="banner-word">
                 <span> ##word.Students## </span>

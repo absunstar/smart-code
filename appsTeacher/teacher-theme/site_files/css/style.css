@@ -392,6 +392,17 @@ figure {
 .content-right {
   text-align: -webkit-right;
 }
+.schoolYear-buttons {
+  display: ruby;
+  img {
+    width: 130px;
+    height: 130px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+}
+
 .teacher-main-li {
   padding: 10px;
   margin: 10px;

@@ -88,6 +88,40 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getEducationalLevelsList = function ($search) {
+    if ($search && $search.length < 1) {
+      return;
+    }
+    $scope.busy = true;
+    $scope.educationalLevelsList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/educationalLevels/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name: 1,
+        },
+        search: $search,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.educationalLevelsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getPrintersPaths = function () {
     $scope.busy = true;
     $scope.printersPathsList = [];
@@ -185,4 +219,5 @@ app.controller("siteSetting", function ($scope, $http, $timeout) {
   };
   $scope.getPrintersPaths();
   $scope.getPurchaseTypeList();
+  $scope.getEducationalLevelsList();
 });

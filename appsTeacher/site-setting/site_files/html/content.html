@@ -72,6 +72,7 @@
                     items="teachersList"
                     ng-get="getTeachersList($search)"
                   ></i-list>
+                  <i-list class="col6" label="##word.Educational Level##" ng-model="siteSetting.educationalLevel" display="name" items="educationalLevelsList"></i-list>
                 </div>
                 <div class="row">
                   <i-control label="##word.Site Name##" class="col6" ng-model="siteSetting.siteName"> </i-control>
@@ -100,7 +101,8 @@
                   <i-checkbox class="row" label="##word.Educational Platform##" x-permissions="admin" ng-model="siteSetting.isEducationalPlatform"> </i-checkbox>
                   <i-checkbox class="row" label="##word.Active Center##" x-permissions="admin" ng-model="siteSetting.isCenter"> </i-checkbox>
                   <i-checkbox class="row" label="##word.Faculty Site##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isFaculty"> </i-checkbox>
-                  <i-checkbox class="row" label="##word.Show Student Data In Video##" x-permissions="admin" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showStudentInVideo"> </i-checkbox>
+                  <i-checkbox class="row" label="##word.Show Student Data In Video##" x-permissions="admin" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.showStudentInVideo">
+                  </i-checkbox>
                   <i-checkbox class="row" label="##word.Shared Site##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isShared"> </i-checkbox>
                   <i-checkbox class="row" label="##word.Online active##" ng-show="siteSetting.isEducationalPlatform" ng-model="siteSetting.isOnline"> </i-checkbox>
                   <i-checkbox class="row" label="##word.Cities And Areas Show##" ng-model="siteSetting.citiesAndAreasShow"> </i-checkbox>
@@ -220,7 +222,7 @@
                 <i-control class="col3" label="##word.Account Number##" ng-model="siteSetting.$accountNumber"> </i-control>
                 <i-control class="col3" label="##word.Account Name##" ng-model="siteSetting.$accountName"> </i-control>
                 <i-button type="push" label="##word.Add Type##" ng-click="addPurchaseTypeList()"></i-button>
-    
+
                 <div class="table-responsive">
                   <table class="table center hover bold">
                     <tr>
@@ -235,7 +237,7 @@
                       <td class="center">{{g.accountNumber}}</td>
                       <td class="center">{{g.accountName}}</td>
                       <td class="center"><i-checkbox class="row" ng-change="setPurchaseTypeDafault($index)" ng-model="g.default"></i-checkbox></td>
-    
+
                       <td class="center">
                         <i-button type="delete" label="##word.Delete##" ng-click="siteSetting.purchaseTypeList.splice($index,1)"></i-button>
                       </td>
@@ -246,7 +248,6 @@
             </fieldset>
           </div>
           <i-button type="save" label="##word.Save##" ng-click="saveSetting('#payment')"></i-button>
-
         </fieldset>
       </div>
       <div id="themePage" class="tab-content">

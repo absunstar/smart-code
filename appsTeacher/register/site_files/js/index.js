@@ -324,8 +324,6 @@ app.controller("register", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        console.log(educationalLevelId, response.data);
-
         if (response.data.done && response.data.list.length > 0) {
           $scope.schoolYearsList = response.data.list;
         }
