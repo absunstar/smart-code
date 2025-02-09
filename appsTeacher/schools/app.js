@@ -265,7 +265,7 @@ module.exports = function init(site) {
 
         app.memoryList.forEach((doc) => {
           let obj = { ...doc };
-          if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared) || (doc.host == host))) {
+          if ((!where.active || doc.active) && ((doc.teacherId === teacherId && !setting.isShared && !setting.isCenter) || (doc.host == host))) {
             for (const p in obj) {
               if (!Object.hasOwnProperty.call(select, p)) {
                 delete obj[p];
