@@ -928,48 +928,51 @@ module.exports = function init(site) {
           delete where["subject"];
         }
         if (req.body.type == "toStudent") {
-          // where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
-          // where["schoolYear.id"] = req.session.user?.schoolYear?.id;
-          let $or = [
-            {
-              code: search,
-            },
-            {
-              name: site.get_RegExp(search, "i"),
-            },
-            {
-              description: site.get_RegExp(search, "i"),
-            },
-            {
-              "educationalLevel.name": site.get_RegExp(search, "i"),
-            },
-            {
-              "schoolYear.name": site.get_RegExp(search, "i"),
-            },
-            {
-              "subject.name": site.get_RegExp(search, "i"),
-            },
-          ];
-          if (where["schoolYear"]) {
-            $or.push({
-              "schoolYear.id": where["schoolYear"].id,
-            });
-            $or.push({
-              "schoolYear.id": { $exists: false },
-            });
-            delete where["schoolYear"];
-          }
-
-          where.$and = [
-            {
-              $or: $or,
-            },
-          ];
-
-          if (req.session.user) {
-            where.$and.push({
-              $or: [{ placeType: req.session.user.placeType }, { placeType: "both" }],
-            });
+          if (req.session.user && req.session.user.type == "student") {
+            // where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
+            // where["schoolYear.id"] = req.session.user?.schoolYear?.id;
+            let $or = [
+              {
+                code: search,
+              },
+              {
+                name: site.get_RegExp(search, "i"),
+              },
+              {
+                description: site.get_RegExp(search, "i"),
+              },
+              {
+                "educationalLevel.name": site.get_RegExp(search, "i"),
+              },
+              {
+                "schoolYear.name": site.get_RegExp(search, "i"),
+              },
+              {
+                "subject.name": site.get_RegExp(search, "i"),
+              },
+            ];
+            if (where["schoolYear"]) {
+              $or.push({
+                "schoolYear.id": where["schoolYear"].id,
+              });
+              $or.push({
+                "schoolYear.id": { $exists: false },
+              });
+              delete where["schoolYear"];
+            }
+            where.$and = [
+              {
+                $or: [{ placeType: req.session.user.placeType }, { placeType: "both" }],
+              },
+              {
+                $or: $or,
+              },
+            ];
+          } else {
+            if (where["schoolYear"]) {
+              where["schoolYear.id"] = where["schoolYear"].id;
+              delete where["schoolYear"];
+            }
           }
         }
         // else if (req.body.type == "myStudent") {
