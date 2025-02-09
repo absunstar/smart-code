@@ -27,6 +27,14 @@ const site = require("../isite")({
 
 site.time = new Date().getTime();
 
+site.validateSession = async function (req, res, next) {
+  req.setting = site.getSiteSetting(req.host) || {};
+
+  if(req.setting.defaultEn) {
+    req.session.language = { id: "En", dir: "rtl", text: "right" };
+  }
+  next(req, res);
+};
 site.get({
   name: "/",
   path: site.dir + "/",

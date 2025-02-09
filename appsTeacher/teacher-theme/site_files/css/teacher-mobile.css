@@ -1,4 +1,13 @@
 @media screen and (max-width: 480px) {
+
+  .schoolYear-buttons {
+    text-align-last: center;
+    img {
+      width: 70% !important;
+      height: unset !important;
+    }
+  }
+
   .card-title {
     width: 0px !important;
     display: block !important;
