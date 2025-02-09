@@ -78,6 +78,11 @@ module.exports = function init(site) {
       }
 
       let setting = site.getSiteSetting(req.host) || {};
+
+      if(setting.defaultEn) {
+        req.session.language = { id: "En", dir: "rtl", text: "right" };
+      }
+
       // if (!setting.host) {
       //   res.redirect(site.getMainHost(req.host), 301);
       //   return;
