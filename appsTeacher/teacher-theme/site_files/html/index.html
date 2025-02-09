@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="##session.language.id##" class="##session.language.dir##" ng-app="myApp">
-  <head x-import="teacher-theme/head.html"> </head>
+  <head x-import="teacher-theme/head.html"> 
+    <style x-lang="En">
+      .HeaderContanier .smScreen .menuContainer {
+    transform: translateX(-770px) !important;
+
+      }
+    </style>
+  </head>
   <body class="##session.language.id##" ng-controller="teacherTheme">
     <div x-replace="teacher-theme/header.html"></div>
 
