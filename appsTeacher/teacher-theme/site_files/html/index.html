@@ -6,8 +6,8 @@
 
     <main class="container">
       <div class="d-lg-none mob-login-div" x-permission="!login">
-        <a class="login-btn" href="/login"> تسجيل الدخول </a>
-        <a class="newRegister" href="/register"> مستخدم جديد </a>
+        <a class="login-btn" href="/login"> ##word.Login## </a>
+        <a class="newRegister" href="/register"> ##word.Register## </a>
       </div>
       <div x-data="setting.showBanner">
         <img class="banner-site" ng-src="##data.banner##" alt="" srcset="" />
@@ -50,7 +50,7 @@
               </div>
               <ul class="schoolYear-buttons">
                 <li ng-repeat="schoolYear in schoolYearsList">
-                  <a href="/?school_year={{schoolYear.id}}">
+                  <a href="lecturesView/?school_year={{schoolYear.id}}">
                     <div>
                       <img ng-src="{{schoolYear.image.url}}" alt="" />
                     </div>

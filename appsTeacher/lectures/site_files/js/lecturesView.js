@@ -1,6 +1,8 @@
 app.controller("lecturesView", function ($scope, $http, $timeout) {
   $scope.list = [];
   $scope.baseURL = "";
+  $scope.setting = site.showObject(`##data.#setting##`);
+
   $scope.where = {};
   if ("##query.type##" == "myLectures") {
     $scope.where["myLectures"] = true;
@@ -13,6 +15,14 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.error = "";
     if (ev.which === 13) {
+
+      if($scope.setting?.educationalLevel?.id) {
+        $scope.where = {
+          educationalLevel : {id : $scope.setting.educationalLevel.id},
+          schoolYear : {id : "##query.school_year##"},
+        }
+      }
+      
       $http({
         method: "POST",
         url: `${$scope.baseURL}/api/lectures/allToStudent`,
