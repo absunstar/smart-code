@@ -928,7 +928,6 @@ module.exports = function init(site) {
           delete where["subject"];
         }
         if (req.body.type == "toStudent") {
-          if (req.session.user && req.session.user.type == "student") {
             // where["educationalLevel.id"] = req.session.user?.educationalLevel?.id;
             // where["schoolYear.id"] = req.session.user?.schoolYear?.id;
             let $or = [
@@ -968,7 +967,7 @@ module.exports = function init(site) {
                 $or: $or,
               },
             ];
-          }
+          
         }
         // else if (req.body.type == "myStudent") {
         //   if (req.session.user && req.session.user.type == "student" && req.session.user.lecturesList) {
