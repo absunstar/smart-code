@@ -15,12 +15,11 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.error = "";
     if (ev.which === 13) {
-      console.log("##query.school_year##" ,  Object.keys($scope.where).length === 0);
       
-      if($scope.setting?.educationalLevel?.id && Object.keys($scope.where).length === 0) {
+      if($scope.setting?.educationalLevel?.id) {
         $scope.where = {
-          educationalLevel : {id : $scope.setting.educationalLevel.id},
-          schoolYear : {id : "##query.school_year##"},
+          educationalLevel : {id : $scope.where?.educationalLevel?.id || $scope.setting.educationalLevel.id},
+          schoolYear : {id : $scope.where?.schoolYear?.id || site.toNumber("##query.school_year##") },
         }
       }
       
