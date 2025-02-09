@@ -83,7 +83,7 @@
     z-index: 9999;
     background-color: var(--main-background-color1);
     padding: 16px !important;
-    transform: translateX(-770px);
+    transform: translateX(770px);
     transition: transform 0.3s ease;
   }
   
