@@ -16,7 +16,7 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
     $scope.error = "";
     if (ev.which === 13) {
 
-      if($scope.setting?.educationalLevel?.id) {
+      if($scope.setting?.educationalLevel?.id && Object.keys($scope.where).length === 0) {
         $scope.where = {
           educationalLevel : {id : $scope.setting.educationalLevel.id},
           schoolYear : {id : "##query.school_year##"},
