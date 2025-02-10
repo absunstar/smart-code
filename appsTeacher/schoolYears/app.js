@@ -265,6 +265,7 @@ module.exports = function init(site) {
           country: 1,
           name: 1,
           image: 1,
+          host: 1,
           active: 1,
         };
 
@@ -288,13 +289,13 @@ module.exports = function init(site) {
           let host = site.getHostFilter(req.host);
           let setting = site.getSiteSetting(req.host);
           let list = app.memoryList
-            .filter(
-              (g) =>
-                (typeof where.active != "boolean" || g.active === where.active) &&
-                JSON.stringify(g).contains(search) &&
-                ((g.teacherId === teacherId && !setting.isShared  && !setting.isCenter) || (g.host == host))
-            )
-            .slice(0, limit);
+            // .filter(
+            //   (g) =>
+            //     (typeof where.active != "boolean" || g.active === where.active) &&
+            //     JSON.stringify(g).contains(search) &&
+            //     ((g.teacherId === teacherId && !setting.isShared  && !setting.isCenter) || (g.host == host))
+            // )
+            // .slice(0, limit);
 
           if (where && where["educationalLevel.id"]) {
             list = list.filter((g) => g.educationalLevel && g.educationalLevel.id == where["educationalLevel.id"]);
