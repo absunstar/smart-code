@@ -60,7 +60,7 @@
             ></i-list>
             <i-list class="col4" v="r" label="##word.Gender##" ng-model="item.gender" display="name##session.lang##" items="gendersList" ng-search="item.$genders"></i-list>
             <i-control label="##word.Parent Job##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.parentJob"> </i-control>
-            <i-list label="##word.School##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.school" display="name" display2="id" items="schoolsList"></i-list>
+            <i-list label="##word.School##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'student'" ng-model="item.school" display="name" items="schoolsList"></i-list>
             <i-list label="##word.Subject##" class="col4" x-data="setting.isCenter" ng-show="item.type == 'teacher'" ng-model="item.subject" display="name" items="subjectsList"></i-list>
 
             <div class="col3" ng-show="item.placeType == 'online'">
@@ -79,6 +79,7 @@
               ng-change="getSchoolYearsList(item.educationalLevel.id)"
               ng-model="item.educationalLevel"
               display="name"
+              display2="id"
               items="educationalLevelsList"
             ></i-list>
             <i-list label="##word.School Year##" class="col4" ng-model="item.schoolYear" display="name" items="schoolYearsList"></i-list>

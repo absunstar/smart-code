@@ -292,7 +292,7 @@ module.exports = function init(site) {
               (g) =>
                 (typeof where.active != "boolean" || g.active === where.active) &&
                 JSON.stringify(g).contains(search) &&
-                ((g.teacherId === teacherId && !setting.isShared) || (g.host == host))
+                ((g.teacherId === teacherId && !setting.isShared  && !setting.isCenter) || (g.host == host))
             )
             .slice(0, limit);
 
