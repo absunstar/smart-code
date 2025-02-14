@@ -593,11 +593,11 @@ app.controller("groups", function ($scope, $http, $timeout) {
       if ("##user.thermalPrinter##" && "##user.thermalPrinter.id##" > 0) {
         printer = JSON.parse("##user.thermalPrinter##");
       }
-      let width = Math.ceil(80 * 1000); 
+      let width = Math.ceil(80 * 1000);
       $timeout(() => {
         site.print({
           silent: false,
-          /* pageSize: { width }, */
+          pageSize: { width },
           selector: "#thermalPrint",
           ip: printer.ipDevice,
           port: printer.portDevice,
@@ -728,7 +728,6 @@ app.controller("groups", function ($scope, $http, $timeout) {
   };
 
   $scope.exceptionRemain = function (item, option) {
-
     $scope.error = "";
     if (option == true) {
       item.remain = 0;
