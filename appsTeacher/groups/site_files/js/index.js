@@ -521,7 +521,6 @@ app.controller("groups", function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
-  
   };
 
   $scope.generateAppointments = function (item) {
@@ -594,14 +593,19 @@ app.controller("groups", function ($scope, $http, $timeout) {
       if ("##user.thermalPrinter##" && "##user.thermalPrinter.id##" > 0) {
         printer = JSON.parse("##user.thermalPrinter##");
       }
+      let width = Math.ceil(80 * 1000); 
       $timeout(() => {
         site.print({
+          silent: false,
+          /* pageSize: { width }, */
           selector: "#thermalPrint",
           ip: printer.ipDevice,
           port: printer.portDevice,
-          pageSize: "Letter",
+          show: false,
           printer: printer.ip.name.trim(),
-          dpi: { horizontal: 200, vertical: 600 },
+          scaleFactor: $scope.setting.scaleFactor,
+          dpi: { horizontal: $scope.setting.horizontalPrint, vertical: $scope.setting.verticalPrint },
+          /* pageSize: "Letter", */
         });
       }, 500);
     } else {
@@ -615,7 +619,6 @@ app.controller("groups", function ($scope, $http, $timeout) {
 
   $scope.showStudentPayments = function (item) {
     $scope.error = "";
-
     $scope.studentGroupItem = $scope.item;
     $scope.studentItem = item;
     $scope.studentItem.$date = site.getDate();
@@ -649,7 +652,14 @@ app.controller("groups", function ($scope, $http, $timeout) {
         $scope.error = "##word.This Month Is Exist##";
         return;
       }
-      item.paymentList.unshift({ date: item.$date, discount :item.discount , price: item.$price, month: item.$month, remain: item.$remain, paymentList: [{ date: site.getDate(), price: item.$price }] });
+      item.paymentList.unshift({
+        date: item.$date,
+        discount: item.discount,
+        price: item.$price,
+        month: item.$month,
+        remain: item.$remain,
+        paymentList: [{ date: site.getDate(), price: item.$price }],
+      });
       delete item.$price;
       delete item.$month;
       delete item.$remain;
@@ -694,7 +704,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
     $timeout(() => {
       item.discountValue = ($scope.item.price * item.discount) / 100;
       item.requiredPayment = $scope.item.price - item.discountValue;
-      $scope.calcRemain(item)
+      $scope.calcRemain(item);
     }, 300);
   };
   $scope.exemptPayment = function (item, option) {
@@ -718,6 +728,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
   };
 
   $scope.exceptionRemain = function (item, option) {
+
     $scope.error = "";
     if (option == true) {
       item.remain = 0;

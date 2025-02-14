@@ -268,7 +268,7 @@ module.exports = function init(site) {
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || "";
-        let limit = req.body.limit || 50;
+        let limit = req.body.limit || 500;
         let select = req.body.select || {
           id: 1,
           host: 1,

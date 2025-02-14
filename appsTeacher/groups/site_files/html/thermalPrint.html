@@ -10,56 +10,56 @@
     <br />
 
     <div class="row center">
-      <span class="black font-20 border-dashed">##word.Student Name## : <span class="bold">{{thermal.student.firstName}}</span></span>
+      <span class="black font-18 border-dashed">##word.Student Name## : <span class="bold">{{thermal.student.firstName}}</span></span>
     </div>
     <br />
     <div class="row center">
       <div class="col-12">
-        <div class="col-1"></div>
-        <span class="black col-4 font-15">Date / التاريخ</span>
-        <span class="col-7 font-16 bold"> {{thermal.printDate |date:"dd / MM / yyyy" }} </span>
+        <span class="black col-5 font-13">Date / التاريخ</span>
+        <span class="col-7 font-14 bold"> {{thermal.printDate |date:"dd / MM / yyyy" }} </span>
       </div>
     </div>
 
     <div class="row center">
       <div class="col-12">
-        <div class="col-1"></div>
-        <span class="black col-4 font-15">Time / الوقت</span>
-        <span class="col-7 font-16 bold"> {{thermal.printDate |date:"hh : mm a" }} </span>
+        <span class="black col-5 font-13">Time / الوقت</span>
+        <span class="col-7 font-14 bold"> {{thermal.printDate |date:"hh : mm a" }} </span>
       </div>
     </div>
 
     <br />
+    <div class="row">
+      <span class="font-14 black col-5">##word.Group##:</span>
+      <span class="font-14 black col-7">{{thermal.groupName}}</span>
+    </div>
 
     <div class="row">
-      <div class="col-1"></div>
-
-      <div class="col-4 font-18 black">
-        <p class="font-18 black">##word.Group Name##</p>
-        <p class="font-18 black">##word.Payment Date##</p>
-        <p class="font-18 black" ng-show="thermal.month">##word.Month##</p>
-        <p class="font-18 black" ng-show="thermal.remain >= 0">##word.Remain##</p>
-      </div>
-      <div class="col-7 bold">
-        <p class="font-18 black">{{thermal.groupName}}</p>
-        <p class="font-18 black">{{thermal.date | date:"dd / MM / yyyy"}}</p>
-        <p class="font-18 black" ng-show="thermal.month">{{thermal.month.name##session.lang##}}</p>
-        <p class="font-18 black" ng-show="thermal.remain >= 0">{{thermal.remain}} ##word.$##</p>
-      </div>
+      <span class="font-14 black col-5">ت . الدفع:</span>
+      <span class="font-14 black col-7">{{thermal.date | date:"dd / MM / yyyy"}}</span>
     </div>
+
+    <div class="row">
+      <span class="font-14 black col-5" ng-show="thermal.month">##word.Month## :</span>
+      <span class="font-14 black col-7" ng-show="thermal.month">{{thermal.month.name##session.lang##}}</span>
+
+    </div>
+
+    <div class="row">
+      <span class="font-14 black col-5">##word.Remain## :</span>
+      <span class="font-14 black col-7">{{thermal.remain}} ##word.$##</span>
+
+    </div>
+
     <div class="row border-dashed">
-      <div class="col-1"></div>
-      <div class="col-4 font-18 black">
-        <p class="font-22 black">##word.Amount Paid##</p>
-      </div>
-      <div class="col-7 bold">
-        <p class="font-22 black ">{{thermal.price}} ##word.$##</p>
-      </div>
+    
+        <span class="font-16 black col-6">المدفوع : </span>
+        <span class="font-16 black col-6">{{thermal.price}} ##word.$##</span>
+   
     </div>
 
     <br ng-show="setting.invoiceFooter.length > 0" />
     <div class="row center" ng-repeat="i in setting.invoiceFooter">
-      <p class="black font-14 center">{{i.name}}</p>
+      <span class="black font-14 center">{{i.name}}</span>
     </div>
   </div>
 </div>

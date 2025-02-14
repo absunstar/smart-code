@@ -222,7 +222,9 @@ legend {
   border-radius: 0;
   border: 0.7px solid var(--background-color);
 }
-
+.font-13 {
+  font-size: 13px !important;
+}
 .font-14 {
   font-size: 14px !important;
 }
