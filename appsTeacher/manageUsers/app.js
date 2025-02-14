@@ -500,7 +500,7 @@ module.exports = function init(site) {
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || '';
-        let limit = req.body.limit || 2;
+        let limit = req.body.limit || 300;
         let select = req.body.select || {
           id: 1,
           image: 1,
