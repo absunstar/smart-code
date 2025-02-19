@@ -593,18 +593,19 @@ app.controller("groups", function ($scope, $http, $timeout) {
       if ("##user.thermalPrinter##" && "##user.thermalPrinter.id##" > 0) {
         printer = JSON.parse("##user.thermalPrinter##");
       }
-      let width = Math.ceil(80 * 1000); 
+      let width = Math.ceil(80 * 1000);
       $timeout(() => {
         site.print({
+          show: false,
           silent: false,
-          /* pageSize: { width }, */
+          pageSize: { width: 80 * 1000 },
+          width: 300,
           selector: "#thermalPrint",
           ip: printer.ipDevice,
           port: printer.portDevice,
-          show: false,
           printer: printer.ip.name.trim(),
-          scaleFactor: $scope.setting.scaleFactor,
-          dpi: { horizontal: $scope.setting.horizontalPrint, vertical: $scope.setting.verticalPrint },
+         /*  scaleFactor: 100,
+          dpi: { horizontal: 100, vertical: 100 }, */
           /* pageSize: "Letter", */
         });
       }, 500);
@@ -728,7 +729,6 @@ app.controller("groups", function ($scope, $http, $timeout) {
   };
 
   $scope.exceptionRemain = function (item, option) {
-
     $scope.error = "";
     if (option == true) {
       item.remain = 0;
