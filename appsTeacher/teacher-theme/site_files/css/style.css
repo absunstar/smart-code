@@ -394,6 +394,7 @@ figure {
 }
 .schoolYear-buttons {
   display: ruby;
+  text-align : center;
   img {
     width: 265px;
     height: 175px;
