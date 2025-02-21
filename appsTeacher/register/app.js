@@ -374,6 +374,7 @@ module.exports = function init(site) {
       country: req.body.user.country,
       gov: req.body.user.gov,
       gov: req.body.user.gov,
+      barcode: req.body.user.barcode,
       city: req.body.user.city,
       area: req.body.user.area,
       gender: req.body.user.gender,
@@ -433,7 +434,8 @@ module.exports = function init(site) {
       site.security.register(user, function (err, doc) {
         if (!err) {
           response.user = doc;
-
+          console.log(doc.barcode);
+          
           if (setting.activeStudentBarcode && !doc.barcode) {
             // let date = site.getDate();
             // let d = date.getDate().toString();
