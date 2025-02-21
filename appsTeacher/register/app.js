@@ -434,7 +434,7 @@ module.exports = function init(site) {
         if (!err) {
           response.user = doc;
 
-          if (setting.activeStudentBarcode) {
+          if (setting.activeStudentBarcode && !doc.barcode) {
             // let date = site.getDate();
             // let d = date.getDate().toString();
             // let h = date.getHours().toString();
