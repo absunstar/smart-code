@@ -1,10 +1,11 @@
 @media screen and (max-width: 480px) {
 
   .schoolYear-buttons {
-    text-align-last: center;
+    /* text-align-last: center; */
     img {
-      width: 70% !important;
-      height: unset !important;
+      width: 325px !important;
+      height: 300px !important;
+      padding: 5px;
     }
   }
 

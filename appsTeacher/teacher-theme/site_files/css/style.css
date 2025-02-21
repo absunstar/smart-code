@@ -395,8 +395,8 @@ figure {
 .schoolYear-buttons {
   display: ruby;
   img {
-    width: 130px;
-    height: 130px;
+    width: 265px;
+    height: 175px;
     cursor: pointer;
     border: 1px solid black;
     border-radius: 15px;

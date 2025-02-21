@@ -138,6 +138,7 @@
             <div class="row">
               <div class="col6">
                 <i-control v="r" class="input-style" label="##word.Full name##" ng-model="user.firstName"> </i-control>
+                <i-control x-data="setting.activeStudentBarcode" class="input-style" label="##word.Barcode##" ng-model="user.barcode"> </i-control>
                 <i-control v="r" class="input-style" label="##word.Mobile Number##" type="tel" ng-model="user.mobile"> </i-control>
                 <i-control ng-show="user.type == 'student'" class="input-style" label="##word.Parent Mobile Number##" type="tel" ng-model="user.parentMobile"> </i-control>
                 <i-list

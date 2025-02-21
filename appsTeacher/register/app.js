@@ -300,6 +300,12 @@ module.exports = function init(site) {
       }
     }
 
+    if(setting.activeStudentBarcode && !req.body.user.barcode){
+      response.error = "Must Enter Barcode";
+      res.json(response);
+      return;
+    }
+
     if (req.body.user.type == "student") {
       if (!req.body.user.parentMobile) {
         response.error = "Must Enter Parent Mobile No.";
