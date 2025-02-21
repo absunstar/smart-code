@@ -301,7 +301,7 @@ module.exports = function init(site) {
     }
 
     if(setting.activeStudentBarcode && !req.body.user.barcode && req.body.user.placeType == "offline"){
-      response.error = "Must Enter Barcode";
+      response.error = "Must Enter ID";
       res.json(response);
       return;
     }
