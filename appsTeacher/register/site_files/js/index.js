@@ -59,6 +59,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       password: site.to123(user.password),
       placeType: user.placeType,
       mobile: user.mobile,
+      barcode: user.barcode,
       firstName: user.firstName,
       lastName: user.lastName,
       image: user.image,
