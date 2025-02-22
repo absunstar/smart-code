@@ -439,7 +439,6 @@ module.exports = function init(site) {
       site.security.register(user, function (err, doc) {
         if (!err) {
           response.user = doc;
-          
           if (setting.activeStudentBarcode && !doc.barcode) {
             // let date = site.getDate();
             // let d = date.getDate().toString();
