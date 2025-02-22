@@ -431,10 +431,14 @@ module.exports = function init(site) {
       }
 
       user.active = true;
+
+      // if(req.host.contains('omega')){
+      //   user.email = user.email + '@' + req.host
+      // }
+
       site.security.register(user, function (err, doc) {
         if (!err) {
           response.user = doc;
-          console.log(doc.barcode);
           
           if (setting.activeStudentBarcode && !doc.barcode) {
             // let date = site.getDate();
