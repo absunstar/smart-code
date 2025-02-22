@@ -342,9 +342,16 @@ module.exports = function init(site) {
             done: false,
           };
           let host = site.getHostFilter(req.host);
+          let setting = site.getSiteSetting(req.host);
 
           let _data = req.data;
           _data.editUserInfo = req.getUserFinger();
+
+          if (setting.linkWithHost) {
+            if (!_data.email.like("*@" + req.host)) {
+              _data.email = _data.email + "@" + req.host;
+            }
+          }
 
           site.security.updateUser(_data, (err, result) => {
             if (!err) {

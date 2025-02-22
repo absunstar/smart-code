@@ -363,6 +363,13 @@ module.exports = function init(site) {
     //   res.json(response);
     //   return;
     // }
+    
+    if (setting.linkWithHost) {
+      if (!req.body.user.email.like("*@" + req.host)) {
+        req.body.user.email = req.body.user.email + "@" + req.host;
+      }
+    }
+
 
     let user = {
       email: req.body.user.email,
