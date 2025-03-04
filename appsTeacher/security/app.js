@@ -370,8 +370,8 @@ module.exports = function init(site) {
 
           site.security.login(
             {
-              email: req.body.email,
-              password: req.body.password,
+              email: _user.email,
+              password: _user.password,
               $req: req,
               $res: res,
             },

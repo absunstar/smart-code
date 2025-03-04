@@ -15,13 +15,13 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.error = "";
     if (ev.which === 13) {
-      
-      if($scope.setting?.educationalLevel?.id) {
-        $scope.where = {
-          educationalLevel : {id : $scope.where?.educationalLevel?.id || $scope.setting.educationalLevel.id},
-          schoolYear : {id : $scope.where?.schoolYear?.id || site.toNumber("##query.school_year##") },
-        }
+      if ($scope.setting?.educationalLevel?.id && !$scope.where.educationalLevel) {
+        $scope.where.educationalLevel = $scope.where?.educationalLevel || $scope.setting.educationalLevel;
+        /* schoolYear : {id : $scope.where?.schoolYear?.id || site.toNumber("##query.school_year##") }, */
+        $scope.where.schoolYear = {id :site.toNumber("##query.school_year##")};
+        $scope.getSchoolYearsList($scope.where.educationalLevel.id);
       }
+      $scope.where['schoolYear.id'] = $scope.where?.schoolYear?.id;
       
       $http({
         method: "POST",
@@ -80,7 +80,11 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
       }
     );
   };
+
   $scope.getSchoolYearsList = function (educationalLevelId) {
+    if (!educationalLevelId) {
+      return;
+    }
     $scope.busy = true;
     $scope.schoolYearsList = [];
     $http({
