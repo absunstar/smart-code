@@ -17,11 +17,15 @@ app.controller("lecturesView", function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       if ($scope.setting?.educationalLevel?.id && !$scope.where.educationalLevel) {
         $scope.where.educationalLevel = $scope.where?.educationalLevel || $scope.setting.educationalLevel;
-        /* schoolYear : {id : $scope.where?.schoolYear?.id || site.toNumber("##query.school_year##") }, */
-        $scope.where.schoolYear = {id :site.toNumber("##query.school_year##")};
+        if(site.toNumber("##query.school_year##") > 0){
+          $scope.where.schoolYear = {id :site.toNumber("##query.school_year##")};
+        }
         $scope.getSchoolYearsList($scope.where.educationalLevel.id);
       }
-      $scope.where['schoolYear.id'] = $scope.where?.schoolYear?.id;
+      if($scope.where?.schoolYear?.id){
+
+        $scope.where['schoolYear.id'] = $scope.where?.schoolYear?.id;
+      }
       
       $http({
         method: "POST",
