@@ -367,7 +367,7 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-          if(!_user.email || _user.password) {
+          if(!_user.email || !_user.password) {
             response.error = "The account is not found";
             res.json(response);
             return;
