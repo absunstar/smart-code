@@ -164,8 +164,8 @@
                   <legend>##word.Download Files##</legend>
                   <a ng-repeat="f in item.filesList" class="links-a" href="{{f.file.url}}" target="_blank">{{f.title}} <i class="fas fa-download"></i></a>
                 </fieldset>
-
-                <div class="row video-box" ng-repeat="link in item.linksList" ng-show="item.$buy || item.type.name == 'public'">
+                <!-- ng-show="item.$buy || item.type.name == 'public'" -->
+                <div class="row video-box" ng-repeat="link in item.linksList" ng-show="_viewLinks">
                   <i-button type="view" label="{{link.name}}" ng-click="openVideo(link)"></i-button>
                   <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'number' &&link.isValid">##word.Number of views remaining## {{link.remainNumber}}</span>
                   <span class="remain-video-text" ng-show="item.typeExpiryView.name == 'day'&&link.isValid">##word.Number of remaining viewing days## {{link.remainDay}}</span>
@@ -184,7 +184,9 @@
                   <p class="font-20 padding bold red">##word.Wrong Answers## : ( {{quiz.wrongAnswers}} )</p>
                 </div>
                 <div class="row">
-                  <button
+                  <i-control class="col6" ng-model="code" label="أدخل الكود"></i-control>
+                  <i-button class="col3" type="view" label="إظهار الرابط" ng-click="viewLinks(code)"></i-button>
+                  <!-- <button
                     ng-click="showEnterCode()"
                     ng-hide="item.$buy || '##user.placeType##' == 'online'  || item.type.name == 'public' || ('##user.type##' && '##user.type##' != 'student')"
                     class="buy-btn"
@@ -196,7 +198,7 @@
                   <button ng-click="startQuiz()" x-permissions="student" ng-show="item.$buy && (!quiz.id || item.timesEnterQuiz > quiz.timesEnterQuiz) && item.activateQuiz" class="buy-btn">
                     ##word.Take A Quiz##
                     <i class="fas fa-chalkboard-teacher"></i>
-                  </button>
+                  </button> -->
                   <p class="alert-green" ng-show="alert">{{alert}}</p>
                 </div>
               </div>

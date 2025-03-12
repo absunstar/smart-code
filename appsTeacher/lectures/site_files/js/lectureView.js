@@ -107,6 +107,11 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.viewLinks = function (code) {
+    if(code === 'QqWDn12990KJH') {
+      $scope._viewLinks = true;
+    }
+  };
 
   $scope.getPurchaseTypeTeacher = function (teacherId) {
     $scope.busy = true;
@@ -196,20 +201,20 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
         }
       );
     } else if (site.isMobile()) {
-      $http({
+  /*     $http({
         method: "POST",
         url: `${$scope.baseURL}/api/lectures/changeViewMobile`,
         data: {
           code: link.code,
           _id: "##query.id##",
         },
-      }).then(function (response) {
+      }).then(function (response) { */
         $scope.busy = false;
         if (response.data.done) {
           
           window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
         }
-      });
+     /*  }); */
     } else {
       site.showModal("#socialBrowserModal");
       return;

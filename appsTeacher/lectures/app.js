@@ -170,12 +170,12 @@ module.exports = function init(site) {
       site.get(
         {
           name: "view-video",
-          require: { permissions: ["login"] },
+          // require: { permissions: ["login"] },
         },
         (req, res) => {
           app.$collection.find({ _id: req.query.id }, (err, lecture) => {
             if (!err && lecture) {
-              if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s?.lectureId?.toString() == lecture.id.toString())) {
+              // if (req.session.user.lecturesList && req.session.user.lecturesList.some((s) => s?.lectureId?.toString() == lecture.id.toString())) {
                 let video = lecture.linksList.find((itm) => itm.code == req.query.code);
                 let videoUrl = video.url;
                 // handle links
@@ -194,7 +194,7 @@ module.exports = function init(site) {
                   },
                   { parser: "html css js", compres: true }
                 );
-              }
+              // }
             }
           });
         }
@@ -884,7 +884,6 @@ module.exports = function init(site) {
           code: 1,
         };
         where.active = true;
-  console.log(where);
 
         if (search) {
           where.$or = [];
