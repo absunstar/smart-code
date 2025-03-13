@@ -107,11 +107,6 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.viewLinks = function (code) {
-    if(code === 'QqWDn12990KJH') {
-      $scope._viewLinks = true;
-    }
-  };
 
   $scope.getPurchaseTypeTeacher = function (teacherId) {
     $scope.busy = true;
@@ -136,8 +131,89 @@ app.controller("lectureView", function ($scope, $http, $timeout) {
   };
 
   $scope.openVideo = function (link) {
-    window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
+    if (!window.SOCIALBROWSER && !$scope.setting.allowVideoMobile) {
+      site.showModal("#socialBrowserModal");
+      return;
+    }
 
+    $scope.error = "";
+    if (window.SOCIALBROWSER) {
+      $scope.busy = true;
+      $http({
+        method: "POST",
+        url: `${$scope.baseURL}/api/lectures/changeView`,
+        data: {
+          socialBrowserID: SOCIALBROWSER.var.core.id,
+          code: link.code,
+          _id: "##query.id##",
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            let code_injected = `/*##lectures/custom-youtube-video.js*/`;
+            code_injected += "youtubeRun();";
+            SOCIALBROWSER.ipc("[open new popup]", {
+              url: document.location.origin + "/view-video?code=" + link.code + "&id=" + $scope.item._id,
+              eval: code_injected,
+              show: true,
+              iframe: true,
+              center: true,
+              maximize: true,
+              trusted: true,
+              allowMenu: true,
+              showDevTools: true,
+              allowDevTools: true,
+              allowDownload: false,
+              allowAds: false,
+              allowNewWindows: false,
+              allowSaveUserData: false,
+              allowSaveUrls: false,
+              allowSocialBrowser: true,
+              // allowRedirect: false,
+              allowSelfRedirect: false,
+              allowSelfWindow: false,
+              allowJavascript: true,
+              allowAudio: true,
+              allowPopup: false,
+              width: 800,
+              height: 800,
+              security: false,
+              $timeout: 5000,
+            });
+            if ($scope.item.typeExpiryView && $scope.item.typeExpiryView.name == "number") {
+              let index = $scope.item.linksList.findIndex((itm) => itm.code === link.code);
+              if (index !== -1) {
+                $scope.item.linksList[index].remainNumber -= 1;
+              }
+            }
+          } else {
+            $scope.error = response.data.error;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+        }
+      );
+    } else if (site.isMobile()) {
+      $http({
+        method: "POST",
+        url: `${$scope.baseURL}/api/lectures/changeViewMobile`,
+        data: {
+          code: link.code,
+          _id: "##query.id##",
+        },
+      }).then(function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          
+          window.open(`/view-video?code=${link.code}&id=${$scope.item._id}`);
+        }
+      });
+    } else {
+      site.showModal("#socialBrowserModal");
+      return;
+    }
   };
 
   $scope.finishQuiz = function (quiz) {
