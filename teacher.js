@@ -35,11 +35,6 @@ site.validateSession = async function (req, res, next) {
     return;
   }
 
-  if(req.host.includes("al-omega")) {
-    res.end()
-    return;
-  }
-
   if(req.setting.defaultEn) {
     req.session.language = { id: "En", dir: "rtl", text: "right" };
   }
