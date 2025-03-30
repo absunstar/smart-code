@@ -1,92 +1,95 @@
 <!DOCTYPE html>
 <html lang="##data.language.id##" dir="##data.language.direction##" data-ng-app="myApp" class="##data.language.direction##" x-permissions="articles_ui || articles_manage">
-  <head x-import="cms/head.html"></head>
+    <head x-import="cms/head.html"></head>
 
-  <body class="##session.lang##" ng-controller="articles">
-    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
-    <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+    <body class="##session.lang##" ng-controller="articles">
+        <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+        <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
 
-    <div id="main-layout" class="container loaded">
-      <div class="row">
-        <div x-import="articles/related_topics.html"></div>
-        <div x-permissions="articles_add || articles_manage" x-import="articles/manage_modal.html"></div>
-        <div x-permissions="articles_search || articles_manage" x-import="articles/search_all_modal.html"></div>
+        <div id="main-layout" class="container loaded">
+            <div class="row">
+                <div x-import="articles/related_topics.html"></div>
+                <div x-permissions="articles_add || articles_manage" x-import="articles/manage_modal.html"></div>
+                <div x-permissions="articles_search || articles_manage" x-import="articles/search_all_modal.html"></div>
 
-        <div class="top-actions">
-          <i-button x-permissions="articles_add || articles_manage" type="add" label="##word.articles_new##" ng-click="displayAddArticles()"></i-button>
-          <i-button ng-hide="hideHandleImages" x-permissions="admin" label="##word.Handle Images##" ng-click="handleImages()"></i-button>
-          <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-          <i-button type="delete" label="##word.Delete All##" onclick="site.showModal('#confirmdeleteAll')"> </i-button>
+                <div class="top-actions">
+                    <i-button x-permissions="articles_add || articles_manage" type="add" label="##word.articles_new##" ng-click="displayAddArticles()"></i-button>
+                    <i-button ng-hide="hideHandleImages" x-permissions="admin" label="##word.Handle Images##" ng-click="handleImages()"></i-button>
+                    <i-button x-permissions="articles_search || articles_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+                    <i-button type="delete" label="##word.Delete All##" onclick="site.showModal('#confirmdeleteAll')"> </i-button>
 
-          <div class="col2">
-            <i-checkbox label="##word.Direct Delete##" ng-model="directDelete"> </i-checkbox>
-          </div>
-          <div class="row padding">
-            <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="articles_search || articles_manage"></i-control>
-          </div>
-          <h3 class="bold text-center">##word.count## : {{count}}</h3>
+                    <div class="row">
+                        <i-checkbox label="##word.Direct Delete##" ng-model="directDelete"> </i-checkbox>
+                    </div>
+                    <div class="row">
+                        <i-button label="##word.Generate All Movie Description##" ng-click="generateAllMovieDescription()"></i-button>
+                    </div>
+                    <div class="row padding">
+                        <i-control ng-model="$search" ng-change="smartSearch()" x-permissions="articles_search || articles_manage"></i-control>
+                    </div>
+                    <h3 class="bold text-center">##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table center hover bold" id="t1">
+                    <tr>
+                        <th>##word.ID##</th>
+                        <th>##word.logo##</th>
+                        <th>##word.Category##</th>
+                        <th>##word.Host##</th>
+                        <th>##word.article_title##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center bold blue">{{c.id}}</td>
+                        <td>
+                            <i-image view class="logo" ng-model="c.translatedList[0].image"></i-image>
+                        </td>
+                        <td class="center">{{c.category.name}}</td>
+                        <td class="center title">{{c.host}}</td>
+                        <td class="center title">
+                            <a class="link" href="/a/{{c.id}}" target="_blank"> {{c.translatedList[0].title}} </a>
+                        </td>
+                        <td class="center">
+                            <p ng-show="c.active == true" class="green">##word.active##</p>
+                            <p ng-show="c.active == false" class="red">##word.not_active##</p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="articles_view || articles_manage" type="view" ng-click="displayDetailsArticles(c)"></i-button>
+
+                            <i-button x-permissions="articles_update || articles_manage" type="edit" ng-click="displayUpdateArticles(c)"></i-button>
+
+                            <i-button x-permissions="articles_delete || articles_manage" type="delete" ng-click="displayDeleteArticles(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="articles_print || articles_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+            </div>
+        </div>
+        <div id="confirmdeleteAll" class="modal small">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>##word.Delete All## <i class="fa fa-delete"></i></h2>
+                </div>
+                <div class="modal-body">
+                    <form class="form">
+                        <h2 class="center">##word.Confirm deletion## ( {{count}} ) ##word.Article##</h2>
+                    </form>
+                </div>
+
+                <h2 class="error">{{error}}</h2>
+
+                <div class="modal-footer center">
+                    <i-button type="delete" label="##word.Delete All##" ng-click="deleteAll()"> </i-button>
+                    <i-button type="close" label="##word.close##" onclick="site.hideModal('#confirmdeleteAll')"> </i-button>
+                </div>
+            </div>
         </div>
 
-        <table x-permissions="login" class="table center hover bold" id="t1">
-          <tr>
-            <th>##word.ID##</th>
-            <th>##word.logo##</th>
-            <th>##word.Category##</th>
-            <th>##word.Host##</th>
-            <th>##word.article_title##</th>
-            <th>##word.status##</th>
-            <th class="not-print">##word.actions##</th>
-          </tr>
-          <tr ng-repeat="c in list">
-            <td class="center bold blue">{{c.id}}</td>
-            <td>
-              <i-image view class="logo" ng-model="c.translatedList[0].image"></i-image>
-            </td>
-            <td class="center">{{c.category.name}}</td>
-            <td class="center title">{{c.host}}</td>
-            <td class="center title">
-              <a class="link" href="/a/{{c.id}}" target="_blank"> {{c.translatedList[0].title}} </a>
-            </td>
-            <td class="center">
-              <p ng-show="c.active == true" class="green">##word.active##</p>
-              <p ng-show="c.active == false" class="red">##word.not_active##</p>
-            </td>
-
-            <td class="center not-print">
-              <i-button x-permissions="articles_view || articles_manage" type="view" ng-click="displayDetailsArticles(c)"></i-button>
-
-              <i-button x-permissions="articles_update || articles_manage" type="edit" ng-click="displayUpdateArticles(c)"></i-button>
-
-              <i-button x-permissions="articles_delete || articles_manage" type="delete" ng-click="displayDeleteArticles(c)"></i-button>
-            </td>
-          </tr>
-        </table>
-
-        <i-button x-permissions="articles_print || articles_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
-      </div>
-    </div>
-    <div id="confirmdeleteAll" class="modal small">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2>##word.Delete All## <i class="fa fa-delete"></i></h2>
-        </div>
-        <div class="modal-body">
-          <form class="form">
-            <h2 class="center">##word.Confirm deletion## ( {{count}} ) ##word.Article##</h2>
-          </form>
-        </div>
-
-        <h2 class="error">{{error}}</h2>
-
-        <div class="modal-footer center">
-          <i-button type="delete" label="##word.Delete All##" ng-click="deleteAll()"> </i-button>
-          <i-button type="close" label="##word.close##" onclick="site.hideModal('#confirmdeleteAll')"> </i-button>
-        </div>
-      </div>
-    </div>
-
-    <div x-import="cms/scripts.html"></div>
-    <script x-import="articles/index.js"></script>
-  </body>
+        <div x-import="cms/scripts.html"></div>
+        <script x-import="articles/index.js"></script>
+    </body>
 </html>
