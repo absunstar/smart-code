@@ -1326,6 +1326,13 @@ module.exports = function init(site) {
             where['translatedList.keyWordsList'] = site.get_RegExp(where['keyword'], 'i');
             delete where['keyword'];
         }
+
+        if (typeof where['noContent'] !== undefined) {
+            if (where['noContent']) {
+                where['translatedList.textContent'] = '';
+            }
+            delete where['noContent'];
+        }
         // site.get_RegExp(req.body.search, "i");
         // site.articlesList.filter(u => u.name.contains(where['name']))
 

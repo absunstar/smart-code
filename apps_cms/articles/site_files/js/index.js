@@ -328,7 +328,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             url: '/api/articles/all',
             data: {
                 where: where,
-                search: $scope.$search,
+                search: $scope.search,
                 limit: $scope.limit,
             },
         }).then(
