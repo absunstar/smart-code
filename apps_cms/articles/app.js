@@ -607,7 +607,7 @@ module.exports = function init(site) {
             .catch((err) => callBack(err, null));
     };
     site.getMovieDescription = function (title, callBack) {
-        site.getGeminiResult('write article about movie "' + title + '"', (err, text, result) => {
+        site.getGeminiResult('write article about movie "' + title + '" as html code only with no images or links or css', (err, text, result) => {
             callBack(err, text, result);
         });
     };
@@ -1052,7 +1052,7 @@ module.exports = function init(site) {
         site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
             response.result = result;
             if (!err && text) {
-                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '');
+                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                 articlesDoc.translatedList[0].textContent = text;
                 site.$articles.edit(
                     {

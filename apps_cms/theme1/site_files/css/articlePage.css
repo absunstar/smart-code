@@ -99,8 +99,8 @@
 }
 .mainarticle {
   padding: 0;
-  line-height: 2;
-  font-size: x-large;
+  font-size: large;
+  line-height: 1.8;
   width: 100%;
 }
 
