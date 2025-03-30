@@ -1050,29 +1050,34 @@ module.exports = function init(site) {
         }
 
         site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
-            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '');
-            articlesDoc.translatedList[0].textContent = text;
-            site.$articles.edit(
-                {
-                    where: {
-                        id: articlesDoc.id,
+            response.result = result;
+            if (!err && text) {
+                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '');
+                articlesDoc.translatedList[0].textContent = text;
+                site.$articles.edit(
+                    {
+                        where: {
+                            id: articlesDoc.id,
+                        },
+                        set: articlesDoc,
                     },
-                    set: articlesDoc,
-                },
-                (err, result) => {
-                    if (!err && result) {
-                        response.done = true;
+                    (err, result) => {
+                        if (!err && result) {
+                            response.done = true;
 
-                        let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
-                        if (index > -1) {
-                            site.articlesList[index] = site.handleArticle({ ...result.doc });
+                            let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
+                            if (index > -1) {
+                                site.articlesList[index] = site.handleArticle({ ...result.doc });
+                            }
+                        } else {
+                            response.error = err?.message;
                         }
-                    } else {
-                        response.error = err?.message;
+                        res.json(response);
                     }
-                    res.json(response);
-                }
-            );
+                );
+            } else {
+                res.json(response);
+            }
         });
     });
     site.post('/api/articles/view', (req, res) => {
