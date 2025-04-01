@@ -612,6 +612,53 @@ module.exports = function init(site) {
         });
     };
 
+    site.autoUpdateMovieDescription = function () {
+        setTimeout(() => {
+            site.autoUpdateMovieDescription();
+        }, 1000 * 60);
+        site.$articles.find(
+            {
+                select: {},
+                where: {
+                    'translatedList.textContent': '',
+                    'category.id': 2,
+                },
+                sort: {
+                    id: -1,
+                },
+            },
+            (err, articlesDoc) => {
+                if (!err && articlesDoc) {
+                    articlesDoc = site.handleArticle(articlesDoc);
+                    site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
+                        if (!err && text) {
+                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
+                            articlesDoc.translatedList[0].textContent = text;
+                            site.$articles.edit(
+                                {
+                                    where: {
+                                        id: articlesDoc.id,
+                                    },
+                                    set: articlesDoc,
+                                },
+                                (err, result) => {
+                                    if (!err && result) {
+                                        let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
+                                        if (index > -1) {
+                                            site.articlesList[index] = site.handleArticle({ ...result.doc });
+                                        }
+                                    }
+                                    console.log('AI : ' + articlesDoc.yts.title);
+                                }
+                            );
+                        }
+                    });
+                }
+            }
+        );
+    };
+    site.autoUpdateMovieDescription();
+
     site.prepareArticles();
 
     site.get({
