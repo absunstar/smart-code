@@ -851,7 +851,7 @@ module.exports = function init(site) {
             articlesDoc.translatedList[0].cover = {
                 url: articlesDoc.yts.large_cover_image,
             };
-            articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full || '';
+            articlesDoc.translatedList[0].textContent = '';
             articlesDoc.translatedList[0].rating = articlesDoc.yts.rating || '';
 
             articlesDoc.translatedList[0].tagsList = articlesDoc.translatedList[0].tagsList || [];
@@ -903,7 +903,7 @@ module.exports = function init(site) {
             articlesDoc.translatedList[0].image = {
                 url: userData.image?.url,
             };
-            articlesDoc.translatedList[0].textContent = userData.description;
+            articlesDoc.translatedList[0].textContent = userData.description || '';
             if (userData.date_uploaded) {
                 articlesDoc.publishDate = site.getDateTime(userData.date);
             } else {
@@ -943,7 +943,7 @@ module.exports = function init(site) {
             articlesDoc.showInMainSlider = true;
             articlesDoc.showOnTop = true;
 
-            articlesDoc.translatedList[0].textContent = articlesDoc.facebook.title;
+            articlesDoc.translatedList[0].textContent = articlesDoc.facebook.title || '';
             articlesDoc.translatedList[0].title = articlesDoc.facebook.title ? articlesDoc.facebook.title.slice(0, 30) : '';
             articlesDoc.translatedList[0].image = {
                 url: articlesDoc.facebook.image?.url,
@@ -979,7 +979,7 @@ module.exports = function init(site) {
                     doc.yts = articlesDoc.yts;
                     doc.translatedList[0].rating = articlesDoc.translatedList[0].rating;
                     doc.translatedList[0].title = articlesDoc.translatedList[0].title;
-                    doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent || doc.translatedList[0].textContent;
+                    doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent || doc.translatedList[0].textContent || '';
                 }
 
                 doc = { ...doc, ...articlesDoc };
