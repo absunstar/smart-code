@@ -647,13 +647,14 @@ site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
 });
 
 site.getMainHost = function (host = '') {
+    console.log('getMainHost : ' + host);
     let arr = host.split('.');
     if (arr.length > 1) {
         let com = arr.pop();
         let domain = arr.pop();
         return '//' + domain + '.' + com;
     }
-    return host;
+    return '//' + host;
 };
 
 site.handleNotRoute = function (req, res) {
@@ -697,5 +698,3 @@ if ((anlytic = true)) {
         console.log('\n--------------------------------\n');
     }, 1000 * 60 * 5);
 }
-
-

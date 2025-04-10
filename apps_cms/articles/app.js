@@ -751,14 +751,18 @@ module.exports = function init(site) {
         });
     });
     site.onGET('/torrent-download/:guid/:index', (req, res) => {
-        site.getArticle(req.params.guid, (err, article) => {
-            if (article) {
-                let index = parseInt(req.params.index);
-                res.redirect(article.yts.torrents[index].url);
-            } else {
-                res.end(404);
-            }
-        });
+        if (req.hasFeature('browser.social')) {
+            site.getArticle(req.params.guid, (err, article) => {
+                if (article) {
+                    let index = parseInt(req.params.index);
+                    res.redirect(article.yts.torrents[index].url);
+                } else {
+                    res.end(404);
+                }
+            });
+        } else {
+            res.render('client-side/require_features.html');
+        }
     });
 
     site.downloadImage = function (options, callback) {
@@ -836,7 +840,7 @@ module.exports = function init(site) {
             };
 
             articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
-            
+
             articlesDoc.showInMainSlider = true;
             articlesDoc.showOnTop = true;
 
