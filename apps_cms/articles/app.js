@@ -836,11 +836,7 @@ module.exports = function init(site) {
             };
 
             articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
-            // if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
-            //   response.error = 'No Description or Rating';
-            //   res.json(response);
-            //   return;
-            // }
+            
             articlesDoc.showInMainSlider = true;
             articlesDoc.showOnTop = true;
 
