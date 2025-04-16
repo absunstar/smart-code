@@ -606,6 +606,33 @@ module.exports = function init(site) {
             })
             .catch((err) => callBack(err, null));
     };
+    site.getDeepseekResult = function (ask, callBack) {
+        const Deepseek_API_KEY = site.f1('467865672774525426382671273546824135325227154753415816724158167228152352417416794158167128184191');
+        site.fetch('https://api.deepseek.com/chat/completions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + Deepseek_API_KEY },
+            body: {
+                model: 'deepseek-chat',
+                messages: [
+                    { role: 'system', content: 'You are a helpful assistant.' },
+                    { role: 'user', content: ask },
+                ],
+                stream: false,
+            },
+        })
+            .then((d) => d.json())
+            .then((completion) => {
+                if (completion.error) {
+                    callBack(completion.error, '', completion);
+                } else if (completion.choices) {
+                    let text = completion.choices[0].message.content;
+                    callBack(null, text, completion);
+                } else {
+                    callBack({ message: 'No Error But No Choices' }, '', completion);
+                }
+            })
+            .catch((err) => callBack(err, null));
+    };
     site.getMovieDescription = function (title, callBack) {
         site.getGeminiResult('write article about movie "' + title + '" as html code only with no images or links or css', (err, text, result) => {
             callBack(err, text, result);

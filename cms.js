@@ -667,7 +667,16 @@ site.handleNotRoute = function (req, res) {
     }
 };
 
-site.run();
+site.run(()=>{
+    console.log('All Site Loaded !!')
+});
+
+if ((deepseek = false)) {
+    console.log('Start Ask Deepseek !!');
+    site.getDeepseekResult('write article about social browser', (err, text) => {
+        console.log(err || text);
+    });
+}
 
 if ((anlytic = true)) {
     setInterval(() => {

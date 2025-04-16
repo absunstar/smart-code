@@ -32,6 +32,7 @@ module.exports = function init(site) {
     public: true,
     compress: !0,
     shared: true,
+    overwrite : true,
     path: [
       __dirname + '/site_files/css/bootstrap.min.css',
       __dirname + '/site_files/css/all.min.css',
