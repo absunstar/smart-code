@@ -103,23 +103,7 @@ svg#Layer_1 {
   margin-right: 7px !important;
 }
 
-.create-btn {
-  position: fixed;
-  bottom: 8%;
-  border-radius: 45px;
-  right: -15px;
-  background: var(--theme-color);
-  color: #fff !important;
-  padding: 10px 20px;
-  z-index: 99999999;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 1px 1px 10px 0px #000;
-}
 
-.create-btn:hover {
-  transform: scale(1.2);
-}
 
 .powered {
   text-align: center;
@@ -134,7 +118,24 @@ svg#Layer_1 {
 .powered img {
   height: 50px;
 }
+.create-btn {
+  position: fixed;
+  bottom: 8%;
+  border-radius: 45px;
+  right: -15px;
+  background: var(--theme-color);
+  color: #fff !important;
+  padding: 10px 20px;
+  z-index: 99999999;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 1px 1px 10px 0px #000;
+}
 
+
+.create-btn:hover {
+  transform: scale(1.2);
+}
 .create-btn > span {
   margin-right: 10px;
 }

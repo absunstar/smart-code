@@ -307,7 +307,7 @@ module.exports = function init(site) {
       if (req.body.id && a.store && a.store.user.id === req.body.id) {
         a.$delete = true;
       }
-    });
+    }); 
     response.done = true;
     res.json(response);
   });
@@ -577,7 +577,7 @@ module.exports = function init(site) {
         $lte: d2,
       };
 
-      where.expiry_date = {
+      where.expiry_date = { 
         $gte: d1,
       };
 
