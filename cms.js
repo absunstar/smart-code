@@ -5,14 +5,14 @@ const site = require('../isite')({
     language: { id: 'Ar', dir: 'rtl', text: 'right' },
     version: Date.now(),
     name: 'cms',
-    savingTime: 30,
+    savingTime: 15,
     responseTimeout: 60,
     log: true,
     www: false,
     session: {
         enabled: !0,
         timeout: 0,
-        memoryTimeout: 60,
+        memoryTimeout: 5,
     },
     require: {
         features: [],
