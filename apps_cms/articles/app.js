@@ -606,6 +606,33 @@ module.exports = function init(site) {
             })
             .catch((err) => callBack(err, null));
     };
+    site.getDeepseekResult = function (ask, callBack) {
+        const Deepseek_API_KEY = site.f1('467865672774525426382671273546824135325227154753415816724158167228152352417416794158167128184191');
+        site.fetch('https://api.deepseek.com/chat/completions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + Deepseek_API_KEY },
+            body: {
+                model: 'deepseek-chat',
+                messages: [
+                    { role: 'system', content: 'You are a helpful assistant.' },
+                    { role: 'user', content: ask },
+                ],
+                stream: false,
+            },
+        })
+            .then((d) => d.json())
+            .then((completion) => {
+                if (completion.error) {
+                    callBack(completion.error, '', completion);
+                } else if (completion.choices) {
+                    let text = completion.choices[0].message.content;
+                    callBack(null, text, completion);
+                } else {
+                    callBack({ message: 'No Error But No Choices' }, '', completion);
+                }
+            })
+            .catch((err) => callBack(err, null));
+    };
     site.getMovieDescription = function (title, callBack) {
         site.getGeminiResult('write article about movie "' + title + '" as html code only with no images or links or css', (err, text, result) => {
             callBack(err, text, result);
@@ -751,14 +778,18 @@ module.exports = function init(site) {
         });
     });
     site.onGET('/torrent-download/:guid/:index', (req, res) => {
-        site.getArticle(req.params.guid, (err, article) => {
-            if (article) {
-                let index = parseInt(req.params.index);
-                res.redirect(article.yts.torrents[index].url);
-            } else {
-                res.end(404);
-            }
-        });
+        if (req.hasFeature('browser.social')) {
+            site.getArticle(req.params.guid, (err, article) => {
+                if (article) {
+                    let index = parseInt(req.params.index);
+                    res.redirect(article.yts.torrents[index].url);
+                } else {
+                    res.end(404);
+                }
+            });
+        } else {
+            res.render('client-side/require_features.html');
+        }
     });
 
     site.downloadImage = function (options, callback) {
@@ -836,11 +867,7 @@ module.exports = function init(site) {
             };
 
             articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
-            // if (!articlesDoc.yts.description_full || !articlesDoc.yts.rating) {
-            //   response.error = 'No Description or Rating';
-            //   res.json(response);
-            //   return;
-            // }
+
             articlesDoc.showInMainSlider = true;
             articlesDoc.showOnTop = true;
 
@@ -851,7 +878,7 @@ module.exports = function init(site) {
             articlesDoc.translatedList[0].cover = {
                 url: articlesDoc.yts.large_cover_image,
             };
-            articlesDoc.translatedList[0].textContent = articlesDoc.yts.description_full || '';
+            articlesDoc.translatedList[0].textContent = '';
             articlesDoc.translatedList[0].rating = articlesDoc.yts.rating || '';
 
             articlesDoc.translatedList[0].tagsList = articlesDoc.translatedList[0].tagsList || [];
@@ -903,7 +930,7 @@ module.exports = function init(site) {
             articlesDoc.translatedList[0].image = {
                 url: userData.image?.url,
             };
-            articlesDoc.translatedList[0].textContent = userData.description;
+            articlesDoc.translatedList[0].textContent = userData.description || '';
             if (userData.date_uploaded) {
                 articlesDoc.publishDate = site.getDateTime(userData.date);
             } else {
@@ -943,7 +970,7 @@ module.exports = function init(site) {
             articlesDoc.showInMainSlider = true;
             articlesDoc.showOnTop = true;
 
-            articlesDoc.translatedList[0].textContent = articlesDoc.facebook.title;
+            articlesDoc.translatedList[0].textContent = articlesDoc.facebook.title || '';
             articlesDoc.translatedList[0].title = articlesDoc.facebook.title ? articlesDoc.facebook.title.slice(0, 30) : '';
             articlesDoc.translatedList[0].image = {
                 url: articlesDoc.facebook.image?.url,
@@ -979,7 +1006,7 @@ module.exports = function init(site) {
                     doc.yts = articlesDoc.yts;
                     doc.translatedList[0].rating = articlesDoc.translatedList[0].rating;
                     doc.translatedList[0].title = articlesDoc.translatedList[0].title;
-                    doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent || doc.translatedList[0].textContent;
+                    doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent || doc.translatedList[0].textContent || '';
                 }
 
                 doc = { ...doc, ...articlesDoc };
