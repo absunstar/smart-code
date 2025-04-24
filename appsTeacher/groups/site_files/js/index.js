@@ -597,7 +597,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
       $timeout(() => {
         site.print({
           show: false,
-          silent: false,
+          silent: true,
           pageSize: { width: 80 * 1000 },
           width: 300,
           selector: "#thermalPrint",
