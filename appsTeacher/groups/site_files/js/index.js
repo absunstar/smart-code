@@ -596,7 +596,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
       let width = Math.ceil(80 * 1000);
       $timeout(() => {
         site.print({
-          show: false,
+          show: true,
           silent: true,
           pageSize: { width: 80 * 1000 },
           width: 300,
