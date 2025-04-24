@@ -971,13 +971,17 @@ app.controller("manageUsers", function ($scope, $http, $timeout) {
       }
       $timeout(() => {
         site.print({
+          show: false,
+          silent: true,
+          pageSize: { width: 80 * 1000 },
+          width: 300,
           selector: "#thermalPrint",
           ip: printer.ipDevice,
           port: printer.portDevice,
-          pageSize: "Letter",
-          scaleFactor : $scope.setting.scaleFactor,
           printer: printer.ip.name.trim(),
-          dpi: { horizontal: $scope.setting.horizontalPrint, vertical: $scope.setting.verticalPrint },
+          /* scaleFactor: 100, */
+          dpi: { horizontal: 200, vertical: 50 },
+          /* pageSize: "Letter", */
         });
       }, 500);
     } else {

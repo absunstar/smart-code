@@ -218,12 +218,17 @@ app.controller("printTexts", function ($scope, $http, $timeout) {
       }
       $timeout(() => {
         site.print({
+          show: false,
+          silent: true,
+          pageSize: { width: 80 * 1000 },
+          width: 300,
           selector: "#thermalPrint",
           ip: printer.ipDevice,
           port: printer.portDevice,
-          pageSize: "Letter",
           printer: printer.ip.name.trim(),
-          dpi: { horizontal: 200, vertical: 600 },
+          /* scaleFactor: 100, */
+          dpi: { horizontal: 200, vertical: 50 },
+          /* pageSize: "Letter", */
         });
       }, 500);
     } else {
