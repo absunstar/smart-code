@@ -605,7 +605,7 @@ app.controller("groups", function ($scope, $http, $timeout) {
           port: printer.portDevice,
           printer: printer.ip.name.trim(),
           /* scaleFactor: 100, */
-          dpi: { horizontal: 600, vertical: 600 },
+          dpi: { horizontal: 100, vertical: 100 },
           /* pageSize: "Letter", */
         });
       }, 500);
