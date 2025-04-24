@@ -235,7 +235,6 @@ module.exports = function init(site) {
 
     let setting = site.getSiteSetting(req.host);
 
-
     // if (!req.session.user) {
     //   response.error = 'You Are Not Login';
     //   res.json(response);
@@ -278,11 +277,11 @@ module.exports = function init(site) {
 
         if (setting.linkWithHost) {
           if (doc.email.like("*@" + req.host)) {
-            let newHost = '@' + req.host
+            let newHost = "@" + req.host;
             doc.email = doc.email.replace(newHost, "");
           }
         }
-        
+
         response.doc = doc;
       } else if (err) {
         response.error = err.message;
@@ -349,11 +348,12 @@ module.exports = function init(site) {
     }
 
     if (setting.linkWithHost) {
-      if (!req.body.email.like("*@" + req.host)) {
+      if (req.body.email == "@admin") {
+      } else if (!req.body.email.like("*@" + req.host)) {
         req.body.email = req.body.email + "@" + req.host;
       }
-    }    
-
+    }
+    
     site.security.getUser(
       {
         email: req.body.email,
@@ -367,7 +367,7 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-          if(!_user.email || !_user.password) {
+          if (!_user.email || !_user.password) {
             response.error = "The account is not found";
             res.json(response);
             return;
