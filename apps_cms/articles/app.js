@@ -656,6 +656,9 @@ module.exports = function init(site) {
                 },
             },
             (err, articlesDoc) => {
+                if (!err && !articlesDoc) {
+                    console.log('AI Not Found Any Article');
+                }
                 if (!err && articlesDoc) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Start : ' + articlesDoc.$title);
