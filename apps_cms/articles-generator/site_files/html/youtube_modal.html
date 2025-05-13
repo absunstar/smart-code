@@ -44,7 +44,7 @@
                         <td class="bold">
                             <p>{{channel.title}}</p>
                             <a href="{{channel.url}}" target="_blank"> {{channel.url}} </a>
-                            <i-button type="copy" ng-click="copy({{channel.url}})"></i-button>
+                            <i-button type="copy" ng-click="copy(channel.url)"></i-button>
                         </td>
                         <td>
                             <i-list label="##word.category##" ng-model="channel.category" items="categoryList"></i-list>
