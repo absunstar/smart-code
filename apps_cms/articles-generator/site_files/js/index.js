@@ -235,6 +235,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
+        sandbox : false,
         url: url[0],
         timeout: 15 * 1000,
         eval: code_injected,
@@ -253,6 +254,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
+        sandbox : false,
         url: facebookPageItem.url,
         timeout: 15 * 1000,
         eval: code_injected,
@@ -272,6 +274,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
+        sandbox : false,
         timeout: 30 * 1000,
         url: group.url,
         eval: code_injected,
@@ -289,6 +292,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
+        sandbox : false,
         timeout: 30 * 1000,
         url: page.url,
         eval: code_injected,
@@ -314,6 +318,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
+        sandbox : false,
         timeout: 30 * 1000,
         url: channel.url + '/videos',
         eval: code_injected,
@@ -330,6 +335,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
+        sandbox : false,
         url: youtubeItem.url,
         timeout: 15 * 1000,
         eval: code_injected,
@@ -348,6 +354,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
+        sandbox : false,
         timeout: 15 * 1000,
         url: url,
         eval: code_injected,
@@ -363,6 +370,7 @@ app.connectScope(
       SOCIALBROWSER.ipc('[open new popup]', {
         show: true,
         vip: true,
+        sandbox : false,
         url: url,
         allowAudio: false,
         allowDownload: false,
