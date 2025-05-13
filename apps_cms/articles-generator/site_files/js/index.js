@@ -233,7 +233,7 @@ app.connectScope(
       let url = facebookGroupItem.url.split('?');
 
       SOCIALBROWSER.ipc('[open new popup]', {
-        show: false,
+        show: true,
         vip: true,
         url: url[0],
         timeout: 15 * 1000,
@@ -312,7 +312,7 @@ app.connectScope(
       let code_injected = `SOCIALBROWSER.youtubeItem123 = '${SOCIALBROWSER.to123(channel)}';`;
       code_injected += SOCIALBROWSER.from123('/*###articles-generator/get-youtube-video-list.js*/');
       SOCIALBROWSER.ipc('[open new popup]', {
-        show: false,
+        show: true,
         vip: true,
         timeout: 30 * 1000,
         url: channel.url + '/videos',
@@ -328,7 +328,7 @@ app.connectScope(
     $scope.addYoutubeChannel = function (youtubeItem) {
       let code_injected = SOCIALBROWSER.from123(`/*###articles-generator/get-youtube-channel-info.js*/`);
       SOCIALBROWSER.ipc('[open new popup]', {
-        show: false,
+        show: true,
         vip: true,
         url: youtubeItem.url,
         timeout: 15 * 1000,
