@@ -156,7 +156,7 @@ site.get(
         } else {
             res.redirect('/404', 404);
         }
-    }
+    },
 );
 
 site.get(
@@ -299,7 +299,7 @@ site.get(
         } else {
             res.redirect('/404', 404);
         }
-    }
+    },
 );
 
 site.get(
@@ -441,7 +441,7 @@ site.get(
         } else {
             res.redirect('/404', 404);
         }
-    }
+    },
 );
 
 site.$shortLinkList = site.connectCollection('shortLinkList');
@@ -516,7 +516,14 @@ site.get(
             let articles = site.articlesList.filter((a) => a.host.like(filter));
             let article = articles[Math.floor(Math.random() * articles.length)];
             if (article) {
-                res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2));
+                let queryString = req.url.split('?');
+                if (queryString.length === 2) {
+                    queryString = '?' + queryString.pop();
+                } else {
+                    queryString = '';
+                }
+
+                res.redirect('/article/' + article.guid + '/' + encodeURI(article.$title2) + queryString);
             } else {
                 res.redirect('/');
             }
@@ -604,7 +611,7 @@ site.get(
                 res.redirect('/');
             }
         });
-    }
+    },
 );
 
 site.get('ads.txt', (req, res) => {
@@ -667,8 +674,8 @@ site.handleNotRoute = function (req, res) {
     }
 };
 
-site.run(()=>{
-    console.log('All Site Loaded !!')
+site.run(() => {
+    console.log('All Site Loaded !!');
 });
 
 if ((deepseek = false)) {

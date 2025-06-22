@@ -643,6 +643,7 @@ module.exports = function init(site) {
         setTimeout(() => {
             site.autoUpdateMovieDescription();
         }, 1000 * 60);
+        console.log('AI finding ...');
         site.$articles.find(
             {
                 select: {},
@@ -655,8 +656,12 @@ module.exports = function init(site) {
                 },
             },
             (err, articlesDoc) => {
+                if (!err && !articlesDoc) {
+                    console.log('AI Not Found Any Article');
+                }
                 if (!err && articlesDoc) {
                     articlesDoc = site.handleArticle(articlesDoc);
+                    console.log('AI Start : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
                         if (!err && text) {
                             text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
@@ -674,14 +679,21 @@ module.exports = function init(site) {
                                         if (index > -1) {
                                             site.articlesList[index] = site.handleArticle({ ...result.doc });
                                         }
+                                        console.log('AI Done: ' + articlesDoc.yts.title);
                                     }
-                                    console.log('AI : ' + articlesDoc.yts.title);
+                                    if (err) {
+                                        console.log(err);
+                                    }
                                 }
                             );
                         }
+                        if (err) {
+                            console.log(err);
+                        }
                     });
                 }
-            }
+            },
+            true
         );
     };
     site.autoUpdateMovieDescription();
