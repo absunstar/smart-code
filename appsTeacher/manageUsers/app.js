@@ -507,7 +507,7 @@ module.exports = function init(site) {
         let setting = site.getSiteSetting(req.host);
         let where = req.body.where || {};
         let search = req.body.search || '';
-        let limit = req.body.limit || 5000;
+        let limit = req.body.limit || 300;
         let select = req.body.select || {
           id: 1,
           image: 1,
@@ -515,7 +515,6 @@ module.exports = function init(site) {
           type: 1,
           active: 1,
           username: 1,
-          mobile: 1,
           firstName: 1,
           schoolYear: 1,
           educationalLevel: 1,

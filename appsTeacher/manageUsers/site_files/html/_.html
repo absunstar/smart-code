@@ -60,27 +60,36 @@
     </div>
     <h2 class="center">##word.Count## : {{count}}</h2>
     <p class="error">{{error}}</p>
-    <div class="table-responsive">
+   <div class="table-responsive">More actions
       <table class="table center hover bold" id="t1">
         <tr>
           <th class="w100">##word.Number##</th>
+          <th class="w150">##word.Logo##</th>
           <th x-data="setting.activeStudentBarcode" ng-show="'##query.type##' == 'student'">##word.Barcode##</th>
           <th>##word.Full Name##</th>
-          <th>##word.Mobile##</th>
-          <th>##word.Educational Level##</th>
-          <th>##word.School Year##</th>
-          <th>##word.School##</th>
+          <th>##word.Status##</th>
+          <th class="not-print">##word.Actions##</th>
         </tr>
         <tr ng-repeat="item in list">
           <td>{{$index + 1}}</td>
-         
+          <td class="center">
+            <i-image view class="logo center" ng-model="item.image"></i-image>
+          </td>
           <td class="center userPrint" x-data="setting.activeStudentBarcode" ng-show="'##query.type##' == 'student'">{{item.barcode}}</td>
           <td class="center">{{item.firstName}} {{item.lastName}}</td>
-          <td class="center">{{item.mobile}}</td>
-          <td class="center">{{item.educationalLevel.name}}</td>
-          <td class="center">{{item.schoolYear.name}}</td>
-          <td class="center">{{item.school.name}}</td>
 
+          <td class="center">
+            <span class="text-success" ng-show="item.active">##word.Active##</span>
+            <span class="text-danger" ng-show="!item.active">##word.Not Active##</span>
+          </td>
+
+          <td class="center not-print">
+            <i-button type="view" title="##word.View##" ng-click="showView(item)"></i-button>
+
+            <i-button type="edit" x-permissions="manageUsersUpdate || manageUsersManage || manageStudents || manageTeachers" title="##word.Edit##" ng-click="showUpdate(item)"></i-button>
+
+            <i-button type="delete" x-permissions="manageUsersDelete || manageUsersManage || manageStudents || manageTeachers" title="##word.Delete##" ng-click="showDelete(item)"></i-button>
+          </td>
         </tr>
       </table>
     </div>
@@ -89,9 +98,10 @@
       x-permissions="manageUsersExport || manageUsersManage || manageStudents || manageTeachers"
       type="export"
       label="##word.Export to excel##"
-      onclick="site.export('#t1' , 'xlsx')"
+      onclick=""
     >
     </i-button>
+    <!-- onclick="site.export('#t1' , 'xlsx')" -->
   </div>
   <div x-import="groups/thermalPrint.html"></div>
 </div>
