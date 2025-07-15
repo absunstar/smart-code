@@ -60,7 +60,7 @@
     </div>
     <h2 class="center">##word.Count## : {{count}}</h2>
     <p class="error">{{error}}</p>
-    <div class="table-responsive">
+   <div class="table-responsive">More actions
       <table class="table center hover bold" id="t1">
         <tr>
           <th class="w100">##word.Number##</th>
@@ -98,9 +98,10 @@
       x-permissions="manageUsersExport || manageUsersManage || manageStudents || manageTeachers"
       type="export"
       label="##word.Export to excel##"
-      onclick="export_to_xlsx('t1' , 'report_value_added.xlsx')"
+      onclick=""
     >
     </i-button>
+    <!-- onclick="site.export('#t1' , 'xlsx')" -->
   </div>
   <div x-import="groups/thermalPrint.html"></div>
 </div>

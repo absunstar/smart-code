@@ -30,12 +30,12 @@ site.time = new Date().getTime();
 site.validateSession = async function (req, res, next) {
   req.setting = site.getSiteSetting(req.host) || {};
 
-  if(req.host.includes("hossamelgwady")) {
-    res.end()
+  if (req.host.includes("hossamelgwady")) {
+    res.end();
     return;
   }
 
-  if(req.setting.defaultEn) {
+  if (req.setting.defaultEn) {
     req.session.language = { id: "En", dir: "rtl", text: "right" };
   }
   next(req, res);
@@ -171,8 +171,12 @@ site.handleNotRoute = function (req, res) {
 site.get("/x-update", (req, res) => {
   site.cmd("git pull", (data) => {
     res.end(data || "error");
-    site.cmd("pm2 restart 15", (data) => {});
+    site.cmd("pm2 restart teacher", (data) => {});
   });
+});
+
+site.get("/x-get-ports", (req, res) => {
+  site.cmd("pm2 ls", (data) => {});
 });
 
 site.get("/x-update-abonaar", (req, res) => {

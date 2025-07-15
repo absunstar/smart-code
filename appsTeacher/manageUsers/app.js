@@ -517,6 +517,7 @@ module.exports = function init(site) {
           username: 1,
           firstName: 1,
           schoolYear: 1,
+          educationalLevel: 1,
           email: 1,
           barcode: 1,
         };
