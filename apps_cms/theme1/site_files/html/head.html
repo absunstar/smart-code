@@ -51,166 +51,166 @@
 <meta name="p:domain_verify" content="d149e0c1a11c5994f3d7e39b423d9c12" />
 
 <style>
-  * { 
-    --primary-color: ##data.setting.siteColor1##;
-    --secondary-color: ##data.setting.siteColor2##;
-    --third-color: ##data.setting.siteColor3##;
+    * {
+        --primary-color: ##data.setting.siteColor1##;
+        --secondary-color: ##data.setting.siteColor2##;
+        --third-color: ##data.setting.siteColor3##;
 
-    --color1: ##data.setting.siteColor1##;
-    --color2: ##data.setting.siteColor2##;
-    --color3: ##data.setting.siteColor3##;
-    --color4: ##data.setting.siteColor4##;
-    --bs-body-color: var(--color4);
+        --color1: ##data.setting.siteColor1##;
+        --color2: ##data.setting.siteColor2##;
+        --color3: ##data.setting.siteColor3##;
+        --color4: ##data.setting.siteColor4##;
+        --bs-body-color: var(--color4);
 
-    --background1: ##data.setting.siteBackground1##;
-    --background1x: ##data.setting.siteBackground1##d1;
-    --background1xx: ##data.setting.siteBackground1##99;
-    --background2: ##data.setting.siteBackground2##;
-    --background2x: ##data.setting.siteBackground2##d1;
-    --background3: ##data.setting.siteBackground3##;
-    --background4: ##data.setting.siteBackground4##;
+        --background1: ##data.setting.siteBackground1##;
+        --background1x: ##data.setting.siteBackground1##d1;
+        --background1xx: ##data.setting.siteBackground1##99;
+        --background2: ##data.setting.siteBackground2##;
+        --background2x: ##data.setting.siteBackground2##d1;
+        --background3: ##data.setting.siteBackground3##;
+        --background4: ##data.setting.siteBackground4##;
 
-    --body-color: ##data.setting.siteColor1##;
+        --body-color: ##data.setting.siteColor1##;
 
-    --bs-body-line-height: 1.8;
-  }
+        --bs-body-line-height: 1.8;
+    }
 </style>
 <style x-data="setting.contentProtected">
-  * {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+    * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 </style>
 
 <script x-data="setting.developerProtected">
-  !(function () {
-    setInterval(() => {
-      if (console.clear) {
-        console.clear();
-      }
-    }, 1000);
+    !(function () {
+        setInterval(() => {
+            if (console.clear) {
+                console.clear();
+            }
+        }, 1000);
 
-    function detectDevTool(allow) {
-      if (isNaN(+allow)) {
-        allow = 100;
-      }
-      var start = +new Date();
-      debugger;
-      var end = +new Date();
-      if (isNaN(start) || isNaN(end) || end - start > allow) {
-        document.location.reload();
-      }
-    }
+        function detectDevTool(allow) {
+            if (isNaN(+allow)) {
+                allow = 100;
+            }
+            var start = +new Date();
+            debugger;
+            var end = +new Date();
+            if (isNaN(start) || isNaN(end) || end - start > allow) {
+                document.location.reload();
+            }
+        }
 
-    if (window.attachEvent) {
-      if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        detectDevTool();
-        window.attachEvent('onresize', detectDevTool);
-        window.attachEvent('onmousemove', detectDevTool);
-        window.attachEvent('onfocus', detectDevTool);
-        window.attachEvent('onblur', detectDevTool);
-      } else {
-        setTimeout(argument.callee, 0);
-      }
-    } else {
-      window.addEventListener('load', detectDevTool);
-      window.addEventListener('resize', detectDevTool);
-      window.addEventListener('mousemove', detectDevTool);
-      window.addEventListener('focus', detectDevTool);
-      window.addEventListener('blur', detectDevTool);
-    }
-  })();
+        if (window.attachEvent) {
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                detectDevTool();
+                window.attachEvent('onresize', detectDevTool);
+                window.attachEvent('onmousemove', detectDevTool);
+                window.attachEvent('onfocus', detectDevTool);
+                window.attachEvent('onblur', detectDevTool);
+            } else {
+                setTimeout(argument.callee, 0);
+            }
+        } else {
+            window.addEventListener('load', detectDevTool);
+            window.addEventListener('resize', detectDevTool);
+            window.addEventListener('mousemove', detectDevTool);
+            window.addEventListener('focus', detectDevTool);
+            window.addEventListener('blur', detectDevTool);
+        }
+    })();
 
-  function ctrlShiftKey(e, keyCode) {
-    return (e.ctrlKey || e.shiftKey) && e.keyCode === keyCode.charCodeAt(0);
-  }
-  document.onkeydown = (e) => {
-    if (event.keyCode === 123 || ctrlShiftKey(e, 'S') || ctrlShiftKey(e, 'I') || ctrlShiftKey(e, 'J') || ctrlShiftKey(e, 'C') || ctrlShiftKey(e, 'U')) {
-      e.preventDefault();
-      return false;
+    function ctrlShiftKey(e, keyCode) {
+        return (e.ctrlKey || e.shiftKey) && e.keyCode === keyCode.charCodeAt(0);
     }
-  };
+    document.onkeydown = (e) => {
+        if (event.keyCode === 123 || ctrlShiftKey(e, 'S') || ctrlShiftKey(e, 'I') || ctrlShiftKey(e, 'J') || ctrlShiftKey(e, 'C') || ctrlShiftKey(e, 'U')) {
+            e.preventDefault();
+            return false;
+        }
+    };
 </script>
 
 <script x-data="setting.mouseProtected">
-  document.oncontextmenu = function () {
-    return false;
-  };
-  document.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.oncontextmenu = function () {
+        return false;
+    };
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
 </script>
 
 <script
-  x-data="setting.allowGoogleAds"
-  title="Auto Ads in All Site and also custom ads"
-  crossorigin="anonymous"
-  async
-  type="text/javascript"
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151"
-  id="googlesyndication"
-  data-ad-client="ca-pub-3372007384613151"
+    x-data="setting.allowGoogleAds"
+    title="Auto Ads in All Site and also custom ads"
+    crossorigin="anonymous"
+    async
+    type="text/javascript"
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3372007384613151"
+    id="googlesyndication"
+    data-ad-client="ca-pub-3372007384613151"
 ></script>
 
 <script
-  x-data="setting.allowGoogleAnalytic"
-  id="googletagmanager"
-  title="tag manager"
-  crossorigin="anonymous"
-  async
-  type="text/javascript"
-  src="https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P"
+    x-data="setting.allowGoogleAnalytic"
+    id="googletagmanager"
+    title="tag manager"
+    crossorigin="anonymous"
+    async
+    type="text/javascript"
+    src="https://www.googletagmanager.com/gtag/js?id=G-SJEBBEFC7P"
 ></script>
 
 <script x-data="setting.allowGoogleAnalytic" nonce="ZjurYrAM5gSnxRZ4_Q6upg">
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
-  gtag('config', 'G-SJEBBEFC7P');
-
-  gtag('consent', 'default', {
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    analytics_storage: 'denied',
-    wait_for_update: 500,
-  });
-  setTimeout(() => {
-    localStorage.setItem('consentGranted', 'true');
+    window.dataLayer = window.dataLayer || [];
     function gtag() {
-      dataLayer.push(arguments);
+        dataLayer.push(arguments);
     }
-    gtag('consent', 'update', {
-      ad_user_data: 'granted',
-      ad_personalization: 'granted',
-      ad_storage: 'granted',
-      analytics_storage: 'granted',
+    gtag('js', new Date());
+    gtag('config', 'G-SJEBBEFC7P');
+
+    gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500,
     });
-  }, 1000 * 2);
+    setTimeout(() => {
+        localStorage.setItem('consentGranted', 'true');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('consent', 'update', {
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            ad_storage: 'granted',
+            analytics_storage: 'granted',
+        });
+    }, 1000 * 2);
 </script>
 
 <script x-data="setting.addScript">
-  window.addScript = function (info) {
-    var script = document.createElement('script');
-    for (const key in info) {
-      if (Object.hasOwnProperty.call(info, key)) {
-        script[key] = info[key];
-        script.setAttribute(key, info[key]);
-      }
-    }
-    document.querySelector('head').appendChild(script);
-  };
-  window.addScriptAsync = function (info) {
-    if (document.readyState !== 'loading') {
-      addScript(info);
-    } else {
-      document.addEventListener('DOMContentLoaded', () => {
-        addScript(info);
-      });
-    }
-  };
+    window.addScript = function (info) {
+        var script = document.createElement('script');
+        for (const key in info) {
+            if (Object.hasOwnProperty.call(info, key)) {
+                script[key] = info[key];
+                script.setAttribute(key, info[key]);
+            }
+        }
+        document.querySelector('head').appendChild(script);
+    };
+    window.addScriptAsync = function (info) {
+        if (document.readyState !== 'loading') {
+            addScript(info);
+        } else {
+            document.addEventListener('DOMContentLoaded', () => {
+                addScript(info);
+            });
+        }
+    };
 </script>
 
 <meta name="ahrefs-site-verification" content="0d566ba8d7cfb261d37a3e8fdf69211764cb5dabddf092e7e640d40d61c836b5" />
