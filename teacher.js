@@ -3,7 +3,7 @@ const site = require("../isite")({
   lang: "Ar",
   language: { id: "Ar", dir: "rtl", text: "right" },
   version: new Date().getTime(),
-  name: "teacher",
+  name: "teacher2",
   savingTime: 10,
   www: false,
   log: true,
@@ -30,8 +30,8 @@ site.time = new Date().getTime();
 site.validateSession = async function (req, res, next) {
   req.setting = site.getSiteSetting(req.host) || {};
 
-  if (req.host.includes("hossamelgwady")) {
-    res.end();
+  if (req.host.contains("hossamelgwady|sawa-edu|abonaar|al-omega")) {
+    res.redirect('https://social-browser.com/');
     return;
   }
 
