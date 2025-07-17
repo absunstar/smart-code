@@ -1,178 +1,203 @@
 /* start mainImage */
 
 .mainImage {
-  width: 100%;
-  height: 500px;
-  margin-top: 10px;
-  background: url(https://ik.imagekit.io/ikmedia/backlit.jpg) no-repeat center;
-  background-size: contain;
-  background-color: var(--background1);
-  border-radius: 15px;
+    width: 100%;
+    height: 500px;
+    margin-top: 10px;
+    background: url(https://ik.imagekit.io/ikmedia/backlit.jpg) no-repeat center;
+    background-size: contain;
+    background-color: var(--background1);
+    border-radius: 15px;
 }
 .MI-newsTilteTime {
-  width: 100%;
-  height: inherit;
-  color: var(--color1);
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 76.04%);
-  border-radius: 15px;
-  direction: rtl;
-  padding-left: 20px;
-  padding-right: 50px;
-  padding-bottom: 50px;
+    width: 100%;
+    height: inherit;
+    color: var(--color1);
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 76.04%);
+    border-radius: 15px;
+    direction: rtl;
+    padding-left: 20px;
+    padding-right: 50px;
+    padding-bottom: 50px;
 }
 
 .MI-newstitle {
-  padding-left: 6px;
-  width: 100%;
-  height: auto;
-  font-size: 24px;
-  font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
+    padding-left: 6px;
+    width: 100%;
+    height: auto;
+    font-size: 24px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .MI-newstime {
-  padding-bottom: 16px;
-  gap: 3px;
+    padding-bottom: 16px;
+    gap: 3px;
 }
 
 /* end mainImage */
 
 .casts {
-  background: var(--background1);
-  color: var(--color1);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-items: stretch;
-  align-items: center;
-  justify-content: space-evenly;
+    background: var(--background1);
+    color: var(--color1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: stretch;
+    align-items: center;
+    justify-content: space-evenly;
 }
 .casts a {
-  padding: 5px;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
+    padding: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
 }
 .casts a:hover {
-  transform: scale(1.2);
+    transform: scale(1.2);
 }
 .casts img {
-  width: 64px !important;
-  height: 64px !important;
-  border-radius: 35px;
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 35px;
 }
 .casts p {
-  font-size: 12px;
-  color: var(--color1);
+    font-size: 12px;
+    color: var(--color1);
 }
 /* start mainSection */
 
 .sideAds {
-  position: sticky;
-  top: 50px;
+    position: sticky;
+    top: 50px;
 }
 
 .articleEditor {
-  padding-bottom: 10px;
-  border-bottom: 5px solid var(--background1);
-  gap: 50px;
-  align-items: center;
-  flex-direction: row;
+    padding-bottom: 10px;
+    border-bottom: 5px solid var(--background1);
+    gap: 50px;
+    align-items: center;
+    flex-direction: row;
 }
 .writerArea {
-  background: var(--background2);
-  padding: 1rem;
-  border-radius: 5px;
-  color: var(--color2);
-  gap: 1rem;
+    background: var(--background2);
+    padding: 1rem;
+    border-radius: 5px;
+    color: var(--color2);
+    gap: 1rem;
 }
 .mainarticle {
-  padding: 0;
-  font-size: large;
-  line-height: 1.8;
-  width: 100%;
+    padding: 0;
+    font-size: large;
+    line-height: 1.8;
+    width: 100%;
 }
 
 .mainarticle iframe {
-  left: 0px;
-  top: 0px;
-  min-height: 50vh;
-  width: 100%;
-  background-color: var(--background1);
-  border: none;
-  border: 5px solid var(--color1);
+    left: 0px;
+    top: 0px;
+    min-height: 50vh;
+    width: 100%;
+    background-color: var(--background1);
+    border: none;
+    border: 5px solid var(--color1);
 }
 
 .mainarticle img {
-  max-width: 90%;
-  width: 90%;
+    max-width: 90%;
+    width: 90%;
 }
+.mainarticle p {
+    word-break: break-word;
+    word-wrap: break-word;
+    margin: 0px;
+    padding: 0px;
+    box-shadow: 0 0 1px 0px #bbb;
+    margin: 5px;
+    padding: 10px;
+}
+.article-description h1 {
+    font-size: 2rem;
+    line-height: 1.5;
+    text-align: center;
+    border-bottom: 3px solid;
+    margin: 20px 0px 40px 0px;
+}
+.article-description h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 30px 0px 30px 0px;
+    border-bottom: 1px solid;
+    padding: 10px;
+    font-weight: bold;
+}
+
 .videoArticle {
-  width: 100%;
-  border-radius: 15px;
-  cursor: pointer;
-  background-color: #000000f2;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto;
+    width: 100%;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #000000f2;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
 }
 .videoArticle .videopalyer {
-  width: 100%;
+    width: 100%;
 }
 .videoArticle video {
-  width: 100%;
-  max-height: 60vh;
+    width: 100%;
+    max-height: 60vh;
 }
 .videoArticle .palyicon {
-  font-size: 50px;
-  color: var(--color1);
-  cursor: pointer;
-  translate: -50%;
-  position: absolute;
+    font-size: 50px;
+    color: var(--color1);
+    cursor: pointer;
+    translate: -50%;
+    position: absolute;
 }
 
 .imagesArticle {
-  width: 909px;
-  height: 511px;
-  padding-top: 16px;
-  padding-left: 16px;
-  background-image: url(https://ik.imagekit.io/ikmedia/backlit.jpg);
-  background-position: top center;
-  background-size: cover;
-  border-radius: 15px;
+    width: 909px;
+    height: 511px;
+    padding-top: 16px;
+    padding-left: 16px;
+    background-image: url(https://ik.imagekit.io/ikmedia/backlit.jpg);
+    background-position: top center;
+    background-size: cover;
+    border-radius: 15px;
 }
 
 .IASmallSlider {
-  height: 480px;
-  gap: 8px;
-  overflow-x: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;
-  z-index: 1;
+    height: 480px;
+    gap: 8px;
+    overflow-x: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    z-index: 1;
 }
 
 .IASmallSlider::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .videoArticle > .videoFile {
-  border-radius: 0;
-  background-color: rgb(44 44 44 / 0%) !important;
+    border-radius: 0;
+    background-color: rgb(44 44 44 / 0%) !important;
 }
 
 .showAnddisplay {
-  display: flex !important;
+    display: flex !important;
 }
 
 /* end mainSection */
@@ -180,11 +205,11 @@
 /* start related news */
 
 .RNheadsection {
-  width: inherit;
+    width: inherit;
 }
 
 .RNSubSection {
-  width: inherit;
+    width: inherit;
 }
 
 /* end related news */
@@ -192,25 +217,25 @@
 @media (max-width: 767px) {
 }
 .steps {
-  background: red;
-  padding: 50px;
-  border-radius: 50px;
-  border: 5px solid #fff;
+    background: red;
+    padding: 50px;
+    border-radius: 50px;
+    border: 5px solid #fff;
 }
 .steps h2 {
-  font-size: 70px;
-  margin-bottom: 50px;
+    font-size: 70px;
+    margin-bottom: 50px;
 }
 .steps .counter {
-  color: #000000;
-  text-align: center;
-  font-size: 60px;
-  font-weight: bold;
+    color: #000000;
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
 }
 .steps a {
-  display: none;
-  font-size: 50px;
-  background: #4caf50;
-  font-weight: bold;
-  border: 2px solid #000;
+    display: none;
+    font-size: 50px;
+    background: #4caf50;
+    font-weight: bold;
+    border: 2px solid #000;
 }
