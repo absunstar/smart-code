@@ -38,6 +38,7 @@ site.validateSession = async function (req, res, next) {
   if (req.setting.defaultEn) {
     req.session.language = { id: "En", dir: "rtl", text: "right" };
   }
+  
   next(req, res);
 };
 site.get({
