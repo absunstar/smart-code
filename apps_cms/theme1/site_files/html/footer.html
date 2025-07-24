@@ -1,116 +1,104 @@
 <div x-data="setting.showFooter" class="row col-12 topFooter d-flex flex-column flex-md-row justify-content-start align-items-start p-md-5 p-4 gap-4">
-  <div class="col-12 col-lg-4 col-md-6 col-sm-10 d-flex flex-column flex-md-column align-content-md-start align-items-md-start align-content-start align-items-center gap-4">
-    <div class="footerLogo">
-      <a href="/">
-        <img src="##data.site_logo##" alt="logo" width="210px" height="83px" />
-        <p>##data.site_name##</p>
-      </a>
-    </div>
-    <div class="w-100 footerMenu d-flex flex-row gap-sm-5 gap-2 justify-content-sm-start align-items-sm-start justify-content-center align-items-center">
-      <ul class="d-flex flex-column gap-2 justify-content-start align-items-start">
-        <li x-list1="menuList1">
-          <a href="##item1.url##"> ##item1.name## </a>
-        </li>
-      </ul>
-      <ul class="d-flex flex-column gap-2 justify-content-start align-items-start">
-        <li x-list1="menuList2">
-          <a href="##item1.url##"> ##item1.name## </a>
-        </li>
-      </ul>
-      <ul class="d-flex flex-column gap-2 justify-content-start align-items-start">
-        <li x-list1="menuList3">
-          <a href="##item1.url##"> ##item1.name## </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="col col-lg-4 col-md-5 col-sm-10 d-flex flex-row justify-content-center align-items-center justify-content-md-start align-items-md-start">
-    <div class="related-tags" x-data="setting.showFooterAd" x-import="theme1/ad-footer.html"></div>
-  </div>
-  <div class="col col-lg-3 col-md-6 col-sm-10 d-flex flex-column justify-content-start align-items-start gap-4 mt-md-4">
-    <div x-data="setting.showFollowUs" class="followUs w-100 d-flex flex-column justify-content-start align-items-start gap-2">
-      <div class="w-100 d-flex flex-row justify-content-center gap-4">
-        <p>##word.Contact Us##</p>
-      </div>
-      <div class="w-100 d-flex flex-row justify-content-center gap-4">
-        <div class="socialMediaIcon">
-          <a href="https://wa.me/966568118373" title="Whatsup Number">
-            <i class="fab fa-whatsapp fa-fw"></i>
-          </a>
+    <div class="col-12 col-lg-4 col-md-6 col-sm-10 d-flex flex-column flex-md-column align-content-md-start align-items-md-start align-content-start align-items-center gap-4">
+        <div class="footerLogo">
+            <a href="/">
+                <img src="##data.site_logo##" alt="logo" width="210px" height="83px" />
+                <p>##data.site_name##</p>
+            </a>
         </div>
-        <div class="socialMediaIcon">
-          <a href="mailto://info@egytag.com" title="Email Address">
-            <i class="far fa-envelope fa-fw"></i>
-          </a>
+        <div class="w-100 footerMenu d-flex flex-row gap-sm-5 gap-2 justify-content-sm-start align-items-sm-start justify-content-center align-items-center">
+            <ul class="d-flex flex-column gap-2 justify-content-start align-items-start">
+                <li x-list1="menuList1">
+                    <a href="##item1.url##"> ##item1.name## </a>
+                </li>
+            </ul>
+            <ul class="d-flex flex-column gap-2 justify-content-start align-items-start">
+                <li x-list1="menuList2">
+                    <a href="##item1.url##"> ##item1.name## </a>
+                </li>
+            </ul>
+            <ul class="d-flex flex-column gap-2 justify-content-start align-items-start">
+                <li x-list1="menuList3">
+                    <a href="##item1.url##"> ##item1.name## </a>
+                </li>
+            </ul>
         </div>
-      </div>
     </div>
-    <div x-data="setting.showEmailService" class="subscripe w-100 d-flex flex-column justify-content-start align-items-start gap-2">
-      <div class="mb-3 w-100 d-flex flex-column justify-content-start align-items-start gap-2">
-        <label for="exampleFormControlInput1" class="w-100 form-label suscripeLabel d-flex flex-row justify-content-start align-items-start"> ##word.Subscribe to our Email Service##</label>
-        <input type="email" class="orm-control" id="exampleFormControlInput1" placeholder="##word.Write Your Email##" />
-        <div class="primaryButton d-flex flex-column justify-content-center align-items-center align-content-center mt-4">
-          <a href="#">
-            <p>##word.Subscribe##</p>
-          </a>
+    <div class="col col-lg-4 col-md-5 col-sm-10 d-flex flex-row justify-content-center align-items-center justify-content-md-start align-items-md-start">
+        <div class="related-tags" x-data="setting.showFooterAd" x-import="theme1/ad-footer.html"></div>
+    </div>
+    <div class="col col-lg-3 col-md-6 col-sm-10 d-flex flex-column justify-content-start align-items-start gap-4 mt-md-4">
+        <div x-data="setting.showFollowUs" class="followUs w-100 d-flex flex-column justify-content-start align-items-start gap-2">
+            <div class="w-100 d-flex flex-row justify-content-center gap-4">
+                <p>##word.Contact Us##</p>
+            </div>
+            <div class="w-100 d-flex flex-row justify-content-center gap-4">
+                <div class="socialMediaIcon">
+                    <a href="https://wa.me/966568118373" title="Whatsup Number">
+                        <i class="fab fa-whatsapp fa-fw"></i>
+                    </a>
+                </div>
+                <div class="socialMediaIcon">
+                    <a href="mailto://info@egytag.com" title="Email Address">
+                        <i class="far fa-envelope fa-fw"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
+        <div x-data="setting.showEmailService" class="subscripe w-100 d-flex flex-column justify-content-start align-items-start gap-2">
+            <div class="mb-3 w-100 d-flex flex-column justify-content-start align-items-start gap-2">
+                <label for="exampleFormControlInput1" class="w-100 form-label suscripeLabel d-flex flex-row justify-content-start align-items-start"> ##word.Subscribe to our Email Service##</label>
+                <input type="email" class="orm-control" id="exampleFormControlInput1" placeholder="##word.Write Your Email##" />
+                <div class="primaryButton d-flex flex-column justify-content-center align-items-center align-content-center mt-4">
+                    <a href="#">
+                        <p>##word.Subscribe##</p>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div x-data="setting.showFooter" class="col bottomFooter d-flex flex-column justify-content-center align-items-center p-3 pb-5 pb-md-3">
-  <a href="//social-browser.com" target="_blank"> ##word.Trusted By Social Browser## </a>
+    <a href="//social-browser.com" target="_blank"> ##word.Trusted By Social Browser## </a>
 </div>
 
 <div id="audiopalyer" class="audio-area flex-row justify-content-center align-items-center">
-  <div id="closeAButton" class="closeAButton closeMButton d-flex flex-row justify-content-start align-items-start">
-    <i class="fas fa-times" onclick="CloseAudio()"></i>
-  </div>
-  <audio controls class=""></audio>
+    <div id="closeAButton" class="closeAButton closeMButton d-flex flex-row justify-content-start align-items-start">
+        <i class="fas fa-times" onclick="CloseAudio()"></i>
+    </div>
+    <audio controls class=""></audio>
 </div>
 
 <div x-features="test" id="videopalyer" class="video-area flex-column justify-content-center align-items-center">
-  <div class="closeVideoButton p-4">
-    <div id="closeVButton" class="closevideo closeMButton d-flex flex-row justify-content-start align-items-start">
-      <i class="fas fa-times" onclick="CloseVideo()"></i>
+    <div class="closeVideoButton p-4">
+        <div id="closeVButton" class="closevideo closeMButton d-flex flex-row justify-content-start align-items-start">
+            <i class="fas fa-times" onclick="CloseVideo()"></i>
+        </div>
     </div>
-  </div>
-  <video class="d-flex" src="" controls></video>
+    <video class="d-flex" src="" controls></video>
 </div>
 
 <div id="iframePlayer" class="video-area flex-column justify-content-center align-items-center">
-  <div class="closeVideoButton p-4">
-    <div id="closeVButton" class="closevideo closeMButton d-flex flex-row justify-content-start align-items-start">
-      <i class="fas fa-times" onclick="CloseYoutube()"></i>
+    <div class="closeVideoButton p-4">
+        <div id="closeVButton" class="closevideo closeMButton d-flex flex-row justify-content-start align-items-start">
+            <i class="fas fa-times" onclick="CloseYoutube()"></i>
+        </div>
     </div>
-  </div>
-  <iframe class="d-flex"></iframe>
+    <iframe class="d-flex"></iframe>
 </div>
 <div id="albumimageslider" class="albumimageslider">
-  <div class="closeImagesliderButton p-4">
-    <div id="closeSButton" class="closeSButton d-flex flex-row justify-content-start align-items-start">
-      <i class="fas fa-times"></i>
+    <div class="closeImagesliderButton p-4">
+        <div id="closeSButton" class="closeSButton d-flex flex-row justify-content-start align-items-start">
+            <i class="fas fa-times"></i>
+        </div>
     </div>
-  </div>
-  <div x-data="setting.showImageSlider" class="imageslider-slider-container">
-    <div class="imageslider-inner-slider">
-      <div class="cardimageslider">
-        <img src="/theme1/images/no.png" alt="Slider Image" />
-      </div>
-      <div class="cardimageslider"></div>
+    <div x-data="setting.showImageSlider" class="imageslider-slider-container">
+        <div class="imageslider-inner-slider">
+            <div class="cardimageslider">
+                <img src="/theme1/images/no.png" alt="Slider Image" />
+            </div>
+            <div class="cardimageslider"></div>
+        </div>
     </div>
-  </div>
 </div>
 <script src="/js/theme1-mini.js?version=##site.time##"></script>
-<script x-features="!login">
-  function refreshArticle() {
-    let arr = document.querySelectorAll('.imageNews a[href]');
-    let a = arr[Math.floor(Math.random() * (arr.length - 1))];
-    document.location.href = a.href;
-  }
-  setTimeout(() => {
-    if (window.SOCIALBROWSER) {
-      refreshArticle();
-    }
-  }, 1000 * 60 * 3);
-</script>

@@ -143,6 +143,12 @@
     font-weight: bold;
 }
 
+.article-description h3 {
+    font-size: 1.4rem;
+    padding-left: 30px;
+    font-weight: bold;
+}
+
 .videoArticle {
     width: 100%;
     border-radius: 15px;
