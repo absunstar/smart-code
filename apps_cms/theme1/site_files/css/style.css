@@ -184,7 +184,7 @@ body {
   .container-sm,
   .container-xl,
   .container-xxl {
-    max-width: 95vw !important;
+    max-width: 90vw !important;
   }
 }
 .breakingNewsSection {
