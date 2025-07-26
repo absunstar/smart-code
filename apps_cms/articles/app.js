@@ -634,7 +634,7 @@ module.exports = function init(site) {
             .catch((err) => callBack(err, null));
     };
     site.getMovieDescription = function (title, callBack) {
-        site.getGeminiResult('write article more than 3000 words about movie "' + title + '" as html code only with no images or links or css', (err, text, result) => {
+        site.getGeminiResult('write article more than 2000 words about movie "' + title + '" as html code only with no images or links or css', (err, text, result) => {
             callBack(err, text, result);
         });
     };
