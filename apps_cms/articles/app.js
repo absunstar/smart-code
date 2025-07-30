@@ -144,7 +144,7 @@ module.exports = function init(site) {
                     }
                     callBack(err, doc);
                 },
-                true
+                true,
             );
         }
     };
@@ -205,7 +205,7 @@ module.exports = function init(site) {
             if (doc.youtube && doc.youtube.url) {
                 doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
             }
-            doc.$content = lang.textContent || lang.htmlContent || '';
+            doc.$content = lang.textContent || lang.htmlContent || 'xxxxxxxxxxxxx';
         } else if (doc.type.id == 9) {
             doc.$title = doc.$title.substring(0, 70);
             doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
@@ -496,13 +496,13 @@ module.exports = function init(site) {
 
                         callBack(
                             null,
-                            site.searchArticleList.find((s) => s.id == ss.id)
+                            site.searchArticleList.find((s) => s.id == ss.id),
                         );
                     } else {
                         callBack(err);
                     }
                 },
-                true
+                true,
             );
         }
     };
@@ -638,12 +638,17 @@ module.exports = function init(site) {
             callBack(err, text, result);
         });
     };
+    site.getYoutubeDescription = function (title , url, callBack) {
+        site.getGeminiResult('اكتب مقال بالغة العربية عن فيديو اليوتيوب بعنوان  :  "'  + title + ' ورابط الفيديو  ' + url + '"   as html code only with no images or links or css', (err, text, result) => {
+            callBack(err, text, result);
+        });
+    };
 
     site.autoUpdateMovieDescription = function () {
         setTimeout(() => {
             site.autoUpdateMovieDescription();
         }, 1000 * 60);
-        console.log('AI finding ...');
+        console.log('AI YTS finding ...');
         site.$articles.find(
             {
                 select: {},
@@ -676,7 +681,7 @@ module.exports = function init(site) {
                                 (err, result) => {
                                     if (!err && result) {
                                         let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
-                                        if (index > -1) {
+                                        if (index !== -1) {
                                             site.articlesList[index] = site.handleArticle({ ...result.doc });
                                         }
                                         console.log('AI Done: ' + articlesDoc.yts.title);
@@ -684,7 +689,7 @@ module.exports = function init(site) {
                                     if (err) {
                                         console.log(err);
                                     }
-                                }
+                                },
                             );
                         }
                         if (err) {
@@ -693,10 +698,71 @@ module.exports = function init(site) {
                     });
                 }
             },
-            true
+            true,
         );
     };
     site.autoUpdateMovieDescription();
+
+    site.autoUpdatYoutubeDescription = function () {
+        setTimeout(() => {
+            site.autoUpdatYoutubeDescription();
+        }, 1000 * 60);
+        console.log('AI youtube finding ...');
+        site.$articles.find(
+            {
+                select: {},
+                where: {
+                    $or: [{ 'translatedList.textContent': '' }, { 'translatedList.textContent': null }],
+                    'type.id': 8,
+                },
+                sort: {
+                    id: -1,
+                },
+            },
+            (err, articlesDoc) => {
+                if (!err && !articlesDoc) {
+                    console.log('AI Not Found Any Youtube Article');
+                }
+                if (!err && articlesDoc) {
+                    articlesDoc = site.handleArticle(articlesDoc);
+                    console.log('AI Youtube Start : ' + articlesDoc.$title);
+                    site.getYoutubeDescription(articlesDoc.$title , articlesDoc.youtube.url , (err, text, result) => {
+                        if (!err && text) {
+                            text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
+                            text = site.$.load(text, null, false).html();
+                            console.log(text);
+                            articlesDoc.translatedList[0].textContent = text;
+                            site.$articles.edit(
+                                {
+                                    where: {
+                                        id: articlesDoc.id,
+                                    },
+                                    set: articlesDoc,
+                                },
+                                (err, result) => {
+                                    if (!err && result) {
+                                        let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
+                                        if (index > -1) {
+                                            site.articlesList[index] = site.handleArticle({ ...result.doc });
+                                        }
+                                        console.log('AI Youtube Done: ' + articlesDoc.youtube.url);
+                                    }
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                },
+                            );
+                        }
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            },
+            true,
+        );
+    };
+    site.autoUpdatYoutubeDescription();
 
     site.prepareArticles();
 
@@ -721,9 +787,9 @@ module.exports = function init(site) {
                     language: language,
                     appName: req.word('Articles'),
                 },
-                { parser: 'html' }
+                { parser: 'html' },
             );
-        }
+        },
     );
 
     site.post(
@@ -732,7 +798,7 @@ module.exports = function init(site) {
         },
         (req, res) => {
             res.json(site.articleTypes);
-        }
+        },
     );
 
     site.post(
@@ -741,7 +807,7 @@ module.exports = function init(site) {
         },
         (req, res) => {
             res.json(supportedLanguageList);
-        }
+        },
     );
 
     let http_agent = new site.http.Agent({
@@ -1105,7 +1171,7 @@ module.exports = function init(site) {
                     response.error = 'Code Already Exist';
                 }
                 res.json(response);
-            }
+            },
         );
     });
     site.post('/api/articles/update-movie-description', (req, res) => {
@@ -1159,7 +1225,7 @@ module.exports = function init(site) {
                             response.error = err?.message;
                         }
                         res.json(response);
-                    }
+                    },
                 );
             } else {
                 res.json(response);
@@ -1189,7 +1255,7 @@ module.exports = function init(site) {
                         res.json(response);
                     }
                 },
-                true
+                true,
             );
         }
     });
@@ -1221,7 +1287,7 @@ module.exports = function init(site) {
                     response.error = err?.message;
                 }
                 res.json(response);
-            }
+            },
         );
     });
 
@@ -1330,7 +1396,7 @@ module.exports = function init(site) {
                 },
                 {
                     'translatedList.tagsList': site.get_RegExp(req.body.search, 'i'),
-                }
+                },
             );
         }
         if (where['title']) {
@@ -1441,7 +1507,7 @@ module.exports = function init(site) {
                     response.error = err.message;
                 }
                 res.json(response);
-            }
+            },
         );
     });
 
@@ -1490,7 +1556,7 @@ module.exports = function init(site) {
                     response.error = err.message;
                 }
                 res.json(response);
-            }
+            },
         );
     });
 
@@ -1524,7 +1590,7 @@ module.exports = function init(site) {
                             if (lang.tagsList.includes(doc.yts.year)) {
                                 lang.tagsList.splice(
                                     lang.tagsList.findIndex((t) => t == doc.yts.year),
-                                    1
+                                    1,
                                 );
                                 lang.tagsList.push(doc.yts.year.toString());
                             } else if (!lang.tagsList.includes(doc.yts.year.toString())) {
@@ -1541,7 +1607,7 @@ module.exports = function init(site) {
                 } else {
                     res.json({ done: false });
                 }
-            }
+            },
         );
     });
 
@@ -1837,7 +1903,7 @@ module.exports = function init(site) {
                 res.set('Content-Type', 'application/xml');
                 res.end(xml);
             },
-            true
+            true,
         );
 
         //   site.articlesList

@@ -108,11 +108,7 @@
                   <div class="center">
                     <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" alt="##data.article.$title##" />
                   </div>
-                  <div x-data="article.$yts" class="row text-left yts-info">
-                    <p class="bold">Movie Rating : <span class="yellow"> ##data.article.yts.rating##</span></p>
-                    <p class="bold">Movie Language : <span class="yellow"> ##data.article.yts.language##</span></p>
-                    <p class="bold">Movie Type : <span class="yellow"> ##data.article.yts.type##</span></p>
-                  </div>
+                 
                 </div>
 
                 <div x-data="article.$yts" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
@@ -128,9 +124,7 @@
                     <a rel="nofollow" target="_blank" class="btn btn-info p-2 italic" href="##data.article.yts.$subtitleURL##"> download Subtitles </a>
                   </div>
 
-                  <div x-data="article.$content" class="d-flex gap-2 p-2 justify-content-center">
-                    <div class="article-description">##data.article.$content##</div>
-                  </div>
+                 
 
                   <div x-data="article.$castList" class="d-flex gap-2 p-2 justify-content-center casts">
                     <a x-list1="article.$castList" href="##item1.url##" rel="nofollow" target="_blank">
@@ -138,7 +132,18 @@
                       <p>##item1.name##</p>
                     </a>
                   </div>
+
+                   <div x-data="article.$yts" class="row text-left yts-info">
+                    <p class="bold">Movie Rating : <span class="yellow"> ##data.article.yts.rating##</span></p>
+                    <p class="bold">Movie Language : <span class="yellow"> ##data.article.yts.language##</span></p>
+                    <p class="bold">Movie Type : <span class="yellow"> ##data.article.yts.type##</span></p>
+                  </div>
+                  
                 </div>
+
+                 <div x-data="article.$content" class="d-flex gap-2 p-2 justify-content-center">
+                    <div class="article-description">##data.article.$content##</div>
+                  </div>
 
                 <div x-data="article.$hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.$video.imageURL##')">
                   <div id="videopalyer" class="videopalyer flex-column justify-content-center align-items-center">
