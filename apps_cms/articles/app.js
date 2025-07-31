@@ -648,9 +648,6 @@ module.exports = function init(site) {
     };
 
     site.autoUpdateMovieDescription = function () {
-        setTimeout(() => {
-            site.autoUpdateMovieDescription();
-        }, 1000 * 60);
         console.log('AI YTS finding ...');
         site.$articles.find(
             {
@@ -671,6 +668,15 @@ module.exports = function init(site) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Start : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
+                        if (result.error?.code == 429) {
+                            setTimeout(() => {
+                                site.autoUpdateMovieDescription();
+                            }, 1000 * 60 * 60);
+                        } else {
+                            setTimeout(() => {
+                                site.autoUpdateMovieDescription();
+                            }, 1000 * 60);
+                        }
                         if (!err && text) {
                             text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             articlesDoc.translatedList[0].textContent = text;
@@ -707,9 +713,6 @@ module.exports = function init(site) {
     site.autoUpdateMovieDescription();
 
     site.autoUpdatYoutubeDescription = function () {
-        setTimeout(() => {
-            site.autoUpdatYoutubeDescription();
-        }, 1000 * 60);
         console.log('AI youtube finding ...');
         site.$articles.find(
             {
@@ -730,7 +733,15 @@ module.exports = function init(site) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
-                        console.log(result);
+                        if (result.error?.code == 429) {
+                            setTimeout(() => {
+                                site.autoUpdatYoutubeDescription();
+                            }, 1000 * 60 * 60);
+                        } else {
+                            setTimeout(() => {
+                                site.autoUpdatYoutubeDescription();
+                            }, 1000 * 60);
+                        }
                         if (!err && text) {
                             text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             text = site.$.load(text, null, false).html();
