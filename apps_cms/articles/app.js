@@ -638,10 +638,13 @@ module.exports = function init(site) {
             callBack(err, text, result);
         });
     };
-    site.getYoutubeDescription = function (title , url, callBack) {
-        site.getGeminiResult('اكتب مقال بالغة العربية عن فيديو اليوتيوب بعنوان  :  "'  + title + ' ورابط الفيديو  ' + url + '"   as html code only with no images or links or css', (err, text, result) => {
-            callBack(err, text, result);
-        });
+    site.getYoutubeDescription = function (title, url, callBack) {
+        site.getGeminiResult(
+            'اكتب مقال بالغة العربية عن فيديو اليوتيوب بعنوان  :  "' + title + ' ورابط الفيديو  ' + url + '"   as html code only with no images or links or css',
+            (err, text, result) => {
+                callBack(err, text, result);
+            },
+        );
     };
 
     site.autoUpdateMovieDescription = function () {
@@ -725,8 +728,9 @@ module.exports = function init(site) {
                 }
                 if (!err && articlesDoc) {
                     articlesDoc = site.handleArticle(articlesDoc);
-                    console.log('AI Youtube Start : ' + articlesDoc.$title);
-                    site.getYoutubeDescription(articlesDoc.$title , articlesDoc.youtube.url , (err, text, result) => {
+                    console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
+                    site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
+                        console.log(result);
                         if (!err && text) {
                             text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             text = site.$.load(text, null, false).html();
@@ -754,7 +758,7 @@ module.exports = function init(site) {
                             );
                         }
                         if (err) {
-                            console.log(err);
+                            console.error(err);
                         }
                     });
                 }
