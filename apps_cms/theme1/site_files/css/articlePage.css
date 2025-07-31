@@ -115,8 +115,8 @@
 }
 
 .mainarticle img {
-    max-width: 90%;
-    width: 90%;
+    width: 100%;
+    max-height: 450px;
 }
 .mainarticle p {
     word-break: break-word;
