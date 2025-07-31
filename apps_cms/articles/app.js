@@ -669,6 +669,7 @@ module.exports = function init(site) {
                     console.log('AI Start : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
                         if (result.error?.code == 429) {
+                            console.log(result);
                             setTimeout(() => {
                                 site.autoUpdateMovieDescription();
                             }, 1000 * 60 * 60);
@@ -734,6 +735,7 @@ module.exports = function init(site) {
                     console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
                         if (result.error?.code == 429) {
+                            console.log(result);
                             setTimeout(() => {
                                 site.autoUpdatYoutubeDescription();
                             }, 1000 * 60 * 60);
