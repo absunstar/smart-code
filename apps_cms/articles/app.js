@@ -749,7 +749,6 @@ module.exports = function init(site) {
                         if (!err && text) {
                             text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             text = site.$.load(text, null, false).html();
-                            console.log(text);
                             articlesDoc.translatedList[0].textContent = text;
                             site.$articles.edit(
                                 {
