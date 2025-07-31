@@ -574,7 +574,9 @@ module.exports = function init(site) {
     };
 
     site.getGeminiResult = function (ask, callBack) {
-        const GOOGLE_API_KEY = site.f1('31365783413727823156323431786252313547623139567432166732381717492835171932794774465937263518238345566727');
+        let GOOGLE_API_KEY = site.f1('31365783413727823156323431786252313547623139567432166732381717492835171932794774465937263518238345566727');
+        GOOGLE_API_KEY = site.f1('31365783413727823139174147581758397632353975817945593726385427624678617536175678361476534274267546765259');
+
         site.fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GOOGLE_API_KEY, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
