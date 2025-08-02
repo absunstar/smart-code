@@ -613,7 +613,7 @@ module.exports = function init(site) {
                 }
                 if (d.error?.code == 429) {
                     site.GOOGLE_API_KEY_index++;
-                    if (site.GOOGLE_API_KEY_index >= GOOGLE_API_KEY_list.length) {
+                    if (site.GOOGLE_API_KEY_index >= site.GOOGLE_API_KEY_list.length) {
                         site.GOOGLE_API_KEY_index = 0;
                     }
                     site.getGeminiResult(ask, callBack);
