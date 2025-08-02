@@ -576,10 +576,13 @@ module.exports = function init(site) {
     site.GOOGLE_API_KEY_list = [
         '31365783413727823156323431786252313547623139567432166732381717492835171932794774465937263518238345566727',
         '31365783413727823139174147581758397632353975817945593726385427624678617536175678361476534274267546765259',
+        '31365783413727823215567341375736327932174558571626394749371552144617271443758273355452582839574337185675',
     ];
 
+    site.GOOGLE_API_KEY_index = 1;
+
     site.getGeminiResult = function (ask, callBack) {
-        let GOOGLE_API_KEY = site.f1(site.GOOGLE_API_KEY_list[0]);
+        let GOOGLE_API_KEY = site.f1(site.GOOGLE_API_KEY_list[site.GOOGLE_API_KEY_index]);
 
         site.fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GOOGLE_API_KEY, {
             method: 'POST',
@@ -608,7 +611,15 @@ module.exports = function init(site) {
                         }
                     });
                 }
-                callBack(null, text, d);
+                if (d.error?.code == 429) {
+                    site.GOOGLE_API_KEY_index++;
+                    if (site.GOOGLE_API_KEY_index >= GOOGLE_API_KEY_list.length) {
+                        site.GOOGLE_API_KEY_index = 0;
+                    }
+                    site.getGeminiResult(ask, callBack);
+                } else {
+                    callBack(null, text, d);
+                }
             })
             .catch((err) => callBack(err, null));
     };
@@ -674,16 +685,10 @@ module.exports = function init(site) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Start : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
-                        if (result.error?.code == 429) {
-                            console.log(result);
-                            setTimeout(() => {
-                                site.autoUpdateMovieDescription();
-                            }, 1000 * 60 * 60);
-                        } else {
-                            setTimeout(() => {
-                                site.autoUpdateMovieDescription();
-                            }, 1000 * 60);
-                        }
+                        setTimeout(() => {
+                            site.autoUpdateMovieDescription();
+                        }, 1000 * 60);
+
                         if (!err && text) {
                             text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             articlesDoc.translatedList[0].textContent = text;
@@ -740,16 +745,10 @@ module.exports = function init(site) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
-                        if (result.error?.code == 429) {
-                            console.log(result);
-                            setTimeout(() => {
-                                site.autoUpdatYoutubeDescription();
-                            }, 1000 * 60 * 60);
-                        } else {
-                            setTimeout(() => {
-                                site.autoUpdatYoutubeDescription();
-                            }, 1000 * 60);
-                        }
+                        setTimeout(() => {
+                            site.autoUpdatYoutubeDescription();
+                        }, 1000 * 60);
+
                         if (!err && text) {
                             text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             text = site.$.load(text, null, false).html();
