@@ -110,7 +110,7 @@ site.get(
 
             options.menuList = site.menuList
                 .filter((m) => m.host.like(options.filter))
-                .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url }));
+                .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url , $target : c.$target}));
 
             options.menuList1 = options.menuList.slice(0, 8);
             options.menuList2 = options.menuList.slice(8, 20);

@@ -22,10 +22,13 @@ module.exports = function init(site) {
       m.host = m.host || '';
       m.type = m.type || {};
       m.$url = '#';
+       m.$target = '_self'
       if (m.type.id === 1 && m.category) {
         m.$url = '/category/' + m.category.id + '/' + m.category.name.replaceAll(' ', '+');
       } else if (m.type.id === 2) {
       } else if (m.type.id === 3) {
+        m.$url = m.externalLink;
+        m.$target = '_blank'
       } else if (m.type.id === 4) {
         m.$url = m.internalLink;
       } else if (m.type.id === 5) {
