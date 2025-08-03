@@ -579,7 +579,7 @@ module.exports = function init(site) {
         '31365783413727823215567341375736327932174558571626394749371552144617271443758273355452582839574337185675',
     ];
 
-    site.GOOGLE_API_KEY_index = 1;
+    site.GOOGLE_API_KEY_index = 0;
 
     site.getGeminiResult = function (ask, callBack) {
         let GOOGLE_API_KEY = site.f1(site.GOOGLE_API_KEY_list[site.GOOGLE_API_KEY_index]);
@@ -612,6 +612,7 @@ module.exports = function init(site) {
                     });
                 }
                 if (d.error?.code == 429) {
+                    console.log('Error API KEY : ' + site.GOOGLE_API_KEY_index);
                     site.GOOGLE_API_KEY_index++;
                     if (site.GOOGLE_API_KEY_index >= site.GOOGLE_API_KEY_list.length) {
                         site.GOOGLE_API_KEY_index = 0;
