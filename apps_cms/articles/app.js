@@ -736,7 +736,7 @@ module.exports = function init(site) {
                 select: {},
                 where: {
                     $or: [{ 'translatedList.textContent': '' }, { 'translatedList.textContent': null }],
-                    'type.id': 8,
+                    youtube: { $exists: true },
                 },
                 sort: {
                     id: -1,
@@ -754,6 +754,7 @@ module.exports = function init(site) {
                             text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             text = site.$.load(text, null, false).html();
                             articlesDoc.translatedList[0].textContent = text;
+                            articlesDoc.type = site.articleTypes.find((t) => t.id === 8);
                             site.$articles.edit(
                                 {
                                     where: {

@@ -1,47 +1,47 @@
 [
-  {
-    "id": 1,
-    "En": "Standred",
-    "Ar": "افتراضى"
-  },
-  {
-    "id": 2,
-    "En": "advanced",
-    "Ar": "متطور"
-  },
-  {
-    "id": 3,
-    "En": "Multi-Paragraph",
-    "Ar": "متعدد الفقرات"
-  },
-  {
-    "id": 4,
-    "En": "Multi-Paragraph advanced",
-    "Ar": "متعدد الفقرات متطور"
-  },
-  {
-    "id": 5,
-    "En": "Multi-Image",
-    "Ar": "متعدد الصور"
-  },
-  {
-    "id": 6,
-    "En": "google-news",
-    "Ar": "أخبار جوجل"
-  },
-  {
-    "id": 7,
-    "En": "yts-movie",
-    "Ar": "yts-movie"
-  },
-  {
-    "id": 8,
-    "En": "Youtube Video",
-    "Ar": "Youtube Video"
-  },
-  {
-    "id": 9,
-    "En": "Facebook Post",
-    "Ar": "Facebook Post"
-  }
+    {
+        "id": 1,
+        "En": "Standred",
+        "Ar": "افتراضى"
+    },
+    {
+        "id": 2,
+        "En": "advanced",
+        "Ar": "متطور"
+    },
+    {
+        "id": 3,
+        "En": "Multi-Paragraph",
+        "Ar": "متعدد الفقرات"
+    },
+    {
+        "id": 4,
+        "En": "Multi-Paragraph advanced",
+        "Ar": "متعدد الفقرات متطور"
+    },
+    {
+        "id": 5,
+        "En": "Multi-Image",
+        "Ar": "متعدد الصور"
+    },
+    {
+        "id": 6,
+        "En": "google-news",
+        "Ar": "أخبار جوجل"
+    },
+    {
+        "id": 7,
+        "En": "yts-movie",
+        "Ar": "yts-movie"
+    },
+    {
+        "id": 8,
+        "En": "Youtube Video",
+        "Ar": "Youtube Video"
+    },
+    {
+        "id": 9,
+        "En": "Facebook Post",
+        "Ar": "Facebook Post"
+    }
 ]
