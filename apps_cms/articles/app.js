@@ -621,6 +621,9 @@ module.exports = function init(site) {
                         site.GOOGLE_API_KEY_index = 0;
                     }
                     site.getGeminiResult(ask, callBack);
+                } else if (d.error) {
+                    console.log(d.error);
+                    callBack(d.error, null);
                 } else {
                     callBack(null, text, d);
                 }
@@ -718,8 +721,8 @@ module.exports = function init(site) {
                         }
                     });
                 }
-                  if(err){
-                    console.log(err)
+                if (err) {
+                    console.log(err);
                 }
             },
             true,
