@@ -579,7 +579,7 @@ module.exports = function init(site) {
         '31365783413727823215567341375736327932174558571626394749371552144617271443758273355452582839574337185675',
         '31365783413727823216626138542332485413174779476232183667315375813619272732568182371661812717426331745181',
         '31365783413727823179177227745761461717193257373626374673485413232717521531795269455742393774372345758623',
-        '31365783413727823157524337792324435437173579271636371734263913783254236941795672327582764675517942786223'
+        '31365783413727823157524337792324435437173579271636371734263913783254236941795672327582764675517942786223',
     ];
 
     site.GOOGLE_API_KEY_index = 0;
@@ -683,16 +683,12 @@ module.exports = function init(site) {
             },
             (err, articlesDoc) => {
                 if (!err && !articlesDoc) {
-                    console.log('AI Not Found Any Article');
+                    console.log('AI Not Found Any YTS');
                 }
                 if (!err && articlesDoc) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Start : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
-                        setTimeout(() => {
-                            site.autoUpdateMovieDescription();
-                        }, 1000 * 60);
-
                         if (!err && text) {
                             text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             articlesDoc.translatedList[0].textContent = text;
@@ -722,11 +718,13 @@ module.exports = function init(site) {
                         }
                     });
                 }
+                  if(err){
+                    console.log(err)
+                }
             },
             true,
         );
     };
-    site.autoUpdateMovieDescription();
 
     site.autoUpdatYoutubeDescription = function () {
         console.log('AI youtube finding ...');
@@ -749,10 +747,6 @@ module.exports = function init(site) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
-                        setTimeout(() => {
-                            site.autoUpdatYoutubeDescription();
-                        }, 1000 * 60);
-
                         if (!err && text) {
                             text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
                             text = site.$.load(text, null, false).html();
@@ -783,11 +777,18 @@ module.exports = function init(site) {
                         }
                     });
                 }
+                if (err) {
+                    console.log(err);
+                }
             },
             true,
         );
     };
-    site.autoUpdatYoutubeDescription();
+
+    setInterval(() => {
+        site.autoUpdatYoutubeDescription();
+        site.autoUpdateMovieDescription();
+    }, 1000 * 60);
 
     site.prepareArticles();
 
