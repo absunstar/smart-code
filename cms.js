@@ -110,7 +110,7 @@ site.get(
 
             options.menuList = site.menuList
                 .filter((m) => m.host.like(options.filter))
-                .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url , target : c.$target}));
+                .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url, target: c.$target }));
 
             options.menuList1 = options.menuList.slice(0, 8);
             options.menuList2 = options.menuList.slice(8, 20);
@@ -230,7 +230,7 @@ site.get(
 
             options.menuList = site.menuList
                 .filter((m) => m.host.like(options.filter))
-                .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url , target : c.$target}));
+                .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url, target: c.$target }));
 
             options.menuList1 = options.menuList.slice(0, 8);
             options.menuList2 = options.menuList.slice(8, 20);
@@ -381,7 +381,7 @@ site.get(
 
             options.menuList = site.menuList
                 .filter((m) => m.host.like(options.filter))
-                .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url , target : c.$target}));
+                .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url, target: c.$target }));
 
             options.menuList1 = options.menuList.slice(0, 8);
             options.menuList2 = options.menuList.slice(8, 20);
@@ -568,7 +568,7 @@ site.get(
 
                 options.menuList = site.menuList
                     .filter((m) => m.host.like(options.filter))
-                    .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url , target : c.$target}));
+                    .map((c) => ({ id: c.id, name: c.translatedList.find((l) => l.language.id == language.id)?.name || c.translatedList[0].name, url: c.$url, target: c.$target }));
                 options.menuList1 = options.menuList.slice(0, 8);
                 options.menuList2 = options.menuList.slice(8, 20);
                 options.menuList3 = options.menuList.slice(20);
@@ -682,6 +682,12 @@ if ((deepseek = false)) {
     console.log('Start Ask Deepseek !!');
     site.getDeepseekResult('write article about social browser', (err, text) => {
         console.log(err || text);
+    });
+}
+
+if ((chatgpt = true)) {
+    site.getChatgptResult('get top ketword search in egypt today', (err, result) => {
+        console.log(err || result);
     });
 }
 

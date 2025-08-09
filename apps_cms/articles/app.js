@@ -657,6 +657,22 @@ module.exports = function init(site) {
             })
             .catch((err) => callBack(err, null));
     };
+    site.getChatgptResult = function (ask, callBack) {
+        const CHATGPT_API_KEY = site.f1('46786567461923694353767848585239461867414559367835744274483636763839571632563736345417163217131728391721481942684717627446354716315442813676426934387175363756744216571626162737463876493236766843392775321723764835131537173174315872534375422431347625351886562719621743568573327842344776177835764173417952423557526345195737361537734536375927764227427827694557371335193778461642832716856741753271253923783239237246591772271921812654238347751691');
+        site.fetch('https://api.openai.com/v1/responses', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + CHATGPT_API_KEY },
+            body: {
+                model: 'gpt-5',
+                input: ask,
+            },
+        })
+            .then((d) => d.json())
+            .then((result) => {
+                callBack(null, result);
+            })
+            .catch((err) => callBack(err, null));
+    };
     site.getMovieDescription = function (title, callBack) {
         site.getGeminiResult('write article more than 2000 words about movie "' + title + '" as html code only with no images or links or css', (err, text, result) => {
             callBack(err, text, result);
