@@ -232,6 +232,8 @@ module.exports = function init(site) {
         command += 'وحوله الى كود html بدون صور او روابط او css';
 
         site.getGeminiResult(command, (err, text, result) => {
+            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
+
             callBack(err, text, result);
         });
     };
