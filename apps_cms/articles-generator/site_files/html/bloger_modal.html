@@ -24,18 +24,18 @@
             </div>
 
             <div class="row padding border margin">
-                <i-button type="add" ng-hide="busy" ng-click="writePosts()" label="Send Posts to my  Blogger"></i-button>
+                <i-button type="add" ng-hide="busy" ng-click="writeBloggerTtitles()" label="Generate Blogger Titles"></i-button>
             </div>
 
             <div class="padding margin row">
                 <h2>count : {{bloggerPostList.length}}</h2>
                 <table class="table hover">
                     <tr>
-                        <th>ID</th>
+                        <th>Title</th>
                         <th>URL</th>
                     </tr>
                     <tr ng-repeat="blog in bloggerPostList">
-                        <td>{{blog.id}}</td>
+                        <td>{{blog.title}}</td>
                         <td>{{blog.url}}</td>
                     </tr>
                 </table>

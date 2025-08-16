@@ -73,6 +73,18 @@ app.connectScope(
                 $scope.bloger.info = res.data.bloger;
             });
         };
+
+            $scope.writeBloggerTtitles = function () {
+            $http({
+                url: `/api/generator/bloger-write-titles`,
+                method: 'POST',
+                data: { bloggerID: $scope.bloggerID, title: $scope.bloggerPostTitle , count : $scope.bloggerPostCount },
+            }).then((res) => {
+                SOCIALBROWSER.log(res.data);
+                $scope.bloggerPostList = res.data.list;
+            });
+        };
+
         $scope.writePosts = function () {
             $http({
                 url: `/api/generator/bloger-write-posts`,

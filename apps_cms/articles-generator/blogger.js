@@ -204,25 +204,47 @@ module.exports = function init(site) {
         });
     };
 
-    site.bloggerManager.aiWritePost = function (options, callBack) {
+    site.bloggerManager.aiWriteTitles = function (options, callBack) {
         let command1 = 'اكتب ' + options.count + ' عناوين مقالات باللغة العربية عن ';
         command1 += ' " ' + options.title + ' " ';
         site.getGeminiResult(command1, (err, text, result) => {
-          let list = []
+            let list = [];
             if (text) {
                 let matches = text.match(/\*\*.*?\*\*/g);
                 let handled = false;
                 if (matches) {
                     for (let i = 0; i < matches.length; i++) {
                         let v = matches[i];
-                        if(v){
-                          v = v.replaceAll('**' , '');
-                          list.push(v)
+                        if (v) {
+                            v = v.replaceAll('**', '');
+                            list.push({ id : list.length + 1 ,  title: v });
                         }
                     }
                 }
             }
-            callBack(err, text, result , list);
+            callBack(err, text, result, list);
+        });
+    };
+
+    site.bloggerManager.aiWritePost = function (options, callBack) {
+        let command1 = 'اكتب ' + options.count + ' عناوين مقالات باللغة العربية عن ';
+        command1 += ' " ' + options.title + ' " ';
+        site.getGeminiResult(command1, (err, text, result) => {
+            let list = [];
+            if (text) {
+                let matches = text.match(/\*\*.*?\*\*/g);
+                let handled = false;
+                if (matches) {
+                    for (let i = 0; i < matches.length; i++) {
+                        let v = matches[i];
+                        if (v) {
+                            v = v.replaceAll('**', '');
+                            list.push(v);
+                        }
+                    }
+                }
+            }
+            callBack(err, text, result, list);
         });
 
         // let command = 'اكتب مقال باللغة العربية اكثر من 3000 كلمة عن ';
