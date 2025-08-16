@@ -79,7 +79,7 @@ app.connectScope(
                 method: 'POST',
                 data: { bloggerID: $scope.bloggerID, title: $scope.bloggerPostTitle , count : $scope.bloggerPostCount },
             }).then((res) => {
-                SOCIALBROWSER.log(res);
+                SOCIALBROWSER.log(res.data);
                 $scope.getBloggerPosts();
             });
         };

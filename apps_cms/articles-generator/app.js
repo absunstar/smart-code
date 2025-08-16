@@ -69,11 +69,14 @@ module.exports = function init(site) {
     site.onPOST({ name: '/api/generator/bloger-write-posts', public: true }, (req, res) => {
         site.bloggerManager.list = [];
 
-        // site.bloggerManager.sendBloggerPosts(req.data, callBack);
-
-        res.json({
-            done: true,
-            data: req.data,
+        site.bloggerManager.aiWritePost(req.data.title, (err, text, result) => {
+            res.json({
+                done: true,
+                userData: req.data,
+                error: err,
+                text: text,
+                result: result,
+            });
         });
     });
 
