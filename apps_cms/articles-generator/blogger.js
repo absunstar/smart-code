@@ -207,8 +207,22 @@ module.exports = function init(site) {
     site.bloggerManager.aiWritePost = function (options, callBack) {
         let command1 = 'اكتب ' + options.count + ' عناوين مقالات باللغة العربية عن ';
         command1 += ' " ' + options.title + ' " ';
-        site.getPostTitles(command1, (err, text, result) => {
-            callBack(err, text, result);
+        site.getGeminiResult(command1, (err, text, result) => {
+          let list = []
+            if (text) {
+                let matches = text.match(/\*\*.*?\*\*/g);
+                let handled = false;
+                if (matches) {
+                    for (let i = 0; i < matches.length; i++) {
+                        let v = matches[i];
+                        if(v){
+                          v = v.replaceAll('**' , '');
+                          list.push(v)
+                        }
+                    }
+                }
+            }
+            callBack(err, text, result , list);
         });
 
         // let command = 'اكتب مقال باللغة العربية اكثر من 3000 كلمة عن ';
@@ -218,64 +232,5 @@ module.exports = function init(site) {
         // site.getGeminiResult(command, (err, text, result) => {
         //     callBack(err, text, result);
         // });
-    };
-
-    site.getPostTitles = function (ask, callBack) {
-        let GOOGLE_API_KEY = site.f1(site.GOOGLE_API_KEY_list[site.GOOGLE_API_KEY_index]);
-
-        site.fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GOOGLE_API_KEY, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'x-goog-api-key': GOOGLE_API_KEY },
-            body: {
-                contents: [
-                    {
-                        parts: [
-                            {
-                                text: ask,
-                            },
-                        ],
-                    },
-                ],
-                generationConfig: {
-                    responseMimeType: 'application/json',
-                    responseSchema: {
-                        type: 'ARRAY',
-                        items: {
-                            type: 'OBJECT',
-                            properties: {
-                                title: { type: 'STRING' },
-                            },
-                        },
-                    },
-                },
-            },
-        })
-            .then((d) => d.json())
-            .then((d) => {
-                let text = '';
-                if (d.candidates) {
-                    d.candidates.forEach((candidate) => {
-                        if (candidate.content?.parts) {
-                            candidate.content.parts.forEach((part) => {
-                                text += part.text + '\n';
-                            });
-                        }
-                    });
-                }
-                if (d.error?.code == 429) {
-                    console.log('Error API KEY : ' + site.GOOGLE_API_KEY_index);
-                    site.GOOGLE_API_KEY_index++;
-                    if (site.GOOGLE_API_KEY_index >= site.GOOGLE_API_KEY_list.length) {
-                        site.GOOGLE_API_KEY_index = 0;
-                    }
-                    site.getGeminiResult(ask, callBack);
-                } else if (d.error) {
-                    console.log(d.error);
-                    callBack(d.error, null);
-                } else {
-                    callBack(null, text, d);
-                }
-            })
-            .catch((err) => callBack(err, null));
     };
 };
