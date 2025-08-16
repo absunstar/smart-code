@@ -233,7 +233,8 @@ module.exports = function init(site) {
 
         site.getGeminiResult(command, (err, text, result) => {
             text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
-
+            let $ = site.$.load(text);
+            text = $('body').html();
             callBack(err, text, result);
         });
     };
