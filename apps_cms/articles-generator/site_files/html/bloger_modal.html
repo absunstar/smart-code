@@ -28,21 +28,19 @@
             </div>
 
             <div class="padding margin row">
-                <h2>count : {{bloggerArticleList.length}}</h2>
-                <table class="table hover">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Content</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr ng-repeat="blog in bloggerArticleList">
-                        <td>{{blog.id}}</td>
-                        <td><i-control ng-model="blog.title"></i-control></td>
-                        <td><i-textarea ng-model="blog.content"></i-textarea></td>
-                        <td><i-button type="search" ng-click="writeBloggerArticle(blog)" label="Generate Content"></i-button></td>
-                    </tr>
-                </table>
+                <h2 class="center bold">Article Count : {{bloggerArticleList.length}}</h2>
+
+                <div class="articles">
+                    <div class="article">
+                        <div class="row">
+                            <div class="col">{{blog.id}}</div>
+                            <div class="col"><i-control label="Title" ng-model="blog.title"></i-control></div>
+                        </div>
+
+                        <i-button type="search" ng-click="writeBloggerArticle(blog)" label="Generate Content"></i-button>
+                        <i-textarea label="Content" ng-model="blog.content"></i-textarea>
+                    </div>
+                </div>
             </div>
         </div>
 
