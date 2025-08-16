@@ -74,25 +74,28 @@ app.connectScope(
             });
         };
 
-            $scope.writeBloggerTtitles = function () {
+        $scope.writeBloggerTtitles = function () {
             $http({
                 url: `/api/generator/bloger-write-titles`,
                 method: 'POST',
-                data: { bloggerID: $scope.bloggerID, title: $scope.bloggerPostTitle , count : $scope.bloggerPostCount },
+                data: { bloggerID: $scope.bloggerID, title: $scope.bloggerPostTitle, count: $scope.bloggerPostCount },
             }).then((res) => {
                 SOCIALBROWSER.log(res.data);
-                $scope.bloggerPostList = res.data.list;
+                $scope.bloggerArticleList = res.data.list;
             });
         };
 
-        $scope.writePosts = function () {
+        $scope.writeBloggerArticle = function (blog) {
             $http({
-                url: `/api/generator/bloger-write-posts`,
+                url: `/api/generator/bloger-write-article`,
                 method: 'POST',
-                data: { bloggerID: $scope.bloggerID, title: $scope.bloggerPostTitle , count : $scope.bloggerPostCount },
+                data: blog,
             }).then((res) => {
                 SOCIALBROWSER.log(res.data);
-                $scope.getBloggerPosts();
+                let index = $scope.bloggerArticleList.findIndex((b) => b.id == blog.id);
+                if (index !== -1) {
+                    $scope.bloggerArticleList[index].content = res.data.text;
+                }
             });
         };
         $scope.getBloggerPosts = function () {
@@ -100,7 +103,7 @@ app.connectScope(
                 url: `/api/generator/get-blogger-posts`,
                 method: 'POST',
             }).then((res) => {
-                $scope.bloggerPostList = res.data.list;
+                $scope.bloggerArticleList = res.data.list;
                 $scope.busy = false;
             });
         };

@@ -69,29 +69,28 @@ module.exports = function init(site) {
     site.onPOST({ name: '/api/generator/bloger-write-titles', public: true }, (req, res) => {
         site.bloggerManager.list = [];
 
-        site.bloggerManager.aiWriteTitles(req.data, (err, text, result , list) => {
+        site.bloggerManager.aiWriteTitles(req.data, (err, text, result, list) => {
             res.json({
                 done: true,
                 userData: req.data,
                 error: err,
                 text: text,
                 result: result,
-                list : list
+                list: list,
             });
         });
     });
 
-    site.onPOST({ name: '/api/generator/bloger-write-posts', public: true }, (req, res) => {
+    site.onPOST({ name: '/api/generator/bloger-write-article', public: true }, (req, res) => {
         site.bloggerManager.list = [];
 
-        site.bloggerManager.aiWritePost(req.data, (err, text, result , list) => {
+        site.bloggerManager.aiWriteArticle(req.data, (err, text, result) => {
             res.json({
                 done: true,
-                userData: req.data,
+                article: req.data,
                 error: err,
                 text: text,
                 result: result,
-                list : list
             });
         });
     });
