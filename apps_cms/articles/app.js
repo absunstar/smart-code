@@ -805,10 +805,10 @@ module.exports = function init(site) {
         );
     };
 
-    setInterval(() => {
-        site.autoUpdatYoutubeDescription();
-        site.autoUpdateMovieDescription();
-    }, 1000 * 60);
+    // setInterval(() => {
+    //     site.autoUpdatYoutubeDescription();
+    //     site.autoUpdateMovieDescription();
+    // }, 1000 * 60);
 
     site.prepareArticles();
 
