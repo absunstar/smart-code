@@ -95,6 +95,19 @@ module.exports = function init(site) {
         });
     });
 
+        site.onPOST({ name: '/api/generator/bloger-send-article', public: true }, (req, res) => {
+        site.bloggerManager.list = [];
+
+        site.bloggerManager.sendBloggerArticle(req.data, (err, data) => {
+            res.json({
+                done: true,
+                article: req.data,
+                error: err,
+                data: data,
+            });
+        });
+    });
+
     site.onPOST({ name: '/api/generator/get-blogger-posts', public: true }, (req, res) => {
         res.json({
             done: true,

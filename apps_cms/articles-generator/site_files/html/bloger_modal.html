@@ -20,6 +20,7 @@
             <div class="row">
                 <i-control ng-model="bloogerID" label="Blogger ID"></i-control>
                 <i-control ng-model="bloggerPostTitle" label="Blogger Post Title"></i-control>
+                <i-control ng-model="bloggerPostTags" label="Blogger Post Tags"></i-control>
                 <i-control type="number" ng-model="bloggerPostCount" label="Blogger Post Count"></i-control>
             </div>
 
@@ -33,10 +34,11 @@
                 <div class="articles">
                     <div class="article" ng-repeat="blog in bloggerArticleList">
                         <div class="row">
-                            <div class="col2"><p class="bold">{{blog.id}}</p></div>
-                            <div class="col"><i-control ng-model="blog.title"></i-control></div>
-                            <div class="co3">
+                            <div class="col1"><p class="bold">{{blog.id}}</p></div>
+                            <div class="col7"><i-control ng-model="blog.title"></i-control></div>
+                            <div class="co4">
                                 <i-button type="search" ng-click="writeBloggerArticle(blog)" label="Generate Content"></i-button>
+                                <i-button type="add" ng-click="SendBloggerArticle(blog)" label="Send to Blog"></i-button>
                             </div>
                         </div>
 

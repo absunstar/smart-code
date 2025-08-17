@@ -241,4 +241,34 @@ module.exports = function init(site) {
             callBack(err, text, result);
         });
     };
+
+    site.bloggerManager.sendBloggerArticle = function (options, callBack) {
+
+        site.fetch('https://www.googleapis.com/blogger/v3/blogs/' + options.bloggerID + '/posts/' + '?key=' + site.bloggerManager.key, {
+            method: 'post',
+            headers: { Authorization: site.bloggerManager.token_type + ' ' + site.bloggerManager.access_token, 'Content-Type': 'application/json', scope: site.bloggerManager.scope },
+            body: JSON.stringify({
+                kind: 'blogger#post',
+                blog: {
+                    id: options.bloggerID,
+                },
+                title: options.title,
+                content: options.content,
+                images: [
+                    {
+                        url: doc.$imageURL,
+                    },
+                ],
+                labels: options.tags.split(','),
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                callBack(null, data);
+            })
+            .catch((err) => {
+                console.log(err);
+                callBack(err);
+            });
+    };
 };

@@ -98,6 +98,19 @@ app.connectScope(
                 }
             });
         };
+        $scope.sendBloggerArticle = function (blog) {
+            $http({
+                url: `/api/generator/bloger-send-article`,
+                method: 'POST',
+                data: { ...blog, bloggerID: $scope.bloogerID, tags: $scope.bloggerPostTags },
+            }).then((res) => {
+                SOCIALBROWSER.log(res.data);
+                let index = $scope.bloggerArticleList.findIndex((b) => b.id == blog.id);
+                if (index !== -1) {
+                    $scope.bloggerArticleList[index].content = res.data.text;
+                }
+            });
+        };
         $scope.getBloggerPosts = function () {
             $http({
                 url: `/api/generator/get-blogger-posts`,
