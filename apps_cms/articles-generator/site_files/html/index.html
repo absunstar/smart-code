@@ -1,64 +1,79 @@
 <!DOCTYPE html>
 <html lang="##data.language.id##" dir="##data.language.direction##" data-ng-app="myApp" class="##data.language.direction##">
-  <head x-import="cms/head.html">
-    <style>
-      img.logo {
-        width: 48px;
-        height: 48px;
-      }
-      .tool {
-        background: #607d8b;
-        color: #fff;
-        font-family: monospace;
-        font-weight: bold;
-        padding: 10px 20px;
-        cursor: pointer;
-        display: inline-block;
-        margin: 10px;
-        text-align: center;
-        text-decoration: none;
-        font-size: x-large;
-        min-height: 150px;
-        padding-top: 55px;
-        border-radius: 10px;
-        transition: all 0.2s ease;
-        min-width: 300px;
-      }
-      .tool:hover {
-        transform: scale(1.1);
-        color: #fff;
-      }
-    </style>
-  </head>
+    <head x-import="cms/head.html">
+        <style>
+            img.logo {
+                width: 48px;
+                height: 48px;
+            }
+            .tool {
+                background: #607d8b;
+                color: #fff;
+                font-family: monospace;
+                font-weight: bold;
+                padding: 10px 20px;
+                cursor: pointer;
+                display: inline-block;
+                margin: 10px;
+                text-align: center;
+                text-decoration: none;
+                font-size: x-large;
+                min-height: 150px;
+                padding-top: 55px;
+                border-radius: 10px;
+                transition: all 0.2s ease;
+                min-width: 300px;
+            }
+            .tool:hover {
+                transform: scale(1.1);
+                color: #fff;
+            }
+            .articles {
+                padding: 5px;
+            }
+            .article {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                align-content: stretch;
+                justify-content: flex-start;
+                align-items: stretch;
+                box-shadow: 0px 0px 8px 1px #ddd;
+                padding: 5px;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+        </style>
+    </head>
 
-  <body class="loaded" ng-controller="articles-generator">
-    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+    <body class="loaded" ng-controller="articles-generator">
+        <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
-    <div id="main-layout" class="container">
-      <div class="row">
-        <div class="row">
-          <div x-import="articles-generator/sites_modal.html"></div>
-          <div x-import="articles-generator/rss_modal.html"></div>
-          <div x-import="articles-generator/yts_modal.html"></div>
-          <div x-import="articles-generator/youtube_modal.html"></div>
-          <div x-import="articles-generator/facebookGroup_modal.html"></div>
-          <div x-import="articles-generator/facebookPage_modal.html"></div>
-          <div x-import="articles-generator/bloger_modal.html"></div>
+        <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+        <div id="main-layout" class="container">
+            <div class="row">
+                <div class="row">
+                    <div x-import="articles-generator/sites_modal.html"></div>
+                    <div x-import="articles-generator/rss_modal.html"></div>
+                    <div x-import="articles-generator/yts_modal.html"></div>
+                    <div x-import="articles-generator/youtube_modal.html"></div>
+                    <div x-import="articles-generator/facebookGroup_modal.html"></div>
+                    <div x-import="articles-generator/facebookPage_modal.html"></div>
+                    <div x-import="articles-generator/bloger_modal.html"></div>
 
-          <div class="top-actions">
-            <a class="tool" ng-click="blogerManagerDisplay()">##word.Bloger Manager##</a>
-            <a class="tool" ng-click="siteDisplay()">##word.Sites Manager##</a>
-            <a class="tool" ng-click="displayRSS()">##word.RSS Manager##</a>
-            <a class="tool" ng-click="facebookPageDisplay()">##word.Facebook Page Manager##</a>
-            <a class="tool" ng-click="facebookGroupDisplay()">##word.Facebook Group Manager##</a>
-            <a class="tool" ng-click="ytsDisplay()">##word.YTS Manager##</a>
-            <a class="tool" ng-click="youtubeDisplay()">##word.Youtube Manager##</a>
-          </div>
+                    <div class="top-actions">
+                        <a class="tool" ng-click="blogerManagerDisplay()">##word.Bloger Manager##</a>
+                        <a class="tool" ng-click="siteDisplay()">##word.Sites Manager##</a>
+                        <a class="tool" ng-click="displayRSS()">##word.RSS Manager##</a>
+                        <a class="tool" ng-click="facebookPageDisplay()">##word.Facebook Page Manager##</a>
+                        <a class="tool" ng-click="facebookGroupDisplay()">##word.Facebook Group Manager##</a>
+                        <a class="tool" ng-click="ytsDisplay()">##word.YTS Manager##</a>
+                        <a class="tool" ng-click="youtubeDisplay()">##word.Youtube Manager##</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div x-import="cms/scripts.html"></div>
-    <script x-import="articles-generator/index.js"></script>
-  </body>
+        <div x-import="cms/scripts.html"></div>
+        <script x-import="articles-generator/index.js"></script>
+    </body>
 </html>

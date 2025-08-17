@@ -31,9 +31,9 @@
                 <h2 class="center bold">Article Count : {{bloggerArticleList.length}}</h2>
 
                 <div class="articles">
-                    <div class="article">
+                    <div class="article" ng-repeat="blog in bloggerArticleList">
                         <div class="row">
-                            <div class="col">{{blog.id}}</div>
+                            <div class="col2">{{blog.id}}</div>
                             <div class="col"><i-control label="Title" ng-model="blog.title"></i-control></div>
                         </div>
 
