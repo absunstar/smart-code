@@ -256,7 +256,7 @@ module.exports = function init(site) {
                 content: options.content,
                 images: [
                     {
-                        url: doc.$imageURL,
+                        url: options.imageURL,
                     },
                 ],
                 labels: options.tags.split(','),
