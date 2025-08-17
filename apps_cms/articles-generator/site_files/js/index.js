@@ -33,6 +33,7 @@ app.connectScope(
         $scope.bloogerID = '7005739422323431489';
         $scope.bloggerPostTitle = 'أحدث العاب الموبيل';
         $scope.bloggerPostCount = 10;
+        $scope.bloggerPostTags = 'موبيل ,  العاب';
         $scope.bloggerImageURL =
             'https://blogger.googleusercontent.com/img/a/AVvXsEjBOyDzTJmJW97XPYxg5QqD2SEMPYpgzTYG12o803EYX4lX68VN4CptZm9Vru8hvef0fR8WCJltXpLPiXfBIgZpnVbvh3_bAC5bZIB8DToW3bNuMF_29nD97dOwOan85MY7kZIYJtN4glvlUVWI_qEF2jsnJFRgsM2iFE271BFBGb_oZkGQCBG8KRy371hj=w1920-h569-p-k-no-nu';
 
