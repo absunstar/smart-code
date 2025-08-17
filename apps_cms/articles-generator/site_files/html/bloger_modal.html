@@ -33,12 +33,14 @@
                 <div class="articles">
                     <div class="article" ng-repeat="blog in bloggerArticleList">
                         <div class="row">
-                            <div class="col2">{{blog.id}}</div>
-                            <div class="col"><i-control label="Title" ng-model="blog.title"></i-control></div>
+                            <div class="col2"><p class="bold">{{blog.id}}</p></div>
+                            <div class="col"><i-control ng-model="blog.title"></i-control></div>
+                            <div class="co3">
+                                <i-button type="search" ng-click="writeBloggerArticle(blog)" label="Generate Content"></i-button>
+                            </div>
                         </div>
 
-                        <i-button type="search" ng-click="writeBloggerArticle(blog)" label="Generate Content"></i-button>
-                        <i-textarea label="Content" ng-model="blog.content"></i-textarea>
+                        <i-textarea ng-model="blog.content"></i-textarea>
                     </div>
                 </div>
             </div>
