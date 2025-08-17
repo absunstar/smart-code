@@ -1,6 +1,6 @@
 module.exports = function init(site) {
     site.bloggerManager = {
-        url: 'https://download-torrents-movie.blogspot.com/',
+        url: 'https://gaming.egytag.com/',
         key: 'AIzaSyD_BmzCVbI4sqisSoHX6_wHx3pmJhmZQNk',
         client_id: '622443491605-pnin27en8im3ti8hag7ov28drge372up.apps.googleusercontent.com',
         client_secret: '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',
@@ -243,8 +243,7 @@ module.exports = function init(site) {
     };
 
     site.bloggerManager.sendBloggerArticle = function (options, callBack) {
-
-        site.fetch('https://www.googleapis.com/blogger/v3/blogs/' + options.bloggerID + '/posts/' + '?key=' + site.bloggerManager.key, {
+        site.fetch('https://www.googleapis.com/blogger/v3/blogs/' + options.bloggerID + '/posts', {
             method: 'post',
             headers: { Authorization: site.bloggerManager.token_type + ' ' + site.bloggerManager.access_token, 'Content-Type': 'application/json', scope: site.bloggerManager.scope },
             body: JSON.stringify({
