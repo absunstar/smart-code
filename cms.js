@@ -45,6 +45,12 @@ site.get({
     public: true,
     parser : 'html css js'
 });
+site.get({
+    name: '/terms',
+    path: site.dir + '/html/terms.html',
+    public: true,
+    parser : 'html css js'
+});
 site.get(
     {
         name: ['/'],
