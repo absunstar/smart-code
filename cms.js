@@ -39,7 +39,11 @@ site.get({
     path: site.dir + '/',
     public: true,
 });
-
+site.get({
+    name: '/privacy',
+    path: site.dir + '/html/privacy.html',
+    public: true,
+});
 site.get(
     {
         name: ['/'],
