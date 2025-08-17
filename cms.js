@@ -43,6 +43,7 @@ site.get({
     name: '/privacy',
     path: site.dir + '/html/privacy.html',
     public: true,
+    parser : 'html css js'
 });
 site.get(
     {
