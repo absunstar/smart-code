@@ -43,13 +43,13 @@ site.get({
     name: '/privacy',
     path: site.dir + '/html/privacy.html',
     public: true,
-    parser : 'html css js'
+    parser: 'html css js',
 });
 site.get({
     name: '/terms',
     path: site.dir + '/html/terms.html',
     public: true,
-    parser : 'html css js'
+    parser: 'html css js',
 });
 site.get(
     {
@@ -696,7 +696,8 @@ if ((deepseek = false)) {
     });
 }
 
-if ((chatgpt = true)) {
+if ((chatgpt = false)) {
+    console.log('Start Ask ChatGPT !!');
     site.getChatgptResult('get top ketword search in egypt today', (err, result) => {
         console.log(err || result);
     });
