@@ -9,7 +9,7 @@ const site = require('../isite')({
     responseTimeout: 60,
     log: true,
     www: false,
-    help : true,
+    help : false,
     session: {
         enabled: !0,
         timeout: 0,
