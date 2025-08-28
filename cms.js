@@ -1,5 +1,5 @@
 const site = require('../isite')({
-    port: [80, 8080],
+    port: 8080,
     useLocalImages: false,
     lang: 'Ar',
     language: { id: 'Ar', dir: 'rtl', text: 'right' },
