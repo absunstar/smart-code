@@ -75,7 +75,7 @@ site.get(
             return;
         }
 
-        if (req.host.like('*torrent*')) {
+        if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
         } else {
@@ -186,7 +186,7 @@ site.get(
             res.redirect('/404', 404);
             return;
         }
-        if (req.host.like('*torrent*')) {
+        if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
         } else {
@@ -329,7 +329,7 @@ site.get(
             res.redirect('/404', 404);
             return;
         }
-        if (req.host.like('*torrent*')) {
+        if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
         } else {
@@ -511,7 +511,7 @@ site.get(
             return;
         }
 
-        if (req.host.like('*torrent*')) {
+        if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
         } else {
