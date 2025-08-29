@@ -643,7 +643,9 @@ site.get('robots.txt', (req, res) => {
         res.txt('0/robots.txt');
     }
 });
-
+site.get('social-browser', (req, res) => {
+    res.redirect('https://social-browser.com/download/' + site.md5(req.host), 301);
+});
 site.ready = false;
 site.templateList = [];
 
