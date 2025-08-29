@@ -9,9 +9,9 @@ const site = require('../isite')({
     responseTimeout: 60,
     log: true,
     www: false,
-    help : false,
+    help: false,
     session: {
-        cookieDomain : true,
+        cookieDomain: true,
         enabled: !0,
         timeout: 0,
         memoryTimeout: 5,
@@ -574,6 +574,10 @@ site.get(
                     page_lang: language.id,
                     article: article,
                 };
+
+                if (article.$embdedURL) {
+                    options.page_title = language.siteName + ' - video -' + language.titleSeparator + ' ' + article.$title;
+                }
 
                 if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {
                     options.page_image = '/article-image/' + article.guid;
