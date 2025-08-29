@@ -11,6 +11,7 @@ const site = require('../isite')({
     www: false,
     help : false,
     session: {
+        cookieDomain : true,
         enabled: !0,
         timeout: 0,
         memoryTimeout: 5,
