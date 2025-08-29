@@ -255,6 +255,7 @@ module.exports = function init(site) {
         },
         (req, res) => {
             let setting = site.getSiteSetting(req.query.host || req.host);
+            setting.host = req.query.host || req.host;
             let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
             res.render(
