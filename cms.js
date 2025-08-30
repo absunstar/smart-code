@@ -668,6 +668,9 @@ site.addFeature('cms');
 
 site.ready = true;
 
+site.onGET('fcf3c6e41ba640b19e99ba79e8d3ac0a.txt', (req, res) => {
+    res.end('fcf3c6e41ba640b19e99ba79e8d3ac0a');
+});
 site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
     res.end('Galaksion check: 86531e4391aecbe5e70d086020f703f2');
 });
