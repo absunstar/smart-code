@@ -582,10 +582,13 @@ site.get(
 
                 if (req.host.like('*movies*')) {
                     if (!article.indexNow) {
-                        site.indexNow(options.url);
-                        article.indexNow = true;
-                        site.$articles.update({ id: article.id }, { $set: { indexNow: true } }, (err, result) => {
-                            console.log(err || result);
+                        site.indexNow(options.url, (response) => {
+                            if (response.status == 200) {
+                                article.indexNow = true;
+                                site.$articles.update({ id: article.id }, { $set: { indexNow: true } }, (err, result) => {
+                                    console.log(err || result);
+                                });
+                            }
                         });
                     }
                 }
