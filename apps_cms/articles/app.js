@@ -575,21 +575,23 @@ module.exports = function init(site) {
 
     site.indexNow = function (url, callBack) {
         console.log('Index NOW : ' + url);
-        site.fetch('https://api.indexnow.org/IndexNow', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json;charset=utf-8', Host: 'api.indexnow.org' },
-            body: {
-                host: 'movies.egytag.com',
-                key: 'fcf3c6e41ba640b19e99ba79e8d3ac0a',
-                keyLocation: 'https://movies.egytag.com/fcf3c6e41ba640b19e99ba79e8d3ac0a.txt',
-                urlList: [url],
-            },
-        }).then((response) => {
-            console.log(`Index NOW : HTTP Status Code: ${response.status}`);
-            if (callBack) {
-                callBack(response);
-            }
-        });
+        if (url) {
+            site.fetch('https://api.indexnow.org/IndexNow', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json;charset=utf-8', Host: 'api.indexnow.org' },
+                body: {
+                    host: 'movies.egytag.com',
+                    key: 'fcf3c6e41ba640b19e99ba79e8d3ac0a',
+                    keyLocation: 'https://movies.egytag.com/fcf3c6e41ba640b19e99ba79e8d3ac0a.txt',
+                    urlList: [url],
+                },
+            }).then((response) => {
+                console.log(`Index NOW : HTTP Status Code: ${response.status}`);
+                if (callBack) {
+                    callBack(response);
+                }
+            });
+        }
     };
     site.GOOGLE_API_KEY_list = [
         '31365783413727823157167428387232271852674559567337153226315847144315476732792361341762494678625343574217',
