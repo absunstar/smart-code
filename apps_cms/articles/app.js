@@ -574,6 +574,7 @@ module.exports = function init(site) {
     };
 
     site.indexNow = function (url, callBack) {
+        console.log('Index NOW : ' + url);
         site.fetch('https://api.indexnow.org/IndexNow', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8', Host: 'api.indexnow.org' },
