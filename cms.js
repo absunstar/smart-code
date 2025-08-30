@@ -585,7 +585,7 @@ site.get(
                         site.indexNow(options.url, (response) => {
                             if (response.status == 200) {
                                 article.indexNow = true;
-                                site.$articles.update({ id: article.id }, { $set: { indexNow: true } }, (err, result) => {
+                                site.$articles.update({ where: { id: article.id }, set: { indexNow: true } }, (err, result) => {
                                     console.log(err || result);
                                 });
                             }
