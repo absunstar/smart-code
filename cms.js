@@ -514,6 +514,7 @@ site.get(
         if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
+            site.indexNow();
         } else {
             req.session.lang = 'Ar';
             req.session.language = { id: 'Ar', dir: 'rtl', text: 'right' };
@@ -577,6 +578,16 @@ site.get(
 
                 if (article.$embdedURL) {
                     options.page_title = language.siteName + ' - video -' + language.titleSeparator + ' ' + article.$title;
+                }
+
+                if (req.host.like('*movies*')) {
+                    if (!article.indexNow) {
+                        site.indexNow(options.url);
+                        article.indexNow = true;
+                        site.$articles.update({ id: article.id }, { $set: { indexNow: true } }, (err, result) => {
+                            console.log(err || result);
+                        });
+                    }
                 }
 
                 if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {

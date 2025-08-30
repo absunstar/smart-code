@@ -573,6 +573,20 @@ module.exports = function init(site) {
             .reverse();
     };
 
+    site.indexNow = function (url) {
+        site.fetch('https://api.indexnow.org/IndexNow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            body: {
+                host: 'movies.egytag.com',
+                key: 'fcf3c6e41ba640b19e99ba79e8d3ac0a',
+                keyLocation: 'https://movies.egytag.com/fcf3c6e41ba640b19e99ba79e8d3ac0a.txt',
+                urlList: [url],
+            },
+        }).then((response) => {
+            console.log(`Index NOW : HTTP Status Code: ${response.status}`);
+        });
+    };
     site.GOOGLE_API_KEY_list = [
         '31365783413727823157167428387232271852674559567337153226315847144315476732792361341762494678625343574217',
         '31365783413727823156323431786252313547623139567432166732381717492835171932794774465937263518238345566727',
