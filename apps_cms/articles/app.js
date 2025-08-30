@@ -574,9 +574,9 @@ module.exports = function init(site) {
     };
 
     site.indexNow = function (url) {
-        site.fetch('https://api.indexnow.org/IndexNow', {
+        site.fetch('/IndexNow', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            headers: { 'Content-Type': 'application/json; charset=utf-8' , 'Host':'api.indexnow.org' },
             body: {
                 host: 'movies.egytag.com',
                 key: 'fcf3c6e41ba640b19e99ba79e8d3ac0a',
