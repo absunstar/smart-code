@@ -10,6 +10,9 @@ const site = require('../isite')({
     log: true,
     www: false,
     help: false,
+    upload_dir: __dirname + '/../uploads',
+    download_dir: __dirname + '/../downloads',
+    backup_dir: __dirname + '/../backups',
     session: {
         cookieDomain: true,
         enabled: !0,
