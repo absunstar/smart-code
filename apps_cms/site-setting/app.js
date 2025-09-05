@@ -243,9 +243,9 @@ module.exports = function init(site) {
                     setting: setting,
                     language: language,
                 },
-                { parser: 'html css js' }
+                { parser: 'html css js' },
             );
-        }
+        },
     );
 
     site.get(
@@ -254,7 +254,8 @@ module.exports = function init(site) {
             require: { permissions: ['login'] },
         },
         (req, res) => {
-            let setting = site.getSiteSetting(req.host);
+            let setting = site.getSiteSetting(req.query.host || req.host);
+            setting.host = req.query.host || req.host;
             let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
             res.render(
@@ -269,9 +270,9 @@ module.exports = function init(site) {
                     articleStatus: site.articleStatus,
                     durationExpiry: site.durationExpiry,
                 },
-                { parser: 'html css js' }
+                { parser: 'html css js' },
             );
-        }
+        },
     );
 
     site.get({

@@ -1,5 +1,5 @@
 const site = require('../isite')({
-    port: [80, 8080],
+    port: 8080,
     useLocalImages: false,
     lang: 'Ar',
     language: { id: 'Ar', dir: 'rtl', text: 'right' },
@@ -9,7 +9,12 @@ const site = require('../isite')({
     responseTimeout: 60,
     log: true,
     www: false,
+    help: false,
+    upload_dir: __dirname + '/../uploads',
+    download_dir: __dirname + '/../downloads',
+    backup_dir: __dirname + '/../backups',
     session: {
+        cookieDomain: true,
         enabled: !0,
         timeout: 0,
         memoryTimeout: 5,
@@ -73,7 +78,7 @@ site.get(
             return;
         }
 
-        if (req.host.like('*torrent*')) {
+        if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
         } else {
@@ -184,7 +189,7 @@ site.get(
             res.redirect('/404', 404);
             return;
         }
-        if (req.host.like('*torrent*')) {
+        if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
         } else {
@@ -327,7 +332,7 @@ site.get(
             res.redirect('/404', 404);
             return;
         }
-        if (req.host.like('*torrent*')) {
+        if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
         } else {
@@ -509,9 +514,10 @@ site.get(
             return;
         }
 
-        if (req.host.like('*torrent*')) {
+        if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
+            site.indexNow();
         } else {
             req.session.lang = 'Ar';
             req.session.language = { id: 'Ar', dir: 'rtl', text: 'right' };
@@ -572,6 +578,23 @@ site.get(
                     page_lang: language.id,
                     article: article,
                 };
+
+                if (article.$embdedURL) {
+                    options.page_title = language.siteName + ' - video -' + language.titleSeparator + ' ' + article.$title;
+                }
+
+                if (req.host.like('*movies*')) {
+                    if (!article.indexNow) {
+                        site.indexNow(options.url, (response) => {
+                            if (response.status == 200) {
+                                article.indexNow = true;
+                                site.$articles.update({ where: { id: article.id }, set: { indexNow: true } }, (err, result) => {
+                                    console.log(err || result);
+                                });
+                            }
+                        });
+                    }
+                }
 
                 if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {
                     options.page_image = '/article-image/' + article.guid;
@@ -642,7 +665,9 @@ site.get('robots.txt', (req, res) => {
         res.txt('0/robots.txt');
     }
 });
-
+site.get('social-browser', (req, res) => {
+    res.redirect('https://social-browser.com/download/' + site.md5(req.host), 301);
+});
 site.ready = false;
 site.templateList = [];
 
@@ -660,6 +685,9 @@ site.addFeature('cms');
 
 site.ready = true;
 
+site.onGET('fcf3c6e41ba640b19e99ba79e8d3ac0a.txt', (req, res) => {
+    res.end('fcf3c6e41ba640b19e99ba79e8d3ac0a');
+});
 site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
     res.end('Galaksion check: 86531e4391aecbe5e70d086020f703f2');
 });
