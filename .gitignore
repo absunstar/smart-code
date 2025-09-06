@@ -2,5 +2,7 @@ node_modules/
 *.db
 *.dbz
 .options.json
-
-
+test/
+downloads/
+uploads/
+backups/
