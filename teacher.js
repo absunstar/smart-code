@@ -7,6 +7,9 @@ const site = require("../isite")({
   savingTime: 10,
   www: false,
   log: true,
+  upload_dir: __dirname + "/../uploads",
+  download_dir: __dirname + "/../downloads",
+  backup_dir: __dirname + "/../backups",
   require: {
     features: [],
     permissions: [],
@@ -31,14 +34,14 @@ site.validateSession = async function (req, res, next) {
   req.setting = site.getSiteSetting(req.host) || {};
 
   if (req.host.contains("hossamelgwady|sawa-edu|abonaar|al-omega|oxford")) {
-    res.redirect('https://social-browser.com/');
+    res.redirect("https://social-browser.com/");
     return;
   }
 
   if (req.setting.defaultEn) {
     req.session.language = { id: "En", dir: "rtl", text: "right" };
   }
-  
+
   next(req, res);
 };
 site.get({
