@@ -554,10 +554,10 @@ app.controller("lectures", function ($scope, $http, $timeout) {
       let answersList = [];
       for (let j = 0; j < $scope.item.$answersNumber; j++) {
         let numbering = $scope.letterType($scope.item.answerNumbering, j);
-        answersList.push({ correct: false, numbering });
+        answersList.push({ correct: false, numbering, name: "-" });
       }
-
-      $scope.item.questionsList.push({name: '-', answersList: answersList, numbering: $scope.letterType($scope.item.questionNumbering, i), questionType: $scope.item.questionType });
+      let queNumbering = $scope.letterType($scope.item.questionNumbering, i);
+      $scope.item.questionsList.push({ name: queNumbering, answersList: answersList, numbering: queNumbering, questionType: $scope.item.questionType });
     }
   };
 
