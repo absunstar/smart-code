@@ -580,7 +580,7 @@ site.get(
                 };
 
                 if (article.$embdedURL) {
-                    options.page_title = language.siteName + language.titleSeparator  + 'video ' + language.titleSeparator + ' ' + article.$title;
+                    options.page_title = language.siteName + ' '  + language.titleSeparator  + ' video ' + language.titleSeparator + ' ' + article.$title;
                 }
 
                 if (req.host.like('*movies*')) {
