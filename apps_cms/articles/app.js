@@ -156,7 +156,7 @@ module.exports = function init(site) {
             console.log(lang.title);
             lang.title = '';
         }
-        doc.$title =  site.filterLetters(site.removeHtml(lang.title));
+        doc.$title = site.filterLetters(site.removeHtml(lang.title));
         doc.$titleArray = doc.$title.split(' ');
         doc.$alt = doc.$title.split(' ').slice(0, 3).join(' ');
         doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
@@ -697,9 +697,12 @@ module.exports = function init(site) {
             .catch((err) => callBack(err, null));
     };
     site.getMovieDescription = function (title, callBack) {
-        site.getGeminiResult('write article in English Language more than 2000 words about movie "' + title + '" and add Tables to improve article and convert to html code only with no images or links or css', (err, text, result) => {
-            callBack(err, text, result);
-        });
+        site.getGeminiResult(
+            'write article in English Language more than 2000 words about movie "' + title + '" and add Tables to improve article and convert to html code only with no images or links or css',
+            (err, text, result) => {
+                callBack(err, text, result);
+            },
+        );
     };
     site.getYoutubeDescription = function (title, url, callBack) {
         site.getGeminiResult(
@@ -732,7 +735,7 @@ module.exports = function init(site) {
                     console.log('AI Start : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
                         if (!err && text) {
-                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
+                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2)');
                             articlesDoc.translatedList[0].textContent = text;
                             site.$articles.edit(
                                 {
@@ -790,8 +793,8 @@ module.exports = function init(site) {
                     console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
                         if (!err && text) {
-                            text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
-                            text = site.$.load(text, null, false).html();
+                            text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2');
+                            // text = site.$.load(text, null, false).html();
                             articlesDoc.translatedList[0].textContent = text;
                             articlesDoc.type = site.articleTypes.find((t) => t.id === 8);
                             site.$articles.edit(
