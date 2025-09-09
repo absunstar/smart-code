@@ -10,15 +10,21 @@
 
     <div class="modal-body">
       <div class="row">
+        <fieldset>
+          <legend>##word.Generate Answers## <i-button type="view" label="##word.Show##" ng-click="showGenerate = !showGenerate"></i-button></legend>
+          <div class="row" ng-show="showGenerate">
+            <i-control type="number" class="col3" ng-model="item.$questionsNumber" label="##word.Questions Number##"></i-control>
+            <i-control type="number" class="col3" ng-model="item.$answersNumber" label="##word.Answers Number##"></i-control>
+            <i-button type="push" ng-click="generateQuestions()"></i-button>
+          </div>
+        </fieldset>
         <div class="padding margin">
-          <span class="font-23 bold">
-            ##word.Add Question##
-          </span>
+          <span class="font-23 bold"> ##word.Add Question## </span>
           <i-button type="push" ng-click="addQuestion()"></i-button>
           <fieldset class="row padding margin" ng-repeat="question in item.questionsList">
             <div class="row">
               <div class="col1"><p class="character-style">{{question.numbering}}</p></div>
-              <i-list label="##word.Question Type##"primary="name" class="col4" ng-model="question.questionType" display="name##session.lang##" items="questionTypesList"></i-list>
+              <i-list label="##word.Question Type##" primary="name" class="col4" ng-model="question.questionType" display="name##session.lang##" items="questionTypesList"></i-list>
               <i-image class="img128 col4" ng-show="question.questionType.name == 'photo'" ng-model="question.image"></i-image>
 
               <i-button class="col1" type="delete" ng-click=" item.questionsList.splice($index,1)"> </i-button>
