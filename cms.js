@@ -517,7 +517,6 @@ site.get(
         if (req.host.like('*torrent*|*movies*')) {
             req.session.lang = 'En';
             req.session.language = { id: 'En', dir: 'ltr', text: 'left' };
-            site.indexNow();
         } else {
             req.session.lang = 'Ar';
             req.session.language = { id: 'Ar', dir: 'rtl', text: 'right' };
