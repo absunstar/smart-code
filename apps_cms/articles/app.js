@@ -156,7 +156,7 @@ module.exports = function init(site) {
             console.log(lang.title);
             lang.title = '';
         }
-        doc.$title = lang.title;
+        doc.$title =  site.filterLetters(site.removeHtml(lang.title));
         doc.$titleArray = doc.$title.split(' ');
         doc.$alt = doc.$title.split(' ').slice(0, 3).join(' ');
         doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
@@ -216,7 +216,7 @@ module.exports = function init(site) {
         }
         doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
 
-        doc.$description = site.removeHtml(doc.$content).substring(0, 180);
+        doc.$description = site.filterLetters(site.removeHtml(doc.$content).substring(0, 180));
         lang.keyWordsList = lang.keyWordsList || [];
         doc.$keyWordsList = [];
         lang.keyWordsList.forEach((k, i) => {
