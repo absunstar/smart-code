@@ -500,7 +500,7 @@ site.onGET('/s/:guid', (req, res) => {
 
 site.get(
     {
-        name: ['/article/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/torrent/:guid'],
+        name: ['/article/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/torrent/:guid' , '/api/article/:guid'],
     },
     (req, res) => {
         let filter = site.getHostFilter(req.host);
