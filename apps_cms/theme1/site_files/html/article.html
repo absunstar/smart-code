@@ -1,247 +1,247 @@
 <!DOCTYPE html>
 <html lang="##data.language.id##" dir="##data.language.direction##" class="##data.language.direction##" ng-app="myApp">
-  <head x-import="theme1/head.html">
-    <script x-data="article.$youtube" type="application/ld+json">
-      {
-        "@context": "https://schema.org/",
-        "@type": "VideoObject",
-        "name": "##data.article.$title##",
-        "thumbnailUrl": "##data.page_image##",
-        "uploadDate": ##data.article.publishDate##,
-        "embedUrl": "##data.article.$embdedURL##"
-      }
-    </script>
-  </head>
-
-  <body ng-controller="mainController" class="##data.direction##">
-    <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
-
-    <div id="mainContent" class="container article d-flex flex-column">
-      <div x-data="setting.showAtricleCover" class="container pt-4 p-0 justify-content-center">
-        <div class="mainImage col-md-12 p-0 m-0" style="background-image: url(##data.article.$coverURL##)">
-          <div class="MI-newsTilteTime d-flex flex-column justify-content-start">
-            <p class="MI-newstitle" class="loaded">##data.article.$title##</p>
-            <div class="MI-newstime d-flex flex-row justify-content-start align-items-center">
-              <p class="newsday">##data.article.$day##</p>
-              <div class="vlntime"></div>
-              <p class="newsdate">##data.article.$date##</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ---start mainSection--- -->
-      <div class="mainSectionNews d-flex flex-column mt-4" style="background-image: url(##data.article.$backgroundURL##)">
-        <div class="adsWithNews d-flex flex-lg-row flex-column justify-content-start align-items-md-start align-items-lg-start align-items-start p-0 m-0">
-          <div class="d-flex col-sm-12 col-md-12 col-lg-9 newsArticle justify-content-center align-items-start align-content-center m-0 pt-0 mb-10">
-            <div class="articleSection d-flex flex-column justify-content-center align-items-center align-content-center gap-2">
-              <div class="col-sm-12 d-flex gap-5 justify-content-center articleEditor">
-                <div x-data="setting.showEditor">
-                  <div x-data="article.$hasWriter" class="d-flex writerArea">
-                    <div class="">
-                      <a target="_blank" class="editorImage d-flex flex-column align-items-start" href="/writer/##data.article.writer.id##">
-                        <img src="##data.article.writer.$imageURL##" alt="##data.article.writer.$name##" width="147px" height="147px" />
-                      </a>
-                    </div>
-                    <div class="">
-                      <a target="_blank" class="d-flex flex-column align-items-start" href="/writer/##data.article.writer.id##">
-                        <p class="editorName">##data.article.writer.$name##</p>
-                      </a>
-                      <div class="col d-flex flex-column align-items-md-start align-items-start flex-sm-row gap-1">
-                        <div x-data="setting.allowFollowEditor" class="follow d-flex flex-row justify-content-center align-items-center gap-2 mb-2 mb-sm-0">
-                          <p>متابعة</p>
-                          <i class="fas fa-bell"></i>
-                        </div>
-                        <div x-data="setting.allowShareEditor" class="sharebutton d-flex flex-column align-items-start gap-2">
-                          <div class="share d-flex flex-row justify-content-center align-items-center">
-                            <p>مشاركة</p>
-                            <i class="fas fa-share-alt"></i>
-                          </div>
-                          <div class="sharemenu mt-1">
-                            <ul id="sharemenulist" class="list-group sharemenulist d-flex felx-column flex-md-row">
-                              <li class="list-group-item facebook">
-                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                                  <i class="fab fa-facebook-f"></i>
-                                </div>
-                              </li>
-                              <li class="list-group-item twitter">
-                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                                  <i class="fab fa-twitter"></i>
-                                </div>
-                              </li>
-                              <li class="list-group-item instagram">
-                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                                  <i class="fab fa-instagram"></i>
-                                </div>
-                              </li>
-                              <li class="list-group-item whatsapp">
-                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                                  <i class="fab fa-whatsapp"></i>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <h1 class="d-flex text-center">##data.article.$title##</h1>
-              </div>
-
-              <audio x-data="article.$hasAudio" controls class="w-100">
-                <source src="##data.article.$audio.url##" type="audio/mpeg" />
-              </audio>
-
-              <div class="mainarticle d-flex flex-row row align-items-start justify-content-center">
-                <div class="col-xs-12 col-sm-12 p-3">
-                  <iframe
-                    x-data="article.$embdedURL"
-                    src="##data.article.$embdedURL##"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-
-                <div x-data="article.$yts" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="center">
-                    <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" alt="##data.article.$title##" />
-                  </div>
-                 
-                </div>
-
-                <div x-data="article.$yts" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
-                  <div class="d-flex gap-2 p-2 justify-content-center">
-                    <a x-features="browser.social" rel="nofollow" x-list1="article.yts.torrents" class="green btn btn-primary p-2 bg-white font-20" target="_blank" href="##item1.$url##">
-                      Download <span class="blue">[Quality ##item1.quality##]</span> <span class="black">( ##item1.size## ) Torrent</span>
-                    </a>
-                     <a x-features="!browser.social" rel="nofollow"  class="btn btn-primary p-2 font-20" target="_blank" href="/Social-Browser">
-                        Download Social Browser \ Multi Login - Multi Proxy - Ads Blocker
-                    </a>
-                  </div>
-
-                  <div class="d-flex gap-2 p-2 justify-content-center">
-                    <a rel="nofollow" target="_blank" class="btn btn-warning p-2 italic" href="##data.article.yts.$imdbURL##"> read more on IMDB </a>
-                    <a rel="nofollow" target="_blank" class="btn btn-danger p-2 italic" href="##data.article.yts.$trailerURL##"> search in Youtube </a>
-                    <a rel="nofollow" target="_blank" class="btn btn-info p-2 italic" href="##data.article.yts.$subtitleURL##"> download Subtitles </a>
-                  </div>
-
-                 
-
-                  <div x-data="article.$castList" class="d-flex gap-2 p-2 justify-content-center casts">
-                    <a x-list1="article.$castList" href="##item1.url##" rel="nofollow" target="_blank">
-                      <img src="##item1.imageURL##" alt="##item1.name##" onerror="this.onerror=null;this.src='##data.article.$imageURL##'" />
-                      <p>##item1.name##</p>
-                    </a>
-                  </div>
-
-                   <div x-data="article.$yts" class="row text-left yts-info">
-                    <p class="bold">Movie Rating : <span class="yellow"> ##data.article.yts.rating##</span></p>
-                    <p class="bold">Movie Language : <span class="yellow"> ##data.article.yts.language##</span></p>
-                    <p class="bold">Movie Type : <span class="yellow"> ##data.article.yts.type##</span></p>
-                  </div>
-                  
-                </div>
-
-                 <div x-data="article.$content" class="d-flex gap-2 p-2 justify-content-center">
-                    <div class="article-description">##data.article.$content##</div>
-                  </div>
-
-                <div x-data="article.$hasVideo" class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center" style="background-image: URL('##data.article.$video.imageURL##')">
-                  <div id="videopalyer" class="videopalyer flex-column justify-content-center align-items-center">
-                    <div class="closeVideoButton p-4">
-                      <div id="closeVButton" class="closevideo closeMButton d-flex flex-row justify-content-start align-items-start">
-                        <i class="fas fa-times"></i>
-                      </div>
-                    </div>
-                    <video class="d-flex" src="##data.article.$video.url##" type="video/mp4" controls></video>
-                  </div>
-                </div>
-
-                <div x-data="article.$hasImageGallary" class="imagesArticle w-100 d-flex flex-row justify-content-start align-items-start">
-                  <div class="IASmallSlider d-flex flex-column justify-content-start">
-                    <div class="slide-imageNews d-flex">
-                      <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-                        <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
-                      </a>
-                    </div>
-                    <div class="slide-imageNews d-flex">
-                      <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-                        <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
-                      </a>
-                    </div>
-                    <div class="slide-imageNews d-flex">
-                      <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-                        <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
-                      </a>
-                    </div>
-                    <div class="slide-imageNews d-flex">
-                      <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-                        <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div x-data="setting.showArticleAd" x-import="theme1/ad-article.html" class="related-ads"></div>
-
-              <div class="related-search">
-                <span class="bold"> ##word.related Search##</span>
-                <a x-list1="article.$keyWordsList" rel="nofollow" href="/results?search_query=##item1.##"> <i>##item1.##</i> </a>
-              </div>
-
-              <div class="related-tags">
-                <a x-list1="article.$tagsList" rel="nofollow" href="/results?tag=##item1.##"> <b>##item1.##</b> </a>
-              </div>
-
-              <div x-data="shortLink.id" class="steps">
-                <h2 class="center">Step ##data.shortLink.step## / ##data.shortLink.maxStep##</h2>
-                <h3 class="counter">Waiting <span></span> sec</h3>
-                <a href="/article/random" class="btn"> Click to Next Step >>>> </a>
-              </div>
-
-              <div x-import="theme1/related.html"></div>
-            </div>
-          </div>
-
-          <div class="d-flex col-sm-12 col-md-12 col-lg-3 flex-column justify-content-center justify-content-center align-items-center p-0 m-0">
-            <a x-list1="latestList" class="mini-article d-flex gap-2" href="##item1.$url##">
-              <img class="d-flex col-sm-3" src="##item1.$imageURL##" alt="" />
-              <p class="d-flex col-sm-9">##item1.$title##</p>
-            </a>
-            <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
-            <div x-data="setting.showSideAd" x-import="theme1/ad-social.html" class="related-tags"></div>
-            <div x-data="setting.showSideAd" x-import="theme1/ad-mail.html" class="related-tags"></div>
-            <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
-          </div>
-        </div>
-      </div>
-      <!-- ---start mainSection--- -->
-    </div>
-    <div x-import="theme1/wedgite.html"></div>
-    <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
-    <script x-data="shortLink">
-      let counterTimeout = parseInt('##data.shortLink.timeout##' || 30);
-      window.countInterval = setInterval(() => {
-        if ((counter = document.querySelector('.counter span'))) {
-          let count = parseInt(counter.innerText || counterTimeout);
-          count--;
-          if (count < 0) {
-            clearInterval(window.countInterval);
-            if ((a = document.querySelector('.steps h3'))) {
-              a.style.display = 'none';
+    <head x-import="theme1/head.html">
+        <script x-data="article.$embdedURL" type="application/ld+json">
+            {
+              "@context": "https://schema.org/",
+              "@type": "VideoObject",
+              "name": "##data.article.$title##",
+              "description": "##data.page_description##",
+              "thumbnailUrl": "##data.page_image##",
+              "uploadDate": ##data.article.publishDate##,
+              "embedUrl": "##data.article.$embdedURL##"
             }
-            if ((a = document.querySelector('.steps a'))) {
-              a.style.display = 'block';
-            }
-          } else {
-            counter.innerText = count;
-          }
-        }
-      }, 1000);
-    </script>
-  
-  </body>
+        </script>
+    </head>
+
+    <body ng-controller="mainController" class="##data.direction##">
+        <header x-import="theme1/mainHeader.html" class="mainHeader"></header>
+
+        <div id="mainContent" class="container article d-flex flex-column">
+            <div x-data="setting.showAtricleCover" class="container pt-4 p-0 justify-content-center">
+                <div class="mainImage col-md-12 p-0 m-0" style="background-image: url(##data.article.$coverURL##)">
+                    <div class="MI-newsTilteTime d-flex flex-column justify-content-start">
+                        <p class="MI-newstitle" class="loaded">##data.article.$title##</p>
+                        <div class="MI-newstime d-flex flex-row justify-content-start align-items-center">
+                            <p class="newsday">##data.article.$day##</p>
+                            <div class="vlntime"></div>
+                            <p class="newsdate">##data.article.$date##</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ---start mainSection--- -->
+            <div class="mainSectionNews d-flex flex-column mt-4" style="background-image: url(##data.article.$backgroundURL##)">
+                <div class="adsWithNews d-flex flex-lg-row flex-column justify-content-start align-items-md-start align-items-lg-start align-items-start p-0 m-0">
+                    <div class="d-flex col-sm-12 col-md-12 col-lg-9 newsArticle justify-content-center align-items-start align-content-center m-0 pt-0 mb-10">
+                        <div class="articleSection d-flex flex-column justify-content-center align-items-center align-content-center gap-2">
+                            <div class="col-sm-12 d-flex gap-5 justify-content-center articleEditor">
+                                <div x-data="setting.showEditor">
+                                    <div x-data="article.$hasWriter" class="d-flex writerArea">
+                                        <div class="">
+                                            <a target="_blank" class="editorImage d-flex flex-column align-items-start" href="/writer/##data.article.writer.id##">
+                                                <img src="##data.article.writer.$imageURL##" alt="##data.article.writer.$name##" width="147px" height="147px" />
+                                            </a>
+                                        </div>
+                                        <div class="">
+                                            <a target="_blank" class="d-flex flex-column align-items-start" href="/writer/##data.article.writer.id##">
+                                                <p class="editorName">##data.article.writer.$name##</p>
+                                            </a>
+                                            <div class="col d-flex flex-column align-items-md-start align-items-start flex-sm-row gap-1">
+                                                <div x-data="setting.allowFollowEditor" class="follow d-flex flex-row justify-content-center align-items-center gap-2 mb-2 mb-sm-0">
+                                                    <p>متابعة</p>
+                                                    <i class="fas fa-bell"></i>
+                                                </div>
+                                                <div x-data="setting.allowShareEditor" class="sharebutton d-flex flex-column align-items-start gap-2">
+                                                    <div class="share d-flex flex-row justify-content-center align-items-center">
+                                                        <p>مشاركة</p>
+                                                        <i class="fas fa-share-alt"></i>
+                                                    </div>
+                                                    <div class="sharemenu mt-1">
+                                                        <ul id="sharemenulist" class="list-group sharemenulist d-flex felx-column flex-md-row">
+                                                            <li class="list-group-item facebook">
+                                                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                                                                    <i class="fab fa-facebook-f"></i>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item twitter">
+                                                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                                                                    <i class="fab fa-twitter"></i>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item instagram">
+                                                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                                                                    <i class="fab fa-instagram"></i>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item whatsapp">
+                                                                <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                                                                    <i class="fab fa-whatsapp"></i>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h1 class="d-flex text-center">##data.article.$title##</h1>
+                            </div>
+                           
+                            <audio x-data="article.$hasAudio" controls class="w-100">
+                                <source src="##data.article.$audio.url##" type="audio/mpeg" />
+                            </audio>
+
+                            <div class="mainarticle d-flex flex-row row align-items-start justify-content-center">
+                               <div x-data="article.$embdedURL" class="col-xs-12 col-sm-12 p-3">
+                                <iframe src="##data.article.$embdedURL##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                                <div x-data="article.$yts" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                                    <div class="center">
+                                        <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" alt="##data.article.$title##" />
+                                    </div>
+                                </div>
+
+                                <div x-data="article.$yts" class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
+                                    <div class="d-flex gap-2 p-2 justify-content-center">
+                                        <a
+                                            x-features="browser.social"
+                                            rel="nofollow"
+                                            x-list1="article.yts.torrents"
+                                            class="green btn btn-primary p-2 bg-white font-20"
+                                            target="_blank"
+                                            href="##item1.$url##"
+                                        >
+                                            Download <span class="blue">[Quality ##item1.quality##]</span> <span class="black">( ##item1.size## ) Torrent</span>
+                                        </a>
+                                        <a x-features="!browser.social" rel="nofollow" class="btn btn-primary p-2 font-20" target="_blank" href="/Social-Browser">
+                                            Download Social Browser \ Multi Login - Multi Proxy - Ads Blocker
+                                        </a>
+                                    </div>
+
+                                    <div class="d-flex gap-2 p-2 justify-content-center">
+                                        <a rel="nofollow" target="_blank" class="btn btn-warning p-2 italic" href="##data.article.yts.$imdbURL##"> read more on IMDB </a>
+                                        <a rel="nofollow" target="_blank" class="btn btn-danger p-2 italic" href="##data.article.yts.$trailerURL##"> search in Youtube </a>
+                                        <a rel="nofollow" target="_blank" class="btn btn-info p-2 italic" href="##data.article.yts.$subtitleURL##"> download Subtitles </a>
+                                    </div>
+
+                                    <div x-data="article.$castList" class="d-flex gap-2 p-2 justify-content-center casts">
+                                        <a x-list1="article.$castList" href="##item1.url##" rel="nofollow" target="_blank">
+                                            <img src="##item1.imageURL##" alt="##item1.name##" onerror="this.onerror=null;this.src='##data.article.$imageURL##'" />
+                                            <p>##item1.name##</p>
+                                        </a>
+                                    </div>
+
+                                    <div x-data="article.$yts" class="row text-left yts-info">
+                                        <p class="bold">Movie Rating : <span class="yellow"> ##data.article.yts.rating##</span></p>
+                                        <p class="bold">Movie Language : <span class="yellow"> ##data.article.yts.language##</span></p>
+                                        <p class="bold">Movie Type : <span class="yellow"> ##data.article.yts.type##</span></p>
+                                    </div>
+                                </div>
+
+                                <div x-data="article.$content" class="d-flex gap-2 p-2 justify-content-center">
+                                    <div class="article-description">##data.article.$content##</div>
+                                </div>
+
+                                <div
+                                    x-data="article.$hasVideo"
+                                    class="videoArticle w-100 d-flex flex-row justify-content-center align-items-center"
+                                    style="background-image: URL('##data.article.$video.imageURL##')"
+                                >
+                                    <div id="videopalyer" class="videopalyer flex-column justify-content-center align-items-center">
+                                        <div class="closeVideoButton p-4">
+                                            <div id="closeVButton" class="closevideo closeMButton d-flex flex-row justify-content-start align-items-start">
+                                                <i class="fas fa-times"></i>
+                                            </div>
+                                        </div>
+                                        <video class="d-flex" src="##data.article.$video.url##" type="video/mp4" controls></video>
+                                    </div>
+                                </div>
+
+                                <div x-data="article.$hasImageGallary" class="imagesArticle w-100 d-flex flex-row justify-content-start align-items-start">
+                                    <div class="IASmallSlider d-flex flex-column justify-content-start">
+                                        <div class="slide-imageNews d-flex">
+                                            <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
+                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
+                                            </a>
+                                        </div>
+                                        <div class="slide-imageNews d-flex">
+                                            <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
+                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
+                                            </a>
+                                        </div>
+                                        <div class="slide-imageNews d-flex">
+                                            <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
+                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
+                                            </a>
+                                        </div>
+                                        <div class="slide-imageNews d-flex">
+                                            <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
+                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div x-data="setting.showArticleAd" x-import="theme1/ad-article.html" class="related-ads"></div>
+
+                            <div class="related-search">
+                                <span class="bold"> ##word.related Search##</span>
+                                <a x-list1="article.$keyWordsList" rel="nofollow" href="/results?search_query=##item1.##"> <i>##item1.##</i> </a>
+                            </div>
+
+                            <div class="related-tags">
+                                <a x-list1="article.$tagsList" rel="nofollow" href="/results?tag=##item1.##"> <b>##item1.##</b> </a>
+                            </div>
+
+                            <div x-data="shortLink.id" class="steps">
+                                <h2 class="center">Step ##data.shortLink.step## / ##data.shortLink.maxStep##</h2>
+                                <h3 class="counter">Waiting <span></span> sec</h3>
+                                <a href="/article/random" class="btn"> Click to Next Step >>>> </a>
+                            </div>
+
+                            <div x-import="theme1/related.html"></div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex col-sm-12 col-md-12 col-lg-3 flex-column justify-content-center justify-content-center align-items-center p-0 m-0">
+                        <a x-list1="latestList" class="mini-article d-flex gap-2" href="##item1.$url##">
+                            <img class="d-flex col-sm-3" src="##item1.$imageURL##" alt="" />
+                            <p class="d-flex col-sm-9">##item1.$title##</p>
+                        </a>
+                        <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
+                        <div x-data="setting.showSideAd" x-import="theme1/ad-social.html" class="related-tags"></div>
+                        <div x-data="setting.showSideAd" x-import="theme1/ad-mail.html" class="related-tags"></div>
+                        <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- ---start mainSection--- -->
+        </div>
+        <div x-import="theme1/wedgite.html"></div>
+        <footer x-import="theme1/footer.html" class="footer d-flex flex-column justify-content-center align-items-center"></footer>
+        <script x-data="shortLink">
+            let counterTimeout = parseInt('##data.shortLink.timeout##' || 30);
+            window.countInterval = setInterval(() => {
+                if ((counter = document.querySelector('.counter span'))) {
+                    let count = parseInt(counter.innerText || counterTimeout);
+                    count--;
+                    if (count < 0) {
+                        clearInterval(window.countInterval);
+                        if ((a = document.querySelector('.steps h3'))) {
+                            a.style.display = 'none';
+                        }
+                        if ((a = document.querySelector('.steps a'))) {
+                            a.style.display = 'block';
+                        }
+                    } else {
+                        counter.innerText = count;
+                    }
+                }
+            }, 1000);
+        </script>
+    </body>
 </html>
