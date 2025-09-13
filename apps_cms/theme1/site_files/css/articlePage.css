@@ -126,10 +126,11 @@
     margin: 5px;
     padding: 10px;
     line-height: 2.5rem;
-     background: var(--background1x);
+    background: var(--background1x);
 }
 .article-description {
     width: 100%;
+    background-color: var(--background1);
 }
 .article-description h1 {
     font-size: 2rem;
