@@ -88,6 +88,12 @@
                                             <div class="col9">
                                                 <div class="row" ng-show="article.type.id !== 2">
                                                     <i-textarea ng-change="calcCount(art)" ng-model="art.textContent" label="##word.content##"> </i-textarea>
+                                                              <i-button
+                                                                    ng-show="article.type.id == 7"
+                                                                    loading="{{aiBusy}}"
+                                                                    label="##word.Generate Movie Description##"
+                                                                    ng-click="generateMovieDescription(article)"
+                                                                ></i-button>
                                                 </div>
                                                 <div class="row" ng-show="article.type.id == 2">
                                                     <div class="article-part">
@@ -138,8 +144,11 @@
                                                                     <i-checkbox class="center" label="##word.show_image##" ng-model="p.showImage"> </i-checkbox>
                                                                 </div>
                                                             </div>
+                                                            <div class="row">
+                                                      
 
-                                                            <i-content class="row" ng-model="p.content" label="##word.content##"></i-content>
+                                                                <i-content class="row" ng-model="p.content" label="##word.content##"></i-content>
+                                                            </div>
 
                                                             <hr />
                                                         </div>
@@ -166,7 +175,6 @@
                                                     </fieldset>
                                                 </div>
                                                 <div class="row" ng-show="article.type.id == 7">
-                                                    <i-button loading="{{aiBusy}}" label="##word.Generate Movie Description##" ng-click="generateMovieDescription(article)"></i-button>
                                                     <i-control ng-model="article.yts.year" label="##word.Movie Year##"></i-control>
                                                     <i-control ng-model="article.yts.type" label="##word.Movie Type##"></i-control>
                                                     <i-control ng-model="article.yts.language" label="##word.Movie Language##"></i-control>

@@ -128,7 +128,7 @@
     line-height: 2.5rem;
     background: #00000036;
 }
-.article-description{
+.article-description {
     width: 100%;
 }
 .article-description h1 {
@@ -146,12 +146,19 @@
     margin: 30px 0px 30px 0px;
     padding: 10px;
     font-weight: bold;
+    background: var(--background2);
+    border-radius: 5px;
 }
 
 .article-description h3 {
     font-size: 1.4rem;
-    padding-left: 30px;
     font-weight: bold;
+    background: var(--background2x);
+    padding: 5px;
+    width: fit-content;
+    border-radius: 5px;
+    color: var(--color2);
+    margin: 0 auto;
 }
 
 .videoArticle {

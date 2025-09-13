@@ -735,7 +735,7 @@ module.exports = function init(site) {
                     console.log('AI Start : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
                         if (!err && text) {
-                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2)');
+                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2');
                             articlesDoc.translatedList[0].textContent = text;
                             site.$articles.edit(
                                 {
@@ -794,7 +794,7 @@ module.exports = function init(site) {
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
                         if (!err && text) {
                             text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2');
-                            // text = site.$.load(text, null, false).html();
+                            text = site.$.load(text, null, false).html();
                             articlesDoc.translatedList[0].textContent = text;
                             articlesDoc.type = site.articleTypes.find((t) => t.id === 8);
                             site.$articles.edit(
@@ -1251,11 +1251,11 @@ module.exports = function init(site) {
             done: false,
         };
 
-        if (!req.session.user) {
-            response.error = 'Please Login First';
-            res.json(response);
-            return;
-        }
+        // if (!req.session.user) {
+        //     response.error = 'Please Login First';
+        //     res.json(response);
+        //     return;
+        // }
 
         let articlesDoc = req.body;
 
@@ -1274,9 +1274,13 @@ module.exports = function init(site) {
         }
 
         site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
-            response.result = result;
             if (!err && text) {
-                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2)');
+                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
+
+                let $ = site.$.load(text);
+                let body = $('body');
+                let html = body.html();
+                text = html;
 
                 articlesDoc.translatedList[0].textContent = text;
                 site.$articles.edit(
@@ -1288,16 +1292,22 @@ module.exports = function init(site) {
                     },
                     (err, result) => {
                         if (!err && result) {
-                            response.done = true;
-                            response.doc = result.doc;
-                            let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
-                            if (index > -1) {
-                                site.articlesList[index] = site.handleArticle({ ...result.doc });
-                            }
+                            site.$articles.find({ id: articlesDoc.id }, (err, doc) => {
+                                response.done = true;
+                                if (!err && doc) {
+                                    response.doc = doc;
+                                    let index = site.articlesList.findIndex((a) => a.id === doc.id);
+                                    if (index > -1) {
+                                        site.articlesList[index] = site.handleArticle({ ...doc });
+                                    }
+                                }
+                                res.json(response);
+                            });
                         } else {
                             response.error = err?.message;
+                             res.json(response);
                         }
-                        res.json(response);
+                       
                     },
                 );
             } else {

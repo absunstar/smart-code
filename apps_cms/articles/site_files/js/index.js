@@ -176,10 +176,11 @@ app.controller('articles', function ($scope, $http, $timeout) {
         }).then(
             function (response) {
                 $scope.aiBusy = false;
-                if (response.data.done) {
+                if (response.data.done &&  response.data.doc) {
                     let index = $scope.list.findIndex(a=> a.id == article.id);
                     if(index !== -1){
-                        $scope.list[index = response.doc]
+                        article.translatedList = response.data.doc.translatedList
+                        $scope.list[index] = response.data.doc;
                     }
                 } else {
                     $scope.error = response.data.error;

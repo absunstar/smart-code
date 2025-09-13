@@ -12,6 +12,117 @@
               "embedUrl": "##data.article.$embdedURL##"
             }
         </script>
+        <style>
+            table {
+                border-collapse: collapse;
+                background: var(--background1);
+                width: 100%;
+                margin-bottom: 30px;
+                margin-top: 30px;
+            }
+            input {
+                color: var(--color);
+            }
+            table:focus-within tbody tr:not(:focus-within) {
+                filter: blur(4px) saturate(0.2);
+                pointer-events: none;
+                opacity: 0.5;
+            }
+            tr:focus-within {
+                background: var(--selected);
+                td,
+                input {
+                    color: canvasText;
+                }
+            }
+            thead {
+                background: var(--head);
+            }
+            th,
+            td:first-of-type {
+                padding: 0.25rem 1rem;
+            }
+            :is(td, th) {
+                height: 40px;
+            }
+            td {
+                font-weight: 300;
+            }
+            tr {
+                transition-property: filter, background, opacity;
+                transition-duration: 0.2s;
+                transition-timing-function: ease-out;
+            }
+
+            table :is(td, th) {
+                border: 1px solid var(--color2);
+                text-align: center;
+                color: var(--color2);
+            }
+            table th {
+                background: var(--background2);
+                font-size: larger;
+            }
+            thead {
+                background: var(--head);
+            }
+
+            td:not(:has(input)) {
+                padding: 0.5rem 1rem;
+            }
+
+            tr:focus-within input:hover:not(:focus-visible) {
+                background: color-mix(in oklch, var(--accent), #0000 75%);
+            }
+
+            table input {
+                font-size: inherit;
+                height: 40px;
+                font-weight: inherit;
+                border: 0;
+                padding: 0.5rem 1rem;
+                height: 100%;
+                background: #0000;
+                border-radius: 0;
+                caret-color: var(--accent);
+                transition: color 0.26s ease-out;
+            }
+
+            input:not(:focus, :focus-visible) {
+                cursor: pointer;
+            }
+            table img {
+                border-radius: 50%;
+                width: 24px;
+                aspect-ratio: 1;
+            }
+            article * {
+                transition: all 0.3s ease-in-out;
+            }
+            article ul,
+            article ol,
+            article dl {
+                padding-left: 1.5rem;
+            }
+            article li:not(:last-of-type) {
+                border-bottom: 1px solid var(--background2x);
+            }
+            [lang='En'] article li:hover {
+                padding-left: 12px;
+            }
+            [lang='Ar'] article li:hover {
+                padding-right: 12px;
+            }
+            article li {
+                margin-block-end: 8px;
+                line-height: 1.5;
+                padding-bottom: 12px;
+            }
+            article li::marker {
+                color: var(--background2);
+                font-weight: bold;
+            }
+        </style>
     </head>
 
     <body ng-controller="mainController" class="##data.direction##">
@@ -33,7 +144,7 @@
             <!-- ---start mainSection--- -->
             <div class="mainSectionNews d-flex flex-column mt-4" style="background-image: url(##data.article.$backgroundURL##)">
                 <div class="adsWithNews d-flex flex-lg-row flex-column justify-content-start align-items-md-start align-items-lg-start align-items-start p-0 m-0">
-                    <div class="d-flex col-sm-12 col-md-12 col-lg-9 newsArticle justify-content-center align-items-start align-content-center m-0 pt-0 mb-10">
+                    <article class="d-flex col-sm-12 col-md-12 col-lg-9 newsArticle justify-content-center align-items-start align-content-center m-0 pt-0 mb-10">
                         <div class="articleSection d-flex flex-column justify-content-center align-items-center align-content-center gap-2">
                             <div class="col-sm-12 d-flex gap-5 justify-content-center articleEditor">
                                 <div x-data="setting.showEditor">
@@ -89,15 +200,15 @@
 
                                 <h1 class="d-flex text-center">##data.article.$title##</h1>
                             </div>
-                           
+
                             <audio x-data="article.$hasAudio" controls class="w-100">
                                 <source src="##data.article.$audio.url##" type="audio/mpeg" />
                             </audio>
 
                             <div class="mainarticle d-flex flex-row row align-items-start justify-content-center">
-                               <div x-data="article.$embdedURL" class="col-xs-12 col-sm-12 p-3">
-                                <iframe src="##data.article.$embdedURL##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
+                                <div x-data="article.$embdedURL" class="col-xs-12 col-sm-12 p-3">
+                                    <iframe src="##data.article.$embdedURL##" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
                                 <div x-data="article.$yts" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                                     <div class="center">
                                         <img src="##data.article.$imageURL##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" alt="##data.article.$title##" />
@@ -205,7 +316,7 @@
 
                             <div x-import="theme1/related.html"></div>
                         </div>
-                    </div>
+                    </article>
 
                     <div class="d-flex col-sm-12 col-md-12 col-lg-3 flex-column justify-content-center justify-content-center align-items-center p-0 m-0">
                         <a x-list1="latestList" class="mini-article d-flex gap-2" href="##item1.$url##">
