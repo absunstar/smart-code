@@ -170,13 +170,15 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.generateMovieDescription = function (article) {
         $http({
             method: 'POST',
-            url: '/api/articles/update-movie-description',
+            url: '/api/articles/generate-movie-description',
             data: article,
         }).then(
             function (response) {
                 if (response.data.done) {
-                    site.hideModal('#articleManageModal');
-                    site.resetValidated('#articleManageModal');
+                    let index = $scope.list.findIndex(a=> a.id == article.id);
+                    if(index !== -1){
+                        $scope.list[index = response.doc]
+                    }
                 } else {
                     $scope.error = response.data.error;
                 }

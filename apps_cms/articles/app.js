@@ -1246,7 +1246,7 @@ module.exports = function init(site) {
             },
         );
     });
-    site.post('/api/articles/update-movie-description', (req, res) => {
+    site.post('/api/articles/generate-movie-description', (req, res) => {
         let response = {
             done: false,
         };
@@ -1276,7 +1276,8 @@ module.exports = function init(site) {
         site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
             response.result = result;
             if (!err && text) {
-                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '');
+                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2)');
+
                 articlesDoc.translatedList[0].textContent = text;
                 site.$articles.edit(
                     {
@@ -1288,7 +1289,7 @@ module.exports = function init(site) {
                     (err, result) => {
                         if (!err && result) {
                             response.done = true;
-
+                            response.doc = result.doc;
                             let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
                             if (index > -1) {
                                 site.articlesList[index] = site.handleArticle({ ...result.doc });
