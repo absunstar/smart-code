@@ -90,6 +90,7 @@
     gap: 50px;
     align-items: center;
     flex-direction: row;
+    width: 100%;
 }
 .writerArea {
     background: var(--background2);
