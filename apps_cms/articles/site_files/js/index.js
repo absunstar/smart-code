@@ -168,12 +168,14 @@ app.controller('articles', function ($scope, $http, $timeout) {
     };
 
     $scope.generateMovieDescription = function (article) {
+        $scope.aiBusy = true;
         $http({
             method: 'POST',
             url: '/api/articles/generate-movie-description',
             data: article,
         }).then(
             function (response) {
+                $scope.aiBusy = false;
                 if (response.data.done) {
                     let index = $scope.list.findIndex(a=> a.id == article.id);
                     if(index !== -1){
@@ -185,6 +187,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
             function (err) {
                 $scope.error = err;
+                $scope.aiBusy = false;
             }
         );
     };

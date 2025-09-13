@@ -166,7 +166,7 @@
                                                     </fieldset>
                                                 </div>
                                                 <div class="row" ng-show="article.type.id == 7">
-                                                    <i-button label="##word.Generate Movie Description##" ng-click="generateMovieDescription(article)"></i-button>
+                                                    <i-button loading="{{aiBusy}}" label="##word.Generate Movie Description##" ng-click="generateMovieDescription(article)"></i-button>
                                                     <i-control ng-model="article.yts.year" label="##word.Movie Year##"></i-control>
                                                     <i-control ng-model="article.yts.type" label="##word.Movie Type##"></i-control>
                                                     <i-control ng-model="article.yts.language" label="##word.Movie Language##"></i-control>
