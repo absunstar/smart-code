@@ -101,9 +101,12 @@
 }
 .mainarticle {
     padding: 0;
+    padding-top: 30px;
     font-size: large;
     line-height: 1.8;
     width: 100%;
+    background: var(--background2xx);
+    border-radius: 10px;
 }
 
 .mainarticle iframe {
@@ -155,7 +158,7 @@
 }
 
 .article-description h3 {
-       font-size: 1.4rem;
+    font-size: 1.4rem;
     font-weight: bold;
     background: var(--background2x);
     padding: 5px;
