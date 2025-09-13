@@ -37,7 +37,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
             function (err) {
                 console.log(err);
-            }
+            },
         );
     };
 
@@ -124,7 +124,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
             function (err) {
                 console.log(err);
-            }
+            },
         );
     };
 
@@ -163,7 +163,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
             function (err) {
                 console.log(err);
-            }
+            },
         );
     };
 
@@ -176,10 +176,10 @@ app.controller('articles', function ($scope, $http, $timeout) {
         }).then(
             function (response) {
                 $scope.aiBusy = false;
-                if (response.data.done &&  response.data.doc) {
-                    let index = $scope.list.findIndex(a=> a.id == article.id);
-                    if(index !== -1){
-                        article.translatedList = response.data.doc.translatedList
+                if (response.data.done && response.data.doc) {
+                    let index = $scope.list.findIndex((a) => a.id == article.id);
+                    if (index !== -1) {
+                        article.translatedList = response.data.doc.translatedList;
                         $scope.list[index] = response.data.doc;
                     }
                 } else {
@@ -189,13 +189,13 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.error = err;
                 $scope.aiBusy = false;
-            }
+            },
         );
     };
 
     $scope.generateAllMovieDescription = function () {
         $scope.list
-            .filter((a) => !a.translatedList[0].textContent && a.yts)
+            .filter((a) => (!a.translatedList[0].textContent || a.translatedList[0].textContent.contain('<!DOCTYPE html>')) && a.yts)
             .forEach((article, i) => {
                 article.$title = article.yts.title_long;
                 $timeout(() => {
@@ -242,7 +242,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
             function (err) {
                 console.log(err);
-            }
+            },
         );
     };
 
@@ -284,7 +284,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
                     site.hideModal('#articleManageModal');
                     $scope.list.splice(
                         $scope.list.findIndex((a) => a.id == id),
-                        1
+                        1,
                     );
                 } else {
                     $scope.error = response.data.error;
@@ -292,7 +292,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
             function (err) {
                 console.log(err);
-            }
+            },
         );
     };
 
@@ -321,7 +321,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -350,7 +350,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -383,7 +383,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -410,7 +410,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -437,7 +437,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -466,7 +466,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -499,7 +499,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -527,7 +527,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -554,7 +554,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
@@ -581,7 +581,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
             function (err) {
                 $scope.busy = false;
                 $scope.error = err;
-            }
+            },
         );
     };
 
