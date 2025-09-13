@@ -154,14 +154,14 @@
 }
 
 .article-description h3 {
-    font-size: 1.4rem;
+       font-size: 1.4rem;
     font-weight: bold;
     background: var(--background2x);
     padding: 5px;
     width: fit-content;
     border-radius: 5px;
     color: var(--color2);
-    margin: 0 auto;
+    margin: 30px auto 30px auto;
 }
 
 .videoArticle {
