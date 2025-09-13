@@ -43,8 +43,6 @@
 /* end mainImage */
 
 .casts {
-    background: var(--background1);
-    color: var(--color1);
     border-radius: 20px;
     display: flex;
     flex-direction: row;
@@ -63,9 +61,12 @@
     align-items: center;
     gap: 8px;
     transition: all 0.2s ease;
+    background: var(--background1);
+    color: var(--color1);
+    border-radius: 20px;
 }
 .casts a:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 .casts img {
     width: 64px !important;
@@ -121,15 +122,16 @@
 .mainarticle p {
     word-break: break-word;
     word-wrap: break-word;
-    margin: 0px;
-    padding: 0px;
     margin: 5px;
-    padding: 10px;
+    padding: 10px 20px;
     line-height: 2.5rem;
-    background: var(--background1x);
+    background: var(--background1);
+    border-radius: 15px;
+    text-align: center;
 }
 .article-description {
     width: 100%;
+    border-radius: 20px;
     background-color: var(--background1);
 }
 .article-description h1 {
