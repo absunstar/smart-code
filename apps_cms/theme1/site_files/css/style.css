@@ -112,6 +112,9 @@ body {
 .articleSection h1 {
     font-size: xx-large;
     line-height: 2;
+    background: var(--background1);
+    padding: 10px;
+    border-radius: 10px;
 }
 .mini-article {
     display: block;
