@@ -200,7 +200,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
                 article.$title = article.yts.title_long;
                 $timeout(() => {
                     $scope.generateMovieDescription(article);
-                }, 1000 * 15 * i);
+                }, 1000 * 20 * i);
             });
     };
     $scope.displayDetailsArticles = function (article) {
