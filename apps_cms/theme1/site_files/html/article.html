@@ -47,7 +47,7 @@
             }
             td {
                 font-weight: 300;
-                font-size: 1rem;;
+                font-size: 1rem;
             }
             tr {
                 transition-property: filter, background, opacity;
@@ -122,6 +122,14 @@
             article li::marker {
                 color: var(--background2);
                 font-weight: bold;
+            }
+            .btn-browser {
+                background: green;
+                color: #fff;
+                box-shadow: 0 0 8px 4px #000;
+            }
+            .btn-browser:hover {
+                transform: scale(1.1);
             }
         </style>
     </head>
@@ -228,9 +236,7 @@
                                         >
                                             Download <span class="blue">[Quality ##item1.quality##]</span> <span class="black">( ##item1.size## ) Torrent</span>
                                         </a>
-                                        <a rel="nofollow" class="btn btn-primary p-2 font-20" target="_blank" href="/Social-Browser">
-                                            ##word.Download Social Browser##
-                                        </a>
+                                        <a rel="nofollow" class="btn btn-browser p-2 font-20" target="_blank" href="/Social-Browser"> ##word.Download Social Browser## </a>
                                     </div>
 
                                     <div class="d-flex gap-2 p-2 justify-content-center">
