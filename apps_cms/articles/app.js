@@ -735,7 +735,13 @@ module.exports = function init(site) {
                     console.log('AI Start : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
                         if (!err && text) {
-                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2');
+                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
+
+                            let $ = site.$.load(text);
+                            let body = $('body');
+                            let html = body.html();
+                            text = html;
+
                             articlesDoc.translatedList[0].textContent = text;
                             site.$articles.edit(
                                 {
@@ -793,8 +799,12 @@ module.exports = function init(site) {
                     console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
                         if (!err && text) {
-                            text = text.replaceAll('**', ' ').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replace('h1', 'h2');
-                            text = site.$.load(text, null, false).html();
+                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
+
+                            let $ = site.$.load(text);
+                            let body = $('body');
+                            let html = body.html();
+                            text = html;
                             articlesDoc.translatedList[0].textContent = text;
                             articlesDoc.type = site.articleTypes.find((t) => t.id === 8);
                             site.$articles.edit(
@@ -1305,9 +1315,8 @@ module.exports = function init(site) {
                             });
                         } else {
                             response.error = err?.message;
-                             res.json(response);
+                            res.json(response);
                         }
-                       
                     },
                 );
             } else {
