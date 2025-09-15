@@ -553,7 +553,7 @@ module.exports = function init(site) {
         });
     };
     site.getRelatedArticles = function (a, filter = '*', num = 16) {
-        let $relatedArticleList = site.articlesList.filter((b) => b.host.like(filter) && b.$tagsList.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, num);
+        let $relatedArticleList = site.articlesList.filter((b) => b.host.like(filter) && b.$tagsList?.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, num);
         if ($relatedArticleList.length < num) {
             $relatedArticleList = [
                 ...$relatedArticleList,
@@ -800,7 +800,7 @@ module.exports = function init(site) {
                 },
             },
             (err, articlesDoc) => {
-                
+
                 if (!articlesDoc) {
                     console.log('AI Not Found Any Youtube Article');
                     articlesDoc = site.articlesList.find(
