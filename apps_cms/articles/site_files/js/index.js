@@ -192,7 +192,31 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
         );
     };
-
+   $scope.generateYoutubeDescription = function (article) {
+        $scope.aiBusy = true;
+        $http({
+            method: 'POST',
+            url: '/api/articles/generate-youtube-description',
+            data: article,
+        }).then(
+            function (response) {
+                $scope.aiBusy = false;
+                if (response.data.done && response.data.doc) {
+                    let index = $scope.list.findIndex((a) => a.id == article.id);
+                    if (index !== -1) {
+                        article.translatedList = response.data.doc.translatedList;
+                        $scope.list[index] = response.data.doc;
+                    }
+                } else {
+                    $scope.error = response.data.error;
+                }
+            },
+            function (err) {
+                $scope.error = err;
+                $scope.aiBusy = false;
+            },
+        );
+    };
     $scope.generateAllMovieDescription = function () {
         $scope.list
             .filter((a) => (!a.translatedList[0].textContent || a.translatedList[0].textContent.contain('<!DOCTYPE html>')) && a.yts)

@@ -94,6 +94,12 @@
                                                                     label="##word.Generate Movie Description##"
                                                                     ng-click="generateMovieDescription(article)"
                                                                 ></i-button>
+                                                                 <i-button
+                                                                    ng-show="article.type.id == 8"
+                                                                    loading="{{aiBusy}}"
+                                                                    label="##word.Generate Youtube Description##"
+                                                                    ng-click="generateYoutubeDescription(article)"
+                                                                ></i-button>
                                                 </div>
                                                 <div class="row" ng-show="article.type.id == 2">
                                                     <div class="article-part">

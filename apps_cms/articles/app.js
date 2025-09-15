@@ -1324,6 +1324,74 @@ module.exports = function init(site) {
             }
         });
     });
+     site.post('/api/articles/generate-youtube-description', (req, res) => {
+        let response = {
+            done: false,
+        };
+
+        // if (!req.session.user) {
+        //     response.error = 'Please Login First';
+        //     res.json(response);
+        //     return;
+        // }
+
+        let articlesDoc = req.body;
+
+        articlesDoc.editUserInfo = req.getUserFinger();
+
+        if (!articlesDoc.id) {
+            response.error = 'No id';
+            res.json(response);
+            return;
+        }
+
+        if (!articlesDoc.$title) {
+            response.error = 'No $title';
+            res.json(response);
+            return;
+        }
+
+        site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
+            if (!err && text) {
+                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
+
+                let $ = site.$.load(text);
+                let body = $('body');
+                let html = body.html();
+                text = html;
+
+                articlesDoc.translatedList[0].textContent = text;
+                site.$articles.edit(
+                    {
+                        where: {
+                            id: articlesDoc.id,
+                        },
+                        set: articlesDoc,
+                    },
+                    (err, result) => {
+                        if (!err && result) {
+                            site.$articles.find({ id: articlesDoc.id }, (err, doc) => {
+                                response.done = true;
+                                if (!err && doc) {
+                                    response.doc = doc;
+                                    let index = site.articlesList.findIndex((a) => a.id === doc.id);
+                                    if (index > -1) {
+                                        site.articlesList[index] = site.handleArticle({ ...doc });
+                                    }
+                                }
+                                res.json(response);
+                            });
+                        } else {
+                            response.error = err?.message;
+                            res.json(response);
+                        }
+                    },
+                );
+            } else {
+                res.json(response);
+            }
+        });
+    });
     site.post('/api/articles/view', (req, res) => {
         let response = {
             done: false,
