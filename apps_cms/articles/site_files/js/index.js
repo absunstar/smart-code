@@ -223,7 +223,10 @@ app.controller('articles', function ($scope, $http, $timeout) {
         $scope.list
             .filter((a) => !a.translatedList[0].textContent || a.translatedList[0].textContent.contain('<!DOCTYPE html>') || a.translatedList[0].textContent.contain('<h1>'))
             .forEach((article, i) => {
-                article.$title = article.yts.title_long;
+                article.$title = article.translatedList[0].title;
+                if (article.yts && article.yts.title_long) {
+                    article.$title = article.yts.title_long;
+                }
                 $timeout(() => {
                     if (article.type.id == 7) {
                         $scope.generateMovieDescription(article);
