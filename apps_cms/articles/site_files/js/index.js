@@ -168,6 +168,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
     };
 
     $scope.generateMovieDescription = function (article) {
+        alert('Generating Movie Description : ' + article.$title);
         $scope.aiBusy = true;
         $http({
             method: 'POST',
@@ -192,8 +193,9 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
         );
     };
-   $scope.generateYoutubeDescription = function (article) {
+    $scope.generateYoutubeDescription = function (article) {
         $scope.aiBusy = true;
+        alert('Generating Youtube Description : ' + article.$title);
         $http({
             method: 'POST',
             url: '/api/articles/generate-youtube-description',
@@ -217,13 +219,17 @@ app.controller('articles', function ($scope, $http, $timeout) {
             },
         );
     };
-    $scope.generateAllMovieDescription = function () {
+    $scope.generateAllArticlesDescription = function () {
         $scope.list
-            .filter((a) => (!a.translatedList[0].textContent || a.translatedList[0].textContent.contain('<!DOCTYPE html>')) && a.yts)
+            .filter((a) => (!a.translatedList[0].textContent || a.translatedList[0].textContent.contain('<!DOCTYPE html>') || a.translatedList[0].textContent.contain('<h1>')) && a.yts)
             .forEach((article, i) => {
                 article.$title = article.yts.title_long;
                 $timeout(() => {
-                    $scope.generateMovieDescription(article);
+                    if (article.type.id == 7) {
+                        $scope.generateMovieDescription(article);
+                    } else if (article.type.id == 8) {
+                        $scope.generateYoutubeDescription(article);
+                    }
                 }, 1000 * 20 * i);
             });
     };
