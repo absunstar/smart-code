@@ -727,12 +727,21 @@ module.exports = function init(site) {
                 },
             },
             (err, articlesDoc) => {
-                if (!err && !articlesDoc) {
+
+                if (!articlesDoc) {
                     console.log('AI Not Found Any YTS');
+                    articlesDoc = site.articlesList.find(
+                        (a) =>
+                            a.type.id == 7 &&
+                            (!a.translatedList[0].textContent ||
+                                a.translatedList[0].textContent.contain('<!DOCTYPE html>') ||
+                                a.translatedList[0].textContent.contain('<h1>' || !a.translatedList[0].textContent.contain('<h2>'))),
+                    );
                 }
-                if (!err && articlesDoc) {
+
+                if (articlesDoc) {
                     articlesDoc = site.handleArticle(articlesDoc);
-                    console.log('AI Start : ' + articlesDoc.$title);
+                    console.log('AI Start YTS : ' + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
                         if (!err && text) {
                             text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
@@ -791,10 +800,19 @@ module.exports = function init(site) {
                 },
             },
             (err, articlesDoc) => {
-                if (!err && !articlesDoc) {
+                
+                if (!articlesDoc) {
                     console.log('AI Not Found Any Youtube Article');
+                    articlesDoc = site.articlesList.find(
+                        (a) =>
+                            a.type.id == 8 &&
+                            (!a.translatedList[0].textContent ||
+                                a.translatedList[0].textContent.contain('<!DOCTYPE html>') ||
+                                a.translatedList[0].textContent.contain('<h1>' || !a.translatedList[0].textContent.contain('<h2>'))),
+                    );
                 }
-                if (!err && articlesDoc) {
+
+                if (articlesDoc) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
@@ -1324,7 +1342,7 @@ module.exports = function init(site) {
             }
         });
     });
-     site.post('/api/articles/generate-youtube-description', (req, res) => {
+    site.post('/api/articles/generate-youtube-description', (req, res) => {
         let response = {
             done: false,
         };
