@@ -221,7 +221,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
     };
     $scope.generateAllArticlesDescription = function () {
         $scope.list
-            .filter((a) => (!a.translatedList[0].textContent || a.translatedList[0].textContent.contain('<!DOCTYPE html>') || a.translatedList[0].textContent.contain('<h1>')) && a.yts)
+            .filter((a) => !a.translatedList[0].textContent || a.translatedList[0].textContent.contain('<!DOCTYPE html>') || a.translatedList[0].textContent.contain('<h1>'))
             .forEach((article, i) => {
                 article.$title = article.yts.title_long;
                 $timeout(() => {
