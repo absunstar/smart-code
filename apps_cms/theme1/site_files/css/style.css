@@ -213,6 +213,8 @@ body {
     background-position: top;
     background-size: contain;
     overflow: hidden;
+    background: var(--background1xx);
+    color: var(--color1);
 }
 p {
     word-break: break-word;
