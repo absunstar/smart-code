@@ -640,8 +640,10 @@ module.exports = function init(site) {
                     site.GOOGLE_API_KEY_index++;
                     if (site.GOOGLE_API_KEY_index >= site.GOOGLE_API_KEY_list.length) {
                         site.GOOGLE_API_KEY_index = 0;
+                        callBack({message : 'GOOGLE_API_KEY_index Reset ...'}, null);
+                    }else{
+                        site.getGeminiResult(ask, callBack);
                     }
-                    site.getGeminiResult(ask, callBack);
                 } else if (d.error) {
                     console.log(d.error);
                     callBack(d.error, null);
@@ -862,7 +864,7 @@ module.exports = function init(site) {
     setInterval(() => {
         site.autoUpdatYoutubeDescription();
         site.autoUpdateMovieDescription();
-    }, 1000 * 60);
+    }, 1000 * 60 * 5);
 
     site.prepareArticles();
 
