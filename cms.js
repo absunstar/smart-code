@@ -573,7 +573,7 @@ site.get(
                     page_type: 'article',
                     page_title: language.siteName + ' ' + language.titleSeparator + ' ' + article.$title,
                     page_description: article.$description,
-                    page_keywords: article.$keyWordsList.join(','),
+                    page_keywords: article.$keyWordsList?.join(',')|| '',
                     page_lang: language.id,
                     article: article,
                 };
