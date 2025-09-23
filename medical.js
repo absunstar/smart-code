@@ -4,6 +4,9 @@ const site = require('../isite')({
   language: { id: 'Ar', dir: 'rtl', text: 'right' },
   version: Date.now(),
   name: 'medical',
+    upload_dir: __dirname + "/../uploads",
+    download_dir: __dirname + "/../downloads",
+    backup_dir: __dirname + "/../backups",
   require: {
     features: [],
     permissions: [],

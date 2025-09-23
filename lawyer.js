@@ -6,6 +6,9 @@ const site = require('../isite')({
   name: 'lawyer',
   savingTime: 5,
   log: true,
+    upload_dir: __dirname + "/../uploads",
+    download_dir: __dirname + "/../downloads",
+    backup_dir: __dirname + "/../backups",
   require: {
     features: [],
     permissions: [],

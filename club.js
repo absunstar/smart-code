@@ -7,6 +7,9 @@ const site = require('../isite')({
   savingTime: 5,
   log: true,
   theme: 'theme_paper',
+    upload_dir: __dirname + "/../uploads",
+  download_dir: __dirname + "/../downloads",
+  backup_dir: __dirname + "/../backups",
   require: {
     features: [],
     permissions: [],

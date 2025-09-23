@@ -5,6 +5,9 @@ const site = require('../isite')({
   version: '2023.03.07.2',
   name: 'employee',
   theme: 'theme_paper',
+    upload_dir: __dirname + "/../uploads",
+  download_dir: __dirname + "/../downloads",
+  backup_dir: __dirname + "/../backups",
   require: {
     features: [],
     permissions: [],
