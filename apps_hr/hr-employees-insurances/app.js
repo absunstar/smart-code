@@ -125,7 +125,7 @@ module.exports = function init(site) {
 
     $employees_insurances.findOne({
       where: {
-        _id: site.mongodb.ObjectId(req.body._id)
+        _id: site.mongodb.ObjectID(req.body._id)
       }
     }, (err, doc) => {
       if (!err) {

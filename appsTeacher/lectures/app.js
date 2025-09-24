@@ -516,7 +516,7 @@ module.exports = function init(site) {
 
       let _data = req.data;
       // if(typeof _data._id == 'string') {
-      //   _data._id = site.mongodb.ObjectId(_data._id)
+      //   _data._id = site.mongodb.ObjectID(_data._id)
       // }
       app.view(_data, (err, doc) => {
         if (!err && doc) {
