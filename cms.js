@@ -7,7 +7,7 @@ const site = require('../isite')({
     name: 'cms',
     savingTime: 15,
     responseTimeout: 60,
-    log: true,
+    log: false,
     www: false,
     help: false,
     upload_dir: __dirname + '/../uploads',
@@ -16,8 +16,8 @@ const site = require('../isite')({
     session: {
         cookieDomain: true,
         enabled: !0,
-        timeout: 0,
-        memoryTimeout: 5,
+        timeout: 60 *24 * 7,
+        memoryTimeout: 60,
     },
     require: {
         features: [],
