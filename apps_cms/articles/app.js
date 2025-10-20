@@ -721,7 +721,7 @@ module.exports = function init(site) {
             {
                 select: {},
                 where: {
-                    'translatedList.textContent': '',
+                  $or: [{ 'translatedList.textContent': '' }, { 'translatedList.textContent': null }],
                     'category.id': 2,
                 },
                 sort: {
@@ -753,7 +753,8 @@ module.exports = function init(site) {
                             let html = body.html();
                             text = html;
 
-                            articlesDoc.translatedList[0].textContent = text;
+                            if(text){
+                                  articlesDoc.translatedList[0].textContent = text;
                             site.$articles.edit(
                                 {
                                     where: {
@@ -767,13 +768,17 @@ module.exports = function init(site) {
                                         if (index !== -1) {
                                             site.articlesList[index] = site.handleArticle({ ...result.doc });
                                         }
-                                        console.log('AI Done: ' + articlesDoc.yts.title);
+                                        console.log('AI YTS Done: ' + articlesDoc.yts.title);
                                     }
                                     if (err) {
                                         console.log(err);
                                     }
                                 },
                             );
+                            }else{
+                                console.log('No AI Text : ' + articlesDoc.$title);
+                            }
+                          
                         }
                         if (err) {
                             console.log(err);
@@ -825,7 +830,8 @@ module.exports = function init(site) {
                             let body = $('body');
                             let html = body.html();
                             text = html;
-                            articlesDoc.translatedList[0].textContent = text;
+                            if(text){
+                                 articlesDoc.translatedList[0].textContent = text;
                             articlesDoc.type = site.articleTypes.find((t) => t.id === 8);
                             site.$articles.edit(
                                 {
@@ -847,6 +853,10 @@ module.exports = function init(site) {
                                     }
                                 },
                             );
+                            }else{
+                                console.log('No AI Text :' + articlesDoc.youtube.url)
+                            }
+                           
                         }
                         if (err) {
                             console.error(err);
