@@ -16,7 +16,7 @@ const site = require('../isite')({
     session: {
         cookieDomain: true,
         enabled: !0,
-        timeout: 60 *24 * 7,
+        timeout: 60 * 24 * 7,
         memoryTimeout: 60,
     },
     require: {
@@ -500,7 +500,7 @@ site.onGET('/s/:guid', (req, res) => {
 
 site.get(
     {
-        name: ['/article/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/torrent/:guid' , '/api/article/:guid'],
+        name: ['/article/:guid/:title', '/torrent/:guid/:title', '/article/:guid', '/a/:guid', '/torrent/:guid', '/api/article/:guid'],
     },
     (req, res) => {
         let filter = site.getHostFilter(req.host);
@@ -573,13 +573,13 @@ site.get(
                     page_type: 'article',
                     page_title: language.siteName + ' ' + language.titleSeparator + ' ' + article.$title,
                     page_description: article.$description,
-                    page_keywords: article.$keyWordsList?.join(',')|| '',
+                    page_keywords: article.$keyWordsList?.join(',') || '',
                     page_lang: language.id,
                     article: article,
                 };
 
                 if (article.$embdedURL) {
-                    options.page_title = language.siteName + ' '  + language.titleSeparator  + ' video ' + language.titleSeparator + ' ' + article.$title;
+                    options.page_title = language.siteName + ' ' + language.titleSeparator + ' video ' + language.titleSeparator + ' ' + article.$title;
                 }
 
                 if (req.host.like('*movies*')) {
@@ -759,3 +759,5 @@ if ((anlytic = true)) {
         console.log('\n--------------------------------\n');
     }, 1000 * 60 * 5);
 }
+
+
