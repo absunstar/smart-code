@@ -181,7 +181,7 @@
                                     <div x-data="article.$hasWriter" class="d-flex writerArea">
                                         <div class="">
                                             <a target="_blank" class="editorImage d-flex flex-column align-items-start" href="/writer/##data.article.writer.id##">
-                                                <img src="##data.article.writer.$imageURL##" alt="##data.article.writer.$name##" width="147px" height="147px" />
+                                                <img src="##data.article.writer.$imageURL##" alt="##data.article.writer.$name##" width="147px" height="147px" onerror="this.onerror=null;this.src='/theme1/images/no.png'"/>
                                             </a>
                                         </div>
                                         <div class="">
@@ -270,7 +270,7 @@
 
                                     <div x-data="article.$castList" class="d-flex gap-2 p-2 justify-content-center casts">
                                         <a x-list1="article.$castList" href="##item1.url##" rel="nofollow" target="_blank">
-                                            <img src="##item1.imageURL##" alt="##item1.name##" onerror="this.onerror=null;this.src='##data.article.$imageURL##'" />
+                                            <img src="##item1.imageURL##" alt="##item1.name##" onerror="this.onerror=null;this.src='/theme1/images/no.png'" />
                                             <p>##item1.name##</p>
                                         </a>
                                     </div>
@@ -305,22 +305,22 @@
                                     <div class="IASmallSlider d-flex flex-column justify-content-start">
                                         <div class="slide-imageNews d-flex">
                                             <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
+                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" onerror="this.onerror=null;this.src='/theme1/images/no.png'"/>
                                             </a>
                                         </div>
                                         <div class="slide-imageNews d-flex">
                                             <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
+                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" onerror="this.onerror=null;this.src='/theme1/images/no.png'"/>
                                             </a>
                                         </div>
                                         <div class="slide-imageNews d-flex">
                                             <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
+                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" onerror="this.onerror=null;this.src='/theme1/images/no.png'"/>
                                             </a>
                                         </div>
                                         <div class="slide-imageNews d-flex">
                                             <a class="d-flex flex-column justify-content-start align-items-center p-0 m-0" href="http://">
-                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" />
+                                                <img src="https://via.placeholder.com/280x132" width="280px" height="132px" onerror="this.onerror=null;this.src='/theme1/images/no.png'" />
                                             </a>
                                         </div>
                                     </div>
@@ -350,7 +350,7 @@
 
                     <div class="d-flex col-sm-12 col-md-12 col-lg-3 flex-column justify-content-center justify-content-center align-items-center p-0 m-0">
                         <a x-list1="latestList" class="mini-article d-flex gap-2" href="##item1.$url##">
-                            <img class="d-flex col-sm-3" src="##item1.$imageURL##" alt="" />
+                            <img class="d-flex col-sm-3" src="##item1.$imageURL##" alt="" onerror="this.onerror=null;this.src='/theme1/images/no.png'" />
                             <p class="d-flex col-sm-9">##item1.$title##</p>
                         </a>
                         <div x-data="setting.showSideAd" x-import="theme1/ad-side.html" class="related-tags"></div>
