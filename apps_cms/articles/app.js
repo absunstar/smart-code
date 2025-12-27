@@ -640,7 +640,7 @@ module.exports = function init(site) {
                     site.GOOGLE_API_KEY_index++;
                     if (site.GOOGLE_API_KEY_index >= site.GOOGLE_API_KEY_list.length) {
                         site.GOOGLE_API_KEY_index = 0;
-                        callBack({message : 'GOOGLE_API_KEY_index Reset ...'}, null);
+                        callBack({message : 'GOOGLE_API_KEY_index Reset to 0 ...'}, null);
                     }else{
                         site.getGeminiResult(ask, callBack);
                     }
@@ -933,9 +933,11 @@ module.exports = function init(site) {
         site.getArticle(req.params.guid, (err, article) => {
             if (article) {
                 let imageURL = article.$imageURL;
+                 return res.redirect(imageURL || '/images/no.png');
                 if (!imageURL || imageURL == '/images/no.png') {
                     res.redirect('/images/no.png');
                 } else {
+                   
                     if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {
                         delete req.headers.host;
                         delete req.headers.referer;
