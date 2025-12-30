@@ -636,7 +636,7 @@ module.exports = function init(site) {
                     });
                 }
                 if (d.error?.code == 429 || d.error?.code == 503) {
-                    console.log('Error API KEY : ' + site.GOOGLE_API_KEY_index);
+                    console.log('Error API KEY : ' + site.GOOGLE_API_KEY_index , d.error);
                     site.GOOGLE_API_KEY_index++;
                     if (site.GOOGLE_API_KEY_index >= site.GOOGLE_API_KEY_list.length) {
                         site.GOOGLE_API_KEY_index = 0;
