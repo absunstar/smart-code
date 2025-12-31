@@ -812,14 +812,14 @@ module.exports = function init(site) {
                     console.log('AI Not Found Any Youtube Article');
                     articlesDoc = site.articlesList.find(
                         (a) =>
-                            a.type.id == 8 &&
+                            a.type.id == 8 && a.youtube &&
                             (!a.translatedList[0].textContent ||
                                 a.translatedList[0].textContent.contain('<!DOCTYPE html>') ||
                                 a.translatedList[0].textContent.contain('<h1>' || !a.translatedList[0].textContent.contain('<h2>'))),
                     );
                 }
 
-                if (articlesDoc) {
+                if (articlesDoc && articlesDoc.youtube && articlesDoc.youtube.url) {
                     articlesDoc = site.handleArticle(articlesDoc);
                     console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
