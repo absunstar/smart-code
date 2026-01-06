@@ -15,7 +15,7 @@ const site = require('../isite')({
     backup_dir: __dirname + '/../backups',
     session: {
         cookieDomain: true,
-        enabled: !0,
+        save: !1,
         timeout: 60 * 24 * 7,
         memoryTimeout: 60,
     },
