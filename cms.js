@@ -25,7 +25,7 @@ const site = require('../isite')({
     },
     theme: 'theme_paper',
     mongodb: {
-        enabled:!1,
+        enabled: !1,
         db: 'SMART-CMS',
         limit: 100,
         events: true,
@@ -715,8 +715,8 @@ site.handleNotRoute = function (req, res) {
 };
 
 site.validateRequest = async function (req, res, next) {
-        res.redirect('https://social-browser.com/');
-    };
+    res.redirect('https://social-browser.com/');
+};
 
 site.run(() => {
     console.log('All Site Loaded !!');
@@ -765,5 +765,3 @@ if ((anlytic = true)) {
         console.log('\n--------------------------------\n');
     }, 1000 * 60 * 5);
 }
-
-
