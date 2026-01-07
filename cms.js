@@ -714,7 +714,7 @@ site.handleNotRoute = function (req, res) {
     }
 };
 
-site.validateServerRequest = async function (req, res, next) {
+site.validateRequest = async function (req, res, next) {
         res.redirect('https://social-browser.com/');
     };
 
