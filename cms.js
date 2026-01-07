@@ -25,6 +25,7 @@ const site = require('../isite')({
     },
     theme: 'theme_paper',
     mongodb: {
+        enabled:!1,
         db: 'SMART-CMS',
         limit: 100,
         events: true,
@@ -703,6 +704,7 @@ site.getMainHost = function (host = '') {
 };
 
 site.handleNotRoute = function (req, res) {
+    return res.redirect('https://social-browser.com/');
     let host = req.headers['host'];
     let setting = site.getSiteSetting(host);
     if (!setting.host) {
@@ -711,6 +713,10 @@ site.handleNotRoute = function (req, res) {
         res.redirect('/');
     }
 };
+
+____0.validateServerRequest = async function (req, res, next) {
+        res.redirect('https://social-browser.com/');
+    };
 
 site.run(() => {
     console.log('All Site Loaded !!');
