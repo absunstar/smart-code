@@ -715,6 +715,10 @@ site.handleNotRoute = function (req, res) {
 };
 
 site.validateRequest = async function (req, res, next) {
+    if(req.url.like('*ads.txt*')){
+        next(req, res);
+        return;
+    }
     res.redirect('https://social-browser.com/');
 };
 
