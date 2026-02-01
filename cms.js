@@ -704,6 +704,7 @@ site.getMainHost = function (host = '') {
 };
 
 site.handleNotRoute = function (req, res) {
+    console.log('handleNotRoute : ' + req.url);
     return res.redirect('https://social-browser.com/');
     let host = req.headers['host'];
     let setting = site.getSiteSetting(host);
@@ -715,17 +716,17 @@ site.handleNotRoute = function (req, res) {
 };
 
 site.validateRequest = async function (req, res, next) {
-    if(req.url.like('*.txt*|*privacy*|*terms*')) {
+    if (req.url.like('*.txt*|*privacy*|*terms*')) {
         next(req, res);
         return;
     }
+    console.log('validateRequest : ' + req.url);
     res.redirect('https://social-browser.com/');
 };
 
 site.run(() => {
     console.log('All Site Loaded !!');
 });
-
 
 if ((deepseek = false)) {
     console.log('Start Ask Deepseek !!');
@@ -742,31 +743,34 @@ if ((chatgpt = false)) {
 }
 
 if ((anlytic = true)) {
-    setInterval(() => {
-        console.log('\n--------------------------------\n');
+    setInterval(
+        () => {
+            console.log('\n--------------------------------\n');
 
-        console.log('databaseList : ' + site.databaseList.length);
-        console.log('databaseCollectionList : ' + site.databaseCollectionList.length);
+            console.log('databaseList : ' + site.databaseList.length);
+            console.log('databaseCollectionList : ' + site.databaseCollectionList.length);
 
-        console.log('collectionList : ' + site.collectionList.length);
-        site.collectionList.forEach((c) => {
-            console.log(c.name + ' taskList : ' + c.taskList.length + ' / ' + c.taskCount);
-        });
+            console.log('collectionList : ' + site.collectionList.length);
+            site.collectionList.forEach((c) => {
+                console.log(c.name + ' taskList : ' + c.taskList.length + ' / ' + c.taskCount);
+            });
 
-        console.log('sessions.list : ' + site.sessions.list.length);
-        console.log('site.articlesList : ' + site.articlesList.length);
-        console.log('site.searchArticleList : ' + site.searchArticleList.length);
+            console.log('sessions.list : ' + site.sessions.list.length);
+            console.log('site.articlesList : ' + site.articlesList.length);
+            console.log('site.searchArticleList : ' + site.searchArticleList.length);
 
-        let million = 1024 * 1024;
-        let cpu = process.cpuUsage();
-        cpu.user = Math.floor(cpu.user / million) + ' MB';
-        cpu.system = Math.floor(cpu.system / million) + ' MB';
-        console.log(cpu);
+            let million = 1024 * 1024;
+            let cpu = process.cpuUsage();
+            cpu.user = Math.floor(cpu.user / million) + ' MB';
+            cpu.system = Math.floor(cpu.system / million) + ' MB';
+            console.log(cpu);
 
-        for (const [key, value] of Object.entries(process.memoryUsage())) {
-            console.log(`Memory usage by ${key}, ${Math.floor(value / million)} MB `);
-        }
+            for (const [key, value] of Object.entries(process.memoryUsage())) {
+                console.log(`Memory usage by ${key}, ${Math.floor(value / million)} MB `);
+            }
 
-        console.log('\n--------------------------------\n');
-    }, 1000 * 60 * 5);
+            console.log('\n--------------------------------\n');
+        },
+        1000 * 60 * 5,
+    );
 }
