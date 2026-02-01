@@ -715,7 +715,7 @@ site.handleNotRoute = function (req, res) {
 };
 
 site.validateRequest = async function (req, res, next) {
-    if(req.url.like('*ads.txt*')){
+    if(req.url.like('*.txt*|*privacy*|*terms*')) {
         next(req, res);
         return;
     }
@@ -725,6 +725,7 @@ site.validateRequest = async function (req, res, next) {
 site.run(() => {
     console.log('All Site Loaded !!');
 });
+
 
 if ((deepseek = false)) {
     console.log('Start Ask Deepseek !!');
