@@ -716,11 +716,11 @@ site.handleNotRoute = function (req, res) {
 };
 
 site.validateRequest = async function (req, res, next) {
-    if (req.url.like('*.txt*|*privacy*|*terms*')) {
+    if (req.url.like('*.txt*|*privacy*|*terms*|*isite*')) {
         next(req, res);
         return;
     }
-    console.log('validateRequest : ' + req.url);
+    console.log('validateRequest : ' + req.ip + ' : ' + req.url);
     res.redirect('https://social-browser.com/');
 };
 
