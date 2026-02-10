@@ -720,6 +720,7 @@ site.validateRequest = async function (req, res, next) {
         next(req, res);
         return;
     }
+    return res.end(404);
     console.log('validateRequest : ' + req.ip + ' : ' + (req.browserHeader || '') + ' : ' + req.url);
     res.redirect('https://social-browser.com/api/random/link');
 };
