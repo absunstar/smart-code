@@ -691,7 +691,7 @@ site.onGET('fcf3c6e41ba640b19e99ba79e8d3ac0a.txt', (req, res) => {
 site.onGET('glx_ecfdd4d6a3041a9e7eeea5a9947936bd.txt', (req, res) => {
     res.end('Galaksion check: 86531e4391aecbe5e70d086020f703f2');
 });
-site.onGET('gapp-ads.txt', (req, res) => {
+site.onGET('app-ads.txt', (req, res) => {
     res.end('google.com, pub-3372007384613151, DIRECT, f08c47fec0942fa0');
 });
 site.getMainHost = function (host = '') {
