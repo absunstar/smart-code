@@ -707,7 +707,7 @@ site.getMainHost = function (host = '') {
 
 site.handleNotRoute = function (req, res) {
     console.log('handleNotRoute : ' + req.url);
-    return res.redirect('https://social-browser.com/api/random/link');
+    return res.redirect('https://earn.egytag.com/');
     let host = req.headers['host'];
     let setting = site.getSiteSetting(host);
     if (!setting.host) {
@@ -724,7 +724,7 @@ site.validateRequest = async function (req, res, next) {
     }
   
    // console.log('validateRequest : ' + req.ip + ' : ' + (req.browserHeader || '') + ' : ' + req.url);
-    res.redirect('https://social-browser.com/api/random/link');
+    res.redirect('https://earn.egytag.com/');
 };
 
 site.run(() => {
