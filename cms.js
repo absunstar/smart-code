@@ -15,7 +15,7 @@ const site = require('../isite')({
     backup_dir: __dirname + '/../backups',
     session: {
         cookieDomain: true,
-        save: !1,
+        save: !0,
         timeout: 60 * 24 * 7,
         memoryTimeout: 60,
     },
@@ -25,7 +25,7 @@ const site = require('../isite')({
     },
     theme: 'theme_paper',
     mongodb: {
-        enabled: !1,
+        enabled: !0,
         db: 'SMART-CMS',
         limit: 100,
         events: true,
@@ -717,15 +717,15 @@ site.handleNotRoute = function (req, res) {
     }
 };
 
-site.validateRequest = async function (req, res, next) {
-    if (req.url.like('*.txt*|*privacy*|*terms*|*isite*')) {
-        next(req, res);
-        return;
-    }
+// site.validateRequest = async function (req, res, next) {
+//     if (req.url.like('*.txt*|*privacy*|*terms*|*isite*')) {
+//         next(req, res);
+//         return;
+//     }
   
-   // console.log('validateRequest : ' + req.ip + ' : ' + (req.browserHeader || '') + ' : ' + req.url);
-    res.redirect('https://earn.egytag.com/');
-};
+//    // console.log('validateRequest : ' + req.ip + ' : ' + (req.browserHeader || '') + ' : ' + req.url);
+//     res.redirect('https://earn.egytag.com/');
+// };
 
 site.run(() => {
     console.log('All Site Loaded !!');

@@ -44,6 +44,7 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/article.css',
       __dirname + '/site_files/css/cms-core.css',
       __dirname + '/site_files/css/mobile.css',
+      __dirname + '/site_files/css/dark-cms.css',
     ],
   });
 };
