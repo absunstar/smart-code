@@ -482,7 +482,7 @@
             </legend>
             <div class="row" ng-repeat="p in siteSetting.programming.metaTags track by $index">
               <div class="row">
-                <i-control type="text" class="col9" ng-model="p.name"> </i-control>
+                <i-control type="text" class="col9" ng-model="p.name" label="##word.Meta Tag##"> </i-control>
                 <i-checkbox class="col2" label="active" ng-model="p.active"> </i-checkbox>
                 <i-button type="delete" label="##word.delete##" ng-click="siteSetting.programming.metaTags.splice($index,1)"> </i-button>
               </div>
@@ -498,7 +498,7 @@
 
             <div class="row" ng-repeat="s in siteSetting.programming.styles track by $index">
               <div class="row">
-                <i-control class="col9" type="text" ng-model="s.name"> </i-control>
+                <i-control class="col9" type="text" ng-model="s.name" label="##word.Style##"> </i-control>
                 <i-checkbox class="col2" label="active" ng-model="s.active"> </i-checkbox>
                 <i-button type="delete" label="##word.delete##" ng-click="siteSetting.programming.styles.splice($index,1)"> </i-button>
               </div>
@@ -514,7 +514,7 @@
 
             <div class="row" ng-repeat="s in siteSetting.programming.scripts track by $index">
               <div class="row">
-                <i-control type="text" class="col9" ng-model="s.name"> </i-control>
+                <i-control type="text" class="col9" ng-model="s.name" label="##word.Script##"> </i-control>
                 <i-checkbox class="col2" label="active" ng-model="s.active"> </i-checkbox>
                 <i-button type="delete" label="##word.delete##" ng-click="siteSetting.programming.scripts.splice($index,1)"> </i-button>
               </div>
@@ -589,7 +589,7 @@
                 <i-button type="push" ng-click="addBlockIp(siteSetting.block)"></i-button>
               </legend>
               <div class="row" ng-repeat="i in siteSetting.block.ipList track by $index">
-                <i-control type="text" class="col9" ng-model="i.name"> </i-control>
+                <i-control type="text" class="col9" ng-model="i.name" label="##word.IP##"> </i-control>
                 <div class="col1"></div>
                 <i-button type="delete" label="##word.delete##" ng-click="siteSetting.block.ipList.splice($index,1)"> </i-button>
               </div>
@@ -603,7 +603,7 @@
                 <i-button type="push" ng-click="addBlockDomains(siteSetting.block)"></i-button>
               </legend>
               <div class="row" ng-repeat="d in siteSetting.block.domainsList track by $index">
-                <i-control type="text" class="col9" ng-model="d.name"> </i-control>
+                <i-control type="text" class="col9" ng-model="d.name" label="##word.Domain##"> </i-control>
                 <div class="col1"></div>
                 <i-button type="delete" label="##word.delete##" ng-click="siteSetting.block.domainsList.splice($index,1)"> </i-button>
               </div>
@@ -617,7 +617,7 @@
                 <i-button type="push" ng-click="addBlockUserAgent(siteSetting.block)"></i-button>
               </legend>
               <div class="row" ng-repeat="u in siteSetting.block.userAgentList track by $index">
-                <i-control type="text" class="col9" ng-model="u.name"> </i-control>
+                <i-control type="text" class="col9" ng-model="u.name" label="##word.UserAgent##"> </i-control>
                 <div class="col1"></div>
                 <i-button type="delete" label="##word.delete##" ng-click="siteSetting.block.userAgentList.splice($index,1)"> </i-button>
               </div>

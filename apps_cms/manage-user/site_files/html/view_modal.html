@@ -54,10 +54,10 @@
           </div>
         </div>
 
-        <fieldset>
+        <fieldset ng-show="viewText === 'mobile'">
           <legend> ##word.other_mobile_numbers## </legend>
 
-          <div class="row" ng-show="viewText === 'mobile'">
+          <div class="row" >
             <i-control class="input-style col8" type="tel" label="##word.mobile##" ng-model="manage_user.$mobile">
             </i-control>
             <div class="col4">

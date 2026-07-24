@@ -707,7 +707,7 @@ site.getMainHost = function (host = '') {
 
 site.handleNotRoute = function (req, res) {
     console.log('handleNotRoute : ' + req.url);
-    return res.redirect('https://earn.egytag.com/');
+    // return res.redirect('https://earn.egytag.com/');
     let host = req.headers['host'];
     let setting = site.getSiteSetting(host);
     if (!setting.host) {

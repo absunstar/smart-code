@@ -130,8 +130,8 @@
   }
 
   .form-check-input:checked {
-    background-color: var(--background2);
-    border-color: var(--background2);
+    background-color: var(--background2) !important;
+    border-color: var(--background2) !important;
   }
 
   /* end Burger Menu */

@@ -1,6 +1,6 @@
 module.exports = function init(site) {
-    site.$articles = site.connectCollection('articles');
-    site.$articlesSearch = site.connectCollection('articlesSearch');
+    site.$articles = site.connectCollection("articles");
+    site.$articlesSearch = site.connectCollection("articlesSearch");
     site.$articles.createUnique({
         guid: 1,
     });
@@ -14,43 +14,43 @@ module.exports = function init(site) {
     };
 
     site.days = [
-        { Ar: 'الاحد', En: 'Sunday' },
-        { Ar: 'الاثنين', En: 'Monday' },
-        { Ar: 'الثلاثاء', En: 'Tuesday' },
-        { Ar: 'الاربعاء', En: 'Wednesday' },
-        { Ar: 'الخميس', En: 'Thursday' },
-        { Ar: 'الجمعة', En: 'Friday' },
-        { Ar: 'السبت', En: 'Saturday' },
+        { Ar: "الاحد", En: "Sunday" },
+        { Ar: "الاثنين", En: "Monday" },
+        { Ar: "الثلاثاء", En: "Tuesday" },
+        { Ar: "الاربعاء", En: "Wednesday" },
+        { Ar: "الخميس", En: "Thursday" },
+        { Ar: "الجمعة", En: "Friday" },
+        { Ar: "السبت", En: "Saturday" },
     ];
     site.monthes = [
-        { Ar: 'يناير', En: 'January' },
-        { Ar: 'فبراير', En: 'February' },
-        { Ar: 'مارس', En: 'March' },
-        { Ar: 'ابريل', En: 'April' },
-        { Ar: 'مايو', En: 'May' },
-        { Ar: 'يونيو', En: 'June' },
-        { Ar: 'يوليو', En: 'July' },
-        { Ar: 'أغسطس', En: 'August' },
-        { Ar: 'سبتمر', En: 'September' },
-        { Ar: 'أكتوبر', En: 'October' },
-        { Ar: 'نوقمير', En: 'November' },
-        { Ar: 'ديسمبر', En: 'December' },
+        { Ar: "يناير", En: "January" },
+        { Ar: "فبراير", En: "February" },
+        { Ar: "مارس", En: "March" },
+        { Ar: "ابريل", En: "April" },
+        { Ar: "مايو", En: "May" },
+        { Ar: "يونيو", En: "June" },
+        { Ar: "يوليو", En: "July" },
+        { Ar: "أغسطس", En: "August" },
+        { Ar: "سبتمر", En: "September" },
+        { Ar: "أكتوبر", En: "October" },
+        { Ar: "نوقمير", En: "November" },
+        { Ar: "ديسمبر", En: "December" },
     ];
     site.escapeRegx = function (s) {
         if (!s) {
-            return '';
+            return "";
         }
-        if (typeof s !== 'string') {
+        if (typeof s !== "string") {
             s = s.toString();
         }
-        return s.replace(/[\/\\^$*+?.()\[\]{}]/g, '\\$&');
+        return s.replace(/[\/\\^$*+?.()\[\]{}]/g, "\\$&");
     };
     site.escapeHtml = function (unsafe) {
         try {
             if (!unsafe) {
-                return '';
+                return "";
             }
-            return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
         } catch (error) {
             return unsafe;
         }
@@ -58,9 +58,9 @@ module.exports = function init(site) {
     site.escapeXML = function (unsafe) {
         try {
             if (!unsafe) {
-                return '';
+                return "";
             }
-            return unsafe.replace(/&/g, '').replace(/</g, '').replace(/>/g, '').replace(/"/g, '').replaceAll(':', '');
+            return unsafe.replace(/&/g, "").replace(/</g, "").replace(/>/g, "").replace(/"/g, "").replaceAll(":", "");
         } catch (error) {
             return unsafe;
         }
@@ -68,65 +68,65 @@ module.exports = function init(site) {
     site.removeHtml = function (unsafe) {
         try {
             if (!unsafe) {
-                return '';
+                return "";
             }
             return unsafe
-                .replace(/<[^>]+>/g, '')
-                .replace(/&nbsp;|&laquo;|&raquo|&quot;|&rlm;|&llm;|&lrm;|&rrm;/g, '')
-                .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, ' ')
-                .replaceAll('(', '')
-                .replaceAll(')', '')
-                .replaceAll('-', ' ')
-                .replaceAll('+', ' ')
-                .replaceAll('$', ' ')
-                .replaceAll('&', ' ')
-                .replaceAll(':', ' ')
-                .replaceAll(',', ' ')
-                .replaceAll('.', ' ')
-                .replaceAll('#', ' ')
-                .replaceAll('!', ' ')
-                .replaceAll('?', ' ')
-                .replaceAll('؟', ' ')
-                .replaceAll("'", ' ')
-                .replace(/\s+/g, ' ')
+                .replace(/<[^>]+>/g, "")
+                .replace(/&nbsp;|&laquo;|&raquo|&quot;|&rlm;|&llm;|&lrm;|&rrm;/g, "")
+                .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, " ")
+                .replaceAll("(", "")
+                .replaceAll(")", "")
+                .replaceAll("-", " ")
+                .replaceAll("+", " ")
+                .replaceAll("$", " ")
+                .replaceAll("&", " ")
+                .replaceAll(":", " ")
+                .replaceAll(",", " ")
+                .replaceAll(".", " ")
+                .replaceAll("#", " ")
+                .replaceAll("!", " ")
+                .replaceAll("?", " ")
+                .replaceAll("؟", " ")
+                .replaceAll("'", " ")
+                .replace(/\s+/g, " ")
                 .trim();
         } catch (error) {
-            return unsafe || '';
+            return unsafe || "";
         }
     };
-    site.filterLetters = function (str, lettersToRemove = ['  ', ':', '=', '"', "'", '؟']) {
+    site.filterLetters = function (str, lettersToRemove = ["  ", ":", "=", '"', "'", "؟"]) {
         if (!str) {
-            return '';
+            return "";
         }
         var specials = [
             // order matters for these
-            '-',
-            '[',
-            ']',
+            "-",
+            "[",
+            "]",
             // order doesn't matter for any of these
-            '/',
-            '{',
-            '}',
-            '(',
-            ')',
-            '*',
-            '+',
-            '?',
-            '.',
-            '\\',
-            '^',
-            '$',
-            '|',
+            "/",
+            "{",
+            "}",
+            "(",
+            ")",
+            "*",
+            "+",
+            "?",
+            ".",
+            "\\",
+            "^",
+            "$",
+            "|",
         ];
 
-        regex = RegExp('[' + specials.join('\\') + ']', 'g');
-        str = str.replace(regex, ' ');
-        str = str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, ' ');
+        regex = RegExp("[" + specials.join("\\") + "]", "g");
+        str = str.replace(regex, " ");
+        str = str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, " ");
 
         lettersToRemove.forEach((letter) => {
-            str = str.replaceAll(letter, '');
+            str = str.replaceAll(letter, "");
         });
-        return str.replace(/\s+/g, ' ').trim();
+        return str.replace(/\s+/g, " ").trim();
     };
 
     site.getArticle = function (guid, callBack) {
@@ -151,70 +151,70 @@ module.exports = function init(site) {
 
     site.handleArticle = function (doc, options = {}) {
         let lang = doc.translatedList[0];
-        lang.title = lang.title || '';
-        if (typeof lang.title !== 'string') {
+        lang.title = lang.title || "";
+        if (typeof lang.title !== "string") {
             console.log(lang.title);
-            lang.title = '';
+            lang.title = "";
         }
         doc.$title = site.filterLetters(site.removeHtml(lang.title));
-        doc.$titleArray = doc.$title.split(' ');
-        doc.$alt = doc.$title.split(' ').slice(0, 3).join(' ');
-        doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
+        doc.$titleArray = doc.$title.split(" ");
+        doc.$alt = doc.$title.split(" ").slice(0, 3).join(" ");
+        doc.$imageURL = lang.image?.url || "/theme1/images/no.png";
         doc.$coverURL = lang.cover?.url || doc.$imageURL;
-        doc.host = doc.host || options.host || '';
+        doc.host = doc.host || options.host || "";
         doc.$hasAudio = false;
         doc.$hasVideo = false;
         doc.$hasImageGallary = false;
         doc.$hasMenu = false;
-        doc.$menuClass = 'none';
-        doc.$audioClass = 'none';
-        doc.$videoClass = 'none';
+        doc.$menuClass = "none";
+        doc.$audioClass = "none";
+        doc.$videoClass = "none";
         doc.$hasReadingTime = false;
-        doc.$readingTimeClass = 'none';
-        doc.$miniTitleClass = 'none';
+        doc.$readingTimeClass = "none";
+        doc.$miniTitleClass = "none";
         doc.$hasMiniTitle = false;
-        doc.$imageGallaryClass = 'none';
+        doc.$imageGallaryClass = "none";
 
         if (doc.type.id === 2) {
-            doc.$content = lang.htmlContent || '';
+            doc.$content = lang.htmlContent || "";
         } else if (doc.type.id == 7 && doc.yts) {
             doc.$yts = true;
-            doc.$title += ' ( ' + doc.yts.year + ' ) ';
-            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
-            doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
-            doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
-            doc.yts.$subtitleURL = 'https://www.opensubtitles.org/en/search2/sublanguageid-all/moviename-' + doc.$title.replace(/\s/g, '+');
+            doc.$title += " ( " + doc.yts.year + " ) ";
+            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, "-");
+            doc.yts.$trailerURL = "https://www.youtube.com/results?search_query=" + doc.$title + " Trailer";
+            doc.yts.$imdbURL = "https://www.imdb.com/title/" + doc.yts.imdb_code;
+            doc.yts.$subtitleURL = "https://www.opensubtitles.org/en/search2/sublanguageid-all/moviename-" + doc.$title.replace(/\s/g, "+");
             if (doc.yts.yt_trailer_code) {
-                doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.yts.yt_trailer_code;
+                doc.$embdedURL = "https://www.youtube.com/embed/" + doc.yts.yt_trailer_code;
             }
             doc.$backgroundURL = doc.$coverURL;
-            doc.$content = lang.textContent || lang.htmlContent || '';
+            doc.$content = lang.textContent || lang.htmlContent || "";
             if (Array.isArray(doc.yts.cast)) {
                 doc.$castList = [];
                 doc.yts.cast.forEach((c) => {
-                    doc.$castList.push({ ...c, url: 'https://www.imdb.com/name/nm' + c.imdb_code, imageURL: c.url_small_image });
+                    doc.$castList.push({ ...c, url: "https://www.imdb.com/name/nm" + c.imdb_code, imageURL: c.url_small_image });
                 });
             }
             doc.yts.torrents = doc.yts.torrents || [];
             doc.yts.torrents.forEach((torrent, i) => {
-                torrent.$url = '/torrent-download/' + doc.guid + '/' + i.toString();
+                torrent.$url = "/torrent-download/" + doc.guid + "/" + i.toString();
             });
         } else if (doc.type.id == 8) {
             doc.$youtube = true;
-            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
+            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, "-");
             if (doc.youtube && doc.youtube.url) {
-                doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
+                doc.$embdedURL = "https://www.youtube.com/embed/" + doc.youtube.url.split("=")[1].split("&")[0];
             }
-            doc.$content = lang.textContent || lang.htmlContent || '';
+            doc.$content = lang.textContent || lang.htmlContent || "";
         } else if (doc.type.id == 9) {
             doc.$title = doc.$title.substring(0, 70);
-            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
+            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, "-");
             doc.$content = lang.title;
         } else {
-            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
-            doc.$content = lang.textContent || lang.htmlContent || '';
+            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, "-");
+            doc.$content = lang.textContent || lang.htmlContent || "";
         }
-        doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
+        doc.$url = "/article/" + doc.guid + "/" + doc.$title2;
 
         doc.$description = site.filterLetters(site.removeHtml(doc.$content).substring(0, 180));
         lang.keyWordsList = lang.keyWordsList || [];
@@ -227,7 +227,7 @@ module.exports = function init(site) {
 
             if (doc.$keyWordsList.findIndex((kk) => kk.contains(k)) == -1) {
                 if (doc.type.id == 7) {
-                    doc.$keyWordsList.push(k + ' Movie');
+                    doc.$keyWordsList.push(k + " Movie");
                 } else {
                     doc.$keyWordsList.push(k);
                 }
@@ -246,38 +246,38 @@ module.exports = function init(site) {
         });
 
         doc.publishDate = site.getDateTime(doc.publishDate);
-        doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.Ar || '-----') + ' / ' + doc.publishDate.getFullYear();
-        doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.En || '-----') + ' \\ ' + doc.publishDate.getFullYear();
-        doc.$day1 = site.days[doc.publishDate.getDay()]?.Ar || '-----';
-        doc.$day2 = site.days[doc.publishDate.getDay()]?.En || '-----';
+        doc.$date1 = doc.publishDate.getDate() + " / " + (site.monthes[doc.publishDate.getMonth()]?.Ar || "-----") + " / " + doc.publishDate.getFullYear();
+        doc.$date2 = doc.publishDate.getDate() + " \\ " + (site.monthes[doc.publishDate.getMonth()]?.En || "-----") + " \\ " + doc.publishDate.getFullYear();
+        doc.$day1 = site.days[doc.publishDate.getDay()]?.Ar || "-----";
+        doc.$day2 = site.days[doc.publishDate.getDay()]?.En || "-----";
 
         if (lang.hasAudio) {
             doc.$hasAudio = true;
             doc.$audio = lang.audio;
-            doc.$audioClass = '';
+            doc.$audioClass = "";
         }
 
         if (lang.hasVideo) {
             doc.$hasVideo = true;
             doc.$video = lang.video;
-            doc.$videoClass = '';
+            doc.$videoClass = "";
         }
 
         if (lang.hasReadingTime) {
             doc.$hasReadingTime = true;
             doc.$readingTime = lang.readingTime;
-            doc.$readingTimeClass = '';
+            doc.$readingTimeClass = "";
         }
 
         if (lang.hasMiniTitle) {
             doc.$miniTitle = lang.miniTitle;
             doc.$hasMiniTitle = true;
-            doc.$miniTitleClass = '';
+            doc.$miniTitleClass = "";
         }
 
         if (doc.writer) {
             doc.$hasWriter = true;
-            doc.writer.$name = doc.writer.profile.name + ' ' + doc.writer.profile.lastName;
+            doc.writer.$name = doc.writer.profile.name + " " + doc.writer.profile.lastName;
             doc.writer.$title = doc.writer.profile.title;
             doc.writer.$imageURL = doc.writer.image?.url || doc.writer.profile.imageURL;
         }
@@ -285,16 +285,16 @@ module.exports = function init(site) {
             if (!doc.$hasMiniTitle) {
                 doc.$miniTitle = doc.yts.type;
                 doc.$hasMiniTitle = true;
-                doc.$miniTitleClass = '';
+                doc.$miniTitleClass = "";
             }
         } else if (doc.type.id == 8 && !doc.$hasMiniTitle) {
-            doc.$miniTitle = 'Youtube';
+            doc.$miniTitle = "Youtube";
             doc.$hasMiniTitle = true;
-            doc.$miniTitleClass = '';
+            doc.$miniTitleClass = "";
         }
 
         if (site.options.useLocalImages) {
-            doc.$imageURL = '/article-image/' + doc.guid;
+            doc.$imageURL = "/article-image/" + doc.guid;
         }
 
         return doc;
@@ -302,82 +302,82 @@ module.exports = function init(site) {
     site.handleSearchArticle = function (doc, options = {}) {
         let lang = doc.translatedList[0];
         doc.$title = lang.title;
-        doc.$imageURL = lang.image?.url || '/theme1/images/no.png';
-        doc.host = doc.host || options.host || '';
+        doc.$imageURL = lang.image?.url || "/theme1/images/no.png";
+        doc.host = doc.host || options.host || "";
 
         if (doc.type.id === 2) {
-            doc.$content = lang.htmlContent || '';
+            doc.$content = lang.htmlContent || "";
         } else if (doc.type.id == 7 && doc.yts) {
             doc.$yts = true;
-            doc.$title += ' ( ' + doc.yts.year + ' ) ';
-            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
-            doc.yts.$trailerURL = 'https://www.youtube.com/results?search_query=' + doc.$title + ' Trailer';
-            doc.yts.$imdbURL = 'https://www.imdb.com/title/' + doc.yts.imdb_code;
-            doc.yts.$subtitleURL = 'https://subscene.com/subtitles/searchbytitle?query=' + doc.$title;
+            doc.$title += " ( " + doc.yts.year + " ) ";
+            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, "-");
+            doc.yts.$trailerURL = "https://www.youtube.com/results?search_query=" + doc.$title + " Trailer";
+            doc.yts.$imdbURL = "https://www.imdb.com/title/" + doc.yts.imdb_code;
+            doc.yts.$subtitleURL = "https://subscene.com/subtitles/searchbytitle?query=" + doc.$title;
             doc.$backgroundURL = doc.$coverURL;
         } else if (doc.type.id == 8) {
             doc.$youtube = true;
-            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
-            doc.$embdedURL = 'https://www.youtube.com/embed/' + doc.youtube.url.split('=')[1].split('&')[0];
+            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, "-");
+            doc.$embdedURL = "https://www.youtube.com/embed/" + doc.youtube.url.split("=")[1].split("&")[0];
         } else if (doc.type.id == 9) {
             doc.$title = doc.$title.substring(0, 70);
-            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
+            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, "-");
         } else {
-            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, '-');
+            doc.$title2 = site.removeHtml(doc.$title).replace(/\s/g, "-");
         }
 
-        doc.$url = '/article/' + doc.guid + '/' + doc.$title2;
+        doc.$url = "/article/" + doc.guid + "/" + doc.$title2;
 
         doc.publishDate = site.getDateTime(doc.publishDate);
-        doc.$date1 = doc.publishDate.getDate() + ' / ' + (site.monthes[doc.publishDate.getMonth()]?.Ar || '-----') + ' / ' + doc.publishDate.getFullYear();
-        doc.$date2 = doc.publishDate.getDate() + ' \\ ' + (site.monthes[doc.publishDate.getMonth()]?.En || '-----') + ' \\ ' + doc.publishDate.getFullYear();
-        doc.$day1 = site.days[doc.publishDate.getDay()]?.Ar || '-----';
-        doc.$day2 = site.days[doc.publishDate.getDay()]?.En || '-----';
+        doc.$date1 = doc.publishDate.getDate() + " / " + (site.monthes[doc.publishDate.getMonth()]?.Ar || "-----") + " / " + doc.publishDate.getFullYear();
+        doc.$date2 = doc.publishDate.getDate() + " \\ " + (site.monthes[doc.publishDate.getMonth()]?.En || "-----") + " \\ " + doc.publishDate.getFullYear();
+        doc.$day1 = site.days[doc.publishDate.getDay()]?.Ar || "-----";
+        doc.$day2 = site.days[doc.publishDate.getDay()]?.En || "-----";
 
         doc.$hasAudio = false;
         doc.$hasVideo = false;
         doc.$hasImageGallary = false;
         doc.$hasMenu = false;
-        doc.$menuClass = 'none';
+        doc.$menuClass = "none";
 
-        doc.$audioClass = 'none';
-        doc.$videoClass = 'none';
-        doc.$imageGallaryClass = 'none';
+        doc.$audioClass = "none";
+        doc.$videoClass = "none";
+        doc.$imageGallaryClass = "none";
         if (lang.hasAudio) {
             doc.$hasAudio = true;
             doc.$audio = lang.audio;
-            doc.$audioClass = '';
+            doc.$audioClass = "";
         }
 
         if (lang.hasVideo) {
             doc.$hasVideo = true;
             doc.$video = lang.video;
-            doc.$videoClass = '';
+            doc.$videoClass = "";
         }
-        doc.$readingTimeClass = 'none';
+        doc.$readingTimeClass = "none";
         doc.$hasReadingTime = false;
         if (lang.hasReadingTime) {
             doc.$hasReadingTime = true;
             doc.$readingTime = lang.readingTime;
-            doc.$readingTimeClass = '';
+            doc.$readingTimeClass = "";
         }
 
-        doc.$miniTitleClass = 'none';
+        doc.$miniTitleClass = "none";
         doc.$hasMiniTitle = false;
         if (lang.hasMiniTitle) {
             doc.$miniTitle = lang.miniTitle;
             doc.$hasMiniTitle = true;
-            doc.$miniTitleClass = '';
+            doc.$miniTitleClass = "";
         }
 
         if (doc.type.id == 7 && !doc.$hasMiniTitle) {
             doc.$miniTitle = doc.yts.type;
             doc.$hasMiniTitle = true;
-            doc.$miniTitleClass = '';
+            doc.$miniTitleClass = "";
         } else if (doc.type.id == 8 && !doc.$hasMiniTitle) {
-            doc.$miniTitle = 'Youtube';
+            doc.$miniTitle = "Youtube";
             doc.$hasMiniTitle = true;
-            doc.$miniTitleClass = '';
+            doc.$miniTitleClass = "";
         }
         delete doc.translatedList;
         delete doc.yts;
@@ -385,7 +385,7 @@ module.exports = function init(site) {
         delete doc.type;
 
         if (site.options.useLocalImages) {
-            doc.$imageURL = '/article-image/' + doc.guid;
+            doc.$imageURL = "/article-image/" + doc.guid;
         }
 
         return doc;
@@ -394,10 +394,10 @@ module.exports = function init(site) {
         callBack = callBack || function () {};
         options = options || {};
 
-        options.search = options.search || '';
-        options.tag = options.tag || '';
+        options.search = options.search || "";
+        options.tag = options.tag || "";
 
-        options.host = options.host || '';
+        options.host = options.host || "";
         options.page = options.page || 1;
         options.page = parseInt(options.page);
         options.limit = options.limit || 50;
@@ -414,42 +414,42 @@ module.exports = function init(site) {
         // options.expString = options.exp.replace(/.$/, '');
         // options.exp = new RegExp(options.expString, 'gium');
 
-        if (options.host.indexOf('*') !== -1) {
-            options.host = options.host.split('*');
+        if (options.host.indexOf("*") !== -1) {
+            options.host = options.host.split("*");
             options.host.forEach((n, i) => {
                 options.host[i] = site.escapeRegx(n);
             });
-            options.host = options.host.join('.*');
+            options.host = options.host.join(".*");
         } else {
             options.host = site.escapeRegx(options.host);
         }
-        options.host = '^' + options.host + '$';
-        options.host = new RegExp(options.host, 'gium');
+        options.host = "^" + options.host + "$";
+        options.host = new RegExp(options.host, "gium");
 
         let list = [];
         if (options.category) {
-            options.search = 'category_' + options.category.id;
-            options.where = { 'category.id': options.category.id };
+            options.search = "category_" + options.category.id;
+            options.where = { "category.id": options.category.id };
         } else {
             let $or = [];
             if (options.search) {
                 $or.push({
-                    'translatedList.title': { $regex: new RegExp(options.search, 'gium') },
+                    "translatedList.title": { $regex: new RegExp(options.search, "gium") },
                 });
-                options.search.split(' ').forEach((s) => {
+                options.search.split(" ").forEach((s) => {
                     if (s.length > 2) {
                         $or.push({
-                            'translatedList.tagsList': { $regex: new RegExp(s, 'gium') },
+                            "translatedList.tagsList": { $regex: new RegExp(s, "gium") },
                         });
                         $or.push({
-                            'translatedList.title': { $regex: new RegExp(s, 'gium') },
+                            "translatedList.title": { $regex: new RegExp(s, "gium") },
                         });
                     }
                 });
             } else if (options.tag) {
-                options.search = 'tag_' + options.tag;
+                options.search = "tag_" + options.tag;
                 $or.push({
-                    'translatedList.tagsList': { $regex: new RegExp(options.tag, 'i') },
+                    "translatedList.tagsList": { $regex: new RegExp(options.tag, "i") },
                 });
             }
 
@@ -458,7 +458,7 @@ module.exports = function init(site) {
             };
         }
 
-        if ((s = site.searchArticleList.find((sa) => sa.id == options.host + '_' + options.search + '_' + options.page + '_' + options.limit))) {
+        if ((s = site.searchArticleList.find((sa) => sa.id == options.host + "_" + options.search + "_" + options.page + "_" + options.limit))) {
             callBack(null, s);
         } else {
             site.$articles.findAll(
@@ -483,7 +483,7 @@ module.exports = function init(site) {
                         });
 
                         let ss = {
-                            id: options.host + '_' + options.search + '_' + options.page + '_' + options.limit,
+                            id: options.host + "_" + options.search + "_" + options.page + "_" + options.limit,
                             category: options.category,
                             search: options.search,
                             tag: options.tag,
@@ -507,10 +507,10 @@ module.exports = function init(site) {
         }
     };
     site.prepareArticles = function () {
-        console.log('site.prepareArticles()');
+        console.log("site.prepareArticles()");
         site.$articles.findMany({ sort: { id: -1 }, limit: 2000 }, (err, docs) => {
             if (!err && docs) {
-                console.log('site.prepareArticles() : ' + docs.length);
+                console.log("site.prepareArticles() : " + docs.length);
                 docs.forEach((doc) => {
                     if (site.articlesList.findIndex((a) => a.id == doc.id) == -1) {
                         site.articlesList.push(site.handleArticle({ ...doc }));
@@ -552,21 +552,18 @@ module.exports = function init(site) {
             }
         });
     };
-    site.getRelatedArticles = function (a, filter = '*', num = 16) {
+    site.getRelatedArticles = function (a, filter = "*", num = 16) {
         let $relatedArticleList = site.articlesList.filter((b) => b.host.like(filter) && b.$tagsList?.includes(a.$tagsList[0]) && b.id !== a.id).slice(0, num);
         if ($relatedArticleList.length < num) {
-            $relatedArticleList = [
-                ...$relatedArticleList,
-                ...site.articlesList.filter((b) => b.host.like(filter) && b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, num - $relatedArticleList.length),
-            ];
+            $relatedArticleList = [...$relatedArticleList, ...site.articlesList.filter((b) => b.host.like(filter) && b.category && a.category && b.category.id === a.category.id && b.id !== a.id).slice(0, num - $relatedArticleList.length)];
         }
         return $relatedArticleList;
     };
 
-    site.getLatestArticles = function (a, filter = '*', num = 12) {
+    site.getLatestArticles = function (a, filter = "*", num = 12) {
         return site.articlesList.filter((b) => b.host.like(filter) && b.id !== a.id && b.category && a.category && b.category.id == a.category.id).slice(0, num);
     };
-    site.getTopArticles = function (filter = '*', category, num = 12) {
+    site.getTopArticles = function (filter = "*", category, num = 12) {
         return site.articlesList
             .filter((a) => (!category || !a.category || a.category.id == category.id) && a.showOnTop === true && a.host.like(filter))
             .slice(0, num)
@@ -574,15 +571,15 @@ module.exports = function init(site) {
     };
 
     site.indexNow = function (url, callBack) {
-        console.log('Index NOW : ' + url);
+        console.log("Index NOW : " + url);
         if (url) {
-            site.fetch('https://api.indexnow.org/IndexNow', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json;charset=utf-8', Host: 'api.indexnow.org' },
+            site.fetch("https://api.indexnow.org/IndexNow", {
+                method: "POST",
+                headers: { "Content-Type": "application/json;charset=utf-8", Host: "api.indexnow.org" },
                 body: {
-                    host: 'movies.egytag.com',
-                    key: 'fcf3c6e41ba640b19e99ba79e8d3ac0a',
-                    keyLocation: 'https://movies.egytag.com/fcf3c6e41ba640b19e99ba79e8d3ac0a.txt',
+                    host: "movies.egytag.com",
+                    key: "fcf3c6e41ba640b19e99ba79e8d3ac0a",
+                    keyLocation: "https://movies.egytag.com/fcf3c6e41ba640b19e99ba79e8d3ac0a.txt",
                     urlList: [url],
                 },
             }).then((response) => {
@@ -593,76 +590,129 @@ module.exports = function init(site) {
             });
         }
     };
-    site.GOOGLE_API_KEY_list = [
-        '31365783413727823157167428387232271852674559567337153226315847144315476732792361341762494678625343574217',
-        '31365783413727823156323431786252313547623139567432166732381717492835171932794774465937263518238345566727',
-        '31365783413727823139174147581758397632353975817945593726385427624678617536175678361476534274267546765259',
-        '31365783413727823215567341375736327932174558571626394749371552144617271443758273355452582839574337185675',
-        '31365783413727823216626138542332485413174779476232183667315375813619272732568182371661812717426331745181',
-        '31365783413727823179177227745761461717193257373626374673485413232717521531795269455742393774372345758623',
-        '31365783413727823157524337792324435437173579271636371734263913783254236941795672327582764675517942786223',
-    ];
+    site.GOOGLE_API_KEY_list = [""];
+
+    async function getGeminiModels(apiKey) {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(apiKey)}`);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw data.error || new Error("Unable to load Gemini models");
+        }
+
+        return (data.models || [])
+            .filter((model) => model.supportedGenerationMethods?.includes("generateContent"))
+            .map((model) => ({
+                name: model.name.replace("models/", ""),
+                displayName: model.displayName,
+                methods: model.supportedGenerationMethods,
+            }));
+    }
 
     site.GOOGLE_API_KEY_index = 0;
 
-    site.getGeminiResult = function (ask, callBack) {
-        let GOOGLE_API_KEY = site.f1(site.GOOGLE_API_KEY_list[site.GOOGLE_API_KEY_index]);
+    site.getGeminiResult = async function (ask, callBack, retryCount = 0) {
+        const keys = site.GOOGLE_API_KEY_list;
 
-        site.fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GOOGLE_API_KEY, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: {
-                contents: [
-                    {
-                        parts: [
-                            {
-                                text: ask,
-                            },
-                        ],
-                    },
-                ],
-            },
-        })
-            .then((d) => d.json())
-            .then((d) => {
-                let text = '';
-                if (d.candidates) {
-                    d.candidates.forEach((candidate) => {
-                        if (candidate.content?.parts) {
-                            candidate.content.parts.forEach((part) => {
-                                text += part.text + '\n';
-                            });
-                        }
-                    });
+        if (!Array.isArray(keys) || keys.length === 0) {
+            callBack(new Error("GOOGLE_API_KEY_list is empty"), null);
+            return;
+        }
+
+        if (typeof ask !== "string" || !ask.trim()) {
+            callBack(new Error("ask must be a non-empty string"), null);
+            return;
+        }
+
+        const maxRetries = keys.length;
+
+        if (retryCount >= maxRetries) {
+            callBack(new Error("All Gemini API keys failed or reached their limits"), null);
+            return;
+        }
+
+        const keyIndex = site.GOOGLE_API_KEY_index || 0;
+        const GOOGLE_API_KEY = site.f1(keys[keyIndex]);
+
+       // const models = await getGeminiModels(GOOGLE_API_KEY);
+       // console.log("Available Gemini Models:", models.map((m) => m.name).join(", "));
+
+        const model = 'gemini-2.5-flash-lite'
+
+        try {
+            const response = await site.fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-goog-api-key": GOOGLE_API_KEY,
+                },
+                body: JSON.stringify({
+                    contents: [
+                        {
+                            role: "user",
+                            parts: [
+                                {
+                                    text: ask,
+                                },
+                            ],
+                        },
+                    ],
+                }),
+            });
+
+            let data;
+
+            try {
+                data = await response.json();
+            } catch {
+                throw new Error(`Gemini returned invalid JSON. HTTP status: ${response.status}`);
+            }
+
+            if (!response.ok || data.error) {
+                const error = data.error || {
+                    code: response.status,
+                    message: response.statusText,
+                };
+
+                if (error.code === 429 || error.code === 503) {
+                    console.log(`Gemini API key failed at index ${keyIndex}`, error);
+
+                    site.GOOGLE_API_KEY_index = (keyIndex + 1) % keys.length;
+
+                    return site.getGeminiResult(ask, callBack, retryCount + 1);
                 }
-                if (d.error?.code == 429 || d.error?.code == 503) {
-                    console.log('Error API KEY : ' + site.GOOGLE_API_KEY_index , d.error);
-                    site.GOOGLE_API_KEY_index++;
-                    if (site.GOOGLE_API_KEY_index >= site.GOOGLE_API_KEY_list.length) {
-                        site.GOOGLE_API_KEY_index = 0;
-                        callBack({message : 'GOOGLE_API_KEY_index Reset to 0 ...'}, null);
-                    }else{
-                        site.getGeminiResult(ask, callBack);
-                    }
-                } else if (d.error) {
-                    console.log(d.error);
-                    callBack(d.error, null);
-                } else {
-                    callBack(null, text, d);
-                }
-            })
-            .catch((err) => callBack(err, null));
+
+                callBack(error, null);
+                return;
+            }
+
+            const text = (data.candidates || [])
+                .flatMap((candidate) => candidate.content?.parts || [])
+                .map((part) => part.text)
+                .filter((text) => typeof text === "string")
+                .join("\n");
+
+            if (!text) {
+                callBack(new Error("Gemini returned no text content"), null, data);
+                return;
+            }
+
+            callBack(null, text, data);
+        } catch (error) {
+            callBack(error, null);
+        }
     };
     site.getDeepseekResult = function (ask, callBack) {
-        const Deepseek_API_KEY = site.f1('467865672774525426382671273546824135325227154753415816724158167228152352417416794158167128184191');
-        site.fetch('https://api.deepseek.com/chat/completions', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + Deepseek_API_KEY },
+        const Deepseek_API_KEY = site.f1("467865672774525426382671273546824135325227154753415816724158167228152352417416794158167128184191");
+        site.fetch("https://api.deepseek.com/chat/completions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: "Bearer " + Deepseek_API_KEY },
             body: {
-                model: 'deepseek-chat',
+                model: "deepseek-chat",
                 messages: [
-                    { role: 'system', content: 'You are a helpful assistant.' },
-                    { role: 'user', content: ask },
+                    { role: "system", content: "You are a helpful assistant." },
+                    { role: "user", content: ask },
                 ],
                 stream: false,
             },
@@ -670,25 +720,25 @@ module.exports = function init(site) {
             .then((d) => d.json())
             .then((completion) => {
                 if (completion.error) {
-                    callBack(completion.error, '', completion);
+                    callBack(completion.error, "", completion);
                 } else if (completion.choices) {
                     let text = completion.choices[0].message.content;
                     callBack(null, text, completion);
                 } else {
-                    callBack({ message: 'No Error But No Choices' }, '', completion);
+                    callBack({ message: "No Error But No Choices" }, "", completion);
                 }
             })
             .catch((err) => callBack(err, null));
     };
     site.getChatgptResult = function (ask, callBack) {
         const CHATGPT_API_KEY = site.f1(
-            '46786567461923694353767848585239461867414559367835744274483636763839571632563736345417163217131728391721481942684717627446354716315442813676426934387175363756744216571626162737463876493236766843392775321723764835131537173174315872534375422431347625351886562719621743568573327842344776177835764173417952423557526345195737361537734536375927764227427827694557371335193778461642832716856741753271253923783239237246591772271921812654238347751691',
+            "",
         );
-        site.fetch('https://api.openai.com/v1/responses', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + CHATGPT_API_KEY },
+        site.fetch("https://api.openai.com/v1/responses", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: "Bearer " + CHATGPT_API_KEY },
             body: {
-                model: 'gpt-5',
+                model: "gpt-5.5",
                 input: ask,
             },
         })
@@ -699,86 +749,75 @@ module.exports = function init(site) {
             .catch((err) => callBack(err, null));
     };
     site.getMovieDescription = function (title, callBack) {
-        site.getGeminiResult(
-            'write article in English Language more than 2000 words about movie "' + title + '" and add Tables to improve article and convert to html code only with no images or links or css',
-            (err, text, result) => {
-                callBack(err, text, result);
-            },
-        );
+        site.getGeminiResult('write article in English Language more than 2000 words about movie "' + title + '" and add Tables to improve article and convert to html code only with no images or links or css', (err, text, result) => {
+            callBack(err, text, result);
+        });
     };
     site.getYoutubeDescription = function (title, url, callBack) {
-        site.getGeminiResult(
-            'اكتب مقال بالغة العربية اكثر من 1000 كلمة عن فيديو اليوتيوب بعنوان  :  "' + title + '" ورابط الفيديو  "' + url + '"   as html code only with no images or links or css',
-            (err, text, result) => {
-                callBack(err, text, result);
-            },
-        );
+        site.getChatgptResult('اكتب مقال بالغة العربية اكثر من 1000 كلمة عن فيديو اليوتيوب بعنوان  :  "' + title + '" ورابط الفيديو  "' + url + '"   as html code only with no images or links or css', (err , result) => {
+            console.log(result);
+            //callBack(err, result.output_text || "", result);
+        });
     };
 
     site.autoUpdateMovieDescription = function () {
-        console.log('AI YTS finding ...');
+        console.log("AI YTS finding ...");
         site.$articles.find(
             {
                 select: {},
                 where: {
-                  $or: [{ 'translatedList.textContent': '' }, { 'translatedList.textContent': null }],
-                    'category.id': 2,
+                    $or: [{ "translatedList.textContent": "" }, { "translatedList.textContent": null }],
+                    "category.id": 2,
                 },
                 sort: {
                     id: -1,
                 },
             },
             (err, articlesDoc) => {
-
                 if (!articlesDoc) {
-                    console.log('AI Not Found Any YTS');
+                    console.log("AI Not Found Any YTS");
                     articlesDoc = site.articlesList.find(
-                        (a) =>
-                            a.type.id == 7 &&
-                            (!a.translatedList[0].textContent ||
-                                a.translatedList[0].textContent.contain('<!DOCTYPE html>') ||
-                                a.translatedList[0].textContent.contain('<h1>' || !a.translatedList[0].textContent.contain('<h2>'))),
+                        (a) => a.type.id == 7 && (!a.translatedList[0].textContent || a.translatedList[0].textContent.contain("<!DOCTYPE html>") || a.translatedList[0].textContent.contain("<h1>" || !a.translatedList[0].textContent.contain("<h2>"))),
                     );
                 }
 
                 if (articlesDoc) {
                     articlesDoc = site.handleArticle(articlesDoc);
-                    console.log('AI Start YTS : ' + articlesDoc.$title);
+                    console.log("AI Start YTS : " + articlesDoc.$title);
                     site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
                         if (!err && text) {
-                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
+                            text = text.replaceAll("**", "\n").replaceAll("*", "").replaceAll("#", "").replaceAll('"', "").replaceAll("```html", "").replaceAll("```", "").replaceAll("h1", "h2");
 
                             let $ = site.$.load(text);
-                            let body = $('body');
+                            let body = $("body");
                             let html = body.html();
                             text = html;
 
-                            if(text){
-                                  articlesDoc.translatedList[0].textContent = text;
-                            site.$articles.edit(
-                                {
-                                    where: {
-                                        id: articlesDoc.id,
+                            if (text) {
+                                articlesDoc.translatedList[0].textContent = text;
+                                site.$articles.edit(
+                                    {
+                                        where: {
+                                            id: articlesDoc.id,
+                                        },
+                                        set: articlesDoc,
                                     },
-                                    set: articlesDoc,
-                                },
-                                (err, result) => {
-                                    if (!err && result) {
-                                        let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
-                                        if (index !== -1) {
-                                            site.articlesList[index] = site.handleArticle({ ...result.doc });
+                                    (err, result) => {
+                                        if (!err && result) {
+                                            let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
+                                            if (index !== -1) {
+                                                site.articlesList[index] = site.handleArticle({ ...result.doc });
+                                            }
+                                            console.log("AI YTS Done: " + articlesDoc.yts.title);
                                         }
-                                        console.log('AI YTS Done: ' + articlesDoc.yts.title);
-                                    }
-                                    if (err) {
-                                        console.log(err);
-                                    }
-                                },
-                            );
-                            }else{
-                                console.log('No AI Text : ' + articlesDoc.$title);
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                    },
+                                );
+                            } else {
+                                console.log("No AI Text : " + articlesDoc.$title);
                             }
-                          
                         }
                         if (err) {
                             console.log(err);
@@ -794,12 +833,12 @@ module.exports = function init(site) {
     };
 
     site.autoUpdatYoutubeDescription = function () {
-        console.log('AI youtube finding ...');
+        console.log("AI youtube finding ...");
         site.$articles.find(
             {
                 select: {},
                 where: {
-                    $or: [{ 'translatedList.textContent': '' }, { 'translatedList.textContent': null }],
+                    $or: [{ "translatedList.textContent": "" }, { "translatedList.textContent": null }],
                     youtube: { $exists: true },
                 },
                 sort: {
@@ -807,56 +846,53 @@ module.exports = function init(site) {
                 },
             },
             (err, articlesDoc) => {
-
                 if (!articlesDoc) {
-                    console.log('AI Not Found Any Youtube Article');
+                    console.log("AI Not Found Any Youtube Article");
                     articlesDoc = site.articlesList.find(
                         (a) =>
-                            a.type.id == 8 && a.youtube &&
-                            (!a.translatedList[0].textContent ||
-                                a.translatedList[0].textContent.contain('<!DOCTYPE html>') ||
-                                a.translatedList[0].textContent.contain('<h1>' || !a.translatedList[0].textContent.contain('<h2>'))),
+                            a.type.id == 8 &&
+                            a.youtube &&
+                            (!a.translatedList[0].textContent || a.translatedList[0].textContent.contain("<!DOCTYPE html>") || a.translatedList[0].textContent.contain("<h1>" || !a.translatedList[0].textContent.contain("<h2>"))),
                     );
                 }
 
                 if (articlesDoc && articlesDoc.youtube && articlesDoc.youtube.url) {
                     articlesDoc = site.handleArticle(articlesDoc);
-                    console.log('AI Youtube Start : ' + articlesDoc.youtube.url);
+                    console.log("AI Youtube Start : " + articlesDoc.youtube.url);
                     site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
                         if (!err && text) {
-                            text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
+                            text = text.replaceAll("**", "\n").replaceAll("*", "").replaceAll("#", "").replaceAll('"', "").replaceAll("```html", "").replaceAll("```", "").replaceAll("h1", "h2");
 
                             let $ = site.$.load(text);
-                            let body = $('body');
+                            let body = $("body");
                             let html = body.html();
                             text = html;
-                            if(text){
-                                 articlesDoc.translatedList[0].textContent = text;
-                            articlesDoc.type = site.articleTypes.find((t) => t.id === 8);
-                            site.$articles.edit(
-                                {
-                                    where: {
-                                        id: articlesDoc.id,
+                            if (text) {
+                                articlesDoc.translatedList[0].textContent = text;
+                                articlesDoc.type = site.articleTypes.find((t) => t.id === 8);
+                                site.$articles.edit(
+                                    {
+                                        where: {
+                                            id: articlesDoc.id,
+                                        },
+                                        set: articlesDoc,
                                     },
-                                    set: articlesDoc,
-                                },
-                                (err, result) => {
-                                    if (!err && result) {
-                                        let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
-                                        if (index > -1) {
-                                            site.articlesList[index] = site.handleArticle({ ...result.doc });
+                                    (err, result) => {
+                                        if (!err && result) {
+                                            let index = site.articlesList.findIndex((a) => a.id === result.doc.id);
+                                            if (index > -1) {
+                                                site.articlesList[index] = site.handleArticle({ ...result.doc });
+                                            }
+                                            console.log("AI Youtube Done: " + articlesDoc.youtube.url);
                                         }
-                                        console.log('AI Youtube Done: ' + articlesDoc.youtube.url);
-                                    }
-                                    if (err) {
-                                        console.log(err);
-                                    }
-                                },
-                            );
-                            }else{
-                                console.log('No AI Text :' + articlesDoc.youtube.url)
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                    },
+                                );
+                            } else {
+                                console.log("No AI Text :" + articlesDoc.youtube.url);
                             }
-                           
                         }
                         if (err) {
                             console.error(err);
@@ -871,42 +907,45 @@ module.exports = function init(site) {
         );
     };
 
-    setInterval(() => {
-        site.autoUpdatYoutubeDescription();
-        site.autoUpdateMovieDescription();
-    }, 1000 * 60 * 5);
+    setInterval(
+        () => {
+          //  site.autoUpdatYoutubeDescription();
+            // site.autoUpdateMovieDescription();
+        },
+        1000 * 60 * 1,
+    );
 
     site.prepareArticles();
 
     site.get({
-        name: 'images',
-        path: __dirname + '/site_files/images/',
+        name: "images",
+        path: __dirname + "/site_files/images/",
     });
 
     site.get(
         {
-            name: 'articles',
-            require: { features: ['browser.social'], permissions: ['admin'] },
+            name: "articles",
+            require: { permissions: ["admin"] },
         },
         (req, res) => {
             let setting = site.getSiteSetting(req.host) || {};
             let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
 
             res.render(
-                'articles/index.html',
+                "articles/index.html",
                 {
                     setting: setting,
                     language: language,
-                    appName: req.word('Articles'),
+                    appName: req.word("Articles"),
                 },
-                { parser: 'html' },
+                { parser: "html" },
             );
         },
     );
 
     site.post(
         {
-            name: '/api/articleTypes/all',
+            name: "/api/articleTypes/all",
         },
         (req, res) => {
             res.json(site.articleTypes);
@@ -915,7 +954,7 @@ module.exports = function init(site) {
 
     site.post(
         {
-            name: '/api/languages/all',
+            name: "/api/languages/all",
         },
         (req, res) => {
             res.json(supportedLanguageList);
@@ -929,24 +968,23 @@ module.exports = function init(site) {
         keepAlive: true,
     });
 
-    site.onGET('/article-image/:guid', (req, res) => {
+    site.onGET("/article-image/:guid", (req, res) => {
         site.getArticle(req.params.guid, (err, article) => {
             if (article) {
                 let imageURL = article.$imageURL;
-                 return res.redirect(imageURL || '/images/no.png');
-                if (!imageURL || imageURL == '/images/no.png') {
-                    res.redirect('/images/no.png');
+                return res.redirect(imageURL || "/images/no.png");
+                if (!imageURL || imageURL == "/images/no.png") {
+                    res.redirect("/images/no.png");
                 } else {
-                   
-                    if (req.headers['user-agent'] && req.headers['user-agent'].like('*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*')) {
+                    if (req.headers["user-agent"] && req.headers["user-agent"].like("*facebook*|*Googlebot*|*Storebot-Google*|*AdsBot*|*Mediapartners-Google*|*Google-Safety*|*FeedFetcher*")) {
                         delete req.headers.host;
                         delete req.headers.referer;
                         site.fetch(imageURL, {
                             method: req.method,
                             headers: req.headers,
-                            body: req.method.like('*get*|*head*') ? null : req.bodyRaw,
+                            body: req.method.like("*get*|*head*") ? null : req.bodyRaw,
                             agent: function (_parsedURL) {
-                                if (_parsedURL.protocol == 'http:') {
+                                if (_parsedURL.protocol == "http:") {
                                     return http_agent;
                                 } else {
                                     return https_agent;
@@ -965,12 +1003,12 @@ module.exports = function init(site) {
                     }
                 }
             } else {
-                res.redirect('/images/no.png');
+                res.redirect("/images/no.png");
             }
         });
     });
-    site.onGET('/torrent-download/:guid/:index', (req, res) => {
-        if (req.hasFeature('browser.social')) {
+    site.onGET("/torrent-download/:guid/:index", (req, res) => {
+        if (req.hasFeature("browser.social")) {
             site.getArticle(req.params.guid, (err, article) => {
                 if (article) {
                     let index = parseInt(req.params.index);
@@ -980,32 +1018,32 @@ module.exports = function init(site) {
                 }
             });
         } else {
-            res.render('client-side/require_features.html');
+            res.render("client-side/require_features.html");
         }
     });
 
     site.downloadImage = function (options, callback) {
-        if (typeof options == 'string') {
+        if (typeof options == "string") {
             options = { url: options };
         }
 
-        options.folder = options.folder || new Date().getFullYear() + '_' + (new Date().getMonth() + 1) + '_' + new Date().getDate();
-        options.name = options.name || 'image_' + new Date().getTime().toString() + Math.random().toString().replace('.', '_');
+        options.folder = options.folder || new Date().getFullYear() + "_" + (new Date().getMonth() + 1) + "_" + new Date().getDate();
+        options.name = options.name || "image_" + new Date().getTime().toString() + Math.random().toString().replace(".", "_");
 
-        site.createDir(site.options.upload_dir + '/' + options.folder, () => {
-            options.path = site.options.upload_dir + '/' + options.folder + '/' + options.name;
-            options.path2 = site.options.upload_dir + '/' + options.folder + '/' + options.name + '.webp';
+        site.createDir(site.options.upload_dir + "/" + options.folder, () => {
+            options.path = site.options.upload_dir + "/" + options.folder + "/" + options.name;
+            options.path2 = site.options.upload_dir + "/" + options.folder + "/" + options.name + ".webp";
 
             site.fetch(options.url)
                 .then((res) => {
                     const dest = site.fs.createWriteStream(options.path);
                     res.body.pipe(dest);
-                    dest.on('close', () => {
-                        site.webp.cwebp(options.path, options.path2, '-q 80').then((output) => {
+                    dest.on("close", () => {
+                        site.webp.cwebp(options.path, options.path2, "-q 80").then((output) => {
                             options.path0 = options.path;
                             options.path = options.path2;
                             options.url0 = options.url;
-                            options.url = '/api/image/' + options.folder + '/' + options.name + '.webp';
+                            options.url = "/api/image/" + options.folder + "/" + options.name + ".webp";
                             site.deleteFileSync(options.path0, () => {});
                             options.done = true;
                             if (callback) {
@@ -1023,12 +1061,12 @@ module.exports = function init(site) {
         });
     };
 
-    site.get({ name: '/api/image/:folder/:name', public: true }, (req, res) => {
-        res.set('Cache-Control', 'public, max-age=' + 60 * site.options.cache.images);
-        res.download(site.options.upload_dir + '/' + req.params.folder + '/' + req.params.name);
+    site.get({ name: "/api/image/:folder/:name", public: true }, (req, res) => {
+        res.set("Cache-Control", "public, max-age=" + 60 * site.options.cache.images);
+        res.download(site.options.upload_dir + "/" + req.params.folder + "/" + req.params.name);
     });
 
-    site.post({ name: '/api/articles/add', require: { Permissions: ['login'] } }, (req, res) => {
+    site.post({ name: "/api/articles/add", require: { Permissions: ["login"] } }, (req, res) => {
         let response = {
             done: false,
         };
@@ -1036,13 +1074,13 @@ module.exports = function init(site) {
         let setting = site.getSiteSetting(req.host);
 
         if (!setting) {
-            response.error = 'No Setting ';
+            response.error = "No Setting ";
             res.json(response);
             return;
         }
         let language = setting.languageList.find((l) => l.id == req.session.lang) || setting.languageList[0];
         if (!language) {
-            response.error = 'No Language';
+            response.error = "No Language";
             res.json(response);
             return;
         }
@@ -1055,7 +1093,7 @@ module.exports = function init(site) {
                 category: userData.category,
                 yts: userData,
                 translatedList: [{ language: language }],
-                host: userData.host || 'yts',
+                host: userData.host || "yts",
             };
 
             articlesDoc.guid = site.md5(articlesDoc.yts.title_long || articlesDoc.yts.title);
@@ -1070,16 +1108,16 @@ module.exports = function init(site) {
             articlesDoc.translatedList[0].cover = {
                 url: articlesDoc.yts.large_cover_image,
             };
-            articlesDoc.translatedList[0].textContent = '';
-            articlesDoc.translatedList[0].rating = articlesDoc.yts.rating || '';
+            articlesDoc.translatedList[0].textContent = "";
+            articlesDoc.translatedList[0].rating = articlesDoc.yts.rating || "";
 
             articlesDoc.translatedList[0].tagsList = articlesDoc.translatedList[0].tagsList || [];
             articlesDoc.translatedList[0].keyWordsList = articlesDoc.translatedList[0].keyWordsList || [];
 
             if (Array.isArray(articlesDoc.yts.genres)) {
-                articlesDoc.yts.type = articlesDoc.yts.genres.join(' ');
+                articlesDoc.yts.type = articlesDoc.yts.genres.join(" ");
                 articlesDoc.translatedList[0].tagsList = [...articlesDoc.yts.genres];
-                articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.yts.title).split(' '), ...articlesDoc.yts.genres];
+                articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.yts.title).split(" "), ...articlesDoc.yts.genres];
             }
             if (articlesDoc.yts.year) {
                 articlesDoc.translatedList[0].tagsList.push(articlesDoc.yts.year.toString());
@@ -1115,27 +1153,27 @@ module.exports = function init(site) {
             articlesDoc.showInMainSlider = true;
             articlesDoc.showOnTop = true;
 
-            articlesDoc.translatedList[0].tagsList = [...site.removeHtml(userData.channel.title).split(' '), 'Video', 'Watch'];
-            articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(userData.title).split(' '), ...site.removeHtml(userData.channel.title).split(' ')];
+            articlesDoc.translatedList[0].tagsList = [...site.removeHtml(userData.channel.title).split(" "), "Video", "Watch"];
+            articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(userData.title).split(" "), ...site.removeHtml(userData.channel.title).split(" ")];
 
             articlesDoc.translatedList[0].title = userData.title;
             articlesDoc.translatedList[0].image = {
                 url: userData.image?.url,
             };
-            articlesDoc.translatedList[0].textContent = userData.description || '';
+            articlesDoc.translatedList[0].textContent = userData.description || "";
             if (userData.date_uploaded) {
                 articlesDoc.publishDate = site.getDateTime(userData.date);
             } else {
                 articlesDoc.publishDate = new Date();
             }
 
-            articlesDoc.guid = site.md5('Youtube - ' + articlesDoc.translatedList[0].title);
+            articlesDoc.guid = site.md5("Youtube - " + articlesDoc.translatedList[0].title);
         } else if (articlesDoc.is_facebook) {
             articlesDoc = {
                 type: site.articleTypes.find((t) => t.id === 9),
                 facebook: userData,
                 translatedList: [{ language: language }],
-                host: 'facebook',
+                host: "facebook",
             };
 
             if (articlesDoc.facebook.group) {
@@ -1145,8 +1183,8 @@ module.exports = function init(site) {
                 if (articlesDoc.facebook.group.host) {
                     articlesDoc.host = articlesDoc.facebook.group.host;
                 }
-                articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.facebook.group.title).split(' '), 'facebook', 'post'];
-                articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.facebook.title).split(' '), ...site.removeHtml(articlesDoc.facebook.group.title).split(' ')];
+                articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.facebook.group.title).split(" "), "facebook", "post"];
+                articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.facebook.title).split(" "), ...site.removeHtml(articlesDoc.facebook.group.title).split(" ")];
             }
 
             if (articlesDoc.facebook.page) {
@@ -1156,14 +1194,14 @@ module.exports = function init(site) {
                 if (articlesDoc.facebook.page.host) {
                     articlesDoc.host = articlesDoc.facebook.page.host;
                 }
-                articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.facebook.page.title).split(' '), 'facebook', 'post'];
-                articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.facebook.title).split(' '), ...site.removeHtml(articlesDoc.facebook.page.title).split(' ')];
+                articlesDoc.translatedList[0].tagsList = [...site.removeHtml(articlesDoc.facebook.page.title).split(" "), "facebook", "post"];
+                articlesDoc.translatedList[0].keyWordsList = [...site.removeHtml(articlesDoc.facebook.title).split(" "), ...site.removeHtml(articlesDoc.facebook.page.title).split(" ")];
             }
             articlesDoc.showInMainSlider = true;
             articlesDoc.showOnTop = true;
 
-            articlesDoc.translatedList[0].textContent = articlesDoc.facebook.title || '';
-            articlesDoc.translatedList[0].title = articlesDoc.facebook.title ? articlesDoc.facebook.title.slice(0, 30) : '';
+            articlesDoc.translatedList[0].textContent = articlesDoc.facebook.title || "";
+            articlesDoc.translatedList[0].title = articlesDoc.facebook.title ? articlesDoc.facebook.title.slice(0, 30) : "";
             articlesDoc.translatedList[0].image = {
                 url: articlesDoc.facebook.image?.url,
             };
@@ -1174,19 +1212,19 @@ module.exports = function init(site) {
                 articlesDoc.publishDate = new Date();
             }
 
-            articlesDoc.guid = site.md5('Facebook - ' + articlesDoc.facebook.url);
+            articlesDoc.guid = site.md5("Facebook - " + articlesDoc.facebook.url);
         } else {
             articlesDoc = userData;
         }
 
         articlesDoc.addUserInfo = req.getUserFinger();
 
-        if (typeof articlesDoc.active === 'undefined') {
+        if (typeof articlesDoc.active === "undefined") {
             articlesDoc.active = true;
         }
 
         articlesDoc.translatedList[0].tagsList.forEach((tag, i) => {
-            articlesDoc.translatedList[0].tagsList[i] = tag.replace(' ', '-');
+            articlesDoc.translatedList[0].tagsList[i] = tag.replace(" ", "-");
         });
         articlesDoc.guid = articlesDoc.guid || site.md5(articlesDoc.translatedList[0].title);
         articlesDoc.host = articlesDoc.host || req.host;
@@ -1198,7 +1236,7 @@ module.exports = function init(site) {
                     doc.yts = articlesDoc.yts;
                     doc.translatedList[0].rating = articlesDoc.translatedList[0].rating;
                     doc.translatedList[0].title = articlesDoc.translatedList[0].title;
-                    doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent || doc.translatedList[0].textContent || '';
+                    doc.translatedList[0].textContent = articlesDoc.translatedList[0].textContent || doc.translatedList[0].textContent || "";
                 }
 
                 doc = { ...doc, ...articlesDoc };
@@ -1242,13 +1280,13 @@ module.exports = function init(site) {
         });
     });
 
-    site.post('/api/articles/update', (req, res) => {
+    site.post("/api/articles/update", (req, res) => {
         let response = {
             done: false,
         };
 
         if (!req.session.user) {
-            response.error = 'Please Login First';
+            response.error = "Please Login First";
             res.json(response);
             return;
         }
@@ -1261,7 +1299,7 @@ module.exports = function init(site) {
         });
 
         if (!articlesDoc.id) {
-            response.error = 'No id';
+            response.error = "No id";
             res.json(response);
             return;
         }
@@ -1282,13 +1320,13 @@ module.exports = function init(site) {
                         site.articlesList[index] = site.handleArticle({ ...result.doc });
                     }
                 } else {
-                    response.error = 'Code Already Exist';
+                    response.error = "Code Already Exist";
                 }
                 res.json(response);
             },
         );
     });
-    site.post('/api/articles/generate-movie-description', (req, res) => {
+    site.post("/api/articles/generate-movie-description", (req, res) => {
         let response = {
             done: false,
         };
@@ -1304,23 +1342,23 @@ module.exports = function init(site) {
         articlesDoc.editUserInfo = req.getUserFinger();
 
         if (!articlesDoc.id) {
-            response.error = 'No id';
+            response.error = "No id";
             res.json(response);
             return;
         }
 
         if (!articlesDoc.$title) {
-            response.error = 'No $title';
+            response.error = "No $title";
             res.json(response);
             return;
         }
 
         site.getMovieDescription(articlesDoc.$title, (err, text, result) => {
             if (!err && text) {
-                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
+                text = text.replaceAll("**", "\n").replaceAll("*", "").replaceAll("#", "").replaceAll('"', "").replaceAll("```html", "").replaceAll("```", "").replaceAll("h1", "h2");
 
                 let $ = site.$.load(text);
-                let body = $('body');
+                let body = $("body");
                 let html = body.html();
                 text = html;
 
@@ -1356,7 +1394,7 @@ module.exports = function init(site) {
             }
         });
     });
-    site.post('/api/articles/generate-youtube-description', (req, res) => {
+    site.post("/api/articles/generate-youtube-description", (req, res) => {
         let response = {
             done: false,
         };
@@ -1372,23 +1410,23 @@ module.exports = function init(site) {
         articlesDoc.editUserInfo = req.getUserFinger();
 
         if (!articlesDoc.id) {
-            response.error = 'No id';
+            response.error = "No id";
             res.json(response);
             return;
         }
 
         if (!articlesDoc.$title) {
-            response.error = 'No $title';
+            response.error = "No $title";
             res.json(response);
             return;
         }
 
         site.getYoutubeDescription(articlesDoc.$title, articlesDoc.youtube.url, (err, text, result) => {
             if (!err && text) {
-                text = text.replaceAll('**', '\n').replaceAll('*', '').replaceAll('#', '').replaceAll('"', '').replaceAll('```html', '').replaceAll('```', '').replaceAll('h1', 'h2');
+                text = text.replaceAll("**", "\n").replaceAll("*", "").replaceAll("#", "").replaceAll('"', "").replaceAll("```html", "").replaceAll("```", "").replaceAll("h1", "h2");
 
                 let $ = site.$.load(text);
-                let body = $('body');
+                let body = $("body");
                 let html = body.html();
                 text = html;
 
@@ -1424,7 +1462,7 @@ module.exports = function init(site) {
             }
         });
     });
-    site.post('/api/articles/view', (req, res) => {
+    site.post("/api/articles/view", (req, res) => {
         let response = {
             done: false,
         };
@@ -1443,7 +1481,7 @@ module.exports = function init(site) {
                         response.doc = doc;
                         res.json(response);
                     } else {
-                        response.error = err?.message || 'Error Not Exists';
+                        response.error = err?.message || "Error Not Exists";
                         res.json(response);
                     }
                 },
@@ -1452,13 +1490,13 @@ module.exports = function init(site) {
         }
     });
 
-    site.post('/api/articles/delete', (req, res) => {
+    site.post("/api/articles/delete", (req, res) => {
         let response = {
             done: false,
         };
 
         if (!req.session.user) {
-            response.error = 'Please Login First';
+            response.error = "Please Login First";
             res.json(response);
             return;
         }
@@ -1483,7 +1521,7 @@ module.exports = function init(site) {
         );
     });
 
-    site.post('/api/articles/all', (req, res) => {
+    site.post("/api/articles/all", (req, res) => {
         let response = {
             done: false,
         };
@@ -1494,188 +1532,188 @@ module.exports = function init(site) {
             where.$or = [];
             where.$or.push(
                 {
-                    'type.Ar': site.get_RegExp(req.body.search, 'i'),
+                    "type.Ar": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'type.En': site.get_RegExp(req.body.search, 'i'),
+                    "type.En": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'clusters.name': site.get_RegExp(req.body.search, 'i'),
+                    "clusters.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'category.name': site.get_RegExp(req.body.search, 'i'),
+                    "category.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'subCategory1.name': site.get_RegExp(req.body.search, 'i'),
+                    "subCategory1.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'subCategory2.name': site.get_RegExp(req.body.search, 'i'),
+                    "subCategory2.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'subCategory3.name': site.get_RegExp(req.body.search, 'i'),
+                    "subCategory3.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'subCategory4.name': site.get_RegExp(req.body.search, 'i'),
+                    "subCategory4.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'writer.profile.name': site.get_RegExp(req.body.search, 'i'),
+                    "writer.profile.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'writer.profile.lastName': site.get_RegExp(req.body.search, 'i'),
+                    "writer.profile.lastName": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'editor.profile.name': site.get_RegExp(req.body.search, 'i'),
+                    "editor.profile.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'editor.profile.lastName': site.get_RegExp(req.body.search, 'i'),
+                    "editor.profile.lastName": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'country.name': site.get_RegExp(req.body.search, 'i'),
+                    "country.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'gov.name': site.get_RegExp(req.body.search, 'i'),
+                    "gov.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'city.name': site.get_RegExp(req.body.search, 'i'),
+                    "city.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'area.name': site.get_RegExp(req.body.search, 'i'),
+                    "area.name": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    longitudes: site.get_RegExp(req.body.search, 'i'),
+                    longitudes: site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    latitudes: site.get_RegExp(req.body.search, 'i'),
+                    latitudes: site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.title': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.title": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.textContent': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.textContent": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.htmlContent': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.htmlContent": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.multiParagraphList.contentText': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.multiParagraphList.contentText": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.multiParagraphList.content': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.multiParagraphList.content": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.multiImageList.title': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.multiImageList.title": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.title': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.title": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.socialTitle': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.socialTitle": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.socialDescription': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.socialDescription": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.externalTitle': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.externalTitle": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.externalDescription': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.externalDescription": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.content': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.content": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.keyWordsList': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.keyWordsList": site.get_RegExp(req.body.search, "i"),
                 },
                 {
-                    'translatedList.tagsList': site.get_RegExp(req.body.search, 'i'),
+                    "translatedList.tagsList": site.get_RegExp(req.body.search, "i"),
                 },
             );
         }
-        if (where['title']) {
-            where['translatedList.title'] = site.get_RegExp(where['title'], 'i');
-            delete where['title'];
+        if (where["title"]) {
+            where["translatedList.title"] = site.get_RegExp(where["title"], "i");
+            delete where["title"];
         }
-        if (where['host']) {
-            where['host'] = site.get_RegExp(where['host'], 'i');
+        if (where["host"]) {
+            where["host"] = site.get_RegExp(where["host"], "i");
         }
-        if (where['type']) {
-            where['type.id'] = where['type'].id;
-            delete where['type'];
+        if (where["type"]) {
+            where["type.id"] = where["type"].id;
+            delete where["type"];
         }
-        if (where['writer']) {
-            where['writer.id'] = where['writer'].id;
-            delete where['writer'];
+        if (where["writer"]) {
+            where["writer.id"] = where["writer"].id;
+            delete where["writer"];
         }
-        if (where['editor']) {
-            where['editor.id'] = where['editor'].id;
-            delete where['editor'];
+        if (where["editor"]) {
+            where["editor.id"] = where["editor"].id;
+            delete where["editor"];
         }
-        if (where['category']) {
-            where['category.id'] = where['category'].id;
-            delete where['category'];
+        if (where["category"]) {
+            where["category.id"] = where["category"].id;
+            delete where["category"];
         }
-        if (where['subCategory1']) {
-            where['subCategory1.id'] = where['subCategory1'].id;
-            delete where['subCategory1'];
+        if (where["subCategory1"]) {
+            where["subCategory1.id"] = where["subCategory1"].id;
+            delete where["subCategory1"];
         }
-        if (where['subCategory2']) {
-            where['subCategory2.id'] = where['subCategory2'].id;
-            delete where['subCategory2'];
+        if (where["subCategory2"]) {
+            where["subCategory2.id"] = where["subCategory2"].id;
+            delete where["subCategory2"];
         }
-        if (where['subCategory3']) {
-            where['subCategory3.id'] = where['subCategory3'].id;
-            delete where['subCategory3'];
+        if (where["subCategory3"]) {
+            where["subCategory3.id"] = where["subCategory3"].id;
+            delete where["subCategory3"];
         }
-        if (where['subCategory4']) {
-            where['subCategory4.id'] = where['subCategory4'].id;
-            delete where['subCategory4'];
+        if (where["subCategory4"]) {
+            where["subCategory4.id"] = where["subCategory4"].id;
+            delete where["subCategory4"];
         }
-        if (where['cluster']) {
-            where['clusters.id'] = where['cluster'].id;
-            delete where['cluster'];
+        if (where["cluster"]) {
+            where["clusters.id"] = where["cluster"].id;
+            delete where["cluster"];
         }
-        if (where['country']) {
-            where['country.id'] = where['country'].id;
-            delete where['country'];
+        if (where["country"]) {
+            where["country.id"] = where["country"].id;
+            delete where["country"];
         }
-        if (where['gov']) {
-            where['gov.id'] = where['gov'].id;
-            delete where['gov'];
+        if (where["gov"]) {
+            where["gov.id"] = where["gov"].id;
+            delete where["gov"];
         }
-        if (where['city']) {
-            where['city.id'] = where['city'].id;
-            delete where['city'];
+        if (where["city"]) {
+            where["city.id"] = where["city"].id;
+            delete where["city"];
         }
-        if (where['area']) {
-            where['area.id'] = where['area'].id;
-            delete where['area'];
+        if (where["area"]) {
+            where["area.id"] = where["area"].id;
+            delete where["area"];
         }
-        if (where['hasReadingTime']) {
-            where['translatedList.hasReadingTime'] = true;
-            delete where['hasReadingTime'];
+        if (where["hasReadingTime"]) {
+            where["translatedList.hasReadingTime"] = true;
+            delete where["hasReadingTime"];
         }
-        if (where['hasAudio']) {
-            where['translatedList.hasAudio'] = true;
-            delete where['hasAudio'];
+        if (where["hasAudio"]) {
+            where["translatedList.hasAudio"] = true;
+            delete where["hasAudio"];
         }
-        if (where['hasVideo']) {
-            where['translatedList.hasVideo'] = true;
-            delete where['hasVideo'];
+        if (where["hasVideo"]) {
+            where["translatedList.hasVideo"] = true;
+            delete where["hasVideo"];
         }
-        if (where['tag']) {
-            where['translatedList.tagsList'] = site.get_RegExp(where['tag'], 'i');
-            delete where['tag'];
+        if (where["tag"]) {
+            where["translatedList.tagsList"] = site.get_RegExp(where["tag"], "i");
+            delete where["tag"];
         }
-        if (where['keyword']) {
-            where['translatedList.keyWordsList'] = site.get_RegExp(where['keyword'], 'i');
-            delete where['keyword'];
+        if (where["keyword"]) {
+            where["translatedList.keyWordsList"] = site.get_RegExp(where["keyword"], "i");
+            delete where["keyword"];
         }
 
-        if (typeof where['noContent'] !== undefined) {
-            if (where['noContent']) {
-                where['translatedList.textContent'] = '';
+        if (typeof where["noContent"] !== undefined) {
+            if (where["noContent"]) {
+                where["translatedList.textContent"] = "";
             }
-            delete where['noContent'];
+            delete where["noContent"];
         }
         // site.get_RegExp(req.body.search, "i");
         // site.articlesList.filter(u => u.name.contains(where['name']))
@@ -1703,7 +1741,7 @@ module.exports = function init(site) {
         );
     });
 
-    site.onPOST('/api/article/handle-images', (req, res) => {
+    site.onPOST("/api/article/handle-images", (req, res) => {
         let response = {
             done: false,
         };
@@ -1721,20 +1759,20 @@ module.exports = function init(site) {
                     response.list = docs;
                     docs.forEach((doc) => {
                         doc.translatedList.forEach((_t) => {
-                            if (_t.image && _t.image.url && !_t.image.url.like('*.webp')) {
-                                let arr = _t.image.url.split('/');
+                            if (_t.image && _t.image.url && !_t.image.url.like("*.webp")) {
+                                let arr = _t.image.url.split("/");
                                 let imageName = arr.pop();
-                                let imageName2 = imageName.replace(site.path.extname(imageName), '.webp');
+                                let imageName2 = imageName.replace(site.path.extname(imageName), ".webp");
                                 let folderName = arr.pop();
-                                let folder = new Date().getFullYear() + '_' + new Date().getMonth() + '_' + new Date().getDate();
-                                let path = site.options.upload_dir + '/' + folderName + '/images/' + imageName;
-                                let path2 = site.options.upload_dir + '/' + folder + '/images/' + imageName2;
-                                site.createDir(site.options.upload_dir + '/' + folder, () => {
-                                    site.createDir(site.options.upload_dir + '/' + folder + '/images', () => {
-                                        site.webp.cwebp(path, path2, '-q 80').then((output) => {
+                                let folder = new Date().getFullYear() + "_" + new Date().getMonth() + "_" + new Date().getDate();
+                                let path = site.options.upload_dir + "/" + folderName + "/images/" + imageName;
+                                let path2 = site.options.upload_dir + "/" + folder + "/images/" + imageName2;
+                                site.createDir(site.options.upload_dir + "/" + folder, () => {
+                                    site.createDir(site.options.upload_dir + "/" + folder + "/images", () => {
+                                        site.webp.cwebp(path, path2, "-q 80").then((output) => {
                                             console.log(output);
                                             _t.image.path = path2;
-                                            _t.image.url = '/x-api/image/' + folder + '/' + imageName2;
+                                            _t.image.url = "/x-api/image/" + folder + "/" + imageName2;
                                             site.$articles.update(doc);
                                         });
                                     });
@@ -1752,7 +1790,7 @@ module.exports = function init(site) {
         );
     });
 
-    site.onGET('/api/article/update-tags', (req, res) => {
+    site.onGET("/api/article/update-tags", (req, res) => {
         site.$articles.findAll(
             {
                 limit: 100000,
@@ -1789,7 +1827,7 @@ module.exports = function init(site) {
                                 lang.tagsList.push(doc.yts.year);
                             }
                             lang.tagsList.forEach((tag, i) => {
-                                lang.tagsList[i] = tag.replace(' ', '-');
+                                lang.tagsList[i] = tag.replace(" ", "-");
                             });
                             site.$articles.update(doc, (err, result) => {
                                 console.log(err || result.doc.id);
@@ -1804,19 +1842,19 @@ module.exports = function init(site) {
     });
 
     site.rssStartSlice = 0;
-    site.onGET({ name: ['/rss', '/rss/articles', '/rss/articles/:id'], public: true }, (req, res) => {
+    site.onGET({ name: ["/rss", "/rss/articles", "/rss/articles/:id"], public: true }, (req, res) => {
         let limit = parseInt(req.query.limit || 10);
         let to = site.rssStartSlice + limit;
 
         let list = [];
-        let text = '';
+        let text = "";
 
         let setting = site.getSiteSetting(req.host);
         let filter = site.getHostFilter(req.host);
 
         let lang = setting.languageList[0];
-        let domain = 'https://' + req.host;
-        if (req.params.id == 'random') {
+        let domain = "https://" + req.host;
+        if (req.params.id == "random") {
             list = site.articlesList.filter((p) => p.$imageURL && p.active);
             list = [list[site.random(0, list.length - 1)]];
         } else if (req.params.id) {
@@ -1830,18 +1868,18 @@ module.exports = function init(site) {
             }
         }
 
-        let urls = '';
+        let urls = "";
         list.forEach((doc, i) => {
-            let url = domain + '/article/' + doc.guid;
+            let url = domain + "/article/" + doc.guid;
             let date = site.getDateTime(doc.publishDate).toISOString();
             let title = site.escapeXML(doc.$title);
             let description = site.escapeXML(doc.$content);
-            let hashTag = ' #torrent';
+            let hashTag = " #torrent";
             if (doc.$yts) {
                 doc.$tagsList.forEach((tag) => {
-                    hashTag += '  #' + tag.replace('-', '_');
+                    hashTag += "  #" + tag.replace("-", "_");
                 });
-                hashTag += ' Download Torrents Movies in High Qualtiy 720p , 1080p , 2k , 4k , 8k';
+                hashTag += " Download Torrents Movies in High Qualtiy 720p , 1080p , 2k , 4k , 8k";
             }
 
             urls += `
@@ -1855,7 +1893,7 @@ module.exports = function init(site) {
         </item>
         `;
         });
-        let channelTitle = lang.siteName + ' ' + text + ' [ from ' + site.rssStartSlice + ' to ' + (site.rssStartSlice + limit) + ' ] of ' + site.articlesList.length + ' Article Global RSS';
+        let channelTitle = lang.siteName + " " + text + " [ from " + site.rssStartSlice + " to " + (site.rssStartSlice + limit) + " ] of " + site.articlesList.length + " Article Global RSS";
         let xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
       <channel>
@@ -1865,18 +1903,18 @@ module.exports = function init(site) {
             ${urls}
         </channel>
      </rss>`;
-        res.set('Content-Type', 'application/xml');
+        res.set("Content-Type", "application/xml");
         res.end(xml);
         site.rssStartSlice += limit;
     });
 
     site.facebookPost = null;
     site.getRssXmlString = function (list, domain, siteName) {
-        let urls = '';
+        let urls = "";
         list.forEach((doc) => {
-            let hashTag = '#torrent ';
+            let hashTag = "#torrent ";
             doc.$tagsList.forEach((tag) => {
-                hashTag += '  #' + tag.replace('-', '_');
+                hashTag += "  #" + tag.replace("-", "_");
             });
 
             urls += `
@@ -1908,106 +1946,106 @@ module.exports = function init(site) {
         return xml;
     };
 
-    site.onGET({ name: ['/rss-facebook'], public: true }, (req, res) => {
-        let text = ' Facebook RSS ';
+    site.onGET({ name: ["/rss-facebook"], public: true }, (req, res) => {
+        let text = " Facebook RSS ";
         let setting = site.getSiteSetting(req.host);
         let lang = setting.languageList[0];
-        let domain = 'https://' + req.host;
+        let domain = "https://" + req.host;
 
         if (site.facebookPost && site.facebookPost.$facebookDate && (new Date().getTime() - site.facebookPost.$facebookDate.getTime()) / 1000 < 60 * 15) {
-            res.set('Content-Type', 'application/xml');
+            res.set("Content-Type", "application/xml");
             res.end(site.getRssXmlString([site.facebookPost], domain, lang.siteName + text));
             return;
         }
 
         let filter = site.getHostFilter(req.host);
 
-        if (filter.indexOf('*') !== -1) {
-            filter = filter.split('*');
+        if (filter.indexOf("*") !== -1) {
+            filter = filter.split("*");
             filter.forEach((n, i) => {
                 filter[i] = site.escapeRegx(n);
             });
-            filter = filter.join('.*');
+            filter = filter.join(".*");
         } else {
             filter = site.escapeRegx(filter);
         }
-        filter = '^' + filter + '$';
+        filter = "^" + filter + "$";
 
-        site.$articles.find({ host: new RegExp(filter, 'gium'), facebookPost: { $exists: false } }, (err, doc) => {
+        site.$articles.find({ host: new RegExp(filter, "gium"), facebookPost: { $exists: false } }, (err, doc) => {
             if (!err && doc) {
                 doc.facebookPost = true;
                 site.$articles.update(doc);
                 doc = site.handleArticle({ ...doc });
                 site.articlesList.push(doc);
                 doc.$facebookDate = new Date();
-                doc.full_url = domain + '/article/' + doc.guid;
+                doc.full_url = domain + "/article/" + doc.guid;
                 doc.$date2 = site.getDateTime(doc.publishDate).toISOString();
 
                 site.facebookPost = doc;
 
-                res.set('Content-Type', 'application/xml');
+                res.set("Content-Type", "application/xml");
                 res.end(site.getRssXmlString([site.facebookPost], domain, lang.siteName + text));
             } else {
-                res.set('Content-Type', 'application/xml');
+                res.set("Content-Type", "application/xml");
                 res.end(site.getRssXmlString([], domain, lang.siteName + text));
             }
         });
     });
-    site.onGET({ name: ['/rss-pin'], public: true }, (req, res) => {
-        let text = ' Pin RSS ';
+    site.onGET({ name: ["/rss-pin"], public: true }, (req, res) => {
+        let text = " Pin RSS ";
         let setting = site.getSiteSetting(req.host);
         let lang = setting.languageList[0];
-        let domain = 'https://' + req.host;
+        let domain = "https://" + req.host;
 
         if (site.pinPost && site.pinPost.$pinDate && (new Date().getTime() - site.pinPost.$pinDate.getTime()) / 1000 < 60 * 15) {
-            res.set('Content-Type', 'application/xml');
+            res.set("Content-Type", "application/xml");
             res.end(site.getRssXmlString([site.pinPost], domain, lang.siteName + text));
             return;
         }
 
         let filter = site.getHostFilter(req.host);
 
-        if (filter.indexOf('*') !== -1) {
-            filter = filter.split('*');
+        if (filter.indexOf("*") !== -1) {
+            filter = filter.split("*");
             filter.forEach((n, i) => {
                 filter[i] = site.escapeRegx(n);
             });
-            filter = filter.join('.*');
+            filter = filter.join(".*");
         } else {
             filter = site.escapeRegx(filter);
         }
-        filter = '^' + filter + '$';
+        filter = "^" + filter + "$";
 
-        site.$articles.find({ host: new RegExp(filter, 'gium'), pinPost: { $exists: false } }, (err, doc) => {
+        site.$articles.find({ host: new RegExp(filter, "gium"), pinPost: { $exists: false } }, (err, doc) => {
             if (!err && doc) {
                 doc.pinPost = true;
                 site.$articles.update(doc);
                 doc = site.handleArticle({ ...doc });
                 site.articlesList.push(doc);
                 doc.$pinDate = new Date();
-                doc.full_url = domain + '/article/' + doc.guid;
+                doc.full_url = domain + "/article/" + doc.guid;
                 doc.$date2 = site.getDateTime(doc.publishDate).toISOString();
 
                 site.pinPost = doc;
 
-                res.set('Content-Type', 'application/xml');
+                res.set("Content-Type", "application/xml");
                 res.end(site.getRssXmlString([site.pinPost], domain, lang.siteName + text));
             } else {
-                res.set('Content-Type', 'application/xml');
+                res.set("Content-Type", "application/xml");
                 res.end(site.getRssXmlString([], domain, lang.siteName + text));
             }
         });
     });
-    site.onGET({ name: ['/feed'], public: true }, (req, res) => {
+    site.onGET({ name: ["/feed"], public: true }, (req, res) => {
         let limit = req.query.limit || 10;
         let list = [];
-        let text = '';
+        let text = "";
         let filter = site.getHostFilter(req.host);
         let setting = site.getSiteSetting(req.host);
 
         let lang = setting.languageList[0];
-        let domain = 'https://' + req.host;
-        if (req.params.guid == 'random') {
+        let domain = "https://" + req.host;
+        if (req.params.guid == "random") {
             list = site.articlesList.filter((a) => a.active && a.host.like(filter));
             list = [list[site.random(0, list.length - 1)]];
         } else if (req.params.guid) {
@@ -2016,9 +2054,9 @@ module.exports = function init(site) {
             list = site.articlesList.filter((a) => a.active && a.host.like(filter)).slice(0, limit);
         }
 
-        let urls = '';
+        let urls = "";
         list.forEach((doc, i) => {
-            $url = domain + '/article/' + doc.guid + '/' + doc.$title2;
+            $url = domain + "/article/" + doc.guid + "/" + doc.$title2;
             $date = site.getDateTime(doc.publishDate).toUTCString();
             urls += `
         <item>
@@ -2048,12 +2086,12 @@ module.exports = function init(site) {
             ${urls}
         </channel>
      </rss>`;
-        res.set('Content-Type', 'application/xml');
+        res.set("Content-Type", "application/xml");
         res.end(xml);
     });
-    site.onGET({ name: ['/sitemap.xml'], public: true }, (req, res) => {
-        let domain = 'https://' + req.host;
-        let urls = '';
+    site.onGET({ name: ["/sitemap.xml"], public: true }, (req, res) => {
+        let domain = "https://" + req.host;
+        let urls = "";
         let page = parseInt(req.query.page || 0);
         let limit = 1000;
         let where = {};
@@ -2067,7 +2105,7 @@ module.exports = function init(site) {
                 if (!err && docs) {
                     limit = docs.length;
                     docs.forEach((article, i) => {
-                        let $url = domain + '/article/' + article.guid;
+                        let $url = domain + "/article/" + article.guid;
                         let $date = site.getDateTime(article.publishDate).toISOString();
                         urls += `
               <url>
@@ -2092,7 +2130,7 @@ module.exports = function init(site) {
            ${urls}
         </urlset> 
         `;
-                res.set('Content-Type', 'application/xml');
+                res.set("Content-Type", "application/xml");
                 res.end(xml);
             },
             true,
@@ -2127,7 +2165,4 @@ module.exports = function init(site) {
         //   res.set("Content-Type", "application/xml");
         //   res.end(xml);
     });
-
-
-
 };
