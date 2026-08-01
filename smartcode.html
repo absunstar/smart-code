@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Smart Code شركة مصرية متخصصة في تطوير الأنظمة والمواقع والتطبيقات للشركات والمؤسسات منذ عام 2015." />
+  <meta name="theme-color" content="#0b1f35" />
+  <title>Smart Code | Company Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#0b1f35;
+      --navy-2:#123b5c;
+      --blue:#1570c9;
+      --teal:#18a999;
+      --teal-light:#4ed8c5;
+      --text:#142235;
+      --muted:#607286;
+      --surface:#f5f8fb;
+      --border:#dce5ee;
+      --white:#ffffff;
+      --shadow:0 20px 60px rgba(11,31,53,.12);
+      --radius:24px;
+      --container:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:var(--text);font-family:'Noto Sans Arabic','Segoe UI',Tahoma,Arial,sans-serif;line-height:1.9}
+    h1,h2,h3,h4,.brand-name{font-family:'Noto Kufi Arabic','Noto Sans Arabic',sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%}
+    .container{width:min(calc(100% - 32px),var(--container));margin-inline:auto}
+    .section{padding:88px 0}
+    .section.alt{background:var(--surface)}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--teal);font-weight:800;font-size:.84rem;letter-spacing:.3px;margin-bottom:10px}
+    .eyebrow::before{content:'';width:30px;height:3px;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--teal))}
+    .section-title{margin:0;font-size:clamp(1.8rem,4vw,3rem);color:var(--navy)}
+    .section-lead{max-width:760px;margin:14px 0 0;color:var(--muted);font-size:1.04rem}
+    .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:38px}
+    .section-no{font:800 1rem Arial;color:var(--teal);white-space:nowrap}
+
+    .navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(220,229,238,.9)}
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;font:900 18px Arial;box-shadow:0 12px 28px rgba(21,112,201,.2)}
+    .brand-name{display:block;font-size:1rem;font-weight:800;color:var(--navy)}
+    .brand-sub{display:block;font:500 .72rem Arial;color:var(--muted);letter-spacing:.4px}
+    .nav-links{display:flex;align-items:center;gap:22px;font-size:.92rem;font-weight:700;color:#33465a}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-actions{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border-radius:14px;font-weight:800;border:1px solid transparent;transition:.25s ease;cursor:pointer;font-family:inherit}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;box-shadow:0 14px 32px rgba(21,112,201,.2)}
+    .btn-secondary{background:#fff;color:var(--navy);border-color:var(--border)}
+
+    .hero{position:relative;overflow:hidden;background:linear-gradient(145deg,#071725 0%,#0b2741 58%,#0d3b50 100%);color:#fff;padding:110px 0 90px}
+    .hero::before{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(24,169,153,.27),transparent 68%);top:-260px;left:-140px}
+    .hero::after{content:'';position:absolute;width:360px;height:360px;border:1px solid rgba(255,255,255,.09);border-radius:50%;right:-80px;bottom:-140px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;position:relative;z-index:1}
+    .hero h1{font-size:clamp(2.6rem,6vw,5.4rem);margin:12px 0 18px;letter-spacing:-1px}
+    .hero h1 span{color:var(--teal-light)}
+    .hero p{color:#d4e0e9;font-size:1.12rem;max-width:720px;margin:0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .hero .btn-secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);color:#fff}
+    .hero-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:28px;box-shadow:var(--shadow);backdrop-filter:blur(10px)}
+    .hero-card h3{font-size:1.15rem;margin:0 0 18px}
+    .metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .metric{padding:18px;border-radius:18px;background:rgba(5,20,34,.45);border:1px solid rgba(255,255,255,.08)}
+    .metric b{display:block;color:var(--teal-light);font:900 1.7rem Arial}
+    .metric span{font-size:.82rem;color:#cad8e4}
+    .hero-contact{margin-top:14px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);color:#b9c9d7;font-size:.86rem}
+
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:-44px;position:relative;z-index:5}
+    .stat{padding:26px 20px;text-align:center;background:#fff;border:1px solid var(--border);border-radius:20px;box-shadow:0 16px 40px rgba(11,31,53,.08)}
+    .stat b{display:block;font:900 2rem Arial;color:var(--blue)}
+    .stat span{font-size:.88rem;color:var(--muted)}
+
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:.25s ease}
+    .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:rgba(21,112,201,.28)}
+    .card.soft{background:var(--surface)}
+    .card.dark{background:var(--navy);color:#fff;border-color:transparent}
+    .card.dark p{color:#c8d5df}
+    .card h3{margin:0 0 10px;font-size:1.15rem;color:var(--navy)}
+    .card.dark h3{color:#fff}
+    .card p{margin:0;color:var(--muted)}
+    .quote{margin-top:24px;border-right:5px solid var(--teal);background:#f3f8fb;border-radius:18px;padding:24px;font-size:1.05rem}
+    .icon{width:48px;height:48px;border-radius:15px;background:#e9f4fd;color:var(--blue);display:grid;place-items:center;font:bold 14px Arial;margin-bottom:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .bullets{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+    .bullets li{position:relative;padding-right:28px;color:#33465a}
+    .bullets li::before{content:'✓';position:absolute;right:0;top:0;color:var(--teal);font-weight:900}
+    .pill-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .pill{display:inline-flex;padding:8px 13px;border-radius:999px;background:#eaf7f5;color:#128b7f;font-size:.82rem;font-weight:800}
+
+    .strategy{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .strategy .card{min-height:220px}
+
+    .service-card{min-height:225px}
+    .service-card p{font-size:.95rem}
+
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .project{display:flex;flex-direction:column;min-height:190px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:23px;transition:.25s ease}
+    .project:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .project h3{font-size:1rem;margin:14px 0 8px;color:var(--navy)}
+    .project p{margin:0;color:var(--muted);font-size:.92rem}
+    .project .url{margin-top:auto;padding-top:16px;color:var(--blue);font:700 .8rem Arial}
+
+    .flagship{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:30px;padding:38px;color:#fff;display:grid;grid-template-columns:1fr .85fr;gap:30px;align-items:center}
+    .flagship h3{font-size:2rem;margin:0 0 14px}
+    .flagship p{color:#d5e1ea}
+    .flagship .bullets li{color:#d8e4ed}
+    .product-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:24px}
+
+    .process{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .step{display:grid;grid-template-columns:54px 1fr;gap:16px;padding:22px;border:1px solid var(--border);border-radius:20px;background:#fff}
+    .step-num{width:48px;height:48px;border-radius:14px;background:var(--navy);color:var(--teal-light);display:grid;place-items:center;font:800 .85rem Arial}
+    .step h3{font-size:1rem;margin:0 0 6px;color:var(--navy)}
+    .step p{font-size:.9rem;color:var(--muted);margin:0}
+
+    .contact-section{background:linear-gradient(145deg,#071725,#0d3b50);color:#fff}
+    .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:center}
+    .contact-section .section-title{color:#fff}
+    .contact-section .section-lead{color:#cbd9e4}
+    .contact-card{background:#fff;color:var(--text);border-radius:26px;padding:30px}
+    .contact-row{display:grid;grid-template-columns:155px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
+    .contact-row:last-child{border-bottom:0}
+    .contact-row b{color:var(--navy)}
+    .contact-row a,.contact-row span{color:var(--blue);font-weight:700;overflow-wrap:anywhere}
+
+    footer{padding:30px 0;background:#061421;color:#9db0c5}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:.86rem}
+
+    @media(max-width:980px){
+      .nav-links{display:none}.hero-grid,.flagship,.contact-grid{grid-template-columns:1fr}.hero-card{max-width:650px}.stats,.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3,.strategy{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:680px){
+      .section{padding:64px 0}.nav-actions .btn-secondary{display:none}.brand-sub{display:none}.hero{padding:80px 0 72px}.hero h1{font-size:2.45rem}.hero p{font-size:1rem}.stats{grid-template-columns:1fr 1fr;margin-top:-28px}.two-col,.grid-3,.grid-4,.strategy,.projects,.process{grid-template-columns:1fr}.section-head{align-items:flex-start}.section-no{display:none}.contact-row{grid-template-columns:1fr;gap:3px}.footer-inner{flex-direction:column;align-items:flex-start}.metrics{grid-template-columns:1fr 1fr}.hero-actions .btn{width:100%}
+    }
+    @media print{
+      .navbar,.print-hide{display:none!important}.hero,.contact-section{-webkit-print-color-adjust:exact;print-color-adjust:exact}.section{padding:45px 0}.card,.project,.step{break-inside:avoid}.stats{margin-top:20px}body{font-size:12px}
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Smart Code">
+        <span class="brand-mark">SC</span>
+        <span><strong class="brand-name">SMART CODE</strong><small class="brand-sub">BUSINESS SOFTWARE SOLUTIONS</small></span>
+      </a>
+      <nav class="nav-links" aria-label="التنقل الرئيسي">
+        <a href="#about">من نحن</a><a href="#strategy">الاستراتيجية</a><a href="#services">الخدمات</a><a href="#projects">أعمالنا</a><a href="#process">منهجية العمل</a><a href="#contact">تواصل معنا</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-secondary print-hide" onclick="window.print()">طباعة الصفحة</button>
+        <a class="btn btn-primary" href="https://wa.me/201090061266" target="_blank" rel="noopener">تواصل عبر واتساب</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow" style="color:#4ed8c5">تأسست عام 2015</div>
+          <h1>حلول برمجية<br><span>تنمو مع أعمالك</span></h1>
+          <p>Smart Code شركة مصرية متخصصة في تطوير الأنظمة والمواقع والتطبيقات للشركات والمؤسسات، من خلال فريق يضم أكثر من 30 مبرمجًا ومتخصصًا في مجالات البرمجيات المختلفة.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">استعرض أعمالنا</a>
+            <a class="btn btn-secondary" href="https://smartcode.egytag.com/" target="_blank" rel="noopener">الموقع الرسمي</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h3>Smart Code في أرقام</h3>
+          <div class="metrics">
+            <div class="metric"><b>2015</b><span>سنة التأسيس</span></div>
+            <div class="metric"><b>+30</b><span>مبرمجًا ومتخصصًا</span></div>
+            <div class="metric"><b>B2B</b><span>حلول للشركات</span></div>
+            <div class="metric"><b>White Label</b><span>تطوير باسم العميل</span></div>
+          </div>
+          <div class="hero-contact">مصر · مدينة نصر · 112 مكرم عبيد</div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="container stats" aria-label="مؤشرات الشركة">
+      <div class="stat"><b>10+</b><span>سنوات خبرة</span></div>
+      <div class="stat"><b>30+</b><span>عضوًا في الفريق</span></div>
+      <div class="stat"><b>10+</b><span>أنظمة ومنتجات معلنة</span></div>
+      <div class="stat"><b>360°</b><span>من التحليل إلى الدعم</span></div>
+    </div>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Company Overview</div><h2 class="section-title">من نحن</h2><p class="section-lead">نحن شريك تقني للشركات، ولسنا مجرد منفذ برمجي. نساعد المؤسسات على تحويل احتياجاتها التشغيلية وأفكارها إلى حلول رقمية عملية وآمنة وقابلة للتوسع.</p></div><div class="section-no">01</div></div>
+        <div class="two-col">
+          <div class="card soft"><h3>نبذة عن الشركة</h3><p>تأسست Smart Code عام 2015 للعمل في السوق المصري والعربي، وتركز على بناء أنظمة الأعمال، البرمجيات المخصصة، تطبيقات الويب والهاتف، التكامل بين الأنظمة، ومنتجات White Label.</p></div>
+          <div class="card dark"><h3>ما الذي نقدمه؟</h3><p>دورة تطوير متكاملة تبدأ بفهم نشاط العميل وتحليل احتياجاته، ثم تصميم الحل وتطويره واختباره وتشغيله، مع الدعم والصيانة والتطوير المستمر.</p></div>
+        </div>
+        <div class="quote">نهدف إلى بناء أنظمة تعتمد عليها الشركات يوميًا، وتظل قابلة للتطوير مع نمو الأعمال وتغير احتياجات السوق.</div>
+      </div>
+    </section>
+
+    <section class="section alt" id="vision">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Vision, Mission & Values</div><h2 class="section-title">الرؤية والرسالة والقيم</h2></div><div class="section-no">02</div></div>
+        <div class="grid-3">
+          <article class="card"><div class="icon">01</div><h3>رؤيتنا</h3><p>أن نكون شريكًا تقنيًا موثوقًا للشركات في مصر والمنطقة العربية، ونساهم في بناء منتجات رقمية مستقرة وقابلة للنمو والمنافسة عالميًا.</p></article>
+          <article class="card"><div class="icon">02</div><h3>رسالتنا</h3><p>تحويل تحديات الأعمال إلى حلول برمجية واضحة وآمنة وفعالة، تُحسن العمليات وتدعم اتخاذ القرار وتخلق قيمة طويلة الأجل.</p></article>
+          <article class="card"><div class="icon">03</div><h3>وعدنا</h3><p>تقديم حلول واقعية ومفهومة، مع تواصل شفاف، جودة قابلة للقياس، والتزام مستمر بعد إطلاق المشروع.</p></article>
+        </div>
+        <div class="pill-wrap"><span class="pill">الثقة</span><span class="pill">الأمان</span><span class="pill">الجودة</span><span class="pill">الالتزام</span><span class="pill">الشفافية</span><span class="pill">الابتكار العملي</span><span class="pill">احترام السرية</span><span class="pill">الشراكة طويلة الأجل</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="strategy">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Business Strategy</div><h2 class="section-title">استراتيجية الشركة</h2><p class="section-lead">تعتمد استراتيجيتنا على فهم العمل أولًا، ثم بناء حلول مرنة وآمنة يمكن تطويرها تدريجيًا دون تعقيد غير ضروري.</p></div><div class="section-no">03</div></div>
+        <div class="strategy">
+          <article class="card"><div class="icon">01</div><h3>التركيز على قطاع B2B</h3><p>تطوير حلول تخدم الشركات والمؤسسات وعملياتها اليومية، بدلًا من الاكتفاء بالمنتجات العامة.</p></article>
+          <article class="card"><div class="icon">02</div><h3>حلول قابلة للتوسع</h3><p>تصميم بنية تقنية تسمح بإضافة مستخدمين وفروع وخصائص وتكاملات مستقبلية.</p></article>
+          <article class="card"><div class="icon">03</div><h3>التنفيذ المرحلي</h3><p>تقليل المخاطر عبر مراحل واضحة تبدأ بالأولويات ثم تتوسع وفق النتائج الفعلية.</p></article>
+          <article class="card"><div class="icon">04</div><h3>الأمان والاستمرارية</h3><p>إدماج الأمان والنسخ الاحتياطي والصلاحيات والمراقبة ضمن دورة التطوير.</p></article>
+          <article class="card"><div class="icon">05</div><h3>الشراكات طويلة الأجل</h3><p>استمرار الدعم والصيانة والتحسين بعد التشغيل، وليس تسليم المشروع ثم الانسحاب.</p></article>
+          <article class="card"><div class="icon">06</div><h3>منتجات وWhite Label</h3><p>الجمع بين بناء منتجات مستقلة وتنفيذ حلول خاصة تُطلق باسم العميل.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="services">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">What We Do</div><h2 class="section-title">خدماتنا</h2><p class="section-lead">حلول متكاملة تغطي كل مراحل المشروع، من الدراسة والتحليل إلى الإطلاق والدعم.</p></div><div class="section-no">04</div></div>
+        <div class="grid-4">
+          <article class="card service-card"><div class="icon">01</div><h3>أنظمة المؤسسات</h3><p>ERP، نقاط البيع، المخزون، الحسابات، الموارد البشرية، الفروع والصلاحيات.</p></article>
+          <article class="card service-card"><div class="icon">02</div><h3>برمجيات مخصصة</h3><p>حلول يتم بناؤها وفق إجراءات وطبيعة العمل داخل المؤسسة.</p></article>
+          <article class="card service-card"><div class="icon">03</div><h3>مواقع وتطبيقات ويب</h3><p>بوابات شركات وعملاء، متاجر، حجوزات، منصات ولوحات تحكم.</p></article>
+          <article class="card service-card"><div class="icon">04</div><h3>تطبيقات الهاتف</h3><p>تطبيقات للعملاء والموظفين مرتبطة بأنظمة المؤسسة وقواعد بياناتها.</p></article>
+          <article class="card service-card"><div class="icon">05</div><h3>تكامل وربط الأنظمة</h3><p>ربط الدفع والشحن والرسائل والبريد الإلكتروني وواجهات API.</p></article>
+          <article class="card service-card"><div class="icon">06</div><h3>White Label</h3><p>تنفيذ المنتجات باسم العميل أو العمل كفريق تطوير خلفي.</p></article>
+          <article class="card service-card"><div class="icon">07</div><h3>التحديث وإعادة البناء</h3><p>تطوير الأنظمة القديمة وتحسين الأداء والواجهات والبنية التقنية.</p></article>
+          <article class="card service-card"><div class="icon">08</div><h3>الدعم والصيانة</h3><p>متابعة الأنظمة والتحديثات الأمنية وإضافة الخصائص الجديدة.</p></article>
+        </div>
+        <div class="pill-wrap"><span class="pill">التجزئة ونقاط البيع</span><span class="pill">المطاعم والضيافة</span><span class="pill">الرعاية الصحية</span><span class="pill">التعليم</span><span class="pill">النوادي</span><span class="pill">الموارد البشرية</span><span class="pill">شركات البرمجيات</span><span class="pill">المنصات الرقمية</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Selected Products</div><h2 class="section-title">نماذج من أعمالنا</h2><p class="section-lead">مجموعة من الأنظمة والمنصات التي توضح تنوع خبرتنا في القطاعات التجارية والطبية والتعليمية والإدارية.</p></div><div class="section-no">05</div></div>
+        <div class="projects">
+          <a class="project" href="https://pos.egytag.com/" target="_blank" rel="noopener"><span class="pill">نقاط البيع</span><h3>Smart Code POS</h3><p>إدارة نقاط البيع والفروع والمستخدمين والعمليات التجارية.</p><span class="url">pos.egytag.com</span></a>
+          <a class="project" href="https://erp.egytag.com/" target="_blank" rel="noopener"><span class="pill">إدارة المؤسسات</span><h3>Smart Code ERP</h3><p>منظومة لإدارة موارد المؤسسة والعمليات والصلاحيات.</p><span class="url">erp.egytag.com</span></a>
+          <a class="project" href="https://restaurant.egytag.com/" target="_blank" rel="noopener"><span class="pill">المطاعم</span><h3>Restaurant Management</h3><p>حل تشغيلي وإداري لإدارة المطاعم والفروع.</p><span class="url">restaurant.egytag.com</span></a>
+          <a class="project" href="https://medical.egytag.com/" target="_blank" rel="noopener"><span class="pill">القطاع الطبي</span><h3>Medical System</h3><p>نظام لإدارة المنشآت الطبية والعيادات.</p><span class="url">medical.egytag.com</span></a>
+          <a class="project" href="https://hmis.egytag.com/" target="_blank" rel="noopener"><span class="pill">المستشفيات</span><h3>HMIS</h3><p>نظام معلومات وإدارة متكامل للمستشفيات.</p><span class="url">hmis.egytag.com</span></a>
+          <a class="project" href="https://school.egytag.com/" target="_blank" rel="noopener"><span class="pill">التعليم</span><h3>School Management</h3><p>إدارة المدارس والطلاب والعمليات التعليمية.</p><span class="url">school.egytag.com</span></a>
+          <a class="project" href="https://academy.egytag.com/" target="_blank" rel="noopener"><span class="pill">الأكاديميات</span><h3>Academy Management</h3><p>إدارة الأكاديميات والمراكز التعليمية.</p><span class="url">academy.egytag.com</span></a>
+          <a class="project" href="https://employees.egytag.com/" target="_blank" rel="noopener"><span class="pill">الموارد البشرية</span><h3>Employees System</h3><p>إدارة الموظفين والموارد البشرية والفروع.</p><span class="url">employees.egytag.com</span></a>
+          <a class="project" href="https://club.egytag.com/" target="_blank" rel="noopener"><span class="pill">إدارة النوادي</span><h3>Club Management</h3><p>إدارة العضويات والخدمات والعمليات داخل النوادي.</p><span class="url">club.egytag.com</span></a>
+          <a class="project" href="https://emails.egytag.com/" target="_blank" rel="noopener"><span class="pill">خدمة رقمية</span><h3>Temporary Email</h3><p>منصة بريد مؤقت لحماية البريد الأساسي.</p><span class="url">emails.egytag.com</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="flagship">
+      <div class="container">
+        <div class="flagship">
+          <div><div class="eyebrow" style="color:#4ed8c5">Flagship Product</div><h3>Social Browser</h3><p>متصفح مستقل يستهدف الأسواق العالمية لإدارة مساحات عمل وحسابات متعددة، مع أدوات للخصوصية والجلسات والبروكسي والإضافات والأتمتة وتنظيم سير العمل.</p><a class="btn btn-primary" href="https://social-browser.com/" target="_blank" rel="noopener">زيارة Social Browser</a></div>
+          <div class="product-box"><h3 style="font-size:1.15rem">قدرات المنتج</h3><ul class="bullets"><li>عزل مساحات العمل والحسابات.</li><li>إدارة البروكسي والجلسات.</li><li>أدوات للخصوصية وتنظيم البصمة الرقمية.</li><li>دعم الإضافات وسكربتات المستخدم.</li><li>منصة أتمتة مدمجة تعتمد على JavaScript.</li><li>تنظيم سير العمل للفرق والمحترفين.</li></ul></div>
+        </div>
+        <div class="quote"><b>مشروعات سرية وWhite Label:</b> نفذت الشركة عددًا من الأنظمة والبرامج الخاصة لصالح شركات برمجيات ومؤسسات أخرى، وتم إطلاقها تحت أسماء وعلامات العملاء التجارية، مع الالتزام الكامل باتفاقيات السرية وحقوق الملكية.</div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Delivery Methodology</div><h2 class="section-title">منهجية العمل</h2><p class="section-lead">خطوات واضحة تقلل المخاطر وتضمن توافق النظام النهائي مع احتياجات العمل الفعلية.</p></div><div class="section-no">07</div></div>
+        <div class="process">
+          <div class="step"><div class="step-num">01</div><div><h3>الاكتشاف والتحليل</h3><p>فهم النشاط والعمليات والمستخدمين والمشكلات والنتائج المطلوبة.</p></div></div>
+          <div class="step"><div class="step-num">02</div><div><h3>تحديد النطاق والتخطيط</h3><p>توثيق الوظائف والصلاحيات وتقسيم المشروع إلى مراحل واضحة.</p></div></div>
+          <div class="step"><div class="step-num">03</div><div><h3>تصميم تجربة الاستخدام</h3><p>إنشاء تدفقات وشاشات سهلة تراعي طبيعة المستخدمين.</p></div></div>
+          <div class="step"><div class="step-num">04</div><div><h3>التطوير المرحلي</h3><p>تنفيذ المكونات على مراحل قابلة للمراجعة والاختبار.</p></div></div>
+          <div class="step"><div class="step-num">05</div><div><h3>الاختبار وضمان الجودة</h3><p>اختبار الوظائف والصلاحيات والأداء والأمان والتوافق.</p></div></div>
+          <div class="step"><div class="step-num">06</div><div><h3>الإطلاق والتدريب</h3><p>تهيئة بيئة التشغيل ونقل البيانات وتدريب المستخدمين.</p></div></div>
+          <div class="step"><div class="step-num">07</div><div><h3>الدعم والتحسين</h3><p>متابعة الأداء ومعالجة الملاحظات وإضافة الخصائص الجديدة.</p></div></div>
+          <div class="step"><div class="step-num">08</div><div><h3>قياس القيمة</h3><p>مراجعة أثر النظام على السرعة والكفاءة وجودة البيانات.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="why-us">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Why Smart Code</div><h2 class="section-title">لماذا تختار Smart Code؟</h2></div><div class="section-no">08</div></div>
+        <div class="two-col">
+          <div class="card"><ul class="bullets"><li>خبرة عملية منذ عام 2015 في قطاعات متعددة.</li><li>فريق يضم أكثر من 30 مبرمجًا ومتخصصًا.</li><li>تركيز أساسي على احتياجات الشركات والمؤسسات B2B.</li><li>خبرة في الأنظمة متعددة الفروع والمستخدمين والصلاحيات.</li><li>مرونة في مشروعات White Label مع الالتزام بالسرية.</li><li>دعم وصيانة وتطوير مستمر بعد الإطلاق.</li></ul></div>
+          <div class="card dark"><h3>ميزة تنافسية حقيقية</h3><p>نجمع بين الخبرة التقنية وفهم العمليات التجارية، بما يقلل الفجوة بين ما يطلبه العميل وما يحتاجه العمل فعليًا، ويساعد على اتخاذ قرارات تقنية وتجارية واقعية.</p></div>
+        </div>
+        <div class="grid-3" style="margin-top:22px"><div class="card"><h3>مشروع كامل</h3><p>تحليل وتصميم وتطوير واختبار وإطلاق نظام متكامل.</p></div><div class="card"><h3>تطوير مرحلي</h3><p>إطلاق نسخة أولية ثم التوسع وفق الأولويات والنتائج.</p></div><div class="card"><h3>فريق ممتد</h3><p>توفير مطورين ومتخصصين للعمل مع فريق العميل.</p></div><div class="card"><h3>White Label</h3><p>تنفيذ المنتج أو النظام ليتم تقديمه باسم العميل.</p></div><div class="card"><h3>دعم وتطوير</h3><p>استلام نظام قائم وتحسينه وصيانته وإضافة خصائص.</p></div><div class="card"><h3>استشارة وتحليل</h3><p>تقييم الاحتياج أو النظام الحالي ووضع خارطة طريق.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container contact-grid">
+        <div><div class="eyebrow" style="color:#4ed8c5">Let’s Build Together</div><h2 class="section-title">حوّل احتياجات شركتك إلى نظام يعمل بثقة</h2><p class="section-lead">سواء كنت تحتاج إلى نظام إدارة، تطبيق ويب أو هاتف، منصة رقمية، أو فريق تطوير يعمل باسم شركتك، نحن مستعدون لمناقشة احتياجك وبناء المسار الأنسب للتنفيذ.</p></div>
+        <div class="contact-card">
+          <div class="contact-row"><b>البريد الإلكتروني</b><a href="mailto:absunstar@gmail.com">absunstar@gmail.com</a></div>
+          <div class="contact-row"><b>واتساب</b><a href="https://wa.me/201090061266" target="_blank" rel="noopener">201090061266</a></div>
+          <div class="contact-row"><b>مقر الشركة</b><span>مصر - مدينة نصر - 112 مكرم عبيد</span></div>
+          <div class="contact-row"><b>الموقع الرسمي</b><a href="https://smartcode.egytag.com/" target="_blank" rel="noopener">smartcode.egytag.com</a></div>
+          <div class="contact-row"><b>سنة التأسيس</b><span>2015</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><div class="brand"><span class="brand-mark">SC</span><span><strong class="brand-name" style="color:#fff">SMART CODE</strong><small class="brand-sub">BUSINESS SOFTWARE SOLUTIONS</small></span></div><div>© <span id="year"></span> Smart Code. جميع الحقوق محفوظة.</div></div></footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
