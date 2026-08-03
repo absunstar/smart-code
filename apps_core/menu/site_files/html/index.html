@@ -55,6 +55,14 @@
 </style>
 
 <div class="main-menu" x-features="!atm">
+  <div class="pos-menu-tools">
+    <div class="pos-menu-search">
+      <i class="fa fa-search"></i>
+      <input id="posMenuSearch" type="search" autocomplete="off" placeholder="&#1575;&#1576;&#1581;&#1579; &#1601;&#1610; &#1575;&#1604;&#1602;&#1608;&#1575;&#1574;&#1605;" />
+    </div>
+    <div class="pos-menu-count"><span id="posMenuCount">0</span></div>
+  </div>
+  <div id="posMenuNoResults" class="pos-menu-no-results">&#1604;&#1575; &#1578;&#1608;&#1580;&#1583; &#1606;&#1578;&#1575;&#1574;&#1580;</div>
   <!-- <div class="tabs" ng-show="'##user.type##' == 'customer'">
 
         <a class="tab-link tooltip" href="/customers" x-permissions="customers_ui || customers_manage">
@@ -223,37 +231,37 @@
 
       <div class="" x-features="academy">
         <a class="tab-link tooltip" href="/book_course" x-permissions="book_course_ui || book_course_manage">
-          <img src="images/book_course.png" />
+          <img src="/images/book_course.png" />
           <span> ##word.book_course##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.book_course##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/create_course" x-permissions="create_course_ui || create_course_manage">
-          <img src="images/create_course.png" />
+          <img src="/images/create_course.png" />
           <span> ##word.create_course##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.create_course##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/account_course" x-permissions="account_course_ui || account_course_manage">
-          <img src="images/account_course.png" />
+          <img src="/images/account_course.png" />
           <span> ##word.account_course##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.account_course##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
-          <img src="images/book_hall.png" />
+          <img src="/images/book_hall.png" />
           <span> ##word.book_hall##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.book_hall##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/hosting" x-permissions="hosting_ui || hosting_manage">
-          <img src="images/hosting.png" />
+          <img src="/images/hosting.png" />
           <span> ##word.hosting##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.hosting##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/lecture" x-permissions="lecture_ui || lecture_manage">
-          <img src="images/lecture.png" />
+          <img src="/images/lecture.png" />
           <span> ##word.lectures##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.lectures##</h6>
         </a>
@@ -425,61 +433,61 @@
 
       <div class="" x-features="lawyer">
         <a class="tab-link tooltip" href="/courts" x-permissions="courts_ui || courts_manage">
-          <img src="images/court.png" />
+          <img src="/images/court.png" />
           <span>##word.courts## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.courts##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/circles" x-permissions="circles_ui || circles_manage">
-          <img src="images/circle.png" />
+          <img src="/images/circle.png" />
           <span>##word.circles## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.circles##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/adjectives" x-permissions="adjectives_ui || adjectives_manage">
-          <img src="images/adjectives.png" />
+          <img src="/images/adjectives.png" />
           <span>##word.adjectives_in_lawsuit## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.adjectives_in_lawsuit##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/reasons_sessions" x-permissions="reasons_sessions_ui || reasons_sessions_manage">
-          <img src="images/reasons_sessions.png" />
+          <img src="/images/reasons_sessions.png" />
           <span>##word.reasons_sessions## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.reasons_sessions##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/request_types" x-permissions="request_types_ui || request_types_manage">
-          <img src="images/request_types.png" />
+          <img src="/images/request_types.png" />
           <span>##word.request_types## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.request_types##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/rogatory_types" x-permissions="rogatory_ui || rogatory_manage">
-          <img src="images/rogatory_types.png" />
+          <img src="/images/rogatory_types.png" />
           <span>##word.rogatory_types## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.rogatory_types##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/rogatory_places" x-permissions="rogatory_places_ui || rogatory_places_manage">
-          <img src="images/rogatory_places.png" />
+          <img src="/images/rogatory_places.png" />
           <span>##word.rogatory_places## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.rogatory_places##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/lawsuit_status" x-permissions="lawsuit_status_ui || lawsuit_status_manage">
-          <img src="images/lawsuit_status.png" />
+          <img src="/images/lawsuit_status.png" />
           <span>##word.lawsuit_status## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.lawsuit_status##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/lawsuit_types" x-permissions="lawsuit_types_ui || lawsuit_types_manage">
-          <img src="images/lawsuit_types.png" />
+          <img src="/images/lawsuit_types.png" />
           <span>##word.lawsuit_types## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.lawsuit_types##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/lawsuit_degrees" x-permissions="lawsuit_degrees_ui || lawsuit_degrees_manage">
-          <img src="images/lawsuit_degrees.png" />
+          <img src="/images/lawsuit_degrees.png" />
           <span>##word.lawsuit_degrees## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.lawsuit_degrees##</h6>
         </a>
@@ -487,13 +495,13 @@
 
       <div x-features="academy">
         <a class="tab-link tooltip" href="/tenant" x-permissions="tenant_ui || tenant_manage">
-          <img src="images/tenant.png" />
+          <img src="/images/tenant.png" />
           <span> ##word.tenants##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.tenants##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/courses" x-permissions="courses_ui || courses_manage">
-          <img src="images/courses.png" />
+          <img src="/images/courses.png" />
           <span> ##word.courses_id##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.courses_id##</h6>
         </a>
@@ -675,19 +683,19 @@
       </a>
 
       <a class="tab-link tooltip" href="/file_type" x-permissions="file_type_ui || file_type_manage">
-        <img src="images/file_type.png" />
+        <img src="/images/file_type.png" />
         <span>##word.files_types## </span>
         <h6 class="tooltiptext" x-features="!atm">##word.files_types##</h6>
       </a>
 
       <a class="tab-link tooltip" x-features="!protouch" href="/militaries_status" x-permissions="militaries_status_ui || militaries_status_manage">
-        <img src="images/military.png" />
+        <img src="/images/military.png" />
         <span>##word.system_military_menus## </span>
         <h6 class="tooltiptext" x-features="!atm">##word.security_system##</h6>
       </a>
 
       <a class="tab-link tooltip" x-features="!protouch" href="/maritals_status" x-permissions="maritals_status_ui || maritals_status_manage">
-        <img src="images/marital.png" />
+        <img src="/images/marital.png" />
         <span>##word.system_social_status_menus## </span>
         <h6 class="tooltiptext" x-features="!atm">##word.security_system##</h6>
       </a>
@@ -1026,7 +1034,7 @@
   <div id="employees_tabs" class="tabs">
     <div class="tabs-header">
       <a class="tab-link tooltip" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
-        <img src="images/employees_salary.png" />
+        <img src="/images/employees_salary.png" />
         <span>##word.employees_report##</span>
         <h6 class="tooltiptext" x-features="!atm">##word.employees_report##</h6>
       </a>
@@ -1050,7 +1058,7 @@
       </a>
 
       <a x-features="club || school || academy" class="tab-link tooltip" href="/trainer" x-permissions="trainer_ui || trainer_manage">
-        <img src="images/trainer.png" />
+        <img src="/images/trainer.png" />
         <span> ##word.trainers##</span>
         <h6 class="tooltiptext" x-features="!atm">##word.trainers##</h6>
       </a>
@@ -1123,13 +1131,13 @@
     <div class="tabs-header">
       <div>
         <a class="tab-link tooltip" href="/report_attend_employees" x-permissions="report_attend_employees_ui || report_attend_employees_manage">
-          <img src="images/attend_employees.png" />
+          <img src="/images/attend_employees.png" />
           <span>##word.report_attend_employees##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_attend_employees##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/employees_salary_report" x-permissions="employees_salary_report_ui || employees_salary_report_manage">
-          <img src="images/pic_reportEmployee1.png" />
+          <img src="/images/pic_reportEmployee1.png" />
           <span>##word.employees_salary_report##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.employees_salary_report##</h6>
         </a>
@@ -1217,13 +1225,13 @@
         </a>
 
         <a class="tab-link tooltip" href="/report_attend_students" x-permissions="report_attend_students_ui || report_attend_students_manage">
-          <img src="images/attend_students.png" />
+          <img src="/images/attend_students.png" />
           <span>##word.report_attend_students##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_attend_students##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/report_exams" x-permissions="report_exams_ui || report_exams_manage">
-          <img src="images/report_exams.png" />
+          <img src="/images/report_exams.png" />
           <span>##word.report_exams##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_exams##</h6>
         </a>
@@ -1269,36 +1277,36 @@
 
       <div class="" x-features="academy">
         <a class="tab-link tooltip" href="/report_student_courses" x-permissions="report_student_courses_ui || report_student_courses_manage">
-          <img src="images/pic_reportEmployee1.png" />
+          <img src="/images/pic_reportEmployee1.png" />
           <span>##word.report_student_courses##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_student_courses##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/report_tenants_book" x-permissions="report_tenants_book_ui || report_tenants_book_manage">
-          <img src="images/report_tenant.png" />
+          <img src="/images/report_tenant.png" />
           <span>##word.report_tenants_book##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_tenants_book##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/report_student_hosting" x-permissions="report_student_hosting_ui || report_student_hosting_manage">
-          <img src="images/report_tenant.png" />
+          <img src="/images/report_tenant.png" />
           <span>##word.menu_report_hosting##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.menu_report_hosting##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/report_trainer_courses" x-permissions="report_trainer_courses_ui || report_trainer_courses_manage">
-          <img src="images/pic_reportEmployee1.png" />
+          <img src="/images/pic_reportEmployee1.png" />
           <span>##word.report_trainer_courses##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_trainer_courses##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/report_trainer_attend" x-permissions="report_trainer_attend_ui || report_trainer_attend_manage">
-          <img src="images/pic_reportEmployee1.png" />
+          <img src="/images/pic_reportEmployee1.png" />
           <span> ##word.report_trainer_detailed## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_trainer_detailed##</h6>
         </a>
         <a class="tab-link tooltip" href="/report_student_attend" x-permissions="report_student_attend_ui || report_student_attend_manage">
-          <img src="images/pic_reportEmployee1.png" />
+          <img src="/images/pic_reportEmployee1.png" />
           <span> ##word.report_student_detailed## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_student_detailed##</h6>
         </a>
@@ -1500,68 +1508,68 @@
 
       <div class="" x-features="lawyer">
         <a class="tab-link tooltip" href="/courts" x-permissions="courts_ui || courts_manage">
-          <img src="images/court.png" />
+          <img src="/images/court.png" />
           <span>##word.courts## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.courts##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/circles" x-permissions="circles_ui || circles_manage">
-          <img src="images/circle.png" />
+          <img src="/images/circle.png" />
           <span>##word.circles## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.circles##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/reasons_sessions" x-permissions="reasons_sessions_ui || reasons_sessions_manage">
-          <img src="images/reasons_sessions.png" />
+          <img src="/images/reasons_sessions.png" />
           <span>##word.reasons_sessions## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.reasons_sessions##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/request_types" x-permissions="request_types_ui || request_types_manage">
-          <img src="images/request_types.png" />
+          <img src="/images/request_types.png" />
           <span>##word.request_types## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.request_types##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/rogatory_types" x-permissions="request_types_ui || request_types_manage">
-          <img src="images/rogatory_types.png" />
+          <img src="/images/rogatory_types.png" />
           <span>##word.rogatory_types## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.rogatory_types##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/rogatory_places" x-permissions="rogatory_places_ui || rogatory_places_manage">
-          <img src="images/rogatory_places.png" />
+          <img src="/images/rogatory_places.png" />
           <span>##word.rogatory_places## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.rogatory_places##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/adjectives" x-permissions="adjectives_ui || adjectives_manage">
-          <img src="images/adjectives.png" />
+          <img src="/images/adjectives.png" />
           <span>##word.adjectives_in_lawsuit## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.adjectives_in_lawsuit##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/lawsuit_status" x-permissions="lawsuit_status_ui || lawsuit_status_manage">
-          <img src="images/lawsuit_status.png" />
+          <img src="/images/lawsuit_status.png" />
           <span>##word.lawsuit_status## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.lawsuit_status##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/lawsuit_types" x-permissions="lawsuit_types_ui || lawsuit_types_manage">
-          <img src="images/lawsuit_types.png" />
+          <img src="/images/lawsuit_types.png" />
           <span>##word.lawsuit_types## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.lawsuit_types##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/lawsuit_degrees" x-permissions="lawsuit_degrees_ui || lawsuit_degrees_manage">
-          <img src="images/lawsuit_degrees.png" />
+          <img src="/images/lawsuit_degrees.png" />
           <span>##word.lawsuit_degrees## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.lawsuit_degrees##</h6>
         </a>
       </div>
 
       <a x-features="club || school || academy" class="tab-link tooltip" href="/trainer" x-permissions="trainer_ui || trainer_manage">
-        <img src="images/trainer.png" />
+        <img src="/images/trainer.png" />
         <span> ##word.trainers##</span>
         <h6 class="tooltiptext" x-features="!atm">##word.trainers##</h6>
       </a>
@@ -1648,13 +1656,13 @@
 
       <div x-features="academy">
         <a class="tab-link tooltip" href="/tenant" x-permissions="tenant_ui || tenant_manage">
-          <img src="images/tenant.png" />
+          <img src="/images/tenant.png" />
           <span> ##word.tenants##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.tenants##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/courses" x-permissions="courses_ui || courses_manage">
-          <img src="images/courses.png" />
+          <img src="/images/courses.png" />
           <span> ##word.courses_id##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.courses_id##</h6>
         </a>
@@ -2059,19 +2067,19 @@
           <h6 class="tooltiptext" x-features="!atm">##word.personal_information##</h6>
         </a>
 
-        <a class="tab-link tooltip" href="/patients_files?id=##user.ref_info.id##" x-permissions="patients_files_ui || patients_files_manage">
+        <a class="tab-link tooltip pos-hidden-link" x-features="medical" href="/patients_files?id=##user.ref_info.id##" x-permissions="patients_files_ui || patients_files_manage">
           <img src="/images/patients_files.png" />
           <span> ##word.medical_file## </span>
           <h6 class="tooltiptext" x-features="!atm">##word.medical_file##</h6>
         </a>
 
-        <a class="tab-link tooltip" href="/exams" x-permissions="exams_ui || exams_manage">
+        <a class="tab-link tooltip pos-hidden-link" x-features="school || academy" href="/exams" x-permissions="exams_ui || exams_manage">
           <img src="/images/exams.png" />
           <span> ##word.exams##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.exams##</h6>
         </a>
 
-        <a class="tab-link tooltip" href="/libraries" x-permissions="libraries_ui || libraries_manage">
+        <a class="tab-link tooltip pos-hidden-link" x-features="school || academy" href="/libraries" x-permissions="libraries_ui || libraries_manage">
           <img src="/images/libraries.png" />
           <span> ##word.libraries##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.libraries##</h6>
@@ -2341,8 +2349,8 @@
       <li>
         <a class="tab-link tooltip" onclick="s4()" class="dropbtn">
           <img src="/images/warehouse-white.svg" />
-          <span>تسكين </span>
-          <h6 class="tooltiptext" x-features="!atm">تسكين</h6>
+          <span>&#1578;&#1587;&#1603;&#1610;&#1606; </span>
+          <h6 class="tooltiptext" x-features="!atm">&#1578;&#1587;&#1603;&#1610;&#1606;</h6>
         </a>
       </li>
 
@@ -2376,13 +2384,13 @@
 
       <div id="report_setting" class="dropdown-content" style="display: none">
         <a class="tab-link tooltip" href="/report_attend_employees" x-permissions="report_attend_employees_ui || report_attend_employees_manage">
-          <img src="images/config-white.svg" />
+          <img src="/images/config-white.svg" />
           <span>##word.report_attend_employees##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.report_attend_employees##</h6>
         </a>
 
         <a class="tab-link tooltip" href="/employees_salary_report" x-permissions="employees_salary_report_ui || employees_salary_report_manage">
-          <img src="images/config-white.svg" />
+          <img src="/images/config-white.svg" />
           <span>##word.employees_salary_report##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.employees_salary_report##</h6>
         </a>
@@ -2583,7 +2591,7 @@
 
       <div id="hr_setting" class="dropdown-content" style="display: none">
         <a class="tab-link tooltip" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
-          <img src="images/security-white.svg" />
+          <img src="/images/security-white.svg" />
           <span>##word.employees_report##</span>
           <h6 class="tooltiptext" x-features="!atm">##word.employees_report##</h6>
         </a>
@@ -2707,17 +2715,17 @@
           <span> ##word.drinks##</span>
         </a>
         <a class="tab-link tooltip" href="/militaries_status" x-permissions="militaries_status_ui || militaries_status_manage">
-          <img src="images/warehouse-white.svg" />
+          <img src="/images/warehouse-white.svg" />
           <span>##word.system_military_menus## </span>
         </a>
 
         <a class="tab-link tooltip" href="/file_type" x-permissions="file_type_ui || file_type_manage">
-          <img src="images/report-white.svg" />
+          <img src="/images/report-white.svg" />
           <span>##word.files_types## </span>
         </a>
 
         <a class="tab-link tooltip" href="/maritals_status" x-permissions="maritals_status_ui || maritals_status_manage">
-          <img src="images/hr-white.svg" />
+          <img src="/images/hr-white.svg" />
           <span>##word.system_social_status_menus## </span>
         </a>
 
@@ -2784,6 +2792,50 @@
         c.style.display = 'none';
       }
     }
+    function initPosMenuSearch() {
+      var menu = document.querySelector('.main-menu');
+      var input = document.querySelector('#posMenuSearch');
+      var count = document.querySelector('#posMenuCount');
+      var empty = document.querySelector('#posMenuNoResults');
+      if (!menu || !input) return;
+
+      var links = Array.prototype.slice.call(menu.querySelectorAll('.tabs-header .tab-link'));
+      links.forEach(function (link) {
+        var text = (link.innerText || link.textContent || '') + ' ' + (link.getAttribute('href') || '');
+        link.setAttribute('data-pos-search', text.toLowerCase());
+      });
+
+      function applyFilter() {
+        var query = (input.value || '').trim().toLowerCase();
+        var shown = 0;
+        links.forEach(function (link) {
+          var isBack = (link.getAttribute('onclick') || '').indexOf('#main_tabs') !== -1;
+          var match = !query || isBack || (link.getAttribute('data-pos-search') || '').indexOf(query) !== -1;
+          link.classList.toggle('pos-menu-filtered', !match);
+          if (match && !isBack && link.offsetParent !== null) shown += 1;
+        });
+
+        Array.prototype.slice.call(menu.querySelectorAll('.tabs')).forEach(function (tab) {
+          var visible = Array.prototype.slice.call(tab.querySelectorAll('.tab-link')).some(function (link) {
+            return !link.classList.contains('pos-menu-filtered');
+          });
+          tab.classList.toggle('pos-menu-group-empty', !visible);
+        });
+
+        if (count) count.textContent = shown;
+        if (empty) empty.classList.toggle('show', query && shown === 0);
+      }
+
+      input.addEventListener('input', applyFilter);
+      setTimeout(applyFilter, 300);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPosMenuSearch);
+    } else {
+      initPosMenuSearch();
+    }
+
     function divcollapse() {
       document.getElementById('basic_setting').style.display = 'none';
       document.getElementById('general_setting').style.display = 'none';

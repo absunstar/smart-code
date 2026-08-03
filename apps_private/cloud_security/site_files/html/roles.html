@@ -22,21 +22,21 @@
     </style>
 </head>
 
-<body class="##session.lang## loaded">
+<body class="##session.lang## loaded pos-roles-page">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
     </nav>
     <nav x-import="sitebottom/index.html" class="sitebottom" data-ng-controller="sitebottom">
     </nav>
 
-    <div id="main-layout" class="container ">
+    <div id="main-layout" class="container pos-page-shell">
         <div class="row ">
-            <div class="row" ng-controller="security">
+            <div class="row pos-roles-card" ng-controller="security">
                 <div x-import="security/add_role_modal.html"></div>
                 <div x-import="security/edit_role_modal.html"></div>
                 <div x-import="security/delete_role_modal.html"></div>
                 <div x-import="security/view_role_modal.html"></div>
-                <div x-permissions="security_manage " class="top-actions ">
+                <div x-permissions="security_manage " class="top-actions pos-roles-actions">
                     <i-button type="add bg-white black" ng-click="newRole()" label="##word.security_new_role##"></i-button>
                     <i-button type="bg-white black" label="##word.security_users##" ng-click="gotoUsers()"></i-button>
 
@@ -47,7 +47,7 @@
                 </div>
                 <br>
               
-                <table class="table">
+                <table class="table pos-roles-table">
                     <tr>
                         <th style="width: 30% !important;"> ##word.security_role## </th>
                         <th> ##word.security_actions## </th>

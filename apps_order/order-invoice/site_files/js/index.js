@@ -1078,8 +1078,13 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
   $scope.loadXtrasItems = function () {
     $scope.error = '';
-    $scope.busy = true;
     $scope.extrasItemsList = [];
+
+    if (!site.features.like('*restaurant*')) {
+      return;
+    }
+
+    $scope.busy = true;
 
     $http({
       method: 'POST',
